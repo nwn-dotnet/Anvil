@@ -1,4 +1,3 @@
-using NLog;
 using NWM.Core;
 
 namespace NWM
@@ -7,8 +6,6 @@ namespace NWM
   {
     private static ServiceManager serviceManager;
     private static ScriptHandlerDispatcher scriptHandlerDispatcher;
-
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private static bool initialized;
 

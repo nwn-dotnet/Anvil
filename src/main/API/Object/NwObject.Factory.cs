@@ -1,4 +1,4 @@
-using System;
+using NWM.Internal;
 using NWN;
 
 namespace NWM.API
@@ -23,14 +23,10 @@ namespace NWM.API
 
     public static NwObject Create(uint objectId)
     {
-      // TODO reuse cached objects
-      if (!NWScript.GetIsObjectValid(objectId).ToBool())
+      switch (NWMInterop.GetObjectType(objectId))
       {
-        return null;
-      }
-
-      switch ((ObjectType) Internal.Internal.GetObjectType(objectId))
-      {
+        case ObjectType.Invalid:
+          return null;
         case ObjectType.Creature:
           return NWScript.GetIsPC(objectId) == NWScript.TRUE ? new NwPlayer(objectId) : new NwCreature(objectId);
         case ObjectType.Item:
@@ -54,26 +50,6 @@ namespace NWM.API
         default:
           return new NwObject(objectId);
       }
-    }
-
-    private enum ObjectType : byte
-    {
-      GUI = 1,
-      Tile = 2,
-      Module = 3,
-      Area = 4,
-      Creature = 5,
-      Item = 6,
-      Trigger = 7,
-      Projectile = 8,
-      Placeable = 9,
-      Door = 10,
-      AreaOfEffect = 11,
-      Waypoint = 12,
-      Encounter = 13,
-      Store = 14,
-      Portal = 15,
-      Sound = 16,
     }
   }
 }
