@@ -1,5 +1,7 @@
+using System;
 using NWM.Internal;
 using NWN;
+using Object = NWM.Internal.Object;
 
 namespace NWM.API
 {
@@ -19,6 +21,16 @@ namespace NWM.API
         cachedModule = new NwModule(NWScript.GetModule());
         return cachedModule;
       }
+    }
+
+    public static NwObject Deserialize(string serializedObject)
+    {
+      return Create(Object.Deserialize(serializedObject));
+    }
+
+    public static NwObject GetByUUID(Guid uuid)
+    {
+      return Create(NWScript.GetObjectByUUID(uuid.ToString("N")));
     }
 
     public static NwObject Create(uint objectId)

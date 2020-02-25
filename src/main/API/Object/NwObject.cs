@@ -1,5 +1,6 @@
 using System;
 using NWN;
+using Object = NWM.Internal.Object;
 
 namespace NWM.API
 {
@@ -17,6 +18,8 @@ namespace NWM.API
       ObjectId = objectId;
     }
 
+    // TODO - Handle UUID conflicts.
+    public Guid UUID => Guid.Parse(NWScript.GetObjectUUID(this));
     public string ResRef => NWScript.GetResRef(this);
     public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
 
@@ -55,6 +58,16 @@ namespace NWM.API
     public LocalString GetLocalString(string name)
     {
       return new LocalString(this, name);
+    }
+
+    public void ForceRefreshUUID()
+    {
+      NWScript.ForceRefreshObjectUUID(this);
+    }
+
+    public string Serialize()
+    {
+      return Object.Serialize(this);
     }
 
     public bool Equals(NwObject other)
