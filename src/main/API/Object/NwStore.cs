@@ -5,6 +5,10 @@ namespace NWM.API
   public class NwStore : NwGameObject
   {
     protected internal NwStore(uint objectId) : base(objectId) {}
+    public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    {
+      return CreateInternal<NwStore>(ObjectType.Item, template, location, useAppearAnim, newTag);
+    }
 
     public int StoreGold
     {

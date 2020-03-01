@@ -6,7 +6,8 @@ namespace NWM.API
 {
   public partial class NwObject : IEquatable<NwObject>
   {
-    public readonly uint ObjectId;
+    protected const uint INVALID = NWScript.OBJECT_INVALID;
+    protected readonly uint ObjectId;
 
     public static implicit operator uint(NwObject obj)
     {

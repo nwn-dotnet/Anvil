@@ -4,13 +4,13 @@ namespace NWM.Internal
   {
     private const string PLUGIN_NAME = "NWNX_NWMInterop";
 
-    public static ObjectType GetObjectType(uint objectId)
+    public static InternalObjectType GetObjectType(uint objectId)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetObjectType");
       NWN.Internal.NativeFunctions.nwnxPushObject(objectId);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
 
-      return (ObjectType) NWN.Internal.NativeFunctions.nwnxPopInt();
+      return (InternalObjectType) NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     public static string GetUserDirectory()
@@ -21,7 +21,7 @@ namespace NWM.Internal
     }
   }
 
-  public enum ObjectType
+  internal enum InternalObjectType
   {
     Invalid = -1,
     GUI = 1,

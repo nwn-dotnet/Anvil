@@ -24,7 +24,7 @@ namespace NWM.Core
     public event UserDefinedEvent OnUserDefined;
 
     public delegate void AcquireItemEvent(NwItem item, NwGameObject acquiredBy, NwGameObject acquiredFrom);
-    public delegate void ActivateItemEvent(NwItem item, NwCreature activator);
+    public delegate void ActivateItemEvent(NwItem item, NwCreature activator, NwGameObject target, Location targetLocation);
     public delegate void ClientEnterEvent(NwPlayer entered);
     public delegate void ClientLeaveEvent(NwPlayer exiting);
     public delegate void CutsceneAbortEvent(NwPlayer aborter);
@@ -61,7 +61,9 @@ namespace NWM.Core
 
       NwItem item = NWScript.GetItemActivated().ToNwObject<NwItem>();
       NwCreature activator = NWScript.GetItemActivator().ToNwObject<NwCreature>();
-      OnActivateItem(item, activator);
+      NwGameObject target = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
+      Location targetLocation = NWScript.GetItemActivatedTargetLocation();
+      OnActivateItem(item, activator, target, targetLocation);
     }
 
     [ScriptHandler("nwm_cli_ent")]

@@ -16,5 +16,10 @@ namespace NWM.API
       get => NWScript.GetPlotFlag(this).ToBool();
       set => NWScript.SetPlotFlag(this, value.ToInt());
     }
+
+    public Location Location
+    {
+      get => NWScript.GetLocation(this);
+    }
   }
 }
