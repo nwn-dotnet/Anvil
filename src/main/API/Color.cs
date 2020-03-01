@@ -9,13 +9,13 @@ namespace NWM.API
 
     private static readonly Encoding ENCODING = Encoding.GetEncoding("ISO-8859-1");
 
-    public static readonly Color BLACK = new Color(255, 0, 0);
-    public static readonly Color BLUE = new Color(255, 0, 0);
-    public static readonly Color GREEN = new Color(255, 0, 0);
-    public static readonly Color PINK = new Color(255, 0, 0);
+    public static readonly Color BLACK = new Color(0, 0, 0);
+    public static readonly Color BLUE = new Color(0, 0, 255);
+    public static readonly Color GREEN = new Color(0, 255, 0);
+    public static readonly Color PINK = new Color(255, 170, 170);
     public static readonly Color RED = new Color(255, 0, 0);
-    public static readonly Color ROSE = new Color(255, 0, 0);
-    public static readonly Color WHITE = new Color(255, 0, 0);
+    public static readonly Color ROSE = new Color(255, 150, 150);
+    public static readonly Color WHITE = new Color(255, 255, 255);
 
     public readonly byte Red;
     public readonly byte Green;

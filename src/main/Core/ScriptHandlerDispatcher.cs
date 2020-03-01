@@ -34,7 +34,7 @@ namespace NWM.Core
     {
       Type serviceType = service.GetType();
 
-      foreach (MethodInfo method in serviceType.GetMethods())
+      foreach (MethodInfo method in serviceType.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
       {
         foreach (ScriptHandlerAttribute handler in method.GetCustomAttributes<ScriptHandlerAttribute>())
         {

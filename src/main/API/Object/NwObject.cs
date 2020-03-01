@@ -18,8 +18,22 @@ namespace NWM.API
       ObjectId = objectId;
     }
 
-    // TODO - Handle UUID conflicts.
-    public Guid UUID => Guid.Parse(NWScript.GetObjectUUID(this));
+    public Guid UUID
+    {
+      get
+      {
+        // TODO - Better Handle UUID conflicts.
+        string uid = NWScript.GetObjectUUID(this);
+        if (string.IsNullOrEmpty(uid))
+        {
+          ForceRefreshUUID();
+          uid = NWScript.GetObjectUUID(this);
+        }
+
+        return Guid.Parse(uid);
+      }
+    }
+
     public string ResRef => NWScript.GetResRef(this);
     public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
 
@@ -58,6 +72,11 @@ namespace NWM.API
     public LocalString GetLocalString(string name)
     {
       return new LocalString(this, name);
+    }
+
+    public bool HasClashingUUID()
+    {
+      return string.IsNullOrEmpty(NWScript.GetObjectUUID(this));
     }
 
     public void ForceRefreshUUID()

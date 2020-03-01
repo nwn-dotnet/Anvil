@@ -17,5 +17,6 @@ namespace NWM.API
     }
 
     public bool IsDM => NWScript.GetIsDM(ObjectId).ToBool();
+    public string PlayerName => NWScript.GetPCPlayerName(this);
   }
 }

@@ -7,6 +7,12 @@ namespace NWM.API
   {
     protected internal NwCreature(uint objectId) : base(objectId) {}
 
+    public int Xp
+    {
+      get => NWScript.GetXP(this);
+      set => NWScript.SetXP(this, value);
+    }
+
     public IEnumerable<Effect> ActiveEffects
     {
       get

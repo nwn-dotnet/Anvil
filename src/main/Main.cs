@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using NWM.Core;
 
 namespace NWM
@@ -12,6 +15,7 @@ namespace NWM
     public static void OnStart()
     {
       serviceManager = new ServiceManager();
+      AppendAssemblyToPath();
     }
 
     public static void OnMainLoop(ulong frame)
@@ -27,6 +31,15 @@ namespace NWM
       }
 
       return scriptHandlerDispatcher.ExecuteScript(script, oidSelf);
+    }
+
+    // Needed to allow native libs to be loaded.
+    private static void AppendAssemblyToPath()
+    {
+      string envPath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Process);
+      string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+      Environment.SetEnvironmentVariable("PATH", $"{envPath}; {assemblyDir}");
     }
 
     private static void Init()
