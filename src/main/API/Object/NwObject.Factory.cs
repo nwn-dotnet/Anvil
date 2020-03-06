@@ -28,11 +28,6 @@ namespace NWM.API
       return CreateInternal(Object.Deserialize(serializedObject));
     }
 
-    public static T FromUUID<T>(Guid uuid) where T : NwObject
-    {
-      return (T)FromUUID(uuid);
-    }
-
     public static T FromTag<T>(string tag) where T : NwObject
     {
       return (T) FromTag(tag);
@@ -43,9 +38,14 @@ namespace NWM.API
       return NWScript.GetObjectByTag(tag).ToNwObject();
     }
 
-    public static NwObject FromUUID(Guid uuid)
+    internal static T CreateInternal<T>(Guid uuid) where T : NwObject
     {
-      return CreateInternal(NWScript.GetObjectByUUID(uuid.ToString("N")));
+      return (T)CreateInternal(uuid);
+    }
+
+    internal static NwObject CreateInternal(Guid uuid)
+    {
+      return uuid == Guid.Empty ? null : CreateInternal(NWScript.GetObjectByUUID(uuid.ToUUIDString()));
     }
 
     internal static T CreateInternal<T>(ObjectType objectType, string template, Location location, bool useAppearAnim, string newTag) where T : NwObject
@@ -55,6 +55,16 @@ namespace NWM.API
 
     internal static NwObject CreateInternal(uint objectId)
     {
+      if (objectId == INVALID)
+      {
+        return null;
+      }
+
+      if (objectId == moduleObj)
+      {
+        return moduleObj;
+      }
+
       switch (NWMInterop.GetObjectType(objectId))
       {
         case InternalObjectType.Invalid:

@@ -23,6 +23,11 @@ namespace NWM.API
     {
       get
       {
+        if (this == INVALID)
+        {
+          return Guid.Empty;
+        }
+
         // TODO - Better Handle UUID conflicts.
         string uid = NWScript.GetObjectUUID(this);
         if (string.IsNullOrEmpty(uid))
@@ -31,7 +36,7 @@ namespace NWM.API
           uid = NWScript.GetObjectUUID(this);
         }
 
-        return Guid.Parse(uid);
+        return Guid.TryParse(uid, out Guid guid) ? guid : Guid.Empty;
       }
     }
 
