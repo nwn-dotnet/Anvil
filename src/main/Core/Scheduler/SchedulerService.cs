@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using NLog;
 
-namespace NWM.Core.Scheduler
+namespace NWM.Core
 {
   [Service(typeof(IUpdateable), IsCollection = true)]
   public class SchedulerService : IUpdateable
