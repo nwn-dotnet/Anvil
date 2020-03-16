@@ -12,6 +12,16 @@ namespace NWM.API
       return CreateInternal<NwCreature>(ObjectType.Item, template, location, useAppearAnim, newTag);
     }
 
+    public bool IsDMPossessed
+    {
+      get => NWScript.GetIsDMPossessed(this).ToBool();
+    }
+
+    public NwCreature Master
+    {
+      get => NWScript.GetMaster(this).ToNwObject<NwCreature>();
+    }
+
     public int Xp
     {
       get => NWScript.GetXP(this);
@@ -64,6 +74,11 @@ namespace NWM.API
       }
 
       return NWScript.CopyObject(this, location, sNewTag: newTag).ToNwObject<NwCreature>();
+    }
+
+    public void GiveItem(NwItem item)
+    {
+      NWScript.ActionGiveItem(item, this);
     }
   }
 }
