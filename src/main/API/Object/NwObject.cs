@@ -7,7 +7,6 @@ namespace NWM.API
   public partial class NwObject : IEquatable<NwObject>
   {
     protected const uint INVALID = NWScript.OBJECT_INVALID;
-    protected static uint CURRENT_SELF_OBJ => NWScript.OBJECT_SELF;
     protected readonly uint ObjectId;
 
     public static implicit operator uint(NwObject obj)
@@ -58,25 +57,27 @@ namespace NWM.API
 
     /// <summary>
     /// Assign the specified action to this object
-    /// * No return value, but if an error occurs, the log file will contain
-    ///   "AssignCommand failed."
-    ///   (If the object doesn't exist, nothing happens.)
     /// </summary>
     protected void AssignCommand(ActionDelegate action) => NWScript.AssignCommand(this, action);
+
+    protected void ExecuteOnSelf(ActionDelegate action)
+    {
+      if (this == NWScript.OBJECT_SELF)
+      {
+        action();
+      }
+      else
+      {
+        AssignCommand(action);
+      }
+    }
 
     /// <summary>
     /// Inserts the function call aCommand into the Action Queue, ensuring the calling object will perform actions in a particular order.
     /// </summary>
     public void AddActionToQueue(ActionDelegate action)
     {
-      if (this == CURRENT_SELF_OBJ)
-      {
-        NWScript.ActionDoCommand(action);
-      }
-      else
-      {
-        AssignCommand(() => NWScript.ActionDoCommand(action));
-      }
+      ExecuteOnSelf(() => NWScript.ActionDoCommand(action));
     }
 
     /// <summary>
@@ -89,14 +90,7 @@ namespace NWM.API
     /// </summary>
     public void ClearActionQueue(bool clearCombatState = false)
     {
-      if (this == CURRENT_SELF_OBJ)
-      {
-        NWScript.ClearAllActions(clearCombatState.ToInt());
-      }
-      else
-      {
-        AssignCommand(() => NWScript.ClearAllActions(clearCombatState.ToInt()));
-      }
+      ExecuteOnSelf(() => NWScript.ClearAllActions(clearCombatState.ToInt()));
     }
 
     public LocalBool GetLocalBool(string name)

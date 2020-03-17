@@ -9,6 +9,12 @@ namespace NWM.Core
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    /// <summary>
+    ///  Gets, or sets the current module date & time.
+    ///  This date must fall within the years 0 to 32001.
+    ///  Time can only be advanced forwards; attempting to set the time backwards
+    ///     will result in no change to the calendar, and a warning logged.
+    /// </summary>
     public NwnDateTime Now
     {
       get

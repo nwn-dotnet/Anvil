@@ -66,6 +66,32 @@ namespace NWM.API
       NWScript.ApplyEffectToObject((int)durationType, effect, this, duration);
     }
 
+    /// <summary>
+    /// The creature will generate a random location near its current location
+    /// and pathfind to it. This repeats and never ends, which means it is necessary
+    /// to call <see cref="NwObject.ClearActionQueue"/> in order to allow a creature to perform any other action
+    /// once BeginRandomWalking has been called.
+    /// </summary>
+    public void BeginRandomWalking()
+    {
+      ExecuteOnSelf(NWScript.ActionRandomWalk);
+    }
+
+    /// <summary>
+    /// Tells the creature to walk/run to the specified destination. If the location is invalid or a path cannot be found to it, the command does nothing.
+    /// </summary>
+    /// <param name="destination">The location to move towards.</param>
+    /// <param name="run">If this is true, the creature will run rather than walk</param>
+    public void MoveToLocation(Location destination, bool run = false)
+    {
+      ExecuteOnSelf(() => NWScript.ActionMoveToLocation(destination, run.ToInt()));
+    }
+
+    public void MoveToObject(NwObject target, bool run = false, float range = 1.0f)
+    {
+      ExecuteOnSelf(() => NWScript.ActionMoveToObject(target, run.ToInt(), range));
+    }
+
     public NwCreature Clone(Location location = null, string newTag = null)
     {
       if (location == null)

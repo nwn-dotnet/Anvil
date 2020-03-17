@@ -11,14 +11,7 @@ namespace NWM.API
       get => NWScript.GetFacing(this) % 360;
       set
       {
-        if (CURRENT_SELF_OBJ == this)
-        {
-          NWScript.SetFacing(value % 360);
-        }
-        else
-        {
-          AssignCommand(() => NWScript.SetFacing(value % 360));
-        }
+        ExecuteOnSelf(() => NWScript.SetFacing(value % 360));
       }
     }
 
