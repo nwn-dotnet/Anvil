@@ -7,6 +7,7 @@ namespace NWM.API
   public partial class NwObject : IEquatable<NwObject>
   {
     protected const uint INVALID = NWScript.OBJECT_INVALID;
+    protected static uint CURRENT_SELF_OBJ => NWScript.OBJECT_SELF;
     protected readonly uint ObjectId;
 
     public static implicit operator uint(NwObject obj)
@@ -55,9 +56,47 @@ namespace NWM.API
       set => NWScript.SetTag(this, value);
     }
 
-    public void AssignCommand(ActionDelegate action)
+    /// <summary>
+    /// Assign the specified action to this object
+    /// * No return value, but if an error occurs, the log file will contain
+    ///   "AssignCommand failed."
+    ///   (If the object doesn't exist, nothing happens.)
+    /// </summary>
+    protected void AssignCommand(ActionDelegate action) => NWScript.AssignCommand(this, action);
+
+    /// <summary>
+    /// Inserts the function call aCommand into the Action Queue, ensuring the calling object will perform actions in a particular order.
+    /// </summary>
+    public void AddActionToQueue(ActionDelegate action)
     {
-      NWScript.AssignCommand(this, action);
+      if (this == CURRENT_SELF_OBJ)
+      {
+        NWScript.ActionDoCommand(action);
+      }
+      else
+      {
+        AssignCommand(() => NWScript.ActionDoCommand(action));
+      }
+    }
+
+    /// <summary>
+    ///  Clear all the object's actions.
+    ///  * No return value, but if an error occurs, the log file will contain
+    ///    "ClearAllActions failed.".
+    ///  - clearCombatState: if true, this will immediately clear the combat state
+    ///    on a creature, which will stop the combat music and allow them to rest,
+    ///    engage in dialog, or other actions that they would normally have to wait for.
+    /// </summary>
+    public void ClearActionQueue(bool clearCombatState = false)
+    {
+      if (this == CURRENT_SELF_OBJ)
+      {
+        NWScript.ClearAllActions(clearCombatState.ToInt());
+      }
+      else
+      {
+        AssignCommand(() => NWScript.ClearAllActions(clearCombatState.ToInt()));
+      }
     }
 
     public LocalBool GetLocalBool(string name)

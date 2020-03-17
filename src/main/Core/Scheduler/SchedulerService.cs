@@ -10,14 +10,14 @@ namespace NWM.Core
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     // Dependencies
-    private readonly TimeService timeService;
+    private readonly LoopService loopService;
 
     private readonly List<ScheduledItem> scheduledItems = new List<ScheduledItem>(1024);
     private readonly IComparer<ScheduledItem> comparer = new ScheduledItem.SortedByExecutionTime();
 
-    public SchedulerService(TimeService timeService)
+    public SchedulerService(LoopService loopService)
     {
-      this.timeService = timeService;
+      this.loopService = loopService;
     }
 
     public IDisposable Schedule(string name, Action task, TimeSpan delay)
@@ -32,7 +32,7 @@ namespace NWM.Core
       }
 
       Log.Debug($"Scheduled Future Task: {name}");
-      ScheduledItem item = new ScheduledItem(this, task, timeService.Time + delay.TotalSeconds);
+      ScheduledItem item = new ScheduledItem(this, task, loopService.Time + delay.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;
     }
@@ -49,7 +49,7 @@ namespace NWM.Core
       }
 
       Log.Debug($"Scheduled Repeating Task: {name}");
-      ScheduledItem item = new ScheduledItem(this, task, timeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
+      ScheduledItem item = new ScheduledItem(this, task, loopService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;
     }
@@ -59,13 +59,13 @@ namespace NWM.Core
       scheduledItems.Remove(scheduledItem);
     }
 
-    void IUpdateable.Update(TimeService time)
+    void IUpdateable.Update(LoopService loop)
     {
       int i;
       for (i = 0; i < scheduledItems.Count; i++)
       {
         ScheduledItem item = scheduledItems[i];
-        if (time.Time < item.ExecutionTime)
+        if (loop.Time < item.ExecutionTime)
         {
           break;
         }
@@ -76,9 +76,10 @@ namespace NWM.Core
           continue;
         }
 
-        item.Reschedule(time.Time + item.Schedule);
+        item.Reschedule(loop.Time + item.Schedule);
         scheduledItems.RemoveAt(i);
         scheduledItems.InsertOrdered(item, comparer);
+        i--;
       }
 
       if (i > 0)

@@ -6,6 +6,27 @@ namespace NWM.API
   {
     protected NwGameObject(uint objectId) : base(objectId) {}
 
+    public virtual float Rotation
+    {
+      get => NWScript.GetFacing(this) % 360;
+      set
+      {
+        if (CURRENT_SELF_OBJ == this)
+        {
+          NWScript.SetFacing(value % 360);
+        }
+        else
+        {
+          AssignCommand(() => NWScript.SetFacing(value % 360));
+        }
+      }
+    }
+
+    public void FaceTowards(NwGameObject nwObject)
+    {
+      AssignCommand(() => NWScript.SetFacingPoint(nwObject.Location.Position));
+    }
+
     public NwArea Area
     {
       get => NWScript.GetArea(this).ToNwObject<NwArea>();

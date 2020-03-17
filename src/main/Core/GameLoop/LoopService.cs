@@ -5,7 +5,7 @@ using NLog;
 namespace NWM.Core
 {
   [Service]
-  public class TimeService
+  public class LoopService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -15,7 +15,7 @@ namespace NWM.Core
     public double Time { get; private set; }
     public double DeltaTime { get; private set; }
 
-    public TimeService(List<IUpdateable> updateables)
+    public LoopService(List<IUpdateable> updateables)
     {
       this.updateables = updateables;
       Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");

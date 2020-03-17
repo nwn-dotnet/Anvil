@@ -9,7 +9,7 @@ namespace NWM
   {
     private static ServiceManager serviceManager;
     private static ScriptHandlerDispatcher scriptHandlerDispatcher;
-    private static TimeService timeService;
+    private static LoopService loopService;
 
     private static bool initialized;
 
@@ -21,7 +21,7 @@ namespace NWM
 
     public static void OnMainLoop(ulong frame)
     {
-      timeService.Update();
+      loopService.Update();
     }
 
     public static int OnRunScript(string script, uint oidSelf)
@@ -48,7 +48,7 @@ namespace NWM
       initialized = true;
       serviceManager.Verify();
       scriptHandlerDispatcher = serviceManager.GetService<ScriptHandlerDispatcher>();
-      timeService = serviceManager.GetService<TimeService>();
+      loopService = serviceManager.GetService<LoopService>();
       scriptHandlerDispatcher.Init(serviceManager.GetRegisteredServices());
     }
   }
