@@ -55,18 +55,22 @@ namespace NWM.API
 
     internal static NwObject CreateInternal(uint objectId)
     {
+      // Not a valid object (object no longer exists?) - return null (term for invalid in C# land)
       if (objectId == INVALID)
       {
         return null;
       }
 
+      // The module object will never change, so to save performance, we return the one we already have instead of finding a new one.
       if (objectId == moduleObj)
       {
         return moduleObj;
       }
 
-      switch (NWMInterop.GetObjectType(objectId))
+      switch (NWMInterop.GetObjectType(objectId)) // Get our object type using our custom plugin
       {
+        // Depending on the type of object, create a specific kind of object to enforce type safety.
+        // We map the returned object type to the object to create.
         case InternalObjectType.Invalid:
           return null;
         case InternalObjectType.Creature:

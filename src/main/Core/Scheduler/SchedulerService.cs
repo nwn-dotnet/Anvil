@@ -10,14 +10,14 @@ namespace NWM.Core
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     // Dependencies
-    private readonly LoopService loopService;
+    private readonly LoopTimeService loopTimeService;
 
     private readonly List<ScheduledItem> scheduledItems = new List<ScheduledItem>(1024);
     private readonly IComparer<ScheduledItem> comparer = new ScheduledItem.SortedByExecutionTime();
 
-    public SchedulerService(LoopService loopService)
+    public SchedulerService(LoopTimeService loopTimeService)
     {
-      this.loopService = loopService;
+      this.loopTimeService = loopTimeService;
     }
 
     public IDisposable Schedule(string name, Action task, TimeSpan delay)
@@ -32,7 +32,7 @@ namespace NWM.Core
       }
 
       Log.Debug($"Scheduled Future Task: {name}");
-      ScheduledItem item = new ScheduledItem(this, task, loopService.Time + delay.TotalSeconds);
+      ScheduledItem item = new ScheduledItem(this, task, loopTimeService.Time + delay.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;
     }
@@ -49,7 +49,7 @@ namespace NWM.Core
       }
 
       Log.Debug($"Scheduled Repeating Task: {name}");
-      ScheduledItem item = new ScheduledItem(this, task, loopService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
+      ScheduledItem item = new ScheduledItem(this, task, loopTimeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;
     }
@@ -59,13 +59,13 @@ namespace NWM.Core
       scheduledItems.Remove(scheduledItem);
     }
 
-    void IUpdateable.Update(LoopService loop)
+    void IUpdateable.Update()
     {
       int i;
       for (i = 0; i < scheduledItems.Count; i++)
       {
         ScheduledItem item = scheduledItems[i];
-        if (loop.Time < item.ExecutionTime)
+        if (loopTimeService.Time < item.ExecutionTime)
         {
           break;
         }
@@ -76,7 +76,7 @@ namespace NWM.Core
           continue;
         }
 
-        item.Reschedule(loop.Time + item.Schedule);
+        item.Reschedule(loopTimeService.Time + item.Schedule);
         scheduledItems.RemoveAt(i);
         scheduledItems.InsertOrdered(item, comparer);
         i--;

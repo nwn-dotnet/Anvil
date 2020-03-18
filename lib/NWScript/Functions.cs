@@ -10,7 +10,7 @@ namespace NWN
         ///   "AssignCommand failed."
         ///   (If the object doesn't exist, nothing happens.)
         /// </summary>
-        public static void AssignCommand(uint oActionSubject, ActionDelegate aActionToAssign)2
+        public static void AssignCommand(uint oActionSubject, ActionDelegate aActionToAssign)
         {
             Internal.ClosureAssignCommand(oActionSubject, aActionToAssign);
         }

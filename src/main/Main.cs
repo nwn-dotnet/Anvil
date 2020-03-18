@@ -21,7 +21,7 @@ namespace NWM
 
     public static void OnMainLoop(ulong frame)
     {
-      loopService.Update();
+      loopService?.Update();
     }
 
     public static int OnRunScript(string script, uint oidSelf)

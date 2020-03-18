@@ -20,8 +20,8 @@ namespace NWM.Core
     public int Second => (int) (totalMs / MillisPerSecond % 60);
     public int Minute => (int) (totalMs / MillisPerMinute % 60);
     public int Hour => (int) (totalMs / MillisPerHour % 24);
-    public int Day => (int) (totalMs / MillisPerHour % 28);
-    public int Month => (int) (totalMs / MillisPerMonth % 12);
+    public int Day => (int) (totalMs / MillisPerHour % 28) + 1;
+    public int Month => (int) (totalMs / MillisPerMonth % 12) + 1;
     public int Year => (int) (totalMs / MillisPerYear);
 
     public NwnDateTime Date => new NwnDateTime(totalMs - totalMs % MillisPerDay);
