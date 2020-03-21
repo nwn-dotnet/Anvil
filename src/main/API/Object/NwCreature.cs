@@ -81,15 +81,41 @@ namespace NWM.API
     /// Tells the creature to walk/run to the specified destination. If the location is invalid or a path cannot be found to it, the command does nothing.
     /// </summary>
     /// <param name="destination">The location to move towards.</param>
-    /// <param name="run">If this is true, the creature will run rather than walk</param>
+    /// <param name="run">If this is TRUE, the creature will run rather than walk</param>
     public void MoveToLocation(Location destination, bool run = false)
     {
       ExecuteOnSelf(() => NWScript.ActionMoveToLocation(destination, run.ToInt()));
     }
 
+    /// <summary>
+    ///  Cause this creature to move to a certain distance from the target object.
+    ///  If there is no path to the object, this command will do nothing.
+    /// </summary>
+    /// <param name="target">The object we wish the creature to move to</param>
+    /// <param name="run">If this is TRUE, the action subject will run rather than walk</param>
+    /// <param name="range">This is the desired distance between the creature and the target object</param>
     public void MoveToObject(NwObject target, bool run = false, float range = 1.0f)
     {
       ExecuteOnSelf(() => NWScript.ActionMoveToObject(target, run.ToInt(), range));
+    }
+
+    /// <summary>
+    ///  Cause the action subject to move to a certain distance away from oFleeFrom.
+    /// </summary>
+    /// <param name="target">The target object we wish the creature to move away from. If oFleeFrom is not in the same area as the action subject, nothing will happen.</param>
+    /// <param name="run">If this is TRUE, the creature will run rather than walk</param>
+    /// <param name="range">This is the distance we wish the creature to put between themselves and target</param>
+    public void MoveAwayFromObject(NwObject target, bool run, float range = 40.0f)
+    {
+      ExecuteOnSelf(() => NWScript.ActionMoveAwayFromObject(target, run.ToInt(), range));
+    }
+
+    /// <summary>
+    /// Causes the creature to move away from location.
+    /// </summary>
+    public void MoveAwayFromLocation(Location location, bool run, float range = 40.0f)
+    {
+      ExecuteOnSelf(() => NWScript.ActionMoveAwayFromLocation(location, run.ToInt(), range));
     }
 
     public NwCreature Clone(Location location = null, string newTag = null)

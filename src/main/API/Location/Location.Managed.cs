@@ -1,10 +1,11 @@
+using System.Numerics;
 using NWM.API;
 
 namespace NWN
 {
   public partial class Location
   {
-    public Vector Position => NWScript.GetPositionFromLocation(this);
+    public Vector3 Position => NWScript.GetPositionFromLocation(this);
     public NwArea Area => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
   }
 }

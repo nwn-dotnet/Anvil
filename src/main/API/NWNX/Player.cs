@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using NWN;
 
 namespace NWM.API.NWNX
@@ -155,12 +156,12 @@ namespace NWM.API.NWNX
     }
 
     // Plays the VFX at the target position in current area for the given player only
-    public static void ShowVisualEffect(NwObject player, int effectId, Vector position)
+    public static void ShowVisualEffect(NwObject player, int effectId, Vector3 position)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "ShowVisualEffect");
-      NWN.Internal.NativeFunctions.nwnxPushFloat(position.x);
-      NWN.Internal.NativeFunctions.nwnxPushFloat(position.y);
-      NWN.Internal.NativeFunctions.nwnxPushFloat(position.z);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(position.X);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(position.Y);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(position.Z);
       NWN.Internal.NativeFunctions.nwnxPushInt(effectId);
       NWN.Internal.NativeFunctions.nwnxPushObject(player);
 

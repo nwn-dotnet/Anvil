@@ -67,22 +67,10 @@ namespace NWM.Core
     }
 
     [ScriptHandler("nwm_cli_ent")]
-    private void NWNOnClientEnter()
-    {
-      if (OnClientEnter == null) return;
-
-      NwPlayer entered = NWScript.GetEnteringObject().ToNwObject<NwPlayer>();
-      OnClientEnter(entered);
-    }
+    private void NWNOnClientEnter() => OnClientEnter?.Invoke((NwPlayer) EnteringObject);
 
     [ScriptHandler("nwm_cli_exi")]
-    private void NWNOnClientLeave()
-    {
-      if (OnClientLeave == null) return;
-
-      NwPlayer exited = NWScript.GetExitingObject().ToNwObject<NwPlayer>();
-      OnClientLeave(exited);
-    }
+    private void NWNOnClientLeave() => OnClientLeave?.Invoke((NwPlayer) ExitingObject);
 
     [ScriptHandler("nwm_cuts_abrt")]
     private void NWNOnCutsceneAbort()
@@ -94,16 +82,10 @@ namespace NWM.Core
     }
 
     [ScriptHandler("nwm_heartbeat")]
-    private void NWNOnHeartbeat()
-    {
-      OnHeartbeat?.Invoke();
-    }
+    private void NWNOnHeartbeat() => OnHeartbeat?.Invoke();
 
     [ScriptHandler("nwm_mod_load")]
-    private void NWNOnModuleLoad()
-    {
-      OnModuleLoad?.Invoke();
-    }
+    private void NWNOnModuleLoad() => OnModuleLoad?.Invoke();
 
     [ScriptHandler("nwm_pc_onchat")]
     private void NWNOnPlayerChat()

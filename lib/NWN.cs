@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace NWN
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct Vector
+    public partial struct Vector
     {
         public float x;
         public float y;
