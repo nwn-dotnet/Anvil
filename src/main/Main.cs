@@ -8,7 +8,7 @@ namespace NWM
   internal static class Main
   {
     private static ServiceManager serviceManager;
-    private static ScriptHandlerDispatcher scriptHandlerDispatcher;
+    private static DispatchServiceManager handlerDispatcher;
     private static LoopService loopService;
 
     private static bool initialized;
@@ -31,7 +31,7 @@ namespace NWM
         Init();
       }
 
-      return scriptHandlerDispatcher.ExecuteScript(script, oidSelf);
+      return handlerDispatcher.OnRunScript(script, oidSelf);
     }
 
     // Needed to allow native libs to be loaded.
@@ -47,9 +47,9 @@ namespace NWM
     {
       initialized = true;
       serviceManager.Verify();
-      scriptHandlerDispatcher = serviceManager.GetService<ScriptHandlerDispatcher>();
+      handlerDispatcher = serviceManager.GetService<DispatchServiceManager>();
       loopService = serviceManager.GetService<LoopService>();
-      scriptHandlerDispatcher.Init(serviceManager.GetRegisteredServices());
+      serviceManager.GetService<AttributeDispatchService>().Init(serviceManager.GetRegisteredServices());
     }
   }
 }

@@ -78,13 +78,13 @@ namespace NWM.API
     /// to call <see cref="NwObject.ClearActionQueue"/> in order to allow a creature to perform any other action
     /// once BeginRandomWalking has been called.
     /// </summary>
-    public void BeginRandomWalking()
+    public void StartRandomPatrol()
     {
       ExecuteOnSelf(NWScript.ActionRandomWalk);
     }
 
     /// <summary>
-    /// Tells the creature to walk/run to the specified destination. If the location is invalid or a path cannot be found to it, the command does nothing.
+    /// Commands this creature to walk/run to the specified destination. If the location is invalid or a path cannot be found to it, the command does nothing.
     /// </summary>
     /// <param name="destination">The location to move towards.</param>
     /// <param name="run">If this is TRUE, the creature will run rather than walk</param>
@@ -94,8 +94,8 @@ namespace NWM.API
     }
 
     /// <summary>
-    ///  Cause this creature to move to a certain distance from the target object.
-    ///  If there is no path to the object, this command will do nothing.
+    /// Commands this creature to move to a certain distance from the target object.
+    /// If there is no path to the object, this command will do nothing.
     /// </summary>
     /// <param name="target">The object we wish the creature to move to</param>
     /// <param name="run">If this is TRUE, the action subject will run rather than walk</param>
@@ -106,18 +106,18 @@ namespace NWM.API
     }
 
     /// <summary>
-    ///  Cause the action subject to move to a certain distance away from oFleeFrom.
+    /// Commands this creature to move to a certain distance away from fleeFrom
     /// </summary>
-    /// <param name="target">The target object we wish the creature to move away from. If oFleeFrom is not in the same area as the action subject, nothing will happen.</param>
+    /// <param name="fleeFrom">The target object we wish the creature to move away from. If fleeFrom is not in the same area as the creature, nothing will happen.</param>
     /// <param name="run">If this is TRUE, the creature will run rather than walk</param>
     /// <param name="range">This is the distance we wish the creature to put between themselves and target</param>
-    public void MoveAwayFromObject(NwObject target, bool run, float range = 40.0f)
+    public void MoveAwayFromObject(NwObject fleeFrom, bool run, float range = 40.0f)
     {
-      ExecuteOnSelf(() => NWScript.ActionMoveAwayFromObject(target, run.ToInt(), range));
+      ExecuteOnSelf(() => NWScript.ActionMoveAwayFromObject(fleeFrom, run.ToInt(), range));
     }
 
     /// <summary>
-    /// Causes the creature to move away from location.
+    /// Causes the creature to move away or flee from location.
     /// </summary>
     public void MoveAwayFromLocation(Location location, bool run, float range = 40.0f)
     {
@@ -134,13 +134,17 @@ namespace NWM.API
       return NWScript.CopyObject(this, location, sNewTag: newTag).ToNwObject<NwCreature>();
     }
 
+    /// <summary>
+    /// Adds the specified item to the creature's inventory.
+    /// </summary>
+    /// <param name="item">The item to add.</param>
     public void GiveItem(NwItem item)
     {
       NWScript.ActionGiveItem(item, this);
     }
 
     /// <summary>
-    ///  Get the item possessed by this creature with the tag itemTag
+    /// Get the item possessed by this creature with the tag itemTag
     /// </summary>
     public NwItem FindItemWithTag(string itemTag)
     {
@@ -148,18 +152,44 @@ namespace NWM.API
     }
 
     /// <summary>
-    ///  Equip oItem into nInventorySlot.<br/>
-    ///  Note: If the creature already has an item equipped in the slot specified, it will be unequipped automatically
-    ///  by the call to EquipItem, and dropped if the creature lacks inventory space.<br/>
-    ///  In order for EquipItem to succeed the creature must be able to equip the item normally. This means that:<br/>
-    ///  1) The item is in the creature's inventory.<br/>
-    ///  2) The item must already be identified (if magical).<br/>
-    ///  3) The creature has the level required to equip the item (if magical and ILR is on).<br/>
-    ///  4) The creature possesses the required feats to equip the item (such as weapon proficiencies).
+    /// Commands the creature to equip the specified item into the given inventory slot.<br/>
+    /// Note: If the creature already has an item equipped in the slot specified, it will be unequipped automatically
+    /// by the call to EquipItem, and dropped if the creature lacks inventory space.<br/>
+    /// In order for EquipItem to succeed the creature must be able to equip the item normally. This means that:<br/>
+    /// 1) The item is in the creature's inventory.<br/>
+    /// 2) The item must already be identified (if magical).<br/>
+    /// 3) The creature has the level required to equip the item (if magical and ILR is on).<br/>
+    /// 4) The creature possesses the required feats to equip the item (such as weapon proficiencies).
     /// </summary>
     public void EquipItem(NwItem item, InventorySlot slot)
     {
       ExecuteOnSelf(() => NWScript.ActionEquipItem(item, (int) slot));
+    }
+
+    /// <summary>
+    /// Commands this creature to unequip the specified item from whatever slot it is currently in.
+    /// </summary>
+    public void UnequipItem(NwItem item)
+    {
+      ExecuteOnSelf(() => NWScript.ActionUnequipItem(item));
+    }
+
+    /// <summary>
+    /// Commands this creature to walk over, and pick up the specified item on the ground.
+    /// </summary>
+    /// <param name="item">The item to pick up.</param>
+    public void PickUpItem(NwItem item)
+    {
+      ExecuteOnSelf(() => NWScript.ActionPickUpItem(item));
+    }
+
+    /// <summary>
+    /// Commands this creature to begin placing down an item at its feet.
+    /// </summary>
+    /// <param name="item">The item to drop.</param>
+    public void PutDownItem(NwItem item)
+    {
+      ExecuteOnSelf(() => NWScript.ActionPutDownItem(item));
     }
   }
 }

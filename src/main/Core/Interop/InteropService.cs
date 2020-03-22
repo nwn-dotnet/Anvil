@@ -1,7 +1,7 @@
 using NWM.API;
 using NWN;
 
-namespace NWM.Core.Interop
+namespace NWM.Core
 {
   [Service]
   public class InteropService

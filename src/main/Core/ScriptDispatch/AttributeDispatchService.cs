@@ -6,8 +6,8 @@ using NWM.API;
 
 namespace NWM.Core
 {
-  [Service]
-  internal sealed class ScriptHandlerDispatcher
+  [Service(typeof(IScriptDispatcher), IsCollection = true)]
+  internal sealed class AttributeDispatchService : IScriptDispatcher
   {
     private const int START_CAPACITY = 2000;
 

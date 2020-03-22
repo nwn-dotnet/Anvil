@@ -1,10 +1,16 @@
+using NLog;
 using NWM.API;
 using NWN;
 
 namespace NWM.Core
 {
-  public partial class EventManager
+  public sealed class ModuleEvents : EventHandler
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private NwObject EnteringObject => NWScript.GetEnteringObject().ToNwObject();
+    private NwObject ExitingObject => NWScript.GetExitingObject().ToNwObject();
+
     public event AcquireItemEvent OnAcquireItem;
     public event ActivateItemEvent OnActivateItem;
     public event ClientEnterEvent OnClientEnter;
@@ -43,6 +49,66 @@ namespace NWM.Core
 
     private bool callingChatHandlers;
 
+    internal override bool HandleScriptEvent(string scriptName, NwObject objSelf)
+    {
+      switch (scriptName)
+      {
+        case "acq_ite":
+          NWNOnAcquireItem();
+          return true;
+        case "act_ite":
+          NWNOnActivateItem();
+          return true;
+        case "cli_ent":
+          OnClientEnter?.Invoke((NwPlayer) EnteringObject);
+          return true;
+        case "cli_lea":
+          OnClientLeave?.Invoke((NwPlayer) ExitingObject);
+          return true;
+        case "cut_abo":
+          NWNOnCutsceneAbort();
+          return true;
+        case "hea":
+          OnHeartbeat?.Invoke();
+          return true;
+        case "mod_loa":
+          OnModuleLoad?.Invoke();
+          return true;
+        case "pla_cha":
+          NWNOnPlayerChat();
+          return true;
+        case "pla_dea":
+          NWNOnPlayerDeath();
+          return true;
+        case "pla_dyi":
+          NWNOnPlayerDying();
+          return true;
+        case "pla_equ_ite":
+          NWNOnPlayerEquipItem();
+          return true;
+        case "pla_lev_up":
+          NWNOnPlayerLevelUp();
+          return true;
+        case "pla_resp":
+          NWNOnPlayerRespawn();
+          return true;
+        case "pla_rest":
+          NWNOnPlayerRest();
+          return true;
+        case "pla_une_ite":
+          NWNOnPlayerUnequipItem();
+          return true;
+        case "una_ite":
+          NWNOnUnacquireItem();
+          return true;
+        case "use_def":
+          NWNOnUserDefined();
+          return true;
+      }
+
+      return false;
+    }
+
     [ScriptHandler("nwm_item_acq")]
     private void NWNOnAcquireItem()
     {
@@ -66,12 +132,6 @@ namespace NWM.Core
       OnActivateItem(item, activator, target, targetLocation);
     }
 
-    [ScriptHandler("nwm_cli_ent")]
-    private void NWNOnClientEnter() => OnClientEnter?.Invoke((NwPlayer) EnteringObject);
-
-    [ScriptHandler("nwm_cli_exi")]
-    private void NWNOnClientLeave() => OnClientLeave?.Invoke((NwPlayer) ExitingObject);
-
     [ScriptHandler("nwm_cuts_abrt")]
     private void NWNOnCutsceneAbort()
     {
@@ -80,12 +140,6 @@ namespace NWM.Core
       NwPlayer canceller = NWScript.GetLastPCToCancelCutscene().ToNwObject<NwPlayer>();
       OnCutsceneAbort(canceller);
     }
-
-    [ScriptHandler("nwm_heartbeat")]
-    private void NWNOnHeartbeat() => OnHeartbeat?.Invoke();
-
-    [ScriptHandler("nwm_mod_load")]
-    private void NWNOnModuleLoad() => OnModuleLoad?.Invoke();
 
     [ScriptHandler("nwm_pc_onchat")]
     private void NWNOnPlayerChat()
