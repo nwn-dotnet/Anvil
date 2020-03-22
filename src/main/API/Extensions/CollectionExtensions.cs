@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NWM.Core
+namespace NWM.API
 {
   public static class CollectionExtensions
   {

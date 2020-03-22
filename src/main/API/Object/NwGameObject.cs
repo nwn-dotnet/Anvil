@@ -1,5 +1,3 @@
-using System.Numerics;
-using NWM.API.Transform;
 using NWN;
 using Vector3 = System.Numerics.Vector3;
 

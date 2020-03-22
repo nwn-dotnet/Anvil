@@ -61,6 +61,12 @@ namespace NWM.API
       }
     }
 
+    /// <summary>
+    /// Applies the specified effect to this creature.
+    /// </summary>
+    /// <param name="durationType"></param>
+    /// <param name="effect"></param>
+    /// <param name="duration"></param>
     public void ApplyEffect(EffectDuration durationType, Effect effect, float duration = 0f)
     {
       NWScript.ApplyEffectToObject((int)durationType, effect, this, duration);
@@ -131,6 +137,29 @@ namespace NWM.API
     public void GiveItem(NwItem item)
     {
       NWScript.ActionGiveItem(item, this);
+    }
+
+    /// <summary>
+    ///  Get the item possessed by this creature with the tag itemTag
+    /// </summary>
+    public NwItem FindItemWithTag(string itemTag)
+    {
+      return NWScript.GetItemPossessedBy(this, itemTag).ToNwObject<NwItem>();
+    }
+
+    /// <summary>
+    ///  Equip oItem into nInventorySlot.<br/>
+    ///  Note: If the creature already has an item equipped in the slot specified, it will be unequipped automatically
+    ///  by the call to EquipItem, and dropped if the creature lacks inventory space.<br/>
+    ///  In order for EquipItem to succeed the creature must be able to equip the item normally. This means that:<br/>
+    ///  1) The item is in the creature's inventory.<br/>
+    ///  2) The item must already be identified (if magical).<br/>
+    ///  3) The creature has the level required to equip the item (if magical and ILR is on).<br/>
+    ///  4) The creature possesses the required feats to equip the item (such as weapon proficiencies).
+    /// </summary>
+    public void EquipItem(NwItem item, InventorySlot slot)
+    {
+      ExecuteOnSelf(() => NWScript.ActionEquipItem(item, (int) slot));
     }
   }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NLog;
+using NWM.API;
 
 namespace NWM.Core
 {

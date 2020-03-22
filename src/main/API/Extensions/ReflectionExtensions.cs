@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace NWM.Core
+namespace NWM.API
 {
   public static class ReflectionExtensions
   {

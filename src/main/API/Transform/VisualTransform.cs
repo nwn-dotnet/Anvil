@@ -1,7 +1,7 @@
 using System.Numerics;
 using NWN;
 
-namespace NWM.API.Transform
+namespace NWM.API
 {
   public class VisualTransform
   {
@@ -11,7 +11,6 @@ namespace NWM.API.Transform
     public Vector3 Translation;
     public Vector3 Rotation;
     public float AnimSpeed;
-
 
     public VisualTransform() {}
 
