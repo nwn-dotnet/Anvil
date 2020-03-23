@@ -84,6 +84,16 @@ namespace NWM.API
     }
 
     /// <summary>
+    /// Causes the calling creature to start attacking the target using whichever weapon is current equipped.
+    /// </summary>
+    /// <param name="target">The target object to attack.</param>
+    /// <param name="passive">If TRUE, the attacker will not move to attack the target. If we have a melee weapon equipped, we will just stand still.</param>
+    public void AttackTarget(NwGameObject target, bool passive = false)
+    {
+      ExecuteOnSelf(() => NWScript.ActionAttack(target, passive.ToInt()));
+    }
+
+    /// <summary>
     /// Commands this creature to walk/run to the specified destination. If the location is invalid or a path cannot be found to it, the command does nothing.
     /// </summary>
     /// <param name="destination">The location to move towards.</param>
