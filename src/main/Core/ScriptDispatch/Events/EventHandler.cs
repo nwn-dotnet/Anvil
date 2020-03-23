@@ -5,8 +5,8 @@ namespace NWM.Core
 {
   public abstract class EventHandler
   {
-    protected NwObject EnteringObject => NWScript.GetEnteringObject().ToNwObject();
-    protected NwObject ExitingObject => NWScript.GetExitingObject().ToNwObject();
+    protected NwGameObject EnteringObject => NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
+    protected NwGameObject ExitingObject => NWScript.GetExitingObject().ToNwObject<NwGameObject>();
 
     internal string NamePrefix { get; set; }
     internal abstract bool HandleScriptEvent(string scriptName, NwObject objSelf);

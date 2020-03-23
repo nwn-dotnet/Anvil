@@ -12,24 +12,26 @@ namespace NWM.Core
 
     public delegate void AreaEnterEvent(NwArea area, NwGameObject enteringObj);
     public delegate void AreaExitEvent(NwArea area, NwGameObject exitingObj);
-    public delegate void HeartbeatEvent();
-    public delegate void UserDefinedEvent(int eventNumber);
+    public delegate void HeartbeatEvent(NwArea area);
+    public delegate void UserDefinedEvent(NwArea area, int eventNumber);
 
     internal override bool HandleScriptEvent(string scriptName, NwObject objSelf)
     {
+      NwArea areaSelf = (NwArea) objSelf;
+
       switch (scriptName)
       {
         case "ent":
-          OnEnter?.Invoke((NwArea) objSelf, (NwGameObject) EnteringObject);
+          OnEnter?.Invoke(areaSelf, EnteringObject);
           return true;
         case "exi":
-          OnExit?.Invoke((NwArea) objSelf, (NwGameObject) ExitingObject);
+          OnExit?.Invoke(areaSelf, ExitingObject);
           return true;
         case "hea":
-          OnHeartbeat?.Invoke();
+          OnHeartbeat?.Invoke(areaSelf);
           return true;
         case "udef":
-          OnUserDefined?.Invoke(NWScript.GetUserDefinedEventNumber());
+          OnUserDefined?.Invoke(areaSelf, NWScript.GetUserDefinedEventNumber());
           return true;
       }
 

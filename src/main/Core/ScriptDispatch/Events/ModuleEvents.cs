@@ -8,9 +8,6 @@ namespace NWM.Core
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private NwObject EnteringObject => NWScript.GetEnteringObject().ToNwObject();
-    private NwObject ExitingObject => NWScript.GetExitingObject().ToNwObject();
-
     public event AcquireItemEvent OnAcquireItem;
     public event ActivateItemEvent OnActivateItem;
     public event ClientEnterEvent OnClientEnter;
