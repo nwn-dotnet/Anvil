@@ -1,9 +1,8 @@
-using NWM.API;
 using NWN;
 
-namespace NWM.Core
+namespace NWM.API
 {
-  public class CreatureEvents : EventHandler
+  public class CreatureEvents : EventHandler<CreatureEventType>
   {
     public event BlockedEvent OnBlocked;
     public event CombatRoundEndEvent OnCombatRoundEnd;
@@ -33,59 +32,83 @@ namespace NWM.Core
     public delegate void SpellCastAtEvent(NwCreature creature);
     public delegate void UserDefinedEvent(NwCreature creature, int eventId);
 
-    internal override bool HandleScriptEvent(string scriptName, NwObject objSelf)
+    protected override void HandleEvent(CreatureEventType eventType, NwObject objSelf)
     {
       NwCreature creatureSelf = (NwCreature) objSelf;
 
-      switch (scriptName)
+      switch (eventType)
       {
-        case "blo":
+        case CreatureEventType.Blocked:
+        {
           OnBlocked?.Invoke(creatureSelf, NWScript.GetBlockingDoor().ToNwObject<NwDoor>());
-          return true;
-        case "com":
+          break;
+        }
+        case CreatureEventType.CombatRoundEnd:
+        {
           OnCombatRoundEnd?.Invoke(creatureSelf);
-          return true;
-        case "con":
+          break;
+        }
+        case CreatureEventType.Conversation:
+        {
           OnConversation?.Invoke(creatureSelf);
-          return true;
-        case "dam":
+          break;
+        }
+        case CreatureEventType.Damaged:
+        {
           OnDamaged?.Invoke(creatureSelf, NWScript.GetLastDamager().ToNwObject(), NWScript.GetTotalDamageDealt());
-          return true;
-        case "dea":
+          break;
+        }
+        case CreatureEventType.Death:
+        {
           OnDeath?.Invoke(creatureSelf, NWScript.GetLastKiller().ToNwObject());
-          return true;
-        case "dis":
+          break;
+        }
+        case CreatureEventType.Disturbed:
+        {
           OnDisturbed?.Invoke(creatureSelf,
-            (InventoryDisturbType)NWScript.GetInventoryDisturbType(),
+            (InventoryDisturbType) NWScript.GetInventoryDisturbType(),
             NWScript.GetLastDisturbed().ToNwObject<NwCreature>(),
             NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>());
-          return true;
-        case "hea":
+          break;
+        }
+        case CreatureEventType.Heartbeat:
+        {
           OnHeartbeat?.Invoke(creatureSelf);
-          return true;
-        case "per":
+          break;
+        }
+        case CreatureEventType.Perception:
+        {
           OnPerception?.Invoke(creatureSelf,
             GetPerceptionEventType(),
             NWScript.GetLastPerceived().ToNwObject<NwCreature>());
-          return true;
-        case "phy":
+          break;
+        }
+        case CreatureEventType.PhysicalAttacked:
+        {
           OnPhysicalAttacked?.Invoke(creatureSelf, NWScript.GetLastAttacker().ToNwObject<NwCreature>());
-          return true;
-        case "res":
+          break;
+        }
+        case CreatureEventType.Rested:
+        {
           OnRested?.Invoke(creatureSelf);
-          return true;
-        case "spa":
+          break;
+        }
+        case CreatureEventType.Spawn:
+        {
           OnSpawn?.Invoke(creatureSelf);
-          return true;
-        case "spe":
+          break;
+        }
+        case CreatureEventType.SpellCastAt:
+        {
           OnSpellCastAt?.Invoke(creatureSelf);
-          return true;
-        case "use":
+          break;
+        }
+        case CreatureEventType.UserDefined:
+        {
           OnUserDefined?.Invoke(creatureSelf, NWScript.GetUserDefinedEventNumber());
-          return true;
+          break;
+        }
       }
-
-      return false;
     }
 
     private PerceptionEventType GetPerceptionEventType()

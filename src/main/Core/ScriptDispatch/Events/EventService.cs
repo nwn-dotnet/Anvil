@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using NLog;
 using NWM.API;
+using EventHandler = NWM.API.EventHandler;
 
 namespace NWM.Core
 {
@@ -10,17 +12,27 @@ namespace NWM.Core
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private List<EventHandler> registeredHandlers = new List<EventHandler>();
 
+    public T CreateEventHandler<T, TEventType>(Dictionary<string, TEventType> scriptMap) where T : API.EventHandler<TEventType>, new() where TEventType : Enum
+    {
+      T newHandler = new T();
+      newHandler.Init(scriptMap);
+      RegisterEventHandler(newHandler);
+
+      return newHandler;
+    }
+
     public T GetEventHandler<T>(string scriptNamePrefix) where T : EventHandler, new()
     {
       foreach (EventHandler eventHandler in registeredHandlers)
       {
-        if (eventHandler.NamePrefix == scriptNamePrefix && eventHandler is T tEventHandler)
+        if (eventHandler.ScriptPrefix == scriptNamePrefix && eventHandler is T tEventHandler)
         {
           return tEventHandler;
         }
       }
 
-      T newHandler = new T {NamePrefix = scriptNamePrefix};
+      T newHandler = new T();
+      newHandler.Init(scriptNamePrefix);
       RegisterEventHandler(newHandler);
 
       return newHandler;
@@ -28,7 +40,7 @@ namespace NWM.Core
 
     private void RegisterEventHandler(EventHandler eventHandler)
     {
-      Log.Info($"Registering event handler ({eventHandler.GetType().FullName}) with prefix: ({eventHandler.NamePrefix})");
+      Log.Info($"Registering event handler ({eventHandler.GetType().FullName}) with prefix: ({eventHandler.ScriptPrefix})");
       registeredHandlers.Add(eventHandler);
     }
 
@@ -36,13 +48,7 @@ namespace NWM.Core
     {
       foreach (EventHandler eventHandler in registeredHandlers)
       {
-        if (!scriptName.StartsWith(eventHandler.NamePrefix))
-        {
-          continue;
-        }
-
-        string eventName = scriptName.Substring(eventHandler.NamePrefix.Length);
-        if (eventHandler.HandleScriptEvent(eventName, oidSelf.ToNwObject()))
+        if (eventHandler.ProcessScriptEvent(scriptName, oidSelf.ToNwObject()))
         {
           return ScriptDispatchConstants.SCRIPT_HANDLED;
         }

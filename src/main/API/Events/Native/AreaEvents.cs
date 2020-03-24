@@ -1,9 +1,8 @@
-using NWM.API;
 using NWN;
 
-namespace NWM.Core
+namespace NWM.API
 {
-  public class AreaEvents : EventHandler
+  public class AreaEvents : EventHandler<AreaEventType>
   {
     public event AreaEnterEvent OnEnter;
     public event AreaExitEvent OnExit;
@@ -15,27 +14,33 @@ namespace NWM.Core
     public delegate void HeartbeatEvent(NwArea area);
     public delegate void UserDefinedEvent(NwArea area, int eventNumber);
 
-    internal override bool HandleScriptEvent(string scriptName, NwObject objSelf)
+    protected override void HandleEvent(AreaEventType eventType, NwObject objSelf)
     {
       NwArea areaSelf = (NwArea) objSelf;
 
-      switch (scriptName)
+      switch (eventType)
       {
-        case "ent":
+        case AreaEventType.Enter:
+        {
           OnEnter?.Invoke(areaSelf, EnteringObject);
-          return true;
-        case "exi":
+          break;
+        }
+        case AreaEventType.Exit:
+        {
           OnExit?.Invoke(areaSelf, ExitingObject);
-          return true;
-        case "hea":
+          break;
+        }
+        case AreaEventType.Heartbeat:
+        {
           OnHeartbeat?.Invoke(areaSelf);
-          return true;
-        case "udef":
+          break;
+        }
+        case AreaEventType.UserDefined:
+        {
           OnUserDefined?.Invoke(areaSelf, NWScript.GetUserDefinedEventNumber());
-          return true;
+          break;
+        }
       }
-
-      return false;
     }
   }
 }
