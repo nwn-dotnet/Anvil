@@ -1,3 +1,5 @@
+using NWM.API.Constants;
+
 namespace NWM.API
 {
   public sealed class ChatMessage
@@ -10,16 +12,5 @@ namespace NWM.API
       this.Message = message;
       this.Volume = volume;
     }
-  }
-
-  public enum TalkVolume
-  {
-    Talk = 0,
-    Whisper = 1,
-    Shout = 2,
-    SilentTalk = 3,
-    SilentShout = 4,
-    Party = 5,
-    Tell = 6
   }
 }

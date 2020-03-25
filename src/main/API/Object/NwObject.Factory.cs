@@ -1,4 +1,5 @@
 using System;
+using NWM.API.Constants;
 using NWM.Internal;
 using NWN;
 using Object = NWM.Internal.Object;

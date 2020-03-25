@@ -1,3 +1,4 @@
+using NWM.API.Constants;
 using NWN;
 using Vector3 = System.Numerics.Vector3;
 
@@ -51,6 +52,18 @@ namespace NWM.API
     {
       get => NWScript.GetPlotFlag(this).ToBool();
       set => NWScript.SetPlotFlag(this, value.ToInt());
+    }
+
+    public void SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)
+    {
+      if (!queueAsAction)
+      {
+        ExecuteOnSelf(() => NWScript.SpeakString(message, (int) talkVolume));
+      }
+      else
+      {
+        ExecuteOnSelf(() => NWScript.ActionSpeakString(message, (int) talkVolume));
+      }
     }
   }
 }

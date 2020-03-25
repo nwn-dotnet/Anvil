@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NWM.API.Constants;
 using NWN;
 
 namespace NWM.API

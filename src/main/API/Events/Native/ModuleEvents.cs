@@ -1,4 +1,5 @@
 using NLog;
+using NWM.API.Constants;
 using NWN;
 
 namespace NWM.API

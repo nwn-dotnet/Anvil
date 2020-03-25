@@ -1,4 +1,4 @@
-namespace NWM.API
+namespace NWM.API.Constants
 {
   public enum PerceptionEventType
   {
