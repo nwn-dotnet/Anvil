@@ -2,9 +2,9 @@ using NWN;
 
 namespace NWM.API
 {
-  public class NwEncounter : NwGameObject
+  public sealed class NwEncounter : NwGameObject
   {
-    protected internal NwEncounter(uint objectId) : base(objectId) {}
+    internal NwEncounter(uint objectId) : base(objectId) {}
 
     public bool Active
     {

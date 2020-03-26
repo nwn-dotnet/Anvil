@@ -10,7 +10,7 @@ namespace NWM.API
   {
     private static NwModule cachedModule;
 
-    private static NwModule moduleObj
+    public static NwModule Module
     {
       get
       {
@@ -19,7 +19,7 @@ namespace NWM.API
           return cachedModule;
         }
 
-        cachedModule = new NwModule(NWScript.GetModule());
+        cachedModule = new NwModule();
         return cachedModule;
       }
     }
@@ -63,9 +63,9 @@ namespace NWM.API
       }
 
       // The module object will never change, so to save performance, we return the one we already have instead of finding a new one.
-      if (objectId == moduleObj)
+      if (objectId == Module)
       {
-        return moduleObj;
+        return Module;
       }
 
       switch (NWMInterop.GetObjectType(objectId)) // Get our object type using our custom plugin
@@ -81,7 +81,7 @@ namespace NWM.API
         case InternalObjectType.Placeable:
           return new NwPlaceable(objectId);
         case InternalObjectType.Module:
-          return moduleObj;
+          return Module;
         case InternalObjectType.Area:
           return new NwArea(objectId);
         case InternalObjectType.Trigger:

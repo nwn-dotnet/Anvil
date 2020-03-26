@@ -2,9 +2,9 @@ using NWN;
 
 namespace NWM.API
 {
-  public class NwDoor : NwStationary
+  public sealed class NwDoor : NwStationary
   {
-    protected internal NwDoor(uint objectId) : base(objectId) {}
+    internal NwDoor(uint objectId) : base(objectId) {}
 
     public void DoDoorAction(DoorAction doorAction)
     {

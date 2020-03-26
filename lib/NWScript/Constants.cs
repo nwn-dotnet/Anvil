@@ -1,6 +1,6 @@
 namespace NWN
 {
-    public partial class NWScript
+    internal partial class NWScript
     {
         public const uint OBJECT_INVALID = 0x7F000000;
         //  Constants

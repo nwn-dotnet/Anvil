@@ -1,7 +1,17 @@
+using NWM.Core;
+using NWN;
+
 namespace NWM.API
 {
-  public class NwModule : NwObject
+  [Service]
+  public sealed class NwModule : NwObject
   {
-    protected internal NwModule(uint objectId) : base(objectId) {}
+    internal NwModule(uint objectId) : base(objectId) {}
+    internal NwModule() : this(NWScript.GetModule()) {}
+
+    public void SendMessageToAllDMs(string message)
+    {
+      NWScript.SendMessageToAllDMs(message);
+    }
   }
 }

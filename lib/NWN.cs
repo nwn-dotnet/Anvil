@@ -21,39 +21,37 @@ namespace NWN
     public partial class Effect
     {
         public IntPtr Handle;
-        public Effect(IntPtr handle) { Handle = handle; }
+        internal Effect(IntPtr handle) { Handle = handle; }
         ~Effect() { Internal.NativeFunctions.FreeEffect(Handle); }
     }
 
     public partial class Event
     {
         public IntPtr Handle;
-        public Event(IntPtr handle) { Handle = handle; }
+        internal Event(IntPtr handle) { Handle = handle; }
         ~Event() { Internal.NativeFunctions.FreeEvent(Handle); }
     }
 
     public partial class Location
     {
         public IntPtr Handle;
-        public Location(IntPtr handle) { Handle = handle; }
+        internal Location(IntPtr handle) { Handle = handle; }
         ~Location() { Internal.NativeFunctions.FreeLocation(Handle); }
     }
 
     public partial class Talent
     {
         public IntPtr Handle;
-        public Talent(IntPtr handle) { Handle = handle; }
+        internal Talent(IntPtr handle) { Handle = handle; }
         ~Talent() { Internal.NativeFunctions.FreeTalent(Handle); }
     }
 
     public partial class ItemProperty
     {
         public IntPtr Handle;
-        public ItemProperty(IntPtr handle) { Handle = handle; }
+        internal ItemProperty(IntPtr handle) { Handle = handle; }
         ~ItemProperty() { Internal.NativeFunctions.FreeItemProperty(Handle); }
     }
 
     public delegate void ActionDelegate();
-
-
 }

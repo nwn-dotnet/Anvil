@@ -1,7 +1,7 @@
 namespace NWM.API
 {
-  public class NwTrappable : NwGameObject
+  public abstract class NwTrappable : NwGameObject
   {
-    protected NwTrappable(uint objectId) : base(objectId) {}
+    internal NwTrappable(uint objectId) : base(objectId) {}
   }
 }

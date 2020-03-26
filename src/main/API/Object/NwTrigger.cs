@@ -1,7 +1,7 @@
 namespace NWM.API
 {
-  public class NwTrigger : NwStationary
+  public sealed class NwTrigger : NwStationary
   {
-    protected internal NwTrigger(uint objectId) : base(objectId) {}
+    internal NwTrigger(uint objectId) : base(objectId) {}
   }
 }

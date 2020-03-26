@@ -7,7 +7,8 @@ namespace NWM.API
 {
   public class NwCreature : NwGameObject
   {
-    protected internal NwCreature(uint objectId) : base(objectId) {}
+    internal NwCreature(uint objectId) : base(objectId) {}
+
     public static NwCreature Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return CreateInternal<NwCreature>(ObjectType.Item, template, location, useAppearAnim, newTag);
@@ -71,6 +72,11 @@ namespace NWM.API
     public void ApplyEffect(EffectDuration durationType, Effect effect, float duration = 0f)
     {
       NWScript.ApplyEffectToObject((int)durationType, effect, this, duration);
+    }
+
+    public void RemoveEffect(Effect effect)
+    {
+      NWScript.RemoveEffect(this, effect);
     }
 
     /// <summary>

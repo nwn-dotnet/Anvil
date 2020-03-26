@@ -3,8 +3,10 @@ using NWN;
 
 namespace NWM.API
 {
-  public class NwItem : NwGameObject
+  public sealed class NwItem : NwGameObject
   {
+    internal NwItem(uint objectId) : base(objectId) {}
+
     /// <summary>
     /// The GameObject that has this item in its inventory, otherwise null if it is on the ground, or not in any inventory.
     /// </summary>
@@ -13,7 +15,10 @@ namespace NWM.API
       get => NWScript.GetItemPossessor(this).ToNwObject<NwGameObject>();
     }
 
-    protected internal NwItem(uint objectId) : base(objectId) {}
+    public BaseItemType BaseItemType
+    {
+      get => (BaseItemType) NWScript.GetBaseItemType(this);
+    }
 
     public static NwItem Create(string template, Location location, bool useAppearAnim = false, string newTag = null)
     {

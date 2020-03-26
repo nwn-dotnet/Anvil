@@ -1,6 +1,6 @@
 namespace NWN
 {
-    public partial class NWScript
+    internal partial class NWScript
     {
         public static uint OBJECT_SELF => Internal.OBJECT_SELF;
 

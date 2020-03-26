@@ -2,9 +2,9 @@ using NWN;
 
 namespace NWM.API
 {
-  public class NwPlayer : NwCreature
+  public sealed class NwPlayer : NwCreature
   {
-    protected internal NwPlayer(uint objectId) : base(objectId) {}
+    internal NwPlayer(uint objectId) : base(objectId) {}
 
     public void SendServerMessage(string message, Color color)
     {

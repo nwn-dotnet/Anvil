@@ -4,9 +4,9 @@ using Vector3 = System.Numerics.Vector3;
 
 namespace NWM.API
 {
-  public class NwGameObject : NwObject
+  public abstract class NwGameObject : NwObject
   {
-    protected NwGameObject(uint objectId) : base(objectId) {}
+    internal NwGameObject(uint objectId) : base(objectId) {}
 
     public VisualTransform VisualTransform
     {

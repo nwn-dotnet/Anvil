@@ -3,9 +3,9 @@ using NWN;
 
 namespace NWM.API
 {
-  public class NwArea : NwObject
+  public sealed class NwArea : NwObject
   {
-    protected internal NwArea(uint objectId) : base(objectId) {}
+    internal NwArea(uint objectId) : base(objectId) {}
 
     public IEnumerable<NwObject> AreaObjects
     {

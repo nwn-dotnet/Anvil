@@ -2,9 +2,9 @@ using NWN;
 
 namespace NWM.API
 {
-  public class NwStationary : NwTrappable
+  public abstract class NwStationary : NwTrappable
   {
-    protected NwStationary(uint objectId) : base(objectId) {}
+    internal NwStationary(uint objectId) : base(objectId) {}
 
     // TODO - Test trigger rotation.
     public override float Rotation

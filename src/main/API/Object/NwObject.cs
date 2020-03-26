@@ -14,7 +14,7 @@ namespace NWM.API
       return obj == null ? NWScript.OBJECT_INVALID : obj.ObjectId;
     }
 
-    protected NwObject(uint objectId)
+    private protected NwObject(uint objectId)
     {
       ObjectId = objectId;
     }
