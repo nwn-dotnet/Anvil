@@ -2,7 +2,7 @@ using System;
 
 namespace NWM.API
 {
-  public static class UIntExtension
+  public static class UIntExtensions
   {
     public static T ToNwObjectSafe<T>(this uint objectId) where T : NwObject
     {

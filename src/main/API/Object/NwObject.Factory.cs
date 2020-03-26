@@ -1,8 +1,7 @@
 using System;
 using NWM.API.Constants;
-using NWM.Internal;
 using NWN;
-using Object = NWM.Internal.Object;
+using NWNX;
 
 namespace NWM.API
 {
@@ -26,7 +25,8 @@ namespace NWM.API
 
     public static NwObject Deserialize(string serializedObject)
     {
-      return CreateInternal(Object.Deserialize(serializedObject));
+      PluginUtils.AssertPluginExists<ObjectPlugin>();
+      return CreateInternal(ObjectPlugin.Deserialize(serializedObject));
     }
 
     public static T FromTag<T>(string tag) where T : NwObject
@@ -68,7 +68,7 @@ namespace NWM.API
         return Module;
       }
 
-      switch (NWMInterop.GetObjectType(objectId)) // Get our object type using our custom plugin
+      switch (NWMInteropPlugin.GetObjectType(objectId)) // Get our object type using our custom plugin
       {
         // Depending on the type of object, create a specific kind of object to enforce type safety.
         // We map the returned object type to the object to create.

@@ -1,9 +1,9 @@
-using NWM.Internal;
+using NWNX;
 
 namespace NWM.API
 {
   public static class Utils
   {
-    public static string GetUserDirectory() => NWMInterop.GetUserDirectory();
+    public static string GetUserDirectory() => NWMInteropPlugin.GetUserDirectory();
   }
 }

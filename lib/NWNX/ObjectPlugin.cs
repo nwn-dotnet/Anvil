@@ -1,8 +1,9 @@
-namespace NWM.Internal
+namespace NWNX
 {
-  public static class Object
+  [NWNXPlugin(PLUGIN_NAME)]
+  internal class ObjectPlugin
   {
-    private const string PLUGIN_NAME = "NWNX_Object";
+    public const string PLUGIN_NAME = "NWNX_Object";
 
     // Serialize the full object (including locals, inventory, etc) to base64 string
     public static string Serialize(uint obj)

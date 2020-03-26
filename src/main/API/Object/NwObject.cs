@@ -1,6 +1,6 @@
 using System;
 using NWN;
-using Object = NWM.Internal.Object;
+using NWNX;
 
 namespace NWM.API
 {
@@ -125,7 +125,8 @@ namespace NWM.API
 
     public string Serialize()
     {
-      return Object.Serialize(this);
+      PluginUtils.AssertPluginExists<ObjectPlugin>();
+      return ObjectPlugin.Serialize(this);
     }
 
     public bool Equals(NwObject other)
