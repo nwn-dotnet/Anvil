@@ -21,11 +21,11 @@ namespace NWM.Core
       return newHandler;
     }
 
-    public T GetEventHandler<T>(string scriptNamePrefix) where T : EventHandler, new()
+    public T GetEventHandler<T>(string scriptNamePrefix = null) where T : EventHandler, new()
     {
       foreach (EventHandler eventHandler in registeredHandlers)
       {
-        if (eventHandler.ScriptPrefix == scriptNamePrefix && eventHandler is T tEventHandler)
+        if (eventHandler is T tEventHandler && (scriptNamePrefix == null || eventHandler.ScriptPrefix == scriptNamePrefix))
         {
           return tEventHandler;
         }

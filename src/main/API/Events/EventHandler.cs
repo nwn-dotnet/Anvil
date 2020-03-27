@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using NWN;
 
 namespace NWM.API
@@ -12,7 +13,7 @@ namespace NWM.API
 
     internal void Init(string scriptPrefix)
     {
-      this.ScriptPrefix = scriptPrefix;
+      ScriptPrefix = scriptPrefix;
       RegisterDefaultScriptHandlers();
     }
   }
@@ -22,17 +23,9 @@ namespace NWM.API
     protected NwGameObject EnteringObject => NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
     protected NwGameObject ExitingObject => NWScript.GetExitingObject().ToNwObject<NwGameObject>();
 
-    private Dictionary<string, T> scriptToEventMap = new Dictionary<string, T>();
+    protected Dictionary<string, T> scriptToEventMap = new Dictionary<string, T>();
 
     protected abstract void HandleEvent(T eventType, NwObject objSelf);
-
-    protected sealed override void RegisterDefaultScriptHandlers()
-    {
-      foreach (T value in Enum.GetValues(typeof(T)))
-      {
-        scriptToEventMap[ScriptPrefix + value.GetDefaultScriptSuffix()] = value;
-      }
-    }
 
     public void SetScriptHandler(T eventType, string scriptName)
     {

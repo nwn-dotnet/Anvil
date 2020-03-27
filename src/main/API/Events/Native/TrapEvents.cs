@@ -1,16 +1,16 @@
 namespace NWM.API
 {
-  public sealed class TrapEvents : EventHandler<TrapEventType>
+  public enum TrapEventType
+  {
+    Disarm,
+    TrapTriggered
+  }
+
+  public sealed class TrapEvents : NativeEventHandler<TrapEventType>
   {
     protected override void HandleEvent(TrapEventType eventType, NwObject objSelf)
     {
-      switch (eventType)
-      {
-        case TrapEventType.Disarm:
-          break;
-        case TrapEventType.TrapTriggered:
-          break;
-      }
+      throw new System.NotImplementedException();
     }
   }
 }

@@ -27,5 +27,9 @@
         <Link>NLog.dll.nlog</Link>
       </None>
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="src\main\API\Events\NWNX" />
+    </ItemGroup>
 
 </Project>

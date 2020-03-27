@@ -1,24 +1,20 @@
 namespace NWM.API
 {
-  public sealed class TriggerEvents : EventHandler<TriggerEventType>
+  public enum TriggerEventType
+  {
+    AreaTransitionClick,
+    Click,
+    Enter,
+    Exit,
+    Heartbeat,
+    UserDefined
+  }
+
+  public sealed class TriggerEvents : NativeEventHandler<TriggerEventType>
   {
     protected override void HandleEvent(TriggerEventType eventType, NwObject objSelf)
     {
-      switch (eventType)
-      {
-        case TriggerEventType.AreaTransitionClick:
-          break;
-        case TriggerEventType.Click:
-          break;
-        case TriggerEventType.Enter:
-          break;
-        case TriggerEventType.Exit:
-          break;
-        case TriggerEventType.Heartbeat:
-          break;
-        case TriggerEventType.UserDefined:
-          break;
-      }
+      throw new System.NotImplementedException();
     }
   }
 }

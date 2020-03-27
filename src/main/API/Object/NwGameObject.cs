@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NWM.API.Constants;
 using NWN;
 using Vector3 = System.Numerics.Vector3;
@@ -52,6 +53,17 @@ namespace NWM.API
     {
       get => NWScript.GetPlotFlag(this).ToBool();
       set => NWScript.SetPlotFlag(this, value.ToInt());
+    }
+
+    public IEnumerable<NwItem> Items
+    {
+      get
+      {
+        for (NwItem item = NWScript.GetFirstItemInInventory(this).ToNwObject<NwItem>(); item != INVALID; item = NWScript.GetNextItemInInventory(this).ToNwObject<NwItem>())
+        {
+          yield return item;
+        }
+      }
     }
 
     public void SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)

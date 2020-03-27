@@ -3,7 +3,24 @@ using NWN;
 
 namespace NWM.API
 {
-  public class CreatureEvents : EventHandler<CreatureEventType>
+  public enum CreatureEventType
+  {
+    [DefaultScriptSuffix("blo")] Blocked,
+    [DefaultScriptSuffix("com")] CombatRoundEnd,
+    [DefaultScriptSuffix("con")] Conversation,
+    [DefaultScriptSuffix("dam")] Damaged,
+    [DefaultScriptSuffix("dea")] Death,
+    [DefaultScriptSuffix("dis")] Disturbed,
+    [DefaultScriptSuffix("hea")] Heartbeat,
+    [DefaultScriptSuffix("per")] Perception,
+    [DefaultScriptSuffix("phy")] PhysicalAttacked,
+    [DefaultScriptSuffix("res")] Rested,
+    [DefaultScriptSuffix("spa")] Spawn,
+    [DefaultScriptSuffix("spe")] SpellCastAt,
+    [DefaultScriptSuffix("use")] UserDefined
+  }
+
+  public class CreatureEvents : NativeEventHandler<CreatureEventType>
   {
     public event BlockedEvent OnBlocked;
     public event CombatRoundEndEvent OnCombatRoundEnd;
@@ -20,17 +37,29 @@ namespace NWM.API
     public event UserDefinedEvent OnUserDefined;
 
     public delegate void BlockedEvent(NwCreature creature, NwDoor blockingDoor);
+
     public delegate void CombatRoundEndEvent(NwCreature creature);
+
     public delegate void ConversationEvent(NwCreature creature);
+
     public delegate void DamagedEvent(NwCreature creature, NwObject damager, int damage);
+
     public delegate void DeathEvent(NwCreature creature, NwObject killer);
+
     public delegate void DisturbedEvent(NwCreature creature, InventoryDisturbType disturbType, NwCreature disturber, NwItem disturbedItem);
+
     public delegate void HeartbeatEvent(NwCreature creature);
+
     public delegate void PerceptionEvent(NwCreature creature, PerceptionEventType perceptionType, NwCreature perceived);
+
     public delegate void PhysicalAttackedEvent(NwCreature creature, NwCreature attacker);
+
     public delegate void RestedEvent(NwCreature creature);
+
     public delegate void SpawnEvent(NwCreature creature);
+
     public delegate void SpellCastAtEvent(NwCreature creature);
+
     public delegate void UserDefinedEvent(NwCreature creature, int eventId);
 
     protected override void HandleEvent(CreatureEventType eventType, NwObject objSelf)
@@ -118,14 +147,17 @@ namespace NWM.API
       {
         return PerceptionEventType.Seen;
       }
+
       if (NWScript.GetLastPerceptionVanished().ToBool())
       {
         return PerceptionEventType.Vanished;
       }
+
       if (NWScript.GetLastPerceptionHeard().ToBool())
       {
         return PerceptionEventType.Heard;
       }
+
       if (NWScript.GetLastPerceptionInaudible().ToBool())
       {
         return PerceptionEventType.Inaudible;
