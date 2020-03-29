@@ -1,9 +1,20 @@
 using System;
+using NWN;
 
 namespace NWM.API
 {
-  public static class UIntExtensions
+  public static class IntegerExtensions
   {
+    public static bool ToBool(this int value)
+    {
+      return value == NWScript.TRUE;
+    }
+
+    public static int ToInt(this bool value)
+    {
+      return value ? NWScript.TRUE : NWScript.FALSE;
+    }
+
     public static T ToNwObjectSafe<T>(this uint objectId) where T : NwObject
     {
       return NwObject.CreateInternal(objectId) as T;

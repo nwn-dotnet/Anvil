@@ -10,7 +10,7 @@ namespace NWNX
 
     public NWNXPluginAttribute(string pluginName)
     {
-      this.PluginName = pluginName;
+      PluginName = pluginName;
     }
   }
 }

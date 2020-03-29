@@ -1,57 +1,70 @@
+using System;
 using NWN;
 
-namespace NWM.API
+namespace NWM.API.Events
 {
-  public enum AreaEventType
+  public static class AreaEvents
   {
-    [DefaultScriptSuffix("ent")] Enter,
-    [DefaultScriptSuffix("exi")] Exit,
-    [DefaultScriptSuffix("hea")] Heartbeat,
-    [DefaultScriptSuffix("use")] UserDefined
-  }
-
-  public class AreaEvents : NativeEventHandler<AreaEventType>
-  {
-    public event AreaEnterEvent OnEnter;
-    public event AreaExitEvent OnExit;
-    public event HeartbeatEvent OnHeartbeat;
-    public event UserDefinedEvent OnUserDefined;
-
-    public delegate void AreaEnterEvent(NwArea area, NwGameObject enteringObj);
-
-    public delegate void AreaExitEvent(NwArea area, NwGameObject exitingObj);
-
-    public delegate void HeartbeatEvent(NwArea area);
-
-    public delegate void UserDefinedEvent(NwArea area, int eventNumber);
-
-    protected override void HandleEvent(AreaEventType eventType, NwObject objSelf)
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "ent")]
+    public class OnEnter : IEvent<OnEnter>
     {
-      NwArea areaSelf = (NwArea) objSelf;
+      public NwArea Area { get; private set; }
+      public NwGameObject EnteringObject { get; private set; }
 
-      switch (eventType)
+      public void BroadcastEvent(NwObject objSelf)
       {
-        case AreaEventType.Enter:
-        {
-          OnEnter?.Invoke(areaSelf, EnteringObject);
-          break;
-        }
-        case AreaEventType.Exit:
-        {
-          OnExit?.Invoke(areaSelf, ExitingObject);
-          break;
-        }
-        case AreaEventType.Heartbeat:
-        {
-          OnHeartbeat?.Invoke(areaSelf);
-          break;
-        }
-        case AreaEventType.UserDefined:
-        {
-          OnUserDefined?.Invoke(areaSelf, NWScript.GetUserDefinedEventNumber());
-          break;
-        }
+        Area = (NwArea) objSelf;
+        EnteringObject = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
+
+        Callbacks?.Invoke(this);
       }
+
+      public event Action<OnEnter> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "exi")]
+    public class OnExit : IEvent<OnExit>
+    {
+      public NwArea Area { get; private set; }
+      public NwGameObject ExitingObject { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Area = (NwArea) objSelf;
+        ExitingObject = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
+
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnExit> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "hea")]
+    public class OnHeartbeat : IEvent<OnHeartbeat>
+    {
+      public NwArea Area { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Area = (NwArea) objSelf;
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnHeartbeat> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "use")]
+    public class OnUserDefined : IEvent<OnUserDefined>
+    {
+      public NwArea Area;
+      public int EventNumber { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        throw new NotImplementedException();
+      }
+
+      public event Action<OnUserDefined> Callbacks;
     }
   }
 }

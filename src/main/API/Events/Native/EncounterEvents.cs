@@ -1,19 +1,6 @@
-namespace NWM.API
+namespace NWM.API.Events
 {
-  public enum EncounterEventType
+  public static class EncounterEvents
   {
-    Enter,
-    Exhausted,
-    Exit,
-    Heartbeat,
-    UserDefined
-  }
-
-  public sealed class EncounterEvents : NativeEventHandler<EncounterEventType>
-  {
-    protected override void HandleEvent(EncounterEventType eventType, NwObject objSelf)
-    {
-      throw new System.NotImplementedException();
-    }
   }
 }

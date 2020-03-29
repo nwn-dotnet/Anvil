@@ -1,16 +1,6 @@
-namespace NWM.API
+namespace NWM.API.Events
 {
-  public enum MerchantEventType
+  public static class MerchantEvents
   {
-    OpenStore,
-    StoreClosed
-  }
-
-  public sealed class MerchantEvents : NativeEventHandler<MerchantEventType>
-  {
-    protected override void HandleEvent(MerchantEventType eventType, NwObject objSelf)
-    {
-      throw new System.NotImplementedException();
-    }
   }
 }

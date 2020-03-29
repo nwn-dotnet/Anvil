@@ -1,169 +1,237 @@
+using System;
 using NWM.API.Constants;
 using NWN;
 
-namespace NWM.API
+namespace NWM.API.Events
 {
-  public enum CreatureEventType
+  public static class CreatureEvents
   {
-    [DefaultScriptSuffix("blo")] Blocked,
-    [DefaultScriptSuffix("com")] CombatRoundEnd,
-    [DefaultScriptSuffix("con")] Conversation,
-    [DefaultScriptSuffix("dam")] Damaged,
-    [DefaultScriptSuffix("dea")] Death,
-    [DefaultScriptSuffix("dis")] Disturbed,
-    [DefaultScriptSuffix("hea")] Heartbeat,
-    [DefaultScriptSuffix("per")] Perception,
-    [DefaultScriptSuffix("phy")] PhysicalAttacked,
-    [DefaultScriptSuffix("res")] Rested,
-    [DefaultScriptSuffix("spa")] Spawn,
-    [DefaultScriptSuffix("spe")] SpellCastAt,
-    [DefaultScriptSuffix("use")] UserDefined
-  }
-
-  public class CreatureEvents : NativeEventHandler<CreatureEventType>
-  {
-    public event BlockedEvent OnBlocked;
-    public event CombatRoundEndEvent OnCombatRoundEnd;
-    public event ConversationEvent OnConversation;
-    public event DamagedEvent OnDamaged;
-    public event DeathEvent OnDeath;
-    public event DisturbedEvent OnDisturbed;
-    public event HeartbeatEvent OnHeartbeat;
-    public event PerceptionEvent OnPerception;
-    public event PhysicalAttackedEvent OnPhysicalAttacked;
-    public event RestedEvent OnRested;
-    public event SpawnEvent OnSpawn;
-    public event SpellCastAtEvent OnSpellCastAt;
-    public event UserDefinedEvent OnUserDefined;
-
-    public delegate void BlockedEvent(NwCreature creature, NwDoor blockingDoor);
-
-    public delegate void CombatRoundEndEvent(NwCreature creature);
-
-    public delegate void ConversationEvent(NwCreature creature);
-
-    public delegate void DamagedEvent(NwCreature creature, NwObject damager, int damage);
-
-    public delegate void DeathEvent(NwCreature creature, NwObject killer);
-
-    public delegate void DisturbedEvent(NwCreature creature, InventoryDisturbType disturbType, NwCreature disturber, NwItem disturbedItem);
-
-    public delegate void HeartbeatEvent(NwCreature creature);
-
-    public delegate void PerceptionEvent(NwCreature creature, PerceptionEventType perceptionType, NwCreature perceived);
-
-    public delegate void PhysicalAttackedEvent(NwCreature creature, NwCreature attacker);
-
-    public delegate void RestedEvent(NwCreature creature);
-
-    public delegate void SpawnEvent(NwCreature creature);
-
-    public delegate void SpellCastAtEvent(NwCreature creature);
-
-    public delegate void UserDefinedEvent(NwCreature creature, int eventId);
-
-    protected override void HandleEvent(CreatureEventType eventType, NwObject objSelf)
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "blo")]
+    public sealed class OnBlocked : IEvent<OnBlocked>
     {
-      NwCreature creatureSelf = (NwCreature) objSelf;
+      public NwCreature Creature { get; private set; }
+      public NwDoor BlockingDoor { get; private set; }
 
-      switch (eventType)
+      public void BroadcastEvent(NwObject objSelf)
       {
-        case CreatureEventType.Blocked:
-        {
-          OnBlocked?.Invoke(creatureSelf, NWScript.GetBlockingDoor().ToNwObject<NwDoor>());
-          break;
-        }
-        case CreatureEventType.CombatRoundEnd:
-        {
-          OnCombatRoundEnd?.Invoke(creatureSelf);
-          break;
-        }
-        case CreatureEventType.Conversation:
-        {
-          OnConversation?.Invoke(creatureSelf);
-          break;
-        }
-        case CreatureEventType.Damaged:
-        {
-          OnDamaged?.Invoke(creatureSelf, NWScript.GetLastDamager().ToNwObject(), NWScript.GetTotalDamageDealt());
-          break;
-        }
-        case CreatureEventType.Death:
-        {
-          OnDeath?.Invoke(creatureSelf, NWScript.GetLastKiller().ToNwObject());
-          break;
-        }
-        case CreatureEventType.Disturbed:
-        {
-          OnDisturbed?.Invoke(creatureSelf,
-            (InventoryDisturbType) NWScript.GetInventoryDisturbType(),
-            NWScript.GetLastDisturbed().ToNwObject<NwCreature>(),
-            NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>());
-          break;
-        }
-        case CreatureEventType.Heartbeat:
-        {
-          OnHeartbeat?.Invoke(creatureSelf);
-          break;
-        }
-        case CreatureEventType.Perception:
-        {
-          OnPerception?.Invoke(creatureSelf,
-            GetPerceptionEventType(),
-            NWScript.GetLastPerceived().ToNwObject<NwCreature>());
-          break;
-        }
-        case CreatureEventType.PhysicalAttacked:
-        {
-          OnPhysicalAttacked?.Invoke(creatureSelf, NWScript.GetLastAttacker().ToNwObject<NwCreature>());
-          break;
-        }
-        case CreatureEventType.Rested:
-        {
-          OnRested?.Invoke(creatureSelf);
-          break;
-        }
-        case CreatureEventType.Spawn:
-        {
-          OnSpawn?.Invoke(creatureSelf);
-          break;
-        }
-        case CreatureEventType.SpellCastAt:
-        {
-          OnSpellCastAt?.Invoke(creatureSelf);
-          break;
-        }
-        case CreatureEventType.UserDefined:
-        {
-          OnUserDefined?.Invoke(creatureSelf, NWScript.GetUserDefinedEventNumber());
-          break;
-        }
+        Creature = (NwCreature) objSelf;
+        BlockingDoor = NWScript.GetBlockingDoor().ToNwObject<NwDoor>();
+        Callbacks?.Invoke(this);
       }
+
+      public event Action<OnBlocked> Callbacks;
     }
 
-    private PerceptionEventType GetPerceptionEventType()
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "com")]
+    public sealed class OnCombatRoundEnd : IEvent<OnCombatRoundEnd>
     {
-      if (NWScript.GetLastPerceptionSeen().ToBool())
+      public NwCreature Creature { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
       {
-        return PerceptionEventType.Seen;
+        Creature = (NwCreature) objSelf;
+        Callbacks?.Invoke(this);
       }
 
-      if (NWScript.GetLastPerceptionVanished().ToBool())
+      public event Action<OnCombatRoundEnd> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "con")]
+    public sealed class OnConversation : IEvent<OnConversation>
+    {
+      public NwCreature Creature { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
       {
-        return PerceptionEventType.Vanished;
+        Creature = (NwCreature) objSelf;
+        Callbacks?.Invoke(this);
       }
 
-      if (NWScript.GetLastPerceptionHeard().ToBool())
+      public event Action<OnConversation> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "dam")]
+    public class OnDamaged : IEvent<OnDamaged>
+    {
+      public NwGameObject Damager { get; private set; }
+      public int DamageAmount { get; private set; }
+
+
+      public void BroadcastEvent(NwObject objSelf)
       {
-        return PerceptionEventType.Heard;
+        Damager = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
+        DamageAmount = NWScript.GetTotalDamageDealt();
+        Callbacks?.Invoke(this);
       }
 
-      if (NWScript.GetLastPerceptionInaudible().ToBool())
+      public event Action<OnDamaged> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "dea")]
+    public class OnDeath : IEvent<OnDeath>
+    {
+      public NwCreature KilledCreature { get; private set; }
+      public NwGameObject Killer { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
       {
-        return PerceptionEventType.Inaudible;
+        KilledCreature = (NwCreature) objSelf;
+        Killer = NWScript.GetLastKiller().ToNwObject<NwGameObject>();
+        Callbacks?.Invoke(this);
       }
 
-      return PerceptionEventType.Unknown;
+      public event Action<OnDeath> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "dis")]
+    public class OnDisturbed : IEvent<OnDisturbed>
+    {
+      public InventoryDisturbType DisturbType { get; private set; }
+      public NwCreature CreatureDisturbed { get; private set; }
+      public NwCreature Disturber { get; private set; }
+      public NwItem DisturbedItem { get; private set; }
+
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        DisturbType = (InventoryDisturbType) NWScript.GetInventoryDisturbType();
+        CreatureDisturbed = (NwCreature) objSelf;
+        Disturber = NWScript.GetLastDisturbed().ToNwObject<NwCreature>();
+        DisturbedItem = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnDisturbed> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "hea")]
+    public class OnHeartbeat : IEvent<OnHeartbeat>
+    {
+      public NwCreature Creature { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnHeartbeat> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "per")]
+    public class OnPerception : IEvent<OnPerception>
+    {
+      public NwCreature Creature { get; private set; }
+      public PerceptionEventType PerceptionEventType { get; private set; }
+      public NwCreature PerceivedCreature { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        PerceptionEventType = GetPerceptionEventType();
+        PerceivedCreature = NWScript.GetLastPerceived().ToNwObject<NwCreature>();
+      }
+
+      private PerceptionEventType GetPerceptionEventType()
+      {
+        if (NWScript.GetLastPerceptionSeen().ToBool())
+        {
+          return PerceptionEventType.Seen;
+        }
+
+        if (NWScript.GetLastPerceptionVanished().ToBool())
+        {
+          return PerceptionEventType.Vanished;
+        }
+
+        if (NWScript.GetLastPerceptionHeard().ToBool())
+        {
+          return PerceptionEventType.Heard;
+        }
+
+        if (NWScript.GetLastPerceptionInaudible().ToBool())
+        {
+          return PerceptionEventType.Inaudible;
+        }
+
+        return PerceptionEventType.Unknown;
+      }
+
+      public event Action<OnPerception> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "phy")]
+    public class OnPhysicalAttacked : IEvent<OnPhysicalAttacked>
+    {
+      public NwCreature Creature { get; private set; }
+      public NwCreature Attacker { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        Attacker = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnPhysicalAttacked> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "res")]
+    public class OnRested : IEvent<OnRested>
+    {
+      public NwCreature Creature { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnRested> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "spa")]
+    public class OnSpawn : IEvent<OnSpawn>
+    {
+      public NwCreature Creature { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnSpawn> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "spe")]
+    public class OnSpellCastAt : IEvent<OnSpellCastAt>
+    {
+      public NwCreature Creature { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnSpellCastAt> Callbacks;
+    }
+
+    [EventInfo(EventType.Native, DefaultScriptSuffix = "use")]
+    public class OnUserDefined : IEvent<OnUserDefined>
+    {
+      public int EventNumber { get; private set; }
+      public NwCreature Creature { get; private set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        EventNumber = NWScript.GetUserDefinedEventNumber();
+        Creature = (NwCreature) objSelf;
+        Callbacks?.Invoke(this);
+      }
+
+      public event Action<OnUserDefined> Callbacks;
     }
   }
 }

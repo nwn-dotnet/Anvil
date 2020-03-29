@@ -1,26 +1,6 @@
-namespace NWM.API
+namespace NWM.API.Events
 {
-  public enum PlaceableEventType
+  public static class PlaceableEvents
   {
-    Close,
-    Damaged,
-    Death,
-    Disturbed,
-    Heartbeat,
-    Lock,
-    Open,
-    PhysicalAttacked,
-    SpellCastAt,
-    Unlock,
-    Used,
-    UserDefined
-  }
-
-  public sealed class PlaceableEvents : NativeEventHandler<PlaceableEventType>
-  {
-    protected override void HandleEvent(PlaceableEventType eventType, NwObject objSelf)
-    {
-      throw new System.NotImplementedException();
-    }
   }
 }
