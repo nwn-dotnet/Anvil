@@ -130,6 +130,7 @@ namespace NWM.API.Events
         Creature = (NwCreature) objSelf;
         PerceptionEventType = GetPerceptionEventType();
         PerceivedCreature = NWScript.GetLastPerceived().ToNwObject<NwCreature>();
+        Callbacks?.Invoke(this);
       }
 
       private PerceptionEventType GetPerceptionEventType()

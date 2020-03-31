@@ -7,7 +7,7 @@ namespace NWM.API
   public sealed class NwModule : NwObject
   {
     internal NwModule(uint objectId) : base(objectId) {}
-    internal NwModule() : this(NWScript.GetModule()) {}
+    public NwModule() : this(NWScript.GetModule()) {}
 
     public void SendMessageToAllDMs(string message)
     {

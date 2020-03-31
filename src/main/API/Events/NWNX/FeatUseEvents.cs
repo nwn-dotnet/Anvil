@@ -24,9 +24,9 @@ namespace NWM.API.Events.NWNX
         Skip = false; // Reset before we call event handlers.
 
         Vector3 position;
-        position.X = EventsPlugin.GetEventData("TARGET_POSITION_X").ToInt();
-        position.Y = EventsPlugin.GetEventData("TARGET_POSITION_Y").ToInt();
-        position.Z = EventsPlugin.GetEventData("TARGET_POSITION_Z").ToInt();
+        position.X = EventsPlugin.GetEventData("TARGET_POSITION_X").ToFloat();
+        position.Y = EventsPlugin.GetEventData("TARGET_POSITION_Y").ToFloat();
+        position.Z = EventsPlugin.GetEventData("TARGET_POSITION_Z").ToFloat();
 
         TargetPosition = position;
 

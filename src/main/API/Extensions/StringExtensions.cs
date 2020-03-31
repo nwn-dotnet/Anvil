@@ -5,6 +5,11 @@ namespace NWM.API
 {
   public static class StringExtensions
   {
+    public static float ToFloat(this string floatString)
+    {
+      return Convert.ToSingle(floatString);
+    }
+
     public static int ToInt(this string intString)
     {
       return Convert.ToInt32(intString);

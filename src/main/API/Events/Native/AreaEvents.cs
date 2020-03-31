@@ -56,12 +56,14 @@ namespace NWM.API.Events
     [EventInfo(EventType.Native, DefaultScriptSuffix = "use")]
     public class OnUserDefined : IEvent<OnUserDefined>
     {
-      public NwArea Area;
+      public NwArea Area { get; private set; }
       public int EventNumber { get; private set; }
 
       public void BroadcastEvent(NwObject objSelf)
       {
-        throw new NotImplementedException();
+        Area = (NwArea) objSelf;
+        EventNumber = NWScript.GetUserDefinedEventNumber();
+        Callbacks?.Invoke(this);
       }
 
       public event Action<OnUserDefined> Callbacks;

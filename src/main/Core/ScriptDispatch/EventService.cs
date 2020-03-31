@@ -4,11 +4,12 @@ using System.Linq;
 using System.Reflection;
 using NLog;
 using NWM.API;
+using NWNX;
 
 namespace NWM.Core
 {
   [Service(typeof(IScriptDispatcher), IsCollection = true)]
-  public class EventService : IScriptDispatcher
+  public sealed class EventService : IScriptDispatcher
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -17,8 +18,7 @@ namespace NWM.Core
 
     public void SubscribeExplicit<TEvent>(string scriptName, Action<TEvent> handler) where TEvent : IEvent<TEvent>, new()
     {
-      TEvent gameEvent = GetOrCreateEvent<TEvent>(scriptName);
-
+      TEvent gameEvent = GetOrCreateEvent<TEvent>(GetEventInfo(typeof(TEvent)), scriptName);
       gameEvent.Callbacks += handler;
     }
 
@@ -26,7 +26,7 @@ namespace NWM.Core
     {
       EventInfoAttribute eventInfo = GetEventInfo(typeof(TEvent));
 
-      TEvent gameEvent = eventInfo.EventType == EventType.Native ? GetOrCreateEvent<TEvent>(scriptPrefix + eventInfo.DefaultScriptSuffix) : GetOrCreateEvent<TEvent>();
+      TEvent gameEvent = eventInfo.EventType == EventType.Native ? GetOrCreateEvent<TEvent>(eventInfo, scriptPrefix + eventInfo.DefaultScriptSuffix) : GetOrCreateEvent<TEvent>(eventInfo);
       gameEvent.Callbacks += handler;
     }
 
@@ -40,7 +40,7 @@ namespace NWM.Core
         return;
       }
 
-      TEvent gameEvent = GetOrCreateEvent<TEvent>();
+      TEvent gameEvent = GetOrCreateEvent<TEvent>(eventInfo);
       gameEvent.Callbacks += handler;
     }
 
@@ -53,11 +53,11 @@ namespace NWM.Core
       }
     }
 
-    private TEvent GetOrCreateEvent<TEvent>(string scriptName) where TEvent : IEvent<TEvent>, new()
+    private TEvent GetOrCreateEvent<TEvent>(EventInfoAttribute eventInfo, string scriptName) where TEvent : IEvent<TEvent>, new()
     {
       if (!scriptToEventMap.TryGetValue(scriptName, out IEvent mappedEvent))
       {
-        TEvent retVal = new TEvent();
+        TEvent retVal = CreateEvent<TEvent>(eventInfo, scriptName);;
         scriptToEventMap[scriptName] = retVal;
         return retVal;
       }
@@ -69,14 +69,28 @@ namespace NWM.Core
       throw new InvalidOperationException($"Script {scriptName} is already bound to {mappedEvent.GetType().FullName}! Single to Many event mappings are not supported.");
     }
 
-    private TEvent GetOrCreateEvent<TEvent>() where TEvent : IEvent<TEvent>, new()
+    private TEvent GetOrCreateEvent<TEvent>(EventInfoAttribute eventInfo) where TEvent : IEvent<TEvent>, new()
     {
       TEvent retVal = scriptToEventMap.Values.OfType<TEvent>().FirstOrDefault();
       if (retVal == null)
       {
         string scriptName = Guid.NewGuid().ToString("N");
-        retVal = new TEvent();
+        retVal = CreateEvent<TEvent>(eventInfo, scriptName);
         scriptToEventMap[scriptName] = retVal;
+      }
+
+      return retVal;
+    }
+
+    private TEvent CreateEvent<TEvent>(EventInfoAttribute eventInfo, string scriptName) where  TEvent : IEvent<TEvent>, new()
+    {
+      TEvent retVal = new TEvent();
+
+      switch (eventInfo.EventType)
+      {
+        case EventType.NWNX:
+          EventsPlugin.SubscribeEvent(eventInfo.EventName, scriptName);
+          break;
       }
 
       return retVal;

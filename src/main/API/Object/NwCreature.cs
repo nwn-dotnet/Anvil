@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using NWM.API.Constants;
 using NWN;
+using NWNX;
 
 namespace NWM.API
 {
@@ -61,6 +62,17 @@ namespace NWM.API
           yield return effect;
         }
       }
+    }
+
+    public int GetLevelByClass(ClassType classType)
+    {
+      return NWScript.GetLevelByClass((int) classType, this);
+    }
+
+    public void RemoveFeat(Feat feat)
+    {
+      PluginUtils.AssertPluginExists<CreaturePlugin>();
+      CreaturePlugin.RemoveFeat(this, feat);
     }
 
     /// <summary>
