@@ -20,7 +20,7 @@ namespace NWM.API.Events.NWNX
         Preparer = (NwCreature) objSelf;
 
         int classIndex = EventsPlugin.GetEventData("SPELL_CLASS").ToInt();
-        ClassType = (ClassType) NWScript.GetClassByPosition(classIndex + 1);
+        ClassType = (ClassType) NWScript.GetClassByPosition(classIndex + 1, Preparer);
         Spell = (Spell) EventsPlugin.GetEventData("SPELL_ID").ToInt();
         Skip = false;
 
