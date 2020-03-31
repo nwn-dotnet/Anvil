@@ -75,6 +75,12 @@ namespace NWM.API
       CreaturePlugin.RemoveFeat(this, feat);
     }
 
+    public int GetFeatLevel(Feat feat)
+    {
+      PluginUtils.AssertPluginExists<CreaturePlugin>();
+      return CreaturePlugin.GetFeatLevel(this, feat);
+    }
+
     /// <summary>
     /// Applies the specified effect to this creature.
     /// </summary>

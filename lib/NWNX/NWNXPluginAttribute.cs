@@ -6,7 +6,7 @@ namespace NWNX
   public class NWNXPluginAttribute : Attribute
   {
     public readonly string PluginName;
-    public bool IsAvailable => NWMInteropPlugin.PluginExists(PluginName);
+    public bool IsAvailable => UtilPlugin.PluginExists(PluginName);
 
     public NWNXPluginAttribute(string pluginName)
     {

@@ -7,6 +7,14 @@ namespace NWNX
   {
     public const string PLUGIN_NAME = "NWNX_Object";
 
+    public static InternalObjectType GetInternalObjectType(uint objectId)
+    {
+      Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetInternalObjectType");
+      Internal.NativeFunctions.nwnxPushObject(objectId);
+      Internal.NativeFunctions.nwnxCallFunction();
+      return (InternalObjectType) Internal.NativeFunctions.nwnxPopInt();
+    }
+
     // Returns an object from the provided object ID.
     // This is the counterpart to ObjectToString.
     public static uint StringToObject(string id)

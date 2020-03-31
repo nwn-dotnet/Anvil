@@ -4,6 +4,6 @@ namespace NWM.API
 {
   public static class Utils
   {
-    public static string GetUserDirectory() => NWMInteropPlugin.GetUserDirectory();
+    public static string GetUserDirectory() => UtilPlugin.GetUserDirectory();
   }
 }

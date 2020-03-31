@@ -28,6 +28,15 @@ namespace NWNX
 			Internal.NativeFunctions.nwnxCallFunction();
 		}
 
+		public static int GetFeatLevel(uint creature, Feat feat)
+		{
+			Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetFeatGrantLevel");
+			Internal.NativeFunctions.nwnxPushInt((int) feat);
+			Internal.NativeFunctions.nwnxPushObject(creature);
+			Internal.NativeFunctions.nwnxCallFunction();
+			return Internal.NativeFunctions.nwnxPopInt();
+		}
+
 		// Removes from the provided creature the provided feat.
 		public static void RemoveFeat(uint creature, Feat feat)
 		{
