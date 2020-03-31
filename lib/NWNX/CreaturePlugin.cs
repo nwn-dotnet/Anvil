@@ -37,6 +37,15 @@ namespace NWNX
 			return Internal.NativeFunctions.nwnxPopInt();
 		}
 
+		public static int GetKnowsFeat(uint creature, Feat feat)
+		{
+			Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetKnowsFeat");
+			Internal.NativeFunctions.nwnxPushInt((int) feat);
+			Internal.NativeFunctions.nwnxPushObject(creature);
+			Internal.NativeFunctions.nwnxCallFunction();
+			return Internal.NativeFunctions.nwnxPopInt();
+		}
+
 		// Removes from the provided creature the provided feat.
 		public static void RemoveFeat(uint creature, Feat feat)
 		{
