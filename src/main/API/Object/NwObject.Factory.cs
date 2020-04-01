@@ -94,6 +94,8 @@ namespace NWM.API
           return new NwEncounter(objectId);
         case InternalObjectType.Store:
           return new NwStore(objectId);
+        case InternalObjectType.Sound:
+          return new NwSound(objectId);
         default:
           return new NwObject(objectId);
       }
