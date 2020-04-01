@@ -25,5 +25,12 @@ namespace NWNX
       Internal.NativeFunctions.nwnxCallFunction();
       return Internal.NativeFunctions.nwnxPopInt().ToBool();
     }
+
+    public static int GetTicksPerSecond()
+    {
+      Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetServerTicksPerSecond");
+      Internal.NativeFunctions.nwnxCallFunction();
+      return Internal.NativeFunctions.nwnxPopInt();
+    }
   }
 }
