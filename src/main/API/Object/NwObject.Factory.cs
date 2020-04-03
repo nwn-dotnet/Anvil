@@ -23,6 +23,11 @@ namespace NWM.API
       }
     }
 
+    public static T Deserialize<T>(string serializedObject) where T : NwObject
+    {
+      return (T) Deserialize(serializedObject);
+    }
+
     public static NwObject Deserialize(string serializedObject)
     {
       PluginUtils.AssertPluginExists<ObjectPlugin>();
