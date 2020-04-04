@@ -114,8 +114,16 @@ namespace NWM.API.Events
     public sealed class OnPlayerChat : IEvent<OnPlayerChat>
     {
       public NwPlayer Sender { get; private set; }
-      public string Message { get; set; }
-      public TalkVolume Volume { get; set; }
+      public string Message
+      {
+        get => NWScript.GetPCChatMessage();
+        set => NWScript.SetPCChatMessage(value);
+      }
+      public TalkVolume Volume
+      {
+        get => (TalkVolume) NWScript.GetPCChatVolume();
+        set => NWScript.SetPCChatVolume((int) value);
+      }
 
       private bool callingChatHandlers;
 
@@ -126,12 +134,7 @@ namespace NWM.API.Events
         callingChatHandlers = true; // Prevent recursive calls.
 
         Sender = NWScript.GetPCChatSpeaker().ToNwObject<NwPlayer>();
-        Message = NWScript.GetPCChatMessage();
-        Volume = (TalkVolume) NWScript.GetPCChatVolume();
         Callbacks(this);
-
-        NWScript.SetPCChatMessage(Message);
-        NWScript.SetPCChatVolume((int) Volume);
 
         callingChatHandlers = false;
       }
