@@ -32,6 +32,6 @@ namespace NWM.API.Constants
     CraftArmor = NWScript.SKILL_CRAFT_ARMOR,
     CraftWeapon = NWScript.SKILL_CRAFT_WEAPON,
     Ride = NWScript.SKILL_RIDE,
-    AllSkills = NWScript.SKILL_ALL_SKILLS,
+    AllSkills = NWScript.SKILL_ALL_SKILLS
   }
 }

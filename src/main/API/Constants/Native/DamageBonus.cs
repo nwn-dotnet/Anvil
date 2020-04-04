@@ -33,6 +33,6 @@ namespace NWM.API.Constants
     Bonus2d6 = NWScript.DAMAGE_BONUS_2d6,
     Bonus2d8 = NWScript.DAMAGE_BONUS_2d8,
     Bonus2d10 = NWScript.DAMAGE_BONUS_2d10,
-    Bonus2d12 = NWScript.DAMAGE_BONUS_2d12,
+    Bonus2d12 = NWScript.DAMAGE_BONUS_2d12
   }
 }

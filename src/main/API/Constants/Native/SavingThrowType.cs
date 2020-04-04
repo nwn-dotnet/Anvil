@@ -24,6 +24,6 @@ namespace NWM.API.Constants
     Good = NWScript.SAVING_THROW_TYPE_GOOD,
     Evil = NWScript.SAVING_THROW_TYPE_EVIL,
     Law = NWScript.SAVING_THROW_TYPE_LAW,
-    Chaos = NWScript.SAVING_THROW_TYPE_CHAOS,
+    Chaos = NWScript.SAVING_THROW_TYPE_CHAOS
   }
 }

@@ -46,6 +46,6 @@ namespace NWM.API.Constants
     EyeOfGruumsh = NWScript.CLASS_TYPE_EYE_OF_GRUUMSH,
     ShouDisciple = NWScript.CLASS_TYPE_SHOU_DISCIPLE,
     PurpleDragonKnight = NWScript.CLASS_TYPE_PURPLE_DRAGON_KNIGHT,
-    Invalid = NWScript.CLASS_TYPE_INVALID,
+    Invalid = NWScript.CLASS_TYPE_INVALID
   }
 }

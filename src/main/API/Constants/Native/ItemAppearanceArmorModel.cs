@@ -22,6 +22,6 @@ namespace NWM.API.Constants
     LeftShoulder = NWScript.ITEM_APPR_ARMOR_MODEL_LSHOULDER,
     RightHand = NWScript.ITEM_APPR_ARMOR_MODEL_RHAND,
     LeftHand = NWScript.ITEM_APPR_ARMOR_MODEL_LHAND,
-    Robe = NWScript.ITEM_APPR_ARMOR_MODEL_ROBE,
+    Robe = NWScript.ITEM_APPR_ARMOR_MODEL_ROBE
   }
 }

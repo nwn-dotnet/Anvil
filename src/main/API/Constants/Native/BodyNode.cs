@@ -15,6 +15,6 @@ namespace NWM.API.Constants
     Monster6 = NWScript.BODY_NODE_MONSTER_6,
     Monster7 = NWScript.BODY_NODE_MONSTER_7,
     Monster8 = NWScript.BODY_NODE_MONSTER_8,
-    Monster9 = NWScript.BODY_NODE_MONSTER_9,
+    Monster9 = NWScript.BODY_NODE_MONSTER_9
   }
 }

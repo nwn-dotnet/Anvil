@@ -14,6 +14,6 @@ namespace NWM.API.Constants
     ImprovedExpertise = NWScript.COMBAT_MODE_IMPROVED_EXPERTISE,
     DefensiveCasting = NWScript.COMBAT_MODE_DEFENSIVE_CASTING,
     DirtyFighting = NWScript.COMBAT_MODE_DIRTY_FIGHTING,
-    DefensiveStance = NWScript.COMBAT_MODE_DEFENSIVE_STANCE,
+    DefensiveStance = NWScript.COMBAT_MODE_DEFENSIVE_STANCE
   }
 }

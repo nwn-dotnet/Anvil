@@ -528,6 +528,6 @@ namespace NWM.API.Constants
     DurQuillInChest = NWScript.VFX_DUR_QUILL_IN_CHEST,
     ImpStarburstGreen = NWScript.VFX_IMP_STARBURST_GREEN,
     ImpStarburstRed = NWScript.VFX_IMP_STARBURST_RED,
-    ImpNightmareHeadHit = NWScript.VFX_IMP_NIGHTMARE_HEAD_HIT,
+    ImpNightmareHeadHit = NWScript.VFX_IMP_NIGHTMARE_HEAD_HIT
   }
 }

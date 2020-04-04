@@ -48,6 +48,6 @@ namespace NWM.API.Constants
     PerStonehold = NWScript.AOE_PER_STONEHOLD,
     PerOvermind = NWScript.AOE_PER_OVERMIND,
     MobHorrificappearance = NWScript.AOE_MOB_HORRIFICAPPEARANCE,
-    MobTroglodyteStench = NWScript.AOE_MOB_TROGLODYTE_STENCH,
+    MobTroglodyteStench = NWScript.AOE_MOB_TROGLODYTE_STENCH
   }
 }
