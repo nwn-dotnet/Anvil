@@ -23,6 +23,6 @@ namespace NWM.API.Constants
     Custom15  = NWScript.PHENOTYPE_CUSTOM15,
     Custom16  = NWScript.PHENOTYPE_CUSTOM16,
     Custom17  = NWScript.PHENOTYPE_CUSTOM17,
-    Custom18  = NWScript.PHENOTYPE_CUSTOM18,
+    Custom18  = NWScript.PHENOTYPE_CUSTOM18
   }
 }

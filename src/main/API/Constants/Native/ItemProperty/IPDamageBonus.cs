@@ -1,0 +1,28 @@
+using NWN;
+
+namespace NWM.API.Constants
+{
+  public enum IPDamageBonus
+  {
+    Bonus1 = NWScript.IP_CONST_DAMAGEBONUS_1,
+    Bonus2 = NWScript.IP_CONST_DAMAGEBONUS_2,
+    Bonus3 = NWScript.IP_CONST_DAMAGEBONUS_3,
+    Bonus4 = NWScript.IP_CONST_DAMAGEBONUS_4,
+    Bonus5 = NWScript.IP_CONST_DAMAGEBONUS_5,
+    Bonus1D4 = NWScript.IP_CONST_DAMAGEBONUS_1d4,
+    Bonus1D6 = NWScript.IP_CONST_DAMAGEBONUS_1d6,
+    Bonus1D8 = NWScript.IP_CONST_DAMAGEBONUS_1d8,
+    Bonus1D10 = NWScript.IP_CONST_DAMAGEBONUS_1d10,
+    Bonus2D6 = NWScript.IP_CONST_DAMAGEBONUS_2d6,
+    Bonus2D8 = NWScript.IP_CONST_DAMAGEBONUS_2d8,
+    Bonus2D4 = NWScript.IP_CONST_DAMAGEBONUS_2d4,
+    Bonus2D10 = NWScript.IP_CONST_DAMAGEBONUS_2d10,
+    Bonus1D12 = NWScript.IP_CONST_DAMAGEBONUS_1d12,
+    Bonus2D12 = NWScript.IP_CONST_DAMAGEBONUS_2d12,
+    Bonus6 = NWScript.IP_CONST_DAMAGEBONUS_6,
+    Bonus7 = NWScript.IP_CONST_DAMAGEBONUS_7,
+    Bonus8 = NWScript.IP_CONST_DAMAGEBONUS_8,
+    Bonus9 = NWScript.IP_CONST_DAMAGEBONUS_9,
+    Bonus10 = NWScript.IP_CONST_DAMAGEBONUS_10
+  }
+}

@@ -1,5 +1,6 @@
 using NWM.API.Constants;
 using NWN;
+using ItemProperty = NWN.ItemProperty;
 
 namespace NWM.API
 {
@@ -18,6 +19,15 @@ namespace NWM.API
     public BaseItemType BaseItemType
     {
       get => (BaseItemType) NWScript.GetBaseItemType(this);
+    }
+
+    public void AddItemProperty(ItemProperty itemProperty,
+      float duration = 0.0f,
+      AddPropertyPolicy addPolicy = AddPropertyPolicy.ReplaceExisting,
+      bool ignoreDurationType = false,
+      bool ignoreSubType = false)
+    {
+
     }
 
     public static NwItem Create(string template, Location location, bool useAppearAnim = false, string newTag = null)
