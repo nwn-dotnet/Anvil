@@ -1,8 +1,7 @@
 using System;
-using System.Reflection;
 using JetBrains.Annotations;
 
-namespace NWM.API
+namespace NWM.API.Events
 {
   [AttributeUsage(AttributeTargets.Class)]
   [BaseTypeRequired(typeof(IEvent<>))]

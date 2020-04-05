@@ -1,4 +1,4 @@
-namespace NWM.API
+namespace NWM.API.Events
 {
   public enum EventType
   {

@@ -1,5 +1,6 @@
 using System.Numerics;
 
+// ReSharper disable once CheckNamespace
 namespace NWN
 {
   public partial struct Vector

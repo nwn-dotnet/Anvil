@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using NLog;
 using NWM.API;
+using NWM.API.Events;
 using NWNX;
 
 namespace NWM.Core

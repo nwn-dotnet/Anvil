@@ -1,7 +1,8 @@
 using System;
+using NWM.API.Events;
 using NWNX;
 
-namespace NWM.API.Events.NWNX
+namespace NWM.API.NWNX.Events
 {
   public static class ServerVaultEvents
   {

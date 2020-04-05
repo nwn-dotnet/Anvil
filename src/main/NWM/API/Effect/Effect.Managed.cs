@@ -1,8 +1,4 @@
 // ReSharper disable once CheckNamespace
-
-using System;
-using NWM.API.Constants;
-
 namespace NWN
 {
   public partial class Effect

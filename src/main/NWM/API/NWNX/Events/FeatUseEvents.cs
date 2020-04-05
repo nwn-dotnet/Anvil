@@ -1,9 +1,11 @@
 using System;
 using System.Numerics;
 using NWM.API.Constants;
+using NWM.API.Events;
 using NWNX;
+using EventType = NWM.API.Events.EventType;
 
-namespace NWM.API.Events.NWNX
+namespace NWM.API.NWNX.Events
 {
   public static class FeatUseEvents
   {

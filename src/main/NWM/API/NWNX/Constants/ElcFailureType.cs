@@ -1,4 +1,4 @@
-namespace NWM.API.Constants
+namespace NWM.API.NWNX
 {
   public enum ElcFailureType
   {

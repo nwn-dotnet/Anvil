@@ -1,4 +1,4 @@
-namespace NWN
+namespace NWM.API
 {
   public enum AddPropertyPolicy
   {

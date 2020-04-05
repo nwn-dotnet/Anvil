@@ -1,6 +1,6 @@
 using System;
 
-namespace NWM.API
+namespace NWM.API.Events
 {
   public interface IEvent<out T> : IEvent where T : IEvent<T>
   {
