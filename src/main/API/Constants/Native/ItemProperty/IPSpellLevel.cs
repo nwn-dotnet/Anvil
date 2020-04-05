@@ -13,6 +13,6 @@ namespace NWM.API.Constants
     SL6 = NWScript.IP_CONST_SPELLLEVEL_6,
     SL7 = NWScript.IP_CONST_SPELLLEVEL_7,
     SL8 = NWScript.IP_CONST_SPELLLEVEL_8,
-    SL9 = NWScript.IP_CONST_SPELLLEVEL_9,
+    SL9 = NWScript.IP_CONST_SPELLLEVEL_9
   }
 }

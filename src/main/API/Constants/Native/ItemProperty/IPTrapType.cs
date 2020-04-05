@@ -14,6 +14,6 @@ namespace NWM.API.Constants
     Frost = NWScript.IP_CONST_TRAPTYPE_FROST,
     AcidSplash = NWScript.IP_CONST_TRAPTYPE_ACID_SPLASH,
     Sonic = NWScript.IP_CONST_TRAPTYPE_SONIC,
-    Negative = NWScript.IP_CONST_TRAPTYPE_NEGATIVE,
+    Negative = NWScript.IP_CONST_TRAPTYPE_NEGATIVE
   }
 }
