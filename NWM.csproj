@@ -6,6 +6,7 @@
          <IsPackable>false</IsPackable>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <EnableDynamicLoading>true</EnableDynamicLoading>
+        <RootNamespace />
     </PropertyGroup>
 
     <ItemGroup>
