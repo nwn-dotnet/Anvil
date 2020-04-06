@@ -30,7 +30,6 @@ namespace NWM.API
 
     public static NwObject Deserialize(string serializedObject)
     {
-      PluginUtils.AssertPluginExists<ObjectPlugin>();
       return CreateInternal(ObjectPlugin.Deserialize(serializedObject));
     }
 

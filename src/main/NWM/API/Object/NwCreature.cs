@@ -69,40 +69,9 @@ namespace NWM.API
       return NWScript.GetLevelByClass((int) classType, this);
     }
 
-    public void AddFeat(Feat feat, int level = 0)
-    {
-      PluginUtils.AssertPluginExists<CreaturePlugin>();
-      if (level > 0)
-      {
-        CreaturePlugin.AddFeatByLevel(this, feat, level);
-      }
-      else
-      {
-        CreaturePlugin.AddFeat(this, feat);
-      }
-    }
-
-    public void RemoveFeat(Feat feat)
-    {
-      PluginUtils.AssertPluginExists<CreaturePlugin>();
-      CreaturePlugin.RemoveFeat(this, feat);
-    }
-
-    public int GetFeatLevel(Feat feat)
-    {
-      PluginUtils.AssertPluginExists<CreaturePlugin>();
-      return CreaturePlugin.GetFeatLevel(this, feat);
-    }
-
     public bool HasFeatPrepared(Feat feat)
     {
       return NWScript.GetHasFeat((int) feat, this).ToBool();
-    }
-
-    public bool KnowsFeat(Feat feat)
-    {
-      PluginUtils.AssertPluginExists<CreaturePlugin>();
-      return CreaturePlugin.GetKnowsFeat(this, feat).ToBool();
     }
 
     /// <summary>

@@ -8,9 +8,6 @@ namespace NWNX
   {
     public const string PLUGIN_NAME = "NWNX_Util";
 
-    // This plugin is required.
-    static UtilPlugin() => PluginUtils.AssertPluginExists<UtilPlugin>();
-
     public static string GetUserDirectory()
     {
       Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetUserDirectory");

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using NWM.Core;
+using NWNX;
 
 namespace NWM
 {
@@ -50,6 +51,12 @@ namespace NWM
       handlerDispatcher = serviceManager.GetService<DispatchServiceManager>();
       loopService = serviceManager.GetService<LoopService>();
       serviceManager.GetService<AttributeDispatchService>().Init(serviceManager.GetRegisteredServices());
+    }
+
+    private static void CheckPluginDependencies()
+    {
+      PluginUtils.AssertPluginExists<UtilPlugin>();
+      PluginUtils.AssertPluginExists<ObjectPlugin>();
     }
   }
 }

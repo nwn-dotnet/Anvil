@@ -125,7 +125,6 @@ namespace NWM.API
 
     public string Serialize()
     {
-      PluginUtils.AssertPluginExists<ObjectPlugin>();
       return ObjectPlugin.Serialize(this);
     }
 

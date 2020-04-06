@@ -20,18 +20,6 @@ namespace NWM.API
       NWScript.SendMessageToPC(this, message);
     }
 
-    public void ForceOpenInventory(NwPlaceable target)
-    {
-      PluginUtils.AssertPluginExists<PlayerPlugin>();
-      PlayerPlugin.ForcePlaceableInventoryWindow(this, target);
-    }
-
-    public void SetPlaceableNameOverride(NwPlaceable placeable, string name)
-    {
-      PluginUtils.AssertPluginExists<PlayerPlugin>();
-      PlayerPlugin.SetPlaceableNameOverride(this, placeable, name);
-    }
-
     public void ExportCharacter()
     {
       NWScript.ExportSingleCharacter(this);
