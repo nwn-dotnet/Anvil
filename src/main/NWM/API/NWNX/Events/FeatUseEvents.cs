@@ -3,13 +3,12 @@ using System.Numerics;
 using NWM.API.Constants;
 using NWM.API.Events;
 using NWNX;
-using EventType = NWM.API.Events.EventType;
 
 namespace NWM.API.NWNX.Events
 {
   public static class FeatUseEvents
   {
-    [EventInfo(EventType.NWNX, EventName = "NWNX_ON_USE_FEAT_BEFORE")]
+    [NWNXEvent("NWNX_ON_USE_FEAT_BEFORE")]
     public class OnUseFeatBefore : IEvent<OnUseFeatBefore>
     {
       public NwCreature FeatUser { get; private set; }

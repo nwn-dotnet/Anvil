@@ -2,6 +2,7 @@ using System;
 using System.Numerics;
 using NWM.API;
 using NWM.API.NWNX;
+using NWM.API.NWNX.Constants;
 using NWN;
 
 namespace NWNX

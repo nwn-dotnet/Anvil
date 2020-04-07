@@ -1,5 +1,3 @@
-using NWN;
-
 namespace NWM.API
 {
   public abstract class NwStationary : NwTrappable
@@ -7,10 +5,10 @@ namespace NWM.API
     internal NwStationary(uint objectId) : base(objectId) {}
 
     // TODO - Test trigger rotation.
-    public override float Rotation
-    {
-      get => (NWScript.GetFacing(this) + 180) % 360;
-      set => base.Rotation = value;
-    }
+    // public override float Rotation
+    // {
+    //   get => (NWScript.GetFacing(this) + 180) % 360;
+    //   set => base.Rotation = value;
+    // }
   }
 }

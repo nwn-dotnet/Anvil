@@ -24,7 +24,7 @@ namespace NWM.Core
         scriptHandler();
         result = ScriptDispatchConstants.SCRIPT_HANDLED;
       }
-      else if (nwObjectConditionalHandler != null)
+      else if (nwObjectScriptHandler != null)
       {
         objSelf = objSelfId.ToNwObject();
         nwObjectScriptHandler(objSelf);

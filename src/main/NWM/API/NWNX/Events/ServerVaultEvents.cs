@@ -6,7 +6,7 @@ namespace NWM.API.NWNX.Events
 {
   public static class ServerVaultEvents
   {
-    [EventInfo(EventType.NWNX, EventName = "NWNX_ON_SERVER_CHARACTER_SAVE_BEFORE")]
+    [NWNXEvent("NWNX_ON_SERVER_CHARACTER_SAVE_BEFORE")]
     public class OnServerCharacterSaveBefore : IEvent<OnServerCharacterSaveBefore>
     {
       public NwPlayer Player { get; private set; }

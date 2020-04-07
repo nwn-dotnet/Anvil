@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using NWM.API.Constants;
 using NWN;
-using NWNX;
 
 namespace NWM.API
 {
@@ -96,7 +95,7 @@ namespace NWM.API
     /// to call <see cref="NwObject.ClearActionQueue"/> in order to allow a creature to perform any other action
     /// once BeginRandomWalking has been called.
     /// </summary>
-    public void StartRandomPatrol()
+    public void ActionRandomWalk()
     {
       ExecuteOnSelf(NWScript.ActionRandomWalk);
     }
@@ -106,7 +105,7 @@ namespace NWM.API
     /// </summary>
     /// <param name="target">The target object to attack.</param>
     /// <param name="passive">If TRUE, the attacker will not move to attack the target. If we have a melee weapon equipped, we will just stand still.</param>
-    public void AttackTarget(NwGameObject target, bool passive = false)
+    public void ActionAttackTarget(NwGameObject target, bool passive = false)
     {
       ExecuteOnSelf(() => NWScript.ActionAttack(target, passive.ToInt()));
     }
@@ -116,7 +115,7 @@ namespace NWM.API
     /// </summary>
     /// <param name="destination">The location to move towards.</param>
     /// <param name="run">If this is TRUE, the creature will run rather than walk</param>
-    public void MoveToLocation(Location destination, bool run = false)
+    public void ActionMoveToLocation(Location destination, bool run = false)
     {
       ExecuteOnSelf(() => NWScript.ActionMoveToLocation(destination, run.ToInt()));
     }
@@ -128,7 +127,7 @@ namespace NWM.API
     /// <param name="target">The object we wish the creature to move to</param>
     /// <param name="run">If this is TRUE, the action subject will run rather than walk</param>
     /// <param name="range">This is the desired distance between the creature and the target object</param>
-    public void MoveToObject(NwObject target, bool run = false, float range = 1.0f)
+    public void ActionMoveToObject(NwObject target, bool run = false, float range = 1.0f)
     {
       ExecuteOnSelf(() => NWScript.ActionMoveToObject(target, run.ToInt(), range));
     }
@@ -139,7 +138,7 @@ namespace NWM.API
     /// <param name="fleeFrom">The target object we wish the creature to move away from. If fleeFrom is not in the same area as the creature, nothing will happen.</param>
     /// <param name="run">If this is TRUE, the creature will run rather than walk</param>
     /// <param name="range">This is the distance we wish the creature to put between themselves and target</param>
-    public void MoveAwayFromObject(NwObject fleeFrom, bool run, float range = 40.0f)
+    public void ActionMoveAwayFromObject(NwObject fleeFrom, bool run, float range = 40.0f)
     {
       ExecuteOnSelf(() => NWScript.ActionMoveAwayFromObject(fleeFrom, run.ToInt(), range));
     }
@@ -147,7 +146,7 @@ namespace NWM.API
     /// <summary>
     /// Causes the creature to move away or flee from location.
     /// </summary>
-    public void MoveAwayFromLocation(Location location, bool run, float range = 40.0f)
+    public void ActionMoveAwayFromLocation(Location location, bool run, float range = 40.0f)
     {
       ExecuteOnSelf(() => NWScript.ActionMoveAwayFromLocation(location, run.ToInt(), range));
     }
@@ -189,7 +188,7 @@ namespace NWM.API
     /// 3) The creature has the level required to equip the item (if magical and ILR is on).<br/>
     /// 4) The creature possesses the required feats to equip the item (such as weapon proficiencies).
     /// </summary>
-    public void EquipItem(NwItem item, InventorySlot slot)
+    public void ActionEquipItem(NwItem item, InventorySlot slot)
     {
       ExecuteOnSelf(() => NWScript.ActionEquipItem(item, (int) slot));
     }
@@ -197,7 +196,7 @@ namespace NWM.API
     /// <summary>
     /// Commands this creature to unequip the specified item from whatever slot it is currently in.
     /// </summary>
-    public void UnequipItem(NwItem item)
+    public void ActionUnequipItem(NwItem item)
     {
       ExecuteOnSelf(() => NWScript.ActionUnequipItem(item));
     }
@@ -206,7 +205,7 @@ namespace NWM.API
     /// Commands this creature to walk over, and pick up the specified item on the ground.
     /// </summary>
     /// <param name="item">The item to pick up.</param>
-    public void PickUpItem(NwItem item)
+    public void ActionPickUpItem(NwItem item)
     {
       ExecuteOnSelf(() => NWScript.ActionPickUpItem(item));
     }
@@ -215,9 +214,14 @@ namespace NWM.API
     /// Commands this creature to begin placing down an item at its feet.
     /// </summary>
     /// <param name="item">The item to drop.</param>
-    public void PutDownItem(NwItem item)
+    public void ActionPutDownItem(NwItem item)
     {
       ExecuteOnSelf(() => NWScript.ActionPutDownItem(item));
+    }
+
+    public void ActionSit(NwPlaceable chair)
+    {
+      ExecuteOnSelf(() => NWScript.ActionSit(chair));
     }
   }
 }

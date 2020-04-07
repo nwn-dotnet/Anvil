@@ -1,12 +1,13 @@
 using System;
+using NWM.API.Constants;
 using NWN;
 
 namespace NWM.API.Events
 {
   public static class AreaEvents
   {
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "ent")]
-    public class OnEnter : IEvent<OnEnter>
+    [ScriptEvent(EventScriptType.AreaOnEnter)]
+    public class OnEnter : IEvent<NwArea, OnEnter>
     {
       public NwArea Area { get; private set; }
       public NwGameObject EnteringObject { get; private set; }
@@ -22,8 +23,8 @@ namespace NWM.API.Events
       public event Action<OnEnter> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "exi")]
-    public class OnExit : IEvent<OnExit>
+    [ScriptEvent(EventScriptType.AreaOnExit)]
+    public class OnExit : IEvent<NwArea, OnExit>
     {
       public NwArea Area { get; private set; }
       public NwGameObject ExitingObject { get; private set; }
@@ -39,8 +40,8 @@ namespace NWM.API.Events
       public event Action<OnExit> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "hea")]
-    public class OnHeartbeat : IEvent<OnHeartbeat>
+    [ScriptEvent(EventScriptType.AreaOnHeartbeat)]
+    public class OnHeartbeat : IEvent<NwArea, OnHeartbeat>
     {
       public NwArea Area { get; private set; }
 
@@ -53,8 +54,8 @@ namespace NWM.API.Events
       public event Action<OnHeartbeat> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "use")]
-    public class OnUserDefined : IEvent<OnUserDefined>
+    [ScriptEvent(EventScriptType.AreaOnUserDefinedEvent)]
+    public class OnUserDefined : IEvent<NwArea, OnUserDefined>
     {
       public NwArea Area { get; private set; }
       public int EventNumber { get; private set; }

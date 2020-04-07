@@ -1,5 +1,4 @@
 using NWN;
-using NWNX;
 
 namespace NWM.API
 {
@@ -18,6 +17,11 @@ namespace NWM.API
     public void SendServerMessage(string message)
     {
       NWScript.SendMessageToPC(this, message);
+    }
+
+    public void ActionStartConversation(NwGameObject converseWith, string dialogResRef, bool isPrivate = false, bool playHello = true)
+    {
+      ExecuteOnSelf(() => NWScript.ActionStartConversation(converseWith, dialogResRef, isPrivate.ToInt(), playHello.ToInt()));
     }
 
     public void ExportCharacter()

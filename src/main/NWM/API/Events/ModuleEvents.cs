@@ -6,8 +6,8 @@ namespace NWM.API.Events
 {
   public static class ModuleEvents
   {
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "acq_ite")]
-    public sealed class OnAcquireItem : IEvent<OnAcquireItem>
+    [ScriptEvent(EventScriptType.ModuleOnAcquireItem)]
+    public sealed class OnAcquireItem : IEvent<NwModule, OnAcquireItem>
     {
       public NwItem Item { get; private set; }
       public NwGameObject AcquiredBy { get; private set; }
@@ -25,8 +25,8 @@ namespace NWM.API.Events
       public event Action<OnAcquireItem> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "act_ite")]
-    public sealed class OnActivateItem : IEvent<OnActivateItem>
+    [ScriptEvent(EventScriptType.ModuleOnActivateItem)]
+    public sealed class OnActivateItem : IEvent<NwModule, OnActivateItem>
     {
       public NwItem ActivatedItem { get; private set; }
       public NwCreature ItemActivator { get; private set; }
@@ -46,8 +46,8 @@ namespace NWM.API.Events
       public event Action<OnActivateItem> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "cli_ent")]
-    public sealed class OnClientEnter : IEvent<OnClientEnter>
+    [ScriptEvent(EventScriptType.ModuleOnClientEnter)]
+    public sealed class OnClientEnter : IEvent<NwModule, OnClientEnter>
     {
       public NwPlayer Player { get; private set; }
 
@@ -60,8 +60,8 @@ namespace NWM.API.Events
       public event Action<OnClientEnter> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "cli_lea")]
-    public sealed class OnClientLeave : IEvent<OnClientLeave>
+    [ScriptEvent(EventScriptType.ModuleOnClientExit)]
+    public sealed class OnClientLeave : IEvent<NwModule, OnClientLeave>
     {
       public NwPlayer Player { get; private set; }
 
@@ -74,8 +74,8 @@ namespace NWM.API.Events
       public event Action<OnClientLeave> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "cut_abo")]
-    public sealed class OnCutsceneAbort : IEvent<OnCutsceneAbort>
+    [ScriptEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
+    public sealed class OnCutsceneAbort : IEvent<NwModule, OnCutsceneAbort>
     {
       public NwPlayer Player { get; private set; }
 
@@ -88,8 +88,8 @@ namespace NWM.API.Events
       public event Action<OnCutsceneAbort> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "mod_hea")]
-    public sealed class OnHeartbeat : IEvent<OnHeartbeat>
+    [ScriptEvent(EventScriptType.ModuleOnHeartbeat)]
+    public sealed class OnHeartbeat : IEvent<NwModule, OnHeartbeat>
     {
       public void BroadcastEvent(NwObject objSelf)
       {
@@ -99,8 +99,8 @@ namespace NWM.API.Events
       public event Action<OnHeartbeat> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "mod_loa")]
-    public sealed class OnModuleLoad : IEvent<OnModuleLoad>
+    [ScriptEvent(EventScriptType.ModuleOnModuleLoad)]
+    public sealed class OnModuleLoad : IEvent<NwModule, OnModuleLoad>
     {
       public void BroadcastEvent(NwObject objSelf)
       {
@@ -110,8 +110,8 @@ namespace NWM.API.Events
       public event Action<OnModuleLoad> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "pla_cha")]
-    public sealed class OnPlayerChat : IEvent<OnPlayerChat>
+    [ScriptEvent(EventScriptType.ModuleOnPlayerChat)]
+    public sealed class OnPlayerChat : IEvent<NwModule, OnPlayerChat>
     {
       public NwPlayer Sender { get; private set; }
       public string Message
@@ -142,8 +142,8 @@ namespace NWM.API.Events
       public event Action<OnPlayerChat> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "pla_dea")]
-    public sealed class OnPlayerDeath : IEvent<OnPlayerDeath>
+    [ScriptEvent(EventScriptType.ModuleOnPlayerDeath)]
+    public sealed class OnPlayerDeath : IEvent<NwModule, OnPlayerDeath>
     {
       public NwPlayer DeadPlayer { get; private set; }
       public NwGameObject Killer { get; private set; }
@@ -158,8 +158,8 @@ namespace NWM.API.Events
       public event Action<OnPlayerDeath> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "pla_dyi")]
-    public sealed class OnPlayerDying : IEvent<OnPlayerDying>
+    [ScriptEvent(EventScriptType.ModuleOnPlayerDying)]
+    public sealed class OnPlayerDying : IEvent<NwModule, OnPlayerDying>
     {
       public NwPlayer Player { get; private set; }
 
@@ -172,8 +172,8 @@ namespace NWM.API.Events
       public event Action<OnPlayerDying> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "pla_equ")]
-    public sealed class OnPlayerEquipItem : IEvent<OnPlayerEquipItem>
+    [ScriptEvent(EventScriptType.ModuleOnEquipItem)]
+    public sealed class OnPlayerEquipItem : IEvent<NwModule, OnPlayerEquipItem>
     {
       public NwPlayer Player { get; private set; }
       public NwItem Item { get; private set; }
@@ -188,8 +188,8 @@ namespace NWM.API.Events
       public event Action<OnPlayerEquipItem> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "pla_lev")]
-    public sealed class OnPlayerLevelUp : IEvent<OnPlayerLevelUp>
+    [ScriptEvent(EventScriptType.ModuleOnPlayerLevelUp)]
+    public sealed class OnPlayerLevelUp : IEvent<NwModule, OnPlayerLevelUp>
     {
       public NwPlayer Player { get; private set; }
 
@@ -202,8 +202,8 @@ namespace NWM.API.Events
       public event Action<OnPlayerLevelUp> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "pla_resp")]
-    public sealed class OnPlayerRespawn : IEvent<OnPlayerRespawn>
+    [ScriptEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
+    public sealed class OnPlayerRespawn : IEvent<NwModule, OnPlayerRespawn>
     {
       public NwPlayer Player { get; private set; }
 
@@ -216,8 +216,8 @@ namespace NWM.API.Events
       public event Action<OnPlayerRespawn> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "pla_rest")]
-    public sealed class OnPlayerRest : IEvent<OnPlayerRest>
+    [ScriptEvent(EventScriptType.ModuleOnPlayerRest)]
+    public sealed class OnPlayerRest : IEvent<NwModule, OnPlayerRest>
     {
       public NwPlayer Player { get; private set; }
       public RestEventType RestEventType { get; private set; }
@@ -232,8 +232,8 @@ namespace NWM.API.Events
       public event Action<OnPlayerRest> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "pla_uneq")]
-    public sealed class OnPlayerUnequipItem : IEvent<OnPlayerUnequipItem>
+    [ScriptEvent(EventScriptType.ModuleOnUnequipItem)]
+    public sealed class OnPlayerUnequipItem : IEvent<NwModule, OnPlayerUnequipItem>
     {
       public NwPlayer UnequippedBy { get; private set; }
       public NwItem Item { get; private set; }
@@ -248,8 +248,8 @@ namespace NWM.API.Events
       public event Action<OnPlayerUnequipItem> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "una_ite")]
-    public sealed class OnUnacquireItem : IEvent<OnUnacquireItem>
+    [ScriptEvent(EventScriptType.ModuleOnLoseItem)]
+    public sealed class OnUnacquireItem : IEvent<NwModule, OnUnacquireItem>
     {
       public NwCreature LostBy { get; private set; }
       public NwItem Item { get; private set; }
@@ -264,8 +264,8 @@ namespace NWM.API.Events
       public event Action<OnUnacquireItem> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "use")]
-    public sealed class OnUserDefined : IEvent<OnUserDefined>
+    [ScriptEvent(EventScriptType.ModuleOnUserDefinedEvent)]
+    public sealed class OnUserDefined : IEvent<NwModule, OnUserDefined>
     {
       public int EventNumber { get; private set; }
 

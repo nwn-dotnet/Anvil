@@ -1,4 +1,4 @@
-namespace NWM.API.NWNX
+namespace NWM.API.NWNX.Constants
 {
   public enum TimingBarType
   {

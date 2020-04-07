@@ -3,13 +3,12 @@ using NWM.API.Constants;
 using NWM.API.Events;
 using NWN;
 using NWNX;
-using EventType = NWM.API.Events.EventType;
 
 namespace NWM.API.NWNX.Events
 {
   public static class SetMemorizedSpellSlotEvents
   {
-    [EventInfo(EventType.NWNX, EventName = "NWNX_SET_MEMORIZED_SPELL_SLOT_BEFORE")]
+    [NWNXEvent("NWNX_SET_MEMORIZED_SPELL_SLOT_BEFORE")]
     public class OnSetMemorizedSpellSlotBefore : IEvent<OnSetMemorizedSpellSlotBefore>
     {
       public NwCreature Preparer { get; private set; }

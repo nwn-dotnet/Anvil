@@ -31,7 +31,7 @@ namespace NWM.API
     }
 
     /// <summary>
-    /// The world rotation for this object (
+    /// The world rotation for this object
     /// </summary>
     public virtual float Rotation
     {

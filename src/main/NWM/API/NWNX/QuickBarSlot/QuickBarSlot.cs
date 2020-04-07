@@ -1,3 +1,5 @@
+using NWM.API.NWNX.Constants;
+
 namespace NWM.API.NWNX
 {
   public struct QuickBarSlot

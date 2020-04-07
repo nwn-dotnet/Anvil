@@ -2,6 +2,8 @@ using System;
 
 namespace NWM.API.Events
 {
+  public interface IEvent<TObject, out TEvent> : IEvent<TEvent> where TEvent : IEvent<TEvent> where TObject : NwObject {}
+
   public interface IEvent<out T> : IEvent where T : IEvent<T>
   {
     event Action<T> Callbacks;

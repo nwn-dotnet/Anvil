@@ -9,7 +9,7 @@ namespace NWM.API
   {
     private static NwModule cachedModule;
 
-    public static NwModule Module
+    internal static NwModule Module
     {
       get
       {

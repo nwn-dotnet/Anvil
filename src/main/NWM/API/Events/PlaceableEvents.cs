@@ -6,8 +6,8 @@ namespace NWM.API.Events
 {
   public static class PlaceableEvents
   {
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "clo")]
-    public class OnClose : IEvent<OnClose>
+    [ScriptEvent(EventScriptType.PlaceableOnClosed)]
+    public class OnClose : IEvent<NwPlaceable, OnClose>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature LastClosedBy { get; private set; }
@@ -22,8 +22,8 @@ namespace NWM.API.Events
       public event Action<OnClose> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "dam")]
-    public class OnDamaged : IEvent<OnDamaged>
+    [ScriptEvent(EventScriptType.PlaceableOnDamaged)]
+    public class OnDamaged : IEvent<NwPlaceable, OnDamaged>
     {
       public NwPlaceable DamagedObject { get; private set; }
       public NwGameObject Damager { get; private set; }
@@ -41,8 +41,8 @@ namespace NWM.API.Events
       public event Action<OnDamaged> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "dea")]
-    public class OnDeath : IEvent<OnDeath>
+    [ScriptEvent(EventScriptType.PlaceableOnDeath)]
+    public class OnDeath : IEvent<NwPlaceable, OnDeath>
     {
       public NwPlaceable KilledObject { get; private set; }
       public NwGameObject Killer { get; private set; }
@@ -57,8 +57,8 @@ namespace NWM.API.Events
       public event Action<OnDeath> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "dis")]
-    public class OnDisturbed : IEvent<OnDisturbed>
+    [ScriptEvent(EventScriptType.PlaceableOnInventoryDisturbed)]
+    public class OnDisturbed : IEvent<NwPlaceable, OnDisturbed>
     {
       public InventoryDisturbType DisturbType { get; private set; }
       public NwPlaceable Placeable { get; private set; }
@@ -78,8 +78,8 @@ namespace NWM.API.Events
       public event Action<OnDisturbed> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "hea")]
-    public class OnHeartbeat : IEvent<OnHeartbeat>
+    [ScriptEvent(EventScriptType.PlaceableOnHeartbeat)]
+    public class OnHeartbeat : IEvent<NwPlaceable, OnHeartbeat>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -92,8 +92,8 @@ namespace NWM.API.Events
       public event Action<OnHeartbeat> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "loc")]
-    public class OnLock : IEvent<OnLock>
+    [ScriptEvent(EventScriptType.PlaceableOnLock)]
+    public class OnLock : IEvent<NwPlaceable, OnLock>
     {
       public NwPlaceable LockedPlaceable { get; private set; }
       public int LockDC { get; private set; }
@@ -108,8 +108,8 @@ namespace NWM.API.Events
       public event Action<OnLock> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "ope")]
-    public class OnOpen : IEvent<OnOpen>
+    [ScriptEvent(EventScriptType.PlaceableOnOpen)]
+    public class OnOpen : IEvent<NwPlaceable, OnOpen>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature OpenedBy { get; private set; }
@@ -124,8 +124,8 @@ namespace NWM.API.Events
       public event Action<OnOpen> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "phy")]
-    public class OnPhysicalAttacked : IEvent<OnPhysicalAttacked>
+    [ScriptEvent(EventScriptType.PlaceableOnMeleeAttacked)]
+    public class OnPhysicalAttacked : IEvent<NwPlaceable, OnPhysicalAttacked>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature Attacker { get; private set; }
@@ -140,8 +140,8 @@ namespace NWM.API.Events
       public event Action<OnPhysicalAttacked> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "spe")]
-    public class OnSpellCastAt : IEvent<OnSpellCastAt>
+    [ScriptEvent(EventScriptType.PlaceableOnSpellCastAt)]
+    public class OnSpellCastAt : IEvent<NwPlaceable, OnSpellCastAt>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -154,7 +154,8 @@ namespace NWM.API.Events
       public event Action<OnSpellCastAt> Callbacks;
     }
 
-    public class OnUnlock : IEvent<OnUnlock>
+    [ScriptEvent(EventScriptType.PlaceableOnUnlock)]
+    public class OnUnlock : IEvent<NwPlaceable, OnUnlock>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature UnlockedBy { get; private set; }
@@ -169,7 +170,8 @@ namespace NWM.API.Events
       public event Action<OnUnlock> Callbacks;
     }
 
-    public class OnUsed : IEvent<OnUsed>
+    [ScriptEvent(EventScriptType.PlaceableOnUsed)]
+    public class OnUsed : IEvent<NwPlaceable, OnUsed>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature UsedBy { get; private set; }
@@ -184,8 +186,8 @@ namespace NWM.API.Events
       public event Action<OnUsed> Callbacks;
     }
 
-    [EventInfo(EventType.Native, DefaultScriptSuffix = "use")]
-    public class OnUserDefined : IEvent<OnUserDefined>
+    [ScriptEvent(EventScriptType.PlaceableOnUserDefinedEvent)]
+    public class OnUserDefined : IEvent<NwPlaceable, OnUserDefined>
     {
       public NwPlaceable Placeable { get; private set; }
       public int EventNumber { get; private set; }
