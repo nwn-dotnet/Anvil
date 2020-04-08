@@ -14,27 +14,37 @@ namespace NWM.API.NWNX
     {
       if (level > 0)
       {
-        CreaturePlugin.AddFeatByLevel(creature, feat, level);
+        CreaturePlugin.AddFeatByLevel(creature, (int) feat, level);
       }
       else
       {
-        CreaturePlugin.AddFeat(creature, feat);
+        CreaturePlugin.AddFeat(creature, (int) feat);
       }
     }
 
     public static bool KnowsFeat(this NwCreature creature, Feat feat)
     {
-      return CreaturePlugin.GetKnowsFeat(creature, feat).ToBool();
+      return CreaturePlugin.GetKnowsFeat(creature, (int) feat).ToBool();
     }
 
     public static void RemoveFeat(this NwCreature creature, Feat feat)
     {
-      CreaturePlugin.RemoveFeat(creature, feat);
+      CreaturePlugin.RemoveFeat(creature, (int) feat);
     }
 
     public static int GetFeatLevel(this NwCreature creature, Feat feat)
     {
-      return CreaturePlugin.GetFeatLevel(creature, feat);
+      return CreaturePlugin.GetFeatLevel(creature, (int) feat);
+    }
+
+    public static int GetMemorisedSpellCountByLevel(this NwCreature creature, ClassType classType, int spellLevel)
+    {
+      return CreaturePlugin.GetMemorisedSpellCountByLevel(creature, (int) classType, spellLevel);
+    }
+
+    public static void ClearMemorisedSpell(this NwCreature creature, ClassType classType, int spellLevel, int index)
+    {
+      CreaturePlugin.ClearMemorisedSpell(creature, (int) classType, spellLevel, index);
     }
   }
 }

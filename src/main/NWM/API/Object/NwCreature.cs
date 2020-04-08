@@ -9,6 +9,8 @@ namespace NWM.API
   {
     internal NwCreature(uint objectId) : base(objectId) {}
 
+    private const int MaxClasses = 3;
+
     /// <summary>
     /// Creates a creature at the specified location.
     /// </summary>
@@ -92,6 +94,26 @@ namespace NWM.API
     public int GetLevelByClass(ClassType classType)
     {
       return NWScript.GetLevelByClass((int) classType, this);
+    }
+
+    public IReadOnlyList<ClassType> Classes
+    {
+      get
+      {
+        List<ClassType> classes = new List<ClassType>(MaxClasses);
+        for (int i = 0; i < MaxClasses; i++)
+        {
+          ClassType classType = (ClassType) NWScript.GetClassByPosition(i + 1);
+          if (classType == ClassType.Invalid)
+          {
+            break;
+          }
+
+          classes.Add(classType);
+        }
+
+        return classes.AsReadOnly();
+      }
     }
 
     /// <summary>
