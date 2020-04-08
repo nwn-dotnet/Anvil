@@ -72,7 +72,8 @@ namespace NWM.API
         return Module;
       }
 
-      switch (ObjectPlugin.GetInternalObjectType(objectId)) // Get our object type using our custom plugin
+      // Resolve object type
+      switch (ObjectPlugin.GetInternalObjectType(objectId))
       {
         // Depending on the type of object, create a specific kind of object to enforce type safety.
         // We map the returned object type to the object to create.

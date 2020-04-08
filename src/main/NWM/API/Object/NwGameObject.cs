@@ -15,7 +15,7 @@ namespace NWM.API
       set => value?.Apply(this);
     }
 
-    public Location Location
+    public virtual Location Location
     {
       get => NWScript.GetLocation(this);
       set => ExecuteOnSelf(() => NWScript.JumpToLocation(value));
@@ -39,9 +39,14 @@ namespace NWM.API
       set => ExecuteOnSelf(() => NWScript.SetFacing(value % 360));
     }
 
-    public void FaceTowards(NwGameObject nwObject)
+    public void FaceToObject(NwGameObject nwObject)
     {
-      AssignCommand(() => NWScript.SetFacingPoint(nwObject.Position));
+      FaceToPoint(nwObject.Position);
+    }
+
+    public virtual void FaceToPoint(Vector3 point)
+    {
+      AssignCommand(() => NWScript.SetFacingPoint(point));
     }
 
     public NwArea Area

@@ -121,7 +121,7 @@ namespace NWM.Core
         return;
       }
 
-      Log.Debug($"Hooking native script event \"{scriptEventInfo.EventScriptType}\", script \"{existingScript}\"");
+      Log.Debug($"Hooking native script event \"{scriptEventInfo.EventScriptType}\" on object \"{nwObject.Name}\". Previous script: \"{existingScript}\"");
 
       NWScript.SetEventScript(nwObject, (int) scriptEventInfo.EventScriptType, eventHandler.ScriptName);
       if (!string.IsNullOrEmpty(existingScript))

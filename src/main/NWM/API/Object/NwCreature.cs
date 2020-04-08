@@ -14,22 +14,34 @@ namespace NWM.API
       return CreateInternal<NwCreature>(ObjectType.Item, template, location, useAppearAnim, newTag);
     }
 
+    /// <summary>
+    /// Gets a value indicating whether this creature is currently possessed by a DM avatar.
+    /// </summary>
     public bool IsDMPossessed
     {
       get => NWScript.GetIsDMPossessed(this).ToBool();
     }
 
+    /// <summary>
+    /// Gets the possessor of this creature. This can be the master of a familiar, or the DM for a DM controlled creature.
+    /// </summary>
     public NwCreature Master
     {
       get => NWScript.GetMaster(this).ToNwObject<NwCreature>();
     }
 
+    /// <summary>
+    /// Gets or sets the total experience points for this creature, taking/granting levels based on progression.
+    /// </summary>
     public int Xp
     {
       get => NWScript.GetXP(this);
       set => NWScript.SetXP(this, value);
     }
 
+    /// <summary>
+    /// Gets or sets the amount of gold carried by this creature.
+    /// </summary>
     public int Gold
     {
       get => NWScript.GetGold(this);
@@ -52,6 +64,9 @@ namespace NWM.API
       }
     }
 
+    /// <summary>
+    /// Gets all effects (permanent and temporary) that are active on this creature.
+    /// </summary>
     public IEnumerable<Effect> ActiveEffects
     {
       get
@@ -63,11 +78,18 @@ namespace NWM.API
       }
     }
 
+    /// <summary>
+    ///  Determine the number of levels this creature holds in the specified <see cref="ClassType"/>.
+    /// </summary>
     public int GetLevelByClass(ClassType classType)
     {
       return NWScript.GetLevelByClass((int) classType, this);
     }
 
+    /// <summary>
+    /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
+    /// Use <see cref="NWM.API.NWNX.NwCreatureExtensions.KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
+    /// </summary>
     public bool HasFeatPrepared(Feat feat)
     {
       return NWScript.GetHasFeat((int) feat, this).ToBool();
@@ -77,13 +99,17 @@ namespace NWM.API
     /// Applies the specified effect to this creature.
     /// </summary>
     /// <param name="durationType"></param>
-    /// <param name="effect"></param>
-    /// <param name="duration"></param>
+    /// <param name="effect">The effect to apply.</param>
+    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect in seconds.</param>
     public void ApplyEffect(EffectDuration durationType, Effect effect, float duration = 0f)
     {
       NWScript.ApplyEffectToObject((int)durationType, effect, this, duration);
     }
 
+    /// <summary>
+    /// Removes the specified effect from this creature.
+    /// </summary>
+    /// <param name="effect">The existing effect instance.</param>
     public void RemoveEffect(Effect effect)
     {
       NWScript.RemoveEffect(this, effect);
@@ -151,6 +177,12 @@ namespace NWM.API
       ExecuteOnSelf(() => NWScript.ActionMoveAwayFromLocation(location, run.ToInt(), range));
     }
 
+    /// <summary>
+    /// Creates a copy of this creature.
+    /// </summary>
+    /// <param name="location">The location to place the new creature. Defaults to the current creature's location</param>
+    /// <param name="newTag">A new tag to assign to the creature.</param>
+    /// <returns></returns>
     public NwCreature Clone(Location location = null, string newTag = null)
     {
       if (location == null)
@@ -167,7 +199,7 @@ namespace NWM.API
     /// <param name="item">The item to add.</param>
     public void GiveItem(NwItem item)
     {
-      NWScript.ActionGiveItem(item, this);
+      ExecuteOnSelf(() => NWScript.ActionGiveItem(item, this));
     }
 
     /// <summary>
@@ -219,9 +251,13 @@ namespace NWM.API
       ExecuteOnSelf(() => NWScript.ActionPutDownItem(item));
     }
 
-    public void ActionSit(NwPlaceable chair)
+    /// <summary>
+    /// Commands the creature to sit in the specified placeable.
+    /// </summary>
+    /// <param name="sitPlaceable">The placeable to sit in. Must be marked useable, empty, and support sitting (e.g. chairs)</param>
+    public void ActionSit(NwPlaceable sitPlaceable)
     {
-      ExecuteOnSelf(() => NWScript.ActionSit(chair));
+      ExecuteOnSelf(() => NWScript.ActionSit(sitPlaceable));
     }
   }
 }
