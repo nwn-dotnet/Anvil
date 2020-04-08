@@ -10,6 +10,18 @@ namespace NWM.API
     public bool Occupied => NWScript.GetSittingCreature(this) != INVALID;
     public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
 
+    /// <summary>
+    /// Gets or sets whether this placeable should illuminate
+    /// </summary>
+    public bool Illumination
+    {
+      get => NWScript.GetPlaceableIllumination(this).ToBool();
+      set => NWScript.SetPlaceableIllumination(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets whether this placeable should be useable (clickable)
+    /// </summary>
     public bool Useable
     {
       get => NWScript.GetUseableFlag(this).ToBool();

@@ -71,6 +71,26 @@ namespace NWM.API
       }
     }
 
+    /// <summary>
+    /// Plays the specified animation
+    /// </summary>
+    /// <param name="animation">Constant value representing the animation to play.</param>
+    /// <param name="animSpeed">Speed to play the animation.</param>
+    /// <param name="queueAsAction">If true, enqueues animation playback in the object's action queue.</param>
+    /// <param name="duration">Duration to keep animating. Not used in fire and forget animations.</param>
+    public void PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, float duration = 0.0f)
+    {
+      if (!queueAsAction)
+      {
+        ExecuteOnSelf(() => NWScript.PlayAnimation((int) animation, animSpeed, duration));
+      }
+      else
+      {
+        ExecuteOnSelf(() => NWScript.ActionPlayAnimation((int) animation, animSpeed, duration));
+      }
+
+    }
+
     public void SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)
     {
       if (!queueAsAction)

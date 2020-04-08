@@ -9,6 +9,14 @@ namespace NWM.API
   {
     internal NwCreature(uint objectId) : base(objectId) {}
 
+    /// <summary>
+    /// Creates a creature at the specified location.
+    /// </summary>
+    /// <param name="template">The creature resref template from the toolset palette</param>
+    /// <param name="location">The location where this creature will spawn</param>
+    /// <param name="useAppearAnim">If true, plays EffectAppear when created.</param>
+    /// <param name="newTag">The new tag to assign this creature. Leave uninitialized/as null to use the template's tag.</param>
+    /// <returns></returns>
     public static NwCreature Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return CreateInternal<NwCreature>(ObjectType.Item, template, location, useAppearAnim, newTag);
