@@ -39,6 +39,11 @@ namespace NWM.API
       set => ExecuteOnSelf(() => NWScript.SetFacing(value % 360));
     }
 
+    public int HP
+    {
+      get => NWScript.GetCurrentHitPoints(this);
+    }
+
     public void FaceToObject(NwGameObject nwObject)
     {
       FaceToPoint(nwObject.Position);
@@ -101,6 +106,11 @@ namespace NWM.API
       {
         ExecuteOnSelf(() => NWScript.ActionSpeakString(message, (int) talkVolume));
       }
+    }
+
+    public void Destroy(float delay = 0.0f)
+    {
+      NWScript.DestroyObject(this, delay);
     }
   }
 }
