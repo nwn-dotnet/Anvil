@@ -49,6 +49,11 @@ namespace NWM.API
       set => NWScript.SetXP(this, value);
     }
 
+    public int Level
+    {
+      get => NWScript.GetHitDice(this);
+    }
+
     /// <summary>
     /// Gets or sets the amount of gold carried by this creature.
     /// </summary>

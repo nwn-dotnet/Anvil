@@ -46,5 +46,10 @@ namespace NWM.API.NWNX
     {
       CreaturePlugin.ClearMemorisedSpell(creature, (int) classType, spellLevel, index);
     }
+
+    public static ClassType GetClassByLevel(this NwCreature creature, int level)
+    {
+      return (ClassType) CreaturePlugin.GetClassByLevel(creature, level);
+    }
   }
 }

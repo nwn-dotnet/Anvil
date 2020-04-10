@@ -9,6 +9,7 @@ namespace NWM.Core
   public class SchedulerService : IUpdateable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+    public static readonly TimeSpan NextUpdate = TimeSpan.Zero;
 
     // Dependencies
     private readonly LoopTimeService loopTimeService;
@@ -21,18 +22,18 @@ namespace NWM.Core
       this.loopTimeService = loopTimeService;
     }
 
-    public IDisposable Schedule(string name, Action task, TimeSpan delay)
+    public IDisposable Schedule(Action task, TimeSpan delay)
     {
-      if (delay <= TimeSpan.Zero)
+      if (delay < TimeSpan.Zero)
       {
-        throw new ArgumentOutOfRangeException(nameof(delay), $"{nameof(delay)} cannot be <= zero.");
+        throw new ArgumentOutOfRangeException(nameof(delay), $"{nameof(delay)} cannot be < zero.");
       }
       if (task == null)
       {
         throw new ArgumentNullException(nameof(task));
       }
 
-      Log.Debug($"Scheduled Future Task: {name}");
+      Log.Debug($"Scheduled Future Task: {task.Method.GetFullName()}");
       ScheduledItem item = new ScheduledItem(this, task, loopTimeService.Time + delay.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;

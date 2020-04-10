@@ -43,5 +43,26 @@ namespace NWNX
       Internal.NativeFunctions.nwnxCallFunction();
       return Internal.NativeFunctions.nwnxPopObject();
     }
+
+    // Get an object's string variable variableName.
+    public static string GetString(uint obj, string variableName)
+    {
+      Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetString");
+      Internal.NativeFunctions.nwnxPushString(variableName);
+      Internal.NativeFunctions.nwnxPushObject(obj);
+      Internal.NativeFunctions.nwnxCallFunction();
+      return Internal.NativeFunctions.nwnxPopString();
+    }
+
+    // Set an object's string variable variableName to newValue. Toggle persistence with persist.
+    public static void SetString(uint obj, string variableName, string newValue, bool persist)
+    {
+      Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "SetString");
+      Internal.NativeFunctions.nwnxPushInt(persist ? 1 : 0);
+      Internal.NativeFunctions.nwnxPushString(newValue);
+      Internal.NativeFunctions.nwnxPushString(variableName);
+      Internal.NativeFunctions.nwnxPushObject(obj);
+      Internal.NativeFunctions.nwnxCallFunction();
+    }
   }
 }

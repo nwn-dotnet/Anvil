@@ -3,9 +3,9 @@ using NWN;
 namespace NWNX
 {
 	[NWNXPlugin(PLUGIN_NAME)]
-  internal class CreaturePlugin
-  {
-	  private const string PLUGIN_NAME = "NWNX_Creature";
+	internal class CreaturePlugin
+	{
+		private const string PLUGIN_NAME = "NWNX_Creature";
 
 		public static void AddFeat(uint creature, int feat)
 		{
@@ -50,6 +50,15 @@ namespace NWNX
 			Internal.NativeFunctions.nwnxCallFunction();
 		}
 
+		public static int GetClassByLevel(uint creature, int level)
+		{
+			Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetClassByLevel");
+			Internal.NativeFunctions.nwnxPushInt(level);
+			Internal.NativeFunctions.nwnxPushObject(creature);
+			Internal.NativeFunctions.nwnxCallFunction();
+			return Internal.NativeFunctions.nwnxPopInt();
+		}
+
 		public static int GetMemorisedSpellCountByLevel(uint creature, int classId, int level)
 		{
 			Internal.NativeFunctions.nwnxSetFunction(PLUGIN_NAME, "GetMemorisedSpellCountByLevel");
@@ -69,5 +78,5 @@ namespace NWNX
 			Internal.NativeFunctions.nwnxPushObject(creature);
 			Internal.NativeFunctions.nwnxCallFunction();
 		}
-  }
+	}
 }
