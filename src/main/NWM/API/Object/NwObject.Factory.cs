@@ -1,5 +1,6 @@
 using System;
 using NWM.API.Constants;
+using NWMX.API.Constants;
 using NWN;
 using NWNX;
 
@@ -73,7 +74,7 @@ namespace NWM.API
       }
 
       // Resolve object type
-      switch (ObjectPlugin.GetInternalObjectType(objectId))
+      switch ((InternalObjectType) ObjectPlugin.GetInternalObjectType(objectId))
       {
         // Depending on the type of object, create a specific kind of object to enforce type safety.
         // We map the returned object type to the object to create.

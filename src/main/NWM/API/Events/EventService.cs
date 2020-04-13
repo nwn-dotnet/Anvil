@@ -4,7 +4,7 @@ using System.Reflection;
 using NLog;
 using NWM.API;
 using NWM.API.Events;
-using NWM.API.NWNX.Events;
+using NWMX.API.Events;
 using NWN;
 using NWNX;
 using EventHandler = NWM.API.Events.EventHandler;

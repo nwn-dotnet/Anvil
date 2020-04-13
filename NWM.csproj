@@ -28,5 +28,11 @@
         <Link>NLog.dll.nlog</Link>
       </None>
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="src\main\NWMX\API" />
+      <Folder Include="src\main\NWM\API\NWNX" />
+      <Folder Include="src\main\NWM\Core\Dialog" />
+    </ItemGroup>
 
 </Project>

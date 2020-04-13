@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NWM.API.Constants;
+using NWMX.API;
 using NWN;
 
 namespace NWM.API
@@ -123,7 +124,7 @@ namespace NWM.API
 
     /// <summary>
     /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
-    /// Use <see cref="NWM.API.NWNX.NwCreatureExtensions.KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
+    /// Use <see cref="NwCreatureExtensions.KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
     /// </summary>
     public bool HasFeatPrepared(Feat feat)
     {
