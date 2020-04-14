@@ -72,6 +72,17 @@ namespace NWNX
     public const int NWNX_CREATURE_BONUS_TYPE_SKILL = 5;
     public const int NWNX_CREATURE_BONUS_TYPE_TOUCH_ATTACK = 6;
 
+    public static int CheckUseMagicDeviceSkill(uint creature, uint item, int checkType)
+    {
+      NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "CheckUseMagicDeviceSkill");
+      NWN.Internal.NativeFunctions.nwnxPushInt(checkType);
+      NWN.Internal.NativeFunctions.nwnxPushObject(item);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxCallFunction();
+
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
+    }
+
     /// / @}
     /// / @struct NWNX_Creature_SpecialAbility
     /// / @brief A creature special ability.

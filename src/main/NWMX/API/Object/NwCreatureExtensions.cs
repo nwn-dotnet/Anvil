@@ -52,5 +52,10 @@ namespace NWMX.API
     {
       return (ClassType) CreaturePlugin.GetClassByLevel(creature, level);
     }
+
+    public static bool CheckUseMagicDeviceSkill(this NwCreature creature, NwItem item)
+    {
+      return CreaturePlugin.CheckUseMagicDeviceSkill(creature, item, 1).ToBool();
+    }
   }
 }

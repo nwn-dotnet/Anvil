@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NWM.API.Constants;
 using NWN;
 using ItemProperty = NWN.ItemProperty;
@@ -19,6 +20,17 @@ namespace NWM.API
     public BaseItemType BaseItemType
     {
       get => (BaseItemType) NWScript.GetBaseItemType(this);
+    }
+
+    public IEnumerable<ItemProperty> ItemProperties
+    {
+      get
+      {
+        for (ItemProperty itemProperty = NWScript.GetFirstItemProperty(this); itemProperty.Valid; itemProperty = NWScript.GetNextItemProperty(this))
+        {
+          yield return itemProperty;
+        }
+      }
     }
 
     public void AddItemProperty(ItemProperty itemProperty,

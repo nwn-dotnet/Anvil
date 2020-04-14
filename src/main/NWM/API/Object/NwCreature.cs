@@ -47,7 +47,7 @@ namespace NWM.API
     public int Xp
     {
       get => NWScript.GetXP(this);
-      set => NWScript.SetXP(this, value);
+      set => NWScript.SetXP(this, value < 0 ? 0 : value);
     }
 
     public int Level
