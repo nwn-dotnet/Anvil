@@ -372,10 +372,10 @@ namespace NWNX
     public static int GetFeedbackMessageHidden(int nMessage, uint oPC = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Feedback, "GetFeedbackMessageHidden");
-      NWN.Internal.NativeFunctions.StackPushObject(oPC);
-      NWN.Internal.NativeFunctions.StackPushInteger(nMessage);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPC);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nMessage);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets if feedback message is hidden.
@@ -387,9 +387,9 @@ namespace NWNX
     public static void SetFeedbackMessageHidden(int nMessage, int isHidden, uint oPC = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Feedback, "SetFeedbackMessageHidden");
-      NWN.Internal.NativeFunctions.StackPushObject(oPC);
-      NWN.Internal.NativeFunctions.StackPushInteger(isHidden);
-      NWN.Internal.NativeFunctions.StackPushInteger(nMessage);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPC);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isHidden);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nMessage);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -400,10 +400,10 @@ namespace NWNX
     public static int GetCombatLogMessageHidden(int nMessage, uint oPC = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Feedback, "GetCombatLogMessageHidden");
-      NWN.Internal.NativeFunctions.StackPushObject(oPC);
-      NWN.Internal.NativeFunctions.StackPushInteger(nMessage);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPC);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nMessage);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets if combat log message is hidden.
@@ -415,9 +415,9 @@ namespace NWNX
     public static void SetCombatLogMessageHidden(int nMessage, int isHidden, uint oPC = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Feedback, "SetCombatLogMessageHidden");
-      NWN.Internal.NativeFunctions.StackPushObject(oPC);
-      NWN.Internal.NativeFunctions.StackPushInteger(isHidden);
-      NWN.Internal.NativeFunctions.StackPushInteger(nMessage);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPC);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isHidden);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nMessage);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -427,9 +427,9 @@ namespace NWNX
     public static int GetJournalUpdatedMessageHidden(uint oPC = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Feedback, "GetJournalUpdatedMessageHidden");
-      NWN.Internal.NativeFunctions.StackPushObject(oPC);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPC);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets if journal update message is hidden.
@@ -440,8 +440,8 @@ namespace NWNX
     public static void SetJournalUpdatedMessageHidden(int isHidden, uint oPC = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Feedback, "SetJournalUpdatedMessageHidden");
-      NWN.Internal.NativeFunctions.StackPushObject(oPC);
-      NWN.Internal.NativeFunctions.StackPushInteger(isHidden);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPC);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isHidden);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -450,7 +450,7 @@ namespace NWNX
     public static void SetFeedbackMessageMode(int bWhitelist)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Feedback, "SetFeedbackMessageMode");
-      NWN.Internal.NativeFunctions.StackPushInteger(bWhitelist);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bWhitelist);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -460,7 +460,7 @@ namespace NWNX
     public static void SetCombatLogMessageMode(int bWhitelist)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Feedback, "SetCombatLogMessageMode");
-      NWN.Internal.NativeFunctions.StackPushInteger(bWhitelist);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bWhitelist);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

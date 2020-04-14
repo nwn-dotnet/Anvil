@@ -9,9 +9,9 @@ namespace NWNX
     public static string Evaluate(string sCode)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Ruby, "Evaluate");
-      NWN.Internal.NativeFunctions.StackPushString(sCode);
+      NWN.Internal.NativeFunctions.nwnxPushString(sCode);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Evaluates some ruby code.

@@ -109,7 +109,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "GetPlayerPassword");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Sets the password for players to login.
@@ -117,7 +117,7 @@ namespace NWNX
     public static void SetPlayerPassword(string password)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "SetPlayerPassword");
-      NWN.Internal.NativeFunctions.StackPushString(password);
+      NWN.Internal.NativeFunctions.nwnxPushString(password);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -134,7 +134,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "GetDMPassword");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Sets the password for DMs to login.
@@ -142,7 +142,7 @@ namespace NWNX
     public static void SetDMPassword(string password)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "SetDMPassword");
-      NWN.Internal.NativeFunctions.StackPushString(password);
+      NWN.Internal.NativeFunctions.nwnxPushString(password);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -162,8 +162,8 @@ namespace NWNX
     public static void DeletePlayerCharacter(uint oPC, int bPreserveBackup = NWN.NWScript.TRUE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "DeletePlayerCharacter");
-      NWN.Internal.NativeFunctions.StackPushInteger(bPreserveBackup);
-      NWN.Internal.NativeFunctions.StackPushObject(oPC);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bPreserveBackup);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPC);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -172,7 +172,7 @@ namespace NWNX
     public static void AddBannedIP(string ip)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "AddBannedIP");
-      NWN.Internal.NativeFunctions.StackPushString(ip);
+      NWN.Internal.NativeFunctions.nwnxPushString(ip);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -181,7 +181,7 @@ namespace NWNX
     public static void RemoveBannedIP(string ip)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "RemoveBannedIP");
-      NWN.Internal.NativeFunctions.StackPushString(ip);
+      NWN.Internal.NativeFunctions.nwnxPushString(ip);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -190,7 +190,7 @@ namespace NWNX
     public static void AddBannedCDKey(string key)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "AddBannedCDKey");
-      NWN.Internal.NativeFunctions.StackPushString(key);
+      NWN.Internal.NativeFunctions.nwnxPushString(key);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -199,7 +199,7 @@ namespace NWNX
     public static void RemoveBannedCDKey(string key)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "RemoveBannedCDKey");
-      NWN.Internal.NativeFunctions.StackPushString(key);
+      NWN.Internal.NativeFunctions.nwnxPushString(key);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -209,7 +209,7 @@ namespace NWNX
     public static void AddBannedPlayerName(string playerName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "AddBannedPlayerName");
-      NWN.Internal.NativeFunctions.StackPushString(playerName);
+      NWN.Internal.NativeFunctions.nwnxPushString(playerName);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -218,7 +218,7 @@ namespace NWNX
     public static void RemoveBannedPlayerName(string playerName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "RemoveBannedPlayerName");
-      NWN.Internal.NativeFunctions.StackPushString(playerName);
+      NWN.Internal.NativeFunctions.nwnxPushString(playerName);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -228,7 +228,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "GetBannedList");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Set the module's name as shown to the serverlist.
@@ -236,7 +236,7 @@ namespace NWNX
     public static void SetModuleName(string name)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "SetModuleName");
-      NWN.Internal.NativeFunctions.StackPushString(name);
+      NWN.Internal.NativeFunctions.nwnxPushString(name);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -245,7 +245,7 @@ namespace NWNX
     public static void SetServerName(string name)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "SetServerName");
-      NWN.Internal.NativeFunctions.StackPushString(name);
+      NWN.Internal.NativeFunctions.nwnxPushString(name);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -254,7 +254,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "GetServerName");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Get an @ref admin_opts "Administration Option" value.
@@ -263,9 +263,9 @@ namespace NWNX
     public static int GetPlayOption(int option)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "GetPlayOption");
-      NWN.Internal.NativeFunctions.StackPushInteger(option);
+      NWN.Internal.NativeFunctions.nwnxPushInt(option);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set an @ref admin_opts "Administration Options" to a value.
@@ -274,8 +274,8 @@ namespace NWNX
     public static void SetPlayOption(int option, int value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "SetPlayOption");
-      NWN.Internal.NativeFunctions.StackPushInteger(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(option);
+      NWN.Internal.NativeFunctions.nwnxPushInt(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(option);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -292,10 +292,10 @@ namespace NWNX
     public static int DeleteTURD(string playerName, string characterName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "DeleteTURD");
-      NWN.Internal.NativeFunctions.StackPushString(characterName);
-      NWN.Internal.NativeFunctions.StackPushString(playerName);
+      NWN.Internal.NativeFunctions.nwnxPushString(characterName);
+      NWN.Internal.NativeFunctions.nwnxPushString(playerName);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get an @ref admin_debug "Administration Debug Type" value.
@@ -304,9 +304,9 @@ namespace NWNX
     public static int GetDebugValue(int type)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "GetDebugValue");
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set an @ref admin_debug "Administration Debug Type" to a value.
@@ -315,8 +315,8 @@ namespace NWNX
     public static void SetDebugValue(int type, int state)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Administration, "SetDebugValue");
-      NWN.Internal.NativeFunctions.StackPushInteger(state);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushInt(state);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

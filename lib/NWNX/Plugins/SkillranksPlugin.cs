@@ -55,9 +55,9 @@ namespace NWNX
     public static int GetSkillFeatCountForSkill(int iSkill)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "GetSkillFeatCountForSkill");
-      NWN.Internal.NativeFunctions.StackPushInteger(iSkill);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iSkill);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Returns a skill feat.
@@ -67,21 +67,21 @@ namespace NWNX
     public static SkillFeat GetSkillFeat(int iSkill, int iFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "GetSkillFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(iFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(iSkill);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iSkill);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       SkillFeat retVal;
-      retVal.iKeyAbilityMask = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.bBypassArmorCheckPenalty = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iDayOrNight = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iAreaFlagsForbidden = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iAreaFlagsRequired = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.fClassLevelMod = NWN.Internal.NativeFunctions.StackPopFloat();
-      retVal.sClasses = NWN.Internal.NativeFunctions.StackPopString();
-      retVal.iFocusFeat = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iModifier = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iFeat = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iSkill = NWN.Internal.NativeFunctions.StackPopInteger();
+      retVal.iKeyAbilityMask = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.bBypassArmorCheckPenalty = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iDayOrNight = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iAreaFlagsForbidden = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iAreaFlagsRequired = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.fClassLevelMod = NWN.Internal.NativeFunctions.nwnxPopFloat();
+      retVal.sClasses = NWN.Internal.NativeFunctions.nwnxPopString();
+      retVal.iFocusFeat = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iModifier = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iFeat = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iSkill = NWN.Internal.NativeFunctions.nwnxPopInt();
       return retVal;
     }
 
@@ -93,21 +93,21 @@ namespace NWNX
     public static SkillFeat GetSkillFeatForSkillByIndex(int iSkill, int iIndex)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "GetSkillFeatForSkillByIndex");
-      NWN.Internal.NativeFunctions.StackPushInteger(iIndex);
-      NWN.Internal.NativeFunctions.StackPushInteger(iSkill);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iIndex);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iSkill);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       SkillFeat retVal;
-      retVal.iKeyAbilityMask = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.bBypassArmorCheckPenalty = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iDayOrNight = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iAreaFlagsForbidden = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iAreaFlagsRequired = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.fClassLevelMod = NWN.Internal.NativeFunctions.StackPopFloat();
-      retVal.sClasses = NWN.Internal.NativeFunctions.StackPopString();
-      retVal.iFocusFeat = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iModifier = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iFeat = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iSkill = NWN.Internal.NativeFunctions.StackPopInteger();
+      retVal.iKeyAbilityMask = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.bBypassArmorCheckPenalty = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iDayOrNight = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iAreaFlagsForbidden = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iAreaFlagsRequired = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.fClassLevelMod = NWN.Internal.NativeFunctions.nwnxPopFloat();
+      retVal.sClasses = NWN.Internal.NativeFunctions.nwnxPopString();
+      retVal.iFocusFeat = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iModifier = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iFeat = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iSkill = NWN.Internal.NativeFunctions.nwnxPopInt();
       return retVal;
     }
 
@@ -117,18 +117,18 @@ namespace NWNX
     public static void SetSkillFeat(SkillFeat skillFeat, int createIfNonExistent = NWN.NWScript.FALSE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "SetSkillFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(createIfNonExistent);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iSkill);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iModifier);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iFocusFeat);
-      NWN.Internal.NativeFunctions.StackPushString(skillFeat.sClasses);
-      NWN.Internal.NativeFunctions.StackPushFloat(skillFeat.fClassLevelMod);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iAreaFlagsRequired);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iAreaFlagsForbidden);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iDayOrNight);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.bBypassArmorCheckPenalty);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iKeyAbilityMask);
+      NWN.Internal.NativeFunctions.nwnxPushInt(createIfNonExistent);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iSkill);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iModifier);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iFocusFeat);
+      NWN.Internal.NativeFunctions.nwnxPushString(skillFeat.sClasses);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(skillFeat.fClassLevelMod);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iAreaFlagsRequired);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iAreaFlagsForbidden);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iDayOrNight);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.bBypassArmorCheckPenalty);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iKeyAbilityMask);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -142,31 +142,31 @@ namespace NWNX
     public static SkillFeat AddSkillFeatClass(SkillFeat skillFeat, int iClass)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "AddSkillFeatClass");
-      NWN.Internal.NativeFunctions.StackPushInteger(iClass);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iSkill);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iModifier);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iFocusFeat);
-      NWN.Internal.NativeFunctions.StackPushString(skillFeat.sClasses);
-      NWN.Internal.NativeFunctions.StackPushFloat(skillFeat.fClassLevelMod);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iAreaFlagsRequired);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iAreaFlagsForbidden);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iDayOrNight);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.bBypassArmorCheckPenalty);
-      NWN.Internal.NativeFunctions.StackPushInteger(skillFeat.iKeyAbilityMask);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iClass);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iSkill);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iModifier);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iFocusFeat);
+      NWN.Internal.NativeFunctions.nwnxPushString(skillFeat.sClasses);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(skillFeat.fClassLevelMod);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iAreaFlagsRequired);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iAreaFlagsForbidden);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iDayOrNight);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.bBypassArmorCheckPenalty);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillFeat.iKeyAbilityMask);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       SkillFeat retVal;
-      retVal.iKeyAbilityMask = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.bBypassArmorCheckPenalty = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iDayOrNight = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iAreaFlagsForbidden = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iAreaFlagsRequired = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.fClassLevelMod = NWN.Internal.NativeFunctions.StackPopFloat();
-      retVal.sClasses = NWN.Internal.NativeFunctions.StackPopString();
-      retVal.iFocusFeat = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iModifier = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iFeat = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.iSkill = NWN.Internal.NativeFunctions.StackPopInteger();
+      retVal.iKeyAbilityMask = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.bBypassArmorCheckPenalty = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iDayOrNight = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iAreaFlagsForbidden = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iAreaFlagsRequired = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.fClassLevelMod = NWN.Internal.NativeFunctions.nwnxPopFloat();
+      retVal.sClasses = NWN.Internal.NativeFunctions.nwnxPopString();
+      retVal.iFocusFeat = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iModifier = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iFeat = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.iSkill = NWN.Internal.NativeFunctions.nwnxPopInt();
       return retVal;
     }
 
@@ -179,8 +179,8 @@ namespace NWNX
     public static void SetSkillFeatFocusModifier(int iModifier, int iEpic = NWN.NWScript.FALSE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "SetSkillFeatFocusModifier");
-      NWN.Internal.NativeFunctions.StackPushInteger(iEpic);
-      NWN.Internal.NativeFunctions.StackPushInteger(iModifier);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iEpic);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iModifier);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -190,7 +190,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "GetBlindnessPenalty");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the value the Dexterity based skills get decreased due to blindness.
@@ -199,7 +199,7 @@ namespace NWNX
     public static void SetBlindnessPenalty(int iModifier)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "SetBlindnessPenalty");
-      NWN.Internal.NativeFunctions.StackPushInteger(iModifier);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iModifier);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -210,10 +210,10 @@ namespace NWNX
     public static int GetAreaModifier(uint oArea, int iSkill)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "GetAreaModifier");
-      NWN.Internal.NativeFunctions.StackPushInteger(iSkill);
-      NWN.Internal.NativeFunctions.StackPushObject(oArea);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iSkill);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oArea);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets a skill modifier for the area.
@@ -223,9 +223,9 @@ namespace NWNX
     public static void SetAreaModifier(uint oArea, int iSkill, int iModifier)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SkillRanks, "SetAreaModifier");
-      NWN.Internal.NativeFunctions.StackPushInteger(iModifier);
-      NWN.Internal.NativeFunctions.StackPushInteger(iSkill);
-      NWN.Internal.NativeFunctions.StackPushObject(oArea);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iModifier);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iSkill);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oArea);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

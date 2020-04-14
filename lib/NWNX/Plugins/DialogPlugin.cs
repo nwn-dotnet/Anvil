@@ -44,7 +44,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Dialog, "GetCurrentNodeType");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the @ref dialog_script_types "Script Type" of the current text node
@@ -53,7 +53,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Dialog, "GetCurrentScriptType");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the absolute ID of the current node in the conversation
@@ -64,7 +64,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Dialog, "GetCurrentNodeID");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the index of the current node in the list of replies/entries.
@@ -74,7 +74,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Dialog, "GetCurrentNodeIndex");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the text of the current node
@@ -83,10 +83,10 @@ namespace NWNX
     public static string GetCurrentNodeText(int language = NWNX_DIALOG_LANGUAGE_ENGLISH, int gender = NWN.NWScript.GENDER_MALE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Dialog, "GetCurrentNodeText");
-      NWN.Internal.NativeFunctions.StackPushInteger(gender);
-      NWN.Internal.NativeFunctions.StackPushInteger(language);
+      NWN.Internal.NativeFunctions.nwnxPushInt(gender);
+      NWN.Internal.NativeFunctions.nwnxPushInt(language);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Set the text of the current node for given language/gender
@@ -97,9 +97,9 @@ namespace NWNX
     public static void SetCurrentNodeText(string text, int language = NWNX_DIALOG_LANGUAGE_ENGLISH, int gender = NWN.NWScript.GENDER_MALE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Dialog, "SetCurrentNodeText");
-      NWN.Internal.NativeFunctions.StackPushInteger(gender);
-      NWN.Internal.NativeFunctions.StackPushInteger(language);
-      NWN.Internal.NativeFunctions.StackPushString(text);
+      NWN.Internal.NativeFunctions.nwnxPushInt(gender);
+      NWN.Internal.NativeFunctions.nwnxPushInt(language);
+      NWN.Internal.NativeFunctions.nwnxPushString(text);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -109,7 +109,7 @@ namespace NWNX
     public static void End(uint oObject)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Dialog, "End");
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

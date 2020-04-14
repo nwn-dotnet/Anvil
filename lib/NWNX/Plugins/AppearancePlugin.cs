@@ -57,10 +57,10 @@ namespace NWNX
     public static void SetOverride(uint oPlayer, uint oCreature, int nType, int nValue)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Appearance, "SetOverride");
-      NWN.Internal.NativeFunctions.StackPushInteger(nValue);
-      NWN.Internal.NativeFunctions.StackPushInteger(nType);
-      NWN.Internal.NativeFunctions.StackPushObject(oCreature);
-      NWN.Internal.NativeFunctions.StackPushObject(oPlayer);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nValue);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nType);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oCreature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPlayer);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -72,11 +72,11 @@ namespace NWNX
     public static int GetOverride(uint oPlayer, uint oCreature, int nType)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Appearance, "GetOverride");
-      NWN.Internal.NativeFunctions.StackPushInteger(nType);
-      NWN.Internal.NativeFunctions.StackPushObject(oCreature);
-      NWN.Internal.NativeFunctions.StackPushObject(oPlayer);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nType);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oCreature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oPlayer);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @}

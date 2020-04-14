@@ -46,9 +46,9 @@ namespace NWNX
     public static int GetNumberOfPlayersInArea(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetNumberOfPlayersInArea");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the creature that last entered area.
@@ -57,9 +57,9 @@ namespace NWNX
     public static uint GetLastEntered(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetLastEntered");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Gets the creature that last left area
@@ -67,9 +67,9 @@ namespace NWNX
     public static uint GetLastLeft(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetLastLeft");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Get the PVP setting of area
@@ -78,9 +78,9 @@ namespace NWNX
     public static int GetPVPSetting(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetPVPSetting");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the PVP setting of area
@@ -89,8 +89,8 @@ namespace NWNX
     public static void SetPVPSetting(uint area, int pvpSetting)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetPVPSetting");
-      NWN.Internal.NativeFunctions.StackPushInteger(pvpSetting);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(pvpSetting);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -100,9 +100,9 @@ namespace NWNX
     public static int GetAreaSpotModifier(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetAreaSpotModifier");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the spot modifier of area
@@ -112,8 +112,8 @@ namespace NWNX
     public static void SetAreaSpotModifier(uint area, int spotModifier)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetAreaSpotModifier");
-      NWN.Internal.NativeFunctions.StackPushInteger(spotModifier);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(spotModifier);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -123,9 +123,9 @@ namespace NWNX
     public static int GetAreaListenModifier(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetAreaListenModifier");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the listen modifier of area
@@ -135,8 +135,8 @@ namespace NWNX
     public static void SetAreaListenModifier(uint area, int listenModifier)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetAreaListenModifier");
-      NWN.Internal.NativeFunctions.StackPushInteger(listenModifier);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(listenModifier);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -146,9 +146,9 @@ namespace NWNX
     public static int GetNoRestingAllowed(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetNoRestingAllowed");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set whether to disable resting in the area.
@@ -157,8 +157,8 @@ namespace NWNX
     public static void SetNoRestingAllowed(uint area, int bNoRestingAllowed)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetNoRestingAllowed");
-      NWN.Internal.NativeFunctions.StackPushInteger(bNoRestingAllowed);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bNoRestingAllowed);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -168,9 +168,9 @@ namespace NWNX
     public static int GetWindPower(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetWindPower");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the wind power in area
@@ -179,8 +179,8 @@ namespace NWNX
     public static void SetWindPower(uint area, int windPower)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetWindPower");
-      NWN.Internal.NativeFunctions.StackPushInteger(windPower);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(windPower);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -191,10 +191,10 @@ namespace NWNX
     public static int GetWeatherChance(uint area, int type)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetWeatherChance");
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the weather chance of type in area
@@ -204,9 +204,9 @@ namespace NWNX
     public static void SetWeatherChance(uint area, int type, int chance)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetWeatherChance");
-      NWN.Internal.NativeFunctions.StackPushInteger(chance);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(chance);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -216,9 +216,9 @@ namespace NWNX
     public static float GetFogClipDistance(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetFogClipDistance");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopFloat();
+      return NWN.Internal.NativeFunctions.nwnxPopFloat();
     }
 
     /// / @brief Set the fog clip distance in area
@@ -227,8 +227,8 @@ namespace NWNX
     public static void SetFogClipDistance(uint area, float distance)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetFogClipDistance");
-      NWN.Internal.NativeFunctions.StackPushFloat(distance);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(distance);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -238,9 +238,9 @@ namespace NWNX
     public static int GetShadowOpacity(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetShadowOpacity");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the shadow opacity of area
@@ -249,8 +249,8 @@ namespace NWNX
     public static void SetShadowOpacity(uint area, int shadowOpacity)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetShadowOpacity");
-      NWN.Internal.NativeFunctions.StackPushInteger(shadowOpacity);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(shadowOpacity);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -260,9 +260,9 @@ namespace NWNX
     public static int GetDayNightCycle(uint area)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetDayNightCycle");
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the day/night cycle of area
@@ -271,8 +271,8 @@ namespace NWNX
     public static void SetDayNightCycle(uint area, int type)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetDayNightCycle");
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -283,10 +283,10 @@ namespace NWNX
     public static int GetSunMoonColors(uint area, int type)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetSunMoonColors");
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the Sun/Moon Ambient/Diffuse colors of area
@@ -302,9 +302,9 @@ namespace NWNX
     public static void SetSunMoonColors(uint area, int type, int color)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetSunMoonColors");
-      NWN.Internal.NativeFunctions.StackPushInteger(color);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushInt(color);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -318,15 +318,15 @@ namespace NWNX
     public static uint CreateTransition(uint area, uint target, float x, float y, float z, float size = 2.0f, string tag = "")
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "CreateTransition");
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushFloat(size);
-      NWN.Internal.NativeFunctions.StackPushFloat(z);
-      NWN.Internal.NativeFunctions.StackPushFloat(y);
-      NWN.Internal.NativeFunctions.StackPushFloat(x);
-      NWN.Internal.NativeFunctions.StackPushObject(target);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(size);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(z);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(y);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(x);
+      NWN.Internal.NativeFunctions.nwnxPushObject(target);
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Get the state of a tile animation loop.
@@ -337,12 +337,12 @@ namespace NWNX
     public static int GetTileAnimationLoop(uint oArea, float fTileX, float fTileY, int nAnimLoop)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetTileAnimationLoop");
-      NWN.Internal.NativeFunctions.StackPushInteger(nAnimLoop);
-      NWN.Internal.NativeFunctions.StackPushFloat(fTileY);
-      NWN.Internal.NativeFunctions.StackPushFloat(fTileX);
-      NWN.Internal.NativeFunctions.StackPushObject(oArea);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nAnimLoop);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fTileY);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fTileX);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oArea);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the state of a tile animation loop.
@@ -354,11 +354,11 @@ namespace NWNX
     public static void SetTileAnimationLoop(uint oArea, float fTileX, float fTileY, int nAnimLoop, int bEnabled)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "SetTileAnimationLoop");
-      NWN.Internal.NativeFunctions.StackPushInteger(bEnabled);
-      NWN.Internal.NativeFunctions.StackPushInteger(nAnimLoop);
-      NWN.Internal.NativeFunctions.StackPushFloat(fTileY);
-      NWN.Internal.NativeFunctions.StackPushFloat(fTileX);
-      NWN.Internal.NativeFunctions.StackPushObject(oArea);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bEnabled);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nAnimLoop);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fTileY);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fTileX);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oArea);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -368,11 +368,11 @@ namespace NWNX
     public static string GetTileModelResRef(uint oArea, float fTileX, float fTileY)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetTileModelResRef");
-      NWN.Internal.NativeFunctions.StackPushFloat(fTileY);
-      NWN.Internal.NativeFunctions.StackPushFloat(fTileX);
-      NWN.Internal.NativeFunctions.StackPushObject(oArea);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fTileY);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fTileX);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oArea);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Test to see if there's a direct, walkable line between two points in the area.
@@ -390,16 +390,16 @@ namespace NWNX
     public static int TestDirectLine(uint oArea, float fStartX, float fStartY, float fEndX, float fEndY, float fPerSpace, float fHeight, int bIgnoreDoors = NWN.NWScript.FALSE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "TestDirectLine");
-      NWN.Internal.NativeFunctions.StackPushInteger(bIgnoreDoors);
-      NWN.Internal.NativeFunctions.StackPushFloat(fHeight);
-      NWN.Internal.NativeFunctions.StackPushFloat(fPerSpace);
-      NWN.Internal.NativeFunctions.StackPushFloat(fEndY);
-      NWN.Internal.NativeFunctions.StackPushFloat(fEndX);
-      NWN.Internal.NativeFunctions.StackPushFloat(fStartY);
-      NWN.Internal.NativeFunctions.StackPushFloat(fStartX);
-      NWN.Internal.NativeFunctions.StackPushObject(oArea);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bIgnoreDoors);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fHeight);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fPerSpace);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fEndY);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fEndX);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fStartY);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fStartX);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oArea);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get if the area music is playing.
@@ -409,10 +409,10 @@ namespace NWNX
     public static int GetMusicIsPlaying(uint oArea, int bBattleMusic = NWN.NWScript.FALSE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "GetMusicIsPlaying");
-      NWN.Internal.NativeFunctions.StackPushInteger(bBattleMusic);
-      NWN.Internal.NativeFunctions.StackPushObject(oArea);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bBattleMusic);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oArea);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Create and return a generic trigger (square shaped of specified size) at a location.
@@ -424,14 +424,14 @@ namespace NWNX
     public static uint CreateGenericTrigger(uint oArea, float fX, float fY, float fZ, string sTag = "", float fSize = 1.0f)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Area, "CreateGenericTrigger");
-      NWN.Internal.NativeFunctions.StackPushFloat(fSize);
-      NWN.Internal.NativeFunctions.StackPushString(sTag);
-      NWN.Internal.NativeFunctions.StackPushFloat(fZ);
-      NWN.Internal.NativeFunctions.StackPushFloat(fY);
-      NWN.Internal.NativeFunctions.StackPushFloat(fX);
-      NWN.Internal.NativeFunctions.StackPushObject(oArea);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fSize);
+      NWN.Internal.NativeFunctions.nwnxPushString(sTag);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fZ);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fY);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fX);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oArea);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @}

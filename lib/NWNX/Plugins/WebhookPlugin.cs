@@ -15,11 +15,11 @@ namespace NWNX
     public static void SendWebHookHTTPS(string host, string path, string message, string username = "", int mrkdwn = 1)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_WebHook, "SendWebHookHTTPS");
-      NWN.Internal.NativeFunctions.StackPushInteger(mrkdwn);
-      NWN.Internal.NativeFunctions.StackPushString(username);
-      NWN.Internal.NativeFunctions.StackPushString(message);
-      NWN.Internal.NativeFunctions.StackPushString(path);
-      NWN.Internal.NativeFunctions.StackPushString(host);
+      NWN.Internal.NativeFunctions.nwnxPushInt(mrkdwn);
+      NWN.Internal.NativeFunctions.nwnxPushString(username);
+      NWN.Internal.NativeFunctions.nwnxPushString(message);
+      NWN.Internal.NativeFunctions.nwnxPushString(path);
+      NWN.Internal.NativeFunctions.nwnxPushString(host);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -34,10 +34,10 @@ namespace NWNX
     public static void ResendWebHookHTTPS(string host, string path, string sMessage, float delay = 0.0f)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_WebHook, "ResendWebHookHTTPS");
-      NWN.Internal.NativeFunctions.StackPushFloat(delay);
-      NWN.Internal.NativeFunctions.StackPushString(sMessage);
-      NWN.Internal.NativeFunctions.StackPushString(path);
-      NWN.Internal.NativeFunctions.StackPushString(host);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(delay);
+      NWN.Internal.NativeFunctions.nwnxPushString(sMessage);
+      NWN.Internal.NativeFunctions.nwnxPushString(path);
+      NWN.Internal.NativeFunctions.nwnxPushString(host);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

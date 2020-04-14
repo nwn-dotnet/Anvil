@@ -13,21 +13,21 @@ namespace NWNX
     public static IPUnpacked UnpackIP(NWN.ItemProperty ip)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ItemProperty, "UnpackIP");
-      NWN.Internal.NativeFunctions.StackPushItemProperty(ip.Handle);
+      NWN.Internal.NativeFunctions.nwnxPushItemProperty(ip.Handle);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       IPUnpacked retVal;
-      retVal.sTag = NWN.Internal.NativeFunctions.StackPopString();
-      retVal.oCreator = NWN.Internal.NativeFunctions.StackPopObject();
-      retVal.nSpellId = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.bUsable = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.nChanceToAppear = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.nUsesPerDay = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.nParam1Value = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.nParam1 = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.nCostTableValue = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.nCostTable = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.nSubType = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.nProperty = NWN.Internal.NativeFunctions.StackPopInteger();
+      retVal.sTag = NWN.Internal.NativeFunctions.nwnxPopString();
+      retVal.oCreator = NWN.Internal.NativeFunctions.nwnxPopObject();
+      retVal.nSpellId = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.bUsable = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.nChanceToAppear = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.nUsesPerDay = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.nParam1Value = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.nParam1 = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.nCostTableValue = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.nCostTable = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.nSubType = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.nProperty = NWN.Internal.NativeFunctions.nwnxPopInt();
       return retVal;
     }
 
@@ -37,20 +37,20 @@ namespace NWNX
     public static NWN.ItemProperty PackIP(IPUnpacked ip)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ItemProperty, "PackIP");
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nProperty);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nSubType);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nCostTable);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nCostTableValue);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nParam1);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nParam1Value);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nUsesPerDay);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nChanceToAppear);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.bUsable);
-      NWN.Internal.NativeFunctions.StackPushInteger(ip.nSpellId);
-      NWN.Internal.NativeFunctions.StackPushObject(ip.oCreator);
-      NWN.Internal.NativeFunctions.StackPushString(ip.sTag);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nProperty);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nSubType);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nCostTable);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nCostTableValue);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nParam1);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nParam1Value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nUsesPerDay);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nChanceToAppear);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.bUsable);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ip.nSpellId);
+      NWN.Internal.NativeFunctions.nwnxPushObject(ip.oCreator);
+      NWN.Internal.NativeFunctions.nwnxPushString(ip.sTag);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return new NWN.ItemProperty(NWN.Internal.NativeFunctions.StackPopItemProperty());
+      return new NWN.ItemProperty(NWN.Internal.NativeFunctions.nwnxPopItemProperty());
     }
 
     /// / @}

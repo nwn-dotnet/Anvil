@@ -33,8 +33,8 @@ namespace NWNX
     public static void SetWeaponFocusFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetWeaponFocusFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -44,8 +44,8 @@ namespace NWNX
     public static void SetWeaponFinesseSize(int nBaseItem, int nSize)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetWeaponFinesseSize");
-      NWN.Internal.NativeFunctions.StackPushInteger(nSize);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nSize);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -54,9 +54,9 @@ namespace NWNX
     public static int GetWeaponFinesseSize(int nBaseItem)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "GetWeaponFinesseSize");
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set weapon base item to be considered as unarmed for weapon finesse feat.
@@ -64,7 +64,7 @@ namespace NWNX
     public static void SetWeaponUnarmed(int nBaseItem)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetWeaponUnarmed");
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -74,8 +74,8 @@ namespace NWNX
     public static void SetWeaponImprovedCriticalFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetWeaponImprovedCriticalFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -85,8 +85,8 @@ namespace NWNX
     public static void SetWeaponSpecializationFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetWeaponSpecializationFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -96,8 +96,8 @@ namespace NWNX
     public static void SetEpicWeaponFocusFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetEpicWeaponFocusFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -107,8 +107,8 @@ namespace NWNX
     public static void SetEpicWeaponSpecializationFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetEpicWeaponSpecializationFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -118,8 +118,8 @@ namespace NWNX
     public static void SetEpicWeaponOverwhelmingCriticalFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetEpicWeaponOverwhelmingCriticalFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -129,8 +129,8 @@ namespace NWNX
     public static void SetEpicWeaponDevastatingCriticalFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetEpicWeaponDevastatingCriticalFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -140,8 +140,8 @@ namespace NWNX
     public static void SetWeaponOfChoiceFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetWeaponOfChoiceFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -151,8 +151,8 @@ namespace NWNX
     public static void SetGreaterWeaponSpecializationFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetGreaterWeaponSpecializationFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -162,8 +162,8 @@ namespace NWNX
     public static void SetGreaterWeaponFocusFeat(int nBaseItem, int nFeat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetGreaterWeaponFocusFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFeat);
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFeat);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -172,7 +172,7 @@ namespace NWNX
     public static void SetWeaponIsMonkWeapon(int nBaseItem)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetWeaponIsMonkWeapon");
-      NWN.Internal.NativeFunctions.StackPushInteger(nBaseItem);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nBaseItem);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -182,8 +182,8 @@ namespace NWNX
     public static void SetOption(int nOption, int nVal)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetOption");
-      NWN.Internal.NativeFunctions.StackPushInteger(nVal);
-      NWN.Internal.NativeFunctions.StackPushInteger(nOption);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nVal);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nOption);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -192,7 +192,7 @@ namespace NWNX
     public static void SetDevastatingCriticalEventScript(string sScript)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "SetDevastatingCriticalEventScript");
-      NWN.Internal.NativeFunctions.StackPushString(sScript);
+      NWN.Internal.NativeFunctions.nwnxPushString(sScript);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -204,9 +204,9 @@ namespace NWNX
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Weapon, "GetDevastatingCriticalEventData");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       DevastatingCriticalEvent_Data retVal;
-      retVal.nDamage = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.oTarget = NWN.Internal.NativeFunctions.StackPopObject();
-      retVal.oWeapon = NWN.Internal.NativeFunctions.StackPopObject();
+      retVal.nDamage = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.oTarget = NWN.Internal.NativeFunctions.nwnxPopObject();
+      retVal.oWeapon = NWN.Internal.NativeFunctions.nwnxPopObject();
       return retVal;
     }
 

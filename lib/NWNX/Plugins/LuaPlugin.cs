@@ -11,7 +11,7 @@ namespace NWNX
     public static void EvalVoid(string sCode)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Lua, "EvalVoid");
-      NWN.Internal.NativeFunctions.StackPushString(sCode);
+      NWN.Internal.NativeFunctions.nwnxPushString(sCode);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -21,9 +21,9 @@ namespace NWNX
     public static string Eval(string sCode)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Lua, "Eval");
-      NWN.Internal.NativeFunctions.StackPushString(sCode);
+      NWN.Internal.NativeFunctions.nwnxPushString(sCode);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Generate events in NWScript to receive on the Lua side.
@@ -33,9 +33,9 @@ namespace NWNX
     public static void RunEvent(string sEvent, uint oObject, string sExtra = "")
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Lua, "RunEvent");
-      NWN.Internal.NativeFunctions.StackPushString(sExtra);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
-      NWN.Internal.NativeFunctions.StackPushString(sEvent);
+      NWN.Internal.NativeFunctions.nwnxPushString(sExtra);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sEvent);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

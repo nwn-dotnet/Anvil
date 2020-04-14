@@ -12,10 +12,10 @@ namespace NWNX
     public static int Search(string str, string regex)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Regex, "Search");
-      NWN.Internal.NativeFunctions.StackPushString(regex);
-      NWN.Internal.NativeFunctions.StackPushString(str);
+      NWN.Internal.NativeFunctions.nwnxPushString(regex);
+      NWN.Internal.NativeFunctions.nwnxPushString(str);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Replaces any matches of the regular expression with a string.
@@ -27,12 +27,12 @@ namespace NWNX
     public static string Replace(string str, string regex, string replace = "", int firstOnly = NWN.NWScript.FALSE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Regex, "Replace");
-      NWN.Internal.NativeFunctions.StackPushInteger(firstOnly);
-      NWN.Internal.NativeFunctions.StackPushString(replace);
-      NWN.Internal.NativeFunctions.StackPushString(regex);
-      NWN.Internal.NativeFunctions.StackPushString(str);
+      NWN.Internal.NativeFunctions.nwnxPushInt(firstOnly);
+      NWN.Internal.NativeFunctions.nwnxPushString(replace);
+      NWN.Internal.NativeFunctions.nwnxPushString(regex);
+      NWN.Internal.NativeFunctions.nwnxPushString(str);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @}

@@ -16,9 +16,9 @@ namespace NWNX
     public static string FindMisspell(string sentence)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SpellChecker, "FindMisspell");
-      NWN.Internal.NativeFunctions.StackPushString(sentence);
+      NWN.Internal.NativeFunctions.nwnxPushString(sentence);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Get suggestions on a single word, comma delimited.
@@ -30,9 +30,9 @@ namespace NWNX
     public static string GetSuggestSpell(string word)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SpellChecker, "GetSuggestSpell");
-      NWN.Internal.NativeFunctions.StackPushString(word);
+      NWN.Internal.NativeFunctions.nwnxPushString(word);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @}

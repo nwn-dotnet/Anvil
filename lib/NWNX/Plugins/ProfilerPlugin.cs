@@ -31,9 +31,9 @@ namespace NWNX
     public static void PushPerfScope(string name, string tag0_tag = "", string tag0_value = "")
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Profiler, "PushPerfScope");
-      NWN.Internal.NativeFunctions.StackPushString(tag0_value);
-      NWN.Internal.NativeFunctions.StackPushString(tag0_tag);
-      NWN.Internal.NativeFunctions.StackPushString(name);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag0_value);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag0_tag);
+      NWN.Internal.NativeFunctions.nwnxPushString(name);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

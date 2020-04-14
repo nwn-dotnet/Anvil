@@ -12,7 +12,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Time, "GetSystemDate");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Returns current time.
@@ -21,7 +21,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Time, "GetSystemTime");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @return Returns the number of seconds since midnight on January 1, 1970.
@@ -29,7 +29,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Time, "GetTimeStamp");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief A high resolution timestamp
@@ -39,8 +39,8 @@ namespace NWNX
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Time, "GetHighResTimeStamp");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       HighResTimestamp retVal;
-      retVal.microseconds = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.seconds = NWN.Internal.NativeFunctions.StackPopInteger();
+      retVal.microseconds = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.seconds = NWN.Internal.NativeFunctions.nwnxPopInt();
       return retVal;
     }
 

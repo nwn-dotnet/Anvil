@@ -33,12 +33,12 @@ namespace NWNX
     public static void SetPCNameOverride(uint oTarget, string sNewName, string sPrefix = "", string sSuffix = "", int iPlayerNameState = NWNX_RENAME_PLAYERNAME_DEFAULT, uint oObserver = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Rename, "SetPCNameOverride");
-      NWN.Internal.NativeFunctions.StackPushObject(oObserver);
-      NWN.Internal.NativeFunctions.StackPushInteger(iPlayerNameState);
-      NWN.Internal.NativeFunctions.StackPushString(sSuffix);
-      NWN.Internal.NativeFunctions.StackPushString(sPrefix);
-      NWN.Internal.NativeFunctions.StackPushString(sNewName);
-      NWN.Internal.NativeFunctions.StackPushObject(oTarget);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObserver);
+      NWN.Internal.NativeFunctions.nwnxPushInt(iPlayerNameState);
+      NWN.Internal.NativeFunctions.nwnxPushString(sSuffix);
+      NWN.Internal.NativeFunctions.nwnxPushString(sPrefix);
+      NWN.Internal.NativeFunctions.nwnxPushString(sNewName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oTarget);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -50,10 +50,10 @@ namespace NWNX
     public static string GetPCNameOverride(uint oTarget, uint oObserver = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Rename, "GetPCNameOverride");
-      NWN.Internal.NativeFunctions.StackPushObject(oObserver);
-      NWN.Internal.NativeFunctions.StackPushObject(oTarget);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObserver);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oTarget);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Clears an overridden PC Name.
@@ -65,9 +65,9 @@ namespace NWNX
     public static void ClearPCNameOverride(uint oTarget, uint oObserver = NWN.NWScript.OBJECT_INVALID, int clearAll = NWN.NWScript.FALSE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Rename, "ClearPCNameOverride");
-      NWN.Internal.NativeFunctions.StackPushInteger(clearAll);
-      NWN.Internal.NativeFunctions.StackPushObject(oObserver);
-      NWN.Internal.NativeFunctions.StackPushObject(oTarget);
+      NWN.Internal.NativeFunctions.nwnxPushInt(clearAll);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObserver);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oTarget);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

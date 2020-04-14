@@ -84,7 +84,7 @@ namespace NWNX
     public static void SetELCScript(string sScript)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "SetELCScript");
-      NWN.Internal.NativeFunctions.StackPushString(sScript);
+      NWN.Internal.NativeFunctions.nwnxPushString(sScript);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -96,7 +96,7 @@ namespace NWNX
     public static void EnableCustomELCCheck(int bEnabled)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "EnableCustomELCCheck");
-      NWN.Internal.NativeFunctions.StackPushInteger(bEnabled);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bEnabled);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -115,7 +115,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "GetValidationFailureType");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the validation failure subtype
@@ -125,7 +125,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "GetValidationFailureSubType");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the failure message
@@ -135,7 +135,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "GetValidationFailureMessageStrRef");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the failure message
@@ -144,7 +144,7 @@ namespace NWNX
     public static void SetValidationFailureMessageStrRef(int nStrRef)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "SetValidationFailureMessageStrRef");
-      NWN.Internal.NativeFunctions.StackPushInteger(nStrRef);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nStrRef);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -156,7 +156,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "GetValidationFailureItem");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Get the character level at which the validation failure occurred
@@ -167,7 +167,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "GetValidationFailureLevel");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the ID of the skill that failed ELC validation
@@ -179,7 +179,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "GetValidationFailureSkillID");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the ID of the feat that failed ELC validation
@@ -191,7 +191,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "GetValidationFailureFeatID");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the ID of the spell that failed ELC validation
@@ -203,7 +203,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_ELC, "GetValidationFailureSpellID");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @}

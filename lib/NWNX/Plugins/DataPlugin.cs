@@ -23,41 +23,41 @@ namespace NWNX
     public static float Array_At_Flt(uint obj, string tag, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Flt");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopFloat();
+      return NWN.Internal.NativeFunctions.nwnxPopFloat();
     }
 
     public static int Array_At_Int(uint obj, string tag, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Int");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     public static uint Array_At_Obj(uint obj, string tag, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Obj");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     public static string Array_At_Str(uint obj, string tag, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Str");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @}
@@ -65,9 +65,9 @@ namespace NWNX
     public static void Array_Clear(int type, uint obj, string tag)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Clear");
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -82,41 +82,41 @@ namespace NWNX
     public static int Array_Contains_Flt(uint obj, string tag, float element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Flt");
-      NWN.Internal.NativeFunctions.StackPushFloat(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     public static int Array_Contains_Int(uint obj, string tag, int element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Int");
-      NWN.Internal.NativeFunctions.StackPushInteger(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     public static int Array_Contains_Obj(uint obj, string tag, uint element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Obj");
-      NWN.Internal.NativeFunctions.StackPushObject(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     public static int Array_Contains_Str(uint obj, string tag, string element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Str");
-      NWN.Internal.NativeFunctions.StackPushString(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushString(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @}
@@ -124,10 +124,10 @@ namespace NWNX
     public static void Array_Copy(int type, uint obj, string tag, string otherTag)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Copy");
-      NWN.Internal.NativeFunctions.StackPushString(otherTag);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushString(otherTag);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -135,10 +135,10 @@ namespace NWNX
     public static void Array_Erase(int type, uint obj, string tag, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Erase");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -153,41 +153,41 @@ namespace NWNX
     public static int Array_Find_Flt(uint obj, string tag, float element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Flt");
-      NWN.Internal.NativeFunctions.StackPushFloat(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     public static int Array_Find_Int(uint obj, string tag, int element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Int");
-      NWN.Internal.NativeFunctions.StackPushInteger(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     public static int Array_Find_Obj(uint obj, string tag, uint element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Obj");
-      NWN.Internal.NativeFunctions.StackPushObject(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     public static int Array_Find_Str(uint obj, string tag, string element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Str");
-      NWN.Internal.NativeFunctions.StackPushString(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushString(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @}
@@ -202,40 +202,40 @@ namespace NWNX
     public static void Array_Insert_Flt(uint obj, string tag, int index, float element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Flt");
-      NWN.Internal.NativeFunctions.StackPushFloat(element);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(element);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_Insert_Int(uint obj, string tag, int index, int element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Int");
-      NWN.Internal.NativeFunctions.StackPushInteger(element);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(element);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_Insert_Obj(uint obj, string tag, int index, uint element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Obj");
-      NWN.Internal.NativeFunctions.StackPushObject(element);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(element);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_Insert_Str(uint obj, string tag, int index, string element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Str");
-      NWN.Internal.NativeFunctions.StackPushString(element);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushString(element);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -251,36 +251,36 @@ namespace NWNX
     public static void Array_PushBack_Flt(uint obj, string tag, float element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Flt");
-      NWN.Internal.NativeFunctions.StackPushFloat(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_PushBack_Int(uint obj, string tag, int element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Int");
-      NWN.Internal.NativeFunctions.StackPushInteger(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_PushBack_Obj(uint obj, string tag, uint element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Obj");
-      NWN.Internal.NativeFunctions.StackPushObject(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_PushBack_Str(uint obj, string tag, string element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Str");
-      NWN.Internal.NativeFunctions.StackPushString(element);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushString(element);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -289,10 +289,10 @@ namespace NWNX
     public static void Array_Resize(int type, uint obj, string tag, int size)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Resize");
-      NWN.Internal.NativeFunctions.StackPushInteger(size);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushInt(size);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -300,9 +300,9 @@ namespace NWNX
     public static void Array_Shuffle(int type, uint obj, string tag)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Shuffle");
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -310,20 +310,20 @@ namespace NWNX
     public static int Array_Size(int type, uint obj, string tag)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Size");
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / Sorts the collection based on descending order.
     public static void Array_SortAscending(int type, uint obj, string tag)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "SortAscending");
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -331,9 +331,9 @@ namespace NWNX
     public static void Array_SortDescending(int type, uint obj, string tag)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "SortDescending");
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -348,40 +348,40 @@ namespace NWNX
     public static void Array_Set_Flt(uint obj, string tag, int index, float element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Flt");
-      NWN.Internal.NativeFunctions.StackPushFloat(element);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(element);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_Set_Int(uint obj, string tag, int index, int element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Int");
-      NWN.Internal.NativeFunctions.StackPushInteger(element);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(element);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_Set_Obj(uint obj, string tag, int index, uint element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Obj");
-      NWN.Internal.NativeFunctions.StackPushObject(element);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(element);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
     public static void Array_Set_Str(uint obj, string tag, int index, string element)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Data, "Str");
-      NWN.Internal.NativeFunctions.StackPushString(element);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushString(element);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

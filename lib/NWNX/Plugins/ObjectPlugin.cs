@@ -45,9 +45,9 @@ namespace NWNX
     public static int GetLocalVariableCount(uint obj)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetLocalVariableCount");
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the local variable at the provided index of the provided object.
@@ -58,12 +58,12 @@ namespace NWNX
     public static LocalVariable GetLocalVariable(uint obj, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetLocalVariable");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       LocalVariable retVal;
-      retVal.key = NWN.Internal.NativeFunctions.StackPopString();
-      retVal.type = NWN.Internal.NativeFunctions.StackPopInteger();
+      retVal.key = NWN.Internal.NativeFunctions.nwnxPopString();
+      retVal.type = NWN.Internal.NativeFunctions.nwnxPopInt();
       return retVal;
     }
 
@@ -74,9 +74,9 @@ namespace NWNX
     public static uint StringToObject(string id)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "StringToObject");
-      NWN.Internal.NativeFunctions.StackPushString(id);
+      NWN.Internal.NativeFunctions.nwnxPushString(id);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Set an object's position.
@@ -85,8 +85,8 @@ namespace NWNX
     public static void SetPosition(uint obj, NWN.Vector pos)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetPosition");
-      NWN.Internal.NativeFunctions.StackPushVector(pos);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      ;
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -96,8 +96,8 @@ namespace NWNX
     public static void SetCurrentHitPoints(uint obj, int hp)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetCurrentHitPoints");
-      NWN.Internal.NativeFunctions.StackPushInteger(hp);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(hp);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -108,8 +108,8 @@ namespace NWNX
     public static void SetMaxHitPoints(uint obj, int hp)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetMaxHitPoints");
-      NWN.Internal.NativeFunctions.StackPushInteger(hp);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(hp);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -120,9 +120,9 @@ namespace NWNX
     public static string Serialize(uint obj)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "Serialize");
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Deserialize the object.
@@ -132,9 +132,9 @@ namespace NWNX
     public static uint Deserialize(string serialized)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "Deserialize");
-      NWN.Internal.NativeFunctions.StackPushString(serialized);
+      NWN.Internal.NativeFunctions.nwnxPushString(serialized);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Gets the dialog resref.
@@ -143,9 +143,9 @@ namespace NWNX
     public static string GetDialogResref(uint obj)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetDialogResref");
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Sets the dialog resref.
@@ -154,8 +154,8 @@ namespace NWNX
     public static void SetDialogResref(uint obj, string dialog)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetDialogResref");
-      NWN.Internal.NativeFunctions.StackPushString(dialog);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushString(dialog);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -166,8 +166,8 @@ namespace NWNX
     public static void SetAppearance(uint obj, int app)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetAppearance");
-      NWN.Internal.NativeFunctions.StackPushInteger(app);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(app);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -177,9 +177,9 @@ namespace NWNX
     public static int GetAppearance(uint obj)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetAppearance");
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Determine if an object has a visual effect.
@@ -189,10 +189,10 @@ namespace NWNX
     public static int GetHasVisualEffect(uint obj, int nVFX)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetHasVisualEffect");
-      NWN.Internal.NativeFunctions.StackPushInteger(nVFX);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nVFX);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Check if an item can fit in an object's inventory.
@@ -202,10 +202,10 @@ namespace NWNX
     public static int CheckFit(uint obj, int baseitem)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "CheckFit");
-      NWN.Internal.NativeFunctions.StackPushInteger(baseitem);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(baseitem);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get an object's damage immunity.
@@ -215,10 +215,10 @@ namespace NWNX
     public static int GetDamageImmunity(uint obj, int damageType)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetDamageImmunity");
-      NWN.Internal.NativeFunctions.StackPushInteger(damageType);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(damageType);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Add or move an object.
@@ -228,9 +228,9 @@ namespace NWNX
     public static void AddToArea(uint obj, uint area, NWN.Vector pos)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "AddToArea");
-      NWN.Internal.NativeFunctions.StackPushVector(pos);
-      NWN.Internal.NativeFunctions.StackPushObject(area);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      ;
+      NWN.Internal.NativeFunctions.nwnxPushObject(area);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -240,9 +240,9 @@ namespace NWNX
     public static int GetPlaceableIsStatic(uint obj)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetPlaceableIsStatic");
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set placeable as static or not.
@@ -252,8 +252,8 @@ namespace NWNX
     public static void SetPlaceableIsStatic(uint obj, int isStatic)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetPlaceableIsStatic");
-      NWN.Internal.NativeFunctions.StackPushInteger(isStatic);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isStatic);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -263,9 +263,9 @@ namespace NWNX
     public static int GetAutoRemoveKey(uint obj)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetAutoRemoveKey");
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets if a door/placeable auto-removes the key after use.
@@ -274,8 +274,8 @@ namespace NWNX
     public static void SetAutoRemoveKey(uint obj, int bRemoveKey)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetAutoRemoveKey");
-      NWN.Internal.NativeFunctions.StackPushInteger(bRemoveKey);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bRemoveKey);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -285,9 +285,9 @@ namespace NWNX
     public static string GetTriggerGeometry(uint oTrigger)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetTriggerGeometry");
-      NWN.Internal.NativeFunctions.StackPushObject(oTrigger);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oTrigger);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Set the geometry of a trigger with a list of vertex positions
@@ -302,8 +302,8 @@ namespace NWNX
     public static void SetTriggerGeometry(uint oTrigger, string sGeometry)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetTriggerGeometry");
-      NWN.Internal.NativeFunctions.StackPushString(sGeometry);
-      NWN.Internal.NativeFunctions.StackPushObject(oTrigger);
+      NWN.Internal.NativeFunctions.nwnxPushString(sGeometry);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oTrigger);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -316,9 +316,9 @@ namespace NWNX
     public static void AddIconEffect(uint obj, int nIcon, float fDuration = 0.0f)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "AddIconEffect");
-      NWN.Internal.NativeFunctions.StackPushFloat(fDuration);
-      NWN.Internal.NativeFunctions.StackPushInteger(nIcon);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fDuration);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nIcon);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -328,8 +328,8 @@ namespace NWNX
     public static void RemoveIconEffect(uint obj, int nIcon)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "RemoveIconEffect");
-      NWN.Internal.NativeFunctions.StackPushInteger(nIcon);
-      NWN.Internal.NativeFunctions.StackPushObject(obj);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nIcon);
+      NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -339,8 +339,8 @@ namespace NWNX
     public static void Export(string sFileName, uint oObject)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "Export");
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
-      NWN.Internal.NativeFunctions.StackPushString(sFileName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sFileName);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -352,10 +352,10 @@ namespace NWNX
     public static int GetPersistentInt(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetPersistentInt");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set oObject's persistent integer variable sVarName to nValue.
@@ -367,9 +367,9 @@ namespace NWNX
     public static void SetPersistentInt(uint oObject, string sVarName, int nValue)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetPersistentInt");
-      NWN.Internal.NativeFunctions.StackPushInteger(nValue);
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nValue);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -380,8 +380,8 @@ namespace NWNX
     public static void DeletePersistentInt(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "DeletePersistentInt");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -393,10 +393,10 @@ namespace NWNX
     public static string GetPersistentString(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetPersistentString");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Set oObject's persistent string variable sVarName to sValue.
@@ -408,9 +408,9 @@ namespace NWNX
     public static void SetPersistentString(uint oObject, string sVarName, string sValue)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetPersistentString");
-      NWN.Internal.NativeFunctions.StackPushString(sValue);
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sValue);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -421,8 +421,8 @@ namespace NWNX
     public static void DeletePersistentString(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "DeletePersistentString");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -434,10 +434,10 @@ namespace NWNX
     public static float GetPersistentFloat(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetPersistentFloat");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopFloat();
+      return NWN.Internal.NativeFunctions.nwnxPopFloat();
     }
 
     /// / @brief Set oObject's persistent float variable sVarName to fValue.
@@ -449,9 +449,9 @@ namespace NWNX
     public static void SetPersistentFloat(uint oObject, string sVarName, float fValue)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetPersistentFloat");
-      NWN.Internal.NativeFunctions.StackPushFloat(fValue);
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fValue);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -462,8 +462,8 @@ namespace NWNX
     public static void DeletePersistentFloat(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "DeletePersistentFloat");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -474,10 +474,10 @@ namespace NWNX
     public static int GetInt(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetInt");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set oObject's integer variable sVarName to nValue.
@@ -488,10 +488,10 @@ namespace NWNX
     public static void SetInt(uint oObject, string sVarName, int nValue, int bPersist)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetInt");
-      NWN.Internal.NativeFunctions.StackPushInteger(bPersist);
-      NWN.Internal.NativeFunctions.StackPushInteger(nValue);
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bPersist);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nValue);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -501,8 +501,8 @@ namespace NWNX
     public static void DeleteInt(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "DeleteInt");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -513,10 +513,10 @@ namespace NWNX
     public static string GetString(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetString");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Set oObject's string variable sVarName to sValue.
@@ -527,10 +527,10 @@ namespace NWNX
     public static void SetString(uint oObject, string sVarName, string sValue, int bPersist)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetString");
-      NWN.Internal.NativeFunctions.StackPushInteger(bPersist);
-      NWN.Internal.NativeFunctions.StackPushString(sValue);
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bPersist);
+      NWN.Internal.NativeFunctions.nwnxPushString(sValue);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -540,8 +540,8 @@ namespace NWNX
     public static void DeleteString(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "DeleteString");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -552,10 +552,10 @@ namespace NWNX
     public static float GetFloat(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetFloat");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopFloat();
+      return NWN.Internal.NativeFunctions.nwnxPopFloat();
     }
 
     /// / @brief Set oObject's float variable sVarName to fValue.
@@ -566,10 +566,10 @@ namespace NWNX
     public static void SetFloat(uint oObject, string sVarName, float fValue, int bPersist)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetFloat");
-      NWN.Internal.NativeFunctions.StackPushInteger(bPersist);
-      NWN.Internal.NativeFunctions.StackPushFloat(fValue);
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bPersist);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fValue);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -579,8 +579,8 @@ namespace NWNX
     public static void DeleteFloat(uint oObject, string sVarName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "DeleteFloat");
-      NWN.Internal.NativeFunctions.StackPushString(sVarName);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sVarName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -591,8 +591,8 @@ namespace NWNX
     public static void DeleteVarRegex(uint oObject, string sRegex)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "DeleteVarRegex");
-      NWN.Internal.NativeFunctions.StackPushString(sRegex);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sRegex);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -604,10 +604,10 @@ namespace NWNX
     public static int GetPositionIsInTrigger(uint oTrigger, NWN.Vector vPosition)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetPositionIsInTrigger");
-      NWN.Internal.NativeFunctions.StackPushVector(vPosition);
-      NWN.Internal.NativeFunctions.StackPushObject(oTrigger);
+      ;
+      NWN.Internal.NativeFunctions.nwnxPushObject(oTrigger);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the given object's internal type (NWNX_OBJECT_TYPE_INTERNAL_*)
@@ -616,9 +616,9 @@ namespace NWNX
     public static int GetInternalObjectType(uint oObject)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetInternalObjectType");
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Have oObject acquire oItem.
@@ -629,10 +629,10 @@ namespace NWNX
     public static int AcquireItem(uint oObject, uint oItem)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "AcquireItem");
-      NWN.Internal.NativeFunctions.StackPushObject(oItem);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oItem);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Cause oObject to face fDirection.
@@ -644,8 +644,8 @@ namespace NWNX
     public static void SetFacing(uint oObject, float fDirection)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetFacing");
-      NWN.Internal.NativeFunctions.StackPushFloat(fDirection);
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fDirection);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

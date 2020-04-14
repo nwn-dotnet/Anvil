@@ -36,12 +36,12 @@ namespace NWNX
     public static int SendMessage(int channel, string message, uint sender = NWN.NWScript.OBJECT_INVALID, uint target = NWN.NWScript.OBJECT_INVALID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Chat, "SendMessage");
-      NWN.Internal.NativeFunctions.StackPushObject(target);
-      NWN.Internal.NativeFunctions.StackPushObject(sender);
-      NWN.Internal.NativeFunctions.StackPushString(message);
-      NWN.Internal.NativeFunctions.StackPushInteger(channel);
+      NWN.Internal.NativeFunctions.nwnxPushObject(target);
+      NWN.Internal.NativeFunctions.nwnxPushObject(sender);
+      NWN.Internal.NativeFunctions.nwnxPushString(message);
+      NWN.Internal.NativeFunctions.nwnxPushInt(channel);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Registers the script which receives all chat messages.
@@ -50,7 +50,7 @@ namespace NWNX
     public static void RegisterChatScript(string script)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Chat, "RegisterChatScript");
-      NWN.Internal.NativeFunctions.StackPushString(script);
+      NWN.Internal.NativeFunctions.nwnxPushString(script);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -69,7 +69,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Chat, "GetChannel");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the message.
@@ -79,7 +79,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Chat, "GetMessage");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Gets the sender of the message.
@@ -89,7 +89,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Chat, "GetSender");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Gets the target of the message.
@@ -99,7 +99,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Chat, "GetTarget");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Sets the distance with which the player hears talks or whispers.
@@ -110,9 +110,9 @@ namespace NWNX
     public static void SetChatHearingDistance(float distance, uint listener = NWN.NWScript.OBJECT_INVALID, int channel = NWNX_CHAT_CHANNEL_PLAYER_TALK)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Chat, "SetChatHearingDistance");
-      NWN.Internal.NativeFunctions.StackPushInteger(channel);
-      NWN.Internal.NativeFunctions.StackPushObject(listener);
-      NWN.Internal.NativeFunctions.StackPushFloat(distance);
+      NWN.Internal.NativeFunctions.nwnxPushInt(channel);
+      NWN.Internal.NativeFunctions.nwnxPushObject(listener);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(distance);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -122,10 +122,10 @@ namespace NWNX
     public static float GetChatHearingDistance(uint listener = NWN.NWScript.OBJECT_INVALID, int channel = NWNX_CHAT_CHANNEL_PLAYER_TALK)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Chat, "GetChatHearingDistance");
-      NWN.Internal.NativeFunctions.StackPushInteger(channel);
-      NWN.Internal.NativeFunctions.StackPushObject(listener);
+      NWN.Internal.NativeFunctions.nwnxPushInt(channel);
+      NWN.Internal.NativeFunctions.nwnxPushObject(listener);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopFloat();
+      return NWN.Internal.NativeFunctions.nwnxPopFloat();
     }
 
     /// / @}

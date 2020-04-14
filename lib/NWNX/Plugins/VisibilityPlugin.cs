@@ -33,10 +33,10 @@ namespace NWNX
     public static int GetVisibilityOverride(uint player, uint target)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Visibility, "GetVisibilityOverride");
-      NWN.Internal.NativeFunctions.StackPushObject(target);
-      NWN.Internal.NativeFunctions.StackPushObject(player);
+      NWN.Internal.NativeFunctions.nwnxPushObject(target);
+      NWN.Internal.NativeFunctions.nwnxPushObject(player);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Overrides the default visibility rules about how player perceives the target object.
@@ -61,9 +61,9 @@ namespace NWNX
     public static void SetVisibilityOverride(uint player, uint target, int @override)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Visibility, "SetVisibilityOverride");
-      NWN.Internal.NativeFunctions.StackPushInteger(@override);
-      NWN.Internal.NativeFunctions.StackPushObject(target);
-      NWN.Internal.NativeFunctions.StackPushObject(player);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@override);
+      NWN.Internal.NativeFunctions.nwnxPushObject(target);
+      NWN.Internal.NativeFunctions.nwnxPushObject(player);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

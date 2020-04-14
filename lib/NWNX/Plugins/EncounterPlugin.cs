@@ -13,9 +13,9 @@ namespace NWNX
     public static int GetNumberOfCreaturesInEncounterList(uint encounter)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "GetNumberOfCreaturesInEncounterList");
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the encounter creature list entry at the specified index
@@ -25,13 +25,13 @@ namespace NWNX
     public static CreatureListEntry GetEncounterCreatureByIndex(uint encounter, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "GetEncounterCreatureByIndex");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       CreatureListEntry retVal;
-      retVal.unique = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.challengeRating = NWN.Internal.NativeFunctions.StackPopFloat();
-      retVal.resref = NWN.Internal.NativeFunctions.StackPopString();
+      retVal.unique = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.challengeRating = NWN.Internal.NativeFunctions.nwnxPopFloat();
+      retVal.resref = NWN.Internal.NativeFunctions.nwnxPopString();
       return retVal;
     }
 
@@ -42,11 +42,11 @@ namespace NWNX
     public static void SetEncounterCreatureByIndex(uint encounter, int index, CreatureListEntry creatureEntry)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "SetEncounterCreatureByIndex");
-      NWN.Internal.NativeFunctions.StackPushString(creatureEntry.resref);
-      NWN.Internal.NativeFunctions.StackPushFloat(creatureEntry.challengeRating);
-      NWN.Internal.NativeFunctions.StackPushInteger(creatureEntry.unique);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushString(creatureEntry.resref);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(creatureEntry.challengeRating);
+      NWN.Internal.NativeFunctions.nwnxPushInt(creatureEntry.unique);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -56,9 +56,9 @@ namespace NWNX
     public static int GetFactionId(uint encounter)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "GetFactionId");
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the faction id of encounter.
@@ -67,8 +67,8 @@ namespace NWNX
     public static void SetFactionId(uint encounter, int factionId)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "SetFactionId");
-      NWN.Internal.NativeFunctions.StackPushInteger(factionId);
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushInt(factionId);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -78,9 +78,9 @@ namespace NWNX
     public static int GetPlayerTriggeredOnly(uint encounter)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "GetPlayerTriggeredOnly");
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set if encounter is player triggered only.
@@ -89,8 +89,8 @@ namespace NWNX
     public static void SetPlayerTriggeredOnly(uint encounter, int playerTriggeredOnly)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "SetPlayerTriggeredOnly");
-      NWN.Internal.NativeFunctions.StackPushInteger(playerTriggeredOnly);
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushInt(playerTriggeredOnly);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -100,9 +100,9 @@ namespace NWNX
     public static int GetResetTime(uint encounter)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "GetResetTime");
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the reset time of encounter.
@@ -111,8 +111,8 @@ namespace NWNX
     public static void SetResetTime(uint encounter, int resetTime)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Encounter, "SetResetTime");
-      NWN.Internal.NativeFunctions.StackPushInteger(resetTime);
-      NWN.Internal.NativeFunctions.StackPushObject(encounter);
+      NWN.Internal.NativeFunctions.nwnxPushInt(resetTime);
+      NWN.Internal.NativeFunctions.nwnxPushObject(encounter);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

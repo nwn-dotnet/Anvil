@@ -1006,8 +1006,8 @@ namespace NWNX
     public static void SubscribeEvent(string evt, string script)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "SubscribeEvent");
-      NWN.Internal.NativeFunctions.StackPushString(script);
-      NWN.Internal.NativeFunctions.StackPushString(evt);
+      NWN.Internal.NativeFunctions.nwnxPushString(script);
+      NWN.Internal.NativeFunctions.nwnxPushString(evt);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1017,8 +1017,8 @@ namespace NWNX
     public static void UnsubscribeEvent(string evt, string script)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "UnsubscribeEvent");
-      NWN.Internal.NativeFunctions.StackPushString(script);
-      NWN.Internal.NativeFunctions.StackPushString(evt);
+      NWN.Internal.NativeFunctions.nwnxPushString(script);
+      NWN.Internal.NativeFunctions.nwnxPushString(evt);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1027,8 +1027,8 @@ namespace NWNX
     public static void PushEventData(string tag, string data)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "PushEventData");
-      NWN.Internal.NativeFunctions.StackPushString(data);
-      NWN.Internal.NativeFunctions.StackPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushString(data);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1037,10 +1037,10 @@ namespace NWNX
     public static int SignalEvent(string evt, uint target)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "SignalEvent");
-      NWN.Internal.NativeFunctions.StackPushObject(target);
-      NWN.Internal.NativeFunctions.StackPushString(evt);
+      NWN.Internal.NativeFunctions.nwnxPushObject(target);
+      NWN.Internal.NativeFunctions.nwnxPushString(evt);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / Retrieves the event data for the currently executing script.
@@ -1048,9 +1048,9 @@ namespace NWNX
     public static string GetEventData(string tag)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "GetEventData");
-      NWN.Internal.NativeFunctions.StackPushString(tag);
+      NWN.Internal.NativeFunctions.nwnxPushString(tag);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / Skips execution of the currently executing event.
@@ -1103,7 +1103,7 @@ namespace NWNX
     public static void SetEventResult(string data)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "SetEventResult");
-      NWN.Internal.NativeFunctions.StackPushString(data);
+      NWN.Internal.NativeFunctions.nwnxPushString(data);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1114,7 +1114,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "GetCurrentEvent");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / Toggles DispatchListMode for sEvent+sScript
@@ -1122,9 +1122,9 @@ namespace NWNX
     public static void ToggleDispatchListMode(string sEvent, string sScript, int bEnable)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "ToggleDispatchListMode");
-      NWN.Internal.NativeFunctions.StackPushInteger(bEnable);
-      NWN.Internal.NativeFunctions.StackPushString(sScript);
-      NWN.Internal.NativeFunctions.StackPushString(sEvent);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bEnable);
+      NWN.Internal.NativeFunctions.nwnxPushString(sScript);
+      NWN.Internal.NativeFunctions.nwnxPushString(sEvent);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1132,9 +1132,9 @@ namespace NWNX
     public static void AddObjectToDispatchList(string sEvent, string sScript, uint oObject)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "AddObjectToDispatchList");
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
-      NWN.Internal.NativeFunctions.StackPushString(sScript);
-      NWN.Internal.NativeFunctions.StackPushString(sEvent);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sScript);
+      NWN.Internal.NativeFunctions.nwnxPushString(sEvent);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1142,9 +1142,9 @@ namespace NWNX
     public static void RemoveObjectFromDispatchList(string sEvent, string sScript, uint oObject)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Events, "RemoveObjectFromDispatchList");
-      NWN.Internal.NativeFunctions.StackPushObject(oObject);
-      NWN.Internal.NativeFunctions.StackPushString(sScript);
-      NWN.Internal.NativeFunctions.StackPushString(sEvent);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oObject);
+      NWN.Internal.NativeFunctions.nwnxPushString(sScript);
+      NWN.Internal.NativeFunctions.nwnxPushString(sEvent);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 

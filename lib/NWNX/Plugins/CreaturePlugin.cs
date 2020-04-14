@@ -84,8 +84,8 @@ namespace NWNX
     public static void AddFeat(uint creature, int feat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "AddFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -97,9 +97,9 @@ namespace NWNX
     public static void AddFeatByLevel(uint creature, int feat, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "AddFeatByLevel");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -109,8 +109,8 @@ namespace NWNX
     public static void RemoveFeat(uint creature, int feat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "RemoveFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -122,10 +122,10 @@ namespace NWNX
     public static int GetKnowsFeat(uint creature, int feat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetKnowsFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Returns the count of feats learned at the provided level.
@@ -135,10 +135,10 @@ namespace NWNX
     public static int GetFeatCountByLevel(uint creature, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetFeatCountByLevel");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Returns the feat learned at the level and index.
@@ -149,11 +149,11 @@ namespace NWNX
     public static int GetFeatByLevel(uint creature, int level, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetFeatByLevel");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Returns the creature level where the specified feat was learned.
@@ -163,10 +163,10 @@ namespace NWNX
     public static int GetFeatGrantLevel(uint creature, int feat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetFeatGrantLevel");
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get the total number of feats known by creature.
@@ -175,9 +175,9 @@ namespace NWNX
     public static int GetFeatCount(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetFeatCount");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Returns the creature's feat at a given index
@@ -187,10 +187,10 @@ namespace NWNX
     public static int GetFeatByIndex(uint creature, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetFeatByIndex");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets if creature meets feat requirements.
@@ -200,10 +200,10 @@ namespace NWNX
     public static int GetMeetsFeatRequirements(uint creature, int feat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetMeetsFeatRequirements");
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the count of special abilities of the creature.
@@ -212,9 +212,9 @@ namespace NWNX
     public static int GetSpecialAbilityCount(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetSpecialAbilityCount");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Returns the creature's special ability at a given index.
@@ -224,13 +224,13 @@ namespace NWNX
     public static SpecialAbility GetSpecialAbility(uint creature, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetSpecialAbility");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       SpecialAbility retVal;
-      retVal.level = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.ready = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.id = NWN.Internal.NativeFunctions.StackPopInteger();
+      retVal.level = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.ready = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.id = NWN.Internal.NativeFunctions.nwnxPopInt();
       return retVal;
     }
 
@@ -240,10 +240,10 @@ namespace NWNX
     public static void AddSpecialAbility(uint creature, SpecialAbility ability)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "AddSpecialAbility");
-      NWN.Internal.NativeFunctions.StackPushInteger(ability.id);
-      NWN.Internal.NativeFunctions.StackPushInteger(ability.ready);
-      NWN.Internal.NativeFunctions.StackPushInteger(ability.level);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability.id);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability.ready);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability.level);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -253,8 +253,8 @@ namespace NWNX
     public static void RemoveSpecialAbility(uint creature, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "RemoveSpecialAbility");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -265,11 +265,11 @@ namespace NWNX
     public static void SetSpecialAbility(uint creature, int index, SpecialAbility ability)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetSpecialAbility");
-      NWN.Internal.NativeFunctions.StackPushInteger(ability.id);
-      NWN.Internal.NativeFunctions.StackPushInteger(ability.ready);
-      NWN.Internal.NativeFunctions.StackPushInteger(ability.level);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability.id);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability.ready);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability.level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -280,10 +280,10 @@ namespace NWNX
     public static int GetClassByLevel(uint creature, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetClassByLevel");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets the base AC for the creature.
@@ -292,8 +292,8 @@ namespace NWNX
     public static void SetBaseAC(uint creature, int ac)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetBaseAC");
-      NWN.Internal.NativeFunctions.StackPushInteger(ac);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ac);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -303,9 +303,9 @@ namespace NWNX
     public static int GetBaseAC(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetBaseAC");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets the ability score of the creature to the value.
@@ -316,9 +316,9 @@ namespace NWNX
     public static void SetAbilityScore(uint creature, int ability, int value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetAbilityScore");
-      NWN.Internal.NativeFunctions.StackPushInteger(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(ability);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -330,9 +330,9 @@ namespace NWNX
     public static void SetRawAbilityScore(uint creature, int ability, int value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetRawAbilityScore");
-      NWN.Internal.NativeFunctions.StackPushInteger(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(ability);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -344,10 +344,10 @@ namespace NWNX
     public static int GetRawAbilityScore(uint creature, int ability)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetRawAbilityScore");
-      NWN.Internal.NativeFunctions.StackPushInteger(ability);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Adjusts the ability score of a creature.
@@ -358,9 +358,9 @@ namespace NWNX
     public static void ModifyRawAbilityScore(uint creature, int ability, int modifier)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "ModifyRawAbilityScore");
-      NWN.Internal.NativeFunctions.StackPushInteger(modifier);
-      NWN.Internal.NativeFunctions.StackPushInteger(ability);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(modifier);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -372,10 +372,10 @@ namespace NWNX
     public static int GetPrePolymorphAbilityScore(uint creature, int ability)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetPrePolymorphAbilityScore");
-      NWN.Internal.NativeFunctions.StackPushInteger(ability);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(ability);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the count of memorised spells for a creature's class at a level.
@@ -386,11 +386,11 @@ namespace NWNX
     public static int GetMemorisedSpellCountByLevel(uint creature, int @class, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetMemorisedSpellCountByLevel");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the memorised spell at a class level's index.
@@ -402,16 +402,16 @@ namespace NWNX
     public static MemorisedSpell GetMemorisedSpell(uint creature, int @class, int level, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetMemorisedSpell");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       MemorisedSpell retVal;
-      retVal.domain = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.meta = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.ready = NWN.Internal.NativeFunctions.StackPopInteger();
-      retVal.id = NWN.Internal.NativeFunctions.StackPopInteger();
+      retVal.domain = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.meta = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.ready = NWN.Internal.NativeFunctions.nwnxPopInt();
+      retVal.id = NWN.Internal.NativeFunctions.nwnxPopInt();
       return retVal;
     }
 
@@ -424,14 +424,14 @@ namespace NWNX
     public static void SetMemorisedSpell(uint creature, int @class, int level, int index, MemorisedSpell spell)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetMemorisedSpell");
-      NWN.Internal.NativeFunctions.StackPushInteger(spell.id);
-      NWN.Internal.NativeFunctions.StackPushInteger(spell.ready);
-      NWN.Internal.NativeFunctions.StackPushInteger(spell.meta);
-      NWN.Internal.NativeFunctions.StackPushInteger(spell.domain);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(spell.id);
+      NWN.Internal.NativeFunctions.nwnxPushInt(spell.ready);
+      NWN.Internal.NativeFunctions.nwnxPushInt(spell.meta);
+      NWN.Internal.NativeFunctions.nwnxPushInt(spell.domain);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -443,11 +443,11 @@ namespace NWNX
     public static int GetRemainingSpellSlots(uint creature, int @class, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetRemainingSpellSlots");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets the remaining spell slots (innate casting) at a class level.
@@ -458,10 +458,10 @@ namespace NWNX
     public static void SetRemainingSpellSlots(uint creature, int @class, int level, int slots)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetRemainingSpellSlots");
-      NWN.Internal.NativeFunctions.StackPushInteger(slots);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(slots);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -473,11 +473,11 @@ namespace NWNX
     public static int GetMaxSpellSlots(uint creature, int @class, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetMaxSpellSlots");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the known spell count (innate casting) at a class level.
@@ -488,11 +488,11 @@ namespace NWNX
     public static int GetKnownSpellCount(uint creature, int @class, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetKnownSpellCount");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Gets the known spell at a class level's index.
@@ -504,12 +504,12 @@ namespace NWNX
     public static int GetKnownSpell(uint creature, int @class, int level, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetKnownSpell");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Add a spell to a creature's spellbook for class.
@@ -520,10 +520,10 @@ namespace NWNX
     public static void AddKnownSpell(uint creature, int @class, int level, int spellId)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "AddKnownSpell");
-      NWN.Internal.NativeFunctions.StackPushInteger(spellId);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(spellId);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -535,10 +535,10 @@ namespace NWNX
     public static void RemoveKnownSpell(uint creature, int @class, int level, int spellId)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "RemoveKnownSpell");
-      NWN.Internal.NativeFunctions.StackPushInteger(spellId);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(spellId);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -549,9 +549,9 @@ namespace NWNX
     public static void ClearMemorisedKnownSpells(uint creature, int @class, int spellId)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "ClearMemorisedKnownSpells");
-      NWN.Internal.NativeFunctions.StackPushInteger(spellId);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(spellId);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -563,10 +563,10 @@ namespace NWNX
     public static void ClearMemorisedSpell(uint creature, int @class, int level, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "ClearMemorisedSpell");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -577,9 +577,9 @@ namespace NWNX
     public static int GetWizardSpecialization(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetWizardSpecialization");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets creature's wizard specialist school.
@@ -589,8 +589,8 @@ namespace NWNX
     public static void SetWizardSpecialization(uint creature, int school)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetWizardSpecialization");
-      NWN.Internal.NativeFunctions.StackPushInteger(school);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(school);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -601,10 +601,10 @@ namespace NWNX
     public static int GetMaxHitPointsByLevel(uint creature, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetMaxHitPointsByLevel");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets the maximum hit points for creature.
@@ -614,9 +614,9 @@ namespace NWNX
     public static void SetMaxHitPointsByLevel(uint creature, int level, int value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetMaxHitPointsByLevel");
-      NWN.Internal.NativeFunctions.StackPushInteger(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -626,8 +626,8 @@ namespace NWNX
     public static void SetMovementRate(uint creature, int rate)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetMovementRate");
-      NWN.Internal.NativeFunctions.StackPushInteger(rate);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(rate);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -638,9 +638,9 @@ namespace NWNX
     public static float GetMovementRateFactor(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetMovementRateFactor");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopFloat();
+      return NWN.Internal.NativeFunctions.nwnxPopFloat();
     }
 
     /// / @brief Sets the creature's current movement rate factor.
@@ -650,8 +650,8 @@ namespace NWNX
     public static void SetMovementRateFactor(uint creature, float rate)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetMovementRateFactor");
-      NWN.Internal.NativeFunctions.StackPushFloat(rate);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(rate);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -661,9 +661,9 @@ namespace NWNX
     public static int GetMovementType(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetMovementType");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets the maximum movement rate a creature can have while walking (not running)
@@ -674,8 +674,8 @@ namespace NWNX
     public static void SetWalkRateCap(uint creature, float fWalkRate = 2000.0f)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetWalkRateCap");
-      NWN.Internal.NativeFunctions.StackPushFloat(fWalkRate);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fWalkRate);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -685,8 +685,8 @@ namespace NWNX
     public static void SetAlignmentGoodEvil(uint creature, int value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetAlignmentGoodEvil");
-      NWN.Internal.NativeFunctions.StackPushInteger(value);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(value);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -696,8 +696,8 @@ namespace NWNX
     public static void SetAlignmentLawChaos(uint creature, int value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetAlignmentLawChaos");
-      NWN.Internal.NativeFunctions.StackPushInteger(value);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(value);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -708,10 +708,10 @@ namespace NWNX
     public static int GetClericDomain(uint creature, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetClericDomain");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets one of creature's cleric domains.
@@ -722,9 +722,9 @@ namespace NWNX
     public static void SetClericDomain(uint creature, int index, int domain)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetClericDomain");
-      NWN.Internal.NativeFunctions.StackPushInteger(domain);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(domain);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -734,9 +734,9 @@ namespace NWNX
     public static int GetSoundset(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetSoundset");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the soundset index for creature.
@@ -745,8 +745,8 @@ namespace NWNX
     public static void SetSoundset(uint creature, int soundset)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetSoundset");
-      NWN.Internal.NativeFunctions.StackPushInteger(soundset);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(soundset);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -757,9 +757,9 @@ namespace NWNX
     public static void SetSkillRank(uint creature, int skill, int rank)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetSkillRank");
-      NWN.Internal.NativeFunctions.StackPushInteger(rank);
-      NWN.Internal.NativeFunctions.StackPushInteger(skill);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(rank);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skill);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -771,9 +771,9 @@ namespace NWNX
     public static void SetClassByPosition(uint creature, int position, int classID)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetClassByPosition");
-      NWN.Internal.NativeFunctions.StackPushInteger(classID);
-      NWN.Internal.NativeFunctions.StackPushInteger(position);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(classID);
+      NWN.Internal.NativeFunctions.nwnxPushInt(position);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -786,9 +786,9 @@ namespace NWNX
     public static void SetLevelByPosition(uint creature, int position, int level)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetLevelByPosition");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushInteger(position);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushInt(position);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -804,8 +804,8 @@ namespace NWNX
     public static void SetBaseAttackBonus(uint creature, int bab)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetBaseAttackBonus");
-      NWN.Internal.NativeFunctions.StackPushInteger(bab);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bab);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -817,10 +817,10 @@ namespace NWNX
     public static int GetAttacksPerRound(uint creature, int bBaseAPR = NWN.NWScript.FALSE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetAttacksPerRound");
-      NWN.Internal.NativeFunctions.StackPushInteger(bBaseAPR);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bBaseAPR);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets the creature gender.
@@ -829,8 +829,8 @@ namespace NWNX
     public static void SetGender(uint creature, int gender)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetGender");
-      NWN.Internal.NativeFunctions.StackPushInteger(gender);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(gender);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -839,7 +839,7 @@ namespace NWNX
     public static void RestoreFeats(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "RestoreFeats");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -848,7 +848,7 @@ namespace NWNX
     public static void RestoreSpecialAbilities(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "RestoreSpecialAbilities");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -858,8 +858,8 @@ namespace NWNX
     public static void RestoreSpells(uint creature, int level = -1)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "RestoreSpells");
-      NWN.Internal.NativeFunctions.StackPushInteger(level);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(level);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -868,7 +868,7 @@ namespace NWNX
     public static void RestoreItems(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "RestoreItems");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -878,8 +878,8 @@ namespace NWNX
     public static void SetSize(uint creature, int size)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetSize");
-      NWN.Internal.NativeFunctions.StackPushInteger(size);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(size);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -889,9 +889,9 @@ namespace NWNX
     public static int GetSkillPointsRemaining(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetSkillPointsRemaining");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets the creature's remaining unspent skill points.
@@ -900,8 +900,8 @@ namespace NWNX
     public static void SetSkillPointsRemaining(uint creature, int skillpoints)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetSkillPointsRemaining");
-      NWN.Internal.NativeFunctions.StackPushInteger(skillpoints);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skillpoints);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -911,8 +911,8 @@ namespace NWNX
     public static void SetRacialType(uint creature, int racialtype)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetRacialType");
-      NWN.Internal.NativeFunctions.StackPushInteger(racialtype);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(racialtype);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -922,8 +922,8 @@ namespace NWNX
     public static void SetGold(uint creature, int gold)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetGold");
-      NWN.Internal.NativeFunctions.StackPushInteger(gold);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(gold);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -933,8 +933,8 @@ namespace NWNX
     public static void SetCorpseDecayTime(uint creature, int nDecayTime)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetCorpseDecayTime");
-      NWN.Internal.NativeFunctions.StackPushInteger(nDecayTime);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nDecayTime);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -946,10 +946,10 @@ namespace NWNX
     public static int GetBaseSavingThrow(uint creature, int which)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetBaseSavingThrow");
-      NWN.Internal.NativeFunctions.StackPushInteger(which);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(which);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets the creature's base save.
@@ -959,9 +959,9 @@ namespace NWNX
     public static void SetBaseSavingThrow(uint creature, int which, int value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetBaseSavingThrow");
-      NWN.Internal.NativeFunctions.StackPushInteger(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(which);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(which);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -973,9 +973,9 @@ namespace NWNX
     public static void LevelUp(uint creature, int @class, int count = 1)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "LevelUp");
-      NWN.Internal.NativeFunctions.StackPushInteger(count);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(count);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -986,8 +986,8 @@ namespace NWNX
     public static void LevelDown(uint creature, int count = 1)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "LevelDown");
-      NWN.Internal.NativeFunctions.StackPushInteger(count);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(count);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -997,8 +997,8 @@ namespace NWNX
     public static void SetChallengeRating(uint creature, float fCR)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetChallengeRating");
-      NWN.Internal.NativeFunctions.StackPushFloat(fCR);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(fCR);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1017,13 +1017,13 @@ namespace NWNX
     public static int GetAttackBonus(uint creature, int isMelee = -1, int isTouchAttack = NWN.NWScript.FALSE, int isOffhand = NWN.NWScript.FALSE, int includeBaseAttackBonus = NWN.NWScript.TRUE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetAttackBonus");
-      NWN.Internal.NativeFunctions.StackPushInteger(includeBaseAttackBonus);
-      NWN.Internal.NativeFunctions.StackPushInteger(isOffhand);
-      NWN.Internal.NativeFunctions.StackPushInteger(isTouchAttack);
-      NWN.Internal.NativeFunctions.StackPushInteger(isMelee);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(includeBaseAttackBonus);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isOffhand);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isTouchAttack);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isMelee);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get highest level version of feat possessed by creature.
@@ -1034,10 +1034,10 @@ namespace NWNX
     public static int GetHighestLevelOfFeat(uint creature, int feat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetHighestLevelOfFeat");
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get feat remaining uses.
@@ -1047,10 +1047,10 @@ namespace NWNX
     public static int GetFeatRemainingUses(uint creature, int feat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetFeatRemainingUses");
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Get feat total uses.
@@ -1060,10 +1060,10 @@ namespace NWNX
     public static int GetFeatTotalUses(uint creature, int feat)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetFeatTotalUses");
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set feat remaining uses.
@@ -1073,9 +1073,9 @@ namespace NWNX
     public static void SetFeatRemainingUses(uint creature, int feat, int uses)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetFeatRemainingUses");
-      NWN.Internal.NativeFunctions.StackPushInteger(uses);
-      NWN.Internal.NativeFunctions.StackPushInteger(feat);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(uses);
+      NWN.Internal.NativeFunctions.nwnxPushInt(feat);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1096,18 +1096,18 @@ namespace NWNX
     public static int GetTotalEffectBonus(uint creature, int bonusType = NWNX_CREATURE_BONUS_TYPE_ATTACK, uint target = NWN.NWScript.OBJECT_INVALID, int isElemental = 0, int isForceMax = 0, int savetype = -1, int saveSpecificType = -1, int skill = -1, int abilityScore = -1, int isOffhand = NWN.NWScript.FALSE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetTotalEffectBonus");
-      NWN.Internal.NativeFunctions.StackPushInteger(isOffhand);
-      NWN.Internal.NativeFunctions.StackPushInteger(abilityScore);
-      NWN.Internal.NativeFunctions.StackPushInteger(skill);
-      NWN.Internal.NativeFunctions.StackPushInteger(saveSpecificType);
-      NWN.Internal.NativeFunctions.StackPushInteger(savetype);
-      NWN.Internal.NativeFunctions.StackPushInteger(isForceMax);
-      NWN.Internal.NativeFunctions.StackPushInteger(isElemental);
-      NWN.Internal.NativeFunctions.StackPushObject(target);
-      NWN.Internal.NativeFunctions.StackPushInteger(bonusType);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isOffhand);
+      NWN.Internal.NativeFunctions.nwnxPushInt(abilityScore);
+      NWN.Internal.NativeFunctions.nwnxPushInt(skill);
+      NWN.Internal.NativeFunctions.nwnxPushInt(saveSpecificType);
+      NWN.Internal.NativeFunctions.nwnxPushInt(savetype);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isForceMax);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isElemental);
+      NWN.Internal.NativeFunctions.nwnxPushObject(target);
+      NWN.Internal.NativeFunctions.nwnxPushInt(bonusType);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set the original first or last name of creature
@@ -1118,9 +1118,9 @@ namespace NWNX
     public static void SetOriginalName(uint creature, string name, int isLastName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetOriginalName");
-      NWN.Internal.NativeFunctions.StackPushInteger(isLastName);
-      NWN.Internal.NativeFunctions.StackPushString(name);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isLastName);
+      NWN.Internal.NativeFunctions.nwnxPushString(name);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1131,10 +1131,10 @@ namespace NWNX
     public static string GetOriginalName(uint creature, int isLastName)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetOriginalName");
-      NWN.Internal.NativeFunctions.StackPushInteger(isLastName);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(isLastName);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Set creature's spell resistance
@@ -1144,8 +1144,8 @@ namespace NWNX
     public static void SetSpellResistance(uint creature, int sr)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetSpellResistance");
-      NWN.Internal.NativeFunctions.StackPushInteger(sr);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(sr);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1155,8 +1155,8 @@ namespace NWNX
     public static void SetAnimalCompanionCreatureType(uint creature, int type)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetAnimalCompanionCreatureType");
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1166,8 +1166,8 @@ namespace NWNX
     public static void SetFamiliarCreatureType(uint creature, int type)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetFamiliarCreatureType");
-      NWN.Internal.NativeFunctions.StackPushInteger(type);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(type);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1177,8 +1177,8 @@ namespace NWNX
     public static void SetAnimalCompanionName(uint creature, string name)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetAnimalCompanionName");
-      NWN.Internal.NativeFunctions.StackPushString(name);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushString(name);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1188,8 +1188,8 @@ namespace NWNX
     public static void SetFamiliarName(uint creature, string name)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetFamiliarName");
-      NWN.Internal.NativeFunctions.StackPushString(name);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushString(name);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1199,9 +1199,9 @@ namespace NWNX
     public static int GetDisarmable(uint creature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetDisarmable");
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Set whether a creature can be disarmed.
@@ -1210,8 +1210,8 @@ namespace NWNX
     public static void SetDisarmable(uint creature, int disarmable)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetDisarmable");
-      NWN.Internal.NativeFunctions.StackPushInteger(disarmable);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(disarmable);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1223,11 +1223,11 @@ namespace NWNX
     public static int GetDomain(uint creature, int @class, int index)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetDomain");
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets one of creature's domains.
@@ -1238,10 +1238,10 @@ namespace NWNX
     public static void SetDomain(uint creature, int @class, int index, int domain)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetDomain");
-      NWN.Internal.NativeFunctions.StackPushInteger(domain);
-      NWN.Internal.NativeFunctions.StackPushInteger(index);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(domain);
+      NWN.Internal.NativeFunctions.nwnxPushInt(index);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1252,10 +1252,10 @@ namespace NWNX
     public static int GetSpecialization(uint creature, int @class)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetSpecialization");
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Sets creature's specialist school.
@@ -1265,9 +1265,9 @@ namespace NWNX
     public static void SetSpecialization(uint creature, int @class, int school)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetSpecialization");
-      NWN.Internal.NativeFunctions.StackPushInteger(school);
-      NWN.Internal.NativeFunctions.StackPushInteger(@class);
-      NWN.Internal.NativeFunctions.StackPushObject(creature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(school);
+      NWN.Internal.NativeFunctions.nwnxPushInt(@class);
+      NWN.Internal.NativeFunctions.nwnxPushObject(creature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1277,8 +1277,8 @@ namespace NWNX
     public static void SetFaction(uint oCreature, int nFactionId)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "SetFaction");
-      NWN.Internal.NativeFunctions.StackPushInteger(nFactionId);
-      NWN.Internal.NativeFunctions.StackPushObject(oCreature);
+      NWN.Internal.NativeFunctions.nwnxPushInt(nFactionId);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oCreature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -1288,9 +1288,9 @@ namespace NWNX
     public static int GetFaction(uint oCreature)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Creature, "GetFaction");
-      NWN.Internal.NativeFunctions.StackPushObject(oCreature);
+      NWN.Internal.NativeFunctions.nwnxPushObject(oCreature);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @}

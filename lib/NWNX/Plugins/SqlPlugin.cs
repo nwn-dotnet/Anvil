@@ -13,9 +13,9 @@ namespace NWNX
     public static int PrepareQuery(string query)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "PrepareQuery");
-      NWN.Internal.NativeFunctions.StackPushString(query);
+      NWN.Internal.NativeFunctions.nwnxPushString(query);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Executes a query which has been prepared.
@@ -24,7 +24,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "ExecutePreparedQuery");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @brief Directly execute an SQL query.
@@ -33,9 +33,9 @@ namespace NWNX
     public static int ExecuteQuery(string query)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "ExecuteQuery");
-      NWN.Internal.NativeFunctions.StackPushString(query);
+      NWN.Internal.NativeFunctions.nwnxPushString(query);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @anchor sql_rtrnr
@@ -44,7 +44,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "ReadyToReadNextRow");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @anchor sql_rnr
@@ -62,9 +62,9 @@ namespace NWNX
     public static string ReadDataInActiveRow(int column = 0)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "ReadDataInActiveRow");
-      NWN.Internal.NativeFunctions.StackPushInteger(column);
+      NWN.Internal.NativeFunctions.nwnxPushInt(column);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Set the int value of a prepared statement at given position.
@@ -73,8 +73,8 @@ namespace NWNX
     public static void PreparedInt(int position, int value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "PreparedInt");
-      NWN.Internal.NativeFunctions.StackPushInteger(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(position);
+      NWN.Internal.NativeFunctions.nwnxPushInt(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(position);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -84,8 +84,8 @@ namespace NWNX
     public static void PreparedString(int position, string value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "PreparedString");
-      NWN.Internal.NativeFunctions.StackPushString(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(position);
+      NWN.Internal.NativeFunctions.nwnxPushString(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(position);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -95,8 +95,8 @@ namespace NWNX
     public static void PreparedFloat(int position, float value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "PreparedFloat");
-      NWN.Internal.NativeFunctions.StackPushFloat(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(position);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(position);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -106,8 +106,8 @@ namespace NWNX
     public static void PreparedObjectId(int position, uint value)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "PreparedObjectId");
-      NWN.Internal.NativeFunctions.StackPushObject(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(position);
+      NWN.Internal.NativeFunctions.nwnxPushObject(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(position);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -118,9 +118,9 @@ namespace NWNX
     public static void PreparedObjectFull(int position, uint value, int base64 = NWN.NWScript.TRUE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "PreparedObjectFull");
-      NWN.Internal.NativeFunctions.StackPushInteger(base64);
-      NWN.Internal.NativeFunctions.StackPushObject(value);
-      NWN.Internal.NativeFunctions.StackPushInteger(position);
+      NWN.Internal.NativeFunctions.nwnxPushInt(base64);
+      NWN.Internal.NativeFunctions.nwnxPushObject(value);
+      NWN.Internal.NativeFunctions.nwnxPushInt(position);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
 
@@ -141,14 +141,14 @@ namespace NWNX
     public static uint ReadFullObjectInActiveRow(int column = 0, uint owner = NWN.NWScript.OBJECT_INVALID, float x = 0.0f, float y = 0.0f, float z = 0.0f, int base64 = NWN.NWScript.TRUE)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "ReadFullObjectInActiveRow");
-      NWN.Internal.NativeFunctions.StackPushInteger(base64);
-      NWN.Internal.NativeFunctions.StackPushFloat(z);
-      NWN.Internal.NativeFunctions.StackPushFloat(y);
-      NWN.Internal.NativeFunctions.StackPushFloat(x);
-      NWN.Internal.NativeFunctions.StackPushObject(owner);
-      NWN.Internal.NativeFunctions.StackPushInteger(column);
+      NWN.Internal.NativeFunctions.nwnxPushInt(base64);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(z);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(y);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(x);
+      NWN.Internal.NativeFunctions.nwnxPushObject(owner);
+      NWN.Internal.NativeFunctions.nwnxPushInt(column);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopObject();
+      return NWN.Internal.NativeFunctions.nwnxPopObject();
     }
 
     /// / @brief Gets the rows affected by a query.
@@ -158,7 +158,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "GetAffectedRows");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / Gets the database type.
@@ -168,7 +168,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "GetDatabaseType");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Free any resources attached to an existing prepared query.
@@ -184,7 +184,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "GetLastError");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopString();
+      return NWN.Internal.NativeFunctions.nwnxPopString();
     }
 
     /// / @brief Gets the number of parameteres expected by a prepared query.
@@ -193,7 +193,7 @@ namespace NWNX
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_SQL, "GetPreparedQueryParamCount");
       NWN.Internal.NativeFunctions.nwnxCallFunction();
-      return NWN.Internal.NativeFunctions.StackPopInteger();
+      return NWN.Internal.NativeFunctions.nwnxPopInt();
     }
 
     /// / @}
