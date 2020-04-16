@@ -122,6 +122,11 @@ namespace NWM.API
       }
     }
 
+    public int GetSkillRank(Skill skill, bool ranksOnly = false)
+    {
+      return NWScript.GetSkillRank((int) skill, this, ranksOnly.ToInt());
+    }
+
     /// <summary>
     /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
     /// Use <see cref="NwCreatureExtensions.KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.

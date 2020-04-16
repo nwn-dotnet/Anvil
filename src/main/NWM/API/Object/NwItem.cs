@@ -22,6 +22,11 @@ namespace NWM.API
       get => (BaseItemType) NWScript.GetBaseItemType(this);
     }
 
+    public int GoldValue
+    {
+      get => NWScript.GetGoldPieceValue(this);
+    }
+
     public IEnumerable<ItemProperty> ItemProperties
     {
       get
