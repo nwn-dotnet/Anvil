@@ -1,5 +1,6 @@
 using System;
 using NWM.API;
+using NWM.API.Constants;
 using NWM.API.Events;
 using NWNX;
 
@@ -26,6 +27,29 @@ namespace NWMX.API.Events
       }
 
       public event Action<OnValidateUseItemAfter> Callbacks;
+    }
+
+    [NWNXEvent("NWNX_ON_VALIDATE_ITEM_EQUIP_AFTER")]
+    public class OnValidateEquipItemAfter : IEvent<OnValidateEquipItemAfter>
+    {
+      public NwCreature Creature { get; private set; }
+      public NwItem Item { get; private set; }
+      public InventorySlot Slot { get; private set; }
+
+      public bool Result { get; set; }
+
+      public void BroadcastEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        Item = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
+        Slot = (InventorySlot) EventsPlugin.GetEventData("SLOT").ToInt();
+        Result = EventsPlugin.GetEventData("BEFORE_RESULT").ToInt().ToBool();
+
+        Callbacks?.Invoke(this);
+        EventsPlugin.SetEventResult(Result.ToInt().ToString());
+      }
+
+      public event Action<OnValidateEquipItemAfter> Callbacks;
     }
 
     [NWNXEvent("NWNX_ON_USE_ITEM_BEFORE")]
