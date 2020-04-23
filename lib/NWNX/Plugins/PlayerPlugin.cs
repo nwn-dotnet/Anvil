@@ -183,7 +183,9 @@ namespace NWNX
     public static void ShowVisualEffect(uint player, int effectId, NWN.Vector position)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Player, "ShowVisualEffect");
-      ;
+      NWN.Internal.NativeFunctions.nwnxPushFloat(position.z);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(position.y);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(position.x);
       NWN.Internal.NativeFunctions.nwnxPushInt(effectId);
       NWN.Internal.NativeFunctions.nwnxPushObject(player);
       NWN.Internal.NativeFunctions.nwnxCallFunction();

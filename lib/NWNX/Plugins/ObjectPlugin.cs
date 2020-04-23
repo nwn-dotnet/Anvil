@@ -85,7 +85,9 @@ namespace NWNX
     public static void SetPosition(uint obj, NWN.Vector pos)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "SetPosition");
-      ;
+      NWN.Internal.NativeFunctions.nwnxPushFloat(pos.z);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(pos.y);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(pos.x);
       NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
     }
@@ -228,7 +230,9 @@ namespace NWNX
     public static void AddToArea(uint obj, uint area, NWN.Vector pos)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "AddToArea");
-      ;
+      NWN.Internal.NativeFunctions.nwnxPushFloat(pos.z);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(pos.y);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(pos.x);
       NWN.Internal.NativeFunctions.nwnxPushObject(area);
       NWN.Internal.NativeFunctions.nwnxPushObject(obj);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
@@ -604,7 +608,9 @@ namespace NWNX
     public static int GetPositionIsInTrigger(uint oTrigger, NWN.Vector vPosition)
     {
       NWN.Internal.NativeFunctions.nwnxSetFunction(NWNX_Object, "GetPositionIsInTrigger");
-      ;
+      NWN.Internal.NativeFunctions.nwnxPushFloat(vPosition.z);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(vPosition.y);
+      NWN.Internal.NativeFunctions.nwnxPushFloat(vPosition.x);
       NWN.Internal.NativeFunctions.nwnxPushObject(oTrigger);
       NWN.Internal.NativeFunctions.nwnxCallFunction();
       return NWN.Internal.NativeFunctions.nwnxPopInt();
