@@ -21,7 +21,6 @@ namespace NWM.API
       set => base.Rotation = 360 - value;
     }
 
-
     public override Location Location
     {
       get { return Location.Create(Area, Position, Rotation); }
