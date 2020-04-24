@@ -1,5 +1,6 @@
 using System.Numerics;
 using NWN;
+using NWNX;
 
 namespace NWM.API
 {
@@ -20,12 +21,14 @@ namespace NWM.API
       set => base.Rotation = 360 - value;
     }
 
+
     public override Location Location
     {
       get { return Location.Create(Area, Position, Rotation); }
       set
       {
-        base.Location = Location.Create(value.Area, value.Position, value.FlippedRotation);
+        ObjectPlugin.AddToArea(this, value.Area, value.Position);
+        Rotation = value.Rotation;
       }
     }
   }

@@ -21,6 +21,12 @@ namespace NWM.API
       set => ExecuteOnSelf(() => NWScript.JumpToLocation(value));
     }
 
+    public string PortraitResRef
+    {
+      get => NWScript.GetPortraitResRef(this);
+      set => NWScript.SetPortraitResRef(this, value);
+    }
+
     /// <summary>
     /// The local area position of this GameObject.
     /// </summary>

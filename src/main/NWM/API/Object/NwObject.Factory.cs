@@ -8,22 +8,6 @@ namespace NWM.API
 {
   public partial class NwObject
   {
-    private static NwModule cachedModule;
-
-    internal static NwModule Module
-    {
-      get
-      {
-        if (cachedModule != null)
-        {
-          return cachedModule;
-        }
-
-        cachedModule = new NwModule();
-        return cachedModule;
-      }
-    }
-
     public static T Deserialize<T>(string serializedObject) where T : NwObject
     {
       return (T) Deserialize(serializedObject);
@@ -68,9 +52,9 @@ namespace NWM.API
       }
 
       // The module object will never change, so to save performance, we return the one we already have instead of finding a new one.
-      if (objectId == Module)
+      if (objectId == NwModule.Instance)
       {
-        return Module;
+        return NwModule.Instance;
       }
 
       // Resolve object type
@@ -87,7 +71,7 @@ namespace NWM.API
         case InternalObjectType.Placeable:
           return new NwPlaceable(objectId);
         case InternalObjectType.Module:
-          return Module;
+          return NwModule.Instance;
         case InternalObjectType.Area:
           return new NwArea(objectId);
         case InternalObjectType.Trigger:

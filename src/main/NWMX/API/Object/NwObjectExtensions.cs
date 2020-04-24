@@ -14,5 +14,15 @@ namespace NWMX.API
     {
       ObjectPlugin.SetString(obj, key, value, true.ToInt());
     }
+
+    public static bool GetIsStatic(this NwPlaceable placeable)
+    {
+      return ObjectPlugin.GetPlaceableIsStatic(placeable).ToBool();
+    }
+
+    public static void SetIsStatic(this NwPlaceable placeable, bool value)
+    {
+      ObjectPlugin.SetPlaceableIsStatic(placeable, value.ToInt());
+    }
   }
 }

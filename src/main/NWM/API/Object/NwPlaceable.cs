@@ -8,6 +8,7 @@ namespace NWM.API
     internal NwPlaceable(uint objectId) : base(objectId) {}
 
     public bool Occupied => NWScript.GetSittingCreature(this) != INVALID;
+
     public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
 
     /// <summary>
