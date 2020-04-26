@@ -31,7 +31,6 @@
     
     <ItemGroup>
       <Folder Include="src\main\NWMX\API" />
-      <Folder Include="src\main\NWM\API\NWNX" />
     </ItemGroup>
 
 </Project>
