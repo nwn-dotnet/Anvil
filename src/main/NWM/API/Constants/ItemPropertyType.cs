@@ -2,7 +2,7 @@ using NWN;
 
 namespace NWM.API.Constants
 {
-  public enum ItemProperty
+  public enum ItemPropertyType
   {
     AbilityBonus = NWScript.ITEM_PROPERTY_ABILITY_BONUS,
     AcBonus = NWScript.ITEM_PROPERTY_AC_BONUS,

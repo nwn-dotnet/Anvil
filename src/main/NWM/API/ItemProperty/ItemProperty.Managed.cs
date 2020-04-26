@@ -1,13 +1,12 @@
-// ReSharper disable once CheckNamespace
-
-using System;
 using NWM.API;
+using NWM.API.Constants;
 
+// ReSharper disable once CheckNamespace
 namespace NWN
 {
   public partial class ItemProperty
   {
-    public NWM.API.Constants.ItemProperty PropertyType => (NWM.API.Constants.ItemProperty) NWScript.GetItemPropertyType(this);
+    public NWM.API.Constants.ItemPropertyType PropertyType => (ItemPropertyType) NWScript.GetItemPropertyType(this);
     public int SubType => NWScript.GetItemPropertySubType(this);
     public EffectDuration DurationType => (EffectDuration) NWScript.GetItemPropertyDurationType(this);
     public float RemainingDuration => NWScript.GetItemPropertyDurationRemaining(this);
