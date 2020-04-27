@@ -62,7 +62,7 @@ namespace NWM.API
 
     protected void ExecuteOnSelf(ActionDelegate action)
     {
-      if (this == NWScript.OBJECT_SELF)
+      if (this == Main.ObjectSelf)
       {
         action();
       }

@@ -33,6 +33,7 @@ namespace NWM.Core
 
     private void RegisterAssemblies()
     {
+      Log.Info("Loading managed services");
       Assembly nwmAssembly = Assembly.GetExecutingAssembly();
       string nwmAssemblyName = nwmAssembly.FullName;
 

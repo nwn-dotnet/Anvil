@@ -2,8 +2,6 @@ namespace NWN
 {
     internal partial class NWScript
     {
-        public static uint OBJECT_SELF => Internal.OBJECT_SELF;
-
         /// <summary>
         /// Assign aActionToAssign to oActionSubject.
         /// * No return value, but if an error occurs, the log file will contain
@@ -12,7 +10,7 @@ namespace NWN
         /// </summary>
         public static void AssignCommand(uint oActionSubject, ActionDelegate aActionToAssign)
         {
-            Internal.ClosureAssignCommand(oActionSubject, aActionToAssign);
+            NWM.Main.ClosureAssignCommand(oActionSubject, aActionToAssign);
         }
 
         /// <summary>
@@ -27,7 +25,7 @@ namespace NWN
         /// </summary>
         public static void DelayCommand(float fSeconds, ActionDelegate aActionToDelay)
         {
-            Internal.ClosureDelayCommand(Internal.OBJECT_SELF, fSeconds, aActionToDelay);
+            NWM.Main.ClosureDelayCommand(NWM.Main.ObjectSelf, fSeconds, aActionToDelay);
         }
 
         /// <summary>
@@ -35,7 +33,7 @@ namespace NWN
         /// </summary>
         public static void ActionDoCommand(ActionDelegate aActionToDo)
         {
-            Internal.ClosureActionDoCommand(Internal.OBJECT_SELF, aActionToDo);
+            NWM.Main.ClosureActionDoCommand(NWM.Main.ObjectSelf, aActionToDo);
         }
 
         /// <summary>

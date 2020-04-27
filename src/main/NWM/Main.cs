@@ -1,38 +1,51 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using NLog;
 using NWM.Core;
+using NWN;
 using NWNX;
 
 namespace NWM
 {
-  internal static class Main
+  public static class Main
   {
+    public const uint ObjectInvalid = 0x7F000000;
+    public static uint ObjectSelf { get; private set; } = ObjectInvalid;
+
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private static readonly Stack<ScriptContext> scriptContexts = new Stack<ScriptContext>();
+    private static readonly Dictionary<ulong, Closure> closures = new Dictionary<ulong, Closure>();
+    private static ulong nextEventId = 0;
+
     private static ServiceManager serviceManager;
     private static DispatchServiceManager handlerDispatcher;
     private static LoopService loopService;
 
     private static bool initialized;
 
-    public static void OnStart()
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int Bootstrap(IntPtr arg, int argLength)
     {
-      serviceManager = new ServiceManager();
-      AppendAssemblyToPath();
-    }
+      Log.Info("--------Neverwinter Managed--------");
 
-    public static void OnMainLoop(ulong frame)
-    {
-      loopService?.Update();
-    }
+      Internal.AllHandlers handlers;
+      handlers.MainLoop = OnMainLoop;
+      handlers.RunScript = OnRunScript;
+      handlers.Closure = OnClosure;
 
-    public static int OnRunScript(string script, uint oidSelf)
-    {
-      if (!initialized)
+      int retVal = Internal.Bootstrap(arg, argLength, handlers);
+
+      if (retVal == 0)
       {
-        Init();
+        serviceManager = new ServiceManager();
+        AppendAssemblyToPath();
       }
 
-      return handlerDispatcher.OnRunScript(script, oidSelf);
+      return retVal;
     }
 
     // Needed to allow native libs to be loaded.
@@ -44,9 +57,66 @@ namespace NWM
       Environment.SetEnvironmentVariable("PATH", $"{envPath}; {assemblyDir}");
     }
 
+    private static void OnMainLoop(ulong frame)
+    {
+      try
+      {
+        loopService?.Update();
+      }
+      catch (Exception e)
+      {
+        Log.Error(e);
+      }
+    }
+
+    private static int OnRunScript(string script, uint oidSelf)
+    {
+      int retVal = 0;
+      ObjectSelf = oidSelf;
+      scriptContexts.Push(new ScriptContext { OwnerObject = oidSelf, ScriptName = script });
+
+      // We want the server to crash if init fails.
+      if (!initialized)
+      {
+        Init();
+        initialized = true;
+      }
+
+      try
+      {
+        retVal = handlerDispatcher.OnRunScript(script, oidSelf);
+      }
+      catch (Exception e)
+      {
+        Log.Error(e);
+      }
+
+      scriptContexts.Pop();
+      ObjectSelf = scriptContexts.Count == 0 ? ObjectInvalid : scriptContexts.Peek().OwnerObject;
+      return retVal;
+    }
+
+    private static void OnClosure(ulong eid, uint oidSelf)
+    {
+      uint old = ObjectSelf;
+      ObjectSelf = oidSelf;
+
+      try
+      {
+        closures[eid].Run();
+      }
+      catch (Exception e)
+      {
+        Log.Error(e);
+      }
+
+      closures.Remove(eid);
+      ObjectSelf = old;
+    }
+
     private static void Init()
     {
-      initialized = true;
+      CheckPluginDependencies();
       serviceManager.Verify();
       handlerDispatcher = serviceManager.GetService<DispatchServiceManager>();
       loopService = serviceManager.GetService<LoopService>();
@@ -55,8 +125,45 @@ namespace NWM
 
     private static void CheckPluginDependencies()
     {
+      Log.Info("Checking Plugin Dependencies");
       PluginUtils.AssertPluginExists<UtilPlugin>();
       PluginUtils.AssertPluginExists<ObjectPlugin>();
+    }
+
+    internal static void ClosureAssignCommand(uint obj, ActionDelegate func)
+    {
+      if (Internal.NativeFunctions.ClosureAssignCommand(obj, nextEventId) != 0)
+      {
+        closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
+      }
+    }
+
+    internal static void ClosureDelayCommand(uint obj, float duration, ActionDelegate func)
+    {
+      if (Internal.NativeFunctions.ClosureDelayCommand(obj, duration, nextEventId) != 0)
+      {
+        closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
+      }
+    }
+
+    internal static void ClosureActionDoCommand(uint obj, ActionDelegate func)
+    {
+      if (Internal.NativeFunctions.ClosureActionDoCommand(obj, nextEventId) != 0)
+      {
+        closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
+      }
+    }
+
+    private struct ScriptContext
+    {
+      public uint OwnerObject;
+      public string ScriptName;
+    }
+
+    private struct Closure
+    {
+      public uint OwnerObject;
+      public ActionDelegate Run;
     }
   }
 }

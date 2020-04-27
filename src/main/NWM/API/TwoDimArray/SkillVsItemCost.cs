@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using NLog;
 using NWM.API.Constants;
 using NWM.Core;
 
@@ -8,24 +7,7 @@ namespace NWM.API
 {
   public sealed class SkillVsItemCost : ITwoDimArray
   {
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
     private readonly List<SkillRequirement> skillRequirements = new List<SkillRequirement>();
-
-    public void DeserializeRow(TwoDimEntry twoDimEntry)
-    {
-      string value = twoDimEntry("DeviceCostMax");
-      string classReq = twoDimEntry("SkillReq_Class");
-      string raceReq = twoDimEntry("SkillReq_Race");
-      string alignReq = twoDimEntry("SkillReq_Align");
-
-      if (string.IsNullOrEmpty(value))
-      {
-        return;
-      }
-
-      skillRequirements.Add(new SkillRequirement(value, classReq, raceReq, alignReq));
-    }
 
     public bool MeetsUMDRequirement(NwCreature creature, NwItem item, RestrictionType restrictionType)
     {
@@ -61,6 +43,21 @@ namespace NWM.API
       }
 
       return skillRequirements[^1];
+    }
+
+    void ITwoDimArray.DeserializeRow(TwoDimEntry twoDimEntry)
+    {
+      string value = twoDimEntry("DeviceCostMax");
+      string classReq = twoDimEntry("SkillReq_Class");
+      string raceReq = twoDimEntry("SkillReq_Race");
+      string alignReq = twoDimEntry("SkillReq_Align");
+
+      if (string.IsNullOrEmpty(value))
+      {
+        return;
+      }
+
+      skillRequirements.Add(new SkillRequirement(value, classReq, raceReq, alignReq));
     }
 
     public sealed class SkillRequirement
