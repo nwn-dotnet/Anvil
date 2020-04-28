@@ -75,20 +75,25 @@ namespace NWM
       ObjectSelf = oidSelf;
       scriptContexts.Push(new ScriptContext { OwnerObject = oidSelf, ScriptName = script });
 
-      // We want the server to crash if init fails.
-      if (!initialized)
-      {
-        Init();
-        initialized = true;
-      }
-
       try
       {
+        if (!initialized)
+        {
+          Init();
+          initialized = true;
+        }
+
         retVal = handlerDispatcher.OnRunScript(script, oidSelf);
       }
       catch (Exception e)
       {
         Log.Error(e);
+
+        // We want the server to crash if init fails.
+        if (!initialized)
+        {
+          throw;
+        }
       }
 
       scriptContexts.Pop();
