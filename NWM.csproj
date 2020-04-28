@@ -1,36 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-         <IsPackable>false</IsPackable>
+        <IsPackable>false</IsPackable>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <EnableDynamicLoading>true</EnableDynamicLoading>
-        <RootNamespace />
+        <RootNamespace/>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
-      <PackageReference Include="NLog" Version="4.6.8" />
-      <PackageReference Include="SimpleInjector" Version="4.9.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2019.1.3"/>
+        <PackageReference Include="NLog" Version="4.6.8"/>
+        <PackageReference Include="SimpleInjector" Version="4.9.0"/>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).dll" />
-      <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).pdb" />
-      <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).runtimeconfig.json" />
-      <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).deps.json" />
+        <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).dll"/>
+        <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).pdb"/>
+        <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).runtimeconfig.json"/>
+        <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).deps.json"/>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <None Update="src\resources\NLog.dll.nlog">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        <Link>NLog.dll.nlog</Link>
-      </None>
+        <None Update="src\resources\NLog.dll.nlog">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Link>NLog.dll.nlog</Link>
+        </None>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <Folder Include="src\main\NWMX\API" />
+        <Folder Include="src\main\NWMX\API"/>
     </ItemGroup>
 
 </Project>
