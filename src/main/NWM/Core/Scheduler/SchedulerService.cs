@@ -39,7 +39,7 @@ namespace NWM.Core
       return item;
     }
 
-    public IDisposable ScheduleRepeating(string name, Action task, TimeSpan schedule, TimeSpan delay = default)
+    public IDisposable ScheduleRepeating(Action task, TimeSpan schedule, TimeSpan delay = default)
     {
       if (schedule <= TimeSpan.Zero)
       {
@@ -50,7 +50,7 @@ namespace NWM.Core
         throw new ArgumentNullException(nameof(task));
       }
 
-      Log.Debug($"Scheduled Repeating Task: {name}");
+      Log.Debug($"Scheduled Repeating Task: {task.Method.GetFullName()}");
       ScheduledItem item = new ScheduledItem(this, task, loopTimeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;

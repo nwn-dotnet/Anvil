@@ -13,8 +13,5 @@ namespace NWN
     {
       return NWScript.TagEffect(effect, tag);
     }
-
-    public static Effect CutsceneDominated() => NWScript.EffectCutsceneDominated();
-    public static Effect CutsceneImmobilize() => NWScript.EffectCutsceneImmobilize();
   }
 }
