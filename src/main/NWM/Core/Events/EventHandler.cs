@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using NWM.API;
+using NWM.API.Events;
 
-namespace NWM.API.Events
+namespace NWM.Core
 {
   public class EventHandler
   {

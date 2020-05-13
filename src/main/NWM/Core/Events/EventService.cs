@@ -7,7 +7,6 @@ using NWM.API.Events;
 using NWMX.API.Events;
 using NWN;
 using NWNX;
-using EventHandler = NWM.API.Events.EventHandler;
 
 namespace NWM.Core
 {

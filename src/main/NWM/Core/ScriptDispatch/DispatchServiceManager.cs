@@ -6,7 +6,7 @@ namespace NWM.Core
   [Service]
   internal class DispatchServiceManager
   {
-    private List<IScriptDispatcher> dispatchers;
+    private readonly List<IScriptDispatcher> dispatchers;
 
     public DispatchServiceManager(IEnumerable<IScriptDispatcher> dispatchers)
     {
