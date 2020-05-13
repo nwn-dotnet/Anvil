@@ -116,7 +116,7 @@ namespace NWM.API
         List<ClassType> classes = new List<ClassType>(MaxClasses);
         for (int i = 0; i < MaxClasses; i++)
         {
-          ClassType classType = (ClassType) NWScript.GetClassByPosition(i + 1);
+          ClassType classType = (ClassType) NWScript.GetClassByPosition(i + 1, this);
           if (classType == ClassType.Invalid)
           {
             break;
