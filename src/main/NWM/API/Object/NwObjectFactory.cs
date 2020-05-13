@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using NWM.API.Constants;
 using NWMX.API.Constants;
 using NWN;
@@ -6,8 +8,10 @@ using NWNX;
 
 namespace NWM.API
 {
-  public partial class NwObject
+  public static class NwObjectFactory
   {
+    private static readonly Dictionary<Type, NativeObjectInfoAttribute> cachedTypeInfo = new Dictionary<Type, NativeObjectInfoAttribute>();
+
     public static T Deserialize<T>(string serializedObject) where T : NwObject
     {
       return (T) Deserialize(serializedObject);
@@ -28,40 +32,38 @@ namespace NWM.API
       return NWScript.GetObjectByTag(tag).ToNwObject();
     }
 
-    internal static T CreateInternal<T>(Guid uuid) where T : NwObject
-    {
-      return (T)CreateInternal(uuid);
-    }
-
     internal static NwObject CreateInternal(Guid uuid)
     {
       return uuid == Guid.Empty ? null : CreateInternal(NWScript.GetObjectByUUID(uuid.ToUUIDString()));
     }
 
-    internal static T CreateInternal<T>(ObjectType objectType, string template, Location location, bool useAppearAnim, string newTag) where T : NwObject
+    internal static T CreateInternal<T>(string template, Location location, bool useAppearAnim, string newTag) where T : NwObject
     {
+      ObjectType objectType = GetObjectType<T>();
       return NWScript.CreateObject((int)objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
     }
 
     internal static NwObject CreateInternal(uint objectId)
     {
-      // Not a valid object (object no longer exists?) - return null (term for invalid in C# land)
-      if (objectId == INVALID)
+      // Not a valid object
+      if (objectId == NwObject.INVALID)
       {
         return null;
       }
 
-      // The module object will never change, so to save performance, we return the one we already have instead of finding a new one.
+      // The module object will never change, so to save performance we return the one we already have instead of finding a new one.
       if (objectId == NwModule.Instance)
       {
         return NwModule.Instance;
       }
 
-      // Resolve object type
+      return ConstructManagedObject(objectId);
+    }
+
+    private static NwObject ConstructManagedObject(uint objectId)
+    {
       switch ((InternalObjectType) ObjectPlugin.GetInternalObjectType(objectId))
       {
-        // Depending on the type of object, create a specific kind of object to enforce type safety.
-        // We map the returned object type to the object to create.
         case InternalObjectType.Invalid:
           return null;
         case InternalObjectType.Creature:
@@ -89,6 +91,32 @@ namespace NWM.API
         default:
           return new NwObject(objectId);
       }
+    }
+
+    internal static ObjectType GetObjectType<T>() where T : NwObject
+    {
+      return GetNativeObjectInfo(typeof(T)).ObjectType;
+    }
+
+    internal static InternalObjectType GetInternalObjectType<T>() where T : NwObject
+    {
+      return GetNativeObjectInfo(typeof(T)).InternalObjectType;
+    }
+
+    private static NativeObjectInfoAttribute GetNativeObjectInfo(Type type)
+    {
+      if (!cachedTypeInfo.TryGetValue(type, out NativeObjectInfoAttribute nativeInfo))
+      {
+        nativeInfo = type.GetCustomAttribute<NativeObjectInfoAttribute>();
+        cachedTypeInfo[type] = nativeInfo;
+      }
+
+      if (nativeInfo == null)
+      {
+        throw new InvalidOperationException($"Type \"{type.FullName}\" does not have a mapped native object!");
+      }
+
+      return nativeInfo;
     }
   }
 }

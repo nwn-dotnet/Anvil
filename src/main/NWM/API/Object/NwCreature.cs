@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using NWM.API.Constants;
 using NWMX.API;
+using NWMX.API.Constants;
 using NWN;
 
 namespace NWM.API
 {
+  [NativeObjectInfo(ObjectType.Creature, InternalObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
     internal NwCreature(uint objectId) : base(objectId) {}
@@ -22,7 +24,7 @@ namespace NWM.API
     /// <returns></returns>
     public static NwCreature Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return CreateInternal<NwCreature>(ObjectType.Item, template, location, useAppearAnim, newTag);
+      return NwObjectFactory.CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
     }
 
     /// <summary>

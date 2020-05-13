@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Generic;
 using NWM.API.Constants;
+using NWMX.API.Constants;
 using NWN;
 using ItemProperty = NWN.ItemProperty;
 
 namespace NWM.API
 {
+  [NativeObjectInfo(ObjectType.Item, InternalObjectType.Item)]
   public sealed class NwItem : NwGameObject
   {
     internal NwItem(uint objectId) : base(objectId) {}
@@ -44,12 +47,12 @@ namespace NWM.API
       bool ignoreDurationType = false,
       bool ignoreSubType = false)
     {
-
+      throw new NotImplementedException();
     }
 
     public static NwItem Create(string template, Location location, bool useAppearAnim = false, string newTag = null)
     {
-      return CreateInternal<NwItem>(ObjectType.Item, template, location, useAppearAnim, newTag);
+      return NwObjectFactory.CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
     }
 
     public static NwItem Create(string template, NwGameObject target = null, int stackSize = 1, string newTag = null)

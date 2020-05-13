@@ -1,8 +1,10 @@
 using NWM.API.Constants;
+using NWMX.API.Constants;
 using NWN;
 
 namespace NWM.API
 {
+  [NativeObjectInfo(ObjectType.Encounter, InternalObjectType.Encounter)]
   public sealed class NwEncounter : NwGameObject
   {
     internal NwEncounter(uint objectId) : base(objectId) {}

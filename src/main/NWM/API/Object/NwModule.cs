@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using NWMX.API.Constants;
 using NWN;
 
 namespace NWM.API
 {
+  [NativeObjectInfo(0, InternalObjectType.Module)]
   public sealed class NwModule : NwObject
   {
     internal NwModule(uint objectId) : base(objectId) {}

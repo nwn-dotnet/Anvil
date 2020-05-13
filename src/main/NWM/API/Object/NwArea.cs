@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Numerics;
 using NWM.API.Constants;
+using NWMX.API.Constants;
 using NWN;
 
 namespace NWM.API
 {
+  [NativeObjectInfo(0, InternalObjectType.Area)]
   public sealed class NwArea : NwObject
   {
     internal NwArea(uint objectId) : base(objectId) {}

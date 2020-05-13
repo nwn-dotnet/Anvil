@@ -1,8 +1,10 @@
 using NWM.API.Constants;
+using NWMX.API.Constants;
 using NWN;
 
 namespace NWM.API
 {
+  [NativeObjectInfo(ObjectType.Placeable, InternalObjectType.Placeable)]
   public sealed class NwPlaceable : NwStationary
   {
     internal NwPlaceable(uint objectId) : base(objectId) {}
@@ -32,7 +34,7 @@ namespace NWM.API
     public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       location = Location.Create(location.Area, location.Position, location.FlippedRotation);
-      return CreateInternal<NwPlaceable>(ObjectType.Placeable, template, location, useAppearAnim, newTag);
+      return NwObjectFactory.CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
   }
 }

@@ -1,15 +1,17 @@
 using NWM.API.Constants;
+using NWMX.API.Constants;
 using NWN;
 
 namespace NWM.API
 {
+  [NativeObjectInfo(ObjectType.Store, InternalObjectType.Store)]
   public sealed class NwStore : NwGameObject
   {
     internal NwStore(uint objectId) : base(objectId) {}
 
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return CreateInternal<NwStore>(ObjectType.Item, template, location, useAppearAnim, newTag);
+      return NwObjectFactory.CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
     }
 
     public int StoreGold

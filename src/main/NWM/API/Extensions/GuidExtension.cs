@@ -6,7 +6,7 @@ namespace NWM.API
   {
     public static T ToNwObjectSafe<T>(this Guid objectId) where T : NwObject
     {
-      return NwObject.CreateInternal(objectId) as T;
+      return NwObjectFactory.CreateInternal(objectId) as T;
     }
 
     public static Lazy<NwObject> ToNwObjectLazy(this Guid objectId)
@@ -16,12 +16,12 @@ namespace NWM.API
 
     public static T ToNwObject<T>(this Guid objectId) where T : NwObject
     {
-      return (T) NwObject.CreateInternal(objectId);
+      return (T) NwObjectFactory.CreateInternal(objectId);
     }
 
     public static NwObject ToNwObject(this Guid objectId)
     {
-      return NwObject.CreateInternal(objectId);
+      return NwObjectFactory.CreateInternal(objectId);
     }
 
     public static string ToUUIDString(this Guid guid)

@@ -1,12 +1,14 @@
 using System;
+using System.Diagnostics;
 using NWN;
 using NWNX;
 
 namespace NWM.API
 {
-  public partial class NwObject : IEquatable<NwObject>
+  [DebuggerDisplay("{" + nameof(Name) + "}")]
+  public class NwObject : IEquatable<NwObject>
   {
-    protected const uint INVALID = NWScript.OBJECT_INVALID;
+    internal const uint INVALID = NWScript.OBJECT_INVALID;
     protected readonly uint ObjectId;
 
     public static implicit operator uint(NwObject obj)
@@ -14,7 +16,7 @@ namespace NWM.API
       return obj == null ? NWScript.OBJECT_INVALID : obj.ObjectId;
     }
 
-    private protected NwObject(uint objectId)
+    internal NwObject(uint objectId)
     {
       ObjectId = objectId;
     }
