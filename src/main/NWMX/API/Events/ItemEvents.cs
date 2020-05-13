@@ -20,7 +20,7 @@ namespace NWMX.API.Events
       {
         Creature = (NwCreature) objSelf;
         Item = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
-        Result = EventsPlugin.GetEventData("BEFORE_RESULT").ToInt().ToBool();
+        Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
 
         Callbacks?.Invoke(this);
         EventsPlugin.SetEventResult(Result.ToInt().ToString());
@@ -42,8 +42,8 @@ namespace NWMX.API.Events
       {
         Creature = (NwCreature) objSelf;
         Item = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
-        Slot = (InventorySlot) EventsPlugin.GetEventData("SLOT").ToInt();
-        Result = EventsPlugin.GetEventData("BEFORE_RESULT").ToInt().ToBool();
+        Slot = (InventorySlot) EventsPlugin.GetEventData("SLOT").ParseInt();
+        Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
 
         Callbacks?.Invoke(this);
         EventsPlugin.SetEventResult(Result.ToInt().ToString());

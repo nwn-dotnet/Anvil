@@ -21,9 +21,9 @@ namespace NWMX.API.Events
       {
         Preparer = (NwCreature) objSelf;
 
-        int classIndex = EventsPlugin.GetEventData("SPELL_CLASS").ToInt();
+        int classIndex = EventsPlugin.GetEventData("SPELL_CLASS").ParseInt();
         ClassType = (ClassType) NWScript.GetClassByPosition(classIndex + 1, Preparer);
-        Spell = (Spell) EventsPlugin.GetEventData("SPELL_ID").ToInt();
+        Spell = (Spell) EventsPlugin.GetEventData("SPELL_ID").ParseInt();
         Skip = false;
 
         Callbacks?.Invoke(this);

@@ -27,7 +27,7 @@ namespace NWM.Core
       for (int i = 0; i < UtilPlugin.Get2DARowCount(name); i++)
       {
         int rowIndex = i;
-        new2da.DeserializeRow((column) => NWScript.Get2DAString(name, column, rowIndex));
+        new2da.DeserializeRow(rowIndex, (column) => NWScript.Get2DAString(name, column, rowIndex));
       }
 
       cache[name] = new2da;

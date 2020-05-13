@@ -57,6 +57,11 @@ namespace NWM.API
       get => NWScript.GetHitDice(this);
     }
 
+    public NwGameObject AttackTarget
+    {
+      get => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
+    }
+
     /// <summary>
     /// Gets or sets the amount of gold carried by this creature.
     /// </summary>
@@ -124,9 +129,29 @@ namespace NWM.API
       }
     }
 
+    public bool HasSpellUse(Spell spell)
+    {
+      return GetMemorizedSpellCount(spell) > 0;
+    }
+
+    public int GetMemorizedSpellCount(Spell spell)
+    {
+      return NWScript.GetHasSpell((int) spell, this);
+    }
+
     public int GetSkillRank(Skill skill, bool ranksOnly = false)
     {
       return NWScript.GetSkillRank((int) skill, this, ranksOnly.ToInt());
+    }
+
+    public bool HasSkill(Skill skill)
+    {
+      return NWScript.GetHasSkill((int) skill, this).ToBool();
+    }
+
+    public bool DoSkillCheck(Skill skill, int difficultyClass)
+    {
+      return NWScript.GetIsSkillSuccessful(this, (int) skill, difficultyClass).ToBool();
     }
 
     /// <summary>
@@ -301,6 +326,19 @@ namespace NWM.API
     public void ActionSit(NwPlaceable sitPlaceable)
     {
       ExecuteOnSelf(() => NWScript.ActionSit(sitPlaceable));
+    }
+
+    /// <summary>
+    /// Returns true if this creature considers <see cref="target"/> an enemy.
+    /// </summary>
+    public bool IsEnemy(NwCreature target)
+    {
+      return NWScript.GetIsEnemy(target, this).ToBool();
+    }
+
+    public void SetActionMode(ActionMode actionMode, bool status)
+    {
+      NWScript.SetActionMode(this, (int) actionMode, status.ToInt());
     }
   }
 }

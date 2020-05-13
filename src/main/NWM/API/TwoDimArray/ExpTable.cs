@@ -32,7 +32,7 @@ namespace NWM.API
       return level;
     }
 
-    void ITwoDimArray.DeserializeRow(TwoDimEntry twoDimEntry)
+    void ITwoDimArray.DeserializeRow(int rowIndex, TwoDimEntry twoDimEntry)
     {
       int level = int.Parse(twoDimEntry("Level"));
       uint xp = ParseXpColumn(twoDimEntry("XP"));

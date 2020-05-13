@@ -45,10 +45,18 @@ namespace NWM.API
     public string ResRef => NWScript.GetResRef(this);
     public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
 
-    public virtual string Name
+    public string Name
     {
       get => NWScript.GetName(this);
       set => NWScript.SetName(this, value);
+    }
+
+    public string OriginalDescription => NWScript.GetDescription(this, true.ToInt());
+
+    public string Description
+    {
+      get => NWScript.GetDescription(this);
+      set => NWScript.SetDescription(this, value);
     }
 
     public string Tag

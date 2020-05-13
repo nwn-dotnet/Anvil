@@ -7,7 +7,7 @@ namespace NWM.API
 {
   public sealed class SkillVsItemCost : ITwoDimArray
   {
-    private readonly List<SkillRequirement> skillRequirements = new List<SkillRequirement>();
+    private readonly List<Entry> entries = new List<Entry>();
 
     public bool MeetsUMDRequirement(NwCreature creature, NwItem item, RestrictionType restrictionType)
     {
@@ -21,20 +21,20 @@ namespace NWM.API
 
     public bool MeetsSkillRequirement(int skillValue, int itemCost, RestrictionType restrictionType)
     {
-      SkillRequirement skillRequirement = GetSkillRequirement(itemCost);
-      int skillRequired = skillRequirement.GetRequirementValue(restrictionType);
+      Entry entry = GetSkillRequirement(itemCost);
+      int skillRequired = entry.GetRequirementValue(restrictionType);
 
       return skillRequired != -1 && skillValue >= skillRequired;
     }
 
-    public SkillRequirement GetSkillRequirement(NwItem item)
+    public Entry GetSkillRequirement(NwItem item)
     {
       return GetSkillRequirement(item.GoldValue);
     }
 
-    public SkillRequirement GetSkillRequirement(int itemCost)
+    public Entry GetSkillRequirement(int itemCost)
     {
-      foreach (SkillRequirement skillRequirement in skillRequirements)
+      foreach (Entry skillRequirement in entries)
       {
         if (Math.Max(skillRequirement.DeviceCostMax, itemCost) == skillRequirement.DeviceCostMax)
         {
@@ -42,38 +42,39 @@ namespace NWM.API
         }
       }
 
-      return skillRequirements[^1];
+      return entries[^1];
     }
 
-    void ITwoDimArray.DeserializeRow(TwoDimEntry twoDimEntry)
+    void ITwoDimArray.DeserializeRow(int rowIndex, TwoDimEntry twoDimEntry)
     {
       string value = twoDimEntry("DeviceCostMax");
-      string classReq = twoDimEntry("SkillReq_Class");
-      string raceReq = twoDimEntry("SkillReq_Race");
-      string alignReq = twoDimEntry("SkillReq_Align");
-
       if (string.IsNullOrEmpty(value))
       {
         return;
       }
 
-      skillRequirements.Add(new SkillRequirement(value, classReq, raceReq, alignReq));
+      int deviceCost = value.ParseInt();
+      int classReq = twoDimEntry("SkillReq_Class").ParseInt(-1);
+      int raceReq = twoDimEntry("SkillReq_Race").ParseInt(-1);
+      int alignReq = twoDimEntry("SkillReq_Align").ParseInt(-1);
+
+      entries.Add(new Entry(deviceCost, classReq, raceReq, alignReq));
     }
 
-    public sealed class SkillRequirement
+    public sealed class Entry
     {
+      public Entry(int deviceCostMax, int classReq, int raceReq, int alignmentReq)
+      {
+        DeviceCostMax = deviceCostMax;
+        ClassReq = classReq;
+        RaceReq = raceReq;
+        AlignmentReq = alignmentReq;
+      }
+
       public readonly int DeviceCostMax;
       public readonly int ClassReq;
       public readonly int RaceReq;
       public readonly int AlignmentReq;
-
-      public SkillRequirement(string value, string classReq, string raceReq, string alignReq)
-      {
-        this.DeviceCostMax = value.ToInt();
-        this.ClassReq = int.TryParse(classReq, out int classReqVal) ? classReqVal : -1;
-        this.RaceReq = int.TryParse(raceReq, out int raceReqVal) ? raceReqVal : -1;
-        this.AlignmentReq = int.TryParse(alignReq, out int alignReqVal) ? alignReqVal : -1;
-      }
 
       public int GetRequirementValue(RestrictionType restrictionType)
       {

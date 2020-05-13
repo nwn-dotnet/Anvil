@@ -2,6 +2,6 @@ namespace NWM.Core
 {
   public interface ITwoDimArray
   {
-    void DeserializeRow(TwoDimEntry twoDimEntry);
+    void DeserializeRow(int rowIndex, TwoDimEntry twoDimEntry);
   }
 }

@@ -25,5 +25,8 @@ namespace NWN
     public static Effect CutsceneGhost() => NWScript.EffectCutsceneGhost();
     public static Effect CutsceneImmobilize() => NWScript.EffectCutsceneImmobilize();
     public static Effect CutsceneParalyze() => NWScript.EffectCutsceneParalyze();
+
+
+    public static Effect VisualEffect(VfxType visualEffectId, bool missEffect = false) => NWScript.EffectVisualEffect((int) visualEffectId, missEffect.ToInt());
   }
 }

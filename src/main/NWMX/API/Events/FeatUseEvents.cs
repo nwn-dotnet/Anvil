@@ -21,14 +21,14 @@ namespace NWMX.API.Events
       public void BroadcastEvent(NwObject objSelf)
       {
         FeatUser = (NwCreature) objSelf;
-        Feat = (Feat) EventsPlugin.GetEventData("FEAT_ID").ToInt();
+        Feat = (Feat) EventsPlugin.GetEventData("FEAT_ID").ParseInt();
         TargetGameObject = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID")).ToNwObject<NwGameObject>();
         Skip = false; // Reset before we call event handlers.
 
         Vector3 position;
-        position.X = EventsPlugin.GetEventData("TARGET_POSITION_X").ToFloat();
-        position.Y = EventsPlugin.GetEventData("TARGET_POSITION_Y").ToFloat();
-        position.Z = EventsPlugin.GetEventData("TARGET_POSITION_Z").ToFloat();
+        position.X = EventsPlugin.GetEventData("TARGET_POSITION_X").ParseFloat();
+        position.Y = EventsPlugin.GetEventData("TARGET_POSITION_Y").ParseFloat();
+        position.Z = EventsPlugin.GetEventData("TARGET_POSITION_Z").ParseFloat();
 
         TargetPosition = position;
 

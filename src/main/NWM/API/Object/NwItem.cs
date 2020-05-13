@@ -12,6 +12,14 @@ namespace NWM.API
   {
     internal NwItem(uint objectId) : base(objectId) {}
 
+    public string OriginalUnidentifiedDescription => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
+
+    public string UnidentifiedDescription
+    {
+      get => NWScript.GetDescription(this, false.ToInt(), false.ToInt());
+      set => NWScript.SetDescription(this, value, false.ToInt());
+    }
+
     /// <summary>
     /// The GameObject that has this item in its inventory, otherwise null if it is on the ground, or not in any inventory.
     /// </summary>
@@ -69,5 +77,7 @@ namespace NWM.API
     {
       return NWScript.CopyObject(this, location, INVALID, newTag).ToNwObject<NwItem>();
     }
+
+    public static NwItem GetSpellCastItem() => NWScript.GetSpellCastItem().ToNwObject<NwItem>();
   }
 }
