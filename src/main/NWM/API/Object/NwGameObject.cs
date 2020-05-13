@@ -99,7 +99,6 @@ namespace NWM.API
       {
         ExecuteOnSelf(() => NWScript.ActionPlayAnimation((int) animation, animSpeed, duration));
       }
-
     }
 
     public void SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)
@@ -111,6 +110,21 @@ namespace NWM.API
       else
       {
         ExecuteOnSelf(() => NWScript.ActionSpeakString(message, (int) talkVolume));
+      }
+    }
+
+    public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
+    {
+      int objType = (int) NwObjectFactory.GetObjectType<T>();
+      int i;
+      NwGameObject next;
+
+      for (i = 1, next = NWScript.GetNearestObject(objType, this, i).ToNwObject<NwGameObject>(); next != INVALID; i++, next = NWScript.GetNearestObject(objType, this, i).ToNwObject<NwGameObject>())
+      {
+        if (next is T gameObject)
+        {
+          yield return gameObject;
+        }
       }
     }
 
