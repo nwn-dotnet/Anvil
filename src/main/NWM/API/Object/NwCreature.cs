@@ -15,6 +15,11 @@ namespace NWM.API
     private const int MaxClasses = 3;
 
     /// <summary>
+    /// Returns true if this creature is in combat.
+    /// </summary>
+    public bool IsInCombat => NWScript.GetIsInCombat(this).ToBool();
+
+    /// <summary>
     /// Creates a creature at the specified location.
     /// </summary>
     /// <param name="template">The creature resref template from the toolset palette</param>

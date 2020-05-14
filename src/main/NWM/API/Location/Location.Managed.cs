@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using NWM.API;
+using NWM.API.Constants;
 
 // ReSharper disable once CheckNamespace
 namespace NWN
@@ -11,6 +12,19 @@ namespace NWN
     public NwArea Area => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
     public float Rotation => NWScript.GetFacingFromLocation(this);
     public float FlippedRotation => (360 - Rotation) % 360;
+
+    private IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck = false, Vector? origin = null) where T : NwGameObject
+    {
+      int typeFilter = (int) NwObjectFactory.GetObjectType<T>();
+      int nShape = (int) shape;
+
+      for (NwGameObject obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin).ToNwObject<NwGameObject>();
+        obj != NwObject.INVALID;
+        obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin).ToNwObject<NwGameObject>())
+      {
+        yield return (T) obj;
+      }
+    }
 
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
