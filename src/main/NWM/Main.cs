@@ -21,14 +21,19 @@ namespace NWM
     private static readonly Dictionary<ulong, Closure> closures = new Dictionary<ulong, Closure>();
     private static ulong nextEventId = 0;
 
-    private static ServiceManager serviceManager;
-    private static DispatchServiceManager handlerDispatcher;
-    private static LoopService loopService;
+    public static ServiceManager ServiceManager { get; private set; }
+    private static IRunScriptHandler runScriptHandler;
+    private static ILoopHandler loopHandler;
+
+    public static event Action OnInitComplete;
 
     private static bool initialized;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Bootstrap(IntPtr arg, int argLength)
+    public static int Bootstrap(IntPtr arg, int argLength) => Bootstrap(arg, argLength, new ServiceBindingInstaller());
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int Bootstrap(IntPtr arg, int argLength, IBindingInstaller bindingInstaller)
     {
       Log.Info("--------Neverwinter Managed--------");
 
@@ -41,7 +46,7 @@ namespace NWM
 
       if (retVal == 0)
       {
-        serviceManager = new ServiceManager();
+        ServiceManager = new ServiceManager(bindingInstaller);
         AppendAssemblyToPath();
       }
 
@@ -61,7 +66,7 @@ namespace NWM
     {
       try
       {
-        loopService?.Update();
+        loopHandler?.OnLoop();
       }
       catch (Exception e)
       {
@@ -83,7 +88,7 @@ namespace NWM
           initialized = true;
         }
 
-        retVal = handlerDispatcher.OnRunScript(script, oidSelf);
+        retVal = runScriptHandler.OnRunScript(script, oidSelf);
       }
       catch (Exception e)
       {
@@ -122,10 +127,10 @@ namespace NWM
     private static void Init()
     {
       CheckPluginDependencies();
-      serviceManager.Verify();
-      handlerDispatcher = serviceManager.GetService<DispatchServiceManager>();
-      loopService = serviceManager.GetService<LoopService>();
-      serviceManager.GetService<AttributeDispatchService>().Init(serviceManager.GetRegisteredServices());
+      ServiceManager.InitServices();
+      runScriptHandler = ServiceManager.GetService<IRunScriptHandler>();
+      loopHandler = ServiceManager.GetService<ILoopHandler>();
+      OnInitComplete?.Invoke();
     }
 
     private static void CheckPluginDependencies()

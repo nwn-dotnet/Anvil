@@ -5,8 +5,8 @@ using NLog;
 
 namespace NWM.Core
 {
-  [Service]
-  internal class LoopService
+  [Service(typeof(ILoopHandler), BindSelf = false)]
+  internal class LoopService : ILoopHandler
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -20,7 +20,7 @@ namespace NWM.Core
       Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");
     }
 
-    internal void Update()
+    public void OnLoop()
     {
       loopTimeService.UpdateTime();
       for (int i = 0; i < updateables.Length; i++)

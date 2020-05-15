@@ -15,6 +15,11 @@ namespace NWM.Core
 
     private Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(START_CAPACITY);
 
+    public AttributeDispatchService()
+    {
+      Main.OnInitComplete += () => Init(Main.ServiceManager.GetRegisteredServices());
+    }
+
     public void Init(IEnumerable<object> services)
     {
       foreach (object service in services)
@@ -31,12 +36,12 @@ namespace NWM.Core
       {
         foreach (ScriptHandlerAttribute handler in method.GetCustomAttributes<ScriptHandlerAttribute>())
         {
-          RegisterMethod(serviceType, service, method, handler.ScriptName);
+          RegisterMethod(service, method, handler.ScriptName);
         }
       }
     }
 
-    private void RegisterMethod(Type serviceType, object service, MethodInfo method, string scriptName)
+    private void RegisterMethod(object service, MethodInfo method, string scriptName)
     {
       if (scriptName.Length > ScriptDispatchConstants.MAX_CHARS_IN_SCRIPT_NAME)
       {

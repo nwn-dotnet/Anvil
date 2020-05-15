@@ -3,8 +3,8 @@ using System.Linq;
 
 namespace NWM.Core
 {
-  [Service]
-  internal class DispatchServiceManager
+  [Service(typeof(IRunScriptHandler), BindSelf = false)]
+  internal class DispatchServiceManager : IRunScriptHandler
   {
     private readonly List<IScriptDispatcher> dispatchers;
 
