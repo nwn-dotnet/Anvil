@@ -13,7 +13,7 @@ namespace NWN
     public static Effect ACDecrease(int amount, ACBonus acType = ACBonus.Dodge) => NWScript.EffectACDecrease(amount, (int) acType);
     public static Effect ACIncrease(int amount, ACBonus acType = ACBonus.Dodge) => NWScript.EffectACIncrease(amount, (int) acType);
     public static Effect Appear() => NWScript.EffectAppear();
-    // public static Effect AreaOfEffect()
+    public static Effect AreaOfEffect(int areaEffectId, string onEnterScript = null, string heartbeatScript = null, string onExitScript = null) => NWScript.EffectAreaOfEffect(areaEffectId, onEnterScript, heartbeatScript, onExitScript);
     public static Effect AttackDecrease(int amount, AttackBonus penaltyType = AttackBonus.Misc) => NWScript.EffectAttackDecrease(amount, (int) penaltyType);
     public static Effect AttackIncrease(int amount, AttackBonus penaltyType = AttackBonus.Misc) => NWScript.EffectAttackIncrease(amount, (int) penaltyType);
     public static Effect Beam(VfxType fxType, NwGameObject emitter, BodyNode origin, bool missTarget = false) => NWScript.EffectBeam((int) fxType, emitter, (int) origin, missTarget.ToInt());
