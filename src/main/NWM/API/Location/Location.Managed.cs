@@ -59,7 +59,7 @@ namespace NWN
           filter3.Key,
           filter3.Value).ToNwObject<NwCreature>();
         current != NwObject.INVALID;
-        i++, NWScript.GetNearestCreatureToLocation(
+        i++, current = NWScript.GetNearestCreatureToLocation(
           filter1.Key,
           filter1.Value,
           this,

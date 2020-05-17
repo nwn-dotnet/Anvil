@@ -132,7 +132,7 @@ namespace NWM.API
           filter3.Key,
           filter3.Value).ToNwObject<NwCreature>();
         current != INVALID;
-        i++, NWScript.GetNearestCreature(
+        i++, current = NWScript.GetNearestCreature(
           filter1.Key,
           filter1.Value,
           this,
