@@ -7,7 +7,7 @@ using SimpleInjector;
 
 namespace NWM.Core
 {
-  public class ServiceManager
+  public class ServiceManager : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private readonly Container container;
@@ -34,6 +34,11 @@ namespace NWM.Core
     internal void InitServices()
     {
       container.Verify();
+    }
+
+    public void Dispose()
+    {
+      container?.Dispose();
     }
   }
 }

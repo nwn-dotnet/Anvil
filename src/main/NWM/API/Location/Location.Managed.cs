@@ -40,6 +40,39 @@ namespace NWN
       }
     }
 
+    public IEnumerable<NwCreature> GetNearestCreatures() => GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1) => GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2) => GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
+
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2, CreatureTypeFilter filter3)
+    {
+      int i;
+      NwCreature current;
+
+      for (i = 1, current = NWScript.GetNearestCreatureToLocation(
+          filter1.Key,
+          filter1.Value,
+          this,
+          i,
+          filter2.Key,
+          filter2.Value,
+          filter3.Key,
+          filter3.Value).ToNwObject<NwCreature>();
+        current != NwObject.INVALID;
+        i++, NWScript.GetNearestCreatureToLocation(
+          filter1.Key,
+          filter1.Value,
+          this,
+          i,
+          filter2.Key,
+          filter2.Value,
+          filter3.Key,
+          filter3.Value).ToNwObject<NwCreature>())
+      {
+        yield return current;
+      }
+    }
+
     public static Location Create(NwArea area, Vector3 position, float orientation)
     {
       return NWScript.Location(area, position, orientation);

@@ -113,15 +113,48 @@ namespace NWM.API
       }
     }
 
+    public IEnumerable<NwCreature> GetNearestCreatures() => GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1) => GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2) => GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
+
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2, CreatureTypeFilter filter3)
+    {
+      int i;
+      NwCreature current;
+
+      for (i = 1, current = NWScript.GetNearestCreature(
+          filter1.Key,
+          filter1.Value,
+          this,
+          i,
+          filter2.Key,
+          filter2.Value,
+          filter3.Key,
+          filter3.Value).ToNwObject<NwCreature>();
+        current != INVALID;
+        i++, NWScript.GetNearestCreature(
+          filter1.Key,
+          filter1.Value,
+          this,
+          i,
+          filter2.Key,
+          filter2.Value,
+          filter3.Key,
+          filter3.Value).ToNwObject<NwCreature>())
+      {
+        yield return current;
+      }
+    }
+
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
       int objType = (int) NwObjectFactory.GetObjectType<T>();
       int i;
-      NwGameObject next;
+      NwGameObject current;
 
-      for (i = 1, next = NWScript.GetNearestObject(objType, this, i).ToNwObject<NwGameObject>(); next != INVALID; i++, next = NWScript.GetNearestObject(objType, this, i).ToNwObject<NwGameObject>())
+      for (i = 1, current = NWScript.GetNearestObject(objType, this, i).ToNwObject<NwGameObject>(); current != INVALID; i++, current = NWScript.GetNearestObject(objType, this, i).ToNwObject<NwGameObject>())
       {
-        if (next is T gameObject)
+        if (current is T gameObject)
         {
           yield return gameObject;
         }
