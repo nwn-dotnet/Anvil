@@ -20,6 +20,12 @@ namespace NWM.API
       set => NWScript.SetDescription(this, value, false.ToInt());
     }
 
+    public int StackSize
+    {
+      get => NWScript.GetItemStackSize(this);
+      set => NWScript.SetItemStackSize(this, value);
+    }
+
     /// <summary>
     /// The GameObject that has this item in its inventory, otherwise null if it is on the ground, or not in any inventory.
     /// </summary>
