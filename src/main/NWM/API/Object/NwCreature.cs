@@ -4,6 +4,7 @@ using NWM.API.Constants;
 using NWMX.API;
 using NWMX.API.Constants;
 using NWN;
+using Action = NWM.API.Constants.Action;
 
 namespace NWM.API
 {
@@ -66,6 +67,18 @@ namespace NWM.API
     {
       get => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
     }
+
+    public NwGameObject AttemptedAttackTarget
+    {
+      get
+      {
+        NwGameObject target = null;
+        ExecuteOnSelf(() => target = NWScript.GetAttemptedAttackTarget().ToNwObject<NwGameObject>());
+        return target;
+      }
+    }
+
+    public Action CurrentAction => (Action) NWScript.GetCurrentAction(this);
 
     /// <summary>
     /// Gets or sets the amount of gold carried by this creature.
