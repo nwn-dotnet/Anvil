@@ -31,6 +31,11 @@ namespace NWM.Core
       this.interopService = interopService;
     }
 
+    public void SignalNWNXEvent(string eventName, NwObject target)
+    {
+      EventsPlugin.SignalEvent(eventName, target);
+    }
+
     public void Unsubscribe<TEvent>(Action<TEvent> existingHandler) where TEvent : IEvent<TEvent>
     {
       if (typeToHandlerMap.TryGetValue(typeof(TEvent), out EventHandler eventHandler))
