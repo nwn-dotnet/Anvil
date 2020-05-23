@@ -6,14 +6,13 @@ using NWN;
 
 namespace NWM.Core
 {
-  [Service]
-  public class InteropService
+  public static class Interop
   {
     /// <summary>
     ///  Makes the specified target object execute scriptName and then returns execution to the calling script.
     ///  If scriptName does not specify a compiled script, nothing happens.
     /// </summary>
-    public void ExecuteNss(string scriptName, NwObject target = null)
+    public static void ExecuteNss(string scriptName, NwObject target = null)
     {
       NWScript.ExecuteScript(scriptName, target);
     }
@@ -24,13 +23,13 @@ namespace NWM.Core
     /// </summary>
     /// <param name="scriptName">The script containing the function.</param>
     /// <param name="function">The function to call.</param>
-    public void ExecuteNssMethod(string scriptName, string function, NwObject target, params object[] parameters)
+    public static void ExecuteNssMethod(string scriptName, string function, NwObject target, params object[] parameters)
     {
       string source = GetExecutionString(scriptName, function, parameters.Select(p => p.ToString()));
       ExecuteNssChunk(source, false, target);
     }
 
-    public void ExecuteNssChunk(string source, bool wrapIntoMain = true, NwObject target = null)
+    public static void ExecuteNssChunk(string source, bool wrapIntoMain = true, NwObject target = null)
     {
       string error = NWScript.ExecuteScriptChunk(source, target, wrapIntoMain.ToInt());
       if (string.IsNullOrEmpty(error))
@@ -41,7 +40,7 @@ namespace NWM.Core
       throw new InvalidDataException(error);
     }
 
-    private string GetExecutionString(string include, string method, IEnumerable<string> parameters)
+    private static string GetExecutionString(string include, string method, IEnumerable<string> parameters)
     {
       string methodParams = string.Join(",", parameters);
 
