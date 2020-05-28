@@ -1,3 +1,4 @@
+using NWM;
 using NWM.API;
 using NWM.API.Constants;
 using NWNX;

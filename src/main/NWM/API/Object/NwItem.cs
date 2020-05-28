@@ -54,7 +54,7 @@ namespace NWM.API
     {
       get
       {
-        for (ItemProperty itemProperty = NWScript.GetFirstItemProperty(this); itemProperty.Valid; itemProperty = NWScript.GetNextItemProperty(this))
+        for (ItemProperty itemProperty = NWScript.GetFirstItemProperty(this); itemProperty.IsValid(); itemProperty = NWScript.GetNextItemProperty(this))
         {
           yield return itemProperty;
         }

@@ -32,8 +32,8 @@ namespace NWM.API
     /// </summary>
     public Vector3 Position
     {
-      get => NWScript.GetPosition(this);
-      set => ExecuteOnSelf(() => NWScript.JumpToLocation(NWScript.Location(Area, value, Rotation)));
+      get => NWScript.GetPosition(this).ToVector3();
+      set => ExecuteOnSelf(() => NWScript.JumpToLocation(NWScript.Location(Area, value.ToNativeVector(), Rotation)));
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ namespace NWM.API
 
     public virtual void FaceToPoint(Vector3 point)
     {
-      AssignCommand(() => NWScript.SetFacingPoint(point));
+      AssignCommand(() => NWScript.SetFacingPoint(point.ToNativeVector()));
     }
 
     public NwArea Area

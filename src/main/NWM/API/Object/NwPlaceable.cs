@@ -33,7 +33,7 @@ namespace NWM.API
 
     public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      location = Location.Create(location.Area, location.Position, location.FlippedRotation);
+      location = LocationFactory.Create(location.GetArea(), location.GetPosition(), location.GetFlippedRotation());
       return NwObjectFactory.CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
   }

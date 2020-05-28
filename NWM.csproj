@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <IsPackable>false</IsPackable>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -20,6 +20,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="lib\NWN.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
         <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).dll" />
         <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).pdb" />
         <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).runtimeconfig.json" />
@@ -31,6 +35,13 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
             <Link>NLog.dll.nlog</Link>
         </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="lib\**" />
+      <Compile Remove="lib\**" />
+      <EmbeddedResource Remove="lib\**" />
+      <None Remove="lib\**" />
     </ItemGroup>
 
 </Project>

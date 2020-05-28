@@ -37,12 +37,17 @@ namespace NWM
     {
       Log.Info("--------Neverwinter Managed--------");
 
-      Internal.AllHandlers handlers;
-      handlers.MainLoop = OnMainLoop;
-      handlers.RunScript = OnRunScript;
-      handlers.Closure = OnClosure;
+      Internal.NativeEventHandles nativeHandles;
+      nativeHandles.MainLoop = OnMainLoop;
+      nativeHandles.RunScript = OnRunScript;
+      nativeHandles.Closure = OnClosure;
 
-      int retVal = Internal.Bootstrap(arg, argLength, handlers);
+      Internal.ManagedHandles managedHandles;
+      managedHandles.ClosureAssignCommand = ClosureAssignCommand;
+      managedHandles.ClosureDelayCommand = ClosureDelayCommand;
+      managedHandles.ClosureActionDoCommand = ClosureActionDoCommand;
+
+      int retVal = Internal.Bootstrap(arg, argLength, () => ObjectSelf, nativeHandles, managedHandles);
 
       if (retVal == 0)
       {

@@ -6,7 +6,7 @@ using NWM.API.Constants;
 
 namespace NWN
 {
-  public partial class Effect
+  public class EffectFactory
   {
     public static Effect AbilityDecrease(Ability ability, int amount) => NWScript.EffectAbilityDecrease((int) ability, amount);
     public static Effect AbilityIncrease(Ability ability, int amount) => NWScript.EffectAbilityIncrease((int) ability, amount);
