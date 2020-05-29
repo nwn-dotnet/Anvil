@@ -1,12 +1,10 @@
-// ReSharper disable once CheckNamespace
-
 using System;
-using NWM.API;
 using NWM.API.Constants;
+using NWN;
 
-namespace NWN
+namespace NWM.API
 {
-  public class EffectFactory
+  public partial class Effect
   {
     public static Effect AbilityDecrease(Ability ability, int amount) => NWScript.EffectAbilityDecrease((int) ability, amount);
     public static Effect AbilityIncrease(Ability ability, int amount) => NWScript.EffectAbilityIncrease((int) ability, amount);

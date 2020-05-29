@@ -1,16 +1,14 @@
-// ReSharper disable once CheckNamespace
-namespace NWN
+using NWN;
+
+namespace NWM.API
 {
-  public static class EffectExtensions
+  public partial class Effect
   {
     /// <summary>
     ///  Returns the string tag set for the provided effect.
     ///  - If no tag has been set, returns an empty string.
     /// </summary>
-    public static string GetTag(this Effect effect)
-    {
-      return NWScript.GetEffectTag(effect);
-    }
+    public string Tag => NWScript.GetEffectTag(this);
 
     public static Effect TagEffect(Effect effect, string tag)
     {

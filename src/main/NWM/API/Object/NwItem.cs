@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NWM.API.Constants;
 using NWMX.API.Constants;
 using NWN;
-using ItemProperty = NWN.ItemProperty;
+using ItemProperty = NWM.API.ItemProperty;
 
 namespace NWM.API
 {
@@ -54,7 +54,7 @@ namespace NWM.API
     {
       get
       {
-        for (ItemProperty itemProperty = NWScript.GetFirstItemProperty(this); itemProperty.IsValid(); itemProperty = NWScript.GetNextItemProperty(this))
+        for (ItemProperty itemProperty = NWScript.GetFirstItemProperty(this); itemProperty.Valid; itemProperty = NWScript.GetNextItemProperty(this))
         {
           yield return itemProperty;
         }

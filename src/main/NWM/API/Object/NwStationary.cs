@@ -23,11 +23,11 @@ namespace NWM.API
 
     public override Location Location
     {
-      get { return LocationFactory.Create(Area, Position, Rotation); }
+      get { return Location.Create(Area, Position, Rotation); }
       set
       {
-        ObjectPlugin.AddToArea(this, value.GetArea(), value.GetPosition().ToNativeVector());
-        Rotation = value.GetRotation();
+        ObjectPlugin.AddToArea(this, value.Area, value.Position);
+        Rotation = value.Rotation;
       }
     }
   }
