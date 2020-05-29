@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Numerics;
 using NWM.API.Constants;
 using NWN;
-using Vector = NWN.Vector;
 
 namespace NWM.API
 {
