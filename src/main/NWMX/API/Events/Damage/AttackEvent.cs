@@ -10,17 +10,22 @@ namespace NWMX.API.Events
   {
     public NwObject Attacker { get; private set; }
     public NwObject Target { get; private set; }
-    public AttackEventData Data { get; set; }
+
+    public AttackData AttackData { get; set; }
+    public DamageData DamageData { get; set; }
 
     public void BroadcastEvent(NwObject objSelf)
     {
-      Data = DamagePlugin.GetAttackEventData();
-      Attacker = Data.oTarget.ToNwObject();
-      Target = objSelf;
+      AttackEventData attackEventData = DamagePlugin.GetAttackEventData();
+      AttackData = AttackData.FromNative(attackEventData);
+      DamageData = DamageData.FromNative(attackEventData);
+
+      Attacker = objSelf;
+      Target = attackEventData.oTarget.ToNwObject();
 
       Callbacks?.Invoke(this);
 
-      DamagePlugin.SetAttackEventData(Data);
+      DamagePlugin.SetAttackEventData(AttackData.ToNative(Target, DamageData));
     }
 
     public event Action<AttackEvent> Callbacks;

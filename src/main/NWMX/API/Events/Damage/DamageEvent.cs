@@ -8,19 +8,20 @@ namespace NWMX.API.Events
   [NWNXDamageEvent]
   public sealed class DamageEvent : IEvent<DamageEvent>
   {
-    public NwObject Damager { get; private set; }
+    public NwObject Attacker { get; private set; }
     public NwObject Target { get; private set; }
-    public DamageEventData Data { get; set; }
+    public DamageData DamageData { get; set; }
 
     public void BroadcastEvent(NwObject objSelf)
     {
-      Data = DamagePlugin.GetDamageEventData();
-      Damager = Data.oDamager.ToNwObject();
+      DamageEventData eventData = DamagePlugin.GetDamageEventData();
+      DamageData = DamageData.FromNative(eventData);
+      Attacker = eventData.oDamager.ToNwObject();
       Target = objSelf;
 
       Callbacks?.Invoke(this);
 
-      DamagePlugin.SetDamageEventData(Data);
+      DamagePlugin.SetDamageEventData(DamageData.ToNative(Attacker));
     }
 
     public event Action<DamageEvent> Callbacks;
