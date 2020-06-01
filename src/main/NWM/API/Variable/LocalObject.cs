@@ -8,8 +8,8 @@ namespace NWM.API
 
     public override NwObject Value
     {
-      get => NWScript.GetLocalObject(Object, Name);
-      set => NWScript.SetLocalLocation(Object, Name, value);
+      get => NWScript.GetLocalObject(Object, Name).ToNwObject();
+      set => NWScript.SetLocalObject(Object, Name, value);
     }
 
     public override void Delete()
