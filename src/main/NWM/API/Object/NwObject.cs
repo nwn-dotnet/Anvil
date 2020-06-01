@@ -123,6 +123,21 @@ namespace NWM.API
       return new LocalString(this, name);
     }
 
+    public LocalLocation GetLocalLocation(string name)
+    {
+      return new LocalLocation(this, name);
+    }
+
+    public LocalObject GetLocalObject(string name)
+    {
+      return new LocalObject(this, name);
+    }
+
+    public LocalUUID GetLocalUUID(string name)
+    {
+      return new LocalUUID(this, name);
+    }
+
     public bool HasClashingUUID()
     {
       return string.IsNullOrEmpty(NWScript.GetObjectUUID(this));
