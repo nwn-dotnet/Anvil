@@ -7,10 +7,8 @@ namespace NWM.API
   {
     public LocalUUID(NwObject instance, string name) : base(instance, name) {}
 
-    public bool HasValue
-    {
-      get => !string.IsNullOrEmpty(NWScript.GetLocalString(Object, Name));
-    }
+    public bool HasValue => !string.IsNullOrEmpty(NWScript.GetLocalString(Object, Name));
+    public bool HasNothing => !HasValue;
 
     public override Guid Value
     {

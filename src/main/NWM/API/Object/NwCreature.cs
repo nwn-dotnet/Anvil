@@ -285,7 +285,20 @@ namespace NWM.API
     /// <param name="item">The item to add.</param>
     public void GiveItem(NwItem item)
     {
-      ExecuteOnSelf(() => NWScript.ActionGiveItem(item, this));
+      NwObject assignTarget;
+      if (item.Possessor != null)
+      {
+        assignTarget = item.Possessor;
+      }
+      else
+      {
+        assignTarget = item.Area;
+      }
+
+      if (assignTarget != this)
+      {
+        assignTarget.AssignCommand(() => NWScript.ActionGiveItem(item, this));
+      }
     }
 
     /// <summary>

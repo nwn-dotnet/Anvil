@@ -68,7 +68,7 @@ namespace NWM.API
     /// <summary>
     /// Assign the specified action to this object
     /// </summary>
-    protected void AssignCommand(ActionDelegate action) => NWScript.AssignCommand(this, action);
+    internal void AssignCommand(ActionDelegate action) => NWScript.AssignCommand(this, action);
 
     protected void ExecuteOnSelf(ActionDelegate action)
     {
