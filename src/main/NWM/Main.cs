@@ -68,11 +68,12 @@ namespace NWM
     {
       ServiceManager serviceManager = new ServiceManager(bindingInstaller);
       CheckPluginDependencies();
-      ServiceManager.InitServices();
+      serviceManager.InitServices();
       runScriptHandler = serviceManager.GetService<IRunScriptHandler>();
       loopHandler = serviceManager.GetService<ILoopHandler>();
 
       ServiceManager = serviceManager;
+      OnInitComplete?.Invoke();
     }
 
     private static void CheckPluginDependencies()
