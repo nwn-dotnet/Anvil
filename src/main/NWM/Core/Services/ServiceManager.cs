@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using NLog;
 using SimpleInjector;
 
@@ -17,6 +16,11 @@ namespace NWM.Core
       container = new Container();
       Log.Info($"Using \"{bindingInstaller.GetType().FullName}\" to install service bindings.");
       bindingInstaller.ConfigureBindings(container);
+    }
+
+    ~ServiceManager()
+    {
+      Dispose();
     }
 
     public IEnumerable<object> GetRegisteredServices()

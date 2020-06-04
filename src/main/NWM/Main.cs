@@ -10,24 +10,32 @@ using NWNX;
 
 namespace NWM
 {
-  public static class Main
+  public class Main : IGameManager
   {
-    public const uint ObjectInvalid = 0x7F000000;
-    public static uint ObjectSelf { get; private set; } = ObjectInvalid;
-
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private static readonly Stack<ScriptContext> scriptContexts = new Stack<ScriptContext>();
-    private static readonly Dictionary<ulong, Closure> closures = new Dictionary<ulong, Closure>();
-    private static ulong nextEventId = 0;
+    private const string ShutdownScript = "__nwm_stop";
+    private const uint ObjectInvalid = 0x7F000000;
+    public uint ObjectSelf { get; private set; } = ObjectInvalid;
 
-    public static ServiceManager ServiceManager { get; private set; }
-    private static IRunScriptHandler runScriptHandler;
-    private static ILoopHandler loopHandler;
+    public static Main Instance { get; private set; }
 
-    public static event Action OnInitComplete;
+    // Events
+    public event Action OnInitComplete;
 
-    private static bool initialized;
+    // Native Management
+    private readonly Stack<ScriptContext> scriptContexts = new Stack<ScriptContext>();
+    private readonly Dictionary<ulong, Closure> closures = new Dictionary<ulong, Closure>();
+    private ulong nextEventId = 0;
+
+    // Core Services
+    public ServiceManager ServiceManager { get; private set; }
+
+    private IRunScriptHandler runScriptHandler;
+    private ILoopHandler loopHandler;
+
+    // Bootstrap
+    private readonly IBindingInstaller bindingInstaller;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int Bootstrap(IntPtr arg, int argLength) => Bootstrap(arg, argLength, new ServiceBindingInstaller());
@@ -35,31 +43,20 @@ namespace NWM
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int Bootstrap(IntPtr arg, int argLength, IBindingInstaller bindingInstaller)
     {
+      Instance = new Main(bindingInstaller);
+      return Internal.Bootstrap(arg, argLength, Instance);
+    }
+
+    public Main(IBindingInstaller bindingInstaller)
+    {
+      this.bindingInstaller = bindingInstaller;
+
       Log.Info("--------Neverwinter Managed--------");
-
-      Internal.NativeEventHandles nativeHandles;
-      nativeHandles.MainLoop = OnMainLoop;
-      nativeHandles.RunScript = OnRunScript;
-      nativeHandles.Closure = OnClosure;
-
-      Internal.ManagedHandles managedHandles;
-      managedHandles.ClosureAssignCommand = ClosureAssignCommand;
-      managedHandles.ClosureDelayCommand = ClosureDelayCommand;
-      managedHandles.ClosureActionDoCommand = ClosureActionDoCommand;
-
-      int retVal = Internal.Bootstrap(arg, argLength, () => ObjectSelf, nativeHandles, managedHandles);
-
-      if (retVal == 0)
-      {
-        ServiceManager = new ServiceManager(bindingInstaller);
-        AppendAssemblyToPath();
-      }
-
-      return retVal;
+      AppendAssemblyToPath();
     }
 
     // Needed to allow native libs to be loaded.
-    private static void AppendAssemblyToPath()
+    private void AppendAssemblyToPath()
     {
       string envPath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Process);
       string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -67,7 +64,31 @@ namespace NWM
       Environment.SetEnvironmentVariable("PATH", $"{envPath}; {assemblyDir}");
     }
 
-    private static void OnMainLoop(ulong frame)
+    private void Init()
+    {
+      ServiceManager serviceManager = new ServiceManager(bindingInstaller);
+      CheckPluginDependencies();
+      ServiceManager.InitServices();
+      runScriptHandler = serviceManager.GetService<IRunScriptHandler>();
+      loopHandler = serviceManager.GetService<ILoopHandler>();
+
+      ServiceManager = serviceManager;
+    }
+
+    private static void CheckPluginDependencies()
+    {
+      Log.Info("Checking Plugin Dependencies");
+      PluginUtils.AssertPluginExists<UtilPlugin>();
+      PluginUtils.AssertPluginExists<ObjectPlugin>();
+    }
+
+    private void Shutdown()
+    {
+      ServiceManager?.Dispose();
+      ServiceManager = null;
+    }
+
+    public void OnMainLoop(ulong frame)
     {
       try
       {
@@ -79,7 +100,7 @@ namespace NWM
       }
     }
 
-    private static int OnRunScript(string script, uint oidSelf)
+    public int OnRunScript(string script, uint oidSelf)
     {
       int retVal = 0;
       ObjectSelf = oidSelf;
@@ -87,10 +108,13 @@ namespace NWM
 
       try
       {
-        if (!initialized)
+        if (ServiceManager == null)
         {
           Init();
-          initialized = true;
+        }
+        else if (script == ShutdownScript)
+        {
+          Shutdown();
         }
 
         retVal = runScriptHandler.OnRunScript(script, oidSelf);
@@ -100,7 +124,7 @@ namespace NWM
         Log.Error(e);
 
         // We want the server to crash if init fails.
-        if (!initialized)
+        if (ServiceManager == null)
         {
           throw;
         }
@@ -111,7 +135,7 @@ namespace NWM
       return retVal;
     }
 
-    private static void OnClosure(ulong eid, uint oidSelf)
+    public void OnClosure(ulong eid, uint oidSelf)
     {
       uint old = ObjectSelf;
       ObjectSelf = oidSelf;
@@ -129,23 +153,7 @@ namespace NWM
       ObjectSelf = old;
     }
 
-    private static void Init()
-    {
-      CheckPluginDependencies();
-      ServiceManager.InitServices();
-      runScriptHandler = ServiceManager.GetService<IRunScriptHandler>();
-      loopHandler = ServiceManager.GetService<ILoopHandler>();
-      OnInitComplete?.Invoke();
-    }
-
-    private static void CheckPluginDependencies()
-    {
-      Log.Info("Checking Plugin Dependencies");
-      PluginUtils.AssertPluginExists<UtilPlugin>();
-      PluginUtils.AssertPluginExists<ObjectPlugin>();
-    }
-
-    internal static void ClosureAssignCommand(uint obj, ActionDelegate func)
+    public void ClosureAssignCommand(uint obj, ActionDelegate func)
     {
       if (Internal.NativeFunctions.ClosureAssignCommand(obj, nextEventId) != 0)
       {
@@ -153,7 +161,7 @@ namespace NWM
       }
     }
 
-    internal static void ClosureDelayCommand(uint obj, float duration, ActionDelegate func)
+    public void ClosureDelayCommand(uint obj, float duration, ActionDelegate func)
     {
       if (Internal.NativeFunctions.ClosureDelayCommand(obj, duration, nextEventId) != 0)
       {
@@ -161,7 +169,7 @@ namespace NWM
       }
     }
 
-    internal static void ClosureActionDoCommand(uint obj, ActionDelegate func)
+    public void ClosureActionDoCommand(uint obj, ActionDelegate func)
     {
       if (Internal.NativeFunctions.ClosureActionDoCommand(obj, nextEventId) != 0)
       {

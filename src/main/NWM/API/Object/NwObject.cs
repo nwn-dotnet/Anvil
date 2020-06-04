@@ -72,7 +72,7 @@ namespace NWM.API
 
     protected void ExecuteOnSelf(ActionDelegate action)
     {
-      if (this == Main.ObjectSelf)
+      if (this == Internal.ObjectSelf)
       {
         action();
       }
