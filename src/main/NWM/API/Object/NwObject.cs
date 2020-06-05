@@ -13,7 +13,7 @@ namespace NWM.API
 
     public static implicit operator uint(NwObject obj)
     {
-      return obj == null ? NWScript.OBJECT_INVALID : obj.ObjectId;
+      return obj == null ? INVALID : obj.ObjectId;
     }
 
     internal NwObject(uint objectId)

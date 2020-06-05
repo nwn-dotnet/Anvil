@@ -11,13 +11,17 @@ namespace NWM.API
 
     public static readonly NwModule Instance = new NwModule(NWScript.GetModule());
 
+    public NwWaypoint GetWaypointByTag(string tag) => NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
+
+    public Location StartingLocation => NWScript.GetStartingLocation();
+
     public IEnumerable<NwArea> Areas
     {
       get
       {
-        for (NwArea area = NWScript.GetFirstArea().ToNwObject<NwArea>(); area != null; area = NWScript.GetNextArea().ToNwObject<NwArea>())
+        for (uint area = NWScript.GetFirstArea(); area != INVALID; area = NWScript.GetNextArea())
         {
-          yield return area;
+          yield return area.ToNwObject<NwArea>();
         }
       }
     }
@@ -25,10 +29,10 @@ namespace NWM.API
     public IEnumerable<NwGameObject> GetObjectsByTag(string tag)
     {
       int i;
-      NwGameObject obj;
-      for (i = 0, obj = NWScript.GetObjectByTag(tag, i).ToNwObject<NwGameObject>(); obj != INVALID; i++, obj = NWScript.GetObjectByTag(tag, i).ToNwObject<NwGameObject>())
+      uint obj;
+      for (i = 0, obj = NWScript.GetObjectByTag(tag, i); obj != INVALID; i++, obj = NWScript.GetObjectByTag(tag, i))
       {
-        yield return obj;
+        yield return obj.ToNwObject<NwGameObject>();
       }
     }
 
@@ -36,9 +40,9 @@ namespace NWM.API
     {
       get
       {
-        for (NwPlayer player = NWScript.GetFirstPC().ToNwObject<NwPlayer>(); player != null; player = NWScript.GetNextPC().ToNwObject<NwPlayer>())
+        for (uint player = NWScript.GetFirstPC(); player != INVALID; player = NWScript.GetNextPC())
         {
-          yield return player;
+          yield return player.ToNwObject<NwPlayer>();
         }
       }
     }

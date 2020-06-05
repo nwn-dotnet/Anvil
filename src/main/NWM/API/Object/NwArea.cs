@@ -86,13 +86,13 @@ namespace NWM.API
     /// <summary>
     /// All Objects currently in this area.
     /// </summary>
-    public IEnumerable<NwObject> Objects
+    public IEnumerable<NwGameObject> Objects
     {
       get
       {
-        for (NwObject areaObj = NWScript.GetFirstObjectInArea(this).ToNwObject(); areaObj != null; areaObj = NWScript.GetNextObjectInArea(this).ToNwObject())
+        for (uint areaObj = NWScript.GetFirstObjectInArea(this); areaObj != INVALID; areaObj = NWScript.GetNextObjectInArea(this))
         {
-          yield return areaObj;
+          yield return areaObj.ToNwObject<NwGameObject>();
         }
       }
     }

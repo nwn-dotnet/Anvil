@@ -75,9 +75,9 @@ namespace NWM.API
     {
       get
       {
-        for (NwItem item = NWScript.GetFirstItemInInventory(this).ToNwObject<NwItem>(); item != INVALID; item = NWScript.GetNextItemInInventory(this).ToNwObject<NwItem>())
+        for (uint item = NWScript.GetFirstItemInInventory(this); item != INVALID; item = NWScript.GetNextItemInInventory(this))
         {
-          yield return item;
+          yield return item.ToNwObject<NwItem>();
         }
       }
     }
@@ -120,7 +120,7 @@ namespace NWM.API
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2, CreatureTypeFilter filter3)
     {
       int i;
-      NwCreature current;
+      uint current;
 
       for (i = 1, current = NWScript.GetNearestCreature(
           filter1.Key,
@@ -130,7 +130,7 @@ namespace NWM.API
           filter2.Key,
           filter2.Value,
           filter3.Key,
-          filter3.Value).ToNwObject<NwCreature>();
+          filter3.Value);
         current != INVALID;
         i++, current = NWScript.GetNearestCreature(
           filter1.Key,
@@ -140,9 +140,9 @@ namespace NWM.API
           filter2.Key,
           filter2.Value,
           filter3.Key,
-          filter3.Value).ToNwObject<NwCreature>())
+          filter3.Value))
       {
-        yield return current;
+        yield return current.ToNwObject<NwCreature>();
       }
     }
 
@@ -150,13 +150,14 @@ namespace NWM.API
     {
       int objType = (int) NwObjectFactory.GetObjectType<T>();
       int i;
-      NwGameObject current;
+      uint current;
 
-      for (i = 1, current = NWScript.GetNearestObject(objType, this, i).ToNwObject<NwGameObject>(); current != INVALID; i++, current = NWScript.GetNearestObject(objType, this, i).ToNwObject<NwGameObject>())
+      for (i = 1, current = NWScript.GetNearestObject(objType, this, i); current != INVALID; i++, current = NWScript.GetNearestObject(objType, this, i))
       {
-        if (current is T gameObject)
+        T obj = current.ToNwObject<T>();
+        if (obj != null)
         {
-          yield return gameObject;
+          yield return obj;
         }
       }
     }

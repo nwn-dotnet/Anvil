@@ -17,11 +17,11 @@ namespace NWM.API
       int typeFilter = (int) NwObjectFactory.GetObjectType<T>();
       int nShape = (int) shape;
 
-      for (NwGameObject obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin).ToNwObject<NwGameObject>();
-        obj != NwObject.INVALID;
-        obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin).ToNwObject<NwGameObject>())
+      for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
+        obj != NWScript.OBJECT_INVALID;
+        obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin))
       {
-        yield return (T) obj;
+        yield return obj.ToNwObject<T>();
       }
     }
 
@@ -29,12 +29,13 @@ namespace NWM.API
     {
       int objType = (int) NwObjectFactory.GetObjectType<T>();
       int i;
-      NwGameObject next;
-      for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i).ToNwObject<NwGameObject>(); next != NwObject.INVALID; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i).ToNwObject<NwGameObject>())
+      uint next;
+      for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.INVALID; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
       {
-        if (next is T gameObject)
+        T obj = next.ToNwObject<T>();
+        if (obj != null)
         {
-          yield return gameObject;
+          yield return obj;
         }
       }
     }
@@ -46,7 +47,7 @@ namespace NWM.API
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2, CreatureTypeFilter filter3)
     {
       int i;
-      NwCreature current;
+      uint current;
 
       for (i = 1, current = NWScript.GetNearestCreatureToLocation(
           filter1.Key,
@@ -56,8 +57,8 @@ namespace NWM.API
           filter2.Key,
           filter2.Value,
           filter3.Key,
-          filter3.Value).ToNwObject<NwCreature>();
-        current != NwObject.INVALID;
+          filter3.Value);
+        current != NWScript.OBJECT_INVALID;
         i++, current = NWScript.GetNearestCreatureToLocation(
           filter1.Key,
           filter1.Value,
@@ -66,9 +67,9 @@ namespace NWM.API
           filter2.Key,
           filter2.Value,
           filter3.Key,
-          filter3.Value).ToNwObject<NwCreature>())
+          filter3.Value))
       {
-        yield return current;
+        yield return current.ToNwObject<NwCreature>();
       }
     }
 
