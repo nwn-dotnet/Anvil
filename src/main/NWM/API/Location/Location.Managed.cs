@@ -12,7 +12,7 @@ namespace NWM.API
     public float Rotation => NWScript.GetFacingFromLocation(this);
     public float FlippedRotation => (360 - Rotation) % 360;
 
-    private IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck = false, Vector3? origin = null) where T : NwGameObject
+    private IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
       int typeFilter = (int) NwObjectFactory.GetObjectType<T>();
       int nShape = (int) shape;
