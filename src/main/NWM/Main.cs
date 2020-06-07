@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using NLog;
 using NWM.Core;
+using NWMX;
 using NWN;
 using NWNX;
 

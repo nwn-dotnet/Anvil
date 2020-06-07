@@ -4,7 +4,7 @@ using NLog;
 using NWM.API;
 using NWNX;
 
-namespace NWM
+namespace NWMX
 {
   public class PluginUtils
   {

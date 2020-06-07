@@ -5,9 +5,9 @@ using NWNX;
 
 namespace NWMX.API
 {
-  public static class NwCreatureExtensions
+  public static class Creature
   {
-    static NwCreatureExtensions()
+    static Creature()
     {
       PluginUtils.AssertPluginExists<CreaturePlugin>();
     }

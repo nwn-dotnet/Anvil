@@ -4,10 +4,9 @@ using NWNX;
 
 namespace NWMX.API
 {
-  public static class NwPlayerExtensions
+  public static class Player
   {
-    // Dependency Validation
-    static NwPlayerExtensions()
+    static Player()
     {
       PluginUtils.AssertPluginExists<PlayerPlugin>();
     }
