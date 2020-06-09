@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NWM.API.Constants;
 using NWMX.API.Constants;
 using NWN;
 
@@ -10,6 +11,10 @@ namespace NWM.API
     internal NwModule(uint objectId) : base(objectId) {}
 
     public static readonly NwModule Instance = new NwModule(NWScript.GetModule());
+
+    public NwPlayer PCSpeaker => NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
+
+    public Spell SpellId => (Spell) NWScript.GetSpellId();
 
     public NwWaypoint GetWaypointByTag(string tag) => NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
 
