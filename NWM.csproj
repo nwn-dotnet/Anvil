@@ -34,11 +34,4 @@
         </None>
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Remove="lib\**" />
-      <Compile Remove="lib\**" />
-      <EmbeddedResource Remove="lib\**" />
-      <None Remove="lib\**" />
-    </ItemGroup>
-
 </Project>
