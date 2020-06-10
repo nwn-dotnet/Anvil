@@ -17,8 +17,6 @@ namespace NWM.Core
 
     // Type info cache
     private Dictionary<Type, IEventAttribute> cachedEventInfo = new Dictionary<Type, IEventAttribute>();
-    private Dictionary<Type, ScriptEventAttribute> cachedScriptEventInfo = new Dictionary<Type, ScriptEventAttribute>();
-    private Dictionary<Type, NWNXEventAttribute> cachedNwnxEventInfo = new Dictionary<Type, NWNXEventAttribute>();
 
     // Lookup Data
     private Dictionary<string, EventHandler> scriptToEventMap = new Dictionary<string, EventHandler>();
