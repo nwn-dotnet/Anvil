@@ -1,3 +1,4 @@
+using NWM.API.Constants;
 using NWN;
 
 namespace NWM.API
@@ -6,24 +7,62 @@ namespace NWM.API
   {
     internal NwPlayer(uint objectId) : base(objectId) {}
 
+    /// <summary>
+    /// Gets if this Player is a Dungeon Master.
+    /// </summary>
     public bool IsDM => NWScript.GetIsDM(ObjectId).ToBool();
+
+    /// <summary>
+    /// Gets the player's login name.
+    /// </summary>
     public string PlayerName => NWScript.GetPCPlayerName(this);
 
+    /// <summary>
+    /// Sends a server message to this player.
+    /// </summary>
+    /// <param name="message">The message to send.</param>
+    /// <param name="color">A </param>
     public void SendServerMessage(string message, Color color)
     {
       NWScript.SendMessageToPC(this, message.ColorString(color));
     }
 
+    /// <summary>
+    /// Sends a server message to this player.
+    /// </summary>
+    /// <param name="message">The message to send.</param>
     public void SendServerMessage(string message)
     {
       NWScript.SendMessageToPC(this, message);
     }
 
-    public void ActionStartConversation(NwGameObject converseWith, string dialogResRef, bool isPrivate = false, bool playHello = true)
+    /// <summary>
+    /// Starts a conversation with another object, typically a creature.
+    /// </summary>
+    /// <param name="converseWith">The target object to converse with.</param>
+    /// <param name="dialogResRef">The dialogue to start. If this is unset, the target's own dialogue file will be used.</param>
+    /// <param name="isPrivate">Whether this dialogue should be visible to all nearby players, or visible to this player only.</param>
+    /// <param name="playHello">Whether the hello/greeting should be played once the dialogue starts.</param>
+    public void ActionStartConversation(NwGameObject converseWith, string dialogResRef = "", bool isPrivate = false, bool playHello = true)
     {
       ExecuteOnSelf(() => NWScript.ActionStartConversation(converseWith, dialogResRef, isPrivate.ToInt(), playHello.ToInt()));
     }
 
+    /// <summary>
+    /// Changes the direction this player's camera is facing.
+    /// </summary>
+    /// <param name="direction">Horizontal angle from East in degrees. -1 to leave the angle unmodified.</param>
+    /// <param name="pitch">Vertical angle of the camera in degrees. -1 to leave the angle unmodified.</param>
+    /// <param name="distance">Distance (zoom) of the camera. -1 to leave the distance unmodified.</param>
+    /// <param name="transitionType">The transition to use for moving the camera.</param>
+    public void SetCameraFacing(float direction, float pitch = -1.0f, float distance = -1.0f, CameraTransitionType transitionType = CameraTransitionType.Snap)
+    {
+      ExecuteOnSelf(() => NWScript.SetCameraFacing(direction, distance, pitch, (int) transitionType));
+    }
+
+    /// <summary>
+    /// Forces this player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc)
+    /// </summary>
     public void ExportCharacter()
     {
       NWScript.ExportSingleCharacter(this);

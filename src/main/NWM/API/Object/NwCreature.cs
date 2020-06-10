@@ -13,12 +13,17 @@ namespace NWM.API
   {
     internal NwCreature(uint objectId) : base(objectId) {}
 
-    private const int MaxClasses = 3;
+    private const int MAX_CLASSES = 3;
 
     /// <summary>
-    /// Returns true if this creature is in combat.
+    /// Gets if this creature is in combat.
     /// </summary>
     public bool IsInCombat => NWScript.GetIsInCombat(this).ToBool();
+
+    /// <summary>
+    /// Gets the racial type of this creature.
+    /// </summary>
+    public RacialType RacialType => (RacialType) NWScript.GetRacialType(this);
 
     /// <summary>
     /// Creates a creature at the specified location.
@@ -131,8 +136,8 @@ namespace NWM.API
     {
       get
       {
-        List<ClassType> classes = new List<ClassType>(MaxClasses);
-        for (int i = 0; i < MaxClasses; i++)
+        List<ClassType> classes = new List<ClassType>(MAX_CLASSES);
+        for (int i = 0; i < MAX_CLASSES; i++)
         {
           ClassType classType = (ClassType) NWScript.GetClassByPosition(i + 1, this);
           if (classType == ClassType.Invalid)

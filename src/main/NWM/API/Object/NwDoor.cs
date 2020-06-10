@@ -1,5 +1,6 @@
 using NWM.API.Constants;
 using NWMX.API.Constants;
+using NWN;
 
 namespace NWM.API
 {
@@ -7,5 +8,24 @@ namespace NWM.API
   public sealed class NwDoor : NwStationary
   {
     internal NwDoor(uint objectId) : base(objectId) {}
+
+    /// <summary>
+    /// Gets or sets the locked state for this door.
+    /// </summary>
+    public bool Locked
+    {
+      get => NWScript.GetLocked(this).ToBool();
+      set => NWScript.SetLocked(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Opens this door.
+    /// </summary>
+    public void Open() => ExecuteOnSelf(() => NWScript.ActionOpenDoor(this));
+
+    /// <summary>
+    /// Closes this door.
+    /// </summary>
+    public void Close() => ExecuteOnSelf(() => NWScript.ActionCloseDoor(this));
   }
 }

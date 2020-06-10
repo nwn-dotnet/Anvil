@@ -14,6 +14,15 @@ namespace NWM.API
     public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
 
     /// <summary>
+    /// Gets or sets the locked state for this placeable.
+    /// </summary>
+    public bool Locked
+    {
+      get => NWScript.GetLocked(this).ToBool();
+      set => NWScript.SetLocked(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets or sets whether this placeable should illuminate
     /// </summary>
     public bool Illumination

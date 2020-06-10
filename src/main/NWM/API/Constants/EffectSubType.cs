@@ -2,7 +2,7 @@ using NWN;
 
 namespace NWM.API.Constants
 {
-  public enum SubType
+  public enum EffectSubType
   {
     Magical = NWScript.SUBTYPE_MAGICAL,
     Supernatural = NWScript.SUBTYPE_SUPERNATURAL,

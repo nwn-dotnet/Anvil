@@ -54,6 +54,37 @@ namespace NWM.API
     }
 
     /// <summary>
+    /// Returns the distance to the target. <br/>
+    /// If you only need to compare the distance, you can compare the squared distance using <see cref="SqrDistanceToObject"/>. (calculating squared distance is faster)
+    /// </summary>
+    /// <param name="target">The other object to calculate distance from.</param>
+    /// <returns>The distance in game units, or -1 if this target is in a different area.</returns>
+    public float DistanceToObject(NwGameObject target)
+    {
+      if (target.Area != Area)
+      {
+        return -1.0f;
+      }
+
+      return (target.Position - Position).Length();
+    }
+
+    /// <summary>
+    /// Returns the squared distance to the target.
+    /// </summary>
+    /// <param name="target">The other object to calculate distance from.</param>
+    /// <returns>The squared distance in game units, or -1 if this target is in a different area.</returns>
+    public float SqrDistanceToObject(NwGameObject target)
+    {
+      if (target.Area != Area)
+      {
+        return -1.0f;
+      }
+
+      return (target.Position - Position).LengthSquared();
+    }
+
+    /// <summary>
     /// Gets or sets the Portrait ResRef for this object.
     /// </summary>
     public string PortraitResRef
@@ -63,12 +94,14 @@ namespace NWM.API
     }
 
     /// <summary>
-    /// Gets the current Hitpoints for this object.
+    /// Gets the current HP for this object.
     /// </summary>
-    public int HP
-    {
-      get => NWScript.GetCurrentHitPoints(this);
-    }
+    public int HP => NWScript.GetCurrentHitPoints(this);
+
+    /// <summary>
+    /// Gets the maximum HP for this object. Returns 0 if this object has no defined HP.
+    /// </summary>
+    public int MaxHP => NWScript.GetMaxHitPoints(this);
 
     /// <summary>
     /// Rotates this object to face towards target.
@@ -220,6 +253,39 @@ namespace NWM.API
         }
       }
     }
+
+    /// <summary>
+    /// Plays the specified sound as mono audio from the location of this object.
+    /// </summary>
+    /// <param name="soundName"></param>
+    public void PlaySound(string soundName) => ExecuteOnSelf(() => NWScript.PlaySound(soundName));
+
+    /// <summary>
+    /// Do a Fortitude Save check for the given dc.
+    /// </summary>
+    /// <param name="dc">Difficulty class.</param>
+    /// <param name="saveType">The type of save.</param>
+    /// <param name="saveVs"></param>
+    /// <returns>The result of the saving throw.</returns>
+    public SavingThrowResult FortitudeSave(int dc, SavingThrowType saveType, NwGameObject saveVs = null) => (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
+
+    /// <summary>
+    /// Do a Reflex Save check for the given dc.
+    /// </summary>
+    /// <param name="dc">Difficulty class.</param>
+    /// <param name="saveType">The type of save.</param>
+    /// <param name="saveVs"></param>
+    /// <returns>The result of the saving throw.</returns>
+    public SavingThrowResult ReflexSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null) => (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
+
+    /// <summary>
+    /// Do a Will Save check for the given dc.
+    /// </summary>
+    /// <param name="dc">Difficulty class.</param>
+    /// <param name="saveType">The type of save.</param>
+    /// <param name="saveVs"></param>
+    /// <returns>The result of the saving throw.</returns>
+    public SavingThrowResult WillSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null) => (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
 
     /// <summary>
     /// Destroys this object (irrevocably)

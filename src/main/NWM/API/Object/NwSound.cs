@@ -9,9 +9,23 @@ namespace NWM.API
   {
     public NwSound(uint objectId) : base(objectId) {}
 
-    public void Play()
+
+    /// <summary>
+    /// Sets the volume for this sound object (0-127)
+    /// </summary>
+    public sbyte Volume
     {
-      NWScript.SoundObjectPlay(this);
+      set => NWScript.SoundObjectSetVolume(this, value);
     }
+
+    /// <summary>
+    /// Plays this sound object.
+    /// </summary>
+    public void Play() => NWScript.SoundObjectPlay(this);
+
+    /// <summary>
+    /// Stops this sound object from playing.
+    /// </summary>
+    public void Stop() => NWScript.SoundObjectStop(this);
   }
 }
