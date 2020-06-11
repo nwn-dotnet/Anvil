@@ -23,6 +23,24 @@ namespace NWM.API
     }
 
     /// <summary>
+    /// Gets or sets whether a specific key with the tag <see cref="LockKeyTag"/> is required to open this placeable.
+    /// </summary>
+    public bool LockKeyRequired
+    {
+      get => NWScript.GetLockKeyRequired(this).ToBool();
+      set => NWScript.SetLockKeyRequired(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets the tag of the key that will open this placeable.
+    /// </summary>
+    public string LockKeyTag
+    {
+      get => NWScript.GetLockKeyTag(this);
+      set => NWScript.SetLockKeyTag(this, value);
+    }
+
+    /// <summary>
     /// Gets or sets whether this placeable should illuminate
     /// </summary>
     public bool Illumination

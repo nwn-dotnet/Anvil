@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using NWM.API.Constants;
 using NWMX.API.Constants;
 using NWN;
@@ -21,11 +22,19 @@ namespace NWM.API
     /// <summary>
     /// Opens this door.
     /// </summary>
-    public void Open() => ExecuteOnSelf(() => NWScript.ActionOpenDoor(this));
+    public async Task Open()
+    {
+      await WaitForObjectContext();
+      NWScript.ActionOpenDoor(this);
+    }
 
     /// <summary>
     /// Closes this door.
     /// </summary>
-    public void Close() => ExecuteOnSelf(() => NWScript.ActionCloseDoor(this));
+    public async Task Close()
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCloseDoor(this);
+    }
   }
 }

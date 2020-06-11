@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using NWN;
 using NWNX;
 
@@ -68,26 +69,34 @@ namespace NWM.API
     /// <summary>
     /// Assign the specified action to this object
     /// </summary>
-    internal void AssignCommand(ActionDelegate action) => NWScript.AssignCommand(this, action);
-
-    protected void ExecuteOnSelf(ActionDelegate action)
+    public async Task WaitForObjectContext()
     {
-      if (this == Internal.ObjectSelf)
+      if (Main.Instance.ObjectSelf == this)
       {
-        action();
+        return;
       }
-      else
+
+      if (!IsValid)
       {
-        AssignCommand(action);
+        throw new InvalidOperationException("Cannot wait for the context of an invalid object.");
       }
+
+      TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+      NWScript.AssignCommand(this, () =>
+      {
+        tcs.SetResult(true);
+      });
+
+      await tcs.Task;
     }
 
     /// <summary>
     /// Inserts the function call aCommand into the Action Queue, ensuring the calling object will perform actions in a particular order.
     /// </summary>
-    public void AddActionToQueue(ActionDelegate action)
+    public async Task AddActionToQueue(ActionDelegate action)
     {
-      ExecuteOnSelf(() => NWScript.ActionDoCommand(action));
+      await WaitForObjectContext();
+      NWScript.ActionDoCommand(action);
     }
 
     /// <summary>
@@ -98,9 +107,10 @@ namespace NWM.API
     ///    on a creature, which will stop the combat music and allow them to rest,
     ///    engage in dialog, or other actions that they would normally have to wait for.
     /// </summary>
-    public void ClearActionQueue(bool clearCombatState = false)
+    public async Task ClearActionQueue(bool clearCombatState = false)
     {
-      ExecuteOnSelf(() => NWScript.ClearAllActions(clearCombatState.ToInt()));
+      await WaitForObjectContext();
+      NWScript.ClearAllActions(clearCombatState.ToInt());
     }
 
     public LocalBool GetLocalBool(string name)

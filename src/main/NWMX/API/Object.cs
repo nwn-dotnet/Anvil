@@ -1,3 +1,4 @@
+using System.Numerics;
 using NWM.API;
 using NWM.API.Constants;
 using NWNX;
@@ -6,6 +7,16 @@ namespace NWMX.API
 {
   public static class Object
   {
+    public static void AddToArea(this NwGameObject gameObject, Location location)
+    {
+      ObjectPlugin.AddToArea(gameObject, location.Area, location.Position);
+    }
+
+    public static void AddToArea(this NwGameObject gameObject, NwArea area, Vector3 position)
+    {
+      ObjectPlugin.AddToArea(gameObject, area, position);
+    }
+
     public static void AcquireItem(this NwGameObject gameObject, NwItem item)
     {
       ObjectPlugin.AcquireItem(gameObject, item);

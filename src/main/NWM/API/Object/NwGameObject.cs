@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NWM.API.Constants;
 using NWN;
 using Vector3 = System.Numerics.Vector3;
@@ -10,12 +11,11 @@ namespace NWM.API
     internal NwGameObject(uint objectId) : base(objectId) {}
 
     /// <summary>
-    /// Gets or sets the location of this object.
+    /// Gets the location of this object.
     /// </summary>
     public virtual Location Location
     {
       get => NWScript.GetLocation(this);
-      set => ExecuteOnSelf(() => NWScript.JumpToLocation(value));
     }
 
     /// <summary>
@@ -32,7 +32,6 @@ namespace NWM.API
     public Vector3 Position
     {
       get => NWScript.GetPosition(this);
-      set => ExecuteOnSelf(() => NWScript.JumpToLocation(NWScript.Location(Area, value, Rotation)));
     }
 
     /// <summary>
@@ -41,7 +40,6 @@ namespace NWM.API
     public virtual float Rotation
     {
       get => NWScript.GetFacing(this) % 360;
-      set => ExecuteOnSelf(() => NWScript.SetFacing(value % 360));
     }
 
     /// <summary>
@@ -51,6 +49,33 @@ namespace NWM.API
     {
       get => new VisualTransform(this);
       set => value?.Apply(this);
+    }
+
+    /// <summary>
+    /// Sets the location of this object.
+    /// </summary>
+    public virtual async Task SetLocation(Location value)
+    {
+      await WaitForObjectContext();
+      NWScript.JumpToLocation(value);
+    }
+
+    /// <summary>
+    /// Sets the position of this object.
+    /// </summary>
+    public async Task SetPosition(Vector3 value)
+    {
+      await WaitForObjectContext();
+      NWScript.JumpToLocation(NWScript.Location(Area, value, Rotation));
+    }
+
+    /// <summary>
+    /// Sets the rotation of this object.
+    /// </summary>
+    public virtual async Task SetRotation(float value)
+    {
+      await WaitForObjectContext();
+      NWScript.SetFacing(value % 360);
     }
 
     /// <summary>
@@ -107,18 +132,19 @@ namespace NWM.API
     /// Rotates this object to face towards target.
     /// </summary>
     /// <param name="target">The target object to face.</param>
-    public void FaceToObject(NwGameObject target)
+    public async Task FaceToObject(NwGameObject target)
     {
-      FaceToPoint(target.Position);
+      await FaceToPoint(target.Position);
     }
 
     /// <summary>
     /// Rotates this object to face a position.
     /// </summary>
     /// <param name="point"></param>
-    public virtual void FaceToPoint(Vector3 point)
+    public virtual async Task FaceToPoint(Vector3 point)
     {
-      AssignCommand(() => NWScript.SetFacingPoint(point));
+      await WaitForObjectContext();
+      NWScript.SetFacingPoint(point);
     }
 
     /// <summary>
@@ -151,15 +177,16 @@ namespace NWM.API
     /// <param name="animSpeed">Speed to play the animation.</param>
     /// <param name="queueAsAction">If true, enqueues animation playback in the object's action queue.</param>
     /// <param name="duration">Duration to keep animating. Not used in fire and forget animations.</param>
-    public void PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, float duration = 0.0f)
+    public async Task PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, float duration = 0.0f)
     {
+      await WaitForObjectContext();
       if (!queueAsAction)
       {
-        ExecuteOnSelf(() => NWScript.PlayAnimation((int) animation, animSpeed, duration));
+        NWScript.PlayAnimation((int) animation, animSpeed, duration);
       }
       else
       {
-        ExecuteOnSelf(() => NWScript.ActionPlayAnimation((int) animation, animSpeed, duration));
+        NWScript.ActionPlayAnimation((int) animation, animSpeed, duration);
       }
     }
 
@@ -169,35 +196,39 @@ namespace NWM.API
     /// <param name="message">The message the object should speak.</param>
     /// <param name="talkVolume">The channel/volume of this message.</param>
     /// <param name="queueAsAction">Whether the object should speak immediately (false), or be queued in the object's action queue (true).</param>
-    public void SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)
+    public async Task SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)
     {
+      await WaitForObjectContext();
       if (!queueAsAction)
       {
-        ExecuteOnSelf(() => NWScript.SpeakString(message, (int) talkVolume));
+        NWScript.SpeakString(message, (int) talkVolume);
       }
       else
       {
-        ExecuteOnSelf(() => NWScript.ActionSpeakString(message, (int) talkVolume));
+        NWScript.ActionSpeakString(message, (int) talkVolume);
       }
     }
 
     /// <summary>
     /// Returns the creatures closest to this object.
     /// </summary>
-    public IEnumerable<NwCreature> GetNearestCreatures() => GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures() =>
+      GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
 
     /// <summary>
     /// Returns the creatures closest to this object, matching the specified criteria.
     /// </summary>
     /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
-    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1) => GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1) =>
+      GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
 
     /// <summary>
     /// Returns the creatures closest to this object, matching all of the specified criteria.
     /// </summary>
     /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
     /// <param name="filter2">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
-    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2) => GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2) =>
+      GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
 
     /// <summary>
     /// Returns the creatures closest to this object, matching all of the specified criteria.
@@ -258,7 +289,11 @@ namespace NWM.API
     /// Plays the specified sound as mono audio from the location of this object.
     /// </summary>
     /// <param name="soundName"></param>
-    public void PlaySound(string soundName) => ExecuteOnSelf(() => NWScript.PlaySound(soundName));
+    public async Task PlaySound(string soundName)
+    {
+      await WaitForObjectContext();
+      NWScript.PlaySound(soundName);
+    }
 
     /// <summary>
     /// Do a Fortitude Save check for the given dc.
@@ -267,7 +302,8 @@ namespace NWM.API
     /// <param name="saveType">The type of save.</param>
     /// <param name="saveVs"></param>
     /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult FortitudeSave(int dc, SavingThrowType saveType, NwGameObject saveVs = null) => (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
+    public SavingThrowResult FortitudeSave(int dc, SavingThrowType saveType, NwGameObject saveVs = null) =>
+      (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
 
     /// <summary>
     /// Do a Reflex Save check for the given dc.
@@ -276,7 +312,8 @@ namespace NWM.API
     /// <param name="saveType">The type of save.</param>
     /// <param name="saveVs"></param>
     /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult ReflexSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null) => (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
+    public SavingThrowResult ReflexSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null) =>
+      (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
 
     /// <summary>
     /// Do a Will Save check for the given dc.
@@ -285,7 +322,39 @@ namespace NWM.API
     /// <param name="saveType">The type of save.</param>
     /// <param name="saveVs"></param>
     /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult WillSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null) => (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
+    public SavingThrowResult WillSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null) =>
+      (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
+
+    /// <summary>
+    /// Casts a spell at an object.
+    /// </summary>
+    /// <param name="spell">The spell to cast.</param>
+    /// <param name="target">The target for the spell.</param>
+    /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
+    /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
+    /// <param name="domainLevel">Specifies the spell level if the spell is to be cast as a domain spell.</param>
+    /// <param name="projectilePathType"></param>
+    /// <param name="instant">If true, the spell is cast immediately.</param>
+    public async Task ActionCastSpellAt(Spell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCastSpellAtObject((int) spell, target, (int) metaMagic, cheat.ToInt(), domainLevel, (int) projectilePathType, instant.ToInt());
+    }
+
+    /// <summary>
+    /// Casts a spell at an location.
+    /// </summary>
+    /// <param name="spell">The spell to cast.</param>
+    /// <param name="target">The target for the spell.</param>
+    /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
+    /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
+    /// <param name="projectilePathType"></param>
+    /// <param name="instant">If true, the spell is cast immediately.</param>
+    public async Task ActionCastSpellAt(Spell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCastSpellAtLocation((int) spell, target, (int) metaMagic, cheat.ToInt(), (int) projectilePathType, instant.ToInt());
+    }
 
     /// <summary>
     /// Destroys this object (irrevocably)

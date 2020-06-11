@@ -1,6 +1,7 @@
+using System;
 using System.Numerics;
+using System.Threading.Tasks;
 using NWN;
-using NWNX;
 
 namespace NWM.API
 {
@@ -8,27 +9,25 @@ namespace NWM.API
   {
     internal NwStationary(uint objectId) : base(objectId) {}
 
-    public override void FaceToPoint(Vector3 point)
+    public override async Task FaceToPoint(Vector3 point)
     {
       Vector3 direction = Vector3.Normalize(point - Position);
-      base.FaceToPoint(Position - direction);
+      await base.FaceToPoint(Position - direction);
     }
 
     // TODO - Test trigger rotation.
-    public override float Rotation
+    public override float Rotation => (360 - NWScript.GetFacing(this)) % 360;
+
+    public override Location Location => Location.Create(Area, Position, Rotation);
+
+    public override Task SetLocation(Location value)
     {
-      get => (360 - NWScript.GetFacing(this)) % 360;
-      set => base.Rotation = 360 - value;
+      throw new NotSupportedException();
     }
 
-    public override Location Location
+    public override Task SetRotation(float value)
     {
-      get { return Location.Create(Area, Position, Rotation); }
-      set
-      {
-        ObjectPlugin.AddToArea(this, value.Area, value.Position);
-        Rotation = value.Rotation;
-      }
+      return base.SetRotation(360 - value);
     }
   }
 }
