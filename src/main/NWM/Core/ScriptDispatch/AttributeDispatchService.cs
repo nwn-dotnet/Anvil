@@ -6,7 +6,7 @@ using NWM.API;
 
 namespace NWM.Core
 {
-  [Service(typeof(IScriptDispatcher), IsCollection = true)]
+  [ServiceBinding(typeof(IScriptDispatcher))]
   internal sealed class AttributeDispatchService : IScriptDispatcher
   {
     private const int START_CAPACITY = 2000;

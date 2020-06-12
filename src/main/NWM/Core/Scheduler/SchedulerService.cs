@@ -5,7 +5,8 @@ using NWM.API;
 
 namespace NWM.Core
 {
-  [Service(typeof(IUpdateable), IsCollection = true)]
+  [ServiceBinding(typeof(IUpdateable))]
+  [ServiceBinding(typeof(SchedulerService))]
   public class SchedulerService : IUpdateable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

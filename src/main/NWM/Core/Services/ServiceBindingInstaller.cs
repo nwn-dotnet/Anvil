@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using NLog;
+using NWM.API;
 using SimpleInjector;
 
 namespace NWM.Core
@@ -11,17 +13,21 @@ namespace NWM.Core
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private Container container;
 
+    private Dictionary<Type, List<Binding>> bindings = new Dictionary<Type, List<Binding>>();
+
     public virtual void ConfigureBindings(Container container)
     {
       this.container = container;
-      RegisterAssemblies();
+      SearchForBindings();
+      RegisterBindings();
+      bindings = null;
 
       container.Options.AllowOverridingRegistrations = true;
       RegisterOverrides();
       container.Options.AllowOverridingRegistrations = false;
     }
 
-    private void RegisterAssemblies()
+    private void SearchForBindings()
     {
       Log.Info("Loading managed services");
       Assembly nwmAssembly = Assembly.GetExecutingAssembly();
@@ -33,50 +39,55 @@ namespace NWM.Core
         if (assembly == nwmAssembly || assembly.GetReferencedAssemblies().Any(name => name.ToString() == nwmAssemblyName))
         {
           Log.Debug($"Registering assembly: {assembly.FullName}");
-          RegisterAssemblyServices(assembly);
+          SearchAssemblyForBindings(assembly);
         }
       }
     }
 
-    private void RegisterAssemblyServices(Assembly assembly)
+    private void SearchAssemblyForBindings(Assembly assembly)
     {
       foreach (Type type in assembly.GetTypes())
       {
-        ServiceAttribute service = type.GetCustomAttribute<ServiceAttribute>();
-        if (service == null)
+        if (PopulateBindings(type, type.GetCustomAttributes<ServiceBindingAttribute>()))
         {
-          continue;
+          Log.Info($"Registered service: {type.Name}");
         }
-
-        RegisterService(type, service);
-        Log.Info($"Registered service: {type.Name}");
       }
     }
 
-    protected virtual void RegisterService(Type toType, ServiceAttribute service)
+    private bool PopulateBindings(Type bindFrom, IEnumerable<ServiceBindingAttribute> newBindings)
     {
-      Lifestyle lifestyle = service.BindingType.ToLifestyle();
-
-      if (service.BindSelf)
+      bool addedBinding = false;
+      foreach (ServiceBindingAttribute bindingInfo in newBindings)
       {
-        Log.Debug($"Bind: {toType.FullName} -> {toType.FullName}");
-        container.Register(toType, toType, lifestyle);
+        Binding binding = new Binding(bindFrom, bindingInfo);
+        bindings.AddElement(bindingInfo.BindFrom, binding);
+        addedBinding = true;
       }
 
-      if (!service.IsCollection)
+      return addedBinding;
+    }
+
+    private void RegisterBindings()
+    {
+      foreach ((Type serviceType, List<Binding> implementations) in bindings)
       {
-        foreach (Type fromType in service.BindFrom)
+        if (implementations.Count == 1)
         {
-          Log.Debug($"Bind: {fromType.FullName} -> {toType.FullName}");
-          container.Register(fromType, toType, lifestyle);
+          Binding binding = implementations[0];
+
+          container.Register(serviceType, binding.ImplementationType, binding.BindingInfo.BindingType.ToLifestyle());
+          container.Collection.Append(serviceType, binding.ImplementationType, binding.BindingInfo.BindingType.ToLifestyle());
+          Log.Debug($"Bind: {serviceType.FullName} -> {binding.ImplementationType.FullName}");
         }
-      }
-      else
-      {
-        foreach (Type fromType in service.BindFrom)
+        else
         {
-          Log.Debug($"Append Bind: {fromType.FullName} -> {toType.FullName}");
-          container.Collection.Append(fromType, toType, lifestyle);
+          Log.Debug($"Bind: {serviceType} --");
+          foreach (Binding binding in implementations)
+          {
+            container.Collection.Append(serviceType, binding.ImplementationType, binding.BindingInfo.BindingType.ToLifestyle());
+            Log.Debug($"  ->  {binding.ImplementationType.FullName}");
+          }
         }
       }
     }

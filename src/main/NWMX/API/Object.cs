@@ -7,6 +7,11 @@ namespace NWMX.API
 {
   public static class Object
   {
+    static Object()
+    {
+      PluginUtils.AssertPluginExists<ObjectPlugin>();
+    }
+
     public static void AddToArea(this NwGameObject gameObject, Location location)
     {
       ObjectPlugin.AddToArea(gameObject, location.Area, location.Position);

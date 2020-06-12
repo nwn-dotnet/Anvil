@@ -11,9 +11,9 @@ namespace NWM.API
       sortedList.Insert(index, item);
     }
 
-    public static void AddElement<TKey, TValue>(this IDictionary<TKey, IList<TValue>> mutableLookup, TKey key, TValue value)
+    public static void AddElement<TKey, TValue>(this IDictionary<TKey, List<TValue>> mutableLookup, TKey key, TValue value)
     {
-      if(!mutableLookup.TryGetValue(key, out IList<TValue> values))
+      if(!mutableLookup.TryGetValue(key, out List<TValue> values))
       {
         values = new List<TValue>();
         mutableLookup[key] = values;

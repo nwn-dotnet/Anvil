@@ -10,6 +10,11 @@ namespace NWMX.API
 {
   public static class Util
   {
+    static Util()
+    {
+      PluginUtils.AssertPluginExists<UtilPlugin>();
+    }
+
     /// <summary>
     /// Gets the name of the currently executing script.<br/>
     /// If depth is > 0, it will return the name of the script that called this one via ExecuteScript().

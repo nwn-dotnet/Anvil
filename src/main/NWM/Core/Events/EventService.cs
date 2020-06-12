@@ -10,7 +10,8 @@ using NWNX;
 
 namespace NWM.Core
 {
-  [Service(typeof(IScriptDispatcher), IsCollection = true)]
+  [ServiceBinding(typeof(IScriptDispatcher))]
+  [ServiceBinding(typeof(EventService))]
   public sealed class EventService : IScriptDispatcher
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

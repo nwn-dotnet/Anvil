@@ -4,7 +4,7 @@ using NWNX;
 
 namespace NWM.Core
 {
-  [Service]
+  [ServiceBinding(typeof(TwoDimArrayFactory))]
   public sealed class TwoDimArrayFactory
   {
     private readonly Dictionary<string, ITwoDimArray> cache = new Dictionary<string, ITwoDimArray>();

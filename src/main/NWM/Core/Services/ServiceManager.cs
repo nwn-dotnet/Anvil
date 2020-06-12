@@ -10,7 +10,6 @@ namespace NWM.Core
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private readonly Container container;
-
     internal ServiceManager(IBindingInstaller bindingInstaller)
     {
       container = new Container();
@@ -27,7 +26,8 @@ namespace NWM.Core
     {
       return container.GetCurrentRegistrations()
         .Where(producer => producer.Lifestyle == Lifestyle.Singleton)
-        .Select(producer => producer.GetInstance());
+        .Select(producer => producer.GetInstance())
+        .Distinct();
     }
 
     public T GetService<T>() where T : class

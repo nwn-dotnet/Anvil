@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 namespace NWM.Core
 {
-  [Service]
+  [ServiceBinding(typeof(LoopTimeService))]
   public class LoopTimeService
   {
     public double Time { get; private set; }
