@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using NWM.API.Constants;
 using NWN;
@@ -19,23 +20,22 @@ namespace NWM.API
     public string PlayerName => NWScript.GetPCPlayerName(this);
 
     /// <summary>
-    /// Sends a server message to this player.
+    /// Gets this player's client version (Major + Minor)
     /// </summary>
-    /// <param name="message">The message to send.</param>
-    /// <param name="color">A </param>
-    public void SendServerMessage(string message, Color color)
-    {
-      NWScript.SendMessageToPC(this, message.ColorString(color));
-    }
+    public Version ClientVersion => new Version(NWScript.GetPlayerBuildVersionMajor(this), NWScript.GetPlayerBuildVersionMinor(this));
 
     /// <summary>
     /// Sends a server message to this player.
     /// </summary>
     /// <param name="message">The message to send.</param>
-    public void SendServerMessage(string message)
-    {
-      NWScript.SendMessageToPC(this, message);
-    }
+    /// <param name="color">A </param>
+    public void SendServerMessage(string message, Color color) => NWScript.SendMessageToPC(this, message.ColorString(color));
+
+    /// <summary>
+    /// Sends a server message to this player.
+    /// </summary>
+    /// <param name="message">The message to send.</param>
+    public void SendServerMessage(string message) => NWScript.SendMessageToPC(this, message);
 
     /// <summary>
     /// Starts a conversation with another object, typically a creature.
@@ -66,9 +66,14 @@ namespace NWM.API
     /// <summary>
     /// Forces this player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc)
     /// </summary>
-    public void ExportCharacter()
-    {
-      NWScript.ExportSingleCharacter(this);
-    }
+    public void ExportCharacter() => NWScript.ExportSingleCharacter(this);
+
+    /// <summary>
+    /// Vibrates the player's device or controller. Does nothing if vibration is not supported.
+    /// </summary>
+    /// <param name="motor">Which motors to vibrate.</param>
+    /// <param name="strength">The intensity of the vibration.</param>
+    /// <param name="duration">How long to vibrate for.</param>
+    public void Vibrate(VibratorMotor motor, float strength, TimeSpan duration) => NWScript.Vibrate(this, (int) motor, strength, (float) duration.TotalSeconds);
   }
 }

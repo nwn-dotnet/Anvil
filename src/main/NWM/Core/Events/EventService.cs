@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using NLog;
 using NWM.API;
 using NWM.API.Events;
-using NWMX.API.Events;
-using NWNX;
 
 namespace NWM.Core
 {
@@ -17,16 +14,11 @@ namespace NWM.Core
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     // Type info cache
-    private Dictionary<Type, IEventAttribute> cachedEventInfo = new Dictionary<Type, IEventAttribute>();
+    private readonly Dictionary<Type, IEventAttribute> cachedEventInfo = new Dictionary<Type, IEventAttribute>();
 
     // Lookup Data
-    private Dictionary<string, EventHandler> scriptToEventMap = new Dictionary<string, EventHandler>();
-    private Dictionary<Type, EventHandler> typeToHandlerMap = new Dictionary<Type, EventHandler>();
-
-    public void SignalNWNXEvent(string eventName, NwObject target)
-    {
-      EventsPlugin.SignalEvent(eventName, target);
-    }
+    private readonly Dictionary<string, EventHandler> scriptToEventMap = new Dictionary<string, EventHandler>();
+    private readonly Dictionary<Type, EventHandler> typeToHandlerMap = new Dictionary<Type, EventHandler>();
 
     public void Unsubscribe<TEvent>(Action<TEvent> existingHandler) where TEvent : IEvent<TEvent>
     {

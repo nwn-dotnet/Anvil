@@ -64,20 +64,61 @@ namespace NWM.API
       set => NWScript.SetXP(this, value < 0 ? 0 : value);
     }
 
+    /// <summary>
+    /// Returns the Hit Dice/Level of this creature.
+    /// </summary>
     public int Level
     {
       get => NWScript.GetHitDice(this);
     }
 
+    /// <summary>
+    /// Returns this creature's current attack target.
+    /// </summary>
     public NwGameObject AttackTarget
     {
       get => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
     }
 
+    /// <summary>
+    /// Returns the last target this creature tried to attack. Reset at the end of combat.
+    /// </summary>
     public async Task<NwGameObject> GetAttemptedAttackTarget()
     {
       await WaitForObjectContext();
       return NWScript.GetAttemptedAttackTarget().ToNwObject<NwGameObject>();
+    }
+
+    /// <summary>
+    /// Gets the target object of this creature's last spell.
+    /// </summary>
+    public async Task<NwGameObject> GetLastSpellTargetObject()
+    {
+      await WaitForObjectContext();
+      return NWScript.GetSpellTargetObject().ToNwObject<NwGameObject>();
+    }
+
+    /// <summary>
+    /// Gets the target location of this creature's last spell.
+    /// </summary>
+    public async Task<Location> GetLastSpellTargetLocation()
+    {
+      await WaitForObjectContext();
+      return NWScript.GetSpellTargetLocation();
+    }
+
+    /// <summary>
+    /// Gets the caster level of the last spell this creature casted.
+    /// </summary>
+    public int LastSpellCasterLevel => NWScript.GetCasterLevel(this);
+
+    /// <summary>
+    /// Gets the target this creature attempted to cast a spell at. Reset at the end of combat.
+    /// </summary>
+    public async Task<NwGameObject> GetAttemptedSpellTarget()
+    {
+      await WaitForObjectContext();
+      return NWScript.GetAttemptedSpellTarget().ToNwObject<NwGameObject>();
     }
 
     public Action CurrentAction => (Action) NWScript.GetCurrentAction(this);
@@ -164,11 +205,22 @@ namespace NWM.API
       return NWScript.GetSkillRank((int) skill, this, ranksOnly.ToInt());
     }
 
+    /// <summary>
+    /// Returns true if this creature has the skill specified, and is useable.
+    /// </summary>
+    /// <param name="skill">The skill to check.</param>
+    /// <returns>True if the creature has this skill.</returns>
     public bool HasSkill(Skill skill)
     {
       return NWScript.GetHasSkill((int) skill, this).ToBool();
     }
 
+    /// <summary>
+    /// Returns true if 1d20 + skill rank is greater than, or equal to difficultyClass.
+    /// </summary>
+    /// <param name="skill">The type of skill check.</param>
+    /// <param name="difficultyClass">The DC of this skill check.</param>
+    /// <returns></returns>
     public bool DoSkillCheck(Skill skill, int difficultyClass)
     {
       return NWScript.GetIsSkillSuccessful(this, (int) skill, difficultyClass).ToBool();

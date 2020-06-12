@@ -1,0 +1,16 @@
+using NWN;
+
+namespace NWM.API.Constants
+{
+  public enum ObjectVisualTransform
+  {
+    Scale = NWScript.OBJECT_VISUAL_TRANSFORM_SCALE,
+    RotateX = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_X,
+    RotateY = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_Y,
+    RotateZ = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_Z,
+    TranslateX = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_X,
+    TranslateY = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_Y,
+    TranslateZ = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_Z,
+    AnimationSpeed = NWScript.OBJECT_VISUAL_TRANSFORM_ANIMATION_SPEED
+  }
+}

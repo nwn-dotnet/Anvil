@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWM.API.Constants;
 using NWN;
+using NWNX;
 using Vector3 = System.Numerics.Vector3;
 
 namespace NWM.API
@@ -16,6 +17,7 @@ namespace NWM.API
     public virtual Location Location
     {
       get => NWScript.GetLocation(this);
+      set => ObjectPlugin.AddToArea(this, value.Area, value.Position);
     }
 
     /// <summary>
@@ -32,6 +34,7 @@ namespace NWM.API
     public Vector3 Position
     {
       get => NWScript.GetPosition(this);
+      set => ObjectPlugin.AddToArea(this, Area, Position);
     }
 
     /// <summary>
@@ -49,24 +52,6 @@ namespace NWM.API
     {
       get => new VisualTransform(this);
       set => value?.Apply(this);
-    }
-
-    /// <summary>
-    /// Sets the location of this object.
-    /// </summary>
-    public virtual async Task SetLocation(Location value)
-    {
-      await WaitForObjectContext();
-      NWScript.JumpToLocation(value);
-    }
-
-    /// <summary>
-    /// Sets the position of this object.
-    /// </summary>
-    public async Task SetPosition(Vector3 value)
-    {
-      await WaitForObjectContext();
-      NWScript.JumpToLocation(NWScript.Location(Area, value, Rotation));
     }
 
     /// <summary>

@@ -1,4 +1,3 @@
-using System;
 using System.Numerics;
 using System.Threading.Tasks;
 using NWN;
@@ -19,11 +18,6 @@ namespace NWM.API
     public override float Rotation => (360 - NWScript.GetFacing(this)) % 360;
 
     public override Location Location => Location.Create(Area, Position, Rotation);
-
-    public override Task SetLocation(Location value)
-    {
-      throw new NotSupportedException();
-    }
 
     public override Task SetRotation(float value)
     {

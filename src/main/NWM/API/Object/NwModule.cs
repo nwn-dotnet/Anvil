@@ -16,10 +16,21 @@ namespace NWM.API
 
     public Spell SpellId => (Spell) NWScript.GetSpellId();
 
+    /// <summary>
+    /// Finds the specified waypoint with the given tag.
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <returns></returns>
     public NwWaypoint GetWaypointByTag(string tag) => NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
 
+    /// <summary>
+    /// Gets the starting location for new players.
+    /// </summary>
     public Location StartingLocation => NWScript.GetStartingLocation();
 
+    /// <summary>
+    /// Gets all active areas in the module.
+    /// </summary>
     public IEnumerable<NwArea> Areas
     {
       get
@@ -31,16 +42,9 @@ namespace NWM.API
       }
     }
 
-    public IEnumerable<NwGameObject> GetObjectsByTag(string tag)
-    {
-      int i;
-      uint obj;
-      for (i = 0, obj = NWScript.GetObjectByTag(tag, i); obj != INVALID; i++, obj = NWScript.GetObjectByTag(tag, i))
-      {
-        yield return obj.ToNwObject<NwGameObject>();
-      }
-    }
-
+    /// <summary>
+    /// Gets all current online players.
+    /// </summary>
     public IEnumerable<NwPlayer> Players
     {
       get
@@ -52,11 +56,34 @@ namespace NWM.API
       }
     }
 
+    /// <summary>
+    /// Gets all objects in the module with the specified tag.
+    /// </summary>
+    /// <param name="tag">The object tag to search.</param>
+    public IEnumerable<NwGameObject> GetObjectsByTag(string tag)
+    {
+      int i;
+      uint obj;
+      for (i = 0, obj = NWScript.GetObjectByTag(tag, i); obj != INVALID; i++, obj = NWScript.GetObjectByTag(tag, i))
+      {
+        yield return obj.ToNwObject<NwGameObject>();
+      }
+    }
+
+    /// <summary>
+    /// Broadcasts a message to the DM channel with the given color, sending a message to all DMs on the server.
+    /// </summary>
+    /// <param name="message">The message to send.</param>
+    /// <param name="color">The color of the message.</param>
     public void SendMessageToAllDMs(string message, Color color)
     {
       NWScript.SendMessageToAllDMs(message.ColorString(color));
     }
 
+    /// <summary>
+    /// Broadcasts a message to the DM channel sending a message to all DMs on the server.
+    /// </summary>
+    /// <param name="message">The message to send.</param>
     public void SendMessageToAllDMs(string message)
     {
       NWScript.SendMessageToAllDMs(message);

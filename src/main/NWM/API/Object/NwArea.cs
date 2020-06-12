@@ -98,10 +98,20 @@ namespace NWM.API
     }
 
     /// <summary>
-    /// All clients in oArea will recompute the static lighting.
+    /// All clients in this area will recompute the static lighting.
     /// This can be used to update the lighting after changing any tile lights
     /// or if placeables with lights have been added/deleted.
     /// </summary>
     public void RecomputeStaticLighting() => NWScript.RecomputeStaticLighting(this);
+
+    public NwArea Clone(string newTag = "", string newName = "") => Create(ResRef, newTag, newName);
+
+    public static NwArea Create(string resRef, string newTag = "", string newName = "") => NWScript.CreateArea(resRef, newTag, newName).ToNwObject<NwArea>();
+
+    /// <summary>
+    /// Destroys this area and anything within it.
+    /// </summary>
+    /// <returns>The result of this destroy action.</returns>
+    public AreaDestroyResult Destroy() => (AreaDestroyResult) NWScript.DestroyArea(this);
   }
 }
