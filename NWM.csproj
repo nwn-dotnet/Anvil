@@ -17,7 +17,7 @@
         <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" ExcludeAssets="runtime" />
         <PackageReference Include="NLog" Version="4.7.2" />
         <PackageReference Include="NWN.Core" Version="1.0.3" PrivateAssets="All" />
-        <PackageReference Include="SimpleInjector" Version="4.10.2" />
+        <PackageReference Include="SimpleInjector" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
