@@ -6,18 +6,19 @@ NWN.NET is a C# library that attempts to wrap Neverwinter Script with C# nicetie
 ### Dependencies
 NWN.NET requires the following plugins to be enabled in NWNX in-order to run:
 ```
-DotNET: NWNX_DOTNET_SKIP=n
-Object: NWNX_OBJECT_SKIP=n
-Util:   NWNX_UTIL_SKIP=n
+NWNX_DOTNET_SKIP=n
+NWNX_OBJECT_SKIP=n
+NWNX_UTIL_SKIP=n
 ```
 
 Other plugins are optional, but may be required to access some extension APIs. An exception will be raised if you try to use an extension without the dependent plugin loaded.
-
 
 ### Bootstrap
 To initialize the managed system, add a small bootstrap class like the following:
 
 ```csharp
+using System;
+
 namespace NWN
 {
   public static class Internal
@@ -38,8 +39,8 @@ The core of NWN.NET is built around a dependency injection model that is setup u
 **Example: Basic Script Handler**
 ```csharp
   using NLog;
-  using NWM.API;
-  using NWM.Core;
+  using NWN.API;
+  using NWN.Services;
   
   // This attribute indicates this class should be constructed on start, and available as a dependency "MyScriptHandler"
   // You can also bind yourself to an interface or base class. The system also supports multiple bindings.
@@ -63,11 +64,15 @@ The core of NWN.NET is built around a dependency injection model that is setup u
 
 **Example: Chat Command System**
 ```csharp
+  using System.Collections.Generic;
+  using System.Linq;
+  using NWN.API;
+  using NWN.API.Events;
+  using NWN.Services;
+
   public interface IChatCommand
   {
     string Command { get; }
-    bool DMOnly { get; }
-
     void ExecuteCommand(NwPlayer caller);
   }
 
@@ -100,7 +105,7 @@ The core of NWN.NET is built around a dependency injection model that is setup u
   public class ChatHandler
   {
     private readonly List<IChatCommand> chatCommands;
-    
+
     // In our class constructor we define our dependencies.
     // In this case, we require the EventService to subscribe to the module chat event.
     // And we also inject all of the chat commands we bound above.
@@ -114,7 +119,7 @@ The core of NWN.NET is built around a dependency injection model that is setup u
     {
       // Get the message from the event.
       string message = eventInfo.Message;
-      
+
       // Loop through all of our created commands, and execute the one that matches.
       foreach (IChatCommand command in chatCommands)
       {
@@ -126,18 +131,17 @@ The core of NWN.NET is built around a dependency injection model that is setup u
       }
     }
   }
-
 ```
 
 ## Core Services
 (WIP)
 
-### Event Service (Core.EventService)
+### Event Service (NWN.Services.EventService)
 **Send a pink welcome message to a player when they connect**
 ```csharp
-  using NWM.API;
-  using NWM.API.Events;
-  using NWM.Core;
+  using NWN.API;
+  using NWN.API.Events;
+  using NWN.Services;
 
   [ServiceBinding(typeof(WelcomeMessageService))]
   public class WelcomeMessageService
@@ -154,9 +158,8 @@ The core of NWN.NET is built around a dependency injection model that is setup u
   }
 ```
 
+### Scheduler Service (NWN.Services.SchedulerService)
 
-### Scheduler Service (Core.SchedulerService)
+### Loop Service (NWN.Services.LoopService)
 
-### Loop Service (Core.LoopService)
-
-### 2DA Factory (Core.TwoDimArrayFactory)
+### 2DA Factory (NWN.Services.TwoDimArrayFactory)

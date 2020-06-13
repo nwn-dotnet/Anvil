@@ -1,0 +1,16 @@
+using System;
+
+namespace NWN.API.Events
+{
+  public interface IEvent<TObject, out TEvent> : IEvent<TEvent> where TEvent : IEvent<TEvent> where TObject : NwObject {}
+
+  public interface IEvent<out T> : IEvent where T : IEvent<T>
+  {
+    event Action<T> Callbacks;
+  }
+
+  public interface IEvent
+  {
+    void BroadcastEvent(NwObject objSelf);
+  }
+}

@@ -1,0 +1,15 @@
+using NWN.Core;
+
+namespace NWN.API.Constants
+{
+  public enum IPOnHitSaveDC
+  {
+    DC14 = NWScript.IP_CONST_ONHIT_SAVEDC_14,
+    DC16 = NWScript.IP_CONST_ONHIT_SAVEDC_16,
+    DC18 = NWScript.IP_CONST_ONHIT_SAVEDC_18,
+    DC20 = NWScript.IP_CONST_ONHIT_SAVEDC_20,
+    DC22 = NWScript.IP_CONST_ONHIT_SAVEDC_22,
+    DC24 = NWScript.IP_CONST_ONHIT_SAVEDC_24,
+    DC26 = NWScript.IP_CONST_ONHIT_SAVEDC_26
+  }
+}
