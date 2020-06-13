@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using NLog;
 using NWM.API;
-using NWNX;
+using NWN.Core.NWNX;
 
 namespace NWMX
 {

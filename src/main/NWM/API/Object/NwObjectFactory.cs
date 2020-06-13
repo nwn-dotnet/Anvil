@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using NWM.API.Constants;
 using NWMX.API.Constants;
-using NWN;
-using NWNX;
+using NWN.Core;
+using NWN.Core.NWNX;
 
 namespace NWM.API
 {

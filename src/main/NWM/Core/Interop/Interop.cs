@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NWM.API;
-using NWN;
+using NWN.Core;
 
 namespace NWM.Core
 {

@@ -1,4 +1,4 @@
-using NWNX;
+using NWN.Core.NWNX;
 
 namespace NWMX.API
 {

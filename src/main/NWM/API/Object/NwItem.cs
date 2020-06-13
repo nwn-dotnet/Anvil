@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using NWM.API.Constants;
 using NWMX.API.Constants;
-using NWN;
-using ItemProperty = NWM.API.ItemProperty;
+using NWN.Core;
 
 namespace NWM.API
 {

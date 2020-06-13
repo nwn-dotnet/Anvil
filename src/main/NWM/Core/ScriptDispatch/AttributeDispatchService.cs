@@ -17,7 +17,7 @@ namespace NWM.Core
 
     public AttributeDispatchService()
     {
-      Main.Instance.OnInitComplete += () => Init(Main.Instance.ServiceManager.GetRegisteredServices());
+      NManager.Instance.OnInitComplete += () => Init(NManager.Instance.ServiceManager.GetRegisteredServices());
     }
 
     public void Init(IEnumerable<object> services)

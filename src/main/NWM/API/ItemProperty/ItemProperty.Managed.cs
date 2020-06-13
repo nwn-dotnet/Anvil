@@ -1,5 +1,5 @@
 using NWM.API.Constants;
-using NWN;
+using NWN.Core;
 
 namespace NWM.API
 {

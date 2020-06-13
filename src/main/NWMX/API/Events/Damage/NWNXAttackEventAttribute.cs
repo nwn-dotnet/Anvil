@@ -1,7 +1,7 @@
 using System;
 using NWM.API;
 using NWM.API.Events;
-using NWNX;
+using NWN.Core.NWNX;
 using EventHandler = NWM.Core.EventHandler;
 
 namespace NWMX.API.Events

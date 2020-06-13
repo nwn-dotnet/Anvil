@@ -1,6 +1,6 @@
 using System;
 using NLog;
-using NWN;
+using NWN.Core;
 
 namespace NWM.Core
 {

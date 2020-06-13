@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWM.API.Constants;
-using NWN;
-using NWNX;
+using NWN.Core;
+using NWN.Core.NWNX;
 using Vector3 = System.Numerics.Vector3;
 
 namespace NWM.API

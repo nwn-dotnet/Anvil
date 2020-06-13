@@ -1,5 +1,3 @@
-using NWN;
-
 namespace NWM.API
 {
   public abstract class NwTrappable : NwGameObject

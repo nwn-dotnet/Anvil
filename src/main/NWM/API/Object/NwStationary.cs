@@ -1,6 +1,6 @@
 using System.Numerics;
 using System.Threading.Tasks;
-using NWN;
+using NWN.Core;
 
 namespace NWM.API
 {

@@ -3,7 +3,7 @@ using System.Numerics;
 using NWM.API;
 using NWM.API.Constants;
 using NWM.API.Events;
-using NWNX;
+using NWN.Core.NWNX;
 
 namespace NWMX.API.Events
 {

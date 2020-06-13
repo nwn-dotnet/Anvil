@@ -1,6 +1,6 @@
 using NWM.API;
 using NWMX.API.Constants;
-using NWNX;
+using NWN.Core.NWNX;
 
 namespace NWMX.API.Events
 {

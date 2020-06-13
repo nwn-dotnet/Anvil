@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using NWN;
-using NWNX;
+using NWN.Core;
+using NWN.Core.NWNX;
 
 namespace NWM.Core
 {

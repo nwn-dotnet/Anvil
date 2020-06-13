@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using NWM.API.Constants;
 using NWMX.API;
 using NWMX.API.Constants;
-using NWN;
+using NWN.Core;
 using Action = NWM.API.Constants.Action;
 
 namespace NWM.API

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using NWM.API;
 using NWMX.API.Constants;
-using NWN;
-using NWNX;
+using NWN.Core;
+using NWN.Core.NWNX;
 using Effect = NWM.API.Effect;
 using ItemProperty = NWM.API.ItemProperty;
 

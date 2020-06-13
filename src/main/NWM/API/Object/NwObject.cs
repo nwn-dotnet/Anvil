@@ -1,8 +1,8 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using NWN;
-using NWNX;
+using NWN.Core;
+using NWN.Core.NWNX;
 
 namespace NWM.API
 {
@@ -71,7 +71,7 @@ namespace NWM.API
     /// </summary>
     public async Task WaitForObjectContext()
     {
-      if (Main.Instance.ObjectSelf == this)
+      if (NManager.Instance.ObjectSelf == this)
       {
         return;
       }

@@ -1,5 +1,5 @@
 using System.Numerics;
-using NWN;
+using NWN.Core;
 
 namespace NWM.API
 {

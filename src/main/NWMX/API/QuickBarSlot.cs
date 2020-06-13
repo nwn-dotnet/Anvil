@@ -19,7 +19,7 @@ namespace NWMX.API
     public int AssociateType { get; set; }
     public NwObject Associate { get; set; }
 
-    public static implicit operator QuickBarSlot(NWNX.QuickBarSlot slot)
+    public static implicit operator QuickBarSlot(NWN.Core.NWNX.QuickBarSlot slot)
     {
       return new QuickBarSlot
       {
@@ -39,9 +39,9 @@ namespace NWMX.API
       };
     }
 
-    public static implicit operator NWNX.QuickBarSlot(QuickBarSlot slot)
+    public static implicit operator NWN.Core.NWNX.QuickBarSlot(QuickBarSlot slot)
     {
-      return new NWNX.QuickBarSlot
+      return new NWN.Core.NWNX.QuickBarSlot
       {
         oItem = slot.Item,
         oSecondaryItem = slot.SecondaryItem,

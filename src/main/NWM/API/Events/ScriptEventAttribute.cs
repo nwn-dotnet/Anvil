@@ -1,10 +1,9 @@
 using System;
 using JetBrains.Annotations;
 using NLog;
-using NLog.Fluent;
 using NWM.API.Constants;
 using NWM.Core;
-using NWN;
+using NWN.Core;
 using EventHandler = NWM.Core.EventHandler;
 
 namespace NWM.API.Events

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using NWM.API.Constants;
-using NWN;
+using NWN.Core;
 
 namespace NWM.API
 {

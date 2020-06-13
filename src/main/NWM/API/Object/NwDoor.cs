@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using NWM.API.Constants;
 using NWMX.API.Constants;
-using NWN;
+using NWN.Core;
 
 namespace NWM.API
 {

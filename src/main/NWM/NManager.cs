@@ -6,12 +6,12 @@ using System.Runtime.CompilerServices;
 using NLog;
 using NWM.Core;
 using NWMX;
-using NWN;
-using NWNX;
+using NWN.Core;
+using NWN.Core.NWNX;
 
 namespace NWM
 {
-  public class Main : IGameManager
+  public class NManager : IGameManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -19,7 +19,7 @@ namespace NWM
     private const uint ObjectInvalid = 0x7F000000;
     public uint ObjectSelf { get; private set; } = ObjectInvalid;
 
-    public static Main Instance { get; private set; }
+    public static NManager Instance { get; private set; }
 
     // Events
     public event Action OnInitComplete;
@@ -39,16 +39,16 @@ namespace NWM
     private readonly IBindingInstaller bindingInstaller;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Bootstrap(IntPtr arg, int argLength) => Bootstrap(arg, argLength, new ServiceBindingInstaller());
+    public static int Init(IntPtr arg, int argLength) => Init(arg, argLength, new ServiceBindingInstaller());
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Bootstrap(IntPtr arg, int argLength, IBindingInstaller bindingInstaller)
+    public static int Init(IntPtr arg, int argLength, IBindingInstaller bindingInstaller)
     {
-      Instance = new Main(bindingInstaller);
-      return Internal.Bootstrap(arg, argLength, Instance);
+      Instance = new NManager(bindingInstaller);
+      return Internal.Init(arg, argLength, Instance);
     }
 
-    public Main(IBindingInstaller bindingInstaller)
+    private NManager(IBindingInstaller bindingInstaller)
     {
       this.bindingInstaller = bindingInstaller;
 

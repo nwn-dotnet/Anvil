@@ -2,8 +2,8 @@ using System;
 using NWM.API;
 using NWM.API.Constants;
 using NWM.API.Events;
-using NWN;
-using NWNX;
+using NWN.Core;
+using NWN.Core.NWNX;
 
 namespace NWMX.API.Events
 {
