@@ -106,11 +106,12 @@ namespace NWNX.API
     /// </summary>
     /// <param name="type">A ResRef type</param>
     /// <param name="regexFilter">Lets you filter out resrefs using a regexfilter. For example: nwnx_.\* gets you all scripts prefixed with nwnx_</param>
-    /// <param name="moduleResourcesOnly">If true, only custom resources will be returned.</param>
+    /// <param name="moduleResourcesOnly">If true, only bundled module resources will be returned.</param>
     /// <returns>Any matching resrefs, otherwise an empty enumeration.</returns>
-    public static IEnumerable<string> GetResRefs(int type, string regexFilter = "", bool moduleResourcesOnly = true)
+    public static IEnumerable<string> GetResRefs(ResRefType type, string regexFilter = "", bool moduleResourcesOnly = true)
     {
-      for (string resRef = UtilPlugin.GetFirstResRef(type, regexFilter, moduleResourcesOnly.ToInt());
+      int refType = (int) type;
+      for (string resRef = UtilPlugin.GetFirstResRef(refType, regexFilter, moduleResourcesOnly.ToInt());
         resRef != string.Empty;
         resRef = UtilPlugin.GetNextResRef())
       {
