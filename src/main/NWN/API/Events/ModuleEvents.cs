@@ -114,11 +114,13 @@ namespace NWN.API.Events
     public sealed class OnPlayerChat : IEvent<NwModule, OnPlayerChat>
     {
       public NwPlayer Sender { get; private set; }
+
       public string Message
       {
         get => NWScript.GetPCChatMessage();
         set => NWScript.SetPCChatMessage(value);
       }
+
       public TalkVolume Volume
       {
         get => (TalkVolume) NWScript.GetPCChatVolume();
@@ -175,12 +177,12 @@ namespace NWN.API.Events
     [ScriptEvent(EventScriptType.ModuleOnEquipItem)]
     public sealed class OnPlayerEquipItem : IEvent<NwModule, OnPlayerEquipItem>
     {
-      public NwPlayer Player { get; private set; }
+      public NwCreature Player { get; private set; }
       public NwItem Item { get; private set; }
 
       public void BroadcastEvent(NwObject objSelf)
       {
-        Player = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwPlayer>();
+        Player = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
         Item = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
         Callbacks?.Invoke(this);
       }
@@ -235,12 +237,12 @@ namespace NWN.API.Events
     [ScriptEvent(EventScriptType.ModuleOnUnequipItem)]
     public sealed class OnPlayerUnequipItem : IEvent<NwModule, OnPlayerUnequipItem>
     {
-      public NwPlayer UnequippedBy { get; private set; }
+      public NwCreature UnequippedBy { get; private set; }
       public NwItem Item { get; private set; }
 
       public void BroadcastEvent(NwObject objSelf)
       {
-        UnequippedBy = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwPlayer>();
+        UnequippedBy = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>();
         Item = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>();
         Callbacks?.Invoke(this);
       }
