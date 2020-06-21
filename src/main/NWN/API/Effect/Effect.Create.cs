@@ -6,22 +6,107 @@ namespace NWN.API
 {
   public partial class Effect
   {
+    /// <summary>
+    /// Creates an Ability decrease effect.
+    /// </summary>
+    /// <param name="ability">The ability to decrease.</param>
+    /// <param name="amount">The amount to increase the ability by.</param>
     public static Effect AbilityDecrease(Ability ability, int amount) => NWScript.EffectAbilityDecrease((int) ability, amount);
+
+    /// <summary>
+    /// Creates an Ability increase effect.
+    /// </summary>
+    /// <param name="ability">The ability to increase.</param>
+    /// <param name="amount">The amount to increase the ability by.</param>
     public static Effect AbilityIncrease(Ability ability, int amount) => NWScript.EffectAbilityIncrease((int) ability, amount);
+
+    /// <summary>
+    /// Creates an AC decrease effect.<br/>
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="acType">The type of AC to decrease (Dodge)</param>
     public static Effect ACDecrease(int amount, ACBonus acType = ACBonus.Dodge) => NWScript.EffectACDecrease(amount, (int) acType);
+
+    /// <summary>
+    /// Creates an AC increase effect.
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="acType"></param>
     public static Effect ACIncrease(int amount, ACBonus acType = ACBonus.Dodge) => NWScript.EffectACIncrease(amount, (int) acType);
+
+    /// <summary>
+    /// Creates a special effect to make an object "fly in".
+    /// </summary>
     public static Effect Appear() => NWScript.EffectAppear();
+
     public static Effect AreaOfEffect(int areaEffectId, string onEnterScript = null, string heartbeatScript = null, string onExitScript = null) => NWScript.EffectAreaOfEffect(areaEffectId, onEnterScript, heartbeatScript, onExitScript);
+
+    /// <summary>
+    /// Creates an Attack decrease effect.
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="penaltyType"></param>
     public static Effect AttackDecrease(int amount, AttackBonus penaltyType = AttackBonus.Misc) => NWScript.EffectAttackDecrease(amount, (int) penaltyType);
+
+    /// <summary>
+    /// Creates an Attack increase effect.
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="penaltyType"></param>
     public static Effect AttackIncrease(int amount, AttackBonus penaltyType = AttackBonus.Misc) => NWScript.EffectAttackIncrease(amount, (int) penaltyType);
+
+    /// <summary>
+    /// Creates a beam effect.
+    /// </summary>
+    /// <param name="fxType"></param>
+    /// <param name="emitter"></param>
+    /// <param name="origin"></param>
+    /// <param name="missTarget"></param>
     public static Effect Beam(VfxType fxType, NwGameObject emitter, BodyNode origin, bool missTarget = false) => NWScript.EffectBeam((int) fxType, emitter, (int) origin, missTarget.ToInt());
+
+    /// <summary>
+    /// Creates a blindness effect.
+    /// </summary>
     public static Effect Blindness() => NWScript.EffectBlindness();
+
+    /// <summary>
+    /// Creates a charm effect.
+    /// </summary>
     public static Effect Charmed() => NWScript.EffectCharmed();
+
+    /// <summary>
+    /// Creates an effect to conceal an object.
+    /// </summary>
+    /// <param name="percentage"></param>
+    /// <param name="missChanceType"></param>
     public static Effect Concealment(int percentage, MissChanceType missChanceType = MissChanceType.Normal) => NWScript.EffectConcealment(percentage, (int) missChanceType);
+
+    /// <summary>
+    /// Creates a confuse effect.
+    /// </summary>
     public static Effect Confused() => NWScript.EffectConfused();
+
+    /// <summary>
+    /// Creates a curse effect.
+    /// </summary>
+    /// <param name="strMod"></param>
+    /// <param name="dexMod"></param>
+    /// <param name="conMod"></param>
+    /// <param name="intMod"></param>
+    /// <param name="wisMod"></param>
+    /// <param name="chaMod"></param>
     public static Effect Curse(int strMod = 1, int dexMod = 1, int conMod = 1, int intMod = 1, int wisMod = 1, int chaMod = 1) => NWScript.EffectCurse(strMod, dexMod, conMod, intMod, wisMod, chaMod);
+
+    /// <summary>
+    /// Creates a dominate effect that cannot be resisted.
+    /// </summary>
     public static Effect CutsceneDominated() => NWScript.EffectCutsceneDominated();
+
+    /// <summary>
+    /// Creates an effect that allows creatures to pathfind through other creatures without bumping.
+    /// </summary>
     public static Effect CutsceneGhost() => NWScript.EffectCutsceneGhost();
+
     public static Effect CutsceneImmobilize() => NWScript.EffectCutsceneImmobilize();
     public static Effect CutsceneParalyze() => NWScript.EffectCutsceneParalyze();
     public static Effect Damage(int amount, DamageType damageType = DamageType.Magical, DamagePower damagePower = DamagePower.Normal) => NWScript.EffectDamage(amount, (int) damageType, (int) damagePower);

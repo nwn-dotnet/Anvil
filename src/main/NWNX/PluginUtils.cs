@@ -26,7 +26,7 @@ namespace NWNX
       NWNXPluginAttribute plugin = GetPlugin<T>();
       if (plugin != null && !PluginAvailable(plugin))
       {
-        string message = $"NWM Init failure! Missing plugin dependency \"{plugin.PluginName}\". Has it been enabled in the server config?";
+        string message = $"Missing plugin dependency \"{plugin.PluginName}\". Has it been enabled in the server config?";
         Log.Fatal(message);
         throw new InvalidOperationException(message);
       }
