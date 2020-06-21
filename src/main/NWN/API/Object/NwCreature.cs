@@ -14,7 +14,10 @@ namespace NWN.API
   {
     internal NwCreature(uint objectId) : base(objectId) {}
 
-    private const int MAX_CLASSES = 3;
+    /// <summary>
+    /// Gets if this creature is a dead NPC, dead PC, or dying PC.
+    /// </summary>
+    public bool IsDead => NWScript.GetIsDead(this).ToBool();
 
     /// <summary>
     /// Gets if this creature is in combat.
@@ -25,6 +28,173 @@ namespace NWN.API
     /// Gets the racial type of this creature.
     /// </summary>
     public RacialType RacialType => (RacialType) NWScript.GetRacialType(this);
+
+    /// <summary>
+    /// Gets this creature's armour class.
+    /// </summary>
+    public int AC => NWScript.GetAC(this);
+
+    /// <summary>
+    /// Gets this creature's Law/Chaos Alignment.
+    /// </summary>
+    public Alignment LawChaosAlignment => (Alignment) NWScript.GetAlignmentLawChaos(this);
+
+    /// <summary>
+    /// Gets this creature's Good/Evil Alignment.
+    /// </summary>
+    public Alignment GoodEvilAlignment => (Alignment) NWScript.GetAlignmentGoodEvil(this);
+
+    /// <summary>
+    /// Gets a value indicating whether this creature is currently possessed by a DM avatar.
+    /// </summary>
+    public bool IsDMPossessed => NWScript.GetIsDMPossessed(this).ToBool();
+
+    /// <summary>
+    /// Gets the possessor of this creature. This can be the master of a familiar, or the DM for a DM controlled creature.
+    /// </summary>
+    public NwCreature Master => NWScript.GetMaster(this).ToNwObject<NwCreature>();
+
+    /// <summary>
+    /// Returns this creature's current attack target.
+    /// </summary>
+    public NwGameObject AttackTarget => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
+
+    /// <summary>
+    /// Gets the current action that this creature is executing.
+    /// </summary>
+    public Action CurrentAction => (Action) NWScript.GetCurrentAction(this);
+
+    /// <summary>
+    /// Gets the caster level of the last spell this creature casted.
+    /// </summary>
+    public int LastSpellCasterLevel => NWScript.GetCasterLevel(this);
+
+    /// <summary>
+    /// Returns the Hit Dice/Level of this creature.
+    /// </summary>
+    public int Level => NWScript.GetHitDice(this);
+
+    /// <summary>
+    /// Gets or sets the total experience points for this creature, taking/granting levels based on progression.
+    /// </summary>
+    public int Xp
+    {
+      get => NWScript.GetXP(this);
+      set => NWScript.SetXP(this, value < 0 ? 0 : value);
+    }
+
+    /// <summary>
+    /// Gets or sets whether this creature's action queue can be modified.
+    /// </summary>
+    public bool Commandable
+    {
+      get => NWScript.GetCommandable(this).ToBool();
+      set => NWScript.SetCommandable(value.ToInt(), this);
+    }
+
+    /// <summary>
+    /// Gets this creature's classes.
+    /// </summary>
+    public IReadOnlyList<ClassType> Classes
+    {
+      get
+      {
+        const int maxClasses = 3;
+
+        List<ClassType> classes = new List<ClassType>(maxClasses);
+        for (int i = 1; i <= maxClasses; i++)
+        {
+          ClassType classType = (ClassType) NWScript.GetClassByPosition(i, this);
+          if (classType == ClassType.Invalid)
+          {
+            break;
+          }
+
+          classes.Add(classType);
+        }
+
+        return classes.AsReadOnly();
+      }
+    }
+
+    /// <summary>
+    /// Gets all effects (permanent and temporary) that are active on this creature.
+    /// </summary>
+    public IEnumerable<Effect> ActiveEffects
+    {
+      get
+      {
+        for (Effect effect = NWScript.GetFirstEffect(this); NWScript.GetIsEffectValid(effect) == true.ToInt(); effect = NWScript.GetNextEffect(this))
+        {
+          yield return effect;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets this creature's Chaos (0) - Lawful (100) alignment value.
+    /// </summary>
+    public int LawChaosValue
+    {
+      get => NWScript.GetLawChaosValue(this);
+      set
+      {
+        int current = LawChaosValue;
+        if (value == current)
+        {
+          return;
+        }
+
+        Alignment alignment = value < current ? Alignment.Chaotic : Alignment.Lawful;
+        int shift = Math.Abs(value - current);
+        NWScript.AdjustAlignment(this, (int) alignment, shift, false.ToInt());
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets this creature's Evil (0) - Good (100) alignment value.
+    /// </summary>
+    public int GoodEvilValue
+    {
+      get => NWScript.GetGoodEvilValue(this);
+      set
+      {
+        int current = GoodEvilValue;
+        if (value == current)
+        {
+          return;
+        }
+
+        Alignment alignment = value < current ? Alignment.Evil : Alignment.Good;
+        int shift = Math.Abs(value - current);
+        NWScript.AdjustAlignment(this, (int) alignment, shift, false.ToInt());
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets the amount of gold carried by this creature.
+    /// </summary>
+    public int Gold
+    {
+      get => NWScript.GetGold(this);
+      set
+      {
+        int diff = value - Gold;
+        if (diff == 0)
+        {
+          return;
+        }
+
+        if (diff > 0)
+        {
+          NWScript.GiveGoldToCreature(this, diff);
+        }
+        else
+        {
+          NWScript.TakeGoldFromCreature(Math.Abs(diff), this, true.ToInt());
+        }
+      }
+    }
 
     /// <summary>
     /// Creates a creature at the specified location.
@@ -40,44 +210,56 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets a value indicating whether this creature is currently possessed by a DM avatar.
+    /// Gets the item that is equipped in the specified inventory slot.
     /// </summary>
-    public bool IsDMPossessed
+    /// <param name="slot">The inventory slot to check.</param>
+    /// <returns>The item in the inventory slot, otherwise null if it is unpopulated.</returns>
+    public NwItem GetItemInSlot(InventorySlot slot) => NWScript.GetItemInSlot((int) slot, this).ToNwObject<NwItem>();
+
+    /// <summary>
+    /// Attempts to perform a melee touch attack on target. This is not a creature action, and assumes that this creature is already within range of the target.
+    /// </summary>
+    /// <param name="target">The target of this touch attack.</param>
+    public async Task<TouchAttackResult> TouchAttackMelee(NwGameObject target)
     {
-      get => NWScript.GetIsDMPossessed(this).ToBool();
+      await WaitForObjectContext();
+      return (TouchAttackResult) NWScript.TouchAttackMelee(target);
     }
 
     /// <summary>
-    /// Gets the possessor of this creature. This can be the master of a familiar, or the DM for a DM controlled creature.
+    /// Attempts to perform a ranged touch attack on the target. This is not a creature action, and simply does a roll to see if the target was hit.
     /// </summary>
-    public NwCreature Master
+    /// <param name="target">The target of this touch attack.</param>
+    /// <param name="displayFeedback">If true, displays combat feedback in the chat window.</param>
+    public async Task<TouchAttackResult> TouchAttackRanged(NwGameObject target, bool displayFeedback)
     {
-      get => NWScript.GetMaster(this).ToNwObject<NwCreature>();
+      await WaitForObjectContext();
+      return (TouchAttackResult) NWScript.TouchAttackRanged(target, displayFeedback.ToInt());
     }
 
     /// <summary>
-    /// Gets or sets the total experience points for this creature, taking/granting levels based on progression.
+    /// Adjusts the alignment of this creature and associated party members by the specified value.<br/>
+    /// Use the <see cref="LawChaosValue"/> and <see cref="GoodEvilValue"/> setters to only affect this creature.
     /// </summary>
-    public int Xp
-    {
-      get => NWScript.GetXP(this);
-      set => NWScript.SetXP(this, value < 0 ? 0 : value);
-    }
+    /// <param name="alignment">The alignment to shift towards.</param>
+    /// <param name="shift">The amount of alignment shift.</param>
+    public void AdjustPartyAlignment(Alignment alignment, int shift) => NWScript.AdjustAlignment(this, (int) alignment, shift);
 
     /// <summary>
-    /// Returns the Hit Dice/Level of this creature.
+    /// Gets the specified ability score from this creature.
     /// </summary>
-    public int Level
-    {
-      get => NWScript.GetHitDice(this);
-    }
+    /// <param name="ability">The type of ability.</param>
+    /// <param name="baseOnly">If true, will return the creature's base ability score without bonuses or penalties.</param>
+    /// <returns></returns>
+    public int GetAbilityScore(Ability ability, bool baseOnly = false) => NWScript.GetAbilityScore(this, (int) ability, baseOnly.ToInt());
 
     /// <summary>
-    /// Returns this creature's current attack target.
+    /// Gets the DC to save against for a spell (10 + spell level + relevant ability bonus).
     /// </summary>
-    public NwGameObject AttackTarget
+    public async Task<int> GetSpellSaveDC()
     {
-      get => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
+      await WaitForObjectContext();
+      return NWScript.GetSpellSaveDC();
     }
 
     /// <summary>
@@ -108,11 +290,6 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the caster level of the last spell this creature casted.
-    /// </summary>
-    public int LastSpellCasterLevel => NWScript.GetCasterLevel(this);
-
-    /// <summary>
     /// Gets the target this creature attempted to cast a spell at. Reset at the end of combat.
     /// </summary>
     public async Task<NwGameObject> GetAttemptedSpellTarget()
@@ -121,73 +298,12 @@ namespace NWN.API
       return NWScript.GetAttemptedSpellTarget().ToNwObject<NwGameObject>();
     }
 
-    public Constants.Action CurrentAction => (Constants.Action) NWScript.GetCurrentAction(this);
-
-    /// <summary>
-    /// Gets or sets the amount of gold carried by this creature.
-    /// </summary>
-    public int Gold
-    {
-      get => NWScript.GetGold(this);
-      set
-      {
-        int diff = value - Gold;
-        if (diff == 0)
-        {
-          return;
-        }
-
-        if (diff > 0)
-        {
-          NWScript.GiveGoldToCreature(this, diff);
-        }
-        else
-        {
-          NWScript.TakeGoldFromCreature(Math.Abs(diff), this, true.ToInt());
-        }
-      }
-    }
-
-    /// <summary>
-    /// Gets all effects (permanent and temporary) that are active on this creature.
-    /// </summary>
-    public IEnumerable<Effect> ActiveEffects
-    {
-      get
-      {
-        for (Effect effect = NWScript.GetFirstEffect(this); NWScript.GetIsEffectValid(effect) == true.ToInt(); effect = NWScript.GetNextEffect(this))
-        {
-          yield return effect;
-        }
-      }
-    }
-
     /// <summary>
     ///  Determine the number of levels this creature holds in the specified <see cref="ClassType"/>.
     /// </summary>
     public int GetLevelByClass(ClassType classType)
     {
       return NWScript.GetLevelByClass((int) classType, this);
-    }
-
-    public IReadOnlyList<ClassType> Classes
-    {
-      get
-      {
-        List<ClassType> classes = new List<ClassType>(MAX_CLASSES);
-        for (int i = 0; i < MAX_CLASSES; i++)
-        {
-          ClassType classType = (ClassType) NWScript.GetClassByPosition(i + 1, this);
-          if (classType == ClassType.Invalid)
-          {
-            break;
-          }
-
-          classes.Add(classType);
-        }
-
-        return classes.AsReadOnly();
-      }
     }
 
     public bool HasSpellUse(Spell spell)
