@@ -34,7 +34,7 @@ namespace NWN.API
     public Vector3 Position
     {
       get => NWScript.GetPosition(this);
-      set => ObjectPlugin.AddToArea(this, Area, Position);
+      set => ObjectPlugin.SetPosition(this, value);
     }
 
     /// <summary>
