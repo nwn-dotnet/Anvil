@@ -12,7 +12,7 @@ namespace NWN.API
     public static async Task Delay(TimeSpan delay)
     {
       Stopwatch stopwatch = Stopwatch.StartNew();
-      await RunAndAwait(() => delay > stopwatch.Elapsed);
+      await RunAndAwait(() => delay < stopwatch.Elapsed);
     }
 
     public static async Task NextFrame() => await DelayFrame(1);
