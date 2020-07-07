@@ -15,6 +15,11 @@ namespace NWN.API
     public NwObject Creator => NWScript.GetEffectCreator(this).ToNwObject();
 
     /// <summary>
+    /// Gets the type of this effect.
+    /// </summary>
+    public EffectType EffectType => (EffectType) NWScript.GetEffectType(this);
+
+    /// <summary>
     /// Gets the duration type (Temporary, Instant, Permanent) of this effect.
     /// </summary>
     public EffectDuration DurationType => (EffectDuration) NWScript.GetEffectDurationType(this);

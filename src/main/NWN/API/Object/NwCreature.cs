@@ -306,16 +306,22 @@ namespace NWN.API
       return NWScript.GetLevelByClass((int) classType, this);
     }
 
+    /// <summary>
+    /// Gets if this creature has the specified spell available to cast.
+    /// </summary>
+    /// <param name="spell">The spell to check.</param>
+    /// <returns>True if this creature can immediately cast the spell.</returns>
     public bool HasSpellUse(Spell spell)
     {
-      return GetMemorizedSpellCount(spell) > 0;
+      return NWScript.GetHasSpell((int) spell, this) > 0;
     }
 
-    public int GetMemorizedSpellCount(Spell spell)
-    {
-      return NWScript.GetHasSpell((int) spell, this);
-    }
-
+    /// <summary>
+    /// Gets the number of ranks this creature has in the specified skill.
+    /// </summary>
+    /// <param name="skill">The skill to check.</param>
+    /// <param name="ranksOnly">If true, returns the base amount of skill ranks without any ability modifiers.</param>
+    /// <returns>-1 if the creature does not have this skill, 0 if untrained, otherwise the number of skill ranks.</returns>
     public int GetSkillRank(Skill skill, bool ranksOnly = false)
     {
       return NWScript.GetSkillRank((int) skill, this, ranksOnly.ToInt());
@@ -440,6 +446,17 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Forces this creature to follow the specified target until <see cref="NwObject.ClearActionQueue"/> is called.
+    /// </summary>
+    /// <param name="target">The target to follow.</param>
+    /// <param name="distance">The distance to follow the creature at.</param>
+    public async Task ActionForceFollowObject(NwGameObject target, float distance)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionForceFollowObject(target, distance);
+    }
+
+    /// <summary>
     /// Creates a copy of this creature.
     /// </summary>
     /// <param name="location">The location to place the new creature. Defaults to the current creature's location</param>
@@ -456,7 +473,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Adds the specified item to the creature's inventory.
+    /// Moves the specified item to this creature's inventory.
     /// </summary>
     /// <param name="item">The item to add.</param>
     public async Task GiveItem(NwItem item)

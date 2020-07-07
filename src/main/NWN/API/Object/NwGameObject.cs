@@ -29,12 +29,21 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// The local area position of this GameObject.
+    /// Gets or sets the local area position of this GameObject.
     /// </summary>
     public Vector3 Position
     {
       get => NWScript.GetPosition(this);
       set => ObjectPlugin.SetPosition(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the transition target for this object.
+    /// </summary>
+    public NwGameObject TransitionTarget
+    {
+      get => NWScript.GetTransitionTarget(this).ToNwObject<NwGameObject>();
+      set => NWScript.SetTransitionTarget(this, value);
     }
 
     /// <summary>

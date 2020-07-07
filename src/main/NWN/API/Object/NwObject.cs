@@ -43,23 +43,42 @@ namespace NWN.API
       }
     }
 
+    /// <summary>
+    /// Returns the resource reference used to create this object.
+    /// </summary>
     public string ResRef => NWScript.GetResRef(this);
+
+    /// <summary>
+    /// Returns true if this is a valid object.
+    /// </summary>
     public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
 
+    /// <summary>
+    /// Gets or sets the name of this object.
+    /// </summary>
     public string Name
     {
       get => NWScript.GetName(this);
       set => NWScript.SetName(this, value);
     }
 
+    /// <summary>
+    /// Gets the original description for this object as defined in the toolset.
+    /// </summary>
     public string OriginalDescription => NWScript.GetDescription(this, true.ToInt());
 
+    /// <summary>
+    /// Gets or sets the description for this object.
+    /// </summary>
     public string Description
     {
       get => NWScript.GetDescription(this);
       set => NWScript.SetDescription(this, value);
     }
 
+    /// <summary>
+    /// Gets or sets the tag for this object.
+    /// </summary>
     public string Tag
     {
       get => NWScript.GetTag(this);
@@ -67,7 +86,9 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Assign the specified action to this object
+    /// Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators)<br/>
+    /// If the current active object is already this object, then the code runs immediately. Otherwise, it will be run with all other closures.<br/>
+    /// This is the async equivalent of AssignCommand in NWScript.
     /// </summary>
     public async Task WaitForObjectContext()
     {

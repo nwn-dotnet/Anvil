@@ -104,8 +104,21 @@ namespace NWN.API
     /// </summary>
     public void RecomputeStaticLighting() => NWScript.RecomputeStaticLighting(this);
 
+    /// <summary>
+    /// Creates a new area using the same resource.
+    /// </summary>
+    /// <param name="newTag">The tag of the new area instance.</param>
+    /// <param name="newName">The new name of this area.</param>
+    /// <returns>The new area instance.</returns>
     public NwArea Clone(string newTag = "", string newName = "") => Create(ResRef, newTag, newName);
 
+    /// <summary>
+    /// Creates a new area from the specified resource reference.
+    /// </summary>
+    /// <param name="resRef">The area resource to create this area from.</param>
+    /// <param name="newTag">A new tag for this area. Defaults to the tag set in the toolset.</param>
+    /// <param name="newName">A new name for this area. Defaults to the name set in the toolset.</param>
+    /// <returns>The created area.</returns>
     public static NwArea Create(string resRef, string newTag = "", string newName = "") => NWScript.CreateArea(resRef, newTag, newName).ToNwObject<NwArea>();
 
     /// <summary>

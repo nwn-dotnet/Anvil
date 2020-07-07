@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWNX.API.Constants;
@@ -56,6 +57,29 @@ namespace NWN.API
     {
       get => NWScript.GetUseableFlag(this).ToBool();
       set => NWScript.SetUseableFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Moves the specified item to the placeable's inventory.
+    /// </summary>
+    /// <param name="item">The item to add.</param>
+    public async Task GiveItem(NwItem item)
+    {
+      NwObject assignTarget;
+      if (item.Possessor != null)
+      {
+        assignTarget = item.Possessor;
+      }
+      else
+      {
+        assignTarget = item.Area;
+      }
+
+      if (assignTarget != this)
+      {
+        await assignTarget.WaitForObjectContext();
+        NWScript.ActionGiveItem(item, this);
+      }
     }
 
     public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
