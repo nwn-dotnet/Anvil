@@ -8,6 +8,7 @@ namespace NWN.API
   public static partial class NwTask
   {
     private static readonly HashSet<ScheduledItem> scheduledItems = new HashSet<ScheduledItem>();
+    private static readonly object schedulerLock = new object();
 
     private static Task RunAndAwait(Func<bool> completionSource)
     {
@@ -17,7 +18,10 @@ namespace NWN.API
       }
 
       ScheduledItem scheduledItem = new ScheduledItem(completionSource);
-      scheduledItems.Add(scheduledItem);
+      lock (schedulerLock)
+      {
+        scheduledItems.Add(scheduledItem);
+      }
 
       return scheduledItem.TaskCompletionSource.Task;
     }
@@ -27,16 +31,19 @@ namespace NWN.API
     {
       void IUpdateable.Update()
       {
-        scheduledItems.RemoveWhere(item =>
+        lock (schedulerLock)
         {
-          if (!item.CompletionSource())
+          scheduledItems.RemoveWhere(item =>
           {
-            return false;
-          }
+            if (!item.CompletionSource())
+            {
+              return false;
+            }
 
-          item.TaskCompletionSource.SetResult(true);
-          return true;
-        });
+            item.TaskCompletionSource.SetResult(true);
+            return true;
+          });
+        }
       }
     }
 

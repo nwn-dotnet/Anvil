@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NWN.API
@@ -14,6 +15,8 @@ namespace NWN.API
       Stopwatch stopwatch = Stopwatch.StartNew();
       await RunAndAwait(() => delay < stopwatch.Elapsed);
     }
+
+    public static async Task SwitchToMainThread() => await DelayFrame(1);
 
     public static async Task NextFrame() => await DelayFrame(1);
 
