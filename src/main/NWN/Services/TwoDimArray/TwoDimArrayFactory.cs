@@ -9,6 +9,13 @@ namespace NWN.Services
   {
     private readonly Dictionary<string, ITwoDimArray> cache = new Dictionary<string, ITwoDimArray>();
 
+    /// <summary>
+    /// Deserializes the given 2da using the specified format.
+    /// </summary>
+    /// <param name="name">The name of the 2DA resource.</param>
+    /// <param name="forceRefresh">If true, always reloads the 2DA instead of using a cached version.</param>
+    /// <typeparam name="T">The deserialized type.</typeparam>
+    /// <returns>The deserialized 2DA.</returns>
     public T Get2DA<T>(string name, bool forceRefresh = false) where T : ITwoDimArray, new()
     {
       name = name.Replace(".2da", "");

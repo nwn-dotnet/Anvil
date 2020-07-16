@@ -41,7 +41,7 @@ The core of NWN.NET is built around a dependency injection model that is setup u
   using NLog;
   using NWN.API;
   using NWN.Services;
-  
+
   // This attribute indicates this class should be constructed on start, and available as a dependency "MyScriptHandler"
   // You can also bind yourself to an interface or base class. The system also supports multiple bindings.
   [ServiceBinding(typeof(MyScriptHandler))]
@@ -134,8 +134,6 @@ The core of NWN.NET is built around a dependency injection model that is setup u
 ```
 
 ## Core Services
-(WIP)
-
 ### Event Service (NWN.Services.EventService)
 **Send a pink welcome message to a player when they connect**
 ```csharp
@@ -158,8 +156,160 @@ The core of NWN.NET is built around a dependency injection model that is setup u
   }
 ```
 
-### Scheduler Service (NWN.Services.SchedulerService)
+### Async Tasks (NWN.API.NwTask)
+```csharp
+  using System;
+  using System.Linq;
+  using System.Threading;
+  using System.Threading.Tasks;
+  using NWN.API;
+  using NWN.Services;
+
+  [ServiceBinding(typeof(MyAsyncService))]
+  public class MyAsyncService
+  {
+    public MyAsyncService()
+    {
+      DoAsyncStuff();
+    }
+
+    private async void DoAsyncStuff()
+    {
+      // Do some heavy work on another thread using a standard task, then return to a safe script context.
+      await Task.Run(() => Thread.Sleep(1000));
+      await NwTask.SwitchToMainThread();
+
+      // Wait for a frame, or a certain amount of frames to pass.
+      await NwTask.NextFrame();
+      await NwTask.DelayFrame(100);
+
+      // Wait for 30 seconds to pass. (DelayCommand replacement)
+      await NwTask.Delay(TimeSpan.FromSeconds(30));
+
+      // Wait for a certain game period to pass.
+      await NwTask.Delay(GameTimeSpan.FromRounds(2));
+      await NwTask.Delay(GameTimeSpan.FromTurns(3));
+      await NwTask.Delay(GameTimeSpan.FromHours(1));
+
+      // Wait for an expression to evaluate to true
+      await NwTask.WaitUntil(() => NwModule.Instance.Players.Count() > 5);
+
+      // Wait for a value to change.
+      await NwTask.WaitUntilValueChanged(() => NwModule.Instance.Players.Count());
+    }
+  }
+```
 
 ### Loop Service (NWN.Services.LoopService)
+**Report the tick rate of the server every server loop.**
+```csharp
+  [ServiceBinding(typeof(IUpdateable))]
+  [ServiceBinding(typeof(PerformanceReportService))]
+  public class PerformanceReportService : IUpdateable
+  {
+    public void Update()
+    {
+      Console.WriteLine($"Current tick rate: {Util.ServerTicksPerSecond}");
+    }
+  }
+```
 
 ### 2DA Factory (NWN.Services.TwoDimArrayFactory)
+**Report the amount of XP the player has until their next level.**
+```csharp
+  // This is the deserialization class for this specific type of 2da.
+  // We can implement our own helper functions here that operate on the 2da data, and cache it.
+  public class ExpTable : ITwoDimArray
+  {
+    private readonly List<Entry> entries = new List<Entry>();
+
+    /// <summary>
+    /// Gets the max possible player level.
+    /// </summary>
+    public int MaxLevel => entries[^1].Level;
+
+    /// <summary>
+    /// Gets the amount of XP needed for the specified level.
+    /// </summary>
+    /// <param name="level">The level to lookup.</param>
+    public int GetXpForLevel(int level)
+    {
+      return entries.First(entry => entry.Level == level).XP;
+    }
+
+    /// <summary>
+    /// Gets the current level for a player with the specified XP.
+    /// </summary>
+    /// <param name="xp">The amount of xp.</param>
+    public int GetLevelFromXp(int xp)
+    {
+      int level = 1;
+      foreach (Entry entry in entries)
+      {
+        if (entry.XP > xp)
+        {
+          break;
+        }
+
+        level = entry.Level;
+      }
+
+      return level;
+    }
+
+    void ITwoDimArray.DeserializeRow(int rowIndex, TwoDimEntry twoDimEntry)
+    {
+      // Use twoDimEntry(columnName) to get your serialized data, then convert it here.
+      int level = int.Parse(twoDimEntry("Level"));
+      uint xp = ParseXpColumn(twoDimEntry("XP"));
+
+      if (xp > int.MaxValue)
+      {
+        return;
+      }
+
+      entries.Add(new Entry(level, (int) xp));
+    }
+
+    private uint ParseXpColumn(string value)
+    {
+      return uint.TryParse(value, out uint retVal) ? retVal : uint.Parse(value.Substring(2), NumberStyles.AllowHexSpecifier);
+    }
+
+    private readonly struct Entry
+    {
+      public readonly int Level;
+      public readonly int XP;
+
+      public Entry(int level, int xp)
+      {
+        Level = level;
+        XP = xp;
+      }
+    }
+  }
+
+  [ServiceBinding(typeof(XPReportService))]
+  public class XPReportService
+  {
+    private readonly ExpTable expTable;
+
+    public XPReportService(EventService eventService, TwoDimArrayFactory twoDimArrayFactory)
+    {
+      eventService.Subscribe<NwModule, ModuleEvents.OnClientEnter>(NwModule.Instance, OnClientEnter);
+      expTable = twoDimArrayFactory.Get2DA<ExpTable>("exptable");
+    }
+
+    private void OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)
+    {
+      NwPlayer player = onClientEnter.Player;
+      int nextLevel = expTable.GetLevelFromXp(player.Xp) + 1;
+      if (nextLevel > expTable.MaxLevel)
+      {
+        return;
+      }
+
+      player.SendServerMessage($"Next level up: {expTable.GetXpForLevel(nextLevel) - player.Xp}");
+    }
+  }
+```
