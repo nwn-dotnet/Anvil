@@ -566,6 +566,30 @@ namespace NWN.API
       return NWScript.GetIsEnemy(target, this).ToBool();
     }
 
+    /// <summary>
+    /// Returns this creature's domains in the specified class. Unless custom content is used, only clerics have domains.
+    /// </summary>
+    /// <param name="classType">The class with domains.</param>
+    /// <returns>An enumeration of this creature's domains.</returns>
+    public IEnumerable<Domain> GetClassDomains(ClassType classType = ClassType.Cleric)
+    {
+      const int error = (int) Domain.Error;
+      int classT = (int) classType;
+
+      int i;
+      int current;
+
+      for (i = 1, current = NWScript.GetDomain(this, i, classT); current != error; i++, current = NWScript.GetDomain(this, i, classT))
+      {
+        yield return (Domain) current;
+      }
+    }
+
+    /// <summary>
+    /// Instructs this creature to enable/disable the specified action mode (parry, power attack, expertise, etc)
+    /// </summary>
+    /// <param name="actionMode">The action mode to toggle.</param>
+    /// <param name="status">The new state of the action mode.</param>
     public void SetActionMode(ActionMode actionMode, bool status)
     {
       NWScript.SetActionMode(this, (int) actionMode, status.ToInt());

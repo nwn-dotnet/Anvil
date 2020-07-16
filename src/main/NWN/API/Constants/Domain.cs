@@ -4,6 +4,7 @@ namespace NWN.API.Constants
 {
   public enum Domain
   {
+    Error = -1,
     Air = NWScript.DOMAIN_AIR,
     Animal = NWScript.DOMAIN_ANIMAL,
     Death = NWScript.DOMAIN_DEATH,

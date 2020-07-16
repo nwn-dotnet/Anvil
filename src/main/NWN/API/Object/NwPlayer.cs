@@ -28,7 +28,7 @@ namespace NWN.API
     /// Sends a server message to this player.
     /// </summary>
     /// <param name="message">The message to send.</param>
-    /// <param name="color">A </param>
+    /// <param name="color">A color to apply to the message.</param>
     public void SendServerMessage(string message, Color color) => NWScript.SendMessageToPC(this, message.ColorString(color));
 
     /// <summary>
@@ -75,5 +75,57 @@ namespace NWN.API
     /// <param name="strength">The intensity of the vibration.</param>
     /// <param name="duration">How long to vibrate for.</param>
     public void Vibrate(VibratorMotor motor, float strength, TimeSpan duration) => NWScript.Vibrate(this, (int) motor, strength, (float) duration.TotalSeconds);
+
+    /// <summary>
+    /// Unlock an achievement for this player who must be logged in.
+    /// </summary>
+    /// <param name="achievementId">The achievement ID on the remote server.</param>
+    /// <param name="lastValue">The previous value of the associated achievement stat.</param>
+    /// <param name="currentValue">The current value of the associated achievement stat.</param>
+    /// <param name="maxValue">The maximum value of the associate achievement stat.</param>
+    public void UnlockAchievement(string achievementId, int lastValue = 0, int currentValue = 0, int maxValue = 0)
+      => NWScript.UnlockAchievement(this, achievementId, lastValue, currentValue, maxValue);
+
+    /// <summary>
+    /// Makes this PC load a new texture instead of another.
+    /// </summary>
+    /// <param name="oldTexName">The existing texture to replace.</param>
+    /// <param name="newTexName">The new override texture.</param>
+    public void SetTextureOverride(string oldTexName, string newTexName)
+      => NWScript.SetTextureOverride(oldTexName, newTexName, this);
+
+    /// <summary>
+    /// Removes the override for the specified texture, reverting to the original texture.
+    /// </summary>
+    /// <param name="texName">The name of the original texture.</param>
+    public void ClearTextureOverride(string texName)
+      => NWScript.SetTextureOverride(texName, "", this);
+
+    /// <summary>
+    /// Displays a message on this player's screen. <br/>
+    /// The message is always displayed on top of whatever is on the screen, including UI elements.
+    /// </summary>
+    /// <param name="message">The message to print.</param>
+    /// <param name="xPos">The x coordinate relative to anchor.</param>
+    /// <param name="yPos">The y coordinate relative to anchor.</param>
+    /// <param name="anchor">The screen anchor/origin point.</param>
+    /// <param name="life">Duration to show this string in seconds.</param>
+    /// <param name="start">The starting color of this text.</param>
+    /// <param name="end">The color of the text to fade to as it nears the end of the lifetime.</param>
+    /// <param name="id">An optional numeric ID for this string. If not set to 0, subsequent calls to PostString will remove the text with the same ID.</param>
+    /// <param name="font">If specified, the message will be rendered with the specified font instead of the default console font.</param>
+    public void PostString(string message, int xPos, int yPos, ScreenAnchor anchor, float life, Color? start = null, Color? end = null, int id = 0, string font = "")
+    {
+      if (start == null)
+      {
+        start = Color.WHITE;
+      }
+      if (end == null)
+      {
+        end = Color.WHITE;
+      }
+
+      NWScript.PostString(this, message, xPos, yPos, (int) anchor, life, start.Value.ToHex(), end.Value.ToHex(), id, font);
+    }
   }
 }
