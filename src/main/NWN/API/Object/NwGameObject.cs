@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWN.API.Constants;
@@ -290,34 +291,49 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Do a Fortitude Save check for the given dc.
+    /// Gets this creature's base save value for the specified saving throw.
     /// </summary>
-    /// <param name="dc">Difficulty class.</param>
-    /// <param name="saveType">The type of save.</param>
-    /// <param name="saveVs"></param>
-    /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult FortitudeSave(int dc, SavingThrowType saveType, NwGameObject saveVs = null)
-      => (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException">If savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public int GetBaseSavingThrow(SavingThrow savingThrow)
+    {
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          return NWScript.GetFortitudeSavingThrow(this);
+        case SavingThrow.Reflex:
+          return NWScript.GetReflexSavingThrow(this);
+        case SavingThrow.Will:
+          return NWScript.GetWillSavingThrow(this);
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
+    }
 
     /// <summary>
-    /// Do a Reflex Save check for the given dc.
+    /// Performs a saving throw against the given dc.
     /// </summary>
+    /// <param name="savingThrow">The type of saving throw to make (Fortitude/Reflex/Will)</param>
     /// <param name="dc">Difficulty class.</param>
-    /// <param name="saveType">The type of save.</param>
+    /// <param name="saveType">The sub-type of this save (Mind effect, etc)</param>
     /// <param name="saveVs"></param>
+    /// <exception cref="ArgumentOutOfRangeException">If savingThrow is not Fortitude, Reflex, or Will.</exception>
     /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult ReflexSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null)
-      => (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
-
-    /// <summary>
-    /// Do a Will Save check for the given dc.
-    /// </summary>
-    /// <param name="dc">Difficulty class.</param>
-    /// <param name="saveType">The type of save.</param>
-    /// <param name="saveVs"></param>
-    /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult WillSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null)
-      => (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
+    public SavingThrowResult RollSavingThrow(SavingThrow savingThrow, int dc, SavingThrowType saveType, NwGameObject saveVs = null)
+    {
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          return (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
+        case SavingThrow.Reflex:
+          return (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
+        case SavingThrow.Will:
+          return (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
+    }
 
     /// <summary>
     /// Casts a spell at an object.

@@ -69,6 +69,24 @@ namespace NWN.API
     public void ExportCharacter() => NWScript.ExportSingleCharacter(this);
 
     /// <summary>
+    /// Sends this player to a new server, where the player's character will connect and log in.
+    /// </summary>
+    /// <param name="ipAddress">DNS name or the IP address + port of the destination server.</param>
+    /// <param name="password">The player password to connect to the destination server.</param>
+    /// <param name="waypointTag">The custom waypoint tag on the destination server for this player to jump to. Defaults to the module's start location.</param>
+    /// <param name="seamless">If true, the player will not be prompted with information about the new server, and they will not be allowed to save a copy of their character (if it is a local vault character).</param>
+    public void SendToServer(string ipAddress = "", string password = "", string waypointTag = "", bool seamless = false)
+      => NWScript.ActivatePortal(this, ipAddress, password, waypointTag, seamless.ToInt());
+
+    /// <summary>
+    /// Sets whether this player has explored an area.
+    /// </summary>
+    /// <param name="area">The area to explore</param>
+    /// <param name="explored">true if this area has been explored, otherwise false to (re)hide the map.</param>
+    public void SetAreaExploreState(NwArea area, bool explored)
+      => NWScript.ExploreAreaForPlayer(area, this, explored.ToInt());
+
+    /// <summary>
     /// Vibrates the player's device or controller. Does nothing if vibration is not supported.
     /// </summary>
     /// <param name="motor">Which motors to vibrate.</param>

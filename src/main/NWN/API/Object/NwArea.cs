@@ -12,10 +12,10 @@ namespace NWN.API
     internal NwArea(uint objectId) : base(objectId) {}
 
     /// <summary>
-    /// Gets the size of the area
+    /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>
     /// </summary>
-    public Vector2 AreaSize => new Vector2(NWScript.GetAreaSize((int) AreaSizeDimension.Width, this), NWScript.GetAreaSize((int) AreaSizeDimension.Height, this));
+    public Vector2 Size => new Vector2(NWScript.GetAreaSize((int) AreaSizeDimension.Width, this), NWScript.GetAreaSize((int) AreaSizeDimension.Height, this));
 
     /// <summary>
     /// Returns true if this area is flagged as either interior or underground.
@@ -198,12 +198,10 @@ namespace NWN.API
     public void StopAmbient() => NWScript.AmbientSoundStop(this);
 
     /// <summary>
-    /// Creates a new area using the same resource.
+    /// Creates a copy of this area, including everything inside of it (except players).
     /// </summary>
-    /// <param name="newTag">The tag of the new area instance.</param>
-    /// <param name="newName">The new name of this area.</param>
-    /// <returns>The new area instance.</returns>
-    public NwArea Clone(string newTag = "", string newName = "") => Create(ResRef, newTag, newName);
+    /// <returns>The new cloned area instance.</returns>
+    public NwArea Clone() => NWScript.CopyArea(this).ToNwObject<NwArea>();
 
     /// <summary>
     /// Creates a new area from the specified resource reference.

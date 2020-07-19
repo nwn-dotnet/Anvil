@@ -7,6 +7,11 @@ namespace NWN.API
   public partial class ItemProperty
   {
     /// <summary>
+    /// Gets the tag for this item property.
+    /// </summary>
+    public string Tag => NWScript.GetItemPropertyTag(this);
+
+    /// <summary>
     /// Gets the type of this item property (as defined in itempropdef.2da)
     /// </summary>
     public ItemPropertyType PropertyType => (ItemPropertyType) NWScript.GetItemPropertyType(this);

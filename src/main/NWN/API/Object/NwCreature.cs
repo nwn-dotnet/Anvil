@@ -35,6 +35,39 @@ namespace NWN.API
     public int AC => NWScript.GetAC(this);
 
     /// <summary>
+    /// Gets this creature's age, in years.
+    /// </summary>
+    public int Age => NWScript.GetAge(this);
+
+    /// <summary>
+    /// Gets or sets the name of this creature's deity.
+    /// </summary>
+    public string Deity
+    {
+      get => NWScript.GetDeity(this);
+      set => NWScript.SetDeity(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the name of this creature's sub-race.
+    /// </summary>
+    public string SubRace
+    {
+      get => NWScript.GetSubRace(this);
+      set => NWScript.SetSubRace(this, value);
+    }
+
+    /// <summary>
+    /// Gets the calculated challenge rating for this creature.
+    /// </summary>
+    public float ChallengeRating => NWScript.GetChallengeRating(this);
+
+    /// <summary>
+    /// Returns the movement rate of this creature.
+    /// </summary>
+    public MovementRate MovementRate => (MovementRate) NWScript.GetMovementRate(this);
+
+    /// <summary>
     /// Gets this creature's Law/Chaos Alignment.
     /// </summary>
     public Alignment LawChaosAlignment => (Alignment) NWScript.GetAlignmentLawChaos(this);
