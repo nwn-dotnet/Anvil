@@ -13,7 +13,6 @@ namespace NWN.API
       this.Value = value;
     }
 
-
     public static readonly CreatureTypeFilter None = new CreatureTypeFilter(CreatureType.None, -1);
 
     public static CreatureTypeFilter RacialType(RacialType racialType) => new CreatureTypeFilter(CreatureType.RacialType, (int) racialType);

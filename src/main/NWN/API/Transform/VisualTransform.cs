@@ -49,15 +49,11 @@ namespace NWN.API
       SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformAnimationSpeed, AnimSpeed);
     }
 
-    private float GetValue(NwGameObject obj, VisualTransformProperty prop)
-    {
-      return NWScript.GetObjectVisualTransform(obj, (int) prop);
-    }
+    private static float GetValue(NwGameObject obj, VisualTransformProperty prop)
+      => NWScript.GetObjectVisualTransform(obj, (int) prop);
 
-    private void SetValue(NwGameObject obj, VisualTransformProperty prop, float value)
-    {
-      NWScript.SetObjectVisualTransform(obj, (int) prop, value);
-    }
+    private static void SetValue(NwGameObject obj, VisualTransformProperty prop, float value)
+      => NWScript.SetObjectVisualTransform(obj, (int) prop, value);
 
     private enum VisualTransformProperty
     {

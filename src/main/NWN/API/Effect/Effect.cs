@@ -5,11 +5,19 @@ namespace NWN.API
 {
   public partial class Effect
   {
-    public IntPtr Handle;
-    public Effect(IntPtr handle) { Handle = handle; }
-    ~Effect() { Internal.NativeFunctions.FreeEffect(Handle); }
+    private IntPtr handle;
 
-    public static implicit operator IntPtr(Effect effect) => effect.Handle;
+    private Effect(IntPtr handle)
+    {
+      this.handle = handle;
+    }
+
+    ~Effect()
+    {
+      Internal.NativeFunctions.FreeEffect(handle);
+    }
+
+    public static implicit operator IntPtr(Effect effect) => effect.handle;
     public static implicit operator Effect(IntPtr intPtr) => new Effect(intPtr);
   }
 }

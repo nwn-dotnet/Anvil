@@ -5,11 +5,20 @@ namespace NWN.API
 {
   public partial class ItemProperty
   {
-    public IntPtr Handle;
-    public ItemProperty(IntPtr handle) { Handle = handle; }
-    ~ItemProperty() { Internal.NativeFunctions.FreeItemProperty(Handle); }
+    private readonly IntPtr handle;
 
-    public static implicit operator IntPtr(ItemProperty effect) => effect.Handle;
+    private ItemProperty(IntPtr handle)
+    {
+      this.handle = handle;
+    }
+
+    ~ItemProperty()
+    {
+      Internal.NativeFunctions.FreeItemProperty(handle);
+
+    }
+
+    public static implicit operator IntPtr(ItemProperty effect) => effect.handle;
     public static implicit operator ItemProperty(IntPtr intPtr) => new ItemProperty(intPtr);
   }
 }

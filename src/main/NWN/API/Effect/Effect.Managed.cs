@@ -99,17 +99,17 @@ namespace NWN.API
       IntPtr modifiedEffect = modification();
 
       // Handle is unchanged.
-      if (modifiedEffect == Handle)
+      if (modifiedEffect == handle)
       {
         return;
       }
 
       if (freeEffect)
       {
-        Internal.NativeFunctions.FreeEffect(Handle);
+        Internal.NativeFunctions.FreeEffect(handle);
       }
 
-      Handle = modifiedEffect;
+      handle = modifiedEffect;
     }
   }
 }

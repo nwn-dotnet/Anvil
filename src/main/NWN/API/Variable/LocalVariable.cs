@@ -6,6 +6,7 @@ namespace NWN.API
   {
     public readonly string Name;
     public readonly uint Object;
+
     public abstract T Value { get; set; }
 
     public static implicit operator T(LocalVariable<T> value)
@@ -23,16 +24,36 @@ namespace NWN.API
 
     public bool Equals(LocalVariable<T> other)
     {
-      if (ReferenceEquals(null, other)) return false;
-      if (ReferenceEquals(this, other)) return true;
+      if (ReferenceEquals(null, other))
+      {
+        return false;
+      }
+
+      if (ReferenceEquals(this, other))
+      {
+        return true;
+      }
+
       return Equals(Value, other.Value);
     }
 
     public override bool Equals(object obj)
     {
-      if (ReferenceEquals(null, obj)) return false;
-      if (ReferenceEquals(this, obj)) return true;
-      if (obj.GetType() != this.GetType()) return false;
+      if (ReferenceEquals(null, obj))
+      {
+        return false;
+      }
+
+      if (ReferenceEquals(this, obj))
+      {
+        return true;
+      }
+
+      if (obj.GetType() != this.GetType())
+      {
+        return false;
+      }
+
       return Equals((LocalVariable<T>) obj);
     }
 
