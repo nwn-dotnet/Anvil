@@ -3,8 +3,6 @@ using NWN.API;
 using NWN.Core;
 using NWN.Core.NWNX;
 using NWNX.API.Constants;
-using Effect = NWN.API.Effect;
-using ItemProperty = NWN.API.ItemProperty;
 
 namespace NWNX.API
 {
@@ -47,14 +45,14 @@ namespace NWNX.API
     /// </summary>
     /// <param name="effect">The effect to convert to an itemproperty.</param>
     /// <returns>The converted itemproperty.</returns>
-    public static ItemProperty AsItemProperty(this Effect effect) => UtilPlugin.EffectToItemProperty(effect);
+    public static NWN.API.ItemProperty AsItemProperty(this NWN.API.Effect effect) => UtilPlugin.EffectToItemProperty(effect);
 
     /// <summary>
     /// Convert an itemproperty type to an effect type.
     /// </summary>
     /// <param name="ip">ip The itemproperty to convert to an effect.</param>
     /// <returns>The converted effect.</returns>
-    public static Effect AsEffect(this ItemProperty ip) => UtilPlugin.ItemPropertyToEffect(ip);
+    public static NWN.API.Effect AsEffect(this NWN.API.ItemProperty ip) => UtilPlugin.ItemPropertyToEffect(ip);
 
     /// <summary>
     /// Strip any color codes from a string.

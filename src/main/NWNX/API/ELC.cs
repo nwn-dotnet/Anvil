@@ -1,0 +1,12 @@
+using NWN.Core.NWNX;
+
+namespace NWNX.API
+{
+  public static class ELC
+  {
+    static ELC()
+    {
+      PluginUtils.AssertPluginExists<ElcPlugin>();
+    }
+  }
+}

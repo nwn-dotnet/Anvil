@@ -6,7 +6,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX
 {
-  public class PluginUtils
+  public static class PluginUtils
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
