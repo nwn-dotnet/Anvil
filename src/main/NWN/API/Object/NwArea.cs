@@ -31,6 +31,10 @@ namespace NWN.API
     /// Returns true if this area is natural, or false if it is artificial.
     /// </summary>
     public bool IsNatural => (AreaInfo) NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
+
+    /// <summary>
+    /// Gets the tileset (.set) resource name used for this area.
+    /// </summary>
     public string Tileset => NWScript.GetTilesetResRef(this);
 
     /// <summary>
@@ -52,6 +56,84 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the daytime background track index for this area.<br/>
+    /// See "Resources > Sounds & Music > Music" in the toolset for track numbers.
+    /// </summary>
+    public int MusicBackgroundDayTrack
+    {
+      get => NWScript.MusicBackgroundGetDayTrack(this);
+      set => NWScript.MusicBackgroundChangeDay(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the nighttime background track index for this area.<br/>
+    /// Refer to Resources > Sounds & Music > Music in the toolset for track numbers.
+    /// </summary>
+    public int MusicBackgroundNightTrack
+    {
+      get => NWScript.MusicBackgroundGetNightTrack(this);
+      set => NWScript.MusicBackgroundChangeNight(this, value);
+    }
+
+    /// <summary>
+    /// Sets the daytime ambient track for this area.<br/>
+    /// See "ambientsound.2da" for track numbers.
+    /// </summary>
+    public int AmbientDayTrack
+    {
+      set => NWScript.AmbientSoundChangeDay(this, value);
+    }
+
+    /// <summary>
+    /// Sets the daytime ambient track volume for this area.
+    /// </summary>
+    public int AmbientDayVolume
+    {
+      set => NWScript.AmbientSoundSetDayVolume(this, value);
+    }
+
+    /// <summary>
+    /// Sets the night ambient track for this area.<br/>
+    /// See "ambientsound.2da" for track numbers.
+    /// </summary>
+    public int AmbientNightTrack
+    {
+      set => NWScript.AmbientSoundChangeNight(this, value);
+    }
+
+    /// <summary>
+    /// Sets the night ambient track volume for this area.
+    /// </summary>
+    public int AmbientNightVolume
+    {
+      set => NWScript.AmbientSoundSetNightVolume(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the combat track index for this area.<br/>
+    /// Refer to Resources > Sounds & Music > Music in the toolset for track numbers.
+    /// </summary>
+    public int MusicBattleTrack
+    {
+      get => NWScript.MusicBackgroundGetBattleTrack(this);
+      set => NWScript.MusicBattleChange(this, value);
+    }
+
+    /// <summary>
+    /// Gets all Objects currently in this area.
+    /// </summary>
+    public IEnumerable<NwGameObject> Objects
+    {
+      get
+      {
+        for (uint areaObj = NWScript.GetFirstObjectInArea(this); areaObj != INVALID; areaObj = NWScript.GetNextObjectInArea(this))
+        {
+          yield return areaObj.ToNwObject<NwGameObject>();
+        }
+      }
+    }
+
+    /// <summary>
     /// Gets the fog color for this area, at the specified time of day.
     /// </summary>
     public FogColor GetFogColor(FogType fogType)
@@ -70,39 +152,50 @@ namespace NWN.API
     /// <summary>
     /// Gets the fog amount for this area, at the specified time of day.
     /// </summary>
-    public int GetFogAmount(FogType fogType)
-    {
-      return NWScript.GetFogAmount((int) fogType, this);
-    }
+    public int GetFogAmount(FogType fogType) => NWScript.GetFogAmount((int) fogType, this);
 
     /// <summary>
     /// Sets the fog amount for this area, at the specified time of day.
     /// </summary>
     public void SetFogAmount(FogType fogType, int fogAmount)
-    {
-      NWScript.SetFogAmount((int) fogType, fogAmount, this);
-    }
+      => NWScript.SetFogAmount((int) fogType, fogAmount, this);
 
     /// <summary>
-    /// All Objects currently in this area.
-    /// </summary>
-    public IEnumerable<NwGameObject> Objects
-    {
-      get
-      {
-        for (uint areaObj = NWScript.GetFirstObjectInArea(this); areaObj != INVALID; areaObj = NWScript.GetNextObjectInArea(this))
-        {
-          yield return areaObj.ToNwObject<NwGameObject>();
-        }
-      }
-    }
-
-    /// <summary>
-    /// All clients in this area will recompute the static lighting.
+    /// Notifies all clients in this area to recompute static lighting.
     /// This can be used to update the lighting after changing any tile lights
     /// or if placeables with lights have been added/deleted.
     /// </summary>
     public void RecomputeStaticLighting() => NWScript.RecomputeStaticLighting(this);
+
+    /// <summary>
+    /// Begins playback of background music in this area.
+    /// </summary>
+    public void PlayBackgroundMusic() => NWScript.MusicBackgroundPlay(this);
+
+    /// <summary>
+    /// Stops playback of any running background music in this area.
+    /// </summary>
+    public void StopBackgroundMusic() => NWScript.MusicBackgroundStop(this);
+
+    /// <summary>
+    /// Begins playback of battle music for this area.
+    /// </summary>
+    public void PlayBattleMusic() => NWScript.MusicBattlePlay(this);
+
+    /// <summary>
+    /// Stops playback of any running battle music in this area.
+    /// </summary>
+    public void StopBattleMusic() => NWScript.MusicBattleStop(this);
+
+    /// <summary>
+    /// Begins playback of ambient sounds in this area.
+    /// </summary>
+    public void PlayAmbient() => NWScript.AmbientSoundPlay(this);
+
+    /// <summary>
+    /// Stops playback of any ambient sounds in this area.
+    /// </summary>
+    public void StopAmbient() => NWScript.AmbientSoundStop(this);
 
     /// <summary>
     /// Creates a new area using the same resource.
