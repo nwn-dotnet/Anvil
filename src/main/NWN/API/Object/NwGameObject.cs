@@ -206,23 +206,23 @@ namespace NWN.API
     /// <summary>
     /// Returns the creatures closest to this object.
     /// </summary>
-    public IEnumerable<NwCreature> GetNearestCreatures() =>
-      GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures()
+      => GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
 
     /// <summary>
     /// Returns the creatures closest to this object, matching the specified criteria.
     /// </summary>
     /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
-    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1) =>
-      GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1)
+      => GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
 
     /// <summary>
     /// Returns the creatures closest to this object, matching all of the specified criteria.
     /// </summary>
     /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
     /// <param name="filter2">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
-    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2) =>
-      GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2)
+      => GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
 
     /// <summary>
     /// Returns the creatures closest to this object, matching all of the specified criteria.
@@ -296,8 +296,8 @@ namespace NWN.API
     /// <param name="saveType">The type of save.</param>
     /// <param name="saveVs"></param>
     /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult FortitudeSave(int dc, SavingThrowType saveType, NwGameObject saveVs = null) =>
-      (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
+    public SavingThrowResult FortitudeSave(int dc, SavingThrowType saveType, NwGameObject saveVs = null)
+      => (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
 
     /// <summary>
     /// Do a Reflex Save check for the given dc.
@@ -306,8 +306,8 @@ namespace NWN.API
     /// <param name="saveType">The type of save.</param>
     /// <param name="saveVs"></param>
     /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult ReflexSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null) =>
-      (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
+    public SavingThrowResult ReflexSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null)
+      => (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
 
     /// <summary>
     /// Do a Will Save check for the given dc.
@@ -316,8 +316,8 @@ namespace NWN.API
     /// <param name="saveType">The type of save.</param>
     /// <param name="saveVs"></param>
     /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult WillSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null) =>
-      (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
+    public SavingThrowResult WillSave(int dc, SavingThrowResult saveType, NwGameObject saveVs = null)
+      => (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
 
     /// <summary>
     /// Casts a spell at an object.
