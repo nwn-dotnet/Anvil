@@ -11,15 +11,6 @@ namespace NWN.API
     internal NwDoor(uint objectId) : base(objectId) {}
 
     /// <summary>
-    /// Gets or sets the locked state for this door.
-    /// </summary>
-    public bool Locked
-    {
-      get => NWScript.GetLocked(this).ToBool();
-      set => NWScript.SetLocked(this, value.ToInt());
-    }
-
-    /// <summary>
     /// Opens this door.
     /// </summary>
     public async Task Open()

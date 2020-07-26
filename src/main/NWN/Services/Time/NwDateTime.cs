@@ -45,7 +45,7 @@ namespace NWN.Services
     public NwDateTime Date => new NwDateTime(Ticks - Ticks % TicksPerDay);
 
     /// <summary>
-    ///  Gets, or sets the current module date & time.
+    ///  Gets, or sets the current module date and time.
     ///  This date must fall within the years 0 to 32000.
     ///  Time can only be advanced forwards; attempting to set the time backwards
     ///     will result in no change to the calendar, and a warning logged.

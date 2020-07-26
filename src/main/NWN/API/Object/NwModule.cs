@@ -93,7 +93,7 @@ namespace NWN.API
     /// Makes all online PCs load a new texture instead of another.
     /// </summary>
     /// <param name="oldTexName">The existing texture to replace.</param>
-    /// <param name="newTexName">The new override texture.</param>
+    /// <param name="newName">The new override texture.</param>
     public void SetTextureOverride(string oldTexName, string newName) => NWScript.SetTextureOverride(oldTexName, newName);
 
     /// <summary>

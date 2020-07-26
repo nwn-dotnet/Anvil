@@ -57,7 +57,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gets or sets the daytime background track index for this area.<br/>
-    /// See "Resources > Sounds & Music > Music" in the toolset for track numbers.
+    /// See "Resources > Sounds and Music > Music" in the toolset for track numbers.
     /// </summary>
     public int MusicBackgroundDayTrack
     {
@@ -67,7 +67,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gets or sets the nighttime background track index for this area.<br/>
-    /// Refer to Resources > Sounds & Music > Music in the toolset for track numbers.
+    /// Refer to Resources > Sounds and Music > Music in the toolset for track numbers.
     /// </summary>
     public int MusicBackgroundNightTrack
     {
@@ -111,7 +111,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gets or sets the combat track index for this area.<br/>
-    /// Refer to Resources > Sounds & Music > Music in the toolset for track numbers.
+    /// Refer to Resources > Sounds and Music > Music in the toolset for track numbers.
     /// </summary>
     public int MusicBattleTrack
     {

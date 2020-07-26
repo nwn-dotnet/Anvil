@@ -646,7 +646,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns true if this creature considers <see cref="target"/> an enemy.
+    /// Returns true if this creature considers the target an enemy.
     /// </summary>
     public bool IsEnemy(NwCreature target)
     {
