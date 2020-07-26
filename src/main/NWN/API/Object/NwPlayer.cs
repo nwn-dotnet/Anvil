@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
@@ -27,12 +28,34 @@ namespace NWN.API
     /// <summary>
     /// Gets the public part of the CD key that this player used when logging in.
     /// </summary>
-    public string PublicCDKey => NWScript.GetPCPublicCDKey(this, true.ToInt());
+    public string CDKey => NWScript.GetPCPublicCDKey(this, true.ToInt());
 
     /// <summary>
     /// Gets the connecting IP address for this player.
     /// </summary>
     public string IPAddress => NWScript.GetPCIPAddress(this);
+
+    /// <summary>
+    /// Adds this player to the specified party leader's party.
+    /// </summary>
+    /// <param name="partyLeader">The party leader of the party to join.</param>
+    public void AddToParty(NwPlayer partyLeader) => NWScript.AddToParty(this, partyLeader);
+
+    public void RemoveFromCurrentParty() => NWScript.RemoveFromParty(this);
+
+    /// <summary>
+    /// Gets the members in this player's party.
+    /// </summary>
+    public IEnumerable<NwPlayer> PartyMembers
+    {
+      get
+      {
+        for (uint member = NWScript.GetFirstFactionMember(this); member != INVALID; member = NWScript.GetNextFactionMember(this))
+        {
+          yield return member.ToNwObject<NwPlayer>();
+        }
+      }
+    }
 
     /// <summary>
     /// Sends a server message to this player.
@@ -41,10 +64,7 @@ namespace NWN.API
     /// <param name="color">A color to apply to the message.</param>
     public void SendServerMessage(string message, Color color) => NWScript.SendMessageToPC(this, message.ColorString(color));
 
-    /// <summary>
-    /// Sends a server message to this player.
-    /// </summary>
-    /// <param name="message">The message to send.</param>
+    /// <inheritdoc cref="SendServerMessage(string,NWN.API.Color)"/>
     public void SendServerMessage(string message) => NWScript.SendMessageToPC(this, message);
 
     /// <summary>

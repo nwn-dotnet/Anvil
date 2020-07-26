@@ -157,8 +157,7 @@ namespace NWN.API
     /// <summary>
     /// Sets the fog amount for this area, at the specified time of day.
     /// </summary>
-    public void SetFogAmount(FogType fogType, int fogAmount)
-      => NWScript.SetFogAmount((int) fogType, fogAmount, this);
+    public void SetFogAmount(FogType fogType, int fogAmount) => NWScript.SetFogAmount((int) fogType, fogAmount, this);
 
     /// <summary>
     /// Notifies all clients in this area to recompute static lighting.

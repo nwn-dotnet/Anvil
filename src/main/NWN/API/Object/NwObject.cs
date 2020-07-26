@@ -22,6 +22,9 @@ namespace NWN.API
       ObjectId = objectId;
     }
 
+    /// <summary>
+    /// Gets the globally unique identifier for this object.
+    /// </summary>
     public Guid UUID
     {
       get

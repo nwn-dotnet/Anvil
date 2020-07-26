@@ -30,6 +30,26 @@ namespace NWN.API
     public RacialType RacialType => (RacialType) NWScript.GetRacialType(this);
 
     /// <summary>
+    /// Gets the gender of this creature.
+    /// </summary>
+    public Gender Gender => (Gender) NWScript.GetGender(this);
+
+    /// <summary>
+    /// Gets whether this creature is currently resting.
+    /// </summary>
+    public bool IsResting => NWScript.GetIsResting(this).ToBool();
+
+    /// <summary>
+    /// Gets whether this creature is a playable racial type.
+    /// </summary>
+    public bool IsPlayableRace => NWScript.GetIsPlayableRacialType(this).ToBool();
+
+    /// <summary>
+    /// Gets the total weight of this creature, in pounds.
+    /// </summary>
+    public decimal TotalWeight => NWScript.GetWeight(this) * 0.1m;
+
+    /// <summary>
     /// Gets this creature's armour class.
     /// </summary>
     public int AC => NWScript.GetAC(this);
@@ -38,6 +58,11 @@ namespace NWN.API
     /// Gets this creature's age, in years.
     /// </summary>
     public int Age => NWScript.GetAge(this);
+
+    /// <summary>
+    /// Gets the size of this creature.
+    /// </summary>
+    public CreatureSize Size => (CreatureSize) NWScript.GetCreatureSize(this);
 
     /// <summary>
     /// Gets or sets the name of this creature's deity.
@@ -55,6 +80,15 @@ namespace NWN.API
     {
       get => NWScript.GetSubRace(this);
       set => NWScript.SetSubRace(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets this creature's currently set Phenotype (body type).
+    /// </summary>
+    public Phenotype Phenotype
+    {
+      get => (Phenotype) NWScript.GetPhenoType(this);
+      set => NWScript.SetPhenoType((int) value, this);
     }
 
     /// <summary>
@@ -81,6 +115,16 @@ namespace NWN.API
     /// Gets a value indicating whether this creature is currently possessed by a DM avatar.
     /// </summary>
     public bool IsDMPossessed => NWScript.GetIsDMPossessed(this).ToBool();
+
+    /// <summary>
+    /// Gets if this creature is a familiar currently possessed by a master.
+    /// </summary>
+    public bool IsPossessedFamiliar => NWScript.GetIsPossessedFamiliar(this).ToBool();
+
+    /// <summary>
+    /// Gets the last command issued to this creature.
+    /// </summary>
+    public AssociateCommand LastCommandFromMaster => (AssociateCommand) NWScript.GetLastAssociateCommand(this);
 
     /// <summary>
     /// Gets the possessor of this creature. This can be the master of a familiar, or the DM for a DM controlled creature.

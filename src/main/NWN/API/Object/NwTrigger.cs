@@ -1,6 +1,10 @@
+using NWN.API.Constants;
+using NWNX.API.Constants;
+
 namespace NWN.API
 {
-  public sealed class NwTrigger : NwStationary
+  [NativeObjectInfo(ObjectType.Trigger, InternalObjectType.Trigger)]
+  public sealed class NwTrigger : NwTrappable
   {
     internal NwTrigger(uint objectId) : base(objectId) {}
   }
