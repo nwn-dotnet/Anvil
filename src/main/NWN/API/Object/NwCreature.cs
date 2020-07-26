@@ -391,6 +391,16 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Determines whether this creature has the specified talent.
+    /// </summary>
+    /// <param name="talent">The talent to check.</param>
+    /// <returns>True if this creature has talent, otherwise false.</returns>
+    public bool HasTalent(Talent talent)
+    {
+      return NWScript.GetCreatureHasTalent(talent, this).ToBool();
+    }
+
+    /// <summary>
     /// Applies the specified effect to this creature.
     /// </summary>
     /// <param name="durationType"></param>

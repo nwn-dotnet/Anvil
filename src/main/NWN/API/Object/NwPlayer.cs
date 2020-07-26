@@ -20,9 +20,19 @@ namespace NWN.API
     public string PlayerName => NWScript.GetPCPlayerName(this);
 
     /// <summary>
-    /// Gets this player's client version (Major + Minor)
+    /// Gets this player's client version (Major + Minor).
     /// </summary>
     public Version ClientVersion => new Version(NWScript.GetPlayerBuildVersionMajor(this), NWScript.GetPlayerBuildVersionMinor(this));
+
+    /// <summary>
+    /// Gets the public part of the CD key that this player used when logging in.
+    /// </summary>
+    public string PublicCDKey => NWScript.GetPCPublicCDKey(this, true.ToInt());
+
+    /// <summary>
+    /// Gets the connecting IP address for this player.
+    /// </summary>
+    public string IPAddress => NWScript.GetPCIPAddress(this);
 
     /// <summary>
     /// Sends a server message to this player.
@@ -36,6 +46,23 @@ namespace NWN.API
     /// </summary>
     /// <param name="message">The message to send.</param>
     public void SendServerMessage(string message) => NWScript.SendMessageToPC(this, message);
+
+    /// <summary>
+    /// Sets if this player should like, or unlike the specified player.
+    /// </summary>
+    /// <param name="like">true if this player should like the target, false if this player should dislike the target.</param>
+    /// <param name="target">The target to like/dislike.</param>
+    public void SetPCReputation(bool like, NwPlayer target)
+    {
+      if (like)
+      {
+        NWScript.SetPCLike(this, target);
+      }
+      else
+      {
+        NWScript.SetPCDislike(this, target);
+      }
+    }
 
     /// <summary>
     /// Starts a conversation with another object, typically a creature.
