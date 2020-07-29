@@ -45,6 +45,35 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Modifies the store behaviour for this item. An infinite item will still be available to purchase from a store after a player buys the item.
+    /// </summary>
+    public bool Infinite
+    {
+      get => NWScript.GetInfiniteFlag(this).ToBool();
+      set => NWScript.SetInfiniteFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets whether this item is considered stolen. Only stores with the "Buys Stolen Goods" will purchase this item.
+    /// <remarks>The stolen flag is set automatically on pickpocketed items, and traps crafted with the craft trap skill.</remarks>
+    /// </summary>
+    public bool Stolen
+    {
+      get => NWScript.GetStolenFlag(this).ToBool();
+      set => NWScript.SetStolenFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets whether this item can be dropped.
+    /// <remarks>Droppable items will appear on a creature's remains when the creature is killed.</remarks>
+    /// </summary>
+    public bool Droppable
+    {
+      get => NWScript.GetDroppableFlag(this).ToBool();
+      set => NWScript.SetDroppableFlag(this, value.ToInt());
+    }
+
+    /// <summary>
     /// The GameObject that has this item in its inventory, otherwise null if it is on the ground, or not in any inventory.
     /// </summary>
     public NwGameObject Possessor

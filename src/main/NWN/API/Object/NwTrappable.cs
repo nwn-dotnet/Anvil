@@ -23,6 +23,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets whether this trap can be detected.
+    /// </summary>
+    public bool TrapDetectable
+    {
+      get => NWScript.GetTrapDetectable(this).ToBool();
+      set => NWScript.SetTrapDetectable(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets or sets whether this trap can be disarmed.
     /// </summary>
     public bool TrapDisarmable
@@ -32,12 +41,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this trap can be detected.
+    /// Gets or sets whether this trap can be recovered.
     /// </summary>
-    public bool TrapDetectable
+    public bool TrapRecoverable
     {
-      get => NWScript.GetTrapDetectable(this).ToBool();
-      set => NWScript.SetTrapDetectable(this, value.ToInt());
+      get => NWScript.GetTrapRecoverable(this).ToBool();
+      set => NWScript.SetTrapRecoverable(this, value.ToInt());
     }
 
     /// <summary>
@@ -56,6 +65,15 @@ namespace NWN.API
     {
       get => NWScript.GetTrapDisarmDC(this);
       set => NWScript.SetTrapDisarmDC(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the skill DC required to detect this trap.
+    /// </summary>
+    public int TrapDetectDC
+    {
+      get => NWScript.GetTrapDetectDC(this);
+      set => NWScript.SetTrapDetectDC(this, value);
     }
 
     /// <summary>

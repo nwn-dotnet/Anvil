@@ -17,6 +17,69 @@ namespace NWN.API
     public Spell SpellId => (Spell) NWScript.GetSpellId();
 
     /// <summary>
+    /// Gets or sets the XP scale for this module. Must be a value between 0-200.
+    /// </summary>
+    public int XPScale
+    {
+      get => NWScript.GetModuleXPScale();
+      set => NWScript.SetModuleXPScale(value);
+    }
+
+    /// <summary>
+    /// Gets or sets the max possible attack bonus from temporary effects/items. (Default: 20)
+    /// </summary>
+    public int AttackBonusLimit
+    {
+      get => NWScript.GetAttackBonusLimit();
+      set => NWScript.SetAttackBonusLimit(value);
+    }
+
+    /// <summary>
+    /// Gets or sets the max possible damage bonus from temporary effects/items. (Default: 100)
+    /// </summary>
+    public int DamageBonusLimit
+    {
+      get => NWScript.GetDamageBonusLimit();
+      set => NWScript.SetDamageBonusLimit(value);
+    }
+
+    /// <summary>
+    /// Gets or sets the max possible saving throw bonus from temporary effects/items. (Default: 20)
+    /// </summary>
+    public int SavingThrowBonusLimit
+    {
+      get => NWScript.GetSavingThrowBonusLimit();
+      set => NWScript.SetSavingThrowBonusLimit(value);
+    }
+
+    /// <summary>
+    /// Gets or sets the max possible ability score bonus from temporary effects/items. (Default: 12)
+    /// </summary>
+    public int GetAbilityBonusLimit
+    {
+      get => NWScript.GetAbilityBonusLimit();
+      set => NWScript.SetAbilityBonusLimit(value);
+    }
+
+    /// <summary>
+    /// Gets or sets the max possible ability score penalty from temporary effects/items. (Default: 30)
+    /// </summary>
+    public int AbilityPenaltyLimit
+    {
+      get => NWScript.GetAbilityPenaltyLimit();
+      set => NWScript.SetAbilityPenaltyLimit(value);
+    }
+
+    /// <summary>
+    /// Gets or sets the max possible skill bonus from temporary effects/items. (Default: 50)
+    /// </summary>
+    public int SkillBonusLimit
+    {
+      get => NWScript.GetSkillBonusLimit();
+      set => NWScript.SetSkillBonusLimit(value);
+    }
+
+    /// <summary>
     /// Finds the specified waypoint with the given tag.
     /// </summary>
     /// <param name="tag"></param>
@@ -71,19 +134,16 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Broadcasts a message to the DM channel with the given color, sending a message to all DMs on the server.
+    /// Broadcasts a message to the DM channel, sending a message to all DMs on the server.
     /// </summary>
     /// <param name="message">The message to send.</param>
-    /// <param name="color">The color of the message.</param>
+    /// <param name="color">A color to apply to the message.</param>
     public void SendMessageToAllDMs(string message, Color color)
     {
       NWScript.SendMessageToAllDMs(message.ColorString(color));
     }
 
-    /// <summary>
-    /// Broadcasts a message to the DM channel sending a message to all DMs on the server.
-    /// </summary>
-    /// <param name="message">The message to send.</param>
+    /// <inheritdoc cref="SendMessageToAllDMs(string,NWN.API.Color)"/>
     public void SendMessageToAllDMs(string message)
     {
       NWScript.SendMessageToAllDMs(message);
