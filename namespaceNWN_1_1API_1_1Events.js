@@ -1,0 +1,65 @@
+var namespaceNWN_1_1API_1_1Events =
+[
+    [ "AreaEvents", "classNWN_1_1API_1_1Events_1_1AreaEvents.html", [
+      [ "OnEnter", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter" ],
+      [ "OnExit", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnExit.html", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnExit" ],
+      [ "OnHeartbeat", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnHeartbeat.html", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnHeartbeat" ],
+      [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnUserDefined" ]
+    ] ],
+    [ "CreatureEvents", "classNWN_1_1API_1_1Events_1_1CreatureEvents.html", [
+      [ "OnBlocked", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked" ],
+      [ "OnCombatRoundEnd", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnCombatRoundEnd.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnCombatRoundEnd" ],
+      [ "OnConversation", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation" ],
+      [ "OnDamaged", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDamaged.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDamaged" ],
+      [ "OnDeath", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDeath.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDeath" ],
+      [ "OnDisturbed", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDisturbed.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDisturbed" ],
+      [ "OnHeartbeat", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnHeartbeat.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnHeartbeat" ],
+      [ "OnPerception", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnPerception.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnPerception" ],
+      [ "OnPhysicalAttacked", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnPhysicalAttacked.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnPhysicalAttacked" ],
+      [ "OnRested", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnRested.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnRested" ],
+      [ "OnSpawn", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpawn.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpawn" ],
+      [ "OnSpellCastAt", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt" ],
+      [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined" ]
+    ] ],
+    [ "DoorEvents", "classNWN_1_1API_1_1Events_1_1DoorEvents.html", null ],
+    [ "EncounterEvents", "classNWN_1_1API_1_1Events_1_1EncounterEvents.html", null ],
+    [ "IEvent", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", null ],
+    [ "IEventAttribute", "interfaceNWN_1_1API_1_1Events_1_1IEventAttribute.html", "interfaceNWN_1_1API_1_1Events_1_1IEventAttribute" ],
+    [ "MerchantEvents", "classNWN_1_1API_1_1Events_1_1MerchantEvents.html", null ],
+    [ "ModuleEvents", "classNWN_1_1API_1_1Events_1_1ModuleEvents.html", [
+      [ "OnAcquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem" ],
+      [ "OnActivateItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem" ],
+      [ "OnClientEnter", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter" ],
+      [ "OnClientLeave", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave" ],
+      [ "OnCutsceneAbort", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnCutsceneAbort.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnCutsceneAbort" ],
+      [ "OnHeartbeat", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnHeartbeat.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnHeartbeat" ],
+      [ "OnModuleLoad", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnModuleLoad.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnModuleLoad" ],
+      [ "OnPlayerChat", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat" ],
+      [ "OnPlayerDeath", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath" ],
+      [ "OnPlayerDying", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying" ],
+      [ "OnPlayerEquipItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem" ],
+      [ "OnPlayerLevelUp", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp" ],
+      [ "OnPlayerRespawn", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRespawn.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRespawn" ],
+      [ "OnPlayerRest", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest" ],
+      [ "OnPlayerUnequipItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem" ],
+      [ "OnUnacquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem" ],
+      [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined" ]
+    ] ],
+    [ "PlaceableEvents", "classNWN_1_1API_1_1Events_1_1PlaceableEvents.html", [
+      [ "OnClose", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose" ],
+      [ "OnDamaged", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged" ],
+      [ "OnDeath", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath" ],
+      [ "OnDisturbed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed" ],
+      [ "OnHeartbeat", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat" ],
+      [ "OnLock", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock" ],
+      [ "OnOpen", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen" ],
+      [ "OnPhysicalAttacked", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked" ],
+      [ "OnSpellCastAt", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt" ],
+      [ "OnUnlock", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUnlock.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUnlock" ],
+      [ "OnUsed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed" ],
+      [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined" ]
+    ] ],
+    [ "ScriptEventAttribute", "classNWN_1_1API_1_1Events_1_1ScriptEventAttribute.html", "classNWN_1_1API_1_1Events_1_1ScriptEventAttribute" ],
+    [ "TrapEvents", "classNWN_1_1API_1_1Events_1_1TrapEvents.html", null ],
+    [ "TriggerEvents", "classNWN_1_1API_1_1Events_1_1TriggerEvents.html", null ]
+];

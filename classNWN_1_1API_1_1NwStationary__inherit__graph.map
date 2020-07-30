@@ -1,0 +1,9 @@
+<map id="NWN.API.NwStationary" name="NWN.API.NwStationary">
+<area shape="rect" id="node1" title=" " alt="" coords="74,304,234,331"/>
+<area shape="rect" id="node6" href="$classNWN_1_1API_1_1NwDoor.html" title=" " alt="" coords="5,379,135,405"/>
+<area shape="rect" id="node7" href="$classNWN_1_1API_1_1NwPlaceable.html" title=" " alt="" coords="159,379,317,405"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1NwTrappable.html" title=" " alt="" coords="105,229,203,256"/>
+<area shape="rect" id="node3" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="97,155,211,181"/>
+<area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="114,80,194,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="73,5,235,32"/>
+</map>

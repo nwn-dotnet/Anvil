@@ -1,0 +1,10 @@
+<map id="NWN.API.NwPlayer" name="NWN.API.NwPlayer">
+<area shape="rect" id="node1" title=" " alt="" coords="83,412,221,439"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="107,336,197,363"/>
+<area shape="rect" id="node3" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="5,157,120,184"/>
+<area shape="rect" id="node6" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="199,247,350,273"/>
+<area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="107,81,187,108"/>
+<area shape="rect" id="node7" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="145,157,319,184"/>
+<area shape="rect" id="node5" title=" " alt="" coords="65,5,228,32"/>
+<area shape="rect" id="node8" title=" " alt="" coords="394,157,438,184"/>
+</map>
