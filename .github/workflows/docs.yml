@@ -19,5 +19,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./html
+          publish_dir: ./docs/html
           commit_message: "Automated Commit: Update docs"
