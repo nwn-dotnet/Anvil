@@ -11,13 +11,19 @@ using NWNX;
 
 namespace NWN
 {
+  /// <summary>
+  /// Handles bootstrap and interop between %NWN, %NWN.Core and the managed %API. The entry point of the implementing module should point to this class.<br/>
+  /// Until <see cref="Init"/> is called, all APIs are unavailable for usage.
+  /// </summary>
   public class NManager : IGameManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private const string ShutdownScript = "__nwm_stop";
     private const uint ObjectInvalid = 0x7F000000;
-    public uint ObjectSelf { get; private set; } = ObjectInvalid;
+
+    uint IGameManager.ObjectSelf => this.ObjectSelf;
+    internal uint ObjectSelf { get; private set; } = ObjectInvalid;
 
     public static NManager Instance { get; private set; }
 
@@ -38,12 +44,17 @@ namespace NWN
     // Bootstrap
     private readonly IBindingInstaller bindingInstaller;
 
+    /// <summary>
+    /// Initialises the managed library, loading all defined services.
+    /// </summary>
+    /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
+    /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
+    /// <param name="bindingInstaller">An optional custom binding installer to use instead of the default <see cref="ServiceBindingInstaller"/>.</param>
+    /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength) => Init(arg, argLength, new ServiceBindingInstaller());
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IBindingInstaller bindingInstaller)
+    public static int Init(IntPtr arg, int argLength, IBindingInstaller bindingInstaller = default)
     {
+      bindingInstaller ??= new ServiceBindingInstaller();
       Instance = new NManager(bindingInstaller);
       return Internal.Init(arg, argLength, Instance);
     }
@@ -65,7 +76,7 @@ namespace NWN
       Environment.SetEnvironmentVariable("PATH", $"{envPath}; {assemblyDir}");
     }
 
-    private void Init()
+    private void InitServices()
     {
       ServiceManager serviceManager = new ServiceManager(bindingInstaller);
       CheckPluginDependencies();
@@ -90,7 +101,7 @@ namespace NWN
       ServiceManager = null;
     }
 
-    public void OnMainLoop(ulong frame)
+    void IGameManager.OnMainLoop(ulong frame)
     {
       try
       {
@@ -102,7 +113,7 @@ namespace NWN
       }
     }
 
-    public int OnRunScript(string script, uint oidSelf)
+    int IGameManager.OnRunScript(string script, uint oidSelf)
     {
       int retVal = 0;
       ObjectSelf = oidSelf;
@@ -112,7 +123,7 @@ namespace NWN
       {
         if (ServiceManager == null)
         {
-          Init();
+          InitServices();
         }
         else if (script == ShutdownScript)
         {
@@ -137,7 +148,7 @@ namespace NWN
       return retVal;
     }
 
-    public void OnClosure(ulong eid, uint oidSelf)
+    void IGameManager.OnClosure(ulong eid, uint oidSelf)
     {
       uint old = ObjectSelf;
       ObjectSelf = oidSelf;
@@ -155,7 +166,7 @@ namespace NWN
       ObjectSelf = old;
     }
 
-    public void ClosureAssignCommand(uint obj, ActionDelegate func)
+    void IGameManager.ClosureAssignCommand(uint obj, ActionDelegate func)
     {
       if (Internal.NativeFunctions.ClosureAssignCommand(obj, nextEventId) != 0)
       {
@@ -163,7 +174,7 @@ namespace NWN
       }
     }
 
-    public void ClosureDelayCommand(uint obj, float duration, ActionDelegate func)
+    void IGameManager.ClosureDelayCommand(uint obj, float duration, ActionDelegate func)
     {
       if (Internal.NativeFunctions.ClosureDelayCommand(obj, duration, nextEventId) != 0)
       {
@@ -171,7 +182,7 @@ namespace NWN
       }
     }
 
-    public void ClosureActionDoCommand(uint obj, ActionDelegate func)
+    void IGameManager.ClosureActionDoCommand(uint obj, ActionDelegate func)
     {
       if (Internal.NativeFunctions.ClosureActionDoCommand(obj, nextEventId) != 0)
       {
