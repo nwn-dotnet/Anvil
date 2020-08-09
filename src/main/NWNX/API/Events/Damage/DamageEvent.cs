@@ -18,12 +18,12 @@ namespace NWNX.API.Events
       DamageData = DamageData.FromNative(eventData);
       Attacker = eventData.oDamager.ToNwObject();
       Target = objSelf;
-
-      Callbacks?.Invoke(this);
-
-      DamagePlugin.SetDamageEventData(DamageData.ToNative(Attacker));
     }
 
-    public event Action<DamageEvent> Callbacks;
+    protected override void InvokeCallbacks()
+    {
+      base.InvokeCallbacks();
+      DamagePlugin.SetDamageEventData(DamageData.ToNative(Attacker));
+    }
   }
 }
