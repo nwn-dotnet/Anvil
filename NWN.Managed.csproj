@@ -17,11 +17,6 @@
         <RootNamespace />
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <DebugSymbols>false</DebugSymbols>
-        <DebugType>None</DebugType>
-    </PropertyGroup>
-
     <ItemGroup>
         <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" ExcludeAssets="runtime" />
         <PackageReference Include="NLog" Version="4.7.2" />
