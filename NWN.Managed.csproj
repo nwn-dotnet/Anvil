@@ -11,6 +11,12 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <RepositoryUrl>https://github.com/nwn-dotnet/NWN.Managed</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <NoWarn>1591</NoWarn>
         <RootNamespace />
     </PropertyGroup>
@@ -25,6 +31,7 @@
         <PackageReference Include="NLog" Version="4.7.2" />
         <PackageReference Include="NWN.Core" Version="8193.13.3" PrivateAssets="All" />
         <PackageReference Include="SimpleInjector" Version="5.0.3" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPackageVersion)" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
