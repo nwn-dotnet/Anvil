@@ -1,0 +1,36 @@
+name: NuGet Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Version and Tag
+        id: bump_version
+        uses: anothrNick/github-tag-action@1.22.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          RELEASE_BRANCHES: master
+          WITH_V: true
+
+      - name: Prep Version String
+        run: echo ::set-env name=VERSION_NUMBER::$(echo ${{ steps.bump_version.outputs.tag }}-alpha | sed 's/[v]//g')
+
+      - name: Pack
+        run: dotnet pack NWN.Managed.csproj --configuration Release -p:PackageVersion=${{ env.VERSION_NUMBER }} -o output

@@ -1,11 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <PackageId>NWN.Managed</PackageId>
+        <Authors>NWN.NET</Authors>
+        <PackageTags>Neverwinter Nights;NWN;</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <IsPackable>false</IsPackable>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeSymbols>true</IncludeSymbols>
         <NoWarn>1591</NoWarn>
         <RootNamespace />
     </PropertyGroup>
