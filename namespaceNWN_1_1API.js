@@ -6,6 +6,7 @@ var namespaceNWN_1_1API =
     [ "Color", "structNWN_1_1API_1_1Color.html", "structNWN_1_1API_1_1Color" ],
     [ "CreatureTypeFilter", "structNWN_1_1API_1_1CreatureTypeFilter.html", "structNWN_1_1API_1_1CreatureTypeFilter" ],
     [ "Effect", "classNWN_1_1API_1_1Effect.html", "classNWN_1_1API_1_1Effect" ],
+    [ "GameTimeSpan", "classNWN_1_1API_1_1GameTimeSpan.html", "classNWN_1_1API_1_1GameTimeSpan" ],
     [ "GuidExtension", "classNWN_1_1API_1_1GuidExtension.html", "classNWN_1_1API_1_1GuidExtension" ],
     [ "IntegerExtensions", "classNWN_1_1API_1_1IntegerExtensions.html", "classNWN_1_1API_1_1IntegerExtensions" ],
     [ "ItemProperty", "classNWN_1_1API_1_1ItemProperty.html", "classNWN_1_1API_1_1ItemProperty" ],

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['damage_577',['Damage',['../classNWNX_1_1API_1_1Damage.html',1,'NWNX::API']]],
-  ['damagedata_578',['DamageData',['../structNWNX_1_1API_1_1Events_1_1DamageData.html',1,'NWNX::API::Events']]],
-  ['damageevent_579',['DamageEvent',['../classNWNX_1_1API_1_1Events_1_1DamageEvent.html',1,'NWNX::API::Events']]],
-  ['dialog_580',['Dialog',['../classNWNX_1_1API_1_1Dialog.html',1,'NWNX::API']]],
-  ['direction_581',['Direction',['../classNWN_1_1API_1_1Constants_1_1Direction.html',1,'NWN::API::Constants']]],
-  ['doorevents_582',['DoorEvents',['../classNWN_1_1API_1_1Events_1_1DoorEvents.html',1,'NWN::API::Events']]]
+  ['effect_578',['Effect',['../classNWN_1_1API_1_1Effect.html',1,'NWN.API.Effect'],['../classNWNX_1_1API_1_1Effect.html',1,'NWNX.API.Effect']]],
+  ['elc_579',['ELC',['../classNWNX_1_1API_1_1ELC.html',1,'NWNX::API']]],
+  ['encounter_580',['Encounter',['../classNWNX_1_1API_1_1Encounter.html',1,'NWNX::API']]],
+  ['encounterevents_581',['EncounterEvents',['../classNWN_1_1API_1_1Events_1_1EncounterEvents.html',1,'NWN::API::Events']]],
+  ['eventhandler_582',['EventHandler',['../classNWN_1_1Services_1_1EventHandler.html',1,'NWN::Services']]],
+  ['eventservice_583',['EventService',['../classNWN_1_1Services_1_1EventService.html',1,'NWN::Services']]]
 ];

@@ -13,8 +13,6 @@ var hierarchy =
       [ "NWNX.API.Events.NWNXDamageEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html", null ],
       [ "NWNX.API.Events.NWNXEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html", null ]
     ] ],
-    [ "NWN.Services.Binding", "classNWN_1_1Services_1_1Binding.html", null ],
-    [ "NWN.Services.BindingTypeExtensions", "classNWN_1_1Services_1_1BindingTypeExtensions.html", null ],
     [ "NWNX.API.Chat", "classNWNX_1_1API_1_1Chat.html", null ],
     [ "NWN.API.CollectionExtensions", "classNWN_1_1API_1_1CollectionExtensions.html", null ],
     [ "NWN.API.Color", "structNWN_1_1API_1_1Color.html", null ],
@@ -36,16 +34,13 @@ var hierarchy =
     [ "NWN.API.Constants.FadeSpeed", "classNWN_1_1API_1_1Constants_1_1FadeSpeed.html", null ],
     [ "NWNX.API.Events.FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", null ],
     [ "NWNX.API.Feedback", "classNWNX_1_1API_1_1Feedback.html", null ],
-    [ "NWN.Services.GameTimeSpan", "classNWN_1_1Services_1_1GameTimeSpan.html", null ],
+    [ "NWN.API.GameTimeSpan", "classNWN_1_1API_1_1GameTimeSpan.html", null ],
     [ "NWN.API.GuidExtension", "classNWN_1_1API_1_1GuidExtension.html", null ],
     [ "NWN.Services.IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", [
       [ "NWN.Services.ServiceBindingInstaller", "classNWN_1_1Services_1_1ServiceBindingInstaller.html", null ]
     ] ],
     [ "IComparer", null, [
       [ "NWN.Services.ScheduledItem.SortedByExecutionTime", "classNWN_1_1Services_1_1ScheduledItem_1_1SortedByExecutionTime.html", null ]
-    ] ],
-    [ "IDisposable", null, [
-      [ "NWN.Services.ServiceManager", "classNWN_1_1Services_1_1ServiceManager.html", null ]
     ] ],
     [ "IEquatable", null, [
       [ "NWN.API.NwObject", "classNWN_1_1API_1_1NwObject.html", [
@@ -253,7 +248,6 @@ var hierarchy =
     [ "IGameManager", null, [
       [ "NWN.NManager", "classNWN_1_1NManager.html", null ]
     ] ],
-    [ "NWN.ILoopHandler", "interfaceNWN_1_1ILoopHandler.html", null ],
     [ "NWN.API.IntegerExtensions", "classNWN_1_1API_1_1IntegerExtensions.html", null ],
     [ "NWN.Services.Interop", "classNWN_1_1Services_1_1Interop.html", null ],
     [ "NWN.IRunScriptHandler", "interfaceNWN_1_1IRunScriptHandler.html", null ],
@@ -263,7 +257,6 @@ var hierarchy =
     [ "NWNX.API.ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
     [ "NWN.Services.ITwoDimArray", "interfaceNWN_1_1Services_1_1ITwoDimArray.html", null ],
     [ "NWN.Services.IUpdateable", "interfaceNWN_1_1Services_1_1IUpdateable.html", [
-      [ "NWN.API.NwTask.TaskRunner", "classNWN_1_1API_1_1NwTask_1_1TaskRunner.html", null ],
       [ "NWN.Services.SchedulerService", "classNWN_1_1Services_1_1SchedulerService.html", null ]
     ] ],
     [ "NWN.API.LocalVariable< bool >", "classNWN_1_1API_1_1LocalVariable.html", [

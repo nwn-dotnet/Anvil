@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "NWN.NET", "index.html", [
+    [ "NWN.Managed", "index.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -44,8 +45,8 @@ var NAVTREEINDEX =
 "annotated.html",
 "classNWN_1_1API_1_1Effect.html#a9f833d8a8ec62546fcaa640834f12395",
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUnlock.html",
-"classNWN_1_1API_1_1NwItem.html#aa01bedecd284575884575037c594b295",
-"functions_b.html"
+"classNWN_1_1API_1_1NwItem.html#a7e46619fd7f98a65576577373f0c2982",
+"functions_h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
