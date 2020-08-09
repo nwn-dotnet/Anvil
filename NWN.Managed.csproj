@@ -33,7 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="src\resources\NLog.dll.nlog" Pack="True" >
+        <None Update="src\resources\NLog.dll.nlog" Pack="True" PackagePath="build\" >
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
             <Link>NLog.dll.nlog</Link>
         </None>
