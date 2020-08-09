@@ -24,8 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "NWN.NET", "index.html", [
-    [ "NWN.Managed", "index.html", null ],
+  [ "NWN.Managed", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
