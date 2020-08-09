@@ -1,6 +1,6 @@
 namespace NWN
 {
-  public interface ILoopHandler
+  internal interface ILoopHandler
   {
     void OnLoop();
   }

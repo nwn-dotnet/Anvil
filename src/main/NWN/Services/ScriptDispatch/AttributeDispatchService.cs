@@ -10,7 +10,6 @@ namespace NWN.Services
   internal sealed class AttributeDispatchService : IScriptDispatcher
   {
     private const int START_CAPACITY = 2000;
-
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(START_CAPACITY);
@@ -20,7 +19,7 @@ namespace NWN.Services
       NManager.Instance.OnInitComplete += () => Init(NManager.Instance.ServiceManager.GetRegisteredServices());
     }
 
-    public void Init(IEnumerable<object> services)
+    private void Init(IEnumerable<object> services)
     {
       foreach (object service in services)
       {
@@ -60,7 +59,7 @@ namespace NWN.Services
       callback.AddCallback(service, method, scriptName);
     }
 
-    public int ExecuteScript(string script, uint oidSelf)
+    int IScriptDispatcher.ExecuteScript(string script, uint oidSelf)
     {
       if (scriptHandlers.TryGetValue(script, out ScriptCallback handler))
       {

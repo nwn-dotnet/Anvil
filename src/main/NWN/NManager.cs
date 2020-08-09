@@ -36,7 +36,7 @@ namespace NWN
     private ulong nextEventId = 0;
 
     // Core Services
-    public ServiceManager ServiceManager { get; private set; }
+    internal ServiceManager ServiceManager { get; private set; }
 
     private IRunScriptHandler runScriptHandler;
     private ILoopHandler loopHandler;

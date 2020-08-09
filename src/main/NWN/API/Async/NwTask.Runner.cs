@@ -27,7 +27,7 @@ namespace NWN.API
     }
 
     [ServiceBinding(typeof(IUpdateable))]
-    public class TaskRunner : IUpdateable
+    internal class TaskRunner : IUpdateable
     {
       void IUpdateable.Update()
       {

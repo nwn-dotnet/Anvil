@@ -2,7 +2,7 @@ using System;
 
 namespace NWN.Services
 {
-  public class Binding
+  internal class Binding
   {
     public readonly Type ImplementationType;
     public readonly ServiceBindingAttribute BindingInfo;

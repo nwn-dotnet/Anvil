@@ -3,7 +3,7 @@ using SimpleInjector;
 
 namespace NWN.Services
 {
-  public static class BindingTypeExtensions
+  internal static class BindingTypeExtensions
   {
     public static Lifestyle ToLifestyle(this BindingType bindingType)
     {

@@ -116,7 +116,7 @@ namespace NWN.Services
       return eventHandler;
     }
 
-    public int ExecuteScript(string scriptName, uint oidSelf)
+    int IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
       if (scriptToEventMap.TryGetValue(scriptName, out EventHandler eventHandler))
       {

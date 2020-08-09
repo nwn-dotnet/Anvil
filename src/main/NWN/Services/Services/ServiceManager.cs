@@ -6,10 +6,11 @@ using SimpleInjector;
 
 namespace NWN.Services
 {
-  public class ServiceManager : IDisposable
+  internal class ServiceManager : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private readonly Container container;
+
     internal ServiceManager(IBindingInstaller bindingInstaller)
     {
       container = new Container();

@@ -1,10 +1,10 @@
-# NWN.NET
-NWN.NET is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions.
+# NWN.Managed
+NWN.Managed is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. It is a managed implementation of [NWN.Core](https://github.com/nwn-dotnet/NWN.Core).
 
 # Getting Started
 
 ### Dependencies
-NWN.NET requires the following plugins to be enabled in NWNX in-order to run:
+NWN.Managed requires the following plugins to be enabled in NWNX in-order to run:
 ```
 NWNX_DOTNET_SKIP=n
 NWNX_OBJECT_SKIP=n
@@ -34,7 +34,7 @@ namespace NWN
 The class path should match the `ENTRYPOINT` environmental variable as defined in the [NWNX:EE config](https://nwnxee.github.io/unified/group__dotnet.html#dotnet). By default this is `NWN.Internal`.
 
 # Services
-The core of NWN.NET is built around a dependency injection model that is setup using class attributes. The system expects you to implement features in a similar way:
+The core of NWN.Managed is built around a dependency injection model, and the system expects you to implement features in a similar way. Using a class attribute, the system will automatically wire up all of the dependencies for that class as defined in its constructor:
 
 **Example: Basic Script Handler**
 ```csharp
@@ -49,6 +49,14 @@ The core of NWN.NET is built around a dependency injection model that is setup u
   {
     // Gets the server log. By default, this reports to "nwm.log"
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private readonly EventService eventService;
+
+    // The EventService is a core service - defining it here flags it as a dependency to be injected at startup.
+    public MyScriptHandler(EventService eventService)
+    {
+      this.eventService = eventService;
+    }
 
     // This function will be called as if the same script was called by a toolset event, or by another script.
     // Script name must be <= 16 characters similar to the toolset.

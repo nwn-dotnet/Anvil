@@ -1,7 +1,7 @@
 using System;
 using NWN.Core;
 
-namespace NWN.Services
+namespace NWN.API
 {
   public static class GameTimeSpan
   {
