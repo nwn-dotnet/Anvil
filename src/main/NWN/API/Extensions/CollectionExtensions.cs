@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace NWN.API
 {
-  public static class CollectionExtensions
+  internal static class CollectionExtensions
   {
     public static void InsertOrdered<T>(this List<T> sortedList, T item, IComparer<T> comparer = null)
     {

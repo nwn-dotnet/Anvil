@@ -8,12 +8,12 @@ namespace NWNX.API.Events
 {
   public sealed class NWNXAttackEventAttribute : Attribute, IEventAttribute
   {
-    public void InitHook(string scriptName)
+    void IEventAttribute.InitHook(string scriptName)
     {
       DamagePlugin.SetAttackEventScript(scriptName);
     }
 
-    public void InitObjectHook<TObject, TEvent>(EventHandler eventHandler, TObject nwObject, string scriptName) where TObject : NwObject where TEvent : IEvent<TObject, TEvent>, new()
+    void IEventAttribute.InitObjectHook<TObject, TEvent>(EventHandler eventHandler, TObject nwObject, string scriptName)
     {
       throw new NotImplementedException();
     }

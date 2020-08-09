@@ -9,11 +9,15 @@ using EventHandler = NWN.Services.EventHandler;
 namespace NWN.API.Events
 {
   [AttributeUsage(AttributeTargets.Class)]
-  [BaseTypeRequired(typeof(IEvent<>))]
-  public class ScriptEventAttribute : Attribute, IEventAttribute
+  [BaseTypeRequired(typeof(Event<>))]
+  internal class ScriptEventAttribute : Attribute, IEventAttribute
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-    public EventScriptType EventScriptType;
+
+    /// <summary>
+    /// The native event type for this event.
+    /// </summary>
+    public readonly EventScriptType EventScriptType;
 
     public ScriptEventAttribute(EventScriptType eventScriptType)
     {
@@ -21,9 +25,9 @@ namespace NWN.API.Events
     }
 
     // No initial subscribe for script events.
-    public void InitHook(string scriptName) {}
+    void IEventAttribute.InitHook(string scriptName) {}
 
-    public void InitObjectHook<TObject, TEvent>(EventHandler eventHandler, TObject nwObject, string scriptName) where TEvent : IEvent<TObject, TEvent>, new() where TObject : NwObject
+    void IEventAttribute.InitObjectHook<TObject, TEvent>(EventHandler eventHandler, TObject nwObject, string scriptName)
     {
       string existingScript = NWScript.GetEventScript(nwObject, (int) EventScriptType);
       if (existingScript == eventHandler.ScriptName)

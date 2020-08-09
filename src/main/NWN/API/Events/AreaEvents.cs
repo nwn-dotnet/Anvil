@@ -1,4 +1,3 @@
-using System;
 using NWN.API.Constants;
 using NWN.Core;
 
@@ -7,67 +6,53 @@ namespace NWN.API.Events
   public static class AreaEvents
   {
     [ScriptEvent(EventScriptType.AreaOnEnter)]
-    public class OnEnter : IEvent<NwArea, OnEnter>
+    public class OnEnter : Event<NwArea, OnEnter>
     {
       public NwArea Area { get; private set; }
       public NwGameObject EnteringObject { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwArea objSelf)
       {
-        Area = (NwArea) objSelf;
+        Area = objSelf;
         EnteringObject = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
-
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnEnter> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.AreaOnExit)]
-    public class OnExit : IEvent<NwArea, OnExit>
+    public class OnExit : Event<NwArea, OnExit>
     {
       public NwArea Area { get; private set; }
       public NwGameObject ExitingObject { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwArea objSelf)
       {
-        Area = (NwArea) objSelf;
+        Area = objSelf;
         ExitingObject = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
-
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnExit> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.AreaOnHeartbeat)]
-    public class OnHeartbeat : IEvent<NwArea, OnHeartbeat>
+    public class OnHeartbeat : Event<NwArea, OnHeartbeat>
     {
       public NwArea Area { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwArea objSelf)
       {
-        Area = (NwArea) objSelf;
-        Callbacks?.Invoke(this);
+        Area = objSelf;
       }
-
-      public event Action<OnHeartbeat> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.AreaOnUserDefinedEvent)]
-    public class OnUserDefined : IEvent<NwArea, OnUserDefined>
+    public class OnUserDefined : Event<NwArea, OnUserDefined>
     {
       public NwArea Area { get; private set; }
       public int EventNumber { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwArea objSelf)
       {
-        Area = (NwArea) objSelf;
+        Area = objSelf;
         EventNumber = NWScript.GetUserDefinedEventNumber();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnUserDefined> Callbacks;
     }
   }
 }

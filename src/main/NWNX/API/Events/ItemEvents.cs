@@ -1,4 +1,3 @@
-using System;
 using NWN.API;
 using NWN.API.Constants;
 using NWN.API.Events;
@@ -6,31 +5,32 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public sealed class ItemEvents
+  public static class ItemEvents
   {
     [NWNXEvent("NWNX_ON_VALIDATE_USE_ITEM_AFTER")]
-    public class OnValidateUseItemAfter : IEvent<OnValidateUseItemAfter>
+    public sealed class OnValidateUseItemAfter : Event<OnValidateUseItemAfter>
     {
       public NwCreature Creature { get; private set; }
       public NwItem Item { get; private set; }
 
       public bool Result { get; set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature) objSelf;
         Item = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
         Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
-
-        Callbacks?.Invoke(this);
-        EventsPlugin.SetEventResult(Result.ToInt().ToString());
       }
 
-      public event Action<OnValidateUseItemAfter> Callbacks;
+      protected override void InvokeCallbacks()
+      {
+        base.InvokeCallbacks();
+        EventsPlugin.SetEventResult(Result.ToInt().ToString());
+      }
     }
 
     [NWNXEvent("NWNX_ON_VALIDATE_ITEM_EQUIP_AFTER")]
-    public class OnValidateEquipItemAfter : IEvent<OnValidateEquipItemAfter>
+    public sealed class OnValidateEquipItemAfter : Event<OnValidateEquipItemAfter>
     {
       public NwCreature Creature { get; private set; }
       public NwItem Item { get; private set; }
@@ -38,66 +38,45 @@ namespace NWNX.API.Events
 
       public bool Result { get; set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature) objSelf;
         Item = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
         Slot = (InventorySlot) EventsPlugin.GetEventData("SLOT").ParseInt();
         Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
-
-        Callbacks?.Invoke(this);
-        EventsPlugin.SetEventResult(Result.ToInt().ToString());
       }
 
-      public event Action<OnValidateEquipItemAfter> Callbacks;
+      protected override void InvokeCallbacks()
+      {
+        base.InvokeCallbacks();
+        EventsPlugin.SetEventResult(Result.ToInt().ToString());
+      }
     }
 
     [NWNXEvent("NWNX_ON_USE_ITEM_BEFORE")]
-    public class OnItemUseBefore : IEvent<OnItemUseBefore>
+    public sealed class OnItemUseBefore : EventSkippable<OnItemUseBefore>
     {
       public NwCreature Creature { get; private set; }
       public NwItem Item { get; private set; }
-      public bool Skip { get; set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature) objSelf;
         Item = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
-        Skip = false;
-
-        Callbacks?.Invoke(this);
-
-        if (Skip)
-        {
-          EventsPlugin.SkipEvent();
-        }
       }
-
-      public event Action<OnItemUseBefore> Callbacks;
     }
 
     [NWNXEvent("NWNX_ON_ITEM_EQUIP_BEFORE")]
-    public class OnItemEquipBefore : IEvent<OnItemEquipBefore>
+    public sealed class OnItemEquipBefore : EventSkippable<OnItemEquipBefore>
     {
       public NwCreature Creature { get; private set; }
       public NwItem Item { get; private set; }
-      public bool Skip { get; set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature) objSelf;
         Item = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("ITEM")).ToNwObject<NwItem>();
-        Skip = false;
-
-        Callbacks?.Invoke(this);
-
-        if (Skip)
-        {
-          EventsPlugin.SkipEvent();
-        }
       }
-
-      public event Action<OnItemEquipBefore> Callbacks;
     }
   }
 }

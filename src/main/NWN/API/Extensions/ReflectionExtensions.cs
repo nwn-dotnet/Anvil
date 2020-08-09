@@ -2,7 +2,7 @@ using System.Reflection;
 
 namespace NWN.API
 {
-  public static class ReflectionExtensions
+  internal static class ReflectionExtensions
   {
     public static string GetFullName(this MemberInfo member)
     {

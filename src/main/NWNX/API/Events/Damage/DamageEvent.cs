@@ -6,13 +6,13 @@ using NWN.Core.NWNX;
 namespace NWNX.API.Events
 {
   [NWNXDamageEvent]
-  public sealed class DamageEvent : IEvent<DamageEvent>
+  public sealed class DamageEvent : Event<DamageEvent>
   {
     public NwObject Attacker { get; private set; }
     public NwObject Target { get; private set; }
     public DamageData DamageData { get; set; }
 
-    public void BroadcastEvent(NwObject objSelf)
+    protected override void PrepareEvent(NwObject objSelf)
     {
       DamageEventData eventData = DamagePlugin.GetDamageEventData();
       DamageData = DamageData.FromNative(eventData);

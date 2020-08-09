@@ -1,4 +1,3 @@
-using System;
 using NWN.API.Constants;
 using NWN.Core;
 
@@ -7,111 +6,84 @@ namespace NWN.API.Events
   public static class ModuleEvents
   {
     [ScriptEvent(EventScriptType.ModuleOnAcquireItem)]
-    public sealed class OnAcquireItem : IEvent<NwModule, OnAcquireItem>
+    public sealed class OnAcquireItem : Event<NwModule, OnAcquireItem>
     {
       public NwItem Item { get; private set; }
       public NwGameObject AcquiredBy { get; private set; }
       public NwGameObject AcquiredFrom { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Item = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
         AcquiredBy = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
         AcquiredFrom = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
-
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnAcquireItem> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnActivateItem)]
-    public sealed class OnActivateItem : IEvent<NwModule, OnActivateItem>
+    public sealed class OnActivateItem : Event<NwModule, OnActivateItem>
     {
       public NwItem ActivatedItem { get; private set; }
       public NwCreature ItemActivator { get; private set; }
       public NwGameObject TargetObject { get; private set; }
       public Location TargetLocation { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         ActivatedItem = NWScript.GetItemActivated().ToNwObject<NwItem>();
         ItemActivator = NWScript.GetItemActivator().ToNwObject<NwCreature>();
         TargetObject = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
         TargetLocation = NWScript.GetItemActivatedTargetLocation();
-
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnActivateItem> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnClientEnter)]
-    public sealed class OnClientEnter : IEvent<NwModule, OnClientEnter>
+    public sealed class OnClientEnter : Event<NwModule, OnClientEnter>
     {
       public NwPlayer Player { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetEnteringObject().ToNwObject<NwPlayer>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnClientEnter> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnClientExit)]
-    public sealed class OnClientLeave : IEvent<NwModule, OnClientLeave>
+    public sealed class OnClientLeave : Event<NwModule, OnClientLeave>
     {
       public NwPlayer Player { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetExitingObject().ToNwObject<NwPlayer>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnClientLeave> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
-    public sealed class OnCutsceneAbort : IEvent<NwModule, OnCutsceneAbort>
+    public sealed class OnCutsceneAbort : Event<NwModule, OnCutsceneAbort>
     {
       public NwPlayer Player { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetLastPCToCancelCutscene().ToNwObject<NwPlayer>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnCutsceneAbort> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnHeartbeat)]
-    public sealed class OnHeartbeat : IEvent<NwModule, OnHeartbeat>
+    public sealed class OnHeartbeat : Event<NwModule, OnHeartbeat>
     {
-      public void BroadcastEvent(NwObject objSelf)
-      {
-        Callbacks?.Invoke(this);
-      }
-
-      public event Action<OnHeartbeat> Callbacks;
+      protected override void PrepareEvent(NwModule objSelf) {}
     }
 
     [ScriptEvent(EventScriptType.ModuleOnModuleLoad)]
-    public sealed class OnModuleLoad : IEvent<NwModule, OnModuleLoad>
+    public sealed class OnModuleLoad : Event<NwModule, OnModuleLoad>
     {
-      public void BroadcastEvent(NwObject objSelf)
-      {
-        Callbacks?.Invoke(this);
-      }
-
-      public event Action<OnModuleLoad> Callbacks;
+      protected override void PrepareEvent(NwModule objSelf) {}
     }
 
     [ScriptEvent(EventScriptType.ModuleOnPlayerChat)]
-    public sealed class OnPlayerChat : IEvent<NwModule, OnPlayerChat>
+    public sealed class OnPlayerChat : Event<NwModule, OnPlayerChat>
     {
       public NwPlayer Sender { get; private set; }
 
@@ -129,155 +101,132 @@ namespace NWN.API.Events
 
       private bool callingChatHandlers;
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
-        if (callingChatHandlers || Callbacks == null) return;
-
-        callingChatHandlers = true; // Prevent recursive calls.
-
         Sender = NWScript.GetPCChatSpeaker().ToNwObject<NwPlayer>();
-        Callbacks(this);
-
-        callingChatHandlers = false;
       }
 
-      public event Action<OnPlayerChat> Callbacks;
+      protected override void InvokeCallbacks()
+      {
+        // Prevent infinite recursion from use of send message in event.
+        if (callingChatHandlers)
+        {
+          return;
+        }
+
+        callingChatHandlers = true;
+        base.InvokeCallbacks();
+        callingChatHandlers = false;
+      }
     }
 
     [ScriptEvent(EventScriptType.ModuleOnPlayerDeath)]
-    public sealed class OnPlayerDeath : IEvent<NwModule, OnPlayerDeath>
+    public sealed class OnPlayerDeath : Event<NwModule, OnPlayerDeath>
     {
       public NwPlayer DeadPlayer { get; private set; }
       public NwGameObject Killer { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         DeadPlayer = NWScript.GetLastPlayerDied().ToNwObject<NwPlayer>();
         Killer = NWScript.GetLastHostileActor().ToNwObject<NwGameObject>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnPlayerDeath> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnPlayerDying)]
-    public sealed class OnPlayerDying : IEvent<NwModule, OnPlayerDying>
+    public sealed class OnPlayerDying : Event<NwModule, OnPlayerDying>
     {
       public NwPlayer Player { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetLastPlayerDying().ToNwObject<NwPlayer>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnPlayerDying> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnEquipItem)]
-    public sealed class OnPlayerEquipItem : IEvent<NwModule, OnPlayerEquipItem>
+    public sealed class OnPlayerEquipItem : Event<NwModule, OnPlayerEquipItem>
     {
       public NwCreature Player { get; private set; }
       public NwItem Item { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
         Item = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnPlayerEquipItem> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnPlayerLevelUp)]
-    public sealed class OnPlayerLevelUp : IEvent<NwModule, OnPlayerLevelUp>
+    public sealed class OnPlayerLevelUp : Event<NwModule, OnPlayerLevelUp>
     {
       public NwPlayer Player { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetPCLevellingUp().ToNwObject<NwPlayer>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnPlayerLevelUp> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
-    public sealed class OnPlayerRespawn : IEvent<NwModule, OnPlayerRespawn>
+    public sealed class OnPlayerRespawn : Event<NwModule, OnPlayerRespawn>
     {
       public NwPlayer Player { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetLastRespawnButtonPresser().ToNwObject<NwPlayer>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnPlayerRespawn> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnPlayerRest)]
-    public sealed class OnPlayerRest : IEvent<NwModule, OnPlayerRest>
+    public sealed class OnPlayerRest : Event<NwModule, OnPlayerRest>
     {
       public NwPlayer Player { get; private set; }
       public RestEventType RestEventType { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetLastPCRested().ToNwObject<NwPlayer>();
         RestEventType = (RestEventType) NWScript.GetLastRestEventType();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnPlayerRest> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnUnequipItem)]
-    public sealed class OnPlayerUnequipItem : IEvent<NwModule, OnPlayerUnequipItem>
+    public sealed class OnPlayerUnequipItem : Event<NwModule, OnPlayerUnequipItem>
     {
       public NwCreature UnequippedBy { get; private set; }
       public NwItem Item { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         UnequippedBy = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>();
         Item = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnPlayerUnequipItem> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnLoseItem)]
-    public sealed class OnUnacquireItem : IEvent<NwModule, OnUnacquireItem>
+    public sealed class OnUnacquireItem : Event<NwModule, OnUnacquireItem>
     {
       public NwCreature LostBy { get; private set; }
       public NwItem Item { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         LostBy = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>();
         Item = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnUnacquireItem> Callbacks;
     }
 
     [ScriptEvent(EventScriptType.ModuleOnUserDefinedEvent)]
-    public sealed class OnUserDefined : IEvent<NwModule, OnUserDefined>
+    public sealed class OnUserDefined : Event<NwModule, OnUserDefined>
     {
       public int EventNumber { get; private set; }
 
-      public void BroadcastEvent(NwObject objSelf)
+      protected override void PrepareEvent(NwModule objSelf)
       {
         EventNumber = NWScript.GetUserDefinedEventNumber();
-        Callbacks?.Invoke(this);
       }
-
-      public event Action<OnUserDefined> Callbacks;
     }
   }
 }

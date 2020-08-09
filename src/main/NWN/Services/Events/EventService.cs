@@ -20,7 +20,7 @@ namespace NWN.Services
     private readonly Dictionary<string, EventHandler> scriptToEventMap = new Dictionary<string, EventHandler>();
     private readonly Dictionary<Type, EventHandler> typeToHandlerMap = new Dictionary<Type, EventHandler>();
 
-    public void Unsubscribe<TEvent>(Action<TEvent> existingHandler) where TEvent : IEvent<TEvent>
+    public void Unsubscribe<TEvent>(Action<TEvent> existingHandler) where TEvent : Event<TEvent>
     {
       if (typeToHandlerMap.TryGetValue(typeof(TEvent), out EventHandler eventHandler))
       {
@@ -28,7 +28,7 @@ namespace NWN.Services
       }
     }
 
-    public void Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> existingHandler) where TEvent : IEvent<TObject, TEvent>, new() where TObject : NwObject
+    public void Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> existingHandler) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
     {
       if (typeToHandlerMap.TryGetValue(typeof(TEvent), out EventHandler eventHandler))
       {
@@ -36,26 +36,26 @@ namespace NWN.Services
       }
     }
 
-    public void Register<TObject, TEvent>(TObject nwObject) where TEvent : IEvent<TObject, TEvent>, new() where TObject : NwObject
+    public void Register<TObject, TEvent>(TObject nwObject) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
     {
       EventHandler eventHandler = GetOrCreateHandler<TEvent>();
       CheckEventHooked<TObject, TEvent>(nwObject, eventHandler);
     }
 
-    public void Subscribe<TEvent>(Action<TEvent> handler) where TEvent : IEvent<TEvent>, new()
+    public void Subscribe<TEvent>(Action<TEvent> handler) where TEvent : Event<TEvent>, new()
     {
       EventHandler eventHandler = GetOrCreateHandler<TEvent>();
       eventHandler.Subscribe(handler);
     }
 
-    public void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> handler) where TEvent : IEvent<TObject, TEvent>, new() where TObject : NwObject
+    public void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> handler) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
     {
       EventHandler eventHandler = GetOrCreateHandler<TEvent>();
       eventHandler.Subscribe(nwObject, handler);
       CheckEventHooked<TObject, TEvent>(nwObject, eventHandler);
     }
 
-    private void CheckEventHooked<TObject, TEvent>(TObject nwObject, EventHandler eventHandler) where TEvent : IEvent<TObject, TEvent>, new() where TObject : NwObject
+    private void CheckEventHooked<TObject, TEvent>(TObject nwObject, EventHandler eventHandler) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
     {
       // Nothing to hook.
       if (nwObject == null)
@@ -68,7 +68,7 @@ namespace NWN.Services
       eventAttribute.InitObjectHook<TObject, TEvent>(eventHandler, nwObject, eventHandler.ScriptName);
     }
 
-    private EventHandler GetOrCreateHandler<TEvent>() where TEvent : IEvent<TEvent>, new()
+    private EventHandler GetOrCreateHandler<TEvent>() where TEvent : Event<TEvent>, new()
     {
       Type type = typeof(TEvent);
       if (typeToHandlerMap.TryGetValue(type, out EventHandler eventHandler))
@@ -107,7 +107,7 @@ namespace NWN.Services
       throw new InvalidOperationException($"Event Type {type.GetFullName()} does not define an event info attribute!");
     }
 
-    private EventHandler CreateEventHandler<TEvent>() where TEvent : IEvent<TEvent>, new()
+    private EventHandler CreateEventHandler<TEvent>() where TEvent : Event<TEvent>, new()
     {
       EventHandler eventHandler = EventHandler.Create<TEvent>();
 
