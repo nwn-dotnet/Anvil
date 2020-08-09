@@ -82,9 +82,8 @@ $(document).ready(function(){initNavTree('classNWNX_1_1API_1_1Events_1_1ItemEven
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="#events">Events</a> &#124;
 <a href="classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">NWNX.API.Events.ItemEvents.OnValidateEquipItemAfter Class Reference</div>  </div>
@@ -96,7 +95,7 @@ Inheritance diagram for NWNX.API.Events.ItemEvents.OnValidateEquipItemAfter:</di
 <div class="center"><img src="classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter__inherit__graph.png" border="0" usemap="#aNWNX_8API_8Events_8ItemEvents_8OnValidateEquipItemAfter_inherit__map" alt="Inheritance graph"/></div>
 <map name="NWNX_8API_8Events_8ItemEvents_8OnValidateEquipItemAfter_inherit__map" id="aNWNX_8API_8Events_8ItemEvents_8OnValidateEquipItemAfter_inherit__map">
 <area shape="rect" title=" " alt="" coords="5,95,208,136"/>
-<area shape="rect" href="interfaceNWN_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="11,5,203,47"/>
+<area shape="rect" href="classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="13,5,201,47"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -105,15 +104,18 @@ Collaboration diagram for NWNX.API.Events.ItemEvents.OnValidateEquipItemAfter:</
 <div class="center"><img src="classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter__coll__graph.png" border="0" usemap="#aNWNX_8API_8Events_8ItemEvents_8OnValidateEquipItemAfter_coll__map" alt="Collaboration graph"/></div>
 <map name="NWNX_8API_8Events_8ItemEvents_8OnValidateEquipItemAfter_coll__map" id="aNWNX_8API_8Events_8ItemEvents_8OnValidateEquipItemAfter_coll__map">
 <area shape="rect" title=" " alt="" coords="5,95,208,136"/>
-<area shape="rect" href="interfaceNWN_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="11,5,203,47"/>
+<area shape="rect" href="classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="13,5,201,47"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a2f68a04b9df1e75c707779c8b315389e"><td class="memItemLeft" align="right" valign="top"><a id="a2f68a04b9df1e75c707779c8b315389e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>BroadcastEvent</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> objSelf)</td></tr>
-<tr class="separator:a2f68a04b9df1e75c707779c8b315389e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a04afc58fcd4b0e80e9732b7b0e7387e1"><td class="memItemLeft" align="right" valign="top"><a id="a04afc58fcd4b0e80e9732b7b0e7387e1"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>PrepareEvent</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> objSelf)</td></tr>
+<tr class="separator:a04afc58fcd4b0e80e9732b7b0e7387e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a924015937811942c17109dbbc022dc1e"><td class="memItemLeft" align="right" valign="top"><a id="a924015937811942c17109dbbc022dc1e"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>InvokeCallbacks</b> ()</td></tr>
+<tr class="separator:a924015937811942c17109dbbc022dc1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -129,12 +131,6 @@ InventorySlot&#160;</td><td class="memItemRight" valign="bottom"><b>Slot</b><cod
 <tr class="memitem:ac96f27801b5ad4efa43752e8c5c43f14"><td class="memItemLeft" align="right" valign="top"><a id="ac96f27801b5ad4efa43752e8c5c43f14"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Result</b><code> [get, set]</code></td></tr>
 <tr class="separator:ac96f27801b5ad4efa43752e8c5c43f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
-Events</h2></td></tr>
-<tr class="memitem:a682a929de2e57b77b657ba8328c739c4"><td class="memItemLeft" align="right" valign="top"><a id="a682a929de2e57b77b657ba8328c739c4"></a>
-Action&lt; <a class="el" href="classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html">OnValidateEquipItemAfter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Callbacks</b></td></tr>
-<tr class="separator:a682a929de2e57b77b657ba8328c739c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWNX/API/Events/ItemEvents.cs</li>

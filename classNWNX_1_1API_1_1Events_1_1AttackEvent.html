@@ -82,9 +82,8 @@ $(document).ready(function(){initNavTree('classNWNX_1_1API_1_1Events_1_1AttackEv
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="#events">Events</a> &#124;
 <a href="classNWNX_1_1API_1_1Events_1_1AttackEvent-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">NWNX.API.Events.AttackEvent Class Reference</div>  </div>
@@ -96,7 +95,7 @@ Inheritance diagram for NWNX.API.Events.AttackEvent:</div>
 <div class="center"><img src="classNWNX_1_1API_1_1Events_1_1AttackEvent__inherit__graph.png" border="0" usemap="#aNWNX_8API_8Events_8AttackEvent_inherit__map" alt="Inheritance graph"/></div>
 <map name="NWNX_8API_8Events_8AttackEvent_inherit__map" id="aNWNX_8API_8Events_8AttackEvent_inherit__map">
 <area shape="rect" title=" " alt="" coords="5,80,211,107"/>
-<area shape="rect" href="interfaceNWN_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="32,5,184,32"/>
+<area shape="rect" href="classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="34,5,182,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -105,15 +104,18 @@ Collaboration diagram for NWNX.API.Events.AttackEvent:</div>
 <div class="center"><img src="classNWNX_1_1API_1_1Events_1_1AttackEvent__coll__graph.png" border="0" usemap="#aNWNX_8API_8Events_8AttackEvent_coll__map" alt="Collaboration graph"/></div>
 <map name="NWNX_8API_8Events_8AttackEvent_coll__map" id="aNWNX_8API_8Events_8AttackEvent_coll__map">
 <area shape="rect" title=" " alt="" coords="5,80,211,107"/>
-<area shape="rect" href="interfaceNWN_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="32,5,184,32"/>
+<area shape="rect" href="classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="34,5,182,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:ac4e01f449f026777def50bd946b21dd2"><td class="memItemLeft" align="right" valign="top"><a id="ac4e01f449f026777def50bd946b21dd2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>BroadcastEvent</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> objSelf)</td></tr>
-<tr class="separator:ac4e01f449f026777def50bd946b21dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ae24874ca1702f021bb90303dcbefee3f"><td class="memItemLeft" align="right" valign="top"><a id="ae24874ca1702f021bb90303dcbefee3f"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>PrepareEvent</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> objSelf)</td></tr>
+<tr class="separator:ae24874ca1702f021bb90303dcbefee3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e6a23dab0b762a6278cd49678beb03"><td class="memItemLeft" align="right" valign="top"><a id="ae7e6a23dab0b762a6278cd49678beb03"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>InvokeCallbacks</b> ()</td></tr>
+<tr class="separator:ae7e6a23dab0b762a6278cd49678beb03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -129,12 +131,6 @@ Properties</h2></td></tr>
 <tr class="memitem:ad180c0b7abcea389fd27db747969841a"><td class="memItemLeft" align="right" valign="top"><a id="ad180c0b7abcea389fd27db747969841a"></a>
 <a class="el" href="structNWNX_1_1API_1_1Events_1_1DamageData.html">DamageData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>DamageData</b><code> [get, set]</code></td></tr>
 <tr class="separator:ad180c0b7abcea389fd27db747969841a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
-Events</h2></td></tr>
-<tr class="memitem:a570026c890e64e52e2766dc7d305d8cc"><td class="memItemLeft" align="right" valign="top"><a id="a570026c890e64e52e2766dc7d305d8cc"></a>
-Action&lt; <a class="el" href="classNWNX_1_1API_1_1Events_1_1AttackEvent.html">AttackEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Callbacks</b></td></tr>
-<tr class="separator:a570026c890e64e52e2766dc7d305d8cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWNX/API/Events/Damage/AttackEvent.cs</li>

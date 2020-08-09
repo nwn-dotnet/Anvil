@@ -82,9 +82,8 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1Events_1_1ModuleEve
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="#events">Events</a> &#124;
 <a href="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">NWN.API.Events.ModuleEvents.OnPlayerChat Class Reference</div>  </div>
@@ -96,7 +95,7 @@ Inheritance diagram for NWN.API.Events.ModuleEvents.OnPlayerChat:</div>
 <div class="center"><img src="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat__inherit__graph.png" border="0" usemap="#aNWN_8API_8Events_8ModuleEvents_8OnPlayerChat_inherit__map" alt="Inheritance graph"/></div>
 <map name="NWN_8API_8Events_8ModuleEvents_8OnPlayerChat_inherit__map" id="aNWN_8API_8Events_8ModuleEvents_8OnPlayerChat_inherit__map">
 <area shape="rect" title=" " alt="" coords="5,95,216,136"/>
-<area shape="rect" href="interfaceNWN_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="15,5,207,47"/>
+<area shape="rect" href="classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="17,5,205,47"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -105,15 +104,18 @@ Collaboration diagram for NWN.API.Events.ModuleEvents.OnPlayerChat:</div>
 <div class="center"><img src="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat__coll__graph.png" border="0" usemap="#aNWN_8API_8Events_8ModuleEvents_8OnPlayerChat_coll__map" alt="Collaboration graph"/></div>
 <map name="NWN_8API_8Events_8ModuleEvents_8OnPlayerChat_coll__map" id="aNWN_8API_8Events_8ModuleEvents_8OnPlayerChat_coll__map">
 <area shape="rect" title=" " alt="" coords="5,95,216,136"/>
-<area shape="rect" href="interfaceNWN_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="15,5,207,47"/>
+<area shape="rect" href="classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="17,5,205,47"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a93144fbc845ce6e101960227bb855f61"><td class="memItemLeft" align="right" valign="top"><a id="a93144fbc845ce6e101960227bb855f61"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>BroadcastEvent</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> objSelf)</td></tr>
-<tr class="separator:a93144fbc845ce6e101960227bb855f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a24cc5314d87a1e6b2bdcb8612ccd5da5"><td class="memItemLeft" align="right" valign="top"><a id="a24cc5314d87a1e6b2bdcb8612ccd5da5"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>PrepareEvent</b> (<a class="el" href="classNWN_1_1API_1_1NwModule.html">NwModule</a> objSelf)</td></tr>
+<tr class="separator:a24cc5314d87a1e6b2bdcb8612ccd5da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63e933e3ec901b47abfb6f03592ad40e"><td class="memItemLeft" align="right" valign="top"><a id="a63e933e3ec901b47abfb6f03592ad40e"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>InvokeCallbacks</b> ()</td></tr>
+<tr class="separator:a63e933e3ec901b47abfb6f03592ad40e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -126,12 +128,6 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Message</b><code> [
 <tr class="memitem:ad9a580d17ecc04e73dcca5d37a7f06f7"><td class="memItemLeft" align="right" valign="top"><a id="ad9a580d17ecc04e73dcca5d37a7f06f7"></a>
 TalkVolume&#160;</td><td class="memItemRight" valign="bottom"><b>Volume</b><code> [get, set]</code></td></tr>
 <tr class="separator:ad9a580d17ecc04e73dcca5d37a7f06f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
-Events</h2></td></tr>
-<tr class="memitem:a6f0de61f94f42c631e03e4e8085302ab"><td class="memItemLeft" align="right" valign="top"><a id="a6f0de61f94f42c631e03e4e8085302ab"></a>
-Action&lt; <a class="el" href="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html">OnPlayerChat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Callbacks</b></td></tr>
-<tr class="separator:a6f0de61f94f42c631e03e4e8085302ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWN/API/Events/ModuleEvents.cs</li>

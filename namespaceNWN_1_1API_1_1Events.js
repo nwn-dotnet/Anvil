@@ -23,7 +23,7 @@ var namespaceNWN_1_1API_1_1Events =
     ] ],
     [ "DoorEvents", "classNWN_1_1API_1_1Events_1_1DoorEvents.html", null ],
     [ "EncounterEvents", "classNWN_1_1API_1_1Events_1_1EncounterEvents.html", null ],
-    [ "IEvent", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", null ],
+    [ "Event", "classNWN_1_1API_1_1Events_1_1Event.html", null ],
     [ "IEventAttribute", "interfaceNWN_1_1API_1_1Events_1_1IEventAttribute.html", "interfaceNWN_1_1API_1_1Events_1_1IEventAttribute" ],
     [ "MerchantEvents", "classNWN_1_1API_1_1Events_1_1MerchantEvents.html", null ],
     [ "ModuleEvents", "classNWN_1_1API_1_1Events_1_1ModuleEvents.html", [
@@ -59,7 +59,6 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnUsed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined" ]
     ] ],
-    [ "ScriptEventAttribute", "classNWN_1_1API_1_1Events_1_1ScriptEventAttribute.html", "classNWN_1_1API_1_1Events_1_1ScriptEventAttribute" ],
     [ "TrapEvents", "classNWN_1_1API_1_1Events_1_1TrapEvents.html", null ],
     [ "TriggerEvents", "classNWN_1_1API_1_1Events_1_1TriggerEvents.html", null ]
 ];

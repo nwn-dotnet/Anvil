@@ -88,13 +88,221 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1RandomExtensions.ht
 <div class="title">NWN.API.RandomExtensions Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Extensions to the Random class for reimplementing native random functions (Dice and Ranges).  
+ <a href="classNWN_1_1API_1_1RandomExtensions.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a3058c88aa08de566818c0063ab3a1f51"><td class="memItemLeft" align="right" valign="top"><a id="a3058c88aa08de566818c0063ab3a1f51"></a>
-static double&#160;</td><td class="memItemRight" valign="bottom"><b>Range</b> (this Random random, double minValue, double maxValue)</td></tr>
-<tr class="separator:a3058c88aa08de566818c0063ab3a1f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8dd4f09c4629e8a34ab4111052c2307"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1RandomExtensions.html#ad8dd4f09c4629e8a34ab4111052c2307">NextDouble</a> (this Random random, double minValue, double maxValue)</td></tr>
+<tr class="memdesc:ad8dd4f09c4629e8a34ab4111052c2307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a random double in the specified range.  <a href="classNWN_1_1API_1_1RandomExtensions.html#ad8dd4f09c4629e8a34ab4111052c2307">More...</a><br /></td></tr>
+<tr class="separator:ad8dd4f09c4629e8a34ab4111052c2307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae56c7315f39fb225ab4c402c991a4c68"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1RandomExtensions.html#ae56c7315f39fb225ab4c402c991a4c68">NextFloat</a> (this Random random)</td></tr>
+<tr class="memdesc:ae56c7315f39fb225ab4c402c991a4c68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a random floating-point number that is greater than or equal to 0.0f, and less than 1.0f.  <a href="classNWN_1_1API_1_1RandomExtensions.html#ae56c7315f39fb225ab4c402c991a4c68">More...</a><br /></td></tr>
+<tr class="separator:ae56c7315f39fb225ab4c402c991a4c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30a99195dac7180c94ae1edacdc36f4a"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1RandomExtensions.html#a30a99195dac7180c94ae1edacdc36f4a">NextFloat</a> (this Random random, float minValue, float maxValue)</td></tr>
+<tr class="memdesc:a30a99195dac7180c94ae1edacdc36f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a random float in the specified range.  <a href="classNWN_1_1API_1_1RandomExtensions.html#a30a99195dac7180c94ae1edacdc36f4a">More...</a><br /></td></tr>
+<tr class="separator:a30a99195dac7180c94ae1edacdc36f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8c0c41ba51c9fffe3a6ee94dadd9562"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1RandomExtensions.html#ac8c0c41ba51c9fffe3a6ee94dadd9562">Roll</a> (this Random random, int sides, int amount=1)</td></tr>
+<tr class="memdesc:ac8c0c41ba51c9fffe3a6ee94dadd9562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result of rolling an amount of n-sided dice.  <a href="classNWN_1_1API_1_1RandomExtensions.html#ac8c0c41ba51c9fffe3a6ee94dadd9562">More...</a><br /></td></tr>
+<tr class="separator:ac8c0c41ba51c9fffe3a6ee94dadd9562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Extensions to the Random class for reimplementing native random functions (Dice and Ranges). </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad8dd4f09c4629e8a34ab4111052c2307"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8dd4f09c4629e8a34ab4111052c2307">&#9670;&nbsp;</a></span>NextDouble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double NWN.API.RandomExtensions.NextDouble </td>
+          <td>(</td>
+          <td class="paramtype">this Random&#160;</td>
+          <td class="paramname"><em>random</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>minValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>maxValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a random double in the specified range. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">random</td><td>The random instance.</td></tr>
+    <tr><td class="paramname">minValue</td><td>The minimum value (inclusive)</td></tr>
+    <tr><td class="paramname">maxValue</td><td>The maximum value (exclusive)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A random double in the specified range.</dd></dl>
+
+</div>
+</div>
+<a id="ae56c7315f39fb225ab4c402c991a4c68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae56c7315f39fb225ab4c402c991a4c68">&#9670;&nbsp;</a></span>NextFloat() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float NWN.API.RandomExtensions.NextFloat </td>
+          <td>(</td>
+          <td class="paramtype">this Random&#160;</td>
+          <td class="paramname"><em>random</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a random floating-point number that is greater than or equal to 0.0f, and less than 1.0f. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">random</td><td>The random instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A random floating-point number that is greater than or equal to 0.0f, and less than 1.0f.</dd></dl>
+
+</div>
+</div>
+<a id="a30a99195dac7180c94ae1edacdc36f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30a99195dac7180c94ae1edacdc36f4a">&#9670;&nbsp;</a></span>NextFloat() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float NWN.API.RandomExtensions.NextFloat </td>
+          <td>(</td>
+          <td class="paramtype">this Random&#160;</td>
+          <td class="paramname"><em>random</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a random float in the specified range. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">random</td><td>The random instance.</td></tr>
+    <tr><td class="paramname">minValue</td><td>The minimum value (inclusive)</td></tr>
+    <tr><td class="paramname">maxValue</td><td>The maximum value (exclusive)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A random float in the specified range.</dd></dl>
+
+</div>
+</div>
+<a id="ac8c0c41ba51c9fffe3a6ee94dadd9562"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8c0c41ba51c9fffe3a6ee94dadd9562">&#9670;&nbsp;</a></span>Roll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int NWN.API.RandomExtensions.Roll </td>
+          <td>(</td>
+          <td class="paramtype">this Random&#160;</td>
+          <td class="paramname"><em>random</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sides</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>amount</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the result of rolling an amount of n-sided dice. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">random</td><td>The random instance.</td></tr>
+    <tr><td class="paramname">sides</td><td>The number of sides on each die.</td></tr>
+    <tr><td class="paramname">amount</td><td>The amount of dice to roll.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWN/API/Extensions/RandomExtensions.cs</li>
 </ul>

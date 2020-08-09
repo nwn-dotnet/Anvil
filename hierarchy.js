@@ -6,7 +6,6 @@ var hierarchy =
     [ "NWN.API.Events.AreaEvents", "classNWN_1_1API_1_1Events_1_1AreaEvents.html", null ],
     [ "NWNX.API.Events.AttackData", "structNWNX_1_1API_1_1Events_1_1AttackData.html", null ],
     [ "Attribute", null, [
-      [ "NWN.API.Events.ScriptEventAttribute", "classNWN_1_1API_1_1Events_1_1ScriptEventAttribute.html", null ],
       [ "NWN.Services.ScriptHandlerAttribute", "classNWN_1_1Services_1_1ScriptHandlerAttribute.html", null ],
       [ "NWN.Services.ServiceBindingAttribute", "classNWN_1_1Services_1_1ServiceBindingAttribute.html", null ],
       [ "NWNX.API.Events.NWNXAttackEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html", null ],
@@ -14,7 +13,6 @@ var hierarchy =
       [ "NWNX.API.Events.NWNXEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html", null ]
     ] ],
     [ "NWNX.API.Chat", "classNWNX_1_1API_1_1Chat.html", null ],
-    [ "NWN.API.CollectionExtensions", "classNWN_1_1API_1_1CollectionExtensions.html", null ],
     [ "NWN.API.Color", "structNWN_1_1API_1_1Color.html", null ],
     [ "NWNX.API.Creature", "classNWNX_1_1API_1_1Creature.html", null ],
     [ "NWN.API.Events.CreatureEvents", "classNWN_1_1API_1_1Events_1_1CreatureEvents.html", null ],
@@ -29,13 +27,188 @@ var hierarchy =
     [ "NWNX.API.ELC", "classNWNX_1_1API_1_1ELC.html", null ],
     [ "NWNX.API.Encounter", "classNWNX_1_1API_1_1Encounter.html", null ],
     [ "NWN.API.Events.EncounterEvents", "classNWN_1_1API_1_1Events_1_1EncounterEvents.html", null ],
+    [ "NWN.API.Events.Event< T >", "classNWN_1_1API_1_1Events_1_1Event.html", null ],
+    [ "NWN.API.Events.Event", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.Event< TObject, TEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< AttackEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWNX.API.Events.AttackEvent", "classNWNX_1_1API_1_1Events_1_1AttackEvent.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< DamageEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWNX.API.Events.DamageEvent", "classNWNX_1_1API_1_1Events_1_1DamageEvent.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwArea, OnEnter >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.AreaEvents.OnEnter", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwArea, OnExit >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.AreaEvents.OnExit", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnExit.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwArea, OnHeartbeat >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.AreaEvents.OnHeartbeat", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnHeartbeat.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwArea, OnUserDefined >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.AreaEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnUserDefined.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnBlocked >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnBlocked", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnCombatRoundEnd >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnCombatRoundEnd", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnCombatRoundEnd.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnConversation >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnConversation", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnDamaged >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnDamaged", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDamaged.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnDeath >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnDeath", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDeath.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnDisturbed >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnDisturbed", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDisturbed.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnHeartbeat >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnHeartbeat", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnHeartbeat.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnPerception >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnPerception", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnPerception.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnPhysicalAttacked >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnPhysicalAttacked", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnPhysicalAttacked.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnRested >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnRested", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnRested.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnSpawn >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnSpawn", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpawn.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnSpellCastAt >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnSpellCastAt", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwCreature, OnUserDefined >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.CreatureEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnAcquireItem >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnAcquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnActivateItem >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnActivateItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnClientEnter >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnClientEnter", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnClientLeave >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnClientLeave", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnCutsceneAbort >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnCutsceneAbort", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnCutsceneAbort.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnHeartbeat >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnHeartbeat", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnHeartbeat.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnModuleLoad >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnModuleLoad", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnModuleLoad.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerChat >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerChat", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerDeath >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerDeath", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerDying >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerDying", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerEquipItem >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerEquipItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerLevelUp >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerLevelUp", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerRespawn >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerRespawn", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRespawn.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerRest >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerRest", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerUnequipItem >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerUnequipItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnUnacquireItem >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnUnacquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwModule, OnUserDefined >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnClose >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnClose", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnDamaged >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnDamaged", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnDeath >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnDeath", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnDisturbed >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnDisturbed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnHeartbeat >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnHeartbeat", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnLock >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnLock", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnOpen >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnOpen", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnPhysicalAttacked >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnPhysicalAttacked", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnSpellCastAt >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnSpellCastAt", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnUnlock >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnUnlock", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUnlock.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnUsed >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnUsed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< NwPlaceable, OnUserDefined >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.PlaceableEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< OnValidateEquipItemAfter >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWNX.API.Events.ItemEvents.OnValidateEquipItemAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< OnValidateUseItemAfter >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWNX.API.Events.ItemEvents.OnValidateUseItemAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateUseItemAfter.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< T >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWNX.API.Events.EventSkippable< T >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", null ]
+    ] ],
+    [ "NWN.API.Events.Event< TEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.Event< TObject, TEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", null ]
+    ] ],
     [ "NWN.Services.EventHandler", "classNWN_1_1Services_1_1EventHandler.html", null ],
     [ "NWN.Services.EventService", "classNWN_1_1Services_1_1EventService.html", null ],
+    [ "NWNX.API.Events.EventSkippable< OnItemEquipBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ItemEvents.OnItemEquipBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnItemUseBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ItemEvents.OnItemUseBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnServerCharacterSaveBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ServerVaultEvents.OnServerCharacterSaveBefore", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnSetMemorizedSpellSlotBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.SetMemorizedSpellSlotEvents.OnSetMemorizedSpellSlotBefore", "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents_1_1OnSetMemorizedSpellSlotBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnUseFeatBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.FeatUseEvents.OnUseFeatBefore", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore.html", null ]
+    ] ],
     [ "NWN.API.Constants.FadeSpeed", "classNWN_1_1API_1_1Constants_1_1FadeSpeed.html", null ],
     [ "NWNX.API.Events.FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", null ],
     [ "NWNX.API.Feedback", "classNWNX_1_1API_1_1Feedback.html", null ],
     [ "NWN.API.GameTimeSpan", "classNWN_1_1API_1_1GameTimeSpan.html", null ],
-    [ "NWN.API.GuidExtension", "classNWN_1_1API_1_1GuidExtension.html", null ],
+    [ "NWN.API.GuidExtensions", "classNWN_1_1API_1_1GuidExtensions.html", null ],
     [ "NWN.Services.IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", [
       [ "NWN.Services.ServiceBindingInstaller", "classNWN_1_1Services_1_1ServiceBindingInstaller.html", null ]
     ] ],
@@ -68,179 +241,7 @@ var hierarchy =
     [ "IEquatable< LocalVariable< T >>", null, [
       [ "NWN.API.LocalVariable< T >", "classNWN_1_1API_1_1LocalVariable.html", null ]
     ] ],
-    [ "NWN.API.Events.IEvent< TObject, out out TEvent >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.IEvent< out out T >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< AttackEvent >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.AttackEvent", "classNWNX_1_1API_1_1Events_1_1AttackEvent.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< DamageEvent >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.DamageEvent", "classNWNX_1_1API_1_1Events_1_1DamageEvent.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwArea, OnEnter >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.AreaEvents.OnEnter", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwArea, OnExit >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.AreaEvents.OnExit", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnExit.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwArea, OnHeartbeat >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.AreaEvents.OnHeartbeat", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnHeartbeat.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwArea, OnUserDefined >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.AreaEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnUserDefined.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnBlocked >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnBlocked", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnCombatRoundEnd >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnCombatRoundEnd", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnCombatRoundEnd.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnConversation >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnConversation", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnDamaged >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnDamaged", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDamaged.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnDeath >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnDeath", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDeath.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnDisturbed >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnDisturbed", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnDisturbed.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnHeartbeat >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnHeartbeat", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnHeartbeat.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnPerception >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnPerception", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnPerception.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnPhysicalAttacked >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnPhysicalAttacked", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnPhysicalAttacked.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnRested >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnRested", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnRested.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnSpawn >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnSpawn", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpawn.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnSpellCastAt >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnSpellCastAt", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwCreature, OnUserDefined >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.CreatureEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnAcquireItem >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnAcquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnActivateItem >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnActivateItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnClientEnter >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnClientEnter", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnClientLeave >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnClientLeave", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnCutsceneAbort >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnCutsceneAbort", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnCutsceneAbort.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnHeartbeat >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnHeartbeat", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnHeartbeat.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnModuleLoad >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnModuleLoad", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnModuleLoad.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnPlayerChat >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnPlayerChat", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnPlayerDeath >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnPlayerDeath", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnPlayerDying >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnPlayerDying", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnPlayerEquipItem >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnPlayerEquipItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnPlayerLevelUp >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnPlayerLevelUp", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnPlayerRespawn >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnPlayerRespawn", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRespawn.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnPlayerRest >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnPlayerRest", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnPlayerUnequipItem >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnPlayerUnequipItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnUnacquireItem >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnUnacquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwModule, OnUserDefined >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.ModuleEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnClose >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnClose", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnDamaged >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnDamaged", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnDeath >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnDeath", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnDisturbed >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnDisturbed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnHeartbeat >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnHeartbeat", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnLock >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnLock", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnOpen >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnOpen", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnPhysicalAttacked >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnPhysicalAttacked", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnSpellCastAt >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnSpellCastAt", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnUnlock >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnUnlock", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUnlock.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnUsed >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnUsed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< NwPlaceable, OnUserDefined >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.PlaceableEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< OnItemEquipBefore >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.ItemEvents.OnItemEquipBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< OnItemUseBefore >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.ItemEvents.OnItemUseBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< OnServerCharacterSaveBefore >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.ServerVaultEvents.OnServerCharacterSaveBefore", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< OnSetMemorizedSpellSlotBefore >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.SetMemorizedSpellSlotEvents.OnSetMemorizedSpellSlotBefore", "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents_1_1OnSetMemorizedSpellSlotBefore.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< OnUseFeatBefore >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.FeatUseEvents.OnUseFeatBefore", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< OnValidateEquipItemAfter >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.ItemEvents.OnValidateEquipItemAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< OnValidateUseItemAfter >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWNX.API.Events.ItemEvents.OnValidateUseItemAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateUseItemAfter.html", null ]
-    ] ],
-    [ "NWN.API.Events.IEvent< TEvent >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
-      [ "NWN.API.Events.IEvent< out out T >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", null ]
-    ] ],
     [ "NWN.API.Events.IEventAttribute", "interfaceNWN_1_1API_1_1Events_1_1IEventAttribute.html", [
-      [ "NWN.API.Events.ScriptEventAttribute", "classNWN_1_1API_1_1Events_1_1ScriptEventAttribute.html", null ],
       [ "NWNX.API.Events.NWNXAttackEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html", null ],
       [ "NWNX.API.Events.NWNXDamageEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html", null ],
       [ "NWNX.API.Events.NWNXEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html", null ]
@@ -295,7 +296,6 @@ var hierarchy =
     [ "NWNX.API.QuickBarSlot", "structNWNX_1_1API_1_1QuickBarSlot.html", null ],
     [ "NWN.API.Constants.RadiusSize", "classNWN_1_1API_1_1Constants_1_1RadiusSize.html", null ],
     [ "NWN.API.RandomExtensions", "classNWN_1_1API_1_1RandomExtensions.html", null ],
-    [ "NWN.API.ReflectionExtensions", "classNWN_1_1API_1_1ReflectionExtensions.html", null ],
     [ "NWNX.API.Rename", "classNWNX_1_1API_1_1Rename.html", null ],
     [ "NWNX.API.Reveal", "classNWNX_1_1API_1_1Reveal.html", null ],
     [ "NWNX.API.Events.ServerVaultEvents", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents.html", null ],
