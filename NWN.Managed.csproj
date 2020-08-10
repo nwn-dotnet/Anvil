@@ -26,17 +26,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).dll" />
-        <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).pdb" />
-        <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).runtimeconfig.json" />
-        <AllOutputs Include="$(OutputPath)$(MSBuildProjectName).deps.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="src\resources\NLog.dll.nlog" Pack="True" PackagePath="build\" >
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <Link>NLog.dll.nlog</Link>
-        </None>
+      <None Include="src/resources/NLog.dll.nlog">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+          <Link>NLog.dll.nlog</Link>
+          <Pack>true</Pack>
+          <PackagePath>contentFiles/any/any;content/</PackagePath>
+          <PackageCopyToOutput>true</PackageCopyToOutput>
+      </None>
     </ItemGroup>
 
 </Project>
