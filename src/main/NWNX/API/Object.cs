@@ -9,7 +9,7 @@ namespace NWNX.API
   {
     static Object() => 
       PluginUtils.AssertPluginExists<ObjectPlugin>();
-    
+
     public static int GetLocalVariableCount(this NwObject obj) => 
       ObjectPlugin.GetLocalVariableCount(obj);
 
@@ -19,60 +19,57 @@ namespace NWNX.API
     public static NwObject StringToObject(string id) =>
       ObjectPlugin.StringToObject(id).ToNwObject();
 
-    public static void SetPosition(this NwObject obj, Location position, bool updateSubareas = true) =>
-      ObjectPlugin.SetPosition(obj, position.Position, updateSubareas ? 1 : 0);
-
     public static int GetCurrentHitPoints(this NwObject obj) =>
       ObjectPlugin.GetCurrentHitPoints(obj);
-    
+
     public static void SetCurrentHitPoints(this NwObject obj, int hp) =>
       ObjectPlugin.SetCurrentHitPoints(obj, hp);
-    
+
     public static void Serialize(this NwObject obj) =>
       ObjectPlugin.Serialize(obj);
-    
+
     public static NwObject Deserialize(string id) =>
       ObjectPlugin.Deserialize(id).ToNwObject();
 
-    public static string GetDialogResref(this NwObject obj) =>
+    public static string GetDialogResref(this NwGameObject obj) =>
       ObjectPlugin.GetDialogResref(obj);
 
-    public static void SetDialogResref(this NwObject obj, string dialog) =>
+    public static void SetDialogResref(this NwGameObject obj, string dialog) =>
       ObjectPlugin.SetDialogResref(obj, dialog);
 
     public static void SetAppearance(this NwPlaceable obj, int appearance) =>
       ObjectPlugin.SetAppearance(obj, appearance);
-    
+
     public static void GetAppearance(this NwPlaceable obj) =>
       ObjectPlugin.GetAppearance(obj);
 
     public static bool GetHasVisualEffect(this NwObject obj, VfxType vfx) =>
       ObjectPlugin.GetHasVisualEffect(obj, (int)vfx).ToBool();
-    
+
     public static int GetDamageImmunity(this NwObject obj, DamageType type) =>
       ObjectPlugin.GetDamageImmunity(obj, (int)type);
-    
+
     public static bool GetAutoRemoveKey(this NwDoor obj) =>
       ObjectPlugin.GetAutoRemoveKey(obj).ToBool();
-    
+
     public static void SetAutoRemoveKey(this NwDoor obj, bool removeKey) =>
-      ObjectPlugin.SetAutoRemoveKey(obj, removeKey? 1 : 0);
+      ObjectPlugin.SetAutoRemoveKey(obj, removeKey.ToInt());
 
     public static string GetTriggerGeometry(this NwTrigger obj) =>
       ObjectPlugin.GetTriggerGeometry(obj);
-    
+
     public static void SetTriggerGeometry(this NwTrigger obj, string value) =>
       ObjectPlugin.SetTriggerGeometry(obj, value);
-    
+
     public static void AddIconEffect(this NwPlayer obj, int icon, float duration = default) =>
       ObjectPlugin.AddIconEffect(obj, icon, duration);
-    
+
     public static void RemoveIconEffect(this NwPlayer obj, int icon) =>
       ObjectPlugin.RemoveIconEffect(obj, icon);
-    
-    public static void Export(this NwObject obj, string fileName) =>
+
+    public static void Export(this NwGameObject obj, string fileName) =>
       ObjectPlugin.Export(fileName, obj);
-    
+
     public static void AddToArea(this NwGameObject gameObject, Location location) =>
       ObjectPlugin.AddToArea(gameObject, location.Area, location.Position);
 
@@ -114,7 +111,7 @@ namespace NWNX.API
 
     public static void ClearSpellEffectsOnOthers(this NwObject obj) =>
       ObjectPlugin.ClearSpellEffectsOnOthers(obj);
-    
+
     public static string PeekUUID(this NwObject obj) => 
       ObjectPlugin.PeekUUID(obj);
 
