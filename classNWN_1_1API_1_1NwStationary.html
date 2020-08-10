@@ -130,9 +130,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9b0a7a8522dc559016b34a41bafe55fb"><td class="memItemLeft" align="right" valign="top">override async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a9b0a7a8522dc559016b34a41bafe55fb">FaceToPoint</a> (Vector3 point)</td></tr>
 <tr class="memdesc:a9b0a7a8522dc559016b34a41bafe55fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates this object to face a position.  <a href="classNWN_1_1API_1_1NwStationary.html#a9b0a7a8522dc559016b34a41bafe55fb">More...</a><br /></td></tr>
 <tr class="separator:a9b0a7a8522dc559016b34a41bafe55fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad967f391ace2efe6b28cb3be84e82d00"><td class="memItemLeft" align="right" valign="top">override Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#ad967f391ace2efe6b28cb3be84e82d00">SetRotation</a> (float value)</td></tr>
-<tr class="memdesc:ad967f391ace2efe6b28cb3be84e82d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rotation of this object.  <a href="classNWN_1_1API_1_1NwStationary.html#ad967f391ace2efe6b28cb3be84e82d00">More...</a><br /></td></tr>
-<tr class="separator:ad967f391ace2efe6b28cb3be84e82d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwTrappable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwTrappable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwTrappable.html">NWN.API.NwTrappable</a></td></tr>
 <tr class="memitem:a3ec473435b896a85f21a2bf52cf4a2a8 inherit pub_methods_classNWN_1_1API_1_1NwTrappable"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwTrappable.html#a3ec473435b896a85f21a2bf52cf4a2a8">IsTrapDetectedBy</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> creature)</td></tr>
 <tr class="memdesc:a3ec473435b896a85f21a2bf52cf4a2a8 inherit pub_methods_classNWN_1_1API_1_1NwTrappable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if the specified creature can see this trap.  <a href="classNWN_1_1API_1_1NwTrappable.html#a3ec473435b896a85f21a2bf52cf4a2a8">More...</a><br /></td></tr>
@@ -250,9 +247,6 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a0d64f2aed72232cec5b520c91a9b6f38"><td class="memItemLeft" align="right" valign="top"><a id="a0d64f2aed72232cec5b520c91a9b6f38"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsOpen</b> =&gt; NWScript.GetIsOpen(this).ToBool()</td></tr>
 <tr class="separator:a0d64f2aed72232cec5b520c91a9b6f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6acbb88523bb32d79e32b119fe480fe1"><td class="memItemLeft" align="right" valign="top"><a id="a6acbb88523bb32d79e32b119fe480fe1"></a>
-override float&#160;</td><td class="memItemRight" valign="bottom"><b>Rotation</b> =&gt; (360 - NWScript.GetFacing(this)) % 360</td></tr>
-<tr class="separator:a6acbb88523bb32d79e32b119fe480fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adda925a5a158756d0fd336d01c24d897"><td class="memItemLeft" align="right" valign="top"><a id="adda925a5a158756d0fd336d01c24d897"></a>
 override <a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Location</b> =&gt; Location.Create(<a class="el" href="classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488">Area</a>, <a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ab441df5249a1c51007ba7e7b6fd04606">Position</a>, Rotation)</td></tr>
 <tr class="separator:adda925a5a158756d0fd336d01c24d897"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -313,6 +307,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a9f1fe95d4d77f7656f3408dcd306cb00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a9f1fe95d4d77f7656f3408dcd306cb00">Hardness</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a9f1fe95d4d77f7656f3408dcd306cb00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the hardness of this stationary object. This is the amount of damage deducted from each hit.  <a href="classNWN_1_1API_1_1NwStationary.html#a9f1fe95d4d77f7656f3408dcd306cb00">More...</a><br /></td></tr>
 <tr class="separator:a9f1fe95d4d77f7656f3408dcd306cb00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6acbb88523bb32d79e32b119fe480fe1"><td class="memItemLeft" align="right" valign="top"><a id="a6acbb88523bb32d79e32b119fe480fe1"></a>
+override float&#160;</td><td class="memItemRight" valign="bottom"><b>Rotation</b><code> [get, set]</code></td></tr>
+<tr class="separator:a6acbb88523bb32d79e32b119fe480fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classNWN_1_1API_1_1NwTrappable"><td colspan="2" onclick="javascript:toggleInherit('properties_classNWN_1_1API_1_1NwTrappable')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classNWN_1_1API_1_1NwTrappable.html">NWN.API.NwTrappable</a></td></tr>
 <tr class="memitem:aee20a455253cebe8a79ca0075ae34ba1 inherit properties_classNWN_1_1API_1_1NwTrappable"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwTrappable.html#aee20a455253cebe8a79ca0075ae34ba1">TrapActive</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aee20a455253cebe8a79ca0075ae34ba1 inherit properties_classNWN_1_1API_1_1NwTrappable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this trap is an active trap. An inactive trap will not trigger when a creature steps on it.  <a href="classNWN_1_1API_1_1NwTrappable.html#aee20a455253cebe8a79ca0075ae34ba1">More...</a><br /></td></tr>
@@ -340,7 +337,7 @@ Properties</h2></td></tr>
 <tr class="separator:aa364dc60f3d8399d7e13e14a8a77d2fd inherit properties_classNWN_1_1API_1_1NwTrappable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classNWN_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('properties_classNWN_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NWN.API.NwGameObject</a></td></tr>
 <tr class="memitem:a992242d3ad4d409cb5a38ce9d91049f2 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2">Location</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a992242d3ad4d409cb5a38ce9d91049f2 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the location of this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2">More...</a><br /></td></tr>
+<tr class="memdesc:a992242d3ad4d409cb5a38ce9d91049f2 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2">More...</a><br /></td></tr>
 <tr class="separator:a992242d3ad4d409cb5a38ce9d91049f2 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca9ed74629540379def37e9fdef3a488 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488">Area</a><code> [get]</code></td></tr>
 <tr class="memdesc:aca9ed74629540379def37e9fdef3a488 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the area this object is currently in.  <a href="classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488">More...</a><br /></td></tr>
@@ -351,8 +348,8 @@ Properties</h2></td></tr>
 <tr class="memitem:a82519fec2b55d619f28397c8538dabcb inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a82519fec2b55d619f28397c8538dabcb">TransitionTarget</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a82519fec2b55d619f28397c8538dabcb inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the transition target for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a82519fec2b55d619f28397c8538dabcb">More...</a><br /></td></tr>
 <tr class="separator:a82519fec2b55d619f28397c8538dabcb inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6098bd74cf2c1197e291afbdbbc4e22 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22">Rotation</a><code> [get]</code></td></tr>
-<tr class="memdesc:ab6098bd74cf2c1197e291afbdbbc4e22 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">The world rotation for this object  <a href="classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22">More...</a><br /></td></tr>
+<tr class="memitem:ab6098bd74cf2c1197e291afbdbbc4e22 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22">Rotation</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab6098bd74cf2c1197e291afbdbbc4e22 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the world rotation for this object  <a href="classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22">More...</a><br /></td></tr>
 <tr class="separator:ab6098bd74cf2c1197e291afbdbbc4e22 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf4c41e96f12aa57e10e73b17688205d inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1VisualTransform.html">VisualTransform</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d">VisualTransform</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:abf4c41e96f12aa57e10e73b17688205d inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the visual transform for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d">More...</a><br /></td></tr>
@@ -431,36 +428,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </dl>
 
 <p>Reimplemented from <a class="el" href="classNWN_1_1API_1_1NwGameObject.html#aa7512f2d722eebac1ded0c746c8bf6d3">NWN.API.NwGameObject</a>.</p>
-
-</div>
-</div>
-<a id="ad967f391ace2efe6b28cb3be84e82d00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad967f391ace2efe6b28cb3be84e82d00">&#9670;&nbsp;</a></span>SetRotation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override Task NWN.API.NwStationary.SetRotation </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the rotation of this object. </p>
-
-<p>Reimplemented from <a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ad52d2b344bfc3bc85aaffcf1e9b3fcae">NWN.API.NwGameObject</a>.</p>
 
 </div>
 </div>

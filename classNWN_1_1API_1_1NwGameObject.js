@@ -15,7 +15,6 @@ var classNWN_1_1API_1_1NwGameObject =
     [ "PlayAnimation", "classNWN_1_1API_1_1NwGameObject.html#a251e00a18645184c2b3e1c7b3edb0995", null ],
     [ "PlaySound", "classNWN_1_1API_1_1NwGameObject.html#aab693224099b36fedc67c4e00aba88c0", null ],
     [ "RollSavingThrow", "classNWN_1_1API_1_1NwGameObject.html#a48f2f97fe6a827b2f22c42f8ba05e0f1", null ],
-    [ "SetRotation", "classNWN_1_1API_1_1NwGameObject.html#ad52d2b344bfc3bc85aaffcf1e9b3fcae", null ],
     [ "SpeakString", "classNWN_1_1API_1_1NwGameObject.html#aae7e59951e9aa4ea81cc39ac9c49a3f0", null ],
     [ "SqrDistanceToObject", "classNWN_1_1API_1_1NwGameObject.html#a0de110e86510a8f313429fec3019055c", null ],
     [ "HP", "classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965", null ],

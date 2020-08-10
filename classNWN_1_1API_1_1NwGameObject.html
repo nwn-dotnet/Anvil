@@ -125,9 +125,6 @@ Collaboration diagram for NWN.API.NwGameObject:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad52d2b344bfc3bc85aaffcf1e9b3fcae"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ad52d2b344bfc3bc85aaffcf1e9b3fcae">SetRotation</a> (float value)</td></tr>
-<tr class="memdesc:ad52d2b344bfc3bc85aaffcf1e9b3fcae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rotation of this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#ad52d2b344bfc3bc85aaffcf1e9b3fcae">More...</a><br /></td></tr>
-<tr class="separator:ad52d2b344bfc3bc85aaffcf1e9b3fcae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7378a62afea54a9953c65f37635f263"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ae7378a62afea54a9953c65f37635f263">DistanceToObject</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:ae7378a62afea54a9953c65f37635f263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance to the target. <br  />
  If you only need to compare the distance, you can compare the squared distance using <a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a0de110e86510a8f313429fec3019055c" title="Returns the squared distance to the target.">SqrDistanceToObject</a>. (calculating squared distance is faster)  <a href="classNWN_1_1API_1_1NwGameObject.html#ae7378a62afea54a9953c65f37635f263">More...</a><br /></td></tr>
@@ -254,7 +251,7 @@ Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a992242d3ad4d409cb5a38ce9d91049f2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2">Location</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a992242d3ad4d409cb5a38ce9d91049f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the location of this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2">More...</a><br /></td></tr>
+<tr class="memdesc:a992242d3ad4d409cb5a38ce9d91049f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2">More...</a><br /></td></tr>
 <tr class="separator:a992242d3ad4d409cb5a38ce9d91049f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca9ed74629540379def37e9fdef3a488"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488">Area</a><code> [get]</code></td></tr>
 <tr class="memdesc:aca9ed74629540379def37e9fdef3a488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the area this object is currently in.  <a href="classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488">More...</a><br /></td></tr>
@@ -265,8 +262,8 @@ Properties</h2></td></tr>
 <tr class="memitem:a82519fec2b55d619f28397c8538dabcb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a82519fec2b55d619f28397c8538dabcb">TransitionTarget</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a82519fec2b55d619f28397c8538dabcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the transition target for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a82519fec2b55d619f28397c8538dabcb">More...</a><br /></td></tr>
 <tr class="separator:a82519fec2b55d619f28397c8538dabcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6098bd74cf2c1197e291afbdbbc4e22"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22">Rotation</a><code> [get]</code></td></tr>
-<tr class="memdesc:ab6098bd74cf2c1197e291afbdbbc4e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">The world rotation for this object  <a href="classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22">More...</a><br /></td></tr>
+<tr class="memitem:ab6098bd74cf2c1197e291afbdbbc4e22"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22">Rotation</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab6098bd74cf2c1197e291afbdbbc4e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the world rotation for this object  <a href="classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22">More...</a><br /></td></tr>
 <tr class="separator:ab6098bd74cf2c1197e291afbdbbc4e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf4c41e96f12aa57e10e73b17688205d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1VisualTransform.html">VisualTransform</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d">VisualTransform</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:abf4c41e96f12aa57e10e73b17688205d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the visual transform for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d">More...</a><br /></td></tr>
@@ -980,36 +977,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
-<a id="ad52d2b344bfc3bc85aaffcf1e9b3fcae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad52d2b344bfc3bc85aaffcf1e9b3fcae">&#9670;&nbsp;</a></span>SetRotation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual async Task NWN.API.NwGameObject.SetRotation </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the rotation of this object. </p>
-
-<p>Reimplemented in <a class="el" href="classNWN_1_1API_1_1NwStationary.html#ad967f391ace2efe6b28cb3be84e82d00">NWN.API.NwStationary</a>.</p>
-
-</div>
-</div>
 <a id="aae7e59951e9aa4ea81cc39ac9c49a3f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aae7e59951e9aa4ea81cc39ac9c49a3f0">&#9670;&nbsp;</a></span>SpeakString()</h2>
 
@@ -1199,7 +1166,7 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the location of this object. </p>
+<p>Gets or sets the location of this object. </p>
 
 </div>
 </div>
@@ -1290,12 +1257,12 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>The world rotation for this object </p>
+<p>Gets or sets the world rotation for this object </p>
 
 </div>
 </div>

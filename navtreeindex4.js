@@ -1,7 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"structNWNX_1_1API_1_1QuickBarSlot.html#a6ef3e2a0665bfd0a3857ab80a54aed34":[0,0,1,0,17,14],
-"structNWNX_1_1API_1_1QuickBarSlot.html#a846d3b3fcea8cdd738aeee495792105d":[0,0,1,0,17,8],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a99710bade164d13029674c92a6f462dc":[0,0,1,0,17,9],
 "structNWNX_1_1API_1_1QuickBarSlot.html#aa2782c10f2f55103db839331bba72649":[0,0,1,0,17,3],
 "structNWNX_1_1API_1_1QuickBarSlot.html#aba90e6d9a2222a392ebc5eff2dbd1db8":[0,0,1,0,17,10],
