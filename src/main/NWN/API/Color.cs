@@ -45,7 +45,8 @@ namespace NWN.API
 
     public string ToColorToken()
     {
-      return ENCODING.GetString(new[] {Math.Max(Red, MIN_STR), Math.Max(Green, MIN_STR), Math.Max(Blue, MIN_STR)});
+      ReadOnlySpan<byte> tokenBytes = stackalloc[] {Math.Max(Red, MIN_STR), Math.Max(Green, MIN_STR), Math.Max(Blue, MIN_STR)};
+      return ENCODING.GetString(tokenBytes);
     }
 
     public int ToHex()
