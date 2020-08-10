@@ -13,12 +13,16 @@ namespace NWN.API
     internal NwGameObject(uint objectId) : base(objectId) {}
 
     /// <summary>
-    /// Gets the location of this object.
+    /// Gets or sets the location of this object.
     /// </summary>
     public virtual Location Location
     {
       get => NWScript.GetLocation(this);
-      set => ObjectPlugin.AddToArea(this, value.Area, value.Position);
+      set
+      {
+        ObjectPlugin.AddToArea(this, value.Area, value.Position);
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>
@@ -48,11 +52,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// The world rotation for this object
+    /// Gets or sets the world rotation for this object
     /// </summary>
     public virtual float Rotation
     {
       get => NWScript.GetFacing(this) % 360;
+      set => ObjectPlugin.SetFacing(this, value % 360);
     }
 
     /// <summary>
@@ -62,15 +67,6 @@ namespace NWN.API
     {
       get => new VisualTransform(this);
       set => value?.Apply(this);
-    }
-
-    /// <summary>
-    /// Sets the rotation of this object.
-    /// </summary>
-    public virtual async Task SetRotation(float value)
-    {
-      await WaitForObjectContext();
-      NWScript.SetFacing(value % 360);
     }
 
     /// <summary>
