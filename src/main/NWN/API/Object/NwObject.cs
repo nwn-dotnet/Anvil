@@ -172,9 +172,9 @@ namespace NWN.API
       return new LocalUUID(this, name);
     }
 
-    public bool HasClashingUUID()
+    public bool HasUUID()
     {
-      return string.IsNullOrEmpty(NWScript.GetObjectUUID(this));
+      return string.IsNullOrEmpty(NWNX.API.Object.PeekUUID(this));
     }
 
     public void ForceRefreshUUID()

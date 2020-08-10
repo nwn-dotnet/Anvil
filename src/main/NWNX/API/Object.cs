@@ -56,5 +56,10 @@ namespace NWNX.API
     {
       ObjectPlugin.SetPlaceableIsStatic(placeable, value.ToInt());
     }
+
+    public static string PeekUUID(this NwObject obj)
+    {
+      return ObjectPlugin.PeekUUID(obj);
+    }
   }
 }
