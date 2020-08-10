@@ -89,14 +89,12 @@ namespace NWN.API
       await base.FaceToPoint(Position - direction);
     }
 
-    // TODO - Test trigger rotation.
-    public override float Rotation => (360 - NWScript.GetFacing(this)) % 360;
+    public override float Rotation
+    {
+      get => (360 - NWScript.GetFacing(this)) % 360;
+      set => base.Rotation = 360 - value;
+    }
 
     public override Location Location => Location.Create(Area, Position, Rotation);
-
-    public override Task SetRotation(float value)
-    {
-      return base.SetRotation(360 - value);
-    }
   }
 }
