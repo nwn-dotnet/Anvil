@@ -20,7 +20,12 @@ namespace NWN.Services
     private readonly Dictionary<string, EventHandler> scriptToEventMap = new Dictionary<string, EventHandler>();
     private readonly Dictionary<Type, EventHandler> typeToHandlerMap = new Dictionary<Type, EventHandler>();
 
-    public void Unsubscribe<TEvent>(Action<TEvent> existingHandler) where TEvent : Event<TEvent>
+    /// <summary>
+    /// Removes an existing global event handler that was added using <see cref="SubscribeAll{TEvent}"/>.
+    /// </summary>
+    /// <param name="existingHandler">The existing handler/callback.</param>
+    /// <typeparam name="TEvent">The event to unsubscribe from.</typeparam>
+    public void UnsubscribeAll<TEvent>(Action<TEvent> existingHandler) where TEvent : Event<TEvent>
     {
       if (typeToHandlerMap.TryGetValue(typeof(TEvent), out EventHandler eventHandler))
       {
@@ -28,6 +33,13 @@ namespace NWN.Services
       }
     }
 
+    /// <summary>
+    /// Removes an existing event handler from an object that was added using <see cref="Subscribe{TObject,TEvent}"/>.
+    /// </summary>
+    /// <param name="nwObject">The object containing the existing subscription.</param>
+    /// <param name="existingHandler">The existing handler/callback.</param>
+    /// <typeparam name="TObject">The type of nwObject.</typeparam>
+    /// <typeparam name="TEvent">The event to unsubscribe from.</typeparam>
     public void Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> existingHandler) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
     {
       if (typeToHandlerMap.TryGetValue(typeof(TEvent), out EventHandler eventHandler))
@@ -36,18 +48,36 @@ namespace NWN.Services
       }
     }
 
+    /// <summary>
+    /// Adds the specified object to the global dispatch list for the specified event.
+    /// </summary>
+    /// <param name="nwObject">The object to add.</param>
+    /// <typeparam name="TObject">The type of nwObject.</typeparam>
+    /// <typeparam name="TEvent">The event to add this object to.</typeparam>
     public void Register<TObject, TEvent>(TObject nwObject) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
     {
       EventHandler eventHandler = GetOrCreateHandler<TEvent>();
       CheckEventHooked<TObject, TEvent>(nwObject, eventHandler);
     }
 
-    public void Subscribe<TEvent>(Action<TEvent> handler) where TEvent : Event<TEvent>, new()
+    /// <summary>
+    /// Subscribes to the specified event.
+    /// </summary>
+    /// <param name="handler">The callback function/handler for this event.</param>
+    /// <typeparam name="TEvent">The event to subscribe to.</typeparam>
+    public void SubscribeAll<TEvent>(Action<TEvent> handler) where TEvent : Event<TEvent>, new()
     {
       EventHandler eventHandler = GetOrCreateHandler<TEvent>();
       eventHandler.Subscribe(handler);
     }
 
+    /// <summary>
+    /// Subscribes to the specified event on the given object.
+    /// </summary>
+    /// <param name="nwObject">The subscribe target for this event.</param>
+    /// <param name="handler">The callback function/handler for this event.</param>
+    /// <typeparam name="TObject">The type of nwObject.</typeparam>
+    /// <typeparam name="TEvent">The event to subscribe to.</typeparam>
     public void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> handler) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
     {
       EventHandler eventHandler = GetOrCreateHandler<TEvent>();
