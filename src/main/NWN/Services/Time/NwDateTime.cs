@@ -4,6 +4,7 @@ using NWN.Core;
 
 namespace NWN.Services
 {
+  // TODO Cleanup/Docs
   public struct NwDateTime
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

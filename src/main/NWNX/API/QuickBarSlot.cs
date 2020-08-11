@@ -3,6 +3,7 @@ using NWNX.API.Constants;
 
 namespace NWNX.API
 {
+  // TODO docs
   public struct QuickBarSlot
   {
     public NwObject Item { get; set; }

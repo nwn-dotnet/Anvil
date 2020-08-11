@@ -2,6 +2,10 @@ using NWN.API.Constants;
 
 namespace NWN.API.Events
 {
+  // TODO Populate event data.
+  /// <summary>
+  /// Events for drawn, world-placed triggers.
+  /// </summary>
   public static class TriggerEvents
   {
     [ScriptEvent(EventScriptType.TriggerOnHeartbeat)]

@@ -2,8 +2,15 @@ using NWN.API.Constants;
 
 namespace NWN.API.Events
 {
+  // TODO Populate event data.
+  /// <summary>
+  /// Events for effects created with <see cref="Effect.AreaOfEffect"/>.
+  /// </summary>
   public static class AreaOfEffectEvents
   {
+    /// <summary>
+    /// Called at a regular interval (approx. 6 seconds).
+    /// </summary>
     [ScriptEvent(EventScriptType.AreaOfEffectOnHeartbeat)]
     public sealed class OnHeartbeat : Event<NwAreaOfEffect, OnHeartbeat>
     {
@@ -26,6 +33,9 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Called when an object enters the area of effect.
+    /// </summary>
     [ScriptEvent(EventScriptType.AreaOfEffectOnObjectEnter)]
     public sealed class OnEnter : Event<NwAreaOfEffect, OnEnter>
     {
@@ -37,6 +47,9 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Called when an object exits the area of effect.
+    /// </summary>
     [ScriptEvent(EventScriptType.AreaOfEffectOnObjectExit)]
     public sealed class OnExit : Event<NwAreaOfEffect, OnExit>
     {

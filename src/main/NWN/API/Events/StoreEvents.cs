@@ -2,6 +2,10 @@ using NWN.API.Constants;
 
 namespace NWN.API.Events
 {
+  // TODO Populate event data.
+  /// <summary>
+  /// Events for Merchant/Store objects.
+  /// </summary>
   public static class StoreEvents
   {
     [ScriptEvent(EventScriptType.StoreOnOpen)]

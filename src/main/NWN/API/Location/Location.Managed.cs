@@ -7,10 +7,37 @@ namespace NWN.API
 {
   public partial class Location
   {
-    public Vector3 Position => NWScript.GetPositionFromLocation(this);
-    public NwArea Area => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
-    public float Rotation => NWScript.GetFacingFromLocation(this);
-    public float FlippedRotation => (360 - Rotation) % 360;
+    /// <summary>
+    /// Gets the position Vector of this location.
+    /// </summary>
+    public Vector3 Position
+    {
+      get => NWScript.GetPositionFromLocation(this);
+    }
+
+    /// <summary>
+    /// Gets the associated Area of this location.
+    /// </summary>
+    public NwArea Area
+    {
+      get => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
+    }
+
+    /// <summary>
+    /// Gets the rotation value of this location.
+    /// </summary>
+    public float Rotation
+    {
+      get => NWScript.GetFacingFromLocation(this);
+    }
+
+    /// <summary>
+    /// Gets the inverted rotation value of this location (placeables).
+    /// </summary>
+    public float FlippedRotation
+    {
+      get => (360 - Rotation) % 360;
+    }
 
     private IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {

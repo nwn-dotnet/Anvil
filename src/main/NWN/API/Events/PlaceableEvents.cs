@@ -3,6 +3,10 @@ using NWN.Core;
 
 namespace NWN.API.Events
 {
+  // TODO Populate event data.
+  /// <summary>
+  /// Events for Placeables.
+  /// </summary>
   public static class PlaceableEvents
   {
     [ScriptEvent(EventScriptType.PlaceableOnClosed)]

@@ -3,6 +3,10 @@ using NWN.Core;
 
 namespace NWN.API.Events
 {
+  // TODO Populate event data.
+  /// <summary>
+  /// Global module events.
+  /// </summary>
   public static class ModuleEvents
   {
     [ScriptEvent(EventScriptType.ModuleOnAcquireItem)]

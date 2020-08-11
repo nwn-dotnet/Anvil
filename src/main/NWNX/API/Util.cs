@@ -6,6 +6,7 @@ using NWNX.API.Constants;
 
 namespace NWNX.API
 {
+  // TODO implement plugin functions
   public static class Util
   {
     static Util()

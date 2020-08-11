@@ -3,12 +3,26 @@ using NWN.Core;
 
 namespace NWN.API.Events
 {
+  // TODO Populate event data.
+  /// <summary>
+  /// Events for Creatures.
+  /// </summary>
   public static class CreatureEvents
   {
+    /// <summary>
+    /// Called when the creature is blocked by a door.
+    /// </summary>
     [ScriptEvent(EventScriptType.CreatureOnBlockedByDoor)]
     public sealed class OnBlocked : Event<NwCreature, OnBlocked>
     {
+      /// <summary>
+      /// The blocked creature.
+      /// </summary>
       public NwCreature Creature { get; private set; }
+
+      /// <summary>
+      /// The door that is blocking the creature.
+      /// </summary>
       public NwDoor BlockingDoor { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
@@ -18,9 +32,15 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Called at the end of the creature's combat round.
+    /// </summary>
     [ScriptEvent(EventScriptType.CreatureOnEndCombatRound)]
     public sealed class OnCombatRoundEnd : Event<NwCreature, OnCombatRoundEnd>
     {
+      /// <summary>
+      /// The creature whose combat round is ending.
+      /// </summary>
       public NwCreature Creature { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
