@@ -120,7 +120,7 @@ The core of NWN.Managed is built around a dependency injection model, and the sy
     public ChatHandler(EventService eventService, IEnumerable<IChatCommand> commands)
     {
       this.chatCommands = commands.ToList();
-      eventService.Subscribe<ModuleEvents.OnPlayerChat>(OnChatMessage);
+      eventService.Subscribe<NwModule, ModuleEvents.OnPlayerChat>(NwModule.Instance, OnChatMessage);
     }
 
     public void OnChatMessage(ModuleEvents.OnPlayerChat eventInfo)
