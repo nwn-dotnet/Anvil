@@ -187,7 +187,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">  public ChatHandler(EventService eventService, IEnumerable&lt;IChatCommand&gt; commands)</div>
 <div class="line">  {</div>
 <div class="line">    this.chatCommands = commands.ToList();</div>
-<div class="line">    eventService.Subscribe&lt;ModuleEvents.OnPlayerChat&gt;(OnChatMessage);</div>
+<div class="line">    eventService.Subscribe&lt;NwModule, ModuleEvents.OnPlayerChat&gt;(NwModule.Instance, OnChatMessage);</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  public void OnChatMessage(ModuleEvents.OnPlayerChat eventInfo)</div>
