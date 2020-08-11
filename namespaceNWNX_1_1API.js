@@ -16,7 +16,6 @@ var namespaceNWNX_1_1API =
     [ "ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
     [ "Object", "classNWNX_1_1API_1_1Object.html", "classNWNX_1_1API_1_1Object" ],
     [ "Player", "classNWNX_1_1API_1_1Player.html", "classNWNX_1_1API_1_1Player" ],
-    [ "Profiler", "classNWNX_1_1API_1_1Profiler.html", null ],
     [ "QuickBarSlot", "structNWNX_1_1API_1_1QuickBarSlot.html", "structNWNX_1_1API_1_1QuickBarSlot" ],
     [ "Rename", "classNWNX_1_1API_1_1Rename.html", null ],
     [ "Reveal", "classNWNX_1_1API_1_1Reveal.html", null ],

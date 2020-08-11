@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['xp_1135',['Xp',['../classNWN_1_1API_1_1NwCreature.html#a4821c39d3d5a4482dee0ee73ab1d868f',1,'NWN::API::NwCreature']]],
-  ['xpscale_1136',['XPScale',['../classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc',1,'NWN::API::NwModule']]]
+  ['visualtransform_1247',['VisualTransform',['../classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d',1,'NWN::API::NwGameObject']]],
+  ['volume_1248',['Volume',['../classNWN_1_1API_1_1NwSound.html#aa554d71d12c3dc0cfc11c4af532fcfdc',1,'NWN::API::NwSound']]]
 ];

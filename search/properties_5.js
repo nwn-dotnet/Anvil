@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hardness_1074',['Hardness',['../classNWN_1_1API_1_1NwStationary.html#a9f1fe95d4d77f7656f3408dcd306cb00',1,'NWN::API::NwStationary']]]
+  ['flippedrotation_1184',['FlippedRotation',['../classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d',1,'NWN::API::Location']]]
 ];

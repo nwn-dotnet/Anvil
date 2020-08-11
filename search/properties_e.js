@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['savingthrowbonuslimit_1108',['SavingThrowBonusLimit',['../classNWN_1_1API_1_1NwModule.html#a8bac15895463e6cf8f87fbcdae1c4628',1,'NWN::API::NwModule']]],
-  ['servername_1109',['ServerName',['../classNWNX_1_1API_1_1Administration.html#a0831be982870c64e523b7bfce35bdca3',1,'NWNX::API::Administration']]],
-  ['skillbonuslimit_1110',['SkillBonusLimit',['../classNWN_1_1API_1_1NwModule.html#a5775e9a62fc0c2b989eae51253cbd517',1,'NWN::API::NwModule']]],
-  ['skip_1111',['Skip',['../classNWNX_1_1API_1_1Events_1_1EventSkippable.html#a7f704a26b28e5cae2636f00d6abf63b1',1,'NWNX::API::Events::EventSkippable']]],
-  ['skybox_1112',['SkyBox',['../classNWN_1_1API_1_1NwArea.html#a66762af2551a5b117597838d60c3c74c',1,'NWN::API::NwArea']]],
-  ['spawns_1113',['Spawns',['../classNWN_1_1API_1_1NwEncounter.html#a0dc26065dd65a3250e8ebe84a65d3ee4',1,'NWN::API::NwEncounter']]],
-  ['stacksize_1114',['StackSize',['../classNWN_1_1API_1_1NwItem.html#a2dbbd5cc94d71291b4c88a64578d26cb',1,'NWN::API::NwItem']]],
-  ['stolen_1115',['Stolen',['../classNWN_1_1API_1_1NwItem.html#a6358832c181070aad5c38cc28f339a0e',1,'NWN::API::NwItem']]],
-  ['subrace_1116',['SubRace',['../classNWN_1_1API_1_1NwCreature.html#affc66807381113a79d89a3237ce4f9f1',1,'NWN::API::NwCreature']]],
-  ['subtype_1117',['SubType',['../classNWN_1_1API_1_1Effect.html#a05d64b64d6c63ed8cda420d27e6b1dbf',1,'NWN::API::Effect']]]
+  ['partymembers_1214',['PartyMembers',['../classNWN_1_1API_1_1NwPlayer.html#a3f848f6b4521a7b02bd1b9fa7e1bf396',1,'NWN::API::NwPlayer']]],
+  ['phenotype_1215',['Phenotype',['../classNWN_1_1API_1_1NwCreature.html#adb7ee7dc3a7875062dedbef736a8c98d',1,'NWN::API::NwCreature']]],
+  ['playerpassword_1216',['PlayerPassword',['../classNWNX_1_1API_1_1Administration.html#a6fefcf11cc2e4a20fe9e68749b98dc26',1,'NWNX::API::Administration']]],
+  ['players_1217',['Players',['../classNWN_1_1API_1_1NwModule.html#a646b2c2904f7a1ecea8a55f7cf1c3048',1,'NWN::API::NwModule']]],
+  ['plotflag_1218',['PlotFlag',['../classNWN_1_1API_1_1NwGameObject.html#af5b22ba36960523ce0094577d6b0d75f',1,'NWN::API::NwGameObject']]],
+  ['portraitresref_1219',['PortraitResRef',['../classNWN_1_1API_1_1NwGameObject.html#a1fb6a33f5764b05c6ef6f358d3286c5c',1,'NWN::API::NwGameObject']]],
+  ['position_1220',['Position',['../classNWN_1_1API_1_1Location.html#a6985a72d1f171e9a6df3ab46a2cd49d3',1,'NWN.API.Location.Position()'],['../classNWN_1_1API_1_1NwGameObject.html#ab441df5249a1c51007ba7e7b6fd04606',1,'NWN.API.NwGameObject.Position()']]],
+  ['possessor_1221',['Possessor',['../classNWN_1_1API_1_1NwItem.html#aedddb31469e71506e2c54ce4dc989097',1,'NWN::API::NwItem']]]
 ];

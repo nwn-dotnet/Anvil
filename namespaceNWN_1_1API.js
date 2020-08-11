@@ -19,6 +19,7 @@ var namespaceNWN_1_1API =
     [ "LocalVariable", "classNWN_1_1API_1_1LocalVariable.html", "classNWN_1_1API_1_1LocalVariable" ],
     [ "Location", "classNWN_1_1API_1_1Location.html", "classNWN_1_1API_1_1Location" ],
     [ "NwArea", "classNWN_1_1API_1_1NwArea.html", "classNWN_1_1API_1_1NwArea" ],
+    [ "NwAreaOfEffect", "classNWN_1_1API_1_1NwAreaOfEffect.html", null ],
     [ "NwCreature", "classNWN_1_1API_1_1NwCreature.html", "classNWN_1_1API_1_1NwCreature" ],
     [ "NwDoor", "classNWN_1_1API_1_1NwDoor.html", "classNWN_1_1API_1_1NwDoor" ],
     [ "NwEncounter", "classNWN_1_1API_1_1NwEncounter.html", "classNWN_1_1API_1_1NwEncounter" ],

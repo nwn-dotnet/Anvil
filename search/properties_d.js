@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['rotation_1107',['Rotation',['../classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22',1,'NWN::API::NwGameObject']]]
+  ['objects_1212',['Objects',['../classNWN_1_1API_1_1NwArea.html#af38828700203dea52de36049e894e6b9',1,'NWN::API::NwArea']]],
+  ['oneshottrap_1213',['OneShotTrap',['../classNWN_1_1API_1_1NwTrappable.html#a7c364a5edb76eac73fdecc5a9acf786b',1,'NWN::API::NwTrappable']]]
 ];

@@ -84,24 +84,12 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1Location.html','');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
 <a href="classNWN_1_1API_1_1Location-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">NWN.API.Location Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Collaboration diagram for NWN.API.Location:</div>
-<div class="dyncontent">
-<div class="center"><img src="classNWN_1_1API_1_1Location__coll__graph.png" border="0" usemap="#aNWN_8API_8Location_coll__map" alt="Collaboration graph"/></div>
-<map name="NWN_8API_8Location_coll__map" id="aNWN_8API_8Location_coll__map">
-<area shape="rect" title=" " alt="" coords="82,247,214,273"/>
-<area shape="rect" href="classNWN_1_1API_1_1NwArea.html" title=" " alt="" coords="22,157,151,184"/>
-<area shape="rect" href="classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="47,81,127,108"/>
-<area shape="rect" title=" " alt="" coords="5,5,168,32"/>
-<area shape="rect" title=" " alt="" coords="176,157,243,184"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -133,21 +121,118 @@ static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator L
 static <a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Create</b> (<a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a> area, Vector3 position, float orientation)</td></tr>
 <tr class="separator:a6a63718493c0a557babadb1793758ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a6985a72d1f171e9a6df3ab46a2cd49d3"><td class="memItemLeft" align="right" valign="top"><a id="a6985a72d1f171e9a6df3ab46a2cd49d3"></a>
-Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>Position</b> =&gt; NWScript.GetPositionFromLocation(this)</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a6985a72d1f171e9a6df3ab46a2cd49d3"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#a6985a72d1f171e9a6df3ab46a2cd49d3">Position</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6985a72d1f171e9a6df3ab46a2cd49d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the position Vector of this location.  <a href="classNWN_1_1API_1_1Location.html#a6985a72d1f171e9a6df3ab46a2cd49d3">More...</a><br /></td></tr>
 <tr class="separator:a6985a72d1f171e9a6df3ab46a2cd49d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add8f5a9e2bef4cc69334d922c3b6fadc"><td class="memItemLeft" align="right" valign="top"><a id="add8f5a9e2bef4cc69334d922c3b6fadc"></a>
-<a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Area</b> =&gt; NWScript.GetAreaFromLocation(this).ToNwObject&lt;<a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a>&gt;()</td></tr>
+<tr class="memitem:add8f5a9e2bef4cc69334d922c3b6fadc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#add8f5a9e2bef4cc69334d922c3b6fadc">Area</a><code> [get]</code></td></tr>
+<tr class="memdesc:add8f5a9e2bef4cc69334d922c3b6fadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the associated Area of this location.  <a href="classNWN_1_1API_1_1Location.html#add8f5a9e2bef4cc69334d922c3b6fadc">More...</a><br /></td></tr>
 <tr class="separator:add8f5a9e2bef4cc69334d922c3b6fadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66fd6234f492772916c70730b7af033a"><td class="memItemLeft" align="right" valign="top"><a id="a66fd6234f492772916c70730b7af033a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>Rotation</b> =&gt; NWScript.GetFacingFromLocation(this)</td></tr>
+<tr class="memitem:a66fd6234f492772916c70730b7af033a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#a66fd6234f492772916c70730b7af033a">Rotation</a><code> [get]</code></td></tr>
+<tr class="memdesc:a66fd6234f492772916c70730b7af033a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the rotation value of this location.  <a href="classNWN_1_1API_1_1Location.html#a66fd6234f492772916c70730b7af033a">More...</a><br /></td></tr>
 <tr class="separator:a66fd6234f492772916c70730b7af033a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af30fa56b3430c72d7a0c0f3dc7d4919d"><td class="memItemLeft" align="right" valign="top"><a id="af30fa56b3430c72d7a0c0f3dc7d4919d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>FlippedRotation</b> =&gt; (360 - Rotation) % 360</td></tr>
+<tr class="memitem:af30fa56b3430c72d7a0c0f3dc7d4919d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d">FlippedRotation</a><code> [get]</code></td></tr>
+<tr class="memdesc:af30fa56b3430c72d7a0c0f3dc7d4919d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the inverted rotation value of this location (placeables).  <a href="classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d">More...</a><br /></td></tr>
 <tr class="separator:af30fa56b3430c72d7a0c0f3dc7d4919d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="add8f5a9e2bef4cc69334d922c3b6fadc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add8f5a9e2bef4cc69334d922c3b6fadc">&#9670;&nbsp;</a></span>Area</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a> NWN.API.Location.Area</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the associated Area of this location. </p>
+
+</div>
+</div>
+<a id="af30fa56b3430c72d7a0c0f3dc7d4919d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af30fa56b3430c72d7a0c0f3dc7d4919d">&#9670;&nbsp;</a></span>FlippedRotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float NWN.API.Location.FlippedRotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the inverted rotation value of this location (placeables). </p>
+
+</div>
+</div>
+<a id="a6985a72d1f171e9a6df3ab46a2cd49d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6985a72d1f171e9a6df3ab46a2cd49d3">&#9670;&nbsp;</a></span>Position</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 NWN.API.Location.Position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the position Vector of this location. </p>
+
+</div>
+</div>
+<a id="a66fd6234f492772916c70730b7af033a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66fd6234f492772916c70730b7af033a">&#9670;&nbsp;</a></span>Rotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float NWN.API.Location.Rotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the rotation value of this location. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/main/NWN/API/Location/Location.cs</li>
 <li>src/main/NWN/API/Location/Location.Managed.cs</li>

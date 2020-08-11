@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['lawchaosvalue_1082',['LawChaosValue',['../classNWN_1_1API_1_1NwCreature.html#a23509f5284ec6456ab5edc97bf113b9e',1,'NWN::API::NwCreature']]],
-  ['location_1083',['Location',['../classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2',1,'NWN::API::NwGameObject']]],
-  ['lockable_1084',['Lockable',['../classNWN_1_1API_1_1NwStationary.html#a7adb0ab235273075f4ea94f97436c30b',1,'NWN::API::NwStationary']]],
-  ['lockdc_1085',['LockDC',['../classNWN_1_1API_1_1NwStationary.html#a7bc32cab574407689b2ad5894dec3a49',1,'NWN::API::NwStationary']]],
-  ['locked_1086',['Locked',['../classNWN_1_1API_1_1NwStationary.html#a0b8bfe389958f229756f6cf33a2ad886',1,'NWN::API::NwStationary']]],
-  ['lockkeyrequired_1087',['LockKeyRequired',['../classNWN_1_1API_1_1NwStationary.html#a1abcf5ecc0c48a1d9e9a9a71ac9833aa',1,'NWN::API::NwStationary']]],
-  ['lockkeytag_1088',['LockKeyTag',['../classNWN_1_1API_1_1NwStationary.html#a22495e88225ebd409165a261dc27f0cf',1,'NWN::API::NwStationary']]]
+  ['identified_1190',['Identified',['../classNWN_1_1API_1_1NwItem.html#a52fca213657499909b39d11dce7ff64c',1,'NWN::API::NwItem']]],
+  ['illumination_1191',['Illumination',['../classNWN_1_1API_1_1NwPlaceable.html#a8c30006cea973d2996d30054ccf393af',1,'NWN::API::NwPlaceable']]],
+  ['infinite_1192',['Infinite',['../classNWN_1_1API_1_1NwItem.html#a02e07e7449fb9afaeb2fb1235ba243fb',1,'NWN::API::NwItem']]],
+  ['instructionlimit_1193',['InstructionLimit',['../classNWNX_1_1API_1_1Util.html#a390780aedb93b3822249f622698bb67d',1,'NWNX::API::Util']]],
+  ['itemproperties_1194',['ItemProperties',['../classNWN_1_1API_1_1NwItem.html#a53ff3080bfdf5dd5074cf83ea9ca6e5f',1,'NWN::API::NwItem']]],
+  ['items_1195',['Items',['../classNWN_1_1API_1_1NwGameObject.html#ab33924da812e0cc19c37d84424e5c9df',1,'NWN::API::NwGameObject']]]
 ];

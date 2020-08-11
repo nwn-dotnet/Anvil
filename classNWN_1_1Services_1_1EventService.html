@@ -109,22 +109,301 @@ Collaboration diagram for NWN.Services.EventService:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a787a9da8d73d8ca0b91e9608f1191a2e"><td class="memItemLeft" align="right" valign="top"><a id="a787a9da8d73d8ca0b91e9608f1191a2e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Unsubscribe&lt; TEvent &gt;</b> (Action&lt; TEvent &gt; existingHandler)</td></tr>
-<tr class="separator:a787a9da8d73d8ca0b91e9608f1191a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae5849a4ad1b977448d48b9aa52fc061"><td class="memItemLeft" align="right" valign="top"><a id="aae5849a4ad1b977448d48b9aa52fc061"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Unsubscribe&lt; TObject, TEvent &gt;</b> (TObject nwObject, Action&lt; TEvent &gt; existingHandler)</td></tr>
+<tr class="memitem:a0e5f849d387a7707f2c747372a4a978d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1EventService.html#a0e5f849d387a7707f2c747372a4a978d">UnsubscribeAll&lt; TEvent &gt;</a> (Action&lt; TEvent &gt; existingHandler)</td></tr>
+<tr class="memdesc:a0e5f849d387a7707f2c747372a4a978d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an existing global event handler that was added using <a class="el" href="classNWN_1_1Services_1_1EventService.html#ad545ec17fe629fe5dcb40808ed272084" title="Subscribes to the specified event.">SubscribeAll&lt;TEvent&gt;</a>.  <a href="classNWN_1_1Services_1_1EventService.html#a0e5f849d387a7707f2c747372a4a978d">More...</a><br /></td></tr>
+<tr class="separator:a0e5f849d387a7707f2c747372a4a978d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae5849a4ad1b977448d48b9aa52fc061"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1EventService.html#aae5849a4ad1b977448d48b9aa52fc061">Unsubscribe&lt; TObject, TEvent &gt;</a> (TObject nwObject, Action&lt; TEvent &gt; existingHandler)</td></tr>
+<tr class="memdesc:aae5849a4ad1b977448d48b9aa52fc061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an existing event handler from an object that was added using <a class="el" href="classNWN_1_1Services_1_1EventService.html#abde9a15ff09e84496c934cfa8f998f1b" title="Subscribes to the specified event on the given object.">Subscribe&lt;TObject,TEvent&gt;</a>.  <a href="classNWN_1_1Services_1_1EventService.html#aae5849a4ad1b977448d48b9aa52fc061">More...</a><br /></td></tr>
 <tr class="separator:aae5849a4ad1b977448d48b9aa52fc061"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59814fbacb3e537443f3bcd642ead5b4"><td class="memItemLeft" align="right" valign="top"><a id="a59814fbacb3e537443f3bcd642ead5b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Register&lt; TObject, TEvent &gt;</b> (TObject nwObject)</td></tr>
+<tr class="memitem:a59814fbacb3e537443f3bcd642ead5b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1EventService.html#a59814fbacb3e537443f3bcd642ead5b4">Register&lt; TObject, TEvent &gt;</a> (TObject nwObject)</td></tr>
+<tr class="memdesc:a59814fbacb3e537443f3bcd642ead5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the specified object to the global dispatch list for the specified event.  <a href="classNWN_1_1Services_1_1EventService.html#a59814fbacb3e537443f3bcd642ead5b4">More...</a><br /></td></tr>
 <tr class="separator:a59814fbacb3e537443f3bcd642ead5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0656518dd613e8455713b5556d183967"><td class="memItemLeft" align="right" valign="top"><a id="a0656518dd613e8455713b5556d183967"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Subscribe&lt; TEvent &gt;</b> (Action&lt; TEvent &gt; handler)</td></tr>
-<tr class="separator:a0656518dd613e8455713b5556d183967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abde9a15ff09e84496c934cfa8f998f1b"><td class="memItemLeft" align="right" valign="top"><a id="abde9a15ff09e84496c934cfa8f998f1b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Subscribe&lt; TObject, TEvent &gt;</b> (TObject nwObject, Action&lt; TEvent &gt; handler)</td></tr>
+<tr class="memitem:ad545ec17fe629fe5dcb40808ed272084"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1EventService.html#ad545ec17fe629fe5dcb40808ed272084">SubscribeAll&lt; TEvent &gt;</a> (Action&lt; TEvent &gt; handler)</td></tr>
+<tr class="memdesc:ad545ec17fe629fe5dcb40808ed272084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to the specified event.  <a href="classNWN_1_1Services_1_1EventService.html#ad545ec17fe629fe5dcb40808ed272084">More...</a><br /></td></tr>
+<tr class="separator:ad545ec17fe629fe5dcb40808ed272084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abde9a15ff09e84496c934cfa8f998f1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1EventService.html#abde9a15ff09e84496c934cfa8f998f1b">Subscribe&lt; TObject, TEvent &gt;</a> (TObject nwObject, Action&lt; TEvent &gt; handler)</td></tr>
+<tr class="memdesc:abde9a15ff09e84496c934cfa8f998f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to the specified event on the given object.  <a href="classNWN_1_1Services_1_1EventService.html#abde9a15ff09e84496c934cfa8f998f1b">More...</a><br /></td></tr>
 <tr class="separator:abde9a15ff09e84496c934cfa8f998f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a59814fbacb3e537443f3bcd642ead5b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59814fbacb3e537443f3bcd642ead5b4">&#9670;&nbsp;</a></span>Register&lt; TObject, TEvent &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.Services.EventService.Register&lt; TObject, TEvent &gt; </td>
+          <td>(</td>
+          <td class="paramtype">TObject&#160;</td>
+          <td class="paramname"><em>nwObject</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds the specified object to the global dispatch list for the specified event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nwObject</td><td>The object to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TObject</td><td>The type of nwObject.</td></tr>
+    <tr><td class="paramname">TEvent</td><td>The event to add this object to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>Event</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>TObject</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>TEvent</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TObject</em></td><td>&#160;:</td><td valign="top"><em>NwObject</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="abde9a15ff09e84496c934cfa8f998f1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abde9a15ff09e84496c934cfa8f998f1b">&#9670;&nbsp;</a></span>Subscribe&lt; TObject, TEvent &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.Services.EventService.Subscribe&lt; TObject, TEvent &gt; </td>
+          <td>(</td>
+          <td class="paramtype">TObject&#160;</td>
+          <td class="paramname"><em>nwObject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; TEvent &gt;&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subscribes to the specified event on the given object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nwObject</td><td>The subscribe target for this event.</td></tr>
+    <tr><td class="paramname">handler</td><td>The callback function/handler for this event.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TObject</td><td>The type of nwObject.</td></tr>
+    <tr><td class="paramname">TEvent</td><td>The event to subscribe to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>Event</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>TObject</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>TEvent</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TObject</em></td><td>&#160;:</td><td valign="top"><em>NwObject</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="ad545ec17fe629fe5dcb40808ed272084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad545ec17fe629fe5dcb40808ed272084">&#9670;&nbsp;</a></span>SubscribeAll&lt; TEvent &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.Services.EventService.SubscribeAll&lt; TEvent &gt; </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; TEvent &gt;&#160;</td>
+          <td class="paramname"><em>handler</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subscribes to the specified event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handler</td><td>The callback function/handler for this event.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEvent</td><td>The event to subscribe to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>Event&lt;TEvent&gt;</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="aae5849a4ad1b977448d48b9aa52fc061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae5849a4ad1b977448d48b9aa52fc061">&#9670;&nbsp;</a></span>Unsubscribe&lt; TObject, TEvent &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.Services.EventService.Unsubscribe&lt; TObject, TEvent &gt; </td>
+          <td>(</td>
+          <td class="paramtype">TObject&#160;</td>
+          <td class="paramname"><em>nwObject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; TEvent &gt;&#160;</td>
+          <td class="paramname"><em>existingHandler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes an existing event handler from an object that was added using <a class="el" href="classNWN_1_1Services_1_1EventService.html#abde9a15ff09e84496c934cfa8f998f1b" title="Subscribes to the specified event on the given object.">Subscribe&lt;TObject,TEvent&gt;</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nwObject</td><td>The object containing the existing subscription.</td></tr>
+    <tr><td class="paramname">existingHandler</td><td>The existing handler/callback.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TObject</td><td>The type of nwObject.</td></tr>
+    <tr><td class="paramname">TEvent</td><td>The event to unsubscribe from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>Event</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>TObject</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>TEvent</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>TObject</em></td><td>&#160;:</td><td valign="top"><em>NwObject</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="a0e5f849d387a7707f2c747372a4a978d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e5f849d387a7707f2c747372a4a978d">&#9670;&nbsp;</a></span>UnsubscribeAll&lt; TEvent &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.Services.EventService.UnsubscribeAll&lt; TEvent &gt; </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; TEvent &gt;&#160;</td>
+          <td class="paramname"><em>existingHandler</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes an existing global event handler that was added using <a class="el" href="classNWN_1_1Services_1_1EventService.html#ad545ec17fe629fe5dcb40808ed272084" title="Subscribes to the specified event.">SubscribeAll&lt;TEvent&gt;</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">existingHandler</td><td>The existing handler/callback.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TEvent</td><td>The event to unsubscribe from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TEvent</em></td><td>&#160;:</td><td valign="top"><em>Event&lt;TEvent&gt;</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWN/Services/Events/EventService.cs</li>
 </ul>

@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['identified_1075',['Identified',['../classNWN_1_1API_1_1NwItem.html#a52fca213657499909b39d11dce7ff64c',1,'NWN::API::NwItem']]],
-  ['illumination_1076',['Illumination',['../classNWN_1_1API_1_1NwPlaceable.html#a8c30006cea973d2996d30054ccf393af',1,'NWN::API::NwPlaceable']]],
-  ['infinite_1077',['Infinite',['../classNWN_1_1API_1_1NwItem.html#a02e07e7449fb9afaeb2fb1235ba243fb',1,'NWN::API::NwItem']]],
-  ['instructionlimit_1078',['InstructionLimit',['../classNWNX_1_1API_1_1Util.html#a390780aedb93b3822249f622698bb67d',1,'NWNX::API::Util']]],
-  ['itemproperties_1079',['ItemProperties',['../classNWN_1_1API_1_1NwItem.html#a53ff3080bfdf5dd5074cf83ea9ca6e5f',1,'NWN::API::NwItem']]],
-  ['items_1080',['Items',['../classNWN_1_1API_1_1NwGameObject.html#ab33924da812e0cc19c37d84424e5c9df',1,'NWN::API::NwGameObject']]]
+  ['getabilitybonuslimit_1185',['GetAbilityBonusLimit',['../classNWN_1_1API_1_1NwModule.html#aa657bf94349095c15603fa69f3a80998',1,'NWN::API::NwModule']]],
+  ['gold_1186',['Gold',['../classNWN_1_1API_1_1NwCreature.html#aee5104c58e0fc7d7d6dfd6e7008035e2',1,'NWN::API::NwCreature']]],
+  ['goldvalue_1187',['GoldValue',['../classNWN_1_1API_1_1NwItem.html#a7e46619fd7f98a65576577373f0c2982',1,'NWN::API::NwItem']]],
+  ['goodevilvalue_1188',['GoodEvilValue',['../classNWN_1_1API_1_1NwCreature.html#ae47427a1ebce6213ca12916b330fa1eb',1,'NWN::API::NwCreature']]]
 ];

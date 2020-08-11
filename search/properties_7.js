@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyautoremoved_1081',['KeyAutoRemoved',['../classNWN_1_1API_1_1NwStationary.html#aaf4e653c73f33a48a5ad81d01d769c41',1,'NWN::API::NwStationary']]]
+  ['hardness_1189',['Hardness',['../classNWN_1_1API_1_1NwStationary.html#a9f1fe95d4d77f7656f3408dcd306cb00',1,'NWN::API::NwStationary']]]
 ];
