@@ -47,6 +47,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets if this object has an assigned UUID.
+    /// </summary>
+    public bool HasUUID
+    {
+      get => string.IsNullOrEmpty(ObjectPlugin.PeekUUID(this));
+    }
+
+    /// <summary>
     /// Returns the resource reference used to create this object.
     /// </summary>
     public string ResRef => NWScript.GetResRef(this);
@@ -172,9 +180,19 @@ namespace NWN.API
       return new LocalUUID(this, name);
     }
 
-    public bool HasUUID()
+    /// <summary>
+    /// Attempts to get the UUID of this object, if assigned.
+    /// </summary>
+    /// <returns>The UUID if assigned, otherwise no value.</returns>
+    public Guid? PeekUUID()
     {
-      return string.IsNullOrEmpty(NWNX.API.Object.PeekUUID(this));
+      string guidString = ObjectPlugin.PeekUUID(this);
+      if (!string.IsNullOrWhiteSpace(guidString))
+      {
+        return Guid.Parse(guidString);
+      }
+
+      return null;
     }
 
     public void ForceRefreshUUID()
