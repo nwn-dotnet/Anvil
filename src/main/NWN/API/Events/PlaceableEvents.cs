@@ -6,7 +6,7 @@ namespace NWN.API.Events
   public static class PlaceableEvents
   {
     [ScriptEvent(EventScriptType.PlaceableOnClosed)]
-    public class OnClose : Event<NwPlaceable, OnClose>
+    public sealed class OnClose : Event<NwPlaceable, OnClose>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature LastClosedBy { get; private set; }
@@ -19,7 +19,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.PlaceableOnDamaged)]
-    public class OnDamaged : Event<NwPlaceable, OnDamaged>
+    public sealed class OnDamaged : Event<NwPlaceable, OnDamaged>
     {
       public NwPlaceable DamagedObject { get; private set; }
       public NwGameObject Damager { get; private set; }
@@ -34,7 +34,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.PlaceableOnDeath)]
-    public class OnDeath : Event<NwPlaceable, OnDeath>
+    public sealed class OnDeath : Event<NwPlaceable, OnDeath>
     {
       public NwPlaceable KilledObject { get; private set; }
       public NwGameObject Killer { get; private set; }
@@ -46,8 +46,30 @@ namespace NWN.API.Events
       }
     }
 
+    [ScriptEvent(EventScriptType.PlaceableOnDisarm)]
+    public sealed class OnDisarm : Event<NwPlaceable, OnDisarm>
+    {
+      public NwPlaceable Placeable { get; private set; }
+
+      protected override void PrepareEvent(NwPlaceable objSelf)
+      {
+        Placeable = objSelf;
+      }
+    }
+
+    [ScriptEvent(EventScriptType.PlaceableOnHeartbeat)]
+    public sealed class OnHeartbeat : Event<NwPlaceable, OnHeartbeat>
+    {
+      public NwPlaceable Placeable { get; private set; }
+
+      protected override void PrepareEvent(NwPlaceable objSelf)
+      {
+        Placeable = objSelf;
+      }
+    }
+
     [ScriptEvent(EventScriptType.PlaceableOnInventoryDisturbed)]
-    public class OnDisturbed : Event<NwPlaceable, OnDisturbed>
+    public sealed class OnDisturbed : Event<NwPlaceable, OnDisturbed>
     {
       public InventoryDisturbType DisturbType { get; private set; }
       public NwPlaceable Placeable { get; private set; }
@@ -63,19 +85,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnHeartbeat)]
-    public class OnHeartbeat : Event<NwPlaceable, OnHeartbeat>
-    {
-      public NwPlaceable Placeable { get; private set; }
-
-      protected override void PrepareEvent(NwPlaceable objSelf)
-      {
-        Placeable = objSelf;
-      }
-    }
-
     [ScriptEvent(EventScriptType.PlaceableOnLock)]
-    public class OnLock : Event<NwPlaceable, OnLock>
+    public sealed class OnLock : Event<NwPlaceable, OnLock>
     {
       public NwPlaceable LockedPlaceable { get; private set; }
       public int LockDC { get; private set; }
@@ -87,21 +98,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnOpen)]
-    public class OnOpen : Event<NwPlaceable, OnOpen>
-    {
-      public NwPlaceable Placeable { get; private set; }
-      public NwCreature OpenedBy { get; private set; }
-
-      protected override void PrepareEvent(NwPlaceable objSelf)
-      {
-        Placeable = objSelf;
-        OpenedBy = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
-      }
-    }
-
     [ScriptEvent(EventScriptType.PlaceableOnMeleeAttacked)]
-    public class OnPhysicalAttacked : Event<NwPlaceable, OnPhysicalAttacked>
+    public sealed class OnPhysicalAttacked : Event<NwPlaceable, OnPhysicalAttacked>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature Attacker { get; private set; }
@@ -113,8 +111,32 @@ namespace NWN.API.Events
       }
     }
 
+    [ScriptEvent(EventScriptType.PlaceableOnOpen)]
+    public sealed class OnOpen : Event<NwPlaceable, OnOpen>
+    {
+      public NwPlaceable Placeable { get; private set; }
+      public NwCreature OpenedBy { get; private set; }
+
+      protected override void PrepareEvent(NwPlaceable objSelf)
+      {
+        Placeable = objSelf;
+        OpenedBy = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
+      }
+    }
+
     [ScriptEvent(EventScriptType.PlaceableOnSpellCastAt)]
-    public class OnSpellCastAt : Event<NwPlaceable, OnSpellCastAt>
+    public sealed class OnSpellCastAt : Event<NwPlaceable, OnSpellCastAt>
+    {
+      public NwPlaceable Placeable { get; private set; }
+
+      protected override void PrepareEvent(NwPlaceable objSelf)
+      {
+        Placeable = objSelf;
+      }
+    }
+
+    [ScriptEvent(EventScriptType.PlaceableOnTrapTriggered)]
+    public sealed class OnTrapTriggered : Event<NwPlaceable, OnTrapTriggered>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -125,7 +147,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.PlaceableOnUnlock)]
-    public class OnUnlock : Event<NwPlaceable, OnUnlock>
+    public sealed class OnUnlock : Event<NwPlaceable, OnUnlock>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature UnlockedBy { get; private set; }
@@ -138,7 +160,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.PlaceableOnUsed)]
-    public class OnUsed : Event<NwPlaceable, OnUsed>
+    public sealed class OnUsed : Event<NwPlaceable, OnUsed>
     {
       public NwPlaceable Placeable { get; private set; }
       public NwCreature UsedBy { get; private set; }
@@ -151,7 +173,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.PlaceableOnUserDefinedEvent)]
-    public class OnUserDefined : Event<NwPlaceable, OnUserDefined>
+    public sealed class OnUserDefined : Event<NwPlaceable, OnUserDefined>
     {
       public NwPlaceable Placeable { get; private set; }
       public int EventNumber { get; private set; }
@@ -160,6 +182,28 @@ namespace NWN.API.Events
       {
         Placeable = objSelf;
         EventNumber = NWScript.GetUserDefinedEventNumber();
+      }
+    }
+
+    [ScriptEvent(EventScriptType.PlaceableOnDialogue)]
+    public sealed class OnDialogue : Event<NwPlaceable, OnDialogue>
+    {
+      public NwPlaceable Placeable { get; private set; }
+
+      protected override void PrepareEvent(NwPlaceable objSelf)
+      {
+        Placeable = objSelf;
+      }
+    }
+
+    [ScriptEvent(EventScriptType.PlaceableOnLeftClick)]
+    public sealed class OnLeftClick : Event<NwPlaceable, OnLeftClick>
+    {
+      public NwPlaceable Placeable { get; private set; }
+
+      protected override void PrepareEvent(NwPlaceable objSelf)
+      {
+        Placeable = objSelf;
       }
     }
   }

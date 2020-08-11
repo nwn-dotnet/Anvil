@@ -41,7 +41,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnDamaged)]
-    public class OnDamaged : Event<NwCreature, OnDamaged>
+    public sealed class OnDamaged : Event<NwCreature, OnDamaged>
     {
       public NwGameObject Damager { get; private set; }
       public int DamageAmount { get; private set; }
@@ -54,7 +54,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnDeath)]
-    public class OnDeath : Event<NwCreature, OnDeath>
+    public sealed class OnDeath : Event<NwCreature, OnDeath>
     {
       public NwCreature KilledCreature { get; private set; }
       public NwGameObject Killer { get; private set; }
@@ -67,7 +67,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnDisturbed)]
-    public class OnDisturbed : Event<NwCreature, OnDisturbed>
+    public sealed class OnDisturbed : Event<NwCreature, OnDisturbed>
     {
       public InventoryDisturbType DisturbType { get; private set; }
       public NwCreature CreatureDisturbed { get; private set; }
@@ -84,7 +84,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnHeartbeat)]
-    public class OnHeartbeat : Event<NwCreature, OnHeartbeat>
+    public sealed class OnHeartbeat : Event<NwCreature, OnHeartbeat>
     {
       public NwCreature Creature { get; private set; }
 
@@ -95,7 +95,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnNotice)]
-    public class OnPerception : Event<NwCreature, OnPerception>
+    public sealed class OnPerception : Event<NwCreature, OnPerception>
     {
       public NwCreature Creature { get; private set; }
       public PerceptionEventType PerceptionEventType { get; private set; }
@@ -135,7 +135,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnMeleeAttacked)]
-    public class OnPhysicalAttacked : Event<NwCreature, OnPhysicalAttacked>
+    public sealed class OnPhysicalAttacked : Event<NwCreature, OnPhysicalAttacked>
     {
       public NwCreature Creature { get; private set; }
       public NwCreature Attacker { get; private set; }
@@ -148,7 +148,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnRested)]
-    public class OnRested : Event<NwCreature, OnRested>
+    public sealed class OnRested : Event<NwCreature, OnRested>
     {
       public NwCreature Creature { get; private set; }
 
@@ -159,7 +159,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnSpawnIn)]
-    public class OnSpawn : Event<NwCreature, OnSpawn>
+    public sealed class OnSpawn : Event<NwCreature, OnSpawn>
     {
       public NwCreature Creature { get; private set; }
 
@@ -170,7 +170,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnSpellCastAt)]
-    public class OnSpellCastAt : Event<NwCreature, OnSpellCastAt>
+    public sealed class OnSpellCastAt : Event<NwCreature, OnSpellCastAt>
     {
       public NwCreature Creature { get; private set; }
 
@@ -181,7 +181,7 @@ namespace NWN.API.Events
     }
 
     [ScriptEvent(EventScriptType.CreatureOnUserDefinedEvent)]
-    public class OnUserDefined : Event<NwCreature, OnUserDefined>
+    public sealed class OnUserDefined : Event<NwCreature, OnUserDefined>
     {
       public int EventNumber { get; private set; }
       public NwCreature Creature { get; private set; }

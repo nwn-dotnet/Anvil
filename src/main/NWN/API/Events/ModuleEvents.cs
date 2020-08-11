@@ -82,6 +82,12 @@ namespace NWN.API.Events
       protected override void PrepareEvent(NwModule objSelf) {}
     }
 
+    [ScriptEvent(EventScriptType.ModuleOnModuleStart)]
+    public sealed class OnModuleStart : Event<NwModule, OnModuleStart>
+    {
+      protected override void PrepareEvent(NwModule objSelf) {}
+    }
+
     [ScriptEvent(EventScriptType.ModuleOnPlayerChat)]
     public sealed class OnPlayerChat : Event<NwModule, OnPlayerChat>
     {
