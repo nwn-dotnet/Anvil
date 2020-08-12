@@ -7,7 +7,8 @@ var searchData=
   ['hasspelluse_277',['HasSpellUse',['../classNWN_1_1API_1_1NwCreature.html#a8df1876af52bc86cb125838b565b5ffc',1,'NWN::API::NwCreature']]],
   ['hastalent_278',['HasTalent',['../classNWN_1_1API_1_1NwCreature.html#abad3c081d30c4944292f274defd18a76',1,'NWN::API::NwCreature']]],
   ['haste_279',['Haste',['../classNWN_1_1API_1_1Effect.html#a0259d6dfac7f38fef55b4731e0270a42',1,'NWN::API::Effect']]],
-  ['heal_280',['Heal',['../classNWN_1_1API_1_1Effect.html#a8a6f470e568825c597a8e46a43ae7fb6',1,'NWN::API::Effect']]],
-  ['hitpointchangewhendying_281',['HitPointChangeWhenDying',['../classNWN_1_1API_1_1Effect.html#a1d25c933f0fae7e3911e6fc3319f3452',1,'NWN::API::Effect']]],
-  ['hp_282',['HP',['../classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965',1,'NWN::API::NwGameObject']]]
+  ['hasuuid_280',['HasUUID',['../classNWN_1_1API_1_1NwObject.html#a6c292d28d7777f769fb4b4803a90f575',1,'NWN::API::NwObject']]],
+  ['heal_281',['Heal',['../classNWN_1_1API_1_1Effect.html#a8a6f470e568825c597a8e46a43ae7fb6',1,'NWN::API::Effect']]],
+  ['hitpointchangewhendying_282',['HitPointChangeWhenDying',['../classNWN_1_1API_1_1Effect.html#a1d25c933f0fae7e3911e6fc3319f3452',1,'NWN::API::Effect']]],
+  ['hp_283',['HP',['../classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965',1,'NWN::API::NwGameObject']]]
 ];
