@@ -62,8 +62,6 @@ namespace NWN
     private NManager(IBindingInstaller bindingInstaller)
     {
       this.bindingInstaller = bindingInstaller;
-
-      Log.Info("--------Neverwinter Managed--------");
       AppendAssemblyToPath();
     }
 
@@ -74,6 +72,12 @@ namespace NWN
       string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
       Environment.SetEnvironmentVariable("PATH", $"{envPath}; {assemblyDir}");
+    }
+
+    private void InitLogger()
+    {
+      LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
+      Log.Warn(UtilPlugin.GetUserDirectory());
     }
 
     private void InitServices()
@@ -123,6 +127,7 @@ namespace NWN
       {
         if (ServiceManager == null)
         {
+          InitLogger();
           InitServices();
         }
         else if (script == ShutdownScript)
