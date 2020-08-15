@@ -8,6 +8,16 @@
     <targets>
         <!-- write logs to console -->
         <target xsi:type="ColoredConsole" name="console" layout="${level:format=FirstCharacter} [${date}] [${logger}] ${message} ${exception}" />
+
+        <target xsi:type="File"
+                name="file"
+                layout="${level:format=FirstCharacter} [${date}] [${logger}] ${message} ${exception}"
+                fileName="${var:nwn_home}/logs.0/nwm.log"
+                createDirs="false"
+                keepFileOpen="true"
+                openFileCacheTimeout="30"
+                concurrentWrites="false"
+        />
     </targets>
 
     <!-- rules to map from logger name to target -->
