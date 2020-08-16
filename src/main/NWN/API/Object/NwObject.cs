@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
 
@@ -143,6 +144,25 @@ namespace NWN.API
     {
       await WaitForObjectContext();
       NWScript.ClearAllActions(clearCombatState.ToInt());
+    }
+
+    /// <summary>
+    /// Instructs this object to speak.
+    /// </summary>
+    /// <param name="message">The message the object should speak.</param>
+    /// <param name="talkVolume">The channel/volume of this message.</param>
+    /// <param name="queueAsAction">Whether the object should speak immediately (false), or be queued in the object's action queue (true).</param>
+    public async Task SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)
+    {
+      await WaitForObjectContext();
+      if (!queueAsAction)
+      {
+        NWScript.SpeakString(message, (int) talkVolume);
+      }
+      else
+      {
+        NWScript.ActionSpeakString(message, (int) talkVolume);
+      }
     }
 
     public LocalBool GetLocalBool(string name)
