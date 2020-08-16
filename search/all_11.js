@@ -39,7 +39,7 @@ var searchData=
   ['slow_538',['Slow',['../classNWN_1_1API_1_1Effect.html#a1ff8b9e87009120467fdc5f23bab4030',1,'NWN::API::Effect']]],
   ['sortedbyexecutiontime_539',['SortedByExecutionTime',['../classNWN_1_1Services_1_1ScheduledItem_1_1SortedByExecutionTime.html',1,'NWN::Services::ScheduledItem']]],
   ['spawns_540',['Spawns',['../classNWN_1_1API_1_1NwEncounter.html#a0dc26065dd65a3250e8ebe84a65d3ee4',1,'NWN::API::NwEncounter']]],
-  ['speakstring_541',['SpeakString',['../classNWN_1_1API_1_1NwGameObject.html#aae7e59951e9aa4ea81cc39ac9c49a3f0',1,'NWN::API::NwGameObject']]],
+  ['speakstring_541',['SpeakString',['../classNWN_1_1API_1_1NwObject.html#a18e3d56f9f6f3db910a9675458b39366',1,'NWN::API::NwObject']]],
   ['spell_542',['Spell',['../classNWN_1_1API_1_1Talent.html#ae2deff8f2d40fe97420a375b20d14970',1,'NWN::API::Talent']]],
   ['spellfailure_543',['SpellFailure',['../classNWN_1_1API_1_1Effect.html#a304e58a09c19f2fd7e3461b88e6bd41c',1,'NWN::API::Effect']]],
   ['spellimmunity_544',['SpellImmunity',['../classNWN_1_1API_1_1Effect.html#a5bed7f17ed4100f15ec05b14b5e40f5a',1,'NWN::API::Effect']]],

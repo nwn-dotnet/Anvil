@@ -21,7 +21,7 @@ var searchData=
   ['skillincrease_1060',['SkillIncrease',['../classNWN_1_1API_1_1Effect.html#aed42be8211f0144317da28a868fb5fd8',1,'NWN::API::Effect']]],
   ['sleep_1061',['Sleep',['../classNWN_1_1API_1_1Effect.html#a4fbd701f44af128f0a3d1831eb6975a1',1,'NWN::API::Effect']]],
   ['slow_1062',['Slow',['../classNWN_1_1API_1_1Effect.html#a1ff8b9e87009120467fdc5f23bab4030',1,'NWN::API::Effect']]],
-  ['speakstring_1063',['SpeakString',['../classNWN_1_1API_1_1NwGameObject.html#aae7e59951e9aa4ea81cc39ac9c49a3f0',1,'NWN::API::NwGameObject']]],
+  ['speakstring_1063',['SpeakString',['../classNWN_1_1API_1_1NwObject.html#a18e3d56f9f6f3db910a9675458b39366',1,'NWN::API::NwObject']]],
   ['spellfailure_1064',['SpellFailure',['../classNWN_1_1API_1_1Effect.html#a304e58a09c19f2fd7e3461b88e6bd41c',1,'NWN::API::Effect']]],
   ['spellimmunity_1065',['SpellImmunity',['../classNWN_1_1API_1_1Effect.html#a5bed7f17ed4100f15ec05b14b5e40f5a',1,'NWN::API::Effect']]],
   ['spelllevelabsorption_1066',['SpellLevelAbsorption',['../classNWN_1_1API_1_1Effect.html#adfca13c787c807f32b25d8e9ccd47ede',1,'NWN::API::Effect']]],
