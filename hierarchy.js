@@ -20,6 +20,7 @@ var hierarchy =
     [ "NWN.API.CreatureTypeFilter", "structNWN_1_1API_1_1CreatureTypeFilter.html", null ],
     [ "NWNX.API.Damage", "classNWNX_1_1API_1_1Damage.html", null ],
     [ "NWNX.API.Events.DamageData", "structNWNX_1_1API_1_1Events_1_1DamageData.html", null ],
+    [ "NWNX.API.Administration.DebugOptions", "classNWNX_1_1API_1_1Administration_1_1DebugOptions.html", null ],
     [ "NWNX.API.Dialog", "classNWNX_1_1API_1_1Dialog.html", null ],
     [ "NWN.API.Constants.Direction", "classNWN_1_1API_1_1Constants_1_1Direction.html", null ],
     [ "NWN.API.Events.DoorEvents", "classNWN_1_1API_1_1Events_1_1DoorEvents.html", null ],
@@ -322,6 +323,7 @@ var hierarchy =
     [ "NWN.API.Constants.FadeSpeed", "classNWN_1_1API_1_1Constants_1_1FadeSpeed.html", null ],
     [ "NWNX.API.Events.FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", null ],
     [ "NWNX.API.Feedback", "classNWNX_1_1API_1_1Feedback.html", null ],
+    [ "NWNX.API.Administration.GameOptions", "classNWNX_1_1API_1_1Administration_1_1GameOptions.html", null ],
     [ "NWN.API.GameTimeSpan", "classNWN_1_1API_1_1GameTimeSpan.html", null ],
     [ "NWN.API.GuidExtensions", "classNWN_1_1API_1_1GuidExtensions.html", null ],
     [ "NWN.Services.IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", [

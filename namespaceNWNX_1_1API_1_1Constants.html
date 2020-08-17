@@ -90,17 +90,15 @@ $(document).ready(function(){initNavTree('namespaceNWNX_1_1API_1_1Constants.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ac18a532206516a5ea64c04cf375f5644"><td class="memItemLeft" align="right" valign="top"><a id="ac18a532206516a5ea64c04cf375f5644"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>AttackResult</b> { <br />
-&#160;&#160;<b>Hit</b> = 1, 
+<tr class="memitem:ab9a10a00bdcaaa3a86d8fc3ce84f78b1"><td class="memItemLeft" align="right" valign="top"><a id="ab9a10a00bdcaaa3a86d8fc3ce84f78b1"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>PvPSetting</b> { <br />
+&#160;&#160;<b>NoPVP</b> = 0, 
 <br />
-&#160;&#160;<b>CriticalHit</b> = 3, 
+&#160;&#160;<b>PartyPVP</b> = 1, 
 <br />
-&#160;&#160;<b>Miss</b> = 4, 
-<br />
-&#160;&#160;<b>Concealed</b> = 8
+&#160;&#160;<b>FullPVP</b> = 2
 <br />
  }</td></tr>
-<tr class="separator:ac18a532206516a5ea64c04cf375f5644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ab9a10a00bdcaaa3a86d8fc3ce84f78b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add43c147cc4aab7d993238a709ddde7e"><td class="memItemLeft" align="right" valign="top"><a id="add43c147cc4aab7d993238a709ddde7e"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>AttackType</b> { <br />
 &#160;&#160;<b>MainHand</b> = 1, 
 <br />
@@ -116,29 +114,88 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:add43c147cc4aab7d993238a709ddde7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dbdfcfc27b9c014a3d003b7f1fac693"><td class="memItemLeft" align="right" valign="top"><a id="a8dbdfcfc27b9c014a3d003b7f1fac693"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>DialogLanguages</b> { <br />
-&#160;&#160;<b>English</b> = 0, 
+<tr class="memitem:ac18a532206516a5ea64c04cf375f5644"><td class="memItemLeft" align="right" valign="top"><a id="ac18a532206516a5ea64c04cf375f5644"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>AttackResult</b> { <br />
+&#160;&#160;<b>Hit</b> = 1, 
 <br />
-&#160;&#160;<b>French</b> = 1, 
+&#160;&#160;<b>CriticalHit</b> = 3, 
 <br />
-&#160;&#160;<b>German</b> = 2, 
+&#160;&#160;<b>Miss</b> = 4, 
 <br />
-&#160;&#160;<b>Italian</b> = 3, 
-<br />
-&#160;&#160;<b>Spanish</b> = 4, 
-<br />
-&#160;&#160;<b>Polish</b> = 5, 
-<br />
-&#160;&#160;<b>Korean</b> = 128, 
-<br />
-&#160;&#160;<b>ChineseTraditional</b> = 129, 
-<br />
-&#160;&#160;<b>ChineseSimplified</b> = 130, 
-<br />
-&#160;&#160;<b>Japanese</b> = 131
+&#160;&#160;<b>Concealed</b> = 8
 <br />
  }</td></tr>
-<tr class="separator:a8dbdfcfc27b9c014a3d003b7f1fac693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ac18a532206516a5ea64c04cf375f5644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafcb57dc051606c70323cdb569fcb0f4"><td class="memItemLeft" align="right" valign="top"><a id="aafcb57dc051606c70323cdb569fcb0f4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>SneakAttack</b> { <br />
+&#160;&#160;<b>None</b> = 0, 
+<br />
+&#160;&#160;<b>SneakAttack</b> = 1, 
+<br />
+&#160;&#160;<b>DeathAttack</b> = 2, 
+<br />
+&#160;&#160;<b>SneakAndDeathAttack</b> = 3
+<br />
+ }</td></tr>
+<tr class="separator:aafcb57dc051606c70323cdb569fcb0f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3ec1043c5b8bd23337ab4c09534bd15"><td class="memItemLeft" align="right" valign="top"><a id="ae3ec1043c5b8bd23337ab4c09534bd15"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>NodeType</b> { <br />
+&#160;&#160;<b>Invalid</b> = DialogPlugin.NWNX_DIALOG_NODE_TYPE_INVALID, 
+<br />
+&#160;&#160;<b>StartingNode</b> = DialogPlugin.NWNX_DIALOG_NODE_TYPE_STARTING_NODE, 
+<br />
+&#160;&#160;<b>EntryNode</b> = DialogPlugin.NWNX_DIALOG_NODE_TYPE_ENTRY_NODE, 
+<br />
+&#160;&#160;<b>ReplyNode</b> = DialogPlugin.NWNX_DIALOG_NODE_TYPE_REPLY_NODE
+<br />
+ }</td></tr>
+<tr class="separator:ae3ec1043c5b8bd23337ab4c09534bd15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a4958aad81c3187d4292a9fd113233"><td class="memItemLeft" align="right" valign="top"><a id="aa5a4958aad81c3187d4292a9fd113233"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ScriptType</b> { <br />
+&#160;&#160;<b>Other</b> = DialogPlugin.NWNX_DIALOG_SCRIPT_TYPE_OTHER, 
+<br />
+&#160;&#160;<b>StartingConditional</b> = DialogPlugin.NWNX_DIALOG_SCRIPT_TYPE_STARTING_CONDITIONAL, 
+<br />
+&#160;&#160;<b>ActionTaken</b> = DialogPlugin.NWNX_DIALOG_SCRIPT_TYPE_ACTION_TAKEN
+<br />
+ }</td></tr>
+<tr class="separator:aa5a4958aad81c3187d4292a9fd113233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f08a61747b1f8e6cd64108790e53519"><td class="memItemLeft" align="right" valign="top"><a id="a1f08a61747b1f8e6cd64108790e53519"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Language</b> { <br />
+&#160;&#160;<b>English</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_ENGLISH, 
+<br />
+&#160;&#160;<b>French</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_FRENCH, 
+<br />
+&#160;&#160;<b>German</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_GERMAN, 
+<br />
+&#160;&#160;<b>Italian</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_ITALIAN, 
+<br />
+&#160;&#160;<b>Spanish</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_SPANISH, 
+<br />
+&#160;&#160;<b>Polish</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_POLISH, 
+<br />
+&#160;&#160;<b>Korean</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_KOREAN, 
+<br />
+&#160;&#160;<b>ChineseTraditional</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_CHINESE_TRADITIONAL, 
+<br />
+&#160;&#160;<b>ChineseSimplified</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_CHINESE_SIMPLIFIED, 
+<br />
+&#160;&#160;<b>Japanese</b> = DialogPlugin.NWNX_DIALOG_LANGUAGE_JAPANESE
+<br />
+ }</td></tr>
+<tr class="separator:a1f08a61747b1f8e6cd64108790e53519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac76878730722447cfccbf940280c3078"><td class="memItemLeft" align="right" valign="top"><a id="ac76878730722447cfccbf940280c3078"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ElcFailureType</b> { <br />
+&#160;&#160;<b>None</b>, 
+<br />
+&#160;&#160;<b>Character</b>, 
+<br />
+&#160;&#160;<b>Item</b>, 
+<br />
+&#160;&#160;<b>Skill</b>, 
+<br />
+&#160;&#160;<b>Feat</b>, 
+<br />
+&#160;&#160;<b>Spell</b>, 
+<br />
+&#160;&#160;<b>Custom</b>
+<br />
+ }</td></tr>
+<tr class="separator:ac76878730722447cfccbf940280c3078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cd0a91f0543975d2f7e5afbf152e406"><td class="memItemLeft" align="right" valign="top"><a id="a7cd0a91f0543975d2f7e5afbf152e406"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ElcFailureSubType</b> { <br />
 &#160;&#160;<b>None</b>, 
 <br />
@@ -238,23 +295,6 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a7cd0a91f0543975d2f7e5afbf152e406"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac76878730722447cfccbf940280c3078"><td class="memItemLeft" align="right" valign="top"><a id="ac76878730722447cfccbf940280c3078"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ElcFailureType</b> { <br />
-&#160;&#160;<b>None</b>, 
-<br />
-&#160;&#160;<b>Character</b>, 
-<br />
-&#160;&#160;<b>Item</b>, 
-<br />
-&#160;&#160;<b>Skill</b>, 
-<br />
-&#160;&#160;<b>Feat</b>, 
-<br />
-&#160;&#160;<b>Spell</b>, 
-<br />
-&#160;&#160;<b>Custom</b>
-<br />
- }</td></tr>
-<tr class="separator:ac76878730722447cfccbf940280c3078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa50555d5d01bb76bb886e35c15df992e"><td class="memItemLeft" align="right" valign="top"><a id="aa50555d5d01bb76bb886e35c15df992e"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>QuickBarSlotType</b> { <br />
 &#160;&#160;<b>Empty</b> = 0, 
 <br />
@@ -327,38 +367,6 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a604bdd9e017603374ccbacc5eb641e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafcb57dc051606c70323cdb569fcb0f4"><td class="memItemLeft" align="right" valign="top"><a id="aafcb57dc051606c70323cdb569fcb0f4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>SneakAttack</b> { <br />
-&#160;&#160;<b>None</b> = 0, 
-<br />
-&#160;&#160;<b>SneakAttack</b> = 1, 
-<br />
-&#160;&#160;<b>DeathAttack</b> = 2, 
-<br />
-&#160;&#160;<b>SneakAndDeathAttack</b> = 3
-<br />
- }</td></tr>
-<tr class="separator:aafcb57dc051606c70323cdb569fcb0f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c016f06f3bdd80b3c0c8526270b65c3"><td class="memItemLeft" align="right" valign="top"><a id="a7c016f06f3bdd80b3c0c8526270b65c3"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>TimingBarType</b> { <br />
-&#160;&#160;<b>Flag</b> = 1, 
-<br />
-&#160;&#160;<b>Recover</b> = 2, 
-<br />
-&#160;&#160;<b>Disarm</b> = 3, 
-<br />
-&#160;&#160;<b>Examine</b> = 4, 
-<br />
-&#160;&#160;<b>Set</b> = 5, 
-<br />
-&#160;&#160;<b>Rest</b> = 6, 
-<br />
-&#160;&#160;<b>Unlock</b> = 7, 
-<br />
-&#160;&#160;<b>Lock</b> = 8, 
-<br />
-&#160;&#160;<b>Custom</b> = 10
-<br />
- }</td></tr>
-<tr class="separator:a7c016f06f3bdd80b3c0c8526270b65c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

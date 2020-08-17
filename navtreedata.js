@@ -42,10 +42,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classNWN_1_1API_1_1Effect.html#ad5208a1c0b424d14c3d06c4ded9d0458",
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#ab9ebd6902c577d2c4e4758581de27b85",
-"classNWN_1_1API_1_1NwCreature.html#aff9f912b73dd4f229ac20e89a73e5c83",
-"classNWN_1_1Services_1_1SchedulerService.html"
+"classNWN_1_1API_1_1Effect.html#a5d07690bc2b8ccd6938887e1f963d9a1",
+"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html",
+"classNWN_1_1API_1_1NwCreature.html#a89189b3d17caca13bd16eef90ecf7ee3",
+"classNWN_1_1API_1_1Talent.html#af6b47e1ff0d2bdd2c71b30d472935bd3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

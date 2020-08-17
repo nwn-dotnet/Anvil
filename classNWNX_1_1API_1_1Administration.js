@@ -1,5 +1,7 @@
 var classNWNX_1_1API_1_1Administration =
 [
+    [ "DebugOptions", "classNWNX_1_1API_1_1Administration_1_1DebugOptions.html", "classNWNX_1_1API_1_1Administration_1_1DebugOptions" ],
+    [ "GameOptions", "classNWNX_1_1API_1_1Administration_1_1GameOptions.html", "classNWNX_1_1API_1_1Administration_1_1GameOptions" ],
     [ "AddBannedCDKey", "classNWNX_1_1API_1_1Administration.html#a81660b7f3ac99a13d8f7ca8177e36fe6", null ],
     [ "AddBannedIP", "classNWNX_1_1API_1_1Administration.html#ac9faa3b42462eb3c05e6f2ae6903844a", null ],
     [ "AddBannedPlayerName", "classNWNX_1_1API_1_1Administration.html#acd09bb97c9eae0601e74ccd0761b5b6a", null ],
