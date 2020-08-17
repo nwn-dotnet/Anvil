@@ -14,31 +14,31 @@ namespace NWN.Services
     private Action<NwObject> nwObjectScriptHandler;
     private Func<NwObject, bool> nwObjectConditionalHandler;
 
-    public int ProcessCallbacks(uint objSelfId)
+    public ScriptHandleResult ProcessCallbacks(uint objSelfId)
     {
-      int result = ScriptDispatchConstants.SCRIPT_NOT_HANDLED;
+      ScriptHandleResult result = ScriptHandleResult.NotHandled;
       NwObject objSelf = null;
 
       if (scriptHandler != null)
       {
         scriptHandler();
-        result = ScriptDispatchConstants.SCRIPT_HANDLED;
+        result = ScriptHandleResult.Handled;
       }
       else if (nwObjectScriptHandler != null)
       {
         objSelf = objSelfId.ToNwObject();
         nwObjectScriptHandler(objSelf);
-        result = ScriptDispatchConstants.SCRIPT_HANDLED;
+        result = ScriptHandleResult.Handled;
       }
 
       if (conditionalHandler != null)
       {
-        result = conditionalHandler().ToInt();
+        result = conditionalHandler() ? ScriptHandleResult.True : ScriptHandleResult.False;
       }
       else if (nwObjectConditionalHandler != null)
       {
         objSelf = objSelf != null ? objSelf : objSelfId.ToNwObject();
-        result = nwObjectConditionalHandler(objSelf).ToInt();
+        result = nwObjectConditionalHandler(objSelf) ? ScriptHandleResult.True : ScriptHandleResult.False;
       }
 
       return result;

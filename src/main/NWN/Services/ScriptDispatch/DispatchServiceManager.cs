@@ -17,14 +17,14 @@ namespace NWN.Services
     {
       foreach (IScriptDispatcher dispatcher in dispatchers)
       {
-        int result = dispatcher.ExecuteScript(script, oidSelf);
-        if (result != ScriptDispatchConstants.SCRIPT_NOT_HANDLED)
+        ScriptHandleResult result = dispatcher.ExecuteScript(script, oidSelf);
+        if (result != ScriptHandleResult.NotHandled)
         {
-          return result;
+          return (int) result;
         }
       }
 
-      return ScriptDispatchConstants.SCRIPT_NOT_HANDLED;
+      return (int) ScriptHandleResult.NotHandled;
     }
   }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using NLog;
 using NWN.API;
+using NWN.API.Constants;
 
 namespace NWN.Services
 {
@@ -42,9 +43,9 @@ namespace NWN.Services
 
     private void RegisterMethod(object service, MethodInfo method, string scriptName)
     {
-      if (scriptName.Length > ScriptDispatchConstants.MAX_CHARS_IN_SCRIPT_NAME)
+      if (scriptName.Length > ScriptConstants.MaxScriptNameSize)
       {
-        Log.Warn($"Script Handler {scriptName} - name exceeds character limit ({ScriptDispatchConstants.MAX_CHARS_IN_SCRIPT_NAME}) and will be ignored.\n" +
+        Log.Warn($"Script Handler {scriptName} - name exceeds character limit ({ScriptConstants.MaxScriptNameSize}) and will be ignored.\n" +
                  $"Method: \"{method.GetFullName()}\"");
         return;
       }
@@ -59,14 +60,14 @@ namespace NWN.Services
       callback.AddCallback(service, method, scriptName);
     }
 
-    int IScriptDispatcher.ExecuteScript(string script, uint oidSelf)
+    ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint oidSelf)
     {
       if (scriptHandlers.TryGetValue(script, out ScriptCallback handler))
       {
         return handler.ProcessCallbacks(oidSelf);
       }
 
-      return ScriptDispatchConstants.SCRIPT_NOT_HANDLED;
+      return ScriptHandleResult.NotHandled;
     }
   }
 }

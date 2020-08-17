@@ -146,15 +146,15 @@ namespace NWN.Services
       return eventHandler;
     }
 
-    int IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
+    ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
       if (scriptToEventMap.TryGetValue(scriptName, out EventHandler eventHandler))
       {
         eventHandler.CallEvents(oidSelf.ToNwObject());
-        return ScriptDispatchConstants.SCRIPT_HANDLED;
+        return ScriptHandleResult.Handled;
       }
 
-      return ScriptDispatchConstants.SCRIPT_NOT_HANDLED;
+      return ScriptHandleResult.NotHandled;
     }
   }
 }
