@@ -14,7 +14,7 @@ namespace NWN.API
 
     ~ItemProperty()
     {
-      Internal.NativeFunctions.FreeItemProperty(handle);
+      Internal.NativeFunctions.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_ITEM_PROPERTY, handle);
 
     }
 

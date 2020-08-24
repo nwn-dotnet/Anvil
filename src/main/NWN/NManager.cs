@@ -19,7 +19,6 @@ namespace NWN
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private const string ShutdownScript = "__nwm_stop";
     private const uint ObjectInvalid = 0x7F000000;
 
     uint IGameManager.ObjectSelf => this.ObjectSelf;
@@ -43,6 +42,10 @@ namespace NWN
 
     // Bootstrap
     private readonly IBindingInstaller bindingInstaller;
+
+    // Ignored scripts
+    private static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
+    private static readonly string CoreShutdownScript = Environment.GetEnvironmentVariable("NWNX_CORE_SHUTDOWN_SCRIPT");
 
     /// <summary>
     /// Initialises the managed library, loading all defined services.
@@ -74,14 +77,18 @@ namespace NWN
       Environment.SetEnvironmentVariable("PATH", $"{envPath}; {assemblyDir}");
     }
 
-    private void InitLogger()
+    private static void CheckPluginDependencies()
+    {
+      Log.Info("Checking Plugin Dependencies");
+      PluginUtils.AssertPluginExists<UtilPlugin>();
+      PluginUtils.AssertPluginExists<ObjectPlugin>();
+    }
+
+    private void Start()
     {
       LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
       Log.Warn(UtilPlugin.GetUserDirectory());
-    }
 
-    private void InitServices()
-    {
       ServiceManager serviceManager = new ServiceManager(bindingInstaller);
       CheckPluginDependencies();
       serviceManager.InitServices();
@@ -92,11 +99,20 @@ namespace NWN
       OnInitComplete?.Invoke();
     }
 
-    private static void CheckPluginDependencies()
+    void IGameManager.OnSignal(string signal)
     {
-      Log.Info("Checking Plugin Dependencies");
-      PluginUtils.AssertPluginExists<UtilPlugin>();
-      PluginUtils.AssertPluginExists<ObjectPlugin>();
+      switch (signal)
+      {
+        case "ON_MODULE_LOAD_FINISH":
+          Start();
+          break;
+        case "ON_DESTROY_SERVER":
+          Shutdown();
+          break;
+        default:
+          Log.Debug($"Unhandled Signal: \"{signal}\"");
+          break;
+      }
     }
 
     private void Shutdown()
@@ -125,14 +141,10 @@ namespace NWN
 
       try
       {
-        if (ServiceManager == null)
+        // Ignored Scripts
+        if (script == ModStartScript || script == CoreShutdownScript)
         {
-          InitLogger();
-          InitServices();
-        }
-        else if (script == ShutdownScript)
-        {
-          Shutdown();
+          return retVal;
         }
 
         retVal = runScriptHandler.OnRunScript(script, oidSelf);
@@ -140,12 +152,6 @@ namespace NWN
       catch (Exception e)
       {
         Log.Error(e);
-
-        // We want the server to crash if init fails.
-        if (ServiceManager == null)
-        {
-          throw;
-        }
       }
 
       scriptContexts.Pop();

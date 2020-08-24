@@ -106,7 +106,7 @@ namespace NWN.API
 
       if (freeEffect)
       {
-        Internal.NativeFunctions.FreeEffect(handle);
+        Internal.NativeFunctions.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_EFFECT, handle);
       }
 
       handle = modifiedEffect;
