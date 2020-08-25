@@ -2,6 +2,7 @@ using System;
 
 namespace NWN.API
 {
+  // TODO Refactor
   public abstract class LocalVariable<T> : IEquatable<LocalVariable<T>>
   {
     public readonly string Name;

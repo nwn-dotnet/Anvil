@@ -1,7 +1,7 @@
 namespace NWN.Services
 {
   /// <summary>
-  ///
+  /// Implement this interface in your service to get a callback each server loop.
   /// </summary>
   public interface IUpdateable
   {

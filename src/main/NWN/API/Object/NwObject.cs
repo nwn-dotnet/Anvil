@@ -7,6 +7,7 @@ using NWN.Core.NWNX;
 
 namespace NWN.API
 {
+  // TODO Add missing properties/functions from NWScript
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   public class NwObject : IEquatable<NwObject>
   {
