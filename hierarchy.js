@@ -22,6 +22,7 @@ var hierarchy =
     [ "NWNX.API.Events.DamageData", "structNWNX_1_1API_1_1Events_1_1DamageData.html", null ],
     [ "NWNX.API.Administration.DebugOptions", "classNWNX_1_1API_1_1Administration_1_1DebugOptions.html", null ],
     [ "NWNX.API.Dialog", "classNWNX_1_1API_1_1Dialog.html", null ],
+    [ "NWN.Services.DialogueService", "classNWN_1_1Services_1_1DialogueService.html", null ],
     [ "NWN.API.Constants.Direction", "classNWN_1_1API_1_1Constants_1_1Direction.html", null ],
     [ "NWN.API.Events.DoorEvents", "classNWN_1_1API_1_1Events_1_1DoorEvents.html", null ],
     [ "NWN.API.Effect", "classNWN_1_1API_1_1Effect.html", null ],

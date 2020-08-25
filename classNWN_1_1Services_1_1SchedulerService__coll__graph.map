@@ -1,4 +1,4 @@
 <map id="NWN.Services.SchedulerService" name="NWN.Services.SchedulerService">
 <area shape="rect" id="node1" title=" " alt="" coords="5,80,219,107"/>
-<area shape="rect" id="node2" href="$interfaceNWN_1_1Services_1_1IUpdateable.html" title=" " alt="" coords="66,5,158,32"/>
+<area shape="rect" id="node2" href="$interfaceNWN_1_1Services_1_1IUpdateable.html" title="Implement this interface in your service to get a callback each server loop." alt="" coords="66,5,158,32"/>
 </map>

@@ -1,5 +1,6 @@
 var namespaceNWN_1_1Services =
 [
+    [ "DialogueService", "classNWN_1_1Services_1_1DialogueService.html", null ],
     [ "EventHandler", "classNWN_1_1Services_1_1EventHandler.html", null ],
     [ "EventService", "classNWN_1_1Services_1_1EventService.html", "classNWN_1_1Services_1_1EventService" ],
     [ "IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", "interfaceNWN_1_1Services_1_1IBindingInstaller" ],
