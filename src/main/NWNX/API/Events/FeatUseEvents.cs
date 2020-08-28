@@ -1,6 +1,7 @@
 using System.Numerics;
 using NWN.API;
 using NWN.API.Constants;
+using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -19,7 +20,7 @@ namespace NWNX.API.Events
       {
         FeatUser = (NwCreature) objSelf;
         Feat = (Feat) EventsPlugin.GetEventData("FEAT_ID").ParseInt();
-        TargetGameObject = ObjectPlugin.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID")).ToNwObject<NwGameObject>();
+        TargetGameObject = NWScript.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID")).ToNwObject<NwGameObject>();
 
         Vector3 position;
         position.X = EventsPlugin.GetEventData("TARGET_POSITION_X").ParseFloat();
