@@ -29,10 +29,11 @@ var searchData=
   ['getskillrank_267',['GetSkillRank',['../classNWN_1_1API_1_1NwCreature.html#a4080ef60742d148235a304faf52933c7',1,'NWN::API::NwCreature']]],
   ['getspellsavedc_268',['GetSpellSaveDC',['../classNWN_1_1API_1_1NwCreature.html#a913688c5e8c8182a0099849b649ab608',1,'NWN::API::NwCreature']]],
   ['getwaypointbytag_269',['GetWaypointByTag',['../classNWN_1_1API_1_1NwModule.html#a70fc2926e36fd30c099898ce9bca52bc',1,'NWN::API::NwModule']]],
-  ['giveitem_270',['GiveItem',['../classNWN_1_1API_1_1NwCreature.html#a0e29d37d777ed004c8a8447ce670662b',1,'NWN.API.NwCreature.GiveItem()'],['../classNWN_1_1API_1_1NwPlaceable.html#a6b42ea50107320796b0a7a6861b436b2',1,'NWN.API.NwPlaceable.GiveItem()']]],
-  ['gold_271',['Gold',['../classNWN_1_1API_1_1NwCreature.html#aee5104c58e0fc7d7d6dfd6e7008035e2',1,'NWN::API::NwCreature']]],
-  ['goldvalue_272',['GoldValue',['../classNWN_1_1API_1_1NwItem.html#a7e46619fd7f98a65576577373f0c2982',1,'NWN::API::NwItem']]],
-  ['goodevilalignment_273',['GoodEvilAlignment',['../classNWN_1_1API_1_1NwCreature.html#aa4bc99de35ea1862a438f031e0ce3190',1,'NWN::API::NwCreature']]],
-  ['goodevilvalue_274',['GoodEvilValue',['../classNWN_1_1API_1_1NwCreature.html#ae47427a1ebce6213ca12916b330fa1eb',1,'NWN::API::NwCreature']]],
-  ['guidextensions_275',['GuidExtensions',['../classNWN_1_1API_1_1GuidExtensions.html',1,'NWN::API']]]
+  ['givegold_270',['GiveGold',['../classNWN_1_1API_1_1NwCreature.html#af1ab63ca747a17c3ebef0351303ec1e6',1,'NWN::API::NwCreature']]],
+  ['giveitem_271',['GiveItem',['../classNWN_1_1API_1_1NwCreature.html#a0e29d37d777ed004c8a8447ce670662b',1,'NWN.API.NwCreature.GiveItem()'],['../classNWN_1_1API_1_1NwPlaceable.html#a6b42ea50107320796b0a7a6861b436b2',1,'NWN.API.NwPlaceable.GiveItem()']]],
+  ['gold_272',['Gold',['../classNWN_1_1API_1_1NwCreature.html#aee5104c58e0fc7d7d6dfd6e7008035e2',1,'NWN::API::NwCreature']]],
+  ['goldvalue_273',['GoldValue',['../classNWN_1_1API_1_1NwItem.html#a7e46619fd7f98a65576577373f0c2982',1,'NWN::API::NwItem']]],
+  ['goodevilalignment_274',['GoodEvilAlignment',['../classNWN_1_1API_1_1NwCreature.html#aa4bc99de35ea1862a438f031e0ce3190',1,'NWN::API::NwCreature']]],
+  ['goodevilvalue_275',['GoodEvilValue',['../classNWN_1_1API_1_1NwCreature.html#ae47427a1ebce6213ca12916b330fa1eb',1,'NWN::API::NwCreature']]],
+  ['guidextensions_276',['GuidExtensions',['../classNWN_1_1API_1_1GuidExtensions.html',1,'NWN::API']]]
 ];

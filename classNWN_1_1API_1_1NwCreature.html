@@ -119,6 +119,15 @@ Collaboration diagram for NWN.API.NwCreature:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af1ab63ca747a17c3ebef0351303ec1e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#af1ab63ca747a17c3ebef0351303ec1e6">GiveGold</a> (int amount)</td></tr>
+<tr class="memdesc:af1ab63ca747a17c3ebef0351303ec1e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives gold to this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#af1ab63ca747a17c3ebef0351303ec1e6">More...</a><br /></td></tr>
+<tr class="separator:af1ab63ca747a17c3ebef0351303ec1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2179888d5df0bcb40cba6594b7fbb1ca"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a2179888d5df0bcb40cba6594b7fbb1ca">TakeGold</a> (int amount)</td></tr>
+<tr class="memdesc:a2179888d5df0bcb40cba6594b7fbb1ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes gold away from this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a2179888d5df0bcb40cba6594b7fbb1ca">More...</a><br /></td></tr>
+<tr class="separator:a2179888d5df0bcb40cba6594b7fbb1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f7860a2374915659d99064071272084"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a6f7860a2374915659d99064071272084">TakeGoldFrom</a> (int amount, <a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> target)</td></tr>
+<tr class="memdesc:a6f7860a2374915659d99064071272084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives gold to this creature by taking it from another.  <a href="classNWN_1_1API_1_1NwCreature.html#a6f7860a2374915659d99064071272084">More...</a><br /></td></tr>
+<tr class="separator:a6f7860a2374915659d99064071272084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2fbd07954a24a92a6dd2cc612baab9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ad2fbd07954a24a92a6dd2cc612baab9d">GetItemInSlot</a> (InventorySlot slot)</td></tr>
 <tr class="memdesc:ad2fbd07954a24a92a6dd2cc612baab9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the item that is equipped in the specified inventory slot.  <a href="classNWN_1_1API_1_1NwCreature.html#ad2fbd07954a24a92a6dd2cc612baab9d">More...</a><br /></td></tr>
 <tr class="separator:ad2fbd07954a24a92a6dd2cc612baab9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -474,8 +483,9 @@ Properties</h2></td></tr>
 <tr class="memitem:ae47427a1ebce6213ca12916b330fa1eb"><td class="memItemLeft" align="right" valign="top">int?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ae47427a1ebce6213ca12916b330fa1eb">GoodEvilValue</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ae47427a1ebce6213ca12916b330fa1eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets this creature's Evil (0) - Good (100) alignment value.  <a href="classNWN_1_1API_1_1NwCreature.html#ae47427a1ebce6213ca12916b330fa1eb">More...</a><br /></td></tr>
 <tr class="separator:ae47427a1ebce6213ca12916b330fa1eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee5104c58e0fc7d7d6dfd6e7008035e2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#aee5104c58e0fc7d7d6dfd6e7008035e2">Gold</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aee5104c58e0fc7d7d6dfd6e7008035e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the amount of gold carried by this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#aee5104c58e0fc7d7d6dfd6e7008035e2">More...</a><br /></td></tr>
+<tr class="memitem:aee5104c58e0fc7d7d6dfd6e7008035e2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#aee5104c58e0fc7d7d6dfd6e7008035e2">Gold</a><code> [get]</code></td></tr>
+<tr class="memdesc:aee5104c58e0fc7d7d6dfd6e7008035e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the amount of gold carried by this creature.<br  />
+ See <a class="el" href="classNWN_1_1API_1_1NwCreature.html#af1ab63ca747a17c3ebef0351303ec1e6" title="Gives gold to this creature.">GiveGold</a>, <a class="el" href="classNWN_1_1API_1_1NwCreature.html#a2179888d5df0bcb40cba6594b7fbb1ca" title="Takes gold away from this creature.">TakeGold</a> for adding/removing gold from this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#aee5104c58e0fc7d7d6dfd6e7008035e2">More...</a><br /></td></tr>
 <tr class="separator:aee5104c58e0fc7d7d6dfd6e7008035e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classNWN_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('properties_classNWN_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NWN.API.NwGameObject</a></td></tr>
 <tr class="memitem:a992242d3ad4d409cb5a38ce9d91049f2 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2">Location</a><code> [get, set]</code></td></tr>
@@ -1593,6 +1603,32 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
+<a id="af1ab63ca747a17c3ebef0351303ec1e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1ab63ca747a17c3ebef0351303ec1e6">&#9670;&nbsp;</a></span>GiveGold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwCreature.GiveGold </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gives gold to this creature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td>The amount of gold to give.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a0e29d37d777ed004c8a8447ce670662b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e29d37d777ed004c8a8447ce670662b">&#9670;&nbsp;</a></span>GiveItem()</h2>
 
@@ -1862,6 +1898,85 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
   <table class="params">
     <tr><td class="paramname">actionMode</td><td>The action mode to toggle.</td></tr>
     <tr><td class="paramname">status</td><td>The new state of the action mode.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2179888d5df0bcb40cba6594b7fbb1ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2179888d5df0bcb40cba6594b7fbb1ca">&#9670;&nbsp;</a></span>TakeGold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task NWN.API.NwCreature.TakeGold </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Takes gold away from this creature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td>The amount of gold to take.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6f7860a2374915659d99064071272084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f7860a2374915659d99064071272084">&#9670;&nbsp;</a></span>TakeGoldFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task NWN.API.NwCreature.TakeGoldFrom </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>amount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gives gold to this creature by taking it from another. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td>The amount of gold to take.</td></tr>
+    <tr><td class="paramname">target</td><td>The target creature to take the gold from.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2412,12 +2527,13 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets the amount of gold carried by this creature. </p>
+<p>Gets the amount of gold carried by this creature.<br  />
+ See <a class="el" href="classNWN_1_1API_1_1NwCreature.html#af1ab63ca747a17c3ebef0351303ec1e6" title="Gives gold to this creature.">GiveGold</a>, <a class="el" href="classNWN_1_1API_1_1NwCreature.html#a2179888d5df0bcb40cba6594b7fbb1ca" title="Takes gold away from this creature.">TakeGold</a> for adding/removing gold from this creature. </p>
 
 </div>
 </div>

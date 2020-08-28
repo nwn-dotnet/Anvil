@@ -44,8 +44,8 @@ var NAVTREEINDEX =
 "annotated.html",
 "classNWN_1_1API_1_1Effect.html#a5d07690bc2b8ccd6938887e1f963d9a1",
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html",
-"classNWN_1_1API_1_1NwCreature.html#a89189b3d17caca13bd16eef90ecf7ee3",
-"classNWN_1_1API_1_1Talent.html#af6b47e1ff0d2bdd2c71b30d472935bd3"
+"classNWN_1_1API_1_1NwCreature.html#a81b526e35d49053de6ffe41ab083f5a9",
+"classNWN_1_1API_1_1Talent.html#a6745e2472b64b3cf96fd59792438e906"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
