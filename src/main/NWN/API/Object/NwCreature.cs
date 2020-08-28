@@ -249,28 +249,40 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the amount of gold carried by this creature.
+    /// Gets the amount of gold carried by this creature.<br/>
+    /// See <see cref="GiveGold"/>, <see cref="TakeGold"/> for adding/removing gold from this creature.
     /// </summary>
     public int Gold
     {
       get => NWScript.GetGold(this);
-      set
-      {
-        int diff = value - Gold;
-        if (diff == 0)
-        {
-          return;
-        }
+    }
 
-        if (diff > 0)
-        {
-          NWScript.GiveGoldToCreature(this, diff);
-        }
-        else
-        {
-          NWScript.TakeGoldFromCreature(Math.Abs(diff), this, true.ToInt());
-        }
-      }
+    /// <summary>
+    /// Gives gold to this creature.
+    /// </summary>
+    /// <param name="amount">The amount of gold to give.</param>
+    public void GiveGold(int amount)
+      => NWScript.GiveGoldToCreature(this, amount);
+
+    /// <summary>
+    /// Takes gold away from this creature.
+    /// </summary>
+    /// <param name="amount">The amount of gold to take.</param>
+    public async Task TakeGold(int amount)
+    {
+      await WaitForObjectContext();
+      NWScript.TakeGoldFromCreature(amount, this, true.ToInt());
+    }
+
+    /// <summary>
+    /// Gives gold to this creature by taking it from another.
+    /// </summary>
+    /// <param name="amount">The amount of gold to take.</param>
+    /// <param name="target">The target creature to take the gold from.</param>
+    public async Task TakeGoldFrom(int amount, NwCreature target)
+    {
+      await WaitForObjectContext();
+      NWScript.TakeGoldFromCreature(amount, target, false.ToInt());
     }
 
     /// <summary>
