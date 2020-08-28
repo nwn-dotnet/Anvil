@@ -87,7 +87,6 @@ namespace NWN
     private void Start()
     {
       LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
-      Log.Warn(UtilPlugin.GetUserDirectory());
 
       ServiceManager serviceManager = new ServiceManager(bindingInstaller);
       CheckPluginDependencies();
