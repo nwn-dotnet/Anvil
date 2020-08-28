@@ -305,7 +305,6 @@ var hierarchy =
       [ "NWN.API.Events.Event< TObject, TEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", null ]
     ] ],
     [ "NWN.Services.EventHandler", "classNWN_1_1Services_1_1EventHandler.html", null ],
-    [ "NWN.Services.EventService", "classNWN_1_1Services_1_1EventService.html", null ],
     [ "NWNX.API.Events.EventSkippable< OnItemEquipBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.ItemEvents.OnItemEquipBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore.html", null ]
     ] ],
@@ -371,6 +370,9 @@ var hierarchy =
     [ "NWN.API.IntegerExtensions", "classNWN_1_1API_1_1IntegerExtensions.html", null ],
     [ "NWN.Services.Interop", "classNWN_1_1Services_1_1Interop.html", null ],
     [ "NWN.IRunScriptHandler", "interfaceNWN_1_1IRunScriptHandler.html", null ],
+    [ "NWN.Services.IScriptDispatcher", "interfaceNWN_1_1Services_1_1IScriptDispatcher.html", [
+      [ "NWN.Services.EventService", "classNWN_1_1Services_1_1EventService.html", null ]
+    ] ],
     [ "NWNX.API.Item", "classNWNX_1_1API_1_1Item.html", null ],
     [ "NWNX.API.Events.ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", null ],
     [ "NWNX.API.ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],

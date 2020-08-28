@@ -5,6 +5,7 @@ var namespaceNWN_1_1Services =
     [ "EventService", "classNWN_1_1Services_1_1EventService.html", "classNWN_1_1Services_1_1EventService" ],
     [ "IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", "interfaceNWN_1_1Services_1_1IBindingInstaller" ],
     [ "Interop", "classNWN_1_1Services_1_1Interop.html", "classNWN_1_1Services_1_1Interop" ],
+    [ "IScriptDispatcher", "interfaceNWN_1_1Services_1_1IScriptDispatcher.html", "interfaceNWN_1_1Services_1_1IScriptDispatcher" ],
     [ "ITwoDimArray", "interfaceNWN_1_1Services_1_1ITwoDimArray.html", "interfaceNWN_1_1Services_1_1ITwoDimArray" ],
     [ "IUpdateable", "interfaceNWN_1_1Services_1_1IUpdateable.html", "interfaceNWN_1_1Services_1_1IUpdateable" ],
     [ "LoopTimeService", "classNWN_1_1Services_1_1LoopTimeService.html", "classNWN_1_1Services_1_1LoopTimeService" ],

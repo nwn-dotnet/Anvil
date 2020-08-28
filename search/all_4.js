@@ -110,6 +110,7 @@ var searchData=
   ['eventskippable_3c_20onusefeatbefore_20_3e_227',['EventSkippable&lt; OnUseFeatBefore &gt;',['../classNWNX_1_1API_1_1Events_1_1EventSkippable.html',1,'NWNX::API::Events']]],
   ['executenss_228',['ExecuteNss',['../classNWN_1_1Services_1_1Interop.html#a8b1fc75239d4ba4f505836e8d19131cb',1,'NWN::Services::Interop']]],
   ['executenssmethod_229',['ExecuteNssMethod',['../classNWN_1_1Services_1_1Interop.html#a5cd9164bbe0d1d800ed2cc52ad2ea69e',1,'NWN::Services::Interop']]],
-  ['exitingobject_230',['ExitingObject',['../classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnExit.html#af7555dfffdc93f4fe47c344ecae25c93',1,'NWN::API::Events::AreaEvents::OnExit']]],
-  ['exportcharacter_231',['ExportCharacter',['../classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802',1,'NWN::API::NwPlayer']]]
+  ['executescript_230',['ExecuteScript',['../interfaceNWN_1_1Services_1_1IScriptDispatcher.html#abc5b08a4fc3391e0de54aa649b620028',1,'NWN::Services::IScriptDispatcher']]],
+  ['exitingobject_231',['ExitingObject',['../classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnExit.html#af7555dfffdc93f4fe47c344ecae25c93',1,'NWN::API::Events::AreaEvents::OnExit']]],
+  ['exportcharacter_232',['ExportCharacter',['../classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802',1,'NWN::API::NwPlayer']]]
 ];
