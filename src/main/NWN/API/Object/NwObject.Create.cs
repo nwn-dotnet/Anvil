@@ -8,7 +8,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  public static class NwObjectFactory
+  public partial class NwObject
   {
     private static readonly Dictionary<Type, NativeObjectInfoAttribute> cachedTypeInfo = new Dictionary<Type, NativeObjectInfoAttribute>();
 

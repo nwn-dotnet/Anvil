@@ -9,7 +9,7 @@ namespace NWN.API
 {
   // TODO Add missing properties/functions from NWScript
   [DebuggerDisplay("{" + nameof(Name) + "}")]
-  public class NwObject : IEquatable<NwObject>
+  public partial class NwObject : IEquatable<NwObject>
   {
     internal const uint INVALID = NWScript.OBJECT_INVALID;
     protected readonly uint ObjectId;
@@ -166,40 +166,14 @@ namespace NWN.API
       }
     }
 
-    public LocalBool GetLocalBool(string name)
-    {
-      return new LocalBool(this, name);
-    }
-
-    public LocalInt GetLocalInt(string name)
-    {
-      return new LocalInt(this, name);
-    }
-
-    public LocalFloat GetLocalFloat(string name)
-    {
-      return new LocalFloat(this, name);
-    }
-
-    public LocalString GetLocalString(string name)
-    {
-      return new LocalString(this, name);
-    }
-
-    public LocalLocation GetLocalLocation(string name)
-    {
-      return new LocalLocation(this, name);
-    }
-
-    public LocalObject GetLocalObject(string name)
-    {
-      return new LocalObject(this, name);
-    }
-
-    public LocalUUID GetLocalUUID(string name)
-    {
-      return new LocalUUID(this, name);
-    }
+    /// <summary>
+    /// Gets the specified local variable for this object.
+    /// </summary>
+    /// <param name="name">The variable name.</param>
+    /// <typeparam name="T">The variable type.</typeparam>
+    /// <returns>A LocalVariable instance for getting/setting the variable's value.</returns>
+    public LocalVariable<T> GetLocalVariable<T>(string name)
+      => LocalVariable<T>.Create(this, name);
 
     /// <summary>
     /// Attempts to get the UUID of this object, if assigned.

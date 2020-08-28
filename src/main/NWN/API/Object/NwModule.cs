@@ -92,6 +92,16 @@ namespace NWN.API
     public Location StartingLocation => NWScript.GetStartingLocation();
 
     /// <summary>
+    /// Gets the specified global campaign variable.
+    /// </summary>
+    /// <param name="campaign">The name of the campaign.</param>
+    /// <param name="name">The variable name.</param>
+    /// <typeparam name="T">The variable type.</typeparam>
+    /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
+    public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
+      => CampaignVariable<T>.Create(campaign, name);
+
+    /// <summary>
     /// Gets all active areas in the module.
     /// </summary>
     public IEnumerable<NwArea> Areas

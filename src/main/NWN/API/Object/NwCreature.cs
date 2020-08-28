@@ -283,7 +283,7 @@ namespace NWN.API
     /// <returns></returns>
     public static NwCreature Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return NwObjectFactory.CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
+      return NwObject.CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
     }
 
     /// <summary>

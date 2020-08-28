@@ -10,7 +10,7 @@ namespace NWN.API
 
     public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return NwObjectFactory.CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
+      return NwObject.CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
     }
   }
 }

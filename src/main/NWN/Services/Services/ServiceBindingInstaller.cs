@@ -30,23 +30,7 @@ namespace NWN.Services
     private void SearchForBindings()
     {
       Log.Info("Loading managed services");
-      Assembly nwmAssembly = Assembly.GetExecutingAssembly();
-      string nwmAssemblyName = nwmAssembly.FullName;
-
-      Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-      foreach (Assembly assembly in assemblies)
-      {
-        if (assembly == nwmAssembly || assembly.GetReferencedAssemblies().Any(name => name.ToString() == nwmAssemblyName))
-        {
-          Log.Debug($"Registering assembly: {assembly.FullName}");
-          SearchAssemblyForBindings(assembly);
-        }
-      }
-    }
-
-    private void SearchAssemblyForBindings(Assembly assembly)
-    {
-      foreach (Type type in assembly.GetTypes())
+      foreach (Type type in Types.AllLinkedTypes)
       {
         if (PopulateBindings(type, type.GetCustomAttributes<ServiceBindingAttribute>()))
         {

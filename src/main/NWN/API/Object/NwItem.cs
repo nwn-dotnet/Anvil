@@ -130,7 +130,7 @@ namespace NWN.API
     /// <returns>The created item.</returns>
     public static NwItem Create(string template, Location location, bool useAppearAnim = false, string newTag = null)
     {
-      return NwObjectFactory.CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
+      return NwObject.CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
     }
 
     /// <summary>

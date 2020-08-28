@@ -58,7 +58,7 @@ namespace NWN.API
     public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       location = Location.Create(location.Area, location.Position, location.FlippedRotation);
-      return NwObjectFactory.CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
+      return NwObject.CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
   }
 }
