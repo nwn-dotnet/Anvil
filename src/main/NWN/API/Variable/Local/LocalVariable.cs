@@ -1,16 +1,40 @@
 using System;
 using NWN.Core.NWNX;
+using NWNX.API.Constants;
 
 namespace NWN.API
 {
+  public abstract class LocalVariable
+  {
+    public string Name { get; protected set; }
+    public NwObject Object { get; protected set; }
+
+    internal static LocalVariable Create(NwObject nwObject, Core.NWNX.LocalVariable variable)
+    {
+      LocalVarType varType = (LocalVarType) variable.type;
+      switch (varType)
+      {
+        case LocalVarType.Int:
+          return LocalVariable<int>.Create(nwObject, variable.key);
+        case LocalVarType.Float:
+          return LocalVariable<float>.Create(nwObject, variable.key);
+        case LocalVarType.String:
+          return LocalVariable<string>.Create(nwObject, variable.key);
+        case LocalVarType.Object:
+          return LocalVariable<NwObject>.Create(nwObject, variable.key);
+        case LocalVarType.Location:
+          return LocalVariable<Location>.Create(nwObject, variable.key);
+        default:
+          throw new ArgumentOutOfRangeException();
+      }
+    }
+  }
+
   /// <summary>
   /// Represents a local variable stored on an Object.
   /// </summary>
-  public class LocalVariable<T> : IEquatable<LocalVariable<T>>
+  public class LocalVariable<T> : LocalVariable, IEquatable<LocalVariable<T>>
   {
-    public string Name { get; private set; }
-    public NwObject Object { get; private set; }
-
     private ILocalVariableConverter<T> converter;
 
     private LocalVariable() {}
@@ -49,7 +73,7 @@ namespace NWN.API
         int localCount = ObjectPlugin.GetLocalVariableCount(Object);
         for (int i = 0; i < localCount; i++)
         {
-          LocalVariable variable = ObjectPlugin.GetLocalVariable(Object, i);
+          Core.NWNX.LocalVariable variable = ObjectPlugin.GetLocalVariable(Object, i);
           if (variable.key == Name)
           {
             return true;

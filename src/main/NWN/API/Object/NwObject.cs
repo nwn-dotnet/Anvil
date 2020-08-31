@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
@@ -96,6 +97,21 @@ namespace NWN.API
     {
       get => NWScript.GetTag(this);
       set => NWScript.SetTag(this, value);
+    }
+
+    /// <summary>
+    /// Gets all local variables assigned on this object.
+    /// </summary>
+    public IEnumerable<LocalVariable> LocalVariables
+    {
+      get
+      {
+        for (int i = 0; i < ObjectPlugin.GetLocalVariableCount(this); i++)
+        {
+          Core.NWNX.LocalVariable rawVar = ObjectPlugin.GetLocalVariable(this, i);
+          yield return LocalVariable.Create(this, rawVar);
+        }
+      }
     }
 
     /// <summary>
