@@ -14,7 +14,7 @@ namespace NWN.API
 
     ~Location()
     {
-      Internal.NativeFunctions.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_LOCATION, handle);
+      VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_LOCATION, handle);
     }
 
     public static implicit operator IntPtr(Location effect) => effect.handle;

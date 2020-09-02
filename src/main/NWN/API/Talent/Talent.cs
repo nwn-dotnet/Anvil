@@ -14,7 +14,7 @@ namespace NWN.API
 
     ~Talent()
     {
-      Internal.NativeFunctions.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_TALENT, handle);
+      VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_TALENT, handle);
     }
 
     public static implicit operator IntPtr(Talent effect) => effect.handle;

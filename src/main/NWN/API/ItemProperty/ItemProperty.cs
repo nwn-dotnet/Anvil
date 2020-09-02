@@ -14,8 +14,7 @@ namespace NWN.API
 
     ~ItemProperty()
     {
-      Internal.NativeFunctions.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_ITEM_PROPERTY, handle);
-
+      VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_ITEM_PROPERTY, handle);
     }
 
     public static implicit operator IntPtr(ItemProperty effect) => effect.handle;

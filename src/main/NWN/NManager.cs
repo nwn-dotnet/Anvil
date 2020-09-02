@@ -59,7 +59,7 @@ namespace NWN
     {
       bindingInstaller ??= new ServiceBindingInstaller();
       Instance = new NManager(bindingInstaller);
-      return Internal.Init(arg, argLength, Instance);
+      return NWNCore.Init(arg, argLength, Instance);
     }
 
     private NManager(IBindingInstaller bindingInstaller)
@@ -178,7 +178,7 @@ namespace NWN
 
     void IGameManager.ClosureAssignCommand(uint obj, ActionDelegate func)
     {
-      if (Internal.NativeFunctions.ClosureAssignCommand(obj, nextEventId) != 0)
+      if (VM.ClosureAssignCommand(obj, nextEventId) != 0)
       {
         closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
       }
@@ -186,7 +186,7 @@ namespace NWN
 
     void IGameManager.ClosureDelayCommand(uint obj, float duration, ActionDelegate func)
     {
-      if (Internal.NativeFunctions.ClosureDelayCommand(obj, duration, nextEventId) != 0)
+      if (VM.ClosureDelayCommand(obj, duration, nextEventId) != 0)
       {
         closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
       }
@@ -194,7 +194,7 @@ namespace NWN
 
     void IGameManager.ClosureActionDoCommand(uint obj, ActionDelegate func)
     {
-      if (Internal.NativeFunctions.ClosureActionDoCommand(obj, nextEventId) != 0)
+      if (VM.ClosureActionDoCommand(obj, nextEventId) != 0)
       {
         closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
       }

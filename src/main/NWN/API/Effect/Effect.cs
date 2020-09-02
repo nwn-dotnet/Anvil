@@ -14,7 +14,7 @@ namespace NWN.API
 
     ~Effect()
     {
-      Internal.NativeFunctions.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_EFFECT, handle);
+      VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_EFFECT, handle);
     }
 
     public static implicit operator IntPtr(Effect effect) => effect.handle;
