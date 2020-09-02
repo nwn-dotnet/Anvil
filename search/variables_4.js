@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['feat_1133',['Feat',['../classNWN_1_1API_1_1Talent.html#a34d61443e0b3e9e72c61553759f10d3e',1,'NWN::API::Talent']]]
+  ['effecttype_1179',['EffectType',['../classNWN_1_1API_1_1Effect.html#a3a2bc95cdbf7b42a8bd389df4229011b',1,'NWN::API::Effect']]]
 ];

@@ -1,12 +1,11 @@
 <map id="NWN.API.NwModule" name="NWN.API.NwModule">
-<area shape="rect" id="node1" title=" " alt="" coords="108,501,252,528"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="248,81,328,108"/>
-<area shape="rect" id="node6" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="417,157,532,184"/>
-<area shape="rect" id="node8" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="201,157,375,184"/>
-<area shape="rect" id="node3" title=" " alt="" coords="207,5,369,32"/>
-<area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwPlayer.html" title=" " alt="" coords="111,412,249,439"/>
-<area shape="rect" id="node5" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="204,336,295,363"/>
-<area shape="rect" id="node7" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="174,247,325,273"/>
-<area shape="rect" id="node9" title=" " alt="" coords="109,157,153,184"/>
-<area shape="rect" id="node10" href="$classNWN_1_1API_1_1Location.html" title=" " alt="" coords="274,412,406,439"/>
+<area shape="rect" id="node1" title=" " alt="" coords="108,425,252,452"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="248,5,328,32"/>
+<area shape="rect" id="node5" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="417,81,532,108"/>
+<area shape="rect" id="node7" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="201,81,375,108"/>
+<area shape="rect" id="node3" href="$classNWN_1_1API_1_1NwPlayer.html" title=" " alt="" coords="111,336,249,363"/>
+<area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="204,260,295,287"/>
+<area shape="rect" id="node6" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="174,171,325,197"/>
+<area shape="rect" id="node8" title=" " alt="" coords="109,81,153,108"/>
+<area shape="rect" id="node9" href="$classNWN_1_1API_1_1Location.html" title=" " alt="" coords="274,336,406,363"/>
 </map>

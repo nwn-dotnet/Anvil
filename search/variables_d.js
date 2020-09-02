@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['scriptreturnvalue_1165',['ScriptReturnValue',['../classNWNX_1_1API_1_1Util.html#a139b7dffa0257f2fa4a3dd49af35c55a',1,'NWNX::API::Util']]],
-  ['servertickspersecond_1166',['ServerTicksPerSecond',['../classNWNX_1_1API_1_1Util.html#a3cba4aa0a0f5f85c1b10a220ce7bfbe1',1,'NWNX::API::Util']]],
-  ['size_1167',['Size',['../classNWN_1_1API_1_1NwArea.html#aeee8c4b7469993c121f2a226fe59250d',1,'NWN.API.NwArea.Size()'],['../classNWN_1_1API_1_1NwCreature.html#a3a164fc85c36095dcff55b15a4f553f0',1,'NWN.API.NwCreature.Size()']]],
-  ['skill_1168',['Skill',['../classNWN_1_1API_1_1Talent.html#a1c812e7a633bb8b8ff587091293c31bf',1,'NWN::API::Talent']]],
-  ['spell_1169',['Spell',['../classNWN_1_1API_1_1Talent.html#ae2deff8f2d40fe97420a375b20d14970',1,'NWN::API::Talent']]],
-  ['startinglocation_1170',['StartingLocation',['../classNWN_1_1API_1_1NwModule.html#a17568517c3530c1f4a10e0c61b931b6b',1,'NWN::API::NwModule']]],
-  ['subtype_1171',['SubType',['../classNWN_1_1API_1_1ItemProperty.html#a4a43d08961f0e303e5a6016883723d99',1,'NWN::API::ItemProperty']]]
+  ['racialtype_1211',['RacialType',['../classNWN_1_1API_1_1NwCreature.html#a92f73d20c256cb927c4a9edd561c77a4',1,'NWN::API::NwCreature']]],
+  ['red_1212',['Red',['../structNWN_1_1API_1_1Color.html#ac947196c2f08226044340756eab31e11',1,'NWN::API::Color']]],
+  ['remainingduration_1213',['RemainingDuration',['../classNWN_1_1API_1_1ItemProperty.html#a4ced0c97e738981c8d55615df17450e3',1,'NWN::API::ItemProperty']]],
+  ['resref_1214',['ResRef',['../classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20',1,'NWN::API::NwObject']]]
 ];

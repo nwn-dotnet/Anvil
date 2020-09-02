@@ -1,14 +1,13 @@
 <map id="NWN.API.NwPlaceable" name="NWN.API.NwPlaceable">
-<area shape="rect" id="node1" title=" " alt="" coords="176,667,334,693"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1NwStationary.html" title=" " alt="" coords="288,591,388,617"/>
-<area shape="rect" id="node3" href="$classNWN_1_1API_1_1NwTrappable.html" title=" " alt="" coords="288,501,387,528"/>
-<area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="404,157,519,184"/>
-<area shape="rect" id="node8" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="292,336,383,363"/>
-<area shape="rect" id="node9" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="105,247,256,273"/>
-<area shape="rect" id="node5" href="$classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="242,81,322,108"/>
-<area shape="rect" id="node10" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="73,157,248,184"/>
-<area shape="rect" id="node6" title=" " alt="" coords="200,5,363,32"/>
-<area shape="rect" id="node7" href="$classNWN_1_1API_1_1NwPlayer.html" title=" " alt="" coords="268,412,407,439"/>
-<area shape="rect" id="node11" title=" " alt="" coords="318,157,362,184"/>
-<area shape="rect" id="node12" href="$classNWN_1_1API_1_1Location.html" title=" " alt="" coords="412,501,544,528"/>
+<area shape="rect" id="node1" title=" " alt="" coords="176,591,334,617"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1NwStationary.html" title=" " alt="" coords="288,515,388,541"/>
+<area shape="rect" id="node3" href="$classNWN_1_1API_1_1NwTrappable.html" title=" " alt="" coords="288,425,387,452"/>
+<area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="404,81,519,108"/>
+<area shape="rect" id="node7" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="292,260,383,287"/>
+<area shape="rect" id="node8" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="105,171,256,197"/>
+<area shape="rect" id="node5" href="$classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="242,5,322,32"/>
+<area shape="rect" id="node9" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="73,81,248,108"/>
+<area shape="rect" id="node6" href="$classNWN_1_1API_1_1NwPlayer.html" title=" " alt="" coords="268,336,407,363"/>
+<area shape="rect" id="node10" title=" " alt="" coords="318,81,362,108"/>
+<area shape="rect" id="node11" href="$classNWN_1_1API_1_1Location.html" title=" " alt="" coords="412,425,544,452"/>
 </map>

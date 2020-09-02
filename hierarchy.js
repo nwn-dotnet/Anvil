@@ -7,6 +7,8 @@ var hierarchy =
     [ "NWN.API.Events.AreaOfEffectEvents", "classNWN_1_1API_1_1Events_1_1AreaOfEffectEvents.html", null ],
     [ "NWNX.API.Events.AttackData", "structNWNX_1_1API_1_1Events_1_1AttackData.html", null ],
     [ "Attribute", null, [
+      [ "NWN.API.CampaignVariableConverterAttribute", "classNWN_1_1API_1_1CampaignVariableConverterAttribute.html", null ],
+      [ "NWN.API.LocalVariableConverterAttribute", "classNWN_1_1API_1_1LocalVariableConverterAttribute.html", null ],
       [ "NWN.Services.ScriptHandlerAttribute", "classNWN_1_1Services_1_1ScriptHandlerAttribute.html", null ],
       [ "NWN.Services.ServiceBindingAttribute", "classNWN_1_1Services_1_1ServiceBindingAttribute.html", null ],
       [ "NWNX.API.Events.NWNXAttackEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html", null ],
@@ -324,37 +326,26 @@ var hierarchy =
     [ "NWNX.API.Events.FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", null ],
     [ "NWNX.API.Feedback", "classNWNX_1_1API_1_1Feedback.html", null ],
     [ "NWNX.API.Administration.GameOptions", "classNWNX_1_1API_1_1Administration_1_1GameOptions.html", null ],
-    [ "NWN.API.GameTimeSpan", "classNWN_1_1API_1_1GameTimeSpan.html", null ],
     [ "NWN.API.GuidExtensions", "classNWN_1_1API_1_1GuidExtensions.html", null ],
     [ "NWN.Services.IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", [
       [ "NWN.Services.ServiceBindingInstaller", "classNWN_1_1Services_1_1ServiceBindingInstaller.html", null ]
     ] ],
+    [ "NWN.API.ICampaignVariableConverter", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", [
+      [ "NWN.API.ICampaignVariableConverter< T >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ]
+    ] ],
+    [ "NWN.API.ICampaignVariableConverter< bool >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ],
+    [ "NWN.API.ICampaignVariableConverter< float >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ],
+    [ "NWN.API.ICampaignVariableConverter< Guid >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ],
+    [ "NWN.API.ICampaignVariableConverter< int >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ],
+    [ "NWN.API.ICampaignVariableConverter< Location >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ],
+    [ "NWN.API.ICampaignVariableConverter< string >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ],
+    [ "NWN.API.ICampaignVariableConverter< T >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ],
+    [ "NWN.API.ICampaignVariableConverter< Vector3 >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ],
     [ "IComparer", null, [
       [ "NWN.Services.ScheduledItem.SortedByExecutionTime", "classNWN_1_1Services_1_1ScheduledItem_1_1SortedByExecutionTime.html", null ]
     ] ],
-    [ "IEquatable", null, [
-      [ "NWN.API.NwObject", "classNWN_1_1API_1_1NwObject.html", [
-        [ "NWN.API.NwArea", "classNWN_1_1API_1_1NwArea.html", null ],
-        [ "NWN.API.NwAreaOfEffect", "classNWN_1_1API_1_1NwAreaOfEffect.html", null ],
-        [ "NWN.API.NwGameObject", "classNWN_1_1API_1_1NwGameObject.html", [
-          [ "NWN.API.NwCreature", "classNWN_1_1API_1_1NwCreature.html", [
-            [ "NWN.API.NwPlayer", "classNWN_1_1API_1_1NwPlayer.html", null ]
-          ] ],
-          [ "NWN.API.NwEncounter", "classNWN_1_1API_1_1NwEncounter.html", null ],
-          [ "NWN.API.NwItem", "classNWN_1_1API_1_1NwItem.html", null ],
-          [ "NWN.API.NwSound", "classNWN_1_1API_1_1NwSound.html", null ],
-          [ "NWN.API.NwStore", "classNWN_1_1API_1_1NwStore.html", null ],
-          [ "NWN.API.NwTrappable", "classNWN_1_1API_1_1NwTrappable.html", [
-            [ "NWN.API.NwStationary", "classNWN_1_1API_1_1NwStationary.html", [
-              [ "NWN.API.NwDoor", "classNWN_1_1API_1_1NwDoor.html", null ],
-              [ "NWN.API.NwPlaceable", "classNWN_1_1API_1_1NwPlaceable.html", null ]
-            ] ],
-            [ "NWN.API.NwTrigger", "classNWN_1_1API_1_1NwTrigger.html", null ]
-          ] ],
-          [ "NWN.API.NwWaypoint", "classNWN_1_1API_1_1NwWaypoint.html", null ]
-        ] ],
-        [ "NWN.API.NwModule", "classNWN_1_1API_1_1NwModule.html", null ]
-      ] ]
+    [ "IEquatable< CampaignVariable< T >>", null, [
+      [ "NWN.API.CampaignVariable< T >", "classNWN_1_1API_1_1CampaignVariable.html", null ]
     ] ],
     [ "IEquatable< LocalVariable< T >>", null, [
       [ "NWN.API.LocalVariable< T >", "classNWN_1_1API_1_1LocalVariable.html", null ]
@@ -367,6 +358,17 @@ var hierarchy =
     [ "IGameManager", null, [
       [ "NWN.NManager", "classNWN_1_1NManager.html", null ]
     ] ],
+    [ "NWN.API.ILocalVariableConverter", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", [
+      [ "NWN.API.ILocalVariableConverter< T >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ]
+    ] ],
+    [ "NWN.API.ILocalVariableConverter< bool >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
+    [ "NWN.API.ILocalVariableConverter< float >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
+    [ "NWN.API.ILocalVariableConverter< Guid >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
+    [ "NWN.API.ILocalVariableConverter< int >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
+    [ "NWN.API.ILocalVariableConverter< Location >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
+    [ "NWN.API.ILocalVariableConverter< NwObject >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
+    [ "NWN.API.ILocalVariableConverter< string >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
+    [ "NWN.API.ILocalVariableConverter< T >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
     [ "NWN.API.IntegerExtensions", "classNWN_1_1API_1_1IntegerExtensions.html", null ],
     [ "NWN.Services.Interop", "classNWN_1_1Services_1_1Interop.html", null ],
     [ "NWN.IRunScriptHandler", "interfaceNWN_1_1IRunScriptHandler.html", null ],
@@ -381,33 +383,37 @@ var hierarchy =
     [ "NWN.Services.IUpdateable", "interfaceNWN_1_1Services_1_1IUpdateable.html", [
       [ "NWN.Services.SchedulerService", "classNWN_1_1Services_1_1SchedulerService.html", null ]
     ] ],
-    [ "NWN.API.LocalVariable< bool >", "classNWN_1_1API_1_1LocalVariable.html", [
-      [ "NWN.API.LocalBool", "classNWN_1_1API_1_1LocalBool.html", null ]
-    ] ],
-    [ "NWN.API.LocalVariable< float >", "classNWN_1_1API_1_1LocalVariable.html", [
-      [ "NWN.API.LocalFloat", "classNWN_1_1API_1_1LocalFloat.html", null ]
-    ] ],
-    [ "NWN.API.LocalVariable< Guid >", "classNWN_1_1API_1_1LocalVariable.html", [
-      [ "NWN.API.LocalUUID", "classNWN_1_1API_1_1LocalUUID.html", null ]
-    ] ],
-    [ "NWN.API.LocalVariable< int >", "classNWN_1_1API_1_1LocalVariable.html", [
-      [ "NWN.API.LocalInt", "classNWN_1_1API_1_1LocalInt.html", null ]
-    ] ],
-    [ "NWN.API.LocalVariable< Location >", "classNWN_1_1API_1_1LocalVariable.html", [
-      [ "NWN.API.LocalLocation", "classNWN_1_1API_1_1LocalLocation.html", null ]
-    ] ],
-    [ "NWN.API.LocalVariable< NwObject >", "classNWN_1_1API_1_1LocalVariable.html", [
-      [ "NWN.API.LocalObject", "classNWN_1_1API_1_1LocalObject.html", null ]
-    ] ],
-    [ "NWN.API.LocalVariable< string >", "classNWN_1_1API_1_1LocalVariable.html", [
-      [ "NWN.API.LocalString", "classNWN_1_1API_1_1LocalString.html", null ]
+    [ "NWN.API.LocalVariable", "classNWN_1_1API_1_1LocalVariable.html", [
+      [ "NWN.API.LocalVariable< T >", "classNWN_1_1API_1_1LocalVariable.html", null ]
     ] ],
     [ "NWN.API.Location", "classNWN_1_1API_1_1Location.html", null ],
     [ "NWN.Services.LoopTimeService", "classNWN_1_1Services_1_1LoopTimeService.html", null ],
     [ "NWN.API.Events.ModuleEvents", "classNWN_1_1API_1_1Events_1_1ModuleEvents.html", null ],
     [ "NWN.Services.NwDateTime", "structNWN_1_1Services_1_1NwDateTime.html", null ],
-    [ "NWN.API.NwObjectFactory", "classNWN_1_1API_1_1NwObjectFactory.html", null ],
+    [ "NWN.API.NwObject", "classNWN_1_1API_1_1NwObject.html", [
+      [ "NWN.API.NwArea", "classNWN_1_1API_1_1NwArea.html", null ],
+      [ "NWN.API.NwAreaOfEffect", "classNWN_1_1API_1_1NwAreaOfEffect.html", null ],
+      [ "NWN.API.NwGameObject", "classNWN_1_1API_1_1NwGameObject.html", [
+        [ "NWN.API.NwCreature", "classNWN_1_1API_1_1NwCreature.html", [
+          [ "NWN.API.NwPlayer", "classNWN_1_1API_1_1NwPlayer.html", null ]
+        ] ],
+        [ "NWN.API.NwEncounter", "classNWN_1_1API_1_1NwEncounter.html", null ],
+        [ "NWN.API.NwItem", "classNWN_1_1API_1_1NwItem.html", null ],
+        [ "NWN.API.NwSound", "classNWN_1_1API_1_1NwSound.html", null ],
+        [ "NWN.API.NwStore", "classNWN_1_1API_1_1NwStore.html", null ],
+        [ "NWN.API.NwTrappable", "classNWN_1_1API_1_1NwTrappable.html", [
+          [ "NWN.API.NwStationary", "classNWN_1_1API_1_1NwStationary.html", [
+            [ "NWN.API.NwDoor", "classNWN_1_1API_1_1NwDoor.html", null ],
+            [ "NWN.API.NwPlaceable", "classNWN_1_1API_1_1NwPlaceable.html", null ]
+          ] ],
+          [ "NWN.API.NwTrigger", "classNWN_1_1API_1_1NwTrigger.html", null ]
+        ] ],
+        [ "NWN.API.NwWaypoint", "classNWN_1_1API_1_1NwWaypoint.html", null ]
+      ] ],
+      [ "NWN.API.NwModule", "classNWN_1_1API_1_1NwModule.html", null ]
+    ] ],
     [ "NWN.API.NwTask", "classNWN_1_1API_1_1NwTask.html", null ],
+    [ "NWN.API.NwTimeSpan", "classNWN_1_1API_1_1NwTimeSpan.html", null ],
     [ "NWNX.API.Object", "classNWNX_1_1API_1_1Object.html", null ],
     [ "NWN.API.Events.PlaceableEvents", "classNWN_1_1API_1_1Events_1_1PlaceableEvents.html", null ],
     [ "NWNX.API.Player", "classNWNX_1_1API_1_1Player.html", null ],

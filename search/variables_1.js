@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['cdkey_1125',['CDKey',['../classNWN_1_1API_1_1NwPlayer.html#a7c84a2808fb836d93f24a78b5e1049c7',1,'NWN::API::NwPlayer']]],
-  ['challengerating_1126',['ChallengeRating',['../classNWN_1_1API_1_1NwCreature.html#a0df9265a9b7d7f7b8e6879aa0e2cece6',1,'NWN::API::NwCreature']]],
-  ['clientversion_1127',['ClientVersion',['../classNWN_1_1API_1_1NwPlayer.html#ad9871bef83bc18b73aa286a8427c4811',1,'NWN::API::NwPlayer']]],
-  ['creator_1128',['Creator',['../classNWN_1_1API_1_1Effect.html#a44e95e77d276d929a3c3b0d1df3072b3',1,'NWN::API::Effect']]],
-  ['currentaction_1129',['CurrentAction',['../classNWN_1_1API_1_1NwCreature.html#a0e703ce7932a32d919526d488ce4416b',1,'NWN::API::NwCreature']]]
+  ['blue_1171',['Blue',['../structNWN_1_1API_1_1Color.html#a19b7e471d3a7467ff49fb90f955c6662',1,'NWN::API::Color']]]
 ];

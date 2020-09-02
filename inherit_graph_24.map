@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="5,5,213,61"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnCombatRoundEnd.html" title="Called at the end of the creature&#39;s combat round." alt="" coords="261,13,479,54"/>
+<area shape="rect" id="node1" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="5,5,189,47"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked.html" title="Called when the creature is blocked by a door." alt="" coords="237,5,455,47"/>
 </map>

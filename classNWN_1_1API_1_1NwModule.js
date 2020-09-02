@@ -1,6 +1,7 @@
 var classNWN_1_1API_1_1NwModule =
 [
     [ "ClearTextureOverride", "classNWN_1_1API_1_1NwModule.html#a790ab71ff387ba2ba1225ec9dbb2f6c4", null ],
+    [ "GetCampaignVariable< T >", "classNWN_1_1API_1_1NwModule.html#adbd637693ac6c90fef4333797609c78d", null ],
     [ "GetObjectsByTag", "classNWN_1_1API_1_1NwModule.html#a4e6dd08340f5d64a98ef41416ad8f37a", null ],
     [ "GetWaypointByTag", "classNWN_1_1API_1_1NwModule.html#a70fc2926e36fd30c099898ce9bca52bc", null ],
     [ "SendMessageToAllDMs", "classNWN_1_1API_1_1NwModule.html#a8f6618d34cc47541b28b7102a9e19cb9", null ],
