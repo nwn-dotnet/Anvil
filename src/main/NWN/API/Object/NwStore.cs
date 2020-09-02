@@ -11,7 +11,7 @@ namespace NWN.API
 
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return NwObjectFactory.CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
+      return NwObject.CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
     }
 
     public int StoreGold

@@ -41,7 +41,20 @@ namespace NWN.API
     /// <param name="partyLeader">The party leader of the party to join.</param>
     public void AddToParty(NwPlayer partyLeader) => NWScript.AddToParty(this, partyLeader);
 
+    /// <summary>
+    /// Removes this player from their current party.
+    /// </summary>
     public void RemoveFromCurrentParty() => NWScript.RemoveFromParty(this);
+
+    /// <summary>
+    /// Gets the specified campaign variable for this player.
+    /// </summary>
+    /// <param name="campaign">The name of the campaign.</param>
+    /// <param name="name">The variable name.</param>
+    /// <typeparam name="T">The variable type.</typeparam>
+    /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
+    public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
+      => CampaignVariable<T>.Create(campaign, name, this);
 
     /// <summary>
     /// Gets the members in this player's party.
@@ -190,7 +203,7 @@ namespace NWN.API
         end = Color.WHITE;
       }
 
-      NWScript.PostString(this, message, xPos, yPos, (int) anchor, life, start.Value.ToHex(), end.Value.ToHex(), id, font);
+      NWScript.PostString(this, message, xPos, yPos, (int) anchor, life, start.Value.ToInt(), end.Value.ToInt(), id, font);
     }
   }
 }

@@ -243,7 +243,7 @@ namespace NWN.API
     /// <typeparam name="T">The type of object to search.</typeparam>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int) NwObjectFactory.GetObjectType<T>();
+      int objType = (int) NwObject.GetObjectType<T>();
       int i;
       uint current;
 

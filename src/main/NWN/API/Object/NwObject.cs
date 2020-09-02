@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
@@ -9,7 +10,7 @@ namespace NWN.API
 {
   // TODO Add missing properties/functions from NWScript
   [DebuggerDisplay("{" + nameof(Name) + "}")]
-  public class NwObject : IEquatable<NwObject>
+  public partial class NwObject : IEquatable<NwObject>
   {
     internal const uint INVALID = NWScript.OBJECT_INVALID;
     protected readonly uint ObjectId;
@@ -99,6 +100,21 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets all local variables assigned on this object.
+    /// </summary>
+    public IEnumerable<LocalVariable> LocalVariables
+    {
+      get
+      {
+        for (int i = 0; i < ObjectPlugin.GetLocalVariableCount(this); i++)
+        {
+          Core.NWNX.LocalVariable rawVar = ObjectPlugin.GetLocalVariable(this, i);
+          yield return LocalVariable.Create(this, rawVar);
+        }
+      }
+    }
+
+    /// <summary>
     /// Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators)<br/>
     /// If the current active object is already this object, then the code runs immediately. Otherwise, it will be run with all other closures.<br/>
     /// This is the async equivalent of AssignCommand in NWScript.
@@ -166,40 +182,14 @@ namespace NWN.API
       }
     }
 
-    public LocalBool GetLocalBool(string name)
-    {
-      return new LocalBool(this, name);
-    }
-
-    public LocalInt GetLocalInt(string name)
-    {
-      return new LocalInt(this, name);
-    }
-
-    public LocalFloat GetLocalFloat(string name)
-    {
-      return new LocalFloat(this, name);
-    }
-
-    public LocalString GetLocalString(string name)
-    {
-      return new LocalString(this, name);
-    }
-
-    public LocalLocation GetLocalLocation(string name)
-    {
-      return new LocalLocation(this, name);
-    }
-
-    public LocalObject GetLocalObject(string name)
-    {
-      return new LocalObject(this, name);
-    }
-
-    public LocalUUID GetLocalUUID(string name)
-    {
-      return new LocalUUID(this, name);
-    }
+    /// <summary>
+    /// Gets the specified local variable for this object.
+    /// </summary>
+    /// <param name="name">The variable name.</param>
+    /// <typeparam name="T">The variable type.</typeparam>
+    /// <returns>A LocalVariable instance for getting/setting the variable's value.</returns>
+    public LocalVariable<T> GetLocalVariable<T>(string name)
+      => LocalVariable<T>.Create(this, name);
 
     /// <summary>
     /// Attempts to get the UUID of this object, if assigned.

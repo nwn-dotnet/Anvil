@@ -41,7 +41,7 @@ namespace NWN.API
 
     private IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
-      int typeFilter = (int) NwObjectFactory.GetObjectType<T>();
+      int typeFilter = (int) NwObject.GetObjectType<T>();
       int nShape = (int) shape;
 
       for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
@@ -54,7 +54,7 @@ namespace NWN.API
 
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int) NwObjectFactory.GetObjectType<T>();
+      int objType = (int) NwObject.GetObjectType<T>();
       int i;
       uint next;
       for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.INVALID; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))

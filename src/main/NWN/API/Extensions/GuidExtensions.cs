@@ -15,7 +15,7 @@ namespace NWN.API
     /// <returns>The game object with the given UUID and the specified type, otherwise returns null.</returns>
     public static T ToNwObjectSafe<T>(this Guid objectId) where T : NwObject
     {
-      return NwObjectFactory.CreateInternal(objectId) as T;
+      return NwObject.CreateInternal(objectId) as T;
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace NWN.API
     /// <exception cref="InvalidCastException">Object is not type T. See <see cref="ToNwObjectSafe{T}"/> if null should be returned in this case.</exception>
     public static T ToNwObject<T>(this Guid objectId) where T : NwObject
     {
-      return (T) NwObjectFactory.CreateInternal(objectId);
+      return (T) NwObject.CreateInternal(objectId);
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ namespace NWN.API
     /// <returns>The game object with the given UUID, otherwise returns null if it does not exist.</returns>
     public static NwObject ToNwObject(this Guid objectId)
     {
-      return NwObjectFactory.CreateInternal(objectId);
+      return NwObject.CreateInternal(objectId);
     }
 
     /// <summary>

@@ -17,7 +17,7 @@ namespace NWN.API
 
     public static T ToNwObjectSafe<T>(this uint objectId) where T : NwObject
     {
-      return NwObjectFactory.CreateInternal(objectId) as T;
+      return NwObject.CreateInternal(objectId) as T;
     }
 
     public static Lazy<NwObject> ToNwObjectLazy(this uint objectId)
@@ -27,12 +27,12 @@ namespace NWN.API
 
     public static T ToNwObject<T>(this uint objectId) where T : NwObject
     {
-      return (T) NwObjectFactory.CreateInternal(objectId);
+      return (T) NwObject.CreateInternal(objectId);
     }
 
     public static NwObject ToNwObject(this uint objectId)
     {
-      return NwObjectFactory.CreateInternal(objectId);
+      return NwObject.CreateInternal(objectId);
     }
   }
 }

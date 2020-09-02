@@ -130,7 +130,7 @@ namespace NWNX.API
     /// <returns>The last created objects.</returns>
     public static IEnumerable<T> GetLastCreatedObjects<T>() where T : NwObject
     {
-      int objType = (int) NwObjectFactory.GetObjectType<T>();
+      int objType = (int) NwObject.GetObjectType<T>();
 
       uint current;
       int i;
