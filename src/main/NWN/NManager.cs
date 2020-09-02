@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using NLog;
 using NWN.Core;
@@ -72,9 +70,7 @@ namespace NWN
     private void AppendAssemblyToPath()
     {
       string envPath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Process);
-      string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-      Environment.SetEnvironmentVariable("PATH", $"{envPath}; {assemblyDir}");
+      Environment.SetEnvironmentVariable("PATH", $"{envPath}; {AssemblyConstants.AssemblyDir}");
     }
 
     private static void CheckPluginDependencies()
