@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,9 @@ namespace NWN.Services
   {
     private readonly List<IScriptDispatcher> dispatchers;
 
+    public event Action OnScriptContextBegin;
+    public event Action OnScriptContextEnd;
+
     public DispatchServiceManager(IEnumerable<IScriptDispatcher> dispatchers)
     {
       this.dispatchers = dispatchers.ToList();
@@ -15,16 +19,26 @@ namespace NWN.Services
 
     public int OnRunScript(string script, uint oidSelf)
     {
-      foreach (IScriptDispatcher dispatcher in dispatchers)
+      ScriptHandleResult result = ScriptHandleResult.NotHandled;
+      OnScriptContextBegin?.Invoke();
+
+      try
       {
-        ScriptHandleResult result = dispatcher.ExecuteScript(script, oidSelf);
-        if (result != ScriptHandleResult.NotHandled)
+        foreach (IScriptDispatcher dispatcher in dispatchers)
         {
-          return (int) result;
+          result = dispatcher.ExecuteScript(script, oidSelf);
+          if (result != ScriptHandleResult.NotHandled)
+          {
+            break;
+          }
         }
       }
+      finally
+      {
+        OnScriptContextEnd?.Invoke();
+      }
 
-      return (int) ScriptHandleResult.NotHandled;
+      return (int) result;
     }
   }
 }
