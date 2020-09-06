@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NLog;
+using NWN.Plugins;
 using SimpleInjector;
 
 namespace NWN.Services
@@ -11,11 +12,11 @@ namespace NWN.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private readonly Container container;
 
-    internal ServiceManager(IBindingInstaller bindingInstaller)
+    internal ServiceManager(ITypeLoader typeLoader, IBindingInstaller bindingInstaller)
     {
       container = new Container();
       Log.Info($"Using \"{bindingInstaller.GetType().FullName}\" to install service bindings.");
-      bindingInstaller.ConfigureBindings(container);
+      bindingInstaller.ConfigureBindings(container, typeLoader.LoadedTypes);
     }
 
     ~ServiceManager()
