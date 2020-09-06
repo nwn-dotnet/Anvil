@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using NWN.Services;
 
@@ -9,6 +10,8 @@ namespace NWN.API
   {
     private static readonly HashSet<ScheduledItem> scheduledItems = new HashSet<ScheduledItem>();
     private static readonly object schedulerLock = new object();
+    private static bool isInScriptContext;
+    private static Thread mainThread;
 
     private static Task RunAndAwait(Func<bool> completionSource)
     {
@@ -29,8 +32,17 @@ namespace NWN.API
     [ServiceBinding(typeof(IUpdateable))]
     internal class TaskRunner : IUpdateable
     {
+      public TaskRunner(DispatchServiceManager dispatchServiceManager)
+      {
+        mainThread = Thread.CurrentThread;
+        dispatchServiceManager.OnScriptContextBegin += () => isInScriptContext = true;
+        dispatchServiceManager.OnScriptContextEnd += () => isInScriptContext = false;
+      }
+
       void IUpdateable.Update()
       {
+        isInScriptContext = true;
+
         lock (schedulerLock)
         {
           scheduledItems.RemoveWhere(item =>
@@ -44,6 +56,8 @@ namespace NWN.API
             return true;
           });
         }
+
+        isInScriptContext = false;
       }
     }
 
