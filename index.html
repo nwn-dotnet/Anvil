@@ -255,15 +255,39 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">    await NwTask.Delay(TimeSpan.FromSeconds(30));</div>
 <div class="line"> </div>
 <div class="line">    // Wait for a certain game period to pass.</div>
-<div class="line">    await NwTask.Delay(GameTimeSpan.FromRounds(2));</div>
-<div class="line">    await NwTask.Delay(GameTimeSpan.FromTurns(3));</div>
-<div class="line">    await NwTask.Delay(GameTimeSpan.FromHours(1));</div>
+<div class="line">    await NwTask.Delay(NwTimeSpan.FromRounds(2));</div>
+<div class="line">    await NwTask.Delay(NwTimeSpan.FromTurns(3));</div>
+<div class="line">    await NwTask.Delay(NwTimeSpan.FromHours(1));</div>
 <div class="line"> </div>
 <div class="line">    // Wait for an expression to evaluate to true</div>
 <div class="line">    await NwTask.WaitUntil(() =&gt; NwModule.Instance.Players.Count() &gt; 5);</div>
 <div class="line"> </div>
 <div class="line">    // Wait for a value to change.</div>
 <div class="line">    await NwTask.WaitUntilValueChanged(() =&gt; NwModule.Instance.Players.Count());</div>
+<div class="line"> </div>
+<div class="line">    // Start some tasks.</div>
+<div class="line">    Task task1 = Task.Run(() =&gt; true); // Executed in the thread pool, you cannot use NWN APIs here.</div>
+<div class="line"> </div>
+<div class="line">    Task task2 = Task.Run(async () =&gt;</div>
+<div class="line">    {</div>
+<div class="line">      // Executed in the thread pool, you cannot use NWN APIs here.</div>
+<div class="line">      await Task.Delay(TimeSpan.FromSeconds(5));</div>
+<div class="line">      return 20;</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    Task task3 = NwTask.Run(async () =&gt;</div>
+<div class="line">    {</div>
+<div class="line">      // Executed in the server thread, you can use NWN APIs here.</div>
+<div class="line">      await NwTask.Delay(NwTimeSpan.FromRounds(5));</div>
+<div class="line">      NwModule.Instance.SendMessageToAllDMs(&quot;5 rounds elapsed!&quot;);</div>
+<div class="line">      return 20;</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    // ...wait for any of them to complete.</div>
+<div class="line">    await NwTask.WhenAny(task1, task2, task3);</div>
+<div class="line"> </div>
+<div class="line">    // ...wait for all of them to complete.</div>
+<div class="line">    await NwTask.WhenAll(task1, task2, task3);</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --><h3>Loop Service (NWN.Services.LoopService)</h3>
