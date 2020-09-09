@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace NWN.Services
 {
+  [ServiceBinding(typeof(DispatchServiceManager))]
   [ServiceBinding(typeof(IRunScriptHandler))]
   internal class DispatchServiceManager : IRunScriptHandler
   {
