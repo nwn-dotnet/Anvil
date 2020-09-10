@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using NLog;
 using NWN.API;
@@ -15,10 +14,10 @@ namespace NWN.Services
 
     private Dictionary<Type, List<Binding>> bindings = new Dictionary<Type, List<Binding>>();
 
-    public virtual void ConfigureBindings(Container container)
+    public virtual void ConfigureBindings(Container container, IReadOnlyCollection<Type> allTypes)
     {
       this.container = container;
-      SearchForBindings();
+      SearchForBindings(allTypes);
       RegisterBindings();
       bindings = null;
 
@@ -27,14 +26,14 @@ namespace NWN.Services
       container.Options.AllowOverridingRegistrations = false;
     }
 
-    private void SearchForBindings()
+    private void SearchForBindings(IReadOnlyCollection<Type> allTypes)
     {
       Log.Info("Loading managed services");
-      foreach (Type type in Types.AllLinkedTypes)
+      foreach (Type type in allTypes)
       {
         if (PopulateBindings(type, type.GetCustomAttributes<ServiceBindingAttribute>()))
         {
-          Log.Info($"Registered service: {type.Name}");
+          Log.Info($"Registered service: {type.FullName}");
         }
       }
     }

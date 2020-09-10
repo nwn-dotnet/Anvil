@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using NLog;
 using NWN.Core;
 using NWN.Core.NWNX;
+using NWN.Plugins;
 using NWN.Services;
 using NWNX;
 
@@ -42,10 +41,7 @@ namespace NWN
 
     // Bootstrap
     private readonly IBindingInstaller bindingInstaller;
-
-    // Ignored scripts
-    private static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
-    private static readonly string CoreShutdownScript = Environment.GetEnvironmentVariable("NWNX_CORE_SHUTDOWN_SCRIPT");
+    internal readonly ITypeLoader TypeLoader;
 
     /// <summary>
     /// Initialises the managed library, loading all defined services.
@@ -58,23 +54,14 @@ namespace NWN
     public static int Init(IntPtr arg, int argLength, IBindingInstaller bindingInstaller = default)
     {
       bindingInstaller ??= new ServiceBindingInstaller();
-      Instance = new NManager(bindingInstaller);
+      Instance = new NManager(bindingInstaller, new PluginLoader());
       return NWNCore.Init(arg, argLength, Instance);
     }
 
-    private NManager(IBindingInstaller bindingInstaller)
+    private NManager(IBindingInstaller bindingInstaller, PluginLoader typeLoader)
     {
       this.bindingInstaller = bindingInstaller;
-      AppendAssemblyToPath();
-    }
-
-    // Needed to allow native libs to be loaded.
-    private void AppendAssemblyToPath()
-    {
-      string envPath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Process);
-      string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-      Environment.SetEnvironmentVariable("PATH", $"{envPath}; {assemblyDir}");
+      this.TypeLoader = typeLoader;
     }
 
     private static void CheckPluginDependencies()
@@ -88,7 +75,7 @@ namespace NWN
     {
       LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
 
-      ServiceManager serviceManager = new ServiceManager(bindingInstaller);
+      ServiceManager serviceManager = new ServiceManager(TypeLoader, bindingInstaller);
       CheckPluginDependencies();
       serviceManager.InitServices();
       runScriptHandler = serviceManager.GetService<IRunScriptHandler>();
@@ -141,7 +128,7 @@ namespace NWN
       try
       {
         // Ignored Scripts
-        if (script == ModStartScript || script == CoreShutdownScript)
+        if (script == EnvironmentConfig.ModStartScript || script == EnvironmentConfig.CoreShutdownScript)
         {
           return retVal;
         }

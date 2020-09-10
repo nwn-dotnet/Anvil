@@ -33,7 +33,8 @@ namespace NWN.API
 
     static VariableConverterManager()
     {
-      foreach (Type type in Types.AllLinkedTypes)
+      // TODO IOC
+      foreach (Type type in NManager.Instance.TypeLoader.LoadedTypes)
       {
         CheckInitLocalConverter(type);
         CheckInitCampaignConverter(type);
