@@ -1,12 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
         <PackageId>NWN.Managed</PackageId>
         <Authors>NWN.NET</Authors>
         <PackageTags>Neverwinter Nights;NWN;</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -17,10 +20,13 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <NoWarn>1591</NoWarn>
         <RootNamespace />
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants>TRACE</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" ExcludeAssets="runtime" />
         <PackageReference Include="NLog" Version="4.7.4" />
         <PackageReference Include="NWN.Core" Version="8193.14.5" PrivateAssets="compile" />
         <PackageReference Include="SimpleInjector" Version="5.0.3" />
@@ -28,13 +34,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="src/resources/NLog.dll.nlog">
+      <None Include="src/resources/**/*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <Link>NLog.dll.nlog</Link>
           <Pack>true</Pack>
           <PackagePath>contentFiles/any/any;content/</PackagePath>
           <PackageCopyToOutput>true</PackageCopyToOutput>
       </None>
     </ItemGroup>
-
 </Project>
