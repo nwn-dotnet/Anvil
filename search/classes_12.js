@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weapon_941',['Weapon',['../classNWNX_1_1API_1_1Weapon.html',1,'NWNX::API']]]
+  ['weapon_943',['Weapon',['../classNWNX_1_1API_1_1Weapon.html',1,'NWNX::API']]]
 ];

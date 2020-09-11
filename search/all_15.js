@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['waitforobjectcontext_661',['WaitForObjectContext',['../classNWN_1_1API_1_1NwObject.html#a939d84e27244659e861c19659d2a0490',1,'NWN::API::NwObject']]],
-  ['waituntil_662',['WaitUntil',['../classNWN_1_1API_1_1NwTask.html#a757698a871a82bd3bc739dd351e2d301',1,'NWN::API::NwTask']]],
-  ['waituntilvaluechanged_3c_20t_20_3e_663',['WaitUntilValueChanged&lt; T &gt;',['../classNWN_1_1API_1_1NwTask.html#a966a3a1cca9ebe6e4f81bc491ea4f47c',1,'NWN::API::NwTask']]],
-  ['weapon_664',['Weapon',['../classNWNX_1_1API_1_1Weapon.html',1,'NWNX::API']]],
-  ['weather_665',['Weather',['../classNWN_1_1API_1_1NwArea.html#a398830d323f5d6b9461dddfe2d54e249',1,'NWN::API::NwArea']]],
-  ['whenall_666',['WhenAll',['../classNWN_1_1API_1_1NwTask.html#a747b1bdcf55f33e95e96c5023124068d',1,'NWN.API.NwTask.WhenAll(params Task[] tasks)'],['../classNWN_1_1API_1_1NwTask.html#a5c28da00d64cf18d304b61fd2f89dc66',1,'NWN.API.NwTask.WhenAll(IEnumerable&lt; Task &gt; tasks)']]],
-  ['whenall_3c_20tresult_20_3e_667',['WhenAll&lt; TResult &gt;',['../classNWN_1_1API_1_1NwTask.html#abf6aa9e7422217e20330836c00bd17a9',1,'NWN.API.NwTask.WhenAll&lt; TResult &gt;(params Task&lt; TResult &gt;[] tasks)'],['../classNWN_1_1API_1_1NwTask.html#a34f8514cb412394fb9ffdb5aaca00914',1,'NWN.API.NwTask.WhenAll&lt; TResult &gt;(IEnumerable&lt; Task&lt; TResult &gt;&gt; tasks)']]],
-  ['whenany_668',['WhenAny',['../classNWN_1_1API_1_1NwTask.html#a7ca261fe89404f60358b16704a43c9b2',1,'NWN.API.NwTask.WhenAny(params Task[] tasks)'],['../classNWN_1_1API_1_1NwTask.html#a4e306e82e09914a0b94f54e37c7ef72b',1,'NWN.API.NwTask.WhenAny(IEnumerable&lt; Task &gt; tasks)']]],
-  ['whenany_3c_20tresult_20_3e_669',['WhenAny&lt; TResult &gt;',['../classNWN_1_1API_1_1NwTask.html#a91446105b7628eb1ffaae24805196a21',1,'NWN.API.NwTask.WhenAny&lt; TResult &gt;(params Task&lt; TResult &gt;[] tasks)'],['../classNWN_1_1API_1_1NwTask.html#ae396df0cf7f784753f9646f42bdb3601',1,'NWN.API.NwTask.WhenAny&lt; TResult &gt;(IEnumerable&lt; Task&lt; TResult &gt;&gt; tasks)']]]
+  ['valid_656',['Valid',['../classNWN_1_1API_1_1ItemProperty.html#ac6ab0a2e316600ec2cbbe9fde913fc9a',1,'NWN.API.ItemProperty.Valid()'],['../classNWN_1_1API_1_1Talent.html#a05d8befa1fbbec42392cb5a8f76c7aad',1,'NWN.API.Talent.Valid()']]],
+  ['value_657',['Value',['../classNWN_1_1API_1_1CampaignVariable.html#a97721309d57d0eb0b95e3c547fc9f62e',1,'NWN.API.CampaignVariable.Value()'],['../classNWN_1_1API_1_1LocalVariable.html#a07c06df2ebd16308874900a1ccb026ea',1,'NWN.API.LocalVariable.Value()']]],
+  ['vibrate_658',['Vibrate',['../classNWN_1_1API_1_1NwPlayer.html#a22177cc9bca974e72269e0f870034c94',1,'NWN::API::NwPlayer']]],
+  ['visibility_659',['Visibility',['../classNWNX_1_1API_1_1Visibility.html',1,'NWNX::API']]],
+  ['visualeffect_660',['VisualEffect',['../classNWN_1_1API_1_1Effect.html#a84713fddcaeed64da1526321d339b3bb',1,'NWN::API::Effect']]],
+  ['visualtransform_661',['VisualTransform',['../classNWN_1_1API_1_1VisualTransform.html',1,'NWN.API.VisualTransform'],['../classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d',1,'NWN.API.NwGameObject.VisualTransform()']]],
+  ['volume_662',['Volume',['../classNWN_1_1API_1_1NwSound.html#aa554d71d12c3dc0cfc11c4af532fcfdc',1,'NWN::API::NwSound']]]
 ];

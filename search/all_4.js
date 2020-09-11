@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['effect_127',['Effect',['../classNWN_1_1API_1_1Effect.html',1,'NWN.API.Effect'],['../classNWNX_1_1API_1_1Effect.html',1,'NWNX.API.Effect']]],
+  ['effect_127',['Effect',['../classNWNX_1_1API_1_1Effect.html',1,'NWNX.API.Effect'],['../classNWN_1_1API_1_1Effect.html',1,'NWN.API.Effect']]],
   ['effecttype_128',['EffectType',['../classNWN_1_1API_1_1Effect.html#a3a2bc95cdbf7b42a8bd389df4229011b',1,'NWN::API::Effect']]],
   ['elc_129',['ELC',['../classNWNX_1_1API_1_1ELC.html',1,'NWNX::API']]],
   ['encodeforurl_130',['EncodeForURL',['../classNWNX_1_1API_1_1Util.html#abb9d78bd756cb980a44da62646d82ab7',1,'NWNX::API::Util']]],

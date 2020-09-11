@@ -1,17 +1,18 @@
 var searchData=
 [
-  ['master_378',['Master',['../classNWN_1_1API_1_1NwCreature.html#aeea1750869a4db6b454003f60094df25',1,'NWN::API::NwCreature']]],
-  ['maxhp_379',['MaxHP',['../classNWN_1_1API_1_1NwGameObject.html#a496e7fb9fcf017e525e6619b0c3cc8f6',1,'NWN::API::NwGameObject']]],
-  ['maxspawns_380',['MaxSpawns',['../classNWN_1_1API_1_1NwEncounter.html#a86c6bcdc18938dbff043d10c9bf0053b',1,'NWN::API::NwEncounter']]],
-  ['minutesperhour_381',['MinutesPerHour',['../classNWNX_1_1API_1_1Util.html#a3cbb396c4585fc783d861276acd0e589',1,'NWNX::API::Util']]],
-  ['misschance_382',['MissChance',['../classNWN_1_1API_1_1Effect.html#a13187898d1756d471620f64baede87a9',1,'NWN::API::Effect']]],
-  ['modifyattacks_383',['ModifyAttacks',['../classNWN_1_1API_1_1Effect.html#ad7f5e457cda919e5e844384e356ef3b5',1,'NWN::API::Effect']]],
-  ['moduleevents_384',['ModuleEvents',['../classNWN_1_1API_1_1Events_1_1ModuleEvents.html',1,'NWN::API::Events']]],
-  ['modulename_385',['ModuleName',['../classNWNX_1_1API_1_1Administration.html#a67f07231bbbfb953386e0c5842e0970e',1,'NWNX::API::Administration']]],
-  ['movementrate_386',['MovementRate',['../classNWN_1_1API_1_1NwCreature.html#a866d05f38c3fe9f356e3d20bd8c2d411',1,'NWN::API::NwCreature']]],
-  ['movementspeeddecrease_387',['MovementSpeedDecrease',['../classNWN_1_1API_1_1Effect.html#a31e8d8d3e944cd64a26deeb49e299944',1,'NWN::API::Effect']]],
-  ['movementspeedincrease_388',['MovementSpeedIncrease',['../classNWN_1_1API_1_1Effect.html#a618663915b6e6ef45d10ba534edca83a',1,'NWN::API::Effect']]],
-  ['musicbackgrounddaytrack_389',['MusicBackgroundDayTrack',['../classNWN_1_1API_1_1NwArea.html#a601d7e472c57885ef6ff854dc8bb7802',1,'NWN::API::NwArea']]],
-  ['musicbackgroundnighttrack_390',['MusicBackgroundNightTrack',['../classNWN_1_1API_1_1NwArea.html#a5685f31289f1416ce63d37a3543ec311',1,'NWN::API::NwArea']]],
-  ['musicbattletrack_391',['MusicBattleTrack',['../classNWN_1_1API_1_1NwArea.html#af2dcd7e96e9a701301127cd116c4d4a7',1,'NWN::API::NwArea']]]
+  ['lastcommandfrommaster_365',['LastCommandFromMaster',['../classNWN_1_1API_1_1NwCreature.html#a81b526e35d49053de6ffe41ab083f5a9',1,'NWN::API::NwCreature']]],
+  ['lastspellcasterlevel_366',['LastSpellCasterLevel',['../classNWN_1_1API_1_1NwCreature.html#af3b8437db6a94561d5b2b5f507c75f77',1,'NWN::API::NwCreature']]],
+  ['lawchaosalignment_367',['LawChaosAlignment',['../classNWN_1_1API_1_1NwCreature.html#a35e26386397823e2160047a9c107fa9e',1,'NWN::API::NwCreature']]],
+  ['lawchaosvalue_368',['LawChaosValue',['../classNWN_1_1API_1_1NwCreature.html#a23509f5284ec6456ab5edc97bf113b9e',1,'NWN::API::NwCreature']]],
+  ['level_369',['Level',['../classNWN_1_1API_1_1NwCreature.html#af3cbb36a1fc3dcb7d21fecfe387d3c29',1,'NWN::API::NwCreature']]],
+  ['localvariable_370',['LocalVariable',['../classNWN_1_1API_1_1LocalVariable.html',1,'NWN.API.LocalVariable'],['../classNWN_1_1API_1_1LocalVariable.html',1,'NWN.API.LocalVariable&lt; T &gt;']]],
+  ['localvariableconverterattribute_371',['LocalVariableConverterAttribute',['../classNWN_1_1API_1_1LocalVariableConverterAttribute.html',1,'NWN::API']]],
+  ['localvariables_372',['LocalVariables',['../classNWN_1_1API_1_1NwObject.html#ad7f386189507d0e10b7748b364db6167',1,'NWN::API::NwObject']]],
+  ['location_373',['Location',['../classNWN_1_1API_1_1Location.html',1,'NWN.API.Location'],['../classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2',1,'NWN.API.NwGameObject.Location()']]],
+  ['lockable_374',['Lockable',['../classNWN_1_1API_1_1NwStationary.html#a7adb0ab235273075f4ea94f97436c30b',1,'NWN::API::NwStationary']]],
+  ['lockdc_375',['LockDC',['../classNWN_1_1API_1_1NwStationary.html#a7bc32cab574407689b2ad5894dec3a49',1,'NWN::API::NwStationary']]],
+  ['locked_376',['Locked',['../classNWN_1_1API_1_1NwStationary.html#a0b8bfe389958f229756f6cf33a2ad886',1,'NWN::API::NwStationary']]],
+  ['lockkeyrequired_377',['LockKeyRequired',['../classNWN_1_1API_1_1NwStationary.html#a1abcf5ecc0c48a1d9e9a9a71ac9833aa',1,'NWN::API::NwStationary']]],
+  ['lockkeytag_378',['LockKeyTag',['../classNWN_1_1API_1_1NwStationary.html#a22495e88225ebd409165a261dc27f0cf',1,'NWN::API::NwStationary']]],
+  ['looptimeservice_379',['LoopTimeService',['../classNWN_1_1Services_1_1LoopTimeService.html',1,'NWN::Services']]]
 ];
