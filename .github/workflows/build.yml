@@ -1,0 +1,64 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Version and Tag
+        id: bump_version
+        uses: anothrNick/github-tag-action@1.22.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          RELEASE_BRANCHES: master
+          WITH_V: true
+
+      - name: Prepare Version String
+        run: echo ::set-env name=VERSION_NUMBER::$(echo ${{ steps.bump_version.outputs.tag }}-alpha | sed 's/[v]//g')
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.bump_version.outputs.tag }}
+          release_name: Release ${{ env.VERSION_NUMBER }}
+          draft: false
+          prerelease: true
+          
+      - name: Build Release Binaries
+        run: dotnet build --configuration Release -p:Version=${{ env.VERSION_NUMBER }} -o output
+          
+      - name: Upload Release Binaries
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./NWN.Managed.zip
+          asset_name: NWN.Managed.zip
+          asset_content_type: application/zip
+
+      - name: Pack for NuGet
+        run: dotnet pack NWN.Managed.csproj --configuration Release -p:PackageVersion=${{ env.VERSION_NUMBER }} -o output
+
+      - name: Publish Package to NuGet
+        run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
