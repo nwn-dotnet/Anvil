@@ -1,6 +1,6 @@
 namespace NWN
 {
-  public interface IRunScriptHandler
+  internal interface ICoreRunScriptHandler
   {
     int OnRunScript(string script, uint oidSelf);
   }

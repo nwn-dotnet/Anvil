@@ -8,21 +8,23 @@ using NWN.API.Constants;
 namespace NWN.Services
 {
   [ServiceBinding(typeof(IScriptDispatcher))]
-  internal sealed class AttributeDispatchService : IScriptDispatcher
+  [ServiceBinding(typeof(IInitializable))]
+  internal sealed class AttributeDispatchService : IScriptDispatcher, IInitializable
   {
-    private const int START_CAPACITY = 2000;
+    private const int StartCapacity = 2000;
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(START_CAPACITY);
+    private readonly Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(StartCapacity);
+    private readonly ServiceManager serviceManager;
 
-    public AttributeDispatchService()
+    public AttributeDispatchService(ServiceManager serviceManager)
     {
-      NManager.Instance.OnInitComplete += () => Init(NManager.Instance.ServiceManager.GetRegisteredServices());
+      this.serviceManager = serviceManager;
     }
 
-    private void Init(IEnumerable<object> services)
+    void IInitializable.Init()
     {
-      foreach (object service in services)
+      foreach (object service in serviceManager.RegisteredServices)
       {
         RegisterServiceListeners(service);
       }

@@ -18,50 +18,53 @@ namespace NWN
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private const uint ObjectInvalid = 0x7F000000;
-
-    uint IGameManager.ObjectSelf => this.ObjectSelf;
-    internal uint ObjectSelf { get; private set; } = ObjectInvalid;
-
-    public static NManager Instance { get; private set; }
-
-    // Events
-    public event Action OnInitComplete;
+    uint IGameManager.ObjectSelf => objectSelf;
 
     // Native Management
-    private readonly Stack<ScriptContext> scriptContexts = new Stack<ScriptContext>();
-    private readonly Dictionary<ulong, Closure> closures = new Dictionary<ulong, Closure>();
-    private ulong nextEventId = 0;
+    private const uint ObjectInvalid = 0x7F000000;
+    private uint objectSelf;
+    private readonly Stack<uint> scriptContexts = new Stack<uint>();
+    private readonly Dictionary<ulong, ActionDelegate> closures = new Dictionary<ulong, ActionDelegate>();
+    private ulong nextEventId;
+
+    // Native callbacks
+    private ICoreRunScriptHandler runScriptHandler;
+    private ICoreLoopHandler loopHandler;
 
     // Core Services
-    internal ServiceManager ServiceManager { get; private set; }
-
-    private IRunScriptHandler runScriptHandler;
-    private ILoopHandler loopHandler;
-
-    // Bootstrap
+    private ServiceManager serviceManager;
     private readonly IBindingInstaller bindingInstaller;
-    internal readonly ITypeLoader TypeLoader;
+    private readonly ITypeLoader typeLoader;
+
+    private static NManager instance;
 
     /// <summary>
     /// Initialises the managed library, loading all defined services.
     /// </summary>
     /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
     /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
-    /// <param name="bindingInstaller">An optional custom binding installer to use instead of the default <see cref="ServiceBindingInstaller"/>.</param>
+    /// <param name="bindingInstaller">An optional custom binding installer to use instead of the default <see cref="ServiceInstaller"/>.</param>
+    /// <param name="typeLoader">An optional type loader to use instead of the default <see cref="PluginLoader"/>.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IBindingInstaller bindingInstaller = default)
+    public static int Init(IntPtr arg, int argLength, IBindingInstaller bindingInstaller = default, ITypeLoader typeLoader = default)
     {
-      bindingInstaller ??= new ServiceBindingInstaller();
-      Instance = new NManager(bindingInstaller, new PluginLoader());
-      return NWNCore.Init(arg, argLength, Instance);
+      typeLoader ??= new PluginLoader();
+      bindingInstaller ??= new ServiceInstaller();
+
+      instance = new NManager(bindingInstaller, typeLoader);
+      return NWNCore.Init(arg, argLength, instance);
     }
 
-    private NManager(IBindingInstaller bindingInstaller, PluginLoader typeLoader)
+    public static T GetService<T>() where T : class
+    {
+      return instance?.serviceManager.GetService<T>();
+    }
+
+    private NManager(IBindingInstaller bindingInstaller, ITypeLoader typeLoader)
     {
       this.bindingInstaller = bindingInstaller;
-      this.TypeLoader = typeLoader;
+      this.typeLoader = typeLoader;
     }
 
     private static void CheckPluginDependencies()
@@ -74,15 +77,13 @@ namespace NWN
     private void Start()
     {
       LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
-
-      ServiceManager serviceManager = new ServiceManager(TypeLoader, bindingInstaller);
       CheckPluginDependencies();
-      serviceManager.InitServices();
-      runScriptHandler = serviceManager.GetService<IRunScriptHandler>();
-      loopHandler = serviceManager.GetService<ILoopHandler>();
 
-      ServiceManager = serviceManager;
-      OnInitComplete?.Invoke();
+      serviceManager = new ServiceManager(typeLoader, bindingInstaller);
+      serviceManager.Init();
+
+      runScriptHandler = GetService<ICoreRunScriptHandler>();
+      loopHandler = GetService<ICoreLoopHandler>();
     }
 
     void IGameManager.OnSignal(string signal)
@@ -103,8 +104,8 @@ namespace NWN
 
     private void Shutdown()
     {
-      ServiceManager?.Dispose();
-      ServiceManager = null;
+      serviceManager?.Dispose();
+      serviceManager = null;
     }
 
     void IGameManager.OnMainLoop(ulong frame)
@@ -122,8 +123,8 @@ namespace NWN
     int IGameManager.OnRunScript(string script, uint oidSelf)
     {
       int retVal = 0;
-      ObjectSelf = oidSelf;
-      scriptContexts.Push(new ScriptContext { OwnerObject = oidSelf, ScriptName = script });
+      objectSelf = oidSelf;
+      scriptContexts.Push(oidSelf);
 
       try
       {
@@ -141,18 +142,18 @@ namespace NWN
       }
 
       scriptContexts.Pop();
-      ObjectSelf = scriptContexts.Count == 0 ? ObjectInvalid : scriptContexts.Peek().OwnerObject;
+      objectSelf = scriptContexts.Count == 0 ? ObjectInvalid : scriptContexts.Peek();
       return retVal;
     }
 
     void IGameManager.OnClosure(ulong eid, uint oidSelf)
     {
-      uint old = ObjectSelf;
-      ObjectSelf = oidSelf;
+      uint old = objectSelf;
+      objectSelf = oidSelf;
 
       try
       {
-        closures[eid].Run();
+        closures[eid].Invoke();
       }
       catch (Exception e)
       {
@@ -160,14 +161,14 @@ namespace NWN
       }
 
       closures.Remove(eid);
-      ObjectSelf = old;
+      objectSelf = old;
     }
 
     void IGameManager.ClosureAssignCommand(uint obj, ActionDelegate func)
     {
       if (VM.ClosureAssignCommand(obj, nextEventId) != 0)
       {
-        closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
+        closures.Add(nextEventId++, func);
       }
     }
 
@@ -175,7 +176,7 @@ namespace NWN
     {
       if (VM.ClosureDelayCommand(obj, duration, nextEventId) != 0)
       {
-        closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
+        closures.Add(nextEventId++, func);
       }
     }
 
@@ -183,20 +184,8 @@ namespace NWN
     {
       if (VM.ClosureActionDoCommand(obj, nextEventId) != 0)
       {
-        closures.Add(nextEventId++, new Closure { OwnerObject = obj, Run = func });
+        closures.Add(nextEventId++, func);
       }
-    }
-
-    private struct ScriptContext
-    {
-      public uint OwnerObject;
-      public string ScriptName;
-    }
-
-    private struct Closure
-    {
-      public uint OwnerObject;
-      public ActionDelegate Run;
     }
   }
 }

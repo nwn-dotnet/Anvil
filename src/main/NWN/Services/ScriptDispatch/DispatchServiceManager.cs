@@ -5,8 +5,8 @@ using System.Linq;
 namespace NWN.Services
 {
   [ServiceBinding(typeof(DispatchServiceManager))]
-  [ServiceBinding(typeof(IRunScriptHandler))]
-  internal class DispatchServiceManager : IRunScriptHandler
+  [ServiceBinding(typeof(ICoreRunScriptHandler))]
+  internal class DispatchServiceManager : ICoreRunScriptHandler
   {
     private readonly List<IScriptDispatcher> dispatchers;
 

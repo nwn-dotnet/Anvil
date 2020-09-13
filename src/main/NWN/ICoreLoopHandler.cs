@@ -1,6 +1,6 @@
 namespace NWN
 {
-  internal interface ILoopHandler
+  internal interface ICoreLoopHandler
   {
     void OnLoop();
   }

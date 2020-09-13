@@ -5,8 +5,8 @@ using NLog;
 
 namespace NWN.Services
 {
-  [ServiceBinding(typeof(ILoopHandler))]
-  internal sealed class LoopService : ILoopHandler
+  [ServiceBinding(typeof(ICoreLoopHandler))]
+  internal sealed class LoopService : ICoreLoopHandler
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 

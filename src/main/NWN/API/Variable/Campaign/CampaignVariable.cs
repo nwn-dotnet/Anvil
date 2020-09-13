@@ -18,7 +18,7 @@ namespace NWN.API
       variable.Campaign = campaign;
       variable.Name = name;
       variable.Player = player;
-      variable.converter = VariableConverterManager.GetCampaignConverter<T>();
+      variable.converter = VariableConverterService.GetCampaignConverter<T>();
 
       return variable;
     }

@@ -44,7 +44,7 @@ namespace NWN.API
       LocalVariable<T> variable = new LocalVariable<T>();
       variable.Name = name;
       variable.Object = instance;
-      variable.converter = VariableConverterManager.GetLocalConverter<T>();
+      variable.converter = VariableConverterService.GetLocalConverter<T>();
 
       return variable;
     }

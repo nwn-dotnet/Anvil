@@ -6,6 +6,6 @@ namespace NWN.Services
 {
   public interface IBindingInstaller
   {
-    void ConfigureBindings(Container container, IReadOnlyCollection<Type> allTypes);
+    void ConfigureBindings(InstallerInfo installerInfo);
   }
 }

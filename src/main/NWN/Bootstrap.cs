@@ -1,6 +1,5 @@
 using System;
 using JetBrains.Annotations;
-using NWN.Services;
 
 namespace NWN
 {
@@ -8,6 +7,6 @@ namespace NWN
   {
     [UsedImplicitly] // Called by NWNX
     public static int Bootstrap(IntPtr arg, int argLength)
-      => NManager.Init(arg, argLength, new ServiceBindingInstaller());
+      => NManager.Init(arg, argLength);
   }
 }

@@ -1,13 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using NWN.Plugins;
+using NWN.Services;
 
 namespace NWN.API
 {
-  internal static class VariableConverterManager
+  [ServiceBinding(typeof(VariableConverterService), BindingContext.API)]
+  internal class VariableConverterService
   {
     private static readonly Dictionary<Type, ILocalVariableConverter> localVariableConverters = new Dictionary<Type, ILocalVariableConverter>();
     private static readonly Dictionary<Type, ICampaignVariableConverter> campaignVariableConverters = new Dictionary<Type, ICampaignVariableConverter>();
+
+    public VariableConverterService(ITypeLoader typeLoader)
+    {
+      foreach (Type type in typeLoader.LoadedTypes)
+      {
+        CheckInitLocalConverter(type);
+        CheckInitCampaignConverter(type);
+      }
+    }
 
     internal static ILocalVariableConverter<T> GetLocalConverter<T>()
     {
@@ -31,17 +43,7 @@ namespace NWN.API
       throw new Exception($"No valid variable converter found for type {type.FullName}!");
     }
 
-    static VariableConverterManager()
-    {
-      // TODO IOC
-      foreach (Type type in NManager.Instance.TypeLoader.LoadedTypes)
-      {
-        CheckInitLocalConverter(type);
-        CheckInitCampaignConverter(type);
-      }
-    }
-
-    private static void CheckInitLocalConverter(Type type)
+    private void CheckInitLocalConverter(Type type)
     {
       LocalVariableConverterAttribute info = type.GetCustomAttribute<LocalVariableConverterAttribute>();
       if (info == null)
@@ -56,7 +58,7 @@ namespace NWN.API
       }
     }
 
-    private static void CheckInitCampaignConverter(Type type)
+    private void CheckInitCampaignConverter(Type type)
     {
       CampaignVariableConverterAttribute info = type.GetCustomAttribute<CampaignVariableConverterAttribute>();
       if (info == null)
