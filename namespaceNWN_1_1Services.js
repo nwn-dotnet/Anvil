@@ -4,6 +4,8 @@ var namespaceNWN_1_1Services =
     [ "EventHandler", "classNWN_1_1Services_1_1EventHandler.html", null ],
     [ "EventService", "classNWN_1_1Services_1_1EventService.html", "classNWN_1_1Services_1_1EventService" ],
     [ "IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", "interfaceNWN_1_1Services_1_1IBindingInstaller" ],
+    [ "IInitializable", "interfaceNWN_1_1Services_1_1IInitializable.html", "interfaceNWN_1_1Services_1_1IInitializable" ],
+    [ "InstallerInfo", "classNWN_1_1Services_1_1InstallerInfo.html", "classNWN_1_1Services_1_1InstallerInfo" ],
     [ "Interop", "classNWN_1_1Services_1_1Interop.html", "classNWN_1_1Services_1_1Interop" ],
     [ "IScriptDispatcher", "interfaceNWN_1_1Services_1_1IScriptDispatcher.html", "interfaceNWN_1_1Services_1_1IScriptDispatcher" ],
     [ "ITwoDimArray", "interfaceNWN_1_1Services_1_1ITwoDimArray.html", "interfaceNWN_1_1Services_1_1ITwoDimArray" ],
@@ -13,6 +15,7 @@ var namespaceNWN_1_1Services =
     [ "SchedulerService", "classNWN_1_1Services_1_1SchedulerService.html", "classNWN_1_1Services_1_1SchedulerService" ],
     [ "ScriptHandlerAttribute", "classNWN_1_1Services_1_1ScriptHandlerAttribute.html", "classNWN_1_1Services_1_1ScriptHandlerAttribute" ],
     [ "ServiceBindingAttribute", "classNWN_1_1Services_1_1ServiceBindingAttribute.html", "classNWN_1_1Services_1_1ServiceBindingAttribute" ],
-    [ "ServiceBindingInstaller", "classNWN_1_1Services_1_1ServiceBindingInstaller.html", "classNWN_1_1Services_1_1ServiceBindingInstaller" ],
+    [ "ServiceInstaller", "classNWN_1_1Services_1_1ServiceInstaller.html", "classNWN_1_1Services_1_1ServiceInstaller" ],
+    [ "ServiceManager", "classNWN_1_1Services_1_1ServiceManager.html", "classNWN_1_1Services_1_1ServiceManager" ],
     [ "TwoDimArrayFactory", "classNWN_1_1Services_1_1TwoDimArrayFactory.html", "classNWN_1_1Services_1_1TwoDimArrayFactory" ]
 ];

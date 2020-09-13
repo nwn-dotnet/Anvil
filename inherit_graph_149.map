@@ -1,4 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interfaceNWN_1_1Services_1_1IScriptDispatcher.html" title="Implement in a service to add a custom handler for event scripts." alt="" coords="5,5,216,32"/>
-<area shape="rect" id="node2" href="$classNWN_1_1Services_1_1EventService.html" title=" " alt="" coords="264,5,452,32"/>
+<area shape="rect" id="node1" href="$classNWN_1_1Services_1_1Interop.html" title=" " alt="" coords="5,5,156,32"/>
 </map>

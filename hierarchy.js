@@ -328,7 +328,7 @@ var hierarchy =
     [ "NWNX.API.Administration.GameOptions", "classNWNX_1_1API_1_1Administration_1_1GameOptions.html", null ],
     [ "NWN.API.GuidExtensions", "classNWN_1_1API_1_1GuidExtensions.html", null ],
     [ "NWN.Services.IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", [
-      [ "NWN.Services.ServiceBindingInstaller", "classNWN_1_1Services_1_1ServiceBindingInstaller.html", null ]
+      [ "NWN.Services.ServiceInstaller", "classNWN_1_1Services_1_1ServiceInstaller.html", null ]
     ] ],
     [ "NWN.API.ICampaignVariableConverter", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", [
       [ "NWN.API.ICampaignVariableConverter< T >", "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html", null ]
@@ -358,6 +358,7 @@ var hierarchy =
     [ "IGameManager", null, [
       [ "NWN.NManager", "classNWN_1_1NManager.html", null ]
     ] ],
+    [ "NWN.Services.IInitializable", "interfaceNWN_1_1Services_1_1IInitializable.html", null ],
     [ "NWN.API.ILocalVariableConverter", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", [
       [ "NWN.API.ILocalVariableConverter< T >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ]
     ] ],
@@ -369,17 +370,17 @@ var hierarchy =
     [ "NWN.API.ILocalVariableConverter< NwObject >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
     [ "NWN.API.ILocalVariableConverter< string >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
     [ "NWN.API.ILocalVariableConverter< T >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
+    [ "NWN.Services.InstallerInfo", "classNWN_1_1Services_1_1InstallerInfo.html", null ],
     [ "NWN.API.IntegerExtensions", "classNWN_1_1API_1_1IntegerExtensions.html", null ],
     [ "NWN.Internal", "classNWN_1_1Internal.html", null ],
     [ "NWN.Services.Interop", "classNWN_1_1Services_1_1Interop.html", null ],
-    [ "NWN.IRunScriptHandler", "interfaceNWN_1_1IRunScriptHandler.html", null ],
     [ "NWN.Services.IScriptDispatcher", "interfaceNWN_1_1Services_1_1IScriptDispatcher.html", [
       [ "NWN.Services.EventService", "classNWN_1_1Services_1_1EventService.html", null ]
     ] ],
     [ "NWNX.API.Item", "classNWNX_1_1API_1_1Item.html", null ],
     [ "NWNX.API.Events.ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", null ],
-    [ "NWNX.API.ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
     [ "NWN.API.ItemProperty", "classNWN_1_1API_1_1ItemProperty.html", null ],
+    [ "NWNX.API.ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
     [ "NWN.Services.ITwoDimArray", "interfaceNWN_1_1Services_1_1ITwoDimArray.html", null ],
     [ "NWN.Plugins.ITypeLoader", "interfaceNWN_1_1Plugins_1_1ITypeLoader.html", null ],
     [ "NWN.Services.IUpdateable", "interfaceNWN_1_1Services_1_1IUpdateable.html", [
@@ -426,6 +427,7 @@ var hierarchy =
     [ "NWNX.API.Rename", "classNWNX_1_1API_1_1Rename.html", null ],
     [ "NWNX.API.Reveal", "classNWNX_1_1API_1_1Reveal.html", null ],
     [ "NWNX.API.Events.ServerVaultEvents", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents.html", null ],
+    [ "NWN.Services.ServiceManager", "classNWN_1_1Services_1_1ServiceManager.html", null ],
     [ "NWNX.API.Events.SetMemorizedSpellSlotEvents", "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents.html", null ],
     [ "NWNX.API.SkillRanks", "classNWNX_1_1API_1_1SkillRanks.html", null ],
     [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
