@@ -10,6 +10,7 @@ var classNWN_1_1API_1_1Location =
     [ "operator Location", "classNWN_1_1API_1_1Location.html#a92af57f3db3b08e9dfc5bc3e9e93bb5b", null ],
     [ "Area", "classNWN_1_1API_1_1Location.html#add8f5a9e2bef4cc69334d922c3b6fadc", null ],
     [ "FlippedRotation", "classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d", null ],
+    [ "GroundHeight", "classNWN_1_1API_1_1Location.html#ae2a469bd1f8713a836045fea38e16fd9", null ],
     [ "Position", "classNWN_1_1API_1_1Location.html#a6985a72d1f171e9a6df3ab46a2cd49d3", null ],
     [ "Rotation", "classNWN_1_1API_1_1Location.html#a66fd6234f492772916c70730b7af033a", null ]
 ];

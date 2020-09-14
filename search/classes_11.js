@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['visibility_945',['Visibility',['../classNWNX_1_1API_1_1Visibility.html',1,'NWNX::API']]],
-  ['visualtransform_946',['VisualTransform',['../classNWN_1_1API_1_1VisualTransform.html',1,'NWN::API']]]
+  ['uncategorized_964',['Uncategorized',['../classNWN_1_1API_1_1Constants_1_1Uncategorized.html',1,'NWN::API::Constants']]],
+  ['util_965',['Util',['../classNWNX_1_1API_1_1Util.html',1,'NWNX::API']]]
 ];

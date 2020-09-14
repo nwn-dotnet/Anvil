@@ -5,5 +5,6 @@ var searchData=
   ['blindness_54',['Blindness',['../classNWN_1_1API_1_1Effect.html#a2d193f122cbbe7b77429f82207cb690f',1,'NWN::API::Effect']]],
   ['blockingdoor_55',['BlockingDoor',['../classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked.html#a40fe7651345e3093ed14311bdb1fcca1',1,'NWN::API::Events::CreatureEvents::OnBlocked']]],
   ['blue_56',['Blue',['../structNWN_1_1API_1_1Color.html#a19b7e471d3a7467ff49fb90f955c6662',1,'NWN::API::Color']]],
-  ['bluef_57',['BlueF',['../structNWN_1_1API_1_1Color.html#a1be9d4884b31b8f570ab5c6ff2add236',1,'NWN::API::Color']]]
+  ['bluef_57',['BlueF',['../structNWN_1_1API_1_1Color.html#a1be9d4884b31b8f570ab5c6ff2add236',1,'NWN::API::Color']]],
+  ['bootplayer_58',['BootPlayer',['../classNWN_1_1API_1_1NwPlayer.html#a84463c4cbc13d16a74815fa277628d1e',1,'NWN::API::NwPlayer']]]
 ];

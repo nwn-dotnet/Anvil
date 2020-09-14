@@ -83,7 +83,6 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1NwModule.html','');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="classNWN_1_1API_1_1NwModule-members.html">List of all members</a>  </div>
@@ -105,15 +104,8 @@ Collaboration diagram for NWN.API.NwModule:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNWN_1_1API_1_1NwModule__coll__graph.png" border="0" usemap="#aNWN_8API_8NwModule_coll__map" alt="Collaboration graph"/></div>
 <map name="NWN_8API_8NwModule_coll__map" id="aNWN_8API_8NwModule_coll__map">
-<area shape="rect" title=" " alt="" coords="108,425,252,452"/>
-<area shape="rect" href="classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="248,5,328,32"/>
-<area shape="rect" href="classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="417,81,532,108"/>
-<area shape="rect" href="classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="201,81,375,108"/>
-<area shape="rect" href="classNWN_1_1API_1_1NwPlayer.html" title=" " alt="" coords="111,336,249,363"/>
-<area shape="rect" href="classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="204,260,295,287"/>
-<area shape="rect" href="classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="174,171,325,197"/>
-<area shape="rect" title=" " alt="" coords="109,81,153,108"/>
-<area shape="rect" href="classNWN_1_1API_1_1Location.html" title=" " alt="" coords="274,336,406,363"/>
+<area shape="rect" title=" " alt="" coords="5,81,149,108"/>
+<area shape="rect" href="classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="37,5,117,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -134,6 +126,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8f6618d34cc47541b28b7102a9e19cb9"><td class="memItemLeft" align="right" valign="top"><a id="a8f6618d34cc47541b28b7102a9e19cb9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a8f6618d34cc47541b28b7102a9e19cb9">SendMessageToAllDMs</a> (string message)</td></tr>
 <tr class="separator:a8f6618d34cc47541b28b7102a9e19cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a2f13c052802ed7d527eb360c099559"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a6a2f13c052802ed7d527eb360c099559">EndGame</a> (string endMovie)</td></tr>
+<tr class="memdesc:a6a2f13c052802ed7d527eb360c099559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends the current running game, plays the specified movie then returns all players to the main menu.  <a href="classNWN_1_1API_1_1NwModule.html#a6a2f13c052802ed7d527eb360c099559">More...</a><br /></td></tr>
+<tr class="separator:a6a2f13c052802ed7d527eb360c099559"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ebb3473c29e6a71f6beaf23b7f834e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a4ebb3473c29e6a71f6beaf23b7f834e2">SetTextureOverride</a> (string oldTexName, string newName)</td></tr>
 <tr class="memdesc:a4ebb3473c29e6a71f6beaf23b7f834e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes all online PCs load a new texture instead of another.  <a href="classNWN_1_1API_1_1NwModule.html#a4ebb3473c29e6a71f6beaf23b7f834e2">More...</a><br /></td></tr>
 <tr class="separator:a4ebb3473c29e6a71f6beaf23b7f834e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,28 +172,6 @@ override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (
 override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</b> ()</td></tr>
 <tr class="separator:ae9944089a3741b158212c2e0ebe35c67 inherit pub_methods_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:aebcf7e28e1beac7db6e0b827edc4fb4c"><td class="memItemLeft" align="right" valign="top"><a id="aebcf7e28e1beac7db6e0b827edc4fb4c"></a>
-<a class="el" href="classNWN_1_1API_1_1NwPlayer.html">NwPlayer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>PCSpeaker</b> =&gt; NWScript.GetPCSpeaker().ToNwObject&lt;<a class="el" href="classNWN_1_1API_1_1NwPlayer.html">NwPlayer</a>&gt;()</td></tr>
-<tr class="separator:aebcf7e28e1beac7db6e0b827edc4fb4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bd53b48f5451a5932cb9679795cb368"><td class="memItemLeft" align="right" valign="top"><a id="a4bd53b48f5451a5932cb9679795cb368"></a>
-Spell&#160;</td><td class="memItemRight" valign="bottom"><b>SpellId</b> =&gt; (Spell) NWScript.GetSpellId()</td></tr>
-<tr class="separator:a4bd53b48f5451a5932cb9679795cb368"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17568517c3530c1f4a10e0c61b931b6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a17568517c3530c1f4a10e0c61b931b6b">StartingLocation</a> =&gt; NWScript.GetStartingLocation()</td></tr>
-<tr class="memdesc:a17568517c3530c1f4a10e0c61b931b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the starting location for new players.  <a href="classNWN_1_1API_1_1NwModule.html#a17568517c3530c1f4a10e0c61b931b6b">More...</a><br /></td></tr>
-<tr class="separator:a17568517c3530c1f4a10e0c61b931b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_attribs_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
-<tr class="memitem:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20">ResRef</a> =&gt; NWScript.GetResRef(this)</td></tr>
-<tr class="memdesc:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the resource reference used to create this object.  <a href="classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20">More...</a><br /></td></tr>
-<tr class="separator:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5">IsValid</a> =&gt; NWScript.GetIsObjectValid(this).ToBool()</td></tr>
-<tr class="memdesc:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this is a valid object.  <a href="classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5">More...</a><br /></td></tr>
-<tr class="separator:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c">OriginalDescription</a> =&gt; NWScript.GetDescription(this, true.ToInt())</td></tr>
-<tr class="memdesc:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the original description for this object as defined in the toolset.  <a href="classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c">More...</a><br /></td></tr>
-<tr class="separator:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a013073b260c8a4f426cc1b24cd239bf4"><td class="memItemLeft" align="right" valign="top"><a id="a013073b260c8a4f426cc1b24cd239bf4"></a>
@@ -207,6 +180,12 @@ static readonly <a class="el" href="classNWN_1_1API_1_1NwModule.html">NwModule</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:aebcf7e28e1beac7db6e0b827edc4fb4c"><td class="memItemLeft" align="right" valign="top"><a id="aebcf7e28e1beac7db6e0b827edc4fb4c"></a>
+<a class="el" href="classNWN_1_1API_1_1NwPlayer.html">NwPlayer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>PCSpeaker</b><code> [get]</code></td></tr>
+<tr class="separator:aebcf7e28e1beac7db6e0b827edc4fb4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bd53b48f5451a5932cb9679795cb368"><td class="memItemLeft" align="right" valign="top"><a id="a4bd53b48f5451a5932cb9679795cb368"></a>
+Spell&#160;</td><td class="memItemRight" valign="bottom"><b>SpellId</b><code> [get]</code></td></tr>
+<tr class="separator:a4bd53b48f5451a5932cb9679795cb368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefbd014de1e072c16aaa2c7721e7cbcc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc">XPScale</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aefbd014de1e072c16aaa2c7721e7cbcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the XP scale for this module. Must be a value between 0-200.  <a href="classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc">More...</a><br /></td></tr>
 <tr class="separator:aefbd014de1e072c16aaa2c7721e7cbcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,6 +207,12 @@ Properties</h2></td></tr>
 <tr class="memitem:a5775e9a62fc0c2b989eae51253cbd517"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a5775e9a62fc0c2b989eae51253cbd517">SkillBonusLimit</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a5775e9a62fc0c2b989eae51253cbd517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the max possible skill bonus from temporary effects/items. (Default: 50)  <a href="classNWN_1_1API_1_1NwModule.html#a5775e9a62fc0c2b989eae51253cbd517">More...</a><br /></td></tr>
 <tr class="separator:a5775e9a62fc0c2b989eae51253cbd517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac90eca988214874c450a5e2ba9ff2240"><td class="memItemLeft" align="right" valign="top">GameDifficulty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#ac90eca988214874c450a5e2ba9ff2240">GameDifficulty</a><code> [get]</code></td></tr>
+<tr class="memdesc:ac90eca988214874c450a5e2ba9ff2240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current server difficulty setting.  <a href="classNWN_1_1API_1_1NwModule.html#ac90eca988214874c450a5e2ba9ff2240">More...</a><br /></td></tr>
+<tr class="separator:ac90eca988214874c450a5e2ba9ff2240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17568517c3530c1f4a10e0c61b931b6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a17568517c3530c1f4a10e0c61b931b6b">StartingLocation</a><code> [get]</code></td></tr>
+<tr class="memdesc:a17568517c3530c1f4a10e0c61b931b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the starting location for new players.  <a href="classNWN_1_1API_1_1NwModule.html#a17568517c3530c1f4a10e0c61b931b6b">More...</a><br /></td></tr>
+<tr class="separator:a17568517c3530c1f4a10e0c61b931b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aece6bd0b52bae7e3dd3ec33165f01094"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#aece6bd0b52bae7e3dd3ec33165f01094">Areas</a><code> [get]</code></td></tr>
 <tr class="memdesc:aece6bd0b52bae7e3dd3ec33165f01094"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all active areas in the module.  <a href="classNWN_1_1API_1_1NwModule.html#aece6bd0b52bae7e3dd3ec33165f01094">More...</a><br /></td></tr>
 <tr class="separator:aece6bd0b52bae7e3dd3ec33165f01094"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,6 +263,16 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
 <tr class="memitem:a6864a363678118ffe33936a59ac85b93 inherit pub_static_methods_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="a6864a363678118ffe33936a59ac85b93"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> left, <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> right)</td></tr>
 <tr class="separator:a6864a363678118ffe33936a59ac85b93 inherit pub_static_methods_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
+<tr class="memitem:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20">ResRef</a> =&gt; NWScript.GetResRef(this)</td></tr>
+<tr class="memdesc:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the resource reference used to create this object.  <a href="classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20">More...</a><br /></td></tr>
+<tr class="separator:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5">IsValid</a> =&gt; NWScript.GetIsObjectValid(this).ToBool()</td></tr>
+<tr class="memdesc:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this is a valid object.  <a href="classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5">More...</a><br /></td></tr>
+<tr class="separator:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c">OriginalDescription</a> =&gt; NWScript.GetDescription(this, true.ToInt())</td></tr>
+<tr class="memdesc:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the original description for this object as defined in the toolset.  <a href="classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c">More...</a><br /></td></tr>
+<tr class="separator:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
 <tr class="memitem:aa5269deb0d931d58d06bfb4560db00e1 inherit pro_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="aa5269deb0d931d58d06bfb4560db00e1"></a>
 readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b></td></tr>
@@ -304,6 +299,32 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">texName</td><td>The name of the original texture.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6a2f13c052802ed7d527eb360c099559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a2f13c052802ed7d527eb360c099559">&#9670;&nbsp;</a></span>EndGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwModule.EndGame </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>endMovie</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ends the current running game, plays the specified movie then returns all players to the main menu. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">endMovie</td><td>The filename of the movie to play, without file extension.</td></tr>
   </table>
   </dd>
 </dl>
@@ -420,9 +441,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void NWN.API.NwModule.SendMessageToAllDMs </td>
@@ -442,11 +460,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Broadcasts a message to the DM channel, sending a message to all DMs on the server. </p>
@@ -494,23 +507,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a17568517c3530c1f4a10e0c61b931b6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17568517c3530c1f4a10e0c61b931b6b">&#9670;&nbsp;</a></span>StartingLocation</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classNWN_1_1API_1_1Location.html">Location</a> NWN.API.NwModule.StartingLocation =&gt; NWScript.GetStartingLocation()</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the starting location for new players. </p>
 
 </div>
 </div>
@@ -611,6 +607,30 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
+<a id="ac90eca988214874c450a5e2ba9ff2240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac90eca988214874c450a5e2ba9ff2240">&#9670;&nbsp;</a></span>GameDifficulty</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameDifficulty NWN.API.NwModule.GameDifficulty</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current server difficulty setting. </p>
+
+</div>
+</div>
 <a id="aa657bf94349095c15603fa69f3a80998"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa657bf94349095c15603fa69f3a80998">&#9670;&nbsp;</a></span>GetAbilityBonusLimit</h2>
 
@@ -704,6 +724,30 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Gets or sets the max possible skill bonus from temporary effects/items. (Default: 50) </p>
+
+</div>
+</div>
+<a id="a17568517c3530c1f4a10e0c61b931b6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17568517c3530c1f4a10e0c61b931b6b">&#9670;&nbsp;</a></span>StartingLocation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNWN_1_1API_1_1Location.html">Location</a> NWN.API.NwModule.StartingLocation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the starting location for new players. </p>
 
 </div>
 </div>

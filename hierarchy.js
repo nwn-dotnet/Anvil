@@ -210,6 +210,9 @@ var hierarchy =
     [ "NWN.API.Events.Event< NwModule, OnPlayerRest >", "classNWN_1_1API_1_1Events_1_1Event.html", [
       [ "NWN.API.Events.ModuleEvents.OnPlayerRest", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html", null ]
     ] ],
+    [ "NWN.API.Events.Event< NwModule, OnPlayerTarget >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWN.API.Events.ModuleEvents.OnPlayerTarget", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html", null ]
+    ] ],
     [ "NWN.API.Events.Event< NwModule, OnPlayerUnequipItem >", "classNWN_1_1API_1_1Events_1_1Event.html", [
       [ "NWN.API.Events.ModuleEvents.OnPlayerUnequipItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html", null ]
     ] ],
@@ -327,6 +330,7 @@ var hierarchy =
     [ "NWNX.API.Feedback", "classNWNX_1_1API_1_1Feedback.html", null ],
     [ "NWNX.API.Administration.GameOptions", "classNWNX_1_1API_1_1Administration_1_1GameOptions.html", null ],
     [ "NWN.API.GuidExtensions", "classNWN_1_1API_1_1GuidExtensions.html", null ],
+    [ "NWN.API.HitEffect", "structNWN_1_1API_1_1HitEffect.html", null ],
     [ "NWN.Services.IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", [
       [ "NWN.Services.ServiceInstaller", "classNWN_1_1Services_1_1ServiceInstaller.html", null ]
     ] ],
@@ -379,8 +383,8 @@ var hierarchy =
     ] ],
     [ "NWNX.API.Item", "classNWNX_1_1API_1_1Item.html", null ],
     [ "NWNX.API.Events.ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", null ],
-    [ "NWN.API.ItemProperty", "classNWN_1_1API_1_1ItemProperty.html", null ],
     [ "NWNX.API.ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
+    [ "NWN.API.ItemProperty", "classNWN_1_1API_1_1ItemProperty.html", null ],
     [ "NWN.Services.ITwoDimArray", "interfaceNWN_1_1Services_1_1ITwoDimArray.html", null ],
     [ "NWN.Plugins.ITypeLoader", "interfaceNWN_1_1Plugins_1_1ITypeLoader.html", null ],
     [ "NWN.Services.IUpdateable", "interfaceNWN_1_1Services_1_1IUpdateable.html", [
@@ -392,6 +396,7 @@ var hierarchy =
     [ "NWN.API.Location", "classNWN_1_1API_1_1Location.html", null ],
     [ "NWN.Services.LoopTimeService", "classNWN_1_1Services_1_1LoopTimeService.html", null ],
     [ "NWN.API.Events.ModuleEvents", "classNWN_1_1API_1_1Events_1_1ModuleEvents.html", null ],
+    [ "NWN.API.MonsterHitEffect", "structNWN_1_1API_1_1MonsterHitEffect.html", null ],
     [ "NWN.Services.NwDateTime", "structNWN_1_1Services_1_1NwDateTime.html", null ],
     [ "NWN.API.NwObject", "classNWN_1_1API_1_1NwObject.html", [
       [ "NWN.API.NwArea", "classNWN_1_1API_1_1NwArea.html", null ],

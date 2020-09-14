@@ -69,6 +69,7 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnPlayerLevelUp", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp" ],
       [ "OnPlayerRespawn", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRespawn.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRespawn" ],
       [ "OnPlayerRest", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest" ],
+      [ "OnPlayerTarget", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget" ],
       [ "OnPlayerUnequipItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem" ],
       [ "OnUnacquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined" ]

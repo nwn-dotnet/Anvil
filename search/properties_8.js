@@ -1,9 +1,20 @@
 var searchData=
 [
-  ['identified_1294',['Identified',['../classNWN_1_1API_1_1NwItem.html#a52fca213657499909b39d11dce7ff64c',1,'NWN::API::NwItem']]],
-  ['illumination_1295',['Illumination',['../classNWN_1_1API_1_1NwPlaceable.html#a8c30006cea973d2996d30054ccf393af',1,'NWN::API::NwPlaceable']]],
-  ['infinite_1296',['Infinite',['../classNWN_1_1API_1_1NwItem.html#a02e07e7449fb9afaeb2fb1235ba243fb',1,'NWN::API::NwItem']]],
-  ['instructionlimit_1297',['InstructionLimit',['../classNWNX_1_1API_1_1Util.html#a390780aedb93b3822249f622698bb67d',1,'NWNX::API::Util']]],
-  ['itemproperties_1298',['ItemProperties',['../classNWN_1_1API_1_1NwItem.html#a53ff3080bfdf5dd5074cf83ea9ca6e5f',1,'NWN::API::NwItem']]],
-  ['items_1299',['Items',['../classNWN_1_1API_1_1NwGameObject.html#ab33924da812e0cc19c37d84424e5c9df',1,'NWN::API::NwGameObject']]]
+  ['identified_1303',['Identified',['../classNWN_1_1API_1_1NwItem.html#a52fca213657499909b39d11dce7ff64c',1,'NWN::API::NwItem']]],
+  ['illumination_1304',['Illumination',['../classNWN_1_1API_1_1NwPlaceable.html#a8c30006cea973d2996d30054ccf393af',1,'NWN::API::NwPlaceable']]],
+  ['infinite_1305',['Infinite',['../classNWN_1_1API_1_1NwItem.html#a02e07e7449fb9afaeb2fb1235ba243fb',1,'NWN::API::NwItem']]],
+  ['instructionlimit_1306',['InstructionLimit',['../classNWNX_1_1API_1_1Util.html#a390780aedb93b3822249f622698bb67d',1,'NWNX::API::Util']]],
+  ['ipaddress_1307',['IPAddress',['../classNWN_1_1API_1_1NwPlayer.html#a1e4991a38c3b9a1076ebf7fa5df4c5fb',1,'NWN::API::NwPlayer']]],
+  ['isconnectionrelayed_1308',['IsConnectionRelayed',['../classNWN_1_1API_1_1NwPlayer.html#a8151bd67b913dbd3725d12ae7ff6c669',1,'NWN::API::NwPlayer']]],
+  ['isdead_1309',['IsDead',['../classNWN_1_1API_1_1NwCreature.html#a40bf75941fb2d4db702de027d942bb38',1,'NWN::API::NwCreature']]],
+  ['isdm_1310',['IsDM',['../classNWN_1_1API_1_1NwPlayer.html#a53bd4e509185186669ba38e5eabed9ae',1,'NWN::API::NwPlayer']]],
+  ['isdmpossessed_1311',['IsDMPossessed',['../classNWN_1_1API_1_1NwCreature.html#acdf96cc8f43a7fcf79c9b0cbea63a815',1,'NWN::API::NwCreature']]],
+  ['isincombat_1312',['IsInCombat',['../classNWN_1_1API_1_1NwCreature.html#afaf48939335e701ca221b65990304ebd',1,'NWN::API::NwCreature']]],
+  ['isinconversation_1313',['IsInConversation',['../classNWN_1_1API_1_1NwGameObject.html#a2352ab8eb1884a1268d4cbbd398516b8',1,'NWN::API::NwGameObject']]],
+  ['isplayablerace_1314',['IsPlayableRace',['../classNWN_1_1API_1_1NwCreature.html#ae0e099127c41e83f086c536bb13a1d2b',1,'NWN::API::NwCreature']]],
+  ['isplayerdm_1315',['IsPlayerDM',['../classNWN_1_1API_1_1NwPlayer.html#a1ca15bd6d53d4732a740640498c8631e',1,'NWN::API::NwPlayer']]],
+  ['ispossessedfamiliar_1316',['IsPossessedFamiliar',['../classNWN_1_1API_1_1NwCreature.html#a2018305e63fb0e89c9ff6bf12fa1578d',1,'NWN::API::NwCreature']]],
+  ['isresting_1317',['IsResting',['../classNWN_1_1API_1_1NwCreature.html#a5927dc868a11b2debf183d05c98534f2',1,'NWN::API::NwCreature']]],
+  ['itemproperties_1318',['ItemProperties',['../classNWN_1_1API_1_1NwItem.html#a53ff3080bfdf5dd5074cf83ea9ca6e5f',1,'NWN::API::NwItem']]],
+  ['items_1319',['Items',['../classNWN_1_1API_1_1NwGameObject.html#ab33924da812e0cc19c37d84424e5c9df',1,'NWN::API::NwGameObject']]]
 ];

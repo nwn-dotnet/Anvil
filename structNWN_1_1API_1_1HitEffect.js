@@ -1,0 +1,28 @@
+var structNWN_1_1API_1_1HitEffect =
+[
+    [ "AbilityDrain", "structNWN_1_1API_1_1HitEffect.html#a3f0021d4134b1de19660f13ae56487cd", null ],
+    [ "Blindness", "structNWN_1_1API_1_1HitEffect.html#a139713574fc1d492ff736fe92070e555", null ],
+    [ "Confusion", "structNWN_1_1API_1_1HitEffect.html#aa9e5ca6f143a33a24ab4a36c5983f177", null ],
+    [ "Daze", "structNWN_1_1API_1_1HitEffect.html#a0d64ff604d3943888a5525950e190eb8", null ],
+    [ "Deafness", "structNWN_1_1API_1_1HitEffect.html#af66a1873b35038e6cff9411e2c36fc77", null ],
+    [ "Disease", "structNWN_1_1API_1_1HitEffect.html#a3b4b32cca6afb940ac8eaf7732f0b90f", null ],
+    [ "DispelMagic", "structNWN_1_1API_1_1HitEffect.html#ab01bd00129e6764a9af7a4a046e25206", null ],
+    [ "Doom", "structNWN_1_1API_1_1HitEffect.html#a482207f6f3fe11fa8fc38e7ab1fb9980", null ],
+    [ "Fear", "structNWN_1_1API_1_1HitEffect.html#afdc585598dc883c4cce37121f1a47231", null ],
+    [ "GreaterDispel", "structNWN_1_1API_1_1HitEffect.html#a6cb60231afffcd794c5ad2c97708df83", null ],
+    [ "Hold", "structNWN_1_1API_1_1HitEffect.html#adab03ec6f99021f4ff46b6c5d840c029", null ],
+    [ "ItemPoison", "structNWN_1_1API_1_1HitEffect.html#ac169c2ae43e44c0a954cd7bb3fcf9831", null ],
+    [ "Knock", "structNWN_1_1API_1_1HitEffect.html#a1701b5453264c66fdafe10bcc8933f09", null ],
+    [ "LesserDispel", "structNWN_1_1API_1_1HitEffect.html#aece1b1a545a362f3ddc3c61f12ad2c93", null ],
+    [ "LevelDrain", "structNWN_1_1API_1_1HitEffect.html#a2a166c33de5abb07b69d81d601367957", null ],
+    [ "MordsDisjunction", "structNWN_1_1API_1_1HitEffect.html#a2e7506f457c9ecd47101db4ce9a89211", null ],
+    [ "Silence", "structNWN_1_1API_1_1HitEffect.html#acf7c9c836e45c322e715208a16aa1a03", null ],
+    [ "SlayAlignment", "structNWN_1_1API_1_1HitEffect.html#a8f3a209cd8992a2f95d9fd064b73702d", null ],
+    [ "SlayAlignmentGroup", "structNWN_1_1API_1_1HitEffect.html#a1ff3539466f9044a86ac602ce2acd992", null ],
+    [ "SlayRace", "structNWN_1_1API_1_1HitEffect.html#a0230e5ac9612da5747a070909748916b", null ],
+    [ "Sleep", "structNWN_1_1API_1_1HitEffect.html#a6870af9494d66fa3dd1af6438bf86a47", null ],
+    [ "Slow", "structNWN_1_1API_1_1HitEffect.html#a4867450d7f6d1c8cbb43459c41f4cbfc", null ],
+    [ "Stun", "structNWN_1_1API_1_1HitEffect.html#a98afe981f70f906f4a5145add79d852e", null ],
+    [ "Vorpal", "structNWN_1_1API_1_1HitEffect.html#a3ebd060bc82e0f63d40c7a5358d91822", null ],
+    [ "Wounding", "structNWN_1_1API_1_1HitEffect.html#ae82fd3acce7d81f136399b079aa9c1d1", null ]
+];

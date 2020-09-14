@@ -2,6 +2,7 @@ var classNWN_1_1API_1_1NwPlayer =
 [
     [ "ActionStartConversation", "classNWN_1_1API_1_1NwPlayer.html#a5168c6128e41c3ea0135d265218a17fe", null ],
     [ "AddToParty", "classNWN_1_1API_1_1NwPlayer.html#a9fdcbfba386e897d9274c39f9261ccf2", null ],
+    [ "BootPlayer", "classNWN_1_1API_1_1NwPlayer.html#a84463c4cbc13d16a74815fa277628d1e", null ],
     [ "ClearTextureOverride", "classNWN_1_1API_1_1NwPlayer.html#ac568f63e914766242097f50f667ff73d", null ],
     [ "ExportCharacter", "classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802", null ],
     [ "GetCampaignVariable< T >", "classNWN_1_1API_1_1NwPlayer.html#a883a0c91867613bbfaf74a6606b73a9e", null ],
@@ -19,7 +20,9 @@ var classNWN_1_1API_1_1NwPlayer =
     [ "CDKey", "classNWN_1_1API_1_1NwPlayer.html#a7c84a2808fb836d93f24a78b5e1049c7", null ],
     [ "ClientVersion", "classNWN_1_1API_1_1NwPlayer.html#ad9871bef83bc18b73aa286a8427c4811", null ],
     [ "IPAddress", "classNWN_1_1API_1_1NwPlayer.html#a1e4991a38c3b9a1076ebf7fa5df4c5fb", null ],
+    [ "IsConnectionRelayed", "classNWN_1_1API_1_1NwPlayer.html#a8151bd67b913dbd3725d12ae7ff6c669", null ],
     [ "IsDM", "classNWN_1_1API_1_1NwPlayer.html#a53bd4e509185186669ba38e5eabed9ae", null ],
-    [ "PlayerName", "classNWN_1_1API_1_1NwPlayer.html#ae5b3a02998a01d2ef97ae231766efe45", null ],
-    [ "PartyMembers", "classNWN_1_1API_1_1NwPlayer.html#a3f848f6b4521a7b02bd1b9fa7e1bf396", null ]
+    [ "IsPlayerDM", "classNWN_1_1API_1_1NwPlayer.html#a1ca15bd6d53d4732a740640498c8631e", null ],
+    [ "PartyMembers", "classNWN_1_1API_1_1NwPlayer.html#a3f848f6b4521a7b02bd1b9fa7e1bf396", null ],
+    [ "PlayerName", "classNWN_1_1API_1_1NwPlayer.html#ae5b3a02998a01d2ef97ae231766efe45", null ]
 ];
