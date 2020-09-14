@@ -17,52 +17,82 @@ namespace NWN.API
     /// <summary>
     /// Gets if this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
-    public bool IsDead => NWScript.GetIsDead(this).ToBool();
+    public bool IsDead
+    {
+      get => NWScript.GetIsDead(this).ToBool();
+    }
 
     /// <summary>
     /// Gets if this creature is in combat.
     /// </summary>
-    public bool IsInCombat => NWScript.GetIsInCombat(this).ToBool();
+    public bool IsInCombat
+    {
+      get => NWScript.GetIsInCombat(this).ToBool();
+    }
 
     /// <summary>
     /// Gets the racial type of this creature.
     /// </summary>
-    public RacialType RacialType => (RacialType) NWScript.GetRacialType(this);
+    public RacialType RacialType
+    {
+      get => (RacialType) NWScript.GetRacialType(this);
+    }
 
     /// <summary>
     /// Gets the gender of this creature.
     /// </summary>
-    public Gender Gender => (Gender) NWScript.GetGender(this);
+    public Gender Gender
+    {
+      get => (Gender) NWScript.GetGender(this);
+    }
 
     /// <summary>
     /// Gets whether this creature is currently resting.
     /// </summary>
-    public bool IsResting => NWScript.GetIsResting(this).ToBool();
+    public bool IsResting
+    {
+      get => NWScript.GetIsResting(this).ToBool();
+    }
 
     /// <summary>
     /// Gets whether this creature is a playable racial type.
     /// </summary>
-    public bool IsPlayableRace => NWScript.GetIsPlayableRacialType(this).ToBool();
+    public bool IsPlayableRace
+    {
+      get => NWScript.GetIsPlayableRacialType(this).ToBool();
+    }
 
     /// <summary>
     /// Gets the total weight of this creature, in pounds.
     /// </summary>
-    public decimal TotalWeight => NWScript.GetWeight(this) * 0.1m;
+    public decimal TotalWeight
+    {
+      get => NWScript.GetWeight(this) * 0.1m;
+    }
 
     /// <summary>
     /// Gets this creature's armour class.
     /// </summary>
-    public int AC => NWScript.GetAC(this);
+    public int AC
+    {
+      get => NWScript.GetAC(this);
+    }
 
     /// <summary>
     /// Gets this creature's age, in years.
     /// </summary>
-    public int Age => NWScript.GetAge(this);
+    public int Age
+    {
+      get => NWScript.GetAge(this);
+    }
 
     /// <summary>
     /// Gets the size of this creature.
     /// </summary>
-    public CreatureSize Size => (CreatureSize) NWScript.GetCreatureSize(this);
+    public CreatureSize Size
+    {
+      get => (CreatureSize) NWScript.GetCreatureSize(this);
+    }
 
     /// <summary>
     /// Gets or sets the name of this creature's deity.
@@ -94,62 +124,98 @@ namespace NWN.API
     /// <summary>
     /// Gets the calculated challenge rating for this creature.
     /// </summary>
-    public float ChallengeRating => NWScript.GetChallengeRating(this);
+    public float ChallengeRating
+    {
+      get => NWScript.GetChallengeRating(this);
+    }
 
     /// <summary>
     /// Returns the movement rate of this creature.
     /// </summary>
-    public MovementRate MovementRate => (MovementRate) NWScript.GetMovementRate(this);
+    public MovementRate MovementRate
+    {
+      get => (MovementRate) NWScript.GetMovementRate(this);
+    }
 
     /// <summary>
     /// Gets this creature's Law/Chaos Alignment.
     /// </summary>
-    public Alignment LawChaosAlignment => (Alignment) NWScript.GetAlignmentLawChaos(this);
+    public Alignment LawChaosAlignment
+    {
+      get => (Alignment) NWScript.GetAlignmentLawChaos(this);
+    }
 
     /// <summary>
     /// Gets this creature's Good/Evil Alignment.
     /// </summary>
-    public Alignment GoodEvilAlignment => (Alignment) NWScript.GetAlignmentGoodEvil(this);
+    public Alignment GoodEvilAlignment
+    {
+      get => (Alignment) NWScript.GetAlignmentGoodEvil(this);
+    }
 
     /// <summary>
     /// Gets a value indicating whether this creature is currently possessed by a DM avatar.
     /// </summary>
-    public bool IsDMPossessed => NWScript.GetIsDMPossessed(this).ToBool();
+    public bool IsDMPossessed
+    {
+      get => NWScript.GetIsDMPossessed(this).ToBool();
+    }
 
     /// <summary>
     /// Gets if this creature is a familiar currently possessed by a master.
     /// </summary>
-    public bool IsPossessedFamiliar => NWScript.GetIsPossessedFamiliar(this).ToBool();
+    public bool IsPossessedFamiliar
+    {
+      get => NWScript.GetIsPossessedFamiliar(this).ToBool();
+    }
 
     /// <summary>
     /// Gets the last command issued to this creature.
     /// </summary>
-    public AssociateCommand LastCommandFromMaster => (AssociateCommand) NWScript.GetLastAssociateCommand(this);
+    public AssociateCommand LastCommandFromMaster
+    {
+      get => (AssociateCommand) NWScript.GetLastAssociateCommand(this);
+    }
 
     /// <summary>
     /// Gets the possessor of this creature. This can be the master of a familiar, or the DM for a DM controlled creature.
     /// </summary>
-    public NwCreature Master => NWScript.GetMaster(this).ToNwObject<NwCreature>();
+    public NwCreature Master
+    {
+      get => NWScript.GetMaster(this).ToNwObject<NwCreature>();
+    }
 
     /// <summary>
     /// Returns this creature's current attack target.
     /// </summary>
-    public NwGameObject AttackTarget => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
+    public NwGameObject AttackTarget
+    {
+      get => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
+    }
 
     /// <summary>
     /// Gets the current action that this creature is executing.
     /// </summary>
-    public Action CurrentAction => (Action) NWScript.GetCurrentAction(this);
+    public Action CurrentAction
+    {
+      get => (Action) NWScript.GetCurrentAction(this);
+    }
 
     /// <summary>
     /// Gets the caster level of the last spell this creature casted.
     /// </summary>
-    public int LastSpellCasterLevel => NWScript.GetCasterLevel(this);
+    public int LastSpellCasterLevel
+    {
+      get => NWScript.GetCasterLevel(this);
+    }
 
     /// <summary>
     /// Returns the Hit Dice/Level of this creature.
     /// </summary>
-    public int Level => NWScript.GetHitDice(this);
+    public int Level
+    {
+      get => NWScript.GetHitDice(this);
+    }
 
     /// <summary>
     /// Gets or sets the total experience points for this creature, taking/granting levels based on progression.
