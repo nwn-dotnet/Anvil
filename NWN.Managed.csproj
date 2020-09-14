@@ -44,7 +44,11 @@
       </None>
     </ItemGroup>
 
-    <Target Name="ZipOutputPath" AfterTargets="Build">
+    <Target Name="CreatePluginsFolder" AfterTargets="Build">
+        <MakeDir Directories="$(OutputPath)\Plugins" Condition="!Exists('$(OutputPath)\Plugins')" />
+    </Target>
+
+    <Target Name="ZipOutputPath" AfterTargets="CreatePluginsFolder">
         <ZipDirectory Overwrite="true" SourceDirectory="$(OutputPath)" DestinationFile="$(OutputPath)\..\$(MSBuildProjectName).zip" />
     </Target>
 </Project>
