@@ -218,6 +218,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets whether this creature can be disarmed (checks disarm flag on creature, and if the creature actually has a weapon equipped in their right hand that is droppable)
+    /// </summary>
+    public bool Disarmable
+    {
+      get => NWScript.GetIsCreatureDisarmable(this).ToBool();
+    }
+
+    /// <summary>
     /// Gets or sets the total experience points for this creature, taking/granting levels based on progression.
     /// </summary>
     public int Xp
@@ -369,16 +377,15 @@ namespace NWN.API
     /// <param name="newTag">The new tag to assign this creature. Leave uninitialized/as null to use the template's tag.</param>
     /// <returns></returns>
     public static NwCreature Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
-    {
-      return NwObject.CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
-    }
+      => CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
 
     /// <summary>
     /// Gets the item that is equipped in the specified inventory slot.
     /// </summary>
     /// <param name="slot">The inventory slot to check.</param>
     /// <returns>The item in the inventory slot, otherwise null if it is unpopulated.</returns>
-    public NwItem GetItemInSlot(InventorySlot slot) => NWScript.GetItemInSlot((int) slot, this).ToNwObject<NwItem>();
+    public NwItem GetItemInSlot(InventorySlot slot)
+      => NWScript.GetItemInSlot((int) slot, this).ToNwObject<NwItem>();
 
     /// <summary>
     /// Attempts to perform a melee touch attack on target. This is not a creature action, and assumes that this creature is already within range of the target.
@@ -407,7 +414,8 @@ namespace NWN.API
     /// </summary>
     /// <param name="alignment">The alignment to shift towards.</param>
     /// <param name="shift">The amount of alignment shift.</param>
-    public void AdjustPartyAlignment(Alignment alignment, int shift) => NWScript.AdjustAlignment(this, (int) alignment, shift);
+    public void AdjustPartyAlignment(Alignment alignment, int shift)
+      => NWScript.AdjustAlignment(this, (int) alignment, shift);
 
     /// <summary>
     /// Gets the specified ability score from this creature.
@@ -415,7 +423,8 @@ namespace NWN.API
     /// <param name="ability">The type of ability.</param>
     /// <param name="baseOnly">If true, will return the creature's base ability score without bonuses or penalties.</param>
     /// <returns></returns>
-    public int GetAbilityScore(Ability ability, bool baseOnly = false) => NWScript.GetAbilityScore(this, (int) ability, baseOnly.ToInt());
+    public int GetAbilityScore(Ability ability, bool baseOnly = false)
+      => NWScript.GetAbilityScore(this, (int) ability, baseOnly.ToInt());
 
     /// <summary>
     /// Gets the DC to save against for a spell (10 + spell level + relevant ability bonus).
@@ -466,9 +475,7 @@ namespace NWN.API
     ///  Determine the number of levels this creature holds in the specified <see cref="ClassType"/>.
     /// </summary>
     public int GetLevelByClass(ClassType classType)
-    {
-      return NWScript.GetLevelByClass((int) classType, this);
-    }
+      => NWScript.GetLevelByClass((int) classType, this);
 
     /// <summary>
     /// Gets if this creature has the specified spell available to cast.
@@ -476,9 +483,7 @@ namespace NWN.API
     /// <param name="spell">The spell to check.</param>
     /// <returns>True if this creature can immediately cast the spell.</returns>
     public bool HasSpellUse(Spell spell)
-    {
-      return NWScript.GetHasSpell((int) spell, this) > 0;
-    }
+      => NWScript.GetHasSpell((int) spell, this) > 0;
 
     /// <summary>
     /// Gets the number of ranks this creature has in the specified skill.
@@ -487,9 +492,7 @@ namespace NWN.API
     /// <param name="ranksOnly">If true, returns the base amount of skill ranks without any ability modifiers.</param>
     /// <returns>-1 if the creature does not have this skill, 0 if untrained, otherwise the number of skill ranks.</returns>
     public int GetSkillRank(Skill skill, bool ranksOnly = false)
-    {
-      return NWScript.GetSkillRank((int) skill, this, ranksOnly.ToInt());
-    }
+      => NWScript.GetSkillRank((int) skill, this, ranksOnly.ToInt());
 
     /// <summary>
     /// Returns true if this creature has the skill specified, and is useable.
@@ -497,9 +500,7 @@ namespace NWN.API
     /// <param name="skill">The skill to check.</param>
     /// <returns>True if the creature has this skill.</returns>
     public bool HasSkill(Skill skill)
-    {
-      return NWScript.GetHasSkill((int) skill, this).ToBool();
-    }
+      => NWScript.GetHasSkill((int) skill, this).ToBool();
 
     /// <summary>
     /// Returns true if 1d20 + skill rank is greater than, or equal to difficultyClass.
@@ -508,18 +509,14 @@ namespace NWN.API
     /// <param name="difficultyClass">The DC of this skill check.</param>
     /// <returns></returns>
     public bool DoSkillCheck(Skill skill, int difficultyClass)
-    {
-      return NWScript.GetIsSkillSuccessful(this, (int) skill, difficultyClass).ToBool();
-    }
+      => NWScript.GetIsSkillSuccessful(this, (int) skill, difficultyClass).ToBool();
 
     /// <summary>
     /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
     /// Use <see cref="Creature.KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
     /// </summary>
     public bool HasFeatPrepared(Feat feat)
-    {
-      return NWScript.GetHasFeat((int) feat, this).ToBool();
-    }
+      => NWScript.GetHasFeat((int) feat, this).ToBool();
 
     /// <summary>
     /// Determines whether this creature has the specified talent.
@@ -527,9 +524,7 @@ namespace NWN.API
     /// <param name="talent">The talent to check.</param>
     /// <returns>True if this creature has talent, otherwise false.</returns>
     public bool HasTalent(Talent talent)
-    {
-      return NWScript.GetCreatureHasTalent(talent, this).ToBool();
-    }
+      => NWScript.GetCreatureHasTalent(talent, this).ToBool();
 
     /// <summary>
     /// Applies the specified effect to this creature.
@@ -547,9 +542,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="effect">The existing effect instance.</param>
     public void RemoveEffect(Effect effect)
-    {
-      NWScript.RemoveEffect(this, effect);
-    }
+      => NWScript.RemoveEffect(this, effect);
 
     /// <summary>
     /// The creature will generate a random location near its current location
@@ -673,9 +666,7 @@ namespace NWN.API
     /// Get the item possessed by this creature with the tag itemTag
     /// </summary>
     public NwItem FindItemWithTag(string itemTag)
-    {
-      return NWScript.GetItemPossessedBy(this, itemTag).ToNwObject<NwItem>();
-    }
+      => NWScript.GetItemPossessedBy(this, itemTag).ToNwObject<NwItem>();
 
     /// <summary>
     /// Commands the creature to equip the specified item into the given inventory slot.<br/>
@@ -736,9 +727,7 @@ namespace NWN.API
     /// Returns true if this creature considers the target an enemy.
     /// </summary>
     public bool IsEnemy(NwCreature target)
-    {
-      return NWScript.GetIsEnemy(target, this).ToBool();
-    }
+      => NWScript.GetIsEnemy(target, this).ToBool();
 
     /// <summary>
     /// Returns this creature's domains in the specified class. Unless custom content is used, only clerics have domains.
@@ -765,8 +754,12 @@ namespace NWN.API
     /// <param name="actionMode">The action mode to toggle.</param>
     /// <param name="status">The new state of the action mode.</param>
     public void SetActionMode(ActionMode actionMode, bool status)
-    {
-      NWScript.SetActionMode(this, (int) actionMode, status.ToInt());
-    }
+      => NWScript.SetActionMode(this, (int) actionMode, status.ToInt());
+
+    /// <summary>
+    /// Instantly gives this creature the benefits of a rest (restored hitpoints, spells, feats, etc...)
+    /// </summary>
+    public void ForceRest()
+      => NWScript.ForceRest(this);
   }
 }

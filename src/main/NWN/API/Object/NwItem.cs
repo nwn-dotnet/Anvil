@@ -76,6 +76,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets whether this item is considered cursed. Cursed items cannot be dropped.
+    /// </summary>
+    public bool CursedFlag
+    {
+      get => NWScript.GetItemCursedFlag(this).ToBool();
+      set => NWScript.SetItemCursedFlag(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets or sets whether this item can be pickpocketed.
     /// </summary>
     public bool Pickpocketable

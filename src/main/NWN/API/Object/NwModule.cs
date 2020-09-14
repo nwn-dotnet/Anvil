@@ -86,6 +86,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the maximum number of henchmen.
+    /// </summary>
+    public int MaxHenchmen
+    {
+      get => NWScript.GetMaxHenchmen();
+      set => NWScript.SetMaxHenchmen(value);
+    }
+
+    /// <summary>
     /// Gets the current server difficulty setting.
     /// </summary>
     public GameDifficulty GameDifficulty
