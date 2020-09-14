@@ -120,25 +120,6 @@ namespace NWN.API
     public int MaxHP => NWScript.GetMaxHitPoints(this);
 
     /// <summary>
-    /// Rotates this object to face towards target.
-    /// </summary>
-    /// <param name="target">The target object to face.</param>
-    public async Task FaceToObject(NwGameObject target)
-    {
-      await FaceToPoint(target.Position);
-    }
-
-    /// <summary>
-    /// Rotates this object to face a position.
-    /// </summary>
-    /// <param name="point"></param>
-    public virtual async Task FaceToPoint(Vector3 point)
-    {
-      await WaitForObjectContext();
-      NWScript.SetFacingPoint(point);
-    }
-
-    /// <summary>
     /// Gets or sets this object's plot status.
     /// </summary>
     public bool PlotFlag
@@ -160,6 +141,43 @@ namespace NWN.API
         }
       }
     }
+
+    /// <summary>
+    /// Rotates this object to face towards target.
+    /// </summary>
+    /// <param name="target">The target object to face.</param>
+    public async Task FaceToObject(NwGameObject target)
+    {
+      await FaceToPoint(target.Position);
+    }
+
+    /// <summary>
+    /// Rotates this object to face a position.
+    /// </summary>
+    /// <param name="point"></param>
+    public virtual async Task FaceToPoint(Vector3 point)
+    {
+      await WaitForObjectContext();
+      NWScript.SetFacingPoint(point);
+    }
+
+    /// <summary>
+    /// Gets the color for the specified color channel.
+    /// </summary>
+    /// @note A chart of available colors can be found here: https://nwnlexicon.com/index.php?title=Color_Charts
+    /// <param name="colorChannel">The color channel that you want to get the color value of.</param>
+    /// <returns>The current color index value of the specified channel.</returns>
+    public int GetColor(ColorChannel colorChannel)
+      => NWScript.GetColor(this, (int) colorChannel);
+
+    /// <summary>
+    /// Sets the color for the specified color channel.
+    /// </summary>
+    /// @note A chart of available colors can be found here: https://nwnlexicon.com/index.php?title=Color_Charts
+    /// <param name="colorChannel">The color channel to modify.</param>
+    /// <param name="newColor">The color channel's new color index.</param>
+    public void SetColor(ColorChannel colorChannel, int newColor)
+      => NWScript.SetColor(this, (int) colorChannel, newColor);
 
     /// <summary>
     /// Plays the specified animation.

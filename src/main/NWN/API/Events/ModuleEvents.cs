@@ -1,3 +1,4 @@
+using System.Numerics;
 using NWN.API.Constants;
 using NWN.Core;
 
@@ -127,6 +128,32 @@ namespace NWN.API.Events
         callingChatHandlers = true;
         base.InvokeCallbacks();
         callingChatHandlers = false;
+      }
+    }
+
+    [ScriptEvent(EventScriptType.ModuleOnPlayerTarget)]
+    public sealed class OnPlayerTarget : Event<NwModule, OnPlayerTarget>
+    {
+      /// <summary>
+      /// The player that has targeted something.
+      /// </summary>
+      public NwPlayer Player { get; private set; }
+
+      /// <summary>
+      /// The object that has been targeted by <see cref="Player"/>, otherwise null if a position was selected.
+      /// </summary>
+      public NwGameObject TargetObject { get; private set; }
+
+      /// <summary>
+      /// The position targeted by the player.
+      /// </summary>
+      public Vector3 TargetPosition { get; private set; }
+
+      protected override void PrepareEvent(NwModule objSelf)
+      {
+        Player = NWScript.GetLastPlayerToSelectTarget().ToNwObject<NwPlayer>();
+        TargetObject = NWScript.GetTargetingModeSelectedObject().ToNwObject<NwGameObject>();
+        TargetPosition = NWScript.GetTargetingModeSelectedPosition();
       }
     }
 

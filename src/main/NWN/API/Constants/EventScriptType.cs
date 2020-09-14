@@ -22,6 +22,7 @@ namespace NWN.API.Constants
     ModuleOnEquipItem = NWScript.EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM,
     ModuleOnUnequipItem = NWScript.EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM,
     ModuleOnPlayerChat = NWScript.EVENT_SCRIPT_MODULE_ON_PLAYER_CHAT,
+    ModuleOnPlayerTarget = NWScript.EVENT_SCRIPT_MODULE_ON_PLAYER_TARGET,
     AreaOnHeartbeat = NWScript.EVENT_SCRIPT_AREA_ON_HEARTBEAT,
     AreaOnUserDefinedEvent = NWScript.EVENT_SCRIPT_AREA_ON_USER_DEFINED_EVENT,
     AreaOnEnter = NWScript.EVENT_SCRIPT_AREA_ON_ENTER,

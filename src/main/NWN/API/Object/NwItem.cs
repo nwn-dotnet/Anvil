@@ -74,6 +74,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets whether this item can be pickpocketed.
+    /// </summary>
+    public bool Pickpocketable
+    {
+      get => NWScript.GetPickpocketableFlag(this).ToBool();
+      set => NWScript.SetPickpocketableFlag(this, value.ToInt());
+    }
+
+    /// <summary>
     /// The GameObject that has this item in its inventory, otherwise null if it is on the ground, or not in any inventory.
     /// </summary>
     public NwGameObject Possessor

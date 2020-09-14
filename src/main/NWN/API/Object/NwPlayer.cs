@@ -13,27 +13,58 @@ namespace NWN.API
     /// <summary>
     /// Gets if this Player is a Dungeon Master.
     /// </summary>
-    public bool IsDM => NWScript.GetIsDM(ObjectId).ToBool();
+    public bool IsDM
+    {
+      get => NWScript.GetIsDM(ObjectId).ToBool();
+    }
+
+    /// <summary>
+    /// Gets if this player has DM privileges gained through a player login (as opposed to the DM client).
+    /// </summary>
+    public bool IsPlayerDM
+    {
+      get => NWScript.GetIsPlayerDM(this).ToBool();
+    }
 
     /// <summary>
     /// Gets the player's login name.
     /// </summary>
-    public string PlayerName => NWScript.GetPCPlayerName(this);
+    public string PlayerName
+    {
+      get => NWScript.GetPCPlayerName(this);
+    }
 
     /// <summary>
     /// Gets this player's client version (Major + Minor).
     /// </summary>
-    public Version ClientVersion => new Version(NWScript.GetPlayerBuildVersionMajor(this), NWScript.GetPlayerBuildVersionMinor(this));
+    public Version ClientVersion
+    {
+      get => new Version(NWScript.GetPlayerBuildVersionMajor(this), NWScript.GetPlayerBuildVersionMinor(this));
+    }
 
     /// <summary>
     /// Gets the public part of the CD key that this player used when logging in.
     /// </summary>
-    public string CDKey => NWScript.GetPCPublicCDKey(this, true.ToInt());
+    public string CDKey
+    {
+      get => NWScript.GetPCPublicCDKey(this, true.ToInt());
+    }
 
     /// <summary>
     /// Gets the connecting IP address for this player.
     /// </summary>
-    public string IPAddress => NWScript.GetPCIPAddress(this);
+    public string IPAddress
+    {
+      get => NWScript.GetPCIPAddress(this);
+    }
+
+    /// <summary>
+    /// Gets whether this player has connected to the server over a relay (instead of directly).
+    /// </summary>
+    public bool IsConnectionRelayed
+    {
+      get => NWScript.GetIsPlayerConnectionRelayed(this).ToBool();
+    }
 
     /// <summary>
     /// Adds this player to the specified party leader's party.
@@ -188,8 +219,8 @@ namespace NWN.API
     /// <param name="yPos">The y coordinate relative to anchor.</param>
     /// <param name="anchor">The screen anchor/origin point.</param>
     /// <param name="life">Duration to show this string in seconds.</param>
-    /// <param name="start">The starting color of this text.</param>
-    /// <param name="end">The color of the text to fade to as it nears the end of the lifetime.</param>
+    /// <param name="start">The starting color of this text. (default: white)</param>
+    /// <param name="end">The color of the text to fade to as it nears the end of the lifetime. (default: white)</param>
     /// <param name="id">An optional numeric ID for this string. If not set to 0, subsequent calls to PostString will remove the text with the same ID.</param>
     /// <param name="font">If specified, the message will be rendered with the specified font instead of the default console font.</param>
     public void PostString(string message, int xPos, int yPos, ScreenAnchor anchor, float life, Color? start = null, Color? end = null, int id = 0, string font = "")

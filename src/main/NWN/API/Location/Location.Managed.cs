@@ -39,6 +39,14 @@ namespace NWN.API
       get => (360 - Rotation) % 360;
     }
 
+    /// <summary>
+    /// Gets the z-offset for the walkmesh at this location.
+    /// </summary>
+    public float GroundHeight
+    {
+      get => NWScript.GetGroundHeight(this);
+    }
+
     private IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
       int typeFilter = (int) NwObject.GetObjectType<T>();
