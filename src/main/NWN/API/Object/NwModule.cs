@@ -12,9 +12,15 @@ namespace NWN.API
 
     public static readonly NwModule Instance = new NwModule(NWScript.GetModule());
 
-    public NwPlayer PCSpeaker => NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
+    public NwPlayer PCSpeaker
+    {
+      get => NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
+    }
 
-    public Spell SpellId => (Spell) NWScript.GetSpellId();
+    public Spell SpellId
+    {
+      get => (Spell) NWScript.GetSpellId();
+    }
 
     /// <summary>
     /// Gets or sets the XP scale for this module. Must be a value between 0-200.
@@ -80,6 +86,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the current server difficulty setting.
+    /// </summary>
+    public GameDifficulty GameDifficulty
+    {
+      get => (GameDifficulty) NWScript.GetGameDifficulty();
+    }
+
+    /// <summary>
     /// Finds the specified waypoint with the given tag.
     /// </summary>
     /// <param name="tag"></param>
@@ -89,7 +103,10 @@ namespace NWN.API
     /// <summary>
     /// Gets the starting location for new players.
     /// </summary>
-    public Location StartingLocation => NWScript.GetStartingLocation();
+    public Location StartingLocation
+    {
+      get => NWScript.GetStartingLocation();
+    }
 
     /// <summary>
     /// Gets the specified global campaign variable.
@@ -149,15 +166,18 @@ namespace NWN.API
     /// <param name="message">The message to send.</param>
     /// <param name="color">A color to apply to the message.</param>
     public void SendMessageToAllDMs(string message, Color color)
-    {
-      NWScript.SendMessageToAllDMs(message.ColorString(color));
-    }
+      => NWScript.SendMessageToAllDMs(message.ColorString(color));
 
     /// <inheritdoc cref="SendMessageToAllDMs(string,NWN.API.Color)"/>
     public void SendMessageToAllDMs(string message)
-    {
-      NWScript.SendMessageToAllDMs(message);
-    }
+      => NWScript.SendMessageToAllDMs(message);
+
+    /// <summary>
+    /// Ends the current running game, plays the specified movie then returns all players to the main menu.
+    /// </summary>
+    /// <param name="endMovie">The filename of the movie to play, without file extension.</param>
+    public void EndGame(string endMovie)
+      => NWScript.EndGame(endMovie);
 
     /// <summary>
     /// Makes all online PCs load a new texture instead of another.

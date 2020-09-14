@@ -70,6 +70,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets whether this object is in a conversation.
+    /// </summary>
+    public bool IsInConversation
+    {
+      get => NWScript.IsInConversation(this).ToBool();
+    }
+
+    /// <summary>
     /// Returns the distance to the target. <br/>
     /// If you only need to compare the distance, you can compare the squared distance using <see cref="SqrDistanceToObject"/>. (calculating squared distance is faster)
     /// </summary>

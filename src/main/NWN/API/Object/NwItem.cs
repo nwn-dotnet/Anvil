@@ -15,7 +15,9 @@ namespace NWN.API
     /// Gets the original unidentified description for this item.
     /// </summary>
     public string OriginalUnidentifiedDescription
-      => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
+    {
+      get => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
+    }
 
     /// <summary>
     /// Gets or sets the unidentified description for this item.

@@ -67,6 +67,27 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the members in this player's party.
+    /// </summary>
+    public IEnumerable<NwPlayer> PartyMembers
+    {
+      get
+      {
+        for (uint member = NWScript.GetFirstFactionMember(this); member != INVALID; member = NWScript.GetNextFactionMember(this))
+        {
+          yield return member.ToNwObject<NwPlayer>();
+        }
+      }
+    }
+
+    /// <summary>
+    /// Boots this player from the server.
+    /// </summary>
+    /// <param name="reason">An optional message to show to the player.</param>
+    public void BootPlayer(string reason = "")
+      => NWScript.BootPC(this, reason);
+
+    /// <summary>
     /// Adds this player to the specified party leader's party.
     /// </summary>
     /// <param name="partyLeader">The party leader of the party to join.</param>
@@ -86,20 +107,6 @@ namespace NWN.API
     /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
     public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
       => CampaignVariable<T>.Create(campaign, name, this);
-
-    /// <summary>
-    /// Gets the members in this player's party.
-    /// </summary>
-    public IEnumerable<NwPlayer> PartyMembers
-    {
-      get
-      {
-        for (uint member = NWScript.GetFirstFactionMember(this); member != INVALID; member = NWScript.GetNextFactionMember(this))
-        {
-          yield return member.ToNwObject<NwPlayer>();
-        }
-      }
-    }
 
     /// <summary>
     /// Sends a server message to this player.

@@ -324,6 +324,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets whether this creature has a specific immunity.
+    /// </summary>
+    /// <param name="immunityType">The immunity type to check.</param>
+    /// <param name="verses">If specified, the race and alignment of verses will be considered when determining immunities.</param>
+    /// <returns>True if the creature has the specified immunity, otherwise false.</returns>
+    public bool IsImmuneTo(ImmunityType immunityType, NwGameObject verses = null)
+      => NWScript.GetIsImmune(this, (int) immunityType, verses).ToBool();
+
+      /// <summary>
     /// Gives gold to this creature.
     /// </summary>
     /// <param name="amount">The amount of gold to give.</param>
