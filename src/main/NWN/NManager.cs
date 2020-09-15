@@ -106,6 +106,7 @@ namespace NWN
     {
       serviceManager?.Dispose();
       serviceManager = null;
+      LogManager.Shutdown();
     }
 
     void IGameManager.OnMainLoop(ulong frame)
