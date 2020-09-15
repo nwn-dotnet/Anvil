@@ -7,6 +7,7 @@ var classNWN_1_1API_1_1NwItem =
     [ "Create", "classNWN_1_1API_1_1NwItem.html#ad800910fe3916e64433bc460393d0513", null ],
     [ "GetSpellCastItem", "classNWN_1_1API_1_1NwItem.html#aabfe01d28dc9e8ad60e98b06d40df379", null ],
     [ "BaseItemType", "classNWN_1_1API_1_1NwItem.html#afb743db1a6b4c22c6d23d695ef3d49a8", null ],
+    [ "CursedFlag", "classNWN_1_1API_1_1NwItem.html#abec193a20012dff5c29153dddfc75991", null ],
     [ "Droppable", "classNWN_1_1API_1_1NwItem.html#a883469f9bc770e79a17eb627168c9ff3", null ],
     [ "GoldValue", "classNWN_1_1API_1_1NwItem.html#a7e46619fd7f98a65576577373f0c2982", null ],
     [ "Identified", "classNWN_1_1API_1_1NwItem.html#a52fca213657499909b39d11dce7ff64c", null ],

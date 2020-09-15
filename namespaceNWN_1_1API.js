@@ -17,6 +17,7 @@ var namespaceNWN_1_1API =
     [ "LocalVariableConverterAttribute", "classNWN_1_1API_1_1LocalVariableConverterAttribute.html", "classNWN_1_1API_1_1LocalVariableConverterAttribute" ],
     [ "Location", "classNWN_1_1API_1_1Location.html", "classNWN_1_1API_1_1Location" ],
     [ "MonsterHitEffect", "structNWN_1_1API_1_1MonsterHitEffect.html", "structNWN_1_1API_1_1MonsterHitEffect" ],
+    [ "NativeScript", "classNWN_1_1API_1_1NativeScript.html", "classNWN_1_1API_1_1NativeScript" ],
     [ "NwArea", "classNWN_1_1API_1_1NwArea.html", "classNWN_1_1API_1_1NwArea" ],
     [ "NwAreaOfEffect", "classNWN_1_1API_1_1NwAreaOfEffect.html", null ],
     [ "NwCreature", "classNWN_1_1API_1_1NwCreature.html", "classNWN_1_1API_1_1NwCreature" ],

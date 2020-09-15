@@ -377,7 +377,6 @@ var hierarchy =
     [ "NWN.Services.InstallerInfo", "classNWN_1_1Services_1_1InstallerInfo.html", null ],
     [ "NWN.API.IntegerExtensions", "classNWN_1_1API_1_1IntegerExtensions.html", null ],
     [ "NWN.Internal", "classNWN_1_1Internal.html", null ],
-    [ "NWN.Services.Interop", "classNWN_1_1Services_1_1Interop.html", null ],
     [ "NWN.Services.IScriptDispatcher", "interfaceNWN_1_1Services_1_1IScriptDispatcher.html", [
       [ "NWN.Services.EventService", "classNWN_1_1Services_1_1EventService.html", null ]
     ] ],
@@ -397,6 +396,7 @@ var hierarchy =
     [ "NWN.Services.LoopTimeService", "classNWN_1_1Services_1_1LoopTimeService.html", null ],
     [ "NWN.API.Events.ModuleEvents", "classNWN_1_1API_1_1Events_1_1ModuleEvents.html", null ],
     [ "NWN.API.MonsterHitEffect", "structNWN_1_1API_1_1MonsterHitEffect.html", null ],
+    [ "NWN.API.NativeScript", "classNWN_1_1API_1_1NativeScript.html", null ],
     [ "NWN.Services.NwDateTime", "structNWN_1_1Services_1_1NwDateTime.html", null ],
     [ "NWN.API.NwObject", "classNWN_1_1API_1_1NwObject.html", [
       [ "NWN.API.NwArea", "classNWN_1_1API_1_1NwArea.html", null ],

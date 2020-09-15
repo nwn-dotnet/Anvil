@@ -166,6 +166,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:af8cde1180fa89713242f00b074afda62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a message on this player's screen. <br  />
  The message is always displayed on top of whatever is on the screen, including UI elements.  <a href="classNWN_1_1API_1_1NwPlayer.html#af8cde1180fa89713242f00b074afda62">More...</a><br /></td></tr>
 <tr class="separator:af8cde1180fa89713242f00b074afda62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96dae8e2924fb8a86d94627707ab8228"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#a96dae8e2924fb8a86d94627707ab8228">EnterTargetingMode</a> (ObjectType validObjectTypes, MouseCursor mouseCursor=MouseCursor.Magic, MouseCursor badTargetCursor=MouseCursor.NoMagic)</td></tr>
+<tr class="memdesc:a96dae8e2924fb8a86d94627707ab8228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes this player enter a targeting mode, letting them select an object as a target.<br  />
+ If this player selects a target, it will trigger a <a class="el" href="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">NWN.API.Events.ModuleEvents.OnPlayerTarget</a> event.<br  />
+ Use the <a class="el" href="classNWN_1_1Services_1_1EventService.html">NWN.Services.EventService</a> to add a listener for this event, and get the player's selection.  <a href="classNWN_1_1API_1_1NwPlayer.html#a96dae8e2924fb8a86d94627707ab8228">More...</a><br /></td></tr>
+<tr class="separator:a96dae8e2924fb8a86d94627707ab8228"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwCreature"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwCreature')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwCreature.html">NWN.API.NwCreature</a></td></tr>
 <tr class="memitem:ac5d394fe80a48b2979b478ff8f375efe inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ac5d394fe80a48b2979b478ff8f375efe">IsImmuneTo</a> (ImmunityType immunityType, <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> verses=null)</td></tr>
 <tr class="memdesc:ac5d394fe80a48b2979b478ff8f375efe inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature has a specific immunity.  <a href="classNWN_1_1API_1_1NwCreature.html#ac5d394fe80a48b2979b478ff8f375efe">More...</a><br /></td></tr>
@@ -291,12 +296,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a98976c519843f390fbded268f565fb59 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a98976c519843f390fbded268f565fb59">IsEnemy</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> target)</td></tr>
 <tr class="memdesc:a98976c519843f390fbded268f565fb59 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this creature considers the target an enemy.  <a href="classNWN_1_1API_1_1NwCreature.html#a98976c519843f390fbded268f565fb59">More...</a><br /></td></tr>
 <tr class="separator:a98976c519843f390fbded268f565fb59 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6f42c975b9660d298fee27b288168d0 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">SpellSchool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ab6f42c975b9660d298fee27b288168d0">GetSpecialization</a> (ClassType classType=ClassType.Wizard)</td></tr>
+<tr class="memdesc:ab6f42c975b9660d298fee27b288168d0 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this creature's spell school specialization in the specified class.<br  />
+ Unless custom content is used, only Wizards have spell schools.  <a href="classNWN_1_1API_1_1NwCreature.html#ab6f42c975b9660d298fee27b288168d0">More...</a><br /></td></tr>
+<tr class="separator:ab6f42c975b9660d298fee27b288168d0 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaef18238084128deabc26c79f3d0ccd0 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; Domain &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#aaef18238084128deabc26c79f3d0ccd0">GetClassDomains</a> (ClassType classType=ClassType.Cleric)</td></tr>
 <tr class="memdesc:aaef18238084128deabc26c79f3d0ccd0 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this creature's domains in the specified class. Unless custom content is used, only clerics have domains.  <a href="classNWN_1_1API_1_1NwCreature.html#aaef18238084128deabc26c79f3d0ccd0">More...</a><br /></td></tr>
 <tr class="separator:aaef18238084128deabc26c79f3d0ccd0 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4147d069795e27fb4dda4f5fba80d5b6 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a4147d069795e27fb4dda4f5fba80d5b6">SetActionMode</a> (ActionMode actionMode, bool status)</td></tr>
 <tr class="memdesc:a4147d069795e27fb4dda4f5fba80d5b6 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this creature to enable/disable the specified action mode (parry, power attack, expertise, etc)  <a href="classNWN_1_1API_1_1NwCreature.html#a4147d069795e27fb4dda4f5fba80d5b6">More...</a><br /></td></tr>
 <tr class="separator:a4147d069795e27fb4dda4f5fba80d5b6 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22fea4250a1b791ea6e75a9d27209a84 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a22fea4250a1b791ea6e75a9d27209a84">ForceRest</a> ()</td></tr>
+<tr class="memdesc:a22fea4250a1b791ea6e75a9d27209a84 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantly gives this creature the benefits of a rest (restored hitpoints, spells, feats, etc...)  <a href="classNWN_1_1API_1_1NwCreature.html#a22fea4250a1b791ea6e75a9d27209a84">More...</a><br /></td></tr>
+<tr class="separator:a22fea4250a1b791ea6e75a9d27209a84 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NWN.API.NwGameObject</a></td></tr>
 <tr class="memitem:ae7378a62afea54a9953c65f37635f263 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ae7378a62afea54a9953c65f37635f263">DistanceToObject</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:ae7378a62afea54a9953c65f37635f263 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance to the target. <br  />
@@ -417,6 +429,29 @@ Properties</h2></td></tr>
 <tr class="memdesc:a3f848f6b4521a7b02bd1b9fa7e1bf396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the members in this player's party.  <a href="classNWN_1_1API_1_1NwPlayer.html#a3f848f6b4521a7b02bd1b9fa7e1bf396">More...</a><br /></td></tr>
 <tr class="separator:a3f848f6b4521a7b02bd1b9fa7e1bf396"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classNWN_1_1API_1_1NwCreature"><td colspan="2" onclick="javascript:toggleInherit('properties_classNWN_1_1API_1_1NwCreature')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classNWN_1_1API_1_1NwCreature.html">NWN.API.NwCreature</a></td></tr>
+<tr class="memitem:a10fad5bfc41d505e4694b94282be2f4c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a10fad5bfc41d505e4694b94282be2f4c">Deity</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a10fad5bfc41d505e4694b94282be2f4c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the name of this creature's deity.  <a href="classNWN_1_1API_1_1NwCreature.html#a10fad5bfc41d505e4694b94282be2f4c">More...</a><br /></td></tr>
+<tr class="separator:a10fad5bfc41d505e4694b94282be2f4c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc66807381113a79d89a3237ce4f9f1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#affc66807381113a79d89a3237ce4f9f1">SubRace</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:affc66807381113a79d89a3237ce4f9f1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the name of this creature's sub-race.  <a href="classNWN_1_1API_1_1NwCreature.html#affc66807381113a79d89a3237ce4f9f1">More...</a><br /></td></tr>
+<tr class="separator:affc66807381113a79d89a3237ce4f9f1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb7ee7dc3a7875062dedbef736a8c98d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">Phenotype&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#adb7ee7dc3a7875062dedbef736a8c98d">Phenotype</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:adb7ee7dc3a7875062dedbef736a8c98d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets this creature's currently set Phenotype (body type).  <a href="classNWN_1_1API_1_1NwCreature.html#adb7ee7dc3a7875062dedbef736a8c98d">More...</a><br /></td></tr>
+<tr class="separator:adb7ee7dc3a7875062dedbef736a8c98d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4821c39d3d5a4482dee0ee73ab1d868f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a4821c39d3d5a4482dee0ee73ab1d868f">Xp</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a4821c39d3d5a4482dee0ee73ab1d868f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the total experience points for this creature, taking/granting levels based on progression.  <a href="classNWN_1_1API_1_1NwCreature.html#a4821c39d3d5a4482dee0ee73ab1d868f">More...</a><br /></td></tr>
+<tr class="separator:a4821c39d3d5a4482dee0ee73ab1d868f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a533e9128b4c2b97383134d59b5d5faae inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a533e9128b4c2b97383134d59b5d5faae">Commandable</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a533e9128b4c2b97383134d59b5d5faae inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this creature's action queue can be modified.  <a href="classNWN_1_1API_1_1NwCreature.html#a533e9128b4c2b97383134d59b5d5faae">More...</a><br /></td></tr>
+<tr class="separator:a533e9128b4c2b97383134d59b5d5faae inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa248fee4257e8620dc2c6c38446ce95f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#aa248fee4257e8620dc2c6c38446ce95f">Lootable</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aa248fee4257e8620dc2c6c38446ce95f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this creature will leave a lootable corpse on death.<br  />
+ This flag must be set while the creature is alive. Players are not supported.  <a href="classNWN_1_1API_1_1NwCreature.html#aa248fee4257e8620dc2c6c38446ce95f">More...</a><br /></td></tr>
+<tr class="separator:aa248fee4257e8620dc2c6c38446ce95f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92cc2007238caadf02f6859ffab1c0f9 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a92cc2007238caadf02f6859ffab1c0f9">Immortal</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a92cc2007238caadf02f6859ffab1c0f9 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this creature is immortal.<br  />
+ An immortal creature still takes damage, but cannot be killed.  <a href="classNWN_1_1API_1_1NwCreature.html#a92cc2007238caadf02f6859ffab1c0f9">More...</a><br /></td></tr>
+<tr class="separator:a92cc2007238caadf02f6859ffab1c0f9 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40bf75941fb2d4db702de027d942bb38 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a40bf75941fb2d4db702de027d942bb38">IsDead</a><code> [get]</code></td></tr>
 <tr class="memdesc:a40bf75941fb2d4db702de027d942bb38 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this creature is a dead NPC, dead PC, or dying PC.  <a href="classNWN_1_1API_1_1NwCreature.html#a40bf75941fb2d4db702de027d942bb38">More...</a><br /></td></tr>
 <tr class="separator:a40bf75941fb2d4db702de027d942bb38 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -429,6 +464,9 @@ Properties</h2></td></tr>
 <tr class="memitem:acde192f8f93639bee25e4997895d9e9a inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">Gender&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#acde192f8f93639bee25e4997895d9e9a">Gender</a><code> [get]</code></td></tr>
 <tr class="memdesc:acde192f8f93639bee25e4997895d9e9a inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the gender of this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#acde192f8f93639bee25e4997895d9e9a">More...</a><br /></td></tr>
 <tr class="separator:acde192f8f93639bee25e4997895d9e9a inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c202146bdd4583d9e2bb026bc44b733 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">AssociateType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a8c202146bdd4583d9e2bb026bc44b733">AssociateType</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8c202146bdd4583d9e2bb026bc44b733 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the associate type of this creature, otherwise returns NWN.API.Constants.AssociateType.None if this creature is not an associate of anyone.  <a href="classNWN_1_1API_1_1NwCreature.html#a8c202146bdd4583d9e2bb026bc44b733">More...</a><br /></td></tr>
+<tr class="separator:a8c202146bdd4583d9e2bb026bc44b733 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5927dc868a11b2debf183d05c98534f2 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a5927dc868a11b2debf183d05c98534f2">IsResting</a><code> [get]</code></td></tr>
 <tr class="memdesc:a5927dc868a11b2debf183d05c98534f2 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature is currently resting.  <a href="classNWN_1_1API_1_1NwCreature.html#a5927dc868a11b2debf183d05c98534f2">More...</a><br /></td></tr>
 <tr class="separator:a5927dc868a11b2debf183d05c98534f2 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -441,21 +479,15 @@ Properties</h2></td></tr>
 <tr class="memitem:a1cfdbe2f1eacac85b038a514c1de192f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a1cfdbe2f1eacac85b038a514c1de192f">AC</a><code> [get]</code></td></tr>
 <tr class="memdesc:a1cfdbe2f1eacac85b038a514c1de192f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this creature's armour class.  <a href="classNWN_1_1API_1_1NwCreature.html#a1cfdbe2f1eacac85b038a514c1de192f">More...</a><br /></td></tr>
 <tr class="separator:a1cfdbe2f1eacac85b038a514c1de192f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c6f7d888001874810165663fa6cfbd1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a5c6f7d888001874810165663fa6cfbd1">BaseAttackBonus</a><code> [get]</code></td></tr>
+<tr class="memdesc:a5c6f7d888001874810165663fa6cfbd1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Base Attack Bonus for this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a5c6f7d888001874810165663fa6cfbd1">More...</a><br /></td></tr>
+<tr class="separator:a5c6f7d888001874810165663fa6cfbd1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad065208860509725c86f3aa8987714ce inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ad065208860509725c86f3aa8987714ce">Age</a><code> [get]</code></td></tr>
 <tr class="memdesc:ad065208860509725c86f3aa8987714ce inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this creature's age, in years.  <a href="classNWN_1_1API_1_1NwCreature.html#ad065208860509725c86f3aa8987714ce">More...</a><br /></td></tr>
 <tr class="separator:ad065208860509725c86f3aa8987714ce inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a164fc85c36095dcff55b15a4f553f0 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">CreatureSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a3a164fc85c36095dcff55b15a4f553f0">Size</a><code> [get]</code></td></tr>
 <tr class="memdesc:a3a164fc85c36095dcff55b15a4f553f0 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a3a164fc85c36095dcff55b15a4f553f0">More...</a><br /></td></tr>
 <tr class="separator:a3a164fc85c36095dcff55b15a4f553f0 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10fad5bfc41d505e4694b94282be2f4c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a10fad5bfc41d505e4694b94282be2f4c">Deity</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a10fad5bfc41d505e4694b94282be2f4c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the name of this creature's deity.  <a href="classNWN_1_1API_1_1NwCreature.html#a10fad5bfc41d505e4694b94282be2f4c">More...</a><br /></td></tr>
-<tr class="separator:a10fad5bfc41d505e4694b94282be2f4c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affc66807381113a79d89a3237ce4f9f1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#affc66807381113a79d89a3237ce4f9f1">SubRace</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:affc66807381113a79d89a3237ce4f9f1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the name of this creature's sub-race.  <a href="classNWN_1_1API_1_1NwCreature.html#affc66807381113a79d89a3237ce4f9f1">More...</a><br /></td></tr>
-<tr class="separator:affc66807381113a79d89a3237ce4f9f1 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb7ee7dc3a7875062dedbef736a8c98d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">Phenotype&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#adb7ee7dc3a7875062dedbef736a8c98d">Phenotype</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:adb7ee7dc3a7875062dedbef736a8c98d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets this creature's currently set Phenotype (body type).  <a href="classNWN_1_1API_1_1NwCreature.html#adb7ee7dc3a7875062dedbef736a8c98d">More...</a><br /></td></tr>
-<tr class="separator:adb7ee7dc3a7875062dedbef736a8c98d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0df9265a9b7d7f7b8e6879aa0e2cece6 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a0df9265a9b7d7f7b8e6879aa0e2cece6">ChallengeRating</a><code> [get]</code></td></tr>
 <tr class="memdesc:a0df9265a9b7d7f7b8e6879aa0e2cece6 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the calculated challenge rating for this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a0df9265a9b7d7f7b8e6879aa0e2cece6">More...</a><br /></td></tr>
 <tr class="separator:a0df9265a9b7d7f7b8e6879aa0e2cece6 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -492,12 +524,9 @@ Properties</h2></td></tr>
 <tr class="memitem:af3cbb36a1fc3dcb7d21fecfe387d3c29 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#af3cbb36a1fc3dcb7d21fecfe387d3c29">Level</a><code> [get]</code></td></tr>
 <tr class="memdesc:af3cbb36a1fc3dcb7d21fecfe387d3c29 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Hit Dice/Level of this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#af3cbb36a1fc3dcb7d21fecfe387d3c29">More...</a><br /></td></tr>
 <tr class="separator:af3cbb36a1fc3dcb7d21fecfe387d3c29 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4821c39d3d5a4482dee0ee73ab1d868f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a4821c39d3d5a4482dee0ee73ab1d868f">Xp</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a4821c39d3d5a4482dee0ee73ab1d868f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the total experience points for this creature, taking/granting levels based on progression.  <a href="classNWN_1_1API_1_1NwCreature.html#a4821c39d3d5a4482dee0ee73ab1d868f">More...</a><br /></td></tr>
-<tr class="separator:a4821c39d3d5a4482dee0ee73ab1d868f inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a533e9128b4c2b97383134d59b5d5faae inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a533e9128b4c2b97383134d59b5d5faae">Commandable</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a533e9128b4c2b97383134d59b5d5faae inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this creature's action queue can be modified.  <a href="classNWN_1_1API_1_1NwCreature.html#a533e9128b4c2b97383134d59b5d5faae">More...</a><br /></td></tr>
-<tr class="separator:a533e9128b4c2b97383134d59b5d5faae inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25426189967ef74bcc8e15f8a3c7929b inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a25426189967ef74bcc8e15f8a3c7929b">Disarmable</a><code> [get]</code></td></tr>
+<tr class="memdesc:a25426189967ef74bcc8e15f8a3c7929b inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature can be disarmed (checks disarm flag on creature, and if the creature actually has a weapon equipped in their right hand that is droppable)  <a href="classNWN_1_1API_1_1NwCreature.html#a25426189967ef74bcc8e15f8a3c7929b">More...</a><br /></td></tr>
+<tr class="separator:a25426189967ef74bcc8e15f8a3c7929b inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6566151afa75c151a1c1c87e0cd6b1c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">IReadOnlyList&lt; ClassType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ac6566151afa75c151a1c1c87e0cd6b1c">Classes</a><code> [get]</code></td></tr>
 <tr class="memdesc:ac6566151afa75c151a1c1c87e0cd6b1c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this creature's classes.  <a href="classNWN_1_1API_1_1NwCreature.html#ac6566151afa75c151a1c1c87e0cd6b1c">More...</a><br /></td></tr>
 <tr class="separator:ac6566151afa75c151a1c1c87e0cd6b1c inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -747,6 +776,52 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">texName</td><td>The name of the original texture.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a96dae8e2924fb8a86d94627707ab8228"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96dae8e2924fb8a86d94627707ab8228">&#9670;&nbsp;</a></span>EnterTargetingMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwPlayer.EnterTargetingMode </td>
+          <td>(</td>
+          <td class="paramtype">ObjectType&#160;</td>
+          <td class="paramname"><em>validObjectTypes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MouseCursor&#160;</td>
+          <td class="paramname"><em>mouseCursor</em> = <code>MouseCursor.Magic</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MouseCursor&#160;</td>
+          <td class="paramname"><em>badTargetCursor</em> = <code>MouseCursor.NoMagic</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Makes this player enter a targeting mode, letting them select an object as a target.<br  />
+ If this player selects a target, it will trigger a <a class="el" href="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">NWN.API.Events.ModuleEvents.OnPlayerTarget</a> event.<br  />
+ Use the <a class="el" href="classNWN_1_1Services_1_1EventService.html">NWN.Services.EventService</a> to add a listener for this event, and get the player's selection. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">validObjectTypes</td><td>The type of objects that the player can select.</td></tr>
+    <tr><td class="paramname">mouseCursor</td><td>The cursor to display if the player is hovering over a valid selection.</td></tr>
+    <tr><td class="paramname">badTargetCursor</td><td>The cursor to display if the player is hovering over an invalid selection.</td></tr>
   </table>
   </dd>
 </dl>

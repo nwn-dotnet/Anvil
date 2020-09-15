@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quickbarslot_532',['QuickBarSlot',['../structNWNX_1_1API_1_1QuickBarSlot.html',1,'NWNX::API']]]
+  ['quickbarslot_541',['QuickBarSlot',['../structNWNX_1_1API_1_1QuickBarSlot.html',1,'NWNX::API']]]
 ];

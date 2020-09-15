@@ -15,6 +15,7 @@ var classNWN_1_1API_1_1NwModule =
     [ "DamageBonusLimit", "classNWN_1_1API_1_1NwModule.html#a12dc3dddbd3cc4cf865488f31f28691c", null ],
     [ "GameDifficulty", "classNWN_1_1API_1_1NwModule.html#ac90eca988214874c450a5e2ba9ff2240", null ],
     [ "GetAbilityBonusLimit", "classNWN_1_1API_1_1NwModule.html#aa657bf94349095c15603fa69f3a80998", null ],
+    [ "MaxHenchmen", "classNWN_1_1API_1_1NwModule.html#afe18eef01e7bb12860c9f3b472ef6e5a", null ],
     [ "PCSpeaker", "classNWN_1_1API_1_1NwModule.html#aebcf7e28e1beac7db6e0b827edc4fb4c", null ],
     [ "Players", "classNWN_1_1API_1_1NwModule.html#a646b2c2904f7a1ecea8a55f7cf1c3048", null ],
     [ "SavingThrowBonusLimit", "classNWN_1_1API_1_1NwModule.html#a8bac15895463e6cf8f87fbcdae1c4628", null ],

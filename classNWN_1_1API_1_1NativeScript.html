@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NWN.Managed: NWN.Services.Interop Class Reference</title>
+<title>NWN.Managed: NWN.API.NativeScript Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('classNWN_1_1Services_1_1Interop.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classNWN_1_1API_1_1NativeScript.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,28 +83,24 @@ $(document).ready(function(){initNavTree('classNWN_1_1Services_1_1Interop.html',
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="classNWN_1_1Services_1_1Interop-members.html">List of all members</a>  </div>
+<a href="classNWN_1_1API_1_1NativeScript-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">NWN.Services.Interop Class Reference</div>  </div>
+<div class="title">NWN.API.NativeScript Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8b1fc75239d4ba4f505836e8d19131cb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1Interop.html#a8b1fc75239d4ba4f505836e8d19131cb">ExecuteNss</a> (string scriptName, <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> target=null)</td></tr>
-<tr class="memdesc:a8b1fc75239d4ba4f505836e8d19131cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the specified target object execute scriptName and then returns execution to the calling script. If scriptName does not specify a compiled script, nothing happens.  <a href="classNWN_1_1Services_1_1Interop.html#a8b1fc75239d4ba4f505836e8d19131cb">More...</a><br /></td></tr>
-<tr class="separator:a8b1fc75239d4ba4f505836e8d19131cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cd9164bbe0d1d800ed2cc52ad2ea69e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1Interop.html#a5cd9164bbe0d1d800ed2cc52ad2ea69e">ExecuteNssMethod</a> (string scriptName, string function, <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> target, params object[] parameters)</td></tr>
-<tr class="memdesc:a5cd9164bbe0d1d800ed2cc52ad2ea69e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the specified NWScript function.<br  />
- This interop requires a JIT compile, and is very slow.  <a href="classNWN_1_1Services_1_1Interop.html#a5cd9164bbe0d1d800ed2cc52ad2ea69e">More...</a><br /></td></tr>
-<tr class="separator:a5cd9164bbe0d1d800ed2cc52ad2ea69e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab64ac9d636196bb29c079be34d657ac9"><td class="memItemLeft" align="right" valign="top"><a id="ab64ac9d636196bb29c079be34d657ac9"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteNssChunk</b> (string source, bool wrapIntoMain=true, <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> target=null)</td></tr>
-<tr class="separator:ab64ac9d636196bb29c079be34d657ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae19cdad3d2f77042c41bf7a071ab9330"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NativeScript.html#ae19cdad3d2f77042c41bf7a071ab9330">Execute</a> (string scriptName, <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> target, params(string paramName, string paramValue)[] scriptParams)</td></tr>
+<tr class="memdesc:ae19cdad3d2f77042c41bf7a071ab9330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the specified <a class="el" href="namespaceNWN.html">NWN</a> script. If scriptName does not specify a compiled script, nothing happens.  <a href="classNWN_1_1API_1_1NativeScript.html#ae19cdad3d2f77042c41bf7a071ab9330">More...</a><br /></td></tr>
+<tr class="separator:ae19cdad3d2f77042c41bf7a071ab9330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abecb6ef145cfa2ed142afb566fe3e6ee"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NativeScript.html#abecb6ef145cfa2ed142afb566fe3e6ee">Execute</a> (string scriptName, params(string paramName, string paramValue)[] scriptParams)</td></tr>
+<tr class="memdesc:abecb6ef145cfa2ed142afb566fe3e6ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the specified target object execute scriptName and then returns execution to the calling script. If scriptName does not specify a compiled script, nothing happens.  <a href="classNWN_1_1API_1_1NativeScript.html#abecb6ef145cfa2ed142afb566fe3e6ee">More...</a><br /></td></tr>
+<tr class="separator:abecb6ef145cfa2ed142afb566fe3e6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8b1fc75239d4ba4f505836e8d19131cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b1fc75239d4ba4f505836e8d19131cb">&#9670;&nbsp;</a></span>ExecuteNss()</h2>
+<a id="ae19cdad3d2f77042c41bf7a071ab9330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae19cdad3d2f77042c41bf7a071ab9330">&#9670;&nbsp;</a></span>Execute() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -113,54 +109,10 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteNssChun
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void NWN.Services.Interop.ExecuteNss </td>
+          <td class="memname">static void NWN.API.NativeScript.Execute </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>scriptName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a>&#160;</td>
-          <td class="paramname"><em>target</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Makes the specified target object execute scriptName and then returns execution to the calling script. If scriptName does not specify a compiled script, nothing happens. </p>
-
-</div>
-</div>
-<a id="a5cd9164bbe0d1d800ed2cc52ad2ea69e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cd9164bbe0d1d800ed2cc52ad2ea69e">&#9670;&nbsp;</a></span>ExecuteNssMethod()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void NWN.Services.Interop.ExecuteNssMethod </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>scriptName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>function</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -171,8 +123,8 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteNssChun
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">params object[]&#160;</td>
-          <td class="paramname"><em>parameters</em>&#160;</td>
+          <td class="paramtype">params(string paramName, string paramValue)[]&#160;</td>
+          <td class="paramname"><em>scriptParams</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -187,27 +139,57 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteNssChun
 </table>
 </div><div class="memdoc">
 
-<p>Executes the specified NWScript function.<br  />
- This interop requires a JIT compile, and is very slow. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">scriptName</td><td>The script containing the function.</td></tr>
-    <tr><td class="paramname">function</td><td>The function to call.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Executes the specified <a class="el" href="namespaceNWN.html">NWN</a> script. If scriptName does not specify a compiled script, nothing happens. </p>
+
+</div>
+</div>
+<a id="abecb6ef145cfa2ed142afb566fe3e6ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abecb6ef145cfa2ed142afb566fe3e6ee">&#9670;&nbsp;</a></span>Execute() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void NWN.API.NativeScript.Execute </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>scriptName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params(string paramName, string paramValue)[]&#160;</td>
+          <td class="paramname"><em>scriptParams</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Makes the specified target object execute scriptName and then returns execution to the calling script. If scriptName does not specify a compiled script, nothing happens. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/main/NWN/Services/Interop/Interop.cs</li>
+<li>src/main/NWN/API/Interop/NativeScript.cs</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespaceNWN.html">NWN</a></li><li class="navelem"><a class="el" href="namespaceNWN_1_1Services.html">Services</a></li><li class="navelem"><a class="el" href="classNWN_1_1Services_1_1Interop.html">Interop</a></li>
+    <li class="navelem"><a class="el" href="namespaceNWN.html">NWN</a></li><li class="navelem"><a class="el" href="namespaceNWN_1_1API.html">API</a></li><li class="navelem"><a class="el" href="classNWN_1_1API_1_1NativeScript.html">NativeScript</a></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

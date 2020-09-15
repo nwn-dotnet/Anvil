@@ -87,33 +87,29 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a>NWN.Managed is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. It is a managed implementation of <a href="https://github.com/nwn-dotnet/NWN.Core">NWN.Core</a>.</p>
 <h1>Getting Started</h1>
-<h3>Dependencies</h3>
-<p>NWN.Managed requires the following plugins to be enabled in <a class="el" href="namespaceNWNX.html">NWNX</a> in-order to run: </p><div class="fragment"><div class="line">NWNX_DOTNET_SKIP=n</div>
+<h3>Running NWN.Managed</h3>
+<ol type="1">
+<li>Download the latest <a href="https://github.com/nwn-dotnet/NWN.Managed/releases">Release</a> for your server version.</li>
+<li>Extract the Binaries to a folder accessible by the server.</li>
+<li>Configure <a class="el" href="namespaceNWNX.html">NWNX</a> options to the following:</li>
+</ol>
+<div class="fragment"><div class="line">NWNX_DOTNET_SKIP=n</div>
 <div class="line">NWNX_OBJECT_SKIP=n</div>
 <div class="line">NWNX_UTIL_SKIP=n</div>
-</div><!-- fragment --><p>Other plugins are optional, but may be required to access some extension APIs. An exception will be raised if you try to use an extension without the dependent plugin loaded.</p>
-<h3>Bootstrap</h3>
-<p>To initialize the managed system, add a small bootstrap class like the following:</p>
-<div class="fragment"><div class="line">using System;</div>
-<div class="line"> </div>
-<div class="line">namespace NWN</div>
-<div class="line">{</div>
-<div class="line">  public static class Internal</div>
-<div class="line">  {</div>
-<div class="line">    public static int Bootstrap(IntPtr arg, int argLength)</div>
-<div class="line">    {</div>
-<div class="line">      return NManager.Init(arg, argLength);</div>
-<div class="line">    }</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-</div><!-- fragment --><p>The class path should match the <code>ENTRYPOINT</code> environmental variable as defined in the <a href="https://nwnxee.github.io/unified/group__dotnet.html#dotnet">NWNX:EE config</a>. By default this is <code><a class="el" href="classNWN_1_1Internal.html">NWN.Internal</a></code>.</p>
-<h1>Services</h1>
-<p>The core of NWN.Managed is built around a dependency injection model, and the system expects you to implement features in a similar way. Using a class attribute, the system will automatically wire up all of the dependencies for that class as defined in its constructor:</p>
+<div class="line">NWNX_DOTNET_ASSEMBLY=/your/path/to/NWN.Managed # Where &quot;NWN.Managed.dll&quot; was extracted in step 2, without the extension. E.g: NWNX_DOTNET_ASSEMBLY=/nwn/home/modbin/NWN.Managed</div>
+<div class="line"># NWNX_DOTNET_ENTRYPOINT= # Make sure this option does not exist in your config</div>
+</div><!-- fragment --><p>The DotNET, Object and Util plugins are required for the library to work. Make sure they are enabled!</p>
+<p>Other plugins are optional, but may be required to access some extension APIs. An exception will be raised if you try to use an extension without the dependent plugin loaded.</p>
+<h1>Plugins &amp; Services</h1>
+<p>Adding module behaviours starts by creating your own plugin assembly (.dll).</p>
+<p>To get started, it is recommended to start by making a copy of the sample project found <a href="https://github.com/nwn-dotnet/NWN.Samples/tree/master/managed/plugin-sample">HERE</a> with the package dependencies already setup for you.</p>
+<p>The core of NWN.Managed is built around a dependency injection model, and the library expects you to implement features in your plugins a similar way.</p>
+<p>Using a class attribute (ServiceBinding), the system will automatically wire up all of the dependencies for that class as defined in the parameters of its constructor:</p>
 <p><b>Example: Basic Script Handler</b> </p><div class="fragment"><div class="line">using NLog;</div>
 <div class="line">using NWN.API;</div>
 <div class="line">using NWN.Services;</div>
 <div class="line"> </div>
-<div class="line">// This attribute indicates this class should be constructed on start, and available as a dependency &quot;MyScriptHandler&quot;</div>
+<div class="line">// The &quot;ServiceBinding&quot; attribute indicates this class should be created on start, and available to other classes as a dependency &quot;MyScriptHandler&quot;</div>
 <div class="line">// You can also bind yourself to an interface or base class. The system also supports multiple bindings.</div>
 <div class="line">[ServiceBinding(typeof(MyScriptHandler))]</div>
 <div class="line">public class MyScriptHandler</div>
@@ -123,7 +119,8 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line"> </div>
 <div class="line">  private readonly EventService eventService;</div>
 <div class="line"> </div>
-<div class="line">  // The EventService is a core service - defining it here flags it as a dependency to be injected at startup.</div>
+<div class="line">  // As this class has the ServiceBinding attribute, the constructor of this class will be called during server startup.</div>
+<div class="line">  // The EventService is a core service from NWN.Managed. As it is defined as a constructor parameter, it will be injected during startup.</div>
 <div class="line">  public MyScriptHandler(EventService eventService)</div>
 <div class="line">  {</div>
 <div class="line">    this.eventService = eventService;</div>
@@ -139,19 +136,20 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">    Log.Info($&quot;test_nwscript called by {objSelf.Name}&quot;);</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-</div><!-- fragment --><p><b>Example: Chat Command System</b> </p><div class="fragment"><div class="line">using System.Collections.Generic;</div>
+</div><!-- fragment --><p><b>Example: Chat Command System using interfaces</b> </p><div class="fragment"><div class="line">using System.Collections.Generic;</div>
 <div class="line">using System.Linq;</div>
 <div class="line">using NWN.API;</div>
 <div class="line">using NWN.API.Events;</div>
 <div class="line">using NWN.Services;</div>
 <div class="line"> </div>
+<div class="line">// Our base chat command interface...</div>
 <div class="line">public interface IChatCommand</div>
 <div class="line">{</div>
 <div class="line">  string Command { get; }</div>
 <div class="line">  void ExecuteCommand(NwPlayer caller);</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line">// Binds our first command to the IChatCommand interface so we can process them.</div>
+<div class="line">// ...Each one of our commands implements the IChatCommand interface...</div>
 <div class="line">[ServiceBinding(typeof(IChatCommand))]</div>
 <div class="line">public class GpCommand : IChatCommand</div>
 <div class="line">{</div>
@@ -164,11 +162,12 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">  }</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line">// Bind a second command to the same interface.</div>
+<div class="line">/// ...and uses the interface type instead of the class type inside the ServiceBinding attribute.</div>
 <div class="line">[ServiceBinding(typeof(IChatCommand))]</div>
 <div class="line">public class SaveCommand : IChatCommand</div>
 <div class="line">{</div>
 <div class="line">  public string Command { get; } = &quot;!save&quot;;</div>
+<div class="line"> </div>
 <div class="line">  public void ExecuteCommand(NwPlayer caller)</div>
 <div class="line">  {</div>
 <div class="line">    caller.ExportCharacter();</div>
@@ -181,12 +180,14 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">{</div>
 <div class="line">  private readonly List&lt;IChatCommand&gt; chatCommands;</div>
 <div class="line"> </div>
-<div class="line">  // In our class constructor we define our dependencies.</div>
-<div class="line">  // In this case, we require the EventService to subscribe to the module chat event.</div>
-<div class="line">  // And we also inject all of the chat commands we bound above.</div>
+<div class="line">  // We set the EventService as a dependency so we can subscribe to the module chat event.</div>
+<div class="line">  // And we add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.</div>
 <div class="line">  public ChatHandler(EventService eventService, IEnumerable&lt;IChatCommand&gt; commands)</div>
 <div class="line">  {</div>
+<div class="line">    // Store all define chat commands.</div>
 <div class="line">    this.chatCommands = commands.ToList();</div>
+<div class="line"> </div>
+<div class="line">    // Using the event service, subscribe to the global module chat event. When this event occurs, we call the OnChatMessage method.</div>
 <div class="line">    eventService.Subscribe&lt;NwModule, ModuleEvents.OnPlayerChat&gt;(NwModule.Instance, OnChatMessage);</div>
 <div class="line">  }</div>
 <div class="line"> </div>
@@ -195,7 +196,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">    // Get the message from the event.</div>
 <div class="line">    string message = eventInfo.Message;</div>
 <div class="line"> </div>
-<div class="line">    // Loop through all of our created commands, and execute the one that matches.</div>
+<div class="line">    // Loop through all of our created commands, and execute the behaviour of the one that matches.</div>
 <div class="line">    foreach (IChatCommand command in chatCommands)</div>
 <div class="line">    {</div>
 <div class="line">      if (command.Command == message)</div>

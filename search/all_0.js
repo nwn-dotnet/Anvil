@@ -46,10 +46,11 @@ var searchData=
   ['asciitablestring_43',['AsciiTableString',['../classNWNX_1_1API_1_1Util.html#ac5370cdb988c6dc2436a8c5eb5eccc99',1,'NWNX::API::Util']]],
   ['aseffect_44',['AsEffect',['../classNWNX_1_1API_1_1Util.html#ad72ef156cc78db0a692cc47b608e655f',1,'NWNX::API::Util']]],
   ['asitemproperty_45',['AsItemProperty',['../classNWNX_1_1API_1_1Util.html#a59de3319db4ef839a33ee7fe9bff6848',1,'NWNX::API::Util']]],
-  ['attackbonuslimit_46',['AttackBonusLimit',['../classNWN_1_1API_1_1NwModule.html#a4a78ce97277bbb4655b6a640a63d24d9',1,'NWN::API::NwModule']]],
-  ['attackdata_47',['AttackData',['../structNWNX_1_1API_1_1Events_1_1AttackData.html',1,'NWNX::API::Events']]],
-  ['attackdecrease_48',['AttackDecrease',['../classNWN_1_1API_1_1Effect.html#af602fe68edae1232ccd37de956452f60',1,'NWN::API::Effect']]],
-  ['attackevent_49',['AttackEvent',['../classNWNX_1_1API_1_1Events_1_1AttackEvent.html',1,'NWNX::API::Events']]],
-  ['attackincrease_50',['AttackIncrease',['../classNWN_1_1API_1_1Effect.html#adef6ae9ef45d9c25e2cd06ad18be7447',1,'NWN::API::Effect']]],
-  ['attacktarget_51',['AttackTarget',['../classNWN_1_1API_1_1NwCreature.html#a3fdc3c34d9896c58b3453c63bbd0c800',1,'NWN::API::NwCreature']]]
+  ['associatetype_46',['AssociateType',['../classNWN_1_1API_1_1NwCreature.html#a8c202146bdd4583d9e2bb026bc44b733',1,'NWN::API::NwCreature']]],
+  ['attackbonuslimit_47',['AttackBonusLimit',['../classNWN_1_1API_1_1NwModule.html#a4a78ce97277bbb4655b6a640a63d24d9',1,'NWN::API::NwModule']]],
+  ['attackdata_48',['AttackData',['../structNWNX_1_1API_1_1Events_1_1AttackData.html',1,'NWNX::API::Events']]],
+  ['attackdecrease_49',['AttackDecrease',['../classNWN_1_1API_1_1Effect.html#af602fe68edae1232ccd37de956452f60',1,'NWN::API::Effect']]],
+  ['attackevent_50',['AttackEvent',['../classNWNX_1_1API_1_1Events_1_1AttackEvent.html',1,'NWNX::API::Events']]],
+  ['attackincrease_51',['AttackIncrease',['../classNWN_1_1API_1_1Effect.html#adef6ae9ef45d9c25e2cd06ad18be7447',1,'NWN::API::Effect']]],
+  ['attacktarget_52',['AttackTarget',['../classNWN_1_1API_1_1NwCreature.html#a3fdc3c34d9896c58b3453c63bbd0c800',1,'NWN::API::NwCreature']]]
 ];

@@ -4,6 +4,7 @@ var classNWN_1_1API_1_1NwPlayer =
     [ "AddToParty", "classNWN_1_1API_1_1NwPlayer.html#a9fdcbfba386e897d9274c39f9261ccf2", null ],
     [ "BootPlayer", "classNWN_1_1API_1_1NwPlayer.html#a84463c4cbc13d16a74815fa277628d1e", null ],
     [ "ClearTextureOverride", "classNWN_1_1API_1_1NwPlayer.html#ac568f63e914766242097f50f667ff73d", null ],
+    [ "EnterTargetingMode", "classNWN_1_1API_1_1NwPlayer.html#a96dae8e2924fb8a86d94627707ab8228", null ],
     [ "ExportCharacter", "classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802", null ],
     [ "GetCampaignVariable< T >", "classNWN_1_1API_1_1NwPlayer.html#a883a0c91867613bbfaf74a6606b73a9e", null ],
     [ "PostString", "classNWN_1_1API_1_1NwPlayer.html#af8cde1180fa89713242f00b074afda62", null ],

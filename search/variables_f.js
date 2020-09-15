@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['userdirectory_1255',['UserDirectory',['../classNWNX_1_1API_1_1Util.html#a9a2864ea0b2315b44f2bd7d5ddcebd82',1,'NWNX::API::Util']]]
+  ['userdirectory_1266',['UserDirectory',['../classNWNX_1_1API_1_1Util.html#a9a2864ea0b2315b44f2bd7d5ddcebd82',1,'NWNX::API::Util']]]
 ];
