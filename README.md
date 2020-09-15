@@ -3,38 +3,31 @@ NWN.Managed is a C# library that attempts to wrap Neverwinter Script with C# nic
 
 # Getting Started
 
-### Dependencies
-NWN.Managed requires the following plugins to be enabled in NWNX in-order to run:
-```
+### Running NWN.Managed
+1. Download the latest [Release](https://github.com/nwn-dotnet/NWN.Managed/releases) for your server version.
+2. Extract the Binaries to a folder accessible by the server.
+3. Configure NWNX options to the following:
+
+```sh
 NWNX_DOTNET_SKIP=n
 NWNX_OBJECT_SKIP=n
 NWNX_UTIL_SKIP=n
+NWNX_DOTNET_ASSEMBLY=/your/path/to/NWN.Managed # Where "NWN.Managed.dll" was extracted in step 2, without the extension. E.g: NWNX_DOTNET_ASSEMBLY=/nwn/home/modbin/NWN.Managed
+# NWNX_DOTNET_ENTRYPOINT= # Make sure this option does not exist in your config
 ```
+
+The DotNET, Object and Util plugins are required for the library to work. Make sure they are enabled!
 
 Other plugins are optional, but may be required to access some extension APIs. An exception will be raised if you try to use an extension without the dependent plugin loaded.
 
-### Bootstrap
-To initialize the managed system, add a small bootstrap class like the following:
+# Plugins & Services
+Adding module behaviours starts by creating your own plugin assembly (.dll).
 
-```csharp
-using System;
+To get started, it is recommended to start by making a copy of the sample project found [HERE](https://github.com/nwn-dotnet/NWN.Samples/tree/master/managed/plugin-sample) with the package dependencies already setup for you.
 
-namespace NWN
-{
-  public static class Internal
-  {
-    public static int Bootstrap(IntPtr arg, int argLength)
-    {
-      return NManager.Init(arg, argLength);
-    }
-  }
-}
-```
+The core of NWN.Managed is built around a dependency injection model, and the library expects you to implement features in your plugins a similar way.
 
-The class path should match the `ENTRYPOINT` environmental variable as defined in the [NWNX:EE config](https://nwnxee.github.io/unified/group__dotnet.html#dotnet). By default this is `NWN.Internal`.
-
-# Services
-The core of NWN.Managed is built around a dependency injection model, and the system expects you to implement features in a similar way. Using a class attribute, the system will automatically wire up all of the dependencies for that class as defined in its constructor:
+Using a class attribute (ServiceBinding), the system will automatically wire up all of the dependencies for that class as defined in the parameters of its constructor:
 
 **Example: Basic Script Handler**
 ```csharp
@@ -42,7 +35,7 @@ The core of NWN.Managed is built around a dependency injection model, and the sy
   using NWN.API;
   using NWN.Services;
 
-  // This attribute indicates this class should be constructed on start, and available as a dependency "MyScriptHandler"
+  // The "ServiceBinding" attribute indicates this class should be created on start, and available to other classes as a dependency "MyScriptHandler"
   // You can also bind yourself to an interface or base class. The system also supports multiple bindings.
   [ServiceBinding(typeof(MyScriptHandler))]
   public class MyScriptHandler
@@ -52,7 +45,8 @@ The core of NWN.Managed is built around a dependency injection model, and the sy
 
     private readonly EventService eventService;
 
-    // The EventService is a core service - defining it here flags it as a dependency to be injected at startup.
+    // As this class has the ServiceBinding attribute, the constructor of this class will be called during server startup.
+    // The EventService is a core service from NWN.Managed. As it is defined as a constructor parameter, it will be injected during startup.
     public MyScriptHandler(EventService eventService)
     {
       this.eventService = eventService;
@@ -70,7 +64,7 @@ The core of NWN.Managed is built around a dependency injection model, and the sy
   }
 ```
 
-**Example: Chat Command System**
+**Example: Chat Command System using interfaces**
 ```csharp
   using System.Collections.Generic;
   using System.Linq;
@@ -78,13 +72,14 @@ The core of NWN.Managed is built around a dependency injection model, and the sy
   using NWN.API.Events;
   using NWN.Services;
 
+  // Our base chat command interface...
   public interface IChatCommand
   {
     string Command { get; }
     void ExecuteCommand(NwPlayer caller);
   }
 
-  // Binds our first command to the IChatCommand interface so we can process them.
+  // ...Each one of our commands implements the IChatCommand interface...
   [ServiceBinding(typeof(IChatCommand))]
   public class GpCommand : IChatCommand
   {
@@ -97,11 +92,12 @@ The core of NWN.Managed is built around a dependency injection model, and the sy
     }
   }
 
-  // Bind a second command to the same interface.
+  /// ...and uses the interface type instead of the class type inside the ServiceBinding attribute.
   [ServiceBinding(typeof(IChatCommand))]
   public class SaveCommand : IChatCommand
   {
     public string Command { get; } = "!save";
+
     public void ExecuteCommand(NwPlayer caller)
     {
       caller.ExportCharacter();
@@ -114,12 +110,14 @@ The core of NWN.Managed is built around a dependency injection model, and the sy
   {
     private readonly List<IChatCommand> chatCommands;
 
-    // In our class constructor we define our dependencies.
-    // In this case, we require the EventService to subscribe to the module chat event.
-    // And we also inject all of the chat commands we bound above.
+    // We set the EventService as a dependency so we can subscribe to the module chat event.
+    // And we add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.
     public ChatHandler(EventService eventService, IEnumerable<IChatCommand> commands)
     {
+      // Store all define chat commands.
       this.chatCommands = commands.ToList();
+
+      // Using the event service, subscribe to the global module chat event. When this event occurs, we call the OnChatMessage method.
       eventService.Subscribe<NwModule, ModuleEvents.OnPlayerChat>(NwModule.Instance, OnChatMessage);
     }
 
@@ -128,7 +126,7 @@ The core of NWN.Managed is built around a dependency injection model, and the sy
       // Get the message from the event.
       string message = eventInfo.Message;
 
-      // Loop through all of our created commands, and execute the one that matches.
+      // Loop through all of our created commands, and execute the behaviour of the one that matches.
       foreach (IChatCommand command in chatCommands)
       {
         if (command.Command == message)
