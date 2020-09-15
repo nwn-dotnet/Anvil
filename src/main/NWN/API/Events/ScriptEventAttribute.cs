@@ -3,7 +3,6 @@ using JetBrains.Annotations;
 using NLog;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Services;
 using EventHandler = NWN.Services.EventHandler;
 
 namespace NWN.API.Events
@@ -46,7 +45,7 @@ namespace NWN.API.Events
 
     private void ContinueWithNative(string scriptName, NwObject objSelf)
     {
-      Interop.ExecuteNss(scriptName, objSelf);
+      NativeScript.Execute(scriptName, objSelf);
     }
   }
 }

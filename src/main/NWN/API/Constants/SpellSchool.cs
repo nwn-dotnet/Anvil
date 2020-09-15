@@ -4,6 +4,7 @@ namespace NWN.API.Constants
 {
   public enum SpellSchool
   {
+    Unknown = -1,
     General = NWScript.SPELL_SCHOOL_GENERAL,
     Abjuration = NWScript.SPELL_SCHOOL_ABJURATION,
     Conjuration = NWScript.SPELL_SCHOOL_CONJURATION,

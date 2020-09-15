@@ -15,6 +15,71 @@ namespace NWN.API
     internal NwCreature(uint objectId) : base(objectId) {}
 
     /// <summary>
+    /// Gets or sets the name of this creature's deity.
+    /// </summary>
+    public string Deity
+    {
+      get => NWScript.GetDeity(this);
+      set => NWScript.SetDeity(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the name of this creature's sub-race.
+    /// </summary>
+    public string SubRace
+    {
+      get => NWScript.GetSubRace(this);
+      set => NWScript.SetSubRace(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets this creature's currently set Phenotype (body type).
+    /// </summary>
+    public Phenotype Phenotype
+    {
+      get => (Phenotype) NWScript.GetPhenoType(this);
+      set => NWScript.SetPhenoType((int) value, this);
+    }
+
+    /// <summary>
+    /// Gets or sets the total experience points for this creature, taking/granting levels based on progression.
+    /// </summary>
+    public int Xp
+    {
+      get => NWScript.GetXP(this);
+      set => NWScript.SetXP(this, value < 0 ? 0 : value);
+    }
+
+    /// <summary>
+    /// Gets or sets whether this creature's action queue can be modified.
+    /// </summary>
+    public bool Commandable
+    {
+      get => NWScript.GetCommandable(this).ToBool();
+      set => NWScript.SetCommandable(value.ToInt(), this);
+    }
+
+    /// <summary>
+    /// Gets or sets whether this creature will leave a lootable corpse on death.<br/>
+    /// This flag must be set while the creature is alive. Players are not supported.
+    /// </summary>
+    public bool Lootable
+    {
+      get => NWScript.GetLootable(this).ToBool();
+      set => NWScript.SetLootable(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets whether this creature is immortal.<br/>
+    /// An immortal creature still takes damage, but cannot be killed.
+    /// </summary>
+    public bool Immortal
+    {
+      get => NWScript.GetImmortal(this).ToBool();
+      set => NWScript.SetImmortal(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets if this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
     public bool IsDead
@@ -44,6 +109,14 @@ namespace NWN.API
     public Gender Gender
     {
       get => (Gender) NWScript.GetGender(this);
+    }
+
+    /// <summary>
+    /// Gets the associate type of this creature, otherwise returns <see cref="NWN.API.Constants.AssociateType.None"/> if this creature is not an associate of anyone.
+    /// </summary>
+    public AssociateType AssociateType
+    {
+      get => (AssociateType) NWScript.GetAssociateType(this);
     }
 
     /// <summary>
@@ -79,6 +152,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the Base Attack Bonus for this creature.
+    /// </summary>
+    public int BaseAttackBonus
+    {
+      get => NWScript.GetBaseAttackBonus(this);
+    }
+
+    /// <summary>
     /// Gets this creature's age, in years.
     /// </summary>
     public int Age
@@ -92,33 +173,6 @@ namespace NWN.API
     public CreatureSize Size
     {
       get => (CreatureSize) NWScript.GetCreatureSize(this);
-    }
-
-    /// <summary>
-    /// Gets or sets the name of this creature's deity.
-    /// </summary>
-    public string Deity
-    {
-      get => NWScript.GetDeity(this);
-      set => NWScript.SetDeity(this, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the name of this creature's sub-race.
-    /// </summary>
-    public string SubRace
-    {
-      get => NWScript.GetSubRace(this);
-      set => NWScript.SetSubRace(this, value);
-    }
-
-    /// <summary>
-    /// Gets or sets this creature's currently set Phenotype (body type).
-    /// </summary>
-    public Phenotype Phenotype
-    {
-      get => (Phenotype) NWScript.GetPhenoType(this);
-      set => NWScript.SetPhenoType((int) value, this);
     }
 
     /// <summary>
@@ -223,24 +277,6 @@ namespace NWN.API
     public bool Disarmable
     {
       get => NWScript.GetIsCreatureDisarmable(this).ToBool();
-    }
-
-    /// <summary>
-    /// Gets or sets the total experience points for this creature, taking/granting levels based on progression.
-    /// </summary>
-    public int Xp
-    {
-      get => NWScript.GetXP(this);
-      set => NWScript.SetXP(this, value < 0 ? 0 : value);
-    }
-
-    /// <summary>
-    /// Gets or sets whether this creature's action queue can be modified.
-    /// </summary>
-    public bool Commandable
-    {
-      get => NWScript.GetCommandable(this).ToBool();
-      set => NWScript.SetCommandable(value.ToInt(), this);
     }
 
     /// <summary>
@@ -728,6 +764,15 @@ namespace NWN.API
     /// </summary>
     public bool IsEnemy(NwCreature target)
       => NWScript.GetIsEnemy(target, this).ToBool();
+
+    /// <summary>
+    /// Returns this creature's spell school specialization in the specified class.<br/>
+    /// Unless custom content is used, only Wizards have spell schools.
+    /// </summary>
+    /// <param name="classType">The class to query for specialized spell schools.</param>
+    /// <returns>The creature's selected spell specialization.</returns>
+    public SpellSchool GetSpecialization(ClassType classType = ClassType.Wizard)
+      => (SpellSchool) NWScript.GetSpecialization(this, (int) classType);
 
     /// <summary>
     /// Returns this creature's domains in the specified class. Unless custom content is used, only clerics have domains.
