@@ -3,7 +3,7 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  [CampaignVariableConverter(typeof(float), typeof(int), typeof(Location), typeof(NwObject))]
+  [CampaignVariableConverter(typeof(float), typeof(int), typeof(Location), typeof(string), typeof(Vector3))]
   internal class NativeCampaignVariableConverters : ICampaignVariableConverter<float>, ICampaignVariableConverter<int>, ICampaignVariableConverter<Location>, ICampaignVariableConverter<string>, ICampaignVariableConverter<Vector3>
   {
     float ICampaignVariableConverter<float>.GetCampaign(string campaign, string name, NwPlayer player)

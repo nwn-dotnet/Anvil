@@ -103,6 +103,38 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets if it is currently dawn.
+    /// </summary>
+    public bool IsDawn
+    {
+      get => NWScript.GetIsDawn().ToBool();
+    }
+
+    /// <summary>
+    /// Gets if it is currently day.
+    /// </summary>
+    public bool IsDay
+    {
+      get => NWScript.GetIsDay().ToBool();
+    }
+
+    /// <summary>
+    /// Gets if it is currently dusk.
+    /// </summary>
+    public bool IsDusk
+    {
+      get => NWScript.GetIsDusk().ToBool();
+    }
+
+    /// <summary>
+    /// Gets if it is currently night.
+    /// </summary>
+    public bool IsNight
+    {
+      get => NWScript.GetIsNight().ToBool();
+    }
+
+    /// <summary>
     /// Finds the specified waypoint with the given tag.
     /// </summary>
     /// <param name="tag"></param>
@@ -126,6 +158,13 @@ namespace NWN.API
     /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
     public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
       => CampaignVariable<T>.Create(campaign, name);
+
+    /// <summary>
+    /// Deletes the entire campaign database, if it exists.
+    /// </summary>
+    /// <param name="campaign">The campaign DB to delete.</param>
+    public void DestroyCampaignDatabase(string campaign)
+      => NWScript.DestroyCampaignDatabase(campaign);
 
     /// <summary>
     /// Gets all active areas in the module.
@@ -187,6 +226,13 @@ namespace NWN.API
     /// <param name="endMovie">The filename of the movie to play, without file extension.</param>
     public void EndGame(string endMovie)
       => NWScript.EndGame(endMovie);
+
+    /// <summary>
+    /// Forces all players who are currently game to have their characters
+    /// exported to their respective directories i.e. LocalVault/ServerVault/ etc.
+    /// </summary>
+    public void ExportAllCharacters()
+      => NWScript.ExportAllCharacters();
 
     /// <summary>
     /// Makes all online PCs load a new texture instead of another.

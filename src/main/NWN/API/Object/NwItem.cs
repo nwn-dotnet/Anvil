@@ -118,6 +118,20 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the armor class of this item.
+    /// <remarks>
+    /// This will return the full AC value of this item, taking into account all modifiers in regards to bonus AC.<br/>
+    /// Unlike the standard ruleset, it will stack multiple AC bonuses instead of taking the highest.<br/>
+    /// This value does not take into account AC bonuses vs certain conditions nor the <see cref="ItemProperty.DecreaseAC"/> Item Property.<br/>
+    /// It will also not take into account ability changes, nor if there is an existing amount of that bonus type. For example, wearing +1 armor, thus using a +1 Armor AC modifier, will not stack with Epic Mage Armor, which gives +5 in Armor AC bonuses.
+    /// </remarks>
+    /// </summary>
+    public int ACValue
+    {
+      get => NWScript.GetItemACValue(this);
+    }
+
+    /// <summary>
     /// Gets all active item properties currently applied to this object.
     /// </summary>
     public IEnumerable<ItemProperty> ItemProperties
