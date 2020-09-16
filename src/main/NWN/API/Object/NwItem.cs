@@ -94,6 +94,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the number of charges left on this item.
+    /// </summary>
+    public int ItemCharges
+    {
+      get => NWScript.GetItemCharges(this);
+      set => NWScript.SetItemCharges(this, value);
+    }
+
+    /// <summary>
     /// The GameObject that has this item in its inventory, otherwise null if it is on the ground, or not in any inventory.
     /// </summary>
     public NwGameObject Possessor
