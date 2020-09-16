@@ -368,6 +368,13 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Forces this creature to join the specified standard faction. This will NOT work on players.
+    /// </summary>
+    /// <param name="newFaction">The NPCs new faction.</param>
+    public void ChangeToStandardFaction(StandardFaction newFaction)
+      => NWScript.ChangeToStandardFaction(this, (int) newFaction);
+
+    /// <summary>
     /// Gets whether this creature has a specific immunity.
     /// </summary>
     /// <param name="immunityType">The immunity type to check.</param>
