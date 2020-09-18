@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"structNWNX_1_1API_1_1Events_1_1DamageData.html#ac0a2e5dea55e0aa5cf36c3a7da443308":[0,0,2,0,0,2,0],
 "structNWNX_1_1API_1_1Events_1_1DamageData.html#ac86c9ce4d386da2a8a852757ef5bec95":[0,0,2,0,0,2,4],
 "structNWNX_1_1API_1_1QuickBarSlot.html":[0,0,2,0,16],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a1ff017c8e2f77e5e45f2cdc0bf8af397":[0,0,2,0,16,0],

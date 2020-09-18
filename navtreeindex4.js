@@ -210,7 +210,8 @@ var NAVTREEINDEX4 =
 "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html":[0,0,1,0,9],
 "interfaceNWN_1_1API_1_1ILocalVariableConverter.html":[0,0,1,0,10],
 "interfaceNWN_1_1Plugins_1_1ITypeLoader.html":[0,0,1,1,0],
-"interfaceNWN_1_1Plugins_1_1ITypeLoader.html#ae285fc7be926cde550a58cfc3e01b845":[0,0,1,1,0,0],
+"interfaceNWN_1_1Plugins_1_1ITypeLoader.html#a09d9924cf56289870f489e7afdba9a11":[0,0,1,1,0,0],
+"interfaceNWN_1_1Plugins_1_1ITypeLoader.html#ae285fc7be926cde550a58cfc3e01b845":[0,0,1,1,0,1],
 "interfaceNWN_1_1Services_1_1IBindingInstaller.html":[0,0,1,2,3],
 "interfaceNWN_1_1Services_1_1IBindingInstaller.html#aa9f63203999d51c08a8427c37ec453e0":[0,0,1,2,3,0],
 "interfaceNWN_1_1Services_1_1IInitializable.html":[0,0,1,2,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "structNWNX_1_1API_1_1Events_1_1DamageData.html#aa9f97f8787c8f0e0c4b5ffd273dc5a00":[0,0,2,0,0,2,12],
 "structNWNX_1_1API_1_1Events_1_1DamageData.html#ab051ff4c648e8b87d4794a51eca1e2c4":[0,0,2,0,0,2,5],
 "structNWNX_1_1API_1_1Events_1_1DamageData.html#ab860bf23c18cad7ccffd66de08ae3f3b":[0,0,2,0,0,2,9],
-"structNWNX_1_1API_1_1Events_1_1DamageData.html#aba9dbb342d8663f8818f4f98f1d9abb6":[0,0,2,0,0,2,10],
-"structNWNX_1_1API_1_1Events_1_1DamageData.html#ac0a2e5dea55e0aa5cf36c3a7da443308":[0,0,2,0,0,2,0]
+"structNWNX_1_1API_1_1Events_1_1DamageData.html#aba9dbb342d8663f8818f4f98f1d9abb6":[0,0,2,0,0,2,10]
 };
