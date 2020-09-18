@@ -47,7 +47,7 @@ namespace NWN.API
       get => NWScript.GetGroundHeight(this);
     }
 
-    private IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
+    public IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
       int typeFilter = (int) NwObject.GetObjectType<T>();
       int nShape = (int) shape;
