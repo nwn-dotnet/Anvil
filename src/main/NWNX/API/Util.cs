@@ -156,7 +156,7 @@ namespace NWNX.API
     /// <param name="scriptName">The name of the script to get the contents of.</param>
     /// <param name="maxLength">The max length of the return string, -1 to get everything</param>
     /// <returns>The script file contents or "" on error.</returns>
-    public static string GetNSSContents(string scriptName, int maxLength = -1) => GetNSSContents(scriptName, maxLength);
+    public static string GetNSSContents(string scriptName, int maxLength = -1) => UtilPlugin.GetNSSContents(scriptName, maxLength);
 
     /// <summary>
     /// Adds a nss file to the UserDirectory/nwnx folder. Will override existing nss files that are in the module.

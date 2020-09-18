@@ -5,7 +5,7 @@ namespace NWN.API
 {
   public class VisualTransform
   {
-    public readonly VisualTransform Default = new VisualTransform(Vector3.One, Vector3.One);
+    public static readonly VisualTransform Default = new VisualTransform(Vector3.One, Vector3.One);
 
     public float Scale;
     public Vector3 Translation;
