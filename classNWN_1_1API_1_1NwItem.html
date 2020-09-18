@@ -278,6 +278,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a416437b500da00b13bea06698cd201a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#a416437b500da00b13bea06698cd201a1">Pickpocketable</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a416437b500da00b13bea06698cd201a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this item can be pickpocketed.  <a href="classNWN_1_1API_1_1NwItem.html#a416437b500da00b13bea06698cd201a1">More...</a><br /></td></tr>
 <tr class="separator:a416437b500da00b13bea06698cd201a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5073b3a3218218e6107a9da4ef226b5b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#a5073b3a3218218e6107a9da4ef226b5b">ItemCharges</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a5073b3a3218218e6107a9da4ef226b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the number of charges left on this item.  <a href="classNWN_1_1API_1_1NwItem.html#a5073b3a3218218e6107a9da4ef226b5b">More...</a><br /></td></tr>
+<tr class="separator:a5073b3a3218218e6107a9da4ef226b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedddb31469e71506e2c54ce4dc989097"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#aedddb31469e71506e2c54ce4dc989097">Possessor</a><code> [get]</code></td></tr>
 <tr class="memdesc:aedddb31469e71506e2c54ce4dc989097"><td class="mdescLeft">&#160;</td><td class="mdescRight">The GameObject that has this item in its inventory, otherwise null if it is on the ground, or not in any inventory.  <a href="classNWN_1_1API_1_1NwItem.html#aedddb31469e71506e2c54ce4dc989097">More...</a><br /></td></tr>
 <tr class="separator:aedddb31469e71506e2c54ce4dc989097"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -287,6 +290,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a7e46619fd7f98a65576577373f0c2982"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#a7e46619fd7f98a65576577373f0c2982">GoldValue</a><code> [get]</code></td></tr>
 <tr class="memdesc:a7e46619fd7f98a65576577373f0c2982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the gp value for this item.  <a href="classNWN_1_1API_1_1NwItem.html#a7e46619fd7f98a65576577373f0c2982">More...</a><br /></td></tr>
 <tr class="separator:a7e46619fd7f98a65576577373f0c2982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a196388a66fb0bdfccf18e3ff19da1ef2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#a196388a66fb0bdfccf18e3ff19da1ef2">ACValue</a><code> [get]</code></td></tr>
+<tr class="memdesc:a196388a66fb0bdfccf18e3ff19da1ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the armor class of this item.  <a href="classNWN_1_1API_1_1NwItem.html#a196388a66fb0bdfccf18e3ff19da1ef2">More...</a><br /></td></tr>
+<tr class="separator:a196388a66fb0bdfccf18e3ff19da1ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53ff3080bfdf5dd5074cf83ea9ca6e5f"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classNWN_1_1API_1_1ItemProperty.html">ItemProperty</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#a53ff3080bfdf5dd5074cf83ea9ca6e5f">ItemProperties</a><code> [get]</code></td></tr>
 <tr class="memdesc:a53ff3080bfdf5dd5074cf83ea9ca6e5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all active item properties currently applied to this object.  <a href="classNWN_1_1API_1_1NwItem.html#a53ff3080bfdf5dd5074cf83ea9ca6e5f">More...</a><br /></td></tr>
 <tr class="separator:a53ff3080bfdf5dd5074cf83ea9ca6e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -579,6 +585,34 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
+<a id="a196388a66fb0bdfccf18e3ff19da1ef2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a196388a66fb0bdfccf18e3ff19da1ef2">&#9670;&nbsp;</a></span>ACValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int NWN.API.NwItem.ACValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the armor class of this item. </p>
+<p>This will return the full AC value of this item, taking into account all modifiers in regards to bonus AC.<br  />
+ Unlike the standard ruleset, it will stack multiple AC bonuses instead of taking the highest.<br  />
+ This value does not take into account AC bonuses vs certain conditions nor the ItemProperty.DecreaseAC Item Property.<br  />
+ It will also not take into account ability changes, nor if there is an existing amount of that bonus type. For example, wearing +1 armor, thus using a +1 Armor AC modifier, will not stack with Epic Mage Armor, which gives +5 in Armor AC bonuses. </p>
+
+</div>
+</div>
 <a id="afb743db1a6b4c22c6d23d695ef3d49a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afb743db1a6b4c22c6d23d695ef3d49a8">&#9670;&nbsp;</a></span>BaseItemType</h2>
 
@@ -721,6 +755,30 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Modifies the store behaviour for this item. An infinite item will still be available to purchase from a store after a player buys the item. </p>
+
+</div>
+</div>
+<a id="a5073b3a3218218e6107a9da4ef226b5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5073b3a3218218e6107a9da4ef226b5b">&#9670;&nbsp;</a></span>ItemCharges</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int NWN.API.NwItem.ItemCharges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the number of charges left on this item. </p>
 
 </div>
 </div>

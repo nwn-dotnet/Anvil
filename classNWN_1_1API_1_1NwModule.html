@@ -117,6 +117,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adbd637693ac6c90fef4333797609c78d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1CampaignVariable.html">CampaignVariable</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#adbd637693ac6c90fef4333797609c78d">GetCampaignVariable&lt; T &gt;</a> (string campaign, string name)</td></tr>
 <tr class="memdesc:adbd637693ac6c90fef4333797609c78d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified global campaign variable.  <a href="classNWN_1_1API_1_1NwModule.html#adbd637693ac6c90fef4333797609c78d">More...</a><br /></td></tr>
 <tr class="separator:adbd637693ac6c90fef4333797609c78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf48eeaa5f8a391dacd9bfabec080e8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#adf48eeaa5f8a391dacd9bfabec080e8e">DestroyCampaignDatabase</a> (string campaign)</td></tr>
+<tr class="memdesc:adf48eeaa5f8a391dacd9bfabec080e8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the entire campaign database, if it exists.  <a href="classNWN_1_1API_1_1NwModule.html#adf48eeaa5f8a391dacd9bfabec080e8e">More...</a><br /></td></tr>
+<tr class="separator:adf48eeaa5f8a391dacd9bfabec080e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e6dd08340f5d64a98ef41416ad8f37a"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a4e6dd08340f5d64a98ef41416ad8f37a">GetObjectsByTag</a> (string tag)</td></tr>
 <tr class="memdesc:a4e6dd08340f5d64a98ef41416ad8f37a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all objects in the module with the specified tag.  <a href="classNWN_1_1API_1_1NwModule.html#a4e6dd08340f5d64a98ef41416ad8f37a">More...</a><br /></td></tr>
 <tr class="separator:a4e6dd08340f5d64a98ef41416ad8f37a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,6 +132,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a6a2f13c052802ed7d527eb360c099559"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a6a2f13c052802ed7d527eb360c099559">EndGame</a> (string endMovie)</td></tr>
 <tr class="memdesc:a6a2f13c052802ed7d527eb360c099559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends the current running game, plays the specified movie then returns all players to the main menu.  <a href="classNWN_1_1API_1_1NwModule.html#a6a2f13c052802ed7d527eb360c099559">More...</a><br /></td></tr>
 <tr class="separator:a6a2f13c052802ed7d527eb360c099559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e1e412dd751f7c5b96a45caf809695"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#ad6e1e412dd751f7c5b96a45caf809695">ExportAllCharacters</a> ()</td></tr>
+<tr class="memdesc:ad6e1e412dd751f7c5b96a45caf809695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces all players who are currently game to have their characters exported to their respective directories i.e. LocalVault/ServerVault/ etc.  <a href="classNWN_1_1API_1_1NwModule.html#ad6e1e412dd751f7c5b96a45caf809695">More...</a><br /></td></tr>
+<tr class="separator:ad6e1e412dd751f7c5b96a45caf809695"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ebb3473c29e6a71f6beaf23b7f834e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a4ebb3473c29e6a71f6beaf23b7f834e2">SetTextureOverride</a> (string oldTexName, string newName)</td></tr>
 <tr class="memdesc:a4ebb3473c29e6a71f6beaf23b7f834e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes all online PCs load a new texture instead of another.  <a href="classNWN_1_1API_1_1NwModule.html#a4ebb3473c29e6a71f6beaf23b7f834e2">More...</a><br /></td></tr>
 <tr class="separator:a4ebb3473c29e6a71f6beaf23b7f834e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,6 +219,18 @@ Spell&#160;</td><td class="memItemRight" valign="bottom"><b>SpellId</b><code> [g
 <tr class="memitem:ac90eca988214874c450a5e2ba9ff2240"><td class="memItemLeft" align="right" valign="top">GameDifficulty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#ac90eca988214874c450a5e2ba9ff2240">GameDifficulty</a><code> [get]</code></td></tr>
 <tr class="memdesc:ac90eca988214874c450a5e2ba9ff2240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current server difficulty setting.  <a href="classNWN_1_1API_1_1NwModule.html#ac90eca988214874c450a5e2ba9ff2240">More...</a><br /></td></tr>
 <tr class="separator:ac90eca988214874c450a5e2ba9ff2240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80051076d5995aded67f61c200ae1f1c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a80051076d5995aded67f61c200ae1f1c">IsDawn</a><code> [get]</code></td></tr>
+<tr class="memdesc:a80051076d5995aded67f61c200ae1f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if it is currently dawn.  <a href="classNWN_1_1API_1_1NwModule.html#a80051076d5995aded67f61c200ae1f1c">More...</a><br /></td></tr>
+<tr class="separator:a80051076d5995aded67f61c200ae1f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ed1083a37807b29666cd7a37f1fc789"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a6ed1083a37807b29666cd7a37f1fc789">IsDay</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6ed1083a37807b29666cd7a37f1fc789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if it is currently day.  <a href="classNWN_1_1API_1_1NwModule.html#a6ed1083a37807b29666cd7a37f1fc789">More...</a><br /></td></tr>
+<tr class="separator:a6ed1083a37807b29666cd7a37f1fc789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac704f5c91730658ca7a8fa4209b58a55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#ac704f5c91730658ca7a8fa4209b58a55">IsDusk</a><code> [get]</code></td></tr>
+<tr class="memdesc:ac704f5c91730658ca7a8fa4209b58a55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if it is currently dusk.  <a href="classNWN_1_1API_1_1NwModule.html#ac704f5c91730658ca7a8fa4209b58a55">More...</a><br /></td></tr>
+<tr class="separator:ac704f5c91730658ca7a8fa4209b58a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68b9f671ead16fbfae72269bce5eef78"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a68b9f671ead16fbfae72269bce5eef78">IsNight</a><code> [get]</code></td></tr>
+<tr class="memdesc:a68b9f671ead16fbfae72269bce5eef78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if it is currently night.  <a href="classNWN_1_1API_1_1NwModule.html#a68b9f671ead16fbfae72269bce5eef78">More...</a><br /></td></tr>
+<tr class="separator:a68b9f671ead16fbfae72269bce5eef78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17568517c3530c1f4a10e0c61b931b6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwModule.html#a17568517c3530c1f4a10e0c61b931b6b">StartingLocation</a><code> [get]</code></td></tr>
 <tr class="memdesc:a17568517c3530c1f4a10e0c61b931b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the starting location for new players.  <a href="classNWN_1_1API_1_1NwModule.html#a17568517c3530c1f4a10e0c61b931b6b">More...</a><br /></td></tr>
 <tr class="separator:a17568517c3530c1f4a10e0c61b931b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,6 +326,32 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
+<a id="adf48eeaa5f8a391dacd9bfabec080e8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf48eeaa5f8a391dacd9bfabec080e8e">&#9670;&nbsp;</a></span>DestroyCampaignDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwModule.DestroyCampaignDatabase </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>campaign</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes the entire campaign database, if it exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">campaign</td><td>The campaign DB to delete.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a6a2f13c052802ed7d527eb360c099559"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a2f13c052802ed7d527eb360c099559">&#9670;&nbsp;</a></span>EndGame()</h2>
 
@@ -331,6 +375,25 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ad6e1e412dd751f7c5b96a45caf809695"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6e1e412dd751f7c5b96a45caf809695">&#9670;&nbsp;</a></span>ExportAllCharacters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwModule.ExportAllCharacters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forces all players who are currently game to have their characters exported to their respective directories i.e. LocalVault/ServerVault/ etc. </p>
 
 </div>
 </div>
@@ -655,6 +718,102 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Gets or sets the max possible ability score bonus from temporary effects/items. (Default: 12) </p>
+
+</div>
+</div>
+<a id="a80051076d5995aded67f61c200ae1f1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80051076d5995aded67f61c200ae1f1c">&#9670;&nbsp;</a></span>IsDawn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NWN.API.NwModule.IsDawn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets if it is currently dawn. </p>
+
+</div>
+</div>
+<a id="a6ed1083a37807b29666cd7a37f1fc789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ed1083a37807b29666cd7a37f1fc789">&#9670;&nbsp;</a></span>IsDay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NWN.API.NwModule.IsDay</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets if it is currently day. </p>
+
+</div>
+</div>
+<a id="ac704f5c91730658ca7a8fa4209b58a55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac704f5c91730658ca7a8fa4209b58a55">&#9670;&nbsp;</a></span>IsDusk</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NWN.API.NwModule.IsDusk</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets if it is currently dusk. </p>
+
+</div>
+</div>
+<a id="a68b9f671ead16fbfae72269bce5eef78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68b9f671ead16fbfae72269bce5eef78">&#9670;&nbsp;</a></span>IsNight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NWN.API.NwModule.IsNight</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets if it is currently night. </p>
 
 </div>
 </div>
