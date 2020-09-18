@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using NLog;
+using NLog.Config;
 using NWN.Core;
 using NWN.Core.NWNX;
 using NWN.Plugins;
@@ -67,25 +69,6 @@ namespace NWN
       this.typeLoader = typeLoader;
     }
 
-    private static void CheckPluginDependencies()
-    {
-      Log.Info("Checking Plugin Dependencies");
-      PluginUtils.AssertPluginExists<UtilPlugin>();
-      PluginUtils.AssertPluginExists<ObjectPlugin>();
-    }
-
-    private void Start()
-    {
-      LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
-      CheckPluginDependencies();
-
-      serviceManager = new ServiceManager(typeLoader, bindingInstaller);
-      serviceManager.Init();
-
-      runScriptHandler = GetService<ICoreRunScriptHandler>();
-      loopHandler = GetService<ICoreLoopHandler>();
-    }
-
     void IGameManager.OnSignal(string signal)
     {
       switch (signal)
@@ -100,6 +83,37 @@ namespace NWN
           Log.Debug($"Unhandled Signal: \"{signal}\"");
           break;
       }
+    }
+
+    private void Start()
+    {
+      InitLogManager();
+      CheckPluginDependencies();
+
+      serviceManager = new ServiceManager(typeLoader, bindingInstaller);
+      serviceManager.Init();
+
+      runScriptHandler = GetService<ICoreRunScriptHandler>();
+      loopHandler = GetService<ICoreLoopHandler>();
+    }
+
+    private static void InitLogManager()
+    {
+      if (File.Exists(EnvironmentConfig.NLogConfigPath))
+      {
+        LogManager.Configuration = new XmlLoggingConfiguration(EnvironmentConfig.NLogConfigPath);
+      }
+
+      Log.Info($"Using Logger config: \"{EnvironmentConfig.NLogConfigPath}\"");
+      LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
+    }
+
+
+    private static void CheckPluginDependencies()
+    {
+      Log.Info("Checking Plugin Dependencies");
+      PluginUtils.AssertPluginExists<UtilPlugin>();
+      PluginUtils.AssertPluginExists<ObjectPlugin>();
     }
 
     private void Shutdown()

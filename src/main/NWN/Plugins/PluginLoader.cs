@@ -54,11 +54,6 @@ namespace NWN.Plugins
     private static string ResolvePluginsRoot()
     {
       string pluginPath = EnvironmentConfig.PluginsPath;
-      if (string.IsNullOrEmpty(pluginPath))
-      {
-        pluginPath = $"{AssemblyConstants.AssemblyDir}/Plugins";
-      }
-
       return pluginPath;
     }
 
