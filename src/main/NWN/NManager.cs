@@ -90,6 +90,7 @@ namespace NWN
       InitLogManager();
       CheckPluginDependencies();
 
+      typeLoader.Init();
       serviceManager = new ServiceManager(typeLoader, bindingInstaller);
       serviceManager.Init();
 
@@ -104,10 +105,9 @@ namespace NWN
         LogManager.Configuration = new XmlLoggingConfiguration(EnvironmentConfig.NLogConfigPath);
       }
 
-      Log.Info($"Using Logger config: \"{EnvironmentConfig.NLogConfigPath}\"");
       LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
+      Log.Info($"Using Logger config: \"{EnvironmentConfig.NLogConfigPath}\"");
     }
-
 
     private static void CheckPluginDependencies()
     {

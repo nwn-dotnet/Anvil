@@ -31,6 +31,15 @@ namespace NWN.Plugins
         }
       }
 
+      // Try resolving a different version
+      foreach (Assembly assembly in AssemblyConstants.NWMLoadContext.Assemblies)
+      {
+        if (assembly.GetName().Name == assemblyName.Name)
+        {
+          return assembly;
+        }
+      }
+
       return null;
     }
 

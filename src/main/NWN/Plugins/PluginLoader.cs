@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using NLog;
 
@@ -14,11 +13,11 @@ namespace NWN.Plugins
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    public IReadOnlyCollection<Type> LoadedTypes { get; }
+    public IReadOnlyCollection<Type> LoadedTypes { get; private set; }
 
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
 
-    public PluginLoader()
+    public void Init()
     {
       LoadCore();
       LoadPlugins();
@@ -46,7 +45,7 @@ namespace NWN.Plugins
         if (assembly != null && IsValidAssembly(assembly))
         {
           loadedAssemblies.Add(assembly);
-          Log.Info($"Loaded DotNET plugin ({assembly.GetName().Name}).");
+          Log.Info($"Loaded DotNET plugin ({assembly.GetName().Name}) - \"{assembly.Location}\"");
         }
       }
     }
@@ -70,7 +69,29 @@ namespace NWN.Plugins
     }
 
     private static bool IsValidAssembly(Assembly assembly)
-      => assembly == AssemblyConstants.NWMAssembly || assembly.GetReferencedAssemblies().Any(name => name.ToString() == AssemblyConstants.NWMName.FullName);
+    {
+      if (assembly == AssemblyConstants.NWMAssembly)
+      {
+        return true;
+      }
+
+      foreach (AssemblyName reference in assembly.GetReferencedAssemblies())
+      {
+        if (reference.Name != AssemblyConstants.NWMName.Name)
+        {
+          continue;
+        }
+
+        if (reference.Version != AssemblyConstants.NWMName.Version)
+        {
+          Log.Warn($"Plugin {reference.Name} was built against version {reference.Version}, but the server is running {AssemblyConstants.NWMName.Version}! You may encounter compatibility issues.");
+        }
+
+        return true;
+      }
+
+      return false;
+    }
 
     private IReadOnlyCollection<Type> GetLoadedTypes()
     {
