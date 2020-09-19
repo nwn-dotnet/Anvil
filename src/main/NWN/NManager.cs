@@ -88,6 +88,7 @@ namespace NWN
     private void Start()
     {
       InitLogManager();
+      Log.Info($"Loading NWN.Managed - {AssemblyConstants.NWMName.Version}");
       CheckPluginDependencies();
 
       typeLoader.Init();

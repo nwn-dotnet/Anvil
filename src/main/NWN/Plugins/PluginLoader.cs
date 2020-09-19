@@ -19,6 +19,7 @@ namespace NWN.Plugins
 
     public void Init()
     {
+      Log.Info($"Loading DotNET plugins from: {EnvironmentConfig.PluginsPath}");
       LoadCore();
       LoadPlugins();
       LoadedTypes = GetLoadedTypes();
@@ -37,23 +38,15 @@ namespace NWN.Plugins
 
     private void LoadPlugins()
     {
-      string pluginRoot = ResolvePluginsRoot();
-
-      foreach (string assemblyName in Directory.GetFiles(pluginRoot, "*.dll", SearchOption.AllDirectories))
+      foreach (string assemblyName in Directory.GetFiles(EnvironmentConfig.PluginsPath, "*.dll", SearchOption.AllDirectories))
       {
         Assembly assembly = LoadPluginAssembly(assemblyName);
         if (assembly != null && IsValidAssembly(assembly))
         {
           loadedAssemblies.Add(assembly);
-          Log.Info($"Loaded DotNET plugin ({assembly.GetName().Name}) - \"{assembly.Location}\"");
+          Log.Info($"Loaded DotNET plugin ({assembly.GetName().Name}) - {assembly.Location}");
         }
       }
-    }
-
-    private static string ResolvePluginsRoot()
-    {
-      string pluginPath = EnvironmentConfig.PluginsPath;
-      return pluginPath;
     }
 
     private Assembly LoadPluginAssembly(string assemblyPath)
@@ -84,7 +77,7 @@ namespace NWN.Plugins
 
         if (reference.Version != AssemblyConstants.NWMName.Version)
         {
-          Log.Warn($"Plugin {reference.Name} was built against version {reference.Version}, but the server is running {AssemblyConstants.NWMName.Version}! You may encounter compatibility issues.");
+          Log.Warn($"Plugin {assembly.GetName().Name} was built against version {reference.Version}, but the server is running {AssemblyConstants.NWMName.Version}! You may encounter compatibility issues.");
         }
 
         return true;
