@@ -10,7 +10,10 @@ namespace NWN.API
 {
   public abstract class NwGameObject : NwObject
   {
-    internal NwGameObject(uint objectId) : base(objectId) {}
+    internal NwGameObject(uint objectId) : base(objectId)
+    {
+      faction = new NwFaction(this);
+    }
 
     /// <summary>
     /// Gets or sets the location of this object.
@@ -31,6 +34,17 @@ namespace NWN.API
     public NwArea Area
     {
       get => NWScript.GetArea(this).ToNwObject<NwArea>();
+    }
+
+    private readonly NwFaction faction;
+
+    /// <summary>
+    /// Gets or sets the faction of this object.
+    /// </summary>
+    public NwFaction Faction
+    {
+      get => faction;
+      set => NWScript.ChangeFaction(this, value.GameObject);
     }
 
     /// <summary>
@@ -120,12 +134,26 @@ namespace NWN.API
     /// <summary>
     /// Gets the current HP for this object.
     /// </summary>
-    public int HP => NWScript.GetCurrentHitPoints(this);
+    public int HP
+    {
+      get => NWScript.GetCurrentHitPoints(this);
+    }
 
     /// <summary>
     /// Gets the maximum HP for this object. Returns 0 if this object has no defined HP.
     /// </summary>
-    public int MaxHP => NWScript.GetMaxHitPoints(this);
+    public int MaxHP
+    {
+      get => NWScript.GetMaxHitPoints(this);
+    }
+
+    /// <summary>
+    /// Gets the total amount of gold held by this object's faction.
+    /// </summary>
+    public int FactionGold
+    {
+      get => NWScript.GetFactionGold(this);
+    }
 
     /// <summary>
     /// Gets or sets this object's plot status.
@@ -337,6 +365,21 @@ namespace NWN.API
           throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
       }
     }
+
+    /// <summary>
+    /// Changes this object's faction to that of another creature.
+    /// </summary>
+    /// <param name="newFactionMember">A creature whose faction will be joined.</param>
+    public void ChangeToFaction(NwCreature newFactionMember)
+      => NWScript.ChangeFaction(this, newFactionMember);
+
+    /// <summary>
+    /// Gets if this object and the specified object are in the same faction.
+    /// </summary>
+    /// <param name="other">The other object to compare against.</param>
+    /// <returns></returns>
+    public bool GetFactionEqual(NwGameObject other)
+      => NWScript.GetFactionEqual(this, other).ToBool();
 
     /// <summary>
     /// Casts a spell at an object.
