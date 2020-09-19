@@ -348,6 +348,9 @@ var hierarchy =
     [ "IComparer", null, [
       [ "NWN.Services.ScheduledItem.SortedByExecutionTime", "classNWN_1_1Services_1_1ScheduledItem_1_1SortedByExecutionTime.html", null ]
     ] ],
+    [ "IEquatable", null, [
+      [ "NWN.API.NwFaction", "classNWN_1_1API_1_1NwFaction.html", null ]
+    ] ],
     [ "IEquatable< CampaignVariable< T >>", null, [
       [ "NWN.API.CampaignVariable< T >", "classNWN_1_1API_1_1CampaignVariable.html", null ]
     ] ],
@@ -435,6 +438,7 @@ var hierarchy =
     [ "NWN.Services.ServiceManager", "classNWN_1_1Services_1_1ServiceManager.html", null ],
     [ "NWNX.API.Events.SetMemorizedSpellSlotEvents", "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents.html", null ],
     [ "NWNX.API.SkillRanks", "classNWNX_1_1API_1_1SkillRanks.html", null ],
+    [ "NWN.API.StandardFactionExtensions", "classNWN_1_1API_1_1StandardFactionExtensions.html", null ],
     [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWN.API.StringExtensions", "classNWN_1_1API_1_1StringExtensions.html", null ],
     [ "NWN.API.Talent", "classNWN_1_1API_1_1Talent.html", null ],

@@ -53,5 +53,9 @@ var searchData=
   ['attackdecrease_50',['AttackDecrease',['../classNWN_1_1API_1_1Effect.html#af602fe68edae1232ccd37de956452f60',1,'NWN::API::Effect']]],
   ['attackevent_51',['AttackEvent',['../classNWNX_1_1API_1_1Events_1_1AttackEvent.html',1,'NWNX::API::Events']]],
   ['attackincrease_52',['AttackIncrease',['../classNWN_1_1API_1_1Effect.html#adef6ae9ef45d9c25e2cd06ad18be7447',1,'NWN::API::Effect']]],
-  ['attacktarget_53',['AttackTarget',['../classNWN_1_1API_1_1NwCreature.html#a3fdc3c34d9896c58b3453c63bbd0c800',1,'NWN::API::NwCreature']]]
+  ['attacktarget_53',['AttackTarget',['../classNWN_1_1API_1_1NwCreature.html#a3fdc3c34d9896c58b3453c63bbd0c800',1,'NWN::API::NwCreature']]],
+  ['averagegoodevilalignment_54',['AverageGoodEvilAlignment',['../classNWN_1_1API_1_1NwFaction.html#a78fbb522a50751ce544792fb78cfc15b',1,'NWN::API::NwFaction']]],
+  ['averagelawchaosalignment_55',['AverageLawChaosAlignment',['../classNWN_1_1API_1_1NwFaction.html#a9f02780b84cc90e8c16f1a7f553aea20',1,'NWN::API::NwFaction']]],
+  ['averagelevel_56',['AverageLevel',['../classNWN_1_1API_1_1NwFaction.html#a722fbd9864ddb79fd3fd054b327be6db',1,'NWN::API::NwFaction']]],
+  ['averagexp_57',['AverageXP',['../classNWN_1_1API_1_1NwFaction.html#a6c45307842222558e0f67bc08351576e',1,'NWN::API::NwFaction']]]
 ];

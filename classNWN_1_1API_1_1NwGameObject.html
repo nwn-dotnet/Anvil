@@ -83,7 +83,6 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1NwGameObject.html',
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="classNWN_1_1API_1_1NwGameObject-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -169,6 +168,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a48f2f97fe6a827b2f22c42f8ba05e0f1"><td class="memItemLeft" align="right" valign="top">SavingThrowResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a48f2f97fe6a827b2f22c42f8ba05e0f1">RollSavingThrow</a> (SavingThrow savingThrow, int dc, SavingThrowType saveType, <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> saveVs=null)</td></tr>
 <tr class="memdesc:a48f2f97fe6a827b2f22c42f8ba05e0f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a saving throw against the given dc.  <a href="classNWN_1_1API_1_1NwGameObject.html#a48f2f97fe6a827b2f22c42f8ba05e0f1">More...</a><br /></td></tr>
 <tr class="separator:a48f2f97fe6a827b2f22c42f8ba05e0f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6494830a3ea6aede2ecabd32ac63c3f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a6494830a3ea6aede2ecabd32ac63c3f8">ChangeToFaction</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> newFactionMember)</td></tr>
+<tr class="memdesc:a6494830a3ea6aede2ecabd32ac63c3f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes this object's faction to that of another creature.  <a href="classNWN_1_1API_1_1NwGameObject.html#a6494830a3ea6aede2ecabd32ac63c3f8">More...</a><br /></td></tr>
+<tr class="separator:a6494830a3ea6aede2ecabd32ac63c3f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623aaaa50d9dcefeb4c2ddb3ae72e1ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a623aaaa50d9dcefeb4c2ddb3ae72e1ee">GetFactionEqual</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> other)</td></tr>
+<tr class="memdesc:a623aaaa50d9dcefeb4c2ddb3ae72e1ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this object and the specified object are in the same faction.  <a href="classNWN_1_1API_1_1NwGameObject.html#a623aaaa50d9dcefeb4c2ddb3ae72e1ee">More...</a><br /></td></tr>
+<tr class="separator:a623aaaa50d9dcefeb4c2ddb3ae72e1ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a030c5e350decd1fa26031f0bfc171db5"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a030c5e350decd1fa26031f0bfc171db5">ActionCastSpellAt</a> (Spell spell, <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target, MetaMagic metaMagic=MetaMagic.Any, bool cheat=false, int domainLevel=0, ProjectilePathType projectilePathType=ProjectilePathType.Default, bool instant=false)</td></tr>
 <tr class="memdesc:a030c5e350decd1fa26031f0bfc171db5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts a spell at an object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a030c5e350decd1fa26031f0bfc171db5">More...</a><br /></td></tr>
 <tr class="separator:a030c5e350decd1fa26031f0bfc171db5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,25 +220,6 @@ override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (
 override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</b> ()</td></tr>
 <tr class="separator:ae9944089a3741b158212c2e0ebe35c67 inherit pub_methods_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a2b91306b639879493ee95b88284f9965"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965">HP</a> =&gt; NWScript.GetCurrentHitPoints(this)</td></tr>
-<tr class="memdesc:a2b91306b639879493ee95b88284f9965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current HP for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965">More...</a><br /></td></tr>
-<tr class="separator:a2b91306b639879493ee95b88284f9965"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a496e7fb9fcf017e525e6619b0c3cc8f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a496e7fb9fcf017e525e6619b0c3cc8f6">MaxHP</a> =&gt; NWScript.GetMaxHitPoints(this)</td></tr>
-<tr class="memdesc:a496e7fb9fcf017e525e6619b0c3cc8f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the maximum HP for this object. Returns 0 if this object has no defined HP.  <a href="classNWN_1_1API_1_1NwGameObject.html#a496e7fb9fcf017e525e6619b0c3cc8f6">More...</a><br /></td></tr>
-<tr class="separator:a496e7fb9fcf017e525e6619b0c3cc8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_attribs_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
-<tr class="memitem:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20">ResRef</a> =&gt; NWScript.GetResRef(this)</td></tr>
-<tr class="memdesc:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the resource reference used to create this object.  <a href="classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20">More...</a><br /></td></tr>
-<tr class="separator:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5">IsValid</a> =&gt; NWScript.GetIsObjectValid(this).ToBool()</td></tr>
-<tr class="memdesc:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this is a valid object.  <a href="classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5">More...</a><br /></td></tr>
-<tr class="separator:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c">OriginalDescription</a> =&gt; NWScript.GetDescription(this, true.ToInt())</td></tr>
-<tr class="memdesc:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the original description for this object as defined in the toolset.  <a href="classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c">More...</a><br /></td></tr>
-<tr class="separator:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a992242d3ad4d409cb5a38ce9d91049f2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2">Location</a><code> [get, set]</code></td></tr>
@@ -242,6 +228,9 @@ Properties</h2></td></tr>
 <tr class="memitem:aca9ed74629540379def37e9fdef3a488"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488">Area</a><code> [get]</code></td></tr>
 <tr class="memdesc:aca9ed74629540379def37e9fdef3a488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the area this object is currently in.  <a href="classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488">More...</a><br /></td></tr>
 <tr class="separator:aca9ed74629540379def37e9fdef3a488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2408cabd3c97e99e736bbfea26ed73ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwFaction.html">NwFaction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a2408cabd3c97e99e736bbfea26ed73ef">Faction</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2408cabd3c97e99e736bbfea26ed73ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the faction of this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a2408cabd3c97e99e736bbfea26ed73ef">More...</a><br /></td></tr>
+<tr class="separator:a2408cabd3c97e99e736bbfea26ed73ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab441df5249a1c51007ba7e7b6fd04606"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ab441df5249a1c51007ba7e7b6fd04606">Position</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ab441df5249a1c51007ba7e7b6fd04606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the local area position of this GameObject.  <a href="classNWN_1_1API_1_1NwGameObject.html#ab441df5249a1c51007ba7e7b6fd04606">More...</a><br /></td></tr>
 <tr class="separator:ab441df5249a1c51007ba7e7b6fd04606"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -260,6 +249,15 @@ Properties</h2></td></tr>
 <tr class="memitem:a1fb6a33f5764b05c6ef6f358d3286c5c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a1fb6a33f5764b05c6ef6f358d3286c5c">PortraitResRef</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a1fb6a33f5764b05c6ef6f358d3286c5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Portrait ResRef for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a1fb6a33f5764b05c6ef6f358d3286c5c">More...</a><br /></td></tr>
 <tr class="separator:a1fb6a33f5764b05c6ef6f358d3286c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b91306b639879493ee95b88284f9965"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965">HP</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2b91306b639879493ee95b88284f9965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current HP for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965">More...</a><br /></td></tr>
+<tr class="separator:a2b91306b639879493ee95b88284f9965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a496e7fb9fcf017e525e6619b0c3cc8f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a496e7fb9fcf017e525e6619b0c3cc8f6">MaxHP</a><code> [get]</code></td></tr>
+<tr class="memdesc:a496e7fb9fcf017e525e6619b0c3cc8f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the maximum HP for this object. Returns 0 if this object has no defined HP.  <a href="classNWN_1_1API_1_1NwGameObject.html#a496e7fb9fcf017e525e6619b0c3cc8f6">More...</a><br /></td></tr>
+<tr class="separator:a496e7fb9fcf017e525e6619b0c3cc8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c756aefaaf1dc16025533c8eeb33d60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a4c756aefaaf1dc16025533c8eeb33d60">FactionGold</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4c756aefaaf1dc16025533c8eeb33d60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total amount of gold held by this object's faction.  <a href="classNWN_1_1API_1_1NwGameObject.html#a4c756aefaaf1dc16025533c8eeb33d60">More...</a><br /></td></tr>
+<tr class="separator:a4c756aefaaf1dc16025533c8eeb33d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5b22ba36960523ce0094577d6b0d75f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#af5b22ba36960523ce0094577d6b0d75f">PlotFlag</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:af5b22ba36960523ce0094577d6b0d75f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets this object's plot status.  <a href="classNWN_1_1API_1_1NwGameObject.html#af5b22ba36960523ce0094577d6b0d75f">More...</a><br /></td></tr>
 <tr class="separator:af5b22ba36960523ce0094577d6b0d75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -310,6 +308,16 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
 <tr class="memitem:a6864a363678118ffe33936a59ac85b93 inherit pub_static_methods_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="a6864a363678118ffe33936a59ac85b93"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> left, <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> right)</td></tr>
 <tr class="separator:a6864a363678118ffe33936a59ac85b93 inherit pub_static_methods_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
+<tr class="memitem:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20">ResRef</a> =&gt; NWScript.GetResRef(this)</td></tr>
+<tr class="memdesc:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the resource reference used to create this object.  <a href="classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20">More...</a><br /></td></tr>
+<tr class="separator:a92c1cc970908425a4c8af6ceffce4e20 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5">IsValid</a> =&gt; NWScript.GetIsObjectValid(this).ToBool()</td></tr>
+<tr class="memdesc:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this is a valid object.  <a href="classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5">More...</a><br /></td></tr>
+<tr class="separator:a268221225d35f6ef5ecdc8f3238006a5 inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c">OriginalDescription</a> =&gt; NWScript.GetDescription(this, true.ToInt())</td></tr>
+<tr class="memdesc:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the original description for this object as defined in the toolset.  <a href="classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c">More...</a><br /></td></tr>
+<tr class="separator:a805a9020f0c0b1f22bcd7d19c54a1c8c inherit pub_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
 <tr class="memitem:aa5269deb0d931d58d06bfb4560db00e1 inherit pro_attribs_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="aa5269deb0d931d58d06bfb4560db00e1"></a>
 readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b></td></tr>
@@ -463,6 +471,32 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
     <tr><td class="paramname">domainLevel</td><td>Specifies the spell level if the spell is to be cast as a domain spell.</td></tr>
     <tr><td class="paramname">projectilePathType</td><td></td></tr>
     <tr><td class="paramname">instant</td><td>If true, the spell is cast immediately.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6494830a3ea6aede2ecabd32ac63c3f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6494830a3ea6aede2ecabd32ac63c3f8">&#9670;&nbsp;</a></span>ChangeToFaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwGameObject.ChangeToFaction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td>
+          <td class="paramname"><em>newFactionMember</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Changes this object's faction to that of another creature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newFactionMember</td><td>A creature whose faction will be joined.</td></tr>
   </table>
   </dd>
 </dl>
@@ -675,6 +709,33 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The current color index value of the specified channel.</dd></dl>
 </dd></dl>
+
+</div>
+</div>
+<a id="a623aaaa50d9dcefeb4c2ddb3ae72e1ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a623aaaa50d9dcefeb4c2ddb3ae72e1ee">&#9670;&nbsp;</a></span>GetFactionEqual()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NWN.API.NwGameObject.GetFactionEqual </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets if this object and the specified object are in the same faction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The other object to compare against.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -1085,39 +1146,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a2b91306b639879493ee95b88284f9965"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b91306b639879493ee95b88284f9965">&#9670;&nbsp;</a></span>HP</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int NWN.API.NwGameObject.HP =&gt; NWScript.GetCurrentHitPoints(this)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the current HP for this object. </p>
-
-</div>
-</div>
-<a id="a496e7fb9fcf017e525e6619b0c3cc8f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a496e7fb9fcf017e525e6619b0c3cc8f6">&#9670;&nbsp;</a></span>MaxHP</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int NWN.API.NwGameObject.MaxHP =&gt; NWScript.GetMaxHitPoints(this)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the maximum HP for this object. Returns 0 if this object has no defined HP. </p>
-
-</div>
-</div>
 <h2 class="groupheader">Property Documentation</h2>
 <a id="aca9ed74629540379def37e9fdef3a488"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aca9ed74629540379def37e9fdef3a488">&#9670;&nbsp;</a></span>Area</h2>
@@ -1140,6 +1168,78 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Gets the area this object is currently in. </p>
+
+</div>
+</div>
+<a id="a2408cabd3c97e99e736bbfea26ed73ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2408cabd3c97e99e736bbfea26ed73ef">&#9670;&nbsp;</a></span>Faction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNWN_1_1API_1_1NwFaction.html">NwFaction</a> NWN.API.NwGameObject.Faction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the faction of this object. </p>
+
+</div>
+</div>
+<a id="a4c756aefaaf1dc16025533c8eeb33d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c756aefaaf1dc16025533c8eeb33d60">&#9670;&nbsp;</a></span>FactionGold</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int NWN.API.NwGameObject.FactionGold</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the total amount of gold held by this object's faction. </p>
+
+</div>
+</div>
+<a id="a2b91306b639879493ee95b88284f9965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b91306b639879493ee95b88284f9965">&#9670;&nbsp;</a></span>HP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int NWN.API.NwGameObject.HP</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current HP for this object. </p>
 
 </div>
 </div>
@@ -1212,6 +1312,30 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Gets or sets the location of this object. </p>
+
+</div>
+</div>
+<a id="a496e7fb9fcf017e525e6619b0c3cc8f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a496e7fb9fcf017e525e6619b0c3cc8f6">&#9670;&nbsp;</a></span>MaxHP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int NWN.API.NwGameObject.MaxHP</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the maximum HP for this object. Returns 0 if this object has no defined HP. </p>
 
 </div>
 </div>

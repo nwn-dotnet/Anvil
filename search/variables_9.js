@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['maxhp_1258',['MaxHP',['../classNWN_1_1API_1_1NwGameObject.html#a496e7fb9fcf017e525e6619b0c3cc8f6',1,'NWN::API::NwGameObject']]]
+  ['originaldescription_1301',['OriginalDescription',['../classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c',1,'NWN::API::NwObject']]]
 ];

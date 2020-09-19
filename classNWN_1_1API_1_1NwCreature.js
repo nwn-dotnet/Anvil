@@ -14,6 +14,7 @@ var classNWN_1_1API_1_1NwCreature =
     [ "ActionUnequipItem", "classNWN_1_1API_1_1NwCreature.html#ad3d07bbc466380a59067423632971cfb", null ],
     [ "AdjustPartyAlignment", "classNWN_1_1API_1_1NwCreature.html#a28a0e5845804aee9a465ef5b886d1022", null ],
     [ "ApplyEffect", "classNWN_1_1API_1_1NwCreature.html#a3d29ce58ff273e0fb053e724da148146", null ],
+    [ "ChangeToStandardFaction", "classNWN_1_1API_1_1NwCreature.html#ab28fc5445643eda10c93896e1fd3d610", null ],
     [ "Clone", "classNWN_1_1API_1_1NwCreature.html#a89189b3d17caca13bd16eef90ecf7ee3", null ],
     [ "Create", "classNWN_1_1API_1_1NwCreature.html#a36c8243a16892c95520b3c967eba73db", null ],
     [ "DoSkillCheck", "classNWN_1_1API_1_1NwCreature.html#a08e4eecbda0026f8b311476d4f6080b6", null ],

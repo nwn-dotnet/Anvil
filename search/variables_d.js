@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['scriptreturnvalue_1264',['ScriptReturnValue',['../classNWNX_1_1API_1_1Util.html#a139b7dffa0257f2fa4a3dd49af35c55a',1,'NWNX::API::Util']]],
-  ['servertickspersecond_1265',['ServerTicksPerSecond',['../classNWNX_1_1API_1_1Util.html#a3cba4aa0a0f5f85c1b10a220ce7bfbe1',1,'NWNX::API::Util']]],
-  ['size_1266',['Size',['../classNWN_1_1API_1_1NwArea.html#aeee8c4b7469993c121f2a226fe59250d',1,'NWN::API::NwArea']]],
-  ['skill_1267',['Skill',['../classNWN_1_1API_1_1Talent.html#a1c812e7a633bb8b8ff587091293c31bf',1,'NWN::API::Talent']]],
-  ['spell_1268',['Spell',['../classNWN_1_1API_1_1Talent.html#ae2deff8f2d40fe97420a375b20d14970',1,'NWN::API::Talent']]],
-  ['subtype_1269',['SubType',['../classNWN_1_1API_1_1ItemProperty.html#a4a43d08961f0e303e5a6016883723d99',1,'NWN::API::ItemProperty']]]
+  ['tag_1312',['Tag',['../classNWN_1_1API_1_1ItemProperty.html#a918be916ed8ba8e8a1b8f99cb8fb2a9b',1,'NWN::API::ItemProperty']]],
+  ['tileset_1313',['Tileset',['../classNWN_1_1API_1_1NwArea.html#a84bf5699a95c0b63a81be92068782f58',1,'NWN::API::NwArea']]],
+  ['totalduration_1314',['TotalDuration',['../classNWN_1_1API_1_1Effect.html#aa07f7a3997d2f70314e32aebaa13be21',1,'NWN.API.Effect.TotalDuration()'],['../classNWN_1_1API_1_1ItemProperty.html#a106af6eb83376adea18c888b918cb3cf',1,'NWN.API.ItemProperty.TotalDuration()']]],
+  ['trapbasetype_1315',['TrapBaseType',['../classNWN_1_1API_1_1NwTrappable.html#a47e8f6148e19b9b818a96534ec30c358',1,'NWN::API::NwTrappable']]],
+  ['trapcreator_1316',['TrapCreator',['../classNWN_1_1API_1_1NwTrappable.html#a945635588424a80f49e1ce96a1e6a16d',1,'NWN::API::NwTrappable']]],
+  ['type_1317',['Type',['../classNWN_1_1API_1_1Talent.html#a66392f69bd41729885eb0605778090ee',1,'NWN::API::Talent']]]
 ];

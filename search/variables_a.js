@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['originaldescription_1259',['OriginalDescription',['../classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c',1,'NWN::API::NwObject']]]
+  ['propertytype_1302',['PropertyType',['../classNWN_1_1API_1_1ItemProperty.html#a346a9b4c323d348269903af83dd716b8',1,'NWN::API::ItemProperty']]]
 ];
