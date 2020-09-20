@@ -154,14 +154,22 @@ namespace NWN.API
       }
     }
 
-    public void AddItemProperty(ItemProperty itemProperty,
-      float duration = 0.0f,
-      AddPropertyPolicy addPolicy = AddPropertyPolicy.ReplaceExisting,
-      bool ignoreDurationType = false,
-      bool ignoreSubType = false)
-    {
-      throw new NotImplementedException();
-    }
+    /// <summary>
+    /// Adds the specified item property to this item.
+    /// </summary>
+    /// <param name="itemProperty">The item property to add.</param>
+    /// <param name="durationType">(Permanent/Temporary) - the duration of this item property.</param>
+    /// <param name="duration">If DurationType is temporary, how long this item property should stay applied.</param>
+    public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default)
+      => NWScript.AddItemProperty((int) durationType, itemProperty, this, (float) duration.TotalSeconds);
+
+    /// <summary>
+    /// Removes the specified item property from this item.<br/>
+    /// See <see cref="ItemProperties"/> to enumerate item properties on this item.
+    /// </summary>
+    /// <param name="itemProperty">The item property to remove.</param>
+    public void RemoveItemProperty(ItemProperty itemProperty)
+      => NWScript.RemoveItemProperty(this, itemProperty);
 
     /// <summary>
     /// Creates a new item from a template ResRef.
