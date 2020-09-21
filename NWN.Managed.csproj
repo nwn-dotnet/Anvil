@@ -28,7 +28,7 @@
 
     <ItemGroup>
         <PackageReference Include="NLog" Version="4.7.4" />
-        <PackageReference Include="NWN.Core" Version="8193.14.6" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Core" Version="8193.16.1" PrivateAssets="compile" />
         <PackageReference Include="SimpleInjector" Version="5.0.3" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     </ItemGroup>
