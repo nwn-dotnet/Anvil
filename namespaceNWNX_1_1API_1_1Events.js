@@ -8,6 +8,12 @@ var namespaceNWNX_1_1API_1_1Events =
     [ "FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", [
       [ "OnUseFeatBefore", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore.html", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore" ]
     ] ],
+    [ "GoldEvents", "classNWNX_1_1API_1_1Events_1_1GoldEvents.html", [
+      [ "OnInventoryAddGoldAfter", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldAfter.html", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldAfter" ],
+      [ "OnInventoryAddGoldBefore", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldBefore.html", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldBefore" ],
+      [ "OnInventoryRemoveGoldAfter", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldAfter.html", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldAfter" ],
+      [ "OnInventoryRemoveGoldBefore", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldBefore.html", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldBefore" ]
+    ] ],
     [ "ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", [
       [ "OnItemEquipBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore" ],
       [ "OnItemUseBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore" ],

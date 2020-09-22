@@ -313,6 +313,18 @@ var hierarchy =
       [ "NWN.API.Events.Event< TObject, TEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", null ]
     ] ],
     [ "NWN.Services.EventHandler", "classNWN_1_1Services_1_1EventHandler.html", null ],
+    [ "NWNX.API.Events.EventSkippable< OnInventoryAddGoldAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.GoldEvents.OnInventoryAddGoldAfter", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInventoryAddGoldBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.GoldEvents.OnInventoryAddGoldBefore", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInventoryRemoveGoldAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.GoldEvents.OnInventoryRemoveGoldAfter", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInventoryRemoveGoldBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.GoldEvents.OnInventoryRemoveGoldBefore", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldBefore.html", null ]
+    ] ],
     [ "NWNX.API.Events.EventSkippable< OnItemEquipBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.ItemEvents.OnItemEquipBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore.html", null ]
     ] ],
@@ -332,6 +344,7 @@ var hierarchy =
     [ "NWNX.API.Events.FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", null ],
     [ "NWNX.API.Feedback", "classNWNX_1_1API_1_1Feedback.html", null ],
     [ "NWNX.API.Administration.GameOptions", "classNWNX_1_1API_1_1Administration_1_1GameOptions.html", null ],
+    [ "NWNX.API.Events.GoldEvents", "classNWNX_1_1API_1_1Events_1_1GoldEvents.html", null ],
     [ "NWN.API.GuidExtensions", "classNWN_1_1API_1_1GuidExtensions.html", null ],
     [ "NWN.API.HitEffect", "structNWN_1_1API_1_1HitEffect.html", null ],
     [ "NWN.Services.IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", [
@@ -388,8 +401,8 @@ var hierarchy =
     ] ],
     [ "NWNX.API.Item", "classNWNX_1_1API_1_1Item.html", null ],
     [ "NWNX.API.Events.ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", null ],
-    [ "NWNX.API.ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
     [ "NWN.API.ItemProperty", "classNWN_1_1API_1_1ItemProperty.html", null ],
+    [ "NWNX.API.ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
     [ "NWN.Services.ITwoDimArray", "interfaceNWN_1_1Services_1_1ITwoDimArray.html", null ],
     [ "NWN.Plugins.ITypeLoader", "interfaceNWN_1_1Plugins_1_1ITypeLoader.html", null ],
     [ "NWN.Services.IUpdateable", "interfaceNWN_1_1Services_1_1IUpdateable.html", [

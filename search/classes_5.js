@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['gameoptions_871',['GameOptions',['../classNWNX_1_1API_1_1Administration_1_1GameOptions.html',1,'NWNX::API::Administration']]],
-  ['guidextensions_872',['GuidExtensions',['../classNWN_1_1API_1_1GuidExtensions.html',1,'NWN::API']]]
+  ['gameoptions_884',['GameOptions',['../classNWNX_1_1API_1_1Administration_1_1GameOptions.html',1,'NWNX::API::Administration']]],
+  ['goldevents_885',['GoldEvents',['../classNWNX_1_1API_1_1Events_1_1GoldEvents.html',1,'NWNX::API::Events']]],
+  ['guidextensions_886',['GuidExtensions',['../classNWN_1_1API_1_1GuidExtensions.html',1,'NWN::API']]]
 ];
