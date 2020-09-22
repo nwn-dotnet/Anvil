@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['ultravision_701',['Ultravision',['../classNWN_1_1API_1_1Effect.html#a67438ed3875cc0f9c3a61165cbcd4fb7',1,'NWN::API::Effect']]],
-  ['uncategorized_702',['Uncategorized',['../classNWN_1_1API_1_1Constants_1_1Uncategorized.html',1,'NWN::API::Constants']]],
-  ['unidentifieddescription_703',['UnidentifiedDescription',['../classNWN_1_1API_1_1NwItem.html#a611e1b4a53c72d420ed04252936d3f5e',1,'NWN::API::NwItem']]],
-  ['unlockachievement_704',['UnlockAchievement',['../classNWN_1_1API_1_1NwPlayer.html#ac1f69ec12641d650de9e00f0426549db',1,'NWN::API::NwPlayer']]],
-  ['unlockdc_705',['UnlockDC',['../classNWN_1_1API_1_1NwStationary.html#a054d7ba64e3a5f41fe6b5ab9b2cd5e1e',1,'NWN::API::NwStationary']]],
-  ['unregisterserverconsolecommand_706',['UnregisterServerConsoleCommand',['../classNWNX_1_1API_1_1Util.html#a0dd470aeb74ef110a809b4d604ae3a7d',1,'NWNX::API::Util']]],
-  ['unsubscribe_3c_20tobject_2c_20tevent_20_3e_707',['Unsubscribe&lt; TObject, TEvent &gt;',['../classNWN_1_1Services_1_1EventService.html#aae5849a4ad1b977448d48b9aa52fc061',1,'NWN::Services::EventService']]],
-  ['unsubscribeall_3c_20tevent_20_3e_708',['UnsubscribeAll&lt; TEvent &gt;',['../classNWN_1_1Services_1_1EventService.html#a0e5f849d387a7707f2c747372a4a978d',1,'NWN::Services::EventService']]],
-  ['update_709',['Update',['../interfaceNWN_1_1Services_1_1IUpdateable.html#aedac417ae32de9acaf39fad1c10900f9',1,'NWN::Services::IUpdateable']]],
-  ['useable_710',['Useable',['../classNWN_1_1API_1_1NwPlaceable.html#a3add46f94f7118ba20bbaa172ec43b9c',1,'NWN::API::NwPlaceable']]],
-  ['userdirectory_711',['UserDirectory',['../classNWNX_1_1API_1_1Util.html#a9a2864ea0b2315b44f2bd7d5ddcebd82',1,'NWNX::API::Util']]],
-  ['util_712',['Util',['../classNWNX_1_1API_1_1Util.html',1,'NWNX::API']]],
-  ['uuid_713',['UUID',['../classNWN_1_1API_1_1NwObject.html#a9bc2179ca37cfd5a6ea4dd360429c662',1,'NWN::API::NwObject']]]
+  ['valid_714',['Valid',['../classNWN_1_1API_1_1ItemProperty.html#ac6ab0a2e316600ec2cbbe9fde913fc9a',1,'NWN.API.ItemProperty.Valid()'],['../classNWN_1_1API_1_1Talent.html#a05d8befa1fbbec42392cb5a8f76c7aad',1,'NWN.API.Talent.Valid()']]],
+  ['value_715',['Value',['../classNWN_1_1API_1_1CampaignVariable.html#a97721309d57d0eb0b95e3c547fc9f62e',1,'NWN.API.CampaignVariable.Value()'],['../classNWN_1_1API_1_1LocalVariable.html#a07c06df2ebd16308874900a1ccb026ea',1,'NWN.API.LocalVariable.Value()']]],
+  ['vibrate_716',['Vibrate',['../classNWN_1_1API_1_1NwPlayer.html#a22177cc9bca974e72269e0f870034c94',1,'NWN::API::NwPlayer']]],
+  ['visibility_717',['Visibility',['../classNWNX_1_1API_1_1Visibility.html',1,'NWNX::API']]],
+  ['visiblehighestacmember_718',['VisibleHighestACMember',['../classNWN_1_1API_1_1NwFaction.html#a644da990195bbc719a39c518b433f0ba',1,'NWN::API::NwFaction']]],
+  ['visibleleastdamagedmember_719',['VisibleLeastDamagedMember',['../classNWN_1_1API_1_1NwFaction.html#aa27408e70b32cdebab6bdb69317375ef',1,'NWN::API::NwFaction']]],
+  ['visiblelowestacmember_720',['VisibleLowestACMember',['../classNWN_1_1API_1_1NwFaction.html#a9585c822889950aacf3bab666fe0ce78',1,'NWN::API::NwFaction']]],
+  ['visiblemostdamagedmember_721',['VisibleMostDamagedMember',['../classNWN_1_1API_1_1NwFaction.html#a964ef50ee3a6772fd5aed6b59c5ceeb4',1,'NWN::API::NwFaction']]],
+  ['visiblestrongestmember_722',['VisibleStrongestMember',['../classNWN_1_1API_1_1NwFaction.html#a7c6be454442a0a3420839adc8d369762',1,'NWN::API::NwFaction']]],
+  ['visibleweakestmember_723',['VisibleWeakestMember',['../classNWN_1_1API_1_1NwFaction.html#ab877ba8cb9d1a322aa2a8934588057e2',1,'NWN::API::NwFaction']]],
+  ['visualeffect_724',['VisualEffect',['../classNWN_1_1API_1_1Effect.html#a84713fddcaeed64da1526321d339b3bb',1,'NWN::API::Effect']]],
+  ['visualtransform_725',['VisualTransform',['../classNWN_1_1API_1_1VisualTransform.html',1,'NWN.API.VisualTransform'],['../classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d',1,'NWN.API.NwGameObject.VisualTransform()']]],
+  ['volume_726',['Volume',['../classNWN_1_1API_1_1NwSound.html#aa554d71d12c3dc0cfc11c4af532fcfdc',1,'NWN::API::NwSound']]]
 ];

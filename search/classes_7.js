@@ -1,7 +1,7 @@
 var searchData=
 [
   ['ibindinginstaller_871',['IBindingInstaller',['../interfaceNWN_1_1Services_1_1IBindingInstaller.html',1,'NWN::Services']]],
-  ['icampaignvariableconverter_872',['ICampaignVariableConverter',['../interfaceNWN_1_1API_1_1ICampaignVariableConverter.html',1,'NWN.API.ICampaignVariableConverter'],['../interfaceNWN_1_1API_1_1ICampaignVariableConverter.html',1,'NWN.API.ICampaignVariableConverter&lt; T &gt;']]],
+  ['icampaignvariableconverter_872',['ICampaignVariableConverter',['../interfaceNWN_1_1API_1_1ICampaignVariableConverter.html',1,'NWN.API.ICampaignVariableConverter&lt; T &gt;'],['../interfaceNWN_1_1API_1_1ICampaignVariableConverter.html',1,'NWN.API.ICampaignVariableConverter']]],
   ['icampaignvariableconverter_3c_20bool_20_3e_873',['ICampaignVariableConverter&lt; bool &gt;',['../interfaceNWN_1_1API_1_1ICampaignVariableConverter.html',1,'NWN::API']]],
   ['icampaignvariableconverter_3c_20float_20_3e_874',['ICampaignVariableConverter&lt; float &gt;',['../interfaceNWN_1_1API_1_1ICampaignVariableConverter.html',1,'NWN::API']]],
   ['icampaignvariableconverter_3c_20guid_20_3e_875',['ICampaignVariableConverter&lt; Guid &gt;',['../interfaceNWN_1_1API_1_1ICampaignVariableConverter.html',1,'NWN::API']]],
@@ -12,7 +12,7 @@ var searchData=
   ['icampaignvariableconverter_3c_20vector3_20_3e_880',['ICampaignVariableConverter&lt; Vector3 &gt;',['../interfaceNWN_1_1API_1_1ICampaignVariableConverter.html',1,'NWN::API']]],
   ['ieventattribute_881',['IEventAttribute',['../interfaceNWN_1_1API_1_1Events_1_1IEventAttribute.html',1,'NWN::API::Events']]],
   ['iinitializable_882',['IInitializable',['../interfaceNWN_1_1Services_1_1IInitializable.html',1,'NWN::Services']]],
-  ['ilocalvariableconverter_883',['ILocalVariableConverter',['../interfaceNWN_1_1API_1_1ILocalVariableConverter.html',1,'NWN.API.ILocalVariableConverter'],['../interfaceNWN_1_1API_1_1ILocalVariableConverter.html',1,'NWN.API.ILocalVariableConverter&lt; T &gt;']]],
+  ['ilocalvariableconverter_883',['ILocalVariableConverter',['../interfaceNWN_1_1API_1_1ILocalVariableConverter.html',1,'NWN.API.ILocalVariableConverter&lt; T &gt;'],['../interfaceNWN_1_1API_1_1ILocalVariableConverter.html',1,'NWN.API.ILocalVariableConverter']]],
   ['ilocalvariableconverter_3c_20bool_20_3e_884',['ILocalVariableConverter&lt; bool &gt;',['../interfaceNWN_1_1API_1_1ILocalVariableConverter.html',1,'NWN::API']]],
   ['ilocalvariableconverter_3c_20float_20_3e_885',['ILocalVariableConverter&lt; float &gt;',['../interfaceNWN_1_1API_1_1ILocalVariableConverter.html',1,'NWN::API']]],
   ['ilocalvariableconverter_3c_20guid_20_3e_886',['ILocalVariableConverter&lt; Guid &gt;',['../interfaceNWN_1_1API_1_1ILocalVariableConverter.html',1,'NWN::API']]],

@@ -113,9 +113,13 @@ Collaboration diagram for NWN.API.NwItem:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a83ff00abf5b3fc57d05470aa43c40dc9"><td class="memItemLeft" align="right" valign="top"><a id="a83ff00abf5b3fc57d05470aa43c40dc9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddItemProperty</b> (<a class="el" href="classNWN_1_1API_1_1ItemProperty.html">ItemProperty</a> itemProperty, float duration=0.0f, AddPropertyPolicy addPolicy=AddPropertyPolicy.ReplaceExisting, bool ignoreDurationType=false, bool ignoreSubType=false)</td></tr>
-<tr class="separator:a83ff00abf5b3fc57d05470aa43c40dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f9edf1fc5f2c19bc6fad6215b6b0a28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#a0f9edf1fc5f2c19bc6fad6215b6b0a28">AddItemProperty</a> (<a class="el" href="classNWN_1_1API_1_1ItemProperty.html">ItemProperty</a> itemProperty, EffectDuration durationType, TimeSpan duration=default)</td></tr>
+<tr class="memdesc:a0f9edf1fc5f2c19bc6fad6215b6b0a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the specified item property to this item.  <a href="classNWN_1_1API_1_1NwItem.html#a0f9edf1fc5f2c19bc6fad6215b6b0a28">More...</a><br /></td></tr>
+<tr class="separator:a0f9edf1fc5f2c19bc6fad6215b6b0a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8e8fc98088e6ed037271d97be277719"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#ae8e8fc98088e6ed037271d97be277719">RemoveItemProperty</a> (<a class="el" href="classNWN_1_1API_1_1ItemProperty.html">ItemProperty</a> itemProperty)</td></tr>
+<tr class="memdesc:ae8e8fc98088e6ed037271d97be277719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified item property from this item.<br  />
+ See <a class="el" href="classNWN_1_1API_1_1NwItem.html#a53ff3080bfdf5dd5074cf83ea9ca6e5f" title="Gets all active item properties currently applied to this object.">ItemProperties</a> to enumerate item properties on this item.  <a href="classNWN_1_1API_1_1NwItem.html#ae8e8fc98088e6ed037271d97be277719">More...</a><br /></td></tr>
+<tr class="separator:ae8e8fc98088e6ed037271d97be277719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af70dfecbc097e676068e0bbdf8dfbcf7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#af70dfecbc097e676068e0bbdf8dfbcf7">Clone</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> targetInventory, string newTag=null)</td></tr>
 <tr class="memdesc:af70dfecbc097e676068e0bbdf8dfbcf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this item.  <a href="classNWN_1_1API_1_1NwItem.html#af70dfecbc097e676068e0bbdf8dfbcf7">More...</a><br /></td></tr>
 <tr class="separator:af70dfecbc097e676068e0bbdf8dfbcf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -383,6 +387,50 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <tr class="separator:aa5269deb0d931d58d06bfb4560db00e1 inherit pro_attribs_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0f9edf1fc5f2c19bc6fad6215b6b0a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f9edf1fc5f2c19bc6fad6215b6b0a28">&#9670;&nbsp;</a></span>AddItemProperty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwItem.AddItemProperty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1ItemProperty.html">ItemProperty</a>&#160;</td>
+          <td class="paramname"><em>itemProperty</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EffectDuration&#160;</td>
+          <td class="paramname"><em>durationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>duration</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds the specified item property to this item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">itemProperty</td><td>The item property to add.</td></tr>
+    <tr><td class="paramname">durationType</td><td>(Permanent/Temporary) - the duration of this item property.</td></tr>
+    <tr><td class="paramname">duration</td><td>If DurationType is temporary, how long this item property should stay applied.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="aac9c55cad80ec8df6dde75d9fe61f7d2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aac9c55cad80ec8df6dde75d9fe61f7d2">&#9670;&nbsp;</a></span>Clone() <span class="overload">[1/2]</span></h2>
 
@@ -592,6 +640,33 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The created item.</dd></dl>
+
+</div>
+</div>
+<a id="ae8e8fc98088e6ed037271d97be277719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8e8fc98088e6ed037271d97be277719">&#9670;&nbsp;</a></span>RemoveItemProperty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwItem.RemoveItemProperty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1ItemProperty.html">ItemProperty</a>&#160;</td>
+          <td class="paramname"><em>itemProperty</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes the specified item property from this item.<br  />
+ See <a class="el" href="classNWN_1_1API_1_1NwItem.html#a53ff3080bfdf5dd5074cf83ea9ca6e5f" title="Gets all active item properties currently applied to this object.">ItemProperties</a> to enumerate item properties on this item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">itemProperty</td><td>The item property to remove.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

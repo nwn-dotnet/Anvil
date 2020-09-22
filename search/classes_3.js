@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['effect_761',['Effect',['../classNWNX_1_1API_1_1Effect.html',1,'NWNX.API.Effect'],['../classNWN_1_1API_1_1Effect.html',1,'NWN.API.Effect']]],
+  ['effect_761',['Effect',['../classNWN_1_1API_1_1Effect.html',1,'NWN.API.Effect'],['../classNWNX_1_1API_1_1Effect.html',1,'NWNX.API.Effect']]],
   ['elc_762',['ELC',['../classNWNX_1_1API_1_1ELC.html',1,'NWNX::API']]],
   ['encounter_763',['Encounter',['../classNWNX_1_1API_1_1Encounter.html',1,'NWNX::API']]],
   ['encounterevents_764',['EncounterEvents',['../classNWN_1_1API_1_1Events_1_1EncounterEvents.html',1,'NWN::API::Events']]],
-  ['event_765',['Event',['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN.API.Events.Event'],['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN.API.Events.Event&lt; T &gt;'],['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN.API.Events.Event&lt; TObject, TEvent &gt;']]],
+  ['event_765',['Event',['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN.API.Events.Event&lt; T &gt;'],['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN.API.Events.Event&lt; TObject, TEvent &gt;'],['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN.API.Events.Event']]],
   ['event_3c_20attackevent_20_3e_766',['Event&lt; AttackEvent &gt;',['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN::API::Events']]],
   ['event_3c_20damageevent_20_3e_767',['Event&lt; DamageEvent &gt;',['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN::API::Events']]],
   ['event_3c_20nwarea_2c_20onenter_20_3e_768',['Event&lt; NwArea, OnEnter &gt;',['../classNWN_1_1API_1_1Events_1_1Event.html',1,'NWN::API::Events']]],

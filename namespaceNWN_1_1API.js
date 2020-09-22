@@ -19,7 +19,7 @@ var namespaceNWN_1_1API =
     [ "MonsterHitEffect", "structNWN_1_1API_1_1MonsterHitEffect.html", "structNWN_1_1API_1_1MonsterHitEffect" ],
     [ "NativeScript", "classNWN_1_1API_1_1NativeScript.html", "classNWN_1_1API_1_1NativeScript" ],
     [ "NwArea", "classNWN_1_1API_1_1NwArea.html", "classNWN_1_1API_1_1NwArea" ],
-    [ "NwAreaOfEffect", "classNWN_1_1API_1_1NwAreaOfEffect.html", null ],
+    [ "NwAreaOfEffect", "classNWN_1_1API_1_1NwAreaOfEffect.html", "classNWN_1_1API_1_1NwAreaOfEffect" ],
     [ "NwCreature", "classNWN_1_1API_1_1NwCreature.html", "classNWN_1_1API_1_1NwCreature" ],
     [ "NwDoor", "classNWN_1_1API_1_1NwDoor.html", "classNWN_1_1API_1_1NwDoor" ],
     [ "NwEncounter", "classNWN_1_1API_1_1NwEncounter.html", "classNWN_1_1API_1_1NwEncounter" ],

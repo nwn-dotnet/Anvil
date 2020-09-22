@@ -1,11 +1,12 @@
 var classNWN_1_1API_1_1NwItem =
 [
-    [ "AddItemProperty", "classNWN_1_1API_1_1NwItem.html#a83ff00abf5b3fc57d05470aa43c40dc9", null ],
+    [ "AddItemProperty", "classNWN_1_1API_1_1NwItem.html#a0f9edf1fc5f2c19bc6fad6215b6b0a28", null ],
     [ "Clone", "classNWN_1_1API_1_1NwItem.html#aac9c55cad80ec8df6dde75d9fe61f7d2", null ],
     [ "Clone", "classNWN_1_1API_1_1NwItem.html#af70dfecbc097e676068e0bbdf8dfbcf7", null ],
     [ "Create", "classNWN_1_1API_1_1NwItem.html#aa01bedecd284575884575037c594b295", null ],
     [ "Create", "classNWN_1_1API_1_1NwItem.html#ad800910fe3916e64433bc460393d0513", null ],
     [ "GetSpellCastItem", "classNWN_1_1API_1_1NwItem.html#aabfe01d28dc9e8ad60e98b06d40df379", null ],
+    [ "RemoveItemProperty", "classNWN_1_1API_1_1NwItem.html#ae8e8fc98088e6ed037271d97be277719", null ],
     [ "ACValue", "classNWN_1_1API_1_1NwItem.html#a196388a66fb0bdfccf18e3ff19da1ef2", null ],
     [ "BaseItemType", "classNWN_1_1API_1_1NwItem.html#afb743db1a6b4c22c6d23d695ef3d49a8", null ],
     [ "CursedFlag", "classNWN_1_1API_1_1NwItem.html#abec193a20012dff5c29153dddfc75991", null ],

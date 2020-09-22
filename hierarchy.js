@@ -27,15 +27,15 @@ var hierarchy =
     [ "NWN.Services.DialogueService", "classNWN_1_1Services_1_1DialogueService.html", null ],
     [ "NWN.API.Constants.Direction", "classNWN_1_1API_1_1Constants_1_1Direction.html", null ],
     [ "NWN.API.Events.DoorEvents", "classNWN_1_1API_1_1Events_1_1DoorEvents.html", null ],
-    [ "NWNX.API.Effect", "classNWNX_1_1API_1_1Effect.html", null ],
     [ "NWN.API.Effect", "classNWN_1_1API_1_1Effect.html", null ],
+    [ "NWNX.API.Effect", "classNWNX_1_1API_1_1Effect.html", null ],
     [ "NWNX.API.ELC", "classNWNX_1_1API_1_1ELC.html", null ],
     [ "NWNX.API.Encounter", "classNWNX_1_1API_1_1Encounter.html", null ],
     [ "NWN.API.Events.EncounterEvents", "classNWN_1_1API_1_1Events_1_1EncounterEvents.html", null ],
+    [ "NWN.API.Events.Event< T >", "classNWN_1_1API_1_1Events_1_1Event.html", null ],
     [ "NWN.API.Events.Event", "classNWN_1_1API_1_1Events_1_1Event.html", [
       [ "NWN.API.Events.Event< TObject, TEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", null ]
     ] ],
-    [ "NWN.API.Events.Event< T >", "classNWN_1_1API_1_1Events_1_1Event.html", null ],
     [ "NWN.API.Events.Event< AttackEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", [
       [ "NWNX.API.Events.AttackEvent", "classNWNX_1_1API_1_1Events_1_1AttackEvent.html", null ]
     ] ],
