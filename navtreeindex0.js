@@ -118,9 +118,12 @@ var NAVTREEINDEX0 =
 "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html#a80658e51245c23fa219307fb91d6827a":[0,0,1,0,0,9,0],
 "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html#a965399177d568b1f8c3f913a04af280a":[0,0,1,0,0,9,1],
 "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents.html":[0,0,1,0,0,10],
-"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html":[0,0,1,0,0,10,0],
-"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html#a316702a33630c8d45b53bc4057eac5d0":[0,0,1,0,0,10,0,1],
-"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html#a6b7086460663ff3c1f356d0fecd1ad31":[0,0,1,0,0,10,0,0],
+"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveAfter.html":[0,0,1,0,0,10,0],
+"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveAfter.html#a6dc22215cda45364e3cff506924e39fc":[0,0,1,0,0,10,0,0],
+"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveAfter.html#abb70313d3decff4d6b2374e224c7bd7b":[0,0,1,0,0,10,0,1],
+"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html":[0,0,1,0,0,10,1],
+"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html#a316702a33630c8d45b53bc4057eac5d0":[0,0,1,0,0,10,1,1],
+"classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html#a6b7086460663ff3c1f356d0fecd1ad31":[0,0,1,0,0,10,1,0],
 "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents.html":[0,0,1,0,0,11],
 "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents_1_1OnSetMemorizedSpellSlotBefore.html":[0,0,1,0,0,11,0],
 "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents_1_1OnSetMemorizedSpellSlotBefore.html#a035b298c4d732f1cd30198e406766bbf":[0,0,1,0,0,11,0,2],
@@ -246,8 +249,5 @@ var NAVTREEINDEX0 =
 "classNWN_1_1API_1_1Effect.html#a2722c750d319f5b5baddfa353fc1ab61":[0,0,0,0,6,44],
 "classNWN_1_1API_1_1Effect.html#a28f3e2dd5d6074976b63b9f1059ceb9b":[0,0,0,0,6,18],
 "classNWN_1_1API_1_1Effect.html#a29ea2df82272f581e9a8c21ff016a3c6":[0,0,0,0,6,37],
-"classNWN_1_1API_1_1Effect.html#a2d193f122cbbe7b77429f82207cb690f":[0,0,0,0,6,9],
-"classNWN_1_1API_1_1Effect.html#a304e58a09c19f2fd7e3461b88e6bd41c":[0,0,0,0,6,68],
-"classNWN_1_1API_1_1Effect.html#a308ab87ffb3cc4d577e841de26cc9a72":[0,0,0,0,6,74],
-"classNWN_1_1API_1_1Effect.html#a31e8d8d3e944cd64a26deeb49e299944":[0,0,0,0,6,48]
+"classNWN_1_1API_1_1Effect.html#a2d193f122cbbe7b77429f82207cb690f":[0,0,0,0,6,9]
 };

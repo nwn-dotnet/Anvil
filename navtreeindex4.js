@@ -1,5 +1,8 @@
 var NAVTREEINDEX4 =
 {
+"classNWN_1_1API_1_1NwObject.html#a6c292d28d7777f769fb4b4803a90f575":[0,0,0,0,27,23],
+"classNWN_1_1API_1_1NwObject.html#a7a7021c9cc879cd959f35c2a83101b39":[0,0,0,0,27,5],
+"classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c":[0,0,0,0,27,20],
 "classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20":[0,0,0,0,27,21],
 "classNWN_1_1API_1_1NwObject.html#a939d84e27244659e861c19659d2a0490":[0,0,0,0,27,17],
 "classNWN_1_1API_1_1NwObject.html#a9bc2179ca37cfd5a6ea4dd360429c662":[0,0,0,0,27,27],
@@ -193,15 +196,15 @@ var NAVTREEINDEX4 =
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html":[0,0,0,2,16],
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html#a1c968df35aaa7022a3a950c76ca9bf63":[0,0,0,2,16,0],
 "classes.html":[0,1],
-"functions.html":[0,3,0,0],
 "functions.html":[0,3,0],
+"functions.html":[0,3,0,0],
 "functions_b.html":[0,3,0,1],
 "functions_c.html":[0,3,0,2],
 "functions_d.html":[0,3,0,3],
 "functions_e.html":[0,3,0,4],
 "functions_f.html":[0,3,0,5],
-"functions_func.html":[0,3,1],
 "functions_func.html":[0,3,1,0],
+"functions_func.html":[0,3,1],
 "functions_func_b.html":[0,3,1,1],
 "functions_func_c.html":[0,3,1,2],
 "functions_func_d.html":[0,3,1,3],
@@ -246,8 +249,5 @@ var NAVTREEINDEX4 =
 "interfaceNWN_1_1API_1_1Events_1_1IEventAttribute.html#a41ce15898683bf6deed3fafe51c7d491":[0,0,0,0,1,6,1],
 "interfaceNWN_1_1API_1_1ICampaignVariableConverter.html":[0,0,0,0,9],
 "interfaceNWN_1_1API_1_1ILocalVariableConverter.html":[0,0,0,0,10],
-"interfaceNWN_1_1Plugins_1_1ITypeLoader.html":[0,0,0,1,0],
-"interfaceNWN_1_1Plugins_1_1ITypeLoader.html#a09d9924cf56289870f489e7afdba9a11":[0,0,0,1,0,0],
-"interfaceNWN_1_1Plugins_1_1ITypeLoader.html#ae285fc7be926cde550a58cfc3e01b845":[0,0,0,1,0,1],
-"interfaceNWN_1_1Services_1_1IBindingInstaller.html":[0,0,0,2,3]
+"interfaceNWN_1_1Plugins_1_1ITypeLoader.html":[0,0,0,1,0]
 };

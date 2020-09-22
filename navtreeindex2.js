@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html#af1d375c22bc74b7ba668a20acb4d53f5":[0,0,0,0,1,7,9,1],
+"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html":[0,0,0,0,1,7,10],
+"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html#ab60fdb1ed8bc75bfb99d3ce12de8c71e":[0,0,0,0,1,7,10,1],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html#ad99c109cc8a01dcf260349b0a6189745":[0,0,0,0,1,7,10,0],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html":[0,0,0,0,1,7,11],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html#a22af2233f849acdb235c8821bddd0d42":[0,0,0,0,1,7,11,2],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1NativeScript.html#ae19cdad3d2f77042c41bf7a071ab9330":[0,0,0,0,17,0],
 "classNWN_1_1API_1_1NwArea.html":[0,0,0,0,18],
 "classNWN_1_1API_1_1NwArea.html#a0a413b481a1b72b1fa55f179a7cd9cde":[0,0,0,0,18,4],
-"classNWN_1_1API_1_1NwArea.html#a0db42944b648a80be3ec70541ccf6956":[0,0,0,0,18,3],
-"classNWN_1_1API_1_1NwArea.html#a113358dfe91638c767d37e7efdde2941":[0,0,0,0,18,15],
-"classNWN_1_1API_1_1NwArea.html#a2e864b2992af28b9ad9f5be794172828":[0,0,0,0,18,6],
-"classNWN_1_1API_1_1NwArea.html#a398830d323f5d6b9461dddfe2d54e249":[0,0,0,0,18,28]
+"classNWN_1_1API_1_1NwArea.html#a0db42944b648a80be3ec70541ccf6956":[0,0,0,0,18,3]
 };

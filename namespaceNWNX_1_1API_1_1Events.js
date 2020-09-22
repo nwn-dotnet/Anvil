@@ -18,6 +18,7 @@ var namespaceNWNX_1_1API_1_1Events =
     [ "NWNXDamageEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html", null ],
     [ "NWNXEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute" ],
     [ "ServerVaultEvents", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents.html", [
+      [ "OnServerCharacterSaveAfter", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveAfter.html", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveAfter" ],
       [ "OnServerCharacterSaveBefore", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore.html", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveBefore" ]
     ] ],
     [ "SetMemorizedSpellSlotEvents", "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents.html", [

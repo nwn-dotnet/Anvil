@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"classNWN_1_1API_1_1Effect.html#a304e58a09c19f2fd7e3461b88e6bd41c":[0,0,0,0,6,68],
+"classNWN_1_1API_1_1Effect.html#a308ab87ffb3cc4d577e841de26cc9a72":[0,0,0,0,6,74],
+"classNWN_1_1API_1_1Effect.html#a31e8d8d3e944cd64a26deeb49e299944":[0,0,0,0,6,48],
 "classNWN_1_1API_1_1Effect.html#a367dd69a12cdacd040ec135e5147c60a":[0,0,0,0,6,62],
 "classNWN_1_1API_1_1Effect.html#a3a2bc95cdbf7b42a8bd389df4229011b":[0,0,0,0,6,87],
 "classNWN_1_1API_1_1Effect.html#a3ba2c57daee81726d7ce020f9f2d955c":[0,0,0,0,6,8],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#ae11cf5599e4362246b3d9507cb3cb299":[0,0,0,0,1,7,8,2],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html":[0,0,0,0,1,7,9],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html#a4e35f246dcd2d44c1595a0440b11c6e9":[0,0,0,0,1,7,9,0],
-"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html#a671989397bf383e7dec314dadf23875b":[0,0,0,0,1,7,9,2],
-"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html#af1d375c22bc74b7ba668a20acb4d53f5":[0,0,0,0,1,7,9,1],
-"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html":[0,0,0,0,1,7,10],
-"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html#ab60fdb1ed8bc75bfb99d3ce12de8c71e":[0,0,0,0,1,7,10,1]
+"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html#a671989397bf383e7dec314dadf23875b":[0,0,0,0,1,7,9,2]
 };

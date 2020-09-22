@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"interfaceNWN_1_1Plugins_1_1ITypeLoader.html#a09d9924cf56289870f489e7afdba9a11":[0,0,0,1,0,0],
+"interfaceNWN_1_1Plugins_1_1ITypeLoader.html#ae285fc7be926cde550a58cfc3e01b845":[0,0,0,1,0,1],
+"interfaceNWN_1_1Services_1_1IBindingInstaller.html":[0,0,0,2,3],
 "interfaceNWN_1_1Services_1_1IBindingInstaller.html#aa9f63203999d51c08a8427c37ec453e0":[0,0,0,2,3,0],
 "interfaceNWN_1_1Services_1_1IInitializable.html":[0,0,0,2,4],
 "interfaceNWN_1_1Services_1_1IInitializable.html#a52547d571b1215eb27631eb8e7dd0f79":[0,0,0,2,4,0],

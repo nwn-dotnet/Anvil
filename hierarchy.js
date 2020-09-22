@@ -297,6 +297,9 @@ var hierarchy =
     [ "NWN.API.Events.Event< NwTrigger, OnUserDefined >", "classNWN_1_1API_1_1Events_1_1Event.html", [
       [ "NWN.API.Events.TriggerEvents.OnUserDefined", "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnUserDefined.html", null ]
     ] ],
+    [ "NWN.API.Events.Event< OnServerCharacterSaveAfter >", "classNWN_1_1API_1_1Events_1_1Event.html", [
+      [ "NWNX.API.Events.ServerVaultEvents.OnServerCharacterSaveAfter", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents_1_1OnServerCharacterSaveAfter.html", null ]
+    ] ],
     [ "NWN.API.Events.Event< OnValidateEquipItemAfter >", "classNWN_1_1API_1_1Events_1_1Event.html", [
       [ "NWNX.API.Events.ItemEvents.OnValidateEquipItemAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html", null ]
     ] ],
