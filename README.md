@@ -57,9 +57,9 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
     // This function must always return void, or a bool in the case of a conditional.
     // The NwObject parameter is optional, but if defined, must always be a single parameter of the NWObject type.
     [ScriptHandler("test_nwscript")]
-    private void OnScriptCalled(NwObject objSelf)
+    private void OnScriptCalled(CallInfo callInfo)
     {
-      Log.Info($"test_nwscript called by {objSelf.Name}");
+      Log.Info($"test_nwscript called by {callInfo.ObjectSelf.Name}");
     }
   }
 ```

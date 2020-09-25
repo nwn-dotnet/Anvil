@@ -11,8 +11,8 @@ namespace NWN.Services
 
     private Action scriptHandler;
     private Func<bool> conditionalHandler;
-    private Action<NwObject> nwObjectScriptHandler;
-    private Func<NwObject, bool> nwObjectConditionalHandler;
+    private Action<CallInfo> scriptHandlerWithMetaHandler;
+    private Func<CallInfo, bool> conditionalWithMetaHandler;
 
     public ScriptHandleResult ProcessCallbacks(uint objSelfId)
     {
@@ -24,10 +24,11 @@ namespace NWN.Services
         scriptHandler();
         result = ScriptHandleResult.Handled;
       }
-      else if (nwObjectScriptHandler != null)
+      else if (scriptHandlerWithMetaHandler != null)
       {
         objSelf = objSelfId.ToNwObject();
-        nwObjectScriptHandler(objSelf);
+        CallInfo meta = new CallInfo(objSelf);
+        scriptHandlerWithMetaHandler(meta);
         result = ScriptHandleResult.Handled;
       }
 
@@ -35,10 +36,11 @@ namespace NWN.Services
       {
         result = conditionalHandler() ? ScriptHandleResult.True : ScriptHandleResult.False;
       }
-      else if (nwObjectConditionalHandler != null)
+      else if (conditionalWithMetaHandler != null)
       {
         objSelf = objSelf != null ? objSelf : objSelfId.ToNwObject();
-        result = nwObjectConditionalHandler(objSelf) ? ScriptHandleResult.True : ScriptHandleResult.False;
+        CallInfo meta = new CallInfo(objSelf);
+        result = conditionalWithMetaHandler(meta) ? ScriptHandleResult.True : ScriptHandleResult.False;
       }
 
       return result;
@@ -49,7 +51,7 @@ namespace NWN.Services
       switch (GetMethodType(method))
       {
         case MethodType.Handler:
-          if (scriptHandler != null || nwObjectScriptHandler != null)
+          if (scriptHandler != null || scriptHandlerWithMetaHandler != null)
           {
             Log.Warn($"Script Handler {scriptName} is already registered by: \"{method.GetFullName()}\"");
             return;
@@ -57,17 +59,17 @@ namespace NWN.Services
 
           scriptHandler = (Action) Delegate.CreateDelegate(typeof(Action), service, method);
           break;
-        case MethodType.ObjectHandler:
-          if (scriptHandler != null || nwObjectScriptHandler != null)
+        case MethodType.HandlerWithMeta:
+          if (scriptHandler != null || scriptHandlerWithMetaHandler != null)
           {
             Log.Warn($"Script Handler {scriptName} is already registered by: \"{method.GetFullName()}\"");
             return;
           }
 
-          nwObjectScriptHandler = (Action<NwObject>) Delegate.CreateDelegate(typeof(Action<NwObject>), service, method);
+          scriptHandlerWithMetaHandler = (Action<CallInfo>) Delegate.CreateDelegate(typeof(Action<CallInfo>), service, method);
           break;
         case MethodType.Conditional:
-          if (conditionalHandler != null || nwObjectConditionalHandler != null)
+          if (conditionalHandler != null || conditionalWithMetaHandler != null)
           {
             Log.Warn($"Conditional Handler {scriptName} is already registered by: \"{method.GetFullName()}\"");
             return;
@@ -75,14 +77,14 @@ namespace NWN.Services
 
           conditionalHandler = (Func<bool>) Delegate.CreateDelegate(typeof(Func<bool>), service, method);
           break;
-        case MethodType.ObjectConditional:
-          if (conditionalHandler != null || nwObjectConditionalHandler != null)
+        case MethodType.ConditionalWithMeta:
+          if (conditionalHandler != null || conditionalWithMetaHandler != null)
           {
             Log.Warn($"Conditional Handler {scriptName} is already registered by: \"{method.GetFullName()}\"");
             return;
           }
 
-          nwObjectConditionalHandler = (Func<NwObject, bool>) Delegate.CreateDelegate(typeof(Func<NwObject, bool>), service, method);
+          conditionalWithMetaHandler = (Func<CallInfo, bool>) Delegate.CreateDelegate(typeof(Func<CallInfo, bool>), service, method);
           break;
         case MethodType.Invalid:
           Log.Error($"Script Handler has invalid parameters or return value: {scriptName} -> {method.GetFullName()}");
@@ -100,9 +102,9 @@ namespace NWN.Services
         return method.ReturnType == typeof(bool) ? MethodType.Conditional : MethodType.Handler;
       }
 
-      if (parameters.Length == 1 && parameters[0].ParameterType == typeof(NwObject))
+      if (parameters.Length == 1 && parameters[0].ParameterType == typeof(CallInfo))
       {
-        return method.ReturnType == typeof(bool) ? MethodType.ObjectConditional : MethodType.ObjectHandler;
+        return method.ReturnType == typeof(bool) ? MethodType.ConditionalWithMeta : MethodType.HandlerWithMeta;
       }
 
       return MethodType.Invalid;
@@ -112,9 +114,9 @@ namespace NWN.Services
     {
       Invalid = 0,
       Handler,
-      ObjectHandler,
+      HandlerWithMeta,
       Conditional,
-      ObjectConditional,
+      ConditionalWithMeta,
     }
   }
 }

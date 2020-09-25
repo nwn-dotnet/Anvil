@@ -92,37 +92,6 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns the distance to the target. <br/>
-    /// If you only need to compare the distance, you can compare the squared distance using <see cref="SqrDistanceToObject"/>. (calculating squared distance is faster)
-    /// </summary>
-    /// <param name="target">The other object to calculate distance from.</param>
-    /// <returns>The distance in game units, or -1 if this target is in a different area.</returns>
-    public float DistanceToObject(NwGameObject target)
-    {
-      if (target.Area != Area)
-      {
-        return -1.0f;
-      }
-
-      return (target.Position - Position).Length();
-    }
-
-    /// <summary>
-    /// Returns the squared distance to the target.
-    /// </summary>
-    /// <param name="target">The other object to calculate distance from.</param>
-    /// <returns>The squared distance in game units, or -1 if this target is in a different area.</returns>
-    public float SqrDistanceToObject(NwGameObject target)
-    {
-      if (target.Area != Area)
-      {
-        return -1.0f;
-      }
-
-      return (target.Position - Position).LengthSquared();
-    }
-
-    /// <summary>
     /// Gets or sets the Portrait ResRef for this object.
     /// </summary>
     public string PortraitResRef
@@ -176,6 +145,47 @@ namespace NWN.API
           yield return item.ToNwObject<NwItem>();
         }
       }
+    }
+
+    /// <summary>
+    /// Returns the distance to the target. <br/>
+    /// If you only need to compare the distance, you can compare the squared distance using <see cref="SqrDistanceToObject"/>. (calculating squared distance is faster)
+    /// </summary>
+    /// <param name="target">The other object to calculate distance from.</param>
+    /// <returns>The distance in game units, or -1 if this target is in a different area.</returns>
+    public float DistanceToObject(NwGameObject target)
+    {
+      if (target.Area != Area)
+      {
+        return -1.0f;
+      }
+
+      return (target.Position - Position).Length();
+    }
+
+    /// <summary>
+    /// Returns the squared distance to the target.
+    /// </summary>
+    /// <param name="target">The other object to calculate distance from.</param>
+    /// <returns>The squared distance in game units, or -1 if this target is in a different area.</returns>
+    public float SqrDistanceToObject(NwGameObject target)
+    {
+      if (target.Area != Area)
+      {
+        return -1.0f;
+      }
+
+      return (target.Position - Position).LengthSquared();
+    }
+
+    /// <summary>
+    /// Rotates this object to face the specified facing angle.
+    /// </summary>
+    /// <param name="facing">The angle to face.</param>
+    public async Task SetFacing(float facing)
+    {
+      await WaitForObjectContext();
+      NWScript.SetFacing(facing);
     }
 
     /// <summary>
