@@ -2,6 +2,7 @@ var namespaceNWN_1_1API =
 [
     [ "Constants", "namespaceNWN_1_1API_1_1Constants.html", "namespaceNWN_1_1API_1_1Constants" ],
     [ "Events", "namespaceNWN_1_1API_1_1Events.html", "namespaceNWN_1_1API_1_1Events" ],
+    [ "CallInfo", "classNWN_1_1API_1_1CallInfo.html", "classNWN_1_1API_1_1CallInfo" ],
     [ "CampaignVariable", "classNWN_1_1API_1_1CampaignVariable.html", "classNWN_1_1API_1_1CampaignVariable" ],
     [ "CampaignVariableConverterAttribute", "classNWN_1_1API_1_1CampaignVariableConverterAttribute.html", "classNWN_1_1API_1_1CampaignVariableConverterAttribute" ],
     [ "Color", "structNWN_1_1API_1_1Color.html", "structNWN_1_1API_1_1Color" ],
@@ -39,6 +40,7 @@ var namespaceNWN_1_1API =
     [ "NwTrigger", "classNWN_1_1API_1_1NwTrigger.html", null ],
     [ "NwWaypoint", "classNWN_1_1API_1_1NwWaypoint.html", "classNWN_1_1API_1_1NwWaypoint" ],
     [ "RandomExtensions", "classNWN_1_1API_1_1RandomExtensions.html", "classNWN_1_1API_1_1RandomExtensions" ],
+    [ "ScriptParams", "classNWN_1_1API_1_1ScriptParams.html", "classNWN_1_1API_1_1ScriptParams" ],
     [ "StandardFactionExtensions", "classNWN_1_1API_1_1StandardFactionExtensions.html", "classNWN_1_1API_1_1StandardFactionExtensions" ],
     [ "StringExtensions", "classNWN_1_1API_1_1StringExtensions.html", "classNWN_1_1API_1_1StringExtensions" ],
     [ "Talent", "classNWN_1_1API_1_1Talent.html", "classNWN_1_1API_1_1Talent" ],

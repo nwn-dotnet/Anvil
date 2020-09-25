@@ -131,9 +131,9 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">  // This function must always return void, or a bool in the case of a conditional.</div>
 <div class="line">  // The NwObject parameter is optional, but if defined, must always be a single parameter of the NWObject type.</div>
 <div class="line">  [ScriptHandler(&quot;test_nwscript&quot;)]</div>
-<div class="line">  private void OnScriptCalled(NwObject objSelf)</div>
+<div class="line">  private void OnScriptCalled(CallInfo callInfo)</div>
 <div class="line">  {</div>
-<div class="line">    Log.Info($&quot;test_nwscript called by {objSelf.Name}&quot;);</div>
+<div class="line">    Log.Info($&quot;test_nwscript called by {callInfo.ObjectSelf.Name}&quot;);</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --><p><b>Example: Chat Command System using interfaces</b> </p><div class="fragment"><div class="line">using System.Collections.Generic;</div>

@@ -15,6 +15,7 @@ var hierarchy =
       [ "NWNX.API.Events.NWNXDamageEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html", null ],
       [ "NWNX.API.Events.NWNXEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html", null ]
     ] ],
+    [ "NWN.API.CallInfo", "classNWN_1_1API_1_1CallInfo.html", null ],
     [ "NWNX.API.Chat", "classNWNX_1_1API_1_1Chat.html", null ],
     [ "NWN.API.Color", "structNWN_1_1API_1_1Color.html", null ],
     [ "NWNX.API.Creature", "classNWNX_1_1API_1_1Creature.html", null ],
@@ -449,6 +450,7 @@ var hierarchy =
     [ "NWN.API.RandomExtensions", "classNWN_1_1API_1_1RandomExtensions.html", null ],
     [ "NWNX.API.Rename", "classNWNX_1_1API_1_1Rename.html", null ],
     [ "NWNX.API.Reveal", "classNWNX_1_1API_1_1Reveal.html", null ],
+    [ "NWN.API.ScriptParams", "classNWN_1_1API_1_1ScriptParams.html", null ],
     [ "NWNX.API.Events.ServerVaultEvents", "classNWNX_1_1API_1_1Events_1_1ServerVaultEvents.html", null ],
     [ "NWN.Services.ServiceManager", "classNWN_1_1Services_1_1ServiceManager.html", null ],
     [ "NWNX.API.Events.SetMemorizedSpellSlotEvents", "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents.html", null ],

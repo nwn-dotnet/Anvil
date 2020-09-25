@@ -19,6 +19,7 @@ var classNWN_1_1API_1_1NwGameObject =
     [ "PlaySound", "classNWN_1_1API_1_1NwGameObject.html#aab693224099b36fedc67c4e00aba88c0", null ],
     [ "RollSavingThrow", "classNWN_1_1API_1_1NwGameObject.html#a48f2f97fe6a827b2f22c42f8ba05e0f1", null ],
     [ "SetColor", "classNWN_1_1API_1_1NwGameObject.html#ac60a9e808f5ca264126c7e716e0978cf", null ],
+    [ "SetFacing", "classNWN_1_1API_1_1NwGameObject.html#ace87fd5b67fa531c337f7206521cbabe", null ],
     [ "SqrDistanceToObject", "classNWN_1_1API_1_1NwGameObject.html#a0de110e86510a8f313429fec3019055c", null ],
     [ "Area", "classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488", null ],
     [ "Faction", "classNWN_1_1API_1_1NwGameObject.html#a2408cabd3c97e99e736bbfea26ed73ef", null ],
