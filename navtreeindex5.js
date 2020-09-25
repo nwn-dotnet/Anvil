@@ -1,7 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"functions_prop.html":[0,3,3],
-"functions_r.html":[0,3,0,15],
 "functions_s.html":[0,3,0,16],
 "functions_t.html":[0,3,0,17],
 "functions_u.html":[0,3,0,18],

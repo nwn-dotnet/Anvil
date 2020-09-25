@@ -395,14 +395,13 @@ var hierarchy =
     [ "NWN.API.ILocalVariableConverter< T >", "interfaceNWN_1_1API_1_1ILocalVariableConverter.html", null ],
     [ "NWN.Services.InstallerInfo", "classNWN_1_1Services_1_1InstallerInfo.html", null ],
     [ "NWN.API.IntegerExtensions", "classNWN_1_1API_1_1IntegerExtensions.html", null ],
-    [ "NWN.Internal", "classNWN_1_1Internal.html", null ],
     [ "NWN.Services.IScriptDispatcher", "interfaceNWN_1_1Services_1_1IScriptDispatcher.html", [
       [ "NWN.Services.EventService", "classNWN_1_1Services_1_1EventService.html", null ]
     ] ],
     [ "NWNX.API.Item", "classNWNX_1_1API_1_1Item.html", null ],
     [ "NWNX.API.Events.ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", null ],
-    [ "NWN.API.ItemProperty", "classNWN_1_1API_1_1ItemProperty.html", null ],
     [ "NWNX.API.ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
+    [ "NWN.API.ItemProperty", "classNWN_1_1API_1_1ItemProperty.html", null ],
     [ "NWN.Services.ITwoDimArray", "interfaceNWN_1_1Services_1_1ITwoDimArray.html", null ],
     [ "NWN.Plugins.ITypeLoader", "interfaceNWN_1_1Plugins_1_1ITypeLoader.html", null ],
     [ "NWN.Services.IUpdateable", "interfaceNWN_1_1Services_1_1IUpdateable.html", [

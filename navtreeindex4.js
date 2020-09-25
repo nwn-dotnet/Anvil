@@ -172,11 +172,9 @@ var NAVTREEINDEX4 =
 "classNWN_1_1API_1_1VisualTransform.html#aae7f9d1e43b5b8f23d06e4bd8ad5b9d7":[0,0,0,0,43,1],
 "classNWN_1_1API_1_1VisualTransform.html#ac684ea766f70c3642da0afef67e9cb25":[0,0,0,0,43,3],
 "classNWN_1_1API_1_1VisualTransform.html#ae8ded7d243c467bbd379f27278319338":[0,0,0,0,43,4],
-"classNWN_1_1Internal.html":[0,0,0,3],
-"classNWN_1_1Internal.html#a03f2003b8343cf3a85e4153e931c9e99":[0,0,0,3,0],
-"classNWN_1_1NManager.html":[0,0,0,4],
-"classNWN_1_1NManager.html#a32086f883b430504cff15a2a15938dae":[0,0,0,4,1],
-"classNWN_1_1NManager.html#a3e923377a726ebbae164603701a23fa5":[0,0,0,4,0],
+"classNWN_1_1NManager.html":[0,0,0,3],
+"classNWN_1_1NManager.html#a32086f883b430504cff15a2a15938dae":[0,0,0,3,1],
+"classNWN_1_1NManager.html#a3e923377a726ebbae164603701a23fa5":[0,0,0,3,0],
 "classNWN_1_1Services_1_1DialogueService.html":[0,0,0,2,0],
 "classNWN_1_1Services_1_1EventHandler.html":[0,0,0,2,1],
 "classNWN_1_1Services_1_1EventService.html":[0,0,0,2,2],
@@ -220,8 +218,8 @@ var NAVTREEINDEX4 =
 "functions_d.html":[0,3,0,3],
 "functions_e.html":[0,3,0,4],
 "functions_f.html":[0,3,0,5],
-"functions_func.html":[0,3,1,0],
 "functions_func.html":[0,3,1],
+"functions_func.html":[0,3,1,0],
 "functions_func_b.html":[0,3,1,1],
 "functions_func_c.html":[0,3,1,2],
 "functions_func_d.html":[0,3,1,3],
@@ -249,5 +247,7 @@ var NAVTREEINDEX4 =
 "functions_m.html":[0,3,0,11],
 "functions_n.html":[0,3,0,12],
 "functions_o.html":[0,3,0,13],
-"functions_p.html":[0,3,0,14]
+"functions_p.html":[0,3,0,14],
+"functions_prop.html":[0,3,3],
+"functions_r.html":[0,3,0,15]
 };
