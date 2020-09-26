@@ -3,8 +3,10 @@ using NWN.API.Events;
 using NWN.Core;
 using NWN.Core.NWNX;
 
-namespace NWNX.API.Events {
-  public class CalendarEvents {
+namespace NWNX.API.Events
+{
+  public class CalendarEvents
+  {
     [NWNXEvent("NWNX_ON_CALENDAR_HOUR")]
     public class OnCalendarHour : Event<OnCalendarHour>
     {
@@ -14,12 +16,12 @@ namespace NWNX.API.Events {
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule) objSelf;
+        Module = (NwModule)objSelf;
         Old = EventsPlugin.GetEventData("OLD").ParseInt();
         New = EventsPlugin.GetEventData("NEW").ParseInt();
       }
     }
-    
+
     [NWNXEvent("NWNX_ON_CALENDAR_DAY")]
     public class OnCalendarDay : Event<OnCalendarDay>
     {
@@ -29,12 +31,12 @@ namespace NWNX.API.Events {
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule) objSelf;
+        Module = (NwModule)objSelf;
         Old = EventsPlugin.GetEventData("OLD").ParseInt();
         New = EventsPlugin.GetEventData("NEW").ParseInt();
       }
     }
-    
+
     [NWNXEvent("NWNX_ON_CALENDAR_MONTH")]
     public class OnCalendarMonth : Event<OnCalendarMonth>
     {
@@ -44,12 +46,12 @@ namespace NWNX.API.Events {
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule) objSelf;
+        Module = (NwModule)objSelf;
         Old = EventsPlugin.GetEventData("OLD").ParseInt();
         New = EventsPlugin.GetEventData("NEW").ParseInt();
       }
     }
-    
+
     [NWNXEvent("NWNX_ON_CALENDAR_YEAR")]
     public class OnCalendarYear : Event<OnCalendarYear>
     {
@@ -59,28 +61,28 @@ namespace NWNX.API.Events {
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule) objSelf;
+        Module = (NwModule)objSelf;
         Old = EventsPlugin.GetEventData("OLD").ParseInt();
         New = EventsPlugin.GetEventData("NEW").ParseInt();
       }
     }
-    
+
     [NWNXEvent("NWNX_ON_CALENDAR_DAWN")]
     public class OnCalendarDawn : Event<OnCalendarDawn>
     {
       public NwModule Module { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf) =>
-        Module = (NwModule) objSelf;
+        Module = (NwModule)objSelf;
     }
-    
+
     [NWNXEvent("NWNX_ON_CALENDAR_DUSK")]
     public class OnCalendarDusk : Event<OnCalendarDusk>
     {
       public NwModule Module { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf) =>
-        Module = (NwModule) objSelf;
+        Module = (NwModule)objSelf;
     }
   }
 }
