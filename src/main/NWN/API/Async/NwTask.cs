@@ -38,7 +38,6 @@ namespace NWN.API
     /// <summary>
     /// Waits until the next server frame/loop.
     /// </summary>
-    /// <returns></returns>
     public static async Task NextFrame() => await DelayFrame(1);
 
     /// <summary>
@@ -76,7 +75,6 @@ namespace NWN.API
     /// Waits until the specified expression returns true.
     /// </summary>
     /// <param name="test">The test expression.</param>
-    /// <returns></returns>
     public static async Task WaitUntil(Func<bool> test) => await RunAndAwait(test);
 
     /// <summary>

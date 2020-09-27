@@ -18,6 +18,7 @@ namespace NWN.API
     }
 
     public static implicit operator IntPtr(Talent effect) => effect.handle;
+
     public static implicit operator Talent(IntPtr intPtr) => new Talent(intPtr);
   }
 }

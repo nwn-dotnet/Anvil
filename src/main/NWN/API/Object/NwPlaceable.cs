@@ -15,7 +15,7 @@ namespace NWN.API
     public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
 
     /// <summary>
-    /// Gets or sets whether this placeable should illuminate
+    /// Gets or sets a value indicating whether this placeable should illuminate.
     /// </summary>
     public bool Illumination
     {
@@ -24,7 +24,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this placeable should be useable (clickable)
+    /// Gets or sets a value indicating whether this placeable should be useable (clickable).
     /// </summary>
     public bool Useable
     {

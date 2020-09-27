@@ -10,11 +10,6 @@ namespace NWNX
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private static bool PluginAvailable(NWNXPluginAttribute plugin)
-    {
-      return UtilPlugin.PluginExists(plugin.PluginName).ToBool();
-    }
-
     internal static bool PluginExists<T>() where T : class
     {
       NWNXPluginAttribute plugin = GetPlugin<T>();
@@ -44,6 +39,11 @@ namespace NWNX
       }
 
       return plugin;
+    }
+
+    private static bool PluginAvailable(NWNXPluginAttribute plugin)
+    {
+      return UtilPlugin.PluginExists(plugin.PluginName).ToBool();
     }
   }
 }

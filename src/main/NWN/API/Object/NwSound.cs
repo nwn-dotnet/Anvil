@@ -9,9 +9,8 @@ namespace NWN.API
   {
     public NwSound(uint objectId) : base(objectId) {}
 
-
     /// <summary>
-    /// Sets the volume for this sound object (0-127)
+    /// Sets the volume for this sound object (0-127).
     /// </summary>
     public sbyte Volume
     {

@@ -18,17 +18,17 @@ namespace NWN.API
     public Vector2 Size => new Vector2(NWScript.GetAreaSize((int) AreaSizeDimension.Width, this), NWScript.GetAreaSize((int) AreaSizeDimension.Height, this));
 
     /// <summary>
-    /// Returns true if this area is flagged as either interior or underground.
+    /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
     /// </summary>
     public bool IsInterior => NWScript.GetIsAreaInterior(this).ToBool();
 
     /// <summary>
-    /// Returns true if this area is above ground, or false if it is underground.
+    /// Gets a value indicating whether this area is above ground (true), or underground (false).
     /// </summary>
     public bool IsAboveGround => (AreaInfo) NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
 
     /// <summary>
-    /// Returns true if this area is natural, or false if it is artificial.
+    /// Gets a value indicating whether this area is natural (true), or artificial (false).
     /// </summary>
     public bool IsNatural => (AreaInfo) NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
 

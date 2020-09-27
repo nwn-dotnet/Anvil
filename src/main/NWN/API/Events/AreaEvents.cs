@@ -1,9 +1,9 @@
 using NWN.API.Constants;
 using NWN.Core;
 
+// TODO Populate event data.
 namespace NWN.API.Events
 {
-  // TODO Populate event data.
   /// <summary>
   /// Events for Areas.
   /// </summary>
@@ -73,6 +73,7 @@ namespace NWN.API.Events
     public sealed class OnUserDefined : Event<NwArea, OnUserDefined>
     {
       public NwArea Area { get; private set; }
+
       public int EventNumber { get; private set; }
 
       protected override void PrepareEvent(NwArea objSelf)

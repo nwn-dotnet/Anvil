@@ -11,7 +11,7 @@ namespace NWN.API
     internal NwPlayer(uint objectId) : base(objectId) {}
 
     /// <summary>
-    /// Gets if this Player is a Dungeon Master.
+    /// Gets a value indicating whether this Player is a Dungeon Master.
     /// </summary>
     public bool IsDM
     {
@@ -19,7 +19,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if this player has DM privileges gained through a player login (as opposed to the DM client).
+    /// Gets a value indicating whether this player has DM privileges gained through a player login (as opposed to the DM client).
     /// </summary>
     public bool IsPlayerDM
     {
@@ -59,7 +59,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets whether this player has connected to the server over a relay (instead of directly).
+    /// Gets a value indicating whether this player has connected to the server over a relay (instead of directly).
     /// </summary>
     public bool IsConnectionRelayed
     {
@@ -162,7 +162,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Forces this player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc)
+    /// Forces this player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc).
     /// </summary>
     public void ExportCharacter() => NWScript.ExportSingleCharacter(this);
 
@@ -179,7 +179,7 @@ namespace NWN.API
     /// <summary>
     /// Sets whether this player has explored an area.
     /// </summary>
-    /// <param name="area">The area to explore</param>
+    /// <param name="area">The area to explore.</param>
     /// <param name="explored">true if this area has been explored, otherwise false to (re)hide the map.</param>
     public void SetAreaExploreState(NwArea area, bool explored)
       => NWScript.ExploreAreaForPlayer(area, this, explored.ToInt());
@@ -215,10 +215,10 @@ namespace NWN.API
     /// </summary>
     /// <param name="texName">The name of the original texture.</param>
     public void ClearTextureOverride(string texName)
-      => NWScript.SetTextureOverride(texName, "", this);
+      => NWScript.SetTextureOverride(texName, string.Empty, this);
 
     /// <summary>
-    /// Displays a message on this player's screen. <br/>
+    /// Displays a message on this player's screen.<br/>
     /// The message is always displayed on top of whatever is on the screen, including UI elements.
     /// </summary>
     /// <param name="message">The message to print.</param>
@@ -226,8 +226,8 @@ namespace NWN.API
     /// <param name="yPos">The y coordinate relative to anchor.</param>
     /// <param name="anchor">The screen anchor/origin point.</param>
     /// <param name="life">Duration to show this string in seconds.</param>
-    /// <param name="start">The starting color of this text. (default: white)</param>
-    /// <param name="end">The color of the text to fade to as it nears the end of the lifetime. (default: white)</param>
+    /// <param name="start">The starting color of this text (default: white).</param>
+    /// <param name="end">The color of the text to fade to as it nears the end of the lifetime (default: white).</param>
     /// <param name="id">An optional numeric ID for this string. If not set to 0, subsequent calls to PostString will remove the text with the same ID.</param>
     /// <param name="font">If specified, the message will be rendered with the specified font instead of the default console font.</param>
     public void PostString(string message, int xPos, int yPos, ScreenAnchor anchor, float life, Color? start = null, Color? end = null, int id = 0, string font = "")
@@ -236,6 +236,7 @@ namespace NWN.API
       {
         start = Color.WHITE;
       }
+
       if (end == null)
       {
         end = Color.WHITE;

@@ -7,6 +7,7 @@ namespace NWN.API
   public abstract class LocalVariable
   {
     public string Name { get; protected set; }
+
     public NwObject Object { get; protected set; }
 
     internal static LocalVariable Create(NwObject nwObject, Core.NWNX.LocalVariable variable)
@@ -50,7 +51,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// The current value of this variable, otherwise the default value if unassigned (null or 0).
+    /// Gets or sets the current value of this variable. Returns the default value of T if unassigned (null or 0).
     /// </summary>
     public T Value
     {
@@ -59,12 +60,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// True if this variable has no value, otherwise false.
+    /// Gets a value indicating whether this variable has no value.
     /// </summary>
     public bool HasNothing => !HasValue;
 
     /// <summary>
-    /// True if this variable has a value, otherwise false.
+    /// Gets a value indicating whether this variable has a value.
     /// </summary>
     public bool HasValue
     {
@@ -134,7 +135,7 @@ namespace NWN.API
 
     public override int GetHashCode()
     {
-      return (Value != null ? Value.GetHashCode() : 0);
+      return Value != null ? Value.GetHashCode() : 0;
     }
 
     public static bool operator ==(LocalVariable<T> left, LocalVariable<T> right)

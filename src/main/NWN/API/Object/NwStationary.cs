@@ -10,7 +10,7 @@ namespace NWN.API
     internal NwStationary(uint objectId) : base(objectId) {}
 
     /// <summary>
-    /// Gets or sets whether this stationary object is locked.
+    /// Gets or sets a value indicating whether this stationary object is locked.
     /// </summary>
     public bool Locked
     {
@@ -19,7 +19,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this stationary object is lockable.
+    /// Gets or sets a value indicating whether this stationary object is lockable.
     /// </summary>
     public bool Lockable
     {
@@ -28,7 +28,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether a specific key with the tag <see cref="LockKeyTag"/> is required to open this stationary object.
+    /// Gets or sets a value indicating whether a specific key with the tag <see cref="LockKeyTag"/> is required to open this stationary object.
     /// </summary>
     public bool LockKeyRequired
     {
@@ -46,7 +46,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether the key for this lock should "break"/be removed from the creature's inventory when used on this lock.
+    /// Gets or sets a value indicating whether the key for this lock should "break"/be removed from the creature's inventory when used on this lock.
     /// </summary>
     public bool KeyAutoRemoved
     {

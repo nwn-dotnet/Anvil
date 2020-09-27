@@ -8,7 +8,9 @@ namespace NWNX.API.Events
   public sealed class DamageEvent : Event<DamageEvent>
   {
     public NwGameObject Attacker { get; private set; }
+
     public NwGameObject Target { get; private set; }
+
     public DamageData DamageData { get; set; }
 
     protected override void PrepareEvent(NwObject objSelf)

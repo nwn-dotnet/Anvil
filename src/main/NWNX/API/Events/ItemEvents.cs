@@ -12,6 +12,7 @@ namespace NWNX.API.Events
     public sealed class OnValidateUseItemAfter : Event<OnValidateUseItemAfter>
     {
       public NwCreature Creature { get; private set; }
+
       public NwItem Item { get; private set; }
 
       public bool Result { get; set; }
@@ -34,7 +35,9 @@ namespace NWNX.API.Events
     public sealed class OnValidateEquipItemAfter : Event<OnValidateEquipItemAfter>
     {
       public NwCreature Creature { get; private set; }
+
       public NwItem Item { get; private set; }
+
       public InventorySlot Slot { get; private set; }
 
       public bool Result { get; set; }
@@ -58,6 +61,7 @@ namespace NWNX.API.Events
     public sealed class OnItemUseBefore : EventSkippable<OnItemUseBefore>
     {
       public NwCreature Creature { get; private set; }
+
       public NwItem Item { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -71,6 +75,7 @@ namespace NWNX.API.Events
     public sealed class OnItemEquipBefore : EventSkippable<OnItemEquipBefore>
     {
       public NwCreature Creature { get; private set; }
+
       public NwItem Item { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -84,7 +89,9 @@ namespace NWNX.API.Events
     public sealed class OnItemPayToIdentifyBefore : EventSkippable<OnItemPayToIdentifyBefore>
     {
       public NwCreature Creature { get; private set; }
+
       public NwItem Item { get; private set; }
+
       public NwStore Store { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -99,7 +106,9 @@ namespace NWNX.API.Events
     public sealed class OnItemPayToIdentifyAfter : EventSkippable<OnItemPayToIdentifyAfter>
     {
       public NwCreature Creature { get; private set; }
+
       public NwItem Item { get; private set; }
+
       public NwStore Store { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

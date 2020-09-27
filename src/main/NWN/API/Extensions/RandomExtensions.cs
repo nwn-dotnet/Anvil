@@ -11,8 +11,8 @@ namespace NWN.API
     /// Returns a random double in the specified range.
     /// </summary>
     /// <param name="random">The random instance.</param>
-    /// <param name="minValue">The minimum value (inclusive)</param>
-    /// <param name="maxValue">The maximum value (exclusive)</param>
+    /// <param name="minValue">The minimum value (inclusive).</param>
+    /// <param name="maxValue">The maximum value (exclusive).</param>
     /// <returns>A random double in the specified range.</returns>
     public static double NextDouble(this Random random, double minValue, double maxValue)
     {
@@ -31,8 +31,8 @@ namespace NWN.API
     /// Returns a random float in the specified range.
     /// </summary>
     /// <param name="random">The random instance.</param>
-    /// <param name="minValue">The minimum value (inclusive)</param>
-    /// <param name="maxValue">The maximum value (exclusive)</param>
+    /// <param name="minValue">The minimum value (inclusive).</param>
+    /// <param name="maxValue">The maximum value (exclusive).</param>
     /// <returns>A random float in the specified range.</returns>
     public static float NextFloat(this Random random, float minValue, float maxValue)
       => (float) random.NextDouble(minValue, maxValue);

@@ -5,7 +5,7 @@ namespace NWN.API
   /// </summary>
   public class CallInfo
   {
-    private static readonly ScriptParams scriptParams = new ScriptParams();
+    private static readonly ScriptParams CachedScriptParams = new ScriptParams();
 
     /// <summary>
     /// Gets the parameters set for this script call.<br/>
@@ -13,11 +13,11 @@ namespace NWN.API
     /// </summary>
     public ScriptParams ScriptParams
     {
-      get => scriptParams;
+      get => CachedScriptParams;
     }
 
     /// <summary>
-    /// The object that is currently running on this script.
+    /// Gets the object that is currently running on this script.
     /// </summary>
     public NwObject ObjectSelf { get; }
 

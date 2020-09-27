@@ -22,12 +22,12 @@ namespace NWN.API
     public Skill Skill => (Skill) TryGetId(TalentType.Skill);
 
     /// <summary>
-    /// Gets the type of this talent (Spell/Feat/Skill)
+    /// Gets the type of this talent (Spell/Feat/Skill).
     /// </summary>
     public TalentType Type => (TalentType) NWScript.GetTypeFromTalent(this);
 
     /// <summary>
-    /// Gets if this talent is valid.
+    /// Gets a value indicating whether this talent is valid.
     /// </summary>
     public bool Valid => NWScript.GetIsTalentValid(this).ToBool();
 

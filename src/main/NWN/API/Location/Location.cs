@@ -18,6 +18,7 @@ namespace NWN.API
     }
 
     public static implicit operator IntPtr(Location effect) => effect.handle;
+
     public static implicit operator Location(IntPtr intPtr) => new Location(intPtr);
   }
 }

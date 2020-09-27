@@ -10,7 +10,7 @@ namespace NWN.API
 {
   public partial class NwObject
   {
-    private static readonly Dictionary<Type, NativeObjectInfoAttribute> cachedTypeInfo = new Dictionary<Type, NativeObjectInfoAttribute>();
+    private static readonly Dictionary<Type, NativeObjectInfoAttribute> CachedTypeInfo = new Dictionary<Type, NativeObjectInfoAttribute>();
 
     public static T Deserialize<T>(string serializedObject) where T : NwObject
     {
@@ -40,7 +40,7 @@ namespace NWN.API
     internal static T CreateInternal<T>(string template, Location location, bool useAppearAnim, string newTag) where T : NwObject
     {
       ObjectType objectType = GetObjectType<T>();
-      return NWScript.CreateObject((int)objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
+      return NWScript.CreateObject((int) objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
     }
 
     internal static NwObject CreateInternal(uint objectId)
@@ -105,10 +105,10 @@ namespace NWN.API
 
     private static NativeObjectInfoAttribute GetNativeObjectInfo(Type type)
     {
-      if (!cachedTypeInfo.TryGetValue(type, out NativeObjectInfoAttribute nativeInfo))
+      if (!CachedTypeInfo.TryGetValue(type, out NativeObjectInfoAttribute nativeInfo))
       {
         nativeInfo = type.GetCustomAttribute<NativeObjectInfoAttribute>();
-        cachedTypeInfo[type] = nativeInfo;
+        CachedTypeInfo[type] = nativeInfo;
       }
 
       if (nativeInfo == null)

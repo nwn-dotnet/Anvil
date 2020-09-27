@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
 
@@ -7,32 +6,45 @@ namespace NWN.API
 {
   public partial class Effect
   {
-    private readonly List<Effect> childEffects = new List<Effect>();
-
     /// <summary>
     /// Gets the object that created this effect.
     /// </summary>
-    public NwObject Creator => NWScript.GetEffectCreator(this).ToNwObject();
+    public NwObject Creator
+    {
+      get => NWScript.GetEffectCreator(this).ToNwObject();
+    }
 
     /// <summary>
     /// Gets the type of this effect.
     /// </summary>
-    public EffectType EffectType => (EffectType) NWScript.GetEffectType(this);
+    public EffectType EffectType
+    {
+      get => (EffectType) NWScript.GetEffectType(this);
+    }
 
     /// <summary>
     /// Gets the duration type (Temporary, Instant, Permanent) of this effect.
     /// </summary>
-    public EffectDuration DurationType => (EffectDuration) NWScript.GetEffectDurationType(this);
+    public EffectDuration DurationType
+    {
+      get => (EffectDuration) NWScript.GetEffectDurationType(this);
+    }
 
     /// <summary>
     /// Gets the total duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
     /// </summary>
-    public float TotalDuration => NWScript.GetEffectDuration(this);
+    public float TotalDuration
+    {
+      get => NWScript.GetEffectDuration(this);
+    }
 
     /// <summary>
     /// Gets the remaining duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
     /// </summary>
-    public float DurationRemaining => NWScript.GetEffectDurationRemaining(this);
+    public float DurationRemaining
+    {
+      get => NWScript.GetEffectDurationRemaining(this);
+    }
 
     /// <summary>
     /// Gets or sets the tag for this effect.
@@ -46,7 +58,7 @@ namespace NWN.API
     /// <summary>
     /// Gets or sets the subtype of this effect.
     /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if value is not <see cref="EffectSubType.Magical"/>, <see cref="EffectSubType.Supernatural"/> or <see cref="EffectSubType.Extraordinary"/>.</exception>
     public EffectSubType SubType
     {
       get => (EffectSubType) NWScript.GetEffectSubType(this);
@@ -68,24 +80,6 @@ namespace NWN.API
             throw new ArgumentOutOfRangeException(nameof(value), value, null);
           }
         }
-      }
-    }
-
-    /// <summary>
-    /// Links the specified effects, that will also be applied when
-    /// </summary>
-    /// <param name="effects"></param>
-    private void LinkEffects(params Effect[] effects)
-    {
-      if (effects == null)
-      {
-        return;
-      }
-
-      foreach (Effect effect in effects)
-      {
-        ModifyEffect(() => NWScript.EffectLinkEffects(effect, this), false);
-        childEffects.Add(effect);
       }
     }
 

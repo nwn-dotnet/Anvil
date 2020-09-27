@@ -48,7 +48,7 @@ namespace NWN.Services
       if (scriptName.Length > ScriptConstants.MaxScriptNameSize)
       {
         Log.Warn($"Script Handler {scriptName} - name exceeds character limit ({ScriptConstants.MaxScriptNameSize}) and will be ignored.\n" +
-                 $"Method: \"{method.GetFullName()}\"");
+          $"Method: \"{method.GetFullName()}\"");
         return;
       }
 

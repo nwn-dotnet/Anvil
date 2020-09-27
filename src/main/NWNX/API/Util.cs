@@ -23,7 +23,7 @@ namespace NWNX.API
     public static string GetCurrentScriptName(int depth = 0) => UtilPlugin.GetCurrentScriptName();
 
     /// <summary>
-    /// Returns a string that contains all ascii characters at their position (e.g. 'A' at 65). The character at index 0 is a space.
+    /// Gets a string that contains all ascii characters at their position (e.g. 'A' at 65). The character at index 0 is a space.
     /// </summary>
     public static string AsciiTableString { get; } = UtilPlugin.GetAsciiTableString();
 
@@ -103,8 +103,8 @@ namespace NWNX.API
     /// <summary>
     /// Gets all ResRefs for the given type and filter.
     /// </summary>
-    /// <param name="type">A ResRef type</param>
-    /// <param name="regexFilter">Lets you filter out resrefs using a regexfilter. For example: nwnx_.\* gets you all scripts prefixed with nwnx_</param>
+    /// <param name="type">A ResRef type.</param>
+    /// <param name="regexFilter">Lets you filter out resrefs using a regexfilter. For example: nwnx_.\* gets you all scripts prefixed with nwnx_.</param>
     /// <param name="moduleResourcesOnly">If true, only bundled module resources will be returned.</param>
     /// <returns>Any matching resrefs, otherwise an empty enumeration.</returns>
     public static IEnumerable<string> GetResRefs(ResRefType type, string regexFilter = "", bool moduleResourcesOnly = true)
@@ -119,9 +119,12 @@ namespace NWNX.API
     }
 
     /// <summary>
-    /// Get the ticks per second of the server.
+    /// Gets the server's current tick rate.
     /// </summary>
-    public static int ServerTicksPerSecond => UtilPlugin.GetServerTicksPerSecond();
+    public static int ServerTicksPerSecond
+    {
+      get => UtilPlugin.GetServerTicksPerSecond();
+    }
 
     /// <summary>
     /// Gets the last created objects of type T.
@@ -154,7 +157,7 @@ namespace NWNX.API
     /// Gets the contents of a .nss script file as a string.
     /// </summary>
     /// <param name="scriptName">The name of the script to get the contents of.</param>
-    /// <param name="maxLength">The max length of the return string, -1 to get everything</param>
+    /// <param name="maxLength">The max length of the return string, -1 to get everything.</param>
     /// <returns>The script file contents or "" on error.</returns>
     public static string GetNSSContents(string scriptName, int maxLength = -1) => UtilPlugin.GetNSSContents(scriptName, maxLength);
 
@@ -162,7 +165,7 @@ namespace NWNX.API
     /// Adds a nss file to the UserDirectory/nwnx folder. Will override existing nss files that are in the module.
     /// </summary>
     /// <param name="fileName">The script filename without extension, 16 or less characters.</param>
-    /// <param name="contents">The contents of the nss file</param>
+    /// <param name="contents">The contents of the nss file.</param>
     /// <returns>true on success.</returns>
     public static int AddNSSFile(string fileName, string contents) => UtilPlugin.AddNSSFile(fileName, contents);
 
@@ -191,7 +194,7 @@ namespace NWNX.API
     public static bool RegisterServerConsoleCommand(string command, string scriptChunk) => UtilPlugin.RegisterServerConsoleCommand(command, scriptChunk).ToBool();
 
     /// <summary>
-    /// Unregister a server console command that was registered with <see cref="RegisterServerConsoleCommand"/>
+    /// Unregister a server console command that was registered with <see cref="RegisterServerConsoleCommand"/>.
     /// </summary>
     /// <param name="command">The name of the command.</param>
     public static void UnregisterServerConsoleCommand(string command) => UtilPlugin.UnregisterServerConsoleCommand(command);
@@ -204,13 +207,15 @@ namespace NWNX.API
     public static bool PluginExists(string plugin) => UtilPlugin.PluginExists(plugin).ToBool();
 
     /// <summary>
-    /// Gets the absolute path of the server's home directory (-userDirectory)
+    /// Gets the absolute path of the server's home directory (-userDirectory).
     /// </summary>
     public static string UserDirectory => UtilPlugin.GetUserDirectory();
 
     /// <summary>
-    /// Gets the return value of the last run script with a StartingConditional
+    /// Gets the return value of the last run script with a StartingConditional.
     /// </summary>
+#pragma warning disable SA1623 // Property summary documentation should match accessors
     public static bool ScriptReturnValue => UtilPlugin.GetScriptReturnValue().ToBool();
+#pragma warning restore SA1623 // Property summary documentation should match accessors
   }
 }

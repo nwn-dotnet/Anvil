@@ -11,8 +11,11 @@ namespace NWNX.API.Events
     public class OnStoreRequestBuyBefore : Event<OnStoreRequestBuyBefore>
     {
       public NwPlayer Player { get; private set; }
+
       public NwItem Item { get; private set; }
+
       public NwStore Store { get; private set; }
+
       public int Price { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -28,8 +31,11 @@ namespace NWNX.API.Events
     public class OnStoreRequestBuyAfter : Event<OnStoreRequestBuyAfter>
     {
       public NwPlayer Player { get; private set; }
+
       public NwItem Item { get; private set; }
+
       public NwStore Store { get; private set; }
+
       public int Price { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -45,8 +51,11 @@ namespace NWNX.API.Events
     public class OnStoreRequestSellBefore : Event<OnStoreRequestSellBefore>
     {
       public NwPlayer Player { get; private set; }
+
       public NwItem Item { get; private set; }
+
       public NwStore Store { get; private set; }
+
       public int Price { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -62,8 +71,11 @@ namespace NWNX.API.Events
     public class OnStoreRequestSellAfter : Event<OnStoreRequestSellAfter>
     {
       public NwPlayer Player { get; private set; }
+
       public NwItem Item { get; private set; }
+
       public NwStore Store { get; private set; }
+
       public int Price { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

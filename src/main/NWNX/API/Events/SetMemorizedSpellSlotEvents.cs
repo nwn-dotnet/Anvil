@@ -11,7 +11,9 @@ namespace NWNX.API.Events
     public class OnSetMemorizedSpellSlotBefore : EventSkippable<OnSetMemorizedSpellSlotBefore>
     {
       public NwCreature Preparer { get; private set; }
+
       public ClassType ClassType { get; private set; }
+
       public Spell Spell { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

@@ -13,17 +13,17 @@ namespace NWNX.API.Events
     public class OnHealBefore : EventSkippable<OnHealBefore>
     {
       /// <summary>
-      /// The creature performing the heal.
+      /// Gets the creature performing the heal.
       /// </summary>
       public NwCreature Healer { get; private set; }
 
       /// <summary>
-      /// The target being healed.
+      /// Gets the target being healed.
       /// </summary>
       public NwCreature Target { get; private set; }
 
       /// <summary>
-      /// How much HP the heal will provide.
+      /// Gets how much HP the heal will provide.
       /// </summary>
       public int AmountHealed { get; private set; }
 
@@ -39,17 +39,17 @@ namespace NWNX.API.Events
     public class OnHealAfter : EventSkippable<OnHealAfter>
     {
       /// <summary>
-      /// The creature performing the heal.
+      /// Gets the creature performing the heal.
       /// </summary>
       public NwCreature Healer { get; private set; }
 
       /// <summary>
-      /// The target being healed.
+      /// Gets the target being healed.
       /// </summary>
       public NwCreature Target { get; private set; }
 
       /// <summary>
-      /// How much HP the heal will provide.
+      /// Gets how much HP the heal will provide.
       /// </summary>
       public int AmountHealed { get; private set; }
 

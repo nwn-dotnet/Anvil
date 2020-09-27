@@ -56,12 +56,14 @@ namespace NWN.Plugins
         PluginLoadContext loadContext = new PluginLoadContext(assemblyPath);
         return loadContext.LoadFromAssemblyName(AssemblyName.GetAssemblyName(assemblyPath));
       }
-      catch (BadImageFormatException) {}
+      catch (BadImageFormatException)
+      {
+      }
 
       return null;
     }
 
-    private static bool IsValidAssembly(Assembly assembly)
+    private bool IsValidAssembly(Assembly assembly)
     {
       if (assembly == AssemblyConstants.NWMAssembly)
       {

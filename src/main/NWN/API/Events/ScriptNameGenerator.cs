@@ -6,20 +6,20 @@ namespace NWN.API.Events
 {
   internal static class ScriptNameGenerator
   {
-    private static readonly char[] scriptChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".ToCharArray();
+    private static readonly char[] ScriptChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".ToCharArray();
 
-    private static readonly Random random = new Random();
-    private static readonly StringBuilder stringBuilder = new StringBuilder(ScriptConstants.MaxScriptNameSize);
+    private static readonly Random Random = new Random();
+    private static readonly StringBuilder StringBuilder = new StringBuilder(ScriptConstants.MaxScriptNameSize);
 
     public static string Create()
     {
-      stringBuilder.Clear();
+      StringBuilder.Clear();
       for (int i = 0; i < ScriptConstants.MaxScriptNameSize; i++)
       {
-        stringBuilder.Append(scriptChars[random.Next(scriptChars.Length)]);
+        StringBuilder.Append(ScriptChars[Random.Next(ScriptChars.Length)]);
       }
 
-      return stringBuilder.ToString();
+      return StringBuilder.ToString();
     }
   }
 }

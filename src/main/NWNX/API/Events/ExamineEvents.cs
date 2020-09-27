@@ -11,7 +11,9 @@ namespace NWNX.API.Events
     public class OnAddAssociateBefore : Event<OnAddAssociateBefore>
     {
       public NwPlayer Examiner { get; private set; }
+
       public NwObject Examinee { get; private set; }
+
       public bool TrapExamineSuccess { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -26,7 +28,9 @@ namespace NWNX.API.Events
     public class OnAddAssociateAfter : Event<OnAddAssociateAfter>
     {
       public NwPlayer Examiner { get; private set; }
+
       public NwObject Examinee { get; private set; }
+
       public bool TrapExamineSuccess { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

@@ -2,9 +2,9 @@ using System.Numerics;
 using NWN.API.Constants;
 using NWN.Core;
 
+// TODO Populate event data.
 namespace NWN.API.Events
 {
-  // TODO Populate event data.
   /// <summary>
   /// Global module events.
   /// </summary>
@@ -14,7 +14,9 @@ namespace NWN.API.Events
     public sealed class OnAcquireItem : Event<NwModule, OnAcquireItem>
     {
       public NwItem Item { get; private set; }
+
       public NwGameObject AcquiredBy { get; private set; }
+
       public NwGameObject AcquiredFrom { get; private set; }
 
       protected override void PrepareEvent(NwModule objSelf)
@@ -29,8 +31,11 @@ namespace NWN.API.Events
     public sealed class OnActivateItem : Event<NwModule, OnActivateItem>
     {
       public NwItem ActivatedItem { get; private set; }
+
       public NwCreature ItemActivator { get; private set; }
+
       public NwGameObject TargetObject { get; private set; }
+
       public Location TargetLocation { get; private set; }
 
       protected override void PrepareEvent(NwModule objSelf)
@@ -135,17 +140,17 @@ namespace NWN.API.Events
     public sealed class OnPlayerTarget : Event<NwModule, OnPlayerTarget>
     {
       /// <summary>
-      /// The player that has targeted something.
+      /// Gets the player that has targeted something.
       /// </summary>
       public NwPlayer Player { get; private set; }
 
       /// <summary>
-      /// The object that has been targeted by <see cref="Player"/>, otherwise null if a position was selected.
+      /// Gets the object that has been targeted by <see cref="Player"/>, otherwise null if a position was selected.
       /// </summary>
       public NwGameObject TargetObject { get; private set; }
 
       /// <summary>
-      /// The position targeted by the player.
+      /// Gets the position targeted by the player.
       /// </summary>
       public Vector3 TargetPosition { get; private set; }
 
@@ -161,6 +166,7 @@ namespace NWN.API.Events
     public sealed class OnPlayerDeath : Event<NwModule, OnPlayerDeath>
     {
       public NwPlayer DeadPlayer { get; private set; }
+
       public NwGameObject Killer { get; private set; }
 
       protected override void PrepareEvent(NwModule objSelf)
@@ -185,6 +191,7 @@ namespace NWN.API.Events
     public sealed class OnPlayerEquipItem : Event<NwModule, OnPlayerEquipItem>
     {
       public NwCreature Player { get; private set; }
+
       public NwItem Item { get; private set; }
 
       protected override void PrepareEvent(NwModule objSelf)
@@ -220,6 +227,7 @@ namespace NWN.API.Events
     public sealed class OnPlayerRest : Event<NwModule, OnPlayerRest>
     {
       public NwPlayer Player { get; private set; }
+
       public RestEventType RestEventType { get; private set; }
 
       protected override void PrepareEvent(NwModule objSelf)
@@ -233,6 +241,7 @@ namespace NWN.API.Events
     public sealed class OnPlayerUnequipItem : Event<NwModule, OnPlayerUnequipItem>
     {
       public NwCreature UnequippedBy { get; private set; }
+
       public NwItem Item { get; private set; }
 
       protected override void PrepareEvent(NwModule objSelf)
@@ -246,6 +255,7 @@ namespace NWN.API.Events
     public sealed class OnUnacquireItem : Event<NwModule, OnUnacquireItem>
     {
       public NwCreature LostBy { get; private set; }
+
       public NwItem Item { get; private set; }
 
       protected override void PrepareEvent(NwModule objSelf)

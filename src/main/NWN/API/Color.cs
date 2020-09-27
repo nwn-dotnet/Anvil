@@ -8,8 +8,6 @@ namespace NWN.API
   /// </summary>
   public readonly struct Color
   {
-    private static readonly Encoding ENCODING = Encoding.GetEncoding("ISO-8859-1");
-
     public static readonly Color BLACK = new Color(0, 0, 0);
     public static readonly Color BLUE = new Color(0, 0, 255);
     public static readonly Color GREEN = new Color(0, 255, 0);
@@ -19,56 +17,26 @@ namespace NWN.API
     public static readonly Color WHITE = new Color(255, 255, 255);
 
     /// <summary>
-    /// The red value of this color. (0-255)
+    /// Gets the red value of this color as a byte (0-255).
     /// </summary>
     public readonly byte Red;
 
     /// <summary>
-    /// The green value of this color. (0-255)
+    /// Gets the green value of this color as a byte (0-255).
     /// </summary>
     public readonly byte Green;
 
     /// <summary>
-    /// The blue value of this color. (0-255)
+    /// Gets the blue value of this color as a byte (0-255).
     /// </summary>
     public readonly byte Blue;
 
     /// <summary>
-    /// The alpha value of this color.
+    /// Gets the alpha value of this color as a byte (0-255).
     /// </summary>
     public readonly byte Alpha;
 
-    /// <summary>
-    /// The red value of this color. (0-1)
-    /// </summary>
-    public float RedF
-    {
-      get => Red / 255f;
-    }
-
-    /// <summary>
-    /// The green value of this color. (0-1)
-    /// </summary>
-    public float GreenF
-    {
-      get => Green / 255f;
-    }
-
-    /// <summary>
-    /// The blue value of this color. (0-1)
-    /// </summary>
-    public float BlueF
-    {
-      get => Blue / 255f;
-    }
-
-    /// <summary>
-    /// The alpha value of this color. (0-1)
-    /// </summary>
-    public float AlphaF
-    {
-      get => Alpha / 255f;
-    }
+    private static readonly Encoding ENCODING = Encoding.GetEncoding("ISO-8859-1");
 
     /// <summary>
     /// Constructs a new Color from the given rgba values.
@@ -98,6 +66,38 @@ namespace NWN.API
       Green = (byte) ((green * 255) + 0.5);
       Blue = (byte) ((blue * 255) + 0.5);
       Alpha = (byte) ((alpha * 255) + 0.5);
+    }
+
+    /// <summary>
+    /// Gets the red value of this color as a float (0-1).
+    /// </summary>
+    public float RedF
+    {
+      get => Red / 255f;
+    }
+
+    /// <summary>
+    /// Gets the green value of this color as a float (0-1).
+    /// </summary>
+    public float GreenF
+    {
+      get => Green / 255f;
+    }
+
+    /// <summary>
+    /// Gets the blue value of this color as a float (0-1).
+    /// </summary>
+    public float BlueF
+    {
+      get => Blue / 255f;
+    }
+
+    /// <summary>
+    /// Gets the alpha value of this color as a float (0-1).
+    /// </summary>
+    public float AlphaF
+    {
+      get => Alpha / 255f;
     }
 
     /// <summary>

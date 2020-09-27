@@ -6,6 +6,7 @@ namespace NWN.Services
   public class LoopTimeService
   {
     public double Time { get; private set; }
+
     public double DeltaTime { get; private set; }
 
     private readonly Stopwatch stopwatch = new Stopwatch();

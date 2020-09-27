@@ -4,7 +4,7 @@ namespace NWN.API.Constants
 {
   public enum WeatherType
   {
-    Invalid  = NWScript.WEATHER_INVALID,
+    Invalid = NWScript.WEATHER_INVALID,
     Clear = NWScript.WEATHER_CLEAR,
     Rain = NWScript.WEATHER_RAIN,
     Snow = NWScript.WEATHER_SNOW,

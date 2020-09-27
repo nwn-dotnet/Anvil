@@ -66,7 +66,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the world rotation for this object
+    /// Gets or sets the world rotation for this object.
     /// </summary>
     public virtual float Rotation
     {
@@ -84,7 +84,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets whether this object is in a conversation.
+    /// Gets a value indicating whether this object is in a conversation.
     /// </summary>
     public bool IsInConversation
     {
@@ -117,15 +117,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the total amount of gold held by this object's faction.
-    /// </summary>
-    public int FactionGold
-    {
-      get => NWScript.GetFactionGold(this);
-    }
-
-    /// <summary>
-    /// Gets or sets this object's plot status.
+    /// Gets or sets a value indicating whether the plot flag is enabled.
     /// </summary>
     public bool PlotFlag
     {
@@ -148,8 +140,8 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns the distance to the target. <br/>
-    /// If you only need to compare the distance, you can compare the squared distance using <see cref="SqrDistanceToObject"/>. (calculating squared distance is faster)
+    /// Returns the distance to the target.<br/>
+    /// If you only need to compare the distance, you can compare the squared distance using <see cref="SqrDistanceToObject"/> to avoid a costly sqrt operation.
     /// </summary>
     /// <param name="target">The other object to calculate distance from.</param>
     /// <returns>The distance in game units, or -1 if this target is in a different area.</returns>
@@ -200,7 +192,7 @@ namespace NWN.API
     /// <summary>
     /// Rotates this object to face a position.
     /// </summary>
-    /// <param name="point"></param>
+    /// <param name="point">The position to face towards.</param>
     public virtual async Task FaceToPoint(Vector3 point)
     {
       await WaitForObjectContext();
@@ -254,24 +246,24 @@ namespace NWN.API
     /// <summary>
     /// Returns the creatures closest to this object, matching the specified criteria.
     /// </summary>
-    /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
+    /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.</param>
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1)
       => GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
 
     /// <summary>
     /// Returns the creatures closest to this object, matching all of the specified criteria.
     /// </summary>
-    /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
-    /// <param name="filter2">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
+    /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.</param>
+    /// <param name="filter2">A 2nd filter created using <see cref="CreatureTypeFilter"/>.</param>
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2)
       => GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
 
     /// <summary>
     /// Returns the creatures closest to this object, matching all of the specified criteria.
     /// </summary>
-    /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
-    /// <param name="filter2">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
-    /// <param name="filter3">A filter created using <see cref="CreatureTypeFilter"/>.*</param>
+    /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.</param>
+    /// <param name="filter2">A 2nd filter created using <see cref="CreatureTypeFilter"/>.</param>
+    /// <param name="filter3">A 3rd filter created using <see cref="CreatureTypeFilter"/>.</param>
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2, CreatureTypeFilter filter3)
     {
       int i;
@@ -324,7 +316,7 @@ namespace NWN.API
     /// <summary>
     /// Plays the specified sound as mono audio from the location of this object.
     /// </summary>
-    /// <param name="soundName"></param>
+    /// <param name="soundName">The name of the sound to play.</param>
     public async Task PlaySound(string soundName)
     {
       await WaitForObjectContext();
@@ -335,7 +327,7 @@ namespace NWN.API
     /// Gets this creature's base save value for the specified saving throw.
     /// </summary>
     /// <param name="savingThrow">The type of saving throw.</param>
-    /// <returns></returns>
+    /// <returns>The creature's base saving throw value.</returns>
     /// <exception cref="ArgumentOutOfRangeException">If savingThrow is not Fortitude, Reflex, or Will.</exception>
     public int GetBaseSavingThrow(SavingThrow savingThrow)
     {
@@ -355,10 +347,10 @@ namespace NWN.API
     /// <summary>
     /// Performs a saving throw against the given dc.
     /// </summary>
-    /// <param name="savingThrow">The type of saving throw to make (Fortitude/Reflex/Will)</param>
+    /// <param name="savingThrow">The type of saving throw to make (Fortitude/Reflex/Will).</param>
     /// <param name="dc">Difficulty class.</param>
-    /// <param name="saveType">The sub-type of this save (Mind effect, etc)</param>
-    /// <param name="saveVs"></param>
+    /// <param name="saveType">The sub-type of this save (Mind effect, etc).</param>
+    /// <param name="saveVs">The creature this object is making the save against.</param>
     /// <exception cref="ArgumentOutOfRangeException">If savingThrow is not Fortitude, Reflex, or Will.</exception>
     /// <returns>The result of the saving throw.</returns>
     public SavingThrowResult RollSavingThrow(SavingThrow savingThrow, int dc, SavingThrowType saveType, NwGameObject saveVs = null)
@@ -377,21 +369,6 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Changes this object's faction to that of another creature.
-    /// </summary>
-    /// <param name="newFactionMember">A creature whose faction will be joined.</param>
-    public void ChangeToFaction(NwCreature newFactionMember)
-      => NWScript.ChangeFaction(this, newFactionMember);
-
-    /// <summary>
-    /// Gets if this object and the specified object are in the same faction.
-    /// </summary>
-    /// <param name="other">The other object to compare against.</param>
-    /// <returns></returns>
-    public bool GetFactionEqual(NwGameObject other)
-      => NWScript.GetFactionEqual(this, other).ToBool();
-
-    /// <summary>
     /// Casts a spell at an object.
     /// </summary>
     /// <param name="spell">The spell to cast.</param>
@@ -399,7 +376,7 @@ namespace NWN.API
     /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
     /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
     /// <param name="domainLevel">Specifies the spell level if the spell is to be cast as a domain spell.</param>
-    /// <param name="projectilePathType"></param>
+    /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
     /// <param name="instant">If true, the spell is cast immediately.</param>
     public async Task ActionCastSpellAt(Spell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
@@ -414,7 +391,7 @@ namespace NWN.API
     /// <param name="target">The target for the spell.</param>
     /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
     /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
-    /// <param name="projectilePathType"></param>
+    /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
     /// <param name="instant">If true, the spell is cast immediately.</param>
     public async Task ActionCastSpellAt(Spell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
@@ -423,7 +400,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Destroys this object (irrevocably)
+    /// Destroys this object (irrevocably).
     /// </summary>
     /// <param name="delay">Time in seconds until this object should be destroyed.</param>
     public void Destroy(float delay = 0.0f)

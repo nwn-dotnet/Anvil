@@ -5,7 +5,9 @@ namespace NWN.API
   public class CampaignVariable<T> : IEquatable<CampaignVariable<T>>
   {
     public string Campaign { get; private set; }
+
     public string Name { get; private set; }
+
     public NwPlayer Player { get; private set; }
 
     private ICampaignVariableConverter<T> converter;
@@ -24,7 +26,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// The current value of this variable, otherwise the default value if unassigned (null or 0).
+    /// Gets or sets the current value of this variable. Returns the default value of T if unassigned (null or 0).
     /// </summary>
     public T Value
     {
@@ -82,7 +84,7 @@ namespace NWN.API
 
     public override int GetHashCode()
     {
-      return (Value != null ? Value.GetHashCode() : 0);
+      return Value != null ? Value.GetHashCode() : 0;
     }
 
     public static bool operator ==(CampaignVariable<T> left, CampaignVariable<T> right)

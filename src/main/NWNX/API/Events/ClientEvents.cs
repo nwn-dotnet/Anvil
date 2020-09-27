@@ -27,9 +27,13 @@ namespace NWNX.API.Events
     public class OnClientConnectBefore : EventSkippable<OnClientConnectBefore>
     {
       public NwModule Module { get; private set; }
+
       public string Username { get; private set; }
+
       public string CDKey { get; private set; }
+
       public bool DM { get; private set; }
+
       public string IP { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -46,9 +50,13 @@ namespace NWNX.API.Events
     public class OnClientConnectAfter : EventSkippable<OnClientConnectAfter>
     {
       public NwModule Module { get; private set; }
+
       public string Username { get; private set; }
+
       public string CDKey { get; private set; }
+
       public bool DM { get; private set; }
+
       public string IP { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

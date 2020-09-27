@@ -8,8 +8,9 @@ namespace NWN.API
 {
   public static partial class NwTask
   {
-    private static readonly HashSet<ScheduledItem> scheduledItems = new HashSet<ScheduledItem>();
-    private static readonly object schedulerLock = new object();
+    private static readonly HashSet<ScheduledItem> ScheduledItems = new HashSet<ScheduledItem>();
+    private static readonly object SchedulerLock = new object();
+
     private static bool isInScriptContext;
     private static Thread mainThread;
 
@@ -21,9 +22,9 @@ namespace NWN.API
       }
 
       ScheduledItem scheduledItem = new ScheduledItem(completionSource);
-      lock (schedulerLock)
+      lock (SchedulerLock)
       {
-        scheduledItems.Add(scheduledItem);
+        ScheduledItems.Add(scheduledItem);
       }
 
       return scheduledItem.TaskCompletionSource.Task;
@@ -43,9 +44,9 @@ namespace NWN.API
       {
         isInScriptContext = true;
 
-        lock (schedulerLock)
+        lock (SchedulerLock)
         {
-          scheduledItems.RemoveWhere(item =>
+          ScheduledItems.RemoveWhere(item =>
           {
             if (!item.CompletionSource())
             {
