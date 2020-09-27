@@ -16,10 +16,10 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Alias = EventsPlugin.GetEventData("ALIAS");
         ResRef = EventsPlugin.GetEventData("RESREF");
-        Type = (ResRefType)EventsPlugin.GetEventData("TYPE").ParseInt();
+        Type = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
       }
     }
 
@@ -33,10 +33,10 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Alias = EventsPlugin.GetEventData("ALIAS");
         ResRef = EventsPlugin.GetEventData("RESREF");
-        Type = (ResRefType)EventsPlugin.GetEventData("TYPE").ParseInt();
+        Type = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
       }
     }
 
@@ -50,10 +50,10 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Alias = EventsPlugin.GetEventData("ALIAS");
         ResRef = EventsPlugin.GetEventData("RESREF");
-        Type = (ResRefType)EventsPlugin.GetEventData("TYPE").ParseInt();
+        Type = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
       }
     }
   }

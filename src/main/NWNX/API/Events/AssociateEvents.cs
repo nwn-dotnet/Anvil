@@ -15,7 +15,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Associate = NWScript.StringToObject(EventsPlugin.GetEventData("ASSOCIATE_OBJECT_ID")).ToNwObject<NwCreature>();
       }
     }
@@ -28,7 +28,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Associate = NWScript.StringToObject(EventsPlugin.GetEventData("ASSOCIATE_OBJECT_ID")).ToNwObject<NwCreature>();
       }
     }
@@ -41,7 +41,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Associate = NWScript.StringToObject(EventsPlugin.GetEventData("ASSOCIATE_OBJECT_ID")).ToNwObject<NwCreature>();
       }
     }
@@ -54,7 +54,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Associate = NWScript.StringToObject(EventsPlugin.GetEventData("ASSOCIATE_OBJECT_ID")).ToNwObject<NwCreature>();
       }
     }

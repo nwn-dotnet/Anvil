@@ -79,7 +79,7 @@ namespace NWNX.API.Events
         Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM")).ToNwObject<NwItem>();
       }
     }
-    
+
     [NWNXEvent("NWNX_ON_ITEM_PAY_TO_IDENTIFY_BEFORE")]
     public sealed class OnItemPayToIdentifyBefore : EventSkippable<OnItemPayToIdentifyBefore>
     {
@@ -94,7 +94,7 @@ namespace NWNX.API.Events
         Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
       }
     }
-    
+
     [NWNXEvent("NWNX_ON_ITEM_PAY_TO_IDENTIFY_AFTER")]
     public sealed class OnItemPayToIdentifyAfter : EventSkippable<OnItemPayToIdentifyAfter>
     {

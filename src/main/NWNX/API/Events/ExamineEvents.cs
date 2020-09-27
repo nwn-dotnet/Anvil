@@ -3,8 +3,10 @@ using NWN.API.Events;
 using NWN.Core;
 using NWN.Core.NWNX;
 
-namespace NWNX.API.Events {
-  public class ExamineEvents {
+namespace NWNX.API.Events
+{
+  public class ExamineEvents
+  {
     [NWNXEvent("NWNX_ON_EXAMINE_OBJECT_BEFORE")]
     public class OnAddAssociateBefore : Event<OnAddAssociateBefore>
     {
@@ -19,7 +21,7 @@ namespace NWNX.API.Events {
         TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseInt().ToBool();
       }
     }
-    
+
     [NWNXEvent("NWNX_ON_EXAMINE_OBJECT_AFTER")]
     public class OnAddAssociateAfter : Event<OnAddAssociateAfter>
     {

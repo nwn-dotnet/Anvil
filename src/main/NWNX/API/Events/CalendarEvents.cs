@@ -1,6 +1,5 @@
 using NWN.API;
 using NWN.API.Events;
-using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -16,7 +15,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Old = EventsPlugin.GetEventData("OLD").ParseInt();
         New = EventsPlugin.GetEventData("NEW").ParseInt();
       }
@@ -31,7 +30,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Old = EventsPlugin.GetEventData("OLD").ParseInt();
         New = EventsPlugin.GetEventData("NEW").ParseInt();
       }
@@ -46,7 +45,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Old = EventsPlugin.GetEventData("OLD").ParseInt();
         New = EventsPlugin.GetEventData("NEW").ParseInt();
       }
@@ -61,7 +60,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Old = EventsPlugin.GetEventData("OLD").ParseInt();
         New = EventsPlugin.GetEventData("NEW").ParseInt();
       }
@@ -72,8 +71,8 @@ namespace NWNX.API.Events
     {
       public NwModule Module { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Module = (NwModule)objSelf;
+      protected override void PrepareEvent(NwObject objSelf)
+        => Module = (NwModule) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_DUSK")]
@@ -81,8 +80,8 @@ namespace NWNX.API.Events
     {
       public NwModule Module { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Module = (NwModule)objSelf;
+      protected override void PrepareEvent(NwObject objSelf)
+        => Module = (NwModule) objSelf;
     }
   }
 }

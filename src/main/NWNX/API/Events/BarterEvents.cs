@@ -14,7 +14,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Target = NWScript.StringToObject(EventsPlugin.GetEventData("BARTER_TARGET")).ToNwObject<NwPlayer>();
       }
     }
@@ -27,7 +27,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Target = NWScript.StringToObject(EventsPlugin.GetEventData("BARTER_TARGET")).ToNwObject<NwPlayer>();
       }
     }

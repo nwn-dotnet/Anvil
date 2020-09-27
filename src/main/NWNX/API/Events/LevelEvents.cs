@@ -9,9 +9,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
-
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_UP_AFTER")]
@@ -19,9 +18,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
-
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_UP_AUTOMATIC_BEFORE")]
@@ -29,9 +27,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
-
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_UP_AUTOMATIC_AFTER")]
@@ -39,9 +36,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
-
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_DOWN_BEFORE")]
@@ -49,9 +45,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
-
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_DOWN_AFTER")]
@@ -59,10 +54,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
-
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
-
   }
 }

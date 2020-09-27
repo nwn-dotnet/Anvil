@@ -10,8 +10,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_ENTER_STEALTH_AFTER")]
@@ -19,8 +19,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_EXIT_STEALTH_BEFORE")]
@@ -28,8 +28,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_EXIT_STEALTH_AFTER")]
@@ -37,8 +37,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
   }
 }

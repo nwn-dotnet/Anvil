@@ -17,7 +17,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Item = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwItem>();
         Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
         Price = EventsPlugin.GetEventData("PRICE").ParseInt();
@@ -34,7 +34,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Item = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwItem>();
         Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
         Price = EventsPlugin.GetEventData("PRICE").ParseInt();
@@ -51,7 +51,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Item = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwItem>();
         Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
         Price = EventsPlugin.GetEventData("PRICE").ParseInt();
@@ -68,7 +68,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Player = (NwPlayer)objSelf;
+        Player = (NwPlayer) objSelf;
         Item = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwItem>();
         Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
         Price = EventsPlugin.GetEventData("PRICE").ParseInt();

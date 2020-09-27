@@ -1,6 +1,4 @@
 using NWN.API;
-using NWN.API.Events;
-using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -12,8 +10,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_CLIENT_DISCONNECT_AFTER")]
@@ -21,8 +19,8 @@ namespace NWNX.API.Events
     {
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwObject objSelf) =>
-        Player = (NwPlayer)objSelf;
+      protected override void PrepareEvent(NwObject objSelf)
+        => Player = (NwPlayer) objSelf;
     }
 
     [NWNXEvent("NWNX_ON_CLIENT_CONNECT_BEFORE")]
@@ -36,7 +34,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Username = EventsPlugin.GetEventData("PLAYER_NAME");
         CDKey = EventsPlugin.GetEventData("CDKEY");
         DM = EventsPlugin.GetEventData("IS_DM").ParseInt().ToBool();
@@ -55,7 +53,7 @@ namespace NWNX.API.Events
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Module = (NwModule)objSelf;
+        Module = (NwModule) objSelf;
         Username = EventsPlugin.GetEventData("PLAYER_NAME");
         CDKey = EventsPlugin.GetEventData("CDKEY");
         DM = EventsPlugin.GetEventData("IS_DM").ParseInt().ToBool();
