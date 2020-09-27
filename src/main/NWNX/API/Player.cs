@@ -35,5 +35,8 @@ namespace NWNX.API
     {
       PlayerPlugin.SetRestDuration(player, durationMs);
     }
+
+    public static void DisplayFloatingTextStringOnCreature(this NwPlayer player, NwCreature creature, string text)
+      => PlayerPlugin.FloatingTextStringOnCreature(player, creature, text);
   }
 }
