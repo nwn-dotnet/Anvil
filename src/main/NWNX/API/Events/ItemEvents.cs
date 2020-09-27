@@ -79,5 +79,35 @@ namespace NWNX.API.Events
         Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM")).ToNwObject<NwItem>();
       }
     }
+
+    [NWNXEvent("NWNX_ON_ITEM_PAY_TO_IDENTIFY_BEFORE")]
+    public sealed class OnItemPayToIdentifyBefore : EventSkippable<OnItemPayToIdentifyBefore>
+    {
+      public NwCreature Creature { get; private set; }
+      public NwItem Item { get; private set; }
+      public NwStore Store { get; private set; }
+
+      protected override void PrepareEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM")).ToNwObject<NwItem>();
+        Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
+      }
+    }
+
+    [NWNXEvent("NWNX_ON_ITEM_PAY_TO_IDENTIFY_AFTER")]
+    public sealed class OnItemPayToIdentifyAfter : EventSkippable<OnItemPayToIdentifyAfter>
+    {
+      public NwCreature Creature { get; private set; }
+      public NwItem Item { get; private set; }
+      public NwStore Store { get; private set; }
+
+      protected override void PrepareEvent(NwObject objSelf)
+      {
+        Creature = (NwCreature) objSelf;
+        Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM")).ToNwObject<NwItem>();
+        Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
+      }
+    }
   }
 }
