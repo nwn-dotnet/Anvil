@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['damage_769',['Damage',['../classNWNX_1_1API_1_1Damage.html',1,'NWNX::API']]],
-  ['damagedata_770',['DamageData',['../structNWNX_1_1API_1_1Events_1_1DamageData.html',1,'NWNX::API::Events']]],
-  ['damageevent_771',['DamageEvent',['../classNWNX_1_1API_1_1Events_1_1DamageEvent.html',1,'NWNX::API::Events']]],
-  ['debugoptions_772',['DebugOptions',['../classNWNX_1_1API_1_1Administration_1_1DebugOptions.html',1,'NWNX::API::Administration']]],
-  ['dialog_773',['Dialog',['../classNWNX_1_1API_1_1Dialog.html',1,'NWNX::API']]],
-  ['dialogueservice_774',['DialogueService',['../classNWN_1_1Services_1_1DialogueService.html',1,'NWN::Services']]],
-  ['direction_775',['Direction',['../classNWN_1_1API_1_1Constants_1_1Direction.html',1,'NWN::API::Constants']]],
-  ['doorevents_776',['DoorEvents',['../classNWN_1_1API_1_1Events_1_1DoorEvents.html',1,'NWN::API::Events']]]
+  ['calendarevents_847',['CalendarEvents',['../classNWNX_1_1API_1_1Events_1_1CalendarEvents.html',1,'NWNX::API::Events']]],
+  ['callinfo_848',['CallInfo',['../classNWN_1_1API_1_1CallInfo.html',1,'NWN::API']]],
+  ['campaignvariable_849',['CampaignVariable',['../classNWN_1_1API_1_1CampaignVariable.html',1,'NWN::API']]],
+  ['campaignvariableconverterattribute_850',['CampaignVariableConverterAttribute',['../classNWN_1_1API_1_1CampaignVariableConverterAttribute.html',1,'NWN::API']]],
+  ['chat_851',['Chat',['../classNWNX_1_1API_1_1Chat.html',1,'NWNX::API']]],
+  ['clientevents_852',['ClientEvents',['../classNWNX_1_1API_1_1Events_1_1ClientEvents.html',1,'NWNX::API::Events']]],
+  ['color_853',['Color',['../structNWN_1_1API_1_1Color.html',1,'NWN::API']]],
+  ['creature_854',['Creature',['../classNWNX_1_1API_1_1Creature.html',1,'NWNX::API']]],
+  ['creatureevents_855',['CreatureEvents',['../classNWN_1_1API_1_1Events_1_1CreatureEvents.html',1,'NWN::API::Events']]],
+  ['creaturetypefilter_856',['CreatureTypeFilter',['../structNWN_1_1API_1_1CreatureTypeFilter.html',1,'NWN::API']]]
 ];

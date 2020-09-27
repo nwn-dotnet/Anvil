@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['uncategorized_1039',['Uncategorized',['../classNWN_1_1API_1_1Constants_1_1Uncategorized.html',1,'NWN::API::Constants']]],
-  ['util_1040',['Util',['../classNWNX_1_1API_1_1Util.html',1,'NWNX::API']]]
+  ['talent_1202',['Talent',['../classNWN_1_1API_1_1Talent.html',1,'NWN::API']]],
+  ['talentextensions_1203',['TalentExtensions',['../classNWN_1_1API_1_1TalentExtensions.html',1,'NWN::API']]],
+  ['triggerevents_1204',['TriggerEvents',['../classNWN_1_1API_1_1Events_1_1TriggerEvents.html',1,'NWN::API::Events']]],
+  ['twodimarrayfactory_1205',['TwoDimArrayFactory',['../classNWN_1_1Services_1_1TwoDimArrayFactory.html',1,'NWN::Services']]]
 ];
