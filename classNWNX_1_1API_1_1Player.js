@@ -1,5 +1,6 @@
 var classNWNX_1_1API_1_1Player =
 [
+    [ "DisplayFloatingTextStringOnCreature", "classNWNX_1_1API_1_1Player.html#aeef8b8f8381b3f756d5dc2e38970752a", null ],
     [ "ForceOpenInventory", "classNWNX_1_1API_1_1Player.html#a336090099211ee5f2e47a51790a5b511", null ],
     [ "GetQuickBarSlot", "classNWNX_1_1API_1_1Player.html#a8f27f3c7a7d2412c1be037cb0460298d", null ],
     [ "SetPlaceableNameOverride", "classNWNX_1_1API_1_1Player.html#a161f2c8c36f4afa81afa295390b0e61b", null ],

@@ -398,6 +398,12 @@ var hierarchy =
     [ "NWNX.API.Events.EventSkippable< OnClientDisconnectBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.ClientEvents.OnClientDisconnectBefore", "classNWNX_1_1API_1_1Events_1_1ClientEvents_1_1OnClientDisconnectBefore.html", null ]
     ] ],
+    [ "NWNX.API.Events.EventSkippable< OnHealAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.HealEvents.OnHealAfter", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnHealBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.HealEvents.OnHealBefore", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealBefore.html", null ]
+    ] ],
     [ "NWNX.API.Events.EventSkippable< OnInventoryAddGoldAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.GoldEvents.OnInventoryAddGoldAfter", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldAfter.html", null ]
     ] ],
@@ -465,6 +471,7 @@ var hierarchy =
     [ "NWNX.API.Administration.GameOptions", "classNWNX_1_1API_1_1Administration_1_1GameOptions.html", null ],
     [ "NWNX.API.Events.GoldEvents", "classNWNX_1_1API_1_1Events_1_1GoldEvents.html", null ],
     [ "NWN.API.GuidExtensions", "classNWN_1_1API_1_1GuidExtensions.html", null ],
+    [ "NWNX.API.Events.HealEvents", "classNWNX_1_1API_1_1Events_1_1HealEvents.html", null ],
     [ "NWN.API.HitEffect", "structNWN_1_1API_1_1HitEffect.html", null ],
     [ "NWN.Services.IBindingInstaller", "interfaceNWN_1_1Services_1_1IBindingInstaller.html", [
       [ "NWN.Services.ServiceInstaller", "classNWN_1_1Services_1_1ServiceInstaller.html", null ]
@@ -578,8 +585,8 @@ var hierarchy =
     [ "NWNX.API.SkillRanks", "classNWNX_1_1API_1_1SkillRanks.html", null ],
     [ "NWN.API.StandardFactionExtensions", "classNWN_1_1API_1_1StandardFactionExtensions.html", null ],
     [ "NWNX.API.Events.StealthEvents", "classNWNX_1_1API_1_1Events_1_1StealthEvents.html", null ],
-    [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWNX.API.Events.StoreEvents", "classNWNX_1_1API_1_1Events_1_1StoreEvents.html", null ],
+    [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWN.API.StringExtensions", "classNWN_1_1API_1_1StringExtensions.html", null ],
     [ "NWN.API.Talent", "classNWN_1_1API_1_1Talent.html", null ],
     [ "NWN.API.TalentExtensions", "classNWN_1_1API_1_1TalentExtensions.html", null ],

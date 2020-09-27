@@ -42,6 +42,10 @@ var namespaceNWNX_1_1API_1_1Events =
       [ "OnInventoryRemoveGoldAfter", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldAfter.html", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldAfter" ],
       [ "OnInventoryRemoveGoldBefore", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldBefore.html", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldBefore" ]
     ] ],
+    [ "HealEvents", "classNWNX_1_1API_1_1Events_1_1HealEvents.html", [
+      [ "OnHealAfter", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealAfter.html", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealAfter" ],
+      [ "OnHealBefore", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealBefore.html", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealBefore" ]
+    ] ],
     [ "ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", [
       [ "OnItemEquipBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore" ],
       [ "OnItemPayToIdentifyAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemPayToIdentifyAfter.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemPayToIdentifyAfter" ],
