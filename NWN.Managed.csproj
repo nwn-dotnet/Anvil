@@ -21,6 +21,7 @@
         <NoWarn>1591</NoWarn>
         <RootNamespace />
         <LangVersion>8</LangVersion>
+        <CodeAnalysisRuleSet>NWN.Managed.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DefineConstants>TRACE</DefineConstants>
@@ -31,6 +32,7 @@
         <PackageReference Include="NWN.Core" Version="8193.16.1" PrivateAssets="compile" />
         <PackageReference Include="SimpleInjector" Version="5.0.3" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
@@ -42,6 +44,14 @@
           <PackagePath>contentFiles/any/any;content/</PackagePath>
           <PackageCopyToOutput>true</PackageCopyToOutput>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="stylecop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="stylecop.json" />
     </ItemGroup>
 
     <Target Name="CreatePluginsFolder" AfterTargets="Build">
