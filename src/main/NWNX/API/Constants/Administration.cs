@@ -1,5 +1,3 @@
-using NWN.Core.NWNX;
-
 namespace NWNX.API.Constants
 {
   public enum PvPSetting

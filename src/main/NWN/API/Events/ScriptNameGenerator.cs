@@ -1,8 +1,6 @@
 using System;
 using System.Text;
 using NWN.API.Constants;
-using NWN.Core;
-using NWN.Services;
 
 namespace NWN.API.Events
 {
