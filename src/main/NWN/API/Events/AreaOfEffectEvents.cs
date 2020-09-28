@@ -1,8 +1,8 @@
 using NWN.API.Constants;
 
+// TODO Populate event data.
 namespace NWN.API.Events
 {
-  // TODO Populate event data.
   /// <summary>
   /// Events for effects created with <see cref="Effect.AreaOfEffect"/>.
   /// </summary>

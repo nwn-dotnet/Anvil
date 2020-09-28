@@ -32,7 +32,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the max possible attack bonus from temporary effects/items. (Default: 20)
+    /// Gets or sets the max possible attack bonus from temporary effects/items (Default: 20).
     /// </summary>
     public int AttackBonusLimit
     {
@@ -41,7 +41,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the max possible damage bonus from temporary effects/items. (Default: 100)
+    /// Gets or sets the max possible damage bonus from temporary effects/items (Default: 100).
     /// </summary>
     public int DamageBonusLimit
     {
@@ -50,7 +50,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the max possible saving throw bonus from temporary effects/items. (Default: 20)
+    /// Gets or sets the max possible saving throw bonus from temporary effects/items (Default: 20).
     /// </summary>
     public int SavingThrowBonusLimit
     {
@@ -59,7 +59,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the max possible ability score bonus from temporary effects/items. (Default: 12)
+    /// Gets or sets the max possible ability score bonus from temporary effects/items (Default: 12).
     /// </summary>
     public int GetAbilityBonusLimit
     {
@@ -68,7 +68,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the max possible ability score penalty from temporary effects/items. (Default: 30)
+    /// Gets or sets the max possible ability score penalty from temporary effects/items (Default: 30).
     /// </summary>
     public int AbilityPenaltyLimit
     {
@@ -77,7 +77,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the max possible skill bonus from temporary effects/items. (Default: 50)
+    /// Gets or sets the max possible skill bonus from temporary effects/items (Default: 50).
     /// </summary>
     public int SkillBonusLimit
     {
@@ -103,7 +103,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if it is currently dawn.
+    /// Gets a value indicating whether it is currently dawn.
     /// </summary>
     public bool IsDawn
     {
@@ -111,7 +111,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if it is currently day.
+    /// Gets a value indicating whether it is currently day.
     /// </summary>
     public bool IsDay
     {
@@ -119,7 +119,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if it is currently dusk.
+    /// Gets a value indicating whether it is currently dusk.
     /// </summary>
     public bool IsDusk
     {
@@ -127,7 +127,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if it is currently night.
+    /// Gets a value indicating whether it is currently night.
     /// </summary>
     public bool IsNight
     {
@@ -137,8 +137,6 @@ namespace NWN.API
     /// <summary>
     /// Finds the specified waypoint with the given tag.
     /// </summary>
-    /// <param name="tag"></param>
-    /// <returns></returns>
     public NwWaypoint GetWaypointByTag(string tag) => NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
 
     /// <summary>
@@ -245,6 +243,6 @@ namespace NWN.API
     /// Removes the override for the specified texture, reverting to the original texture.
     /// </summary>
     /// <param name="texName">The name of the original texture.</param>
-    public void ClearTextureOverride(string texName) => NWScript.SetTextureOverride(texName, "");
+    public void ClearTextureOverride(string texName) => NWScript.SetTextureOverride(texName, string.Empty);
   }
 }

@@ -13,7 +13,7 @@ namespace NWN.API
 
     public static void AddElement<TKey, TValue>(this IDictionary<TKey, List<TValue>> mutableLookup, TKey key, TValue value)
     {
-      if(!mutableLookup.TryGetValue(key, out List<TValue> values))
+      if (!mutableLookup.TryGetValue(key, out List<TValue> values))
       {
         values = new List<TValue>();
         mutableLookup[key] = values;

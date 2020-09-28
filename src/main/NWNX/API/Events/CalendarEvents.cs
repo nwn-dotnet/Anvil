@@ -10,7 +10,9 @@ namespace NWNX.API.Events
     public class OnCalendarHour : Event<OnCalendarHour>
     {
       public NwModule Module { get; private set; }
+
       public int Old { get; private set; }
+
       public int New { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -25,7 +27,9 @@ namespace NWNX.API.Events
     public class OnCalendarDay : Event<OnCalendarDay>
     {
       public NwModule Module { get; private set; }
+
       public int Old { get; private set; }
+
       public int New { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -40,7 +44,9 @@ namespace NWNX.API.Events
     public class OnCalendarMonth : Event<OnCalendarMonth>
     {
       public NwModule Module { get; private set; }
+
       public int Old { get; private set; }
+
       public int New { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -55,7 +61,9 @@ namespace NWNX.API.Events
     public class OnCalendarYear : Event<OnCalendarYear>
     {
       public NwModule Module { get; private set; }
+
       public int Old { get; private set; }
+
       public int New { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

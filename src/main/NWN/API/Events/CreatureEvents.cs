@@ -1,9 +1,9 @@
 using NWN.API.Constants;
 using NWN.Core;
 
+// TODO Populate event data.
 namespace NWN.API.Events
 {
-  // TODO Populate event data.
   /// <summary>
   /// Events for Creatures.
   /// </summary>
@@ -16,12 +16,12 @@ namespace NWN.API.Events
     public sealed class OnBlocked : Event<NwCreature, OnBlocked>
     {
       /// <summary>
-      /// The blocked creature.
+      /// Gets the blocked creature.
       /// </summary>
       public NwCreature Creature { get; private set; }
 
       /// <summary>
-      /// The door that is blocking the creature.
+      /// Gets the door that is blocking the creature.
       /// </summary>
       public NwDoor BlockingDoor { get; private set; }
 
@@ -39,7 +39,7 @@ namespace NWN.API.Events
     public sealed class OnCombatRoundEnd : Event<NwCreature, OnCombatRoundEnd>
     {
       /// <summary>
-      /// The creature whose combat round is ending.
+      /// Gets the creature whose combat round is ending.
       /// </summary>
       public NwCreature Creature { get; private set; }
 
@@ -64,6 +64,7 @@ namespace NWN.API.Events
     public sealed class OnDamaged : Event<NwCreature, OnDamaged>
     {
       public NwGameObject Damager { get; private set; }
+
       public int DamageAmount { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
@@ -77,6 +78,7 @@ namespace NWN.API.Events
     public sealed class OnDeath : Event<NwCreature, OnDeath>
     {
       public NwCreature KilledCreature { get; private set; }
+
       public NwGameObject Killer { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
@@ -90,8 +92,11 @@ namespace NWN.API.Events
     public sealed class OnDisturbed : Event<NwCreature, OnDisturbed>
     {
       public InventoryDisturbType DisturbType { get; private set; }
+
       public NwCreature CreatureDisturbed { get; private set; }
+
       public NwCreature Disturber { get; private set; }
+
       public NwItem DisturbedItem { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
@@ -118,7 +123,9 @@ namespace NWN.API.Events
     public sealed class OnPerception : Event<NwCreature, OnPerception>
     {
       public NwCreature Creature { get; private set; }
+
       public PerceptionEventType PerceptionEventType { get; private set; }
+
       public NwCreature PerceivedCreature { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
@@ -158,6 +165,7 @@ namespace NWN.API.Events
     public sealed class OnPhysicalAttacked : Event<NwCreature, OnPhysicalAttacked>
     {
       public NwCreature Creature { get; private set; }
+
       public NwCreature Attacker { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
@@ -204,6 +212,7 @@ namespace NWN.API.Events
     public sealed class OnUserDefined : Event<NwCreature, OnUserDefined>
     {
       public int EventNumber { get; private set; }
+
       public NwCreature Creature { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)

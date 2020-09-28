@@ -1,0 +1,63 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "indentation": {
+      "useTabs": false,
+      "tabSize": 2,
+      "indentationSize": 2
+    },
+    "spacingRules": {
+    },
+    "readabilityRules": {
+      "allowBuiltInTypeAliases": false
+    },
+    "orderingRules": {
+      "systemUsingDirectivesFirst": true,
+      "usingDirectivesPlacement": "outsideNamespace",
+      "blankLinesBetweenUsingGroups": "omit",
+      "elementOrder": [
+        "kind",
+        "constant",
+        "accessibility",
+        "static",
+        "readonly"
+      ]
+    },
+    "namingRules": {
+      "allowCommonHungarianPrefixes": true,
+      "allowedNamespaceComponents": [
+        "NWN",
+        "NWNX",
+        "API",
+        "Events",
+        "Services",
+        "Plugins"
+      ],
+      "includeInferredTupleElementNames": false,
+      "tupleElementNameCasing": "PascalCase"
+    },
+    "maintainabilityRules": {
+      "topLevelTypes": []
+    },
+    "layoutRules": {
+      "newlineAtEndOfFile": "require",
+      "allowConsecutiveUsings": true
+    },
+    "documentationRules": {
+      "companyName": "",
+      "copyrightText": "",
+      "xmlHeader": false,
+      "headerDecoration": "",
+      "documentExposedElements": false,
+      "documentInterfaces": false,
+      "documentInternalElements": false,
+      "documentPrivateElements": false,
+      "documentPrivateFields": false,
+      "documentationCulture": "en-US",
+      "fileNamingConvention": "metadata",
+      "excludeFromPunctuationCheck": [
+        "seealso"
+      ]
+    }
+  }
+}

@@ -9,6 +9,7 @@ namespace NWNX.API.Events
     public class OnInventoryAddGoldBefore : EventSkippable<OnInventoryAddGoldBefore>
     {
       public NwPlayer Player { get; private set; }
+
       public int Gold { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -22,6 +23,7 @@ namespace NWNX.API.Events
     public class OnInventoryAddGoldAfter : EventSkippable<OnInventoryAddGoldAfter>
     {
       public NwPlayer Player { get; private set; }
+
       public int Gold { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -35,6 +37,7 @@ namespace NWNX.API.Events
     public class OnInventoryRemoveGoldBefore : EventSkippable<OnInventoryRemoveGoldBefore>
     {
       public NwPlayer Player { get; private set; }
+
       public int Gold { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -48,6 +51,7 @@ namespace NWNX.API.Events
     public class OnInventoryRemoveGoldAfter : EventSkippable<OnInventoryRemoveGoldAfter>
     {
       public NwPlayer Player { get; private set; }
+
       public int Gold { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

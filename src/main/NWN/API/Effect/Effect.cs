@@ -18,6 +18,7 @@ namespace NWN.API
     }
 
     public static implicit operator IntPtr(Effect effect) => effect.handle;
+
     public static implicit operator Effect(IntPtr intPtr) => new Effect(intPtr);
   }
 }

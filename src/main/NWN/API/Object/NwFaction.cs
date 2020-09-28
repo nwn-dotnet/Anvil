@@ -7,7 +7,7 @@ using NWN.Core;
 namespace NWN.API
 {
   /// <summary>
-  /// The faction info of a Creature/Player/GameObject
+  /// The faction info of a Creature/Player/GameObject.
   /// </summary>
   public sealed class NwFaction : IEquatable<NwFaction>
   {
@@ -46,7 +46,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Get the total amount of gold held by all members of this party.<br/>
+    /// Gets the total amount of gold held by all members of this party.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
     public int Gold
@@ -127,7 +127,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the leader of this player faction (party)<br/>
+    /// Gets the leader of this player faction (party).<br/>
     /// </summary>
     public NwPlayer Leader
     {
@@ -160,10 +160,9 @@ namespace NWN.API
     /// Gets an integer between 0 and 100 (inclusive) that represents how this faction feels about the specified target.<br/>
     ///  -> 0-10 means this faction is hostile to the target<br/>
     ///  -> 11-89 means this faction is neutral to the target<br/>
-    ///  -> 90-100 means this faction is friendly to the target<br/>
+    ///  -> 90-100 means this faction is friendly to the target.<br/>
     /// </summary>
     /// <param name="target">The target object to check.</param>
-    /// <returns></returns>
     public int GetAverageReputation(NwGameObject target)
       => NWScript.GetFactionAverageReputation(GameObject, target);
 
@@ -243,7 +242,7 @@ namespace NWN.API
 
     public override int GetHashCode()
     {
-      return (GameObject != null ? GameObject.GetHashCode() : 0);
+      return GameObject != null ? GameObject.GetHashCode() : 0;
     }
 
     public static bool operator ==(NwFaction left, NwFaction right)

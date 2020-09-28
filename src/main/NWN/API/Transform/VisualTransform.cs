@@ -25,10 +25,12 @@ namespace NWN.API
     internal VisualTransform(NwGameObject gameObject)
     {
       Scale = GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformScale);
-      Translation = new Vector3(GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateX),
+      Translation = new Vector3(
+        GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateX),
         GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateY),
         GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateZ));
-      Rotation = new Vector3(GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateX),
+      Rotation = new Vector3(
+        GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateX),
         GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateY),
         GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateZ));
       AnimSpeed = GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformAnimationSpeed);

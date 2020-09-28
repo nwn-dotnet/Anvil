@@ -5,24 +5,24 @@ namespace NWN.API
   public static class NativeScript
   {
     /// <summary>
-    ///  Executes the specified NWN script.
-    ///  If scriptName does not specify a compiled script, nothing happens.
+    /// Executes the specified NWN script.
+    /// If scriptName does not specify a compiled script, nothing happens.
     /// </summary>
-    public static void Execute(string scriptName, NwObject target, params (string paramName, string paramValue)[] scriptParams)
+    public static void Execute(string scriptName, NwObject target, params (string ParamName, string ParamValue)[] scriptParams)
     {
-      foreach ((string paramName, string paramValue) scriptParam in scriptParams)
+      foreach ((string ParamName, string ParamValue) scriptParam in scriptParams)
       {
-        NWScript.SetScriptParam(scriptParam.paramName, scriptParam.paramValue);
+        NWScript.SetScriptParam(scriptParam.ParamName, scriptParam.ParamValue);
       }
 
       NWScript.ExecuteScript(scriptName, target);
     }
 
     /// <summary>
-    ///  Makes the specified target object execute scriptName and then returns execution to the calling script.
-    ///  If scriptName does not specify a compiled script, nothing happens.
+    /// Executes the specified NWN script.
+    /// If scriptName does not specify a compiled script, nothing happens.
     /// </summary>
-    public static void Execute(string scriptName, params (string paramName, string paramValue)[] scriptParams)
+    public static void Execute(string scriptName, params (string ParamName, string ParamValue)[] scriptParams)
       => Execute(scriptName, null, scriptParams);
   }
 }

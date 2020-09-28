@@ -8,12 +8,12 @@ namespace NWN.API
     internal NwTrappable(uint objectId) : base(objectId) {}
 
     /// <summary>
-    /// Gets whether this object is trapped.
+    /// Gets a value indicating whether this object is trapped.
     /// </summary>
     public bool IsTrapped => NWScript.GetIsTrapped(this).ToBool();
 
     /// <summary>
-    /// Gets or sets whether this trap is an active trap. An inactive trap will not trigger when a creature steps on it.
+    /// Gets or sets a value indicating whether this trap is an active trap. An inactive trap will not trigger when a creature steps on it.
     /// <remarks>Setting a trap as inactive will not make the trap disappear if it has already been detected. Use <see cref="TrapDetectable"/>.</remarks>
     /// </summary>
     public bool TrapActive
@@ -23,7 +23,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this trap can be detected.
+    /// Gets or sets a value indicating whether this trap can be detected.
     /// </summary>
     public bool TrapDetectable
     {
@@ -32,7 +32,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this trap can be disarmed.
+    /// Gets or sets a value indicating whether this trap can be disarmed.
     /// </summary>
     public bool TrapDisarmable
     {
@@ -41,7 +41,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this trap can be recovered.
+    /// Gets or sets a value indicating whether this trap can be recovered.
     /// </summary>
     public bool TrapRecoverable
     {
@@ -50,7 +50,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this trap should not reset after firing. (true = don't reset)
+    /// Gets or sets a value indicating whether this trap should not reset after firing (true = don't reset).
     /// </summary>
     public bool OneShotTrap
     {
@@ -91,7 +91,7 @@ namespace NWN.API
     public NwPlayer TrapCreator => NWScript.GetTrapCreator(this).ToNwObject<NwPlayer>();
 
     /// <summary>
-    /// Gets whether this trap has been flagged as visible to all creatures in the game.
+    /// Gets a value indicating whether this trap has been flagged as visible to all creatures in the game.
     /// </summary>
     public bool IsTrapFlagged => NWScript.GetTrapFlagged(this).ToBool();
 

@@ -51,7 +51,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this creature's action queue can be modified.
+    /// Gets or sets a value indicating whether this creature's action queue can be modified.
     /// </summary>
     public bool Commandable
     {
@@ -60,7 +60,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this creature will leave a lootable corpse on death.<br/>
+    /// Gets or sets a value indicating whether this creature will leave a lootable corpse on death.<br/>
     /// This flag must be set while the creature is alive. Players are not supported.
     /// </summary>
     public bool Lootable
@@ -70,7 +70,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this creature is immortal.<br/>
+    /// Gets or sets a value indicating whether this creature is immortal.<br/>
     /// An immortal creature still takes damage, but cannot be killed.
     /// </summary>
     public bool Immortal
@@ -80,7 +80,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if this creature is a dead NPC, dead PC, or dying PC.
+    /// Gets a value indicating whether this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
     public bool IsDead
     {
@@ -88,7 +88,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if this creature is in combat.
+    /// Gets a value indicating whether this creature is in combat.
     /// </summary>
     public bool IsInCombat
     {
@@ -120,7 +120,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets whether this creature is currently resting.
+    /// Gets a value indicating whether this creature is currently resting.
     /// </summary>
     public bool IsResting
     {
@@ -128,7 +128,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets whether this creature is a playable racial type.
+    /// Gets a value indicating whether this creature is a playable racial type.
     /// </summary>
     public bool IsPlayableRace
     {
@@ -184,7 +184,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns the movement rate of this creature.
+    /// Gets the movement rate of this creature.
     /// </summary>
     public MovementRate MovementRate
     {
@@ -216,7 +216,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if this creature is a familiar currently possessed by a master.
+    /// Gets a value indicating whether this creature is a familiar currently possessed by a master.
     /// </summary>
     public bool IsPossessedFamiliar
     {
@@ -240,7 +240,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns this creature's current attack target.
+    /// Gets this creature's current attack target.
     /// </summary>
     public NwGameObject AttackTarget
     {
@@ -264,7 +264,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns the Hit Dice/Level of this creature.
+    /// Gets the Hit Dice/Level of this creature.
     /// </summary>
     public int Level
     {
@@ -272,7 +272,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets whether this creature can be disarmed (checks disarm flag on creature, and if the creature actually has a weapon equipped in their right hand that is droppable)
+    /// Gets a value indicating whether this creature can be disarmed (checks disarm flag on creature, and if the creature actually has a weapon equipped in their right hand that is droppable).
     /// </summary>
     public bool Disarmable
     {
@@ -383,7 +383,7 @@ namespace NWN.API
     public bool IsImmuneTo(ImmunityType immunityType, NwGameObject verses = null)
       => NWScript.GetIsImmune(this, (int) immunityType, verses).ToBool();
 
-      /// <summary>
+    /// <summary>
     /// Gives gold to this creature.
     /// </summary>
     /// <param name="amount">The amount of gold to give.</param>
@@ -414,11 +414,10 @@ namespace NWN.API
     /// <summary>
     /// Creates a creature at the specified location.
     /// </summary>
-    /// <param name="template">The creature resref template from the toolset palette</param>
-    /// <param name="location">The location where this creature will spawn</param>
+    /// <param name="template">The creature resref template from the toolset palette.</param>
+    /// <param name="location">The location where this creature will spawn.</param>
     /// <param name="useAppearAnim">If true, plays EffectAppear when created.</param>
     /// <param name="newTag">The new tag to assign this creature. Leave uninitialized/as null to use the template's tag.</param>
-    /// <returns></returns>
     public static NwCreature Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
       => CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
 
@@ -465,7 +464,6 @@ namespace NWN.API
     /// </summary>
     /// <param name="ability">The type of ability.</param>
     /// <param name="baseOnly">If true, will return the creature's base ability score without bonuses or penalties.</param>
-    /// <returns></returns>
     public int GetAbilityScore(Ability ability, bool baseOnly = false)
       => NWScript.GetAbilityScore(this, (int) ability, baseOnly.ToInt());
 
@@ -550,7 +548,6 @@ namespace NWN.API
     /// </summary>
     /// <param name="skill">The type of skill check.</param>
     /// <param name="difficultyClass">The DC of this skill check.</param>
-    /// <returns></returns>
     public bool DoSkillCheck(Skill skill, int difficultyClass)
       => NWScript.GetIsSkillSuccessful(this, (int) skill, difficultyClass).ToBool();
 
@@ -572,12 +569,12 @@ namespace NWN.API
     /// <summary>
     /// Applies the specified effect to this creature.
     /// </summary>
-    /// <param name="durationType"></param>
+    /// <param name="durationType">The duration type to apply with this effect.</param>
     /// <param name="effect">The effect to apply.</param>
     /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect in seconds.</param>
     public void ApplyEffect(EffectDuration durationType, Effect effect, float duration = 0f)
     {
-      NWScript.ApplyEffectToObject((int)durationType, effect, this, duration);
+      NWScript.ApplyEffectToObject((int) durationType, effect, this, duration);
     }
 
     /// <summary>
@@ -614,7 +611,7 @@ namespace NWN.API
     /// Commands this creature to walk/run to the specified destination. If the location is invalid or a path cannot be found to it, the command does nothing.
     /// </summary>
     /// <param name="destination">The location to move towards.</param>
-    /// <param name="run">If this is TRUE, the creature will run rather than walk</param>
+    /// <param name="run">If this is TRUE, the creature will run rather than walk.</param>
     public async Task ActionMoveToLocation(Location destination, bool run = false)
     {
       await WaitForObjectContext();
@@ -625,9 +622,9 @@ namespace NWN.API
     /// Commands this creature to move to a certain distance from the target object.
     /// If there is no path to the object, this command will do nothing.
     /// </summary>
-    /// <param name="target">The object we wish the creature to move to</param>
-    /// <param name="run">If this is TRUE, the action subject will run rather than walk</param>
-    /// <param name="range">This is the desired distance between the creature and the target object</param>
+    /// <param name="target">The object we wish the creature to move to.</param>
+    /// <param name="run">If this is TRUE, the action subject will run rather than walk.</param>
+    /// <param name="range">This is the desired distance between the creature and the target object.</param>
     public async Task ActionMoveToObject(NwObject target, bool run = false, float range = 1.0f)
     {
       await WaitForObjectContext();
@@ -635,11 +632,11 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Commands this creature to move to a certain distance away from fleeFrom
+    /// Commands this creature to move to a certain distance away from fleeFrom.
     /// </summary>
     /// <param name="fleeFrom">The target object we wish the creature to move away from. If fleeFrom is not in the same area as the creature, nothing will happen.</param>
-    /// <param name="run">If this is TRUE, the creature will run rather than walk</param>
-    /// <param name="range">This is the distance we wish the creature to put between themselves and target</param>
+    /// <param name="run">If this is TRUE, the creature will run rather than walk.</param>
+    /// <param name="range">This is the distance we wish the creature to put between themselves and target.</param>
     public async Task ActionMoveAwayFromObject(NwObject fleeFrom, bool run, float range = 40.0f)
     {
       await WaitForObjectContext();
@@ -669,9 +666,9 @@ namespace NWN.API
     /// <summary>
     /// Creates a copy of this creature.
     /// </summary>
-    /// <param name="location">The location to place the new creature. Defaults to the current creature's location</param>
+    /// <param name="location">The location to place the new creature. Defaults to the current creature's location.</param>
     /// <param name="newTag">A new tag to assign to the creature.</param>
-    /// <returns></returns>
+    /// <returns>The cloned creature.</returns>
     public NwCreature Clone(Location location = null, string newTag = null)
     {
       if (location == null)
@@ -679,7 +676,7 @@ namespace NWN.API
         location = Location;
       }
 
-      return NWScript.CopyObject(this, location, sNewTag: newTag).ToNwObject<NwCreature>();
+      return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty).ToNwObject<NwCreature>();
     }
 
     /// <summary>
@@ -706,7 +703,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Get the item possessed by this creature with the tag itemTag
+    /// Get the item possessed by this creature with the tag itemTag.
     /// </summary>
     public NwItem FindItemWithTag(string itemTag)
       => NWScript.GetItemPossessedBy(this, itemTag).ToNwObject<NwItem>();
@@ -759,7 +756,7 @@ namespace NWN.API
     /// <summary>
     /// Commands the creature to sit in the specified placeable.
     /// </summary>
-    /// <param name="sitPlaceable">The placeable to sit in. Must be marked useable, empty, and support sitting (e.g. chairs)</param>
+    /// <param name="sitPlaceable">The placeable to sit in. Must be marked useable, empty, and support sitting (e.g. chairs).</param>
     public async Task ActionSit(NwPlaceable sitPlaceable)
     {
       await WaitForObjectContext();
@@ -801,7 +798,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Instructs this creature to enable/disable the specified action mode (parry, power attack, expertise, etc)
+    /// Instructs this creature to enable/disable the specified action mode (parry, power attack, expertise, etc).
     /// </summary>
     /// <param name="actionMode">The action mode to toggle.</param>
     /// <param name="status">The new state of the action mode.</param>

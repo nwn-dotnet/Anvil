@@ -25,8 +25,11 @@ namespace NWN.Services
     public readonly long Ticks;
 
     public int Millisecond => (int) (Ticks % 1000);
+
     public int Second => (int) (Ticks / TicksPerSecond % 60);
+
     public int Minute => (int) (Ticks / TicksPerMinute % 60);
+
     public int Hour => (int) (Ticks / TicksPerHour % 24);
 
     public int DayInTenday
@@ -39,14 +42,17 @@ namespace NWN.Services
     }
 
     public int DayInMonth => (int) (Ticks / TicksPerDay % 28) + 1;
+
     public int DayInYear => Month * DaysInMonth + DayInMonth;
+
     public int Month => (int) (Ticks / TicksPerMonth % 12) + 1;
+
     public int Year => (int) (Ticks / TicksPerYear);
 
     public NwDateTime Date => new NwDateTime(Ticks - Ticks % TicksPerDay);
 
     /// <summary>
-    ///  Gets, or sets the current module date and time.
+    ///  Gets or sets the current module date and time.
     ///  This date must fall within the years 0 to 32000.
     ///  Time can only be advanced forwards; attempting to set the time backwards
     ///     will result in no change to the calendar, and a warning logged.
@@ -64,6 +70,7 @@ namespace NWN.Services
           NWScript.GetTimeSecond(),
           NWScript.GetTimeMillisecond());
       }
+
       set
       {
         if (value < Now)
@@ -78,7 +85,7 @@ namespace NWN.Services
     }
 
     /// <summary>
-    /// Gets, or sets the current module date.
+    /// Gets or sets the current module date.
     /// This date must fall within the years 0 to 32000.
     /// </summary>
     public static NwDateTime Today
@@ -114,12 +121,12 @@ namespace NWN.Services
     private static long GetTicks(int year = 0, int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0, int milliSecond = 0)
     {
       return year * TicksPerYear +
-             (month - 1) * TicksPerMonth +
-             (day - 1) * TicksPerDay +
-             hour * TicksPerHour +
-             minute * TicksPerMinute +
-             second * TicksPerSecond +
-             milliSecond * TicksPerMillisecond;
+        (month - 1) * TicksPerMonth +
+        (day - 1) * TicksPerDay +
+        hour * TicksPerHour +
+        minute * TicksPerMinute +
+        second * TicksPerSecond +
+        milliSecond * TicksPerMillisecond;
     }
 
     private void ValidateInternal()
@@ -136,11 +143,17 @@ namespace NWN.Services
     }
 
     public NwDateTime AddMilliseconds(int milliseconds) => Add(milliseconds, 1);
+
     public NwDateTime AddSeconds(int seconds) => Add(seconds, TicksPerSecond);
+
     public NwDateTime AddMinutes(int minutes) => Add(minutes, TicksPerMinute);
+
     public NwDateTime AddHours(int hours) => Add(hours, TicksPerHour);
+
     public NwDateTime AddDays(int days) => Add(days, TicksPerDay);
+
     public NwDateTime AddMonths(int months) => Add(months, TicksPerMonth);
+
     public NwDateTime AddYears(int years) => Add(years, TicksPerYear);
 
     public string GetHarptosMonthName()

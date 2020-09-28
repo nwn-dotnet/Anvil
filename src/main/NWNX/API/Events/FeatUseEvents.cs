@@ -12,8 +12,11 @@ namespace NWNX.API.Events
     public class OnUseFeatBefore : EventSkippable<OnUseFeatBefore>
     {
       public NwCreature FeatUser { get; private set; }
+
       public Feat Feat { get; private set; }
+
       public NwGameObject TargetGameObject { get; private set; }
+
       public Vector3 TargetPosition { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

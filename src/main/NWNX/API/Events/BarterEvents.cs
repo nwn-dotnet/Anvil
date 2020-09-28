@@ -10,6 +10,7 @@ namespace NWNX.API.Events
     public class OnBarterStartBefore : EventSkippable<OnBarterStartBefore>
     {
       public NwPlayer Player { get; private set; }
+
       public NwPlayer Target { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -23,6 +24,7 @@ namespace NWNX.API.Events
     public class OnBarterStartAfter : EventSkippable<OnBarterStartAfter>
     {
       public NwPlayer Player { get; private set; }
+
       public NwPlayer Target { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

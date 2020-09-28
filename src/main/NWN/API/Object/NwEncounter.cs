@@ -10,7 +10,7 @@ namespace NWN.API
     internal NwEncounter(uint objectId) : base(objectId) {}
 
     /// <summary>
-    /// Gets or sets whether this encounter is spawned and active.
+    /// Gets or sets a value indicating whether this encounter is spawned and active.
     /// </summary>
     public bool Active
     {
@@ -24,7 +24,7 @@ namespace NWN.API
     public EncounterDifficulty Difficulty
     {
       get => (EncounterDifficulty) NWScript.GetEncounterDifficulty(this);
-      set => NWScript.SetEncounterDifficulty((int)value, ObjectId);
+      set => NWScript.SetEncounterDifficulty((int) value, ObjectId);
     }
 
     /// <summary>

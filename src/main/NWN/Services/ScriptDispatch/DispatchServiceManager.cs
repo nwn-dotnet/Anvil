@@ -11,6 +11,7 @@ namespace NWN.Services
     private readonly List<IScriptDispatcher> dispatchers;
 
     public event Action OnScriptContextBegin;
+
     public event Action OnScriptContextEnd;
 
     public DispatchServiceManager(IEnumerable<IScriptDispatcher> dispatchers)

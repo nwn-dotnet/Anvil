@@ -11,6 +11,7 @@ namespace NWNX.API.Events
     public class OnAddAssociateBefore : Event<OnAddAssociateBefore>
     {
       public NwPlayer Player { get; private set; }
+
       public NwCreature Associate { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -24,6 +25,7 @@ namespace NWNX.API.Events
     public class OnAddAssociateAfter : Event<OnAddAssociateAfter>
     {
       public NwPlayer Player { get; private set; }
+
       public NwCreature Associate { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -37,6 +39,7 @@ namespace NWNX.API.Events
     public class OnRemoveAssociateBefore : Event<OnRemoveAssociateBefore>
     {
       public NwPlayer Player { get; private set; }
+
       public NwCreature Associate { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -50,6 +53,7 @@ namespace NWNX.API.Events
     public class OnRemoveAssociateAfter : Event<OnRemoveAssociateAfter>
     {
       public NwPlayer Player { get; private set; }
+
       public NwCreature Associate { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

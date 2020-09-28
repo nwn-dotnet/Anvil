@@ -50,7 +50,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if this object has an assigned UUID.
+    /// Gets a value indicating whether this object has an assigned UUID.
     /// </summary>
     public bool HasUUID
     {
@@ -58,12 +58,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns the resource reference used to create this object.
+    /// Gets the resource reference used to create this object.
     /// </summary>
     public string ResRef => NWScript.GetResRef(this);
 
     /// <summary>
-    /// Returns true if this is a valid object.
+    /// Gets a value indicating whether this is a valid object.
     /// </summary>
     public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
 
@@ -132,10 +132,7 @@ namespace NWN.API
       }
 
       TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-      NWScript.AssignCommand(this, () =>
-      {
-        tcs.SetResult(true);
-      });
+      NWScript.AssignCommand(this, () => { tcs.SetResult(true); });
 
       await tcs.Task;
     }

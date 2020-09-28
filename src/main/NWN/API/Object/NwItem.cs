@@ -38,7 +38,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this item has been identified.
+    /// Gets or sets a value indicating whether this item has been identified.
     /// </summary>
     public bool Identified
     {
@@ -47,7 +47,8 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Modifies the store behaviour for this item. An infinite item will still be available to purchase from a store after a player buys the item.
+    /// Gets or sets a value indicating whether this item may be infinitely purchased from stores.<br/>
+    /// An infinite item will still be available to purchase from a store after a player buys the item.
     /// </summary>
     public bool Infinite
     {
@@ -56,7 +57,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this item is considered stolen. Only stores with the "Buys Stolen Goods" will purchase this item.
+    /// Gets or sets a value indicating whether this item is considered stolen. Only stores with the "Buys Stolen Goods" will purchase this item.
     /// <remarks>The stolen flag is set automatically on pickpocketed items, and traps crafted with the craft trap skill.</remarks>
     /// </summary>
     public bool Stolen
@@ -66,7 +67,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this item can be dropped.
+    /// Gets or sets a value indicating whether this item can be dropped.
     /// <remarks>Droppable items will appear on a creature's remains when the creature is killed.</remarks>
     /// </summary>
     public bool Droppable
@@ -76,7 +77,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this item is considered cursed. Cursed items cannot be dropped.
+    /// Gets or sets a value indicating whether this item is considered cursed. Cursed items cannot be dropped.
     /// </summary>
     public bool CursedFlag
     {
@@ -85,7 +86,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets whether this item can be pickpocketed.
+    /// Gets or sets a value indicating whether this item can be pickpocketed.
     /// </summary>
     public bool Pickpocketable
     {
@@ -103,7 +104,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// The GameObject that has this item in its inventory, otherwise null if it is on the ground, or not in any inventory.
+    /// Gets the GameObject that has this item in its inventory. Returns null if it is on the ground, or not in any inventory.
     /// </summary>
     public NwGameObject Possessor
     {
@@ -200,7 +201,7 @@ namespace NWN.API
     /// <summary>
     /// Creates a copy of this item.
     /// </summary>
-    /// <param name="targetInventory">The target inventory to create the cloned item/</param>
+    /// <param name="targetInventory">The target inventory to create the cloned item.</param>
     /// <param name="newTag">A new tag to assign the cloned item.</param>
     /// <returns>The newly cloned copy of the item.</returns>
     public NwItem Clone(NwGameObject targetInventory, string newTag = null)

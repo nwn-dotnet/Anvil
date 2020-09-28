@@ -49,7 +49,7 @@ namespace NWNX.API
     /// Deletes the player character from the servervault.<br/>
     /// The PC will be immediately booted from the game with a "Delete Character" message.
     /// </summary>
-    /// <param name="player">The player to delete</param>
+    /// <param name="player">The player to delete.</param>
     /// <param name="preserveBackup">If true, it will leave the file on the server, only appending ".deleted0" to the bic filename.</param>
     public static void DeletePlayerCharacter(NwPlayer player, bool preserveBackup) => AdminPlugin.DeletePlayerCharacter(player, preserveBackup.ToInt());
 
@@ -109,8 +109,8 @@ namespace NWNX.API
     /// <para>At times a PC may get stuck in a permanent crash loop when attempting to login. This function allows administrators to delete their Temporary User
     /// Resource Data where the PC's current location is stored allowing them to log into the starting area.</para>
     /// </summary>
-    /// <param name="playerName">The community (login name)</param>
-    /// <param name="characterName">The character name</param>
+    /// <param name="playerName">The community (login name).</param>
+    /// <param name="characterName">The character name.</param>
     /// <returns>true if the TURD was successfully deleted.</returns>
     public static bool DeleteTURD(string playerName, string characterName) => AdminPlugin.DeleteTURD(playerName, characterName).ToBool();
 

@@ -1,6 +1,6 @@
-using NWNX.API.Constants;
 using NWN.API;
 using NWN.Core.NWNX;
+using NWNX.API.Constants;
 
 namespace NWNX.API.Events
 {
@@ -10,8 +10,11 @@ namespace NWNX.API.Events
     public class OnResourceAdded : EventSkippable<OnResourceAdded>
     {
       public NwModule Module { get; private set; }
+
       public string Alias { get; private set; }
+
       public string ResRef { get; private set; }
+
       public ResRefType Type { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -27,8 +30,11 @@ namespace NWNX.API.Events
     public class OnResourceRemoved : EventSkippable<OnResourceRemoved>
     {
       public NwModule Module { get; private set; }
+
       public string Alias { get; private set; }
+
       public string ResRef { get; private set; }
+
       public ResRefType Type { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -44,8 +50,11 @@ namespace NWNX.API.Events
     public class OnResourceModified : EventSkippable<OnResourceModified>
     {
       public NwModule Module { get; private set; }
+
       public string Alias { get; private set; }
+
       public string ResRef { get; private set; }
+
       public ResRefType Type { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

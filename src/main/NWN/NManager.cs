@@ -18,27 +18,31 @@ namespace NWN
   /// </summary>
   public class NManager : IGameManager
   {
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-    uint IGameManager.ObjectSelf => objectSelf;
-
-    // Native Management
     private const uint ObjectInvalid = 0x7F000000;
-    private uint objectSelf;
+
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+    private static NManager instance;
+
     private readonly Stack<uint> scriptContexts = new Stack<uint>();
     private readonly Dictionary<ulong, ActionDelegate> closures = new Dictionary<ulong, ActionDelegate>();
+
+    // Core Services
+    private readonly IBindingInstaller bindingInstaller;
+    private readonly ITypeLoader typeLoader;
+
+    private ServiceManager serviceManager;
+
+    private uint objectSelf;
     private ulong nextEventId;
 
     // Native callbacks
     private ICoreRunScriptHandler runScriptHandler;
     private ICoreLoopHandler loopHandler;
 
-    // Core Services
-    private ServiceManager serviceManager;
-    private readonly IBindingInstaller bindingInstaller;
-    private readonly ITypeLoader typeLoader;
-
-    private static NManager instance;
+    uint IGameManager.ObjectSelf
+    {
+      get => objectSelf;
+    }
 
     /// <summary>
     /// Initialises the managed library, loading all defined services.
@@ -99,7 +103,7 @@ namespace NWN
       loopHandler = GetService<ICoreLoopHandler>();
     }
 
-    private static void InitLogManager()
+    private void InitLogManager()
     {
       if (File.Exists(EnvironmentConfig.NLogConfigPath))
       {
@@ -110,7 +114,7 @@ namespace NWN
       Log.Info($"Using Logger config: \"{EnvironmentConfig.NLogConfigPath}\"");
     }
 
-    private static void CheckPluginDependencies()
+    private void CheckPluginDependencies()
     {
       Log.Info("Checking Plugin Dependencies");
       PluginUtils.AssertPluginExists<UtilPlugin>();

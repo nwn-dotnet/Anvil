@@ -11,6 +11,7 @@ namespace NWN.API.Events
     }
 
     protected abstract void PrepareEvent(NwObject objSelf);
+
     protected abstract void InvokeCallbacks();
   }
 

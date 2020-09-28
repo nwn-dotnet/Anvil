@@ -1,9 +1,9 @@
 using NWN.API.Constants;
 using NWN.Core;
 
+// TODO Populate event data.
 namespace NWN.API.Events
 {
-  // TODO Populate event data.
   /// <summary>
   /// Events for Placeables.
   /// </summary>
@@ -13,6 +13,7 @@ namespace NWN.API.Events
     public sealed class OnClose : Event<NwPlaceable, OnClose>
     {
       public NwPlaceable Placeable { get; private set; }
+
       public NwCreature LastClosedBy { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -26,7 +27,9 @@ namespace NWN.API.Events
     public sealed class OnDamaged : Event<NwPlaceable, OnDamaged>
     {
       public NwPlaceable DamagedObject { get; private set; }
+
       public NwGameObject Damager { get; private set; }
+
       public int DamageAmount { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -41,6 +44,7 @@ namespace NWN.API.Events
     public sealed class OnDeath : Event<NwPlaceable, OnDeath>
     {
       public NwPlaceable KilledObject { get; private set; }
+
       public NwGameObject Killer { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -76,8 +80,11 @@ namespace NWN.API.Events
     public sealed class OnDisturbed : Event<NwPlaceable, OnDisturbed>
     {
       public InventoryDisturbType DisturbType { get; private set; }
+
       public NwPlaceable Placeable { get; private set; }
+
       public NwCreature Disturber { get; private set; }
+
       public NwItem DisturbedItem { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -93,6 +100,7 @@ namespace NWN.API.Events
     public sealed class OnLock : Event<NwPlaceable, OnLock>
     {
       public NwPlaceable LockedPlaceable { get; private set; }
+
       public int LockDC { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -106,6 +114,7 @@ namespace NWN.API.Events
     public sealed class OnPhysicalAttacked : Event<NwPlaceable, OnPhysicalAttacked>
     {
       public NwPlaceable Placeable { get; private set; }
+
       public NwCreature Attacker { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -119,6 +128,7 @@ namespace NWN.API.Events
     public sealed class OnOpen : Event<NwPlaceable, OnOpen>
     {
       public NwPlaceable Placeable { get; private set; }
+
       public NwCreature OpenedBy { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -154,6 +164,7 @@ namespace NWN.API.Events
     public sealed class OnUnlock : Event<NwPlaceable, OnUnlock>
     {
       public NwPlaceable Placeable { get; private set; }
+
       public NwCreature UnlockedBy { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -167,6 +178,7 @@ namespace NWN.API.Events
     public sealed class OnUsed : Event<NwPlaceable, OnUsed>
     {
       public NwPlaceable Placeable { get; private set; }
+
       public NwCreature UsedBy { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)
@@ -180,6 +192,7 @@ namespace NWN.API.Events
     public sealed class OnUserDefined : Event<NwPlaceable, OnUserDefined>
     {
       public NwPlaceable Placeable { get; private set; }
+
       public int EventNumber { get; private set; }
 
       protected override void PrepareEvent(NwPlaceable objSelf)

@@ -15,7 +15,7 @@ namespace NWNX.API.Events
       public NwArea Area { get; private set; }
 
       /// <summary>
-      /// Gets whether this is the player's first time logging in to the server since a restart.
+      /// Gets a value indicating whether this is the player's first time logging in to the server since a restart.
       /// </summary>
       public bool NewToModule { get; private set; }
 
@@ -35,7 +35,7 @@ namespace NWNX.API.Events
       public NwArea Area { get; private set; }
 
       /// <summary>
-      /// Gets whether this is the player's first time logging in to the server since a restart.
+      /// Gets a value indicating whether this is the player's first time logging in to the server since a restart.
       /// </summary>
       public bool NewToModule { get; private set; }
 

@@ -29,6 +29,7 @@ namespace NWN.Services
       {
         throw new ArgumentOutOfRangeException(nameof(delay), $"{nameof(delay)} cannot be < zero.");
       }
+
       if (task == null)
       {
         throw new ArgumentNullException(nameof(task));
@@ -46,6 +47,7 @@ namespace NWN.Services
       {
         throw new ArgumentOutOfRangeException(nameof(delay), $"{nameof(delay)} cannot be <= zero.");
       }
+
       if (task == null)
       {
         throw new ArgumentNullException(nameof(task));

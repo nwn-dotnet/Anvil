@@ -12,7 +12,7 @@ namespace NWN.API
     public string Tag => NWScript.GetItemPropertyTag(this);
 
     /// <summary>
-    /// Gets the type of this item property (as defined in itempropdef.2da)
+    /// Gets the type of this item property (as defined in itempropdef.2da).
     /// </summary>
     public ItemPropertyType PropertyType => (ItemPropertyType) NWScript.GetItemPropertyType(this);
 
@@ -28,17 +28,17 @@ namespace NWN.API
     public EffectDuration DurationType => (EffectDuration) NWScript.GetItemPropertyDurationType(this);
 
     /// <summary>
-    /// If this item property is temporary, gets the remaining duration until the item property expires. Otherwise, returns 0.
+    /// Gets the remaining duration until the item property expires (if this item property is temporary). Otherwise, returns <see cref="TimeSpan.Zero"/>.
     /// </summary>
     public TimeSpan RemainingDuration => TimeSpan.FromSeconds(NWScript.GetItemPropertyDurationRemaining(this));
 
     /// <summary>
-    /// If this item property is temporary, gets the total duration of the item property effect. Otherwise, returns 0.
+    /// Gets the total duration of the item property effect (if this item property is temporary). Otherwise, returns <see cref="TimeSpan.Zero"/>.
     /// </summary>
     public TimeSpan TotalDuration => TimeSpan.FromSeconds(NWScript.GetItemPropertyDuration(this));
 
     /// <summary>
-    /// Gets if this item property is valid.
+    /// Gets a value indicating whether this item property is valid.
     /// </summary>
     public bool Valid => NWScript.GetIsItemPropertyValid(this).ToBool();
   }

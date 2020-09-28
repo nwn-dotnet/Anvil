@@ -18,7 +18,7 @@ namespace NWN.Services
     /// <returns>The deserialized 2DA.</returns>
     public T Get2DA<T>(string name, bool forceRefresh = false) where T : ITwoDimArray, new()
     {
-      name = name.Replace(".2da", "");
+      name = name.Replace(".2da", string.Empty);
 
       if (!forceRefresh && cache.TryGetValue(name, out ITwoDimArray value))
       {

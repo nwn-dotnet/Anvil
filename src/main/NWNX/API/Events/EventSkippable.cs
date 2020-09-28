@@ -6,7 +6,7 @@ namespace NWNX.API.Events
   public abstract class EventSkippable<T> : Event<T> where T : Event<T>
   {
     /// <summary>
-    /// Gets or sets whether this event will be skipped.
+    /// Gets or sets a value indicating whether this event will be skipped.
     /// </summary>
     public bool Skip { get; set; }
 
