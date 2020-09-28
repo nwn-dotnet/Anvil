@@ -126,6 +126,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Sets the highlight color of this object.
+    /// </summary>
+    public Color HiliteColor
+    {
+      set => NWScript.SetObjectHiliteColor(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets all items belonging to this object's inventory.
     /// </summary>
     public IEnumerable<NwItem> Items

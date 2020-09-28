@@ -770,10 +770,28 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns true if this creature considers the target an enemy.
+    /// Gets a value indicating whether this creature considers the target as a friend.
     /// </summary>
+    /// <param name="target">The target creature.</param>
+    /// <returns>true if target is an enemy, otherwise false.</returns>
     public bool IsEnemy(NwCreature target)
       => NWScript.GetIsEnemy(target, this).ToBool();
+
+    /// <summary>
+    /// Gets a value indicating whether this creature considers the target as neutral.
+    /// </summary>
+    /// <param name="target">The target creature.</param>
+    /// <returns>true if this creature considers the target as neutral, otherwise false.</returns>
+    public bool IsNeutral(NwCreature target)
+      => NWScript.GetIsNeutral(target, this).ToBool();
+
+    /// <summary>
+    /// Gets a value indicating whether this creature considers the target as a enemy.
+    /// </summary>
+    /// <param name="target">The target creature.</param>
+    /// <returns>true if target is a friend, otherwise false.</returns>
+    public bool IsFriend(NwCreature target)
+      => NWScript.GetIsFriend(target, this).ToBool();
 
     /// <summary>
     /// Returns this creature's spell school specialization in the specified class.<br/>
