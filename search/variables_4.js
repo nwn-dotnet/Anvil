@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['effecttype_1499',['EffectType',['../classNWN_1_1API_1_1Effect.html#a3a2bc95cdbf7b42a8bd389df4229011b',1,'NWN::API::Effect']]]
+  ['green_1405',['Green',['../structNWN_1_1API_1_1Color.html#a366aece6ec6c7903173b4392f950fd92',1,'NWN::API::Color']]]
 ];

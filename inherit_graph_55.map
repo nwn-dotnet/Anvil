@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="5,5,172,47"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnExit.html" title=" " alt="" coords="220,5,403,47"/>
+<area shape="rect" id="node1" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="5,5,208,47"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html" title=" " alt="" coords="256,5,439,47"/>
 </map>

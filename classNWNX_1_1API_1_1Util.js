@@ -20,9 +20,9 @@ var classNWNX_1_1API_1_1Util =
     [ "StripColors", "classNWNX_1_1API_1_1Util.html#a2fbeae02fb9f8784a1dafa60dcabd021", null ],
     [ "UnregisterServerConsoleCommand", "classNWNX_1_1API_1_1Util.html#a0dd470aeb74ef110a809b4d604ae3a7d", null ],
     [ "ScriptReturnValue", "classNWNX_1_1API_1_1Util.html#a139b7dffa0257f2fa4a3dd49af35c55a", null ],
-    [ "ServerTicksPerSecond", "classNWNX_1_1API_1_1Util.html#a3cba4aa0a0f5f85c1b10a220ce7bfbe1", null ],
     [ "UserDirectory", "classNWNX_1_1API_1_1Util.html#a9a2864ea0b2315b44f2bd7d5ddcebd82", null ],
     [ "AsciiTableString", "classNWNX_1_1API_1_1Util.html#ac5370cdb988c6dc2436a8c5eb5eccc99", null ],
     [ "InstructionLimit", "classNWNX_1_1API_1_1Util.html#a390780aedb93b3822249f622698bb67d", null ],
-    [ "MinutesPerHour", "classNWNX_1_1API_1_1Util.html#a3cbb396c4585fc783d861276acd0e589", null ]
+    [ "MinutesPerHour", "classNWNX_1_1API_1_1Util.html#a3cbb396c4585fc783d861276acd0e589", null ],
+    [ "ServerTicksPerSecond", "classNWNX_1_1API_1_1Util.html#a3cba4aa0a0f5f85c1b10a220ce7bfbe1", null ]
 ];

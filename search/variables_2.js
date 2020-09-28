@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['creator_1496',['Creator',['../classNWN_1_1API_1_1Effect.html#a44e95e77d276d929a3c3b0d1df3072b3',1,'NWN::API::Effect']]]
+  ['durationtype_1403',['DurationType',['../classNWN_1_1API_1_1ItemProperty.html#a2d493ac98fee7ed82e2c7073c52c2851',1,'NWN::API::ItemProperty']]]
 ];

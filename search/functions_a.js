@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['misschance_1377',['MissChance',['../classNWN_1_1API_1_1Effect.html#a13187898d1756d471620f64baede87a9',1,'NWN::API::Effect']]],
-  ['modifyattacks_1378',['ModifyAttacks',['../classNWN_1_1API_1_1Effect.html#ad7f5e457cda919e5e844384e356ef3b5',1,'NWN::API::Effect']]],
-  ['movementspeeddecrease_1379',['MovementSpeedDecrease',['../classNWN_1_1API_1_1Effect.html#a31e8d8d3e944cd64a26deeb49e299944',1,'NWN::API::Effect']]],
-  ['movementspeedincrease_1380',['MovementSpeedIncrease',['../classNWN_1_1API_1_1Effect.html#a618663915b6e6ef45d10ba534edca83a',1,'NWN::API::Effect']]]
+  ['open_1323',['Open',['../classNWN_1_1API_1_1NwDoor.html#a9b9959f7cd1bad6ffbdf8daae41cdcf0',1,'NWN::API::NwDoor']]],
+  ['operator_20t_1324',['operator T',['../classNWN_1_1API_1_1CampaignVariable.html#a40aa6c874c55ad9eb893bbd5361a8f35',1,'NWN.API.CampaignVariable.operator T()'],['../classNWN_1_1API_1_1LocalVariable.html#a109f5225187170d983e94c62c58e30af',1,'NWN.API.LocalVariable.operator T()']]]
 ];

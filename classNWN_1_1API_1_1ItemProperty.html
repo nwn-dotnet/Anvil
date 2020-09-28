@@ -339,7 +339,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a918be916ed8ba8e8a1b8f99cb8fb2a9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tag for this item property.  <a href="classNWN_1_1API_1_1ItemProperty.html#a918be916ed8ba8e8a1b8f99cb8fb2a9b">More...</a><br /></td></tr>
 <tr class="separator:a918be916ed8ba8e8a1b8f99cb8fb2a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a346a9b4c323d348269903af83dd716b8"><td class="memItemLeft" align="right" valign="top">ItemPropertyType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1ItemProperty.html#a346a9b4c323d348269903af83dd716b8">PropertyType</a> =&gt; (ItemPropertyType) NWScript.GetItemPropertyType(this)</td></tr>
-<tr class="memdesc:a346a9b4c323d348269903af83dd716b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of this item property (as defined in itempropdef.2da)  <a href="classNWN_1_1API_1_1ItemProperty.html#a346a9b4c323d348269903af83dd716b8">More...</a><br /></td></tr>
+<tr class="memdesc:a346a9b4c323d348269903af83dd716b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of this item property (as defined in itempropdef.2da).  <a href="classNWN_1_1API_1_1ItemProperty.html#a346a9b4c323d348269903af83dd716b8">More...</a><br /></td></tr>
 <tr class="separator:a346a9b4c323d348269903af83dd716b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a43d08961f0e303e5a6016883723d99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1ItemProperty.html#a4a43d08961f0e303e5a6016883723d99">SubType</a> =&gt; NWScript.GetItemPropertySubType(this)</td></tr>
 <tr class="memdesc:a4a43d08961f0e303e5a6016883723d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the SubType index for this item property.<br  />
@@ -349,13 +349,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a2d493ac98fee7ed82e2c7073c52c2851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this item property is a permanent or temporary effect.  <a href="classNWN_1_1API_1_1ItemProperty.html#a2d493ac98fee7ed82e2c7073c52c2851">More...</a><br /></td></tr>
 <tr class="separator:a2d493ac98fee7ed82e2c7073c52c2851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ced0c97e738981c8d55615df17450e3"><td class="memItemLeft" align="right" valign="top">TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1ItemProperty.html#a4ced0c97e738981c8d55615df17450e3">RemainingDuration</a> =&gt; TimeSpan.FromSeconds(NWScript.GetItemPropertyDurationRemaining(this))</td></tr>
-<tr class="memdesc:a4ced0c97e738981c8d55615df17450e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">If this item property is temporary, gets the remaining duration until the item property expires. Otherwise, returns 0.  <a href="classNWN_1_1API_1_1ItemProperty.html#a4ced0c97e738981c8d55615df17450e3">More...</a><br /></td></tr>
+<tr class="memdesc:a4ced0c97e738981c8d55615df17450e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the remaining duration until the item property expires (if this item property is temporary). Otherwise, returns TimeSpan.Zero.  <a href="classNWN_1_1API_1_1ItemProperty.html#a4ced0c97e738981c8d55615df17450e3">More...</a><br /></td></tr>
 <tr class="separator:a4ced0c97e738981c8d55615df17450e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a106af6eb83376adea18c888b918cb3cf"><td class="memItemLeft" align="right" valign="top">TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1ItemProperty.html#a106af6eb83376adea18c888b918cb3cf">TotalDuration</a> =&gt; TimeSpan.FromSeconds(NWScript.GetItemPropertyDuration(this))</td></tr>
-<tr class="memdesc:a106af6eb83376adea18c888b918cb3cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">If this item property is temporary, gets the total duration of the item property effect. Otherwise, returns 0.  <a href="classNWN_1_1API_1_1ItemProperty.html#a106af6eb83376adea18c888b918cb3cf">More...</a><br /></td></tr>
+<tr class="memdesc:a106af6eb83376adea18c888b918cb3cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total duration of the item property effect (if this item property is temporary). Otherwise, returns TimeSpan.Zero.  <a href="classNWN_1_1API_1_1ItemProperty.html#a106af6eb83376adea18c888b918cb3cf">More...</a><br /></td></tr>
 <tr class="separator:a106af6eb83376adea18c888b918cb3cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6ab0a2e316600ec2cbbe9fde913fc9a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1ItemProperty.html#ac6ab0a2e316600ec2cbbe9fde913fc9a">Valid</a> =&gt; NWScript.GetIsItemPropertyValid(this).ToBool()</td></tr>
-<tr class="memdesc:ac6ab0a2e316600ec2cbbe9fde913fc9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this item property is valid.  <a href="classNWN_1_1API_1_1ItemProperty.html#ac6ab0a2e316600ec2cbbe9fde913fc9a">More...</a><br /></td></tr>
+<tr class="memdesc:ac6ab0a2e316600ec2cbbe9fde913fc9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this item property is valid.  <a href="classNWN_1_1API_1_1ItemProperty.html#ac6ab0a2e316600ec2cbbe9fde913fc9a">More...</a><br /></td></tr>
 <tr class="separator:ac6ab0a2e316600ec2cbbe9fde913fc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -387,7 +387,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the type of this item property (as defined in itempropdef.2da) </p>
+<p>Gets the type of this item property (as defined in itempropdef.2da). </p>
 
 </div>
 </div>
@@ -403,7 +403,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>If this item property is temporary, gets the remaining duration until the item property expires. Otherwise, returns 0. </p>
+<p>Gets the remaining duration until the item property expires (if this item property is temporary). Otherwise, returns TimeSpan.Zero. </p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>If this item property is temporary, gets the total duration of the item property effect. Otherwise, returns 0. </p>
+<p>Gets the total duration of the item property effect (if this item property is temporary). Otherwise, returns TimeSpan.Zero. </p>
 
 </div>
 </div>
@@ -468,7 +468,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets if this item property is valid. </p>
+<p>Gets a value indicating whether this item property is valid. </p>
 
 </div>
 </div>

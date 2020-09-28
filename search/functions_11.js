@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['ultravision_1473',['Ultravision',['../classNWN_1_1API_1_1Effect.html#a67438ed3875cc0f9c3a61165cbcd4fb7',1,'NWN::API::Effect']]],
-  ['unlockachievement_1474',['UnlockAchievement',['../classNWN_1_1API_1_1NwPlayer.html#ac1f69ec12641d650de9e00f0426549db',1,'NWN::API::NwPlayer']]],
-  ['unregisterserverconsolecommand_1475',['UnregisterServerConsoleCommand',['../classNWNX_1_1API_1_1Util.html#a0dd470aeb74ef110a809b4d604ae3a7d',1,'NWNX::API::Util']]],
-  ['unsubscribe_3c_20tobject_2c_20tevent_20_3e_1476',['Unsubscribe&lt; TObject, TEvent &gt;',['../classNWN_1_1Services_1_1EventService.html#aae5849a4ad1b977448d48b9aa52fc061',1,'NWN::Services::EventService']]],
-  ['unsubscribeall_3c_20tevent_20_3e_1477',['UnsubscribeAll&lt; TEvent &gt;',['../classNWN_1_1Services_1_1EventService.html#a0e5f849d387a7707f2c747372a4a978d',1,'NWN::Services::EventService']]],
-  ['update_1478',['Update',['../interfaceNWN_1_1Services_1_1IUpdateable.html#aedac417ae32de9acaf39fad1c10900f9',1,'NWN::Services::IUpdateable']]]
+  ['waitforobjectcontext_1394',['WaitForObjectContext',['../classNWN_1_1API_1_1NwObject.html#a939d84e27244659e861c19659d2a0490',1,'NWN::API::NwObject']]],
+  ['waituntil_1395',['WaitUntil',['../classNWN_1_1API_1_1NwTask.html#a757698a871a82bd3bc739dd351e2d301',1,'NWN::API::NwTask']]],
+  ['waituntilvaluechanged_3c_20t_20_3e_1396',['WaitUntilValueChanged&lt; T &gt;',['../classNWN_1_1API_1_1NwTask.html#a966a3a1cca9ebe6e4f81bc491ea4f47c',1,'NWN::API::NwTask']]],
+  ['whenall_1397',['WhenAll',['../classNWN_1_1API_1_1NwTask.html#a747b1bdcf55f33e95e96c5023124068d',1,'NWN.API.NwTask.WhenAll(params Task[] tasks)'],['../classNWN_1_1API_1_1NwTask.html#a5c28da00d64cf18d304b61fd2f89dc66',1,'NWN.API.NwTask.WhenAll(IEnumerable&lt; Task &gt; tasks)']]],
+  ['whenall_3c_20tresult_20_3e_1398',['WhenAll&lt; TResult &gt;',['../classNWN_1_1API_1_1NwTask.html#abf6aa9e7422217e20330836c00bd17a9',1,'NWN.API.NwTask.WhenAll&lt; TResult &gt;(params Task&lt; TResult &gt;[] tasks)'],['../classNWN_1_1API_1_1NwTask.html#a34f8514cb412394fb9ffdb5aaca00914',1,'NWN.API.NwTask.WhenAll&lt; TResult &gt;(IEnumerable&lt; Task&lt; TResult &gt;&gt; tasks)']]],
+  ['whenany_1399',['WhenAny',['../classNWN_1_1API_1_1NwTask.html#a7ca261fe89404f60358b16704a43c9b2',1,'NWN.API.NwTask.WhenAny(params Task[] tasks)'],['../classNWN_1_1API_1_1NwTask.html#a4e306e82e09914a0b94f54e37c7ef72b',1,'NWN.API.NwTask.WhenAny(IEnumerable&lt; Task &gt; tasks)']]],
+  ['whenany_3c_20tresult_20_3e_1400',['WhenAny&lt; TResult &gt;',['../classNWN_1_1API_1_1NwTask.html#a91446105b7628eb1ffaae24805196a21',1,'NWN.API.NwTask.WhenAny&lt; TResult &gt;(params Task&lt; TResult &gt;[] tasks)'],['../classNWN_1_1API_1_1NwTask.html#ae396df0cf7f784753f9646f42bdb3601',1,'NWN.API.NwTask.WhenAny&lt; TResult &gt;(IEnumerable&lt; Task&lt; TResult &gt;&gt; tasks)']]]
 ];

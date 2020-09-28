@@ -88,7 +88,7 @@ var classNWN_1_1API_1_1Effect =
     [ "DurationRemaining", "classNWN_1_1API_1_1Effect.html#a17fdcc6f129e74d98d3db4bf99c8ffc3", null ],
     [ "DurationType", "classNWN_1_1API_1_1Effect.html#a54895925e777a5724009c32de6dd124e", null ],
     [ "EffectType", "classNWN_1_1API_1_1Effect.html#a3a2bc95cdbf7b42a8bd389df4229011b", null ],
-    [ "TotalDuration", "classNWN_1_1API_1_1Effect.html#aa07f7a3997d2f70314e32aebaa13be21", null ],
     [ "SubType", "classNWN_1_1API_1_1Effect.html#a05d64b64d6c63ed8cda420d27e6b1dbf", null ],
-    [ "Tag", "classNWN_1_1API_1_1Effect.html#a46e54fb46f17e71949da214b61806a97", null ]
+    [ "Tag", "classNWN_1_1API_1_1Effect.html#a46e54fb46f17e71949da214b61806a97", null ],
+    [ "TotalDuration", "classNWN_1_1API_1_1Effect.html#aa07f7a3997d2f70314e32aebaa13be21", null ]
 ];

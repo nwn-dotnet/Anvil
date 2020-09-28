@@ -1,4 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="5,5,164,47"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="212,5,371,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="75,209,146,235"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1CampaignVariableConverterAttribute.html" title=" " alt="" coords="282,71,469,112"/>
+<area shape="rect" id="node3" href="$classNWN_1_1API_1_1LocalVariableConverterAttribute.html" title=" " alt="" coords="267,136,484,177"/>
+<area shape="rect" id="node4" href="$classNWN_1_1Services_1_1ScriptHandlerAttribute.html" title=" " alt="" coords="280,201,471,243"/>
+<area shape="rect" id="node5" href="$classNWN_1_1Services_1_1ServiceBindingAttribute.html" title=" " alt="" coords="276,5,475,47"/>
+<area shape="rect" id="node6" href="$classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html" title=" " alt="" coords="269,267,482,308"/>
+<area shape="rect" id="node7" href="$classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html" title=" " alt="" coords="264,332,487,373"/>
+<area shape="rect" id="node8" href="$classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html" title=" " alt="" coords="271,397,479,439"/>
+<area shape="rect" id="node9" href="$interfaceNWN_1_1API_1_1Events_1_1IEventAttribute.html" title=" " alt="" coords="5,339,216,366"/>
 </map>
