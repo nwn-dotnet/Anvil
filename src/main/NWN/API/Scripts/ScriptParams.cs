@@ -1,4 +1,5 @@
 using NWN.Core;
+using NWN.Core.NWNX;
 
 namespace NWN.API
 {
@@ -13,5 +14,13 @@ namespace NWN.API
       get => NWScript.GetScriptParam(paramName);
       set => NWScript.SetScriptParam(paramName, value);
     }
+
+    /// <summary>
+    /// Gets a value indicating whether the specified parameter has an assigned value.
+    /// </summary>
+    /// <param name="paramName">The parameter name to query.</param>
+    /// <returns>true if the specified parameter is set, otherwise false.</returns>
+    public bool IsSet(string paramName)
+      => UtilPlugin.GetScriptParamIsSet(paramName).ToBool();
   }
 }
