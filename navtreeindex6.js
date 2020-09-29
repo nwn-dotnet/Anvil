@@ -1,5 +1,7 @@
 var NAVTREEINDEX6 =
 {
+"structNWNX_1_1API_1_1QuickBarSlot.html#a99710bade164d13029674c92a6f462dc":[0,0,1,0,16,9],
+"structNWNX_1_1API_1_1QuickBarSlot.html#aa2782c10f2f55103db839331bba72649":[0,0,1,0,16,3],
 "structNWNX_1_1API_1_1QuickBarSlot.html#aba90e6d9a2222a392ebc5eff2dbd1db8":[0,0,1,0,16,10],
 "structNWNX_1_1API_1_1QuickBarSlot.html#ac358bdb2df8acfee9706094cb5bfd26e":[0,0,1,0,16,6],
 "structNWNX_1_1API_1_1QuickBarSlot.html#ad6ad8c592efcad51255625e92e3521ba":[0,0,1,0,16,13],

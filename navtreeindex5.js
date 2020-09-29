@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"classNWN_1_1API_1_1NwSound.html#aa554d71d12c3dc0cfc11c4af532fcfdc":[0,0,0,0,31,3],
 "classNWN_1_1API_1_1NwSound.html#ad481d113848971366f56566e4a170313":[0,0,0,0,31,2],
 "classNWN_1_1API_1_1NwStationary.html":[0,0,0,0,32],
 "classNWN_1_1API_1_1NwStationary.html#a054d7ba64e3a5f41fe6b5ab9b2cd5e1e":[0,0,0,0,32,11],
@@ -66,7 +67,8 @@ var NAVTREEINDEX5 =
 "classNWN_1_1API_1_1RandomExtensions.html#ad8dd4f09c4629e8a34ab4111052c2307":[0,0,0,0,39,0],
 "classNWN_1_1API_1_1RandomExtensions.html#ae56c7315f39fb225ab4c402c991a4c68":[0,0,0,0,39,1],
 "classNWN_1_1API_1_1ScriptParams.html":[0,0,0,0,40],
-"classNWN_1_1API_1_1ScriptParams.html#afc17a82ea5fab15f580ac90995160ba8":[0,0,0,0,40,0],
+"classNWN_1_1API_1_1ScriptParams.html#a02c14d0aebada43a69be3f9c1b219b28":[0,0,0,0,40,0],
+"classNWN_1_1API_1_1ScriptParams.html#afc17a82ea5fab15f580ac90995160ba8":[0,0,0,0,40,1],
 "classNWN_1_1API_1_1StandardFactionExtensions.html":[0,0,0,0,41],
 "classNWN_1_1API_1_1StandardFactionExtensions.html#adad3827b526ad8dcc9de2ca23d995054":[0,0,0,0,41,0],
 "classNWN_1_1API_1_1StandardFactionExtensions.html#adb0583b94fb444d89415f68ff9368cc8":[0,0,0,0,41,1],
@@ -145,8 +147,8 @@ var NAVTREEINDEX5 =
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html":[0,0,0,2,16],
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html#a1c968df35aaa7022a3a950c76ca9bf63":[0,0,0,2,16,0],
 "classes.html":[0,1],
-"functions.html":[0,3,0],
 "functions.html":[0,3,0,0],
+"functions.html":[0,3,0],
 "functions_b.html":[0,3,0,1],
 "functions_c.html":[0,3,0,2],
 "functions_d.html":[0,3,0,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "structNWNX_1_1API_1_1QuickBarSlot.html#a59d9209caa43a18a31fbd546f55dda1e":[0,0,1,0,16,4],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a604e04574e13558ffb1aef85ec9b946b":[0,0,1,0,16,2],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a6ef3e2a0665bfd0a3857ab80a54aed34":[0,0,1,0,16,14],
-"structNWNX_1_1API_1_1QuickBarSlot.html#a846d3b3fcea8cdd738aeee495792105d":[0,0,1,0,16,8],
-"structNWNX_1_1API_1_1QuickBarSlot.html#a99710bade164d13029674c92a6f462dc":[0,0,1,0,16,9],
-"structNWNX_1_1API_1_1QuickBarSlot.html#aa2782c10f2f55103db839331bba72649":[0,0,1,0,16,3]
+"structNWNX_1_1API_1_1QuickBarSlot.html#a846d3b3fcea8cdd738aeee495792105d":[0,0,1,0,16,8]
 };

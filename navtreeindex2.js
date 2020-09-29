@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classNWN_1_1API_1_1Effect.html#accbd704684ea2809a8a04aac5e13704f":[0,0,0,0,7,38],
 "classNWN_1_1API_1_1Effect.html#ad20fea4bc499d9ee1670bb8cfbea8916":[0,0,0,0,7,21],
 "classNWN_1_1API_1_1Effect.html#ad5208a1c0b424d14c3d06c4ded9d0458":[0,0,0,0,7,39],
 "classNWN_1_1API_1_1Effect.html#ad7f5e457cda919e5e844384e356ef3b5":[0,0,0,0,7,47],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#a7701d1f05231e27f11e43d444b359ecb":[0,0,0,0,1,8,2,0],
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#ac5dd68b819e90e3721993d3d903c0366":[0,0,0,0,1,8,2,2],
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#aebb40c390420a2b3e9a640c3a452fa86":[0,0,0,0,1,8,2,1],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html":[0,0,0,0,1,8,3],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html#a70acacae4d04ec933c49ca8f0a26839c":[0,0,0,0,1,8,3,1]
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html":[0,0,0,0,1,8,3]
 };

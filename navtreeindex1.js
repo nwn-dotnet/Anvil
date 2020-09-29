@@ -144,9 +144,10 @@ var NAVTREEINDEX1 =
 "classNWNX_1_1API_1_1Weapon.html":[0,0,1,0,22],
 "classNWNX_1_1PluginUtils.html":[0,0,1,1],
 "classNWN_1_1API_1_1CallInfo.html":[0,0,0,0,2],
-"classNWN_1_1API_1_1CallInfo.html#a4931b81e98acb7cbd75c752c246ddeb1":[0,0,0,0,2,0],
+"classNWN_1_1API_1_1CallInfo.html#a3bcdd27c6cec1fd61cb28f584c664a23":[0,0,0,0,2,2],
 "classNWN_1_1API_1_1CallInfo.html#a6c57e8d615d0222f7a593e027bcb82e0":[0,0,0,0,2,1],
-"classNWN_1_1API_1_1CallInfo.html#a91b566f1326b7dff901ef15760293e06":[0,0,0,0,2,2],
+"classNWN_1_1API_1_1CallInfo.html#a7fd212fd87d1515d13f74b8cb199bd9a":[0,0,0,0,2,0],
+"classNWN_1_1API_1_1CallInfo.html#a91b566f1326b7dff901ef15760293e06":[0,0,0,0,2,3],
 "classNWN_1_1API_1_1CampaignVariable.html":[0,0,0,0,3],
 "classNWN_1_1API_1_1CampaignVariable.html#a0bfc577131378bb964d469016ca7d08e":[0,0,0,0,3,8],
 "classNWN_1_1API_1_1CampaignVariable.html#a28fb711a286b9e792e27c2b39996a56d":[0,0,0,0,3,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classNWN_1_1API_1_1Effect.html#ac720c4c7ab65d7a5542a1657d8254a38":[0,0,0,0,7,45],
 "classNWN_1_1API_1_1Effect.html#ac8c4feae2957d3c0a98ab438a2f6afad":[0,0,0,0,7,27],
 "classNWN_1_1API_1_1Effect.html#ac9f2d4383d3a558f9476e8920838a9b6":[0,0,0,0,7,78],
-"classNWN_1_1API_1_1Effect.html#acae71fe8b506f02fe048d0f91486873e":[0,0,0,0,7,16],
-"classNWN_1_1API_1_1Effect.html#accbd704684ea2809a8a04aac5e13704f":[0,0,0,0,7,38]
+"classNWN_1_1API_1_1Effect.html#acae71fe8b506f02fe048d0f91486873e":[0,0,0,0,7,16]
 };
