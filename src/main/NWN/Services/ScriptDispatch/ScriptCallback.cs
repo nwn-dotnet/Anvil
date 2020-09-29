@@ -9,10 +9,17 @@ namespace NWN.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    private readonly string scriptName;
+
     private Action scriptHandler;
     private Func<bool> conditionalHandler;
     private Action<CallInfo> scriptHandlerWithMetaHandler;
     private Func<CallInfo, bool> conditionalWithMetaHandler;
+
+    public ScriptCallback(string scriptName)
+    {
+      this.scriptName = scriptName;
+    }
 
     public ScriptHandleResult ProcessCallbacks(uint objSelfId)
     {
@@ -27,7 +34,7 @@ namespace NWN.Services
       else if (scriptHandlerWithMetaHandler != null)
       {
         objSelf = objSelfId.ToNwObject();
-        CallInfo meta = new CallInfo(objSelf);
+        CallInfo meta = new CallInfo(scriptName, objSelf);
         scriptHandlerWithMetaHandler(meta);
         result = ScriptHandleResult.Handled;
       }
@@ -39,7 +46,7 @@ namespace NWN.Services
       else if (conditionalWithMetaHandler != null)
       {
         objSelf = objSelf != null ? objSelf : objSelfId.ToNwObject();
-        CallInfo meta = new CallInfo(objSelf);
+        CallInfo meta = new CallInfo(scriptName, objSelf);
         result = conditionalWithMetaHandler(meta) ? ScriptHandleResult.True : ScriptHandleResult.False;
       }
 
