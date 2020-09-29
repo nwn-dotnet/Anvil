@@ -644,7 +644,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Instructs this creature to move to a certain distance away from the specified location
+    /// Instructs this creature to move to a certain distance away from the specified location.
     /// </summary>
     /// <param name="location">The target location this creature should move away from. If the location is not in the same area as this creature, nothing will happen.</param>
     /// <param name="run">If set true, the creature will run rather than walk.</param>
@@ -703,12 +703,53 @@ namespace NWN.API
     /// <summary>
     /// Instructs this creature to equip its most damaging melee weapon. If no valid melee weapon is found, it will equip the most damaging ranged weapon.<p/>
     /// </summary>
-    /// <param name="verses">If set, finds the most effective weapon for attacking this object.</param>
+    /// <param name="verses">If set, finds the most effective melee weapon for attacking this object.</param>
     /// <param name="offhand">Determines if an off-hand weapon is equipped.</param>
     public async Task ActionEquipMostDamagingMelee(NwGameObject verses = null, bool offhand = false)
     {
       await WaitForObjectContext();
       NWScript.ActionEquipMostDamagingMelee();
+    }
+
+    /// <summary>
+    /// Instructs this creature to equip its most damaging ranged weapon. If no valid ranged weapon is found, it will equip the most damaging melee weapon.<p/>
+    /// </summary>
+    /// <param name="verses">If set, finds the most effective ranged weapon for attacking this object.</param>
+    public async Task ActionEquipMostDamagingRanged(NwGameObject verses = null)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionEquipMostDamagingRanged();
+    }
+
+    /// <summary>
+    /// Instructs this creature to equip the best armor in its inventory.
+    /// <remarks>This function will do nothing if this creature is in combat (<see cref="IsInCombat"/>).<br/>
+    /// It will also not equip clothing items with a base AC of 0, even if the item has AC bonuses applied to it.</remarks>
+    /// </summary>
+    public async Task ActionEquipMostEffectiveArmor()
+    {
+      await WaitForObjectContext();
+      NWScript.ActionEquipMostEffectiveArmor();
+    }
+
+    /// <summary>
+    /// Instructs this creature to use the specified placeable.
+    /// </summary>
+    /// <param name="placeable">The placeable object to interact with.</param>
+    public async Task ActionInteractObject(NwPlaceable placeable)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionInteractObject(placeable);
+    }
+
+    /// <summary>
+    /// Instructs this creature to rest.
+    /// </summary>
+    /// <param name="enemyLineOfSightCheck">If true, allows this creature to rest if enemies are nearby as long as they are not visible to this creature.</param>
+    public async Task ActionRest(bool enemyLineOfSightCheck = false)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionRest(enemyLineOfSightCheck.ToInt());
     }
 
     /// <summary>

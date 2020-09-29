@@ -149,6 +149,16 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Shows an examine dialog for the specified target.
+    /// </summary>
+    /// <param name="target">The target to examine.</param>
+    public async Task ActionExamine(NwGameObject target)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionExamine(target);
+    }
+
+    /// <summary>
     /// Changes the direction this player's camera is facing.
     /// </summary>
     /// <param name="direction">Horizontal angle from East in degrees. -1 to leave the angle unmodified.</param>
