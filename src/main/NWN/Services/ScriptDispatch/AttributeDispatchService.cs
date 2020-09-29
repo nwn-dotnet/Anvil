@@ -55,7 +55,7 @@ namespace NWN.Services
       ScriptCallback callback;
       if (!scriptHandlers.TryGetValue(scriptName, out callback))
       {
-        callback = new ScriptCallback();
+        callback = new ScriptCallback(scriptName);
         scriptHandlers.Add(scriptName, callback);
       }
 

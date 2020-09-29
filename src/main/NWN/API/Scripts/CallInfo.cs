@@ -21,8 +21,14 @@ namespace NWN.API
     /// </summary>
     public NwObject ObjectSelf { get; }
 
-    public CallInfo(NwObject objSelf)
+    /// <summary>
+    /// Gets the name of the script that is being executing.
+    /// </summary>
+    public string ScriptName { get; }
+
+    public CallInfo(string scriptName, NwObject objSelf)
     {
+      this.ScriptName = scriptName;
       this.ObjectSelf = objSelf;
     }
   }
