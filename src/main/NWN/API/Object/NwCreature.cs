@@ -632,21 +632,24 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Commands this creature to move to a certain distance away from fleeFrom.
+    /// Instructs this creature to move a certain distance away from the specified target.
     /// </summary>
-    /// <param name="fleeFrom">The target object we wish the creature to move away from. If fleeFrom is not in the same area as the creature, nothing will happen.</param>
-    /// <param name="run">If this is TRUE, the creature will run rather than walk.</param>
-    /// <param name="range">This is the distance we wish the creature to put between themselves and target.</param>
-    public async Task ActionMoveAwayFromObject(NwObject fleeFrom, bool run, float range = 40.0f)
+    /// <param name="target">The target object this creature should move away from. If the target object is not in the same area as this creature, nothing will happen.</param>
+    /// <param name="run">If set to true, the creature will run rather than walk.</param>
+    /// <param name="range">How much distance this creature should put between themselves and the object.</param>
+    public async Task ActionMoveAwayFrom(NwObject target, bool run, float range = 40.0f)
     {
       await WaitForObjectContext();
-      NWScript.ActionMoveAwayFromObject(fleeFrom, run.ToInt(), range);
+      NWScript.ActionMoveAwayFromObject(target, run.ToInt(), range);
     }
 
     /// <summary>
-    /// Causes the creature to move away or flee from location.
+    /// Instructs this creature to move to a certain distance away from the specified location
     /// </summary>
-    public async Task ActionMoveAwayFromLocation(Location location, bool run, float range = 40.0f)
+    /// <param name="location">The target location this creature should move away from. If the location is not in the same area as this creature, nothing will happen.</param>
+    /// <param name="run">If set true, the creature will run rather than walk.</param>
+    /// <param name="range">How much distance this creature should put between themselves and the location.</param>
+    public async Task ActionMoveAwayFrom(Location location, bool run, float range = 40.0f)
     {
       await WaitForObjectContext();
       NWScript.ActionMoveAwayFromLocation(location, run.ToInt(), range);
@@ -661,6 +664,51 @@ namespace NWN.API
     {
       await WaitForObjectContext();
       NWScript.ActionForceFollowObject(target, distance);
+    }
+
+    /// <summary>
+    /// Begins the casting animation and spell fx for the specified spell, without any spell effects.
+    /// </summary>
+    /// <param name="spell">The spell to cast.</param>
+    /// <param name="location">The target location for the fake spell to be cast at.</param>
+    /// <param name="pathType">An optional path type for this spell to use.</param>
+    public async Task ActionCastFakeSpellAt(Spell spell, Location location, ProjectilePathType pathType = ProjectilePathType.Default)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCastFakeSpellAtLocation((int) spell, location, (int) pathType);
+    }
+
+    /// <summary>
+    /// Begins the casting animation and spell fx for the specified spell, without any spell effects.
+    /// </summary>
+    /// <param name="spell">The spell to cast.</param>
+    /// <param name="target">The target object for the fake spell to be cast at.</param>
+    /// <param name="pathType">An optional path type for this spell to use.</param>
+    public async Task ActionCastFakeSpellAt(Spell spell, NwGameObject target, ProjectilePathType pathType = ProjectilePathType.Default)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCastFakeSpellAtObject((int) spell, target, (int) pathType);
+    }
+
+    /// <summary>
+    /// Intructs this creature to enter counterspell combat mode against the specified creature.
+    /// </summary>
+    /// <param name="counterSpellTarget">The target object to enter counterspell mode against.</param>
+    public async Task ActionCounterspell(NwGameObject counterSpellTarget)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCounterSpell(counterSpellTarget);
+    }
+
+    /// <summary>
+    /// Instructs this creature to equip its most damaging melee weapon. If no valid melee weapon is found, it will equip the most damaging ranged weapon.<p/>
+    /// </summary>
+    /// <param name="verses">If set, finds the most effective weapon for attacking this object.</param>
+    /// <param name="offhand">Determines if an off-hand weapon is equipped.</param>
+    public async Task ActionEquipMostDamagingMelee(NwGameObject verses = null, bool offhand = false)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionEquipMostDamagingMelee();
     }
 
     /// <summary>
