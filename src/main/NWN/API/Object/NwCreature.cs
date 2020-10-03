@@ -757,9 +757,15 @@ namespace NWN.API
     /// Commands the creature to sit in the specified placeable.
     /// </summary>
     /// <param name="sitPlaceable">The placeable to sit in. Must be marked useable, empty, and support sitting (e.g. chairs).</param>
-    public async Task ActionSit(NwPlaceable sitPlaceable)
+    /// <param name="alignToPlaceable">If true, auto-aligns the creature to the placeable's rotation. Otherwise, this creature will face East (0).</param>
+    public async Task ActionSit(NwPlaceable sitPlaceable, bool alignToPlaceable = true)
     {
       await WaitForObjectContext();
+      if (alignToPlaceable)
+      {
+        NWScript.SetFacing(sitPlaceable.Rotation);
+      }
+
       NWScript.ActionSit(sitPlaceable);
     }
 
