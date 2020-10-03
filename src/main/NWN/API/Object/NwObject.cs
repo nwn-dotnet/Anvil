@@ -115,7 +115,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators)<br/>
+    /// Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators).<br/>
     /// If the current active object is already this object, then the code runs immediately. Otherwise, it will be run with all other closures.<br/>
     /// This is the async equivalent of AssignCommand in NWScript.
     /// </summary>

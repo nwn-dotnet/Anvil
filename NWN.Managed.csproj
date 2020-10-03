@@ -47,6 +47,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Remove="docs\**" />
+      <EmbeddedResource Remove="docs\**" />
+      <EmbeddedResource Remove="src\lib\src\**" />
+      <None Remove="docs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Remove="stylecop.json" />
     </ItemGroup>
 
