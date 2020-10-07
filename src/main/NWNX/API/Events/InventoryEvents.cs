@@ -10,6 +10,7 @@ namespace NWNX.API.Events
     public class OnItemInventoryOpenBefore : EventSkippable<OnItemInventoryOpenBefore>
     {
       public NwObject Container { get; private set; }
+
       public NwObject Owner { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -23,6 +24,7 @@ namespace NWNX.API.Events
     public class OnItemInventoryOpenAfter : EventSkippable<OnItemInventoryOpenAfter>
     {
       public NwObject Container { get; private set; }
+
       public NwObject Owner { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -36,6 +38,7 @@ namespace NWNX.API.Events
     public class OnItemInventoryCloseBefore : EventSkippable<OnItemInventoryCloseBefore>
     {
       public NwObject Container { get; private set; }
+
       public NwObject Owner { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -49,6 +52,7 @@ namespace NWNX.API.Events
     public class OnItemInventoryCloseAfter : EventSkippable<OnItemInventoryCloseAfter>
     {
       public NwObject Container { get; private set; }
+
       public NwObject Owner { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
