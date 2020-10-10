@@ -3,16 +3,16 @@ using NWN.API;
 namespace NWNX.API.Events
 {
   /// <summary>
-  /// Events called by elc.
-  /// ELC nwnxee plugin must be enabled.
+  /// Events called by the Enforce Legal Character system.<br/>
+  /// The ELC Plugin (NWNX_ELC) must be loaded for these events to be fired.
   /// </summary>
-  public static class EnforceLegalCharacterEvents
+  public static class ELCEvents
   {
     [NWNXEvent("NWNX_ON_ELC_VALIDATE_CHARACTER_BEFORE")]
-    public class OnEnforceLegalCharacterValidateBefore : EventSkippable<OnEnforceLegalCharacterValidateBefore>
+    public class OnValidateBefore : EventSkippable<OnValidateBefore>
     {
       /// <summary>
-      /// Gets the player.
+      /// Gets the player being validated.
       /// </summary>
       public NwPlayer Player { get; private set; }
 
@@ -22,11 +22,14 @@ namespace NWNX.API.Events
       }
     }
 
+    /// <summary>
+    /// Called if the character successfully completes validation.
+    /// </summary>
     [NWNXEvent("NWNX_ON_ELC_VALIDATE_CHARACTER_AFTER")]
-    public class OnEnforceLegalCharacterValidateAfter : EventSkippable<OnEnforceLegalCharacterValidateAfter>
+    public class OnValidateAfter : EventSkippable<OnValidateAfter>
     {
       /// <summary>
-      /// Gets the player.
+      /// Gets the player being validated.
       /// </summary>
       public NwPlayer Player { get; private set; }
 
