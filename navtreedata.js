@@ -45,7 +45,7 @@ var NAVTREEINDEX =
 "classNWNX_1_1API_1_1Events_1_1LevelEvents_1_1OnLevelUpAutomaticBefore.html#aff1d95796ed623ab8a0763761d9a9899",
 "classNWN_1_1API_1_1Effect.html#accbd704684ea2809a8a04aac5e13704f",
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html#a70acacae4d04ec933c49ca8f0a26839c",
-"classNWN_1_1API_1_1NwCreature.html#a35e26386397823e2160047a9c107fa9e",
+"classNWN_1_1API_1_1NwCreature.html#a28a0e5845804aee9a465ef5b886d1022",
 "classNWN_1_1API_1_1NwSound.html#aa554d71d12c3dc0cfc11c4af532fcfdc",
 "structNWNX_1_1API_1_1QuickBarSlot.html#a99710bade164d13029674c92a6f462dc"
 ];

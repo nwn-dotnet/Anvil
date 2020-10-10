@@ -15,7 +15,7 @@ var searchData=
   ['actionpickupitem_1197',['ActionPickUpItem',['../classNWN_1_1API_1_1NwCreature.html#a08d9ad667b4c05b52991d5d2261e1600',1,'NWN::API::NwCreature']]],
   ['actionputdownitem_1198',['ActionPutDownItem',['../classNWN_1_1API_1_1NwCreature.html#a17370526450f6ecd69206983fd9bbd5f',1,'NWN::API::NwCreature']]],
   ['actionrandomwalk_1199',['ActionRandomWalk',['../classNWN_1_1API_1_1NwCreature.html#a44c7a663f783577931805b90e9056831',1,'NWN::API::NwCreature']]],
-  ['actionsit_1200',['ActionSit',['../classNWN_1_1API_1_1NwCreature.html#aff9f912b73dd4f229ac20e89a73e5c83',1,'NWN::API::NwCreature']]],
+  ['actionsit_1200',['ActionSit',['../classNWN_1_1API_1_1NwCreature.html#a221b0d8ce334d0cc0e871312de291385',1,'NWN::API::NwCreature']]],
   ['actionstartconversation_1201',['ActionStartConversation',['../classNWN_1_1API_1_1NwPlayer.html#a5168c6128e41c3ea0135d265218a17fe',1,'NWN::API::NwPlayer']]],
   ['actionunequipitem_1202',['ActionUnequipItem',['../classNWN_1_1API_1_1NwCreature.html#ad3d07bbc466380a59067423632971cfb',1,'NWN::API::NwCreature']]],
   ['addactiontoqueue_1203',['AddActionToQueue',['../classNWN_1_1API_1_1NwObject.html#a1ed9cb1bd58f75cdbb580b64c688cddf',1,'NWN::API::NwObject']]],

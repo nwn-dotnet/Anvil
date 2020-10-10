@@ -10,7 +10,7 @@ var classNWN_1_1API_1_1NwCreature =
     [ "ActionPickUpItem", "classNWN_1_1API_1_1NwCreature.html#a08d9ad667b4c05b52991d5d2261e1600", null ],
     [ "ActionPutDownItem", "classNWN_1_1API_1_1NwCreature.html#a17370526450f6ecd69206983fd9bbd5f", null ],
     [ "ActionRandomWalk", "classNWN_1_1API_1_1NwCreature.html#a44c7a663f783577931805b90e9056831", null ],
-    [ "ActionSit", "classNWN_1_1API_1_1NwCreature.html#aff9f912b73dd4f229ac20e89a73e5c83", null ],
+    [ "ActionSit", "classNWN_1_1API_1_1NwCreature.html#a221b0d8ce334d0cc0e871312de291385", null ],
     [ "ActionUnequipItem", "classNWN_1_1API_1_1NwCreature.html#ad3d07bbc466380a59067423632971cfb", null ],
     [ "AdjustPartyAlignment", "classNWN_1_1API_1_1NwCreature.html#a28a0e5845804aee9a465ef5b886d1022", null ],
     [ "ApplyEffect", "classNWN_1_1API_1_1NwCreature.html#a3d29ce58ff273e0fb053e724da148146", null ],

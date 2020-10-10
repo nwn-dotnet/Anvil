@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"classNWN_1_1API_1_1NwCreature.html#a28a0e5845804aee9a465ef5b886d1022":[0,0,0,0,21,12],
 "classNWN_1_1API_1_1NwCreature.html#a35e26386397823e2160047a9c107fa9e":[0,0,0,0,21,70],
 "classNWN_1_1API_1_1NwCreature.html#a36c8243a16892c95520b3c967eba73db":[0,0,0,0,21,16],
 "classNWN_1_1API_1_1NwCreature.html#a372853fead564722f0da04791d8da4ef":[0,0,0,0,21,22],
@@ -61,7 +62,6 @@ var NAVTREEINDEX4 =
 "classNWN_1_1API_1_1NwCreature.html#af8c29999c254376a5b8a4a7ee34164ec":[0,0,0,0,21,6],
 "classNWN_1_1API_1_1NwCreature.html#afaf48939335e701ca221b65990304ebd":[0,0,0,0,21,64],
 "classNWN_1_1API_1_1NwCreature.html#aff51d13c63257c2a6daddf48ffb9b128":[0,0,0,0,21,25],
-"classNWN_1_1API_1_1NwCreature.html#aff9f912b73dd4f229ac20e89a73e5c83":[0,0,0,0,21,10],
 "classNWN_1_1API_1_1NwCreature.html#affc66807381113a79d89a3237ce4f9f1":[0,0,0,0,21,79],
 "classNWN_1_1API_1_1NwDoor.html":[0,0,0,0,22],
 "classNWN_1_1API_1_1NwDoor.html#a9b9959f7cd1bad6ffbdf8daae41cdcf0":[0,0,0,0,22,1],
