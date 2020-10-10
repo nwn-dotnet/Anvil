@@ -13,19 +13,19 @@ namespace NWNX.API.Events
     public class OnInventoryOpenBefore : EventSkippable<OnInventoryOpenBefore>
     {
       /// <summary>
-      /// Gets the Container.
+      /// Gets the container being opened.
       /// </summary>
-      public NwObject Container { get; private set; }
+      public NwItem Container { get; private set; }
 
       /// <summary>
-      /// Gets the Container owner.
+      /// Gets the container's owner.
       /// </summary>
-      public NwObject Owner { get; private set; }
+      public NwCreature Owner { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Container = objSelf;
-        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwGameObject>();
+        Container = (NwItem)objSelf;
+        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwCreature>();
       }
     }
 
