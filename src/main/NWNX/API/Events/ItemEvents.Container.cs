@@ -53,7 +53,7 @@ namespace NWNX.API.Events
     public class OnInventoryCloseBefore : EventSkippable<OnInventoryCloseBefore>
     {
       /// <summary>
-      /// Gets the container being opened.
+      /// Gets the container being closed.
       /// </summary>
       public NwItem Container { get; private set; }
 
@@ -73,7 +73,7 @@ namespace NWNX.API.Events
     public class OnInventoryCloseAfter : EventSkippable<OnInventoryCloseAfter>
     {
       /// <summary>
-      /// Gets the container being opened.
+      /// Gets the container being closed.
       /// </summary>
       public NwItem Container { get; private set; }
 
