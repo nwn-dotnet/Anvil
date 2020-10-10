@@ -7,7 +7,7 @@ namespace NWNX.API.Events
   /// <summary>
   /// Item Container Events.
   /// </summary>
-  public static class ItemContainerEvents
+  public static partial class ItemEvents
   {
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_OPEN_BEFORE")]
     public class OnInventoryOpenBefore : EventSkippable<OnInventoryOpenBefore>
@@ -33,19 +33,19 @@ namespace NWNX.API.Events
     public class OnInventoryOpenAfter : EventSkippable<OnInventoryOpenAfter>
     {
       /// <summary>
-      /// Gets the Container.
+      /// Gets the container being opened.
       /// </summary>
-      public NwObject Container { get; private set; }
+      public NwItem Container { get; private set; }
 
       /// <summary>
-      /// Gets the Container owner.
+      /// Gets the container's owner.
       /// </summary>
-      public NwObject Owner { get; private set; }
+      public NwCreature Owner { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Container = objSelf;
-        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwGameObject>();
+        Container = (NwItem)objSelf;
+        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwCreature>();
       }
     }
 
@@ -53,19 +53,19 @@ namespace NWNX.API.Events
     public class OnInventoryCloseBefore : EventSkippable<OnInventoryCloseBefore>
     {
       /// <summary>
-      /// Gets the Container.
+      /// Gets the container being opened.
       /// </summary>
-      public NwObject Container { get; private set; }
+      public NwItem Container { get; private set; }
 
       /// <summary>
-      /// Gets the Container owner.
+      /// Gets the container's owner.
       /// </summary>
-      public NwObject Owner { get; private set; }
+      public NwCreature Owner { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Container = objSelf;
-        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwGameObject>();
+        Container = (NwItem)objSelf;
+        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwCreature>();
       }
     }
 
@@ -73,19 +73,19 @@ namespace NWNX.API.Events
     public class OnInventoryCloseAfter : EventSkippable<OnInventoryCloseAfter>
     {
       /// <summary>
-      /// Gets the Container.
+      /// Gets the container being opened.
       /// </summary>
-      public NwObject Container { get; private set; }
+      public NwItem Container { get; private set; }
 
       /// <summary>
-      /// Gets the Container owner.
+      /// Gets the container's owner.
       /// </summary>
-      public NwObject Owner { get; private set; }
+      public NwCreature Owner { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
       {
-        Container = objSelf;
-        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwGameObject>();
+        Container = (NwItem)objSelf;
+        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwCreature>();
       }
     }
   }
