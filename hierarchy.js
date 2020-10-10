@@ -35,6 +35,7 @@ var hierarchy =
     [ "NWN.API.Effect", "classNWN_1_1API_1_1Effect.html", null ],
     [ "NWNX.API.Effect", "classNWNX_1_1API_1_1Effect.html", null ],
     [ "NWNX.API.ELC", "classNWNX_1_1API_1_1ELC.html", null ],
+    [ "NWNX.API.Events.ELCEvents", "classNWNX_1_1API_1_1Events_1_1ELCEvents.html", null ],
     [ "NWNX.API.Encounter", "classNWNX_1_1API_1_1Encounter.html", null ],
     [ "NWN.API.Events.EncounterEvents", "classNWN_1_1API_1_1Events_1_1EncounterEvents.html", null ],
     [ "NWN.API.Events.Event< T >", "classNWN_1_1API_1_1Events_1_1Event.html", null ],
@@ -463,6 +464,12 @@ var hierarchy =
     ] ],
     [ "NWNX.API.Events.EventSkippable< OnUseFeatBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.FeatUseEvents.OnUseFeatBefore", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnValidateAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ELCEvents.OnValidateAfter", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnValidateBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ELCEvents.OnValidateBefore", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateBefore.html", null ]
     ] ],
     [ "NWNX.API.Events.ExamineEvents", "classNWNX_1_1API_1_1Events_1_1ExamineEvents.html", null ],
     [ "NWN.API.Constants.FadeSpeed", "classNWN_1_1API_1_1Constants_1_1FadeSpeed.html", null ],

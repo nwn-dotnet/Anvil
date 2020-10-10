@@ -42,12 +42,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classNWNX_1_1API_1_1Events_1_1LevelEvents_1_1OnLevelUpAutomaticBefore.html#aff1d95796ed623ab8a0763761d9a9899",
-"classNWN_1_1API_1_1Effect.html#accbd704684ea2809a8a04aac5e13704f",
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html#a70acacae4d04ec933c49ca8f0a26839c",
-"classNWN_1_1API_1_1NwCreature.html#a28a0e5845804aee9a465ef5b886d1022",
-"classNWN_1_1API_1_1NwSound.html#aa554d71d12c3dc0cfc11c4af532fcfdc",
-"structNWNX_1_1API_1_1QuickBarSlot.html#a99710bade164d13029674c92a6f462dc"
+"classNWNX_1_1API_1_1Events_1_1LevelEvents_1_1OnLevelUpAfter.html#a4efd8e8611a92850a8e7265b12244303",
+"classNWN_1_1API_1_1Effect.html#ac120d957ac66cc26c5668b1b4bee1462",
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a7efe0282b0cfe199e60dad15d8f409bf",
+"classNWN_1_1API_1_1NwCreature.html#a1fcb4473712710b10bd5d120395d7ce6",
+"classNWN_1_1API_1_1NwPlayer.html#ad9871bef83bc18b73aa286a8427c4811",
+"structNWNX_1_1API_1_1QuickBarSlot.html#a317214b13041304cd9b4706f3a7f933d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

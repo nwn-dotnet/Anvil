@@ -28,6 +28,10 @@ var namespaceNWNX_1_1API_1_1Events =
     ] ],
     [ "DamageData", "structNWNX_1_1API_1_1Events_1_1DamageData.html", "structNWNX_1_1API_1_1Events_1_1DamageData" ],
     [ "DamageEvent", "classNWNX_1_1API_1_1Events_1_1DamageEvent.html", "classNWNX_1_1API_1_1Events_1_1DamageEvent" ],
+    [ "ELCEvents", "classNWNX_1_1API_1_1Events_1_1ELCEvents.html", [
+      [ "OnValidateAfter", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateAfter.html", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateAfter" ],
+      [ "OnValidateBefore", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateBefore.html", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateBefore" ]
+    ] ],
     [ "EventSkippable", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", "classNWNX_1_1API_1_1Events_1_1EventSkippable" ],
     [ "ExamineEvents", "classNWNX_1_1API_1_1Events_1_1ExamineEvents.html", [
       [ "OnAddAssociateAfter", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnAddAssociateAfter.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnAddAssociateAfter" ],

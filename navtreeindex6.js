@@ -1,5 +1,12 @@
 var NAVTREEINDEX6 =
 {
+"structNWNX_1_1API_1_1QuickBarSlot.html#a317214b13041304cd9b4706f3a7f933d":[0,0,1,0,16,7],
+"structNWNX_1_1API_1_1QuickBarSlot.html#a433515aff7f5c01caed7d590982a3962":[0,0,1,0,16,11],
+"structNWNX_1_1API_1_1QuickBarSlot.html#a4f31ce6c8e4754b0425829ea839a959b":[0,0,1,0,16,12],
+"structNWNX_1_1API_1_1QuickBarSlot.html#a59d9209caa43a18a31fbd546f55dda1e":[0,0,1,0,16,4],
+"structNWNX_1_1API_1_1QuickBarSlot.html#a604e04574e13558ffb1aef85ec9b946b":[0,0,1,0,16,2],
+"structNWNX_1_1API_1_1QuickBarSlot.html#a6ef3e2a0665bfd0a3857ab80a54aed34":[0,0,1,0,16,14],
+"structNWNX_1_1API_1_1QuickBarSlot.html#a846d3b3fcea8cdd738aeee495792105d":[0,0,1,0,16,8],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a99710bade164d13029674c92a6f462dc":[0,0,1,0,16,9],
 "structNWNX_1_1API_1_1QuickBarSlot.html#aa2782c10f2f55103db839331bba72649":[0,0,1,0,16,3],
 "structNWNX_1_1API_1_1QuickBarSlot.html#aba90e6d9a2222a392ebc5eff2dbd1db8":[0,0,1,0,16,10],

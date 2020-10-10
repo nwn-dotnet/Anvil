@@ -1,5 +1,12 @@
 var NAVTREEINDEX2 =
 {
+"classNWN_1_1API_1_1Effect.html#ac120d957ac66cc26c5668b1b4bee1462":[0,0,0,0,7,26],
+"classNWN_1_1API_1_1Effect.html#ac29ac1e15d7a93c2c70138726f6d62a3":[0,0,0,0,7,19],
+"classNWN_1_1API_1_1Effect.html#ac523665f781d677620b793bdedb80d12":[0,0,0,0,7,24],
+"classNWN_1_1API_1_1Effect.html#ac720c4c7ab65d7a5542a1657d8254a38":[0,0,0,0,7,45],
+"classNWN_1_1API_1_1Effect.html#ac8c4feae2957d3c0a98ab438a2f6afad":[0,0,0,0,7,27],
+"classNWN_1_1API_1_1Effect.html#ac9f2d4383d3a558f9476e8920838a9b6":[0,0,0,0,7,78],
+"classNWN_1_1API_1_1Effect.html#acae71fe8b506f02fe048d0f91486873e":[0,0,0,0,7,16],
 "classNWN_1_1API_1_1Effect.html#accbd704684ea2809a8a04aac5e13704f":[0,0,0,0,7,38],
 "classNWN_1_1API_1_1Effect.html#ad20fea4bc499d9ee1670bb8cfbea8916":[0,0,0,0,7,21],
 "classNWN_1_1API_1_1Effect.html#ad5208a1c0b424d14c3d06c4ded9d0458":[0,0,0,0,7,39],
@@ -242,12 +249,5 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose.html#ace36394cc0baa990a3aad493377ff7ac":[0,0,0,0,1,8,0,1],
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html":[0,0,0,0,1,8,1],
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a36934f6256c64bdcf9267cc4ae221f35":[0,0,0,0,1,8,1,0],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a4bcab5f9573596533f1f39bac7139f74":[0,0,0,0,1,8,1,1],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a7efe0282b0cfe199e60dad15d8f409bf":[0,0,0,0,1,8,1,3],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#ad6b5962466fda242076b0406c9acf496":[0,0,0,0,1,8,1,2],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html":[0,0,0,0,1,8,2],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#a7701d1f05231e27f11e43d444b359ecb":[0,0,0,0,1,8,2,0],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#ac5dd68b819e90e3721993d3d903c0366":[0,0,0,0,1,8,2,2],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#aebb40c390420a2b3e9a640c3a452fa86":[0,0,0,0,1,8,2,1],
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html":[0,0,0,0,1,8,3]
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a4bcab5f9573596533f1f39bac7139f74":[0,0,0,0,1,8,1,1]
 };

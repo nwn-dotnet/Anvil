@@ -1,5 +1,12 @@
 var NAVTREEINDEX3 =
 {
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a7efe0282b0cfe199e60dad15d8f409bf":[0,0,0,0,1,8,1,3],
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#ad6b5962466fda242076b0406c9acf496":[0,0,0,0,1,8,1,2],
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html":[0,0,0,0,1,8,2],
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#a7701d1f05231e27f11e43d444b359ecb":[0,0,0,0,1,8,2,0],
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#ac5dd68b819e90e3721993d3d903c0366":[0,0,0,0,1,8,2,2],
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html#aebb40c390420a2b3e9a640c3a452fa86":[0,0,0,0,1,8,2,1],
+"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html":[0,0,0,0,1,8,3],
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html#a70acacae4d04ec933c49ca8f0a26839c":[0,0,0,0,1,8,3,1],
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html#acdb5bfa71c79c772b80faa78bfd6d12f":[0,0,0,0,1,8,3,0],
 "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisarm.html":[0,0,0,0,1,8,4],
@@ -242,12 +249,5 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1NwCreature.html#a11d32f088286437a8c0587857d6b024e":[0,0,0,0,21,39],
 "classNWN_1_1API_1_1NwCreature.html#a17370526450f6ecd69206983fd9bbd5f":[0,0,0,0,21,8],
 "classNWN_1_1API_1_1NwCreature.html#a1c2146fdb99fe3563cf7c634f878335d":[0,0,0,0,21,33],
-"classNWN_1_1API_1_1NwCreature.html#a1cfdbe2f1eacac85b038a514c1de192f":[0,0,0,0,21,45],
-"classNWN_1_1API_1_1NwCreature.html#a1fcb4473712710b10bd5d120395d7ce6":[0,0,0,0,21,26],
-"classNWN_1_1API_1_1NwCreature.html#a2018305e63fb0e89c9ff6bf12fa1578d":[0,0,0,0,21,66],
-"classNWN_1_1API_1_1NwCreature.html#a2179888d5df0bcb40cba6594b7fbb1ca":[0,0,0,0,21,41],
-"classNWN_1_1API_1_1NwCreature.html#a221b0d8ce334d0cc0e871312de291385":[0,0,0,0,21,10],
-"classNWN_1_1API_1_1NwCreature.html#a22fea4250a1b791ea6e75a9d27209a84":[0,0,0,0,21,19],
-"classNWN_1_1API_1_1NwCreature.html#a23509f5284ec6456ab5edc97bf113b9e":[0,0,0,0,21,71],
-"classNWN_1_1API_1_1NwCreature.html#a25426189967ef74bcc8e15f8a3c7929b":[0,0,0,0,21,56]
+"classNWN_1_1API_1_1NwCreature.html#a1cfdbe2f1eacac85b038a514c1de192f":[0,0,0,0,21,45]
 };
