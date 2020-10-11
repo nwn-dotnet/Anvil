@@ -33,7 +33,7 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Properties", "functions_prop.html", null ]
+        [ "Properties", "functions_prop.html", "functions_prop" ]
       ] ]
     ] ]
   ] ]
@@ -43,11 +43,11 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classNWNX_1_1API_1_1Events_1_1LevelEvents_1_1OnLevelUpAfter.html#a4efd8e8611a92850a8e7265b12244303",
-"classNWN_1_1API_1_1Effect.html#ac120d957ac66cc26c5668b1b4bee1462",
-"classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a7efe0282b0cfe199e60dad15d8f409bf",
-"classNWN_1_1API_1_1NwCreature.html#a1fcb4473712710b10bd5d120395d7ce6",
-"classNWN_1_1API_1_1NwPlayer.html#ad9871bef83bc18b73aa286a8427c4811",
-"structNWNX_1_1API_1_1QuickBarSlot.html#a317214b13041304cd9b4706f3a7f933d"
+"classNWN_1_1API_1_1Constants_1_1RadiusSize.html#a86a3a6df463608b1e969c593332691e9",
+"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html",
+"classNWN_1_1API_1_1Location.html",
+"classNWN_1_1API_1_1NwModule.html#aebcf7e28e1beac7db6e0b827edc4fb4c",
+"functions_o.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

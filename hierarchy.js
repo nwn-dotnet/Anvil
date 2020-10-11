@@ -381,6 +381,12 @@ var hierarchy =
       [ "NWN.API.Events.Event< TObject, TEvent >", "classNWN_1_1API_1_1Events_1_1Event.html", null ]
     ] ],
     [ "NWN.Services.EventHandler", "classNWN_1_1Services_1_1EventHandler.html", null ],
+    [ "NWNX.API.Events.EventSkippable< OnAcceptInvitationAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnAcceptInvitationAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnAcceptInvitationAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnAcceptInvitationBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnAcceptInvitationBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnAcceptInvitationBefore.html", null ]
+    ] ],
     [ "NWNX.API.Events.EventSkippable< OnBarterStartAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.BarterEvents.OnBarterStartAfter", "classNWNX_1_1API_1_1Events_1_1BarterEvents_1_1OnBarterStartAfter.html", null ]
     ] ],
@@ -405,6 +411,12 @@ var hierarchy =
     [ "NWNX.API.Events.EventSkippable< OnHealBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.HealEvents.OnHealBefore", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealBefore.html", null ]
     ] ],
+    [ "NWNX.API.Events.EventSkippable< OnIgnoreInvitationAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnIgnoreInvitationAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnIgnoreInvitationAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnIgnoreInvitationBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnIgnoreInvitationBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnIgnoreInvitationBefore.html", null ]
+    ] ],
     [ "NWNX.API.Events.EventSkippable< OnInventoryAddGoldAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.GoldEvents.OnInventoryAddGoldAfter", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldAfter.html", null ]
     ] ],
@@ -417,6 +429,12 @@ var hierarchy =
     [ "NWNX.API.Events.EventSkippable< OnInventoryRemoveGoldBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.GoldEvents.OnInventoryRemoveGoldBefore", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldBefore.html", null ]
     ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInviteAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnInviteAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnInviteAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInviteBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnInviteBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnInviteBefore.html", null ]
+    ] ],
     [ "NWNX.API.Events.EventSkippable< OnItemEquipBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.ItemEvents.OnItemEquipBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore.html", null ]
     ] ],
@@ -428,6 +446,24 @@ var hierarchy =
     ] ],
     [ "NWNX.API.Events.EventSkippable< OnItemUseBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.ItemEvents.OnItemUseBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnKickAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnKickAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnKickAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnKickBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnKickBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnKickBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnKickHenchmanAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnKickHenchmanAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnKickHenchmanAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnKickHenchmanBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnKickHenchmanBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnKickHenchmanBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnLeaveAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnLeaveAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnLeaveAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnLeaveBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnLeaveBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnLeaveBefore.html", null ]
     ] ],
     [ "NWNX.API.Events.EventSkippable< OnLevelDownAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.LevelEvents.OnLevelDownAfter", "classNWNX_1_1API_1_1Events_1_1LevelEvents_1_1OnLevelDownAfter.html", null ]
@@ -447,6 +483,12 @@ var hierarchy =
     [ "NWNX.API.Events.EventSkippable< OnLevelUpBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.LevelEvents.OnLevelUpBefore", "classNWNX_1_1API_1_1Events_1_1LevelEvents_1_1OnLevelUpBefore.html", null ]
     ] ],
+    [ "NWNX.API.Events.EventSkippable< OnRejectInvitationAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnRejectInvitationAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnRejectInvitationAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnRejectInvitationBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnRejectInvitationBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnRejectInvitationBefore.html", null ]
+    ] ],
     [ "NWNX.API.Events.EventSkippable< OnResourceAdded >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.ResourceEvents.OnResourceAdded", "classNWNX_1_1API_1_1Events_1_1ResourceEvents_1_1OnResourceAdded.html", null ]
     ] ],
@@ -461,6 +503,12 @@ var hierarchy =
     ] ],
     [ "NWNX.API.Events.EventSkippable< OnSetMemorizedSpellSlotBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.SetMemorizedSpellSlotEvents.OnSetMemorizedSpellSlotBefore", "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents_1_1OnSetMemorizedSpellSlotBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnTransferLeadershipAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnTransferLeadershipAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnTransferLeadershipAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnTransferLeadershipBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.PartyEvents.OnTransferLeadershipBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnTransferLeadershipBefore.html", null ]
     ] ],
     [ "NWNX.API.Events.EventSkippable< OnUseFeatBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.FeatUseEvents.OnUseFeatBefore", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore.html", null ]
@@ -575,6 +623,7 @@ var hierarchy =
     [ "NWN.API.NwTask", "classNWN_1_1API_1_1NwTask.html", null ],
     [ "NWN.API.NwTimeSpan", "classNWN_1_1API_1_1NwTimeSpan.html", null ],
     [ "NWNX.API.Object", "classNWNX_1_1API_1_1Object.html", null ],
+    [ "NWNX.API.Events.PartyEvents", "classNWNX_1_1API_1_1Events_1_1PartyEvents.html", null ],
     [ "NWN.API.Events.PlaceableEvents", "classNWN_1_1API_1_1Events_1_1PlaceableEvents.html", null ],
     [ "NWNX.API.Player", "classNWNX_1_1API_1_1Player.html", null ],
     [ "NWNX.PluginUtils", "classNWNX_1_1PluginUtils.html", null ],
@@ -592,8 +641,8 @@ var hierarchy =
     [ "NWNX.API.SkillRanks", "classNWNX_1_1API_1_1SkillRanks.html", null ],
     [ "NWN.API.StandardFactionExtensions", "classNWN_1_1API_1_1StandardFactionExtensions.html", null ],
     [ "NWNX.API.Events.StealthEvents", "classNWNX_1_1API_1_1Events_1_1StealthEvents.html", null ],
-    [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWNX.API.Events.StoreEvents", "classNWNX_1_1API_1_1Events_1_1StoreEvents.html", null ],
+    [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWN.API.StringExtensions", "classNWN_1_1API_1_1StringExtensions.html", null ],
     [ "NWN.API.Talent", "classNWN_1_1API_1_1Talent.html", null ],
     [ "NWN.API.TalentExtensions", "classNWN_1_1API_1_1TalentExtensions.html", null ],
