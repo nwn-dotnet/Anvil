@@ -423,6 +423,18 @@ var hierarchy =
     [ "NWNX.API.Events.EventSkippable< OnInventoryAddGoldBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.GoldEvents.OnInventoryAddGoldBefore", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryAddGoldBefore.html", null ]
     ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInventoryCloseAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ItemEvents.OnInventoryCloseAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInventoryCloseBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ItemEvents.OnInventoryCloseBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInventoryOpenAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ItemEvents.OnInventoryOpenAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.EventSkippable< OnInventoryOpenBefore >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
+      [ "NWNX.API.Events.ItemEvents.OnInventoryOpenBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenBefore.html", null ]
+    ] ],
     [ "NWNX.API.Events.EventSkippable< OnInventoryRemoveGoldAfter >", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", [
       [ "NWNX.API.Events.GoldEvents.OnInventoryRemoveGoldAfter", "classNWNX_1_1API_1_1Events_1_1GoldEvents_1_1OnInventoryRemoveGoldAfter.html", null ]
     ] ],
@@ -641,8 +653,8 @@ var hierarchy =
     [ "NWNX.API.SkillRanks", "classNWNX_1_1API_1_1SkillRanks.html", null ],
     [ "NWN.API.StandardFactionExtensions", "classNWN_1_1API_1_1StandardFactionExtensions.html", null ],
     [ "NWNX.API.Events.StealthEvents", "classNWNX_1_1API_1_1Events_1_1StealthEvents.html", null ],
-    [ "NWNX.API.Events.StoreEvents", "classNWNX_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
+    [ "NWNX.API.Events.StoreEvents", "classNWNX_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWN.API.StringExtensions", "classNWN_1_1API_1_1StringExtensions.html", null ],
     [ "NWN.API.Talent", "classNWN_1_1API_1_1Talent.html", null ],
     [ "NWN.API.TalentExtensions", "classNWN_1_1API_1_1TalentExtensions.html", null ],

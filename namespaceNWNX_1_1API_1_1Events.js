@@ -51,6 +51,10 @@ var namespaceNWNX_1_1API_1_1Events =
       [ "OnHealBefore", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealBefore.html", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealBefore" ]
     ] ],
     [ "ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", [
+      [ "OnInventoryCloseAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseAfter.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseAfter" ],
+      [ "OnInventoryCloseBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseBefore.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseBefore" ],
+      [ "OnInventoryOpenAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter" ],
+      [ "OnInventoryOpenBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenBefore.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenBefore" ],
       [ "OnItemEquipBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemEquipBefore" ],
       [ "OnItemPayToIdentifyAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemPayToIdentifyAfter.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemPayToIdentifyAfter" ],
       [ "OnItemPayToIdentifyBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemPayToIdentifyBefore.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemPayToIdentifyBefore" ],
