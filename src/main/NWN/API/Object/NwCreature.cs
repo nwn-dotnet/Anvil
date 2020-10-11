@@ -571,10 +571,10 @@ namespace NWN.API
     /// </summary>
     /// <param name="durationType">The duration type to apply with this effect.</param>
     /// <param name="effect">The effect to apply.</param>
-    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect in seconds.</param>
-    public void ApplyEffect(EffectDuration durationType, Effect effect, float duration = 0f)
+    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
+    public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
     {
-      NWScript.ApplyEffectToObject((int) durationType, effect, this, duration);
+      NWScript.ApplyEffectToObject((int) durationType, effect, this, (float) duration.TotalSeconds);
     }
 
     /// <summary>
@@ -597,7 +597,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Causes the calling creature to start attacking the target using whichever weapon is current equipped.
+    /// Instructs this creature to start attacking the target using whichever weapon they currently have equipped.
     /// </summary>
     /// <param name="target">The target object to attack.</param>
     /// <param name="passive">If TRUE, the attacker will not move to attack the target. If we have a melee weapon equipped, we will just stand still.</param>
@@ -608,27 +608,53 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Commands this creature to walk/run to the specified destination. If the location is invalid or a path cannot be found to it, the command does nothing.
+    /// Instructs this creature to walk/run to the specified target location.
     /// </summary>
-    /// <param name="destination">The location to move towards.</param>
-    /// <param name="run">If this is TRUE, the creature will run rather than walk.</param>
-    public async Task ActionMoveToLocation(Location destination, bool run = false)
+    /// <param name="target">The location to move towards.</param>
+    /// <param name="run">If true, the creature will run rather than walk.</param>
+    public async Task ActionMoveTo(Location target, bool run = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionMoveToLocation(destination, run.ToInt());
+      NWScript.ActionMoveToLocation(target, run.ToInt());
     }
 
     /// <summary>
-    /// Commands this creature to move to a certain distance from the target object.
-    /// If there is no path to the object, this command will do nothing.
+    /// Instructs this creature to walk/run to the specified target object.
     /// </summary>
-    /// <param name="target">The object we wish the creature to move to.</param>
-    /// <param name="run">If this is TRUE, the action subject will run rather than walk.</param>
-    /// <param name="range">This is the desired distance between the creature and the target object.</param>
-    public async Task ActionMoveToObject(NwObject target, bool run = false, float range = 1.0f)
+    /// <param name="target">The target object to move towards.</param>
+    /// <param name="run">If true, the creature will run rather than walk.</param>
+    /// <param name="range">The desired distance between the creature and the target object.</param>
+    public async Task ActionMoveTo(NwObject target, bool run = false, float range = 1.0f)
     {
       await WaitForObjectContext();
       NWScript.ActionMoveToObject(target, run.ToInt(), range);
+    }
+
+    /// <summary>
+    /// Instructs this creature to walk/run to the specified target location.
+    /// </summary>
+    /// <param name="target">The location to move towards.</param>
+    /// <param name="run">If true, the creature will run rather than walk.</param>
+    /// <param name="timeOut">The amount of time to search for a path before jumping to the location (Default: 30 seconds).</param>
+    public async Task ActionForceMoveTo(Location target, bool run = false, TimeSpan? timeOut = null)
+    {
+      timeOut ??= TimeSpan.FromSeconds(30);
+      await WaitForObjectContext();
+      NWScript.ActionForceMoveToLocation(target, run.ToInt(), (float) timeOut.Value.TotalSeconds);
+    }
+
+    /// <summary>
+    /// Instructs this creature to walk/run to the specified target object.
+    /// </summary>
+    /// <param name="target">The target object to move towards.</param>
+    /// <param name="run">If true, the creature will run rather than walk.</param>
+    /// <param name="range">The desired distance between the creature and the target object.</param>
+    /// <param name="timeOut">The amount of time to search for a path before jumping to the object. (Default: 30 seconds).</param>
+    public async Task ActionForceMoveTo(NwObject target, bool run = false, float range = 1.0f, TimeSpan? timeOut = null)
+    {
+      timeOut ??= TimeSpan.FromSeconds(30);
+      await WaitForObjectContext();
+      NWScript.ActionForceMoveToObject(target, run.ToInt(), range, (float) timeOut.Value.TotalSeconds);
     }
 
     /// <summary>
@@ -798,7 +824,7 @@ namespace NWN.API
       => NWScript.GetItemPossessedBy(this, itemTag).ToNwObject<NwItem>();
 
     /// <summary>
-    /// Commands the creature to equip the specified item into the given inventory slot.<br/>
+    /// Instructs this creature to equip the specified item into the given inventory slot.<br/>
     /// Note: If the creature already has an item equipped in the slot specified, it will be unequipped automatically
     /// by the call to EquipItem, and dropped if the creature lacks inventory space.<br/>
     /// In order for EquipItem to succeed the creature must be able to equip the item normally. This means that:<br/>
@@ -814,7 +840,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Commands this creature to unequip the specified item from whatever slot it is currently in.
+    /// Instructs this creature to unequip the specified item from whatever slot it is currently in.
     /// </summary>
     public async Task ActionUnequipItem(NwItem item)
     {
@@ -823,7 +849,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Commands this creature to walk over, and pick up the specified item on the ground.
+    /// Instructs this creature to walk over and pick up the specified item on the ground.
     /// </summary>
     /// <param name="item">The item to pick up.</param>
     public async Task ActionPickUpItem(NwItem item)
@@ -833,7 +859,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Commands this creature to begin placing down an item at its feet.
+    /// Instructs this creature to begin placing down an item at its feet.
     /// </summary>
     /// <param name="item">The item to drop.</param>
     public async Task ActionPutDownItem(NwItem item)
@@ -843,7 +869,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Commands the creature to sit in the specified placeable.
+    /// Instructs the creature to sit in the specified placeable.
     /// </summary>
     /// <param name="sitPlaceable">The placeable to sit in. Must be marked useable, empty, and support sitting (e.g. chairs).</param>
     /// <param name="alignToPlaceable">If true, auto-aligns the creature to the placeable's rotation. Otherwise, this creature will face East (0).</param>
@@ -856,6 +882,121 @@ namespace NWN.API
       }
 
       NWScript.ActionSit(sitPlaceable);
+    }
+
+    /// <summary>
+    /// Instructs this creature to approach and lock the specified door.
+    /// </summary>
+    /// <param name="door">The door to lock.</param>
+    public async Task ActionLockObject(NwDoor door)
+      => await DoActionLockObject(door);
+
+    /// <summary>
+    /// Instructs this creature to approach and lock the specified placeable.
+    /// </summary>
+    /// <param name="placeable">The placeable to lock.</param>
+    public async Task ActionLockObject(NwPlaceable placeable)
+      => await DoActionLockObject(placeable);
+
+    private async Task DoActionLockObject(NwGameObject target)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionLockObject(target);
+    }
+
+    /// <summary>
+    /// Instructs this creature to approach and unlock the specified door.
+    /// </summary>
+    /// <param name="door">The door to unlock.</param>
+    public async Task ActionUnlockObject(NwDoor door)
+      => await DoActionUnlockObject(door);
+
+    /// <summary>
+    /// Instructs this creature to approach and unlock the specified placeable.
+    /// </summary>
+    /// <param name="placeable">The placeable to unlock.</param>
+    public async Task ActionUnlockObject(NwPlaceable placeable)
+      => await DoActionUnlockObject(placeable);
+
+    private async Task DoActionUnlockObject(NwGameObject target)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUnlockObject(target);
+    }
+
+    /// <summary>
+    /// Instructs this creature to use the specified feat on the target object.
+    /// </summary>
+    /// <remarks>This action cannot be used on PCs.</remarks>
+    /// <param name="feat">The feat to use.</param>
+    /// <param name="target">The target object for the feat.</param>
+    public async Task ActionUseFeat(Feat feat, NwGameObject target)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUseFeat((int) feat, target);
+    }
+
+    /// <summary>
+    /// Instructs this creature to use the specified item property of an item in their inventory.
+    /// </summary>
+    /// <param name="item">The item to use.</param>
+    /// <param name="itemProperty">The item property on the item to use.</param>
+    /// <param name="location">The target location for the item property action.</param>
+    /// <param name="decrementCharges">If true, decrements item charges as configured for the item property action.</param>
+    /// <param name="subPropertyIndex">Specifies the index to use if this item has sub-properties (such as sub-radial spells).</param>
+    public async Task ActionUseItem(NwItem item, ItemProperty itemProperty, Location location, bool decrementCharges = true, int subPropertyIndex = 0)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUseItemAtLocation(item, itemProperty, location, subPropertyIndex, decrementCharges.ToInt());
+    }
+
+    /// <summary>
+    /// Instructs this creature to use the specified item property of an item in their inventory.
+    /// </summary>
+    /// <param name="item">The item to use.</param>
+    /// <param name="itemProperty">The item property on the item to use.</param>
+    /// <param name="gameObject">The target object for the item property action.</param>
+    /// <param name="decrementCharges">If true, decrements item charges as configured for the item property action.</param>
+    /// <param name="subPropertyIndex">Specifies the index to use if this item has sub-properties (such as sub-radial spells).</param>
+    public async Task ActionUseItem(NwItem item, ItemProperty itemProperty, NwGameObject gameObject, bool decrementCharges = true, int subPropertyIndex = 0)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUseItemOnObject(item, itemProperty, gameObject, subPropertyIndex, decrementCharges.ToInt());
+    }
+
+    /// <summary>
+    /// Instructs this creature to attempt to use a skill on another object.
+    /// </summary>
+    /// <param name="skill">The skill to use.</param>
+    /// <param name="target">The target to use the skill on.</param>
+    /// <param name="subSkill">A specific subskill to use.</param>
+    /// <param name="itemUsed">An item to use in conjunction with this skill.</param>
+    public async Task ActionUseSkill(Skill skill, NwGameObject target, SubSkill subSkill = SubSkill.None, NwItem itemUsed = null)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUseSkill((int) skill, target, (int) subSkill, itemUsed);
+    }
+
+    /// <summary>
+    /// Uses the specified talent.
+    /// </summary>
+    /// <param name="talent">The talent to use.</param>
+    /// <param name="target">The target location for the talent.</param>
+    public async Task ActionUseTalent(Talent talent, Location target)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUseTalentAtLocation(talent, target);
+    }
+
+    /// <summary>
+    /// Uses the specified talent.
+    /// </summary>
+    /// <param name="talent">The talent to use.</param>
+    /// <param name="target">The target object for the talent.</param>
+    public async Task ActionUseTalent(Talent talent, NwGameObject target)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUseTalentOnObject(talent, target);
     }
 
     /// <summary>

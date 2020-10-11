@@ -242,15 +242,8 @@ namespace NWN.API
     /// <param name="font">If specified, the message will be rendered with the specified font instead of the default console font.</param>
     public void PostString(string message, int xPos, int yPos, ScreenAnchor anchor, float life, Color? start = null, Color? end = null, int id = 0, string font = "")
     {
-      if (start == null)
-      {
-        start = Color.WHITE;
-      }
-
-      if (end == null)
-      {
-        end = Color.WHITE;
-      }
+      start ??= Color.WHITE;
+      end ??= Color.WHITE;
 
       NWScript.PostString(this, message, xPos, yPos, (int) anchor, life, start.Value.ToInt(), end.Value.ToInt(), id, font);
     }

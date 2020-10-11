@@ -232,16 +232,16 @@ namespace NWN.API
     /// <param name="animSpeed">Speed to play the animation.</param>
     /// <param name="queueAsAction">If true, enqueues animation playback in the object's action queue.</param>
     /// <param name="duration">Duration to keep animating. Not used in fire and forget animations.</param>
-    public async Task PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, float duration = 0.0f)
+    public async Task PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, TimeSpan duration = default)
     {
       await WaitForObjectContext();
       if (!queueAsAction)
       {
-        NWScript.PlayAnimation((int) animation, animSpeed, duration);
+        NWScript.PlayAnimation((int) animation, animSpeed, (float) duration.TotalSeconds);
       }
       else
       {
-        NWScript.ActionPlayAnimation((int) animation, animSpeed, duration);
+        NWScript.ActionPlayAnimation((int) animation, animSpeed, (float) duration.TotalSeconds);
       }
     }
 
@@ -405,6 +405,16 @@ namespace NWN.API
     {
       await WaitForObjectContext();
       NWScript.ActionCastSpellAtLocation((int) spell, target, (int) metaMagic, cheat.ToInt(), (int) projectilePathType, instant.ToInt());
+    }
+
+    /// <summary>
+    /// Instructs this object to do nothing for the specified duration, before continuing with the next item in the action queue.
+    /// </summary>
+    /// <param name="duration">The time to wait.</param>
+    public async Task ActionWait(TimeSpan duration)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionWait((float) duration.TotalSeconds);
     }
 
     /// <summary>
