@@ -8,9 +8,11 @@ var searchData=
   ['featuseevents_337',['FeatUseEvents',['../classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html',1,'NWNX::API::Events']]],
   ['feedback_338',['Feedback',['../classNWNX_1_1API_1_1Feedback.html',1,'NWNX::API']]],
   ['finditemwithtag_339',['FindItemWithTag',['../classNWN_1_1API_1_1NwCreature.html#af3155efc66ff9b53f034dce837b35db9',1,'NWN::API::NwCreature']]],
-  ['flippedrotation_340',['FlippedRotation',['../classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d',1,'NWN::API::Location']]],
-  ['forcerest_341',['ForceRest',['../classNWN_1_1API_1_1NwCreature.html#a22fea4250a1b791ea6e75a9d27209a84',1,'NWN::API::NwCreature']]],
-  ['fromhours_342',['FromHours',['../classNWN_1_1API_1_1NwTimeSpan.html#ab30c999ceac3904b37426c954cb9b064',1,'NWN::API::NwTimeSpan']]],
-  ['fromrounds_343',['FromRounds',['../classNWN_1_1API_1_1NwTimeSpan.html#a13f910545c60066c85f0027b50ec8818',1,'NWN::API::NwTimeSpan']]],
-  ['fromturns_344',['FromTurns',['../classNWN_1_1API_1_1NwTimeSpan.html#a2761189a9dd7e3a31340b4aa0093a667',1,'NWN::API::NwTimeSpan']]]
+  ['findobjectswithtag_340',['FindObjectsWithTag',['../classNWN_1_1API_1_1NwObject.html#afeac917cc7bd6f75793730b9be3ab292',1,'NWN::API::NwObject']]],
+  ['findobjectswithtag_3c_20t_20_3e_341',['FindObjectsWithTag&lt; T &gt;',['../classNWN_1_1API_1_1NwObject.html#a44538874e98e93bf0ea78596ae0f7824',1,'NWN::API::NwObject']]],
+  ['flippedrotation_342',['FlippedRotation',['../classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d',1,'NWN::API::Location']]],
+  ['forcerest_343',['ForceRest',['../classNWN_1_1API_1_1NwCreature.html#a22fea4250a1b791ea6e75a9d27209a84',1,'NWN::API::NwCreature']]],
+  ['fromhours_344',['FromHours',['../classNWN_1_1API_1_1NwTimeSpan.html#ab30c999ceac3904b37426c954cb9b064',1,'NWN::API::NwTimeSpan']]],
+  ['fromrounds_345',['FromRounds',['../classNWN_1_1API_1_1NwTimeSpan.html#a13f910545c60066c85f0027b50ec8818',1,'NWN::API::NwTimeSpan']]],
+  ['fromturns_346',['FromTurns',['../classNWN_1_1API_1_1NwTimeSpan.html#a2761189a9dd7e3a31340b4aa0093a667',1,'NWN::API::NwTimeSpan']]]
 ];

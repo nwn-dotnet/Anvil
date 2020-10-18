@@ -163,12 +163,12 @@ static T&#160;</td><td class="memItemRight" valign="bottom"><b>Deserialize&lt; T
 <tr class="memitem:aaf3cb4edb1f8e82f8875ea62a6fac34c"><td class="memItemLeft" align="right" valign="top"><a id="aaf3cb4edb1f8e82f8875ea62a6fac34c"></a>
 static <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Deserialize</b> (string serializedObject)</td></tr>
 <tr class="separator:aaf3cb4edb1f8e82f8875ea62a6fac34c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05ba513b326ca52cecba3783c8102192"><td class="memItemLeft" align="right" valign="top"><a id="a05ba513b326ca52cecba3783c8102192"></a>
-static T&#160;</td><td class="memItemRight" valign="bottom"><b>FromTag&lt; T &gt;</b> (string tag)</td></tr>
-<tr class="separator:a05ba513b326ca52cecba3783c8102192"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f62139f89b08b4bd0ec816971349a7e"><td class="memItemLeft" align="right" valign="top"><a id="a1f62139f89b08b4bd0ec816971349a7e"></a>
-static <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a>&#160;</td><td class="memItemRight" valign="bottom"><b>FromTag</b> (string tag)</td></tr>
-<tr class="separator:a1f62139f89b08b4bd0ec816971349a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeac917cc7bd6f75793730b9be3ab292"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#afeac917cc7bd6f75793730b9be3ab292">FindObjectsWithTag</a> (params string[] tags)</td></tr>
+<tr class="memdesc:afeac917cc7bd6f75793730b9be3ab292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locates all objects of that have the specified tag.  <a href="classNWN_1_1API_1_1NwObject.html#afeac917cc7bd6f75793730b9be3ab292">More...</a><br /></td></tr>
+<tr class="separator:afeac917cc7bd6f75793730b9be3ab292"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44538874e98e93bf0ea78596ae0f7824"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a44538874e98e93bf0ea78596ae0f7824">FindObjectsWithTag&lt; T &gt;</a> (params string[] tags)</td></tr>
+<tr class="memdesc:a44538874e98e93bf0ea78596ae0f7824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locates all objects of the specified type that have the specified tag.  <a href="classNWN_1_1API_1_1NwObject.html#a44538874e98e93bf0ea78596ae0f7824">More...</a><br /></td></tr>
+<tr class="separator:a44538874e98e93bf0ea78596ae0f7824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18fb216402ebe5b8a0f0699eff33e10c"><td class="memItemLeft" align="right" valign="top"><a id="a18fb216402ebe5b8a0f0699eff33e10c"></a>
 static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator uint</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> obj)</td></tr>
 <tr class="separator:a18fb216402ebe5b8a0f0699eff33e10c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,6 +276,90 @@ Properties</h2></td></tr>
 <li>No return value, but if an error occurs, the log file will contain "ClearAllActions failed.".</li>
 <li>clearCombatState: if true, this will immediately clear the combat state on a creature, which will stop the combat music and allow them to rest, engage in dialog, or other actions that they would normally have to wait for.</li>
 </ul>
+
+</div>
+</div>
+<a id="afeac917cc7bd6f75793730b9be3ab292"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeac917cc7bd6f75793730b9be3ab292">&#9670;&nbsp;</a></span>FindObjectsWithTag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a>&gt; NWN.API.NwObject.FindObjectsWithTag </td>
+          <td>(</td>
+          <td class="paramtype">params string[]&#160;</td>
+          <td class="paramname"><em>tags</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Locates all objects of that have the specified tag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tags</td><td>The tag/s of the objects to locate.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An enumeration containing all objects with the specified tags.</dd></dl>
+
+</div>
+</div>
+<a id="a44538874e98e93bf0ea78596ae0f7824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44538874e98e93bf0ea78596ae0f7824">&#9670;&nbsp;</a></span>FindObjectsWithTag&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;T&gt; <a class="el" href="classNWN_1_1API_1_1NwObject.html#afeac917cc7bd6f75793730b9be3ab292">NWN.API.NwObject.FindObjectsWithTag</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">params string[]&#160;</td>
+          <td class="paramname"><em>tags</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Locates all objects of the specified type that have the specified tag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tags</td><td>The tag/s of the objects to locate.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of objects to search.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An enumeration containing all objects with the specified tags.</dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>NwObject</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
 
 </div>
 </div>
