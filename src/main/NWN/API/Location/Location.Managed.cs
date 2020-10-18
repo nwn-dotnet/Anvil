@@ -67,7 +67,7 @@ namespace NWN.API
       uint next;
       for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.INVALID; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
       {
-        T obj = next.ToNwObject<T>();
+        T obj = next.ToNwObjectSafe<T>();
         if (obj != null)
         {
           yield return obj;

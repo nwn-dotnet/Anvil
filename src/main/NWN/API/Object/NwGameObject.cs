@@ -305,7 +305,7 @@ namespace NWN.API
 
       for (i = 1, current = NWScript.GetNearestObject(objType, this, i); current != INVALID; i++, current = NWScript.GetNearestObject(objType, this, i))
       {
-        T obj = current.ToNwObject<T>();
+        T obj = current.ToNwObjectSafe<T>();
         if (obj != null)
         {
           yield return obj;
