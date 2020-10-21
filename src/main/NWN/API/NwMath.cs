@@ -9,7 +9,7 @@ namespace NWN.API
     /// Constant value for converting feet to meters.
     /// </summary>
     /// <example>
-    /// <c>float meters = 100f * FeetToMeters;</c>
+    /// <c>float meters = 100f * FeetToMeters;</c>.
     /// </example>
     public const float FeetToMeters = 0.3048f;
 
@@ -17,7 +17,7 @@ namespace NWN.API
     /// Constant value for converting meters to feet.
     /// </summary>
     /// <example>
-    /// <c>float feet = 100f * MetersToFeet;</c>
+    /// <c>float feet = 100f * MetersToFeet;</c>.
     /// </example>
     public const float MetersToFeet = 1f / FeetToMeters;
 
@@ -25,7 +25,7 @@ namespace NWN.API
     /// Constant value for converting yards to meters.
     /// </summary>
     /// <example>
-    /// <c>float meters = 100f * YardsToMeters;</c>
+    /// <c>float meters = 100f * YardsToMeters;</c>.
     /// </example>
     public const float YardsToMeters = 0.9144f;
 
@@ -33,7 +33,7 @@ namespace NWN.API
     /// Constant value for converting meters to yards.
     /// </summary>
     /// <example>
-    /// <c>float yards = 100f * MetersToYards;</c>
+    /// <c>float yards = 100f * MetersToYards;</c>.
     /// </example>
     public const float MetersToYards = 1f / YardsToMeters;
 
@@ -41,7 +41,7 @@ namespace NWN.API
     /// Constant value for converting degrees to radians.
     /// </summary>
     /// <example>
-    /// <c>float radians = 180f * DegToRad;</c>
+    /// <c>float radians = 180f * DegToRad;</c>.
     /// </example>
     public const float DegToRad = (float) (Math.PI * 2f / 360f);
 
@@ -49,7 +49,7 @@ namespace NWN.API
     /// Constant value for converting radians to degrees.
     /// </summary>
     /// <example>
-    /// <c>float degrees = 1.5708f * RadToDeg;</c>
+    /// <c>float degrees = 1.5708f * RadToDeg;</c>.
     /// </example>
     public const float RadToDeg = 1f / DegToRad;
 

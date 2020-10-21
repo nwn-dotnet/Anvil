@@ -130,7 +130,7 @@ namespace NWN.API
     /// <summary>
     /// Adds an entry to this player's journal.
     /// </summary>
-    /// <param name="categoryTag">The tag of the Journal category (case-sensitive)</param>
+    /// <param name="categoryTag">The tag of the Journal category (case-sensitive).</param>
     /// <param name="entryId">The ID of the Journal entry.</param>
     /// <param name="allPartyMembers">If true, this entry is added to all players in this player's party.</param>
     /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>

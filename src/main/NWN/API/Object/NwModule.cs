@@ -239,7 +239,7 @@ namespace NWN.API
     /// Adds an entry to the journal of all players in the module.<br/>
     /// See <see cref="NwPlayer.AddJournalQuestEntry"/> to add a journal entry to a specific player/party.
     /// </summary>
-    /// <param name="categoryTag">The tag of the Journal category (case-sensitive)</param>
+    /// <param name="categoryTag">The tag of the Journal category (case-sensitive).</param>
     /// <param name="entryId">The ID of the Journal entry.</param>
     /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
     public void AddJournalQuestEntry(string categoryTag, int entryId, bool allowOverrideHigher = false)

@@ -152,7 +152,7 @@ namespace NWN.API
     /// If you only need to compare the distance, you can compare the squared distance using <see cref="DistanceSquared"/> to avoid a costly sqrt operation.
     /// </summary>
     /// <param name="target">The other object to calculate distance from.</param>
-    /// <returns>The distance in game units, or -1 if this target is in a different area.</returns>
+    /// <returns>The distance in game units, or -1 if the target is in a different area.</returns>
     public float Distance(NwGameObject target)
     {
       if (target.Area != Area)
@@ -167,7 +167,7 @@ namespace NWN.API
     /// Returns the squared distance to the target.
     /// </summary>
     /// <param name="target">The other object to calculate distance from.</param>
-    /// <returns>The squared distance in game units, or -1 if this target is in a different area.</returns>
+    /// <returns>The squared distance in game units, or -1 if the target is in a different area.</returns>
     public float DistanceSquared(NwGameObject target)
     {
       if (target.Area != Area)
