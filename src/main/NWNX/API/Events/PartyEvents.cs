@@ -50,7 +50,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         PartyLeader = (NwPlayer)objSelf;
-        Kicked = NWScript.StringToObject(EventsPlugin.GetEventData("KICKED")).ToNwObject<NwCreature>();
+        Kicked = EventsPlugin.GetEventData("KICKED").ParseObject<NwCreature>();
       }
     }
 
@@ -70,7 +70,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         PartyLeader = (NwPlayer)objSelf;
-        Kicked = NWScript.StringToObject(EventsPlugin.GetEventData("KICKED")).ToNwObject<NwCreature>();
+        Kicked = EventsPlugin.GetEventData("KICKED").ParseObject<NwCreature>();
       }
     }
 
@@ -90,7 +90,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         PreviousLeader = (NwPlayer)objSelf;
-        NewLeader = NWScript.StringToObject(EventsPlugin.GetEventData("NEW_LEADER")).ToNwObject<NwPlayer>();
+        NewLeader = EventsPlugin.GetEventData("NEW_LEADER").ParseObject<NwPlayer>();
       }
     }
 
@@ -110,7 +110,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         PreviousLeader = (NwPlayer)objSelf;
-        NewLeader = NWScript.StringToObject(EventsPlugin.GetEventData("NEW_LEADER")).ToNwObject<NwPlayer>();
+        NewLeader = EventsPlugin.GetEventData("NEW_LEADER").ParseObject<NwPlayer>();
       }
     }
 
@@ -130,7 +130,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Sender = (NwPlayer)objSelf;
-        Invited = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED")).ToNwObject<NwPlayer>();
+        Invited = EventsPlugin.GetEventData("INVITED").ParseObject<NwPlayer>();
       }
     }
 
@@ -150,7 +150,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Sender = (NwPlayer)objSelf;
-        Invited = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED")).ToNwObject<NwPlayer>();
+        Invited = EventsPlugin.GetEventData("INVITED").ParseObject<NwPlayer>();
       }
     }
 
@@ -170,7 +170,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         IgnoredBy = (NwPlayer)objSelf;
-        InvitedBy = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED_BY")).ToNwObject<NwPlayer>();
+        InvitedBy = EventsPlugin.GetEventData("INVITED_BY").ParseObject<NwPlayer>();
       }
     }
 
@@ -190,7 +190,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         IgnoredBy = (NwPlayer)objSelf;
-        InvitedBy = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED_BY")).ToNwObject<NwPlayer>();
+        InvitedBy = EventsPlugin.GetEventData("INVITED_BY").ParseObject<NwPlayer>();
       }
     }
 
@@ -210,7 +210,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         AcceptedBy = (NwPlayer)objSelf;
-        InvitedBy = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED_BY")).ToNwObject<NwPlayer>();
+        InvitedBy = EventsPlugin.GetEventData("INVITED_BY").ParseObject<NwPlayer>();
       }
     }
 
@@ -230,7 +230,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         AcceptedBy = (NwPlayer)objSelf;
-        InvitedBy = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED_BY")).ToNwObject<NwPlayer>();
+        InvitedBy = EventsPlugin.GetEventData("INVITED_BY").ParseObject<NwPlayer>();
       }
     }
 
@@ -250,7 +250,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         RejectedBy = (NwPlayer)objSelf;
-        SentBy = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED_BY")).ToNwObject<NwPlayer>();
+        SentBy = EventsPlugin.GetEventData("INVITED_BY").ParseObject<NwPlayer>();
       }
     }
 
@@ -270,7 +270,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         RejectedBy = (NwPlayer)objSelf;
-        SentBy = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED_BY")).ToNwObject<NwPlayer>();
+        SentBy = EventsPlugin.GetEventData("INVITED_BY").ParseObject<NwPlayer>();
       }
     }
 
@@ -290,7 +290,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Player = (NwPlayer)objSelf;
-        Henchman = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED_BY")).ToNwObject<NwCreature>();
+        Henchman = EventsPlugin.GetEventData("INVITED_BY").ParseObject<NwCreature>();
       }
     }
 
@@ -310,7 +310,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Player = (NwPlayer)objSelf;
-        Henchman = NWScript.StringToObject(EventsPlugin.GetEventData("INVITED_BY")).ToNwObject<NwCreature>();
+        Henchman = EventsPlugin.GetEventData("INVITED_BY").ParseObject<NwCreature>();
       }
     }
   }

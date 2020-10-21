@@ -1,6 +1,5 @@
 using NWN.API;
 using NWN.API.Events;
-using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -19,8 +18,8 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Examiner = (NwPlayer) objSelf;
-        Examinee = NWScript.StringToObject(EventsPlugin.GetEventData("EXAMINEE_OBJECT_ID")).ToNwObject();
-        TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseInt().ToBool();
+        Examinee = EventsPlugin.GetEventData("EXAMINEE_OBJECT_ID").ParseObject();
+        TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseIntBool();
       }
     }
 
@@ -36,8 +35,8 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Examiner = (NwPlayer) objSelf;
-        Examinee = NWScript.StringToObject(EventsPlugin.GetEventData("EXAMINEE_OBJECT_ID")).ToNwObject();
-        TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseInt().ToBool();
+        Examinee = EventsPlugin.GetEventData("EXAMINEE_OBJECT_ID").ParseObject();
+        TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseIntBool();
       }
     }
   }

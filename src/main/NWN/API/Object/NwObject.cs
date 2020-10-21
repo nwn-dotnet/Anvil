@@ -213,6 +213,15 @@ namespace NWN.API
       return ObjectPlugin.Serialize(this);
     }
 
+    /// <summary>
+    /// The ID of this object as a string. Can be used in <see cref="StringExtensions.ParseObject"/> while the object is alive.<br/>
+    /// This cannot be used across server restarts. See <see cref="UUID"/> for a persistent unique identifier.
+    /// </summary>
+    public override string ToString()
+    {
+      return ObjectId.ToString("x");
+    }
+
     public bool Equals(NwObject other)
     {
       if (ReferenceEquals(null, other))

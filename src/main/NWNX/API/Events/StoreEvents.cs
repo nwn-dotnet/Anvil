@@ -1,6 +1,5 @@
 using NWN.API;
 using NWN.API.Events;
-using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -21,8 +20,8 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Player = (NwPlayer) objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwItem>();
-        Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
+        Item = EventsPlugin.GetEventData("STORE").ParseObject<NwItem>();
+        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
         Price = EventsPlugin.GetEventData("PRICE").ParseInt();
       }
     }
@@ -41,8 +40,8 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Player = (NwPlayer) objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwItem>();
-        Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
+        Item = EventsPlugin.GetEventData("STORE").ParseObject<NwItem>();
+        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
         Price = EventsPlugin.GetEventData("PRICE").ParseInt();
       }
     }
@@ -61,8 +60,8 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Player = (NwPlayer) objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwItem>();
-        Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
+        Item = EventsPlugin.GetEventData("STORE").ParseObject<NwItem>();
+        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
         Price = EventsPlugin.GetEventData("PRICE").ParseInt();
       }
     }
@@ -81,8 +80,8 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Player = (NwPlayer) objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwItem>();
-        Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
+        Item = EventsPlugin.GetEventData("STORE").ParseObject<NwItem>();
+        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
         Price = EventsPlugin.GetEventData("PRICE").ParseInt();
       }
     }
