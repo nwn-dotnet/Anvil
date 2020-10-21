@@ -37,8 +37,8 @@ namespace NWN.API
     /// </summary>
     public Phenotype Phenotype
     {
-      get => (Phenotype) NWScript.GetPhenoType(this);
-      set => NWScript.SetPhenoType((int) value, this);
+      get => (Phenotype)NWScript.GetPhenoType(this);
+      set => NWScript.SetPhenoType((int)value, this);
     }
 
     /// <summary>
@@ -80,6 +80,16 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the current AI level that this creature is running at.<br/>
+    /// <see cref="Constants.AiLevel.Default"/> is recommended for most creatures. Too many creatures at <see cref="Constants.AiLevel.Normal"/> or higher can cause performance degradation.
+    /// </summary>
+    public AiLevel AiLevel
+    {
+      get => (AiLevel)NWScript.GetAILevel(this);
+      set => NWScript.SetAILevel(this, (int)value);
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
     public bool IsDead
@@ -100,7 +110,7 @@ namespace NWN.API
     /// </summary>
     public RacialType RacialType
     {
-      get => (RacialType) NWScript.GetRacialType(this);
+      get => (RacialType)NWScript.GetRacialType(this);
     }
 
     /// <summary>
@@ -108,7 +118,7 @@ namespace NWN.API
     /// </summary>
     public Gender Gender
     {
-      get => (Gender) NWScript.GetGender(this);
+      get => (Gender)NWScript.GetGender(this);
     }
 
     /// <summary>
@@ -116,7 +126,7 @@ namespace NWN.API
     /// </summary>
     public AssociateType AssociateType
     {
-      get => (AssociateType) NWScript.GetAssociateType(this);
+      get => (AssociateType)NWScript.GetAssociateType(this);
     }
 
     /// <summary>
@@ -172,7 +182,7 @@ namespace NWN.API
     /// </summary>
     public CreatureSize Size
     {
-      get => (CreatureSize) NWScript.GetCreatureSize(this);
+      get => (CreatureSize)NWScript.GetCreatureSize(this);
     }
 
     /// <summary>
@@ -188,7 +198,7 @@ namespace NWN.API
     /// </summary>
     public MovementRate MovementRate
     {
-      get => (MovementRate) NWScript.GetMovementRate(this);
+      get => (MovementRate)NWScript.GetMovementRate(this);
     }
 
     /// <summary>
@@ -196,7 +206,7 @@ namespace NWN.API
     /// </summary>
     public Alignment LawChaosAlignment
     {
-      get => (Alignment) NWScript.GetAlignmentLawChaos(this);
+      get => (Alignment)NWScript.GetAlignmentLawChaos(this);
     }
 
     /// <summary>
@@ -204,7 +214,7 @@ namespace NWN.API
     /// </summary>
     public Alignment GoodEvilAlignment
     {
-      get => (Alignment) NWScript.GetAlignmentGoodEvil(this);
+      get => (Alignment)NWScript.GetAlignmentGoodEvil(this);
     }
 
     /// <summary>
@@ -228,7 +238,7 @@ namespace NWN.API
     /// </summary>
     public AssociateCommand LastCommandFromMaster
     {
-      get => (AssociateCommand) NWScript.GetLastAssociateCommand(this);
+      get => (AssociateCommand)NWScript.GetLastAssociateCommand(this);
     }
 
     /// <summary>
@@ -252,7 +262,7 @@ namespace NWN.API
     /// </summary>
     public Action CurrentAction
     {
-      get => (Action) NWScript.GetCurrentAction(this);
+      get => (Action)NWScript.GetCurrentAction(this);
     }
 
     /// <summary>
@@ -291,7 +301,7 @@ namespace NWN.API
         List<ClassType> classes = new List<ClassType>(maxClasses);
         for (int i = 1; i <= maxClasses; i++)
         {
-          ClassType classType = (ClassType) NWScript.GetClassByPosition(i, this);
+          ClassType classType = (ClassType)NWScript.GetClassByPosition(i, this);
           if (classType == ClassType.Invalid)
           {
             break;
@@ -334,7 +344,7 @@ namespace NWN.API
 
         Alignment alignment = value < current ? Alignment.Chaotic : Alignment.Lawful;
         int shift = Math.Abs(value - current);
-        NWScript.AdjustAlignment(this, (int) alignment, shift, false.ToInt());
+        NWScript.AdjustAlignment(this, (int)alignment, shift, false.ToInt());
       }
     }
 
@@ -354,7 +364,7 @@ namespace NWN.API
 
         Alignment alignment = value < current ? Alignment.Evil : Alignment.Good;
         int shift = Math.Abs(value - current);
-        NWScript.AdjustAlignment(this, (int) alignment, shift, false.ToInt());
+        NWScript.AdjustAlignment(this, (int)alignment, shift, false.ToInt());
       }
     }
 
@@ -372,7 +382,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="newFaction">The NPCs new faction.</param>
     public void ChangeToStandardFaction(StandardFaction newFaction)
-      => NWScript.ChangeToStandardFaction(this, (int) newFaction);
+      => NWScript.ChangeToStandardFaction(this, (int)newFaction);
 
     /// <summary>
     /// Gets whether this creature has a specific immunity.
@@ -381,7 +391,7 @@ namespace NWN.API
     /// <param name="verses">If specified, the race and alignment of verses will be considered when determining immunities.</param>
     /// <returns>True if the creature has the specified immunity, otherwise false.</returns>
     public bool IsImmuneTo(ImmunityType immunityType, NwGameObject verses = null)
-      => NWScript.GetIsImmune(this, (int) immunityType, verses).ToBool();
+      => NWScript.GetIsImmune(this, (int)immunityType, verses).ToBool();
 
     /// <summary>
     /// Gives gold to this creature.
@@ -427,7 +437,7 @@ namespace NWN.API
     /// <param name="slot">The inventory slot to check.</param>
     /// <returns>The item in the inventory slot, otherwise null if it is unpopulated.</returns>
     public NwItem GetItemInSlot(InventorySlot slot)
-      => NWScript.GetItemInSlot((int) slot, this).ToNwObject<NwItem>();
+      => NWScript.GetItemInSlot((int)slot, this).ToNwObject<NwItem>();
 
     /// <summary>
     /// Attempts to perform a melee touch attack on target. This is not a creature action, and assumes that this creature is already within range of the target.
@@ -436,7 +446,7 @@ namespace NWN.API
     public async Task<TouchAttackResult> TouchAttackMelee(NwGameObject target)
     {
       await WaitForObjectContext();
-      return (TouchAttackResult) NWScript.TouchAttackMelee(target);
+      return (TouchAttackResult)NWScript.TouchAttackMelee(target);
     }
 
     /// <summary>
@@ -447,7 +457,7 @@ namespace NWN.API
     public async Task<TouchAttackResult> TouchAttackRanged(NwGameObject target, bool displayFeedback)
     {
       await WaitForObjectContext();
-      return (TouchAttackResult) NWScript.TouchAttackRanged(target, displayFeedback.ToInt());
+      return (TouchAttackResult)NWScript.TouchAttackRanged(target, displayFeedback.ToInt());
     }
 
     /// <summary>
@@ -457,7 +467,7 @@ namespace NWN.API
     /// <param name="alignment">The alignment to shift towards.</param>
     /// <param name="shift">The amount of alignment shift.</param>
     public void AdjustPartyAlignment(Alignment alignment, int shift)
-      => NWScript.AdjustAlignment(this, (int) alignment, shift);
+      => NWScript.AdjustAlignment(this, (int)alignment, shift);
 
     /// <summary>
     /// Gets the specified ability score from this creature.
@@ -465,7 +475,15 @@ namespace NWN.API
     /// <param name="ability">The type of ability.</param>
     /// <param name="baseOnly">If true, will return the creature's base ability score without bonuses or penalties.</param>
     public int GetAbilityScore(Ability ability, bool baseOnly = false)
-      => NWScript.GetAbilityScore(this, (int) ability, baseOnly.ToInt());
+      => NWScript.GetAbilityScore(this, (int)ability, baseOnly.ToInt());
+
+    /// <summary>
+    /// Gets this creature's ability modifier for the specified ability.
+    /// </summary>
+    /// <param name="ability">The ability to resolve.</param>
+    /// <returns>An int representing the creature's ability modifier for the specified skill.</returns>
+    public int GetAbilityModifier(Ability ability)
+      => NWScript.GetAbilityModifier((int)ability, this);
 
     /// <summary>
     /// Gets the DC to save against for a spell (10 + spell level + relevant ability bonus).
@@ -516,7 +534,7 @@ namespace NWN.API
     ///  Determine the number of levels this creature holds in the specified <see cref="ClassType"/>.
     /// </summary>
     public int GetLevelByClass(ClassType classType)
-      => NWScript.GetLevelByClass((int) classType, this);
+      => NWScript.GetLevelByClass((int)classType, this);
 
     /// <summary>
     /// Gets if this creature has the specified spell available to cast.
@@ -524,7 +542,7 @@ namespace NWN.API
     /// <param name="spell">The spell to check.</param>
     /// <returns>True if this creature can immediately cast the spell.</returns>
     public bool HasSpellUse(Spell spell)
-      => NWScript.GetHasSpell((int) spell, this) > 0;
+      => NWScript.GetHasSpell((int)spell, this) > 0;
 
     /// <summary>
     /// Gets the number of ranks this creature has in the specified skill.
@@ -533,7 +551,7 @@ namespace NWN.API
     /// <param name="ranksOnly">If true, returns the base amount of skill ranks without any ability modifiers.</param>
     /// <returns>-1 if the creature does not have this skill, 0 if untrained, otherwise the number of skill ranks.</returns>
     public int GetSkillRank(Skill skill, bool ranksOnly = false)
-      => NWScript.GetSkillRank((int) skill, this, ranksOnly.ToInt());
+      => NWScript.GetSkillRank((int)skill, this, ranksOnly.ToInt());
 
     /// <summary>
     /// Returns true if this creature has the skill specified, and is useable.
@@ -541,7 +559,7 @@ namespace NWN.API
     /// <param name="skill">The skill to check.</param>
     /// <returns>True if the creature has this skill.</returns>
     public bool HasSkill(Skill skill)
-      => NWScript.GetHasSkill((int) skill, this).ToBool();
+      => NWScript.GetHasSkill((int)skill, this).ToBool();
 
     /// <summary>
     /// Returns true if 1d20 + skill rank is greater than, or equal to difficultyClass.
@@ -549,14 +567,14 @@ namespace NWN.API
     /// <param name="skill">The type of skill check.</param>
     /// <param name="difficultyClass">The DC of this skill check.</param>
     public bool DoSkillCheck(Skill skill, int difficultyClass)
-      => NWScript.GetIsSkillSuccessful(this, (int) skill, difficultyClass).ToBool();
+      => NWScript.GetIsSkillSuccessful(this, (int)skill, difficultyClass).ToBool();
 
     /// <summary>
     /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
     /// Use <see cref="Creature.KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
     /// </summary>
     public bool HasFeatPrepared(Feat feat)
-      => NWScript.GetHasFeat((int) feat, this).ToBool();
+      => NWScript.GetHasFeat((int)feat, this).ToBool();
 
     /// <summary>
     /// Determines whether this creature has the specified talent.
@@ -574,7 +592,7 @@ namespace NWN.API
     /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
     public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
     {
-      NWScript.ApplyEffectToObject((int) durationType, effect, this, (float) duration.TotalSeconds);
+      NWScript.ApplyEffectToObject((int)durationType, effect, this, (float)duration.TotalSeconds);
     }
 
     /// <summary>
@@ -836,7 +854,7 @@ namespace NWN.API
     public async Task ActionEquipItem(NwItem item, InventorySlot slot)
     {
       await WaitForObjectContext();
-      NWScript.ActionEquipItem(item, (int) slot);
+      NWScript.ActionEquipItem(item, (int)slot);
     }
 
     /// <summary>
@@ -1030,7 +1048,7 @@ namespace NWN.API
     /// <param name="classType">The class to query for specialized spell schools.</param>
     /// <returns>The creature's selected spell specialization.</returns>
     public SpellSchool GetSpecialization(ClassType classType = ClassType.Wizard)
-      => (SpellSchool) NWScript.GetSpecialization(this, (int) classType);
+      => (SpellSchool)NWScript.GetSpecialization(this, (int)classType);
 
     /// <summary>
     /// Returns this creature's domains in the specified class. Unless custom content is used, only clerics have domains.
@@ -1039,17 +1057,25 @@ namespace NWN.API
     /// <returns>An enumeration of this creature's domains.</returns>
     public IEnumerable<Domain> GetClassDomains(ClassType classType = ClassType.Cleric)
     {
-      const int error = (int) Domain.Error;
-      int classT = (int) classType;
+      const int error = (int)Domain.Error;
+      int classT = (int)classType;
 
       int i;
       int current;
 
       for (i = 1, current = NWScript.GetDomain(this, i, classT); current != error; i++, current = NWScript.GetDomain(this, i, classT))
       {
-        yield return (Domain) current;
+        yield return (Domain)current;
       }
     }
+
+    /// <summary>
+    /// Gets if this creature is using the specified action mode.
+    /// </summary>
+    /// <param name="actionMode">The action mode to query.</param>
+    /// <returns>True if the specified action mode is currently active, otherwise false.</returns>
+    public bool GetActionMode(ActionMode actionMode)
+      => NWScript.GetActionMode(this, (int)actionMode).ToBool();
 
     /// <summary>
     /// Instructs this creature to enable/disable the specified action mode (parry, power attack, expertise, etc).
@@ -1057,10 +1083,10 @@ namespace NWN.API
     /// <param name="actionMode">The action mode to toggle.</param>
     /// <param name="status">The new state of the action mode.</param>
     public void SetActionMode(ActionMode actionMode, bool status)
-      => NWScript.SetActionMode(this, (int) actionMode, status.ToInt());
+      => NWScript.SetActionMode(this, (int)actionMode, status.ToInt());
 
     /// <summary>
-    /// Instantly gives this creature the benefits of a rest (restored hitpoints, spells, feats, etc...)
+    /// Instantly gives this creature the benefits of a rest (restored hitpoints, spells, feats, etc...).
     /// </summary>
     public void ForceRest()
       => NWScript.ForceRest(this);

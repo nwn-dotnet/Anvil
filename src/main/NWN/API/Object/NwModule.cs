@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
 using NWNX.API.Constants;
@@ -11,16 +12,6 @@ namespace NWN.API
     internal NwModule(uint objectId) : base(objectId) {}
 
     public static readonly NwModule Instance = new NwModule(NWScript.GetModule());
-
-    public NwPlayer PCSpeaker
-    {
-      get => NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
-    }
-
-    public Spell SpellId
-    {
-      get => (Spell) NWScript.GetSpellId();
-    }
 
     /// <summary>
     /// Gets or sets the XP scale for this module. Must be a value between 0-200.
@@ -94,12 +85,22 @@ namespace NWN.API
       set => NWScript.SetMaxHenchmen(value);
     }
 
+    public NwPlayer PCSpeaker
+    {
+      get => NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
+    }
+
+    public Spell SpellId
+    {
+      get => (Spell)NWScript.GetSpellId();
+    }
+
     /// <summary>
     /// Gets the current server difficulty setting.
     /// </summary>
     public GameDifficulty GameDifficulty
     {
-      get => (GameDifficulty) NWScript.GetGameDifficulty();
+      get => (GameDifficulty)NWScript.GetGameDifficulty();
     }
 
     /// <summary>
@@ -135,34 +136,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Finds the specified waypoint with the given tag.
-    /// </summary>
-    public NwWaypoint GetWaypointByTag(string tag) => NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
-
-    /// <summary>
     /// Gets the starting location for new players.
     /// </summary>
     public Location StartingLocation
     {
       get => NWScript.GetStartingLocation();
     }
-
-    /// <summary>
-    /// Gets the specified global campaign variable.
-    /// </summary>
-    /// <param name="campaign">The name of the campaign.</param>
-    /// <param name="name">The variable name.</param>
-    /// <typeparam name="T">The variable type.</typeparam>
-    /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
-    public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
-      => CampaignVariable<T>.Create(campaign, name);
-
-    /// <summary>
-    /// Deletes the entire campaign database, if it exists.
-    /// </summary>
-    /// <param name="campaign">The campaign DB to delete.</param>
-    public void DestroyCampaignDatabase(string campaign)
-      => NWScript.DestroyCampaignDatabase(campaign);
 
     /// <summary>
     /// Gets all active areas in the module.
@@ -193,18 +172,21 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets all objects in the module with the specified tag.
+    /// Gets the specified global campaign variable.
     /// </summary>
-    /// <param name="tag">The object tag to search.</param>
-    public IEnumerable<NwGameObject> GetObjectsByTag(string tag)
-    {
-      int i;
-      uint obj;
-      for (i = 0, obj = NWScript.GetObjectByTag(tag, i); obj != INVALID; i++, obj = NWScript.GetObjectByTag(tag, i))
-      {
-        yield return obj.ToNwObject<NwGameObject>();
-      }
-    }
+    /// <param name="campaign">The name of the campaign.</param>
+    /// <param name="name">The variable name.</param>
+    /// <typeparam name="T">The variable type.</typeparam>
+    /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
+    public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
+      => CampaignVariable<T>.Create(campaign, name);
+
+    /// <summary>
+    /// Deletes the entire campaign database, if it exists.
+    /// </summary>
+    /// <param name="campaign">The campaign DB to delete.</param>
+    public void DestroyCampaignDatabase(string campaign)
+      => NWScript.DestroyCampaignDatabase(campaign);
 
     /// <summary>
     /// Broadcasts a message to the DM channel, sending a message to all DMs on the server.
@@ -237,12 +219,30 @@ namespace NWN.API
     /// </summary>
     /// <param name="oldTexName">The existing texture to replace.</param>
     /// <param name="newName">The new override texture.</param>
-    public void SetTextureOverride(string oldTexName, string newName) => NWScript.SetTextureOverride(oldTexName, newName);
+    public void SetTextureOverride(string oldTexName, string newName)
+      => NWScript.SetTextureOverride(oldTexName, newName);
 
     /// <summary>
     /// Removes the override for the specified texture, reverting to the original texture.
     /// </summary>
     /// <param name="texName">The name of the original texture.</param>
-    public void ClearTextureOverride(string texName) => NWScript.SetTextureOverride(texName, string.Empty);
+    public void ClearTextureOverride(string texName)
+      => NWScript.SetTextureOverride(texName, string.Empty);
+
+    /// <summary>
+    /// Finds the specified waypoint with the given tag.
+    /// </summary>
+    public NwWaypoint GetWaypointByTag(string tag)
+      => NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
+
+    /// <summary>
+    /// Adds an entry to the journal of all players in the module.<br/>
+    /// See <see cref="NwPlayer.AddJournalQuestEntry"/> to add a journal entry to a specific player/party.
+    /// </summary>
+    /// <param name="categoryTag">The tag of the Journal category (case-sensitive)</param>
+    /// <param name="entryId">The ID of the Journal entry.</param>
+    /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
+    public void AddJournalQuestEntry(string categoryTag, int entryId, bool allowOverrideHigher = false)
+      => NWScript.AddJournalQuestEntry(categoryTag, entryId, Players.FirstOrDefault(), true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
   }
 }
