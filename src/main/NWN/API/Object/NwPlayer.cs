@@ -138,6 +138,22 @@ namespace NWN.API
       => NWScript.AddJournalQuestEntry(categoryTag, entryId, this, allPartyMembers.ToInt(), false.ToInt(), allowOverrideHigher.ToInt());
 
     /// <summary>
+    /// Instructs this player to open their inventory.
+    /// </summary>
+    public void OpenInventory()
+      => NWScript.OpenInventory(this, this);
+
+    /// <summary>
+    /// Opens the specified creatures inventory, and shows it to this player.<br/>
+    /// </summary>
+    /// <remarks>
+    /// DMs can see any player or creature's inventory. Players can only view their own inventory, or that of a henchmen.
+    /// </remarks>
+    /// <param name="target">The target creature's inventory to view.</param>
+    public void OpenInventory(NwCreature target)
+      => NWScript.OpenInventory(target, this);
+
+      /// <summary>
     /// Gets the specified campaign variable for this player.
     /// </summary>
     /// <param name="campaign">The name of the campaign.</param>

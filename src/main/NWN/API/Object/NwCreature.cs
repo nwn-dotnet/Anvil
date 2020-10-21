@@ -90,6 +90,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the sounds to use when this creature makes a step. By default, this is based on the creature's appearance.
+    /// </summary>
+    public FootstepType FootstepType
+    {
+      get => (FootstepType) NWScript.GetFootstepType(this);
+      set => NWScript.SetFootstepType((int) value, this);
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
     public bool IsDead

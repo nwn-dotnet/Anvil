@@ -226,6 +226,18 @@ namespace NWN.API
       => NWScript.SetColor(this, (int) colorChannel, newColor);
 
     /// <summary>
+    /// Sets whether this object is destroyable.
+    /// </summary>
+    /// <param name="destroyable">If false, this creature does not fade out on death, but sticks around as a corpse.</param>
+    /// <param name="raiseable">If true, this creature can be raised via resurrection.</param>
+    /// <param name="selectableWhenDead">If true, this creature is selectable after death.</param>
+    public async Task SetIsDestroyable(bool destroyable, bool raiseable = true, bool selectableWhenDead = false)
+    {
+      await WaitForObjectContext();
+      NWScript.SetIsDestroyable(destroyable.ToInt(), raiseable.ToInt(), selectableWhenDead.ToInt());
+    }
+
+    /// <summary>
     /// Plays the specified animation.
     /// </summary>
     /// <param name="animation">Constant value representing the animation to play.</param>
