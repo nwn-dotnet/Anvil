@@ -149,18 +149,18 @@ namespace NWN.API
 
     /// <summary>
     /// Returns the distance to the target.<br/>
-    /// If you only need to compare the distance, you can compare the squared distance using <see cref="SqrDistanceToObject"/> to avoid a costly sqrt operation.
+    /// If you only need to compare the distance, you can compare the squared distance using <see cref="DistanceSquared"/> to avoid a costly sqrt operation.
     /// </summary>
     /// <param name="target">The other object to calculate distance from.</param>
     /// <returns>The distance in game units, or -1 if this target is in a different area.</returns>
-    public float DistanceToObject(NwGameObject target)
+    public float Distance(NwGameObject target)
     {
       if (target.Area != Area)
       {
         return -1.0f;
       }
 
-      return (target.Position - Position).Length();
+      return Vector3.Distance(target.Position, Position);
     }
 
     /// <summary>
@@ -168,14 +168,14 @@ namespace NWN.API
     /// </summary>
     /// <param name="target">The other object to calculate distance from.</param>
     /// <returns>The squared distance in game units, or -1 if this target is in a different area.</returns>
-    public float SqrDistanceToObject(NwGameObject target)
+    public float DistanceSquared(NwGameObject target)
     {
       if (target.Area != Area)
       {
         return -1.0f;
       }
 
-      return (target.Position - Position).LengthSquared();
+      return Vector3.DistanceSquared(target.Position, Position);
     }
 
     /// <summary>
