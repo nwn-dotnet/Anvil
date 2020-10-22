@@ -20,6 +20,7 @@ var classNWN_1_1API_1_1NwGameObject =
     [ "SetFacing", "classNWN_1_1API_1_1NwGameObject.html#ace87fd5b67fa531c337f7206521cbabe", null ],
     [ "SqrDistanceToObject", "classNWN_1_1API_1_1NwGameObject.html#a0de110e86510a8f313429fec3019055c", null ],
     [ "Area", "classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488", null ],
+    [ "CreatureAppearanceType", "classNWN_1_1API_1_1NwGameObject.html#a3aa518300b74384ab1036b0da4a5f0c1", null ],
     [ "Faction", "classNWN_1_1API_1_1NwGameObject.html#a2408cabd3c97e99e736bbfea26ed73ef", null ],
     [ "HP", "classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965", null ],
     [ "IsInConversation", "classNWN_1_1API_1_1NwGameObject.html#a2352ab8eb1884a1268d4cbbd398516b8", null ],

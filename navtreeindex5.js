@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"classNWN_1_1API_1_1NwModule.html#a5775e9a62fc0c2b989eae51253cbd517":[0,0,0,0,27,25],
 "classNWN_1_1API_1_1NwModule.html#a646b2c2904f7a1ecea8a55f7cf1c3048":[0,0,0,0,27,23],
 "classNWN_1_1API_1_1NwModule.html#a68b9f671ead16fbfae72269bce5eef78":[0,0,0,0,27,20],
 "classNWN_1_1API_1_1NwModule.html#a6a2f13c052802ed7d527eb360c099559":[0,0,0,0,27,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "functions_func_e.html":[0,3,1,4],
 "functions_func_f.html":[0,3,1,5],
 "functions_func_g.html":[0,3,1,6],
-"functions_func_h.html":[0,3,1,7],
-"functions_func_i.html":[0,3,1,8]
+"functions_func_h.html":[0,3,1,7]
 };

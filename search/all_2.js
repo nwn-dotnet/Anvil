@@ -24,13 +24,14 @@ var searchData=
   ['create_92',['Create',['../classNWN_1_1API_1_1NwArea.html#a5414b671f5deb5cd318b1f13fb70211f',1,'NWN.API.NwArea.Create()'],['../classNWN_1_1API_1_1NwCreature.html#a36c8243a16892c95520b3c967eba73db',1,'NWN.API.NwCreature.Create()'],['../classNWN_1_1API_1_1NwItem.html#aa01bedecd284575884575037c594b295',1,'NWN.API.NwItem.Create(string template, Location location, bool useAppearAnim=false, string newTag=null)'],['../classNWN_1_1API_1_1NwItem.html#ad800910fe3916e64433bc460393d0513',1,'NWN.API.NwItem.Create(string template, NwGameObject target=null, int stackSize=1, string newTag=null)']]],
   ['creator_93',['Creator',['../classNWN_1_1API_1_1Effect.html#a44e95e77d276d929a3c3b0d1df3072b3',1,'NWN.API.Effect.Creator()'],['../classNWN_1_1API_1_1NwAreaOfEffect.html#a08591903aebfa2d1da48be35971186bb',1,'NWN.API.NwAreaOfEffect.Creator()']]],
   ['creature_94',['Creature',['../classNWNX_1_1API_1_1Creature.html',1,'NWNX.API.Creature'],['../classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked.html#abca6c0bc08ceeb06af5ee4a68b484282',1,'NWN.API.Events.CreatureEvents.OnBlocked.Creature()'],['../classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnCombatRoundEnd.html#a56fa60e2d18eda41ba49f387732bbb9d',1,'NWN.API.Events.CreatureEvents.OnCombatRoundEnd.Creature()']]],
-  ['creatureevents_95',['CreatureEvents',['../classNWN_1_1API_1_1Events_1_1CreatureEvents.html',1,'NWN::API::Events']]],
-  ['creaturetypefilter_96',['CreatureTypeFilter',['../structNWN_1_1API_1_1CreatureTypeFilter.html',1,'NWN::API']]],
-  ['currentaction_97',['CurrentAction',['../classNWN_1_1API_1_1NwCreature.html#a0e703ce7932a32d919526d488ce4416b',1,'NWN::API::NwCreature']]],
-  ['curse_98',['Curse',['../classNWN_1_1API_1_1Effect.html#a83684d10f9ff381de0a8360aa8b1a46e',1,'NWN::API::Effect']]],
-  ['cursedflag_99',['CursedFlag',['../classNWN_1_1API_1_1NwItem.html#abec193a20012dff5c29153dddfc75991',1,'NWN::API::NwItem']]],
-  ['cutscenedominated_100',['CutsceneDominated',['../classNWN_1_1API_1_1Effect.html#ab252004bdcba739cd59e1a561a6e678b',1,'NWN::API::Effect']]],
-  ['cutsceneghost_101',['CutsceneGhost',['../classNWN_1_1API_1_1Effect.html#acae71fe8b506f02fe048d0f91486873e',1,'NWN::API::Effect']]],
-  ['cutsceneimmobilize_102',['CutsceneImmobilize',['../classNWN_1_1API_1_1Effect.html#ae10220e674bd1dfcd3f70bc14c84a11a',1,'NWN::API::Effect']]],
-  ['cutsceneparalyze_103',['CutsceneParalyze',['../classNWN_1_1API_1_1Effect.html#a28f3e2dd5d6074976b63b9f1059ceb9b',1,'NWN::API::Effect']]]
+  ['creatureappearancetype_95',['CreatureAppearanceType',['../classNWN_1_1API_1_1NwGameObject.html#a3aa518300b74384ab1036b0da4a5f0c1',1,'NWN::API::NwGameObject']]],
+  ['creatureevents_96',['CreatureEvents',['../classNWN_1_1API_1_1Events_1_1CreatureEvents.html',1,'NWN::API::Events']]],
+  ['creaturetypefilter_97',['CreatureTypeFilter',['../structNWN_1_1API_1_1CreatureTypeFilter.html',1,'NWN::API']]],
+  ['currentaction_98',['CurrentAction',['../classNWN_1_1API_1_1NwCreature.html#a0e703ce7932a32d919526d488ce4416b',1,'NWN::API::NwCreature']]],
+  ['curse_99',['Curse',['../classNWN_1_1API_1_1Effect.html#a83684d10f9ff381de0a8360aa8b1a46e',1,'NWN::API::Effect']]],
+  ['cursedflag_100',['CursedFlag',['../classNWN_1_1API_1_1NwItem.html#abec193a20012dff5c29153dddfc75991',1,'NWN::API::NwItem']]],
+  ['cutscenedominated_101',['CutsceneDominated',['../classNWN_1_1API_1_1Effect.html#ab252004bdcba739cd59e1a561a6e678b',1,'NWN::API::Effect']]],
+  ['cutsceneghost_102',['CutsceneGhost',['../classNWN_1_1API_1_1Effect.html#acae71fe8b506f02fe048d0f91486873e',1,'NWN::API::Effect']]],
+  ['cutsceneimmobilize_103',['CutsceneImmobilize',['../classNWN_1_1API_1_1Effect.html#ae10220e674bd1dfcd3f70bc14c84a11a',1,'NWN::API::Effect']]],
+  ['cutsceneparalyze_104',['CutsceneParalyze',['../classNWN_1_1API_1_1Effect.html#a28f3e2dd5d6074976b63b9f1059ceb9b',1,'NWN::API::Effect']]]
 ];
