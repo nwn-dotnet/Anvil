@@ -409,7 +409,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Get/Set the appearance of a specified creature.
+    /// Gets or set's the appearance of a specified creature.
     /// </summary>
     public AppearanceType CreatureAppearanceType
     {
