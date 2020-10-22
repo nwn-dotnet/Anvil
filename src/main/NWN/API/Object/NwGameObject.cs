@@ -411,7 +411,7 @@ namespace NWN.API
     /// <summary>
     /// Get/Set the appearance of a specified creature.
     /// </summary>
-    public AppearanceType CreatureGetAppearanceType
+    public AppearanceType CreatureAppearanceType
     {
       get => (AppearanceType)NWScript.GetAppearanceType(this);
       set => NWScript.SetCreatureAppearanceType(this, (int)value);
