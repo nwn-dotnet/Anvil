@@ -407,5 +407,14 @@ namespace NWN.API
     {
       NWScript.DestroyObject(this, delay);
     }
+
+    /// <summary>
+    /// Gets or sets the appearance of this creature.
+    /// </summary>
+    public AppearanceType CreatureAppearanceType
+    {
+      get => (AppearanceType)NWScript.GetAppearanceType(this);
+      set => NWScript.SetCreatureAppearanceType(this, (int)value);
+    }
   }
 }
