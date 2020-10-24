@@ -1,6 +1,8 @@
 var classNWN_1_1API_1_1Location =
 [
     [ "Create", "classNWN_1_1API_1_1Location.html#a6a63718493c0a557babadb1793758ef9", null ],
+    [ "Distance", "classNWN_1_1API_1_1Location.html#ac635616881a756050eb747942f267882", null ],
+    [ "DistanceSquared", "classNWN_1_1API_1_1Location.html#a6f21d48a27b05d5f5f467d451b958d39", null ],
     [ "GetNearestCreatures", "classNWN_1_1API_1_1Location.html#a94fd7cc964ec94086be8e329bd4ca9f3", null ],
     [ "GetNearestCreatures", "classNWN_1_1API_1_1Location.html#a7091b19f26c796da0244b603482634c2", null ],
     [ "GetNearestCreatures", "classNWN_1_1API_1_1Location.html#aef01e91f7b8894ff3e72ee0ba1259548", null ],

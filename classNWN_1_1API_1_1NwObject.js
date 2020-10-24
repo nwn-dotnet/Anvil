@@ -17,6 +17,7 @@ var classNWN_1_1API_1_1NwObject =
     [ "PeekUUID", "classNWN_1_1API_1_1NwObject.html#aac0e2abb363b0ceae45603286bf50ea6", null ],
     [ "Serialize", "classNWN_1_1API_1_1NwObject.html#a3da4ac062c3df60cc420d60650626cff", null ],
     [ "SpeakString", "classNWN_1_1API_1_1NwObject.html#a18e3d56f9f6f3db910a9675458b39366", null ],
+    [ "ToString", "classNWN_1_1API_1_1NwObject.html#a968275a432b6201d9b6c635ef2d9717e", null ],
     [ "WaitForObjectContext", "classNWN_1_1API_1_1NwObject.html#a939d84e27244659e861c19659d2a0490", null ],
     [ "IsValid", "classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5", null ],
     [ "ObjectId", "classNWN_1_1API_1_1NwObject.html#aa5269deb0d931d58d06bfb4560db00e1", null ],

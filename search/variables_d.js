@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valid_1544',['Valid',['../classNWN_1_1API_1_1ItemProperty.html#ac6ab0a2e316600ec2cbbe9fde913fc9a',1,'NWN.API.ItemProperty.Valid()'],['../classNWN_1_1API_1_1Talent.html#a05d8befa1fbbec42392cb5a8f76c7aad',1,'NWN.API.Talent.Valid()']]]
+  ['userdirectory_1633',['UserDirectory',['../classNWNX_1_1API_1_1Util.html#a9a2864ea0b2315b44f2bd7d5ddcebd82',1,'NWNX::API::Util']]]
 ];

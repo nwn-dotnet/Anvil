@@ -610,6 +610,7 @@ var hierarchy =
     [ "NWN.API.MonsterHitEffect", "structNWN_1_1API_1_1MonsterHitEffect.html", null ],
     [ "NWN.API.NativeScript", "classNWN_1_1API_1_1NativeScript.html", null ],
     [ "NWN.Services.NwDateTime", "structNWN_1_1Services_1_1NwDateTime.html", null ],
+    [ "NWN.API.NwMath", "classNWN_1_1API_1_1NwMath.html", null ],
     [ "NWN.API.NwObject", "classNWN_1_1API_1_1NwObject.html", [
       [ "NWN.API.NwArea", "classNWN_1_1API_1_1NwArea.html", null ],
       [ "NWN.API.NwAreaOfEffect", "classNWN_1_1API_1_1NwAreaOfEffect.html", null ],

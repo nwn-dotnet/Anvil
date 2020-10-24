@@ -1,11 +1,11 @@
 var classNWN_1_1API_1_1NwModule =
 [
+    [ "AddJournalQuestEntry", "classNWN_1_1API_1_1NwModule.html#a8c804e25b0f5ff8fe32ef009123ffcd0", null ],
     [ "ClearTextureOverride", "classNWN_1_1API_1_1NwModule.html#a790ab71ff387ba2ba1225ec9dbb2f6c4", null ],
     [ "DestroyCampaignDatabase", "classNWN_1_1API_1_1NwModule.html#adf48eeaa5f8a391dacd9bfabec080e8e", null ],
     [ "EndGame", "classNWN_1_1API_1_1NwModule.html#a6a2f13c052802ed7d527eb360c099559", null ],
     [ "ExportAllCharacters", "classNWN_1_1API_1_1NwModule.html#ad6e1e412dd751f7c5b96a45caf809695", null ],
     [ "GetCampaignVariable< T >", "classNWN_1_1API_1_1NwModule.html#adbd637693ac6c90fef4333797609c78d", null ],
-    [ "GetObjectsByTag", "classNWN_1_1API_1_1NwModule.html#a4e6dd08340f5d64a98ef41416ad8f37a", null ],
     [ "GetWaypointByTag", "classNWN_1_1API_1_1NwModule.html#a70fc2926e36fd30c099898ce9bca52bc", null ],
     [ "SendMessageToAllDMs", "classNWN_1_1API_1_1NwModule.html#a8f6618d34cc47541b28b7102a9e19cb9", null ],
     [ "SendMessageToAllDMs", "classNWN_1_1API_1_1NwModule.html#aa327b05b2deeb6625ddb3abbcd80fc39", null ],

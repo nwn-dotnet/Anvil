@@ -8,6 +8,8 @@ var classNWN_1_1API_1_1StringExtensions =
     [ "ParseInt", "classNWN_1_1API_1_1StringExtensions.html#a275983e57b80ae121c05baf01d7c090e", null ],
     [ "ParseIntBool", "classNWN_1_1API_1_1StringExtensions.html#a211869cd9eacbb7fe5664d48b7f51fa5", null ],
     [ "ParseIntBool", "classNWN_1_1API_1_1StringExtensions.html#a03a5a66e7acdc4ed3ba4cc92f11d6ecd", null ],
+    [ "ParseObject", "classNWN_1_1API_1_1StringExtensions.html#a2cb8f930e4b51f189d043b5be2134367", null ],
+    [ "ParseObject< T >", "classNWN_1_1API_1_1StringExtensions.html#a9fa0614fe0ca8c8c297fa901c39ed73f", null ],
     [ "TryParseFloat", "classNWN_1_1API_1_1StringExtensions.html#ac71f2f92c6aaf70ba0db41f673e55321", null ],
     [ "TryParseInt", "classNWN_1_1API_1_1StringExtensions.html#a062114dd212ed3c6be43e37ba6f6e805", null ],
     [ "TryParseIntBool", "classNWN_1_1API_1_1StringExtensions.html#a7fbc9e986b985019e011f507ce09d0f2", null ]

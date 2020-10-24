@@ -93,6 +93,13 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1Location.html','');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ac635616881a756050eb747942f267882"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#ac635616881a756050eb747942f267882">Distance</a> (<a class="el" href="classNWN_1_1API_1_1Location.html">Location</a> target)</td></tr>
+<tr class="memdesc:ac635616881a756050eb747942f267882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance to the target.<br  />
+ If you only need to compare the distance, you can compare the squared distance using <a class="el" href="classNWN_1_1API_1_1Location.html#a6f21d48a27b05d5f5f467d451b958d39" title="Returns the squared distance to the target.">DistanceSquared</a> to avoid a costly sqrt operation.  <a href="classNWN_1_1API_1_1Location.html#ac635616881a756050eb747942f267882">More...</a><br /></td></tr>
+<tr class="separator:ac635616881a756050eb747942f267882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f21d48a27b05d5f5f467d451b958d39"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#a6f21d48a27b05d5f5f467d451b958d39">DistanceSquared</a> (<a class="el" href="classNWN_1_1API_1_1Location.html">Location</a> target)</td></tr>
+<tr class="memdesc:a6f21d48a27b05d5f5f467d451b958d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the squared distance to the target.  <a href="classNWN_1_1API_1_1Location.html#a6f21d48a27b05d5f5f467d451b958d39">More...</a><br /></td></tr>
+<tr class="separator:a6f21d48a27b05d5f5f467d451b958d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a687de39ab56544254cae11ea0f35fea9"><td class="memItemLeft" align="right" valign="top"><a id="a687de39ab56544254cae11ea0f35fea9"></a>
 IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetObjectsInShape&lt; T &gt;</b> (Shape shape, float size, bool losCheck, Vector3 origin=default)</td></tr>
 <tr class="separator:a687de39ab56544254cae11ea0f35fea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,6 +149,78 @@ Properties</h2></td></tr>
 <tr class="memdesc:ae2a469bd1f8713a836045fea38e16fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the z-offset for the walkmesh at this location.  <a href="classNWN_1_1API_1_1Location.html#ae2a469bd1f8713a836045fea38e16fd9">More...</a><br /></td></tr>
 <tr class="separator:ae2a469bd1f8713a836045fea38e16fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac635616881a756050eb747942f267882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac635616881a756050eb747942f267882">&#9670;&nbsp;</a></span>Distance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float NWN.API.Location.Distance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the distance to the target.<br  />
+ If you only need to compare the distance, you can compare the squared distance using <a class="el" href="classNWN_1_1API_1_1Location.html#a6f21d48a27b05d5f5f467d451b958d39" title="Returns the squared distance to the target.">DistanceSquared</a> to avoid a costly sqrt operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The other location to calculate distance between.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance in game units, or -1 if the target is in a different area.</dd></dl>
+
+</div>
+</div>
+<a id="a6f21d48a27b05d5f5f467d451b958d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f21d48a27b05d5f5f467d451b958d39">&#9670;&nbsp;</a></span>DistanceSquared()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float NWN.API.Location.DistanceSquared </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the squared distance to the target. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The other location to calculate distance between.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The squared distance in game units, or -1 if the target is in a different area.</dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Property Documentation</h2>
 <a id="add8f5a9e2bef4cc69334d922c3b6fadc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#add8f5a9e2bef4cc69334d922c3b6fadc">&#9670;&nbsp;</a></span>Area</h2>

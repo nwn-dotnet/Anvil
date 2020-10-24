@@ -1,12 +1,18 @@
 var classNWN_1_1API_1_1NwPlayer =
 [
+    [ "ActionExamine", "classNWN_1_1API_1_1NwPlayer.html#ade38df74cc5476235db8ee7b6d4611a4", null ],
     [ "ActionStartConversation", "classNWN_1_1API_1_1NwPlayer.html#a5168c6128e41c3ea0135d265218a17fe", null ],
+    [ "AddHenchmen", "classNWN_1_1API_1_1NwPlayer.html#af3f1cb084d1b576c18d6ac4545f7069f", null ],
+    [ "AddJournalQuestEntry", "classNWN_1_1API_1_1NwPlayer.html#a654c1f34ff2ea374f6a3b8c964f953af", null ],
     [ "AddToParty", "classNWN_1_1API_1_1NwPlayer.html#a9fdcbfba386e897d9274c39f9261ccf2", null ],
     [ "BootPlayer", "classNWN_1_1API_1_1NwPlayer.html#a84463c4cbc13d16a74815fa277628d1e", null ],
     [ "ClearTextureOverride", "classNWN_1_1API_1_1NwPlayer.html#ac568f63e914766242097f50f667ff73d", null ],
     [ "EnterTargetingMode", "classNWN_1_1API_1_1NwPlayer.html#a96dae8e2924fb8a86d94627707ab8228", null ],
     [ "ExportCharacter", "classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802", null ],
+    [ "GetAssociates", "classNWN_1_1API_1_1NwPlayer.html#a306f88d1b4d1712321241db326dbb10a", null ],
     [ "GetCampaignVariable< T >", "classNWN_1_1API_1_1NwPlayer.html#a883a0c91867613bbfaf74a6606b73a9e", null ],
+    [ "OpenInventory", "classNWN_1_1API_1_1NwPlayer.html#a7a438e1b7f0252be539bba06f35c6332", null ],
+    [ "OpenInventory", "classNWN_1_1API_1_1NwPlayer.html#a50b61c337ac6f2d52b15b74780e79961", null ],
     [ "PostString", "classNWN_1_1API_1_1NwPlayer.html#af8cde1180fa89713242f00b074afda62", null ],
     [ "RemoveFromCurrentParty", "classNWN_1_1API_1_1NwPlayer.html#af579918539409eac24ff1ad318af22b1", null ],
     [ "SendServerMessage", "classNWN_1_1API_1_1NwPlayer.html#a58596987e186e22848385be2d2f463d5", null ],
