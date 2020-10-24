@@ -1099,5 +1099,17 @@ namespace NWN.API
     /// </summary>
     public void ForceRest()
       => NWScript.ForceRest(this);
+
+    /// <summary>
+    /// Returns the model number being used for the body part and creature.
+    /// </summary>
+    public CreatureModelType GetCreatureBodyPart(CreaturePart creaturePart)
+      => (CreatureModelType)NWScript.GetCreatureBodyPart((int)creaturePart, this);
+
+     /// <summary>
+     /// Sets the body part model to be used on the creature.
+     /// </summary>
+    public void SetCreatureBodyPart(CreaturePart creaturePart, CreatureModelType creatureModel)
+      => NWScript.SetCreatureBodyPart((int)creaturePart, (int)creatureModel, this);
   }
 }
