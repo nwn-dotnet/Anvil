@@ -126,6 +126,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Sets the highlight color of this object.
+    /// </summary>
+    public Color HiliteColor
+    {
+      set => NWScript.SetObjectHiliteColor(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets all items belonging to this object's inventory.
     /// </summary>
     public IEnumerable<NwItem> Items
@@ -141,33 +149,33 @@ namespace NWN.API
 
     /// <summary>
     /// Returns the distance to the target.<br/>
-    /// If you only need to compare the distance, you can compare the squared distance using <see cref="SqrDistanceToObject"/> to avoid a costly sqrt operation.
+    /// If you only need to compare the distance, you can compare the squared distance using <see cref="DistanceSquared"/> to avoid a costly sqrt operation.
     /// </summary>
     /// <param name="target">The other object to calculate distance from.</param>
-    /// <returns>The distance in game units, or -1 if this target is in a different area.</returns>
-    public float DistanceToObject(NwGameObject target)
+    /// <returns>The distance in game units, or -1 if the target is in a different area.</returns>
+    public float Distance(NwGameObject target)
     {
       if (target.Area != Area)
       {
         return -1.0f;
       }
 
-      return (target.Position - Position).Length();
+      return Vector3.Distance(target.Position, Position);
     }
 
     /// <summary>
     /// Returns the squared distance to the target.
     /// </summary>
     /// <param name="target">The other object to calculate distance from.</param>
-    /// <returns>The squared distance in game units, or -1 if this target is in a different area.</returns>
-    public float SqrDistanceToObject(NwGameObject target)
+    /// <returns>The squared distance in game units, or -1 if the target is in a different area.</returns>
+    public float DistanceSquared(NwGameObject target)
     {
       if (target.Area != Area)
       {
         return -1.0f;
       }
 
-      return (target.Position - Position).LengthSquared();
+      return Vector3.DistanceSquared(target.Position, Position);
     }
 
     /// <summary>
@@ -218,22 +226,34 @@ namespace NWN.API
       => NWScript.SetColor(this, (int) colorChannel, newColor);
 
     /// <summary>
+    /// Sets whether this object is destroyable.
+    /// </summary>
+    /// <param name="destroyable">If false, this creature does not fade out on death, but sticks around as a corpse.</param>
+    /// <param name="raiseable">If true, this creature can be raised via resurrection.</param>
+    /// <param name="selectableWhenDead">If true, this creature is selectable after death.</param>
+    public async Task SetIsDestroyable(bool destroyable, bool raiseable = true, bool selectableWhenDead = false)
+    {
+      await WaitForObjectContext();
+      NWScript.SetIsDestroyable(destroyable.ToInt(), raiseable.ToInt(), selectableWhenDead.ToInt());
+    }
+
+    /// <summary>
     /// Plays the specified animation.
     /// </summary>
     /// <param name="animation">Constant value representing the animation to play.</param>
     /// <param name="animSpeed">Speed to play the animation.</param>
     /// <param name="queueAsAction">If true, enqueues animation playback in the object's action queue.</param>
     /// <param name="duration">Duration to keep animating. Not used in fire and forget animations.</param>
-    public async Task PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, float duration = 0.0f)
+    public async Task PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, TimeSpan duration = default)
     {
       await WaitForObjectContext();
       if (!queueAsAction)
       {
-        NWScript.PlayAnimation((int) animation, animSpeed, duration);
+        NWScript.PlayAnimation((int) animation, animSpeed, (float) duration.TotalSeconds);
       }
       else
       {
-        NWScript.ActionPlayAnimation((int) animation, animSpeed, duration);
+        NWScript.ActionPlayAnimation((int) animation, animSpeed, (float) duration.TotalSeconds);
       }
     }
 
@@ -397,6 +417,16 @@ namespace NWN.API
     {
       await WaitForObjectContext();
       NWScript.ActionCastSpellAtLocation((int) spell, target, (int) metaMagic, cheat.ToInt(), (int) projectilePathType, instant.ToInt());
+    }
+
+    /// <summary>
+    /// Instructs this object to do nothing for the specified duration, before continuing with the next item in the action queue.
+    /// </summary>
+    /// <param name="duration">The time to wait.</param>
+    public async Task ActionWait(TimeSpan duration)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionWait((float) duration.TotalSeconds);
     }
 
     /// <summary>

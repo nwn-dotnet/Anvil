@@ -30,7 +30,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Healer = (NwCreature) objSelf;
-        Target = NWScript.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID")).ToNwObject<NwCreature>();
+        Target = EventsPlugin.GetEventData("TARGET_OBJECT_ID").ParseObject<NwCreature>();
         AmountHealed = EventsPlugin.GetEventData("HEAL_AMOUNT").ParseInt();
       }
     }
@@ -56,7 +56,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Healer = (NwCreature) objSelf;
-        Target = NWScript.StringToObject(EventsPlugin.GetEventData("TARGET_OBJECT_ID")).ToNwObject<NwCreature>();
+        Target = EventsPlugin.GetEventData("TARGET_OBJECT_ID").ParseObject<NwCreature>();
         AmountHealed = EventsPlugin.GetEventData("HEAL_AMOUNT").ParseInt();
       }
     }

@@ -20,7 +20,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature)objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
+        Item = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
         Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
       }
 
@@ -45,7 +45,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature)objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
+        Item = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
         Slot = (InventorySlot)EventsPlugin.GetEventData("SLOT").ParseInt();
         Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
       }
@@ -67,7 +67,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature)objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM_OBJECT_ID")).ToNwObject<NwItem>();
+        Item = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
       }
     }
 
@@ -81,7 +81,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature)objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM")).ToNwObject<NwItem>();
+        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
       }
     }
 
@@ -97,8 +97,8 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature)objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM")).ToNwObject<NwItem>();
-        Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
+        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
+        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
       }
     }
 
@@ -114,8 +114,8 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature)objSelf;
-        Item = NWScript.StringToObject(EventsPlugin.GetEventData("ITEM")).ToNwObject<NwItem>();
-        Store = NWScript.StringToObject(EventsPlugin.GetEventData("STORE")).ToNwObject<NwStore>();
+        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
+        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
       }
     }
   }

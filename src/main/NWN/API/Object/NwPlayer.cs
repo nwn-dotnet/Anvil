@@ -81,6 +81,26 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets all creatures that are associated with this player.
+    /// </summary>
+    /// <param name="associateType">The type of associates to resolve.</param>
+    /// <returns>An enumeration containing all creatures that are associated.</returns>
+    public IEnumerable<NwCreature> GetAssociates(AssociateType associateType)
+    {
+      int i;
+      uint obj;
+
+      for (i = 1, obj = NWScript.GetAssociate(i); obj != INVALID; i++, obj = NWScript.GetAssociate(i))
+      {
+        NwCreature next = obj.ToNwObjectSafe<NwCreature>();
+        if (next != null)
+        {
+          yield return next;
+        }
+      }
+    }
+
+    /// <summary>
     /// Boots this player from the server.
     /// </summary>
     /// <param name="reason">An optional message to show to the player.</param>
@@ -91,14 +111,49 @@ namespace NWN.API
     /// Adds this player to the specified party leader's party.
     /// </summary>
     /// <param name="partyLeader">The party leader of the party to join.</param>
-    public void AddToParty(NwPlayer partyLeader) => NWScript.AddToParty(this, partyLeader);
+    public void AddToParty(NwPlayer partyLeader)
+      => NWScript.AddToParty(this, partyLeader);
 
     /// <summary>
     /// Removes this player from their current party.
     /// </summary>
-    public void RemoveFromCurrentParty() => NWScript.RemoveFromParty(this);
+    public void RemoveFromCurrentParty()
+      => NWScript.RemoveFromParty(this);
 
     /// <summary>
+    /// Attaches the specified creature to this player as a henchmen.
+    /// </summary>
+    /// <param name="henchmen">The henchmen to attach to this player.</param>
+    public void AddHenchmen(NwCreature henchmen)
+      => NWScript.AddHenchman(this, henchmen);
+
+    /// <summary>
+    /// Adds an entry to this player's journal.
+    /// </summary>
+    /// <param name="categoryTag">The tag of the Journal category (case-sensitive).</param>
+    /// <param name="entryId">The ID of the Journal entry.</param>
+    /// <param name="allPartyMembers">If true, this entry is added to all players in this player's party.</param>
+    /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
+    public void AddJournalQuestEntry(string categoryTag, int entryId, bool allPartyMembers = true, bool allowOverrideHigher = false)
+      => NWScript.AddJournalQuestEntry(categoryTag, entryId, this, allPartyMembers.ToInt(), false.ToInt(), allowOverrideHigher.ToInt());
+
+    /// <summary>
+    /// Instructs this player to open their inventory.
+    /// </summary>
+    public void OpenInventory()
+      => NWScript.OpenInventory(this, this);
+
+    /// <summary>
+    /// Opens the specified creatures inventory, and shows it to this player.<br/>
+    /// </summary>
+    /// <remarks>
+    /// DMs can see any player or creature's inventory. Players can only view their own inventory, or that of a henchmen.
+    /// </remarks>
+    /// <param name="target">The target creature's inventory to view.</param>
+    public void OpenInventory(NwCreature target)
+      => NWScript.OpenInventory(target, this);
+
+      /// <summary>
     /// Gets the specified campaign variable for this player.
     /// </summary>
     /// <param name="campaign">The name of the campaign.</param>
@@ -113,10 +168,12 @@ namespace NWN.API
     /// </summary>
     /// <param name="message">The message to send.</param>
     /// <param name="color">A color to apply to the message.</param>
-    public void SendServerMessage(string message, Color color) => NWScript.SendMessageToPC(this, message.ColorString(color));
+    public void SendServerMessage(string message, Color color)
+      => NWScript.SendMessageToPC(this, message.ColorString(color));
 
     /// <inheritdoc cref="SendServerMessage(string,NWN.API.Color)"/>
-    public void SendServerMessage(string message) => NWScript.SendMessageToPC(this, message);
+    public void SendServerMessage(string message)
+      => NWScript.SendMessageToPC(this, message);
 
     /// <summary>
     /// Sets if this player should like, or unlike the specified player.
@@ -149,6 +206,16 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Shows an examine dialog for the specified target.
+    /// </summary>
+    /// <param name="target">The target to examine.</param>
+    public async Task ActionExamine(NwGameObject target)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionExamine(target);
+    }
+
+    /// <summary>
     /// Changes the direction this player's camera is facing.
     /// </summary>
     /// <param name="direction">Horizontal angle from East in degrees. -1 to leave the angle unmodified.</param>
@@ -164,7 +231,8 @@ namespace NWN.API
     /// <summary>
     /// Forces this player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc).
     /// </summary>
-    public void ExportCharacter() => NWScript.ExportSingleCharacter(this);
+    public void ExportCharacter()
+      => NWScript.ExportSingleCharacter(this);
 
     /// <summary>
     /// Sends this player to a new server, where the player's character will connect and log in.
@@ -190,7 +258,8 @@ namespace NWN.API
     /// <param name="motor">Which motors to vibrate.</param>
     /// <param name="strength">The intensity of the vibration.</param>
     /// <param name="duration">How long to vibrate for.</param>
-    public void Vibrate(VibratorMotor motor, float strength, TimeSpan duration) => NWScript.Vibrate(this, (int) motor, strength, (float) duration.TotalSeconds);
+    public void Vibrate(VibratorMotor motor, float strength, TimeSpan duration)
+      => NWScript.Vibrate(this, (int) motor, strength, (float) duration.TotalSeconds);
 
     /// <summary>
     /// Unlock an achievement for this player who must be logged in.
@@ -232,15 +301,8 @@ namespace NWN.API
     /// <param name="font">If specified, the message will be rendered with the specified font instead of the default console font.</param>
     public void PostString(string message, int xPos, int yPos, ScreenAnchor anchor, float life, Color? start = null, Color? end = null, int id = 0, string font = "")
     {
-      if (start == null)
-      {
-        start = Color.WHITE;
-      }
-
-      if (end == null)
-      {
-        end = Color.WHITE;
-      }
+      start ??= Color.WHITE;
+      end ??= Color.WHITE;
 
       NWScript.PostString(this, message, xPos, yPos, (int) anchor, life, start.Value.ToInt(), end.Value.ToInt(), id, font);
     }

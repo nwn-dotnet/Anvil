@@ -22,7 +22,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Player = (NwPlayer) objSelf;
-        Area = NWScript.StringToObject(EventsPlugin.GetEventData("AREA")).ToNwObject<NwArea>();
+        Area = EventsPlugin.GetEventData("AREA").ParseObject<NwArea>();
         NewToModule = EventsPlugin.GetEventData("IS_DM").ParseInt().ToBool();
       }
     }
@@ -42,7 +42,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Player = (NwPlayer) objSelf;
-        Area = NWScript.StringToObject(EventsPlugin.GetEventData("AREA")).ToNwObject<NwArea>();
+        Area = EventsPlugin.GetEventData("AREA").ParseObject<NwArea>();
         NewToModule = EventsPlugin.GetEventData("IS_DM").ParseInt().ToBool();
       }
     }

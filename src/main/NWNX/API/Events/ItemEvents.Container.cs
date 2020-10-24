@@ -25,7 +25,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Container = (NwItem)objSelf;
-        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwCreature>();
+        Owner = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
       }
     }
 
@@ -45,7 +45,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Container = (NwItem)objSelf;
-        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwCreature>();
+        Owner = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
       }
     }
 
@@ -65,7 +65,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Container = (NwItem)objSelf;
-        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwCreature>();
+        Owner = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
       }
     }
 
@@ -85,7 +85,7 @@ namespace NWNX.API.Events
       protected override void PrepareEvent(NwObject objSelf)
       {
         Container = (NwItem)objSelf;
-        Owner = NWScript.StringToObject(EventsPlugin.GetEventData("OWNER")).ToNwObject<NwCreature>();
+        Owner = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
       }
     }
   }
