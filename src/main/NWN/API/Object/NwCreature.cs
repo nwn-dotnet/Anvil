@@ -1120,5 +1120,14 @@ namespace NWN.API
       get => (CreatureWingType)NWScript.GetCreatureWingType(this);
       set => NWScript.SetCreatureWingType((int)value, this);
     }
+
+    /// <summary>
+    /// Gets or sets the tail type of the creature.
+    /// </summary>
+    public CreatureTailType TailType
+    {
+      get => (CreatureTailType)NWScript.GetCreatureTailType(this);
+      set => NWScript.SetCreatureTailType((int)value, this);
+    }
   }
 }
