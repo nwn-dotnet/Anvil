@@ -327,6 +327,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a22fea4250a1b791ea6e75a9d27209a84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a22fea4250a1b791ea6e75a9d27209a84">ForceRest</a> ()</td></tr>
 <tr class="memdesc:a22fea4250a1b791ea6e75a9d27209a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantly gives this creature the benefits of a rest (restored hitpoints, spells, feats, etc...).  <a href="classNWN_1_1API_1_1NwCreature.html#a22fea4250a1b791ea6e75a9d27209a84">More...</a><br /></td></tr>
 <tr class="separator:a22fea4250a1b791ea6e75a9d27209a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34a90b54acab49dc0b394f0809db1879"><td class="memItemLeft" align="right" valign="top">CreatureModelType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a34a90b54acab49dc0b394f0809db1879">GetCreatureBodyPart</a> (CreaturePart creaturePart)</td></tr>
+<tr class="memdesc:a34a90b54acab49dc0b394f0809db1879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the model number being used for the body part and creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a34a90b54acab49dc0b394f0809db1879">More...</a><br /></td></tr>
+<tr class="separator:a34a90b54acab49dc0b394f0809db1879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8faea3c8f3024a2f9a6c80790fad54c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a8faea3c8f3024a2f9a6c80790fad54c5">SetCreatureBodyPart</a> (CreaturePart creaturePart, CreatureModelType creatureModel)</td></tr>
+<tr class="memdesc:a8faea3c8f3024a2f9a6c80790fad54c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the body part model to be used on the creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a8faea3c8f3024a2f9a6c80790fad54c5">More...</a><br /></td></tr>
+<tr class="separator:a8faea3c8f3024a2f9a6c80790fad54c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NWN.API.NwGameObject</a></td></tr>
 <tr class="memitem:abde70aeaa8536d9b5988dd402928709e inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#abde70aeaa8536d9b5988dd402928709e">Distance</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:abde70aeaa8536d9b5988dd402928709e inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance to the target.<br  />
@@ -2504,6 +2510,26 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
+<a id="a34a90b54acab49dc0b394f0809db1879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34a90b54acab49dc0b394f0809db1879">&#9670;&nbsp;</a></span>GetCreatureBodyPart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CreatureModelType NWN.API.NwCreature.GetCreatureBodyPart </td>
+          <td>(</td>
+          <td class="paramtype">CreaturePart&#160;</td>
+          <td class="paramname"><em>creaturePart</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the model number being used for the body part and creature. </p>
+
+</div>
+</div>
 <a id="ad2fbd07954a24a92a6dd2cc612baab9d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad2fbd07954a24a92a6dd2cc612baab9d">&#9670;&nbsp;</a></span>GetItemInSlot()</h2>
 
@@ -3039,6 +3065,36 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a8faea3c8f3024a2f9a6c80790fad54c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8faea3c8f3024a2f9a6c80790fad54c5">&#9670;&nbsp;</a></span>SetCreatureBodyPart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwCreature.SetCreatureBodyPart </td>
+          <td>(</td>
+          <td class="paramtype">CreaturePart&#160;</td>
+          <td class="paramname"><em>creaturePart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CreatureModelType&#160;</td>
+          <td class="paramname"><em>creatureModel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the body part model to be used on the creature. </p>
 
 </div>
 </div>
