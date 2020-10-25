@@ -317,5 +317,11 @@ namespace NWN.API
     /// <param name="badTargetCursor">The cursor to display if the player is hovering over an invalid selection.</param>
     public void EnterTargetingMode(ObjectType validObjectTypes, MouseCursor mouseCursor = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
       => NWScript.EnterTargetingMode(this, (int) validObjectTypes, (int) mouseCursor, (int) badTargetCursor);
-  }
+
+    /// <summary>
+    /// Briefly displays a string ref as ambient text above targets head.
+    /// </summary>
+      public void FloatingTextStrRef(int strRefToDisplay, NwPlayer player, bool broadcastToFaction)
+        => NWScript.FloatingTextStrRefOnCreature(strRefToDisplay, player, broadcastToFaction.ToInt());
+    }
 }
