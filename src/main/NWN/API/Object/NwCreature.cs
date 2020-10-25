@@ -1111,5 +1111,14 @@ namespace NWN.API
      /// </summary>
     public void SetCreatureBodyPart(CreaturePart creaturePart, CreatureModelType creatureModel)
       => NWScript.SetCreatureBodyPart((int)creaturePart, (int)creatureModel, this);
+
+    /// <summary>
+    /// Gets or sets the wing type of the creature.
+    /// </summary>
+    public CreatureWingType WingType
+    {
+      get => (CreatureWingType)NWScript.GetCreatureWingType(this);
+      set => NWScript.SetCreatureWingType((int)value, this);
+    }
   }
 }
