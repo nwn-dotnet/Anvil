@@ -1144,5 +1144,11 @@ namespace NWN.API
       get => NWScript.GetCreatureExploresMinimap(this).ToBool();
       set => NWScript.SetCreatureExploresMinimap(this, value.ToInt());
     }
+
+    /// <summary>
+    /// Returns the default level up package
+    /// </summary>
+    public PackageType StartingPackage
+      => (PackageType)NWScript.GetCreatureStartingPackage(this);
   }
 }
