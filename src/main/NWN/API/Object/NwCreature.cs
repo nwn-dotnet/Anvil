@@ -1146,7 +1146,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the default level up package.
+    /// Determine the default level up package.
     /// </summary>
     public PackageType StartingPackage
       => (PackageType)NWScript.GetCreatureStartingPackage(this);
