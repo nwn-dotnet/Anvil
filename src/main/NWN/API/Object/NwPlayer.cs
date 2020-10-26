@@ -321,7 +321,7 @@ namespace NWN.API
     /// <summary>
     /// Briefly displays a string ref as ambient text above targets head.
     /// </summary>
-      public void FloatingTextStrRef(int strRefToDisplay, NwPlayer player, bool broadcastToFaction)
+    public void FloatingTextStrRef(int strRefToDisplay, NwPlayer player, bool broadcastToFaction)
         => NWScript.FloatingTextStrRefOnCreature(strRefToDisplay, player, broadcastToFaction.ToInt());
     }
 }
