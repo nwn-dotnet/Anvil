@@ -1137,7 +1137,7 @@ namespace NWN.API
       => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(creature);
 
     /// <summary>
-    /// Get or sets whether the creature will auto-explore the minimap as it walks around.
+    /// Gets or sets a value indicating whether the creature will auto-explore the minimap as it walks around.
     /// </summary>
     public bool ExploresMinimap
     {
@@ -1152,7 +1152,7 @@ namespace NWN.API
       => (PackageType)NWScript.GetCreatureStartingPackage(this);
 
     /// <summary>
-    /// Determines the best talent from a group of talents.
+    /// Determine the best talent from a group of talents.
     /// </summary>
     public TalentCategory TalentBest(TalentCategory category, int maxCr)
       => (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
