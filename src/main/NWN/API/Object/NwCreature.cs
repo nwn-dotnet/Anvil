@@ -1156,5 +1156,11 @@ namespace NWN.API
     /// </summary>
     public TalentCategory TalentBest(TalentCategory category, int maxCr)
       => (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
+
+    /// <summary>
+    /// Retrieves a random talent from a group of talents possessed.
+    /// </summary>
+    public TalentCategory TalentRandom(TalentCategory category)
+      => (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
   }
 }
