@@ -1170,7 +1170,7 @@ namespace NWN.API
       => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
 
     /// <summary>
-    /// Determines was spawned from an encounter.
+    /// Gets a value indicating whether was spawned from an encounter.
     /// </summary>
     public bool IsEncounter
       => NWScript.GetIsEncounterCreature(this).ToBool();
