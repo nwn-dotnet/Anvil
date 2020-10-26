@@ -1168,5 +1168,11 @@ namespace NWN.API
     /// </summary>
     public FamiliarCreatureType FamiliarType
       => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
+
+    /// <summary>
+    /// Determines was spawned from an encounter.
+    /// </summary>
+    public bool IsEncounter
+      => NWScript.GetIsEncounterCreature(this).ToBool();
   }
 }
