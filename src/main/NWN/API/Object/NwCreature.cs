@@ -1129,5 +1129,11 @@ namespace NWN.API
       get => (CreatureTailType)NWScript.GetCreatureTailType(this);
       set => NWScript.SetCreatureTailType((int)value, this);
     }
+
+    /// <summary>
+    /// Get a creature's animal companion creature type.
+    /// </summary>
+    public AnimalCompanionCreatureType AnimalCompanionType(NwCreature creature)
+      => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(creature);
   }
 }
