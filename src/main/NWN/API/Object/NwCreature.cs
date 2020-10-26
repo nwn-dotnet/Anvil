@@ -1162,5 +1162,11 @@ namespace NWN.API
     /// </summary>
     public TalentCategory TalentRandom(TalentCategory category)
       => (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
+
+    /// <summary>
+    /// Gets the PC's familiar type.
+    /// </summary>
+    public FamiliarCreatureType FamiliarType
+      => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
   }
 }
