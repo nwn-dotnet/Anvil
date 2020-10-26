@@ -1174,5 +1174,11 @@ namespace NWN.API
     /// </summary>
     public bool IsEncounter
       => NWScript.GetIsEncounterCreature(this).ToBool();
+
+    /// <summary>
+    /// Gives xPAmount adjusted by any multiclass penalty.
+    /// </summary>
+    public void GiveXp(int xPAmount)
+      => NWScript.GiveXPToCreature(this, xPAmount);
   }
 }
