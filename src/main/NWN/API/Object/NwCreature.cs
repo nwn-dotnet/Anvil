@@ -1152,7 +1152,7 @@ namespace NWN.API
       => (PackageType)NWScript.GetCreatureStartingPackage(this);
 
     /// <summary>
-    /// Determine the best talent from a group of talents.
+    /// Gets the best talent from a group of talents.
     /// </summary>
     public TalentCategory TalentBest(TalentCategory category, int maxCr)
       => (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
