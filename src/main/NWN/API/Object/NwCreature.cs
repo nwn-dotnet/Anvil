@@ -1135,5 +1135,14 @@ namespace NWN.API
     /// </summary>
     public AnimalCompanionCreatureType AnimalCompanionType(NwCreature creature)
       => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(creature);
+
+    /// <summary>
+    /// Get or sets whether the creature will auto-explore the minimap as it walks around.
+    /// </summary>
+    public bool ExploresMinimap
+    {
+      get => NWScript.GetCreatureExploresMinimap(this).ToBool();
+      set => NWScript.SetCreatureExploresMinimap(this, value.ToInt());
+    }
   }
 }
