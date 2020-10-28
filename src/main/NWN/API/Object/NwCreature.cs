@@ -1219,5 +1219,11 @@ namespace NWN.API
     /// </summary>
     public int ArcaneSpellFailure()
       => NWScript.GetArcaneSpellFailure(this);
+
+    /// <summary>
+    /// Gets associate
+    /// </summary>
+    public AssociateType Associate(AssociateType associate, int nTh = 1)
+      => (AssociateType)NWScript.GetAssociate((int)associate, this, nTh);
   }
 }
