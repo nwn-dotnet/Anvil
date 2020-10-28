@@ -1247,5 +1247,11 @@ namespace NWN.API
     /// </summary>
     public Spell EffectSpellId(Effect effect)
       => (Spell)NWScript.GetEffectSpellId(effect);
+
+    /// <summary>
+    /// Gets familiar's name.
+    /// </summary>
+    public string FamiliarName(NwCreature creature)
+      => NWScript.GetFamiliarName(creature);
     }
 }
