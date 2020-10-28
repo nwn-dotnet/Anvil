@@ -1195,5 +1195,17 @@ namespace NWN.API
     /// </summary>
     public Ability AbilityModifier(Ability ability)
       => (Ability)NWScript.GetAbilityModifier((int)ability, this);
+
+    /// <summary>
+    /// Gets the action mode status.
+    /// </summary>
+    public ActionMode GetActionMode(NwCreature creature, ActionMode mode)
+      => (ActionMode)NWScript.GetActionMode(creature, (int)mode);
+
+    /// <summary>
+    /// Gets the action mode status.
+    /// </summary>
+    public void SetActionMode(NwCreature creature, ActionMode mode, bool status)
+      => NWScript.SetActionMode(creature, (int)mode, status.ToInt());
   }
 }
