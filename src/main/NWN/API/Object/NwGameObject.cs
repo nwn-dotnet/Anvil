@@ -446,5 +446,11 @@ namespace NWN.API
       get => (AppearanceType)NWScript.GetAppearanceType(this);
       set => NWScript.SetCreatureAppearanceType(this, (int)value);
     }
+
+    /// <summary>
+    /// Gets the distance in meters between two objects
+    /// </summary>
+    public float DistanceBetween(NwGameObject objectA, NwGameObject objectB)
+      => NWScript.GetDistanceBetween(objectA, objectB);
   }
 }
