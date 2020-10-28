@@ -1227,12 +1227,12 @@ namespace NWN.API
       => (AssociateType)NWScript.GetAssociate((int)associate, this, nTh);
 
     /// <summary>
-    /// Gets the defensive casting mode status.
+    /// Gets a value indicating the defensive casting mode status.
     /// </summary>
     public bool DefensiveCastingMode => NWScript.GetDefensiveCastingMode(this).ToBool();
 
     /// <summary>
-    /// Gets if currently searching.
+    /// Gets a value indicating whether if currently searching.
     /// </summary>
     public bool DetectMode => NWScript.GetDetectMode(this).ToBool();
     }
