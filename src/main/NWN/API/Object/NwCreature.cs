@@ -1189,5 +1189,11 @@ namespace NWN.API
       get => (AiLevel)NWScript.GetAILevel(this);
       set => NWScript.SetAILevel(this, (int)(AiLevel)value);
     }
+
+    /// <summary>
+    /// Get's ability modifier for a specified ability.
+    /// </summary>
+    public Ability AbilityModifier(Ability ability)
+      => (Ability)NWScript.GetAbilityModifier((int)ability, this);
   }
 }
