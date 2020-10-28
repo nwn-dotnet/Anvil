@@ -1203,7 +1203,7 @@ namespace NWN.API
       => (ActionMode)NWScript.GetActionMode(creature, (int)mode);
 
     /// <summary>
-    /// Gets the action mode status.
+    /// Sets the action mode status.
     /// </summary>
     public void SetActionMode(NwCreature creature, ActionMode mode, bool status)
       => NWScript.SetActionMode(creature, (int)mode, status.ToInt());
