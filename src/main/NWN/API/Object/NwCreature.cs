@@ -1241,5 +1241,11 @@ namespace NWN.API
     /// </summary>
     public int EffectCasterLevel(Effect effect)
       => NWScript.GetEffectCasterLevel(effect);
+
+    /// <summary>
+    /// Gets the constant of the spell that applied the effect (SPELL_*).
+    /// </summary>
+    public Spell EffectSpellId(Effect effect)
+      => (Spell)NWScript.GetEffectSpellId(effect);
     }
 }
