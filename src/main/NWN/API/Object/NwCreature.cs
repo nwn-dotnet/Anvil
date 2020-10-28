@@ -1253,5 +1253,14 @@ namespace NWN.API
     /// </summary>
     public string FamiliarName(NwCreature creature)
       => NWScript.GetFamiliarName(creature);
+
+    /// <summary>
+    /// Gets or sets the footstep type.
+    /// </summary>
+    public FootstepType Footstep
+    {
+      get => (FootstepType)NWScript.GetFootstepType(this);
+      set => NWScript.SetFootstepType((int)value, this);
     }
+  }
 }
