@@ -1235,5 +1235,11 @@ namespace NWN.API
     /// Gets a value indicating whether if currently searching.
     /// </summary>
     public bool DetectMode => NWScript.GetDetectMode(this).ToBool();
+
+    /// <summary>
+    /// Gets the caster level of  who created the effect.
+    /// </summary>
+    public int EffectCasterLevel(Effect effect)
+      => NWScript.GetEffectCasterLevel(effect);
     }
 }
