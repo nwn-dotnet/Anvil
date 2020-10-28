@@ -331,7 +331,7 @@ namespace NWN.API
         => NWScript.FloatingTextStringOnCreature(stringToDisplay, player, broadcastToFaction.ToInt());
 
     /// <summary>
-    /// Gets or sets the current movement rate factor of the cutscene 'camera man'
+    /// Gets or sets the current movement rate factor of the cutscene 'camera man'.
     /// </summary>
     public float CutsceneCameraMoveRate
     {
