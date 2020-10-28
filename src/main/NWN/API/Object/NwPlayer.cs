@@ -338,5 +338,14 @@ namespace NWN.API
       get => NWScript.GetCutsceneCameraMoveRate(this);
       set => NWScript.SetCutsceneCameraMoveRate(this, value);
     }
+
+    /// <summary>
+    /// Gets or sets the current cutscene state.
+    /// </summary>
+    public int CutsceneMode
+    {
+      get => NWScript.GetCutsceneMode(this);
+      set => NWScript.SetCutsceneMode(this, value, value);
+    }
   }
 }
