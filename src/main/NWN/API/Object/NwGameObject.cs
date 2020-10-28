@@ -448,7 +448,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the distance in meters between two objects
+    /// Gets the distance in meters between two objects.
     /// </summary>
     public float DistanceBetween(NwGameObject objectA, NwGameObject objectB)
       => NWScript.GetDistanceBetween(objectA, objectB);

@@ -30,7 +30,7 @@ namespace NWN.API
     /// <summary>
     /// Gets the length of a wave (audio) file in seconds.
     /// </summary>
-    public float DialogSoundLength(int StrRef)
-      => NWScript.GetDialogSoundLength(StrRef);
+    public float DialogSoundLength(int strRef)
+      => NWScript.GetDialogSoundLength(strRef);
   }
 }
