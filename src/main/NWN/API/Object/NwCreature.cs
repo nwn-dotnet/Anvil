@@ -1213,5 +1213,11 @@ namespace NWN.API
     /// </summary>
     public string AnimalCompanionName()
       => NWScript.GetAnimalCompanionName(this);
+
+    /// <summary>
+    /// Gets arcane spell failure factor
+    /// </summary>
+    public int ArcaneSpellFailure()
+      => NWScript.GetArcaneSpellFailure(this);
   }
 }
