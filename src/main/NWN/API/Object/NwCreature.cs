@@ -1225,5 +1225,10 @@ namespace NWN.API
     /// </summary>
     public AssociateType Associate(AssociateType associate, int nTh = 1)
       => (AssociateType)NWScript.GetAssociate((int)associate, this, nTh);
-  }
+
+        /// <summary>
+        /// Gets the defensive casting mode status.
+        /// </summary>
+        public bool DefensiveCastingMode => NWScript.GetDefensiveCastingMode(this).ToBool();
+    }
 }
