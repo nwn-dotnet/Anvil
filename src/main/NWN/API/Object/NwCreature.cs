@@ -1207,5 +1207,11 @@ namespace NWN.API
     /// </summary>
     public void SetActionMode(NwCreature creature, ActionMode mode, bool status)
       => NWScript.SetActionMode(creature, (int)mode, status.ToInt());
+
+    /// <summary>
+    /// Gets animal companion creature type.
+    /// </summary>
+    public AnimalCompanionCreatureType AnimalCompanionType()
+      => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
   }
 }
