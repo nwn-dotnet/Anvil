@@ -1180,5 +1180,14 @@ namespace NWN.API
     /// </summary>
     public void GiveXp(int xPAmount)
       => NWScript.GiveXPToCreature(this, xPAmount);
+
+    /// <summary>
+    /// Gets or sets the AI (artificial intelligence) level.
+    /// </summary>
+    public AiLevel Ai
+    {
+      get => (AiLevel)NWScript.GetAILevel(this);
+      set => NWScript.SetAILevel(this, (int)(AiLevel)value);
+    }
   }
 }
