@@ -465,9 +465,15 @@ namespace NWN.API
     public bool HasInventory(NwGameObject gameObject)
       => NWScript.GetHasInventory(gameObject).ToBool();
 
-        /// <summary>
-        /// Check whether this (object) is listening for something.
-        /// </summary>
-        public bool IsListening => NWScript.GetIsListening(this).ToBool();
+    /// <summary>
+    /// Check whether this (object) is listening for something.
+    /// </summary>
+    public bool IsListening => NWScript.GetIsListening(this).ToBool();
+
+    /// <summary>
+    /// Check whether script owner's equipped weapon is able to damage a given object.
+    /// </summary>
+    public bool IsWeaponEffective(bool offHand = false)
+      => NWScript.GetIsWeaponEffective(this, offHand.ToInt()).ToBool();
     }
 }
