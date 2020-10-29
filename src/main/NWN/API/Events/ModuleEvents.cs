@@ -145,9 +145,9 @@ namespace NWN.API.Events
       public NwPlayer Player { get; private set; }
 
       /// <summary>
-      /// Gets the object that has been targeted by <see cref="Player"/>, otherwise null if a position was selected.
+      /// Gets the object that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
       /// </summary>
-      public NwGameObject TargetObject { get; private set; }
+      public NwObject TargetObject { get; private set; }
 
       /// <summary>
       /// Gets the position targeted by the player.
@@ -157,7 +157,7 @@ namespace NWN.API.Events
       protected override void PrepareEvent(NwModule objSelf)
       {
         Player = NWScript.GetLastPlayerToSelectTarget().ToNwObject<NwPlayer>();
-        TargetObject = NWScript.GetTargetingModeSelectedObject().ToNwObject<NwGameObject>();
+        TargetObject = NWScript.GetTargetingModeSelectedObject().ToNwObject();
         TargetPosition = NWScript.GetTargetingModeSelectedPosition();
       }
     }

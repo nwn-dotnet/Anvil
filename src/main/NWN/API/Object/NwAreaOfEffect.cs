@@ -5,7 +5,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.AreaOfEffect, InternalObjectType.AreaOfEffect)]
+  [NativeObjectInfo(ObjectTypes.AreaOfEffect, InternalObjectType.AreaOfEffect)]
   public class NwAreaOfEffect : NwObject
   {
     internal NwAreaOfEffect(uint objectId) : base(objectId) {}
@@ -37,7 +37,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="objectTypes">The types of object to return.</param>
     /// <returns>An enumerable containing all objects currently in the effect area.</returns>
-    public IEnumerator<NwGameObject> GetObjectsInEffectArea(ObjectType objectTypes)
+    public IEnumerator<NwGameObject> GetObjectsInEffectArea(ObjectTypes objectTypes)
     {
       int objType = (int) objectTypes;
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))

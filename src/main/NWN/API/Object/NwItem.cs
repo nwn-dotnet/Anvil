@@ -6,7 +6,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.Item, InternalObjectType.Item)]
+  [NativeObjectInfo(ObjectTypes.Item, InternalObjectType.Item)]
   public sealed class NwItem : NwGameObject
   {
     internal NwItem(uint objectId) : base(objectId) {}
@@ -125,6 +125,14 @@ namespace NWN.API
     public int GoldValue
     {
       get => NWScript.GetGoldPieceValue(this);
+    }
+
+    /// <summary>
+    /// Gets the weight of this item, in pounds.
+    /// </summary>
+    public decimal Weight
+    {
+      get => NWScript.GetWeight(this) / 10.0m;
     }
 
     /// <summary>

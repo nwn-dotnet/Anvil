@@ -4,7 +4,7 @@ using NWN.Core;
 namespace NWN.API.Constants
 {
   [Flags]
-  public enum ObjectType
+  public enum ObjectTypes
   {
     Creature = NWScript.OBJECT_TYPE_CREATURE,
     Item = NWScript.OBJECT_TYPE_ITEM,

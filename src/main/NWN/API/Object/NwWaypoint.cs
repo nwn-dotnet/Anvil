@@ -3,7 +3,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.Waypoint, InternalObjectType.Waypoint)]
+  [NativeObjectInfo(ObjectTypes.Waypoint, InternalObjectType.Waypoint)]
   public sealed class NwWaypoint : NwGameObject
   {
     internal NwWaypoint(uint objectId) : base(objectId) {}

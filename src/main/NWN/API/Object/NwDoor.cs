@@ -5,7 +5,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.Door, InternalObjectType.Door)]
+  [NativeObjectInfo(ObjectTypes.Door, InternalObjectType.Door)]
   public sealed class NwDoor : NwStationary
   {
     internal NwDoor(uint objectId) : base(objectId) {}

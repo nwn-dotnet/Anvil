@@ -7,10 +7,10 @@ namespace NWN.API
   [AttributeUsage(AttributeTargets.Class)]
   internal class NativeObjectInfoAttribute : Attribute
   {
-    public readonly ObjectType ObjectType;
+    public readonly ObjectTypes ObjectType;
     public readonly InternalObjectType InternalObjectType;
 
-    public NativeObjectInfoAttribute(ObjectType objectType, InternalObjectType internalObjectType)
+    public NativeObjectInfoAttribute(ObjectTypes objectType, InternalObjectType internalObjectType)
     {
       this.ObjectType = objectType;
       this.InternalObjectType = internalObjectType;
