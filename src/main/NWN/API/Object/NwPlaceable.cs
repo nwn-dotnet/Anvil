@@ -60,5 +60,11 @@ namespace NWN.API
       location = Location.Create(location.Area, location.Position, location.FlippedRotation);
       return NwObject.CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
+
+    /// <summary>
+    /// Check whether a given action is valid for this (placeable object).
+    /// </summary>
+    public PlaceableAction IsPlaceableObjectActionPossible(PlaceableAction action)
+      => (PlaceableAction)NWScript.GetIsPlaceableObjectActionPossible(this, (int)action);
   }
 }
