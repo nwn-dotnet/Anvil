@@ -1262,5 +1262,11 @@ namespace NWN.API
       get => (FootstepType)NWScript.GetFootstepType(this);
       set => NWScript.SetFootstepType((int)value, this);
     }
+
+    /// <summary>
+    /// Determines whether a creature has the effects of a feat.
+    /// </summary>
+    public bool HasFeatEffect(Feat feat, NwCreature creature)
+      => NWScript.GetHasFeatEffect((int)feat, creature).ToBool();
   }
 }
