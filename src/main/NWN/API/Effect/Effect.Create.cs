@@ -217,8 +217,9 @@ namespace NWN.API
     /// Creates an effect that kills, or destroys an object.
     /// </summary>
     /// <param name="spectacularDeath">If true, the object in which this is applied will die in an extraordinary fashion (gibs).</param>
-    public static Effect Death(bool spectacularDeath = false)
-      => NWScript.EffectDeath(spectacularDeath.ToInt());
+    /// <param name="feedback">If false, excludes the "XXX: Dead" feedback message.</param>
+    public static Effect Death(bool spectacularDeath = false, bool feedback = true)
+      => NWScript.EffectDeath(spectacularDeath.ToInt(), feedback.ToInt());
 
     /// <summary>
     /// Creates an effect that causes the object to "fly away", before destroying itself.<br/>

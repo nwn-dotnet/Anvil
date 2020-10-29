@@ -5,7 +5,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.Trigger, InternalObjectType.Trigger)]
+  [NativeObjectInfo(ObjectTypes.Trigger, InternalObjectType.Trigger)]
   public sealed class NwTrigger : NwTrappable
   {
     internal NwTrigger(uint objectId) : base(objectId) {}
@@ -29,7 +29,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="objectTypes">The types of object to return.</param>
     /// <returns>An enumerable containing all objects currently in the trigger.</returns>
-    public IEnumerator<NwGameObject> GetObjectsInTrigger(ObjectType objectTypes)
+    public IEnumerator<NwGameObject> GetObjectsInTrigger(ObjectTypes objectTypes)
     {
       int objType = (int) objectTypes;
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))

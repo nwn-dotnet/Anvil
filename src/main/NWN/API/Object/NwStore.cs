@@ -4,7 +4,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.Store, InternalObjectType.Store)]
+  [NativeObjectInfo(ObjectTypes.Store, InternalObjectType.Store)]
   public sealed class NwStore : NwGameObject
   {
     internal NwStore(uint objectId) : base(objectId) {}

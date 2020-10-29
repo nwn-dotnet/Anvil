@@ -9,7 +9,7 @@ using Action = NWN.API.Constants.Action;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.Creature, InternalObjectType.Creature)]
+  [NativeObjectInfo(ObjectTypes.Creature, InternalObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
     internal NwCreature(uint objectId) : base(objectId) {}

@@ -4,7 +4,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.All, InternalObjectType.Sound)]
+  [NativeObjectInfo(ObjectTypes.All, InternalObjectType.Sound)]
   public class NwSound : NwGameObject
   {
     public NwSound(uint objectId) : base(objectId) {}

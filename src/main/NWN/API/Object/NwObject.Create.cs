@@ -63,7 +63,7 @@ namespace NWN.API
 
     internal static T CreateInternal<T>(string template, Location location, bool useAppearAnim, string newTag) where T : NwObject
     {
-      ObjectType objectType = GetObjectType<T>();
+      ObjectTypes objectType = GetObjectType<T>();
       return NWScript.CreateObject((int) objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
     }
 
@@ -117,7 +117,7 @@ namespace NWN.API
       }
     }
 
-    internal static ObjectType GetObjectType<T>() where T : NwObject
+    internal static ObjectTypes GetObjectType<T>() where T : NwObject
     {
       return GetNativeObjectInfo(typeof(T)).ObjectType;
     }

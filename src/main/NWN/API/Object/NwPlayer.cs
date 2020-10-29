@@ -287,6 +287,14 @@ namespace NWN.API
       => NWScript.SetTextureOverride(texName, string.Empty, this);
 
     /// <summary>
+    /// Toggles the CutsceneMode state for this player.
+    /// </summary>
+    /// <param name="inCutscene">True if cutscene mode should be enabled, otherwise false.</param>
+    /// <param name="leftClickEnabled">True if this user should be allowed to interact with the game with the left mouse button. False to prevent interaction.</param>
+    public void SetCutsceneMode(bool inCutscene = true, bool leftClickEnabled = false)
+      => NWScript.SetCutsceneMode(this, inCutscene.ToInt(), leftClickEnabled.ToInt());
+
+    /// <summary>
     /// Displays a message on this player's screen.<br/>
     /// The message is always displayed on top of whatever is on the screen, including UI elements.
     /// </summary>
@@ -315,7 +323,7 @@ namespace NWN.API
     /// <param name="validObjectTypes">The type of objects that the player can select.</param>
     /// <param name="mouseCursor">The cursor to display if the player is hovering over a valid selection.</param>
     /// <param name="badTargetCursor">The cursor to display if the player is hovering over an invalid selection.</param>
-    public void EnterTargetingMode(ObjectType validObjectTypes, MouseCursor mouseCursor = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    public void EnterTargetingMode(ObjectTypes validObjectTypes, MouseCursor mouseCursor = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
       => NWScript.EnterTargetingMode(this, (int) validObjectTypes, (int) mouseCursor, (int) badTargetCursor);
   }
 }

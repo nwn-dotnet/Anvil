@@ -5,7 +5,7 @@ using NWNX.API.Constants;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectType.Placeable, InternalObjectType.Placeable)]
+  [NativeObjectInfo(ObjectTypes.Placeable, InternalObjectType.Placeable)]
   public sealed class NwPlaceable : NwStationary
   {
     internal NwPlaceable(uint objectId) : base(objectId) {}
