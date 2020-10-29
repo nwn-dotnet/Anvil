@@ -221,5 +221,14 @@ namespace NWN.API
     }
 
     public static NwItem GetSpellCastItem() => NWScript.GetSpellCastItem().ToNwObject<NwItem>();
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this provided item should be hidden when equipped.
+    /// </summary>
+    public int HiddenWhenEquipped
+    {
+      get => NWScript.GetHiddenWhenEquipped(this);
+      set => NWScript.SetHiddenWhenEquipped(this, value);
+    }
   }
 }
