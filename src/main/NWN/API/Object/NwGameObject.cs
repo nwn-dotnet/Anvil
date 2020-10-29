@@ -464,5 +464,10 @@ namespace NWN.API
     /// </summary>
     public bool HasInventory(NwGameObject gameObject)
       => NWScript.GetHasInventory(gameObject).ToBool();
-  }
+
+        /// <summary>
+        /// Check whether this (object) is listening for something.
+        /// </summary>
+        public bool IsListening => NWScript.GetIsListening(this).ToBool();
+    }
 }
