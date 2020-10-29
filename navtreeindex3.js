@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html#a61e426569bad70bcb4492b8d2f55c56a":[0,0,0,0,1,4,4,1],
 "classNWN_1_1API_1_1Events_1_1Event.html":[0,0,0,0,1,5],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents.html":[0,0,0,0,1,7],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html":[0,0,0,0,1,7,0],
@@ -57,7 +58,7 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html#ac208d7288a89b7905f805f70da7b92c0":[0,0,0,0,1,7,14,0],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html":[0,0,0,0,1,7,15],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html#a0aceeb88b8971340743dea1c667c1215":[0,0,0,0,1,7,15,1],
-"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html#a2396db0a59bea3dbdc22f79c5df0a98a":[0,0,0,0,1,7,15,2],
+"classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html#a4bfaadc1c1234af0a6358da0331b6d40":[0,0,0,0,1,7,15,2],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html#a5ee26f4cd3f004d3ca86c2c4b1cd933b":[0,0,0,0,1,7,15,3],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html#ab6811bf45c0c7d9b67f89744d117e6c2":[0,0,0,0,1,7,15,0],
 "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html":[0,0,0,0,1,7,16],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1ItemProperty.html#ac90e97f0df4fd81cfd24e7bf2049f810":[0,0,0,0,13,56],
 "classNWN_1_1API_1_1ItemProperty.html#aca2dce7252efd54f4734399c7fd9b0d4":[0,0,0,0,13,75],
 "classNWN_1_1API_1_1ItemProperty.html#acb2ab0b5e48b9ec890909b14ac43a7d5":[0,0,0,0,13,39],
-"classNWN_1_1API_1_1ItemProperty.html#acc6365a49e798086446afc4307b12592":[0,0,0,0,13,72],
-"classNWN_1_1API_1_1ItemProperty.html#ad1ddfb12f6bfd9b1c3d22ca11c7ec233":[0,0,0,0,13,58]
+"classNWN_1_1API_1_1ItemProperty.html#acc6365a49e798086446afc4307b12592":[0,0,0,0,13,72]
 };

@@ -1,5 +1,7 @@
 var namespaceNWN_1_1Services =
 [
+    [ "CursorTargetData", "classNWN_1_1Services_1_1CursorTargetData.html", "classNWN_1_1Services_1_1CursorTargetData" ],
+    [ "CursorTargetService", "classNWN_1_1Services_1_1CursorTargetService.html", "classNWN_1_1Services_1_1CursorTargetService" ],
     [ "DialogueService", "classNWN_1_1Services_1_1DialogueService.html", null ],
     [ "EventHandler", "classNWN_1_1Services_1_1EventHandler.html", null ],
     [ "EventService", "classNWN_1_1Services_1_1EventService.html", "classNWN_1_1Services_1_1EventService" ],

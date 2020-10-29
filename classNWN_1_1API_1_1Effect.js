@@ -30,7 +30,7 @@ var classNWN_1_1API_1_1Effect =
     [ "Darkness", "classNWN_1_1API_1_1Effect.html#ac8c4feae2957d3c0a98ab438a2f6afad", null ],
     [ "Dazed", "classNWN_1_1API_1_1Effect.html#afc50bd9140b720105397abf4e34a4fb1", null ],
     [ "Deaf", "classNWN_1_1API_1_1Effect.html#ae0bce5dac0dcba1aeef091b20b33d917", null ],
-    [ "Death", "classNWN_1_1API_1_1Effect.html#aede3958544b17eb85b01d6cc7e11d546", null ],
+    [ "Death", "classNWN_1_1API_1_1Effect.html#a2effaa87b7e49743125ecf40b83d0ed6", null ],
     [ "Disappear", "classNWN_1_1API_1_1Effect.html#afe0303a9c55a0aa9aa32073da34e4bc0", null ],
     [ "DisappearAppear", "classNWN_1_1API_1_1Effect.html#a2631fc92c873c83ba8ee60c5e52dcae4", null ],
     [ "Disease", "classNWN_1_1API_1_1Effect.html#a257af234afd0b04a00edf50bd222a66d", null ],

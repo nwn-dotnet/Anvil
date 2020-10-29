@@ -180,15 +180,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ac568f63e914766242097f50f667ff73d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#ac568f63e914766242097f50f667ff73d">ClearTextureOverride</a> (string texName)</td></tr>
 <tr class="memdesc:ac568f63e914766242097f50f667ff73d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the override for the specified texture, reverting to the original texture.  <a href="classNWN_1_1API_1_1NwPlayer.html#ac568f63e914766242097f50f667ff73d">More...</a><br /></td></tr>
 <tr class="separator:ac568f63e914766242097f50f667ff73d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b64a68c345c3218bd9f6c114215696a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#a0b64a68c345c3218bd9f6c114215696a">SetCutsceneMode</a> (bool inCutscene=true, bool leftClickEnabled=false)</td></tr>
+<tr class="memdesc:a0b64a68c345c3218bd9f6c114215696a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles the CutsceneMode state for this player.  <a href="classNWN_1_1API_1_1NwPlayer.html#a0b64a68c345c3218bd9f6c114215696a">More...</a><br /></td></tr>
+<tr class="separator:a0b64a68c345c3218bd9f6c114215696a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8cde1180fa89713242f00b074afda62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#af8cde1180fa89713242f00b074afda62">PostString</a> (string message, int xPos, int yPos, ScreenAnchor anchor, float life, <a class="el" href="structNWN_1_1API_1_1Color.html">Color</a>? start=null, <a class="el" href="structNWN_1_1API_1_1Color.html">Color</a>? end=null, int id=0, string font=&quot;&quot;)</td></tr>
 <tr class="memdesc:af8cde1180fa89713242f00b074afda62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a message on this player's screen.<br  />
  The message is always displayed on top of whatever is on the screen, including UI elements.  <a href="classNWN_1_1API_1_1NwPlayer.html#af8cde1180fa89713242f00b074afda62">More...</a><br /></td></tr>
 <tr class="separator:af8cde1180fa89713242f00b074afda62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96dae8e2924fb8a86d94627707ab8228"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#a96dae8e2924fb8a86d94627707ab8228">EnterTargetingMode</a> (ObjectType validObjectTypes, MouseCursor mouseCursor=MouseCursor.Magic, MouseCursor badTargetCursor=MouseCursor.NoMagic)</td></tr>
-<tr class="memdesc:a96dae8e2924fb8a86d94627707ab8228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes this player enter a targeting mode, letting them select an object as a target.<br  />
+<tr class="memitem:add86a7cd2c5ceafe2e50fa3c6f977fe4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#add86a7cd2c5ceafe2e50fa3c6f977fe4">EnterTargetingMode</a> (ObjectTypes validObjectTypes, MouseCursor mouseCursor=MouseCursor.Magic, MouseCursor badTargetCursor=MouseCursor.NoMagic)</td></tr>
+<tr class="memdesc:add86a7cd2c5ceafe2e50fa3c6f977fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes this player enter a targeting mode, letting them select an object as a target.<br  />
  If this player selects a target, it will trigger a <a class="el" href="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">NWN.API.Events.ModuleEvents.OnPlayerTarget</a> event.<br  />
- Use the <a class="el" href="classNWN_1_1Services_1_1EventService.html">NWN.Services.EventService</a> to add a listener for this event, and get the player's selection.  <a href="classNWN_1_1API_1_1NwPlayer.html#a96dae8e2924fb8a86d94627707ab8228">More...</a><br /></td></tr>
-<tr class="separator:a96dae8e2924fb8a86d94627707ab8228"><td class="memSeparator" colspan="2">&#160;</td></tr>
+ Use the <a class="el" href="classNWN_1_1Services_1_1EventService.html">NWN.Services.EventService</a> to add a listener for this event, and get the player's selection.  <a href="classNWN_1_1API_1_1NwPlayer.html#add86a7cd2c5ceafe2e50fa3c6f977fe4">More...</a><br /></td></tr>
+<tr class="separator:add86a7cd2c5ceafe2e50fa3c6f977fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwCreature"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwCreature')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwCreature.html">NWN.API.NwCreature</a></td></tr>
 <tr class="memitem:ab28fc5445643eda10c93896e1fd3d610 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ab28fc5445643eda10c93896e1fd3d610">ChangeToStandardFaction</a> (StandardFaction newFaction)</td></tr>
 <tr class="memdesc:ab28fc5445643eda10c93896e1fd3d610 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this creature to join the specified standard faction. This will NOT work on players.  <a href="classNWN_1_1API_1_1NwCreature.html#ab28fc5445643eda10c93896e1fd3d610">More...</a><br /></td></tr>
@@ -691,8 +694,8 @@ Properties</h2></td></tr>
 <tr class="memitem:a1fb6a33f5764b05c6ef6f358d3286c5c inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a1fb6a33f5764b05c6ef6f358d3286c5c">PortraitResRef</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a1fb6a33f5764b05c6ef6f358d3286c5c inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the Portrait ResRef for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a1fb6a33f5764b05c6ef6f358d3286c5c">More...</a><br /></td></tr>
 <tr class="separator:a1fb6a33f5764b05c6ef6f358d3286c5c inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b91306b639879493ee95b88284f9965 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965">HP</a><code> [get]</code></td></tr>
-<tr class="memdesc:a2b91306b639879493ee95b88284f9965 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current HP for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965">More...</a><br /></td></tr>
+<tr class="memitem:a2b91306b639879493ee95b88284f9965 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965">HP</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2b91306b639879493ee95b88284f9965 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the current HP for this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a2b91306b639879493ee95b88284f9965">More...</a><br /></td></tr>
 <tr class="separator:a2b91306b639879493ee95b88284f9965 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a496e7fb9fcf017e525e6619b0c3cc8f6 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a496e7fb9fcf017e525e6619b0c3cc8f6">MaxHP</a><code> [get]</code></td></tr>
 <tr class="memdesc:a496e7fb9fcf017e525e6619b0c3cc8f6 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the maximum HP for this object. Returns 0 if this object has no defined HP.  <a href="classNWN_1_1API_1_1NwGameObject.html#a496e7fb9fcf017e525e6619b0c3cc8f6">More...</a><br /></td></tr>
@@ -1021,8 +1024,8 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
-<a id="a96dae8e2924fb8a86d94627707ab8228"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96dae8e2924fb8a86d94627707ab8228">&#9670;&nbsp;</a></span>EnterTargetingMode()</h2>
+<a id="add86a7cd2c5ceafe2e50fa3c6f977fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add86a7cd2c5ceafe2e50fa3c6f977fe4">&#9670;&nbsp;</a></span>EnterTargetingMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1030,7 +1033,7 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
         <tr>
           <td class="memname">void NWN.API.NwPlayer.EnterTargetingMode </td>
           <td>(</td>
-          <td class="paramtype">ObjectType&#160;</td>
+          <td class="paramtype">ObjectTypes&#160;</td>
           <td class="paramname"><em>validObjectTypes</em>, </td>
         </tr>
         <tr>
@@ -1505,6 +1508,43 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
     <tr><td class="paramname">pitch</td><td>Vertical angle of the camera in degrees. -1 to leave the angle unmodified.</td></tr>
     <tr><td class="paramname">distance</td><td>Distance (zoom) of the camera. -1 to leave the distance unmodified.</td></tr>
     <tr><td class="paramname">transitionType</td><td>The transition to use for moving the camera.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0b64a68c345c3218bd9f6c114215696a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b64a68c345c3218bd9f6c114215696a">&#9670;&nbsp;</a></span>SetCutsceneMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwPlayer.SetCutsceneMode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>inCutscene</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>leftClickEnabled</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Toggles the CutsceneMode state for this player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inCutscene</td><td>True if cutscene mode should be enabled, otherwise false.</td></tr>
+    <tr><td class="paramname">leftClickEnabled</td><td>True if this user should be allowed to interact with the game with the left mouse button. False to prevent interaction.</td></tr>
   </table>
   </dd>
 </dl>

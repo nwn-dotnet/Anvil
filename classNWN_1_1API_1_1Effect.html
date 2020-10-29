@@ -189,9 +189,9 @@ static <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a>&#160;</td>
 <tr class="memitem:ae0bce5dac0dcba1aeef091b20b33d917"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Effect.html#ae0bce5dac0dcba1aeef091b20b33d917">Deaf</a> ()</td></tr>
 <tr class="memdesc:ae0bce5dac0dcba1aeef091b20b33d917"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an effect that deafens a creature, applying a 20% spell failure chance for spells with (V)erbal components.  <a href="classNWN_1_1API_1_1Effect.html#ae0bce5dac0dcba1aeef091b20b33d917">More...</a><br /></td></tr>
 <tr class="separator:ae0bce5dac0dcba1aeef091b20b33d917"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aede3958544b17eb85b01d6cc7e11d546"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Effect.html#aede3958544b17eb85b01d6cc7e11d546">Death</a> (bool spectacularDeath=false)</td></tr>
-<tr class="memdesc:aede3958544b17eb85b01d6cc7e11d546"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an effect that kills, or destroys an object.  <a href="classNWN_1_1API_1_1Effect.html#aede3958544b17eb85b01d6cc7e11d546">More...</a><br /></td></tr>
-<tr class="separator:aede3958544b17eb85b01d6cc7e11d546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2effaa87b7e49743125ecf40b83d0ed6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Effect.html#a2effaa87b7e49743125ecf40b83d0ed6">Death</a> (bool spectacularDeath=false, bool feedback=true)</td></tr>
+<tr class="memdesc:a2effaa87b7e49743125ecf40b83d0ed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an effect that kills, or destroys an object.  <a href="classNWN_1_1API_1_1Effect.html#a2effaa87b7e49743125ecf40b83d0ed6">More...</a><br /></td></tr>
+<tr class="separator:a2effaa87b7e49743125ecf40b83d0ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe0303a9c55a0aa9aa32073da34e4bc0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Effect.html#afe0303a9c55a0aa9aa32073da34e4bc0">Disappear</a> ()</td></tr>
 <tr class="memdesc:afe0303a9c55a0aa9aa32073da34e4bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an effect that causes the object to "fly away", before destroying itself.<br  />
  This effect should not be applied to PCs.  <a href="classNWN_1_1API_1_1Effect.html#afe0303a9c55a0aa9aa32073da34e4bc0">More...</a><br /></td></tr>
@@ -1528,8 +1528,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="aede3958544b17eb85b01d6cc7e11d546"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aede3958544b17eb85b01d6cc7e11d546">&#9670;&nbsp;</a></span>Death()</h2>
+<a id="a2effaa87b7e49743125ecf40b83d0ed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2effaa87b7e49743125ecf40b83d0ed6">&#9670;&nbsp;</a></span>Death()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1541,8 +1541,18 @@ Properties</h2></td></tr>
           <td class="memname">static <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a> NWN.API.Effect.Death </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>spectacularDeath</em> = <code>false</code></td><td>)</td>
+          <td class="paramname"><em>spectacularDeath</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>feedback</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1556,6 +1566,7 @@ Properties</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">spectacularDeath</td><td>If true, the object in which this is applied will die in an extraordinary fashion (gibs).</td></tr>
+    <tr><td class="paramname">feedback</td><td>If false, excludes the "XXX: Dead" feedback message.</td></tr>
   </table>
   </dd>
 </dl>

@@ -21,5 +21,6 @@ var classNWN_1_1API_1_1NwItem =
     [ "Possessor", "classNWN_1_1API_1_1NwItem.html#aedddb31469e71506e2c54ce4dc989097", null ],
     [ "StackSize", "classNWN_1_1API_1_1NwItem.html#a2dbbd5cc94d71291b4c88a64578d26cb", null ],
     [ "Stolen", "classNWN_1_1API_1_1NwItem.html#a6358832c181070aad5c38cc28f339a0e", null ],
-    [ "UnidentifiedDescription", "classNWN_1_1API_1_1NwItem.html#a611e1b4a53c72d420ed04252936d3f5e", null ]
+    [ "UnidentifiedDescription", "classNWN_1_1API_1_1NwItem.html#a611e1b4a53c72d420ed04252936d3f5e", null ],
+    [ "Weight", "classNWN_1_1API_1_1NwItem.html#a106aaa2f17dc9d0d2b0ed282f92c266d", null ]
 ];

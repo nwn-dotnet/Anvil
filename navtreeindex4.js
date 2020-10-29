@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"classNWN_1_1API_1_1ItemProperty.html#ad1ddfb12f6bfd9b1c3d22ca11c7ec233":[0,0,0,0,13,58],
 "classNWN_1_1API_1_1ItemProperty.html#ad97cc06653541ee279e19f880a3b5b69":[0,0,0,0,13,68],
 "classNWN_1_1API_1_1ItemProperty.html#adad378a53dd30f0903fa2bfe025b5de5":[0,0,0,0,13,47],
 "classNWN_1_1API_1_1ItemProperty.html#add44055e681f4f3c916eee0422d08aa6":[0,0,0,0,13,25],
@@ -69,7 +70,7 @@ var NAVTREEINDEX4 =
 "classNWN_1_1API_1_1NwAreaOfEffect.html":[0,0,0,0,20],
 "classNWN_1_1API_1_1NwAreaOfEffect.html#a08591903aebfa2d1da48be35971186bb":[0,0,0,0,20,2],
 "classNWN_1_1API_1_1NwAreaOfEffect.html#a2f3c612485c09a5a9e30b5a99741a60f":[0,0,0,0,20,1],
-"classNWN_1_1API_1_1NwAreaOfEffect.html#a66476de5851d8a95c050c014a705df29":[0,0,0,0,20,0],
+"classNWN_1_1API_1_1NwAreaOfEffect.html#a7ecb1cd589ebb2039e1af65c5cc913ca":[0,0,0,0,20,0],
 "classNWN_1_1API_1_1NwCreature.html":[0,0,0,0,21],
 "classNWN_1_1API_1_1NwCreature.html#a032e0e39b82ea46abbd399d26bb3c6a3":[0,0,0,0,21,33],
 "classNWN_1_1API_1_1NwCreature.html#a08d9ad667b4c05b52991d5d2261e1600":[0,0,0,0,21,18],
@@ -186,8 +187,8 @@ var NAVTREEINDEX4 =
 "classNWN_1_1API_1_1NwDoor.html#afdf65250e33b43006b70ca377e6d93ad":[0,0,0,0,22,0],
 "classNWN_1_1API_1_1NwEncounter.html":[0,0,0,0,23],
 "classNWN_1_1API_1_1NwEncounter.html#a0dc26065dd65a3250e8ebe84a65d3ee4":[0,0,0,0,23,5],
-"classNWN_1_1API_1_1NwEncounter.html#a52cc5b21af2df45927e1872473005635":[0,0,0,0,23,0],
 "classNWN_1_1API_1_1NwEncounter.html#a86c6bcdc18938dbff043d10c9bf0053b":[0,0,0,0,23,4],
+"classNWN_1_1API_1_1NwEncounter.html#a8766a42008c1d7854d84b13cbcb6f2db":[0,0,0,0,23,0],
 "classNWN_1_1API_1_1NwEncounter.html#aa77823c3166180530fa5ddbaa6ae22a4":[0,0,0,0,23,3],
 "classNWN_1_1API_1_1NwEncounter.html#ab37e21b27b562d0c2d47a184fc73da8f":[0,0,0,0,23,1],
 "classNWN_1_1API_1_1NwEncounter.html#accff9f84305bbc12d119df3e87d7d549":[0,0,0,0,23,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "classNWN_1_1API_1_1NwGameObject.html#ab33924da812e0cc19c37d84424e5c9df":[0,0,0,0,25,27],
 "classNWN_1_1API_1_1NwGameObject.html#ab441df5249a1c51007ba7e7b6fd04606":[0,0,0,0,25,32],
 "classNWN_1_1API_1_1NwGameObject.html#ab6098bd74cf2c1197e291afbdbbc4e22":[0,0,0,0,25,33],
-"classNWN_1_1API_1_1NwGameObject.html#abde70aeaa8536d9b5988dd402928709e":[0,0,0,0,25,4],
-"classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d":[0,0,0,0,25,35]
+"classNWN_1_1API_1_1NwGameObject.html#abde70aeaa8536d9b5988dd402928709e":[0,0,0,0,25,4]
 };

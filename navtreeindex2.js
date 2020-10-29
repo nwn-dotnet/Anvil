@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classNWN_1_1API_1_1Constants_1_1Direction.html":[0,0,0,0,0,0],
 "classNWN_1_1API_1_1Constants_1_1Direction.html#a23a6fc300fc14c96422ac7675051cbe3":[0,0,0,0,0,0,1],
 "classNWN_1_1API_1_1Constants_1_1Direction.html#a88edc6a573abd5da1b2d5c2fc2de5196":[0,0,0,0,0,0,0],
 "classNWN_1_1API_1_1Constants_1_1Direction.html#aa40879bc34b2876c5436eb8fd0674953":[0,0,0,0,0,0,2],
@@ -37,6 +38,7 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Effect.html#a28f3e2dd5d6074976b63b9f1059ceb9b":[0,0,0,0,7,18],
 "classNWN_1_1API_1_1Effect.html#a29ea2df82272f581e9a8c21ff016a3c6":[0,0,0,0,7,37],
 "classNWN_1_1API_1_1Effect.html#a2d193f122cbbe7b77429f82207cb690f":[0,0,0,0,7,9],
+"classNWN_1_1API_1_1Effect.html#a2effaa87b7e49743125ecf40b83d0ed6":[0,0,0,0,7,30],
 "classNWN_1_1API_1_1Effect.html#a304e58a09c19f2fd7e3461b88e6bd41c":[0,0,0,0,7,68],
 "classNWN_1_1API_1_1Effect.html#a308ab87ffb3cc4d577e841de26cc9a72":[0,0,0,0,7,74],
 "classNWN_1_1API_1_1Effect.html#a31e8d8d3e944cd64a26deeb49e299944":[0,0,0,0,7,48],
@@ -99,7 +101,6 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Effect.html#ae54cbdd91ba34f596d7a314fca8be10d":[0,0,0,0,7,0],
 "classNWN_1_1API_1_1Effect.html#aea4b80d0f4f96b08f404254e1ee0f856":[0,0,0,0,7,63],
 "classNWN_1_1API_1_1Effect.html#aed42be8211f0144317da28a868fb5fd8":[0,0,0,0,7,65],
-"classNWN_1_1API_1_1Effect.html#aede3958544b17eb85b01d6cc7e11d546":[0,0,0,0,7,30],
 "classNWN_1_1API_1_1Effect.html#aef70e2aa07798a9d885554e98c901758":[0,0,0,0,7,25],
 "classNWN_1_1API_1_1Effect.html#af1241cf33cad5257749218d089b2a5d3":[0,0,0,0,7,2],
 "classNWN_1_1API_1_1Effect.html#af602fe68edae1232ccd37de956452f60":[0,0,0,0,7,6],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html#a6ab4a10827a43e571c5382805cc3ff9e":[0,0,0,0,1,4,3,1],
 "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html#ae059573d70c9459a0156c2a029f08ddf":[0,0,0,0,1,4,3,0],
 "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html":[0,0,0,0,1,4,4],
-"classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html#a135e3a2c50000dabe1e49a0ca71047cc":[0,0,0,0,1,4,4,0],
-"classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html#a61e426569bad70bcb4492b8d2f55c56a":[0,0,0,0,1,4,4,1]
+"classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html#a135e3a2c50000dabe1e49a0ca71047cc":[0,0,0,0,1,4,4,0]
 };

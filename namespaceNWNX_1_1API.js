@@ -12,7 +12,7 @@ var namespaceNWNX_1_1API =
     [ "ELC", "classNWNX_1_1API_1_1ELC.html", null ],
     [ "Encounter", "classNWNX_1_1API_1_1Encounter.html", null ],
     [ "Feedback", "classNWNX_1_1API_1_1Feedback.html", null ],
-    [ "Item", "classNWNX_1_1API_1_1Item.html", null ],
+    [ "Item", "classNWNX_1_1API_1_1Item.html", "classNWNX_1_1API_1_1Item" ],
     [ "ItemProperty", "classNWNX_1_1API_1_1ItemProperty.html", null ],
     [ "Object", "classNWNX_1_1API_1_1Object.html", "classNWNX_1_1API_1_1Object" ],
     [ "Player", "classNWNX_1_1API_1_1Player.html", "classNWNX_1_1API_1_1Player" ],

@@ -178,6 +178,7 @@ var NAVTREEINDEX1 =
 "classNWNX_1_1API_1_1Events_1_1StoreEvents_1_1OnStoreRequestSellBefore.html#adec4ba7d02495b3bffef33a900c4c50d":[0,0,1,0,0,25,3,1],
 "classNWNX_1_1API_1_1Feedback.html":[0,0,1,0,11],
 "classNWNX_1_1API_1_1Item.html":[0,0,1,0,12],
+"classNWNX_1_1API_1_1Item.html#ad7758e74d80144ce4cd59aee143b6715":[0,0,1,0,12,0],
 "classNWNX_1_1API_1_1ItemProperty.html":[0,0,1,0,13],
 "classNWNX_1_1API_1_1Object.html":[0,0,1,0,14],
 "classNWNX_1_1API_1_1Object.html#a10b031a2b10ef2032cf131cfabbde95c":[0,0,1,0,14,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classNWN_1_1API_1_1CampaignVariable.html#af0a46b60efaf3fdf528b418d5d4b2b82":[0,0,0,0,3,5],
 "classNWN_1_1API_1_1CampaignVariableConverterAttribute.html":[0,0,0,0,4],
 "classNWN_1_1API_1_1CampaignVariableConverterAttribute.html#a4e98c86ed576b4acfcc8bd2ce64780a1":[0,0,0,0,4,0],
-"classNWN_1_1API_1_1CampaignVariableConverterAttribute.html#a8946f915fd7f81abee973600583d3750":[0,0,0,0,4,1],
-"classNWN_1_1API_1_1Constants_1_1Direction.html":[0,0,0,0,0,0]
+"classNWN_1_1API_1_1CampaignVariableConverterAttribute.html#a8946f915fd7f81abee973600583d3750":[0,0,0,0,4,1]
 };

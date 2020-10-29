@@ -30,8 +30,10 @@ var searchData=
   ['currentaction_117',['CurrentAction',['../classNWN_1_1API_1_1NwCreature.html#a0e703ce7932a32d919526d488ce4416b',1,'NWN::API::NwCreature']]],
   ['curse_118',['Curse',['../classNWN_1_1API_1_1Effect.html#a83684d10f9ff381de0a8360aa8b1a46e',1,'NWN::API::Effect']]],
   ['cursedflag_119',['CursedFlag',['../classNWN_1_1API_1_1NwItem.html#abec193a20012dff5c29153dddfc75991',1,'NWN::API::NwItem']]],
-  ['cutscenedominated_120',['CutsceneDominated',['../classNWN_1_1API_1_1Effect.html#ab252004bdcba739cd59e1a561a6e678b',1,'NWN::API::Effect']]],
-  ['cutsceneghost_121',['CutsceneGhost',['../classNWN_1_1API_1_1Effect.html#acae71fe8b506f02fe048d0f91486873e',1,'NWN::API::Effect']]],
-  ['cutsceneimmobilize_122',['CutsceneImmobilize',['../classNWN_1_1API_1_1Effect.html#ae10220e674bd1dfcd3f70bc14c84a11a',1,'NWN::API::Effect']]],
-  ['cutsceneparalyze_123',['CutsceneParalyze',['../classNWN_1_1API_1_1Effect.html#a28f3e2dd5d6074976b63b9f1059ceb9b',1,'NWN::API::Effect']]]
+  ['cursortargetdata_120',['CursorTargetData',['../classNWN_1_1Services_1_1CursorTargetData.html',1,'NWN::Services']]],
+  ['cursortargetservice_121',['CursorTargetService',['../classNWN_1_1Services_1_1CursorTargetService.html',1,'NWN::Services']]],
+  ['cutscenedominated_122',['CutsceneDominated',['../classNWN_1_1API_1_1Effect.html#ab252004bdcba739cd59e1a561a6e678b',1,'NWN::API::Effect']]],
+  ['cutsceneghost_123',['CutsceneGhost',['../classNWN_1_1API_1_1Effect.html#acae71fe8b506f02fe048d0f91486873e',1,'NWN::API::Effect']]],
+  ['cutsceneimmobilize_124',['CutsceneImmobilize',['../classNWN_1_1API_1_1Effect.html#ae10220e674bd1dfcd3f70bc14c84a11a',1,'NWN::API::Effect']]],
+  ['cutsceneparalyze_125',['CutsceneParalyze',['../classNWN_1_1API_1_1Effect.html#a28f3e2dd5d6074976b63b9f1059ceb9b',1,'NWN::API::Effect']]]
 ];

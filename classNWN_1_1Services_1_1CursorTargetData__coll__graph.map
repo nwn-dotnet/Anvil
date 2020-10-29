@@ -1,0 +1,7 @@
+<map id="NWN.Services.CursorTargetData" name="NWN.Services.CursorTargetData">
+<area shape="rect" id="node1" title=" " alt="" coords="5,323,219,349"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1NwPlayer.html" title=" " alt="" coords="43,233,181,260"/>
+<area shape="rect" id="node3" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="67,157,157,184"/>
+<area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="55,81,169,108"/>
+<area shape="rect" id="node5" href="$classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="72,5,152,32"/>
+</map>
