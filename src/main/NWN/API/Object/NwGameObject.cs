@@ -101,7 +101,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the current HP for this object.
+    /// Gets or sets the current HP for this object.
     /// </summary>
     public int HP
     {
