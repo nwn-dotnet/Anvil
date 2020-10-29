@@ -1268,5 +1268,11 @@ namespace NWN.API
     /// </summary>
     public bool HasFeatEffect(Feat feat, NwCreature creature)
       => NWScript.GetHasFeatEffect((int)feat, creature).ToBool();
+
+    /// <summary>
+    /// Determines whether this (object) is under the effects of a spell.
+    /// </summary>
+    public bool HasSpellEffect(Spell spell)
+      => NWScript.GetHasSpellEffect((int)spell, this).ToBool();
   }
 }
