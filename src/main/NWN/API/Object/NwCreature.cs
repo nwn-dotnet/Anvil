@@ -1113,7 +1113,7 @@ namespace NWN.API
       => NWScript.SetCreatureBodyPart((int)creaturePart, (int)creatureModel, this);
 
     /// <summary>
-    /// Gets or sets the wing type of the creature.
+    /// Gets or sets the wing type of this creature.
     /// </summary>
     public CreatureWingType WingType
     {
@@ -1122,7 +1122,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the tail type of the creature.
+    /// Gets or sets the tail type of this creature.
     /// </summary>
     public CreatureTailType TailType
     {
@@ -1137,7 +1137,7 @@ namespace NWN.API
       => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(creature);
 
     /// <summary>
-    /// Gets or sets a value indicating whether the creature will auto-explore the minimap as it walks around.
+    /// Gets or sets a value indicating whether this creature will auto-explore the minimap as it walks around.
     /// </summary>
     public bool ExploresMinimap
     {
@@ -1170,7 +1170,7 @@ namespace NWN.API
       => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
 
     /// <summary>
-    /// Gets a value indicating whether was spawned from an encounter.
+    /// Gets a value indicating whether this creature was spawned from an encounter.
     /// </summary>
     public bool IsEncounter
       => NWScript.GetIsEncounterCreature(this).ToBool();
@@ -1237,7 +1237,7 @@ namespace NWN.API
     public bool DetectMode => NWScript.GetDetectMode(this).ToBool();
 
     /// <summary>
-    /// Gets the caster level of  who created the effect.
+    /// Gets the caster level of who created the effect.
     /// </summary>
     public int EffectCasterLevel(Effect effect)
       => NWScript.GetEffectCasterLevel(effect);
