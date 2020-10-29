@@ -458,5 +458,11 @@ namespace NWN.API
     /// </summary>
     public float DistanceToObject(NwGameObject objectA)
       => NWScript.GetDistanceToObject(objectA);
+
+    /// <summary>
+    /// Determine whether creature, store or placeable has an inventory.
+    /// </summary>
+    public bool HasInventory(NwGameObject gameObject)
+      => NWScript.GetHasInventory(gameObject).ToBool();
   }
 }
