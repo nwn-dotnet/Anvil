@@ -1274,5 +1274,11 @@ namespace NWN.API
     /// </summary>
     public bool HasSpellEffect(Spell spell)
       => NWScript.GetHasSpellEffect((int)spell, this).ToBool();
+
+    /// <summary>
+    /// Determine whether this (creature) has a friendly reaction towards another given creature.
+    /// </summary>
+    public bool IsReactionTypeFriendly(NwCreature creature)
+      => NWScript.GetIsReactionTypeFriendly(creature, this).ToBool();
   }
 }
