@@ -27,5 +27,11 @@ namespace NWN.API
       await WaitForObjectContext();
       NWScript.ActionCloseDoor(this);
     }
+
+    /// <summary>
+    /// Determines whether an action can be used on a door.
+    /// </summary>
+    public bool IsDoorActionPossible(DoorAction action)
+      => NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
   }
 }
