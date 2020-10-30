@@ -1292,5 +1292,10 @@ namespace NWN.API
     /// </summary>
     public bool GetIsReactionTypeNeutral(NwCreature creature)
       => NWScript.GetIsReactionTypeNeutral(creature, this).ToBool();
-  }
+
+    /// <summary>
+    /// Determine this (creature's) combat mode.
+    /// </summary>
+    public CombatMode LastAttackMode => (CombatMode)NWScript.GetLastAttackMode(this);
+    }
 }
