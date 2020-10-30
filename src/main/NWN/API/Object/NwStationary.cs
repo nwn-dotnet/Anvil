@@ -109,6 +109,6 @@ namespace NWN.API
     /// <summary>
     /// Get the last object that locked the caller.
     /// </summary>
-    public NwStationary LastLocked => (NwStationary)NWScript.GetLastLocked().ToNwObject();
+    public NwStationary LastLocked => (NwStationary)NWScript.GetLastLocked().ToNwObject<NwGameObject>();
   }
 }
