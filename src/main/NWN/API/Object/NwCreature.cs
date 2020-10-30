@@ -1297,5 +1297,10 @@ namespace NWN.API
     /// Determine this (creature's) combat mode.
     /// </summary>
     public CombatMode LastAttackMode => (CombatMode)NWScript.GetLastAttackMode(this);
+
+    /// <summary>
+    /// Determine the attack type of the last physical attack against this (creature).
+    /// </summary>
+    public SpecialAttack LastAttackType => (SpecialAttack)NWScript.GetLastAttackType(this);
     }
 }
