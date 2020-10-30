@@ -230,5 +230,11 @@ namespace NWN.API
       get => NWScript.GetHiddenWhenEquipped(this);
       set => NWScript.SetHiddenWhenEquipped(this, value);
     }
+
+    /// <summary>
+    /// Gets whether this (item) has a given property.
+    /// </summary>
+    public ItemPropertyType ItemHasItemProperty(ItemPropertyType property)
+      => (ItemPropertyType)NWScript.GetItemHasItemProperty(this, (int)property);
   }
 }
