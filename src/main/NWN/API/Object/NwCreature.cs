@@ -1309,7 +1309,16 @@ namespace NWN.API
     public NwCreature LastSpeaker => (NwCreature)NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
 
     /// <summary>
+    /// could use an enum here
+    /// public enum ClassPosition
+    /// {
+    ///    First,
+    ///    Second,
+    ///    Third
+    /// }
     /// Gets the class level of this (object) from the class table.
+    /// classPosition is the row in the class table to get a value from. Range is 1 to 3.
+    ///  If this (creature) doesn't have a class table it Will return 0 as there is no class value to return.
     /// </summary>
     public int LevelByPosition(int classPosition)
       => NWScript.GetLevelByPosition(classPosition);
