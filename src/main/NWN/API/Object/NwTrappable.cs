@@ -128,7 +128,7 @@ namespace NWN.API
     public void DisableTrap() => NWScript.SetTrapDisabled(this);
 
     /// <summary>
-    /// Determine who last disarmed a trapped trigger, door or placeable object.
+    /// Gets who last disarmed a trapped trigger, door or placeable object.
     /// </summary>
     public NwTrappable LastDisarmed => (NwTrappable)NWScript.GetLastDisarmed().ToNwObject<NwGameObject>();
   }
