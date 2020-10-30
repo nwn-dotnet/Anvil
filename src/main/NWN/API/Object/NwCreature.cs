@@ -1307,5 +1307,11 @@ namespace NWN.API
     /// Determines this last creature that was communicated with.
     /// </summary>
     public NwCreature LastSpeaker => (NwCreature)NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
+
+    /// <summary>
+    /// Gets the class level of this (object) from the class table.
+    /// </summary>
+    public int LevelByPosition(int classPosition)
+      => NWScript.GetLevelByPosition(classPosition);
   }
 }
