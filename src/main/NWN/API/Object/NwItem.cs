@@ -248,5 +248,11 @@ namespace NWN.API
     /// </summary>
     public int ItemPropertyCostTableValue(ItemProperty property)
       => NWScript.GetItemPropertyCostTableValue(property);
+
+    /// <summary>
+    /// Gets the number of uses per day remaining of this (item) and item property.
+    /// </summary>
+    public int ItemPropertyUsesPerDayRemaining(ItemProperty property)
+      => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
   }
 }
