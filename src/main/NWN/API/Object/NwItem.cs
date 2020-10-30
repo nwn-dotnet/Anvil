@@ -242,5 +242,11 @@ namespace NWN.API
     /// </summary>
     public int ItemPropertyCostTable(ItemProperty property)
       => NWScript.GetItemPropertyCostTable(property);
+
+    /// <summary>
+    /// Gets the cost table value of an itemproperty.
+    /// </summary>
+    public int ItemPropertyCostTableValue(ItemProperty property)
+      => NWScript.GetItemPropertyCostTableValue(property);
   }
 }
