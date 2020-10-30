@@ -347,5 +347,11 @@ namespace NWN.API
       get => NWScript.GetCutsceneMode(this);
       set => NWScript.SetCutsceneMode(this, value, value);
     }
+
+    /// <summary>
+    /// Gets the amount of experience set for a journal category.
+    /// </summary>
+    public int JournalQuestExperience(string plotID)
+      => NWScript.GetJournalQuestExperience(plotID);
   }
 }
