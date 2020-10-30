@@ -105,5 +105,10 @@ namespace NWN.API
       get => NWScript.GetKeyRequiredFeedback(this);
       set => NWScript.SetKeyRequiredFeedback(this, value);
     }
+
+    /// <summary>
+    /// Get the last object that locked the caller.
+    /// </summary>
+    public NwStationary LastLocked => (NwStationary)NWScript.GetLastLocked().ToNwObject();
   }
 }
