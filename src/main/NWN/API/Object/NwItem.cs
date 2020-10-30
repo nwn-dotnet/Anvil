@@ -240,7 +240,7 @@ namespace NWN.API
     /// <summary>
     /// Gets the cost table number of the itemproperty.
     /// </summary>
-    public bool ItemPropertyCostTable(ItemProperty property)
-      => NWScript.GetItemPropertyCostTable(property).ToBool();
+    public int ItemPropertyCostTable(ItemProperty property)
+      => NWScript.GetItemPropertyCostTable(property);
   }
 }
