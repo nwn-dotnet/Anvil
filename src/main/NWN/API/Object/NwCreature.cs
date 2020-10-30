@@ -1302,5 +1302,10 @@ namespace NWN.API
     /// Determine the attack type of the last physical attack against this (creature).
     /// </summary>
     public SpecialAttack LastAttackType => (SpecialAttack)NWScript.GetLastAttackType(this);
-    }
+
+    /// <summary>
+    /// Determines this last creature that was communicated with.
+    /// </summary>
+    public NwCreature LastSpeaker => (NwCreature)NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
+  }
 }
