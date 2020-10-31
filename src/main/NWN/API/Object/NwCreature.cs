@@ -1322,5 +1322,11 @@ namespace NWN.API
     /// </summary>
     public int LevelByPosition(int classPosition)
       => NWScript.GetLevelByPosition(classPosition);
+
+    /// <summary>
+    /// Gets how one creature feels toward this (creature).
+    /// </summary>
+    public int Reputation(NwCreature creature)
+      => NWScript.GetReputation(this, creature);
   }
 }
