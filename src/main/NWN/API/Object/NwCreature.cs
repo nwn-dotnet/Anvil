@@ -1176,18 +1176,6 @@ namespace NWN.API
       => NWScript.GetIsEncounterCreature(this).ToBool();
 
     /// <summary>
-    /// Gets the action mode status.
-    /// </summary>
-    public ActionMode GetActionMode(NwCreature creature, ActionMode mode)
-      => (ActionMode)NWScript.GetActionMode(creature, (int)mode);
-
-    /// <summary>
-    /// Sets the action mode status.
-    /// </summary>
-    public void SetActionMode(NwCreature creature, ActionMode mode, bool status)
-      => NWScript.SetActionMode(creature, (int)mode, status.ToInt());
-
-    /// <summary>
     /// Gets animal companion's name.
     /// </summary>
     public string AnimalCompanionName()
