@@ -1292,5 +1292,12 @@ namespace NWN.API
     /// Returns 0 if this (creature) has no spell resistance or an invalid creature is passed in.
     /// </summary>
     public int SpellResistance => NWScript.GetSpellResistance(this);
+
+    /// <summary>
+    /// Gets if this (creature) is using a stealth mode.
+    /// Returns True STEALTH_MODE_ACTIVATED if (creature) is using stealth,
+    /// else false if STEALTH_MODE_DISABLED if not.
+    /// </summary>
+    public bool StealthMode => NWScript.GetStealthMode(this).ToBool();
   }
 }
