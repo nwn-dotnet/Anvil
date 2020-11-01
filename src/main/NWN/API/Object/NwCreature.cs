@@ -1131,7 +1131,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Get a creature's animal companion creature type.
+    /// Get this creature's animal companion creature type.
     /// </summary>
     public AnimalCompanionCreatureType AnimalCompanionType(NwCreature creature)
       => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(creature);
@@ -1146,7 +1146,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the default level up package.
+    /// Gets this creature's default level up package.
     /// </summary>
     public PackageType StartingPackage
       => (PackageType)NWScript.GetCreatureStartingPackage(this);
@@ -1164,7 +1164,7 @@ namespace NWN.API
       => (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
 
     /// <summary>
-    /// Gets the PC's familiar type.
+    /// Gets the type of familiar that this creature can summon.
     /// </summary>
     public FamiliarCreatureType FamiliarType
       => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
@@ -1174,27 +1174,6 @@ namespace NWN.API
     /// </summary>
     public bool IsEncounter
       => NWScript.GetIsEncounterCreature(this).ToBool();
-
-    /// <summary>
-    /// Gives xPAmount adjusted by any multiclass penalty.
-    /// </summary>
-    public void GiveXp(int xPAmount)
-      => NWScript.GiveXPToCreature(this, xPAmount);
-
-    /// <summary>
-    /// Gets or sets the AI (artificial intelligence) level.
-    /// </summary>
-    public AiLevel Ai
-    {
-      get => (AiLevel)NWScript.GetAILevel(this);
-      set => NWScript.SetAILevel(this, (int)(AiLevel)value);
-    }
-
-    /// <summary>
-    /// Get's ability modifier for a specified ability.
-    /// </summary>
-    public Ability AbilityModifier(Ability ability)
-      => (Ability)NWScript.GetAbilityModifier((int)ability, this);
 
     /// <summary>
     /// Gets the action mode status.
@@ -1249,19 +1228,10 @@ namespace NWN.API
       => (Spell)NWScript.GetEffectSpellId(effect);
 
     /// <summary>
-    /// Gets familiar's name.
+    /// Gets this creature's familiar name.
     /// </summary>
     public string FamiliarName(NwCreature creature)
       => NWScript.GetFamiliarName(creature);
-
-    /// <summary>
-    /// Gets or sets the footstep type.
-    /// </summary>
-    public FootstepType Footstep
-    {
-      get => (FootstepType)NWScript.GetFootstepType(this);
-      set => NWScript.SetFootstepType((int)value, this);
-    }
 
     /// <summary>
     /// Determines whether a creature has the effects of a feat.
