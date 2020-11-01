@@ -1286,5 +1286,11 @@ namespace NWN.API
     /// </summary>
     public int Reputation(NwCreature creature)
       => NWScript.GetReputation(this, creature);
+
+    /// <summary>
+    /// Gets the spell resistance of this (creature)
+    /// Returns 0 if this (creature) has no spell resistance or an invalid creature is passed in.
+    /// </summary>
+    public int SpellResistance => NWScript.GetSpellResistance(this);
   }
 }
