@@ -353,5 +353,11 @@ namespace NWN.API
     /// </summary>
     public int JournalQuestExperience(string plotID)
       => NWScript.GetJournalQuestExperience(plotID);
+
+    /// <summary>
+    /// Gives the specified XP to this player, adjusted by any multiclass penalty.
+    /// </summary>
+    public void GiveXp(int xPAmount)
+      => NWScript.GiveXPToCreature(this, xPAmount);
   }
 }
