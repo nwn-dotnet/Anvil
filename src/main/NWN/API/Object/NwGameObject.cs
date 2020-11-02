@@ -475,5 +475,12 @@ namespace NWN.API
     /// </summary>
     public bool IsWeaponEffective(bool offHand = false)
       => NWScript.GetIsWeaponEffective(this, offHand.ToInt()).ToBool();
+
+    /// <summary>
+    /// Get the surface material at the given location. (This is equivalent to the walkmesh type).
+    /// Returns 0 if the location is invalid or has no surface type.
+    /// </summary>
+    public int SurfaceMaterial(Location location)
+      => NWScript.GetSurfaceMaterial(location);
     }
 }
