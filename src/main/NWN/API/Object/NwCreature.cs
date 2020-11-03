@@ -1304,6 +1304,6 @@ namespace NWN.API
     /// Gets a value indicating whether the number of hit dice worth of
     /// Turn Resistance this (creature) has.
     /// </summary>
-    public bool TurnResistanceHD => NWScript.GetTurnResistanceHD(this).ToBool();
+    public int TurnResistanceHD => NWScript.GetTurnResistanceHD(this);
   }
 }
