@@ -218,9 +218,24 @@ namespace NWN.API
     public AreaDestroyResult Destroy() => (AreaDestroyResult) NWScript.DestroyArea(this);
 
     /// <summary>
-    /// Returns whether the given tile in this area is visible for the given creature.
+    /// Gets the value whether the given tile at x, y, for the given creature in the stated area is visible on the map.
+    /// Note that creature needs to be a PC or NPC.
+    /// x = The location of the tile on the x axis.
+    /// y = The location of the tile on the y axis.
+    /// Tile exploration also controls object visibility in areas and the fog of war for interior and underground areas.
     /// </summary>
     public bool GetTileExplored(NwCreature creature, int x, int y)
       => NWScript.GetTileExplored(creature, this, x, y).ToBool();
+
+    /// <summary>
+    /// Sets if the given creature has explored tile at x, y of the given area.
+    /// Note that creature needs to be a PC or NPC.
+    /// x = The location of the tile on the x axis.
+    /// y = The location of the tile on the y axis.
+    /// Tile exploration also controls object visibility in areas and the fog of war for interior and underground areas.
+    /// newState is whether the tile should be explored.
+    /// </summary>
+    public bool SetTileExplored(NwCreature creature, int x, int y, bool newState)
+      => NWScript.SetTileExplored(creature, this, x, y, newState.ToInt()).ToBool();
   }
 }
