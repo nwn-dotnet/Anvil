@@ -216,5 +216,11 @@ namespace NWN.API
     /// </summary>
     /// <returns>The result of this destroy action.</returns>
     public AreaDestroyResult Destroy() => (AreaDestroyResult) NWScript.DestroyArea(this);
+
+    /// <summary>
+    /// Returns whether the given tile in this area is visible for the given creature.
+    /// </summary>
+    public bool GetTileExplored(NwCreature creature, int x, int y)
+      => NWScript.GetTileExplored(creature, this, x, y).ToBool();
   }
 }
