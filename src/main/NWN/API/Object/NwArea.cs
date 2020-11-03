@@ -243,5 +243,11 @@ namespace NWN.API
     /// Returns the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 1 of the tile at lTile.
     /// </summary>
     public TileMainLightColor TileMainLightColorOne(Location tile) => (TileMainLightColor)NWScript.GetTileMainLight1Color(tile);
+
+    /// <summary>
+    /// Determines the color of the first main light of a tile.
+    /// Returns the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 1 of the tile at lTile.
+    /// </summary>
+    public TileMainLightColor TileMainLightColorTwo(Location tile) => (TileMainLightColor)NWScript.GetTileMainLight2Color(tile);
   }
 }
