@@ -240,14 +240,26 @@ namespace NWN.API
 
     /// <summary>
     /// Determines the color of the first main light of a tile.
-    /// Returns the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 1 of the tile at lTile.
+    /// Gets the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 1 of the tile at tile.
     /// </summary>
     public TileMainLightColor TileMainLightColorOne(Location tile) => (TileMainLightColor)NWScript.GetTileMainLight1Color(tile);
 
     /// <summary>
-    /// Determines the color of the first main light of a tile.
-    /// Returns the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 1 of the tile at lTile.
+    /// Determines the color of the second main light of a tile.
+    /// Gets the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 2 of the tile at tile.
     /// </summary>
     public TileMainLightColor TileMainLightColorTwo(Location tile) => (TileMainLightColor)NWScript.GetTileMainLight2Color(tile);
+
+    /// <summary>
+    /// Determines the color of the first light source for a tile.
+    /// Gets the color (TILE_SOURCE_LIGHT_COLOR_*) for the source light 1 of the tile at tile.
+    /// </summary>
+    public TileSourceLightColor TileSourceLightColorOne(Location tile) => (TileSourceLightColor)NWScript.GetTileSourceLight1Color(tile);
+
+    /// <summary>
+    /// Determines the color of the second light source of a tile.
+    /// Gets the color (TILE_SOURCE_LIGHT_COLOR_*) for the source light 2 of the tile at tile.
+    /// </summary>
+    public TileSourceLightColor TileSourceLightColorTwo(Location tile) => (TileSourceLightColor)NWScript.GetTileSourceLight2Color(tile);
   }
 }
