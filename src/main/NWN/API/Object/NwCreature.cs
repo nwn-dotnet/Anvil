@@ -1294,14 +1294,15 @@ namespace NWN.API
     public int SpellResistance => NWScript.GetSpellResistance(this);
 
     /// <summary>
-    /// Gets if this (creature) is using a stealth mode.
+    /// Gets a value indicating whether this (creature) is using a stealth mode.
     /// Returns True STEALTH_MODE_ACTIVATED if (creature) is using stealth,
     /// else false if STEALTH_MODE_DISABLED if not.
     /// </summary>
     public bool StealthMode => NWScript.GetStealthMode(this).ToBool();
 
     /// <summary>
-    /// Gets the number of hit dice worth of Turn Resistance this (creature) has.
+    /// Gets a value indicating whether the number of hit dice worth of
+    /// Turn Resistance this (creature) has.
     /// </summary>
     public bool TurnResistanceHD => NWScript.GetTurnResistanceHD(this).ToBool();
   }
