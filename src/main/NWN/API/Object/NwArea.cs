@@ -237,5 +237,11 @@ namespace NWN.API
     /// </summary>
     public bool SetTileExplored(NwCreature creature, int x, int y, bool newState)
       => NWScript.SetTileExplored(creature, this, x, y, newState.ToInt()).ToBool();
+
+    /// <summary>
+    /// Determines the color of the first main light of a tile.
+    /// Returns the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 1 of the tile at lTile.
+    /// </summary>
+    public TileMainLightColor TileMainLightColorOne(Location tile) => (TileMainLightColor)NWScript.GetTileMainLight1Color(tile);
   }
 }
