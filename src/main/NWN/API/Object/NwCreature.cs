@@ -1329,7 +1329,7 @@ namespace NWN.API
     /// <summary>
     /// Levels up this (creature) using the default settings.
     /// </summary>
-    public int LevelUpHenchman(ClassType classType, bool spellsReady = false, PackageType package)
-    => NWScript.LevelUpHenchman(this, (int)classType, spellsReady.ToInt(), (int)package);
+    public int LevelUpHenchman(ClassType classType, PackageType package, bool spellsReady = false)
+    => NWScript.LevelUpHenchman(this, (int)classType, (int)package, spellsReady.ToInt());
   }
 }
