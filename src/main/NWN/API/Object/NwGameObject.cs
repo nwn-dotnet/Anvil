@@ -447,41 +447,5 @@ namespace NWN.API
       get => (AppearanceType)NWScript.GetAppearanceType(this);
       set => NWScript.SetCreatureAppearanceType(this, (int)value);
     }
-
-    /// <summary>
-    /// Gets the distance in meters between two objects.
-    /// </summary>
-    public float DistanceBetween(NwGameObject objectA, NwGameObject objectB)
-      => NWScript.GetDistanceBetween(objectA, objectB);
-
-    /// <summary>
-    /// Gets the distance from the caller to the object in meters.
-    /// </summary>
-    public float DistanceToObject(NwGameObject objectA)
-      => NWScript.GetDistanceToObject(objectA);
-
-    /// <summary>
-    /// Determine whether creature, store or placeable has an inventory.
-    /// </summary>
-    public bool HasInventory(NwGameObject gameObject)
-      => NWScript.GetHasInventory(gameObject).ToBool();
-
-    /// <summary>
-    /// Gets a value indicating whether this (object) is listening for something.
-    /// </summary>
-    public bool IsListening => NWScript.GetIsListening(this).ToBool();
-
-    /// <summary>
-    /// Check whether script owner's equipped weapon is able to damage a given object.
-    /// </summary>
-    public bool IsWeaponEffective(bool offHand = false)
-      => NWScript.GetIsWeaponEffective(this, offHand.ToInt()).ToBool();
-
-    /// <summary>
-    /// Get the surface material at the given location. (This is equivalent to the walkmesh type).
-    /// Returns 0 if the location is invalid or has no surface type.
-    /// </summary>
-    public int SurfaceMaterial(Location location)
-      => NWScript.GetSurfaceMaterial(location);
-    }
+  }
 }
