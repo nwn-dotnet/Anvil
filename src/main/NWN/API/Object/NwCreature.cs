@@ -1343,5 +1343,11 @@ namespace NWN.API
     /// </summary>
     public string RandomName(NameTable name = NameTable.FirstGenericMale)
       => NWScript.RandomName((int)name).ToString();
+
+    /// <summary>
+    /// Restores the number of base attacks back to it's original state on this (creature).
+    /// </summary>
+    public void RestoreBaseAttackBonus()
+      => NWScript.RestoreBaseAttackBonus(this);
   }
 }
