@@ -1349,5 +1349,19 @@ namespace NWN.API
     /// </summary>
     public void RestoreBaseAttackBonus()
       => NWScript.RestoreBaseAttackBonus(this);
+
+    /// <summary>
+    /// Sets the number of base attacks for this (creature).
+    /// The range of values accepted are from 1 to 6.
+    /// Works on player character.
+    /// Does not actually set the base attack bonus for the character,
+    /// it sets the number of attacks he can make in a round.
+    /// Each successive attack per round suffers a -5 penalty.
+    /// If the character has levels in Monk and fights with Unarmed Strike,
+    /// each successive attack per round suffers a -3 penalty.
+    /// The additional attacks are not shown on the player's character sheet.
+    /// </summary>
+    public void SetBaseAttackBonus(int baseAttackBonus)
+      => NWScript.SetBaseAttackBonus(baseAttackBonus, this);
   }
 }
