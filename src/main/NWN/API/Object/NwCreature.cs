@@ -1331,5 +1331,11 @@ namespace NWN.API
     /// </summary>
     public int LevelUpHenchman(ClassType classType, PackageType package, bool spellsReady = false)
     => NWScript.LevelUpHenchman(this, (int)classType, (int)package, spellsReady.ToInt());
+
+    /// <summary>
+    /// Play this (creature) voice chat.
+    /// </summary>
+    public void PlayVoiceChat(VoiceChatType voiceChatType)
+      => NWScript.PlayVoiceChat((int)voiceChatType, this);
   }
 }
