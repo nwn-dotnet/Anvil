@@ -373,5 +373,12 @@ namespace NWN.API
     /// </summary>
     public void LockCameraPitch(bool isLocked = true)
       => NWScript.LockCameraPitch(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Locks the player's camera distance to its current distance setting,
+    /// or unlocks the player's camera distance.
+    /// </summary>
+    public void LockCameraDistance(bool isLocked = true)
+      => NWScript.LockCameraDistance(this, isLocked.ToInt());
     }
 }
