@@ -15,7 +15,7 @@ namespace NWN.API
     /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>
     /// </summary>
-    public Vector2 Size => new Vector2(NWScript.GetAreaSize((int) AreaSizeDimension.Width, this), NWScript.GetAreaSize((int) AreaSizeDimension.Height, this));
+    public Vector2Int Size => new Vector2Int(NWScript.GetAreaSize((int) AreaSizeDimension.Width, this), NWScript.GetAreaSize((int) AreaSizeDimension.Height, this));
 
     /// <summary>
     /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
@@ -216,50 +216,5 @@ namespace NWN.API
     /// </summary>
     /// <returns>The result of this destroy action.</returns>
     public AreaDestroyResult Destroy() => (AreaDestroyResult) NWScript.DestroyArea(this);
-
-    /// <summary>
-    /// Gets the value whether the given tile at x, y, for the given creature in the stated area is visible on the map.
-    /// Note that creature needs to be a PC or NPC.
-    /// x = The location of the tile on the x axis.
-    /// y = The location of the tile on the y axis.
-    /// Tile exploration also controls object visibility in areas and the fog of war for interior and underground areas.
-    /// </summary>
-    public bool GetTileExplored(NwCreature creature, int x, int y)
-      => NWScript.GetTileExplored(creature, this, x, y).ToBool();
-
-    /// <summary>
-    /// Sets if the given creature has explored tile at x, y of the given area.
-    /// Note that creature needs to be a PC or NPC.
-    /// x = The location of the tile on the x axis.
-    /// y = The location of the tile on the y axis.
-    /// Tile exploration also controls object visibility in areas and the fog of war for interior and underground areas.
-    /// newState is whether the tile should be explored.
-    /// </summary>
-    public bool SetTileExplored(NwCreature creature, int x, int y, bool newState)
-      => NWScript.SetTileExplored(creature, this, x, y, newState.ToInt()).ToBool();
-
-    /// <summary>
-    /// Determines the color of the first main light of a tile.
-    /// Gets the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 1 of the tile at tile.
-    /// </summary>
-    public TileMainLightColor TileMainLightColorOne(Location tile) => (TileMainLightColor)NWScript.GetTileMainLight1Color(tile);
-
-    /// <summary>
-    /// Determines the color of the second main light of a tile.
-    /// Gets the color (TILE_MAIN_LIGHT_COLOR_*) for the main light 2 of the tile at tile.
-    /// </summary>
-    public TileMainLightColor TileMainLightColorTwo(Location tile) => (TileMainLightColor)NWScript.GetTileMainLight2Color(tile);
-
-    /// <summary>
-    /// Determines the color of the first light source for a tile.
-    /// Gets the color (TILE_SOURCE_LIGHT_COLOR_*) for the source light 1 of the tile at tile.
-    /// </summary>
-    public TileSourceLightColor TileSourceLightColorOne(Location tile) => (TileSourceLightColor)NWScript.GetTileSourceLight1Color(tile);
-
-    /// <summary>
-    /// Determines the color of the second light source of a tile.
-    /// Gets the color (TILE_SOURCE_LIGHT_COLOR_*) for the source light 2 of the tile at tile.
-    /// </summary>
-    public TileSourceLightColor TileSourceLightColorTwo(Location tile) => (TileSourceLightColor)NWScript.GetTileSourceLight2Color(tile);
   }
 }

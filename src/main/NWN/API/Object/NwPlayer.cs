@@ -67,6 +67,23 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the movement rate factor for the cutscene camera following this 'camera man'.
+    /// </summary>
+    public float CutsceneCameraMoveRate
+    {
+      get => NWScript.GetCutsceneCameraMoveRate(this);
+      set => NWScript.SetCutsceneCameraMoveRate(this, value);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this creature is currently in "Cutscene" mode.
+    /// </summary>
+    public bool IsInCutsceneMode
+    {
+      get => NWScript.GetCutsceneMode(this).ToBool();
+    }
+
+    /// <summary>
     /// Gets the members in this player's party.
     /// </summary>
     public IEnumerable<NwPlayer> PartyMembers
@@ -327,40 +344,48 @@ namespace NWN.API
       => NWScript.EnterTargetingMode(this, (int) validObjectTypes, (int) mouseCursor, (int) badTargetCursor);
 
     /// <summary>
-    /// Briefly displays a string ref as ambient text above targets head.
+    /// Briefly displays a floating text message above this player's head using the specified string reference.
     /// </summary>
-    public void FloatingTextStrRef(int strRefToDisplay, NwPlayer player, bool broadcastToFaction)
-        => NWScript.FloatingTextStrRefOnCreature(strRefToDisplay, player, broadcastToFaction.ToInt());
+    /// <param name="strRef">The string ref index to use.</param>
+    /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
+    public void FloatingTextStrRef(int strRef, bool broadcastToParty = true)
+        => NWScript.FloatingTextStrRefOnCreature(strRef, this, broadcastToParty.ToInt());
 
     /// <summary>
-    /// Briefly displays ambient text above targets head.
+    /// Briefly displays a floating text message above this player's head.
     /// </summary>
-    public void FloatingTextString(string stringToDisplay, NwPlayer player, bool broadcastToFaction = true)
-        => NWScript.FloatingTextStringOnCreature(stringToDisplay, player, broadcastToFaction.ToInt());
+    /// <param name="message">The message to display.</param>
+    /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
+    public void FloatingTextString(string message, bool broadcastToParty = true)
+        => NWScript.FloatingTextStringOnCreature(message, this, broadcastToParty.ToInt());
 
     /// <summary>
-    /// Gets or sets the current movement rate factor of this cutscene 'camera man'.
+    /// Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br/>
+    /// See <see cref="Effect.CutsceneGhost"/>, and other Cutscene* effects for hiding and controlling the player creature during cutscene mode.
     /// </summary>
-    public float CutsceneCameraMoveRate
+    /// <param name="allowLeftClick">If true, allows the player to interact with the game world using the left mouse button only. Otherwise, prevents all interactions.</param>
+    public void EnterCutsceneMode(bool allowLeftClick = false)
     {
-      get => NWScript.GetCutsceneCameraMoveRate(this);
-      set => NWScript.SetCutsceneCameraMoveRate(this, value);
+      if (IsInCutsceneMode) // Prevent permanent invulnerability.
+      {
+        return;
+      }
+
+      NWScript.SetCutsceneMode(this, true.ToInt(), allowLeftClick.ToInt());
     }
 
     /// <summary>
-    /// Gets or sets the current cutscene state.
+    /// Exits "Cutscene" mode, restoring standard GUI and camera controls to the player, and restoring their plot flag.
     /// </summary>
-    public int CutsceneMode
+    public void ExitCutsceneMode()
     {
-      get => NWScript.GetCutsceneMode(this);
-      set => NWScript.SetCutsceneMode(this, value, value);
-    }
+      if (!IsInCutsceneMode)
+      {
+        return;
+      }
 
-    /// <summary>
-    /// Gets the amount of experience set for a journal category.
-    /// </summary>
-    public int JournalQuestExperience(string plotID)
-      => NWScript.GetJournalQuestExperience(plotID);
+      NWScript.SetCutsceneMode(this, false.ToInt(), true.ToInt());
+    }
 
     /// <summary>
     /// Gives the specified XP to this player, adjusted by any multiclass penalty.

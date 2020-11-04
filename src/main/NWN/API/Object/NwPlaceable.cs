@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
+using NWN.Core.NWNX;
 using NWNX.API.Constants;
 
 namespace NWN.API
@@ -30,6 +31,15 @@ namespace NWN.API
     {
       get => NWScript.GetUseableFlag(this).ToBool();
       set => NWScript.SetUseableFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this placeable has an inventory.
+    /// </summary>
+    public bool HasInventory
+    {
+      get => NWScript.GetHasInventory(this).ToBool();
+      set => ObjectPlugin.SetHasInventory(this, value.ToInt());
     }
 
     /// <summary>

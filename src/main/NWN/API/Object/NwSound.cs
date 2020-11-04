@@ -26,11 +26,5 @@ namespace NWN.API
     /// Stops this sound object from playing.
     /// </summary>
     public void Stop() => NWScript.SoundObjectStop(this);
-
-    /// <summary>
-    /// Gets the length of a wave (audio) file in seconds.
-    /// </summary>
-    public float DialogSoundLength(int strRef)
-      => NWScript.GetDialogSoundLength(strRef);
   }
 }

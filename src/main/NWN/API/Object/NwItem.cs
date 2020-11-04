@@ -104,6 +104,23 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether this item should be hidden when equipped.
+    /// </summary>
+    public int HiddenWhenEquipped
+    {
+      get => NWScript.GetHiddenWhenEquipped(this);
+      set => NWScript.SetHiddenWhenEquipped(this, value);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this item has an inventory (container).
+    /// </summary>
+    public bool HasInventory
+    {
+      get => NWScript.GetHasInventory(this).ToBool();
+    }
+
+    /// <summary>
     /// Gets the GameObject that has this item in its inventory. Returns null if it is on the ground, or not in any inventory.
     /// </summary>
     public NwGameObject Possessor
@@ -231,36 +248,15 @@ namespace NWN.API
     public static NwItem GetSpellCastItem() => NWScript.GetSpellCastItem().ToNwObject<NwItem>();
 
     /// <summary>
-    /// Gets or sets a value indicating whether this provided item should be hidden when equipped.
-    /// </summary>
-    public int HiddenWhenEquipped
-    {
-      get => NWScript.GetHiddenWhenEquipped(this);
-      set => NWScript.SetHiddenWhenEquipped(this, value);
-    }
-
-    /// <summary>
-    /// Gets whether this (item) has a given property.
+    /// Gets whether this item has a given item property.
     /// </summary>
     public ItemPropertyType ItemHasItemProperty(ItemPropertyType property)
       => (ItemPropertyType)NWScript.GetItemHasItemProperty(this, (int)property);
 
     /// <summary>
-    /// Gets the cost table number of the itemproperty.
+    /// Gets the number of uses per day remaining for the specified item property on this item.
     /// </summary>
-    public int ItemPropertyCostTable(ItemProperty property)
-      => NWScript.GetItemPropertyCostTable(property);
-
-    /// <summary>
-    /// Gets the cost table value of an itemproperty.
-    /// </summary>
-    public int ItemPropertyCostTableValue(ItemProperty property)
-      => NWScript.GetItemPropertyCostTableValue(property);
-
-    /// <summary>
-    /// Gets the number of uses per day remaining of this (item) and item property.
-    /// </summary>
-    public int ItemPropertyUsesPerDayRemaining(ItemProperty property)
+    public int UsesPerDayRemaining(ItemProperty property)
       => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
   }
 }

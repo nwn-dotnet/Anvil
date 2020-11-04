@@ -37,7 +37,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the tag of the key that will open this placeable.
+    /// Gets or sets the tag of the key that will open this stationary object.
     /// </summary>
     public string LockKeyTag
     {
@@ -55,7 +55,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the skill DC required to lock this object.
+    /// Gets or sets the skill DC required to lock this stationary object.
     /// </summary>
     public int LockDC
     {
@@ -64,7 +64,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the skill DC required to unlock this object.
+    /// Gets or sets the skill DC required to unlock this stationary object.
     /// </summary>
     public int UnlockDC
     {
@@ -81,7 +81,22 @@ namespace NWN.API
       set => NWScript.SetHardness(value, this);
     }
 
-    public bool IsOpen => NWScript.GetIsOpen(this).ToBool();
+    /// <summary>
+    /// Gets or sets the feedback message that will be displayed when trying to unlock this stationary object.
+    /// </summary>
+    public string KeyRequiredFeedback
+    {
+      get => NWScript.GetKeyRequiredFeedback(this);
+      set => NWScript.SetKeyRequiredFeedback(this, value);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this stationary object is currently open.
+    /// </summary>
+    public bool IsOpen
+    {
+      get => NWScript.GetIsOpen(this).ToBool();
+    }
 
     public override async Task FaceToPoint(Vector3 point)
     {
@@ -96,14 +111,5 @@ namespace NWN.API
     }
 
     public override Location Location => Location.Create(Area, Position, Rotation);
-
-    /// <summary>
-    /// Gets or sets the feedback message that will be displayed when trying to unlock this (object).
-    /// </summary>
-    public string KeyRequiredFeedback
-    {
-      get => NWScript.GetKeyRequiredFeedback(this);
-      set => NWScript.SetKeyRequiredFeedback(this, value);
-    }
   }
 }
