@@ -1337,5 +1337,11 @@ namespace NWN.API
     /// </summary>
     public void PlayVoiceChat(VoiceChatType voiceChatType)
       => NWScript.PlayVoiceChat((int)voiceChatType, this);
+
+    /// <summary>
+    /// Generates a random name.  Only works on NPC.
+    /// </summary>
+    public string RandomName(NameTable name = NameTable.FirstGenericMale)
+      => NWScript.RandomName((int)name).ToString();
   }
 }
