@@ -96,5 +96,14 @@ namespace NWN.API
     }
 
     public override Location Location => Location.Create(Area, Position, Rotation);
+
+    /// <summary>
+    /// Gets or sets the feedback message that will be displayed when trying to unlock this (object).
+    /// </summary>
+    public string KeyRequiredFeedback
+    {
+      get => NWScript.GetKeyRequiredFeedback(this);
+      set => NWScript.SetKeyRequiredFeedback(this, value);
+    }
   }
 }

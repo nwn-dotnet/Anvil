@@ -1111,5 +1111,257 @@ namespace NWN.API
      /// </summary>
     public void SetCreatureBodyPart(CreaturePart creaturePart, CreatureModelType creatureModel)
       => NWScript.SetCreatureBodyPart((int)creaturePart, (int)creatureModel, this);
+
+    /// <summary>
+    /// Gets or sets the wing type of this creature.
+    /// </summary>
+    public CreatureWingType WingType
+    {
+      get => (CreatureWingType)NWScript.GetCreatureWingType(this);
+      set => NWScript.SetCreatureWingType((int)value, this);
+    }
+
+    /// <summary>
+    /// Gets or sets the tail type of this creature.
+    /// </summary>
+    public CreatureTailType TailType
+    {
+      get => (CreatureTailType)NWScript.GetCreatureTailType(this);
+      set => NWScript.SetCreatureTailType((int)value, this);
+    }
+
+    /// <summary>
+    /// Get this creature's animal companion creature type.
+    /// </summary>
+    public AnimalCompanionCreatureType AnimalCompanionType(NwCreature creature)
+      => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(creature);
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this creature will auto-explore the minimap as it walks around.
+    /// </summary>
+    public bool ExploresMinimap
+    {
+      get => NWScript.GetCreatureExploresMinimap(this).ToBool();
+      set => NWScript.SetCreatureExploresMinimap(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets this creature's default level up package.
+    /// </summary>
+    public PackageType StartingPackage
+      => (PackageType)NWScript.GetCreatureStartingPackage(this);
+
+    /// <summary>
+    /// Gets the best talent from a group of talents.
+    /// </summary>
+    public TalentCategory TalentBest(TalentCategory category, int maxCr)
+      => (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
+
+    /// <summary>
+    /// Retrieves a random talent from a group of talents possessed.
+    /// </summary>
+    public TalentCategory TalentRandom(TalentCategory category)
+      => (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
+
+    /// <summary>
+    /// Gets the type of familiar that this creature can summon.
+    /// </summary>
+    public FamiliarCreatureType FamiliarType
+      => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
+
+    /// <summary>
+    /// Gets a value indicating whether this creature was spawned from an encounter.
+    /// </summary>
+    public bool IsEncounter
+      => NWScript.GetIsEncounterCreature(this).ToBool();
+
+    /// <summary>
+    /// Gets animal companion's name.
+    /// </summary>
+    public string AnimalCompanionName()
+      => NWScript.GetAnimalCompanionName(this);
+
+    /// <summary>
+    /// Gets arcane spell failure factor.
+    /// </summary>
+    public int ArcaneSpellFailure()
+      => NWScript.GetArcaneSpellFailure(this);
+
+    /// <summary>
+    /// Gets associate.
+    /// </summary>
+    public AssociateType Associate(AssociateType associate, int nTh = 1)
+      => (AssociateType)NWScript.GetAssociate((int)associate, this, nTh);
+
+    /// <summary>
+    /// Gets a value indicating whether the defensive casting mode status.
+    /// </summary>
+    public bool DefensiveCastingMode => NWScript.GetDefensiveCastingMode(this).ToBool();
+
+    /// <summary>
+    /// Gets a value indicating whether if currently searching.
+    /// </summary>
+    public bool DetectMode => NWScript.GetDetectMode(this).ToBool();
+
+    /// <summary>
+    /// Gets the caster level of who created the effect.
+    /// </summary>
+    public int EffectCasterLevel(Effect effect)
+      => NWScript.GetEffectCasterLevel(effect);
+
+    /// <summary>
+    /// Gets the constant of the spell that applied the effect (SPELL_*).
+    /// </summary>
+    public Spell EffectSpellId(Effect effect)
+      => (Spell)NWScript.GetEffectSpellId(effect);
+
+    /// <summary>
+    /// Gets this creature's familiar name.
+    /// </summary>
+    public string FamiliarName(NwCreature creature)
+      => NWScript.GetFamiliarName(creature);
+
+    /// <summary>
+    /// Determines whether a creature has the effects of a feat.
+    /// </summary>
+    public bool HasFeatEffect(Feat feat, NwCreature creature)
+      => NWScript.GetHasFeatEffect((int)feat, creature).ToBool();
+
+    /// <summary>
+    /// Determines whether this (object) is under the effects of a spell.
+    /// </summary>
+    public bool HasSpellEffect(Spell spell)
+      => NWScript.GetHasSpellEffect((int)spell, this).ToBool();
+
+    /// <summary>
+    /// Determine whether this (creature) has a friendly reaction towards another given creature.
+    /// </summary>
+    public bool IsReactionTypeFriendly(NwCreature creature)
+      => NWScript.GetIsReactionTypeFriendly(creature, this).ToBool();
+
+    /// <summary>
+    /// Determine whether this (creature) has a hostile reaction towards another given creature.
+    /// </summary>
+    public bool IsReactionTypeHostile(NwCreature creature)
+      => NWScript.GetIsReactionTypeHostile(creature, this).ToBool();
+
+    /// <summary>
+    /// Determine whether this (creature) has a neutral reaction towards another given creature.
+    /// </summary>
+    public bool GetIsReactionTypeNeutral(NwCreature creature)
+      => NWScript.GetIsReactionTypeNeutral(creature, this).ToBool();
+
+    /// <summary>
+    /// Gets this (creature's) combat mode.
+    /// </summary>
+    public CombatMode LastAttackMode => (CombatMode)NWScript.GetLastAttackMode(this);
+
+    /// <summary>
+    /// Gets the attack type of the last physical attack against this (creature).
+    /// </summary>
+    public SpecialAttack LastAttackType => (SpecialAttack)NWScript.GetLastAttackType(this);
+
+    /// <summary>
+    /// Gets this last creature that was communicated with.
+    /// </summary>
+    public NwCreature LastSpeaker => (NwCreature)NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
+
+    /// <summary>
+    /// could use an enum here
+    /// public enum ClassPosition
+    /// {
+    ///    First,
+    ///    Second,
+    ///    Third
+    /// }
+    /// Gets the class level of this (object) from the class table.
+    /// classPosition is the row in the class table to get a value from. Range is 1 to 3.
+    ///  If this (creature) doesn't have a class table it Will return 0 as there is no class value to return.
+    /// </summary>
+    public int LevelByPosition(int classPosition)
+      => NWScript.GetLevelByPosition(classPosition);
+
+    /// <summary>
+    /// Gets how one creature feels toward this (creature).
+    /// </summary>
+    public int Reputation(NwCreature creature)
+      => NWScript.GetReputation(this, creature);
+
+    /// <summary>
+    /// Gets the spell resistance of this (creature)
+    /// Returns 0 if this (creature) has no spell resistance or an invalid creature is passed in.
+    /// </summary>
+    public int SpellResistance => NWScript.GetSpellResistance(this);
+
+    /// <summary>
+    /// Gets a value indicating whether this (creature) is using a stealth mode.
+    /// Returns True STEALTH_MODE_ACTIVATED if (creature) is using stealth,
+    /// else false if STEALTH_MODE_DISABLED if not.
+    /// </summary>
+    public bool StealthMode => NWScript.GetStealthMode(this).ToBool();
+
+    /// <summary>
+    /// Gets a value indicating whether the number of hit dice worth of
+    /// Turn Resistance this (creature) has.
+    /// </summary>
+    public int TurnResistanceHD => NWScript.GetTurnResistanceHD(this);
+
+    /// <summary>
+    /// Increment the remaining uses per day for this (creature) by one.
+    /// Total number of feats per day can not exceed the maximum.
+    /// </summary>
+    public void IncrementRemainingFeatUses(Feat feat)
+    {
+      NWScript.IncrementRemainingFeatUses(this, (int)feat);
+    }
+
+    /// <summary>
+    /// Decrements the remaining number of uses of a particular feat for this (creature).
+    /// You must have at least one feat use remaining to be able to decrement it.
+    /// Feats which you can use unlimited amounts of time/day, or are not used,
+    /// cannot be decremented or suppressed.
+    /// </summary>
+    public void DecrementRemainingFeatUses(Feat feat)
+    {
+      NWScript.DecrementRemainingFeatUses(this, (int)feat);
+    }
+
+    /// <summary>
+    /// Levels up this (creature) using the default settings.
+    /// </summary>
+    public int LevelUpHenchman(ClassType classType, PackageType package, bool spellsReady = false)
+    => NWScript.LevelUpHenchman(this, (int)classType, (int)package, spellsReady.ToInt());
+
+    /// <summary>
+    /// Play this (creature) voice chat.
+    /// </summary>
+    public void PlayVoiceChat(VoiceChatType voiceChatType)
+      => NWScript.PlayVoiceChat((int)voiceChatType, this);
+
+    /// <summary>
+    /// Generates a random name.  Only works on NPC.
+    /// </summary>
+    public string RandomName(NameTable name = NameTable.FirstGenericMale)
+      => NWScript.RandomName((int)name).ToString();
+
+    /// <summary>
+    /// Restores the number of base attacks back to it's original state on this (creature).
+    /// </summary>
+    public void RestoreBaseAttackBonus()
+      => NWScript.RestoreBaseAttackBonus(this);
+
+    /// <summary>
+    /// Sets the number of base attacks for this (creature).
+    /// The range of values accepted are from 1 to 6.
+    /// Works on player character.
+    /// Does not actually set the base attack bonus for the character,
+    /// it sets the number of attacks he can make in a round.
+    /// Each successive attack per round suffers a -5 penalty.
+    /// If the character has levels in Monk and fights with Unarmed Strike,
+    /// each successive attack per round suffers a -3 penalty.
+    /// The additional attacks are not shown on the player's character sheet.
+    /// </summary>
+    public void SetBaseAttackBonus(int baseAttackBonus)
+      => NWScript.SetBaseAttackBonus(baseAttackBonus, this);
   }
 }

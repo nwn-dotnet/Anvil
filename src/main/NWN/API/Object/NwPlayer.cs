@@ -325,5 +325,74 @@ namespace NWN.API
     /// <param name="badTargetCursor">The cursor to display if the player is hovering over an invalid selection.</param>
     public void EnterTargetingMode(ObjectTypes validObjectTypes, MouseCursor mouseCursor = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
       => NWScript.EnterTargetingMode(this, (int) validObjectTypes, (int) mouseCursor, (int) badTargetCursor);
-  }
+
+    /// <summary>
+    /// Briefly displays a string ref as ambient text above targets head.
+    /// </summary>
+    public void FloatingTextStrRef(int strRefToDisplay, NwPlayer player, bool broadcastToFaction)
+        => NWScript.FloatingTextStrRefOnCreature(strRefToDisplay, player, broadcastToFaction.ToInt());
+
+    /// <summary>
+    /// Briefly displays ambient text above targets head.
+    /// </summary>
+    public void FloatingTextString(string stringToDisplay, NwPlayer player, bool broadcastToFaction = true)
+        => NWScript.FloatingTextStringOnCreature(stringToDisplay, player, broadcastToFaction.ToInt());
+
+    /// <summary>
+    /// Gets or sets the current movement rate factor of this cutscene 'camera man'.
+    /// </summary>
+    public float CutsceneCameraMoveRate
+    {
+      get => NWScript.GetCutsceneCameraMoveRate(this);
+      set => NWScript.SetCutsceneCameraMoveRate(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the current cutscene state.
+    /// </summary>
+    public int CutsceneMode
+    {
+      get => NWScript.GetCutsceneMode(this);
+      set => NWScript.SetCutsceneMode(this, value, value);
+    }
+
+    /// <summary>
+    /// Gets the amount of experience set for a journal category.
+    /// </summary>
+    public int JournalQuestExperience(string plotID)
+      => NWScript.GetJournalQuestExperience(plotID);
+
+    /// <summary>
+    /// Gives the specified XP to this player, adjusted by any multiclass penalty.
+    /// </summary>
+    public void GiveXp(int xPAmount)
+      => NWScript.GiveXPToCreature(this, xPAmount);
+
+    /// <summary>
+    /// Locks the player's camera direction to its current direction,
+    /// or unlocks the player's camera direction to enable it to move freely again.
+    /// </summary>
+    public void LockCameraDirection(bool isLocked = true)
+      => NWScript.LockCameraDirection(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Locks the player's camera pitch to its current pitch setting,
+    /// or unlocks the player's camera pitch.
+    /// </summary>
+    public void LockCameraPitch(bool isLocked = true)
+      => NWScript.LockCameraPitch(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Locks the player's camera distance to its current distance setting,
+    /// or unlocks the player's camera distance.
+    /// </summary>
+    public void LockCameraDistance(bool isLocked = true)
+      => NWScript.LockCameraDistance(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Changes the current Day/Night cycle for this (player) to daylight.
+    /// </summary>
+    public void NightToDay(float delayTransitionTime = 0.0f)
+      => NWScript.NightToDay(this, delayTransitionTime);
+    }
 }

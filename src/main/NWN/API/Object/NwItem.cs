@@ -229,5 +229,38 @@ namespace NWN.API
     }
 
     public static NwItem GetSpellCastItem() => NWScript.GetSpellCastItem().ToNwObject<NwItem>();
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this provided item should be hidden when equipped.
+    /// </summary>
+    public int HiddenWhenEquipped
+    {
+      get => NWScript.GetHiddenWhenEquipped(this);
+      set => NWScript.SetHiddenWhenEquipped(this, value);
+    }
+
+    /// <summary>
+    /// Gets whether this (item) has a given property.
+    /// </summary>
+    public ItemPropertyType ItemHasItemProperty(ItemPropertyType property)
+      => (ItemPropertyType)NWScript.GetItemHasItemProperty(this, (int)property);
+
+    /// <summary>
+    /// Gets the cost table number of the itemproperty.
+    /// </summary>
+    public int ItemPropertyCostTable(ItemProperty property)
+      => NWScript.GetItemPropertyCostTable(property);
+
+    /// <summary>
+    /// Gets the cost table value of an itemproperty.
+    /// </summary>
+    public int ItemPropertyCostTableValue(ItemProperty property)
+      => NWScript.GetItemPropertyCostTableValue(property);
+
+    /// <summary>
+    /// Gets the number of uses per day remaining of this (item) and item property.
+    /// </summary>
+    public int ItemPropertyUsesPerDayRemaining(ItemProperty property)
+      => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
   }
 }
