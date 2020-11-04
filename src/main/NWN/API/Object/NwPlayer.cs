@@ -359,5 +359,12 @@ namespace NWN.API
     /// </summary>
     public void GiveXp(int xPAmount)
       => NWScript.GiveXPToCreature(this, xPAmount);
-  }
+
+    /// <summary>
+    /// Locks the player's camera direction to its current direction,
+    /// or unlocks the player's camera direction to enable it to move freely again.
+    /// </summary>
+    public void LockCameraDirection(bool isLocked = true)
+      => NWScript.LockCameraDirection(this, isLocked.ToInt());
+    }
 }
