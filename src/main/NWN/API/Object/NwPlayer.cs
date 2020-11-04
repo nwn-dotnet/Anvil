@@ -366,5 +366,12 @@ namespace NWN.API
     /// </summary>
     public void LockCameraDirection(bool isLocked = true)
       => NWScript.LockCameraDirection(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Locks the player's camera pitch to its current pitch setting,
+    /// or unlocks the player's camera pitch.
+    /// </summary>
+    public void LockCameraPitch(bool isLocked = true)
+      => NWScript.LockCameraPitch(this, isLocked.ToInt());
     }
 }
