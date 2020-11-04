@@ -1305,5 +1305,14 @@ namespace NWN.API
     /// Turn Resistance this (creature) has.
     /// </summary>
     public int TurnResistanceHD => NWScript.GetTurnResistanceHD(this);
+
+    /// <summary>
+    /// Increment the remaining uses per day for this (creature) by one.
+    /// Total number of feats per day can not exceed the maximum.
+    /// </summary>
+    public void IncrementRemainingFeatUses(Feat feat)
+    {
+      NWScript.IncrementRemainingFeatUses(this, (int)feat);
+    }
   }
 }
