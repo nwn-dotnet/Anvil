@@ -1314,5 +1314,16 @@ namespace NWN.API
     {
       NWScript.IncrementRemainingFeatUses(this, (int)feat);
     }
+
+    /// <summary>
+    /// Decrements the remaining number of uses of a particular feat for this (creature).
+    /// You must have at least one feat use remaining to be able to decrement it.
+    /// Feats which you can use unlimited amounts of time/day, or are not used,
+    /// cannot be decremented or suppressed.
+    /// </summary>
+    public void DecrementRemainingFeatUses(Feat feat)
+    {
+      NWScript.DecrementRemainingFeatUses(this, (int)feat);
+    }
   }
 }
