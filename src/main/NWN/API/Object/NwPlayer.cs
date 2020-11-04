@@ -380,5 +380,11 @@ namespace NWN.API
     /// </summary>
     public void LockCameraDistance(bool isLocked = true)
       => NWScript.LockCameraDistance(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Changes the current Day/Night cycle for this (player) to daylight.
+    /// </summary>
+    public void NightToDay(float delayTransitionTime = 0.0f)
+      => NWScript.NightToDay(this, delayTransitionTime);
     }
 }
