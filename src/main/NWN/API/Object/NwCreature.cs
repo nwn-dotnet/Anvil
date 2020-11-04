@@ -1325,5 +1325,11 @@ namespace NWN.API
     {
       NWScript.DecrementRemainingFeatUses(this, (int)feat);
     }
+
+    /// <summary>
+    /// Levels up this (creature) using the default settings.
+    /// </summary>
+    public int LevelUpHenchman(ClassType classType, bool spellsReady = false, PackageType package)
+    => NWScript.LevelUpHenchman(this, (int)classType, spellsReady.ToInt(), (int)package);
   }
 }
