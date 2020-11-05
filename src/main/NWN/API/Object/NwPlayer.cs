@@ -84,6 +84,30 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Locks/unlocks the player's camera direction to/from its current direction.
+    /// </summary>
+    public bool CameraDirectionLocked
+    {
+      set => NWScript.LockCameraDirection(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Locks/unlocks the player's camera pitch to/from its current pitch setting,
+    /// </summary>
+    public bool CameraPitchLocked
+    {
+      set => NWScript.LockCameraPitch(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Locks/unlocks the player's camera distance to/from its current distance setting,
+    /// </summary>
+    public bool CameraDistanceLocked
+    {
+      set => NWScript.LockCameraDistance(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets the members in this player's party.
     /// </summary>
     public IEnumerable<NwPlayer> PartyMembers
@@ -394,27 +418,6 @@ namespace NWN.API
     /// <param name="xPAmount">Amount of experience to give.</param>
     public void GiveXp(int xPAmount)
       => NWScript.GiveXPToCreature(this, xPAmount);
-
-    /// <summary>
-    /// Locks the player's camera direction to its current direction,
-    /// or unlocks the player's camera direction to enable it to move freely again.
-    /// </summary>
-    public void LockCameraDirection(bool isLocked = true)
-      => NWScript.LockCameraDirection(this, isLocked.ToInt());
-
-    /// <summary>
-    /// Locks the player's camera pitch to its current pitch setting,
-    /// or unlocks the player's camera pitch.
-    /// </summary>
-    public void LockCameraPitch(bool isLocked = true)
-      => NWScript.LockCameraPitch(this, isLocked.ToInt());
-
-    /// <summary>
-    /// Locks the player's camera distance to its current distance setting,
-    /// or unlocks the player's camera distance.
-    /// </summary>
-    public void LockCameraDistance(bool isLocked = true)
-      => NWScript.LockCameraDistance(this, isLocked.ToInt());
 
     /// <summary>
     /// Changes the current Day/Night cycle for this player to daylight.
