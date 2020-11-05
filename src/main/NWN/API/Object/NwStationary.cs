@@ -111,5 +111,13 @@ namespace NWN.API
     }
 
     public override Location Location => Location.Create(Area, Position, Rotation);
+
+    /// <summary>
+    /// Sets the fortitude saving throw value for a door or placeable object.
+    /// </summary>
+    public int FortitudeSavingThrow
+    {
+      set => NWScript.SetFortitudeSavingThrow(this, value);
+    }
   }
 }
