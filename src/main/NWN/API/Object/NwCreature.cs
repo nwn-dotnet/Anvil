@@ -414,14 +414,6 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the last object that this creature communicated with.
-    /// </summary>
-    public NwGameObject LastSpeaker
-    {
-      get => NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
     /// Gets the spell resistance of this creature.<br/>
     /// Returns 0 if this creature has no spell resistance.
     /// </summary>
