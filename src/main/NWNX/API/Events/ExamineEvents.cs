@@ -7,7 +7,7 @@ namespace NWNX.API.Events
   public class ExamineEvents
   {
     [NWNXEvent("NWNX_ON_EXAMINE_OBJECT_BEFORE")]
-    public class OnAddAssociateBefore : Event<OnAddAssociateBefore>
+    public class OnExamineObjectBefore : Event<OnExamineObjectBefore>
     {
       public NwPlayer Examiner { get; private set; }
 
@@ -24,7 +24,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_EXAMINE_OBJECT_AFTER")]
-    public class OnAddAssociateAfter : Event<OnAddAssociateAfter>
+    public class OnExamineObjectAfter : Event<OnExamineObjectAfter>
     {
       public NwPlayer Examiner { get; private set; }
 
