@@ -29,7 +29,7 @@
 
     <ItemGroup>
         <PackageReference Include="NLog" Version="4.7.5" />
-        <PackageReference Include="NWN.Core" Version="8193.16.7" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Core" Version="8193.16.8" PrivateAssets="compile" />
         <PackageReference Include="SimpleInjector" Version="5.1.0" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="All" />
