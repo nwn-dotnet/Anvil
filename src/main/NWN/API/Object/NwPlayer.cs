@@ -435,5 +435,12 @@ namespace NWN.API
       set => NWScript.SetCameraHeight(this, value);
     }
 
+    /// <summary>
+    /// Sets the camera mode for this (player).
+    /// </summary>
+    public CameraMode SetCameraMode
+    {
+      set => NWScript.SetCameraMode(this, (int)value);
+    }
   }
 }
