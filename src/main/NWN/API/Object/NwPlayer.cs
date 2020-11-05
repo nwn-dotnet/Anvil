@@ -425,5 +425,15 @@ namespace NWN.API
     /// <param name="delayTransitionTime">Time it takes for the daylight to fade in.</param>
     public void NightToDay(TimeSpan delayTransitionTime = default)
       => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
+
+    /// <summary>
+    /// Sets the camera to a certain height.
+    /// Setting this value to zero will restore the camera to the racial default height.
+    /// </summary>
+    public float CameraHeight
+    {
+      set => NWScript.SetCameraHeight(this, value);
     }
+
+  }
 }
