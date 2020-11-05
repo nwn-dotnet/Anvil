@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['green_1621',['Green',['../structNWN_1_1API_1_1Color.html#a366aece6ec6c7903173b4392f950fd92',1,'NWN::API::Color']]]
+  ['feat_1722',['Feat',['../classNWN_1_1API_1_1Talent.html#a34d61443e0b3e9e72c61553759f10d3e',1,'NWN::API::Talent']]],
+  ['feettometers_1723',['FeetToMeters',['../classNWN_1_1API_1_1NwMath.html#aa2b603133b035108b540d3f33ac294fd',1,'NWN::API::NwMath']]]
 ];

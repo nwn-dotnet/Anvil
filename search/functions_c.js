@@ -1,16 +1,18 @@
 var searchData=
 [
-  ['recomputestaticlighting_1544',['RecomputeStaticLighting',['../classNWN_1_1API_1_1NwArea.html#a5b21ad0604f9c799e666faadc5afdb67',1,'NWN::API::NwArea']]],
-  ['register_3c_20tobject_2c_20tevent_20_3e_1545',['Register&lt; TObject, TEvent &gt;',['../classNWN_1_1Services_1_1EventService.html#a59814fbacb3e537443f3bcd642ead5b4',1,'NWN::Services::EventService']]],
-  ['registerserverconsolecommand_1546',['RegisterServerConsoleCommand',['../classNWNX_1_1API_1_1Util.html#a6cc65d14509c1ff9786ad93651b552b3',1,'NWNX::API::Util']]],
-  ['reloadrules_1547',['ReloadRules',['../classNWNX_1_1API_1_1Administration.html#ac3f5596378886111fc32a797b33a8ba9',1,'NWNX::API::Administration']]],
-  ['removebannedip_1548',['RemoveBannedIP',['../classNWNX_1_1API_1_1Administration.html#aa3f932d867231f24af69ecf10eca63d0',1,'NWNX::API::Administration']]],
-  ['removeeffect_1549',['RemoveEffect',['../classNWN_1_1API_1_1NwCreature.html#a11d32f088286437a8c0587857d6b024e',1,'NWN::API::NwCreature']]],
-  ['removefromcurrentparty_1550',['RemoveFromCurrentParty',['../classNWN_1_1API_1_1NwPlayer.html#af579918539409eac24ff1ad318af22b1',1,'NWN::API::NwPlayer']]],
-  ['removeitemproperty_1551',['RemoveItemProperty',['../classNWN_1_1API_1_1NwItem.html#ae8e8fc98088e6ed037271d97be277719',1,'NWN::API::NwItem']]],
-  ['removenwnxresourcefile_1552',['RemoveNWNXResourceFile',['../classNWNX_1_1API_1_1Util.html#acb0d44fee6cecc6b3e29bd1026815243',1,'NWNX::API::Util']]],
-  ['roll_1553',['Roll',['../classNWN_1_1API_1_1RandomExtensions.html#ac8c0c41ba51c9fffe3a6ee94dadd9562',1,'NWN::API::RandomExtensions']]],
-  ['rollsavingthrow_1554',['RollSavingThrow',['../classNWN_1_1API_1_1NwGameObject.html#a48f2f97fe6a827b2f22c42f8ba05e0f1',1,'NWN::API::NwGameObject']]],
-  ['run_1555',['Run',['../classNWN_1_1API_1_1NwTask.html#a428195b0ca86f8ca2087caf51d95ca29',1,'NWN::API::NwTask']]],
-  ['run_3c_20t_20_3e_1556',['Run&lt; T &gt;',['../classNWN_1_1API_1_1NwTask.html#a8b083dfcaa4e54077bd577986e3743eb',1,'NWN::API::NwTask']]]
+  ['parsefloat_1623',['ParseFloat',['../classNWN_1_1API_1_1StringExtensions.html#a82d8045ebacb6d65c82ebcf0f12ef3a8',1,'NWN.API.StringExtensions.ParseFloat(this string floatString)'],['../classNWN_1_1API_1_1StringExtensions.html#af12a700e5b056292cb5953467983a500',1,'NWN.API.StringExtensions.ParseFloat(this string floatString, float defaultValue)']]],
+  ['parseint_1624',['ParseInt',['../classNWN_1_1API_1_1StringExtensions.html#a9051ffcd0ef42a1b7bdfc37a94a8f7ea',1,'NWN.API.StringExtensions.ParseInt(this string intString)'],['../classNWN_1_1API_1_1StringExtensions.html#a275983e57b80ae121c05baf01d7c090e',1,'NWN.API.StringExtensions.ParseInt(this string intString, int defaultValue)']]],
+  ['parseintbool_1625',['ParseIntBool',['../classNWN_1_1API_1_1StringExtensions.html#a211869cd9eacbb7fe5664d48b7f51fa5',1,'NWN.API.StringExtensions.ParseIntBool(this string intBoolString)'],['../classNWN_1_1API_1_1StringExtensions.html#a03a5a66e7acdc4ed3ba4cc92f11d6ecd',1,'NWN.API.StringExtensions.ParseIntBool(this string intBoolString, bool defaultValue)']]],
+  ['parseobject_1626',['ParseObject',['../classNWN_1_1API_1_1StringExtensions.html#a2cb8f930e4b51f189d043b5be2134367',1,'NWN::API::StringExtensions']]],
+  ['parseobject_3c_20t_20_3e_1627',['ParseObject&lt; T &gt;',['../classNWN_1_1API_1_1StringExtensions.html#a9fa0614fe0ca8c8c297fa901c39ed73f',1,'NWN::API::StringExtensions']]],
+  ['peekuuid_1628',['PeekUUID',['../classNWN_1_1API_1_1NwObject.html#aac0e2abb363b0ceae45603286bf50ea6',1,'NWN::API::NwObject']]],
+  ['play_1629',['Play',['../classNWN_1_1API_1_1NwSound.html#a770259e6159f204df0b73451d09b87c9',1,'NWN::API::NwSound']]],
+  ['playambient_1630',['PlayAmbient',['../classNWN_1_1API_1_1NwArea.html#ac535d42a685c76c9717b781704564e86',1,'NWN::API::NwArea']]],
+  ['playanimation_1631',['PlayAnimation',['../classNWN_1_1API_1_1NwGameObject.html#a4deaf124873b2895ae5265b4fad01a16',1,'NWN::API::NwGameObject']]],
+  ['playbackgroundmusic_1632',['PlayBackgroundMusic',['../classNWN_1_1API_1_1NwArea.html#a2e864b2992af28b9ad9f5be794172828',1,'NWN::API::NwArea']]],
+  ['playbattlemusic_1633',['PlayBattleMusic',['../classNWN_1_1API_1_1NwArea.html#a5f26a16eca8edbf7a879a08aa7d4e7ac',1,'NWN::API::NwArea']]],
+  ['playsound_1634',['PlaySound',['../classNWN_1_1API_1_1NwGameObject.html#aab693224099b36fedc67c4e00aba88c0',1,'NWN::API::NwGameObject']]],
+  ['playvoicechat_1635',['PlayVoiceChat',['../classNWN_1_1API_1_1NwCreature.html#a0fbc05fb296af7bd97503e723ee36785',1,'NWN::API::NwCreature']]],
+  ['pluginexists_1636',['PluginExists',['../classNWNX_1_1API_1_1Util.html#a5b59eb2523d1c0dbac86c0bda6901d59',1,'NWNX::API::Util']]],
+  ['poststring_1637',['PostString',['../classNWN_1_1API_1_1NwPlayer.html#af8cde1180fa89713242f00b074afda62',1,'NWN::API::NwPlayer']]]
 ];

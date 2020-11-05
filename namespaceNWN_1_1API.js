@@ -5,6 +5,7 @@ var namespaceNWN_1_1API =
     [ "CallInfo", "classNWN_1_1API_1_1CallInfo.html", "classNWN_1_1API_1_1CallInfo" ],
     [ "CampaignVariable", "classNWN_1_1API_1_1CampaignVariable.html", "classNWN_1_1API_1_1CampaignVariable" ],
     [ "CampaignVariableConverterAttribute", "classNWN_1_1API_1_1CampaignVariableConverterAttribute.html", "classNWN_1_1API_1_1CampaignVariableConverterAttribute" ],
+    [ "ClassInfo", "classNWN_1_1API_1_1ClassInfo.html", "classNWN_1_1API_1_1ClassInfo" ],
     [ "Color", "structNWN_1_1API_1_1Color.html", "structNWN_1_1API_1_1Color" ],
     [ "CreatureTypeFilter", "structNWN_1_1API_1_1CreatureTypeFilter.html", "structNWN_1_1API_1_1CreatureTypeFilter" ],
     [ "Effect", "classNWN_1_1API_1_1Effect.html", "classNWN_1_1API_1_1Effect" ],
@@ -32,6 +33,7 @@ var namespaceNWN_1_1API =
     [ "NwObject", "classNWN_1_1API_1_1NwObject.html", "classNWN_1_1API_1_1NwObject" ],
     [ "NwPlaceable", "classNWN_1_1API_1_1NwPlaceable.html", "classNWN_1_1API_1_1NwPlaceable" ],
     [ "NwPlayer", "classNWN_1_1API_1_1NwPlayer.html", "classNWN_1_1API_1_1NwPlayer" ],
+    [ "NwRandom", "classNWN_1_1API_1_1NwRandom.html", "classNWN_1_1API_1_1NwRandom" ],
     [ "NwSound", "classNWN_1_1API_1_1NwSound.html", "classNWN_1_1API_1_1NwSound" ],
     [ "NwStationary", "classNWN_1_1API_1_1NwStationary.html", "classNWN_1_1API_1_1NwStationary" ],
     [ "NwStore", "classNWN_1_1API_1_1NwStore.html", "classNWN_1_1API_1_1NwStore" ],
@@ -46,5 +48,6 @@ var namespaceNWN_1_1API =
     [ "StringExtensions", "classNWN_1_1API_1_1StringExtensions.html", "classNWN_1_1API_1_1StringExtensions" ],
     [ "Talent", "classNWN_1_1API_1_1Talent.html", "classNWN_1_1API_1_1Talent" ],
     [ "TalentExtensions", "classNWN_1_1API_1_1TalentExtensions.html", "classNWN_1_1API_1_1TalentExtensions" ],
+    [ "Vector2Int", "structNWN_1_1API_1_1Vector2Int.html", "structNWN_1_1API_1_1Vector2Int" ],
     [ "VisualTransform", "classNWN_1_1API_1_1VisualTransform.html", "classNWN_1_1API_1_1VisualTransform" ]
 ];

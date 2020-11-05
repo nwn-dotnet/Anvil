@@ -80,6 +80,8 @@ var classNWN_1_1API_1_1ItemProperty =
     [ "VisualEffect", "classNWN_1_1API_1_1ItemProperty.html#a04376dd50a4cfa97c5d8a42056578014", null ],
     [ "WeightIncrease", "classNWN_1_1API_1_1ItemProperty.html#a4fab2b76e5020c5aa8744020faaea340", null ],
     [ "WeightReduction", "classNWN_1_1API_1_1ItemProperty.html#a565dd8383945af98dd39dde6b57a5232", null ],
+    [ "CostTable", "classNWN_1_1API_1_1ItemProperty.html#ae1026133e4cc49705b2a5baa6b2b5660", null ],
+    [ "CostTableValue", "classNWN_1_1API_1_1ItemProperty.html#ac7a733dfbbfd1aaeee254d1b1fdfa5d8", null ],
     [ "DurationType", "classNWN_1_1API_1_1ItemProperty.html#a2d493ac98fee7ed82e2c7073c52c2851", null ],
     [ "PropertyType", "classNWN_1_1API_1_1ItemProperty.html#a346a9b4c323d348269903af83dd716b8", null ],
     [ "RemainingDuration", "classNWN_1_1API_1_1ItemProperty.html#a4ced0c97e738981c8d55615df17450e3", null ],

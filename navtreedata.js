@@ -43,12 +43,12 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html#ac96f27801b5ad4efa43752e8c5c43f14",
-"classNWN_1_1API_1_1Constants_1_1Direction.html",
-"classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html#a61e426569bad70bcb4492b8d2f55c56a",
-"classNWN_1_1API_1_1ItemProperty.html#ad1ddfb12f6bfd9b1c3d22ca11c7ec233",
-"classNWN_1_1API_1_1NwGameObject.html#abf4c41e96f12aa57e10e73b17688205d",
-"classNWN_1_1API_1_1VisualTransform.html#a6b74f22f8fbad5909d5bdb3436012bc6",
-"structNWN_1_1API_1_1MonsterHitEffect.html#a8a38c4711f2e6dcacbb8c6f88e1c231e"
+"classNWN_1_1API_1_1ClassInfo.html",
+"classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html#ae059573d70c9459a0156c2a029f08ddf",
+"classNWN_1_1API_1_1ItemProperty.html#ac90e97f0df4fd81cfd24e7bf2049f810",
+"classNWN_1_1API_1_1NwFaction.html#a78fbb522a50751ce544792fb78cfc15b",
+"classNWN_1_1API_1_1NwTask.html#abf6aa9e7422217e20330836c00bd17a9",
+"structNWNX_1_1API_1_1QuickBarSlot.html#aa2782c10f2f55103db839331bba72649"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['vectortoangle_1600',['VectorToAngle',['../classNWN_1_1API_1_1NwMath.html#aae4b895f62e4dfcc86ca3854345a7f8c',1,'NWN.API.NwMath.VectorToAngle(Vector2 direction)'],['../classNWN_1_1API_1_1NwMath.html#a74c257027621c5af3db50b7d5d516c2c',1,'NWN.API.NwMath.VectorToAngle(Vector3 direction)']]],
-  ['vibrate_1601',['Vibrate',['../classNWN_1_1API_1_1NwPlayer.html#a22177cc9bca974e72269e0f870034c94',1,'NWN::API::NwPlayer']]],
-  ['visiblehighestacmember_1602',['VisibleHighestACMember',['../classNWN_1_1API_1_1NwFaction.html#a644da990195bbc719a39c518b433f0ba',1,'NWN::API::NwFaction']]],
-  ['visibleleastdamagedmember_1603',['VisibleLeastDamagedMember',['../classNWN_1_1API_1_1NwFaction.html#aa27408e70b32cdebab6bdb69317375ef',1,'NWN::API::NwFaction']]],
-  ['visiblelowestacmember_1604',['VisibleLowestACMember',['../classNWN_1_1API_1_1NwFaction.html#a9585c822889950aacf3bab666fe0ce78',1,'NWN::API::NwFaction']]],
-  ['visiblemostdamagedmember_1605',['VisibleMostDamagedMember',['../classNWN_1_1API_1_1NwFaction.html#a964ef50ee3a6772fd5aed6b59c5ceeb4',1,'NWN::API::NwFaction']]],
-  ['visiblestrongestmember_1606',['VisibleStrongestMember',['../classNWN_1_1API_1_1NwFaction.html#a7c6be454442a0a3420839adc8d369762',1,'NWN::API::NwFaction']]],
-  ['visibleweakestmember_1607',['VisibleWeakestMember',['../classNWN_1_1API_1_1NwFaction.html#ab877ba8cb9d1a322aa2a8934588057e2',1,'NWN::API::NwFaction']]]
+  ['unlockachievement_1695',['UnlockAchievement',['../classNWN_1_1API_1_1NwPlayer.html#ac1f69ec12641d650de9e00f0426549db',1,'NWN::API::NwPlayer']]],
+  ['unregisterserverconsolecommand_1696',['UnregisterServerConsoleCommand',['../classNWNX_1_1API_1_1Util.html#a0dd470aeb74ef110a809b4d604ae3a7d',1,'NWNX::API::Util']]],
+  ['unsubscribe_3c_20tobject_2c_20tevent_20_3e_1697',['Unsubscribe&lt; TObject, TEvent &gt;',['../classNWN_1_1Services_1_1EventService.html#aae5849a4ad1b977448d48b9aa52fc061',1,'NWN::Services::EventService']]],
+  ['unsubscribeall_3c_20tevent_20_3e_1698',['UnsubscribeAll&lt; TEvent &gt;',['../classNWN_1_1Services_1_1EventService.html#a0e5f849d387a7707f2c747372a4a978d',1,'NWN::Services::EventService']]],
+  ['update_1699',['Update',['../interfaceNWN_1_1Services_1_1IUpdateable.html#aedac417ae32de9acaf39fad1c10900f9',1,'NWN::Services::IUpdateable']]],
+  ['usesperdayremaining_1700',['UsesPerDayRemaining',['../classNWN_1_1API_1_1NwItem.html#a5117c1d42c01becd99d65373f7627521',1,'NWN::API::NwItem']]]
 ];

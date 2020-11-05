@@ -20,6 +20,7 @@ var hierarchy =
     [ "NWNX.API.Events.CalendarEvents", "classNWNX_1_1API_1_1Events_1_1CalendarEvents.html", null ],
     [ "NWN.API.CallInfo", "classNWN_1_1API_1_1CallInfo.html", null ],
     [ "NWNX.API.Chat", "classNWNX_1_1API_1_1Chat.html", null ],
+    [ "NWN.API.ClassInfo", "classNWN_1_1API_1_1ClassInfo.html", null ],
     [ "NWNX.API.Events.ClientEvents", "classNWNX_1_1API_1_1Events_1_1ClientEvents.html", null ],
     [ "NWN.API.Color", "structNWN_1_1API_1_1Color.html", null ],
     [ "NWNX.API.Creature", "classNWNX_1_1API_1_1Creature.html", null ],
@@ -560,7 +561,8 @@ var hierarchy =
       [ "NWN.Services.ScheduledItem.SortedByExecutionTime", "classNWN_1_1Services_1_1ScheduledItem_1_1SortedByExecutionTime.html", null ]
     ] ],
     [ "IEquatable", null, [
-      [ "NWN.API.NwFaction", "classNWN_1_1API_1_1NwFaction.html", null ]
+      [ "NWN.API.NwFaction", "classNWN_1_1API_1_1NwFaction.html", null ],
+      [ "NWN.API.Vector2Int", "structNWN_1_1API_1_1Vector2Int.html", null ]
     ] ],
     [ "IEquatable< CampaignVariable< T >>", null, [
       [ "NWN.API.CampaignVariable< T >", "classNWN_1_1API_1_1CampaignVariable.html", null ]
@@ -635,6 +637,7 @@ var hierarchy =
       ] ],
       [ "NWN.API.NwModule", "classNWN_1_1API_1_1NwModule.html", null ]
     ] ],
+    [ "NWN.API.NwRandom", "classNWN_1_1API_1_1NwRandom.html", null ],
     [ "NWN.API.NwTask", "classNWN_1_1API_1_1NwTask.html", null ],
     [ "NWN.API.NwTimeSpan", "classNWN_1_1API_1_1NwTimeSpan.html", null ],
     [ "NWNX.API.Object", "classNWNX_1_1API_1_1Object.html", null ],
@@ -656,8 +659,8 @@ var hierarchy =
     [ "NWNX.API.SkillRanks", "classNWNX_1_1API_1_1SkillRanks.html", null ],
     [ "NWN.API.StandardFactionExtensions", "classNWN_1_1API_1_1StandardFactionExtensions.html", null ],
     [ "NWNX.API.Events.StealthEvents", "classNWNX_1_1API_1_1Events_1_1StealthEvents.html", null ],
-    [ "NWNX.API.Events.StoreEvents", "classNWNX_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
+    [ "NWNX.API.Events.StoreEvents", "classNWNX_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWN.API.StringExtensions", "classNWN_1_1API_1_1StringExtensions.html", null ],
     [ "NWN.API.Talent", "classNWN_1_1API_1_1Talent.html", null ],
     [ "NWN.API.TalentExtensions", "classNWN_1_1API_1_1TalentExtensions.html", null ],

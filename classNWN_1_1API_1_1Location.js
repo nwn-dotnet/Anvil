@@ -15,5 +15,10 @@ var classNWN_1_1API_1_1Location =
     [ "FlippedRotation", "classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d", null ],
     [ "GroundHeight", "classNWN_1_1API_1_1Location.html#ae2a469bd1f8713a836045fea38e16fd9", null ],
     [ "Position", "classNWN_1_1API_1_1Location.html#a6985a72d1f171e9a6df3ab46a2cd49d3", null ],
-    [ "Rotation", "classNWN_1_1API_1_1Location.html#a66fd6234f492772916c70730b7af033a", null ]
+    [ "Rotation", "classNWN_1_1API_1_1Location.html#a66fd6234f492772916c70730b7af033a", null ],
+    [ "SurfaceMaterial", "classNWN_1_1API_1_1Location.html#a771b312aea8208117e40ef593a89fb1e", null ],
+    [ "TileMainLightColorOne", "classNWN_1_1API_1_1Location.html#ad7f2e801f3b466bf0e0f01b00366ae86", null ],
+    [ "TileMainLightColorTwo", "classNWN_1_1API_1_1Location.html#a313cf83fc267d401b6c7cda9e6a1e14b", null ],
+    [ "TileSourceLightColorOne", "classNWN_1_1API_1_1Location.html#a0fc3ccf6e50bbee01a50cbeb510d0e25", null ],
+    [ "TileSourceLightColorTwo", "classNWN_1_1API_1_1Location.html#aae1b4a9935fcb0e9c8ae85669eccec2a", null ]
 ];

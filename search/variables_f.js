@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['yardstometers_1651',['YardsToMeters',['../classNWN_1_1API_1_1NwMath.html#a6b473ca1d1418a5e3d3949bbf0465396',1,'NWN::API::NwMath']]]
+  ['valid_1753',['Valid',['../classNWN_1_1API_1_1ItemProperty.html#ac6ab0a2e316600ec2cbbe9fde913fc9a',1,'NWN.API.ItemProperty.Valid()'],['../classNWN_1_1API_1_1Talent.html#a05d8befa1fbbec42392cb5a8f76c7aad',1,'NWN.API.Talent.Valid()']]]
 ];

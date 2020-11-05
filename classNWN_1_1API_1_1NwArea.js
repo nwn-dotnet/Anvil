@@ -17,7 +17,7 @@ var classNWN_1_1API_1_1NwArea =
     [ "IsAboveGround", "classNWN_1_1API_1_1NwArea.html#a877685900cc909c44f716c2656b525d3", null ],
     [ "IsInterior", "classNWN_1_1API_1_1NwArea.html#a113358dfe91638c767d37e7efdde2941", null ],
     [ "IsNatural", "classNWN_1_1API_1_1NwArea.html#add7a0db22ca82b5cd1da141111437073", null ],
-    [ "Size", "classNWN_1_1API_1_1NwArea.html#aeee8c4b7469993c121f2a226fe59250d", null ],
+    [ "Size", "classNWN_1_1API_1_1NwArea.html#a045b0539bc59af01fb577a257503a73b", null ],
     [ "Tileset", "classNWN_1_1API_1_1NwArea.html#a84bf5699a95c0b63a81be92068782f58", null ],
     [ "AmbientDayTrack", "classNWN_1_1API_1_1NwArea.html#ac1723f9f04ba2504538fe7424cf87e7e", null ],
     [ "AmbientDayVolume", "classNWN_1_1API_1_1NwArea.html#af29362d90286b924e04e6c606cb4cbfc", null ],

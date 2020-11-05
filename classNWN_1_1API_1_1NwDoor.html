@@ -124,6 +124,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afdf65250e33b43006b70ca377e6d93ad"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwDoor.html#afdf65250e33b43006b70ca377e6d93ad">Close</a> ()</td></tr>
 <tr class="memdesc:afdf65250e33b43006b70ca377e6d93ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes this door.  <a href="classNWN_1_1API_1_1NwDoor.html#afdf65250e33b43006b70ca377e6d93ad">More...</a><br /></td></tr>
 <tr class="separator:afdf65250e33b43006b70ca377e6d93ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b9036ffaeeda3c92c22171ce7ed046c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwDoor.html#a2b9036ffaeeda3c92c22171ce7ed046c">IsDoorActionPossible</a> (DoorAction action)</td></tr>
+<tr class="memdesc:a2b9036ffaeeda3c92c22171ce7ed046c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether an action can be used on a door.  <a href="classNWN_1_1API_1_1NwDoor.html#a2b9036ffaeeda3c92c22171ce7ed046c">More...</a><br /></td></tr>
+<tr class="separator:a2b9036ffaeeda3c92c22171ce7ed046c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwStationary"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwStationary')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwStationary.html">NWN.API.NwStationary</a></td></tr>
 <tr class="memitem:a9b0a7a8522dc559016b34a41bafe55fb inherit pub_methods_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">override async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a9b0a7a8522dc559016b34a41bafe55fb">FaceToPoint</a> (Vector3 point)</td></tr>
 <tr class="memdesc:a9b0a7a8522dc559016b34a41bafe55fb inherit pub_methods_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates this object to face a position.  <a href="classNWN_1_1API_1_1NwStationary.html#a9b0a7a8522dc559016b34a41bafe55fb">More...</a><br /></td></tr>
@@ -266,9 +269,6 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> left, <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> right)</td></tr>
 <tr class="separator:a6864a363678118ffe33936a59ac85b93 inherit pub_static_methods_classNWN_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classNWN_1_1API_1_1NwStationary"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classNWN_1_1API_1_1NwStationary')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classNWN_1_1API_1_1NwStationary.html">NWN.API.NwStationary</a></td></tr>
-<tr class="memitem:a0d64f2aed72232cec5b520c91a9b6f38 inherit pub_attribs_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top"><a id="a0d64f2aed72232cec5b520c91a9b6f38"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsOpen</b> =&gt; NWScript.GetIsOpen(this).ToBool()</td></tr>
-<tr class="separator:a0d64f2aed72232cec5b520c91a9b6f38 inherit pub_attribs_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adda925a5a158756d0fd336d01c24d897 inherit pub_attribs_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top"><a id="adda925a5a158756d0fd336d01c24d897"></a>
 override <a class="el" href="classNWN_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Location</b> =&gt; Location.Create(<a class="el" href="classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488">Area</a>, <a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ab441df5249a1c51007ba7e7b6fd04606">Position</a>, Rotation)</td></tr>
 <tr class="separator:adda925a5a158756d0fd336d01c24d897 inherit pub_attribs_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -307,23 +307,29 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <tr class="memdesc:a7adb0ab235273075f4ea94f97436c30b inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether this stationary object is lockable.  <a href="classNWN_1_1API_1_1NwStationary.html#a7adb0ab235273075f4ea94f97436c30b">More...</a><br /></td></tr>
 <tr class="separator:a7adb0ab235273075f4ea94f97436c30b inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1abcf5ecc0c48a1d9e9a9a71ac9833aa inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a1abcf5ecc0c48a1d9e9a9a71ac9833aa">LockKeyRequired</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a1abcf5ecc0c48a1d9e9a9a71ac9833aa inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether a specific key with the tag <a class="el" href="classNWN_1_1API_1_1NwStationary.html#a22495e88225ebd409165a261dc27f0cf" title="Gets or sets the tag of the key that will open this placeable.">LockKeyTag</a> is required to open this stationary object.  <a href="classNWN_1_1API_1_1NwStationary.html#a1abcf5ecc0c48a1d9e9a9a71ac9833aa">More...</a><br /></td></tr>
+<tr class="memdesc:a1abcf5ecc0c48a1d9e9a9a71ac9833aa inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether a specific key with the tag <a class="el" href="classNWN_1_1API_1_1NwStationary.html#a22495e88225ebd409165a261dc27f0cf" title="Gets or sets the tag of the key that will open this stationary object.">LockKeyTag</a> is required to open this stationary object.  <a href="classNWN_1_1API_1_1NwStationary.html#a1abcf5ecc0c48a1d9e9a9a71ac9833aa">More...</a><br /></td></tr>
 <tr class="separator:a1abcf5ecc0c48a1d9e9a9a71ac9833aa inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22495e88225ebd409165a261dc27f0cf inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a22495e88225ebd409165a261dc27f0cf">LockKeyTag</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a22495e88225ebd409165a261dc27f0cf inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the tag of the key that will open this placeable.  <a href="classNWN_1_1API_1_1NwStationary.html#a22495e88225ebd409165a261dc27f0cf">More...</a><br /></td></tr>
+<tr class="memdesc:a22495e88225ebd409165a261dc27f0cf inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the tag of the key that will open this stationary object.  <a href="classNWN_1_1API_1_1NwStationary.html#a22495e88225ebd409165a261dc27f0cf">More...</a><br /></td></tr>
 <tr class="separator:a22495e88225ebd409165a261dc27f0cf inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf4e653c73f33a48a5ad81d01d769c41 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#aaf4e653c73f33a48a5ad81d01d769c41">KeyAutoRemoved</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aaf4e653c73f33a48a5ad81d01d769c41 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether the key for this lock should "break"/be removed from the creature's inventory when used on this lock.  <a href="classNWN_1_1API_1_1NwStationary.html#aaf4e653c73f33a48a5ad81d01d769c41">More...</a><br /></td></tr>
 <tr class="separator:aaf4e653c73f33a48a5ad81d01d769c41 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bc32cab574407689b2ad5894dec3a49 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a7bc32cab574407689b2ad5894dec3a49">LockDC</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a7bc32cab574407689b2ad5894dec3a49 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the skill DC required to lock this object.  <a href="classNWN_1_1API_1_1NwStationary.html#a7bc32cab574407689b2ad5894dec3a49">More...</a><br /></td></tr>
+<tr class="memdesc:a7bc32cab574407689b2ad5894dec3a49 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the skill DC required to lock this stationary object.  <a href="classNWN_1_1API_1_1NwStationary.html#a7bc32cab574407689b2ad5894dec3a49">More...</a><br /></td></tr>
 <tr class="separator:a7bc32cab574407689b2ad5894dec3a49 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a054d7ba64e3a5f41fe6b5ab9b2cd5e1e inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a054d7ba64e3a5f41fe6b5ab9b2cd5e1e">UnlockDC</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a054d7ba64e3a5f41fe6b5ab9b2cd5e1e inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the skill DC required to unlock this object.  <a href="classNWN_1_1API_1_1NwStationary.html#a054d7ba64e3a5f41fe6b5ab9b2cd5e1e">More...</a><br /></td></tr>
+<tr class="memdesc:a054d7ba64e3a5f41fe6b5ab9b2cd5e1e inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the skill DC required to unlock this stationary object.  <a href="classNWN_1_1API_1_1NwStationary.html#a054d7ba64e3a5f41fe6b5ab9b2cd5e1e">More...</a><br /></td></tr>
 <tr class="separator:a054d7ba64e3a5f41fe6b5ab9b2cd5e1e inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f1fe95d4d77f7656f3408dcd306cb00 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a9f1fe95d4d77f7656f3408dcd306cb00">Hardness</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a9f1fe95d4d77f7656f3408dcd306cb00 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the hardness of this stationary object. This is the amount of damage deducted from each hit.  <a href="classNWN_1_1API_1_1NwStationary.html#a9f1fe95d4d77f7656f3408dcd306cb00">More...</a><br /></td></tr>
 <tr class="separator:a9f1fe95d4d77f7656f3408dcd306cb00 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c6051e053da532aca141ec104917feb inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a9c6051e053da532aca141ec104917feb">KeyRequiredFeedback</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a9c6051e053da532aca141ec104917feb inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the feedback message that will be displayed when trying to unlock this stationary object.  <a href="classNWN_1_1API_1_1NwStationary.html#a9c6051e053da532aca141ec104917feb">More...</a><br /></td></tr>
+<tr class="separator:a9c6051e053da532aca141ec104917feb inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d64f2aed72232cec5b520c91a9b6f38 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwStationary.html#a0d64f2aed72232cec5b520c91a9b6f38">IsOpen</a><code> [get]</code></td></tr>
+<tr class="memdesc:a0d64f2aed72232cec5b520c91a9b6f38 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this stationary object is currently open.  <a href="classNWN_1_1API_1_1NwStationary.html#a0d64f2aed72232cec5b520c91a9b6f38">More...</a><br /></td></tr>
+<tr class="separator:a0d64f2aed72232cec5b520c91a9b6f38 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6acbb88523bb32d79e32b119fe480fe1 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memItemLeft" align="right" valign="top"><a id="a6acbb88523bb32d79e32b119fe480fe1"></a>
 override float&#160;</td><td class="memItemRight" valign="bottom"><b>Rotation</b><code> [get, set]</code></td></tr>
 <tr class="separator:a6acbb88523bb32d79e32b119fe480fe1 inherit properties_classNWN_1_1API_1_1NwStationary"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -443,6 +449,26 @@ override float&#160;</td><td class="memItemRight" valign="bottom"><b>Rotation</b
 </div><div class="memdoc">
 
 <p>Closes this door. </p>
+
+</div>
+</div>
+<a id="a2b9036ffaeeda3c92c22171ce7ed046c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b9036ffaeeda3c92c22171ce7ed046c">&#9670;&nbsp;</a></span>IsDoorActionPossible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NWN.API.NwDoor.IsDoorActionPossible </td>
+          <td>(</td>
+          <td class="paramtype">DoorAction&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determines whether an action can be used on a door. </p>
 
 </div>
 </div>
