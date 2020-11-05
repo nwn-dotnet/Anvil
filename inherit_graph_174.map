@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classNWN_1_1Services_1_1CursorTargetData.html" title=" " alt="" coords="5,5,219,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node2" href="$classNWN_1_1NManager.html" title="Handles bootstrap and interop between NWN, NWN.Core and the managed API. The entry point of the imple..." alt="" coords="164,5,281,32"/>
 </map>

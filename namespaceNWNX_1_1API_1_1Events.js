@@ -34,8 +34,8 @@ var namespaceNWNX_1_1API_1_1Events =
     ] ],
     [ "EventSkippable", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", "classNWNX_1_1API_1_1Events_1_1EventSkippable" ],
     [ "ExamineEvents", "classNWNX_1_1API_1_1Events_1_1ExamineEvents.html", [
-      [ "OnAddAssociateAfter", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnAddAssociateAfter.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnAddAssociateAfter" ],
-      [ "OnAddAssociateBefore", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnAddAssociateBefore.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnAddAssociateBefore" ]
+      [ "OnExamineObjectAfter", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectAfter.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectAfter" ],
+      [ "OnExamineObjectBefore", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectBefore.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectBefore" ]
     ] ],
     [ "FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", [
       [ "OnUseFeatBefore", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore.html", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore" ]
