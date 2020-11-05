@@ -48,7 +48,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Get the surface material index at this location.
+    /// Gets the surface material index at this location.<br/>
     /// Returns 0 if the location is invalid or has no surface type.
     /// </summary>
     public int SurfaceMaterial
@@ -59,7 +59,6 @@ namespace NWN.API
     /// <summary>
     /// Gets the color of the first main light in the tile containing this location.
     /// </summary>
-    /// <param name="tile">A location inside the tile to query for color.</param>
     /// <returns>A <see cref="TileMainLightColor"/> value representing the main light color of the specified tile.</returns>
     public TileMainLightColor TileMainLightColorOne
     {
@@ -69,7 +68,6 @@ namespace NWN.API
     /// <summary>
     /// Gets the color of the second main light in the tile containing this location.
     /// </summary>
-    /// <param name="tile">A location inside the tile to query for color.</param>
     /// <returns>A <see cref="TileMainLightColor"/> value representing the second main light color of the specified tile.</returns>
     public TileMainLightColor TileMainLightColorTwo
     {

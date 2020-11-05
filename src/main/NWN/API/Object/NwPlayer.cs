@@ -366,7 +366,8 @@ namespace NWN.API
     /// <param name="allowLeftClick">If true, allows the player to interact with the game world using the left mouse button only. Otherwise, prevents all interactions.</param>
     public void EnterCutsceneMode(bool allowLeftClick = false)
     {
-      if (IsInCutsceneMode) // Prevent permanent invulnerability.
+      // Prevent permanent invulnerability.
+      if (IsInCutsceneMode)
       {
         return;
       }
@@ -415,9 +416,9 @@ namespace NWN.API
       => NWScript.LockCameraDistance(this, isLocked.ToInt());
 
     /// <summary>
-    /// Changes the current Day/Night cycle for this (player) to daylight.
+    /// Changes the current Day/Night cycle for this player to daylight.
     /// </summary>
-    public void NightToDay(float delayTransitionTime = 0.0f)
-      => NWScript.NightToDay(this, delayTransitionTime);
+    public void NightToDay(TimeSpan delayTransitionTime = default)
+      => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
     }
 }

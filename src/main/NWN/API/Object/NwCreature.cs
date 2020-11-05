@@ -317,7 +317,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Get this creature's animal companion creature type.
+    /// Gets this creature's animal companion creature type.
     /// </summary>
     public AnimalCompanionCreatureType AnimalCompanionType
     {
@@ -1338,8 +1338,6 @@ namespace NWN.API
     public int Reputation(NwCreature creature)
       => NWScript.GetReputation(this, creature);
 
-
-
     /// <summary>
     /// Gets the best talent from a group of talents.
     /// </summary>
@@ -1417,7 +1415,7 @@ namespace NWN.API
     /// <param name="area">The area containing the tile.</param>
     /// <param name="x">The location of the tile on the x axis.</param>
     /// <param name="y">The location of the tile on the y axis.</param>
-    /// <param name="newState">The new exploration state for this tile (true = explored, false = unexplored)</param>
+    /// <param name="newState">The new exploration state for this tile (true = explored, false = unexplored).</param>
     /// <returns>The exploration state before newState. True if this creature has explored this tile, otherwise false.</returns>
     public bool SetTileExplored(NwArea area, int x, int y, bool newState)
       => NWScript.SetTileExplored(this, area, x, y, newState.ToInt()).ToBool();
