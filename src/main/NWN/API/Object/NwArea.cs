@@ -15,7 +15,7 @@ namespace NWN.API
     /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>
     /// </summary>
-    public Vector2 Size => new Vector2(NWScript.GetAreaSize((int) AreaSizeDimension.Width, this), NWScript.GetAreaSize((int) AreaSizeDimension.Height, this));
+    public Vector2Int Size => new Vector2Int(NWScript.GetAreaSize((int) AreaSizeDimension.Width, this), NWScript.GetAreaSize((int) AreaSizeDimension.Height, this));
 
     /// <summary>
     /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).

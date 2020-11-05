@@ -67,6 +67,23 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the movement rate factor for the cutscene camera following this 'camera man'.
+    /// </summary>
+    public float CutsceneCameraMoveRate
+    {
+      get => NWScript.GetCutsceneCameraMoveRate(this);
+      set => NWScript.SetCutsceneCameraMoveRate(this, value);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this creature is currently in "Cutscene" mode.
+    /// </summary>
+    public bool IsInCutsceneMode
+    {
+      get => NWScript.GetCutsceneMode(this).ToBool();
+    }
+
+    /// <summary>
     /// Gets the members in this player's party.
     /// </summary>
     public IEnumerable<NwPlayer> PartyMembers
@@ -325,5 +342,83 @@ namespace NWN.API
     /// <param name="badTargetCursor">The cursor to display if the player is hovering over an invalid selection.</param>
     public void EnterTargetingMode(ObjectTypes validObjectTypes, MouseCursor mouseCursor = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
       => NWScript.EnterTargetingMode(this, (int) validObjectTypes, (int) mouseCursor, (int) badTargetCursor);
-  }
+
+    /// <summary>
+    /// Briefly displays a floating text message above this player's head using the specified string reference.
+    /// </summary>
+    /// <param name="strRef">The string ref index to use.</param>
+    /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
+    public void FloatingTextStrRef(int strRef, bool broadcastToParty = true)
+        => NWScript.FloatingTextStrRefOnCreature(strRef, this, broadcastToParty.ToInt());
+
+    /// <summary>
+    /// Briefly displays a floating text message above this player's head.
+    /// </summary>
+    /// <param name="message">The message to display.</param>
+    /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
+    public void FloatingTextString(string message, bool broadcastToParty = true)
+        => NWScript.FloatingTextStringOnCreature(message, this, broadcastToParty.ToInt());
+
+    /// <summary>
+    /// Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br/>
+    /// See <see cref="Effect.CutsceneGhost"/>, and other Cutscene* effects for hiding and controlling the player creature during cutscene mode.
+    /// </summary>
+    /// <param name="allowLeftClick">If true, allows the player to interact with the game world using the left mouse button only. Otherwise, prevents all interactions.</param>
+    public void EnterCutsceneMode(bool allowLeftClick = false)
+    {
+      // Prevent permanent invulnerability.
+      if (IsInCutsceneMode)
+      {
+        return;
+      }
+
+      NWScript.SetCutsceneMode(this, true.ToInt(), allowLeftClick.ToInt());
+    }
+
+    /// <summary>
+    /// Exits "Cutscene" mode, restoring standard GUI and camera controls to the player, and restoring their plot flag.
+    /// </summary>
+    public void ExitCutsceneMode()
+    {
+      if (!IsInCutsceneMode)
+      {
+        return;
+      }
+
+      NWScript.SetCutsceneMode(this, false.ToInt(), true.ToInt());
+    }
+
+    /// <summary>
+    /// Gives the specified XP to this player, adjusted by any multiclass penalty.
+    /// </summary>
+    public void GiveXp(int xPAmount)
+      => NWScript.GiveXPToCreature(this, xPAmount);
+
+    /// <summary>
+    /// Locks the player's camera direction to its current direction,
+    /// or unlocks the player's camera direction to enable it to move freely again.
+    /// </summary>
+    public void LockCameraDirection(bool isLocked = true)
+      => NWScript.LockCameraDirection(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Locks the player's camera pitch to its current pitch setting,
+    /// or unlocks the player's camera pitch.
+    /// </summary>
+    public void LockCameraPitch(bool isLocked = true)
+      => NWScript.LockCameraPitch(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Locks the player's camera distance to its current distance setting,
+    /// or unlocks the player's camera distance.
+    /// </summary>
+    public void LockCameraDistance(bool isLocked = true)
+      => NWScript.LockCameraDistance(this, isLocked.ToInt());
+
+    /// <summary>
+    /// Changes the current Day/Night cycle for this player to daylight.
+    /// </summary>
+    public void NightToDay(TimeSpan delayTransitionTime = default)
+      => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
+    }
 }

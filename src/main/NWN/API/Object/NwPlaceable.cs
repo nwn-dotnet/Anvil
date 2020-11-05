@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
+using NWN.Core.NWNX;
 using NWNX.API.Constants;
 
 namespace NWN.API
@@ -33,6 +34,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether this placeable has an inventory.
+    /// </summary>
+    public bool HasInventory
+    {
+      get => NWScript.GetHasInventory(this).ToBool();
+      set => ObjectPlugin.SetHasInventory(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Moves the specified item to the placeable's inventory.
     /// </summary>
     /// <param name="item">The item to add.</param>
@@ -60,5 +70,11 @@ namespace NWN.API
       location = Location.Create(location.Area, location.Position, location.FlippedRotation);
       return NwObject.CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
+
+    /// <summary>
+    /// Check whether a given action is valid for this (placeable object).
+    /// </summary>
+    public PlaceableAction IsPlaceableObjectActionPossible(PlaceableAction action)
+      => (PlaceableAction)NWScript.GetIsPlaceableObjectActionPossible(this, (int)action);
   }
 }

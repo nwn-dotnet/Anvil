@@ -41,5 +41,17 @@ namespace NWN.API
     /// Gets a value indicating whether this item property is valid.
     /// </summary>
     public bool Valid => NWScript.GetIsItemPropertyValid(this).ToBool();
+
+    /// <summary>
+    /// Gets the cost table number of this item property.
+    /// </summary>
+    public int CostTable
+      => NWScript.GetItemPropertyCostTable(this);
+
+    /// <summary>
+    /// Gets the cost table value of this item property.
+    /// </summary>
+    public int CostTableValue
+      => NWScript.GetItemPropertyCostTableValue(this);
   }
 }

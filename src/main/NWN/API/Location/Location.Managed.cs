@@ -48,6 +48,51 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the surface material index at this location.<br/>
+    /// Returns 0 if the location is invalid or has no surface type.
+    /// </summary>
+    public int SurfaceMaterial
+    {
+      get => NWScript.GetSurfaceMaterial(this);
+    }
+
+    /// <summary>
+    /// Gets the color of the first main light in the tile containing this location.
+    /// </summary>
+    /// <returns>A <see cref="TileMainLightColor"/> value representing the main light color of the specified tile.</returns>
+    public TileMainLightColor TileMainLightColorOne
+    {
+      get => (TileMainLightColor)NWScript.GetTileMainLight1Color(this);
+    }
+
+    /// <summary>
+    /// Gets the color of the second main light in the tile containing this location.
+    /// </summary>
+    /// <returns>A <see cref="TileMainLightColor"/> value representing the second main light color of the specified tile.</returns>
+    public TileMainLightColor TileMainLightColorTwo
+    {
+      get => (TileMainLightColor)NWScript.GetTileMainLight2Color(this);
+    }
+
+    /// <summary>
+    /// Gets the color of the first light source in the tile containing this location.
+    /// </summary>
+    /// <returns>A <see cref="TileSourceLightColor"/> value representing the first light source color of the specified tile.</returns>
+    public TileSourceLightColor TileSourceLightColorOne
+    {
+      get => (TileSourceLightColor)NWScript.GetTileSourceLight1Color(this);
+    }
+
+    /// <summary>
+    /// Gets the color of the second light source in the tile containing this location.
+    /// </summary>
+    /// <returns>A <see cref="TileSourceLightColor"/> value representing the second light source color of the specified tile.</returns>
+    public TileSourceLightColor TileSourceLightColorTwo
+    {
+      get => (TileSourceLightColor)NWScript.GetTileSourceLight2Color(this);
+    }
+
+    /// <summary>
     /// Returns the distance to the target.<br/>
     /// If you only need to compare the distance, you can compare the squared distance using <see cref="DistanceSquared"/> to avoid a costly sqrt operation.
     /// </summary>
