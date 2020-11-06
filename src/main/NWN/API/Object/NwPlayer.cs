@@ -84,7 +84,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Locks/unlocks the player's camera direction to/from its current direction.
+    /// Sets a value indicating whether locks/unlocks the player's camera direction to/from its current direction.
     /// </summary>
     public bool CameraDirectionLocked
     {
@@ -92,7 +92,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Locks/unlocks the player's camera pitch to/from its current pitch setting,
+    /// Sets a value indicating whether locks/unlocks the player's camera pitch to/from its current pitch setting.
     /// </summary>
     public bool CameraPitchLocked
     {
@@ -100,7 +100,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Locks/unlocks the player's camera distance to/from its current distance setting,
+    /// Sets a value indicating whether locks/unlocks the player's camera distance to/from its current distance setting.
     /// </summary>
     public bool CameraDistanceLocked
     {
