@@ -1446,5 +1446,15 @@ namespace NWN.API
       await WaitForObjectContext();
       return NWScript.GetIsWeaponEffective(target, offHand.ToInt()).ToBool();
     }
+
+    /// <summary>
+    /// Causes this (creature) to consider another creature an enemy indefintely or for a fixed time.
+    /// (target) is whose reputation will be altered.
+    /// This (creature) is whose opinion will change.
+    /// If decay is TRUE, the enmity decays over duration; otherwise it is indefinite.
+    /// (duration) is only used if (decay) is TRUE, it is how long the enmity lasts.
+    /// </summary>
+    public void TemporaryEnemy(NwCreature target, bool decay = false, TimeSpan duration = default)
+      => NWScript.SetIsTemporaryEnemy(target, this, decay.ToInt(), (float)duration.TotalSeconds);
   }
 }
