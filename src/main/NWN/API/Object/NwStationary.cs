@@ -114,10 +114,20 @@ namespace NWN.API
 
     /// <summary>
     /// Sets the fortitude saving throw value for a door or placeable object.
+    /// Must be between 0 and 250.
     /// </summary>
     public int FortitudeSavingThrow
     {
       set => NWScript.SetFortitudeSavingThrow(this, value);
+    }
+
+    /// <summary>
+    /// Sets the reflex saving throw value for a door or placeable object.
+    /// Must be between 0 and 250.
+    /// </summary>
+    public int ReflexSavingThrow
+    {
+      set => NWScript.SetReflexSavingThrow(this, value);
     }
   }
 }
