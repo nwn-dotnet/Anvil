@@ -439,5 +439,13 @@ namespace NWN.API
       get => (AppearanceType)NWScript.GetAppearanceType(this);
       set => NWScript.SetCreatureAppearanceType(this, (int)value);
     }
+
+    /// <summary>
+    /// Sets a value indicating whether this (map pin) is enabled or disabled on the displayed map.
+    /// </summary>
+    public bool MapPinEnabled
+    {
+      set => NWScript.SetMapPinEnabled(this, value.ToInt());
+    }
   }
 }
