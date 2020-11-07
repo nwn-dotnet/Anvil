@@ -442,5 +442,10 @@ namespace NWN.API
     {
       set => NWScript.SetCameraMode(this, (int)value);
     }
+
+    /// <summary>
+    /// Removes any current fading effects or black screen from the monitor of this (player).
+    /// </summary>
+    public void StopFade() => NWScript.StopFade(this);
   }
 }
