@@ -1471,5 +1471,10 @@ namespace NWN.API
           throw new ArgumentOutOfRangeException(nameof(reputation), reputation, null);
       }
     }
+
+    /// <summary>
+    /// Summons the animal companion of this (creature). If creature has no animal companion, nothing happens.
+    /// </summary>
+    public void SummonAnimalCompanion() => NWScript.SummonAnimalCompanion(this);
   }
 }
