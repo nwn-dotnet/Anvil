@@ -1476,5 +1476,15 @@ namespace NWN.API
     /// Summons the animal companion of this (creature). If creature has no animal companion, nothing happens.
     /// </summary>
     public void SummonAnimalCompanion() => NWScript.SummonAnimalCompanion(this);
+
+    /// <summary>
+    /// Summons the familiar of this (creature). If creature has no familiar, nothing happens.
+    /// </summary>
+    public void SummonFamiliar() => NWScript.SummonFamiliar(this);
+
+    /// <summary>
+    /// This forces a creature to unpossess their familiar. This does not work on any DM-controlled creatures.
+    /// </summary>
+    public void UnpossessFamiliar() => NWScript.UnpossessFamiliar(this);
   }
 }
