@@ -116,20 +116,20 @@ namespace NWN.API
 
     /// <summary>
     /// Sets the saving throw value for a door or placeable object.
-    /// Must be between 0 and 250.
+    /// (amount) must be between 0 and 250.
     /// </summary>
-    public void SetBaseSavingThrow(SavingThrow savingThrow)
+    public void SetBaseSavingThrow(SavingThrow savingThrow, int amount)
     {
       switch (savingThrow)
       {
         case SavingThrow.Fortitude:
-          NWScript.SetFortitudeSavingThrow(this, (int)savingThrow);
+          NWScript.SetFortitudeSavingThrow(this, amount);
           break;
         case SavingThrow.Reflex:
-          NWScript.SetReflexSavingThrow(this, (int)savingThrow);
+          NWScript.SetReflexSavingThrow(this, amount);
           break;
         case SavingThrow.Will:
-          NWScript.SetWillSavingThrow(this, (int)savingThrow);
+          NWScript.SetWillSavingThrow(this, amount);
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
