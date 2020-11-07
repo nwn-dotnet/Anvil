@@ -216,5 +216,13 @@ namespace NWN.API
     /// </summary>
     /// <returns>The result of this destroy action.</returns>
     public AreaDestroyResult Destroy() => (AreaDestroyResult) NWScript.DestroyArea(this);
+
+    /// <summary>
+    /// Sets the main light colors on the tile located at (tileLocation).
+    /// (tile) specifies the location of the tile.
+    /// You must call RecomputeStaticLighting() after calling this function in order for the changes to occur visually for the players.
+    /// </summary>
+    public void TileMainLightColor(Location tileLocation, TileMainLightColor first, TileMainLightColor second)
+      => NWScript.SetTileMainLightColor(tileLocation, (int)first, (int)second);
   }
 }
