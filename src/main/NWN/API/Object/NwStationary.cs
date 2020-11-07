@@ -117,6 +117,7 @@ namespace NWN.API
     /// <summary>
     /// Sets the saving throw value for a door or placeable object.
     /// Must be between 0 and 250.
+    /// </summary>
     public void SetBaseSavingThrow(SavingThrow savingThrow)
     {
       switch (savingThrow)
