@@ -93,6 +93,22 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Sets the main light colors on the tile located at (tileLocation).
+    /// (tile) specifies the location of the tile.
+    /// You must call RecomputeStaticLighting() after calling this function for changes to occur for the players.
+    /// </summary>
+    public void TileMainLightColor(Location tileLocation, TileMainLightColor first, TileMainLightColor second)
+      => NWScript.SetTileMainLightColor(tileLocation, (int)first, (int)second);
+
+    /// <summary>
+    /// Sets the source light colors on the tile located at (tileLocation).
+    /// (tile) specifies the location of the tile.
+    /// You must call RecomputeStaticLighting() after calling this function for changes to occur for the players.
+    /// </summary>
+    public void TileSourceLightColor(Location tileLocation, TileSourceLightColor first, TileSourceLightColor second)
+      => NWScript.SetTileMainLightColor(tileLocation, (int)first, (int)second);
+
+    /// <summary>
     /// Returns the distance to the target.<br/>
     /// If you only need to compare the distance, you can compare the squared distance using <see cref="DistanceSquared"/> to avoid a costly sqrt operation.
     /// </summary>
