@@ -1,5 +1,7 @@
+using System;
 using System.Numerics;
 using System.Threading.Tasks;
+using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
 
@@ -113,21 +115,24 @@ namespace NWN.API
     public override Location Location => Location.Create(Area, Position, Rotation);
 
     /// <summary>
-    /// Sets the fortitude saving throw value for a door or placeable object.
+    /// Sets the saving throw value for a door or placeable object.
     /// Must be between 0 and 250.
-    /// </summary>
-    public int FortitudeSavingThrow
+    public void SetBaseSavingThrow(SavingThrow savingThrow)
     {
-      set => NWScript.SetFortitudeSavingThrow(this, value);
-    }
-
-    /// <summary>
-    /// Sets the reflex saving throw value for a door or placeable object.
-    /// Must be between 0 and 250.
-    /// </summary>
-    public int ReflexSavingThrow
-    {
-      set => NWScript.SetReflexSavingThrow(this, value);
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          NWScript.SetFortitudeSavingThrow(this, (int)savingThrow);
+          break;
+        case SavingThrow.Reflex:
+          NWScript.SetReflexSavingThrow(this, (int)savingThrow);
+          break;
+        case SavingThrow.Will:
+          NWScript.SetWillSavingThrow(this, (int)savingThrow);
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
     }
   }
 }
