@@ -427,6 +427,12 @@ namespace NWN.API
       => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
 
     /// <summary>
+    /// Changes the current Day/Night cycle for this player to night.
+    /// </summary>
+    public void DayToNight(TimeSpan delayTransitionTime = default)
+      => NWScript.DayToNight(this, (float)delayTransitionTime.TotalSeconds);
+
+    /// <summary>
     /// Sets the camera to a certain height.
     /// Setting this value to zero will restore the camera to the racial default height.
     /// </summary>
