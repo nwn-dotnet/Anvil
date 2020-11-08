@@ -1483,8 +1483,16 @@ namespace NWN.API
     public void SummonFamiliar() => NWScript.SummonFamiliar(this);
 
     /// <summary>
-    /// This forces a creature to unpossess their familiar. This does not work on any DM-controlled creatures.
+    /// This forces a creature to unpossess their familiar.
+    /// This does not work on any DM-controlled creatures.
     /// </summary>
     public void UnpossessFamiliar() => NWScript.UnpossessFamiliar(this);
+
+    /// <summary>
+    /// Changes the friendly or hostile feelings this (creature) may have towards another creature.
+    /// Not a global effect for all members of a faction.
+    /// </summary>
+    public void ClearPersonalReputation(NwCreature creature)
+      => NWScript.ClearPersonalReputation(creature, this);
   }
 }
