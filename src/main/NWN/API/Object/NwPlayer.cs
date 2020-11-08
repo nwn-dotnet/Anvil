@@ -447,5 +447,11 @@ namespace NWN.API
     /// Removes any current fading effects or black screen from the monitor of this (player).
     /// </summary>
     public void StopFade() => NWScript.StopFade(this);
+
+    /// <summary>
+    /// The screen goes black immediately.
+    /// If you want the screen to go black gradually, use FadeToBlack() instead.
+    /// </summary>
+    public void BlackScreen() => NWScript.BlackScreen(this);
   }
 }
