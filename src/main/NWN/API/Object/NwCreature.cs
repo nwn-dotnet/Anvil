@@ -1387,14 +1387,23 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Levels up this creature using the default settings.
+    /// Levels up this creature using the default settings.<br/>
+    /// You can assign a new class to level up <br/>
+    /// If an invalid class combination is chosen the default class is leveled up.<br/>
+    /// Package determines which package to level up with.<br/>
+    /// If package is omitted it will use the starting package assigned to that class or just the class package.<br/>
     /// </summary>
+    /// <param name="classType">Constant matching the class to level the creature in.</param>
+    /// <param name="package"> Constant matching the package used to select skills and feats for the henchman.</param>
+    /// <param name="spellsReady">Determines if all memorizable spell slots will be filled without requiring rest.</param>
+    /// <returns>Returns the new level if successful, or 0 if the function fails.</returns>
     public int LevelUpHenchman(ClassType classType, PackageType package, bool spellsReady = false)
-    => NWScript.LevelUpHenchman(this, (int)classType, (int)package, spellsReady.ToInt());
+      => NWScript.LevelUpHenchman(this, (int)classType, (int)package, spellsReady.ToInt());
 
     /// <summary>
     /// Instructs this creature to speak/play the specified voice chat.
     /// </summary>
+    /// <param name="voiceChatType"><see cref="NWN.API.Constants.VoiceChatType"/>.</param>
     public void PlayVoiceChat(VoiceChatType voiceChatType)
       => NWScript.PlayVoiceChat((int)voiceChatType, this);
 
