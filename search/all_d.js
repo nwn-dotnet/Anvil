@@ -125,7 +125,7 @@ var searchData=
   ['onvalidatebefore_767',['OnValidateBefore',['../classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateBefore.html',1,'NWNX::API::Events::ELCEvents']]],
   ['onvalidateequipitemafter_768',['OnValidateEquipItemAfter',['../classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html',1,'NWNX::API::Events::ItemEvents']]],
   ['onvalidateuseitemafter_769',['OnValidateUseItemAfter',['../classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateUseItemAfter.html',1,'NWNX::API::Events::ItemEvents']]],
-  ['open_770',['Open',['../classNWN_1_1API_1_1NwDoor.html#a9b9959f7cd1bad6ffbdf8daae41cdcf0',1,'NWN::API::NwDoor']]],
+  ['open_770',['Open',['../classNWN_1_1API_1_1NwDoor.html#a9b9959f7cd1bad6ffbdf8daae41cdcf0',1,'NWN.API.NwDoor.Open()'],['../classNWN_1_1API_1_1NwStore.html#ac4450ee14845385b4d6b9a90f572e8d7',1,'NWN.API.NwStore.Open()']]],
   ['openinventory_771',['OpenInventory',['../classNWN_1_1API_1_1NwPlayer.html#a7a438e1b7f0252be539bba06f35c6332',1,'NWN.API.NwPlayer.OpenInventory()'],['../classNWN_1_1API_1_1NwPlayer.html#a50b61c337ac6f2d52b15b74780e79961',1,'NWN.API.NwPlayer.OpenInventory(NwCreature target)']]],
   ['operator_20t_772',['operator T',['../classNWN_1_1API_1_1CampaignVariable.html#a40aa6c874c55ad9eb893bbd5361a8f35',1,'NWN.API.CampaignVariable.operator T()'],['../classNWN_1_1API_1_1LocalVariable.html#a109f5225187170d983e94c62c58e30af',1,'NWN.API.LocalVariable.operator T()']]],
   ['originaldescription_773',['OriginalDescription',['../classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c',1,'NWN::API::NwObject']]],

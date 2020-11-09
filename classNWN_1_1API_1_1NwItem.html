@@ -246,9 +246,6 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad800910fe3916e64433bc460393d0513"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classNWN_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwItem.html#ad800910fe3916e64433bc460393d0513">Create</a> (string template, <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target=null, int stackSize=1, string newTag=null)</td></tr>
 <tr class="memdesc:ad800910fe3916e64433bc460393d0513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new item from a template ResRef.  <a href="classNWN_1_1API_1_1NwItem.html#ad800910fe3916e64433bc460393d0513">More...</a><br /></td></tr>
 <tr class="separator:ad800910fe3916e64433bc460393d0513"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabfe01d28dc9e8ad60e98b06d40df379"><td class="memItemLeft" align="right" valign="top"><a id="aabfe01d28dc9e8ad60e98b06d40df379"></a>
-static <a class="el" href="classNWN_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetSpellCastItem</b> ()</td></tr>
-<tr class="separator:aabfe01d28dc9e8ad60e98b06d40df379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
 <tr class="memitem:a307c98167e73648bafe484d7cbd50321 inherit pub_static_methods_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="a307c98167e73648bafe484d7cbd50321"></a>
 static T&#160;</td><td class="memItemRight" valign="bottom"><b>Deserialize&lt; T &gt;</b> (string serializedObject)</td></tr>
@@ -686,6 +683,13 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Gets whether this item has a given item property. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">property</td><td>Item property to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if this item has a property of the given type, otherwise false.</dd></dl>
 
 </div>
 </div>
@@ -733,6 +737,13 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Gets the number of uses per day remaining for the specified item property on this item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">property</td><td>The item property to test for uses remaining.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of uses per day remaining for the specified item property, or 0 if this item property is not uses/day, or belongs to a different item.</dd></dl>
 
 </div>
 </div>

@@ -1,6 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"classNWN_1_1API_1_1NwTask.html#abf6aa9e7422217e20330836c00bd17a9":[0,0,0,0,37,11],
 "classNWN_1_1API_1_1NwTask.html#ae396df0cf7f784753f9646f42bdb3601":[0,0,0,0,37,14],
 "classNWN_1_1API_1_1NwTimeSpan.html":[0,0,0,0,38],
 "classNWN_1_1API_1_1NwTimeSpan.html#a13f910545c60066c85f0027b50ec8818":[0,0,0,0,38,1],
@@ -122,8 +121,8 @@ var NAVTREEINDEX6 =
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html":[0,0,0,2,18],
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html#a1c968df35aaa7022a3a950c76ca9bf63":[0,0,0,2,18,0],
 "classes.html":[0,1],
-"functions.html":[0,3,0],
 "functions.html":[0,3,0,0],
+"functions.html":[0,3,0],
 "functions_b.html":[0,3,0,1],
 "functions_c.html":[0,3,0,2],
 "functions_d.html":[0,3,0,3],
@@ -249,5 +248,6 @@ var NAVTREEINDEX6 =
 "structNWNX_1_1API_1_1QuickBarSlot.html#a604e04574e13558ffb1aef85ec9b946b":[0,0,1,0,16,2],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a6ef3e2a0665bfd0a3857ab80a54aed34":[0,0,1,0,16,14],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a846d3b3fcea8cdd738aeee495792105d":[0,0,1,0,16,8],
-"structNWNX_1_1API_1_1QuickBarSlot.html#a99710bade164d13029674c92a6f462dc":[0,0,1,0,16,9]
+"structNWNX_1_1API_1_1QuickBarSlot.html#a99710bade164d13029674c92a6f462dc":[0,0,1,0,16,9],
+"structNWNX_1_1API_1_1QuickBarSlot.html#aa2782c10f2f55103db839331bba72649":[0,0,1,0,16,3]
 };
