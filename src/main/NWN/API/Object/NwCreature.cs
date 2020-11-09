@@ -1317,19 +1317,22 @@ namespace NWN.API
     /// <summary>
     /// Gets whether this creature has a friendly reaction towards another given creature.
     /// </summary>
+    /// <param name="creature">The target creature to test.</param>
     public bool IsReactionTypeFriendly(NwCreature creature)
       => NWScript.GetIsReactionTypeFriendly(creature, this).ToBool();
 
     /// <summary>
     /// Gets whether this creature has a hostile reaction towards another given creature.
     /// </summary>
+    /// <param name="creature">The target creature to test.</param>
     public bool IsReactionTypeHostile(NwCreature creature)
       => NWScript.GetIsReactionTypeHostile(creature, this).ToBool();
 
     /// <summary>
     /// Gets whether this creature has a neutral reaction towards another given creature.
     /// </summary>
-    public bool GetIsReactionTypeNeutral(NwCreature creature)
+    /// <param name="creature">The target creature to test.</param>
+    public bool IsReactionTypeNeutral(NwCreature creature)
       => NWScript.GetIsReactionTypeNeutral(creature, this).ToBool();
 
     /// <summary>
