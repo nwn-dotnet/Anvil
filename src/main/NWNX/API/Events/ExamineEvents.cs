@@ -19,7 +19,11 @@ namespace NWNX.API.Events
       {
         Examiner = (NwPlayer) objSelf;
         Examinee = EventsPlugin.GetEventData("EXAMINEE_OBJECT_ID").ParseObject();
-        TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseIntBool();
+
+        if (Examinee is NwTrappable)
+        {
+          TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseIntBool();
+        }
       }
     }
 
@@ -36,7 +40,11 @@ namespace NWNX.API.Events
       {
         Examiner = (NwPlayer) objSelf;
         Examinee = EventsPlugin.GetEventData("EXAMINEE_OBJECT_ID").ParseObject();
-        TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseIntBool();
+
+        if (Examinee is NwTrappable)
+        {
+          TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseIntBool();
+        }
       }
     }
   }
