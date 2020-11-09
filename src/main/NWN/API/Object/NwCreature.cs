@@ -1338,18 +1338,22 @@ namespace NWN.API
     /// <summary>
     /// Gets how one creature feels toward this creature.
     /// </summary>
+    /// <param name="creature">The creature whose feelings we wish to know.</param>
     public int Reputation(NwCreature creature)
       => NWScript.GetReputation(this, creature);
 
     /// <summary>
     /// Gets the best talent from a group of talents.
     /// </summary>
+    /// <param name="category"><see cref="NWN.API.Constants.TalentCategory"/>.</param>
+    /// <param name="maxCr">The maximum Challenge Rating of the talent.</param>
     public TalentCategory TalentBest(TalentCategory category, int maxCr)
       => (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
 
     /// <summary>
     /// Retrieves a random talent from a group of talents possessed.
     /// </summary>
+    /// <param name="category"><see cref="NWN.API.Constants.TalentCategory"/>.</param>
     public TalentCategory TalentRandom(TalentCategory category)
       => (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
 
