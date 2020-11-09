@@ -15,7 +15,7 @@ namespace NWN.API
     /// </summary>
     public bool IsDM
     {
-      get => NWScript.GetIsDM(ObjectId).ToBool();
+      get => NWScript.GetIsDM(this).ToBool();
     }
 
     /// <summary>
@@ -391,6 +391,7 @@ namespace NWN.API
     /// <summary>
     /// Gives the specified XP to this player, adjusted by any multiclass penalty.
     /// </summary>
+    /// <param name="xPAmount">Amount of experience to give.</param>
     public void GiveXp(int xPAmount)
       => NWScript.GiveXPToCreature(this, xPAmount);
 
@@ -418,6 +419,7 @@ namespace NWN.API
     /// <summary>
     /// Changes the current Day/Night cycle for this player to daylight.
     /// </summary>
+    /// <param name="delayTransitionTime">Time it takes for the daylight to fade in.</param>
     public void NightToDay(TimeSpan delayTransitionTime = default)
       => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
     }

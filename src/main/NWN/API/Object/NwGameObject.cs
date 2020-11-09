@@ -215,7 +215,7 @@ namespace NWN.API
     /// <param name="colorChannel">The color channel that you want to get the color value of.</param>
     /// <returns>The current color index value of the specified channel.</returns>
     public int GetColor(ColorChannel colorChannel)
-      => NWScript.GetColor(this, (int) colorChannel);
+      => NWScript.GetColor(this, (int)colorChannel);
 
     /// <summary>
     /// Sets the color for the specified color channel.
@@ -224,7 +224,7 @@ namespace NWN.API
     /// <param name="colorChannel">The color channel to modify.</param>
     /// <param name="newColor">The color channel's new color index.</param>
     public void SetColor(ColorChannel colorChannel, int newColor)
-      => NWScript.SetColor(this, (int) colorChannel, newColor);
+      => NWScript.SetColor(this, (int)colorChannel, newColor);
 
     /// <summary>
     /// Sets whether this object is destroyable.
@@ -250,11 +250,11 @@ namespace NWN.API
       await WaitForObjectContext();
       if (!queueAsAction)
       {
-        NWScript.PlayAnimation((int) animation, animSpeed, (float) duration.TotalSeconds);
+        NWScript.PlayAnimation((int)animation, animSpeed, (float)duration.TotalSeconds);
       }
       else
       {
-        NWScript.ActionPlayAnimation((int) animation, animSpeed, (float) duration.TotalSeconds);
+        NWScript.ActionPlayAnimation((int)animation, animSpeed, (float)duration.TotalSeconds);
       }
     }
 
@@ -320,7 +320,7 @@ namespace NWN.API
     /// <typeparam name="T">The type of object to search.</typeparam>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int) NwObject.GetObjectType<T>();
+      int objType = (int)NwObject.GetObjectType<T>();
       int i;
       uint current;
 
@@ -352,17 +352,13 @@ namespace NWN.API
     /// <exception cref="ArgumentOutOfRangeException">If savingThrow is not Fortitude, Reflex, or Will.</exception>
     public int GetBaseSavingThrow(SavingThrow savingThrow)
     {
-      switch (savingThrow)
+      return savingThrow switch
       {
-        case SavingThrow.Fortitude:
-          return NWScript.GetFortitudeSavingThrow(this);
-        case SavingThrow.Reflex:
-          return NWScript.GetReflexSavingThrow(this);
-        case SavingThrow.Will:
-          return NWScript.GetWillSavingThrow(this);
-        default:
-          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
-      }
+        SavingThrow.Fortitude => NWScript.GetFortitudeSavingThrow(this),
+        SavingThrow.Reflex => NWScript.GetReflexSavingThrow(this),
+        SavingThrow.Will => NWScript.GetWillSavingThrow(this),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
     }
 
     /// <summary>
@@ -376,17 +372,13 @@ namespace NWN.API
     /// <returns>The result of the saving throw.</returns>
     public SavingThrowResult RollSavingThrow(SavingThrow savingThrow, int dc, SavingThrowType saveType, NwGameObject saveVs = null)
     {
-      switch (savingThrow)
+      return savingThrow switch
       {
-        case SavingThrow.Fortitude:
-          return (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
-        case SavingThrow.Reflex:
-          return (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
-        case SavingThrow.Will:
-          return (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
-        default:
-          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
-      }
+        SavingThrow.Fortitude => (SavingThrowResult)NWScript.FortitudeSave(this, dc, (int)saveType, saveVs),
+        SavingThrow.Reflex => (SavingThrowResult)NWScript.ReflexSave(this, dc, (int)saveType, saveVs),
+        SavingThrow.Will => (SavingThrowResult)NWScript.WillSave(this, dc, (int)saveType, saveVs),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
     }
 
     /// <summary>
@@ -402,7 +394,7 @@ namespace NWN.API
     public async Task ActionCastSpellAt(Spell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtObject((int) spell, target, (int) metaMagic, cheat.ToInt(), domainLevel, (int) projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtObject((int)spell, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -417,7 +409,7 @@ namespace NWN.API
     public async Task ActionCastSpellAt(Spell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtLocation((int) spell, target, (int) metaMagic, cheat.ToInt(), (int) projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtLocation((int)spell, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -427,7 +419,7 @@ namespace NWN.API
     public async Task ActionWait(TimeSpan duration)
     {
       await WaitForObjectContext();
-      NWScript.ActionWait((float) duration.TotalSeconds);
+      NWScript.ActionWait((float)duration.TotalSeconds);
     }
 
     /// <summary>
