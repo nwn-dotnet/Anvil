@@ -298,7 +298,7 @@ namespace NWN.API
       get => NWScript.GetIsCreatureDisarmable(this).ToBool();
     }
 
-        /// <summary>
+    /// <summary>
     /// Gets or sets the wing type of this creature.
     /// </summary>
     public CreatureWingType WingType
