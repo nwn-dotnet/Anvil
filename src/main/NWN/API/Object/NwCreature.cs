@@ -94,8 +94,8 @@ namespace NWN.API
     /// </summary>
     public FootstepType FootstepType
     {
-      get => (FootstepType) NWScript.GetFootstepType(this);
-      set => NWScript.SetFootstepType((int) value, this);
+      get => (FootstepType)NWScript.GetFootstepType(this);
+      set => NWScript.SetFootstepType((int)value, this);
     }
 
     /// <summary>
@@ -476,7 +476,7 @@ namespace NWN.API
       {
         int i;
         uint current;
-        const int henchmenType = (int) AssociateType.Henchman;
+        const int henchmenType = (int)AssociateType.Henchman;
 
         for (i = 1, current = NWScript.GetAssociate(henchmenType, this, i); current != INVALID; i++, current = NWScript.GetAssociate(henchmenType, this, i))
         {
@@ -846,7 +846,7 @@ namespace NWN.API
     {
       timeOut ??= TimeSpan.FromSeconds(30);
       await WaitForObjectContext();
-      NWScript.ActionForceMoveToLocation(target, run.ToInt(), (float) timeOut.Value.TotalSeconds);
+      NWScript.ActionForceMoveToLocation(target, run.ToInt(), (float)timeOut.Value.TotalSeconds);
     }
 
     /// <summary>
@@ -860,7 +860,7 @@ namespace NWN.API
     {
       timeOut ??= TimeSpan.FromSeconds(30);
       await WaitForObjectContext();
-      NWScript.ActionForceMoveToObject(target, run.ToInt(), range, (float) timeOut.Value.TotalSeconds);
+      NWScript.ActionForceMoveToObject(target, run.ToInt(), range, (float)timeOut.Value.TotalSeconds);
     }
 
     /// <summary>
@@ -907,7 +907,7 @@ namespace NWN.API
     public async Task ActionCastFakeSpellAt(Spell spell, Location location, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtLocation((int) spell, location, (int) pathType);
+      NWScript.ActionCastFakeSpellAtLocation((int)spell, location, (int)pathType);
     }
 
     /// <summary>
@@ -919,7 +919,7 @@ namespace NWN.API
     public async Task ActionCastFakeSpellAt(Spell spell, NwGameObject target, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtObject((int) spell, target, (int) pathType);
+      NWScript.ActionCastFakeSpellAtObject((int)spell, target, (int)pathType);
     }
 
     /// <summary>
@@ -1139,7 +1139,7 @@ namespace NWN.API
     public async Task ActionUseFeat(Feat feat, NwGameObject target)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat((int) feat, target);
+      NWScript.ActionUseFeat((int)feat, target);
     }
 
     /// <summary>
@@ -1180,7 +1180,7 @@ namespace NWN.API
     public async Task ActionUseSkill(Skill skill, NwGameObject target, SubSkill subSkill = SubSkill.None, NwItem itemUsed = null)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseSkill((int) skill, target, (int) subSkill, itemUsed);
+      NWScript.ActionUseSkill((int)skill, target, (int)subSkill, itemUsed);
     }
 
     /// <summary>
@@ -1285,22 +1285,22 @@ namespace NWN.API
     public CreatureModelType GetCreatureBodyPart(CreaturePart creaturePart)
       => (CreatureModelType)NWScript.GetCreatureBodyPart((int)creaturePart, this);
 
-     /// <summary>
-     /// Sets the body part model to be used on the creature.
-     /// </summary>
+    /// <summary>
+    /// Sets the body part model to be used on the creature.
+    /// </summary>
     public void SetCreatureBodyPart(CreaturePart creaturePart, CreatureModelType creatureModel)
       => NWScript.SetCreatureBodyPart((int)creaturePart, (int)creatureModel, this);
 
-     /// <summary>
+    /// <summary>
     /// Gets the associate of this creature with the matching associate type.<br/>
     /// See <see cref="Henchmen"/> for getting a list of all henchmen associated with this creature.
     /// </summary>
     /// <param name="associateType">The type of associate to locate.</param>
     /// <returns>The associated creature, otherwise null if this creature does not have an associate of the specified type.</returns>
     public NwCreature GetAssociate(AssociateType associateType)
-      => NWScript.GetAssociate((int) associateType, this).ToNwObject<NwCreature>();
+      => NWScript.GetAssociate((int)associateType, this).ToNwObject<NwCreature>();
 
-     /// <summary>
+    /// <summary>
     /// Gets whether this creature is under the effects of the specified feat.
     /// </summary>
     /// <param name="feat">The feat to check.</param>
@@ -1345,15 +1345,15 @@ namespace NWN.API
     /// <summary>
     /// Gets the best talent from a group of talents.
     /// </summary>
-    /// <param name="category"><see cref="NWN.API.Constants.TalentCategory"/>.</param>
+    /// <param name="category">The category of talents to pick from.</param>
     /// <param name="maxCr">The maximum Challenge Rating of the talent.</param>
     public TalentCategory TalentBest(TalentCategory category, int maxCr)
       => (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
 
     /// <summary>
-    /// Retrieves a random talent from a group of talents possessed.
+    /// Gets a random talent from a group of talents possessed by this creature.
     /// </summary>
-    /// <param name="category"><see cref="NWN.API.Constants.TalentCategory"/>.</param>
+    /// <param name="category">The category of talents to pick from.</param>
     public TalentCategory TalentRandom(TalentCategory category)
       => (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
 
@@ -1403,7 +1403,7 @@ namespace NWN.API
     /// <summary>
     /// Instructs this creature to speak/play the specified voice chat.
     /// </summary>
-    /// <param name="voiceChatType"><see cref="NWN.API.Constants.VoiceChatType"/>.</param>
+    /// <param name="voiceChatType">The <see cref="NWN.API.Constants.VoiceChatType"/> for this creature to speak.</param>
     public void PlayVoiceChat(VoiceChatType voiceChatType)
       => NWScript.PlayVoiceChat((int)voiceChatType, this);
 

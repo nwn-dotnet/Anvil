@@ -24,13 +24,13 @@ namespace NWN.Services
 
     public readonly long Ticks;
 
-    public int Millisecond => (int) (Ticks % 1000);
+    public int Millisecond => (int)(Ticks % 1000);
 
-    public int Second => (int) (Ticks / TicksPerSecond % 60);
+    public int Second => (int)(Ticks / TicksPerSecond % 60);
 
-    public int Minute => (int) (Ticks / TicksPerMinute % 60);
+    public int Minute => (int)(Ticks / TicksPerMinute % 60);
 
-    public int Hour => (int) (Ticks / TicksPerHour % 24);
+    public int Hour => (int)(Ticks / TicksPerHour % 24);
 
     public int DayInTenday
     {
@@ -41,13 +41,13 @@ namespace NWN.Services
       }
     }
 
-    public int DayInMonth => (int) (Ticks / TicksPerDay % 28) + 1;
+    public int DayInMonth => (int)(Ticks / TicksPerDay % 28) + 1;
 
     public int DayInYear => Month * DaysInMonth + DayInMonth;
 
-    public int Month => (int) (Ticks / TicksPerMonth % 12) + 1;
+    public int Month => (int)(Ticks / TicksPerMonth % 12) + 1;
 
-    public int Year => (int) (Ticks / TicksPerYear);
+    public int Year => (int)(Ticks / TicksPerYear);
 
     public NwDateTime Date => new NwDateTime(Ticks - Ticks % TicksPerDay);
 
@@ -156,35 +156,9 @@ namespace NWN.Services
 
     public NwDateTime AddYears(int years) => Add(years, TicksPerYear);
 
-    public string GetHarptosMonthName()
-    {
-      return Month switch
-      {
-        1 => "Hammer",
-        2 => "Alturiak",
-        3 => "Ches",
-        4 => "Tarsakh",
-        5 => "Mirtul",
-        6 => "Kythorn",
-        7 => "Flamerule",
-        8 => "Eleasis",
-        9 => "Eleint",
-        10 => "Marpenoth",
-        11 => "Uktar",
-        12 => "Nightal",
-        _ => Month.ToString(),
-      };
-    }
-
     public override string ToString()
     {
       return $"{Year}-{Month}-{DayInMonth}T{Hour}:{Minute}:{Second}:{Millisecond}";
-    }
-
-    // TODO More Format Options
-    public string ToLongDateString()
-    {
-      return $"{DayInMonth} {GetHarptosMonthName()}, {Year} DR";
     }
   }
 }

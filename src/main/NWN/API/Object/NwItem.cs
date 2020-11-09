@@ -133,7 +133,7 @@ namespace NWN.API
     /// </summary>
     public BaseItemType BaseItemType
     {
-      get => (BaseItemType) NWScript.GetBaseItemType(this);
+      get => (BaseItemType)NWScript.GetBaseItemType(this);
     }
 
     /// <summary>
@@ -187,7 +187,7 @@ namespace NWN.API
     /// <param name="durationType">(Permanent/Temporary) - the duration of this item property.</param>
     /// <param name="duration">If DurationType is temporary, how long this item property should stay applied.</param>
     public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default)
-      => NWScript.AddItemProperty((int) durationType, itemProperty, this, (float) duration.TotalSeconds);
+      => NWScript.AddItemProperty((int)durationType, itemProperty, this, (float)duration.TotalSeconds);
 
     /// <summary>
     /// Removes the specified item property from this item.<br/>
@@ -246,19 +246,10 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Determines the object that caused the spell script to be called.<br/>
-    /// This object will be valid until and upto the end of the script, where the game engine removes it, <br/>
-    /// or at least one casting from the item's charges.
-    /// </summary>
-    /// <returns>Returns the object that cast the spell that the spell script is being executed for.</returns>
-    /// <remarks>This should only be used inside spell scripts.</remarks>
-    public static NwItem GetSpellCastItem() => NWScript.GetSpellCastItem().ToNwObject<NwItem>();
-
-    /// <summary>
     /// Gets whether this item has a given item property.
     /// </summary>
     /// <param name="property">Item property to check.</param>
-    /// <returns>Returns True if item has property. False if item is not a valid item, or if item does not have property.</returns>
+    /// <returns>True if this item has a property of the given type, otherwise false.</returns>
     public ItemPropertyType ItemHasItemProperty(ItemPropertyType property)
       => (ItemPropertyType)NWScript.GetItemHasItemProperty(this, (int)property);
 
@@ -266,8 +257,7 @@ namespace NWN.API
     /// Gets the number of uses per day remaining for the specified item property on this item.
     /// </summary>
     /// <param name="property">The item property to test for uses remaining.</param>
-    /// <returns>The number of uses per day remaining of the given item and item property.<br/>
-    ///  Will return 0 if the given item does not have the requested item property, or the item property is not uses/day.</returns>
+    /// <returns>The number of uses per day remaining for the specified item property, or 0 if this item property is not uses/day, or belongs to a different item.</returns>
     public int UsesPerDayRemaining(ItemProperty property)
       => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
   }

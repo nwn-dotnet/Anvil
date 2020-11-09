@@ -215,7 +215,7 @@ namespace NWN.API
     /// <param name="colorChannel">The color channel that you want to get the color value of.</param>
     /// <returns>The current color index value of the specified channel.</returns>
     public int GetColor(ColorChannel colorChannel)
-      => NWScript.GetColor(this, (int) colorChannel);
+      => NWScript.GetColor(this, (int)colorChannel);
 
     /// <summary>
     /// Sets the color for the specified color channel.
@@ -224,7 +224,7 @@ namespace NWN.API
     /// <param name="colorChannel">The color channel to modify.</param>
     /// <param name="newColor">The color channel's new color index.</param>
     public void SetColor(ColorChannel colorChannel, int newColor)
-      => NWScript.SetColor(this, (int) colorChannel, newColor);
+      => NWScript.SetColor(this, (int)colorChannel, newColor);
 
     /// <summary>
     /// Sets whether this object is destroyable.
@@ -250,11 +250,11 @@ namespace NWN.API
       await WaitForObjectContext();
       if (!queueAsAction)
       {
-        NWScript.PlayAnimation((int) animation, animSpeed, (float) duration.TotalSeconds);
+        NWScript.PlayAnimation((int)animation, animSpeed, (float)duration.TotalSeconds);
       }
       else
       {
-        NWScript.ActionPlayAnimation((int) animation, animSpeed, (float) duration.TotalSeconds);
+        NWScript.ActionPlayAnimation((int)animation, animSpeed, (float)duration.TotalSeconds);
       }
     }
 
@@ -320,7 +320,7 @@ namespace NWN.API
     /// <typeparam name="T">The type of object to search.</typeparam>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int) NwObject.GetObjectType<T>();
+      int objType = (int)NwObject.GetObjectType<T>();
       int i;
       uint current;
 
@@ -394,7 +394,7 @@ namespace NWN.API
     public async Task ActionCastSpellAt(Spell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtObject((int) spell, target, (int) metaMagic, cheat.ToInt(), domainLevel, (int) projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtObject((int)spell, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -409,7 +409,7 @@ namespace NWN.API
     public async Task ActionCastSpellAt(Spell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtLocation((int) spell, target, (int) metaMagic, cheat.ToInt(), (int) projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtLocation((int)spell, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -419,7 +419,7 @@ namespace NWN.API
     public async Task ActionWait(TimeSpan duration)
     {
       await WaitForObjectContext();
-      NWScript.ActionWait((float) duration.TotalSeconds);
+      NWScript.ActionWait((float)duration.TotalSeconds);
     }
 
     /// <summary>
