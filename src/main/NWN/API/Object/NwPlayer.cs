@@ -15,7 +15,7 @@ namespace NWN.API
     /// </summary>
     public bool IsDM
     {
-      get => NWScript.GetIsDM(ObjectId).ToBool();
+      get => NWScript.GetIsDM(this).ToBool();
     }
 
     /// <summary>
