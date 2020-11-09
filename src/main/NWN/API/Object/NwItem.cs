@@ -245,17 +245,29 @@ namespace NWN.API
       return NWScript.CopyObject(this, location, INVALID, newTag).ToNwObject<NwItem>();
     }
 
+    /// <summary>
+    /// Determines the object that caused the spell script to be called.<br/>
+    /// This object will be valid until and upto the end of the script, where the game engine removes it, <br/>
+    /// or at least one casting from the item's charges.
+    /// </summary>
+    /// <returns>Returns the object that cast the spell that the spell script is being executed for.</returns>
+    /// <remarks>This should only be used inside spell scripts.</remarks>
     public static NwItem GetSpellCastItem() => NWScript.GetSpellCastItem().ToNwObject<NwItem>();
 
     /// <summary>
     /// Gets whether this item has a given item property.
     /// </summary>
+    /// <param name="property">Item property to check.</param>
+    /// <returns>Returns True if item has property. False if item is not a valid item, or if item does not have property.</returns>
     public ItemPropertyType ItemHasItemProperty(ItemPropertyType property)
       => (ItemPropertyType)NWScript.GetItemHasItemProperty(this, (int)property);
 
     /// <summary>
     /// Gets the number of uses per day remaining for the specified item property on this item.
     /// </summary>
+    /// <param name="property">The item property to test for uses remaining.</param>
+    /// <returns>The number of uses per day remaining of the given item and item property.<br/>
+    ///  Will return 0 if the given item does not have the requested item property, or the item property is not uses/day.</returns>
     public int UsesPerDayRemaining(ItemProperty property)
       => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
   }
