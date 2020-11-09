@@ -419,6 +419,7 @@ namespace NWN.API
     /// <summary>
     /// Changes the current Day/Night cycle for this player to daylight.
     /// </summary>
+    /// <param name="delayTransitionTime">Time it takes for the daylight to fade in.</param>
     public void NightToDay(TimeSpan delayTransitionTime = default)
       => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
     }
