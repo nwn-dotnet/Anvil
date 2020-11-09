@@ -358,7 +358,7 @@ namespace NWN.API
         SavingThrow.Reflex => NWScript.GetReflexSavingThrow(this),
         SavingThrow.Will => NWScript.GetWillSavingThrow(this),
         _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
-        };
+      };
     }
 
     /// <summary>
