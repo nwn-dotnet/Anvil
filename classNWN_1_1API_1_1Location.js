@@ -11,6 +11,8 @@ var classNWN_1_1API_1_1Location =
     [ "GetObjectsInShape< T >", "classNWN_1_1API_1_1Location.html#a687de39ab56544254cae11ea0f35fea9", null ],
     [ "operator IntPtr", "classNWN_1_1API_1_1Location.html#a887af104d37b73a74a645e751fc4772a", null ],
     [ "operator Location", "classNWN_1_1API_1_1Location.html#a92af57f3db3b08e9dfc5bc3e9e93bb5b", null ],
+    [ "SetTileMainLightColor", "classNWN_1_1API_1_1Location.html#aa41c93e8de32ddb56da7959a5c30f372", null ],
+    [ "SetTileSourceLightColor", "classNWN_1_1API_1_1Location.html#a8bff51eba78ef37f55a6dd2612125171", null ],
     [ "Area", "classNWN_1_1API_1_1Location.html#add8f5a9e2bef4cc69334d922c3b6fadc", null ],
     [ "FlippedRotation", "classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d", null ],
     [ "GroundHeight", "classNWN_1_1API_1_1Location.html#ae2a469bd1f8713a836045fea38e16fd9", null ],

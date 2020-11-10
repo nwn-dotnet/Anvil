@@ -1,6 +1,7 @@
 var classNWN_1_1API_1_1NwStationary =
 [
     [ "FaceToPoint", "classNWN_1_1API_1_1NwStationary.html#a9b0a7a8522dc559016b34a41bafe55fb", null ],
+    [ "SetBaseSavingThrow", "classNWN_1_1API_1_1NwStationary.html#a6ac108fe4b7092072fee712744515b4c", null ],
     [ "Location", "classNWN_1_1API_1_1NwStationary.html#adda925a5a158756d0fd336d01c24d897", null ],
     [ "Hardness", "classNWN_1_1API_1_1NwStationary.html#a9f1fe95d4d77f7656f3408dcd306cb00", null ],
     [ "IsOpen", "classNWN_1_1API_1_1NwStationary.html#a0d64f2aed72232cec5b520c91a9b6f38", null ],
