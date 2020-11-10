@@ -130,9 +130,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3a9cd6a76d7978e3ab147ff66b8e1183"><td class="memItemLeft" align="right" valign="top"><a id="a3a9cd6a76d7978e3ab147ff66b8e1183"></a>
 <a class="el" href="structNWN_1_1Services_1_1NwDateTime.html">NwDateTime</a>&#160;</td><td class="memItemRight" valign="bottom"><b>AddYears</b> (int years)</td></tr>
 <tr class="separator:a3a9cd6a76d7978e3ab147ff66b8e1183"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf83b72d88893a2ef3ff60dbf5a38284"><td class="memItemLeft" align="right" valign="top"><a id="abf83b72d88893a2ef3ff60dbf5a38284"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetHarptosMonthName</b> ()</td></tr>
+<tr class="separator:abf83b72d88893a2ef3ff60dbf5a38284"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac969272f840e63af06c0b72419dc6928"><td class="memItemLeft" align="right" valign="top"><a id="ac969272f840e63af06c0b72419dc6928"></a>
 override string&#160;</td><td class="memItemRight" valign="bottom"><b>ToString</b> ()</td></tr>
 <tr class="separator:ac969272f840e63af06c0b72419dc6928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32532a3700c484769f936a9790609090"><td class="memItemLeft" align="right" valign="top"><a id="a32532a3700c484769f936a9790609090"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>ToLongDateString</b> ()</td></tr>
+<tr class="separator:a32532a3700c484769f936a9790609090"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -149,28 +155,28 @@ Public Attributes</h2></td></tr>
 readonly long&#160;</td><td class="memItemRight" valign="bottom"><b>Ticks</b></td></tr>
 <tr class="separator:ab71037926f1a0c99033a6b91fa574bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d92c9c97f1ae323411c27126b046afd"><td class="memItemLeft" align="right" valign="top"><a id="a6d92c9c97f1ae323411c27126b046afd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Millisecond</b> =&gt; (int)(Ticks % 1000)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>Millisecond</b> =&gt; (int) (Ticks % 1000)</td></tr>
 <tr class="separator:a6d92c9c97f1ae323411c27126b046afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaead875219bd5f131adc1c38e71db898"><td class="memItemLeft" align="right" valign="top"><a id="aaead875219bd5f131adc1c38e71db898"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Second</b> =&gt; (int)(Ticks / TicksPerSecond % 60)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>Second</b> =&gt; (int) (Ticks / TicksPerSecond % 60)</td></tr>
 <tr class="separator:aaead875219bd5f131adc1c38e71db898"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0e2be9a7825aba1c9ebcca5a7c9cf90"><td class="memItemLeft" align="right" valign="top"><a id="ae0e2be9a7825aba1c9ebcca5a7c9cf90"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Minute</b> =&gt; (int)(Ticks / TicksPerMinute % 60)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>Minute</b> =&gt; (int) (Ticks / TicksPerMinute % 60)</td></tr>
 <tr class="separator:ae0e2be9a7825aba1c9ebcca5a7c9cf90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87e93de95a6b3b3a9a86d46e64111247"><td class="memItemLeft" align="right" valign="top"><a id="a87e93de95a6b3b3a9a86d46e64111247"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Hour</b> =&gt; (int)(Ticks / TicksPerHour % 24)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>Hour</b> =&gt; (int) (Ticks / TicksPerHour % 24)</td></tr>
 <tr class="separator:a87e93de95a6b3b3a9a86d46e64111247"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a313b81676e34842919b1b2c26424a047"><td class="memItemLeft" align="right" valign="top"><a id="a313b81676e34842919b1b2c26424a047"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>DayInMonth</b> =&gt; (int)(Ticks / TicksPerDay % 28) + 1</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>DayInMonth</b> =&gt; (int) (Ticks / TicksPerDay % 28) + 1</td></tr>
 <tr class="separator:a313b81676e34842919b1b2c26424a047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ada94b3034b6fdb55c319fdad63134e"><td class="memItemLeft" align="right" valign="top"><a id="a2ada94b3034b6fdb55c319fdad63134e"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>DayInYear</b> =&gt; Month * DaysInMonth + DayInMonth</td></tr>
 <tr class="separator:a2ada94b3034b6fdb55c319fdad63134e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18b3d883198a5221f9872bcf5b22a4bd"><td class="memItemLeft" align="right" valign="top"><a id="a18b3d883198a5221f9872bcf5b22a4bd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Month</b> =&gt; (int)(Ticks / TicksPerMonth % 12) + 1</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>Month</b> =&gt; (int) (Ticks / TicksPerMonth % 12) + 1</td></tr>
 <tr class="separator:a18b3d883198a5221f9872bcf5b22a4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceff2c11d139224f7c32065bd09d971c"><td class="memItemLeft" align="right" valign="top"><a id="aceff2c11d139224f7c32065bd09d971c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Year</b> =&gt; (int)(Ticks / TicksPerYear)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>Year</b> =&gt; (int) (Ticks / TicksPerYear)</td></tr>
 <tr class="separator:aceff2c11d139224f7c32065bd09d971c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77fe2e568f06c6dfc86ba25088bdbff4"><td class="memItemLeft" align="right" valign="top"><a id="a77fe2e568f06c6dfc86ba25088bdbff4"></a>
 <a class="el" href="structNWN_1_1Services_1_1NwDateTime.html">NwDateTime</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Date</b> =&gt; new <a class="el" href="structNWN_1_1Services_1_1NwDateTime.html">NwDateTime</a>(Ticks - Ticks % TicksPerDay)</td></tr>

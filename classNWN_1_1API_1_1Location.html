@@ -93,12 +93,6 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1Location.html','');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa41c93e8de32ddb56da7959a5c30f372"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#aa41c93e8de32ddb56da7959a5c30f372">SetTileMainLightColor</a> (TileMainLightColor first, TileMainLightColor second, bool recomputeLighting=true)</td></tr>
-<tr class="memdesc:aa41c93e8de32ddb56da7959a5c30f372"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the main light colors in the tile containing this location.  <a href="classNWN_1_1API_1_1Location.html#aa41c93e8de32ddb56da7959a5c30f372">More...</a><br /></td></tr>
-<tr class="separator:aa41c93e8de32ddb56da7959a5c30f372"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bff51eba78ef37f55a6dd2612125171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#a8bff51eba78ef37f55a6dd2612125171">SetTileSourceLightColor</a> (TileSourceLightColor first, TileSourceLightColor second, bool recomputeLighting=true)</td></tr>
-<tr class="memdesc:a8bff51eba78ef37f55a6dd2612125171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the source light colors in the tile containing this location.  <a href="classNWN_1_1API_1_1Location.html#a8bff51eba78ef37f55a6dd2612125171">More...</a><br /></td></tr>
-<tr class="separator:a8bff51eba78ef37f55a6dd2612125171"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac635616881a756050eb747942f267882"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#ac635616881a756050eb747942f267882">Distance</a> (<a class="el" href="classNWN_1_1API_1_1Location.html">Location</a> target)</td></tr>
 <tr class="memdesc:ac635616881a756050eb747942f267882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance to the target.<br  />
  If you only need to compare the distance, you can compare the squared distance using <a class="el" href="classNWN_1_1API_1_1Location.html#a6f21d48a27b05d5f5f467d451b958d39" title="Returns the squared distance to the target.">DistanceSquared</a> to avoid a costly sqrt operation.  <a href="classNWN_1_1API_1_1Location.html#ac635616881a756050eb747942f267882">More...</a><br /></td></tr>
@@ -240,112 +234,6 @@ Properties</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The squared distance in game units, or -1 if the target is in a different area.</dd></dl>
-
-</div>
-</div>
-<a id="aa41c93e8de32ddb56da7959a5c30f372"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa41c93e8de32ddb56da7959a5c30f372">&#9670;&nbsp;</a></span>SetTileMainLightColor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NWN.API.Location.SetTileMainLightColor </td>
-          <td>(</td>
-          <td class="paramtype">TileMainLightColor&#160;</td>
-          <td class="paramname"><em>first</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TileMainLightColor&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>recomputeLighting</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the main light colors in the tile containing this location. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">first</td><td>The first light color to assign to this tile.</td></tr>
-    <tr><td class="paramname">second</td><td>The second light color to assign to this tile.</td></tr>
-    <tr><td class="paramname">recomputeLighting</td><td>If true, immediately recomputes lighting for this area.<br  />
- Lighting must be recomputed to correctly show in the area, but this can be set to false, and batch updated using <a class="el" href="classNWN_1_1API_1_1NwArea.html#a5b21ad0604f9c799e666faadc5afdb67" title="Notifies all clients in this area to recompute static lighting. This can be used to update the lighti...">NwArea.RecomputeStaticLighting</a> after all tiles have their lighting values set.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a8bff51eba78ef37f55a6dd2612125171"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8bff51eba78ef37f55a6dd2612125171">&#9670;&nbsp;</a></span>SetTileSourceLightColor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NWN.API.Location.SetTileSourceLightColor </td>
-          <td>(</td>
-          <td class="paramtype">TileSourceLightColor&#160;</td>
-          <td class="paramname"><em>first</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TileSourceLightColor&#160;</td>
-          <td class="paramname"><em>second</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>recomputeLighting</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the source light colors in the tile containing this location. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">first</td><td>The first light color to assign to this tile.</td></tr>
-    <tr><td class="paramname">second</td><td>The second light color to assign to this tile.</td></tr>
-    <tr><td class="paramname">recomputeLighting</td><td>If true, immediately recomputes lighting for this area.<br  />
- Lighting must be recomputed to correctly show in the area, but this can be set to false and batch updated using <a class="el" href="classNWN_1_1API_1_1NwArea.html#a5b21ad0604f9c799e666faadc5afdb67" title="Notifies all clients in this area to recompute static lighting. This can be used to update the lighti...">NwArea.RecomputeStaticLighting</a> after all tiles have their lighting values set.</td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

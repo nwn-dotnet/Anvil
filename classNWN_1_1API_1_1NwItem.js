@@ -5,6 +5,7 @@ var classNWN_1_1API_1_1NwItem =
     [ "Clone", "classNWN_1_1API_1_1NwItem.html#af70dfecbc097e676068e0bbdf8dfbcf7", null ],
     [ "Create", "classNWN_1_1API_1_1NwItem.html#aa01bedecd284575884575037c594b295", null ],
     [ "Create", "classNWN_1_1API_1_1NwItem.html#ad800910fe3916e64433bc460393d0513", null ],
+    [ "GetSpellCastItem", "classNWN_1_1API_1_1NwItem.html#aabfe01d28dc9e8ad60e98b06d40df379", null ],
     [ "ItemHasItemProperty", "classNWN_1_1API_1_1NwItem.html#a559bfa0fb2278bbf60b4bec77156454a", null ],
     [ "RemoveItemProperty", "classNWN_1_1API_1_1NwItem.html#ae8e8fc98088e6ed037271d97be277719", null ],
     [ "UsesPerDayRemaining", "classNWN_1_1API_1_1NwItem.html#a5117c1d42c01becd99d65373f7627521", null ],
