@@ -1,9 +1,5 @@
 var NAVTREEINDEX7 =
 {
-"structNWNX_1_1API_1_1Events_1_1DamageData.html#ac86c9ce4d386da2a8a852757ef5bec95":[0,0,1,0,0,6,4],
-"structNWNX_1_1API_1_1QuickBarSlot.html":[0,0,1,0,16],
-"structNWNX_1_1API_1_1QuickBarSlot.html#a1ff017c8e2f77e5e45f2cdc0bf8af397":[0,0,1,0,16,0],
-"structNWNX_1_1API_1_1QuickBarSlot.html#a22f34c8d4ec291506361f739a3d32d2d":[0,0,1,0,16,5],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a317214b13041304cd9b4706f3a7f933d":[0,0,1,0,16,7],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a433515aff7f5c01caed7d590982a3962":[0,0,1,0,16,11],
 "structNWNX_1_1API_1_1QuickBarSlot.html#a4f31ce6c8e4754b0425829ea839a959b":[0,0,1,0,16,12],

@@ -1,9 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"classNWN_1_1API_1_1NwTask.html#a428195b0ca86f8ca2087caf51d95ca29":[0,0,0,0,37,3],
-"classNWN_1_1API_1_1NwTask.html#a4e306e82e09914a0b94f54e37c7ef72b":[0,0,0,0,37,12],
-"classNWN_1_1API_1_1NwTask.html#a5c28da00d64cf18d304b61fd2f89dc66":[0,0,0,0,37,8],
-"classNWN_1_1API_1_1NwTask.html#a745a15b7000de7225503d84d01341725":[0,0,0,0,37,0],
 "classNWN_1_1API_1_1NwTask.html#a747b1bdcf55f33e95e96c5023124068d":[0,0,0,0,37,9],
 "classNWN_1_1API_1_1NwTask.html#a757698a871a82bd3bc739dd351e2d301":[0,0,0,0,37,6],
 "classNWN_1_1API_1_1NwTask.html#a7ca261fe89404f60358b16704a43c9b2":[0,0,0,0,37,13],
@@ -134,15 +130,15 @@ var NAVTREEINDEX6 =
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html":[0,0,0,2,18],
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html#a1c968df35aaa7022a3a950c76ca9bf63":[0,0,0,2,18,0],
 "classes.html":[0,1],
-"functions.html":[0,3,0,0],
 "functions.html":[0,3,0],
+"functions.html":[0,3,0,0],
 "functions_b.html":[0,3,0,1],
 "functions_c.html":[0,3,0,2],
 "functions_d.html":[0,3,0,3],
 "functions_e.html":[0,3,0,4],
 "functions_f.html":[0,3,0,5],
-"functions_func.html":[0,3,1,0],
 "functions_func.html":[0,3,1],
+"functions_func.html":[0,3,1,0],
 "functions_func_b.html":[0,3,1,1],
 "functions_func_c.html":[0,3,1,2],
 "functions_func_d.html":[0,3,1,3],
@@ -249,5 +245,9 @@ var NAVTREEINDEX6 =
 "structNWNX_1_1API_1_1Events_1_1DamageData.html#ab051ff4c648e8b87d4794a51eca1e2c4":[0,0,1,0,0,6,5],
 "structNWNX_1_1API_1_1Events_1_1DamageData.html#ab860bf23c18cad7ccffd66de08ae3f3b":[0,0,1,0,0,6,9],
 "structNWNX_1_1API_1_1Events_1_1DamageData.html#aba9dbb342d8663f8818f4f98f1d9abb6":[0,0,1,0,0,6,10],
-"structNWNX_1_1API_1_1Events_1_1DamageData.html#ac0a2e5dea55e0aa5cf36c3a7da443308":[0,0,1,0,0,6,0]
+"structNWNX_1_1API_1_1Events_1_1DamageData.html#ac0a2e5dea55e0aa5cf36c3a7da443308":[0,0,1,0,0,6,0],
+"structNWNX_1_1API_1_1Events_1_1DamageData.html#ac86c9ce4d386da2a8a852757ef5bec95":[0,0,1,0,0,6,4],
+"structNWNX_1_1API_1_1QuickBarSlot.html":[0,0,1,0,16],
+"structNWNX_1_1API_1_1QuickBarSlot.html#a1ff017c8e2f77e5e45f2cdc0bf8af397":[0,0,1,0,16,0],
+"structNWNX_1_1API_1_1QuickBarSlot.html#a22f34c8d4ec291506361f739a3d32d2d":[0,0,1,0,16,5]
 };
