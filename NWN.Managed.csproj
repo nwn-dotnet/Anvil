@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>dotnet5.0</TargetFramework>
         <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
         <PackageId>NWN.Managed</PackageId>
         <Authors>NWN.NET</Authors>
@@ -20,7 +20,7 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <NoWarn>1591</NoWarn>
         <RootNamespace />
-        <LangVersion>8</LangVersion>
+        <LangVersion>9.0</LangVersion>
         <CodeAnalysisRuleSet>NWN.Managed.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
