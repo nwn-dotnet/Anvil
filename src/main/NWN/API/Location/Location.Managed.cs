@@ -93,7 +93,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Sets the main light colors in tile containing this location.
+    /// Sets the main light colors in the tile containing this location.
     /// </summary>
     /// <param name="first">The first light color to assign to this tile.</param>
     /// <param name="second">The second light color to assign to this tile.</param>
@@ -109,7 +109,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Sets the source light colors in tile containing this location.
+    /// Sets the source light colors in the tile containing this location.
     /// </summary>
     /// <param name="first">The first light color to assign to this tile.</param>
     /// <param name="second">The second light color to assign to this tile.</param>

@@ -84,7 +84,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Sets a value indicating whether locks/unlocks the player's camera direction to/from its current direction.
+    /// Sets a value indicating whether this player's camera direction is currently locked.
     /// </summary>
     public bool CameraDirectionLocked
     {
@@ -92,7 +92,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Sets a value indicating whether locks/unlocks the player's camera pitch to/from its current pitch setting.
+    /// Sets a value indicating whether this player's camera pitch is currently locked.
     /// </summary>
     public bool CameraPitchLocked
     {
@@ -100,11 +100,28 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Sets a value indicating whether locks/unlocks the player's camera distance to/from its current distance setting.
+    /// Sets a value indicating whether this player's camera distance is currently locked.
     /// </summary>
     public bool CameraDistanceLocked
     {
       set => NWScript.LockCameraDistance(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Sets the camera to a certain height.
+    /// Setting this value to zero will restore the camera to the racial default height.
+    /// </summary>
+    public float CameraHeight
+    {
+      set => NWScript.SetCameraHeight(this, value);
+    }
+
+    /// <summary>
+    /// Sets the camera mode for this (player).
+    /// </summary>
+    public CameraMode SetCameraMode
+    {
+      set => NWScript.SetCameraMode(this, (int)value);
     }
 
     /// <summary>
@@ -422,40 +439,24 @@ namespace NWN.API
     /// <summary>
     /// Changes the current Day/Night cycle for this player to daylight.
     /// </summary>
-    /// <param name="delayTransitionTime">Time it takes for the daylight to fade in.</param>
+    /// <param name="delayTransitionTime">How long the transition should take.</param>
     public void NightToDay(TimeSpan delayTransitionTime = default)
       => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
 
     /// <summary>
     /// Changes the current Day/Night cycle for this player to night.
     /// </summary>
+    /// <param name="delayTransitionTime">How long the transition should take.</param>
     public void DayToNight(TimeSpan delayTransitionTime = default)
       => NWScript.DayToNight(this, (float)delayTransitionTime.TotalSeconds);
 
     /// <summary>
-    /// Sets the camera to a certain height.
-    /// Setting this value to zero will restore the camera to the racial default height.
-    /// </summary>
-    public float CameraHeight
-    {
-      set => NWScript.SetCameraHeight(this, value);
-    }
-
-    /// <summary>
-    /// Sets the camera mode for this (player).
-    /// </summary>
-    public CameraMode SetCameraMode
-    {
-      set => NWScript.SetCameraMode(this, (int)value);
-    }
-
-    /// <summary>
-    /// Removes any current fading effects or black screen from the monitor of this (player).
+    /// Removes any current fading effects or black screen from the monitor of this player.
     /// </summary>
     public void StopFade() => NWScript.StopFade(this);
 
     /// <summary>
-    /// The screen goes black immediately.
+    /// Instructs this player's screen to go black immediately.<br/>
     /// If you want the screen to go black gradually, use FadeToBlack() instead.
     /// </summary>
     public void BlackScreen() => NWScript.BlackScreen(this);

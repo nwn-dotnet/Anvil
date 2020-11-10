@@ -1448,13 +1448,13 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Causes this (creature) to consider another creature either friend, enemy, or neutral indefintely or for a fixed time.
-    /// (target) is whose reputation will be altered.
-    /// This (creature) is whose opinion will change.
-    /// If decay is TRUE, the enmity decays over duration; otherwise it is indefinite.
-    /// (duration) is only used if (decay) is TRUE, it is how long the enmity lasts.
+    /// Causes this creature to consider another creature either friend, enemy, or neutral indefintely or for a fixed time.
     /// </summary>
-    public void SetTemporaryReputation(NwCreature target, ReputationType reputation, bool decay = false, TimeSpan? duration = default)
+    /// <param name="target">The other creature we are altering our reputation towards.</param>
+    /// <param name="reputation">The new reputation.</param>
+    /// <param name="decay">If true, the enmity decays over duration; otherwise it is indefinite.</param>
+    /// <param name="duration">Only used if decay is true. It is how long the enmity lasts.</param>
+    public void SetTemporaryReputation(NwCreature target, ReputationType reputation, bool decay = false, TimeSpan? duration = null)
     {
       duration ??= TimeSpan.FromSeconds(180);
 
