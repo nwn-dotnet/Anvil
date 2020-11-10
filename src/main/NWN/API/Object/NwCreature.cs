@@ -1454,18 +1454,20 @@ namespace NWN.API
     /// If decay is TRUE, the enmity decays over duration; otherwise it is indefinite.
     /// (duration) is only used if (decay) is TRUE, it is how long the enmity lasts.
     /// </summary>
-    public void SetTemporaryReputation(NwCreature target, ReputationType reputation, bool decay = false, TimeSpan duration = default)
+    public void SetTemporaryReputation(NwCreature target, ReputationType reputation, bool decay = false, TimeSpan? duration = default)
     {
+      duration ??= TimeSpan.FromSeconds(180);
+
       switch (reputation)
       {
         case ReputationType.Friend:
-          NWScript.SetIsTemporaryFriend(target, this, decay.ToInt(), (float)duration.TotalSeconds);
+          NWScript.SetIsTemporaryFriend(target, this, decay.ToInt(), (float)duration.Value.TotalSeconds);
           break;
         case ReputationType.Enemy:
-          NWScript.SetIsTemporaryEnemy(target, this, decay.ToInt(), (float)duration.TotalSeconds);
+          NWScript.SetIsTemporaryEnemy(target, this, decay.ToInt(), (float)duration.Value.TotalSeconds);
           break;
         case ReputationType.Neutral:
-          NWScript.SetIsTemporaryNeutral(target, this, decay.ToInt(), (float)duration.TotalSeconds);
+          NWScript.SetIsTemporaryNeutral(target, this, decay.ToInt(), (float)duration.Value.TotalSeconds);
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(reputation), reputation, null);
