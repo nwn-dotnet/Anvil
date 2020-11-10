@@ -985,6 +985,27 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Attempts to move an creature to a location.<br/>
+    /// The action subject will attempt to move to location.<br/>
+    /// If it cannot find a path to location then it will continue to search for timeout seconds before giving up.
+    /// This shouldn't be assigned to PC.<br/>
+    /// Assign ActionMoveToLocation() which will be less intensive for use on players.
+    /// </summary>
+    /// <param name="location">The target destination to move to.</param>
+    /// <param name="run">If True, the creature will run to location.</param>
+    /// <param name="timeout">Amount of time to search for a path before giving up.</param>
+    /// <remarks>Move to location functions (ActionForceMoveToLocation() and ActionMoveToLocation()) <br/>
+    /// seem to try to move to their destination in a straight line, unlike move to object functions (ActionForceMoveToObject()<br/>
+    /// and ActionMoveToObject()) which actually do path finding.<br/>
+    /// Furthermore, the move to location functions get interrupted very easily.<br/>
+    /// If anything bumps or obstructs the moving object then the command is finished.</remarks>
+    public async Task ActionForceMoveToLocation(Location location, bool run = false, float timeout = 30.0f)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionForceMoveToLocation(location, run.ToInt(), timeout);
+    }
+
+    /// <summary>
     /// Creates a copy of this creature.
     /// </summary>
     /// <param name="location">The location to place the new creature. Defaults to the current creature's location.</param>
