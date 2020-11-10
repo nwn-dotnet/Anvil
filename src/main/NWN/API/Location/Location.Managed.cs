@@ -93,20 +93,36 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Sets the main light colors on the tile located at (tileLocation).
-    /// (tile) specifies the location of the tile.
-    /// You must call RecomputeStaticLighting() after calling this function for changes to occur for the players.
+    /// Sets the main light colors in tile containing this location.
     /// </summary>
-    public void TileMainLightColor(Location tileLocation, TileMainLightColor first, TileMainLightColor second)
-      => NWScript.SetTileMainLightColor(tileLocation, (int)first, (int)second);
+    /// <param name="first">The first light color to assign to this tile.</param>
+    /// <param name="second">The second light color to assign to this tile.</param>
+    /// <param name="recomputeLighting">If true, immediately recomputes lighting for this area.<br/>
+    /// Lighting must be recomputed to correctly show in the area, but this can be set to false, and batch updated using <see cref="NwArea.RecomputeStaticLighting"/> after all tiles have their lighting values set.</param>
+    public void SetTileMainLightColor(TileMainLightColor first, TileMainLightColor second, bool recomputeLighting = true)
+    {
+      NWScript.SetTileMainLightColor(this, (int)first, (int)second);
+      if (recomputeLighting)
+      {
+        Area.RecomputeStaticLighting();
+      }
+    }
 
     /// <summary>
-    /// Sets the source light colors on the tile located at (tileLocation).
-    /// (tile) specifies the location of the tile.
-    /// You must call RecomputeStaticLighting() after calling this function for changes to occur for the players.
+    /// Sets the source light colors in tile containing this location.
     /// </summary>
-    public void TileSourceLightColor(Location tileLocation, TileSourceLightColor first, TileSourceLightColor second)
-      => NWScript.SetTileMainLightColor(tileLocation, (int)first, (int)second);
+    /// <param name="first">The first light color to assign to this tile.</param>
+    /// <param name="second">The second light color to assign to this tile.</param>
+    /// <param name="recomputeLighting">If true, immediately recomputes lighting for this area.<br/>
+    /// Lighting must be recomputed to correctly show in the area, but this can be set to false and batch updated using <see cref="NwArea.RecomputeStaticLighting"/> after all tiles have their lighting values set.</param>
+    public void SetTileSourceLightColor(TileSourceLightColor first, TileSourceLightColor second, bool recomputeLighting = true)
+    {
+      NWScript.SetTileMainLightColor(this, (int)first, (int)second);
+      if (recomputeLighting)
+      {
+        Area.RecomputeStaticLighting();
+      }
+    }
 
     /// <summary>
     /// Returns the distance to the target.<br/>
