@@ -1,12 +1,11 @@
 using NWN.API;
-using NWN.API.Events;
 
 namespace NWNX.API.Events
 {
   public class StealthEvents
   {
     [NWNXEvent("NWNX_ON_ENTER_STEALTH_BEFORE")]
-    public class OnEnterStealthBefore : Event<OnEnterStealthBefore>
+    public class OnEnterStealthBefore : NWNXEvent<OnEnterStealthBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -15,7 +14,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ENTER_STEALTH_AFTER")]
-    public class OnEnterStealthAfter : Event<OnEnterStealthAfter>
+    public class OnEnterStealthAfter : NWNXEvent<OnEnterStealthAfter>
     {
       public NwPlayer Player { get; private set; }
 
@@ -24,7 +23,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_EXIT_STEALTH_BEFORE")]
-    public class OnExitStealthBefore : Event<OnExitStealthBefore>
+    public class OnExitStealthBefore : NWNXEvent<OnExitStealthBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -33,7 +32,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_EXIT_STEALTH_AFTER")]
-    public class OnExitStealthAfter : Event<OnExitStealthAfter>
+    public class OnExitStealthAfter : NWNXEvent<OnExitStealthAfter>
     {
       public NwPlayer Player { get; private set; }
 

@@ -1,5 +1,4 @@
 using NWN.API;
-using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -10,7 +9,7 @@ namespace NWNX.API.Events
   public static partial class ItemEvents
   {
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_OPEN_BEFORE")]
-    public class OnInventoryOpenBefore : EventSkippable<OnInventoryOpenBefore>
+    public class OnInventoryOpenBefore : NWNXEventSkippable<OnInventoryOpenBefore>
     {
       /// <summary>
       /// Gets the container being opened.
@@ -30,7 +29,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_OPEN_AFTER")]
-    public class OnInventoryOpenAfter : EventSkippable<OnInventoryOpenAfter>
+    public class OnInventoryOpenAfter : NWNXEventSkippable<OnInventoryOpenAfter>
     {
       /// <summary>
       /// Gets the container being opened.
@@ -50,7 +49,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_CLOSE_BEFORE")]
-    public class OnInventoryCloseBefore : EventSkippable<OnInventoryCloseBefore>
+    public class OnInventoryCloseBefore : NWNXEventSkippable<OnInventoryCloseBefore>
     {
       /// <summary>
       /// Gets the container being closed.
@@ -70,7 +69,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_CLOSE_AFTER")]
-    public class OnInventoryCloseAfter : EventSkippable<OnInventoryCloseAfter>
+    public class OnInventoryCloseAfter : NWNXEventSkippable<OnInventoryCloseAfter>
     {
       /// <summary>
       /// Gets the container being closed.

@@ -1,5 +1,4 @@
 using NWN.API;
-using NWN.API.Events;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -7,7 +6,7 @@ namespace NWNX.API.Events
   public class CalendarEvents
   {
     [NWNXEvent("NWNX_ON_CALENDAR_HOUR")]
-    public class OnCalendarHour : Event<OnCalendarHour>
+    public class OnCalendarHour : NWNXEvent<OnCalendarHour>
     {
       public NwModule Module { get; private set; }
 
@@ -24,7 +23,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_DAY")]
-    public class OnCalendarDay : Event<OnCalendarDay>
+    public class OnCalendarDay : NWNXEvent<OnCalendarDay>
     {
       public NwModule Module { get; private set; }
 
@@ -41,7 +40,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_MONTH")]
-    public class OnCalendarMonth : Event<OnCalendarMonth>
+    public class OnCalendarMonth : NWNXEvent<OnCalendarMonth>
     {
       public NwModule Module { get; private set; }
 
@@ -58,7 +57,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_YEAR")]
-    public class OnCalendarYear : Event<OnCalendarYear>
+    public class OnCalendarYear : NWNXEvent<OnCalendarYear>
     {
       public NwModule Module { get; private set; }
 
@@ -75,7 +74,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_DAWN")]
-    public class OnCalendarDawn : Event<OnCalendarDawn>
+    public class OnCalendarDawn : NWNXEvent<OnCalendarDawn>
     {
       public NwModule Module { get; private set; }
 
@@ -84,7 +83,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_DUSK")]
-    public class OnCalendarDusk : Event<OnCalendarDusk>
+    public class OnCalendarDusk : NWNXEvent<OnCalendarDusk>
     {
       public NwModule Module { get; private set; }
 

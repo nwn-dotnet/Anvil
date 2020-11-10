@@ -1,5 +1,4 @@
 using NWN.API;
-using NWN.API.Events;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -7,7 +6,7 @@ namespace NWNX.API.Events
   public class AssociateEvents
   {
     [NWNXEvent("NWNX_ON_ADD_ASSOCIATE_BEFORE")]
-    public class OnAddAssociateBefore : Event<OnAddAssociateBefore>
+    public class OnAddAssociateBefore : NWNXEvent<OnAddAssociateBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -21,7 +20,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ADD_ASSOCIATE_AFTER")]
-    public class OnAddAssociateAfter : Event<OnAddAssociateAfter>
+    public class OnAddAssociateAfter : NWNXEvent<OnAddAssociateAfter>
     {
       public NwPlayer Player { get; private set; }
 
@@ -35,7 +34,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_REMOVE_ASSOCIATE_BEFORE")]
-    public class OnRemoveAssociateBefore : Event<OnRemoveAssociateBefore>
+    public class OnRemoveAssociateBefore : NWNXEvent<OnRemoveAssociateBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -49,7 +48,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_REMOVE_ASSOCIATE_AFTER")]
-    public class OnRemoveAssociateAfter : Event<OnRemoveAssociateAfter>
+    public class OnRemoveAssociateAfter : NWNXEvent<OnRemoveAssociateAfter>
     {
       public NwPlayer Player { get; private set; }
 

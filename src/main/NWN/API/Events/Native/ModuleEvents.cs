@@ -10,8 +10,8 @@ namespace NWN.API.Events
   /// </summary>
   public static class ModuleEvents
   {
-    [ScriptEvent(EventScriptType.ModuleOnAcquireItem)]
-    public sealed class OnAcquireItem : Event<NwModule, OnAcquireItem>
+    [NativeEvent(EventScriptType.ModuleOnAcquireItem)]
+    public sealed class OnAcquireItem : NativeEvent<NwModule, OnAcquireItem>
     {
       public NwItem Item { get; private set; }
 
@@ -27,8 +27,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnActivateItem)]
-    public sealed class OnActivateItem : Event<NwModule, OnActivateItem>
+    [NativeEvent(EventScriptType.ModuleOnActivateItem)]
+    public sealed class OnActivateItem : NativeEvent<NwModule, OnActivateItem>
     {
       public NwItem ActivatedItem { get; private set; }
 
@@ -47,8 +47,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnClientEnter)]
-    public sealed class OnClientEnter : Event<NwModule, OnClientEnter>
+    [NativeEvent(EventScriptType.ModuleOnClientEnter)]
+    public sealed class OnClientEnter : NativeEvent<NwModule, OnClientEnter>
     {
       public NwPlayer Player { get; private set; }
 
@@ -58,8 +58,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnClientExit)]
-    public sealed class OnClientLeave : Event<NwModule, OnClientLeave>
+    [NativeEvent(EventScriptType.ModuleOnClientExit)]
+    public sealed class OnClientLeave : NativeEvent<NwModule, OnClientLeave>
     {
       public NwPlayer Player { get; private set; }
 
@@ -69,8 +69,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
-    public sealed class OnCutsceneAbort : Event<NwModule, OnCutsceneAbort>
+    [NativeEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
+    public sealed class OnCutsceneAbort : NativeEvent<NwModule, OnCutsceneAbort>
     {
       public NwPlayer Player { get; private set; }
 
@@ -80,26 +80,26 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnHeartbeat)]
-    public sealed class OnHeartbeat : Event<NwModule, OnHeartbeat>
+    [NativeEvent(EventScriptType.ModuleOnHeartbeat)]
+    public sealed class OnHeartbeat : NativeEvent<NwModule, OnHeartbeat>
     {
       protected override void PrepareEvent(NwModule objSelf) {}
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnModuleLoad)]
-    public sealed class OnModuleLoad : Event<NwModule, OnModuleLoad>
+    [NativeEvent(EventScriptType.ModuleOnModuleLoad)]
+    public sealed class OnModuleLoad : NativeEvent<NwModule, OnModuleLoad>
     {
       protected override void PrepareEvent(NwModule objSelf) {}
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnModuleStart)]
-    public sealed class OnModuleStart : Event<NwModule, OnModuleStart>
+    [NativeEvent(EventScriptType.ModuleOnModuleStart)]
+    public sealed class OnModuleStart : NativeEvent<NwModule, OnModuleStart>
     {
       protected override void PrepareEvent(NwModule objSelf) {}
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnPlayerChat)]
-    public sealed class OnPlayerChat : Event<NwModule, OnPlayerChat>
+    [NativeEvent(EventScriptType.ModuleOnPlayerChat)]
+    public sealed class OnPlayerChat : NativeEvent<NwModule, OnPlayerChat>
     {
       public NwPlayer Sender { get; private set; }
 
@@ -136,8 +136,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnPlayerTarget)]
-    public sealed class OnPlayerTarget : Event<NwModule, OnPlayerTarget>
+    [NativeEvent(EventScriptType.ModuleOnPlayerTarget)]
+    public sealed class OnPlayerTarget : NativeEvent<NwModule, OnPlayerTarget>
     {
       /// <summary>
       /// Gets the player that has targeted something.
@@ -162,8 +162,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnPlayerDeath)]
-    public sealed class OnPlayerDeath : Event<NwModule, OnPlayerDeath>
+    [NativeEvent(EventScriptType.ModuleOnPlayerDeath)]
+    public sealed class OnPlayerDeath : NativeEvent<NwModule, OnPlayerDeath>
     {
       public NwPlayer DeadPlayer { get; private set; }
 
@@ -176,8 +176,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnPlayerDying)]
-    public sealed class OnPlayerDying : Event<NwModule, OnPlayerDying>
+    [NativeEvent(EventScriptType.ModuleOnPlayerDying)]
+    public sealed class OnPlayerDying : NativeEvent<NwModule, OnPlayerDying>
     {
       public NwPlayer Player { get; private set; }
 
@@ -187,8 +187,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnEquipItem)]
-    public sealed class OnPlayerEquipItem : Event<NwModule, OnPlayerEquipItem>
+    [NativeEvent(EventScriptType.ModuleOnEquipItem)]
+    public sealed class OnPlayerEquipItem : NativeEvent<NwModule, OnPlayerEquipItem>
     {
       public NwCreature Player { get; private set; }
 
@@ -201,8 +201,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnPlayerLevelUp)]
-    public sealed class OnPlayerLevelUp : Event<NwModule, OnPlayerLevelUp>
+    [NativeEvent(EventScriptType.ModuleOnPlayerLevelUp)]
+    public sealed class OnPlayerLevelUp : NativeEvent<NwModule, OnPlayerLevelUp>
     {
       public NwPlayer Player { get; private set; }
 
@@ -212,8 +212,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
-    public sealed class OnPlayerRespawn : Event<NwModule, OnPlayerRespawn>
+    [NativeEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
+    public sealed class OnPlayerRespawn : NativeEvent<NwModule, OnPlayerRespawn>
     {
       public NwPlayer Player { get; private set; }
 
@@ -223,8 +223,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnPlayerRest)]
-    public sealed class OnPlayerRest : Event<NwModule, OnPlayerRest>
+    [NativeEvent(EventScriptType.ModuleOnPlayerRest)]
+    public sealed class OnPlayerRest : NativeEvent<NwModule, OnPlayerRest>
     {
       public NwPlayer Player { get; private set; }
 
@@ -237,8 +237,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnUnequipItem)]
-    public sealed class OnPlayerUnequipItem : Event<NwModule, OnPlayerUnequipItem>
+    [NativeEvent(EventScriptType.ModuleOnUnequipItem)]
+    public sealed class OnPlayerUnequipItem : NativeEvent<NwModule, OnPlayerUnequipItem>
     {
       public NwCreature UnequippedBy { get; private set; }
 
@@ -251,8 +251,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnLoseItem)]
-    public sealed class OnUnacquireItem : Event<NwModule, OnUnacquireItem>
+    [NativeEvent(EventScriptType.ModuleOnLoseItem)]
+    public sealed class OnUnacquireItem : NativeEvent<NwModule, OnUnacquireItem>
     {
       public NwCreature LostBy { get; private set; }
 
@@ -265,8 +265,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.ModuleOnUserDefinedEvent)]
-    public sealed class OnUserDefined : Event<NwModule, OnUserDefined>
+    [NativeEvent(EventScriptType.ModuleOnUserDefinedEvent)]
+    public sealed class OnUserDefined : NativeEvent<NwModule, OnUserDefined>
     {
       public int EventNumber { get; private set; }
 

@@ -1,5 +1,4 @@
 using NWN.API;
-using NWN.API.Events;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -7,7 +6,7 @@ namespace NWNX.API.Events
   public class StoreEvents
   {
     [NWNXEvent("NWNX_ON_STORE_REQUEST_BUY_BEFORE")]
-    public class OnStoreRequestBuyBefore : Event<OnStoreRequestBuyBefore>
+    public class OnStoreRequestBuyBefore : NWNXEvent<OnStoreRequestBuyBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -27,7 +26,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_STORE_REQUEST_BUY_AFTER")]
-    public class OnStoreRequestBuyAfter : Event<OnStoreRequestBuyAfter>
+    public class OnStoreRequestBuyAfter : NWNXEvent<OnStoreRequestBuyAfter>
     {
       public NwPlayer Player { get; private set; }
 
@@ -47,7 +46,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_STORE_REQUEST_SELL_BEFORE")]
-    public class OnStoreRequestSellBefore : Event<OnStoreRequestSellBefore>
+    public class OnStoreRequestSellBefore : NWNXEvent<OnStoreRequestSellBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -67,7 +66,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_STORE_REQUEST_SELL_AFTER")]
-    public class OnStoreRequestSellAfter : Event<OnStoreRequestSellAfter>
+    public class OnStoreRequestSellAfter : NWNXEvent<OnStoreRequestSellAfter>
     {
       public NwPlayer Player { get; private set; }
 

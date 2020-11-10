@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
 using NWN.API;
+using NWN.API.Events;
 
 namespace NWN.Services
 {
-  [ServiceBinding(typeof(DialogService))]
+  [ServiceBinding(typeof(ScriptEventService))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public sealed class DialogService : IScriptDispatcher
+  public sealed class ScriptEventService : IScriptDispatcher
   {
-    private readonly Dictionary<string, DialogEvent> callbacks = new Dictionary<string, DialogEvent>();
+    private readonly Dictionary<string, ScriptEvent> callbacks = new Dictionary<string, ScriptEvent>();
 
-    public void SetHandler<T>(string scriptName, Action<T> callback) where T : DialogEvent<T>, new()
+    public void SetHandler<T>(string scriptName, Action<T> callback) where T : ScriptEvent<T>, new()
     {
       T dialogEvent = new T
       {
@@ -24,7 +25,7 @@ namespace NWN.Services
     {
       ScriptHandleResult result = ScriptHandleResult.NotHandled;
 
-      if (callbacks.TryGetValue(scriptName, out DialogEvent callback))
+      if (callbacks.TryGetValue(scriptName, out ScriptEvent callback))
       {
         result = callback.ProcessEvent(oidSelf.ToNwObject());
       }

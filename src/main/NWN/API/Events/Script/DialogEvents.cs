@@ -1,39 +1,25 @@
-using System;
 using NWN.Core;
 using NWN.Services;
 
-namespace NWN.API
+namespace NWN.API.Events
 {
-  public abstract class DialogEvent
-  {
-    public ScriptHandleResult ProcessEvent(NwObject objSelf)
-    {
-      PrepareEvent(objSelf);
-      return InvokeCallbacks();
-    }
-
-    protected abstract void PrepareEvent(NwObject objSelf);
-
-    protected abstract ScriptHandleResult InvokeCallbacks();
-  }
-
-  public abstract class DialogEvent<T> : DialogEvent where T : DialogEvent<T>
-  {
-    public Action<T> Callback;
-
-    protected override ScriptHandleResult InvokeCallbacks()
-    {
-      Callback?.Invoke((T) this);
-      return ScriptHandleResult.Handled;
-    }
-  }
-
   public static class DialogEvents
   {
-    public class ActionTaken : DialogEvent<ActionTaken>
+    public class ActionTaken : ScriptEvent<ActionTaken>
     {
+      /// <summary>
+      /// Gets the creature/object currently speaking.
+      /// </summary>
       public NwGameObject CurrentSpeaker { get; private set; }
+
+      /// <summary>
+      /// Gets the player speaker in this conversation.
+      /// </summary>
       public NwPlayer PlayerSpeaker { get; private set; }
+
+      /// <summary>
+      /// Gets the last creature/object that spoke in this conversation.
+      /// </summary>
       public NwGameObject LastSpeaker { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)
@@ -50,11 +36,26 @@ namespace NWN.API
         => NWScript.ActionResumeConversation();
     }
 
-    public class AppearsWhen : DialogEvent<AppearsWhen>
+    public class AppearsWhen : ScriptEvent<AppearsWhen>
     {
+      /// <summary>
+      /// Gets or sets a value indicating whether this dialog option should be shown.
+      /// </summary>
       public bool ShouldShow { get; set; }
+
+      /// <summary>
+      /// Gets the creature/object currently speaking.
+      /// </summary>
       public NwGameObject CurrentSpeaker { get; private set; }
+
+      /// <summary>
+      /// Gets the player speaker in this conversation.
+      /// </summary>
       public NwPlayer PlayerSpeaker { get; private set; }
+
+      /// <summary>
+      /// Gets the last creature/object that spoke in this conversation.
+      /// </summary>
       public NwGameObject LastSpeaker { get; private set; }
 
       protected override void PrepareEvent(NwObject objSelf)

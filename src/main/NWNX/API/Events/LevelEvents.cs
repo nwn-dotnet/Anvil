@@ -5,7 +5,7 @@ namespace NWNX.API.Events
   public class LevelEvents
   {
     [NWNXEvent("NWNX_ON_LEVEL_UP_BEFORE")]
-    public class OnLevelUpBefore : EventSkippable<OnLevelUpBefore>
+    public class OnLevelUpBefore : NWNXEventSkippable<OnLevelUpBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -14,7 +14,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_UP_AFTER")]
-    public class OnLevelUpAfter : EventSkippable<OnLevelUpAfter>
+    public class OnLevelUpAfter : NWNXEventSkippable<OnLevelUpAfter>
     {
       public NwPlayer Player { get; private set; }
 
@@ -23,7 +23,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_UP_AUTOMATIC_BEFORE")]
-    public class OnLevelUpAutomaticBefore : EventSkippable<OnLevelUpAutomaticBefore>
+    public class OnLevelUpAutomaticBefore : NWNXEventSkippable<OnLevelUpAutomaticBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -32,7 +32,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_UP_AUTOMATIC_AFTER")]
-    public class OnLevelUpAutomaticAfter : EventSkippable<OnLevelUpAutomaticAfter>
+    public class OnLevelUpAutomaticAfter : NWNXEventSkippable<OnLevelUpAutomaticAfter>
     {
       public NwPlayer Player { get; private set; }
 
@@ -41,7 +41,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_DOWN_BEFORE")]
-    public class OnLevelDownBefore : EventSkippable<OnLevelDownBefore>
+    public class OnLevelDownBefore : NWNXEventSkippable<OnLevelDownBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -50,7 +50,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_LEVEL_DOWN_AFTER")]
-    public class OnLevelDownAfter : EventSkippable<OnLevelDownAfter>
+    public class OnLevelDownAfter : NWNXEventSkippable<OnLevelDownAfter>
     {
       public NwPlayer Player { get; private set; }
 

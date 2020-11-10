@@ -1,9 +1,8 @@
-using NWN.API.Events;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public abstract class EventSkippable<T> : Event<T> where T : Event<T>
+  public abstract class NWNXEventSkippable<T> : NWNXEvent<T> where T : NWNXEvent<T>
   {
     /// <summary>
     /// Gets or sets a value indicating whether this event will be skipped.
