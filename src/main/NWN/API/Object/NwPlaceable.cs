@@ -76,5 +76,14 @@ namespace NWN.API
     /// </summary>
     public PlaceableAction IsPlaceableObjectActionPossible(PlaceableAction action)
       => (PlaceableAction)NWScript.GetIsPlaceableObjectActionPossible(this, (int)action);
+
+    /// <summary>
+    /// Starts a placeable object special action.
+    /// </summary>
+    public async Task DoPlaceableObjectAction(PlaceableAction placeable)
+    {
+      await WaitForObjectContext();
+      NWScript.DoPlaceableObjectAction(this, (int)placeable);
+    }
   }
 }
