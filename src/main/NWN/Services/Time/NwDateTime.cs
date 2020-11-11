@@ -158,35 +158,22 @@ namespace NWN.Services
 
     public string GetHarptosMonthName()
     {
-      switch (Month)
+      return Month switch
       {
-        case 1:
-          return "Hammer";
-        case 2:
-          return "Alturiak";
-        case 3:
-          return "Ches";
-        case 4:
-          return "Tarsakh";
-        case 5:
-          return "Mirtul";
-        case 6:
-          return "Kythorn";
-        case 7:
-          return "Flamerule";
-        case 8:
-          return "Eleasis";
-        case 9:
-          return "Eleint";
-        case 10:
-          return "Marpenoth";
-        case 11:
-          return "Uktar";
-        case 12:
-          return "Nightal";
-      }
-
-      return Month.ToString();
+        1 => "Hammer",
+        2 => "Alturiak",
+        3 => "Ches",
+        4 => "Tarsakh",
+        5 => "Mirtul",
+        6 => "Kythorn",
+        7 => "Flamerule",
+        8 => "Eleasis",
+        9 => "Eleint",
+        10 => "Marpenoth",
+        11 => "Uktar",
+        12 => "Nightal",
+        _ => Month.ToString(),
+      };
     }
 
     public override string ToString()
