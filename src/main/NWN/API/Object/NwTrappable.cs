@@ -86,6 +86,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets who last disarmed a trapped trigger, door or placeable object.
+    /// </summary>
+    public NwCreature LastDisarmed
+    {
+      get => NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
+    }
+
+    /// <summary>
     /// Gets the player that created this trap. If the trap was placed in the toolset, this returns null.
     /// </summary>
     public NwPlayer TrapCreator => NWScript.GetTrapCreator(this).ToNwObject<NwPlayer>();

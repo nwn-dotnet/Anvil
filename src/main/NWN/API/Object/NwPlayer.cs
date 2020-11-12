@@ -421,7 +421,7 @@ namespace NWN.API
     public void NightToDay(TimeSpan delayTransitionTime = default)
       => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
 
-    /// <summary>
+   /* /// <summary>
     /// Fades the screen from black into normal view.<br/>
     /// </summary>
     /// <remarks>FADE_SPEED_FAST = 0.017.<br/>
@@ -429,7 +429,7 @@ namespace NWN.API
     /// FADE_SPEED_MEDIUM = 0.01.<br/>
     /// FADE_SPEED_SLOW = 0.005.<br/>
     /// FADE_SPEED_SLOWEST = 0.003.<br/></remarks>
-   /*public void FadeFromBlack(FadeSpeed speed)
+   public void FadeFromBlack(FadeSpeed speed)
       => NWScript.FadeFromBlack(this, speed);*/
   }
 }
