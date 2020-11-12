@@ -85,11 +85,6 @@ namespace NWN.API
       set => NWScript.SetMaxHenchmen(value);
     }
 
-    public NwPlayer PCSpeaker
-    {
-      get => NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
-    }
-
     public Spell SpellId
     {
       get => (Spell)NWScript.GetSpellId();

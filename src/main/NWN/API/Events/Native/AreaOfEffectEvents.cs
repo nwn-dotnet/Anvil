@@ -11,8 +11,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called at a regular interval (approx. 6 seconds).
     /// </summary>
-    [ScriptEvent(EventScriptType.AreaOfEffectOnHeartbeat)]
-    public sealed class OnHeartbeat : Event<NwAreaOfEffect, OnHeartbeat>
+    [NativeEvent(EventScriptType.AreaOfEffectOnHeartbeat)]
+    public sealed class OnHeartbeat : NativeEvent<NwAreaOfEffect, OnHeartbeat>
     {
       public NwAreaOfEffect Effect { get; private set; }
 
@@ -22,8 +22,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.AreaOfEffectOnUserDefinedEvent)]
-    public sealed class OnUserDefined : Event<NwAreaOfEffect, OnUserDefined>
+    [NativeEvent(EventScriptType.AreaOfEffectOnUserDefinedEvent)]
+    public sealed class OnUserDefined : NativeEvent<NwAreaOfEffect, OnUserDefined>
     {
       public NwAreaOfEffect Effect { get; private set; }
 
@@ -36,8 +36,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called when an object enters the area of effect.
     /// </summary>
-    [ScriptEvent(EventScriptType.AreaOfEffectOnObjectEnter)]
-    public sealed class OnEnter : Event<NwAreaOfEffect, OnEnter>
+    [NativeEvent(EventScriptType.AreaOfEffectOnObjectEnter)]
+    public sealed class OnEnter : NativeEvent<NwAreaOfEffect, OnEnter>
     {
       public NwAreaOfEffect Effect { get; private set; }
 
@@ -50,8 +50,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called when an object exits the area of effect.
     /// </summary>
-    [ScriptEvent(EventScriptType.AreaOfEffectOnObjectExit)]
-    public sealed class OnExit : Event<NwAreaOfEffect, OnExit>
+    [NativeEvent(EventScriptType.AreaOfEffectOnObjectExit)]
+    public sealed class OnExit : NativeEvent<NwAreaOfEffect, OnExit>
     {
       public NwAreaOfEffect Effect { get; private set; }
 

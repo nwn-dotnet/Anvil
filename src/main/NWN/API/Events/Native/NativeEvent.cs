@@ -2,9 +2,9 @@ using System;
 
 namespace NWN.API.Events
 {
-  public abstract class Event
+  public abstract class NativeEvent
   {
-    public void BroadcastEvent(NwObject objSelf)
+    public void ProcessEvent(NwObject objSelf)
     {
       PrepareEvent(objSelf);
       InvokeCallbacks();
@@ -15,18 +15,20 @@ namespace NWN.API.Events
     protected abstract void InvokeCallbacks();
   }
 
-  public abstract class Event<T> : Event where T : Event<T>
+  public abstract class NativeEvent<TObject, TEvent> : NativeEvent where TEvent : NativeEvent<TObject, TEvent> where TObject : NwObject
   {
-    public event Action<T> Callbacks;
+    internal event Action<TEvent> Callbacks;
+
+    internal bool HasSubscribers
+    {
+      get => Callbacks != null;
+    }
 
     protected override void InvokeCallbacks()
     {
-      Callbacks?.Invoke((T) this);
+      Callbacks?.Invoke((TEvent) this);
     }
-  }
 
-  public abstract class Event<TObject, TEvent> : Event<TEvent> where TEvent : Event<TEvent> where TObject : NwObject
-  {
     protected sealed override void PrepareEvent(NwObject objSelf)
     {
       PrepareEvent((TObject) objSelf);

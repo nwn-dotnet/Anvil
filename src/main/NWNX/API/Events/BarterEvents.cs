@@ -6,7 +6,7 @@ namespace NWNX.API.Events
   public class BarterEvents
   {
     [NWNXEvent("NWNX_ON_BARTER_START_BEFORE")]
-    public class OnBarterStartBefore : EventSkippable<OnBarterStartBefore>
+    public class OnBarterStartBefore : NWNXEventSkippable<OnBarterStartBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -20,7 +20,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_BARTER_START_AFTER")]
-    public class OnBarterStartAfter : EventSkippable<OnBarterStartAfter>
+    public class OnBarterStartAfter : NWNXEventSkippable<OnBarterStartAfter>
     {
       public NwPlayer Player { get; private set; }
 

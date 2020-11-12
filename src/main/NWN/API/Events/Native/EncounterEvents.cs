@@ -8,8 +8,8 @@ namespace NWN.API.Events
   /// </summary>
   public static class EncounterEvents
   {
-    [ScriptEvent(EventScriptType.EncounterOnObjectEnter)]
-    public sealed class OnEnter : Event<NwEncounter, OnEnter>
+    [NativeEvent(EventScriptType.EncounterOnObjectEnter)]
+    public sealed class OnEnter : NativeEvent<NwEncounter, OnEnter>
     {
       public NwEncounter Encounter { get; private set; }
 
@@ -19,8 +19,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.EncounterOnObjectExit)]
-    public sealed class OnExit : Event<NwEncounter, OnExit>
+    [NativeEvent(EventScriptType.EncounterOnObjectExit)]
+    public sealed class OnExit : NativeEvent<NwEncounter, OnExit>
     {
       public NwEncounter Encounter { get; private set; }
 
@@ -30,8 +30,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.EncounterOnHeartbeat)]
-    public sealed class OnHeartbeat : Event<NwEncounter, OnHeartbeat>
+    [NativeEvent(EventScriptType.EncounterOnHeartbeat)]
+    public sealed class OnHeartbeat : NativeEvent<NwEncounter, OnHeartbeat>
     {
       public NwEncounter Encounter { get; private set; }
 
@@ -41,8 +41,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.EncounterOnEncounterExhausted)]
-    public sealed class OnExhausted : Event<NwEncounter, OnExhausted>
+    [NativeEvent(EventScriptType.EncounterOnEncounterExhausted)]
+    public sealed class OnExhausted : NativeEvent<NwEncounter, OnExhausted>
     {
       public NwEncounter Encounter { get; private set; }
 
@@ -52,8 +52,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.EncounterOnUserDefinedEvent)]
-    public sealed class OnUserDefined : Event<NwEncounter, OnUserDefined>
+    [NativeEvent(EventScriptType.EncounterOnUserDefinedEvent)]
+    public sealed class OnUserDefined : NativeEvent<NwEncounter, OnUserDefined>
     {
       public NwEncounter Encounter { get; private set; }
 

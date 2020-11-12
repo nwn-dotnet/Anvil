@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Numerics;
 using NWN.API.Constants;
 using NWN.Core;
 using NWNX.API.Constants;

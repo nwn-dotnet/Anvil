@@ -12,8 +12,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called when a new object has entered the area.
     /// </summary>
-    [ScriptEvent(EventScriptType.AreaOnEnter)]
-    public sealed class OnEnter : Event<NwArea, OnEnter>
+    [NativeEvent(EventScriptType.AreaOnEnter)]
+    public sealed class OnEnter : NativeEvent<NwArea, OnEnter>
     {
       /// <summary>
       /// Gets the area that was entered.
@@ -35,8 +35,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called when an object leaves the area.
     /// </summary>
-    [ScriptEvent(EventScriptType.AreaOnExit)]
-    public sealed class OnExit : Event<NwArea, OnExit>
+    [NativeEvent(EventScriptType.AreaOnExit)]
+    public sealed class OnExit : NativeEvent<NwArea, OnExit>
     {
       /// <summary>
       /// Gets the area that was left.
@@ -58,8 +58,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called at a regular interval (approx. 6 seconds).
     /// </summary>
-    [ScriptEvent(EventScriptType.AreaOnHeartbeat)]
-    public sealed class OnHeartbeat : Event<NwArea, OnHeartbeat>
+    [NativeEvent(EventScriptType.AreaOnHeartbeat)]
+    public sealed class OnHeartbeat : NativeEvent<NwArea, OnHeartbeat>
     {
       public NwArea Area { get; private set; }
 
@@ -69,8 +69,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.AreaOnUserDefinedEvent)]
-    public sealed class OnUserDefined : Event<NwArea, OnUserDefined>
+    [NativeEvent(EventScriptType.AreaOnUserDefinedEvent)]
+    public sealed class OnUserDefined : NativeEvent<NwArea, OnUserDefined>
     {
       public NwArea Area { get; private set; }
 

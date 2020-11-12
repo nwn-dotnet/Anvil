@@ -5,31 +5,15 @@ using NWN.API.Events;
 
 namespace NWN.Services
 {
-  public class EventHandler
+  internal sealed class EventHandler
   {
-    private readonly Dictionary<NwObject, Event> objectEvents = new Dictionary<NwObject, Event>();
+    private readonly Dictionary<NwObject, NativeEvent> objectEvents = new Dictionary<NwObject, NativeEvent>();
 
-    internal readonly string ScriptName = ScriptNameGenerator.Create();
-    internal readonly Event GlobalEvent;
+    public readonly string ScriptName = ScriptNameGenerator.Create();
 
-    internal static EventHandler Create<T>() where T : Event<T>, new()
+    internal void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> handler) where TEvent : NativeEvent<TObject, TEvent>, new() where TObject : NwObject
     {
-      return new EventHandler(new T());
-    }
-
-    private EventHandler(Event globalEvent)
-    {
-      this.GlobalEvent = globalEvent;
-    }
-
-    internal void Subscribe<TEvent>(Action<TEvent> handler) where TEvent : Event<TEvent>, new()
-    {
-      ((TEvent) GlobalEvent).Callbacks += handler;
-    }
-
-    internal void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> handler) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
-    {
-      if (objectEvents.TryGetValue(nwObject, out Event objectEvent))
+      if (objectEvents.TryGetValue(nwObject, out NativeEvent objectEvent))
       {
         ((TEvent) objectEvent).Callbacks += handler;
         return;
@@ -40,30 +24,24 @@ namespace NWN.Services
       objectEvents[nwObject] = newHandler;
     }
 
-    internal void Unsubscribe<TEvent>(Action<TEvent> existingHandler) where TEvent : Event<TEvent>
+    internal bool Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> existingHandler) where TEvent : NativeEvent<TObject, TEvent>, new() where TObject : NwObject
     {
-      ((TEvent) GlobalEvent).Callbacks -= existingHandler;
-
-      foreach (Event subEvent in objectEvents.Values)
+      if (objectEvents.TryGetValue(nwObject, out NativeEvent objectEvent))
       {
-        ((TEvent) subEvent).Callbacks -= existingHandler;
-      }
-    }
+        TEvent tEvent = (TEvent)objectEvent;
+        tEvent.Callbacks -= existingHandler;
 
-    internal void Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> existingHandler) where TEvent : Event<TObject, TEvent>, new() where TObject : NwObject
-    {
-      if (objectEvents.TryGetValue(nwObject, out Event objectEvent))
-      {
-        ((TEvent) objectEvent).Callbacks -= existingHandler;
+        return !tEvent.HasSubscribers;
       }
+
+      return false;
     }
 
     internal void CallEvents(NwObject objSelf)
     {
-      GlobalEvent.BroadcastEvent(objSelf);
-      if (objectEvents.TryGetValue(objSelf, out Event objEvent))
+      if (objectEvents.TryGetValue(objSelf, out NativeEvent objEvent))
       {
-        objEvent.BroadcastEvent(objSelf);
+        objEvent.ProcessEvent(objSelf);
       }
     }
   }

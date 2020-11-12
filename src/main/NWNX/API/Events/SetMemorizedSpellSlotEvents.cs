@@ -8,7 +8,7 @@ namespace NWNX.API.Events
   public static class SetMemorizedSpellSlotEvents
   {
     [NWNXEvent("NWNX_SET_MEMORIZED_SPELL_SLOT_BEFORE")]
-    public class OnSetMemorizedSpellSlotBefore : EventSkippable<OnSetMemorizedSpellSlotBefore>
+    public class OnSetMemorizedSpellSlotBefore : NWNXEventSkippable<OnSetMemorizedSpellSlotBefore>
     {
       public NwCreature Preparer { get; private set; }
 

@@ -101,7 +101,7 @@ namespace NWN.API
         InternalObjectType.Store => new NwStore(objectId),
         InternalObjectType.Sound => new NwSound(objectId),
         _ => new NwObject(objectId),
-        };
+      };
     }
 
     internal static ObjectTypes GetObjectType<T>() where T : NwObject

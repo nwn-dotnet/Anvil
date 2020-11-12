@@ -12,7 +12,7 @@ namespace NWN.API
 
     internal static LocalVariable Create(NwObject nwObject, Core.NWNX.LocalVariable variable)
     {
-      LocalVarType varType = (LocalVarType) variable.type;
+      LocalVarType varType = (LocalVarType)variable.type;
       return varType switch
       {
         LocalVarType.Int => LocalVariable<int>.Create(nwObject, variable.key),

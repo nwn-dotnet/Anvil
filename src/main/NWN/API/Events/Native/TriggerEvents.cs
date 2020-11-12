@@ -8,8 +8,8 @@ namespace NWN.API.Events
   /// </summary>
   public static class TriggerEvents
   {
-    [ScriptEvent(EventScriptType.TriggerOnHeartbeat)]
-    public sealed class OnHeartbeat : Event<NwTrigger, OnHeartbeat>
+    [NativeEvent(EventScriptType.TriggerOnHeartbeat)]
+    public sealed class OnHeartbeat : NativeEvent<NwTrigger, OnHeartbeat>
     {
       public NwTrigger Trigger { get; private set; }
 
@@ -19,8 +19,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.TriggerOnObjectEnter)]
-    public sealed class OnEnter : Event<NwTrigger, OnEnter>
+    [NativeEvent(EventScriptType.TriggerOnObjectEnter)]
+    public sealed class OnEnter : NativeEvent<NwTrigger, OnEnter>
     {
       public NwTrigger Trigger { get; private set; }
 
@@ -30,8 +30,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.TriggerOnObjectExit)]
-    public sealed class OnExit : Event<NwTrigger, OnExit>
+    [NativeEvent(EventScriptType.TriggerOnObjectExit)]
+    public sealed class OnExit : NativeEvent<NwTrigger, OnExit>
     {
       public NwTrigger Trigger { get; private set; }
 
@@ -41,8 +41,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.TriggerOnUserDefinedEvent)]
-    public sealed class OnUserDefined : Event<NwTrigger, OnUserDefined>
+    [NativeEvent(EventScriptType.TriggerOnUserDefinedEvent)]
+    public sealed class OnUserDefined : NativeEvent<NwTrigger, OnUserDefined>
     {
       public NwTrigger Trigger { get; private set; }
 
@@ -52,8 +52,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.TriggerOnTrapTriggered)]
-    public sealed class OnTrapTriggered : Event<NwTrigger, OnTrapTriggered>
+    [NativeEvent(EventScriptType.TriggerOnTrapTriggered)]
+    public sealed class OnTrapTriggered : NativeEvent<NwTrigger, OnTrapTriggered>
     {
       public NwTrigger Trigger { get; private set; }
 
@@ -63,8 +63,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.TriggerOnDisarmed)]
-    public sealed class OnDisarmed : Event<NwTrigger, OnDisarmed>
+    [NativeEvent(EventScriptType.TriggerOnDisarmed)]
+    public sealed class OnDisarmed : NativeEvent<NwTrigger, OnDisarmed>
     {
       public NwTrigger Trigger { get; private set; }
 
@@ -74,8 +74,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.TriggerOnClicked)]
-    public sealed class OnClicked : Event<NwTrigger, OnClicked>
+    [NativeEvent(EventScriptType.TriggerOnClicked)]
+    public sealed class OnClicked : NativeEvent<NwTrigger, OnClicked>
     {
       public NwTrigger Trigger { get; private set; }
 

@@ -1,5 +1,4 @@
 using NWN.API;
-using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -10,7 +9,7 @@ namespace NWNX.API.Events
   public static class HealEvents
   {
     [NWNXEvent("NWNX_ON_HEAL_BEFORE")]
-    public class OnHealBefore : EventSkippable<OnHealBefore>
+    public class OnHealBefore : NWNXEventSkippable<OnHealBefore>
     {
       /// <summary>
       /// Gets the creature performing the heal.
@@ -36,7 +35,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_HEAL_AFTER")]
-    public class OnHealAfter : EventSkippable<OnHealAfter>
+    public class OnHealAfter : NWNXEventSkippable<OnHealAfter>
     {
       /// <summary>
       /// Gets the creature performing the heal.
