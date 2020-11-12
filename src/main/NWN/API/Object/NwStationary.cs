@@ -111,5 +111,10 @@ namespace NWN.API
     }
 
     public override Location Location => Location.Create(Area, Position, Rotation);
+
+    /// <summary>
+    /// Gets the last object that locked the caller.
+    /// </summary>
+    public NwGameObject LastLocked() => NWScript.GetLastLocked().ToNwObject<NwGameObject>();
   }
 }
