@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>dotnet5.0</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
         <PackageId>NWN.Managed</PackageId>
         <Authors>NWN.NET</Authors>
@@ -29,7 +29,7 @@
 
     <ItemGroup>
         <PackageReference Include="NLog" Version="4.7.5" />
-        <PackageReference Include="NWN.Core" Version="8193.16.8" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Core" Version="8193.16.9" PrivateAssets="compile" />
         <PackageReference Include="SimpleInjector" Version="5.1.0" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="All" />
