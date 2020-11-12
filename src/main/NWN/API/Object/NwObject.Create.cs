@@ -86,35 +86,22 @@ namespace NWN.API
 
     private static NwObject ConstructManagedObject(uint objectId)
     {
-      switch ((InternalObjectType) ObjectPlugin.GetInternalObjectType(objectId))
+      return ((InternalObjectType)ObjectPlugin.GetInternalObjectType(objectId)) switch
       {
-        case InternalObjectType.Invalid:
-          return null;
-        case InternalObjectType.Creature:
-          return NWScript.GetIsPC(objectId) == NWScript.TRUE ? new NwPlayer(objectId) : new NwCreature(objectId);
-        case InternalObjectType.Item:
-          return new NwItem(objectId);
-        case InternalObjectType.Placeable:
-          return new NwPlaceable(objectId);
-        case InternalObjectType.Module:
-          return NwModule.Instance;
-        case InternalObjectType.Area:
-          return new NwArea(objectId);
-        case InternalObjectType.Trigger:
-          return new NwTrigger(objectId);
-        case InternalObjectType.Door:
-          return new NwDoor(objectId);
-        case InternalObjectType.Waypoint:
-          return new NwWaypoint(objectId);
-        case InternalObjectType.Encounter:
-          return new NwEncounter(objectId);
-        case InternalObjectType.Store:
-          return new NwStore(objectId);
-        case InternalObjectType.Sound:
-          return new NwSound(objectId);
-        default:
-          return new NwObject(objectId);
-      }
+        InternalObjectType.Invalid => null,
+        InternalObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE ? new NwPlayer(objectId) : new NwCreature(objectId),
+        InternalObjectType.Item => new NwItem(objectId),
+        InternalObjectType.Placeable => new NwPlaceable(objectId),
+        InternalObjectType.Module => NwModule.Instance,
+        InternalObjectType.Area => new NwArea(objectId),
+        InternalObjectType.Trigger => new NwTrigger(objectId),
+        InternalObjectType.Door => new NwDoor(objectId),
+        InternalObjectType.Waypoint => new NwWaypoint(objectId),
+        InternalObjectType.Encounter => new NwEncounter(objectId),
+        InternalObjectType.Store => new NwStore(objectId),
+        InternalObjectType.Sound => new NwSound(objectId),
+        _ => new NwObject(objectId),
+        };
     }
 
     internal static ObjectTypes GetObjectType<T>() where T : NwObject

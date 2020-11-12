@@ -352,17 +352,13 @@ namespace NWN.API
     /// <exception cref="ArgumentOutOfRangeException">If savingThrow is not Fortitude, Reflex, or Will.</exception>
     public int GetBaseSavingThrow(SavingThrow savingThrow)
     {
-      switch (savingThrow)
+      return savingThrow switch
       {
-        case SavingThrow.Fortitude:
-          return NWScript.GetFortitudeSavingThrow(this);
-        case SavingThrow.Reflex:
-          return NWScript.GetReflexSavingThrow(this);
-        case SavingThrow.Will:
-          return NWScript.GetWillSavingThrow(this);
-        default:
-          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
-      }
+        SavingThrow.Fortitude => NWScript.GetFortitudeSavingThrow(this),
+        SavingThrow.Reflex => NWScript.GetReflexSavingThrow(this),
+        SavingThrow.Will => NWScript.GetWillSavingThrow(this),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
     }
 
     /// <summary>
@@ -376,17 +372,13 @@ namespace NWN.API
     /// <returns>The result of the saving throw.</returns>
     public SavingThrowResult RollSavingThrow(SavingThrow savingThrow, int dc, SavingThrowType saveType, NwGameObject saveVs = null)
     {
-      switch (savingThrow)
+      return savingThrow switch
       {
-        case SavingThrow.Fortitude:
-          return (SavingThrowResult) NWScript.FortitudeSave(this, dc, (int) saveType, saveVs);
-        case SavingThrow.Reflex:
-          return (SavingThrowResult) NWScript.ReflexSave(this, dc, (int) saveType, saveVs);
-        case SavingThrow.Will:
-          return (SavingThrowResult) NWScript.WillSave(this, dc, (int) saveType, saveVs);
-        default:
-          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
-      }
+        SavingThrow.Fortitude => (SavingThrowResult)NWScript.FortitudeSave(this, dc, (int)saveType, saveVs),
+        SavingThrow.Reflex => (SavingThrowResult)NWScript.ReflexSave(this, dc, (int)saveType, saveVs),
+        SavingThrow.Will => (SavingThrowResult)NWScript.WillSave(this, dc, (int)saveType, saveVs),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
     }
 
     /// <summary>

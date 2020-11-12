@@ -45,7 +45,7 @@ namespace NWN.Services
       }
       else if (conditionalWithMetaHandler != null)
       {
-        objSelf = objSelf != null ? objSelf : objSelfId.ToNwObject();
+        objSelf ??= objSelfId.ToNwObject();
         CallInfo meta = new CallInfo(scriptName, objSelf);
         result = conditionalWithMetaHandler(meta) ? ScriptHandleResult.True : ScriptHandleResult.False;
       }
