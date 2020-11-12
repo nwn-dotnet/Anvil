@@ -1,5 +1,7 @@
 <map id="NWN.Services.IScriptDispatcher" name="NWN.Services.IScriptDispatcher">
-<area shape="rect" id="node1" title="Implement in a service to add a custom handler for event scripts." alt="" coords="117,5,328,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,216,121"/>
-<area shape="rect" id="node3" href="$classNWN_1_1Services_1_1EventService.html" title=" " alt="" coords="241,87,429,114"/>
+<area shape="rect" id="node1" title="Implement in a service to add a custom handler for event scripts." alt="" coords="5,111,216,138"/>
+<area shape="rect" id="node2" title=" " alt="" coords="278,5,489,47"/>
+<area shape="rect" id="node3" href="$classNWN_1_1Services_1_1NativeEventService.html" title=" " alt="" coords="292,71,475,112"/>
+<area shape="rect" id="node4" href="$classNWN_1_1Services_1_1ScriptEventService.html" title=" " alt="" coords="294,136,473,177"/>
+<area shape="rect" id="node5" href="$classNWNX_1_1Services_1_1NWNXEventService.html" title=" " alt="" coords="264,202,503,229"/>
 </map>

@@ -187,11 +187,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:af8cde1180fa89713242f00b074afda62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a message on this player's screen.<br  />
  The message is always displayed on top of whatever is on the screen, including UI elements.  <a href="classNWN_1_1API_1_1NwPlayer.html#af8cde1180fa89713242f00b074afda62">More...</a><br /></td></tr>
 <tr class="separator:af8cde1180fa89713242f00b074afda62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add86a7cd2c5ceafe2e50fa3c6f977fe4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#add86a7cd2c5ceafe2e50fa3c6f977fe4">EnterTargetingMode</a> (ObjectTypes validObjectTypes, MouseCursor mouseCursor=MouseCursor.Magic, MouseCursor badTargetCursor=MouseCursor.NoMagic)</td></tr>
-<tr class="memdesc:add86a7cd2c5ceafe2e50fa3c6f977fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes this player enter a targeting mode, letting them select an object as a target.<br  />
- If this player selects a target, it will trigger a <a class="el" href="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">NWN.API.Events.ModuleEvents.OnPlayerTarget</a> event.<br  />
- Use the <a class="el" href="classNWN_1_1Services_1_1EventService.html">NWN.Services.EventService</a> to add a listener for this event, and get the player's selection.  <a href="classNWN_1_1API_1_1NwPlayer.html#add86a7cd2c5ceafe2e50fa3c6f977fe4">More...</a><br /></td></tr>
-<tr class="separator:add86a7cd2c5ceafe2e50fa3c6f977fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b3f7ec605f8e9af0c8e94be13d90afe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#a3b3f7ec605f8e9af0c8e94be13d90afe">FloatingTextStrRef</a> (int strRef, bool broadcastToParty=true)</td></tr>
 <tr class="memdesc:a3b3f7ec605f8e9af0c8e94be13d90afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above this player's head using the specified string reference.  <a href="classNWN_1_1API_1_1NwPlayer.html#a3b3f7ec605f8e9af0c8e94be13d90afe">More...</a><br /></td></tr>
 <tr class="separator:a3b3f7ec605f8e9af0c8e94be13d90afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -441,8 +436,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a8faea3c8f3024a2f9a6c80790fad54c5 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the body part model to be used on the creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a8faea3c8f3024a2f9a6c80790fad54c5">More...</a><br /></td></tr>
 <tr class="separator:a8faea3c8f3024a2f9a6c80790fad54c5 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad356ece81bf22ec7e419c2876da0fd15 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ad356ece81bf22ec7e419c2876da0fd15">GetAssociate</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html#a8c202146bdd4583d9e2bb026bc44b733">AssociateType</a> associateType)</td></tr>
+<tr class="memdesc:ad356ece81bf22ec7e419c2876da0fd15 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the associate of this creature with the matching associate type.<br  />
+ See <a class="el" href="classNWN_1_1API_1_1NwCreature.html#a01b838f217e29411c23960daac35a107" title="Gets all henchmen associated with this creature.">Henchmen</a> for getting a list of all henchmen associated with this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#ad356ece81bf22ec7e419c2876da0fd15">More...</a><br /></td></tr>
 <tr class="separator:ad356ece81bf22ec7e419c2876da0fd15 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0f4685c2636a05de118f42849d0950b inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#af0f4685c2636a05de118f42849d0950b">HasFeatEffect</a> (Feat feat)</td></tr>
+<tr class="memdesc:af0f4685c2636a05de118f42849d0950b inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature is under the effects of the specified feat.  <a href="classNWN_1_1API_1_1NwCreature.html#af0f4685c2636a05de118f42849d0950b">More...</a><br /></td></tr>
 <tr class="separator:af0f4685c2636a05de118f42849d0950b inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabaaabd68b459b347d643b4feae89fae inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#aabaaabd68b459b347d643b4feae89fae">HasSpellEffect</a> (Spell spell)</td></tr>
 <tr class="memdesc:aabaaabd68b459b347d643b4feae89fae inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature is under the effects of the specified spell.  <a href="classNWN_1_1API_1_1NwCreature.html#aabaaabd68b459b347d643b4feae89fae">More...</a><br /></td></tr>
@@ -453,9 +451,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ac526d8cf2d0e66b26b647d76affaaf2e inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ac526d8cf2d0e66b26b647d76affaaf2e">IsReactionTypeHostile</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> creature)</td></tr>
 <tr class="memdesc:ac526d8cf2d0e66b26b647d76affaaf2e inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature has a hostile reaction towards another given creature.  <a href="classNWN_1_1API_1_1NwCreature.html#ac526d8cf2d0e66b26b647d76affaaf2e">More...</a><br /></td></tr>
 <tr class="separator:ac526d8cf2d0e66b26b647d76affaaf2e inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2635d9d13ba855b525ebdc32da13a25 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#af2635d9d13ba855b525ebdc32da13a25">GetIsReactionTypeNeutral</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> creature)</td></tr>
-<tr class="memdesc:af2635d9d13ba855b525ebdc32da13a25 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature has a neutral reaction towards another given creature.  <a href="classNWN_1_1API_1_1NwCreature.html#af2635d9d13ba855b525ebdc32da13a25">More...</a><br /></td></tr>
-<tr class="separator:af2635d9d13ba855b525ebdc32da13a25 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa836e8ecfd6e1f15426b326f93252d41 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#aa836e8ecfd6e1f15426b326f93252d41">IsReactionTypeNeutral</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> creature)</td></tr>
+<tr class="memdesc:aa836e8ecfd6e1f15426b326f93252d41 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature has a neutral reaction towards another given creature.  <a href="classNWN_1_1API_1_1NwCreature.html#aa836e8ecfd6e1f15426b326f93252d41">More...</a><br /></td></tr>
+<tr class="separator:aa836e8ecfd6e1f15426b326f93252d41 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b0a06b8583fdce9a41afcf17a720209 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a3b0a06b8583fdce9a41afcf17a720209">Reputation</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> creature)</td></tr>
 <tr class="memdesc:a3b0a06b8583fdce9a41afcf17a720209 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets how one creature feels toward this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a3b0a06b8583fdce9a41afcf17a720209">More...</a><br /></td></tr>
 <tr class="separator:a3b0a06b8583fdce9a41afcf17a720209 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -463,7 +461,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a0cbd086b08757909a9ead2b7f0c9e2fb inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the best talent from a group of talents.  <a href="classNWN_1_1API_1_1NwCreature.html#a0cbd086b08757909a9ead2b7f0c9e2fb">More...</a><br /></td></tr>
 <tr class="separator:a0cbd086b08757909a9ead2b7f0c9e2fb inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1200896d3607f285c861ae45ab0fe90f inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">TalentCategory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a1200896d3607f285c861ae45ab0fe90f">TalentRandom</a> (TalentCategory category)</td></tr>
-<tr class="memdesc:a1200896d3607f285c861ae45ab0fe90f inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a random talent from a group of talents possessed.  <a href="classNWN_1_1API_1_1NwCreature.html#a1200896d3607f285c861ae45ab0fe90f">More...</a><br /></td></tr>
+<tr class="memdesc:a1200896d3607f285c861ae45ab0fe90f inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a random talent from a group of talents possessed by this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a1200896d3607f285c861ae45ab0fe90f">More...</a><br /></td></tr>
 <tr class="separator:a1200896d3607f285c861ae45ab0fe90f inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a192eafa2baa62110dabf4772ff142640 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a192eafa2baa62110dabf4772ff142640">IncrementRemainingFeatUses</a> (Feat feat, int amount=1)</td></tr>
 <tr class="memdesc:a192eafa2baa62110dabf4772ff142640 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment the remaining uses per day for this (creature) by the specified amount.<br  />
@@ -475,7 +473,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
  Passive feats, and feats that can be used unlimited times per day, cannot be decremented or suppressed.  <a href="classNWN_1_1API_1_1NwCreature.html#a4d52452c42072c2d639e47276295f481">More...</a><br /></td></tr>
 <tr class="separator:a4d52452c42072c2d639e47276295f481 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4b285acabeddc2a1fb4bc2adf4108ad inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#aa4b285acabeddc2a1fb4bc2adf4108ad">LevelUpHenchman</a> (ClassType classType, PackageType package, bool spellsReady=false)</td></tr>
-<tr class="memdesc:aa4b285acabeddc2a1fb4bc2adf4108ad inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Levels up this creature using the default settings.  <a href="classNWN_1_1API_1_1NwCreature.html#aa4b285acabeddc2a1fb4bc2adf4108ad">More...</a><br /></td></tr>
+<tr class="memdesc:aa4b285acabeddc2a1fb4bc2adf4108ad inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Levels up this creature using the default settings.<br  />
+ You can assign a new class to level up <br  />
+ If an invalid class combination is chosen the default class is leveled up.<br  />
+ Package determines which package to level up with.<br  />
+ If package is omitted it will use the starting package assigned to that class or just the class package.<br  />
+  <a href="classNWN_1_1API_1_1NwCreature.html#aa4b285acabeddc2a1fb4bc2adf4108ad">More...</a><br /></td></tr>
 <tr class="separator:aa4b285acabeddc2a1fb4bc2adf4108ad inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fbc05fb296af7bd97503e723ee36785 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a0fbc05fb296af7bd97503e723ee36785">PlayVoiceChat</a> (VoiceChatType voiceChatType)</td></tr>
 <tr class="memdesc:a0fbc05fb296af7bd97503e723ee36785 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this creature to speak/play the specified voice chat.  <a href="classNWN_1_1API_1_1NwCreature.html#a0fbc05fb296af7bd97503e723ee36785">More...</a><br /></td></tr>
@@ -739,6 +742,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:a25426189967ef74bcc8e15f8a3c7929b inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this creature can be disarmed (checks disarm flag on creature, and if the creature actually has a weapon equipped in their right hand that is droppable).  <a href="classNWN_1_1API_1_1NwCreature.html#a25426189967ef74bcc8e15f8a3c7929b">More...</a><br /></td></tr>
 <tr class="separator:a25426189967ef74bcc8e15f8a3c7929b inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa0b336f30a1f0216e0220c1ac38b579 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">CreatureWingType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#afa0b336f30a1f0216e0220c1ac38b579">WingType</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:afa0b336f30a1f0216e0220c1ac38b579 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the wing type of this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#afa0b336f30a1f0216e0220c1ac38b579">More...</a><br /></td></tr>
 <tr class="separator:afa0b336f30a1f0216e0220c1ac38b579 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a820c0d520b26ecb1cbbf3632ca2445bc inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">CreatureTailType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a820c0d520b26ecb1cbbf3632ca2445bc">TailType</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a820c0d520b26ecb1cbbf3632ca2445bc inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the tail type of this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a820c0d520b26ecb1cbbf3632ca2445bc">More...</a><br /></td></tr>
@@ -779,9 +783,6 @@ Properties</h2></td></tr>
 <tr class="memitem:a2087a34684ac9b9e1095da11db53e96d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">SpecialAttack&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a2087a34684ac9b9e1095da11db53e96d">LastSpecialAttackType</a><code> [get]</code></td></tr>
 <tr class="memdesc:a2087a34684ac9b9e1095da11db53e96d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the special attack type used in the last physical attack against this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a2087a34684ac9b9e1095da11db53e96d">More...</a><br /></td></tr>
 <tr class="separator:a2087a34684ac9b9e1095da11db53e96d inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e184004bc5f6d152c6f6b39810166a5 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a4e184004bc5f6d152c6f6b39810166a5">LastSpeaker</a><code> [get]</code></td></tr>
-<tr class="memdesc:a4e184004bc5f6d152c6f6b39810166a5 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the last object that this creature communicated with.  <a href="classNWN_1_1API_1_1NwCreature.html#a4e184004bc5f6d152c6f6b39810166a5">More...</a><br /></td></tr>
-<tr class="separator:a4e184004bc5f6d152c6f6b39810166a5 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5972bc8ae5f9855b7e89ec1dfb226c4 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ad5972bc8ae5f9855b7e89ec1dfb226c4">SpellResistance</a><code> [get]</code></td></tr>
 <tr class="memdesc:ad5972bc8ae5f9855b7e89ec1dfb226c4 inherit properties_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the spell resistance of this creature.<br  />
  Returns 0 if this creature has no spell resistance.  <a href="classNWN_1_1API_1_1NwCreature.html#ad5972bc8ae5f9855b7e89ec1dfb226c4">More...</a><br /></td></tr>
@@ -1209,52 +1210,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
-<a id="add86a7cd2c5ceafe2e50fa3c6f977fe4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add86a7cd2c5ceafe2e50fa3c6f977fe4">&#9670;&nbsp;</a></span>EnterTargetingMode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NWN.API.NwPlayer.EnterTargetingMode </td>
-          <td>(</td>
-          <td class="paramtype">ObjectTypes&#160;</td>
-          <td class="paramname"><em>validObjectTypes</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MouseCursor&#160;</td>
-          <td class="paramname"><em>mouseCursor</em> = <code>MouseCursor.Magic</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MouseCursor&#160;</td>
-          <td class="paramname"><em>badTargetCursor</em> = <code>MouseCursor.NoMagic</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Makes this player enter a targeting mode, letting them select an object as a target.<br  />
- If this player selects a target, it will trigger a <a class="el" href="classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">NWN.API.Events.ModuleEvents.OnPlayerTarget</a> event.<br  />
- Use the <a class="el" href="classNWN_1_1Services_1_1EventService.html">NWN.Services.EventService</a> to add a listener for this event, and get the player's selection. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">validObjectTypes</td><td>The type of objects that the player can select.</td></tr>
-    <tr><td class="paramname">mouseCursor</td><td>The cursor to display if the player is hovering over a valid selection.</td></tr>
-    <tr><td class="paramname">badTargetCursor</td><td>The cursor to display if the player is hovering over an invalid selection.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ac0ac14d7281a2ed53c91a441f245a51f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac0ac14d7281a2ed53c91a441f245a51f">&#9670;&nbsp;</a></span>ExitCutsceneMode()</h2>
 
@@ -1472,6 +1427,12 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Gives the specified XP to this player, adjusted by any multiclass penalty. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xPAmount</td><td>Amount of experience to give.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1552,6 +1513,12 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Changes the current Day/Night cycle for this player to daylight. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delayTransitionTime</td><td>Time it takes for the daylight to fade in.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

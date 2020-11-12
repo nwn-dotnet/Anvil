@@ -1,4 +1,4 @@
 <map id="NWNX.API.Events.PartyEvents.OnRejectInvitationAfter" name="NWNX.API.Events.PartyEvents.OnRejectInvitationAfter">
 <area shape="rect" id="node1" title=" " alt="" coords="5,95,212,136"/>
-<area shape="rect" id="node2" href="$classNWNX_1_1API_1_1Events_1_1EventSkippable.html" title=" " alt="" coords="20,5,197,47"/>
+<area shape="rect" id="node2" href="$classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html" title=" " alt="" coords="19,5,198,47"/>
 </map>

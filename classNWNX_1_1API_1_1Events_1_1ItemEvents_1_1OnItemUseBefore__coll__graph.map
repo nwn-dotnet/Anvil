@@ -1,4 +1,4 @@
 <map id="NWNX.API.Events.ItemEvents.OnItemUseBefore" name="NWNX.API.Events.ItemEvents.OnItemUseBefore">
 <area shape="rect" id="node1" title=" " alt="" coords="5,95,208,136"/>
-<area shape="rect" id="node2" href="$classNWNX_1_1API_1_1Events_1_1EventSkippable.html" title=" " alt="" coords="11,5,202,47"/>
+<area shape="rect" id="node2" href="$classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html" title=" " alt="" coords="30,5,183,47"/>
 </map>

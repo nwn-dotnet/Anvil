@@ -1,7 +1,0 @@
-<map id="NWN.API.Events.IEventAttribute" name="NWN.API.Events.IEventAttribute">
-<area shape="rect" id="node1" title=" " alt="" coords="5,111,216,138"/>
-<area shape="rect" id="node2" title=" " alt="" coords="279,5,471,47"/>
-<area shape="rect" id="node3" href="$classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html" title=" " alt="" coords="269,71,482,112"/>
-<area shape="rect" id="node4" href="$classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html" title=" " alt="" coords="264,136,487,177"/>
-<area shape="rect" id="node5" href="$classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html" title=" " alt="" coords="271,201,479,243"/>
-</map>

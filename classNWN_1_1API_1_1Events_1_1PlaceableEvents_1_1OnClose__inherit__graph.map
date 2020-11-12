@@ -1,4 +1,4 @@
 <map id="NWN.API.Events.PlaceableEvents.OnClose" name="NWN.API.Events.PlaceableEvents.OnClose">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,188,136"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="23,5,170,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="7,95,189,136"/>
+<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1NativeEvent.html" title=" " alt="" coords="5,5,191,47"/>
 </map>

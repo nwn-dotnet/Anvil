@@ -1,4 +1,4 @@
 <map id="NWNX.API.Events.StealthEvents.OnEnterStealthAfter" name="NWNX.API.Events.StealthEvents.OnEnterStealthAfter">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,224,121"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="18,5,211,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,95,224,136"/>
+<area shape="rect" id="node2" href="$classNWNX_1_1API_1_1Events_1_1NWNXEvent.html" title=" " alt="" coords="17,5,212,47"/>
 </map>

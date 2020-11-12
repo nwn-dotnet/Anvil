@@ -8,7 +8,6 @@ var classNWN_1_1API_1_1NwPlayer =
     [ "BootPlayer", "classNWN_1_1API_1_1NwPlayer.html#a84463c4cbc13d16a74815fa277628d1e", null ],
     [ "ClearTextureOverride", "classNWN_1_1API_1_1NwPlayer.html#ac568f63e914766242097f50f667ff73d", null ],
     [ "EnterCutsceneMode", "classNWN_1_1API_1_1NwPlayer.html#a0d3fcfe9ab1c855ae601e067576c3c59", null ],
-    [ "EnterTargetingMode", "classNWN_1_1API_1_1NwPlayer.html#add86a7cd2c5ceafe2e50fa3c6f977fe4", null ],
     [ "ExitCutsceneMode", "classNWN_1_1API_1_1NwPlayer.html#ac0ac14d7281a2ed53c91a441f245a51f", null ],
     [ "ExportCharacter", "classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802", null ],
     [ "FloatingTextString", "classNWN_1_1API_1_1NwPlayer.html#a6f4182f2c101fb64383fa6e81df581c5", null ],

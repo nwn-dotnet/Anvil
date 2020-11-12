@@ -22,7 +22,6 @@ var classNWN_1_1API_1_1NwModule =
     [ "IsDusk", "classNWN_1_1API_1_1NwModule.html#ac704f5c91730658ca7a8fa4209b58a55", null ],
     [ "IsNight", "classNWN_1_1API_1_1NwModule.html#a68b9f671ead16fbfae72269bce5eef78", null ],
     [ "MaxHenchmen", "classNWN_1_1API_1_1NwModule.html#afe18eef01e7bb12860c9f3b472ef6e5a", null ],
-    [ "PCSpeaker", "classNWN_1_1API_1_1NwModule.html#aebcf7e28e1beac7db6e0b827edc4fb4c", null ],
     [ "Players", "classNWN_1_1API_1_1NwModule.html#a646b2c2904f7a1ecea8a55f7cf1c3048", null ],
     [ "SavingThrowBonusLimit", "classNWN_1_1API_1_1NwModule.html#a8bac15895463e6cf8f87fbcdae1c4628", null ],
     [ "SkillBonusLimit", "classNWN_1_1API_1_1NwModule.html#a5775e9a62fc0c2b989eae51253cbd517", null ],

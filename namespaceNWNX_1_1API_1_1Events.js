@@ -32,7 +32,6 @@ var namespaceNWNX_1_1API_1_1Events =
       [ "OnValidateAfter", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateAfter.html", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateAfter" ],
       [ "OnValidateBefore", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateBefore.html", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateBefore" ]
     ] ],
-    [ "EventSkippable", "classNWNX_1_1API_1_1Events_1_1EventSkippable.html", "classNWNX_1_1API_1_1Events_1_1EventSkippable" ],
     [ "ExamineEvents", "classNWNX_1_1API_1_1Events_1_1ExamineEvents.html", [
       [ "OnExamineObjectAfter", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectAfter.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectAfter" ],
       [ "OnExamineObjectBefore", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectBefore.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectBefore" ]
@@ -50,6 +49,7 @@ var namespaceNWNX_1_1API_1_1Events =
       [ "OnHealAfter", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealAfter.html", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealAfter" ],
       [ "OnHealBefore", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealBefore.html", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealBefore" ]
     ] ],
+    [ "IEventAttribute", "interfaceNWNX_1_1API_1_1Events_1_1IEventAttribute.html", "interfaceNWNX_1_1API_1_1Events_1_1IEventAttribute" ],
     [ "ItemEvents", "classNWNX_1_1API_1_1Events_1_1ItemEvents.html", [
       [ "OnInventoryCloseAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseAfter.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseAfter" ],
       [ "OnInventoryCloseBefore", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseBefore.html", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseBefore" ],
@@ -72,7 +72,9 @@ var namespaceNWNX_1_1API_1_1Events =
     ] ],
     [ "NWNXAttackEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html", null ],
     [ "NWNXDamageEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html", null ],
+    [ "NWNXEvent", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", null ],
     [ "NWNXEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute" ],
+    [ "NWNXEventSkippable", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable" ],
     [ "PartyEvents", "classNWNX_1_1API_1_1Events_1_1PartyEvents.html", [
       [ "OnAcceptInvitationAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnAcceptInvitationAfter.html", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnAcceptInvitationAfter" ],
       [ "OnAcceptInvitationBefore", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnAcceptInvitationBefore.html", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnAcceptInvitationBefore" ],

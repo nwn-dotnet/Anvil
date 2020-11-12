@@ -1,4 +1,4 @@
 <map id="NWNX.API.Events.SetMemorizedSpellSlotEvents.OnSetMemorizedSpellSlotBefore" name="NWNX.API.Events.SetMemorizedSpellSlotEvents.OnSetMemorizedSpellSlotBefore">
 <area shape="rect" id="node1" title=" " alt="" coords="5,95,252,151"/>
-<area shape="rect" id="node2" href="$classNWNX_1_1API_1_1Events_1_1EventSkippable.html" title=" " alt="" coords="17,5,240,47"/>
+<area shape="rect" id="node2" href="$classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html" title=" " alt="" coords="11,5,246,47"/>
 </map>

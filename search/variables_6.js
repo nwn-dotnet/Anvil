@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hasnothing_1733',['HasNothing',['../classNWN_1_1API_1_1LocalVariable.html#a23b5a7424d74855543e22231a37e0e94',1,'NWN::API::LocalVariable']]]
+  ['green_1758',['Green',['../structNWN_1_1API_1_1Color.html#a366aece6ec6c7903173b4392f950fd92',1,'NWN::API::Color']]]
 ];

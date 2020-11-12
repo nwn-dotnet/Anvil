@@ -27,6 +27,10 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnSpellCastAt", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined" ]
     ] ],
+    [ "DialogEvents", "classNWN_1_1API_1_1Events_1_1DialogEvents.html", [
+      [ "ActionTaken", "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html", "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken" ],
+      [ "AppearsWhen", "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html", "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen" ]
+    ] ],
     [ "DoorEvents", "classNWN_1_1API_1_1Events_1_1DoorEvents.html", [
       [ "OnAreaTransitionClick", "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html", "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick" ],
       [ "OnClose", "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnClose.html", "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnClose" ],
@@ -51,8 +55,6 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnHeartbeat", "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html", "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined" ]
     ] ],
-    [ "Event", "classNWN_1_1API_1_1Events_1_1Event.html", null ],
-    [ "IEventAttribute", "interfaceNWN_1_1API_1_1Events_1_1IEventAttribute.html", "interfaceNWN_1_1API_1_1Events_1_1IEventAttribute" ],
     [ "ModuleEvents", "classNWN_1_1API_1_1Events_1_1ModuleEvents.html", [
       [ "OnAcquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem" ],
       [ "OnActivateItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem" ],
@@ -74,6 +76,8 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnUnacquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined" ]
     ] ],
+    [ "NativeEvent", "classNWN_1_1API_1_1Events_1_1NativeEvent.html", null ],
+    [ "NativeEventAttribute", "classNWN_1_1API_1_1Events_1_1NativeEventAttribute.html", "classNWN_1_1API_1_1Events_1_1NativeEventAttribute" ],
     [ "PlaceableEvents", "classNWN_1_1API_1_1Events_1_1PlaceableEvents.html", [
       [ "OnClose", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose" ],
       [ "OnDamaged", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged" ],
@@ -91,6 +95,10 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnUnlock", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUnlock.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUnlock" ],
       [ "OnUsed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined" ]
+    ] ],
+    [ "ScriptEvent", "classNWN_1_1API_1_1Events_1_1ScriptEvent.html", null ],
+    [ "SpellEvents", "classNWN_1_1API_1_1Events_1_1SpellEvents.html", [
+      [ "OnSpellCast", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast" ]
     ] ],
     [ "StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", [
       [ "OnClose", "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html", "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose" ],

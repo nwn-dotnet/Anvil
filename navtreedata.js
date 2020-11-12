@@ -42,13 +42,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html#ac96f27801b5ad4efa43752e8c5c43f14",
-"classNWN_1_1API_1_1ClassInfo.html",
-"classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html#ae059573d70c9459a0156c2a029f08ddf",
-"classNWN_1_1API_1_1ItemProperty.html#ac90e97f0df4fd81cfd24e7bf2049f810",
-"classNWN_1_1API_1_1NwFaction.html#a78fbb522a50751ce544792fb78cfc15b",
-"classNWN_1_1API_1_1NwTask.html#abf6aa9e7422217e20330836c00bd17a9",
-"structNWNX_1_1API_1_1QuickBarSlot.html#aa2782c10f2f55103db839331bba72649"
+"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateUseItemAfter.html#a092dcbc00b89cd354fe1f2e976440562",
+"classNWN_1_1API_1_1CampaignVariable.html#af0a46b60efaf3fdf528b418d5d4b2b82",
+"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnSpellCastAt.html#a1ea551395e20dd7cfd2e246ee32046cd",
+"classNWN_1_1API_1_1ItemProperty.html#a3f9404944b262921e9527b08c37a6ce7",
+"classNWN_1_1API_1_1NwCreature.html#ae0e099127c41e83f086c536bb13a1d2b",
+"classNWN_1_1API_1_1NwStationary.html#a054d7ba64e3a5f41fe6b5ab9b2cd5e1e",
+"pages.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

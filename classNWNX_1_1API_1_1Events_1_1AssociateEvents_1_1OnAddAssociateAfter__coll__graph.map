@@ -1,4 +1,4 @@
 <map id="NWNX.API.Events.AssociateEvents.OnAddAssociateAfter" name="NWNX.API.Events.AssociateEvents.OnAddAssociateAfter">
-<area shape="rect" id="node1" title=" " alt="" coords="11,80,203,121"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1Event.html" title=" " alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="12,95,204,136"/>
+<area shape="rect" id="node2" href="$classNWNX_1_1API_1_1Events_1_1NWNXEvent.html" title=" " alt="" coords="5,5,211,47"/>
 </map>
