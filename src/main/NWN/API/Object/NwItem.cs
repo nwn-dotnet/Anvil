@@ -266,5 +266,14 @@ namespace NWN.API
     /// <param name="copyVars">If true then local variables on item are copied.</param>
     public NwItem Copy(NwGameObject targetInventory, bool copyVars)
       => NWScript.CopyItem(this, targetInventory, copyVars.ToInt()).ToNwObject<NwItem>();
+
+    /// <summary>
+    /// Gets the number of items in a stack attached to item.<br/>
+    /// Only items that are the same may be stacked;<br/>
+    /// i.e. two gems of the same name can be stacked, but a sword and an arrow cannot.
+    /// </summary>
+    /// <remarks>Value of 0 if an invalid object is provided for this (item),<br/>
+    /// or if this (item) isn't an item.</remarks>
+    public int NumStackedItems => NWScript.GetNumStackedItems(this);
   }
 }
