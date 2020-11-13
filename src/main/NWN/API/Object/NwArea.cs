@@ -215,5 +215,22 @@ namespace NWN.API
     /// </summary>
     /// <returns>The result of this destroy action.</returns>
     public AreaDestroyResult Destroy() => (AreaDestroyResult) NWScript.DestroyArea(this);
+
+    /// <summary>
+    /// Locates all objects of the specified type.
+    /// </summary>
+    /// <typeparam name="T">The type of objects to search.</typeparam>
+    /// <returns>An enumeration containing all objects of the specified type.</returns>
+    public IEnumerable<T> FindObjectsOfTypeInArea<T>() where T : NwObject
+    {
+      for (uint currentObj = NWScript.GetFirstObjectInArea(this); currentObj != INVALID; currentObj = NWScript.GetNextObjectInArea(this))
+      {
+        T obj = currentObj.ToNwObjectSafe<T>();
+        if (obj != null)
+        {
+          yield return obj;
+        }
+      }
+    }
   }
 }

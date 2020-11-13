@@ -56,6 +56,26 @@ namespace NWN.API
       }
     }
 
+    /// <summary>
+    /// Locates all objects of the specified type.
+    /// </summary>
+    /// <typeparam name="T">The type of objects to search.</typeparam>
+    /// <returns>An enumeration containing all objects of the specified type.</returns>
+    public static IEnumerable<T> FindObjectsOfType<T>() where T : NwObject
+    {
+      for (uint currentArea = NWScript.GetFirstArea(); currentArea != INVALID; currentArea = NWScript.GetNextArea())
+      {
+        for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea); currentObj != INVALID; currentObj = NWScript.GetNextObjectInArea(currentArea))
+        {
+          T obj = currentObj.ToNwObjectSafe<T>();
+          if (obj != null)
+          {
+            yield return obj;
+          }
+        }
+      }
+    }
+
     internal static NwObject CreateInternal(Guid uuid)
     {
       return uuid == Guid.Empty ? null : CreateInternal(NWScript.GetObjectByUUID(uuid.ToUUIDString()));
