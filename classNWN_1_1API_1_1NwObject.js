@@ -6,6 +6,7 @@ var classNWN_1_1API_1_1NwObject =
     [ "Deserialize< T >", "classNWN_1_1API_1_1NwObject.html#a307c98167e73648bafe484d7cbd50321", null ],
     [ "Equals", "classNWN_1_1API_1_1NwObject.html#a37e5aa02bab0fe976011bd8501646634", null ],
     [ "Equals", "classNWN_1_1API_1_1NwObject.html#a7a7021c9cc879cd959f35c2a83101b39", null ],
+    [ "FindObjectsOfType< T >", "classNWN_1_1API_1_1NwObject.html#ab13ea480574014497dc49db178d7e24f", null ],
     [ "FindObjectsWithTag", "classNWN_1_1API_1_1NwObject.html#afeac917cc7bd6f75793730b9be3ab292", null ],
     [ "FindObjectsWithTag< T >", "classNWN_1_1API_1_1NwObject.html#a44538874e98e93bf0ea78596ae0f7824", null ],
     [ "ForceRefreshUUID", "classNWN_1_1API_1_1NwObject.html#a55337926b604b0bc8729fa2e8ca54ed9", null ],

@@ -43,6 +43,7 @@ var hierarchy =
     [ "NWNX.API.Encounter", "classNWNX_1_1API_1_1Encounter.html", null ],
     [ "NWN.API.Events.EncounterEvents", "classNWN_1_1API_1_1Events_1_1EncounterEvents.html", null ],
     [ "NWNX.API.Events.ExamineEvents", "classNWNX_1_1API_1_1Events_1_1ExamineEvents.html", null ],
+    [ "NWNX.API.Events.FactionEvents", "classNWNX_1_1API_1_1Events_1_1FactionEvents.html", null ],
     [ "NWN.API.Constants.FadeSpeed", "classNWN_1_1API_1_1Constants_1_1FadeSpeed.html", null ],
     [ "NWNX.API.Events.FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", null ],
     [ "NWNX.API.Feedback", "classNWNX_1_1API_1_1Feedback.html", null ],
@@ -605,6 +606,12 @@ var hierarchy =
     [ "NWNX.API.Events.NWNXEventSkippable< OnSetMemorizedSpellSlotBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
       [ "NWNX.API.Events.SetMemorizedSpellSlotEvents.OnSetMemorizedSpellSlotBefore", "classNWNX_1_1API_1_1Events_1_1SetMemorizedSpellSlotEvents_1_1OnSetMemorizedSpellSlotBefore.html", null ]
     ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnSetNPCFactionReputationAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.FactionEvents.OnSetNPCFactionReputationAfter", "classNWNX_1_1API_1_1Events_1_1FactionEvents_1_1OnSetNPCFactionReputationAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnSetNPCFactionReputationBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.FactionEvents.OnSetNPCFactionReputationBefore", "classNWNX_1_1API_1_1Events_1_1FactionEvents_1_1OnSetNPCFactionReputationBefore.html", null ]
+    ] ],
     [ "NWNX.API.Events.NWNXEventSkippable< OnTransferLeadershipAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
       [ "NWNX.API.Events.PartyEvents.OnTransferLeadershipAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnTransferLeadershipAfter.html", null ]
     ] ],
@@ -677,8 +684,8 @@ var hierarchy =
     [ "NWN.API.Events.SpellEvents", "classNWN_1_1API_1_1Events_1_1SpellEvents.html", null ],
     [ "NWN.API.StandardFactionExtensions", "classNWN_1_1API_1_1StandardFactionExtensions.html", null ],
     [ "NWNX.API.Events.StealthEvents", "classNWNX_1_1API_1_1Events_1_1StealthEvents.html", null ],
-    [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWNX.API.Events.StoreEvents", "classNWNX_1_1API_1_1Events_1_1StoreEvents.html", null ],
+    [ "NWN.API.Events.StoreEvents", "classNWN_1_1API_1_1Events_1_1StoreEvents.html", null ],
     [ "NWN.API.StringExtensions", "classNWN_1_1API_1_1StringExtensions.html", null ],
     [ "NWN.API.Talent", "classNWN_1_1API_1_1Talent.html", null ],
     [ "NWN.API.TalentExtensions", "classNWN_1_1API_1_1TalentExtensions.html", null ],

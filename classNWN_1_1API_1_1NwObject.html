@@ -173,6 +173,9 @@ static <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a>&#160;<
 <tr class="memitem:a44538874e98e93bf0ea78596ae0f7824"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a44538874e98e93bf0ea78596ae0f7824">FindObjectsWithTag&lt; T &gt;</a> (params string[] tags)</td></tr>
 <tr class="memdesc:a44538874e98e93bf0ea78596ae0f7824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locates all objects of the specified type that have the specified tag.  <a href="classNWN_1_1API_1_1NwObject.html#a44538874e98e93bf0ea78596ae0f7824">More...</a><br /></td></tr>
 <tr class="separator:a44538874e98e93bf0ea78596ae0f7824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab13ea480574014497dc49db178d7e24f"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#ab13ea480574014497dc49db178d7e24f">FindObjectsOfType&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:ab13ea480574014497dc49db178d7e24f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locates all objects of the specified type.  <a href="classNWN_1_1API_1_1NwObject.html#ab13ea480574014497dc49db178d7e24f">More...</a><br /></td></tr>
+<tr class="separator:ab13ea480574014497dc49db178d7e24f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18fb216402ebe5b8a0f0699eff33e10c"><td class="memItemLeft" align="right" valign="top"><a id="a18fb216402ebe5b8a0f0699eff33e10c"></a>
 static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator uint</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> obj)</td></tr>
 <tr class="separator:a18fb216402ebe5b8a0f0699eff33e10c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -280,6 +283,48 @@ Properties</h2></td></tr>
 <li>No return value, but if an error occurs, the log file will contain "ClearAllActions failed.".</li>
 <li>clearCombatState: if true, this will immediately clear the combat state on a creature, which will stop the combat music and allow them to rest, engage in dialog, or other actions that they would normally have to wait for.</li>
 </ul>
+
+</div>
+</div>
+<a id="ab13ea480574014497dc49db178d7e24f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab13ea480574014497dc49db178d7e24f">&#9670;&nbsp;</a></span>FindObjectsOfType&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;T&gt; NWN.API.NwObject.FindObjectsOfType&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Locates all objects of the specified type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of objects to search.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An enumeration containing all objects of the specified type.</dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>NwObject</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
 
 </div>
 </div>

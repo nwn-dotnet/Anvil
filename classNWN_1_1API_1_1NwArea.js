@@ -3,6 +3,7 @@ var classNWN_1_1API_1_1NwArea =
     [ "Clone", "classNWN_1_1API_1_1NwArea.html#a496b1404cd17adec1b3be710affe5817", null ],
     [ "Create", "classNWN_1_1API_1_1NwArea.html#a5414b671f5deb5cd318b1f13fb70211f", null ],
     [ "Destroy", "classNWN_1_1API_1_1NwArea.html#a6b06705032e95d94c34bd55aebb530ef", null ],
+    [ "FindObjectsOfTypeInArea< T >", "classNWN_1_1API_1_1NwArea.html#a9e4680a09daab59c7916e1ac089bd0ae", null ],
     [ "GetFogAmount", "classNWN_1_1API_1_1NwArea.html#a0db42944b648a80be3ec70541ccf6956", null ],
     [ "GetFogColor", "classNWN_1_1API_1_1NwArea.html#a0a413b481a1b72b1fa55f179a7cd9cde", null ],
     [ "PlayAmbient", "classNWN_1_1API_1_1NwArea.html#ac535d42a685c76c9717b781704564e86", null ],

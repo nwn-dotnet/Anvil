@@ -36,6 +36,10 @@ var namespaceNWNX_1_1API_1_1Events =
       [ "OnExamineObjectAfter", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectAfter.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectAfter" ],
       [ "OnExamineObjectBefore", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectBefore.html", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectBefore" ]
     ] ],
+    [ "FactionEvents", "classNWNX_1_1API_1_1Events_1_1FactionEvents.html", [
+      [ "OnSetNPCFactionReputationAfter", "classNWNX_1_1API_1_1Events_1_1FactionEvents_1_1OnSetNPCFactionReputationAfter.html", "classNWNX_1_1API_1_1Events_1_1FactionEvents_1_1OnSetNPCFactionReputationAfter" ],
+      [ "OnSetNPCFactionReputationBefore", "classNWNX_1_1API_1_1Events_1_1FactionEvents_1_1OnSetNPCFactionReputationBefore.html", "classNWNX_1_1API_1_1Events_1_1FactionEvents_1_1OnSetNPCFactionReputationBefore" ]
+    ] ],
     [ "FeatUseEvents", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents.html", [
       [ "OnUseFeatBefore", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore.html", "classNWNX_1_1API_1_1Events_1_1FeatUseEvents_1_1OnUseFeatBefore" ]
     ] ],
