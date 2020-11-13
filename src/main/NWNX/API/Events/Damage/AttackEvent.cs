@@ -24,9 +24,9 @@ namespace NWNX.API.Events
       Target = attackEventData.oTarget.ToNwObject();
     }
 
-    protected override void InvokeCallbacks()
+    protected override void ProcessEvent()
     {
-      base.InvokeCallbacks();
+      InvokeCallbacks();
       DamagePlugin.SetAttackEventData(AttackData.ToNative(Target, DamageData));
     }
   }

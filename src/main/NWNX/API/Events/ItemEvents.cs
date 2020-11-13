@@ -22,9 +22,9 @@ namespace NWNX.API.Events
         Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
       }
 
-      protected override void InvokeCallbacks()
+      protected override void ProcessEvent()
       {
-        base.InvokeCallbacks();
+        InvokeCallbacks();
         EventsPlugin.SetEventResult(Result.ToInt().ToString());
       }
     }
@@ -48,9 +48,9 @@ namespace NWNX.API.Events
         Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
       }
 
-      protected override void InvokeCallbacks()
+      protected override void ProcessEvent()
       {
-        base.InvokeCallbacks();
+        InvokeCallbacks();
         EventsPlugin.SetEventResult(Result.ToInt().ToString());
       }
     }

@@ -20,9 +20,9 @@ namespace NWNX.API.Events
       Target = (NwGameObject) objSelf;
     }
 
-    protected override void InvokeCallbacks()
+    protected override void ProcessEvent()
     {
-      base.InvokeCallbacks();
+      InvokeCallbacks();
       DamagePlugin.SetDamageEventData(DamageData.ToNative(Attacker));
     }
   }

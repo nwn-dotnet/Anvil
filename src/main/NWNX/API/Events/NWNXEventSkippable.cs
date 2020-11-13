@@ -9,11 +9,15 @@ namespace NWNX.API.Events
     /// </summary>
     public bool Skip { get; set; }
 
-    protected override void InvokeCallbacks()
+    protected override void ProcessEvent()
     {
       Skip = false;
-      base.InvokeCallbacks();
+      InvokeCallbacks();
+      CheckEventSkip();
+    }
 
+    protected void CheckEventSkip()
+    {
       if (Skip)
       {
         EventsPlugin.SkipEvent();

@@ -8,12 +8,12 @@ namespace NWNX.API.Events
     public void ProcessEvent(NwObject objSelf)
     {
       PrepareEvent(objSelf);
-      InvokeCallbacks();
+      ProcessEvent();
     }
 
     protected abstract void PrepareEvent(NwObject objSelf);
 
-    protected abstract void InvokeCallbacks();
+    protected abstract void ProcessEvent();
   }
 
   public abstract class NWNXEvent<T> : NWNXEvent where T : NWNXEvent<T>
@@ -27,7 +27,12 @@ namespace NWNX.API.Events
       get => Callbacks != null;
     }
 
-    protected override void InvokeCallbacks()
+    protected override void ProcessEvent()
+    {
+      InvokeCallbacks();
+    }
+
+    protected void InvokeCallbacks()
     {
       Callbacks?.Invoke((T) this);
     }
