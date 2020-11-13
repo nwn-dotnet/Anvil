@@ -9,8 +9,8 @@ namespace NWN.API.Events
   /// </summary>
   public static class PlaceableEvents
   {
-    [ScriptEvent(EventScriptType.PlaceableOnClosed)]
-    public sealed class OnClose : Event<NwPlaceable, OnClose>
+    [NativeEvent(EventScriptType.PlaceableOnClosed)]
+    public sealed class OnClose : NativeEvent<NwPlaceable, OnClose>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -23,8 +23,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnDamaged)]
-    public sealed class OnDamaged : Event<NwPlaceable, OnDamaged>
+    [NativeEvent(EventScriptType.PlaceableOnDamaged)]
+    public sealed class OnDamaged : NativeEvent<NwPlaceable, OnDamaged>
     {
       public NwPlaceable DamagedObject { get; private set; }
 
@@ -40,8 +40,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnDeath)]
-    public sealed class OnDeath : Event<NwPlaceable, OnDeath>
+    [NativeEvent(EventScriptType.PlaceableOnDeath)]
+    public sealed class OnDeath : NativeEvent<NwPlaceable, OnDeath>
     {
       public NwPlaceable KilledObject { get; private set; }
 
@@ -54,8 +54,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnDisarm)]
-    public sealed class OnDisarm : Event<NwPlaceable, OnDisarm>
+    [NativeEvent(EventScriptType.PlaceableOnDisarm)]
+    public sealed class OnDisarm : NativeEvent<NwPlaceable, OnDisarm>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -65,8 +65,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnHeartbeat)]
-    public sealed class OnHeartbeat : Event<NwPlaceable, OnHeartbeat>
+    [NativeEvent(EventScriptType.PlaceableOnHeartbeat)]
+    public sealed class OnHeartbeat : NativeEvent<NwPlaceable, OnHeartbeat>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -76,8 +76,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnInventoryDisturbed)]
-    public sealed class OnDisturbed : Event<NwPlaceable, OnDisturbed>
+    [NativeEvent(EventScriptType.PlaceableOnInventoryDisturbed)]
+    public sealed class OnDisturbed : NativeEvent<NwPlaceable, OnDisturbed>
     {
       public InventoryDisturbType DisturbType { get; private set; }
 
@@ -96,8 +96,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnLock)]
-    public sealed class OnLock : Event<NwPlaceable, OnLock>
+    [NativeEvent(EventScriptType.PlaceableOnLock)]
+    public sealed class OnLock : NativeEvent<NwPlaceable, OnLock>
     {
       public NwPlaceable LockedPlaceable { get; private set; }
 
@@ -110,8 +110,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnMeleeAttacked)]
-    public sealed class OnPhysicalAttacked : Event<NwPlaceable, OnPhysicalAttacked>
+    [NativeEvent(EventScriptType.PlaceableOnMeleeAttacked)]
+    public sealed class OnPhysicalAttacked : NativeEvent<NwPlaceable, OnPhysicalAttacked>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -124,8 +124,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnOpen)]
-    public sealed class OnOpen : Event<NwPlaceable, OnOpen>
+    [NativeEvent(EventScriptType.PlaceableOnOpen)]
+    public sealed class OnOpen : NativeEvent<NwPlaceable, OnOpen>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -138,8 +138,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnSpellCastAt)]
-    public sealed class OnSpellCastAt : Event<NwPlaceable, OnSpellCastAt>
+    [NativeEvent(EventScriptType.PlaceableOnSpellCastAt)]
+    public sealed class OnSpellCastAt : NativeEvent<NwPlaceable, OnSpellCastAt>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -149,8 +149,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnTrapTriggered)]
-    public sealed class OnTrapTriggered : Event<NwPlaceable, OnTrapTriggered>
+    [NativeEvent(EventScriptType.PlaceableOnTrapTriggered)]
+    public sealed class OnTrapTriggered : NativeEvent<NwPlaceable, OnTrapTriggered>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -160,8 +160,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnUnlock)]
-    public sealed class OnUnlock : Event<NwPlaceable, OnUnlock>
+    [NativeEvent(EventScriptType.PlaceableOnUnlock)]
+    public sealed class OnUnlock : NativeEvent<NwPlaceable, OnUnlock>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -174,8 +174,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnUsed)]
-    public sealed class OnUsed : Event<NwPlaceable, OnUsed>
+    [NativeEvent(EventScriptType.PlaceableOnUsed)]
+    public sealed class OnUsed : NativeEvent<NwPlaceable, OnUsed>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -188,8 +188,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnUserDefinedEvent)]
-    public sealed class OnUserDefined : Event<NwPlaceable, OnUserDefined>
+    [NativeEvent(EventScriptType.PlaceableOnUserDefinedEvent)]
+    public sealed class OnUserDefined : NativeEvent<NwPlaceable, OnUserDefined>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -202,8 +202,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnDialogue)]
-    public sealed class OnDialogue : Event<NwPlaceable, OnDialogue>
+    [NativeEvent(EventScriptType.PlaceableOnDialogue)]
+    public sealed class OnDialogue : NativeEvent<NwPlaceable, OnDialogue>
     {
       public NwPlaceable Placeable { get; private set; }
 
@@ -213,8 +213,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.PlaceableOnLeftClick)]
-    public sealed class OnLeftClick : Event<NwPlaceable, OnLeftClick>
+    [NativeEvent(EventScriptType.PlaceableOnLeftClick)]
+    public sealed class OnLeftClick : NativeEvent<NwPlaceable, OnLeftClick>
     {
       public NwPlaceable Placeable { get; private set; }
 

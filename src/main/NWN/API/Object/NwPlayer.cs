@@ -15,7 +15,7 @@ namespace NWN.API
     /// </summary>
     public bool IsDM
     {
-      get => NWScript.GetIsDM(ObjectId).ToBool();
+      get => NWScript.GetIsDM(this).ToBool();
     }
 
     /// <summary>
@@ -333,17 +333,6 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Makes this player enter a targeting mode, letting them select an object as a target.<br/>
-    /// If this player selects a target, it will trigger a <see cref="NWN.API.Events.ModuleEvents.OnPlayerTarget"/> event.<br/>
-    /// Use the <see cref="NWN.Services.EventService"/> to add a listener for this event, and get the player's selection.
-    /// </summary>
-    /// <param name="validObjectTypes">The type of objects that the player can select.</param>
-    /// <param name="mouseCursor">The cursor to display if the player is hovering over a valid selection.</param>
-    /// <param name="badTargetCursor">The cursor to display if the player is hovering over an invalid selection.</param>
-    public void EnterTargetingMode(ObjectTypes validObjectTypes, MouseCursor mouseCursor = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
-      => NWScript.EnterTargetingMode(this, (int) validObjectTypes, (int) mouseCursor, (int) badTargetCursor);
-
-    /// <summary>
     /// Briefly displays a floating text message above this player's head using the specified string reference.
     /// </summary>
     /// <param name="strRef">The string ref index to use.</param>
@@ -391,6 +380,7 @@ namespace NWN.API
     /// <summary>
     /// Gives the specified XP to this player, adjusted by any multiclass penalty.
     /// </summary>
+    /// <param name="xPAmount">Amount of experience to give.</param>
     public void GiveXp(int xPAmount)
       => NWScript.GiveXPToCreature(this, xPAmount);
 
@@ -418,6 +408,7 @@ namespace NWN.API
     /// <summary>
     /// Changes the current Day/Night cycle for this player to daylight.
     /// </summary>
+    /// <param name="delayTransitionTime">Time it takes for the daylight to fade in.</param>
     public void NightToDay(TimeSpan delayTransitionTime = default)
       => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
 

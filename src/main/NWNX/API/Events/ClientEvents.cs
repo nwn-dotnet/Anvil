@@ -6,7 +6,7 @@ namespace NWNX.API.Events
   public class ClientEvents
   {
     [NWNXEvent("NWNX_ON_CLIENT_DISCONNECT_BEFORE")]
-    public class OnClientDisconnectBefore : EventSkippable<OnClientDisconnectBefore>
+    public class OnClientDisconnectBefore : NWNXEventSkippable<OnClientDisconnectBefore>
     {
       public NwPlayer Player { get; private set; }
 
@@ -15,7 +15,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_CLIENT_DISCONNECT_AFTER")]
-    public class OnClientDisconnectAfter : EventSkippable<OnClientDisconnectAfter>
+    public class OnClientDisconnectAfter : NWNXEventSkippable<OnClientDisconnectAfter>
     {
       public NwPlayer Player { get; private set; }
 
@@ -24,7 +24,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_CLIENT_CONNECT_BEFORE")]
-    public class OnClientConnectBefore : EventSkippable<OnClientConnectBefore>
+    public class OnClientConnectBefore : NWNXEventSkippable<OnClientConnectBefore>
     {
       public NwModule Module { get; private set; }
 
@@ -47,7 +47,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_CLIENT_CONNECT_AFTER")]
-    public class OnClientConnectAfter : EventSkippable<OnClientConnectAfter>
+    public class OnClientConnectAfter : NWNXEventSkippable<OnClientConnectAfter>
     {
       public NwModule Module { get; private set; }
 

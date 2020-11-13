@@ -7,7 +7,7 @@ namespace NWNX.API.Events
   public class ResourceEvents
   {
     [NWNXEvent("NWNX_ON_RESOURCE_ADDED")]
-    public class OnResourceAdded : EventSkippable<OnResourceAdded>
+    public class OnResourceAdded : NWNXEventSkippable<OnResourceAdded>
     {
       public NwModule Module { get; private set; }
 
@@ -27,7 +27,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_RESOURCE_REMOVED")]
-    public class OnResourceRemoved : EventSkippable<OnResourceRemoved>
+    public class OnResourceRemoved : NWNXEventSkippable<OnResourceRemoved>
     {
       public NwModule Module { get; private set; }
 
@@ -47,7 +47,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_RESOURCE_MODIFIED")]
-    public class OnResourceModified : EventSkippable<OnResourceModified>
+    public class OnResourceModified : NWNXEventSkippable<OnResourceModified>
     {
       public NwModule Module { get; private set; }
 

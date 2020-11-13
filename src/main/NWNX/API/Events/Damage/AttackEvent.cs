@@ -1,11 +1,10 @@
 using NWN.API;
-using NWN.API.Events;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
   [NWNXAttackEvent]
-  public sealed class AttackEvent : Event<AttackEvent>
+  public sealed class AttackEvent : NWNXEvent<AttackEvent>
   {
     public NwObject Attacker { get; private set; }
 

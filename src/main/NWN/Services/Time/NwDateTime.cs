@@ -24,13 +24,13 @@ namespace NWN.Services
 
     public readonly long Ticks;
 
-    public int Millisecond => (int) (Ticks % 1000);
+    public int Millisecond => (int)(Ticks % 1000);
 
-    public int Second => (int) (Ticks / TicksPerSecond % 60);
+    public int Second => (int)(Ticks / TicksPerSecond % 60);
 
-    public int Minute => (int) (Ticks / TicksPerMinute % 60);
+    public int Minute => (int)(Ticks / TicksPerMinute % 60);
 
-    public int Hour => (int) (Ticks / TicksPerHour % 24);
+    public int Hour => (int)(Ticks / TicksPerHour % 24);
 
     public int DayInTenday
     {
@@ -41,13 +41,13 @@ namespace NWN.Services
       }
     }
 
-    public int DayInMonth => (int) (Ticks / TicksPerDay % 28) + 1;
+    public int DayInMonth => (int)(Ticks / TicksPerDay % 28) + 1;
 
     public int DayInYear => Month * DaysInMonth + DayInMonth;
 
-    public int Month => (int) (Ticks / TicksPerMonth % 12) + 1;
+    public int Month => (int)(Ticks / TicksPerMonth % 12) + 1;
 
-    public int Year => (int) (Ticks / TicksPerYear);
+    public int Year => (int)(Ticks / TicksPerYear);
 
     public NwDateTime Date => new NwDateTime(Ticks - Ticks % TicksPerDay);
 
@@ -156,48 +156,9 @@ namespace NWN.Services
 
     public NwDateTime AddYears(int years) => Add(years, TicksPerYear);
 
-    public string GetHarptosMonthName()
-    {
-      switch (Month)
-      {
-        case 1:
-          return "Hammer";
-        case 2:
-          return "Alturiak";
-        case 3:
-          return "Ches";
-        case 4:
-          return "Tarsakh";
-        case 5:
-          return "Mirtul";
-        case 6:
-          return "Kythorn";
-        case 7:
-          return "Flamerule";
-        case 8:
-          return "Eleasis";
-        case 9:
-          return "Eleint";
-        case 10:
-          return "Marpenoth";
-        case 11:
-          return "Uktar";
-        case 12:
-          return "Nightal";
-      }
-
-      return Month.ToString();
-    }
-
     public override string ToString()
     {
       return $"{Year}-{Month}-{DayInMonth}T{Hour}:{Minute}:{Second}:{Millisecond}";
-    }
-
-    // TODO More Format Options
-    public string ToLongDateString()
-    {
-      return $"{DayInMonth} {GetHarptosMonthName()}, {Year} DR";
     }
   }
 }

@@ -12,22 +12,16 @@ namespace NWN.API
 
     internal static LocalVariable Create(NwObject nwObject, Core.NWNX.LocalVariable variable)
     {
-      LocalVarType varType = (LocalVarType) variable.type;
-      switch (varType)
+      LocalVarType varType = (LocalVarType)variable.type;
+      return varType switch
       {
-        case LocalVarType.Int:
-          return LocalVariable<int>.Create(nwObject, variable.key);
-        case LocalVarType.Float:
-          return LocalVariable<float>.Create(nwObject, variable.key);
-        case LocalVarType.String:
-          return LocalVariable<string>.Create(nwObject, variable.key);
-        case LocalVarType.Object:
-          return LocalVariable<NwObject>.Create(nwObject, variable.key);
-        case LocalVarType.Location:
-          return LocalVariable<Location>.Create(nwObject, variable.key);
-        default:
-          throw new ArgumentOutOfRangeException();
-      }
+        LocalVarType.Int => LocalVariable<int>.Create(nwObject, variable.key),
+        LocalVarType.Float => LocalVariable<float>.Create(nwObject, variable.key),
+        LocalVarType.String => LocalVariable<string>.Create(nwObject, variable.key),
+        LocalVarType.Object => LocalVariable<NwObject>.Create(nwObject, variable.key),
+        LocalVarType.Location => LocalVariable<Location>.Create(nwObject, variable.key),
+        _ => throw new ArgumentOutOfRangeException(),
+      };
     }
   }
 

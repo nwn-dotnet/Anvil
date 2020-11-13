@@ -12,8 +12,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called when the creature is blocked by a door.
     /// </summary>
-    [ScriptEvent(EventScriptType.CreatureOnBlockedByDoor)]
-    public sealed class OnBlocked : Event<NwCreature, OnBlocked>
+    [NativeEvent(EventScriptType.CreatureOnBlockedByDoor)]
+    public sealed class OnBlocked : NativeEvent<NwCreature, OnBlocked>
     {
       /// <summary>
       /// Gets the blocked creature.
@@ -35,8 +35,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called at the end of the creature's combat round.
     /// </summary>
-    [ScriptEvent(EventScriptType.CreatureOnEndCombatRound)]
-    public sealed class OnCombatRoundEnd : Event<NwCreature, OnCombatRoundEnd>
+    [NativeEvent(EventScriptType.CreatureOnEndCombatRound)]
+    public sealed class OnCombatRoundEnd : NativeEvent<NwCreature, OnCombatRoundEnd>
     {
       /// <summary>
       /// Gets the creature whose combat round is ending.
@@ -49,19 +49,40 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnDialogue)]
-    public sealed class OnConversation : Event<NwCreature, OnConversation>
+    [NativeEvent(EventScriptType.CreatureOnDialogue)]
+    public sealed class OnConversation : NativeEvent<NwCreature, OnConversation>
     {
-      public NwCreature Creature { get; private set; }
+      /// <summary>
+      /// Gets the creature/object currently speaking.
+      /// </summary>
+      public NwCreature CurrentSpeaker { get; private set; }
+
+      /// <summary>
+      /// Gets the player speaker in this conversation.
+      /// </summary>
+      public NwPlayer PlayerSpeaker { get; private set; }
+
+      /// <summary>
+      /// Gets the last creature/object that spoke in this conversation.
+      /// </summary>
+      public NwGameObject LastSpeaker { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
       {
-        Creature = objSelf;
+        CurrentSpeaker = objSelf;
+        PlayerSpeaker = NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
+        LastSpeaker = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
       }
+
+      public void PauseConversation()
+        => NWScript.ActionPauseConversation();
+
+      public void ResumeConversation()
+        => NWScript.ActionResumeConversation();
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnDamaged)]
-    public sealed class OnDamaged : Event<NwCreature, OnDamaged>
+    [NativeEvent(EventScriptType.CreatureOnDamaged)]
+    public sealed class OnDamaged : NativeEvent<NwCreature, OnDamaged>
     {
       public NwGameObject Damager { get; private set; }
 
@@ -74,8 +95,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnDeath)]
-    public sealed class OnDeath : Event<NwCreature, OnDeath>
+    [NativeEvent(EventScriptType.CreatureOnDeath)]
+    public sealed class OnDeath : NativeEvent<NwCreature, OnDeath>
     {
       public NwCreature KilledCreature { get; private set; }
 
@@ -88,8 +109,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnDisturbed)]
-    public sealed class OnDisturbed : Event<NwCreature, OnDisturbed>
+    [NativeEvent(EventScriptType.CreatureOnDisturbed)]
+    public sealed class OnDisturbed : NativeEvent<NwCreature, OnDisturbed>
     {
       public InventoryDisturbType DisturbType { get; private set; }
 
@@ -108,8 +129,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnHeartbeat)]
-    public sealed class OnHeartbeat : Event<NwCreature, OnHeartbeat>
+    [NativeEvent(EventScriptType.CreatureOnHeartbeat)]
+    public sealed class OnHeartbeat : NativeEvent<NwCreature, OnHeartbeat>
     {
       public NwCreature Creature { get; private set; }
 
@@ -119,8 +140,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnNotice)]
-    public sealed class OnPerception : Event<NwCreature, OnPerception>
+    [NativeEvent(EventScriptType.CreatureOnNotice)]
+    public sealed class OnPerception : NativeEvent<NwCreature, OnPerception>
     {
       public NwCreature Creature { get; private set; }
 
@@ -161,8 +182,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnMeleeAttacked)]
-    public sealed class OnPhysicalAttacked : Event<NwCreature, OnPhysicalAttacked>
+    [NativeEvent(EventScriptType.CreatureOnMeleeAttacked)]
+    public sealed class OnPhysicalAttacked : NativeEvent<NwCreature, OnPhysicalAttacked>
     {
       public NwCreature Creature { get; private set; }
 
@@ -175,8 +196,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnRested)]
-    public sealed class OnRested : Event<NwCreature, OnRested>
+    [NativeEvent(EventScriptType.CreatureOnRested)]
+    public sealed class OnRested : NativeEvent<NwCreature, OnRested>
     {
       public NwCreature Creature { get; private set; }
 
@@ -186,8 +207,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnSpawnIn)]
-    public sealed class OnSpawn : Event<NwCreature, OnSpawn>
+    [NativeEvent(EventScriptType.CreatureOnSpawnIn)]
+    public sealed class OnSpawn : NativeEvent<NwCreature, OnSpawn>
     {
       public NwCreature Creature { get; private set; }
 
@@ -197,8 +218,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnSpellCastAt)]
-    public sealed class OnSpellCastAt : Event<NwCreature, OnSpellCastAt>
+    [NativeEvent(EventScriptType.CreatureOnSpellCastAt)]
+    public sealed class OnSpellCastAt : NativeEvent<NwCreature, OnSpellCastAt>
     {
       public NwCreature Creature { get; private set; }
 
@@ -208,8 +229,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.CreatureOnUserDefinedEvent)]
-    public sealed class OnUserDefined : Event<NwCreature, OnUserDefined>
+    [NativeEvent(EventScriptType.CreatureOnUserDefinedEvent)]
+    public sealed class OnUserDefined : NativeEvent<NwCreature, OnUserDefined>
     {
       public int EventNumber { get; private set; }
 

@@ -8,8 +8,8 @@ namespace NWN.API.Events
   /// </summary>
   public static class DoorEvents
   {
-    [ScriptEvent(EventScriptType.DoorOnOpen)]
-    public sealed class OnOpen : Event<NwDoor, OnOpen>
+    [NativeEvent(EventScriptType.DoorOnOpen)]
+    public sealed class OnOpen : NativeEvent<NwDoor, OnOpen>
     {
       public NwDoor Door { get; private set; }
 
@@ -19,8 +19,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnClose)]
-    public sealed class OnClose : Event<NwDoor, OnClose>
+    [NativeEvent(EventScriptType.DoorOnClose)]
+    public sealed class OnClose : NativeEvent<NwDoor, OnClose>
     {
       public NwDoor Door { get; private set; }
 
@@ -30,8 +30,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnDamage)]
-    public sealed class OnDamaged : Event<NwDoor, OnDamaged>
+    [NativeEvent(EventScriptType.DoorOnDamage)]
+    public sealed class OnDamaged : NativeEvent<NwDoor, OnDamaged>
     {
       public NwDoor Door { get; private set; }
 
@@ -41,8 +41,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnDeath)]
-    public sealed class OnDeath : Event<NwDoor, OnDeath>
+    [NativeEvent(EventScriptType.DoorOnDeath)]
+    public sealed class OnDeath : NativeEvent<NwDoor, OnDeath>
     {
       public NwDoor Door { get; private set; }
 
@@ -52,8 +52,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnDisarm)]
-    public sealed class OnDisarm : Event<NwDoor, OnDisarm>
+    [NativeEvent(EventScriptType.DoorOnDisarm)]
+    public sealed class OnDisarm : NativeEvent<NwDoor, OnDisarm>
     {
       public NwDoor Door { get; private set; }
 
@@ -63,8 +63,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnHeartbeat)]
-    public sealed class OnHeartbeat : Event<NwDoor, OnHeartbeat>
+    [NativeEvent(EventScriptType.DoorOnHeartbeat)]
+    public sealed class OnHeartbeat : NativeEvent<NwDoor, OnHeartbeat>
     {
       public NwDoor Door { get; private set; }
 
@@ -74,8 +74,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnLock)]
-    public sealed class OnLock : Event<NwDoor, OnLock>
+    [NativeEvent(EventScriptType.DoorOnLock)]
+    public sealed class OnLock : NativeEvent<NwDoor, OnLock>
     {
       public NwDoor Door { get; private set; }
 
@@ -85,8 +85,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnMeleeAttacked)]
-    public sealed class OnPhysicalAttacked : Event<NwDoor, OnPhysicalAttacked>
+    [NativeEvent(EventScriptType.DoorOnMeleeAttacked)]
+    public sealed class OnPhysicalAttacked : NativeEvent<NwDoor, OnPhysicalAttacked>
     {
       public NwDoor Door { get; private set; }
 
@@ -96,8 +96,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnSpellCastAt)]
-    public sealed class OnSpellCastAt : Event<NwDoor, OnSpellCastAt>
+    [NativeEvent(EventScriptType.DoorOnSpellCastAt)]
+    public sealed class OnSpellCastAt : NativeEvent<NwDoor, OnSpellCastAt>
     {
       public NwDoor Door { get; private set; }
 
@@ -107,8 +107,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnTrapTriggered)]
-    public sealed class OnTrapTriggered : Event<NwDoor, OnTrapTriggered>
+    [NativeEvent(EventScriptType.DoorOnTrapTriggered)]
+    public sealed class OnTrapTriggered : NativeEvent<NwDoor, OnTrapTriggered>
     {
       public NwDoor Door { get; private set; }
 
@@ -118,8 +118,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnUnlock)]
-    public sealed class OnUnlock : Event<NwDoor, OnUnlock>
+    [NativeEvent(EventScriptType.DoorOnUnlock)]
+    public sealed class OnUnlock : NativeEvent<NwDoor, OnUnlock>
     {
       public NwDoor Door { get; private set; }
 
@@ -129,8 +129,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnUserDefined)]
-    public sealed class OnUserDefined : Event<NwDoor, OnUserDefined>
+    [NativeEvent(EventScriptType.DoorOnUserDefined)]
+    public sealed class OnUserDefined : NativeEvent<NwDoor, OnUserDefined>
     {
       public NwDoor Door { get; private set; }
 
@@ -140,8 +140,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnClicked)]
-    public sealed class OnAreaTransitionClick : Event<NwDoor, OnAreaTransitionClick>
+    [NativeEvent(EventScriptType.DoorOnClicked)]
+    public sealed class OnAreaTransitionClick : NativeEvent<NwDoor, OnAreaTransitionClick>
     {
       public NwDoor Door { get; private set; }
 
@@ -151,8 +151,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnDialogue)]
-    public sealed class OnDialogue : Event<NwDoor, OnDialogue>
+    [NativeEvent(EventScriptType.DoorOnDialogue)]
+    public sealed class OnDialogue : NativeEvent<NwDoor, OnDialogue>
     {
       public NwDoor Door { get; private set; }
 
@@ -162,8 +162,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.DoorOnFailToOpen)]
-    public sealed class OnFailToOpen : Event<NwDoor, OnFailToOpen>
+    [NativeEvent(EventScriptType.DoorOnFailToOpen)]
+    public sealed class OnFailToOpen : NativeEvent<NwDoor, OnFailToOpen>
     {
       public NwDoor Door { get; private set; }
 

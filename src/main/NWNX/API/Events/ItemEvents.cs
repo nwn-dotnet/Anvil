@@ -1,7 +1,5 @@
 using NWN.API;
 using NWN.API.Constants;
-using NWN.API.Events;
-using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -9,7 +7,7 @@ namespace NWNX.API.Events
   public static partial class ItemEvents
   {
     [NWNXEvent("NWNX_ON_VALIDATE_USE_ITEM_AFTER")]
-    public sealed class OnValidateUseItemAfter : Event<OnValidateUseItemAfter>
+    public sealed class OnValidateUseItemAfter : NWNXEvent<OnValidateUseItemAfter>
     {
       public NwCreature Creature { get; private set; }
 
@@ -32,7 +30,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_VALIDATE_ITEM_EQUIP_AFTER")]
-    public sealed class OnValidateEquipItemAfter : Event<OnValidateEquipItemAfter>
+    public sealed class OnValidateEquipItemAfter : NWNXEvent<OnValidateEquipItemAfter>
     {
       public NwCreature Creature { get; private set; }
 
@@ -58,7 +56,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_USE_ITEM_BEFORE")]
-    public sealed class OnItemUseBefore : EventSkippable<OnItemUseBefore>
+    public sealed class OnItemUseBefore : NWNXEventSkippable<OnItemUseBefore>
     {
       public NwCreature Creature { get; private set; }
 
@@ -72,7 +70,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ITEM_EQUIP_BEFORE")]
-    public sealed class OnItemEquipBefore : EventSkippable<OnItemEquipBefore>
+    public sealed class OnItemEquipBefore : NWNXEventSkippable<OnItemEquipBefore>
     {
       public NwCreature Creature { get; private set; }
 
@@ -86,7 +84,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ITEM_PAY_TO_IDENTIFY_BEFORE")]
-    public sealed class OnItemPayToIdentifyBefore : EventSkippable<OnItemPayToIdentifyBefore>
+    public sealed class OnItemPayToIdentifyBefore : NWNXEventSkippable<OnItemPayToIdentifyBefore>
     {
       public NwCreature Creature { get; private set; }
 
@@ -103,7 +101,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ITEM_PAY_TO_IDENTIFY_AFTER")]
-    public sealed class OnItemPayToIdentifyAfter : EventSkippable<OnItemPayToIdentifyAfter>
+    public sealed class OnItemPayToIdentifyAfter : NWNXEventSkippable<OnItemPayToIdentifyAfter>
     {
       public NwCreature Creature { get; private set; }
 

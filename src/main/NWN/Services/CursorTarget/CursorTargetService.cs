@@ -13,7 +13,7 @@ namespace NWN.Services
 
     private readonly Dictionary<NwPlayer, TargetEvent> awaitingTargetActions = new Dictionary<NwPlayer, TargetEvent>();
 
-    public CursorTargetService(EventService eventService)
+    public CursorTargetService(NativeEventService eventService)
     {
       eventService.Subscribe<NwModule, ModuleEvents.OnPlayerTarget>(NwModule.Instance, OnPlayerTarget);
       eventService.Subscribe<NwModule, ModuleEvents.OnClientLeave>(NwModule.Instance, OnPlayerLeave);

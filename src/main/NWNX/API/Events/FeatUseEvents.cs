@@ -8,7 +8,7 @@ namespace NWNX.API.Events
   public static class FeatUseEvents
   {
     [NWNXEvent("NWNX_ON_USE_FEAT_BEFORE")]
-    public class OnUseFeatBefore : EventSkippable<OnUseFeatBefore>
+    public class OnUseFeatBefore : NWNXEventSkippable<OnUseFeatBefore>
     {
       public NwCreature FeatUser { get; private set; }
 

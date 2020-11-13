@@ -9,7 +9,7 @@ namespace NWNX.API.Events
   public static class ELCEvents
   {
     [NWNXEvent("NWNX_ON_ELC_VALIDATE_CHARACTER_BEFORE")]
-    public class OnValidateBefore : EventSkippable<OnValidateBefore>
+    public class OnValidateBefore : NWNXEventSkippable<OnValidateBefore>
     {
       /// <summary>
       /// Gets the player being validated.
@@ -26,7 +26,7 @@ namespace NWNX.API.Events
     /// Called if the character successfully completes validation.
     /// </summary>
     [NWNXEvent("NWNX_ON_ELC_VALIDATE_CHARACTER_AFTER")]
-    public class OnValidateAfter : EventSkippable<OnValidateAfter>
+    public class OnValidateAfter : NWNXEventSkippable<OnValidateAfter>
     {
       /// <summary>
       /// Gets the player being validated.

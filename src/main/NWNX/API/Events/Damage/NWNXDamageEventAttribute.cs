@@ -1,7 +1,5 @@
 using System;
-using NWN.API.Events;
 using NWN.Core.NWNX;
-using EventHandler = NWN.Services.EventHandler;
 
 namespace NWNX.API.Events
 {
@@ -10,11 +8,6 @@ namespace NWNX.API.Events
     void IEventAttribute.InitHook(string scriptName)
     {
       DamagePlugin.SetDamageEventScript(scriptName);
-    }
-
-    void IEventAttribute.InitObjectHook<TObject, TEvent>(EventHandler eventHandler, TObject nwObject, string scriptName)
-    {
-      throw new NotImplementedException();
     }
   }
 }

@@ -8,8 +8,8 @@ namespace NWN.API.Events
   /// </summary>
   public static class StoreEvents
   {
-    [ScriptEvent(EventScriptType.StoreOnOpen)]
-    public sealed class OnOpen : Event<NwStore, OnOpen>
+    [NativeEvent(EventScriptType.StoreOnOpen)]
+    public sealed class OnOpen : NativeEvent<NwStore, OnOpen>
     {
       public NwStore Store { get; private set; }
 
@@ -19,8 +19,8 @@ namespace NWN.API.Events
       }
     }
 
-    [ScriptEvent(EventScriptType.StoreOnClose)]
-    public sealed class OnClose : Event<NwStore, OnClose>
+    [NativeEvent(EventScriptType.StoreOnClose)]
+    public sealed class OnClose : NativeEvent<NwStore, OnClose>
     {
       public NwStore Store { get; private set; }
 
