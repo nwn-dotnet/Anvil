@@ -260,5 +260,13 @@ namespace NWN.API
     /// <returns>The number of uses per day remaining for the specified item property, or 0 if this item property is not uses/day, or belongs to a different item.</returns>
     public int UsesPerDayRemaining(ItemProperty property)
       => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
+
+    /// <summary>
+    /// Gets the number of uses per day remaining for the specified item property on this item.
+    /// </summary>
+    /// <param name="targetInventory">Create the item within this inventory.</param>
+    /// <param name="copyVars">If true then local variables on item are copied.</param>
+    public NwItem Copy(NwGameObject targetInventory, bool copyVars)
+      => NWScript.CopyItem(this, targetInventory, copyVars.ToInt()).ToNwObject<NwItem>();
   }
 }
