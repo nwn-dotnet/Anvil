@@ -238,6 +238,25 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Restores the camera mode and facing to what they where when StoreCameraFacing was last called.<br/>
+    /// RestoreCameraFacing can only be used once, and must correspond to a previous call to StoreCameraFacing.
+    /// </summary>
+    public async Task RestoreCameraFacing()
+    {
+      await WaitForObjectContext();
+      NWScript.RestoreCameraFacing();
+    }
+
+    /// <summary>
+    /// Stores (bookmarks) the camera's facing and position so it can be restored later with RestoreCameraFacing.<br/>
+    /// </summary>
+    public async Task StoreCameraFacing()
+    {
+      await WaitForObjectContext();
+      NWScript.StoreCameraFacing();
+    }
+
+    /// <summary>
     /// Changes the direction this player's camera is facing.
     /// </summary>
     /// <param name="direction">Horizontal angle from East in degrees. -1 to leave the angle unmodified.</param>
