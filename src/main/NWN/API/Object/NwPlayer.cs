@@ -98,6 +98,11 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets who last disarmed a trapped trigger, door or placeable object.
+    /// </summary>
+    public NwCreature LastDisarmed => NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
+
+    /// <summary>
     /// Gets all creatures that are associated with this player.
     /// </summary>
     /// <param name="associateType">The type of associates to resolve.</param>
