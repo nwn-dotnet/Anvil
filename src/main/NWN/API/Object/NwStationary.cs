@@ -110,6 +110,11 @@ namespace NWN.API
       set => base.Rotation = 360 - value;
     }
 
+    /// <summary>
+    /// Gets the last object that locked the caller.
+    /// </summary>
+    public NwGameObject LastLocked() => NWScript.GetLastLocked().ToNwObject<NwGameObject>();
+
     public override Location Location => Location.Create(Area, Position, Rotation);
   }
 }
