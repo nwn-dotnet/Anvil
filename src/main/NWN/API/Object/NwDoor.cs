@@ -33,5 +33,14 @@ namespace NWN.API
     /// </summary>
     public bool IsDoorActionPossible(DoorAction action)
       => NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
+
+    /// <summary>
+    /// Perform DoorAction on this (door).
+    /// </summary>
+    public async Task DoDoorAction(DoorAction action)
+    {
+      await WaitForObjectContext();
+      NWScript.DoDoorAction(this, (int)action);
+    }
   }
 }
