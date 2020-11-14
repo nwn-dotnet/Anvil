@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Threading.Tasks;
+using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
 
@@ -116,5 +117,28 @@ namespace NWN.API
     public NwGameObject LastLocked() => NWScript.GetLastLocked().ToNwObject<NwGameObject>();
 
     public override Location Location => Location.Create(Area, Position, Rotation);
+
+    /// <summary>
+    /// Set the fortitude saving throw value for a door or placeable object.
+    /// </summary>
+    /// <param name="savingthrow">Type of saving throw to set.</param>
+    /// <param name="amount">Must be between 0 and 250.</param>
+    public void SetSavingThrow(SavingThrow savingthrow, int amount)
+    {
+      switch (savingthrow)
+      {
+        case SavingThrow.Fortitude:
+          NWScript.SetFortitudeSavingThrow(this, amount);
+          break;
+        case SavingThrow.Reflex:
+          NWScript.SetReflexSavingThrow(this, amount);
+          break;
+        case SavingThrow.Will:
+          NWScript.SetWillSavingThrow(this, amount);
+          break;
+        default:
+        // Something should go here.
+          break;
+      }
   }
 }
