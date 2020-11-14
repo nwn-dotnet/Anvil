@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
@@ -136,9 +137,15 @@ namespace NWN.API
         case SavingThrow.Will:
           NWScript.SetWillSavingThrow(this, amount);
           break;
-        default:
-        // Something should go here.
+        case SavingThrow.All:
+          NWScript.SetFortitudeSavingThrow(this, amount);
+          NWScript.SetReflexSavingThrow(this, amount);
+          NWScript.SetWillSavingThrow(this, amount);
           break;
+        default:
+          // Something should go here.
+          throw new ArgumentOutOfRangeException(nameof(savingthrow), $"#{savingthrow} invalid.");
       }
+    }
   }
 }
