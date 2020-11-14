@@ -1458,5 +1458,18 @@ namespace NWN.API
       await WaitForObjectContext();
       NWScript.JumpToLocation(location);
     }
+
+    /// <summary>
+    /// Teleports the calling object to the nearest valid location by the target.<br/>
+    /// The action produces no visual effect.
+    /// </summary>
+    /// <param name="gameObject">Target object that will be jumped to.</param>
+    /// <param name="walkStraightLineToPoint">Unknown.</param>
+    /// <remarks>Does not affect dead or dying creatures.</remarks>
+    public async Task JumpToObject(NwGameObject gameObject, bool walkStraightLineToPoint = true)
+    {
+      await WaitForObjectContext();
+      NWScript.JumpToObject(gameObject, walkStraightLineToPoint.ToInt());
+    }
   }
 }
