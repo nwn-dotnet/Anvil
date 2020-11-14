@@ -439,5 +439,10 @@ namespace NWN.API
       get => (AppearanceType)NWScript.GetAppearanceType(this);
       set => NWScript.SetCreatureAppearanceType(this, (int)value);
     }
+
+    /// <summary>
+    /// Gets the PortraitId of this (game object).
+    /// </summary>
+    public int PortraitId => NWScript.GetPortraitId(this);
   }
 }
