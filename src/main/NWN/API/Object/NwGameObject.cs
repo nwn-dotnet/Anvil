@@ -345,6 +345,20 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Plays a sound associated with a string reference (strRef).<br/>
+    /// The sound comes out as a mono sound sourcing from the location of the object running the command.<br/>
+    /// If runAsAction is False, then the sound is played instantly.
+    /// </summary>
+    /// <param name="strRef">String reference number of the sound to play.</param>
+    /// <param name="runAsAction">Determines if this is an action that can be stacked on the action queue.</param>
+    /// <remarks>The strRef values for sounds can be found in the file dialog.tlk in the NWN install directory.</remarks>
+    public async Task PlaySoundByStrRef(int strRef, bool runAsAction = true)
+    {
+      await WaitForObjectContext();
+      NWScript.PlaySoundByStrRef(strRef, runAsAction.ToInt());
+    }
+
+    /// <summary>
     /// Gets this creature's base save value for the specified saving throw.
     /// </summary>
     /// <param name="savingThrow">The type of saving throw.</param>
