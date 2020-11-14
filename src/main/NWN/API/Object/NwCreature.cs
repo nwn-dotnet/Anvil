@@ -1447,5 +1447,16 @@ namespace NWN.API
     /// <remarks>This adjusts Faction Reputation: how the entire faction that this is in feels about target.</remarks>
     public void AdjustReputation(NwCreature target, int adjustment)
       => NWScript.AdjustReputation(target, this, adjustment);
+
+    /// <summary>
+    /// This is a command to move instantly to the Location referenced by Location.
+    /// </summary>
+    /// <param name="location">Location to immediately jump to.</param>
+    /// <remarks>Does not affect creatures that are dead; they must have HP above 0 for this function to work properly.</remarks>
+    public async Task JumpToLocation(Location location)
+    {
+      await WaitForObjectContext();
+      NWScript.JumpToLocation(location);
+    }
   }
 }
