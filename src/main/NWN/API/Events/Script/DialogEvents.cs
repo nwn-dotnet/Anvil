@@ -29,10 +29,16 @@ namespace NWN.API.Events
         LastSpeaker = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
       }
 
-      public void PauseConversation()
+      /// <summary>
+      /// Pause the current conversation.
+      /// </summary>
+      public static void PauseConversation()
         => NWScript.ActionPauseConversation();
 
-      public void ResumeConversation()
+      /// <summary>
+      /// Resume a conversation after it has been paused.
+      /// </summary>
+      public static void ResumeConversation()
         => NWScript.ActionResumeConversation();
     }
 
