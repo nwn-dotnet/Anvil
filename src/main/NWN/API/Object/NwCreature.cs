@@ -454,7 +454,7 @@ namespace NWN.API
     /// If the character has levels in Monk and fights with Unarmed Strike, each successive attack per round suffers a -3 penalty.<br/>
     /// These additional attacks are not shown on the player's character sheet.
     /// </summary>
-    public int BaseAttackCount
+    public static int BaseAttackCount
     {
       set => NWScript.SetBaseAttackBonus(value);
     }
