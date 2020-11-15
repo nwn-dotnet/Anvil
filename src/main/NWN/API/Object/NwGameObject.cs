@@ -455,9 +455,13 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the PortraitId of this (game object).
+    /// Gets or sets the PortraitId of this (game object).
     /// </summary>
-    public int PortraitId => NWScript.GetPortraitId(this);
+    public int PortraitId
+    {
+      get => NWScript.GetPortraitId(this);
+      set => NWScript.SetPortraitId(this, value);
+    }
 
     /// <summary>
     /// Returns whether or not there is a direct line of sight between the two objects. (Not blocked by any geometry).<br/>
