@@ -103,13 +103,13 @@ namespace NWN.API.Events
     {
       public NwPlayer Sender { get; private set; }
 
-      public string Message
+      public static string Message
       {
         get => NWScript.GetPCChatMessage();
         set => NWScript.SetPCChatMessage(value);
       }
 
-      public TalkVolume Volume
+      public static TalkVolume Volume
       {
         get => (TalkVolume) NWScript.GetPCChatVolume();
         set => NWScript.SetPCChatVolume((int) value);
