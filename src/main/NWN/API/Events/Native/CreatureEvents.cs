@@ -77,7 +77,7 @@ namespace NWN.API.Events
       public static void PauseConversation()
         => NWScript.ActionPauseConversation();
 
-      public void ResumeConversation()
+      public static void ResumeConversation()
         => NWScript.ActionResumeConversation();
     }
 
@@ -156,7 +156,7 @@ namespace NWN.API.Events
         PerceivedCreature = NWScript.GetLastPerceived().ToNwObject<NwCreature>();
       }
 
-      private PerceptionEventType GetPerceptionEventType()
+      private static PerceptionEventType GetPerceptionEventType()
       {
         if (NWScript.GetLastPerceptionSeen().ToBool())
         {
