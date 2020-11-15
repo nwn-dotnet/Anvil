@@ -1471,5 +1471,11 @@ namespace NWN.API
       await WaitForObjectContext();
       NWScript.JumpToObject(gameObject, walkStraightLineToPoint.ToInt());
     }
+
+    public async Task SpeakOneLinerConversation(string dialogResRef, ObjectTypes types)
+    {
+      await WaitForObjectContext();
+      NWScript.SpeakOneLinerConversation(dialogResRef, (uint) (int)types);
+    }
   }
 }
