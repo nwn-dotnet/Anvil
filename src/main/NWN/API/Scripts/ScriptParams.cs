@@ -9,7 +9,7 @@ namespace NWN.API
     /// Gets the specified parameter value.
     /// </summary>
     /// <param name="paramName">The parameter name to resolve the value of.</param>
-    public string this[string paramName]
+    public static string this[string paramName]
     {
       get => NWScript.GetScriptParam(paramName);
       set => NWScript.SetScriptParam(paramName, value);
@@ -20,7 +20,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="paramName">The parameter name to query.</param>
     /// <returns>true if the specified parameter is set, otherwise false.</returns>
-    public bool IsSet(string paramName)
+    public static bool IsSet(string paramName)
       => UtilPlugin.GetScriptParamIsSet(paramName).ToBool();
   }
 }
