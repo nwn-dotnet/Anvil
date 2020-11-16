@@ -102,7 +102,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="associateType">The type of associates to resolve.</param>
     /// <returns>An enumeration containing all creatures that are associated.</returns>
-    public IEnumerable<NwCreature> GetAssociates(AssociateType associateType)
+    public static IEnumerable<NwCreature> GetAssociates(AssociateType associateType)
     {
       int i;
       uint obj;
