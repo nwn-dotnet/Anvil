@@ -43,7 +43,7 @@ namespace NWN.API
       throw new Exception($"No valid variable converter found for type {type.FullName}!");
     }
 
-    private void CheckInitLocalConverter(Type type)
+    private static void CheckInitLocalConverter(Type type)
     {
       LocalVariableConverterAttribute info = type.GetCustomAttribute<LocalVariableConverterAttribute>();
       if (info == null)
@@ -58,7 +58,7 @@ namespace NWN.API
       }
     }
 
-    private void CheckInitCampaignConverter(Type type)
+    private static void CheckInitCampaignConverter(Type type)
     {
       CampaignVariableConverterAttribute info = type.GetCustomAttribute<CampaignVariableConverterAttribute>();
       if (info == null)
