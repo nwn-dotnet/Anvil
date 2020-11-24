@@ -1463,10 +1463,16 @@ namespace NWN.API
       NWScript.JumpToObject(gameObject, walkStraightLineToPoint.ToInt());
     }
 
-    public async Task SpeakOneLinerConversation(string dialogResRef, ObjectTypes types)
+    /// <summary>
+    /// Instructs this creature to immediately speak the first non-branching conversation line in their dialog.
+    /// </summary>
+    /// <param name="dialogResRef">The dialog resource reference to use.</param>
+    /// <param name="tokenTarget">The object to use if there are object-specific tokens in the string.</param>
+    /// <returns></returns>
+    public async Task SpeakOneLinerConversation(string dialogResRef = "", NwGameObject tokenTarget = null)
     {
       await WaitForObjectContext();
-      NWScript.SpeakOneLinerConversation(dialogResRef, (uint) (int)types);
+      NWScript.SpeakOneLinerConversation(dialogResRef, tokenTarget);
     }
   }
 }
