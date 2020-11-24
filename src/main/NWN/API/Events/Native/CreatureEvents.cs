@@ -221,11 +221,32 @@ namespace NWN.API.Events
     [NativeEvent(EventScriptType.CreatureOnSpellCastAt)]
     public sealed class OnSpellCastAt : NativeEvent<NwCreature, OnSpellCastAt>
     {
+      /// <summary>
+      /// Gets the creature targeted by this spell.
+      /// </summary>
       public NwCreature Creature { get; private set; }
+
+      /// <summary>
+      /// Gets the caster of this spell (creature, placeable, door). Returns null from an area of effect.
+      /// </summary>
+      public NwGameObject Caster { get; private set; }
+
+      /// <summary>
+      /// Gets the spell that was cast.
+      /// </summary>
+      public Spell Spell { get; private set; }
+
+      /// <summary>
+      /// Gets a value indicating whether this spell is considered harmful.
+      /// </summary>
+      public bool Harmful { get; private set; }
 
       protected override void PrepareEvent(NwCreature objSelf)
       {
         Creature = objSelf;
+        Caster = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
+        Spell = (Spell)NWScript.GetLastSpell();
+        Harmful = NWScript.GetLastSpellHarmful().ToBool();
       }
     }
 

@@ -1,4 +1,5 @@
 using NWN.API.Constants;
+using NWN.Core;
 
 // TODO Populate event data.
 namespace NWN.API.Events
@@ -99,11 +100,32 @@ namespace NWN.API.Events
     [NativeEvent(EventScriptType.DoorOnSpellCastAt)]
     public sealed class OnSpellCastAt : NativeEvent<NwDoor, OnSpellCastAt>
     {
+      /// <summary>
+      /// Gets the door targeted by this spell.
+      /// </summary>
       public NwDoor Door { get; private set; }
+
+      /// <summary>
+      /// Gets the caster of this spell (creature, placeable, door). Returns null from an area of effect.
+      /// </summary>
+      public NwGameObject Caster { get; private set; }
+
+      /// <summary>
+      /// Gets the spell that was cast.
+      /// </summary>
+      public Spell Spell { get; private set; }
+
+      /// <summary>
+      /// Gets a value indicating whether this spell is considered harmful.
+      /// </summary>
+      public bool Harmful { get; private set; }
 
       protected override void PrepareEvent(NwDoor objSelf)
       {
         Door = objSelf;
+        Caster = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
+        Spell = (Spell)NWScript.GetLastSpell();
+        Harmful = NWScript.GetLastSpellHarmful().ToBool();
       }
     }
 
