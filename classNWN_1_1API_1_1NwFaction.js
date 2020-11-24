@@ -1,5 +1,6 @@
 var classNWN_1_1API_1_1NwFaction =
 [
+    [ "AdjustReputation", "classNWN_1_1API_1_1NwFaction.html#a9172c1d8c38d4a9e15a67ae04c2f3ddb", null ],
     [ "Equals", "classNWN_1_1API_1_1NwFaction.html#a690255673348521bdadfcbe586887351", null ],
     [ "Equals", "classNWN_1_1API_1_1NwFaction.html#aad9ec11e94a3fa1cd92032e69906ccba", null ],
     [ "GetAverageReputation", "classNWN_1_1API_1_1NwFaction.html#acfa1ffbc6fe211673d5c51a1c3dd3e82", null ],

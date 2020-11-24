@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['nextdouble_1666',['NextDouble',['../classNWN_1_1API_1_1RandomExtensions.html#ad8dd4f09c4629e8a34ab4111052c2307',1,'NWN::API::RandomExtensions']]],
-  ['nextfloat_1667',['NextFloat',['../classNWN_1_1API_1_1RandomExtensions.html#ae56c7315f39fb225ab4c402c991a4c68',1,'NWN.API.RandomExtensions.NextFloat(this Random random)'],['../classNWN_1_1API_1_1RandomExtensions.html#a30a99195dac7180c94ae1edacdc36f4a',1,'NWN.API.RandomExtensions.NextFloat(this Random random, float minValue, float maxValue)']]],
-  ['nextframe_1668',['NextFrame',['../classNWN_1_1API_1_1NwTask.html#a9f4e6db66a44b051a6f98b76dbd88fb4',1,'NWN::API::NwTask']]],
-  ['nighttoday_1669',['NightToDay',['../classNWN_1_1API_1_1NwPlayer.html#a21fefcbd1d72624b17bb6ff526eb49f5',1,'NWN::API::NwPlayer']]]
+  ['leveluphenchman_1684',['LevelUpHenchman',['../classNWN_1_1API_1_1NwCreature.html#aa4b285acabeddc2a1fb4bc2adf4108ad',1,'NWN::API::NwCreature']]],
+  ['lockcameradirection_1685',['LockCameraDirection',['../classNWN_1_1API_1_1NwPlayer.html#a42a499e23f2fdbd655d1d51c11b8409c',1,'NWN::API::NwPlayer']]],
+  ['lockcameradistance_1686',['LockCameraDistance',['../classNWN_1_1API_1_1NwPlayer.html#ad4d028cee87beef7016eb3edf4863471',1,'NWN::API::NwPlayer']]],
+  ['lockcamerapitch_1687',['LockCameraPitch',['../classNWN_1_1API_1_1NwPlayer.html#aa1a888368cf3f9cd50efb3cdab522190',1,'NWN::API::NwPlayer']]]
 ];

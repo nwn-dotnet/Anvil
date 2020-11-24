@@ -145,6 +145,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa27408e70b32cdebab6bdb69317375ef"><td class="memItemLeft" align="right" valign="top">async Task&lt; <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwFaction.html#aa27408e70b32cdebab6bdb69317375ef">VisibleLeastDamagedMember</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> visibleFrom)</td></tr>
 <tr class="memdesc:aa27408e70b32cdebab6bdb69317375ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the least damaged member in this faction that is visible from the specified object.  <a href="classNWN_1_1API_1_1NwFaction.html#aa27408e70b32cdebab6bdb69317375ef">More...</a><br /></td></tr>
 <tr class="separator:aa27408e70b32cdebab6bdb69317375ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9172c1d8c38d4a9e15a67ae04c2f3ddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwFaction.html#a9172c1d8c38d4a9e15a67ae04c2f3ddb">AdjustReputation</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> creature, int adjustment)</td></tr>
+<tr class="memdesc:a9172c1d8c38d4a9e15a67ae04c2f3ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjusts how this faction feels about the specified creature.  <a href="classNWN_1_1API_1_1NwFaction.html#a9172c1d8c38d4a9e15a67ae04c2f3ddb">More...</a><br /></td></tr>
+<tr class="separator:a9172c1d8c38d4a9e15a67ae04c2f3ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a690255673348521bdadfcbe586887351"><td class="memItemLeft" align="right" valign="top"><a id="a690255673348521bdadfcbe586887351"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (<a class="el" href="classNWN_1_1API_1_1NwFaction.html">NwFaction</a> other)</td></tr>
 <tr class="separator:a690255673348521bdadfcbe586887351"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,6 +225,43 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The faction info of a Creature/Player/GameObject. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9172c1d8c38d4a9e15a67ae04c2f3ddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9172c1d8c38d4a9e15a67ae04c2f3ddb">&#9670;&nbsp;</a></span>AdjustReputation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.NwFaction.AdjustReputation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td>
+          <td class="paramname"><em>creature</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>adjustment</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adjusts how this faction feels about the specified creature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">creature</td><td>The target creature for the reputation change.</td></tr>
+    <tr><td class="paramname">adjustment</td><td>The adjustment in reputation to make.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="acfa1ffbc6fe211673d5c51a1c3dd3e82"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acfa1ffbc6fe211673d5c51a1c3dd3e82">&#9670;&nbsp;</a></span>GetAverageReputation()</h2>
 

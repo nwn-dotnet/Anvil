@@ -153,6 +153,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ade38df74cc5476235db8ee7b6d4611a4"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#ade38df74cc5476235db8ee7b6d4611a4">ActionExamine</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:ade38df74cc5476235db8ee7b6d4611a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows an examine dialog for the specified target.  <a href="classNWN_1_1API_1_1NwPlayer.html#ade38df74cc5476235db8ee7b6d4611a4">More...</a><br /></td></tr>
 <tr class="separator:ade38df74cc5476235db8ee7b6d4611a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5adabc878a47e14c4aeaa370f108df85"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#a5adabc878a47e14c4aeaa370f108df85">RestoreCameraFacing</a> ()</td></tr>
+<tr class="memdesc:a5adabc878a47e14c4aeaa370f108df85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the camera mode and facing to what they where when StoreCameraFacing was last called.<br  />
+ RestoreCameraFacing can only be used once, and must correspond to a previous call to StoreCameraFacing.  <a href="classNWN_1_1API_1_1NwPlayer.html#a5adabc878a47e14c4aeaa370f108df85">More...</a><br /></td></tr>
+<tr class="separator:a5adabc878a47e14c4aeaa370f108df85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f6c28d04eae4b56f2bc4c9b323fbf6b"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#a6f6c28d04eae4b56f2bc4c9b323fbf6b">StoreCameraFacing</a> ()</td></tr>
+<tr class="memdesc:a6f6c28d04eae4b56f2bc4c9b323fbf6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores (bookmarks) the camera's facing and position so it can be restored later with RestoreCameraFacing.<br  />
+  <a href="classNWN_1_1API_1_1NwPlayer.html#a6f6c28d04eae4b56f2bc4c9b323fbf6b">More...</a><br /></td></tr>
+<tr class="separator:a6f6c28d04eae4b56f2bc4c9b323fbf6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40d5cbe1f3c57cfee3da0db368d46e32"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwPlayer.html#a40d5cbe1f3c57cfee3da0db368d46e32">SetCameraFacing</a> (float direction, float pitch=-1.0f, float distance=-1.0f, CameraTransitionType transitionType=CameraTransitionType.Snap)</td></tr>
 <tr class="memdesc:a40d5cbe1f3c57cfee3da0db368d46e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the direction this player's camera is facing.  <a href="classNWN_1_1API_1_1NwPlayer.html#a40d5cbe1f3c57cfee3da0db368d46e32">More...</a><br /></td></tr>
 <tr class="separator:a40d5cbe1f3c57cfee3da0db368d46e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -345,8 +353,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a89189b3d17caca13bd16eef90ecf7ee3 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a89189b3d17caca13bd16eef90ecf7ee3">More...</a><br /></td></tr>
 <tr class="separator:a89189b3d17caca13bd16eef90ecf7ee3 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e29d37d777ed004c8a8447ce670662b inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a0e29d37d777ed004c8a8447ce670662b">GiveItem</a> (<a class="el" href="classNWN_1_1API_1_1NwItem.html">NwItem</a> item)</td></tr>
-<tr class="memdesc:a0e29d37d777ed004c8a8447ce670662b inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the specified item to this creature's inventory.  <a href="classNWN_1_1API_1_1NwCreature.html#a0e29d37d777ed004c8a8447ce670662b">More...</a><br /></td></tr>
+<tr class="memdesc:a0e29d37d777ed004c8a8447ce670662b inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the specified item/item stack to this creature's inventory.  <a href="classNWN_1_1API_1_1NwCreature.html#a0e29d37d777ed004c8a8447ce670662b">More...</a><br /></td></tr>
 <tr class="separator:a0e29d37d777ed004c8a8447ce670662b inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b3e2599c5b898963f8c486972d3b3bb inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a5b3e2599c5b898963f8c486972d3b3bb">GiveItem</a> (<a class="el" href="classNWN_1_1API_1_1NwItem.html">NwItem</a> item, int amount)</td></tr>
+<tr class="memdesc:a5b3e2599c5b898963f8c486972d3b3bb inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves a specified amount of items from an item stack to this creature's inventory.  <a href="classNWN_1_1API_1_1NwCreature.html#a5b3e2599c5b898963f8c486972d3b3bb">More...</a><br /></td></tr>
+<tr class="separator:a5b3e2599c5b898963f8c486972d3b3bb inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3155efc66ff9b53f034dce837b35db9 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNWN_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#af3155efc66ff9b53f034dce837b35db9">FindItemWithTag</a> (string itemTag)</td></tr>
 <tr class="memdesc:af3155efc66ff9b53f034dce837b35db9 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the item possessed by this creature with the tag itemTag.  <a href="classNWN_1_1API_1_1NwCreature.html#af3155efc66ff9b53f034dce837b35db9">More...</a><br /></td></tr>
 <tr class="separator:af3155efc66ff9b53f034dce837b35db9 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -401,6 +412,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ad1e3ed956ff598aad04f17450b731085 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ad1e3ed956ff598aad04f17450b731085">ActionUseTalent</a> (<a class="el" href="classNWN_1_1API_1_1Talent.html">Talent</a> talent, <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:ad1e3ed956ff598aad04f17450b731085 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses the specified talent.  <a href="classNWN_1_1API_1_1NwCreature.html#ad1e3ed956ff598aad04f17450b731085">More...</a><br /></td></tr>
 <tr class="separator:ad1e3ed956ff598aad04f17450b731085 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b0cc3310f1e4f820a55242c5d73e915 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a4b0cc3310f1e4f820a55242c5d73e915">DoDoorAction</a> (<a class="el" href="classNWN_1_1API_1_1NwDoor.html">NwDoor</a> door, DoorAction doorAction)</td></tr>
+<tr class="memdesc:a4b0cc3310f1e4f820a55242c5d73e915 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this creature to perform the specified action on a door.  <a href="classNWN_1_1API_1_1NwCreature.html#a4b0cc3310f1e4f820a55242c5d73e915">More...</a><br /></td></tr>
+<tr class="separator:a4b0cc3310f1e4f820a55242c5d73e915 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8b268ace02426a058d458048badd0b3 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#ae8b268ace02426a058d458048badd0b3">DoPlaceableAction</a> (<a class="el" href="classNWN_1_1API_1_1NwPlaceable.html">NwPlaceable</a> placeable, PlaceableAction placeableAction)</td></tr>
+<tr class="memdesc:ae8b268ace02426a058d458048badd0b3 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this creature to perform the specified action on a placeable.  <a href="classNWN_1_1API_1_1NwCreature.html#ae8b268ace02426a058d458048badd0b3">More...</a><br /></td></tr>
+<tr class="separator:ae8b268ace02426a058d458048badd0b3 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98976c519843f390fbded268f565fb59 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a98976c519843f390fbded268f565fb59">IsEnemy</a> (<a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreature</a> target)</td></tr>
 <tr class="memdesc:a98976c519843f390fbded268f565fb59 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this creature considers the target as a friend.  <a href="classNWN_1_1API_1_1NwCreature.html#a98976c519843f390fbded268f565fb59">More...</a><br /></td></tr>
 <tr class="separator:a98976c519843f390fbded268f565fb59 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -494,6 +511,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a7a7235758f91e80e5cf83d860343c479 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a7a7235758f91e80e5cf83d860343c479">IsWeaponEffective</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target, bool offHand=false)</td></tr>
 <tr class="memdesc:a7a7235758f91e80e5cf83d860343c479 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether this creature can damage the specified object using their current weapon/s.  <a href="classNWN_1_1API_1_1NwCreature.html#a7a7235758f91e80e5cf83d860343c479">More...</a><br /></td></tr>
 <tr class="separator:a7a7235758f91e80e5cf83d860343c479 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19785bc5e953e5ffcf174edf15a641e2 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a19785bc5e953e5ffcf174edf15a641e2">JumpToObject</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> gameObject, bool walkStraightLineToPoint=true)</td></tr>
+<tr class="memdesc:a19785bc5e953e5ffcf174edf15a641e2 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Teleports this creature to the nearest valid location by the target.<br  />
+ This action produces no visual effect.  <a href="classNWN_1_1API_1_1NwCreature.html#a19785bc5e953e5ffcf174edf15a641e2">More...</a><br /></td></tr>
+<tr class="separator:a19785bc5e953e5ffcf174edf15a641e2 inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a99df55be1e678e370ecb32c9cc83ea inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a5a99df55be1e678e370ecb32c9cc83ea">SpeakOneLinerConversation</a> (string dialogResRef=&quot;&quot;, <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> tokenTarget=null)</td></tr>
+<tr class="memdesc:a5a99df55be1e678e370ecb32c9cc83ea inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this creature to immediately speak the first non-branching conversation line in their dialog.  <a href="classNWN_1_1API_1_1NwCreature.html#a5a99df55be1e678e370ecb32c9cc83ea">More...</a><br /></td></tr>
+<tr class="separator:a5a99df55be1e678e370ecb32c9cc83ea inherit pub_methods_classNWN_1_1API_1_1NwCreature"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NWN.API.NwGameObject</a></td></tr>
 <tr class="memitem:abde70aeaa8536d9b5988dd402928709e inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#abde70aeaa8536d9b5988dd402928709e">Distance</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:abde70aeaa8536d9b5988dd402928709e inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance to the target.<br  />
@@ -541,6 +565,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aab693224099b36fedc67c4e00aba88c0 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#aab693224099b36fedc67c4e00aba88c0">PlaySound</a> (string soundName)</td></tr>
 <tr class="memdesc:aab693224099b36fedc67c4e00aba88c0 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified sound as mono audio from the location of this object.  <a href="classNWN_1_1API_1_1NwGameObject.html#aab693224099b36fedc67c4e00aba88c0">More...</a><br /></td></tr>
 <tr class="separator:aab693224099b36fedc67c4e00aba88c0 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed791d7620938d5669af626ddff08c04 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#aed791d7620938d5669af626ddff08c04">PlaySoundByStrRef</a> (int strRef, bool runAsAction=true)</td></tr>
+<tr class="memdesc:aed791d7620938d5669af626ddff08c04 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays a sound associated with a string reference (strRef).<br  />
+ The sound comes out as a mono sound sourcing from the location of the object running the command.<br  />
+ If runAsAction is False, then the sound is played instantly.  <a href="classNWN_1_1API_1_1NwGameObject.html#aed791d7620938d5669af626ddff08c04">More...</a><br /></td></tr>
+<tr class="separator:aed791d7620938d5669af626ddff08c04 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9abf26bce8b174927f6de3900bfc1789 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a9abf26bce8b174927f6de3900bfc1789">GetBaseSavingThrow</a> (SavingThrow savingThrow)</td></tr>
 <tr class="memdesc:a9abf26bce8b174927f6de3900bfc1789 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this creature's base save value for the specified saving throw.  <a href="classNWN_1_1API_1_1NwGameObject.html#a9abf26bce8b174927f6de3900bfc1789">More...</a><br /></td></tr>
 <tr class="separator:a9abf26bce8b174927f6de3900bfc1789 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -559,6 +588,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a3b4db208968d17ddfc7e2232e050bfb1 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a3b4db208968d17ddfc7e2232e050bfb1">Destroy</a> (float delay=0.0f)</td></tr>
 <tr class="memdesc:a3b4db208968d17ddfc7e2232e050bfb1 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this object (irrevocably).  <a href="classNWN_1_1API_1_1NwGameObject.html#a3b4db208968d17ddfc7e2232e050bfb1">More...</a><br /></td></tr>
 <tr class="separator:a3b4db208968d17ddfc7e2232e050bfb1 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7b549ad69e72a1863c7b87a6397a5bc inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#ab7b549ad69e72a1863c7b87a6397a5bc">HasLineOfSight</a> (<a class="el" href="classNWN_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
+<tr class="memdesc:ab7b549ad69e72a1863c7b87a6397a5bc inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this object has a direct line of sight to the specified object (not blocked by any geometry).<br  />
+  <a href="classNWN_1_1API_1_1NwGameObject.html#ab7b549ad69e72a1863c7b87a6397a5bc">More...</a><br /></td></tr>
+<tr class="separator:ab7b549ad69e72a1863c7b87a6397a5bc inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
 <tr class="memitem:a939d84e27244659e861c19659d2a0490 inherit pub_methods_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a939d84e27244659e861c19659d2a0490">WaitForObjectContext</a> ()</td></tr>
 <tr class="memdesc:a939d84e27244659e861c19659d2a0490 inherit pub_methods_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators).<br  />
@@ -860,6 +893,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a3aa518300b74384ab1036b0da4a5f0c1 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">AppearanceType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a3aa518300b74384ab1036b0da4a5f0c1">CreatureAppearanceType</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a3aa518300b74384ab1036b0da4a5f0c1 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the appearance of this creature.  <a href="classNWN_1_1API_1_1NwGameObject.html#a3aa518300b74384ab1036b0da4a5f0c1">More...</a><br /></td></tr>
 <tr class="separator:a3aa518300b74384ab1036b0da4a5f0c1 inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56f9508d638703a134c746dd8c193dfb inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a56f9508d638703a134c746dd8c193dfb">PortraitId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a56f9508d638703a134c746dd8c193dfb inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the PortraitId of this (game object).  <a href="classNWN_1_1API_1_1NwGameObject.html#a56f9508d638703a134c746dd8c193dfb">More...</a><br /></td></tr>
+<tr class="separator:a56f9508d638703a134c746dd8c193dfb inherit properties_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('properties_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
 <tr class="memitem:a9bc2179ca37cfd5a6ea4dd360429c662 inherit properties_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">Guid?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a9bc2179ca37cfd5a6ea4dd360429c662">UUID</a><code> [get]</code></td></tr>
 <tr class="memdesc:a9bc2179ca37cfd5a6ea4dd360429c662 inherit properties_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the globally unique identifier for this object.  <a href="classNWN_1_1API_1_1NwObject.html#a9bc2179ca37cfd5a6ea4dd360429c662">More...</a><br /></td></tr>
@@ -1648,6 +1684,34 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
+<a id="a5adabc878a47e14c4aeaa370f108df85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5adabc878a47e14c4aeaa370f108df85">&#9670;&nbsp;</a></span>RestoreCameraFacing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task NWN.API.NwPlayer.RestoreCameraFacing </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restores the camera mode and facing to what they where when StoreCameraFacing was last called.<br  />
+ RestoreCameraFacing can only be used once, and must correspond to a previous call to StoreCameraFacing. </p>
+
+</div>
+</div>
 <a id="a059fa49c3e8740459b044c44e5580d57"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a059fa49c3e8740459b044c44e5580d57">&#9670;&nbsp;</a></span>SendServerMessage()</h2>
 
@@ -1948,6 +2012,34 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a6f6c28d04eae4b56f2bc4c9b323fbf6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f6c28d04eae4b56f2bc4c9b323fbf6b">&#9670;&nbsp;</a></span>StoreCameraFacing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task NWN.API.NwPlayer.StoreCameraFacing </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stores (bookmarks) the camera's facing and position so it can be restored later with RestoreCameraFacing.<br  />
+ </p>
 
 </div>
 </div>

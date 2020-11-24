@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['open_1670',['Open',['../classNWN_1_1API_1_1NwDoor.html#a9b9959f7cd1bad6ffbdf8daae41cdcf0',1,'NWN.API.NwDoor.Open()'],['../classNWN_1_1API_1_1NwStore.html#ac4450ee14845385b4d6b9a90f572e8d7',1,'NWN.API.NwStore.Open()']]],
-  ['openinventory_1671',['OpenInventory',['../classNWN_1_1API_1_1NwPlayer.html#a7a438e1b7f0252be539bba06f35c6332',1,'NWN.API.NwPlayer.OpenInventory()'],['../classNWN_1_1API_1_1NwPlayer.html#a50b61c337ac6f2d52b15b74780e79961',1,'NWN.API.NwPlayer.OpenInventory(NwCreature target)']]],
-  ['operator_20t_1672',['operator T',['../classNWN_1_1API_1_1CampaignVariable.html#a40aa6c874c55ad9eb893bbd5361a8f35',1,'NWN.API.CampaignVariable.operator T()'],['../classNWN_1_1API_1_1LocalVariable.html#a109f5225187170d983e94c62c58e30af',1,'NWN.API.LocalVariable.operator T()']]]
+  ['nextdouble_1688',['NextDouble',['../classNWN_1_1API_1_1RandomExtensions.html#ad8dd4f09c4629e8a34ab4111052c2307',1,'NWN::API::RandomExtensions']]],
+  ['nextfloat_1689',['NextFloat',['../classNWN_1_1API_1_1RandomExtensions.html#ae56c7315f39fb225ab4c402c991a4c68',1,'NWN.API.RandomExtensions.NextFloat(this Random random)'],['../classNWN_1_1API_1_1RandomExtensions.html#a30a99195dac7180c94ae1edacdc36f4a',1,'NWN.API.RandomExtensions.NextFloat(this Random random, float minValue, float maxValue)']]],
+  ['nextframe_1690',['NextFrame',['../classNWN_1_1API_1_1NwTask.html#a9f4e6db66a44b051a6f98b76dbd88fb4',1,'NWN::API::NwTask']]],
+  ['nighttoday_1691',['NightToDay',['../classNWN_1_1API_1_1NwPlayer.html#a21fefcbd1d72624b17bb6ff526eb49f5',1,'NWN::API::NwPlayer']]]
 ];

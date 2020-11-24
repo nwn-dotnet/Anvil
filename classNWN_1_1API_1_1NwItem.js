@@ -1,8 +1,9 @@
 var classNWN_1_1API_1_1NwItem =
 [
     [ "AddItemProperty", "classNWN_1_1API_1_1NwItem.html#a0f9edf1fc5f2c19bc6fad6215b6b0a28", null ],
-    [ "Clone", "classNWN_1_1API_1_1NwItem.html#aac9c55cad80ec8df6dde75d9fe61f7d2", null ],
-    [ "Clone", "classNWN_1_1API_1_1NwItem.html#af70dfecbc097e676068e0bbdf8dfbcf7", null ],
+    [ "Clone", "classNWN_1_1API_1_1NwItem.html#a3be7a5ad35d623bcf8194d452e576f23", null ],
+    [ "Clone", "classNWN_1_1API_1_1NwItem.html#a8904d2f322db60a40167bc3a96390ac3", null ],
+    [ "Copy", "classNWN_1_1API_1_1NwItem.html#a9d940a639a9705f910bd87da8fb71473", null ],
     [ "Create", "classNWN_1_1API_1_1NwItem.html#aa01bedecd284575884575037c594b295", null ],
     [ "Create", "classNWN_1_1API_1_1NwItem.html#ad800910fe3916e64433bc460393d0513", null ],
     [ "ItemHasItemProperty", "classNWN_1_1API_1_1NwItem.html#a559bfa0fb2278bbf60b4bec77156454a", null ],

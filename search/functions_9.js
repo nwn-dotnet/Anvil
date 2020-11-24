@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['leveluphenchman_1662',['LevelUpHenchman',['../classNWN_1_1API_1_1NwCreature.html#aa4b285acabeddc2a1fb4bc2adf4108ad',1,'NWN::API::NwCreature']]],
-  ['lockcameradirection_1663',['LockCameraDirection',['../classNWN_1_1API_1_1NwPlayer.html#a42a499e23f2fdbd655d1d51c11b8409c',1,'NWN::API::NwPlayer']]],
-  ['lockcameradistance_1664',['LockCameraDistance',['../classNWN_1_1API_1_1NwPlayer.html#ad4d028cee87beef7016eb3edf4863471',1,'NWN::API::NwPlayer']]],
-  ['lockcamerapitch_1665',['LockCameraPitch',['../classNWN_1_1API_1_1NwPlayer.html#aa1a888368cf3f9cd50efb3cdab522190',1,'NWN::API::NwPlayer']]]
+  ['jumptoobject_1683',['JumpToObject',['../classNWN_1_1API_1_1NwCreature.html#a19785bc5e953e5ffcf174edf15a641e2',1,'NWN::API::NwCreature']]]
 ];

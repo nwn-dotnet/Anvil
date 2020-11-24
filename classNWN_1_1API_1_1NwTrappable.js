@@ -1,6 +1,7 @@
 var classNWN_1_1API_1_1NwTrappable =
 [
     [ "DisableTrap", "classNWN_1_1API_1_1NwTrappable.html#abd4c8b1808711be04196aaeb44db6177", null ],
+    [ "GetLastDisarmedBy", "classNWN_1_1API_1_1NwTrappable.html#a073191a0ccd739569d34b9be3fa70758", null ],
     [ "IsTrapDetectedBy", "classNWN_1_1API_1_1NwTrappable.html#a3ec473435b896a85f21a2bf52cf4a2a8", null ],
     [ "SetTrapDetectedBy", "classNWN_1_1API_1_1NwTrappable.html#acfa9e65bb604c36b8d24bcc30199c009", null ],
     [ "IsTrapFlagged", "classNWN_1_1API_1_1NwTrappable.html#a00136cb50ab453393cc892022378cf57", null ],
