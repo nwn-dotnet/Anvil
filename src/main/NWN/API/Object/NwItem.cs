@@ -30,7 +30,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the number of stacked items attached to this object.
+    /// Gets or sets the number of stacked items attached to this item.
     /// </summary>
     public int StackSize
     {

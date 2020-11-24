@@ -43,7 +43,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Moves the specified item to the placeable's inventory.
+    /// Moves the specified item/item stack to this placeable's inventory.
     /// </summary>
     /// <param name="item">The item to add.</param>
     public async Task GiveItem(NwItem item)
@@ -63,6 +63,29 @@ namespace NWN.API
         await assignTarget.WaitForObjectContext();
         NWScript.ActionGiveItem(item, this);
       }
+    }
+
+    /// <summary>
+    /// Moves a specified amount of items from an item stack to this placeable's inventory.
+    /// </summary>
+    /// <param name="item">The item to add.</param>
+    /// <param name="amount">The number of items from the item stack to take.</param>
+    public async Task GiveItem(NwItem item, int amount)
+    {
+      if (amount > item.StackSize)
+      {
+        amount = item.StackSize;
+      }
+
+      if (amount == item.StackSize)
+      {
+        await GiveItem(item);
+        return;
+      }
+
+      NwItem clone = item.Clone(this);
+      clone.StackSize = amount;
+      item.StackSize -= amount;
     }
 
     public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
