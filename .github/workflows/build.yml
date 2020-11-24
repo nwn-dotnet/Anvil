@@ -30,7 +30,8 @@ jobs:
           WITH_V: true
 
       - name: Prepare Version String
-        run: echo ::set-env name=VERSION_NUMBER::$(echo ${{ steps.bump_version.outputs.tag }}-alpha | sed 's/[v]//g')
+        id: name_version
+        run: echo ::set-output name=version::$(echo ${{ steps.bump_version.outputs.tag }} | sed 's/[v]//g')
 
       - name: Create Release
         id: create_release
@@ -39,12 +40,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.bump_version.outputs.tag }}
-          release_name: Release ${{ env.VERSION_NUMBER }}
+          release_name: Release ${{ steps.name_version.outputs.version }}
           draft: false
           prerelease: true
 
       - name: Build Release Binaries
-        run: dotnet build --configuration Release -p:Version=${{ env.VERSION_NUMBER }} -o output
+        run: dotnet build --configuration Release -p:Version=${{ steps.name_version.outputs.version }} -o output
 
       - name: Upload Release Binaries
         id: upload-release-asset
@@ -58,7 +59,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Pack for NuGet
-        run: dotnet pack NWN.Managed.csproj --configuration Release -p:PackageVersion=${{ env.VERSION_NUMBER }} -o output
+        run: dotnet pack NWN.Managed.csproj --configuration Release -p:PackageVersion=${{ steps.name_version.outputs.version }} -o output
 
       - name: Publish Package to NuGet
         run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
