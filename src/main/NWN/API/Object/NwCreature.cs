@@ -1440,15 +1440,6 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets how one creature feels toward this creature.
-    /// </summary>
-    /// <param name="target">The creature who will be viewed differently by an entire faction.</param>
-    /// <param name="adjustment">The amount that the faction's opinion will change.</param>
-    /// <remarks>This adjusts Faction Reputation: how the entire faction that this is in feels about target.</remarks>
-    public void AdjustReputation(NwCreature target, int adjustment)
-      => NWScript.AdjustReputation(target, this, adjustment);
-
-    /// <summary>
     /// This is a command to move instantly to the Location referenced by Location.
     /// </summary>
     /// <param name="location">Location to immediately jump to.</param>
