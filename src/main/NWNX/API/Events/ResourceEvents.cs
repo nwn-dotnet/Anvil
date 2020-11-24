@@ -4,7 +4,7 @@ using NWNX.API.Constants;
 
 namespace NWNX.API.Events
 {
-  public class ResourceEvents
+  public static class ResourceEvents
   {
     [NWNXEvent("NWNX_ON_RESOURCE_ADDED")]
     public class OnResourceAdded : NWNXEventSkippable<OnResourceAdded>

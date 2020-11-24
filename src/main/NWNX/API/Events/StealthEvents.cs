@@ -2,7 +2,7 @@ using NWN.API;
 
 namespace NWNX.API.Events
 {
-  public class StealthEvents
+  public static class StealthEvents
   {
     [NWNXEvent("NWNX_ON_ENTER_STEALTH_BEFORE")]
     public class OnEnterStealthBefore : NWNXEvent<OnEnterStealthBefore>

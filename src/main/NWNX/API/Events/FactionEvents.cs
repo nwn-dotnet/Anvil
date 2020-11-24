@@ -3,7 +3,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public class FactionEvents
+  public static class FactionEvents
   {
     [NWNXEvent("NWNX_ON_SET_NPC_FACTION_REPUTATION_BEFORE")]
     public class OnSetNPCFactionReputationBefore : NWNXEventSkippable<OnSetNPCFactionReputationBefore>

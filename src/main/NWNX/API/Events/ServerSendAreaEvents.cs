@@ -3,7 +3,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public class ServerSendAreaEvents
+  public static class ServerSendAreaEvents
   {
     [NWNXEvent("NWNX_ON_SERVER_SEND_AREA_BEFORE")]
     public class OnServerSendAreaBefore : NWNXEvent<OnServerSendAreaBefore>

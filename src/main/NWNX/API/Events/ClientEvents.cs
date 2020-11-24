@@ -3,7 +3,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public class ClientEvents
+  public static class ClientEvents
   {
     [NWNXEvent("NWNX_ON_CLIENT_DISCONNECT_BEFORE")]
     public class OnClientDisconnectBefore : NWNXEventSkippable<OnClientDisconnectBefore>

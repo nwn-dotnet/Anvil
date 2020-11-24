@@ -3,7 +3,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public class AssociateEvents
+  public static class AssociateEvents
   {
     [NWNXEvent("NWNX_ON_ADD_ASSOCIATE_BEFORE")]
     public class OnAddAssociateBefore : NWNXEvent<OnAddAssociateBefore>

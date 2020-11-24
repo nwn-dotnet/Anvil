@@ -3,7 +3,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public class StoreEvents
+  public static class StoreEvents
   {
     [NWNXEvent("NWNX_ON_STORE_REQUEST_BUY_BEFORE")]
     public class OnStoreRequestBuyBefore : NWNXEvent<OnStoreRequestBuyBefore>
