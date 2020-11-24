@@ -98,26 +98,6 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets all creatures that are associated with this player.
-    /// </summary>
-    /// <param name="associateType">The type of associates to resolve.</param>
-    /// <returns>An enumeration containing all creatures that are associated.</returns>
-    public IEnumerable<NwCreature> GetAssociates(AssociateType associateType)
-    {
-      int i;
-      uint obj;
-
-      for (i = 1, obj = NWScript.GetAssociate(i); obj != INVALID; i++, obj = NWScript.GetAssociate(i))
-      {
-        NwCreature next = obj.ToNwObjectSafe<NwCreature>();
-        if (next != null)
-        {
-          yield return next;
-        }
-      }
-    }
-
-    /// <summary>
     /// Boots this player from the server.
     /// </summary>
     /// <param name="reason">An optional message to show to the player.</param>

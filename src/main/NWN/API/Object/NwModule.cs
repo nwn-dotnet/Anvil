@@ -85,11 +85,6 @@ namespace NWN.API
       set => NWScript.SetMaxHenchmen(value);
     }
 
-    public Spell SpellId
-    {
-      get => (Spell)NWScript.GetSpellId();
-    }
-
     /// <summary>
     /// Gets the current server difficulty setting.
     /// </summary>

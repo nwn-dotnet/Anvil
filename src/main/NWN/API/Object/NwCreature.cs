@@ -456,7 +456,7 @@ namespace NWN.API
     /// </summary>
     public int BaseAttackCount
     {
-      set => NWScript.SetBaseAttackBonus(value);
+      set => NWScript.SetBaseAttackBonus(value, this);
     }
 
     /// <summary>
