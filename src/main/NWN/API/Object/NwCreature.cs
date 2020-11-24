@@ -1198,6 +1198,17 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Instructs this creature to perform the specified action on a door.
+    /// </summary>
+    /// <param name="door">The door to interact with.</param>
+    /// <param name="doorAction">The action to perform on the door.</param>
+    public async Task ActionDoDoorAction(NwDoor door, DoorAction doorAction)
+    {
+      await WaitForObjectContext();
+      NWScript.DoDoorAction(door, (int)doorAction);
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this creature considers the target as a friend.
     /// </summary>
     /// <param name="target">The target creature.</param>

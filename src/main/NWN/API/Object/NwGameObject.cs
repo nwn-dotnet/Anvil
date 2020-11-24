@@ -464,10 +464,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns whether or not there is a direct line of sight between the two objects. (Not blocked by any geometry).<br/>
-    /// PLEASE NOTE: This is an expensive function and may degrade performance if used frequently.
+    /// Gets whether this object has a direct line of sight to the specified object (not blocked by any geometry).<br/>
+    /// @note This is an expensive function and may degrade performance if used frequently.
     /// </summary>
-    public static bool LineOfSightObject(NwGameObject source, NwGameObject target)
-      => NWScript.LineOfSightObject(source, target).ToBool();
+    /// <param name="target">The target object to perform the line of sight check against.</param>
+    /// <returns>true if this object has line of sight on the target, otherwise false.</returns>
+    public bool HasLineOfSight(NwGameObject target)
+      => NWScript.LineOfSightObject(this, target).ToBool();
   }
 }

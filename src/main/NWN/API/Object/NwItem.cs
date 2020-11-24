@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
 using NWNX.API.Constants;
@@ -228,10 +229,17 @@ namespace NWN.API
     /// </summary>
     /// <param name="targetInventory">The target inventory to create the cloned item.</param>
     /// <param name="newTag">A new tag to assign the cloned item.</param>
+    /// <param name="copyVars">If true, local variables on the item are copied.</param>
     /// <returns>The newly cloned copy of the item.</returns>
-    public NwItem Clone(NwGameObject targetInventory, string newTag = null)
+    public NwItem Clone(NwGameObject targetInventory, string newTag = null, bool copyVars = true)
     {
-      return NWScript.CopyObject(this, targetInventory.Location, targetInventory, newTag).ToNwObject<NwItem>();
+      NwItem clone = NWScript.CopyObject(this, targetInventory.Location, targetInventory, newTag).ToNwObject<NwItem>();
+      if (!copyVars)
+      {
+        CleanLocalVariables(clone);
+      }
+
+      return clone;
     }
 
     /// <summary>
@@ -239,10 +247,31 @@ namespace NWN.API
     /// </summary>
     /// <param name="location">The location to create the cloned item.</param>
     /// <param name="newTag">A new tag to assign the cloned item.</param>
+    /// <param name="copyVars">If true, local variables on the item are copied.</param>
     /// <returns>The newly cloned copy of the item.</returns>
-    public NwItem Clone(Location location, string newTag = null)
+    public NwItem Clone(Location location, string newTag = null, bool copyVars = true)
     {
-      return NWScript.CopyObject(this, location, INVALID, newTag).ToNwObject<NwItem>();
+      NwItem clone = NWScript.CopyObject(this, location, INVALID, newTag).ToNwObject<NwItem>();
+      if (!copyVars)
+      {
+        CleanLocalVariables(clone);
+      }
+
+      return clone;
+    }
+
+    private static void CleanLocalVariables(NwItem clone)
+    {
+      if (clone == null)
+      {
+        return;
+      }
+
+      List<LocalVariable> localVariables = clone.LocalVariables.ToList();
+      foreach (LocalVariable localVariable in localVariables)
+      {
+        localVariable.Delete();
+      }
     }
 
     /// <summary>
