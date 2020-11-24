@@ -112,21 +112,28 @@ namespace NWN.API
       set => base.Rotation = 360 - value;
     }
 
-    /// <summary>
-    /// Gets the last object that locked the caller.
-    /// </summary>
-    public NwGameObject LastLocked() => NWScript.GetLastLocked().ToNwObject<NwGameObject>();
-
-    public override Location Location => Location.Create(Area, Position, Rotation);
-
-    /// <summary>
-    /// Set the fortitude saving throw value for a door or placeable object.
-    /// </summary>
-    /// <param name="savingthrow">Type of saving throw to set.</param>
-    /// <param name="amount">Must be between 0 and 250.</param>
-    public void SetSavingThrow(SavingThrow savingthrow, int amount)
+    public override Location Location
     {
-      switch (savingthrow)
+      get => Location.Create(Area, Position, Rotation);
+    }
+
+    /// <summary>
+    /// Gets the object that last locked this stationary object.
+    /// </summary>
+    public async Task<NwGameObject> GetLastLockedBy()
+    {
+      await WaitForObjectContext();
+      return NWScript.GetLastLocked().ToNwObject<NwGameObject>();
+    }
+
+    /// <summary>
+    /// Sets the saving throw value for this stationary object.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw to set.</param>
+    /// <param name="amount">The new saving throw value (0-250).</param>
+    public void SetSavingThrow(SavingThrow savingThrow, int amount)
+    {
+      switch (savingThrow)
       {
         case SavingThrow.Fortitude:
           NWScript.SetFortitudeSavingThrow(this, amount);
@@ -143,8 +150,7 @@ namespace NWN.API
           NWScript.SetWillSavingThrow(this, amount);
           break;
         default:
-          // Something should go here.
-          throw new ArgumentOutOfRangeException(nameof(savingthrow), $"#{savingthrow} invalid.");
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
       }
     }
   }

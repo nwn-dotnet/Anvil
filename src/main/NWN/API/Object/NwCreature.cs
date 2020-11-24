@@ -1225,10 +1225,21 @@ namespace NWN.API
     /// </summary>
     /// <param name="door">The door to interact with.</param>
     /// <param name="doorAction">The action to perform on the door.</param>
-    public async Task ActionDoDoorAction(NwDoor door, DoorAction doorAction)
+    public async Task DoDoorAction(NwDoor door, DoorAction doorAction)
     {
       await WaitForObjectContext();
       NWScript.DoDoorAction(door, (int)doorAction);
+    }
+
+    /// <summary>
+    /// Instructs this creature to perform the specified action on a placeable.
+    /// </summary>
+    /// <param name="placeable">The placeable to interact with.</param>
+    /// <param name="placeableAction">The action to perform on the placeable.</param>
+    public async Task DoPlaceableAction(NwPlaceable placeable, PlaceableAction placeableAction)
+    {
+      await WaitForObjectContext();
+      NWScript.DoPlaceableObjectAction(placeable, (int)placeableAction);
     }
 
     /// <summary>
@@ -1474,21 +1485,10 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// This is a command to move instantly to the Location referenced by Location.
+    /// Teleports this creature to the nearest valid location by the target.<br/>
+    /// This action produces no visual effect.
     /// </summary>
-    /// <param name="location">Location to immediately jump to.</param>
-    /// <remarks>Does not affect creatures that are dead; they must have HP above 0 for this function to work properly.</remarks>
-    public async Task JumpToLocation(Location location)
-    {
-      await WaitForObjectContext();
-      NWScript.JumpToLocation(location);
-    }
-
-    /// <summary>
-    /// Teleports the calling object to the nearest valid location by the target.<br/>
-    /// The action produces no visual effect.
-    /// </summary>
-    /// <param name="gameObject">Target object that will be jumped to.</param>
+    /// <param name="gameObject">The target object to jump to.</param>
     /// <param name="walkStraightLineToPoint">Unknown.</param>
     /// <remarks>Does not affect dead or dying creatures.</remarks>
     public async Task JumpToObject(NwGameObject gameObject, bool walkStraightLineToPoint = true)
@@ -1502,7 +1502,6 @@ namespace NWN.API
     /// </summary>
     /// <param name="dialogResRef">The dialog resource reference to use.</param>
     /// <param name="tokenTarget">The object to use if there are object-specific tokens in the string.</param>
-    /// <returns></returns>
     public async Task SpeakOneLinerConversation(string dialogResRef = "", NwGameObject tokenTarget = null)
     {
       await WaitForObjectContext();

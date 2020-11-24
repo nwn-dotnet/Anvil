@@ -31,6 +31,8 @@ namespace NWN.API
     /// <summary>
     /// Determines whether the specified action can be performed on this door.
     /// </summary>
+    /// <param name="action">The action to check.</param>
+    /// <returns>true if the specified action can be performed, otherwise false.</returns>
     public bool IsDoorActionPossible(DoorAction action)
       => NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
   }

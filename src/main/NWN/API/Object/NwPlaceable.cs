@@ -95,18 +95,11 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Check whether a given action is valid for this (placeable object).
+    /// Determines whether the specified action can be performed on this placeable.
     /// </summary>
-    public PlaceableAction IsPlaceableObjectActionPossible(PlaceableAction action)
-      => (PlaceableAction)NWScript.GetIsPlaceableObjectActionPossible(this, (int)action);
-
-    /// <summary>
-    /// Starts a placeable object special action.
-    /// </summary>
-    public async Task DoPlaceableObjectAction(PlaceableAction placeable)
-    {
-      await WaitForObjectContext();
-      NWScript.DoPlaceableObjectAction(this, (int)placeable);
-    }
+    /// <param name="action">The action to check.</param>
+    /// <returns>true if the specified action can be performed, otherwise false.</returns>
+    public bool IsPlaceableActionPossible(PlaceableAction action)
+      => NWScript.GetIsPlaceableObjectActionPossible(this, (int)action).ToBool();
   }
 }
