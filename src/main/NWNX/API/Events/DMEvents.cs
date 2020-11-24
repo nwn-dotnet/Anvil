@@ -9,12 +9,12 @@ namespace NWNX.API.Events
     public class OnPlayerDMLoginBefore : NWNXEventSkippable<OnPlayerDMLoginBefore>
     {
       /// <summary>
-      /// The player attempting to login as a DM.
+      /// Gets the player attempting to login as a DM.
       /// </summary>
       public NwPlayer Player { get; private set; }
 
       /// <summary>
-      /// The password specified in this login attempt.
+      /// Gets the password specified in this login attempt.
       /// </summary>
       public string Password { get; private set; }
 
@@ -29,12 +29,12 @@ namespace NWNX.API.Events
     public class OnPlayerDMLoginAfter : NWNXEventSkippable<OnPlayerDMLoginAfter>
     {
       /// <summary>
-      /// The player/DM attempting to login as a DM.
+      /// Gets the player/DM attempting to login as a DM.
       /// </summary>
       public NwPlayer Player { get; private set; }
 
       /// <summary>
-      /// The password specified in this login attempt.
+      /// Gets the password specified in this login attempt.
       /// </summary>
       public string Password { get; private set; }
 
@@ -49,7 +49,7 @@ namespace NWNX.API.Events
     public class OnPlayerDMLogoutBefore : NWNXEventSkippable<OnPlayerDMLogoutBefore>
     {
       /// <summary>
-      /// The player/DM attempting to logout.
+      /// Gets the player/DM attempting to logout.
       /// </summary>
       public NwPlayer Player { get; private set; }
 
@@ -63,7 +63,7 @@ namespace NWNX.API.Events
     public class OnPlayerDMLogoutAfter : NWNXEventSkippable<OnPlayerDMLogoutAfter>
     {
       /// <summary>
-      /// The player/DM attempting to logout.
+      /// Gets the player/DM attempting to logout.
       /// </summary>
       public NwPlayer Player { get; private set; }
 
