@@ -1,5 +1,14 @@
 var NAVTREEINDEX5 =
 {
+"classNWN_1_1API_1_1NwCreature.html#a92cc2007238caadf02f6859ffab1c0f9":[0,0,0,0,22,121],
+"classNWN_1_1API_1_1NwCreature.html#a92f73d20c256cb927c4a9edd561c77a4":[0,0,0,0,22,140],
+"classNWN_1_1API_1_1NwCreature.html#a98245e29f8b93d3af63cf06cdaf6ae07":[0,0,0,0,22,8],
+"classNWN_1_1API_1_1NwCreature.html#a98976c519843f390fbded268f565fb59":[0,0,0,0,22,69],
+"classNWN_1_1API_1_1NwCreature.html#a9a1c049bff7c90a565af7e74114794ba":[0,0,0,0,22,54],
+"classNWN_1_1API_1_1NwCreature.html#a9c2c684bf440b2e777240e50a372eea7":[0,0,0,0,22,144],
+"classNWN_1_1API_1_1NwCreature.html#a9c3d51ce2869e467a623bb81793dd178":[0,0,0,0,22,82],
+"classNWN_1_1API_1_1NwCreature.html#a9f8c434eb6b406ccb99e92824c395030":[0,0,0,0,22,27],
+"classNWN_1_1API_1_1NwCreature.html#aa248fee4257e8620dc2c6c38446ce95f":[0,0,0,0,22,136],
 "classNWN_1_1API_1_1NwCreature.html#aa4b285acabeddc2a1fb4bc2adf4108ad":[0,0,0,0,22,78],
 "classNWN_1_1API_1_1NwCreature.html#aa4bc99de35ea1862a438f031e0ce3190":[0,0,0,0,22,118],
 "classNWN_1_1API_1_1NwCreature.html#aa68ae2177e27d253620e75bdcba29cd6":[0,0,0,0,22,28],
@@ -240,14 +249,5 @@ var NAVTREEINDEX5 =
 "classNWN_1_1API_1_1NwPlaceable.html#a8e6d7905fdb6e2c94afa3afdfdfbd89d":[0,0,0,0,31,2],
 "classNWN_1_1API_1_1NwPlaceable.html#afdd46163603b1b23b8689547afd169f7":[0,0,0,0,31,0],
 "classNWN_1_1API_1_1NwPlayer.html":[0,0,0,0,32],
-"classNWN_1_1API_1_1NwPlayer.html#a059fa49c3e8740459b044c44e5580d57":[0,0,0,0,32,24],
-"classNWN_1_1API_1_1NwPlayer.html#a0b64a68c345c3218bd9f6c114215696a":[0,0,0,0,32,28],
-"classNWN_1_1API_1_1NwPlayer.html#a0d3fcfe9ab1c855ae601e067576c3c59":[0,0,0,0,32,7],
-"classNWN_1_1API_1_1NwPlayer.html#a17db45ed8b9b0832b386bb4de058e3af":[0,0,0,0,32,40],
-"classNWN_1_1API_1_1NwPlayer.html#a1ca15bd6d53d4732a740640498c8631e":[0,0,0,0,32,41],
-"classNWN_1_1API_1_1NwPlayer.html#a1de5768107131c5179be4bbcf8f218af":[0,0,0,0,32,26],
-"classNWN_1_1API_1_1NwPlayer.html#a1e4991a38c3b9a1076ebf7fa5df4c5fb":[0,0,0,0,32,37],
-"classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802":[0,0,0,0,32,9],
-"classNWN_1_1API_1_1NwPlayer.html#a21fefcbd1d72624b17bb6ff526eb49f5":[0,0,0,0,32,17],
-"classNWN_1_1API_1_1NwPlayer.html#a22177cc9bca974e72269e0f870034c94":[0,0,0,0,32,33]
+"classNWN_1_1API_1_1NwPlayer.html#a059fa49c3e8740459b044c44e5580d57":[0,0,0,0,32,24]
 };

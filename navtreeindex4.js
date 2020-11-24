@@ -1,5 +1,14 @@
 var NAVTREEINDEX4 =
 {
+"classNWN_1_1API_1_1IntegerExtensions.html#a4b4938603f3077a54e85c041bc5df769":[0,0,0,0,13,4],
+"classNWN_1_1API_1_1IntegerExtensions.html#a6aa1dbf814b99def151419ffa4adcbc8":[0,0,0,0,13,2],
+"classNWN_1_1API_1_1IntegerExtensions.html#ac0c21e82f5fbcf25d5ba9716ed201ed1":[0,0,0,0,13,3],
+"classNWN_1_1API_1_1IntegerExtensions.html#ad3110bea97fa471f8146f833327fac56":[0,0,0,0,13,5],
+"classNWN_1_1API_1_1IntegerExtensions.html#ae21fef4451808ef02d3a3509a63762bc":[0,0,0,0,13,1],
+"classNWN_1_1API_1_1ItemProperty.html":[0,0,0,0,14],
+"classNWN_1_1API_1_1ItemProperty.html#a02e9812e3970cced7034b0a766027ef7":[0,0,0,0,14,14],
+"classNWN_1_1API_1_1ItemProperty.html#a04376dd50a4cfa97c5d8a42056578014":[0,0,0,0,14,77],
+"classNWN_1_1API_1_1ItemProperty.html#a067ff2be995a32003ccb331f905eb5a6":[0,0,0,0,14,28],
 "classNWN_1_1API_1_1ItemProperty.html#a06d955e523ee2fb671a1517ff668bf70":[0,0,0,0,14,76],
 "classNWN_1_1API_1_1ItemProperty.html#a0b41ebb5d4125ddfd531f31c32a778ae":[0,0,0,0,14,26],
 "classNWN_1_1API_1_1ItemProperty.html#a0c03c3a8ff6facc6d2bfc452409802bf":[0,0,0,0,14,11],
@@ -240,14 +249,5 @@ var NAVTREEINDEX4 =
 "classNWN_1_1API_1_1NwCreature.html#a8c202146bdd4583d9e2bb026bc44b733":[0,0,0,0,22,100],
 "classNWN_1_1API_1_1NwCreature.html#a8df1876af52bc86cb125838b565b5ffc":[0,0,0,0,22,66],
 "classNWN_1_1API_1_1NwCreature.html#a8faea3c8f3024a2f9a6c80790fad54c5":[0,0,0,0,22,84],
-"classNWN_1_1API_1_1NwCreature.html#a913688c5e8c8182a0099849b649ab608":[0,0,0,0,22,57],
-"classNWN_1_1API_1_1NwCreature.html#a92cc2007238caadf02f6859ffab1c0f9":[0,0,0,0,22,121],
-"classNWN_1_1API_1_1NwCreature.html#a92f73d20c256cb927c4a9edd561c77a4":[0,0,0,0,22,140],
-"classNWN_1_1API_1_1NwCreature.html#a98245e29f8b93d3af63cf06cdaf6ae07":[0,0,0,0,22,8],
-"classNWN_1_1API_1_1NwCreature.html#a98976c519843f390fbded268f565fb59":[0,0,0,0,22,69],
-"classNWN_1_1API_1_1NwCreature.html#a9a1c049bff7c90a565af7e74114794ba":[0,0,0,0,22,54],
-"classNWN_1_1API_1_1NwCreature.html#a9c2c684bf440b2e777240e50a372eea7":[0,0,0,0,22,144],
-"classNWN_1_1API_1_1NwCreature.html#a9c3d51ce2869e467a623bb81793dd178":[0,0,0,0,22,82],
-"classNWN_1_1API_1_1NwCreature.html#a9f8c434eb6b406ccb99e92824c395030":[0,0,0,0,22,27],
-"classNWN_1_1API_1_1NwCreature.html#aa248fee4257e8620dc2c6c38446ce95f":[0,0,0,0,22,136]
+"classNWN_1_1API_1_1NwCreature.html#a913688c5e8c8182a0099849b649ab608":[0,0,0,0,22,57]
 };

@@ -46,10 +46,11 @@ var searchData=
   ['dmpassword_183',['DMPassword',['../classNWNX_1_1API_1_1Administration.html#a83967b8f6a8b661a75fa7e482f28433d',1,'NWNX::API::Administration']]],
   ['dodooraction_184',['DoDoorAction',['../classNWN_1_1API_1_1NwCreature.html#a4b0cc3310f1e4f820a55242c5d73e915',1,'NWN::API::NwCreature']]],
   ['dominated_185',['Dominated',['../classNWN_1_1API_1_1Effect.html#a8700288ee749806c5ae644487c8c7efb',1,'NWN::API::Effect']]],
-  ['doorevents_186',['DoorEvents',['../classNWN_1_1API_1_1Events_1_1DoorEvents.html',1,'NWN::API::Events']]],
-  ['doplaceableaction_187',['DoPlaceableAction',['../classNWN_1_1API_1_1NwCreature.html#ae8b268ace02426a058d458048badd0b3',1,'NWN::API::NwCreature']]],
-  ['doskillcheck_188',['DoSkillCheck',['../classNWN_1_1API_1_1NwCreature.html#a08e4eecbda0026f8b311476d4f6080b6',1,'NWN::API::NwCreature']]],
-  ['droppable_189',['Droppable',['../classNWN_1_1API_1_1NwItem.html#a883469f9bc770e79a17eb627168c9ff3',1,'NWN::API::NwItem']]],
-  ['durationremaining_190',['DurationRemaining',['../classNWN_1_1API_1_1Effect.html#a17fdcc6f129e74d98d3db4bf99c8ffc3',1,'NWN::API::Effect']]],
-  ['durationtype_191',['DurationType',['../classNWN_1_1API_1_1Effect.html#a54895925e777a5724009c32de6dd124e',1,'NWN.API.Effect.DurationType()'],['../classNWN_1_1API_1_1ItemProperty.html#a2d493ac98fee7ed82e2c7073c52c2851',1,'NWN.API.ItemProperty.DurationType()']]]
+  ['door_186',['Door',['../classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnSpellCastAt.html#a978eb6f48fd1b5853a1dce87c245babc',1,'NWN::API::Events::DoorEvents::OnSpellCastAt']]],
+  ['doorevents_187',['DoorEvents',['../classNWN_1_1API_1_1Events_1_1DoorEvents.html',1,'NWN::API::Events']]],
+  ['doplaceableaction_188',['DoPlaceableAction',['../classNWN_1_1API_1_1NwCreature.html#ae8b268ace02426a058d458048badd0b3',1,'NWN::API::NwCreature']]],
+  ['doskillcheck_189',['DoSkillCheck',['../classNWN_1_1API_1_1NwCreature.html#a08e4eecbda0026f8b311476d4f6080b6',1,'NWN::API::NwCreature']]],
+  ['droppable_190',['Droppable',['../classNWN_1_1API_1_1NwItem.html#a883469f9bc770e79a17eb627168c9ff3',1,'NWN::API::NwItem']]],
+  ['durationremaining_191',['DurationRemaining',['../classNWN_1_1API_1_1Effect.html#a17fdcc6f129e74d98d3db4bf99c8ffc3',1,'NWN::API::Effect']]],
+  ['durationtype_192',['DurationType',['../classNWN_1_1API_1_1Effect.html#a54895925e777a5724009c32de6dd124e',1,'NWN.API.Effect.DurationType()'],['../classNWN_1_1API_1_1ItemProperty.html#a2d493ac98fee7ed82e2c7073c52c2851',1,'NWN.API.ItemProperty.DurationType()']]]
 ];

@@ -224,7 +224,10 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpawn.html#a54c4b5bc06048476b9386b06ee2ff14b":[0,0,0,0,1,2,10,1],
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpawn.html#a83a2817f2b650d456a55667527a0383b":[0,0,0,0,1,2,10,0],
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html":[0,0,0,0,1,2,11],
-"classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html#a7ce18f853daa3edc7cc0a72291925208":[0,0,0,0,1,2,11,1],
+"classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html#a1c46d849d6b8223d1b4c992c361253e7":[0,0,0,0,1,2,11,1],
+"classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html#a1e12aeaa3cb6ea902a8bc71d86a6233a":[0,0,0,0,1,2,11,3],
+"classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html#a2ccab3239dddffb66d11304e53aab852":[0,0,0,0,1,2,11,4],
+"classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html#a7ce18f853daa3edc7cc0a72291925208":[0,0,0,0,1,2,11,2],
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnSpellCastAt.html#a8b097e517f8771c0bcd2aa5ae95983e6":[0,0,0,0,1,2,11,0],
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html":[0,0,0,0,1,2,12],
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html#a02f97791bb97ed5162db2cd9e580060f":[0,0,0,0,1,2,12,0],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#ae920e27b4d92864d3d419250209ba493":[0,0,0,0,1,3,1,4],
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#afb2ec123d7b57c6ed0bc36b9c14a1748":[0,0,0,0,1,3,1,1],
 "classNWN_1_1API_1_1Events_1_1DoorEvents.html":[0,0,0,0,1,4],
-"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html":[0,0,0,0,1,4,0],
-"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html#a87526db5169557d993aa37c5d14516d8":[0,0,0,0,1,4,0,0],
-"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html#aad3419bb164aa320dda900db09399be9":[0,0,0,0,1,4,0,1],
-"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnClose.html":[0,0,0,0,1,4,1]
+"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html":[0,0,0,0,1,4,0]
 };
