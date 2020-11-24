@@ -1,5 +1,7 @@
+using System;
 using System.Numerics;
 using System.Threading.Tasks;
+using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
 
@@ -110,6 +112,46 @@ namespace NWN.API
       set => base.Rotation = 360 - value;
     }
 
-    public override Location Location => Location.Create(Area, Position, Rotation);
+    public override Location Location
+    {
+      get => Location.Create(Area, Position, Rotation);
+    }
+
+    /// <summary>
+    /// Gets the object that last locked this stationary object.
+    /// </summary>
+    public async Task<NwGameObject> GetLastLockedBy()
+    {
+      await WaitForObjectContext();
+      return NWScript.GetLastLocked().ToNwObject<NwGameObject>();
+    }
+
+    /// <summary>
+    /// Sets the saving throw value for this stationary object.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw to set.</param>
+    /// <param name="amount">The new saving throw value (0-250).</param>
+    public void SetSavingThrow(SavingThrow savingThrow, int amount)
+    {
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          NWScript.SetFortitudeSavingThrow(this, amount);
+          break;
+        case SavingThrow.Reflex:
+          NWScript.SetReflexSavingThrow(this, amount);
+          break;
+        case SavingThrow.Will:
+          NWScript.SetWillSavingThrow(this, amount);
+          break;
+        case SavingThrow.All:
+          NWScript.SetFortitudeSavingThrow(this, amount);
+          NWScript.SetReflexSavingThrow(this, amount);
+          NWScript.SetWillSavingThrow(this, amount);
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
+    }
   }
 }

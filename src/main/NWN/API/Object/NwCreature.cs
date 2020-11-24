@@ -993,7 +993,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Moves the specified item to this creature's inventory.
+    /// Moves the specified item/item stack to this creature's inventory.
     /// </summary>
     /// <param name="item">The item to add.</param>
     public async Task GiveItem(NwItem item)
@@ -1013,6 +1013,29 @@ namespace NWN.API
         await assignTarget.WaitForObjectContext();
         NWScript.ActionGiveItem(item, this);
       }
+    }
+
+    /// <summary>
+    /// Moves a specified amount of items from an item stack to this creature's inventory.
+    /// </summary>
+    /// <param name="item">The item to add.</param>
+    /// <param name="amount">The number of items from the item stack to take.</param>
+    public async Task GiveItem(NwItem item, int amount)
+    {
+      if (amount > item.StackSize)
+      {
+        amount = item.StackSize;
+      }
+
+      if (amount == item.StackSize)
+      {
+        await GiveItem(item);
+        return;
+      }
+
+      NwItem clone = item.Clone(this);
+      clone.StackSize = amount;
+      item.StackSize -= amount;
     }
 
     /// <summary>
@@ -1195,6 +1218,28 @@ namespace NWN.API
     {
       await WaitForObjectContext();
       NWScript.ActionUseTalentOnObject(talent, target);
+    }
+
+    /// <summary>
+    /// Instructs this creature to perform the specified action on a door.
+    /// </summary>
+    /// <param name="door">The door to interact with.</param>
+    /// <param name="doorAction">The action to perform on the door.</param>
+    public async Task DoDoorAction(NwDoor door, DoorAction doorAction)
+    {
+      await WaitForObjectContext();
+      NWScript.DoDoorAction(door, (int)doorAction);
+    }
+
+    /// <summary>
+    /// Instructs this creature to perform the specified action on a placeable.
+    /// </summary>
+    /// <param name="placeable">The placeable to interact with.</param>
+    /// <param name="placeableAction">The action to perform on the placeable.</param>
+    public async Task DoPlaceableAction(NwPlaceable placeable, PlaceableAction placeableAction)
+    {
+      await WaitForObjectContext();
+      NWScript.DoPlaceableObjectAction(placeable, (int)placeableAction);
     }
 
     /// <summary>
@@ -1437,6 +1482,30 @@ namespace NWN.API
     {
       await WaitForObjectContext();
       return NWScript.GetIsWeaponEffective(target, offHand.ToInt()).ToBool();
+    }
+
+    /// <summary>
+    /// Teleports this creature to the nearest valid location by the target.<br/>
+    /// This action produces no visual effect.
+    /// </summary>
+    /// <param name="gameObject">The target object to jump to.</param>
+    /// <param name="walkStraightLineToPoint">Unknown.</param>
+    /// <remarks>Does not affect dead or dying creatures.</remarks>
+    public async Task JumpToObject(NwGameObject gameObject, bool walkStraightLineToPoint = true)
+    {
+      await WaitForObjectContext();
+      NWScript.JumpToObject(gameObject, walkStraightLineToPoint.ToInt());
+    }
+
+    /// <summary>
+    /// Instructs this creature to immediately speak the first non-branching conversation line in their dialog.
+    /// </summary>
+    /// <param name="dialogResRef">The dialog resource reference to use.</param>
+    /// <param name="tokenTarget">The object to use if there are object-specific tokens in the string.</param>
+    public async Task SpeakOneLinerConversation(string dialogResRef = "", NwGameObject tokenTarget = null)
+    {
+      await WaitForObjectContext();
+      NWScript.SpeakOneLinerConversation(dialogResRef, tokenTarget);
     }
   }
 }

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 
@@ -126,5 +127,14 @@ namespace NWN.API
     /// Disables this trap as if a creature disarmed it (calling the OnDisarm event respectively).
     /// </summary>
     public void DisableTrap() => NWScript.SetTrapDisabled(this);
+
+    /// <summary>
+    /// Gets the creature who last disarmed the trap on this object.
+    /// </summary>
+    public async Task<NwCreature> GetLastDisarmedBy()
+    {
+      await WaitForObjectContext();
+      return NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
+    }
   }
 }
