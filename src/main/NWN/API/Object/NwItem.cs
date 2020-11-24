@@ -29,7 +29,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the amount of stacked items.
+    /// Gets or sets the number of stacked items attached to this object.
     /// </summary>
     public int StackSize
     {
@@ -179,15 +179,6 @@ namespace NWN.API
         }
       }
     }
-
-    /// <summary>
-    /// Gets the number of items in a stack attached to item.<br/>
-    /// Only items that are the same may be stacked;<br/>
-    /// i.e. two gems of the same name can be stacked, but a sword and an arrow cannot.
-    /// </summary>
-    /// <remarks>Value of 0 if an invalid object is provided for this (item),<br/>
-    /// or if this (item) isn't an item.</remarks>
-    public int NumStackedItems => NWScript.GetNumStackedItems(this);
 
     /// <summary>
     /// Adds the specified item property to this item.
