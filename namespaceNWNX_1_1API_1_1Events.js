@@ -28,6 +28,12 @@ var namespaceNWNX_1_1API_1_1Events =
     ] ],
     [ "DamageData", "structNWNX_1_1API_1_1Events_1_1DamageData.html", "structNWNX_1_1API_1_1Events_1_1DamageData" ],
     [ "DamageEvent", "classNWNX_1_1API_1_1Events_1_1DamageEvent.html", "classNWNX_1_1API_1_1Events_1_1DamageEvent" ],
+    [ "DMEvents", "classNWNX_1_1API_1_1Events_1_1DMEvents.html", [
+      [ "OnPlayerDMLoginAfter", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLoginAfter.html", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLoginAfter" ],
+      [ "OnPlayerDMLoginBefore", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLoginBefore.html", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLoginBefore" ],
+      [ "OnPlayerDMLogoutAfter", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLogoutAfter.html", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLogoutAfter" ],
+      [ "OnPlayerDMLogoutBefore", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLogoutBefore.html", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLogoutBefore" ]
+    ] ],
     [ "ELCEvents", "classNWNX_1_1API_1_1Events_1_1ELCEvents.html", [
       [ "OnValidateAfter", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateAfter.html", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateAfter" ],
       [ "OnValidateBefore", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateBefore.html", "classNWNX_1_1API_1_1Events_1_1ELCEvents_1_1OnValidateBefore" ]

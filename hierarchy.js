@@ -35,6 +35,7 @@ var hierarchy =
     [ "NWNX.API.Dialog", "classNWNX_1_1API_1_1Dialog.html", null ],
     [ "NWN.API.Events.DialogEvents", "classNWN_1_1API_1_1Events_1_1DialogEvents.html", null ],
     [ "NWN.API.Constants.Direction", "classNWN_1_1API_1_1Constants_1_1Direction.html", null ],
+    [ "NWNX.API.Events.DMEvents", "classNWNX_1_1API_1_1Events_1_1DMEvents.html", null ],
     [ "NWN.API.Events.DoorEvents", "classNWN_1_1API_1_1Events_1_1DoorEvents.html", null ],
     [ "NWN.API.Effect", "classNWN_1_1API_1_1Effect.html", null ],
     [ "NWNX.API.Effect", "classNWNX_1_1API_1_1Effect.html", null ],
@@ -584,6 +585,18 @@ var hierarchy =
     ] ],
     [ "NWNX.API.Events.NWNXEventSkippable< OnLevelUpBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
       [ "NWNX.API.Events.LevelEvents.OnLevelUpBefore", "classNWNX_1_1API_1_1Events_1_1LevelEvents_1_1OnLevelUpBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnPlayerDMLoginAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.DMEvents.OnPlayerDMLoginAfter", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLoginAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnPlayerDMLoginBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.DMEvents.OnPlayerDMLoginBefore", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLoginBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnPlayerDMLogoutAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.DMEvents.OnPlayerDMLogoutAfter", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLogoutAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnPlayerDMLogoutBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.DMEvents.OnPlayerDMLogoutBefore", "classNWNX_1_1API_1_1Events_1_1DMEvents_1_1OnPlayerDMLogoutBefore.html", null ]
     ] ],
     [ "NWNX.API.Events.NWNXEventSkippable< OnRejectInvitationAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
       [ "NWNX.API.Events.PartyEvents.OnRejectInvitationAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnRejectInvitationAfter.html", null ]
