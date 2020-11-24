@@ -47,8 +47,8 @@ var NAVTREEINDEX =
 "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnFailToOpen.html#a4258aea9dd8a18ebf5d86c02f7ea7778",
 "classNWN_1_1API_1_1ItemProperty.html#a2e986e2369d03f23bcffc3a92d46a28b",
 "classNWN_1_1API_1_1NwCreature.html#ac5d394fe80a48b2979b478ff8f375efe",
-"classNWN_1_1API_1_1NwPlayer.html#ac568f63e914766242097f50f667ff73d",
-"interfaceNWN_1_1Services_1_1IInitializable.html#a52547d571b1215eb27631eb8e7dd0f79"
+"classNWN_1_1API_1_1NwPlayer.html#ad9871bef83bc18b73aa286a8427c4811",
+"interfaceNWN_1_1Services_1_1IScriptDispatcher.html#abc5b08a4fc3391e0de54aa649b620028"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

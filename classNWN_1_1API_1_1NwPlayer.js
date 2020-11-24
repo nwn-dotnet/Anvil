@@ -12,7 +12,6 @@ var classNWN_1_1API_1_1NwPlayer =
     [ "ExportCharacter", "classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802", null ],
     [ "FloatingTextString", "classNWN_1_1API_1_1NwPlayer.html#a6f4182f2c101fb64383fa6e81df581c5", null ],
     [ "FloatingTextStrRef", "classNWN_1_1API_1_1NwPlayer.html#a3b3f7ec605f8e9af0c8e94be13d90afe", null ],
-    [ "GetAssociates", "classNWN_1_1API_1_1NwPlayer.html#a306f88d1b4d1712321241db326dbb10a", null ],
     [ "GetCampaignVariable< T >", "classNWN_1_1API_1_1NwPlayer.html#a883a0c91867613bbfaf74a6606b73a9e", null ],
     [ "GiveXp", "classNWN_1_1API_1_1NwPlayer.html#ab20a21b3b27d51d5c9abd94fc31f6919", null ],
     [ "LockCameraDirection", "classNWN_1_1API_1_1NwPlayer.html#a42a499e23f2fdbd655d1d51c11b8409c", null ],

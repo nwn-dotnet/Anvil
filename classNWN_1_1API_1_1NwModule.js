@@ -25,7 +25,6 @@ var classNWN_1_1API_1_1NwModule =
     [ "Players", "classNWN_1_1API_1_1NwModule.html#a646b2c2904f7a1ecea8a55f7cf1c3048", null ],
     [ "SavingThrowBonusLimit", "classNWN_1_1API_1_1NwModule.html#a8bac15895463e6cf8f87fbcdae1c4628", null ],
     [ "SkillBonusLimit", "classNWN_1_1API_1_1NwModule.html#a5775e9a62fc0c2b989eae51253cbd517", null ],
-    [ "SpellId", "classNWN_1_1API_1_1NwModule.html#a4bd53b48f5451a5932cb9679795cb368", null ],
     [ "StartingLocation", "classNWN_1_1API_1_1NwModule.html#a17568517c3530c1f4a10e0c61b931b6b", null ],
     [ "XPScale", "classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc", null ]
 ];

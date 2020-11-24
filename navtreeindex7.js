@@ -1,7 +1,5 @@
 var NAVTREEINDEX7 =
 {
-"interfaceNWN_1_1Services_1_1IInitializable.html#a52547d571b1215eb27631eb8e7dd0f79":[0,0,0,2,3,0],
-"interfaceNWN_1_1Services_1_1IScriptDispatcher.html":[0,0,0,2,5],
 "interfaceNWN_1_1Services_1_1IScriptDispatcher.html#abc5b08a4fc3391e0de54aa649b620028":[0,0,0,2,5,0],
 "interfaceNWN_1_1Services_1_1ITwoDimArray.html":[0,0,0,2,6],
 "interfaceNWN_1_1Services_1_1ITwoDimArray.html#a530f3e23567db404ba48c920d8100b04":[0,0,0,2,6,0],
