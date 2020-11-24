@@ -220,6 +220,14 @@ namespace NWN.API
       return NWScript.GetFactionLeastDamagedMember(GameObject, true.ToInt()).ToNwObject<NwGameObject>();
     }
 
+    /// <summary>
+    /// Adjusts how this faction feels about the specified creature.
+    /// </summary>
+    /// <param name="creature">The target creature for the reputation change.</param>
+    /// <param name="adjustment">The adjustment in reputation to make.</param>
+    public void AdjustReputation(NwCreature creature, int adjustment)
+      => NWScript.AdjustReputation(creature, GameObject, adjustment);
+
     public bool Equals(NwFaction other)
     {
       if (ReferenceEquals(null, other))

@@ -23,6 +23,8 @@ namespace NWN.API
         _ => throw new ArgumentOutOfRangeException(),
       };
     }
+
+    public abstract void Delete();
   }
 
   /// <summary>
@@ -90,7 +92,7 @@ namespace NWN.API
     /// <summary>
     /// Deletes the value of this variable.
     /// </summary>
-    public void Delete() => converter.ClearLocal(Object, Name);
+    public override void Delete() => converter.ClearLocal(Object, Name);
 
     public bool Equals(LocalVariable<T> other)
     {

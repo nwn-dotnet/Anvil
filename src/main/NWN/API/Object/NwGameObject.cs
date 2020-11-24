@@ -345,6 +345,20 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Plays a sound associated with a string reference (strRef).<br/>
+    /// The sound comes out as a mono sound sourcing from the location of the object running the command.<br/>
+    /// If runAsAction is False, then the sound is played instantly.
+    /// </summary>
+    /// <param name="strRef">String reference number of the sound to play.</param>
+    /// <param name="runAsAction">Determines if this is an action that can be stacked on the action queue.</param>
+    /// <remarks>The strRef values for sounds can be found in the file dialog.tlk in the NWN install directory.</remarks>
+    public async Task PlaySoundByStrRef(int strRef, bool runAsAction = true)
+    {
+      await WaitForObjectContext();
+      NWScript.PlaySoundByStrRef(strRef, runAsAction.ToInt());
+    }
+
+    /// <summary>
     /// Gets this creature's base save value for the specified saving throw.
     /// </summary>
     /// <param name="savingThrow">The type of saving throw.</param>
@@ -439,5 +453,23 @@ namespace NWN.API
       get => (AppearanceType)NWScript.GetAppearanceType(this);
       set => NWScript.SetCreatureAppearanceType(this, (int)value);
     }
+
+    /// <summary>
+    /// Gets or sets the PortraitId of this (game object).
+    /// </summary>
+    public int PortraitId
+    {
+      get => NWScript.GetPortraitId(this);
+      set => NWScript.SetPortraitId(this, value);
+    }
+
+    /// <summary>
+    /// Gets whether this object has a direct line of sight to the specified object (not blocked by any geometry).<br/>
+    /// @note This is an expensive function and may degrade performance if used frequently.
+    /// </summary>
+    /// <param name="target">The target object to perform the line of sight check against.</param>
+    /// <returns>true if this object has line of sight on the target, otherwise false.</returns>
+    public bool HasLineOfSight(NwGameObject target)
+      => NWScript.LineOfSightObject(this, target).ToBool();
   }
 }
