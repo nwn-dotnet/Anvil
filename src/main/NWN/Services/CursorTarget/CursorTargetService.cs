@@ -40,13 +40,21 @@ namespace NWN.Services
 
     private void OnPlayerTarget(ModuleEvents.OnPlayerTarget targetEvent)
     {
-      if (awaitingTargetActions.TryGetValue(targetEvent.Player, out TargetEvent callback))
+      if (!awaitingTargetActions.TryGetValue(targetEvent.Player, out TargetEvent callback))
       {
-        awaitingTargetActions.Remove(targetEvent.Player);
-
-        CursorTargetData eventData = new CursorTargetData(targetEvent);
-        callback?.Invoke(eventData);
+        return;
       }
+
+      awaitingTargetActions.Remove(targetEvent.Player);
+
+      CursorTargetData eventData = new CursorTargetData(targetEvent);
+      if (eventData.TargetObj == null)
+      {
+        // Selection was cancelled.
+        return;
+      }
+
+      callback?.Invoke(eventData);
     }
   }
 }

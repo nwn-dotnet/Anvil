@@ -3,7 +3,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public class BarterEvents
+  public static class BarterEvents
   {
     [NWNXEvent("NWNX_ON_BARTER_START_BEFORE")]
     public class OnBarterStartBefore : NWNXEventSkippable<OnBarterStartBefore>

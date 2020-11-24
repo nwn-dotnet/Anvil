@@ -3,7 +3,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public class ExamineEvents
+  public static class ExamineEvents
   {
     [NWNXEvent("NWNX_ON_EXAMINE_OBJECT_BEFORE")]
     public class OnExamineObjectBefore : NWNXEvent<OnExamineObjectBefore>

@@ -2,7 +2,7 @@ using NWN.API;
 
 namespace NWNX.API.Events
 {
-  public class LevelEvents
+  public static class LevelEvents
   {
     [NWNXEvent("NWNX_ON_LEVEL_UP_BEFORE")]
     public class OnLevelUpBefore : NWNXEventSkippable<OnLevelUpBefore>

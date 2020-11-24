@@ -3,7 +3,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  public class CalendarEvents
+  public static class CalendarEvents
   {
     [NWNXEvent("NWNX_ON_CALENDAR_HOUR")]
     public class OnCalendarHour : NWNXEvent<OnCalendarHour>
