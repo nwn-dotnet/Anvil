@@ -1,5 +1,10 @@
 var NAVTREEINDEX2 =
 {
+"classNWNX_1_1API_1_1Util.html#a59de3319db4ef839a33ee7fe9bff6848":[0,0,1,0,20,3],
+"classNWNX_1_1API_1_1Util.html#a5b59eb2523d1c0dbac86c0bda6901d59":[0,0,1,0,20,14],
+"classNWNX_1_1API_1_1Util.html#a6cc65d14509c1ff9786ad93651b552b3":[0,0,1,0,20,15],
+"classNWNX_1_1API_1_1Util.html#a72eded6dbaf8f51a7dcde08b5fe40181":[0,0,1,0,20,10],
+"classNWNX_1_1API_1_1Util.html#a9a2864ea0b2315b44f2bd7d5ddcebd82":[0,0,1,0,20,20],
 "classNWNX_1_1API_1_1Util.html#aac9717ede6b574ad6a7f073a92ffe4e9":[0,0,1,0,20,6],
 "classNWNX_1_1API_1_1Util.html#abb9d78bd756cb980a44da62646d82ab7":[0,0,1,0,20,4],
 "classNWNX_1_1API_1_1Util.html#ac5370cdb988c6dc2436a8c5eb5eccc99":[0,0,1,0,20,21],
@@ -12,8 +17,8 @@ var NAVTREEINDEX2 =
 "classNWNX_1_1API_1_1Weapon.html":[0,0,1,0,22],
 "classNWNX_1_1PluginUtils.html":[0,0,1,2],
 "classNWNX_1_1Services_1_1NWNXEventService.html":[0,0,1,1,0],
-"classNWNX_1_1Services_1_1NWNXEventService.html#a07da3882d86520c171e7de09eb757583":[0,0,1,1,0,0],
-"classNWNX_1_1Services_1_1NWNXEventService.html#acb02c4f504c9ffc7c5566d7f939637ed":[0,0,1,1,0,1],
+"classNWNX_1_1Services_1_1NWNXEventService.html#a1c26d19d0c3545962f9ec366aa6e93d0":[0,0,1,1,0,1],
+"classNWNX_1_1Services_1_1NWNXEventService.html#a1c407127c938b4b224c7296cb0a7b7b2":[0,0,1,1,0,0],
 "classNWN_1_1API_1_1CallInfo.html":[0,0,0,0,2],
 "classNWN_1_1API_1_1CallInfo.html#a3bcdd27c6cec1fd61cb28f584c664a23":[0,0,0,0,2,2],
 "classNWN_1_1API_1_1CallInfo.html#a6c57e8d615d0222f7a593e027bcb82e0":[0,0,0,0,2,1],
@@ -244,10 +249,5 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html":[0,0,0,0,1,3,1],
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#a08b6f260e981d2a15f2d7c1cdabfa75d":[0,0,0,0,1,3,1,2],
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#a1b6e07bb045d56a719873bf4a98b9473":[0,0,0,0,1,3,1,3],
-"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#a29c61df454325797fac4a510771b0883":[0,0,0,0,1,3,1,5],
-"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#a5f17babb83b16a905fb69805a567d520":[0,0,0,0,1,3,1,0],
-"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#ae920e27b4d92864d3d419250209ba493":[0,0,0,0,1,3,1,4],
-"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#afb2ec123d7b57c6ed0bc36b9c14a1748":[0,0,0,0,1,3,1,1],
-"classNWN_1_1API_1_1Events_1_1DoorEvents.html":[0,0,0,0,1,4],
-"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html":[0,0,0,0,1,4,0]
+"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#a29c61df454325797fac4a510771b0883":[0,0,0,0,1,3,1,5]
 };

@@ -55,6 +55,7 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnHeartbeat", "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html", "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined" ]
     ] ],
+    [ "IEvent", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", null ],
     [ "ModuleEvents", "classNWN_1_1API_1_1Events_1_1ModuleEvents.html", [
       [ "OnAcquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem" ],
       [ "OnActivateItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem" ],
@@ -76,7 +77,7 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnUnacquireItem", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined" ]
     ] ],
-    [ "NativeEvent", "classNWN_1_1API_1_1Events_1_1NativeEvent.html", null ],
+    [ "NativeEvent", "classNWN_1_1API_1_1Events_1_1NativeEvent.html", "classNWN_1_1API_1_1Events_1_1NativeEvent" ],
     [ "NativeEventAttribute", "classNWN_1_1API_1_1Events_1_1NativeEventAttribute.html", "classNWN_1_1API_1_1Events_1_1NativeEventAttribute" ],
     [ "PlaceableEvents", "classNWN_1_1API_1_1Events_1_1PlaceableEvents.html", [
       [ "OnClose", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose" ],
@@ -96,7 +97,7 @@ var namespaceNWN_1_1API_1_1Events =
       [ "OnUsed", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed" ],
       [ "OnUserDefined", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined.html", "classNWN_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined" ]
     ] ],
-    [ "ScriptEvent", "classNWN_1_1API_1_1Events_1_1ScriptEvent.html", null ],
+    [ "ScriptEvent", "classNWN_1_1API_1_1Events_1_1ScriptEvent.html", "classNWN_1_1API_1_1Events_1_1ScriptEvent" ],
     [ "SpellEvents", "classNWN_1_1API_1_1Events_1_1SpellEvents.html", [
       [ "OnSpellCast", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast" ]
     ] ],

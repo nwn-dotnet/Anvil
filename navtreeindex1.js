@@ -56,6 +56,11 @@ var NAVTREEINDEX1 =
 "classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html":[0,0,1,0,0,18],
 "classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html":[0,0,1,0,0,19],
 "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html":[0,0,1,0,0,20],
+"classNWNX_1_1API_1_1Events_1_1NWNXEvent.html#a387c90282a831439af2c3335874b636f":[0,0,1,0,0,20,1],
+"classNWNX_1_1API_1_1Events_1_1NWNXEvent.html#a4b9933e9a13d9436b047dcb52206f7aa":[0,0,1,0,0,20,2],
+"classNWNX_1_1API_1_1Events_1_1NWNXEvent.html#a60b66162d5fd459efbd03454ea6c0ddd":[0,0,1,0,0,20,0],
+"classNWNX_1_1API_1_1Events_1_1NWNXEvent.html#abba242f2a60f2d4fe1007bb6e4a1479e":[0,0,1,0,0,20,3],
+"classNWNX_1_1API_1_1Events_1_1NWNXEvent.html#acee279f77f0e20af25fe24ed5cd2487c":[0,0,1,0,0,20,4],
 "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html":[0,0,1,0,0,21],
 "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html#a80658e51245c23fa219307fb91d6827a":[0,0,1,0,0,21,0],
 "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html#a965399177d568b1f8c3f913a04af280a":[0,0,1,0,0,21,1],
@@ -244,10 +249,5 @@ var NAVTREEINDEX1 =
 "classNWNX_1_1API_1_1Util.html#a390780aedb93b3822249f622698bb67d":[0,0,1,0,20,22],
 "classNWNX_1_1API_1_1Util.html#a3cba4aa0a0f5f85c1b10a220ce7bfbe1":[0,0,1,0,20,24],
 "classNWNX_1_1API_1_1Util.html#a3cbb396c4585fc783d861276acd0e589":[0,0,1,0,20,23],
-"classNWNX_1_1API_1_1Util.html#a3e37967860e7204cf3d7ad4309de4007":[0,0,1,0,20,7],
-"classNWNX_1_1API_1_1Util.html#a59de3319db4ef839a33ee7fe9bff6848":[0,0,1,0,20,3],
-"classNWNX_1_1API_1_1Util.html#a5b59eb2523d1c0dbac86c0bda6901d59":[0,0,1,0,20,14],
-"classNWNX_1_1API_1_1Util.html#a6cc65d14509c1ff9786ad93651b552b3":[0,0,1,0,20,15],
-"classNWNX_1_1API_1_1Util.html#a72eded6dbaf8f51a7dcde08b5fe40181":[0,0,1,0,20,10],
-"classNWNX_1_1API_1_1Util.html#a9a2864ea0b2315b44f2bd7d5ddcebd82":[0,0,1,0,20,20]
+"classNWNX_1_1API_1_1Util.html#a3e37967860e7204cf3d7ad4309de4007":[0,0,1,0,20,7]
 };

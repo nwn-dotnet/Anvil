@@ -109,16 +109,16 @@ Collaboration diagram for NWN.Services.NativeEventService:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a59e2dfa76cf4b649160ca45aba19796f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a59e2dfa76cf4b649160ca45aba19796f">Subscribe&lt; TObject, TEvent &gt;</a> (TObject nwObject, Action&lt; TEvent &gt; handler)</td></tr>
-<tr class="memdesc:a59e2dfa76cf4b649160ca45aba19796f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to the specified event on the given object.  <a href="classNWN_1_1Services_1_1NativeEventService.html#a59e2dfa76cf4b649160ca45aba19796f">More...</a><br /></td></tr>
-<tr class="separator:a59e2dfa76cf4b649160ca45aba19796f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f9e9411bf97232867a22e68a5960467"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a4f9e9411bf97232867a22e68a5960467">Unsubscribe&lt; TObject, TEvent &gt;</a> (TObject nwObject, Action&lt; TEvent &gt; existingHandler)</td></tr>
-<tr class="memdesc:a4f9e9411bf97232867a22e68a5960467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an existing event handler from an object that was added using <a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a59e2dfa76cf4b649160ca45aba19796f" title="Subscribes to the specified event on the given object.">Subscribe&lt;TObject,TEvent&gt;</a>.  <a href="classNWN_1_1Services_1_1NativeEventService.html#a4f9e9411bf97232867a22e68a5960467">More...</a><br /></td></tr>
-<tr class="separator:a4f9e9411bf97232867a22e68a5960467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a881c4ef184a21a0c7fb02ff09eec39bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a881c4ef184a21a0c7fb02ff09eec39bf">Subscribe&lt; TObject, TEvent &gt;</a> (TObject nwObject, Action&lt; TEvent &gt; callback)</td></tr>
+<tr class="memdesc:a881c4ef184a21a0c7fb02ff09eec39bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to the specified event on the given object.  <a href="classNWN_1_1Services_1_1NativeEventService.html#a881c4ef184a21a0c7fb02ff09eec39bf">More...</a><br /></td></tr>
+<tr class="separator:a881c4ef184a21a0c7fb02ff09eec39bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e89d6a176084cbf7931d20579ab9df4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a1e89d6a176084cbf7931d20579ab9df4">Unsubscribe&lt; TObject, TEvent &gt;</a> (TObject nwObject, Action&lt; TEvent &gt; callback)</td></tr>
+<tr class="memdesc:a1e89d6a176084cbf7931d20579ab9df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an existing event handler from an object that was added using <a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a881c4ef184a21a0c7fb02ff09eec39bf" title="Subscribes to the specified event on the given object.">Subscribe&lt;TObject,TEvent&gt;</a>.  <a href="classNWN_1_1Services_1_1NativeEventService.html#a1e89d6a176084cbf7931d20579ab9df4">More...</a><br /></td></tr>
+<tr class="separator:a1e89d6a176084cbf7931d20579ab9df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a59e2dfa76cf4b649160ca45aba19796f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59e2dfa76cf4b649160ca45aba19796f">&#9670;&nbsp;</a></span>Subscribe&lt; TObject, TEvent &gt;()</h2>
+<a id="a881c4ef184a21a0c7fb02ff09eec39bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a881c4ef184a21a0c7fb02ff09eec39bf">&#9670;&nbsp;</a></span>Subscribe&lt; TObject, TEvent &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Action&lt; TEvent &gt;&#160;</td>
-          <td class="paramname"><em>handler</em>&#160;</td>
+          <td class="paramname"><em>callback</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -155,7 +155,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nwObject</td><td>The subscribe target for this event.</td></tr>
-    <tr><td class="paramname">handler</td><td>The callback function/handler for this event.</td></tr>
+    <tr><td class="paramname">callback</td><td>The callback function/handler for this event.</td></tr>
   </table>
   </dd>
 </dl>
@@ -181,8 +181,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4f9e9411bf97232867a22e68a5960467"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f9e9411bf97232867a22e68a5960467">&#9670;&nbsp;</a></span>Unsubscribe&lt; TObject, TEvent &gt;()</h2>
+<a id="a1e89d6a176084cbf7931d20579ab9df4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e89d6a176084cbf7931d20579ab9df4">&#9670;&nbsp;</a></span>Unsubscribe&lt; TObject, TEvent &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +200,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Action&lt; TEvent &gt;&#160;</td>
-          <td class="paramname"><em>existingHandler</em>&#160;</td>
+          <td class="paramname"><em>callback</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -215,11 +215,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Removes an existing event handler from an object that was added using <a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a59e2dfa76cf4b649160ca45aba19796f" title="Subscribes to the specified event on the given object.">Subscribe&lt;TObject,TEvent&gt;</a>. </p>
+<p>Removes an existing event handler from an object that was added using <a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a881c4ef184a21a0c7fb02ff09eec39bf" title="Subscribes to the specified event on the given object.">Subscribe&lt;TObject,TEvent&gt;</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nwObject</td><td>The object containing the existing subscription.</td></tr>
-    <tr><td class="paramname">existingHandler</td><td>The existing handler/callback.</td></tr>
+    <tr><td class="paramname">callback</td><td>The existing handler/callback.</td></tr>
   </table>
   </dd>
 </dl>

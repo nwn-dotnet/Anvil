@@ -80,6 +80,18 @@ var hierarchy =
     [ "IEquatable< LocalVariable< T >>", null, [
       [ "NWN.API.LocalVariable< T >", "classNWN_1_1API_1_1LocalVariable.html", null ]
     ] ],
+    [ "NWN.API.Events.IEvent", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
+      [ "NWN.API.Events.IEvent< out out T >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", null ]
+    ] ],
+    [ "NWN.API.Events.IEvent< T >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
+      [ "NWN.API.Events.ScriptEvent< T >", "classNWN_1_1API_1_1Events_1_1ScriptEvent.html", null ],
+      [ "NWNX.API.Events.NWNXEvent< T >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
+        [ "NWNX.API.Events.NWNXEventSkippable< T >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", null ]
+      ] ]
+    ] ],
+    [ "NWN.API.Events.IEvent< TEvent >", "interfaceNWN_1_1API_1_1Events_1_1IEvent.html", [
+      [ "NWN.API.Events.NativeEvent< TObject, TEvent >", "classNWN_1_1API_1_1Events_1_1NativeEvent.html", null ]
+    ] ],
     [ "NWNX.API.Events.IEventAttribute", "interfaceNWNX_1_1API_1_1Events_1_1IEventAttribute.html", [
       [ "NWNX.API.Events.NWNXAttackEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html", null ],
       [ "NWNX.API.Events.NWNXDamageEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html", null ],
@@ -124,9 +136,6 @@ var hierarchy =
     [ "NWN.Services.LoopTimeService", "classNWN_1_1Services_1_1LoopTimeService.html", null ],
     [ "NWN.API.Events.ModuleEvents", "classNWN_1_1API_1_1Events_1_1ModuleEvents.html", null ],
     [ "NWN.API.MonsterHitEffect", "structNWN_1_1API_1_1MonsterHitEffect.html", null ],
-    [ "NWN.API.Events.NativeEvent", "classNWN_1_1API_1_1Events_1_1NativeEvent.html", [
-      [ "NWN.API.Events.NativeEvent< TObject, TEvent >", "classNWN_1_1API_1_1Events_1_1NativeEvent.html", null ]
-    ] ],
     [ "NWN.API.Events.NativeEvent< NwArea, OnEnter >", "classNWN_1_1API_1_1Events_1_1NativeEvent.html", [
       [ "NWN.API.Events.AreaEvents.OnEnter", "classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html", null ]
     ] ],
@@ -385,9 +394,6 @@ var hierarchy =
     [ "NWN.API.NativeScript", "classNWN_1_1API_1_1NativeScript.html", null ],
     [ "NWN.Services.NwDateTime", "structNWN_1_1Services_1_1NwDateTime.html", null ],
     [ "NWN.API.NwMath", "classNWN_1_1API_1_1NwMath.html", null ],
-    [ "NWNX.API.Events.NWNXEvent", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
-      [ "NWNX.API.Events.NWNXEvent< T >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", null ]
-    ] ],
     [ "NWNX.API.Events.NWNXEvent< AttackEvent >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
       [ "NWNX.API.Events.AttackEvent", "classNWNX_1_1API_1_1Events_1_1AttackEvent.html", null ]
     ] ],
@@ -468,9 +474,6 @@ var hierarchy =
     ] ],
     [ "NWNX.API.Events.NWNXEvent< OnValidateUseItemAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
       [ "NWNX.API.Events.ItemEvents.OnValidateUseItemAfter", "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateUseItemAfter.html", null ]
-    ] ],
-    [ "NWNX.API.Events.NWNXEvent< T >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
-      [ "NWNX.API.Events.NWNXEventSkippable< T >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", null ]
     ] ],
     [ "NWNX.API.Events.NWNXEventSkippable< OnAcceptInvitationAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
       [ "NWNX.API.Events.PartyEvents.OnAcceptInvitationAfter", "classNWNX_1_1API_1_1Events_1_1PartyEvents_1_1OnAcceptInvitationAfter.html", null ]
@@ -676,9 +679,6 @@ var hierarchy =
     [ "NWNX.API.Rename", "classNWNX_1_1API_1_1Rename.html", null ],
     [ "NWNX.API.Events.ResourceEvents", "classNWNX_1_1API_1_1Events_1_1ResourceEvents.html", null ],
     [ "NWNX.API.Reveal", "classNWNX_1_1API_1_1Reveal.html", null ],
-    [ "NWN.API.Events.ScriptEvent", "classNWN_1_1API_1_1Events_1_1ScriptEvent.html", [
-      [ "NWN.API.Events.ScriptEvent< T >", "classNWN_1_1API_1_1Events_1_1ScriptEvent.html", null ]
-    ] ],
     [ "NWN.API.Events.ScriptEvent< ActionTaken >", "classNWN_1_1API_1_1Events_1_1ScriptEvent.html", [
       [ "NWN.API.Events.DialogEvents.ActionTaken", "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html", null ]
     ] ],

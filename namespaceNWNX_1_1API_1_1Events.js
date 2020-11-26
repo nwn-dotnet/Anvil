@@ -82,7 +82,7 @@ var namespaceNWNX_1_1API_1_1Events =
     ] ],
     [ "NWNXAttackEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXAttackEventAttribute.html", null ],
     [ "NWNXDamageEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXDamageEventAttribute.html", null ],
-    [ "NWNXEvent", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", null ],
+    [ "NWNXEvent", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", "classNWNX_1_1API_1_1Events_1_1NWNXEvent" ],
     [ "NWNXEventAttribute", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute.html", "classNWNX_1_1API_1_1Events_1_1NWNXEventAttribute" ],
     [ "NWNXEventSkippable", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable" ],
     [ "PartyEvents", "classNWNX_1_1API_1_1Events_1_1PartyEvents.html", [
