@@ -122,7 +122,7 @@ namespace NWN.API.Events
         Sender = NWScript.GetPCChatSpeaker().ToNwObject<NwPlayer>();
       }
 
-      protected override void InvokeCallbacks()
+      protected override void ProcessEvent()
       {
         // Prevent infinite recursion from use of send message in event.
         if (callingChatHandlers)
@@ -131,7 +131,7 @@ namespace NWN.API.Events
         }
 
         callingChatHandlers = true;
-        base.InvokeCallbacks();
+        InvokeCallbacks();
         callingChatHandlers = false;
       }
     }

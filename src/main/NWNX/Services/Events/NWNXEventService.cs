@@ -16,33 +16,33 @@ namespace NWNX.Services
     private readonly Dictionary<Type, IEventAttribute> cachedEventInfo = new Dictionary<Type, IEventAttribute>();
 
     // Lookup Data
-    private readonly Dictionary<string, NWNXEvent> scriptToEventMap = new Dictionary<string, NWNXEvent>();
-    private readonly Dictionary<Type, NWNXEvent> typeToHandlerMap = new Dictionary<Type, NWNXEvent>();
+    private readonly Dictionary<string, IEvent> scriptToEventMap = new Dictionary<string, IEvent>();
+    private readonly Dictionary<Type, IEvent> typeToHandlerMap = new Dictionary<Type, IEvent>();
 
     /// <summary>
     /// Subscribes to the specified event.
     /// </summary>
-    /// <param name="handler">The callback function/handler for this event.</param>
+    /// <param name="callback">The callback function/handler for this event.</param>
     /// <typeparam name="TEvent">The event to subscribe to.</typeparam>
-    public void Subscribe<TEvent>(Action<TEvent> handler) where TEvent : NWNXEvent<TEvent>, new()
+    public void Subscribe<TEvent>(Action<TEvent> callback) where TEvent : NWNXEvent<TEvent>, new()
     {
       TEvent eventHandler = GetOrCreateHandler<TEvent>();
-      eventHandler.Callbacks += handler;
+      ((IEvent<TEvent>)eventHandler).Subscribe(callback);
     }
 
     /// <summary>
     /// Removes an existing global event handler that was added using <see cref="Subscribe{TEvent}"/>.
     /// </summary>
-    /// <param name="existingHandler">The existing handler/callback.</param>
+    /// <param name="callback">The existing handler/callback.</param>
     /// <typeparam name="TEvent">The event to unsubscribe from.</typeparam>
-    public void Unsubscribe<TEvent>(Action<TEvent> existingHandler) where TEvent : NWNXEvent<TEvent>
+    public void Unsubscribe<TEvent>(Action<TEvent> callback) where TEvent : NWNXEvent<TEvent>
     {
-      if (typeToHandlerMap.TryGetValue(typeof(TEvent), out NWNXEvent eventHandler))
+      if (typeToHandlerMap.TryGetValue(typeof(TEvent), out IEvent eventHandler))
       {
         TEvent handler = (TEvent)eventHandler;
-        handler.Callbacks -= existingHandler;
+        ((IEvent<TEvent>)eventHandler).Unsubscribe(callback);
 
-        if (!handler.HasSubscribers)
+        if (!eventHandler.HasSubscribers)
         {
           RemoveHandler(typeof(TEvent), handler.ScriptName);
         }
@@ -51,10 +51,9 @@ namespace NWNX.Services
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
-      if (scriptToEventMap.TryGetValue(scriptName, out NWNXEvent eventHandler))
+      if (scriptToEventMap.TryGetValue(scriptName, out IEvent eventHandler))
       {
-        eventHandler.ProcessEvent(oidSelf.ToNwObject());
-        return ScriptHandleResult.Handled;
+        return eventHandler.Broadcast(oidSelf.ToNwObject());
       }
 
       return ScriptHandleResult.NotHandled;
@@ -63,7 +62,7 @@ namespace NWNX.Services
     private TEvent GetOrCreateHandler<TEvent>() where TEvent : NWNXEvent<TEvent>, new()
     {
       Type type = typeof(TEvent);
-      if (typeToHandlerMap.TryGetValue(type, out NWNXEvent eventHandler))
+      if (typeToHandlerMap.TryGetValue(type, out IEvent eventHandler))
       {
         return (TEvent)eventHandler;
       }

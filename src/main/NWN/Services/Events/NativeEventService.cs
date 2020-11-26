@@ -26,10 +26,10 @@ namespace NWN.Services
     /// Subscribes to the specified event on the given object.
     /// </summary>
     /// <param name="nwObject">The subscribe target for this event.</param>
-    /// <param name="handler">The callback function/handler for this event.</param>
+    /// <param name="callback">The callback function/handler for this event.</param>
     /// <typeparam name="TObject">The type of nwObject.</typeparam>
     /// <typeparam name="TEvent">The event to subscribe to.</typeparam>
-    public void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> handler)
+    public void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> callback)
       where TEvent : NativeEvent<TObject, TEvent>, new()
       where TObject : NwObject
     {
@@ -38,23 +38,23 @@ namespace NWN.Services
       NativeEventAttribute eventInfo = GetEventInfo(typeof(TEvent));
       InitObjectHook<TObject, TEvent>(eventHandler, nwObject, eventInfo.EventScriptType);
 
-      eventHandler.Subscribe(nwObject, handler);
+      eventHandler.Subscribe(nwObject, callback);
     }
 
     /// <summary>
     /// Removes an existing event handler from an object that was added using <see cref="Subscribe{TObject,TEvent}"/>.
     /// </summary>
     /// <param name="nwObject">The object containing the existing subscription.</param>
-    /// <param name="existingHandler">The existing handler/callback.</param>
+    /// <param name="callback">The existing handler/callback.</param>
     /// <typeparam name="TObject">The type of nwObject.</typeparam>
     /// <typeparam name="TEvent">The event to unsubscribe from.</typeparam>
-    public void Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> existingHandler)
+    public void Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> callback)
       where TEvent : NativeEvent<TObject, TEvent>, new()
       where TObject : NwObject
     {
       if (typeToHandlerMap.TryGetValue(typeof(TEvent), out EventHandler eventHandler))
       {
-        bool canRemove = eventHandler.Unsubscribe(nwObject, existingHandler);
+        bool canRemove = eventHandler.Unsubscribe(nwObject, callback);
         if (canRemove)
         {
           RemoveHandler(typeof(TEvent), eventHandler.ScriptName);
@@ -66,8 +66,7 @@ namespace NWN.Services
     {
       if (scriptToEventMap.TryGetValue(scriptName, out EventHandler eventHandler))
       {
-        eventHandler.CallEvents(oidSelf.ToNwObject());
-        return ScriptHandleResult.Handled;
+        return eventHandler.CallEvents(oidSelf.ToNwObject());
       }
 
       return ScriptHandleResult.NotHandled;

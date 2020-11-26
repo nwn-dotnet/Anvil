@@ -3,27 +3,41 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public abstract class ScriptEvent
+  public abstract class ScriptEvent<T> : IEvent<T> where T : ScriptEvent<T>
   {
-    public ScriptHandleResult ProcessEvent(NwObject objSelf)
+    private event Action<T> Callbacks;
+
+    public bool HasSubscribers
+    {
+      get => Callbacks != null;
+    }
+
+    void IEvent<T>.Subscribe(Action<T> callback)
+      => Callbacks += callback;
+
+    void IEvent<T>.Unsubscribe(Action<T> callback)
+      => Callbacks -= callback;
+
+    void IEvent.ClearSubscribers()
+      => Callbacks = null;
+
+    ScriptHandleResult IEvent.Broadcast(NwObject objSelf)
     {
       PrepareEvent(objSelf);
-      return InvokeCallbacks();
+      return ProcessEvent();
     }
 
     protected abstract void PrepareEvent(NwObject objSelf);
 
-    protected abstract ScriptHandleResult InvokeCallbacks();
-  }
-
-  public abstract class ScriptEvent<T> : ScriptEvent where T : ScriptEvent<T>
-  {
-    public Action<T> Callback;
-
-    protected override ScriptHandleResult InvokeCallbacks()
+    protected virtual ScriptHandleResult ProcessEvent()
     {
-      Callback?.Invoke((T) this);
+      InvokeCallbacks();
       return ScriptHandleResult.Handled;
+    }
+
+    protected void InvokeCallbacks()
+    {
+      Callbacks?.Invoke((T) this);
     }
   }
 }

@@ -7,42 +7,42 @@ namespace NWN.Services
 {
   internal sealed class EventHandler
   {
-    private readonly Dictionary<NwObject, NativeEvent> objectEvents = new Dictionary<NwObject, NativeEvent>();
+    private readonly Dictionary<NwObject, IEvent> objectEvents = new Dictionary<NwObject, IEvent>();
 
     public readonly string ScriptName = ScriptNameGenerator.Create();
 
     internal void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> handler) where TEvent : NativeEvent<TObject, TEvent>, new() where TObject : NwObject
     {
-      if (objectEvents.TryGetValue(nwObject, out NativeEvent objectEvent))
+      if (objectEvents.TryGetValue(nwObject, out IEvent objEvent))
       {
-        ((TEvent) objectEvent).Callbacks += handler;
+        ((IEvent<TEvent>)objEvent).Subscribe(handler);
         return;
       }
 
       TEvent newHandler = new TEvent();
-      newHandler.Callbacks += handler;
+      ((IEvent<TEvent>)newHandler).Subscribe(handler);
       objectEvents[nwObject] = newHandler;
     }
 
     internal bool Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> existingHandler) where TEvent : NativeEvent<TObject, TEvent>, new() where TObject : NwObject
     {
-      if (objectEvents.TryGetValue(nwObject, out NativeEvent objectEvent))
+      if (objectEvents.TryGetValue(nwObject, out IEvent objEvent))
       {
-        TEvent tEvent = (TEvent)objectEvent;
-        tEvent.Callbacks -= existingHandler;
-
-        return !tEvent.HasSubscribers;
+        ((IEvent<TEvent>)objEvent).Unsubscribe(existingHandler);
+        return !objEvent.HasSubscribers;
       }
 
       return false;
     }
 
-    internal void CallEvents(NwObject objSelf)
+    internal ScriptHandleResult CallEvents(NwObject objSelf)
     {
-      if (objectEvents.TryGetValue(objSelf, out NativeEvent objEvent))
+      if (objectEvents.TryGetValue(objSelf, out IEvent objEvent))
       {
-        objEvent.ProcessEvent(objSelf);
+        return objEvent.Broadcast(objSelf);
       }
+
+      return ScriptHandleResult.NotHandled;
     }
   }
 }

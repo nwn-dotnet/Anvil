@@ -65,9 +65,9 @@ namespace NWN.API.Events
         LastSpeaker = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
       }
 
-      protected override ScriptHandleResult InvokeCallbacks()
+      protected override ScriptHandleResult ProcessEvent()
       {
-        base.InvokeCallbacks();
+        InvokeCallbacks();
         return ShouldShow ? ScriptHandleResult.True : ScriptHandleResult.False;
       }
     }
