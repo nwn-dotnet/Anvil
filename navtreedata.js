@@ -48,7 +48,7 @@ var NAVTREEINDEX =
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnHeartbeat.html#acbdfe09d3907320571452dd3a2d6969d",
 "classNWN_1_1API_1_1NwCreature.html#a7611a9c81c2b9b0a4e421e7ae6d969f9",
 "classNWN_1_1API_1_1NwObject.html#ae9944089a3741b158212c2e0ebe35c67",
-"functions_func_v.html"
+"functions_func_o.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
