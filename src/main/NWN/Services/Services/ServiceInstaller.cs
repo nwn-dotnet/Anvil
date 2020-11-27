@@ -27,7 +27,7 @@ namespace NWN.Services
       RegisterCoreServices();
       RegisterBindings();
 
-      bindings = null;
+      bindings.Clear();
 
       installerInfo.ServiceContainer.Options.AllowOverridingRegistrations = true;
       RegisterOverrides();

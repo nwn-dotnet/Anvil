@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
 
@@ -6,41 +7,38 @@ namespace NWN.Plugins
 {
   internal class PluginLoadContext : AssemblyLoadContext
   {
+    private readonly PluginLoader pluginLoader;
+    private readonly string pluginName;
+
     private readonly AssemblyDependencyResolver resolver;
 
-    public PluginLoadContext(string pluginPath)
+    public PluginLoadContext(PluginLoader pluginLoader, string pluginPath, string pluginName) : base(true)
     {
+      this.pluginLoader = pluginLoader;
+      this.pluginName = pluginName;
       resolver = new AssemblyDependencyResolver(pluginPath);
     }
 
     protected override Assembly Load(AssemblyName assemblyName)
     {
-      // Try resolving locally from the plugin folder.
-      string assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);
-      if (assemblyPath != null)
+      if (!AssemblyConstants.ReservedAssemblyNames.Contains(assemblyName.Name))
       {
-        return LoadFromAssemblyPath(assemblyPath);
-      }
-
-      // Try resolving from NWN.Managed.
-      foreach (Assembly assembly in AssemblyConstants.NWMLoadContext.Assemblies)
-      {
-        if (assembly.FullName == assemblyName.FullName)
+        // Try resolving locally from the plugin folder.
+        string assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);
+        if (assemblyPath != null)
         {
-          return assembly;
+          return LoadAssemblyAtPath(assemblyPath);
         }
       }
 
-      // Try resolving a different version
-      foreach (Assembly assembly in AssemblyConstants.NWMLoadContext.Assemblies)
-      {
-        if (assembly.GetName().Name == assemblyName.Name)
-        {
-          return assembly;
-        }
-      }
+      // Resolve from the plugin loader.
+      return pluginLoader.ResolveDependency(pluginName, assemblyName);
+    }
 
-      return null;
+    private Assembly LoadAssemblyAtPath(string assemblyPath)
+    {
+      using MemoryStream memoryStream = new MemoryStream(File.ReadAllBytes(assemblyPath));
+      return LoadFromStream(memoryStream);
     }
 
     protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)

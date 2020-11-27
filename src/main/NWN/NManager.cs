@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using NLog;
 using NLog.Config;
+using NWN.API;
 using NWN.Core;
 using NWN.Core.NWNX;
 using NWN.Plugins;
@@ -14,7 +15,7 @@ namespace NWN
 {
   /// <summary>
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the managed %API. The entry point of the implementing module should point to this class.<br/>
-  /// Until <see cref="Init"/> is called, all APIs are unavailable for usage.
+  /// Until <see cref="Init(IntPtr, int, IBindingInstaller, ITypeLoader)"/> is called, all APIs are unavailable for usage.
   /// </summary>
   public class NManager : IGameManager
   {
@@ -67,6 +68,24 @@ namespace NWN
       return instance?.serviceManager.GetService<T>();
     }
 
+    /// <summary>
+    /// Initiates a complete reload of the managed stack.<br/>
+    /// This will reload all plugins.
+    /// </summary>
+    public static async void Reload()
+    {
+      await NwTask.NextFrame();
+
+      Log.Info("Reloading NWN.Managed.");
+
+      instance.Dispose();
+
+      GC.Collect();
+      GC.WaitForPendingFinalizers();
+
+      instance.Init();
+    }
+
     private NManager(IBindingInstaller bindingInstaller, ITypeLoader typeLoader)
     {
       this.bindingInstaller = bindingInstaller;
@@ -78,7 +97,7 @@ namespace NWN
       switch (signal)
       {
         case "ON_MODULE_LOAD_FINISH":
-          Start();
+          Init();
           break;
         case "ON_DESTROY_SERVER":
           Shutdown();
@@ -89,10 +108,10 @@ namespace NWN
       }
     }
 
-    private void Start()
+    private void Init()
     {
       InitLogManager();
-      Log.Info($"Loading NWN.Managed - {AssemblyConstants.NWMName.Version}");
+      Log.Info($"Loading NWN.Managed - {AssemblyConstants.ManagedAssemblyName.Version}");
       CheckPluginDependencies();
 
       typeLoader.Init();
@@ -101,6 +120,17 @@ namespace NWN
 
       runScriptHandler = GetService<ICoreRunScriptHandler>();
       loopHandler = GetService<ICoreLoopHandler>();
+    }
+
+    private void Dispose()
+    {
+      serviceManager?.Dispose();
+      serviceManager = null;
+
+      runScriptHandler = null;
+      loopHandler = null;
+
+      typeLoader.Dispose();
     }
 
     private void InitLogManager()
@@ -123,8 +153,7 @@ namespace NWN
 
     private void Shutdown()
     {
-      serviceManager?.Dispose();
-      serviceManager = null;
+      Dispose();
       LogManager.Shutdown();
     }
 

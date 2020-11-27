@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NWN.Plugins
 {
-  public interface ITypeLoader
+  public interface ITypeLoader : IDisposable
   {
     void Init();
 
