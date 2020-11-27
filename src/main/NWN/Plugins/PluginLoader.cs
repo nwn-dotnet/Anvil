@@ -16,76 +16,140 @@ namespace NWN.Plugins
     public IReadOnlyCollection<Type> LoadedTypes { get; private set; }
 
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
+    private readonly List<Plugin> plugins = new List<Plugin>();
 
     public void Init()
     {
       Log.Info($"Loading DotNET plugins from: {EnvironmentConfig.PluginsPath}");
       LoadCore();
+      BootstrapPlugins();
       LoadPlugins();
       LoadedTypes = GetLoadedTypes();
     }
 
     private void LoadCore()
     {
-      foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+      foreach (Assembly assembly in AssemblyConstants.ManagedAssemblies)
       {
-        if (IsValidAssembly(assembly))
-        {
-          loadedAssemblies.Add(assembly);
-        }
+        loadedAssemblies.Add(assembly);
       }
+    }
+
+    private void BootstrapPlugins()
+    {
+      string[] pluginPaths = Directory.GetDirectories(EnvironmentConfig.PluginsPath);
+      foreach (string pluginRoot in pluginPaths)
+      {
+        string pluginName = new DirectoryInfo(pluginRoot).Name;
+
+        if (PluginNameIsReserved(pluginName))
+        {
+          Log.Warn($"Skipping plugin \"{pluginName}\" as it uses a reserved name.");
+          continue;
+        }
+
+        Plugin plugin = CreatePlugin(pluginRoot, pluginName);
+        plugins.Add(plugin);
+      }
+    }
+
+    private Plugin CreatePlugin(string pluginRoot, string pluginName)
+    {
+      string pluginPath = Path.Combine(pluginRoot, $"{pluginName}.dll");
+      PluginLoadContext pluginLoadContext = new PluginLoadContext(this, pluginPath, pluginName);
+
+      return new Plugin(pluginPath, pluginLoadContext);
+    }
+
+    private static bool PluginNameIsReserved(string pluginName)
+    {
+      return AssemblyConstants.ReservedAssemblyNames.Contains(pluginName);
     }
 
     private void LoadPlugins()
     {
-      foreach (string assemblyName in Directory.GetFiles(EnvironmentConfig.PluginsPath, "*.dll", SearchOption.AllDirectories))
+      foreach (Plugin plugin in plugins)
       {
-        Assembly assembly = LoadPluginAssembly(assemblyName);
-        if (assembly != null && IsValidAssembly(assembly))
+        if (plugin.IsLoaded)
         {
-          loadedAssemblies.Add(assembly);
-          Log.Info($"Loaded DotNET plugin ({assembly.GetName().Name}) - {assembly.Location}");
+          continue;
         }
+
+        LoadPlugin(plugin);
       }
     }
 
-    private Assembly LoadPluginAssembly(string assemblyPath)
+    private void LoadPlugin(Plugin plugin)
     {
-      try
+      Log.Info($"Loading DotNET plugin ({plugin.AssemblyName.Name}) - {plugin.PluginPath}");
+      plugin.Load();
+
+      if (plugin.Assembly == null)
       {
-        PluginLoadContext loadContext = new PluginLoadContext(assemblyPath);
-        return loadContext.LoadFromAssemblyName(AssemblyName.GetAssemblyName(assemblyPath));
+        Log.Error($"Failed to load DotNET plugin ({plugin.AssemblyName.Name}) - {plugin.PluginPath}");
+        return;
       }
-      catch (BadImageFormatException)
+
+      loadedAssemblies.Add(plugin.Assembly);
+      Log.Info($"Loaded DotNET plugin ({plugin.AssemblyName.Name}) - {plugin.PluginPath}");
+    }
+
+    public Assembly ResolveDependency(string pluginName, AssemblyName dependencyName)
+    {
+      Assembly assembly = ResolveDependencyFromManaged(pluginName, dependencyName);
+      if (assembly == null)
       {
+        assembly = ResolveDependencyFromPlugins(pluginName, dependencyName);
+      }
+
+      return assembly;
+    }
+
+    private Assembly ResolveDependencyFromManaged(string pluginName, AssemblyName dependencyName)
+    {
+      foreach (Assembly assembly in AssemblyConstants.ManagedAssemblies)
+      {
+        AssemblyName assemblyName = assembly.GetName();
+        if (assemblyName.Name != dependencyName.Name)
+        {
+          continue;
+        }
+
+        if (dependencyName.Version != assemblyName.Version)
+        {
+          Log.Warn($"DotNET Plugin {pluginName} references {dependencyName.Name}, v{dependencyName.Version} but the server is running v{assemblyName.Version}! You may encounter compatibility issues.");
+        }
+
+        return assembly;
       }
 
       return null;
     }
 
-    private bool IsValidAssembly(Assembly assembly)
+    private Assembly ResolveDependencyFromPlugins(string pluginName, AssemblyName dependencyName)
     {
-      if (assembly == AssemblyConstants.NWMAssembly)
+      foreach (Plugin plugin in plugins)
       {
-        return true;
-      }
-
-      foreach (AssemblyName reference in assembly.GetReferencedAssemblies())
-      {
-        if (reference.Name != AssemblyConstants.NWMName.Name)
+        if (!plugin.IsMatchingPlugin(dependencyName))
         {
           continue;
         }
 
-        if (reference.Version != AssemblyConstants.NWMName.Version)
+        if (plugin.Loading)
         {
-          Log.Warn($"Plugin {assembly.GetName().Name} was built against version {reference.Version}, but the server is running {AssemblyConstants.NWMName.Version}! You may encounter compatibility issues.");
+          Log.Error($"DotNET plugins {pluginName} <--> {plugin.AssemblyName.Name} cannot be loaded as they have circular dependencies.");
+          return null;
         }
 
-        return true;
+        if (!plugin.IsLoaded)
+        {
+          LoadPlugin(plugin);
+        }
+
+        return plugin.Assembly;
       }
 
-      return false;
+      return null;
     }
 
     private IReadOnlyCollection<Type> GetLoadedTypes()
@@ -97,6 +161,20 @@ namespace NWN.Plugins
       }
 
       return loadedTypes.AsReadOnly();
+    }
+
+    public void Dispose()
+    {
+      loadedAssemblies.Clear();
+      LoadedTypes = null;
+
+      foreach (Plugin plugin in plugins)
+      {
+        plugin.Dispose();
+        Log.Info($"Unloaded DotNET plugin ({plugin.AssemblyName.Name}) - {plugin.PluginPath}");
+      }
+
+      plugins.Clear();
     }
   }
 }

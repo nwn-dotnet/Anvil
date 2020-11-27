@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 
@@ -6,10 +8,21 @@ namespace NWN
 {
   internal static class AssemblyConstants
   {
-    internal static readonly Assembly NWMAssembly = typeof(AssemblyConstants).Assembly;
-    internal static readonly AssemblyName NWMName = NWMAssembly.GetName();
-    internal static readonly string AssemblyDir = Path.GetDirectoryName(NWMAssembly.Location);
+    internal static readonly Assembly ManagedAssembly = typeof(AssemblyConstants).Assembly;
+    internal static readonly AssemblyName ManagedAssemblyName = ManagedAssembly.GetName();
 
-    internal static readonly AssemblyLoadContext NWMLoadContext = AssemblyLoadContext.GetLoadContext(NWMAssembly);
+    internal static readonly string AssemblyDir = Path.GetDirectoryName(ManagedAssembly.Location);
+
+    public static readonly Assembly[] ManagedAssemblies =
+    {
+      ManagedAssembly,
+      typeof(Core.NWNCore).Assembly,
+      typeof(NLog.Logger).Assembly,
+      typeof(SimpleInjector.Container).Assembly
+    };
+
+    public static readonly List<string> ReservedAssemblyNames = ManagedAssemblies
+      .Select(assembly => assembly.GetName().Name)
+      .ToList();
   }
 }
