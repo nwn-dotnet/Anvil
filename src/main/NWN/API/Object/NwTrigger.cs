@@ -43,6 +43,6 @@ namespace NWN.API
     /// </summary>
     /// <remarks>The reason for it being identical to GetEnteringObject() is that triggers, or course, can be said to be clicked on, or entered, when a transition is used.<br/>
     /// This function is of course not meant to be used outside certain events, as it can return long dead or invalid creatures.</remarks>
-    public static NwCreature ClickingObject => (NwCreature)NWScript.GetClickingObject().ToNwObject();
+    public static NwCreature ClickingObject => NWScript.GetClickingObject().ToNwObject<NwCreature>();
   }
 }
