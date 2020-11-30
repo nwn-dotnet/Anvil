@@ -238,8 +238,9 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#abf1be6b06eed900054b730f5d6b5124c":[0,0,0,0,1,13,1,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents.html":[0,0,0,0,1,14],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html":[0,0,0,0,1,14,0],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#a5573622a92222c5fe3d17a5bd11a9afc":[0,0,0,0,1,14,0,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aa2ca30fe86b4ec3120b6c840476677c8":[0,0,0,0,1,14,0,0],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aec55b740ebe751453920ba156003306f":[0,0,0,0,1,14,0,1],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aec55b740ebe751453920ba156003306f":[0,0,0,0,1,14,0,2],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html":[0,0,0,0,1,14,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a62ffa2e1ea738c087191b8502b700be1":[0,0,0,0,1,14,1,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a955126dca1b75d0b77ae814a0d48f33c":[0,0,0,0,1,14,1,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#ad6a1b9a60f07da6cc9718cec3677aa96":[0,0,0,0,1,14,2,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html":[0,0,0,0,1,14,3],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#a1d97bde9a2e0d6adcfe1ee227fa8530c":[0,0,0,0,1,14,3,0],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#ae02fa38b896a1fcbebf80dbe41c9fbd5":[0,0,0,0,1,14,3,1],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnHeartbeat.html":[0,0,0,0,1,14,4]
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#ae02fa38b896a1fcbebf80dbe41c9fbd5":[0,0,0,0,1,14,3,1]
 };

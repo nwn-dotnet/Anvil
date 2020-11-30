@@ -45,10 +45,10 @@ var NAVTREEINDEX =
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenBefore.html#a0c8aa23bc9afc54969a9bd418f4329eb",
 "classNWNX_1_1API_1_1Util.html#a59de3319db4ef839a33ee7fe9bff6848",
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#ac47af876f44642882ec98f3f09fcc299",
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnHeartbeat.html#acbdfe09d3907320571452dd3a2d6969d",
-"classNWN_1_1API_1_1NwCreature.html#a7611a9c81c2b9b0a4e421e7ae6d969f9",
-"classNWN_1_1API_1_1NwObject.html#ae9944089a3741b158212c2e0ebe35c67",
-"functions_func_o.html"
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnHeartbeat.html",
+"classNWN_1_1API_1_1NwCreature.html#a72eb70a2610bca1a2429c739041d48ba",
+"classNWN_1_1API_1_1NwObject.html#ae8db8320c8c78ecae924e73697619c22",
+"functions_func_n.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
