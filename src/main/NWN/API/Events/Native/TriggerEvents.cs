@@ -1,5 +1,7 @@
 using NWN.API.Constants;
 
+using NWN.Core;
+
 // TODO Populate event data.
 namespace NWN.API.Events
 {
@@ -79,9 +81,12 @@ namespace NWN.API.Events
     {
       public NwTrigger Trigger { get; private set; }
 
+      public NwCreature ClickedBy { get; private set; }
+
       protected override void PrepareEvent(NwTrigger objSelf)
       {
         Trigger = objSelf;
+        ClickedBy = NWScript.GetClickingObject().ToNwObject<NwCreature>();
       }
     }
   }
