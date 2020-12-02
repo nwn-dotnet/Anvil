@@ -117,7 +117,7 @@ namespace NWN.API
     /// </summary>
     public int ToInt()
     {
-      ReadOnlySpan<byte> data = stackalloc[] {Red, Green, Blue, Alpha};
+      ReadOnlySpan<byte> data = stackalloc[] {Alpha, Blue, Green, Red};
       return BitConverter.ToInt32(data);
     }
   }
