@@ -10,6 +10,10 @@ namespace NWN.Services
   public class SchedulerService : IUpdateable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    /// <summary>
+    /// The next server loop after the current.
+    /// </summary>
     public static readonly TimeSpan NextUpdate = TimeSpan.Zero;
 
     // Dependencies
@@ -23,6 +27,14 @@ namespace NWN.Services
       this.loopTimeService = loopTimeService;
     }
 
+    /// <summary>
+    /// Schedules the specified action to be invoked after the given delay.
+    /// </summary>
+    /// <param name="task">The task/action to run.</param>
+    /// <param name="delay">The delay until the task is run.</param>
+    /// <returns>A disposable object representing the scheduled task. Calling Dispose() will prevent the schedule from running.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the delay is less than 0.</exception>
+    /// <exception cref="ArgumentNullException">Thrown if no action is specified.</exception>
     public IDisposable Schedule(Action task, TimeSpan delay)
     {
       if (delay < TimeSpan.Zero)
@@ -41,6 +53,15 @@ namespace NWN.Services
       return item;
     }
 
+    /// <summary>
+    /// Schedules the specified task to be invoked on a specified schedule, after an optional delay.
+    /// </summary>
+    /// <param name="task">The task/action to be run.</param>
+    /// <param name="schedule">The delay between invocations.</param>
+    /// <param name="delay">An additional delay for the first time run.</param>
+    /// <returns>A disposable object representing the scheduled task. Calling Dispose() will cancel the schedule and any future invocations.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the schedule is less than 0.</exception>
+    /// <exception cref="ArgumentNullException">Thrown if no action is specified.</exception>
     public IDisposable ScheduleRepeating(Action task, TimeSpan schedule, TimeSpan delay = default)
     {
       if (schedule <= TimeSpan.Zero)
