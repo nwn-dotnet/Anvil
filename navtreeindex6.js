@@ -184,6 +184,7 @@ var NAVTREEINDEX6 =
 "classNWN_1_1EnvironmentConfig.html#a4a89aeaf66ce1e1694dabbc947997561":[0,0,0,3,3],
 "classNWN_1_1EnvironmentConfig.html#a6abc8b1a8aa83abc6581ae4bf161ab7a":[0,0,0,3,0],
 "classNWN_1_1EnvironmentConfig.html#a74bb433ee228e5cebb9287b8e2278923":[0,0,0,3,2],
+"classNWN_1_1EnvironmentConfig.html#abb85166b81d264e40fcc57e1ab2cb157":[0,0,0,3,4],
 "classNWN_1_1NManager.html":[0,0,0,4],
 "classNWN_1_1NManager.html#a0dea84ca740d6a991e0c68732ff81a09":[0,0,0,4,2],
 "classNWN_1_1NManager.html#a32086f883b430504cff15a2a15938dae":[0,0,0,4,1],
@@ -231,8 +232,8 @@ var NAVTREEINDEX6 =
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html":[0,0,0,2,17],
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html#a1c968df35aaa7022a3a950c76ca9bf63":[0,0,0,2,17,0],
 "classes.html":[0,1],
-"functions.html":[0,3,0],
 "functions.html":[0,3,0,0],
+"functions.html":[0,3,0],
 "functions_b.html":[0,3,0,1],
 "functions_c.html":[0,3,0,2],
 "functions_d.html":[0,3,0,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "functions_func_g.html":[0,3,1,6],
 "functions_func_h.html":[0,3,1,7],
 "functions_func_i.html":[0,3,1,8],
-"functions_func_j.html":[0,3,1,9],
-"functions_func_l.html":[0,3,1,10]
+"functions_func_j.html":[0,3,1,9]
 };

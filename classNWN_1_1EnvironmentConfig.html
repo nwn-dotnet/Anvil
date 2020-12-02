@@ -97,6 +97,9 @@ static readonly string&#160;</td><td class="memItemRight" valign="bottom"><b>Plu
 <tr class="memitem:a74bb433ee228e5cebb9287b8e2278923"><td class="memItemLeft" align="right" valign="top"><a id="a74bb433ee228e5cebb9287b8e2278923"></a>
 static readonly string&#160;</td><td class="memItemRight" valign="bottom"><b>NLogConfigPath</b> = Environment.GetEnvironmentVariable(&quot;NWM_NLOG_CONFIG&quot;) ?? Path.Combine(AssemblyConstants.AssemblyDir, &quot;nlog.config&quot;)</td></tr>
 <tr class="separator:a74bb433ee228e5cebb9287b8e2278923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb85166b81d264e40fcc57e1ab2cb157"><td class="memItemLeft" align="right" valign="top"><a id="abb85166b81d264e40fcc57e1ab2cb157"></a>
+static readonly bool&#160;</td><td class="memItemRight" valign="bottom"><b>ReloadEnabled</b> = string.Equals(Environment.GetEnvironmentVariable(&quot;NWM_RELOAD_ENABLED&quot;), &quot;true&quot;, StringComparison.InvariantCultureIgnoreCase)</td></tr>
+<tr class="separator:abb85166b81d264e40fcc57e1ab2cb157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a091f1bd2aef8b61d11f89720e518a29f"><td class="memItemLeft" align="right" valign="top"><a id="a091f1bd2aef8b61d11f89720e518a29f"></a>
 static readonly string&#160;</td><td class="memItemRight" valign="bottom"><b>ModStartScript</b> = Environment.GetEnvironmentVariable(&quot;NWNX_UTIL_PRE_MODULE_START_SCRIPT&quot;)</td></tr>
 <tr class="separator:a091f1bd2aef8b61d11f89720e518a29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
