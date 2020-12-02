@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['originaldescription_1840',['OriginalDescription',['../classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c',1,'NWN::API::NwObject']]]
+  ['nextupdate_1845',['NextUpdate',['../classNWN_1_1Services_1_1SchedulerService.html#ab01e7b63f6cb2a63c9aa505ea6be47f8',1,'NWN::Services::SchedulerService']]]
 ];

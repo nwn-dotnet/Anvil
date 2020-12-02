@@ -113,19 +113,158 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a704c648450c9c2a3e38d9a8b752540d9"><td class="memItemLeft" align="right" valign="top"><a id="a704c648450c9c2a3e38d9a8b752540d9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SchedulerService</b> (<a class="el" href="classNWN_1_1Services_1_1LoopTimeService.html">LoopTimeService</a> loopTimeService)</td></tr>
 <tr class="separator:a704c648450c9c2a3e38d9a8b752540d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee1fd12f028e55b2a04d88161cdddf65"><td class="memItemLeft" align="right" valign="top"><a id="aee1fd12f028e55b2a04d88161cdddf65"></a>
-IDisposable&#160;</td><td class="memItemRight" valign="bottom"><b>Schedule</b> (Action task, TimeSpan delay)</td></tr>
+<tr class="memitem:aee1fd12f028e55b2a04d88161cdddf65"><td class="memItemLeft" align="right" valign="top">IDisposable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1SchedulerService.html#aee1fd12f028e55b2a04d88161cdddf65">Schedule</a> (Action task, TimeSpan delay)</td></tr>
+<tr class="memdesc:aee1fd12f028e55b2a04d88161cdddf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedules the specified action to be invoked after the given delay.  <a href="classNWN_1_1Services_1_1SchedulerService.html#aee1fd12f028e55b2a04d88161cdddf65">More...</a><br /></td></tr>
 <tr class="separator:aee1fd12f028e55b2a04d88161cdddf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e70170992a237238dd82718ba761662"><td class="memItemLeft" align="right" valign="top"><a id="a4e70170992a237238dd82718ba761662"></a>
-IDisposable&#160;</td><td class="memItemRight" valign="bottom"><b>ScheduleRepeating</b> (Action task, TimeSpan schedule, TimeSpan delay=default)</td></tr>
+<tr class="memitem:a4e70170992a237238dd82718ba761662"><td class="memItemLeft" align="right" valign="top">IDisposable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1SchedulerService.html#a4e70170992a237238dd82718ba761662">ScheduleRepeating</a> (Action task, TimeSpan schedule, TimeSpan delay=default)</td></tr>
+<tr class="memdesc:a4e70170992a237238dd82718ba761662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedules the specified task to be invoked on a specified schedule, after an optional delay.  <a href="classNWN_1_1Services_1_1SchedulerService.html#a4e70170992a237238dd82718ba761662">More...</a><br /></td></tr>
 <tr class="separator:a4e70170992a237238dd82718ba761662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:ab01e7b63f6cb2a63c9aa505ea6be47f8"><td class="memItemLeft" align="right" valign="top"><a id="ab01e7b63f6cb2a63c9aa505ea6be47f8"></a>
-static readonly TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><b>NextUpdate</b> = TimeSpan.Zero</td></tr>
+<tr class="memitem:ab01e7b63f6cb2a63c9aa505ea6be47f8"><td class="memItemLeft" align="right" valign="top">static readonly TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1Services_1_1SchedulerService.html#ab01e7b63f6cb2a63c9aa505ea6be47f8">NextUpdate</a> = TimeSpan.Zero</td></tr>
+<tr class="memdesc:ab01e7b63f6cb2a63c9aa505ea6be47f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The next server loop after the current.  <a href="classNWN_1_1Services_1_1SchedulerService.html#ab01e7b63f6cb2a63c9aa505ea6be47f8">More...</a><br /></td></tr>
 <tr class="separator:ab01e7b63f6cb2a63c9aa505ea6be47f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aee1fd12f028e55b2a04d88161cdddf65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee1fd12f028e55b2a04d88161cdddf65">&#9670;&nbsp;</a></span>Schedule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDisposable NWN.Services.SchedulerService.Schedule </td>
+          <td>(</td>
+          <td class="paramtype">Action&#160;</td>
+          <td class="paramname"><em>task</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>delay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Schedules the specified action to be invoked after the given delay. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">task</td><td>The task/action to run.</td></tr>
+    <tr><td class="paramname">delay</td><td>The delay until the task is run.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A disposable object representing the scheduled task. Calling Dispose() will prevent the schedule from running.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentOutOfRangeException</td><td>Thrown if the delay is less than 0.</td></tr>
+    <tr><td class="paramname">ArgumentNullException</td><td>Thrown if no action is specified.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4e70170992a237238dd82718ba761662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e70170992a237238dd82718ba761662">&#9670;&nbsp;</a></span>ScheduleRepeating()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDisposable NWN.Services.SchedulerService.ScheduleRepeating </td>
+          <td>(</td>
+          <td class="paramtype">Action&#160;</td>
+          <td class="paramname"><em>task</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>schedule</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>delay</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Schedules the specified task to be invoked on a specified schedule, after an optional delay. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">task</td><td>The task/action to be run.</td></tr>
+    <tr><td class="paramname">schedule</td><td>The delay between invocations.</td></tr>
+    <tr><td class="paramname">delay</td><td>An additional delay for the first time run.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A disposable object representing the scheduled task. Calling Dispose() will cancel the schedule and any future invocations.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentOutOfRangeException</td><td>Thrown if the schedule is less than 0.</td></tr>
+    <tr><td class="paramname">ArgumentNullException</td><td>Thrown if no action is specified.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab01e7b63f6cb2a63c9aa505ea6be47f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01e7b63f6cb2a63c9aa505ea6be47f8">&#9670;&nbsp;</a></span>NextUpdate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly TimeSpan NWN.Services.SchedulerService.NextUpdate = TimeSpan.Zero</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The next server loop after the current. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWN/Services/Scheduler/SchedulerService.cs</li>
 </ul>

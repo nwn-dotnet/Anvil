@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['scriptreturnvalue_1847',['ScriptReturnValue',['../classNWNX_1_1API_1_1Util.html#a139b7dffa0257f2fa4a3dd49af35c55a',1,'NWNX::API::Util']]],
-  ['size_1848',['Size',['../classNWN_1_1API_1_1NwArea.html#a045b0539bc59af01fb577a257503a73b',1,'NWN::API::NwArea']]],
-  ['skill_1849',['Skill',['../classNWN_1_1API_1_1Talent.html#a1c812e7a633bb8b8ff587091293c31bf',1,'NWN::API::Talent']]],
-  ['spell_1850',['Spell',['../classNWN_1_1API_1_1Talent.html#ae2deff8f2d40fe97420a375b20d14970',1,'NWN::API::Talent']]],
-  ['subtype_1851',['SubType',['../classNWN_1_1API_1_1ItemProperty.html#a4a43d08961f0e303e5a6016883723d99',1,'NWN::API::ItemProperty']]]
+  ['radtodeg_1849',['RadToDeg',['../classNWN_1_1API_1_1NwMath.html#a5f534c1cec239b44b861ce8265cee6d8',1,'NWN::API::NwMath']]],
+  ['red_1850',['Red',['../structNWN_1_1API_1_1Color.html#ac947196c2f08226044340756eab31e11',1,'NWN::API::Color']]],
+  ['remainingduration_1851',['RemainingDuration',['../classNWN_1_1API_1_1ItemProperty.html#a4ced0c97e738981c8d55615df17450e3',1,'NWN::API::ItemProperty']]],
+  ['resref_1852',['ResRef',['../classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20',1,'NWN::API::NwObject']]]
 ];
