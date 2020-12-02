@@ -12,7 +12,7 @@ namespace NWN.Plugins
 
     private readonly AssemblyDependencyResolver resolver;
 
-    public PluginLoadContext(PluginLoader pluginLoader, string pluginPath, string pluginName) : base(true)
+    public PluginLoadContext(PluginLoader pluginLoader, string pluginPath, string pluginName) : base(EnvironmentConfig.ReloadEnabled)
     {
       this.pluginLoader = pluginLoader;
       this.pluginName = pluginName;

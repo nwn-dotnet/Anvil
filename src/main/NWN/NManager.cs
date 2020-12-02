@@ -74,6 +74,12 @@ namespace NWN
     /// </summary>
     public static async void Reload()
     {
+      if (!EnvironmentConfig.ReloadEnabled)
+      {
+        Log.Error("Managed reload is not enabled (NWM_RELOAD_ENABLED=true)");
+        return;
+      }
+
       await NwTask.NextFrame();
 
       Log.Info("Reloading NWN.Managed.");

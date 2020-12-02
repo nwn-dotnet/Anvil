@@ -48,16 +48,20 @@ namespace NWN.Plugins
           continue;
         }
 
-        Plugin plugin = CreatePlugin(pluginRoot, pluginName);
+        string pluginPath = Path.Combine(pluginRoot, $"{pluginName}.dll");
+        if (!File.Exists(pluginPath))
+        {
+          continue;
+        }
+
+        Plugin plugin = CreatePlugin(pluginPath, pluginName);
         plugins.Add(plugin);
       }
     }
 
-    private Plugin CreatePlugin(string pluginRoot, string pluginName)
+    private Plugin CreatePlugin(string pluginPath, string pluginName)
     {
-      string pluginPath = Path.Combine(pluginRoot, $"{pluginName}.dll");
       PluginLoadContext pluginLoadContext = new PluginLoadContext(this, pluginPath, pluginName);
-
       return new Plugin(pluginPath, pluginLoadContext);
     }
 
