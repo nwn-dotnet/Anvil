@@ -197,27 +197,6 @@ namespace NWN.API
     public void StopAmbient() => NWScript.AmbientSoundStop(this);
 
     /// <summary>
-    /// Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.
-    /// </summary>
-    /// <param name="fileName">The filename, 16 characters or less and should be lowercase. If left blank the resref of oArea will be used.</param>
-    /// <param name="exportVariables">If true, local variables set on this area will be exported.</param>
-    /// <param name="exportUUID">If true, the UUID of this area will be exported.</param>
-    /// <param name="objectTypeFilter">Filter object types. These objects will not be exported.</param>
-    /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
-    /// <return>true if exported successfully, false if not.</return>
-    public bool ExportGIT(string fileName = "", bool exportVariables = true, bool exportUUID = true, ObjectTypes objectTypeFilter = ObjectTypes.All, string alias = "NWNX") => AreaPlugin.ExportGIT(this, fileName, exportVariables.ToInt(), exportUUID.ToInt(), (int)objectTypeFilter, alias).ToBool();
-
-    /// <summary>
-    /// Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.
-    /// </summary>
-    /// <param name="fileName">The filename, 16 characters or less and should be lowercase. If left blank the resref of oArea will be used.</param>
-    /// <param name="newName">Optional new name of the area. Leave blank to use the current name.</param>
-    /// <param name="newTag">Optional new tag of the area. Leave blank to use the current tag.</param>
-    /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
-    /// <return>true if exported successfully, false if not.</return>
-    public bool ExportARE(string fileName = "", string newName = "", string newTag = "", string alias = "NWNX") => AreaPlugin.ExportARE(this, fileName, newName, newTag, alias).ToBool();
-
-    /// <summary>
     /// Creates a copy of this area, including everything inside of it (except players).
     /// </summary>
     /// <returns>The new cloned area instance.</returns>
