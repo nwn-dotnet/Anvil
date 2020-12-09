@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
+using NWN.Core.NWNX;
 using NWNX.API.Constants;
 
 namespace NWN.API
@@ -8,13 +9,13 @@ namespace NWN.API
   [NativeObjectInfo(0, InternalObjectType.Area)]
   public sealed class NwArea : NwObject
   {
-    internal NwArea(uint objectId) : base(objectId) {}
+    internal NwArea(uint objectId) : base(objectId) { }
 
     /// <summary>
     /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>
     /// </summary>
-    public Vector2Int Size => new Vector2Int(NWScript.GetAreaSize((int) AreaSizeDimension.Width, this), NWScript.GetAreaSize((int) AreaSizeDimension.Height, this));
+    public Vector2Int Size => new Vector2Int(NWScript.GetAreaSize((int)AreaSizeDimension.Width, this), NWScript.GetAreaSize((int)AreaSizeDimension.Height, this));
 
     /// <summary>
     /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
@@ -24,12 +25,12 @@ namespace NWN.API
     /// <summary>
     /// Gets a value indicating whether this area is above ground (true), or underground (false).
     /// </summary>
-    public bool IsAboveGround => (AreaInfo) NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
+    public bool IsAboveGround => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
 
     /// <summary>
     /// Gets a value indicating whether this area is natural (true), or artificial (false).
     /// </summary>
-    public bool IsNatural => (AreaInfo) NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
+    public bool IsNatural => (AreaInfo)NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
 
     /// <summary>
     /// Gets the tileset (.set) resource name used for this area.
@@ -41,8 +42,8 @@ namespace NWN.API
     /// </summary>
     public WeatherType Weather
     {
-      get => (WeatherType) NWScript.GetWeather(this);
-      set => NWScript.SetWeather(this, (int) value);
+      get => (WeatherType)NWScript.GetWeather(this);
+      set => NWScript.SetWeather(this, (int)value);
     }
 
     /// <summary>
@@ -50,8 +51,8 @@ namespace NWN.API
     /// </summary>
     public Skybox SkyBox
     {
-      get => (Skybox) NWScript.GetSkyBox(this);
-      set => NWScript.SetSkyBox((int) value, this);
+      get => (Skybox)NWScript.GetSkyBox(this);
+      set => NWScript.SetSkyBox((int)value, this);
     }
 
     /// <summary>
@@ -137,7 +138,7 @@ namespace NWN.API
     /// </summary>
     public FogColor GetFogColor(FogType fogType)
     {
-      return (FogColor) NWScript.GetFogColor((int) fogType, this);
+      return (FogColor)NWScript.GetFogColor((int)fogType, this);
     }
 
     /// <summary>
@@ -145,18 +146,18 @@ namespace NWN.API
     /// </summary>
     public void SetFogColor(FogType fogType, FogColor fogColor)
     {
-      NWScript.SetFogColor((int) fogType, (int) fogColor, this);
+      NWScript.SetFogColor((int)fogType, (int)fogColor, this);
     }
 
     /// <summary>
     /// Gets the fog amount for this area, at the specified time of day.
     /// </summary>
-    public int GetFogAmount(FogType fogType) => NWScript.GetFogAmount((int) fogType, this);
+    public int GetFogAmount(FogType fogType) => NWScript.GetFogAmount((int)fogType, this);
 
     /// <summary>
     /// Sets the fog amount for this area, at the specified time of day.
     /// </summary>
-    public void SetFogAmount(FogType fogType, int fogAmount) => NWScript.SetFogAmount((int) fogType, fogAmount, this);
+    public void SetFogAmount(FogType fogType, int fogAmount) => NWScript.SetFogAmount((int)fogType, fogAmount, this);
 
     /// <summary>
     /// Notifies all clients in this area to recompute static lighting.
@@ -196,6 +197,27 @@ namespace NWN.API
     public void StopAmbient() => NWScript.AmbientSoundStop(this);
 
     /// <summary>
+    /// Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.
+    /// </summary>
+    /// <param name="fileName">The filename, 16 characters or less and should be lowercase. If left blank the resref of oArea will be used.</param>
+    /// <param name="exportVariables">If true, local variables set on this area will be exported.</param>
+    /// <param name="exportUUID">If true, the UUID of this area will be exported.</param>
+    /// <param name="objectTypeFilter">Filter object types. These objects will not be exported.</param>
+    /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
+    /// <return>true if exported successfully, false if not.</return>
+    public bool ExportGIT(string fileName = "", bool exportVariables = true, bool exportUUID = true, ObjectTypes objectTypeFilter = ObjectTypes.All, string alias = "NWNX") => AreaPlugin.ExportGIT(this, fileName, exportVariables.ToInt(), exportUUID.ToInt(), (int)objectTypeFilter, alias).ToBool();
+
+    /// <summary>
+    /// Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.
+    /// </summary>
+    /// <param name="fileName">The filename, 16 characters or less and should be lowercase. If left blank the resref of oArea will be used.</param>
+    /// <param name="newName">Optional new name of the area. Leave blank to use the current name.</param>
+    /// <param name="newTag">Optional new tag of the area. Leave blank to use the current tag.</param>
+    /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
+    /// <return>true if exported successfully, false if not.</return>
+    public bool ExportARE(string fileName = "", string newName = "", string newTag = "", string alias = "NWNX") => AreaPlugin.ExportARE(this, fileName, newName, newTag, alias).ToBool();
+
+    /// <summary>
     /// Creates a copy of this area, including everything inside of it (except players).
     /// </summary>
     /// <returns>The new cloned area instance.</returns>
@@ -214,7 +236,7 @@ namespace NWN.API
     /// Destroys this area and anything within it.
     /// </summary>
     /// <returns>The result of this destroy action.</returns>
-    public AreaDestroyResult Destroy() => (AreaDestroyResult) NWScript.DestroyArea(this);
+    public AreaDestroyResult Destroy() => (AreaDestroyResult)NWScript.DestroyArea(this);
 
     /// <summary>
     /// Locates all objects of the specified type.
