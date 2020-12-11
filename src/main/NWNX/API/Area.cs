@@ -14,16 +14,6 @@ namespace NWNX.API
     }
 
     /// <summary>
-    /// Add NwObject to the ExportGIT exclusion list, objects on this list won't be exported when ExportGIT() is called.
-    /// </summary>
-    public static void AddObjectToExclusionList(NwObject obj) => AreaPlugin.AddObjectToExclusionList(obj);
-
-    /// <summary>
-    /// Remove NwObject from the ExportGIT exclusion list.
-    /// </summary>
-    public static void RemoveObjectFromExclusionList(NwObject obj) => AreaPlugin.RemoveObjectFromExclusionList(obj);
-
-    /// <summary>
     /// Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.
     /// </summary>
     /// <param name="area">The NwArea to check.</param>
@@ -33,7 +23,22 @@ namespace NWNX.API
     /// <param name="objectTypeFilter">Filter object types. These objects will not be exported.</param>
     /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
     /// <return>true if exported successfully, false if not.</return>
-    public static bool ExportGIT(this NwArea area, string fileName = "", bool exportVariables = true, bool exportUUID = true, ObjectTypes objectTypeFilter = ObjectTypes.All, string alias = "NWNX") => AreaPlugin.ExportGIT(area, fileName, exportVariables.ToInt(), exportUUID.ToInt(), (int)objectTypeFilter, alias).ToBool();
+    public static bool ExportGIT(this NwArea area, string fileName = "", bool exportVariables = true, bool exportUUID = true, ObjectTypes objectTypeFilter = ObjectTypes.All, string alias = "NWNX", params NwObject[] objectsToIgnore)
+    {
+      foreach (var obj in objectsToIgnore)
+      {
+        AreaPlugin.AddObjectToExclusionList(obj);
+      }
+
+      var returnValue = AreaPlugin.ExportGIT(area, fileName, exportVariables.ToInt(), exportUUID.ToInt(), (int)objectTypeFilter, alias).ToBool();
+
+      foreach (var obj in objectsToIgnore)
+      {
+        AreaPlugin.RemoveObjectFromExclusionList(obj);
+      }
+
+      return returnValue;
+    }
 
     /// <summary>
     /// Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.
