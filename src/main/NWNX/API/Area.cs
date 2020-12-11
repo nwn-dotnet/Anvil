@@ -22,6 +22,7 @@ namespace NWNX.API
     /// <param name="exportUUID">If true, the UUID of this area will be exported.</param>
     /// <param name="objectTypeFilter">Filter object types. These objects will not be exported.</param>
     /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
+    /// <param name="objectsToIgnore">The NwObjects we want to not export. Players are already ignored.</param>
     /// <return>true if exported successfully, false if not.</return>
     public static bool ExportGIT(this NwArea area, string fileName = "", bool exportVariables = true, bool exportUUID = true, ObjectTypes objectTypeFilter = ObjectTypes.All, string alias = "NWNX", params NwObject[] objectsToIgnore)
     {
