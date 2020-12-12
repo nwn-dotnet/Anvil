@@ -52,6 +52,8 @@ var NAVTREEINDEX0 =
 "classNWNX_1_1API_1_1Administration_1_1GameOptions.html#af7382029c6c1b278c1c053ab89340b23":[0,0,1,0,1,1,10],
 "classNWNX_1_1API_1_1Appearance.html":[0,0,1,0,2],
 "classNWNX_1_1API_1_1Area.html":[0,0,1,0,3],
+"classNWNX_1_1API_1_1Area.html#a2bb6b218df942757192d984a793d3ee5":[0,0,1,0,3,0],
+"classNWNX_1_1API_1_1Area.html#ac368fee34431b446c182bee6d324d2fb":[0,0,1,0,3,1],
 "classNWNX_1_1API_1_1Chat.html":[0,0,1,0,4],
 "classNWNX_1_1API_1_1Creature.html":[0,0,1,0,5],
 "classNWNX_1_1API_1_1Creature.html#a031d12e42ae139a22606c8fc676fd36c":[0,0,1,0,5,6],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryCloseBefore.html#a65b3f0583c1e7c97f57b3354d4add65f":[0,0,1,0,0,16,1,1],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html":[0,0,1,0,0,16,2],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html#a3a0c5701835ef1c6e74687c6eabf6709":[0,0,1,0,0,16,2,0],
-"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html#ab00827a707b2b1720c121ae9fcad0884":[0,0,1,0,0,16,2,2],
-"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html#ac5d45747a5fe90f12efabc551d652fdc":[0,0,1,0,0,16,2,1],
-"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenBefore.html":[0,0,1,0,0,16,3]
+"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html#ab00827a707b2b1720c121ae9fcad0884":[0,0,1,0,0,16,2,2]
 };

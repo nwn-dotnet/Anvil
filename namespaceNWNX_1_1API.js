@@ -3,7 +3,7 @@ var namespaceNWNX_1_1API =
     [ "Events", "namespaceNWNX_1_1API_1_1Events.html", "namespaceNWNX_1_1API_1_1Events" ],
     [ "Administration", "classNWNX_1_1API_1_1Administration.html", "classNWNX_1_1API_1_1Administration" ],
     [ "Appearance", "classNWNX_1_1API_1_1Appearance.html", null ],
-    [ "Area", "classNWNX_1_1API_1_1Area.html", null ],
+    [ "Area", "classNWNX_1_1API_1_1Area.html", "classNWNX_1_1API_1_1Area" ],
     [ "Chat", "classNWNX_1_1API_1_1Chat.html", null ],
     [ "Creature", "classNWNX_1_1API_1_1Creature.html", "classNWNX_1_1API_1_1Creature" ],
     [ "Damage", "classNWNX_1_1API_1_1Damage.html", null ],

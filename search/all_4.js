@@ -22,5 +22,7 @@ var searchData=
   ['exitingobject_212',['ExitingObject',['../classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnExit.html#af7555dfffdc93f4fe47c344ecae25c93',1,'NWN::API::Events::AreaEvents::OnExit']]],
   ['exploresminimap_213',['ExploresMinimap',['../classNWN_1_1API_1_1NwCreature.html#a3925a950e97c82b9350bc0181b8c1b22',1,'NWN::API::NwCreature']]],
   ['exportallcharacters_214',['ExportAllCharacters',['../classNWN_1_1API_1_1NwModule.html#ad6e1e412dd751f7c5b96a45caf809695',1,'NWN::API::NwModule']]],
-  ['exportcharacter_215',['ExportCharacter',['../classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802',1,'NWN::API::NwPlayer']]]
+  ['exportare_215',['ExportARE',['../classNWNX_1_1API_1_1Area.html#a2bb6b218df942757192d984a793d3ee5',1,'NWNX::API::Area']]],
+  ['exportcharacter_216',['ExportCharacter',['../classNWN_1_1API_1_1NwPlayer.html#a21b4b040cc0c45f7e7da59e2c3476802',1,'NWN::API::NwPlayer']]],
+  ['exportgit_217',['ExportGIT',['../classNWNX_1_1API_1_1Area.html#ac368fee34431b446c182bee6d324d2fb',1,'NWNX::API::Area']]]
 ];

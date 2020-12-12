@@ -42,13 +42,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenBefore.html#a0c8aa23bc9afc54969a9bd418f4329eb",
-"classNWNX_1_1API_1_1Util.html#a59de3319db4ef839a33ee7fe9bff6848",
-"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#ac47af876f44642882ec98f3f09fcc299",
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnHeartbeat.html",
-"classNWN_1_1API_1_1NwCreature.html#a72eb70a2610bca1a2429c739041d48ba",
-"classNWN_1_1API_1_1NwObject.html#ae8db8320c8c78ecae924e73697619c22",
-"functions_func_l.html"
+"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html#ac5d45747a5fe90f12efabc551d652fdc",
+"classNWNX_1_1API_1_1Util.html#a3cbb396c4585fc783d861276acd0e589",
+"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#a1b6e07bb045d56a719873bf4a98b9473",
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#a1d97bde9a2e0d6adcfe1ee227fa8530c",
+"classNWN_1_1API_1_1NwCreature.html#a6f7860a2374915659d99064071272084",
+"classNWN_1_1API_1_1NwObject.html#ab13ea480574014497dc49db178d7e24f",
+"functions_func_i.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

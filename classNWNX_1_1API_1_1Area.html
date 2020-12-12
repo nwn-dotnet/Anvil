@@ -82,11 +82,171 @@ $(document).ready(function(){initNavTree('classNWNX_1_1API_1_1Area.html',''); in
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classNWNX_1_1API_1_1Area-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">NWNX.API.Area Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ac368fee34431b446c182bee6d324d2fb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWNX_1_1API_1_1Area.html#ac368fee34431b446c182bee6d324d2fb">ExportGIT</a> (this <a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a> area, string fileName=&quot;&quot;, bool exportVariables=true, bool exportUUID=true, ObjectTypes objectTypeFilter=ObjectTypes.All, string alias=&quot;NWNX&quot;, params <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a>[] objectsToIgnore)</td></tr>
+<tr class="memdesc:ac368fee34431b446c182bee6d324d2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.  <a href="classNWNX_1_1API_1_1Area.html#ac368fee34431b446c182bee6d324d2fb">More...</a><br /></td></tr>
+<tr class="separator:ac368fee34431b446c182bee6d324d2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bb6b218df942757192d984a793d3ee5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWNX_1_1API_1_1Area.html#a2bb6b218df942757192d984a793d3ee5">ExportARE</a> (this <a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a> area, string fileName=&quot;&quot;, string newName=&quot;&quot;, string newTag=&quot;&quot;, string alias=&quot;NWNX&quot;)</td></tr>
+<tr class="memdesc:a2bb6b218df942757192d984a793d3ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.  <a href="classNWNX_1_1API_1_1Area.html#a2bb6b218df942757192d984a793d3ee5">More...</a><br /></td></tr>
+<tr class="separator:a2bb6b218df942757192d984a793d3ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2bb6b218df942757192d984a793d3ee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bb6b218df942757192d984a793d3ee5">&#9670;&nbsp;</a></span>ExportARE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool NWNX.API.Area.ExportARE </td>
+          <td>(</td>
+          <td class="paramtype">this <a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a>&#160;</td>
+          <td class="paramname"><em>area</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fileName</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>newName</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>newTag</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>alias</em> = <code>&quot;NWNX&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">area</td><td>The NwArea to check.</td></tr>
+    <tr><td class="paramname">fileName</td><td>The filename, 16 characters or less and should be lowercase. If left blank the resref of oArea will be used.</td></tr>
+    <tr><td class="paramname">newName</td><td>Optional new name of the area. Leave blank to use the current name.</td></tr>
+    <tr><td class="paramname">newTag</td><td>Optional new tag of the area. Leave blank to use the current tag.</td></tr>
+    <tr><td class="paramname">alias</td><td>The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>&lt;return&gt;true if exported successfully, false if not.&lt;/return&gt; </p>
+
+</div>
+</div>
+<a id="ac368fee34431b446c182bee6d324d2fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac368fee34431b446c182bee6d324d2fb">&#9670;&nbsp;</a></span>ExportGIT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool NWNX.API.Area.ExportGIT </td>
+          <td>(</td>
+          <td class="paramtype">this <a class="el" href="classNWN_1_1API_1_1NwArea.html">NwArea</a>&#160;</td>
+          <td class="paramname"><em>area</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fileName</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exportVariables</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exportUUID</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ObjectTypes&#160;</td>
+          <td class="paramname"><em>objectTypeFilter</em> = <code>ObjectTypes.All</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>alias</em> = <code>&quot;NWNX&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params <a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a>[]&#160;</td>
+          <td class="paramname"><em>objectsToIgnore</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">area</td><td>The NwArea to check.</td></tr>
+    <tr><td class="paramname">fileName</td><td>The filename, 16 characters or less and should be lowercase. If left blank the resref of oArea will be used.</td></tr>
+    <tr><td class="paramname">exportVariables</td><td>If true, local variables set on this area will be exported.</td></tr>
+    <tr><td class="paramname">exportUUID</td><td>If true, the UUID of this area will be exported.</td></tr>
+    <tr><td class="paramname">objectTypeFilter</td><td>Filter object types. These objects will not be exported.</td></tr>
+    <tr><td class="paramname">alias</td><td>The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</td></tr>
+    <tr><td class="paramname">objectsToIgnore</td><td>The NwObjects we want to not export. Players are already ignored.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>&lt;return&gt;true if exported successfully, false if not.&lt;/return&gt; </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWNX/API/Area.cs</li>
 </ul>
