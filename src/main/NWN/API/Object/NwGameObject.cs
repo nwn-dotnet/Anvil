@@ -471,5 +471,23 @@ namespace NWN.API
     /// <returns>true if this object has line of sight on the target, otherwise false.</returns>
     public bool HasLineOfSight(NwGameObject target)
       => NWScript.LineOfSightObject(this, target).ToBool();
+
+    /// <summary>
+    /// Applies the specified effect to this game object.
+    /// </summary>
+    /// <param name="durationType">The duration type to apply with this effect.</param>
+    /// <param name="effect">The effect to apply.</param>
+    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
+    public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
+    {
+      NWScript.ApplyEffectToObject((int)durationType, effect, this, (float)duration.TotalSeconds);
+    }
+
+    /// <summary>
+    /// Removes the specified effect from this game object.
+    /// </summary>
+    /// <param name="effect">The existing effect instance.</param>
+    public void RemoveEffect(Effect effect)
+      => NWScript.RemoveEffect(this, effect);
   }
 }
