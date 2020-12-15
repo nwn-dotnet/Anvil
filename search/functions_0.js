@@ -45,7 +45,7 @@ var searchData=
   ['angletovector2_1562',['AngleToVector2',['../classNWN_1_1API_1_1NwMath.html#a90f8bab885ea9b2b07d5a3cb700c5c4f',1,'NWN::API::NwMath']]],
   ['angletovector3_1563',['AngleToVector3',['../classNWN_1_1API_1_1NwMath.html#a5fabe0bc1deb8d08e651866d3d016e1c',1,'NWN::API::NwMath']]],
   ['appear_1564',['Appear',['../classNWN_1_1API_1_1Effect.html#aafe296b465c4655bed3570c248e11a79',1,'NWN::API::Effect']]],
-  ['applyeffect_1565',['ApplyEffect',['../classNWN_1_1API_1_1NwCreature.html#a032e0e39b82ea46abbd399d26bb3c6a3',1,'NWN::API::NwCreature']]],
+  ['applyeffect_1565',['ApplyEffect',['../classNWN_1_1API_1_1NwGameObject.html#a9eb623fd972ab9436528deb855b04c86',1,'NWN::API::NwGameObject']]],
   ['aseffect_1566',['AsEffect',['../classNWNX_1_1API_1_1Util.html#ad72ef156cc78db0a692cc47b608e655f',1,'NWNX::API::Util']]],
   ['asitemproperty_1567',['AsItemProperty',['../classNWNX_1_1API_1_1Util.html#a59de3319db4ef839a33ee7fe9bff6848',1,'NWNX::API::Util']]],
   ['attackdecrease_1568',['AttackDecrease',['../classNWN_1_1API_1_1Effect.html#af602fe68edae1232ccd37de956452f60',1,'NWN::API::Effect']]],

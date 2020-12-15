@@ -185,12 +185,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abad3c081d30c4944292f274defd18a76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#abad3c081d30c4944292f274defd18a76">HasTalent</a> (<a class="el" href="classNWN_1_1API_1_1Talent.html">Talent</a> talent)</td></tr>
 <tr class="memdesc:abad3c081d30c4944292f274defd18a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this creature has the specified talent.  <a href="classNWN_1_1API_1_1NwCreature.html#abad3c081d30c4944292f274defd18a76">More...</a><br /></td></tr>
 <tr class="separator:abad3c081d30c4944292f274defd18a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a032e0e39b82ea46abbd399d26bb3c6a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a032e0e39b82ea46abbd399d26bb3c6a3">ApplyEffect</a> (EffectDuration durationType, <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a> effect, TimeSpan duration=default)</td></tr>
-<tr class="memdesc:a032e0e39b82ea46abbd399d26bb3c6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the specified effect to this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a032e0e39b82ea46abbd399d26bb3c6a3">More...</a><br /></td></tr>
-<tr class="separator:a032e0e39b82ea46abbd399d26bb3c6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11d32f088286437a8c0587857d6b024e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a11d32f088286437a8c0587857d6b024e">RemoveEffect</a> (<a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a> effect)</td></tr>
-<tr class="memdesc:a11d32f088286437a8c0587857d6b024e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified effect from this creature.  <a href="classNWN_1_1API_1_1NwCreature.html#a11d32f088286437a8c0587857d6b024e">More...</a><br /></td></tr>
-<tr class="separator:a11d32f088286437a8c0587857d6b024e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44c7a663f783577931805b90e9056831"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwCreature.html#a44c7a663f783577931805b90e9056831">ActionRandomWalk</a> ()</td></tr>
 <tr class="memdesc:a44c7a663f783577931805b90e9056831"><td class="mdescLeft">&#160;</td><td class="mdescRight">The creature will generate a random location near its current location and pathfind to it. This repeats and never ends, which means it is necessary to call <a class="el" href="classNWN_1_1API_1_1NwObject.html#a039c6922a250667b61069f5a1710988d" title="Clear all the object&#39;s actions.">NwObject.ClearActionQueue</a> in order to allow a creature to perform any other action once BeginRandomWalking has been called.  <a href="classNWN_1_1API_1_1NwCreature.html#a44c7a663f783577931805b90e9056831">More...</a><br /></td></tr>
 <tr class="separator:a44c7a663f783577931805b90e9056831"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -485,6 +479,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab7b549ad69e72a1863c7b87a6397a5bc inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this object has a direct line of sight to the specified object (not blocked by any geometry).<br  />
   <a href="classNWN_1_1API_1_1NwGameObject.html#ab7b549ad69e72a1863c7b87a6397a5bc">More...</a><br /></td></tr>
 <tr class="separator:ab7b549ad69e72a1863c7b87a6397a5bc inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb623fd972ab9436528deb855b04c86 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a9eb623fd972ab9436528deb855b04c86">ApplyEffect</a> (EffectDuration durationType, <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a> effect, TimeSpan duration=default)</td></tr>
+<tr class="memdesc:a9eb623fd972ab9436528deb855b04c86 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the specified effect to this game object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a9eb623fd972ab9436528deb855b04c86">More...</a><br /></td></tr>
+<tr class="separator:a9eb623fd972ab9436528deb855b04c86 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20cb60bf1015b22bc55f846a58bbe4f8 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwGameObject.html#a20cb60bf1015b22bc55f846a58bbe4f8">RemoveEffect</a> (<a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a> effect)</td></tr>
+<tr class="memdesc:a20cb60bf1015b22bc55f846a58bbe4f8 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified effect from this game object.  <a href="classNWN_1_1API_1_1NwGameObject.html#a20cb60bf1015b22bc55f846a58bbe4f8">More...</a><br /></td></tr>
+<tr class="separator:a20cb60bf1015b22bc55f846a58bbe4f8 inherit pub_methods_classNWN_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classNWN_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classNWN_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classNWN_1_1API_1_1NwObject.html">NWN.API.NwObject</a></td></tr>
 <tr class="memitem:a939d84e27244659e861c19659d2a0490 inherit pub_methods_classNWN_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwObject.html#a939d84e27244659e861c19659d2a0490">WaitForObjectContext</a> ()</td></tr>
 <tr class="memdesc:a939d84e27244659e861c19659d2a0490 inherit pub_methods_classNWN_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators).<br  />
@@ -2224,58 +2224,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
-<a id="a032e0e39b82ea46abbd399d26bb3c6a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a032e0e39b82ea46abbd399d26bb3c6a3">&#9670;&nbsp;</a></span>ApplyEffect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NWN.API.NwCreature.ApplyEffect </td>
-          <td>(</td>
-          <td class="paramtype">EffectDuration&#160;</td>
-          <td class="paramname"><em>durationType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a>&#160;</td>
-          <td class="paramname"><em>effect</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TimeSpan&#160;</td>
-          <td class="paramname"><em>duration</em> = <code>default</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Applies the specified effect to this creature. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">durationType</td><td>The duration type to apply with this effect.</td></tr>
-    <tr><td class="paramname">effect</td><td>The effect to apply.</td></tr>
-    <tr><td class="paramname">duration</td><td>If duration type is EffectDuration.Temporary, the duration of this effect.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ab28fc5445643eda10c93896e1fd3d610"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab28fc5445643eda10c93896e1fd3d610">&#9670;&nbsp;</a></span>ChangeToStandardFaction()</h2>
 
@@ -3752,32 +3700,6 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">voiceChatType</td><td>The NWN.API.Constants.VoiceChatType for this creature to speak.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a11d32f088286437a8c0587857d6b024e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11d32f088286437a8c0587857d6b024e">&#9670;&nbsp;</a></span>RemoveEffect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NWN.API.NwCreature.RemoveEffect </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a>&#160;</td>
-          <td class="paramname"><em>effect</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Removes the specified effect from this creature. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">effect</td><td>The existing effect instance.</td></tr>
   </table>
   </dd>
 </dl>

@@ -6,7 +6,7 @@ var searchData=
   ['reload_1749',['Reload',['../classNWN_1_1NManager.html#a0dea84ca740d6a991e0c68732ff81a09',1,'NWN::NManager']]],
   ['reloadrules_1750',['ReloadRules',['../classNWNX_1_1API_1_1Administration.html#ac3f5596378886111fc32a797b33a8ba9',1,'NWNX::API::Administration']]],
   ['removebannedip_1751',['RemoveBannedIP',['../classNWNX_1_1API_1_1Administration.html#aa3f932d867231f24af69ecf10eca63d0',1,'NWNX::API::Administration']]],
-  ['removeeffect_1752',['RemoveEffect',['../classNWN_1_1API_1_1NwCreature.html#a11d32f088286437a8c0587857d6b024e',1,'NWN::API::NwCreature']]],
+  ['removeeffect_1752',['RemoveEffect',['../classNWN_1_1API_1_1NwGameObject.html#a20cb60bf1015b22bc55f846a58bbe4f8',1,'NWN::API::NwGameObject']]],
   ['removefromcurrentparty_1753',['RemoveFromCurrentParty',['../classNWN_1_1API_1_1NwPlayer.html#af579918539409eac24ff1ad318af22b1',1,'NWN::API::NwPlayer']]],
   ['removeitemproperty_1754',['RemoveItemProperty',['../classNWN_1_1API_1_1NwItem.html#ae8e8fc98088e6ed037271d97be277719',1,'NWN::API::NwItem']]],
   ['removenwnxresourcefile_1755',['RemoveNWNXResourceFile',['../classNWNX_1_1API_1_1Util.html#acb0d44fee6cecc6b3e29bd1026815243',1,'NWNX::API::Util']]],
