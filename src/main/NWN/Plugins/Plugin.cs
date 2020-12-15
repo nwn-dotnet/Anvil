@@ -48,7 +48,12 @@ namespace NWN.Plugins
     public void Dispose()
     {
       Assembly = null;
-      pluginLoadContext.Unload();
+
+      if (EnvironmentConfig.ReloadEnabled)
+      {
+        pluginLoadContext.Unload();
+      }
+
       pluginLoadContext = null;
     }
   }
