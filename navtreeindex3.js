@@ -8,7 +8,8 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1DoorEvents.html":[0,0,0,0,1,4],
 "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html":[0,0,0,0,1,4,0],
 "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html#a87526db5169557d993aa37c5d14516d8":[0,0,0,0,1,4,0,0],
-"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html#aad3419bb164aa320dda900db09399be9":[0,0,0,0,1,4,0,1],
+"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html#a9c6272928c0f7655a8fae156bc346974":[0,0,0,0,1,4,0,1],
+"classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html#aad3419bb164aa320dda900db09399be9":[0,0,0,0,1,4,0,2],
 "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnClose.html":[0,0,0,0,1,4,1],
 "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnClose.html#a34382676a7cfcbd93515957f7b01d7e4":[0,0,0,0,1,4,1,1],
 "classNWN_1_1API_1_1Events_1_1DoorEvents_1_1OnClose.html#a9c5834760b38910c0a90ca190fcd2b8b":[0,0,0,0,1,4,1,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a955126dca1b75d0b77ae814a0d48f33c":[0,0,0,0,1,14,1,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html":[0,0,0,0,1,14,2],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a0553f3ed6c1fd229e5ccacfa10c9889a":[0,0,0,0,1,14,2,1],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#ad6a1b9a60f07da6cc9718cec3677aa96":[0,0,0,0,1,14,2,0],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html":[0,0,0,0,1,14,3]
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#ad6a1b9a60f07da6cc9718cec3677aa96":[0,0,0,0,1,14,2,0]
 };
