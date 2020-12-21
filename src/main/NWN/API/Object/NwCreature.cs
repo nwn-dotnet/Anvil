@@ -765,24 +765,6 @@ namespace NWN.API
       => NWScript.GetCreatureHasTalent(talent, this).ToBool();
 
     /// <summary>
-    /// Applies the specified effect to this creature.
-    /// </summary>
-    /// <param name="durationType">The duration type to apply with this effect.</param>
-    /// <param name="effect">The effect to apply.</param>
-    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
-    public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
-    {
-      NWScript.ApplyEffectToObject((int)durationType, effect, this, (float)duration.TotalSeconds);
-    }
-
-    /// <summary>
-    /// Removes the specified effect from this creature.
-    /// </summary>
-    /// <param name="effect">The existing effect instance.</param>
-    public void RemoveEffect(Effect effect)
-      => NWScript.RemoveEffect(this, effect);
-
-    /// <summary>
     /// The creature will generate a random location near its current location
     /// and pathfind to it. This repeats and never ends, which means it is necessary
     /// to call <see cref="NwObject.ClearActionQueue"/> in order to allow a creature to perform any other action
