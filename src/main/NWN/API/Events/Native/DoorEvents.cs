@@ -167,9 +167,12 @@ namespace NWN.API.Events
     {
       public NwDoor Door { get; private set; }
 
+      public NwPlayer ClickedBy { get; private set; }
+
       protected override void PrepareEvent(NwDoor objSelf)
       {
         Door = objSelf;
+        ClickedBy = NWScript.GetClickingObject().ToNwObject<NwPlayer>();
       }
     }
 
