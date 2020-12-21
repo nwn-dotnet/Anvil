@@ -4,6 +4,7 @@ var classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast =
     [ "Caster", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae383f6853af1bfc7e78a29b7e9157d4e", null ],
     [ "Harmful", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#aa86a733c7d11880e3e07e1900657cd84", null ],
     [ "Item", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a3fbfbdfa185cc317dc43c916b18975f6", null ],
+    [ "MetaMagicFeat", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a5095617c7479d22670450bc65729c9c0", null ],
     [ "SaveDC", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae8094242ea4a6615bd66211ef01fd701", null ],
     [ "Spell", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae6c100ea6f834669b14f09d32dd754d6", null ],
     [ "SpellCastClass", "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a95ce290d685ef66732cc71ac0e28c399", null ],

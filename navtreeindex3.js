@@ -225,13 +225,14 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html":[0,0,0,0,1,12,0],
 "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a3fbfbdfa185cc317dc43c916b18975f6":[0,0,0,0,1,12,0,3],
 "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a4da6f6efd7dc760d848bc2d294f4ec72":[0,0,0,0,1,12,0,0],
-"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a95ce290d685ef66732cc71ac0e28c399":[0,0,0,0,1,12,0,6],
-"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#aa77c0bc79691f944b1f0c3ace7c28fb5":[0,0,0,0,1,12,0,7],
+"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a5095617c7479d22670450bc65729c9c0":[0,0,0,0,1,12,0,4],
+"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a95ce290d685ef66732cc71ac0e28c399":[0,0,0,0,1,12,0,7],
+"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#aa77c0bc79691f944b1f0c3ace7c28fb5":[0,0,0,0,1,12,0,8],
 "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#aa86a733c7d11880e3e07e1900657cd84":[0,0,0,0,1,12,0,2],
-"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#adcc8a4cc00a0fe1b147ee563deaef337":[0,0,0,0,1,12,0,8],
+"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#adcc8a4cc00a0fe1b147ee563deaef337":[0,0,0,0,1,12,0,9],
 "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae383f6853af1bfc7e78a29b7e9157d4e":[0,0,0,0,1,12,0,1],
-"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae6c100ea6f834669b14f09d32dd754d6":[0,0,0,0,1,12,0,5],
-"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae8094242ea4a6615bd66211ef01fd701":[0,0,0,0,1,12,0,4],
+"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae6c100ea6f834669b14f09d32dd754d6":[0,0,0,0,1,12,0,6],
+"classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae8094242ea4a6615bd66211ef01fd701":[0,0,0,0,1,12,0,5],
 "classNWN_1_1API_1_1Events_1_1StoreEvents.html":[0,0,0,0,1,13],
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html":[0,0,0,0,1,13,0],
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html#a0cf754552eac60c009322dde28f0a986":[0,0,0,0,1,13,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a62ffa2e1ea738c087191b8502b700be1":[0,0,0,0,1,14,1,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a955126dca1b75d0b77ae814a0d48f33c":[0,0,0,0,1,14,1,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html":[0,0,0,0,1,14,2],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a0553f3ed6c1fd229e5ccacfa10c9889a":[0,0,0,0,1,14,2,1],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#ad6a1b9a60f07da6cc9718cec3677aa96":[0,0,0,0,1,14,2,0]
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a0553f3ed6c1fd229e5ccacfa10c9889a":[0,0,0,0,1,14,2,1]
 };

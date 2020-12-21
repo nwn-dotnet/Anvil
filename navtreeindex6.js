@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"classNWN_1_1API_1_1NwObject.html#aac0e2abb363b0ceae45603286bf50ea6":[0,0,0,0,30,15],
 "classNWN_1_1API_1_1NwObject.html#aaf3cb4edb1f8e82f8875ea62a6fac34c":[0,0,0,0,30,2],
 "classNWN_1_1API_1_1NwObject.html#ab13ea480574014497dc49db178d7e24f":[0,0,0,0,30,6],
 "classNWN_1_1API_1_1NwObject.html#ad7f386189507d0e10b7748b364db6167":[0,0,0,0,30,26],
@@ -242,12 +243,11 @@ var NAVTREEINDEX6 =
 "functions_d.html":[0,3,0,3],
 "functions_e.html":[0,3,0,4],
 "functions_f.html":[0,3,0,5],
-"functions_func.html":[0,3,1],
 "functions_func.html":[0,3,1,0],
+"functions_func.html":[0,3,1],
 "functions_func_b.html":[0,3,1,1],
 "functions_func_c.html":[0,3,1,2],
 "functions_func_d.html":[0,3,1,3],
 "functions_func_e.html":[0,3,1,4],
-"functions_func_f.html":[0,3,1,5],
-"functions_func_g.html":[0,3,1,6]
+"functions_func_f.html":[0,3,1,5]
 };
