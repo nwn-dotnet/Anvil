@@ -121,7 +121,7 @@ namespace NWN.API
     /// </summary>
     public async Task WaitForObjectContext()
     {
-      if (NWScript.ObjectSelf == this)
+      if (NWScript.OBJECT_SELF == this)
       {
         return;
       }
