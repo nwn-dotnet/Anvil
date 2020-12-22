@@ -47,6 +47,11 @@ namespace NWN.API.Events
       /// </summary>
       public int SaveDC { get; private set; }
 
+      /// <summary>
+      /// Gets the type of metamagic used on the last spell.
+      /// </summary>
+      public MetaMagic MetaMagicFeat { get; private set; }
+
       protected override void PrepareEvent(NwObject objSelf)
       {
         Caster = (NwGameObject)objSelf;
@@ -57,6 +62,7 @@ namespace NWN.API.Events
         SpellCastClass = (ClassType)NWScript.GetLastSpellCastClass();
         Item = NWScript.GetSpellCastItem().ToNwObject<NwItem>();
         SaveDC = NWScript.GetSpellSaveDC();
+        MetaMagicFeat = (MetaMagic)NWScript.GetMetaMagicFeat();
       }
     }
   }
