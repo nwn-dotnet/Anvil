@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using NWN.API.Constants;
@@ -189,6 +190,17 @@ namespace NWN.API
     public static Location Create(NwArea area, Vector3 position, float orientation)
     {
       return NWScript.Location(area, position, orientation);
+    }
+
+    /// <summary>
+    /// Applies the specified effect at this location.
+    /// </summary>
+    /// <param name="durationType">The duration type to apply with this effect.</param>
+    /// <param name="effect">The effect to apply.</param>
+    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
+    public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
+    {
+      NWScript.ApplyEffectAtLocation((int)durationType, effect, this, (float)duration.TotalSeconds);
     }
   }
 }
