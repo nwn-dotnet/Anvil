@@ -66,7 +66,7 @@ var searchData=
   ['appear_63',['Appear',['../classNWN_1_1API_1_1Effect.html#aafe296b465c4655bed3570c248e11a79',1,'NWN::API::Effect']]],
   ['appearance_64',['Appearance',['../classNWNX_1_1API_1_1Appearance.html',1,'NWNX::API']]],
   ['appearswhen_65',['AppearsWhen',['../classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html',1,'NWN::API::Events::DialogEvents']]],
-  ['applyeffect_66',['ApplyEffect',['../classNWN_1_1API_1_1NwGameObject.html#a9eb623fd972ab9436528deb855b04c86',1,'NWN::API::NwGameObject']]],
+  ['applyeffect_66',['ApplyEffect',['../classNWN_1_1API_1_1Location.html#a4f807a68f1086a77b0bd16e6fa94d918',1,'NWN.API.Location.ApplyEffect()'],['../classNWN_1_1API_1_1NwGameObject.html#a9eb623fd972ab9436528deb855b04c86',1,'NWN.API.NwGameObject.ApplyEffect()']]],
   ['arcanespellfailure_67',['ArcaneSpellFailure',['../classNWN_1_1API_1_1NwCreature.html#a004e37dbb12c5cb55374f3a2a13e8aed',1,'NWN::API::NwCreature']]],
   ['area_68',['Area',['../classNWNX_1_1API_1_1Area.html',1,'NWNX.API.Area'],['../classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html#a331e77267bb754cc8a12b56aededadb4',1,'NWN.API.Events.AreaEvents.OnEnter.Area()'],['../classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnExit.html#a251d2cb22451f7ccaac5ceb68a21394c',1,'NWN.API.Events.AreaEvents.OnExit.Area()'],['../classNWN_1_1API_1_1Location.html#add8f5a9e2bef4cc69334d922c3b6fadc',1,'NWN.API.Location.Area()'],['../classNWN_1_1API_1_1NwGameObject.html#aca9ed74629540379def37e9fdef3a488',1,'NWN.API.NwGameObject.Area()']]],
   ['areaevents_69',['AreaEvents',['../classNWN_1_1API_1_1Events_1_1AreaEvents.html',1,'NWN::API::Events']]],
