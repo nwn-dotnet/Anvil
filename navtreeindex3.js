@@ -235,10 +235,12 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#ae8094242ea4a6615bd66211ef01fd701":[0,0,0,0,1,12,0,5],
 "classNWN_1_1API_1_1Events_1_1StoreEvents.html":[0,0,0,0,1,13],
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html":[0,0,0,0,1,13,0],
+"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html#a05a28c2a3da9408812a839b240d83c87":[0,0,0,0,1,13,0,1],
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html#a0cf754552eac60c009322dde28f0a986":[0,0,0,0,1,13,0,0],
-"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html#a922f32e14920db06823ed4aff0928fad":[0,0,0,0,1,13,0,1],
+"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html#a922f32e14920db06823ed4aff0928fad":[0,0,0,0,1,13,0,2],
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html":[0,0,0,0,1,13,1],
-"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#a62ba82cef769ba81a40eef3037ad9a18":[0,0,0,0,1,13,1,1],
+"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#a62ba82cef769ba81a40eef3037ad9a18":[0,0,0,0,1,13,1,2],
+"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#a7eb549b9007ebc486a4c07cf99b6d7cf":[0,0,0,0,1,13,1,1],
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#abf1be6b06eed900054b730f5d6b5124c":[0,0,0,0,1,13,1,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents.html":[0,0,0,0,1,14],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html":[0,0,0,0,1,14,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aec55b740ebe751453920ba156003306f":[0,0,0,0,1,14,0,2],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html":[0,0,0,0,1,14,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a62ffa2e1ea738c087191b8502b700be1":[0,0,0,0,1,14,1,1],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a955126dca1b75d0b77ae814a0d48f33c":[0,0,0,0,1,14,1,0],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html":[0,0,0,0,1,14,2],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a0553f3ed6c1fd229e5ccacfa10c9889a":[0,0,0,0,1,14,2,1]
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a955126dca1b75d0b77ae814a0d48f33c":[0,0,0,0,1,14,1,0]
 };
