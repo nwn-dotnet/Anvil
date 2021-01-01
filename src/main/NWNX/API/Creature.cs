@@ -53,5 +53,15 @@ namespace NWNX.API
     {
       return (ClassType) CreaturePlugin.GetClassByLevel(creature, level);
     }
+
+    public static string SerializeQuickbar(this NwCreature creature)
+    {
+      return CreaturePlugin.SerializeQuickbar(creature);
+    }
+
+    public static bool DeserializeQuickbar(this NwCreature creature, string serializedQuickbar)
+    {
+      return CreaturePlugin.DeserializeQuickbar(creature, serializedQuickbar).ToBool();
+    }
   }
 }
