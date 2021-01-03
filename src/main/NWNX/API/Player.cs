@@ -38,5 +38,8 @@ namespace NWNX.API
 
     public static void DisplayFloatingTextStringOnCreature(this NwPlayer player, NwCreature creature, string text)
       => PlayerPlugin.FloatingTextStringOnCreature(player, creature, text);
+
+    public static string GetBicFileName(this NwPlayer player)
+      => PlayerPlugin.GetBicFileName(player);
   }
 }
