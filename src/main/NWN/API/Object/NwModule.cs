@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(0, InternalObjectType.Module)]
+  [NativeObjectInfo(0, ObjectType.Module)]
   public sealed class NwModule : NwObject
   {
     internal NwModule(uint objectId) : base(objectId) {}

@@ -1,10 +1,10 @@
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.All, InternalObjectType.Sound)]
+  [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
   public class NwSound : NwGameObject
   {
     public NwSound(uint objectId) : base(objectId) {}

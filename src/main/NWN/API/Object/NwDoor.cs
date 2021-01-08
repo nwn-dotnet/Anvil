@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Door, InternalObjectType.Door)]
+  [NativeObjectInfo(ObjectTypes.Door, ObjectType.Door)]
   public sealed class NwDoor : NwStationary
   {
     internal NwDoor(uint objectId) : base(objectId) {}

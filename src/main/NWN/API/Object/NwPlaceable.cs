@@ -2,11 +2,11 @@ using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Placeable, InternalObjectType.Placeable)]
+  [NativeObjectInfo(ObjectTypes.Placeable, ObjectType.Placeable)]
   public sealed class NwPlaceable : NwStationary
   {
     internal NwPlaceable(uint objectId) : base(objectId) {}

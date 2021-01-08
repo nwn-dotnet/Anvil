@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.AreaOfEffect, InternalObjectType.AreaOfEffect)]
+  [NativeObjectInfo(ObjectTypes.AreaOfEffect, ObjectType.AreaOfEffect)]
   public class NwAreaOfEffect : NwObject
   {
     internal NwAreaOfEffect(uint objectId) : base(objectId) {}

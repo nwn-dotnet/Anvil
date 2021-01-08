@@ -1,10 +1,10 @@
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Store, InternalObjectType.Store)]
+  [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
   public sealed class NwStore : NwGameObject
   {
     internal NwStore(uint objectId) : base(objectId) {}

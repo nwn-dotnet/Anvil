@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWNX.API;
-using NWNX.API.Constants;
 using Action = NWN.API.Constants.Action;
+using ObjectType = NWN.Native.API.ObjectType;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Creature, InternalObjectType.Creature)]
+  [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
     internal NwCreature(uint objectId) : base(objectId) {}
@@ -750,8 +750,8 @@ namespace NWN.API
       => NWScript.GetIsSkillSuccessful(this, (int)skill, difficultyClass).ToBool();
 
     /// <summary>
-    /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
-    /// Use <see cref="Creature.KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
+    /// Returns true if this creature knows the specified <see cref="Constants.Feat"/>, and can use it.<br/>
+    /// Use <see cref="Creature.KnowsFeat"/> to simply check if a creature knows <see cref="Constants.Feat"/>, but may or may not have uses remaining.
     /// </summary>
     public bool HasFeatPrepared(Feat feat)
       => NWScript.GetHasFeat((int)feat, this).ToBool();

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Encounter, InternalObjectType.Encounter)]
+  [NativeObjectInfo(ObjectTypes.Encounter, ObjectType.Encounter)]
   public sealed class NwEncounter : NwGameObject
   {
     internal NwEncounter(uint objectId) : base(objectId) {}

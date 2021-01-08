@@ -1,9 +1,9 @@
 using NWN.API.Constants;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Waypoint, InternalObjectType.Waypoint)]
+  [NativeObjectInfo(ObjectTypes.Waypoint, ObjectType.Waypoint)]
   public sealed class NwWaypoint : NwGameObject
   {
     internal NwWaypoint(uint objectId) : base(objectId) {}

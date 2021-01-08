@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Item, InternalObjectType.Item)]
+  [NativeObjectInfo(ObjectTypes.Item, ObjectType.Item)]
   public sealed class NwItem : NwGameObject
   {
     internal NwItem(uint objectId) : base(objectId) {}
