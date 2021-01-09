@@ -8,7 +8,17 @@ namespace NWN.API
   [NativeObjectInfo(0, ObjectType.Area)]
   public sealed class NwArea : NwObject
   {
-    internal NwArea(uint objectId) : base(objectId) { }
+    private readonly CNWSArea area;
+
+    internal NwArea(uint objectId, CNWSArea area) : base(objectId)
+    {
+      this.area = area;
+    }
+
+    public static implicit operator CNWSArea(NwArea area)
+    {
+      return area?.area;
+    }
 
     /// <summary>
     /// Gets the size of this area.

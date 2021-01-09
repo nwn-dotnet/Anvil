@@ -114,17 +114,17 @@ namespace NWN.API
 
       return (ObjectType)gameObject.m_nObjectType switch
       {
-        ObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE ? new NwPlayer(objectId) : new NwCreature(objectId),
-        ObjectType.Item => new NwItem(objectId),
-        ObjectType.Placeable => new NwPlaceable(objectId),
+        ObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE ? new NwPlayer(objectId, gameObject.AsNWSCreature(), gameObject.AsNWSPlayerTURD()) : new NwCreature(objectId, gameObject.AsNWSCreature()),
+        ObjectType.Item => new NwItem(objectId, gameObject.AsNWSItem()),
+        ObjectType.Placeable => new NwPlaceable(objectId, gameObject.AsNWSPlaceable()),
         ObjectType.Module => NwModule.Instance,
-        ObjectType.Area => new NwArea(objectId),
-        ObjectType.Trigger => new NwTrigger(objectId),
-        ObjectType.Door => new NwDoor(objectId),
-        ObjectType.Waypoint => new NwWaypoint(objectId),
-        ObjectType.Encounter => new NwEncounter(objectId),
-        ObjectType.Store => new NwStore(objectId),
-        ObjectType.Sound => new NwSound(objectId),
+        ObjectType.Area => new NwArea(objectId, gameObject.AsNWSArea()),
+        ObjectType.Trigger => new NwTrigger(objectId, gameObject.AsNWSTrigger()),
+        ObjectType.Door => new NwDoor(objectId, gameObject.AsNWSDoor()),
+        ObjectType.Waypoint => new NwWaypoint(objectId, gameObject.AsNWSWaypoint()),
+        ObjectType.Encounter => new NwEncounter(objectId, gameObject.AsNWSEncounter()),
+        ObjectType.Store => new NwStore(objectId, gameObject.AsNWSStore()),
+        ObjectType.Sound => new NwSound(objectId, gameObject.AsNWSSoundObject()),
         _ => new NwObject(objectId),
       };
     }

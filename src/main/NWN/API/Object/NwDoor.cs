@@ -8,7 +8,17 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Door, ObjectType.Door)]
   public sealed class NwDoor : NwStationary
   {
-    internal NwDoor(uint objectId) : base(objectId) {}
+    private readonly CNWSDoor door;
+
+    internal NwDoor(uint objectId, CNWSDoor door) : base(objectId)
+    {
+      this.door = door;
+    }
+
+    public static implicit operator CNWSDoor(NwDoor door)
+    {
+      return door?.door;
+    }
 
     /// <summary>
     /// Opens this door.

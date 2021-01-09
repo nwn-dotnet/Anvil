@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
+using NWN.Native.API;
 
 namespace NWN.API
 {
   public sealed class NwPlayer : NwCreature
   {
-    internal NwPlayer(uint objectId) : base(objectId) {}
+    private readonly CNWSPlayerTURD player;
+
+    internal NwPlayer(uint objectId, CNWSCreature creature, CNWSPlayerTURD player) : base(objectId, creature)
+    {
+      this.player = player;
+    }
+
+    public static implicit operator CNWSPlayerTURD(NwPlayer player)
+    {
+      return player?.player;
+    }
 
     /// <summary>
     /// Gets a value indicating whether this Player is a Dungeon Master.

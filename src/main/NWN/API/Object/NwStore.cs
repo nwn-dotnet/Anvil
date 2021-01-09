@@ -7,7 +7,17 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
   public sealed class NwStore : NwGameObject
   {
-    internal NwStore(uint objectId) : base(objectId) {}
+    private readonly CNWSStore store;
+
+    internal NwStore(uint objectId, CNWSStore store) : base(objectId)
+    {
+      this.store = store;
+    }
+
+    public static implicit operator CNWSStore(NwStore store)
+    {
+      return store?.store;
+    }
 
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {

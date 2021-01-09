@@ -7,7 +7,17 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
   public class NwSound : NwGameObject
   {
-    public NwSound(uint objectId) : base(objectId) {}
+    private readonly CNWSSoundObject soundObject;
+
+    public NwSound(uint objectId, CNWSSoundObject soundObject) : base(objectId)
+    {
+      this.soundObject = soundObject;
+    }
+
+    public static implicit operator CNWSSoundObject(NwSound sound)
+    {
+      return sound?.soundObject;
+    }
 
     /// <summary>
     /// Sets the volume for this sound object (0-127).

@@ -8,7 +8,17 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Encounter, ObjectType.Encounter)]
   public sealed class NwEncounter : NwGameObject
   {
-    internal NwEncounter(uint objectId) : base(objectId) {}
+    private readonly CNWSEncounter encounter;
+
+    internal NwEncounter(uint objectId, CNWSEncounter encounter) : base(objectId)
+    {
+      this.encounter = encounter;
+    }
+
+    public static implicit operator CNWSEncounter(NwEncounter encounter)
+    {
+      return encounter?.encounter;
+    }
 
     /// <summary>
     /// Gets or sets a value indicating whether this encounter is spawned and active.

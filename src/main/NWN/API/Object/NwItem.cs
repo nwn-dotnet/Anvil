@@ -10,7 +10,17 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Item, ObjectType.Item)]
   public sealed class NwItem : NwGameObject
   {
-    internal NwItem(uint objectId) : base(objectId) {}
+    private readonly CNWSItem item;
+
+    internal NwItem(uint objectId, CNWSItem item) : base(objectId)
+    {
+      this.item = item;
+    }
+
+    public static implicit operator CNWSItem(NwItem item)
+    {
+      return item?.item;
+    }
 
     /// <summary>
     /// Gets the original unidentified description for this item.

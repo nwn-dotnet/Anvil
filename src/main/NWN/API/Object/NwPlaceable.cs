@@ -9,7 +9,17 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Placeable, ObjectType.Placeable)]
   public sealed class NwPlaceable : NwStationary
   {
-    internal NwPlaceable(uint objectId) : base(objectId) {}
+    private readonly CNWSPlaceable placeable;
+
+    internal NwPlaceable(uint objectId, CNWSPlaceable placeable) : base(objectId)
+    {
+      this.placeable = placeable;
+    }
+
+    public static implicit operator CNWSPlaceable(NwPlaceable placeable)
+    {
+      return placeable?.placeable;
+    }
 
     public bool Occupied => NWScript.GetSittingCreature(this) != INVALID;
 

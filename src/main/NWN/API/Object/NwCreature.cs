@@ -3,16 +3,39 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
+using NWN.Native.API;
 using NWNX.API;
+using Ability = NWN.API.Constants.Ability;
 using Action = NWN.API.Constants.Action;
+using Alignment = NWN.API.Constants.Alignment;
+using AssociateType = NWN.API.Constants.AssociateType;
+using ClassType = NWN.API.Constants.ClassType;
+using CombatMode = NWN.API.Constants.CombatMode;
+using CreatureSize = NWN.API.Constants.CreatureSize;
+using Feat = NWN.API.Constants.Feat;
+using ImmunityType = NWN.API.Constants.ImmunityType;
+using InventorySlot = NWN.API.Constants.InventorySlot;
+using MovementRate = NWN.API.Constants.MovementRate;
 using ObjectType = NWN.Native.API.ObjectType;
+using RacialType = NWN.API.Constants.RacialType;
+using Skill = NWN.API.Constants.Skill;
 
 namespace NWN.API
 {
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
-    internal NwCreature(uint objectId) : base(objectId) {}
+    protected readonly CNWSCreature creature;
+
+    internal NwCreature(uint objectId, CNWSCreature creature) : base(objectId)
+    {
+      this.creature = creature;
+    }
+
+    public static implicit operator CNWSCreature(NwCreature creature)
+    {
+      return creature?.creature;
+    }
 
     /// <summary>
     /// Gets or sets the name of this creature's deity.

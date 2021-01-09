@@ -8,7 +8,17 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Trigger, ObjectType.Trigger)]
   public sealed class NwTrigger : NwTrappable
   {
-    internal NwTrigger(uint objectId) : base(objectId) {}
+    private readonly CNWSTrigger trigger;
+
+    internal NwTrigger(uint objectId, CNWSTrigger trigger) : base(objectId)
+    {
+      this.trigger = trigger;
+    }
+
+    public static implicit operator CNWSTrigger(NwTrigger trigger)
+    {
+      return trigger?.trigger;
+    }
 
     /// <summary>
     /// Gets all objects of the given type that are currently in this trigger.

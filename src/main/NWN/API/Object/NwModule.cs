@@ -9,9 +9,19 @@ namespace NWN.API
   [NativeObjectInfo(0, ObjectType.Module)]
   public sealed class NwModule : NwObject
   {
-    internal NwModule(uint objectId) : base(objectId) {}
+    private readonly CNWSModule module;
 
-    public static readonly NwModule Instance = new NwModule(NWScript.GetModule());
+    internal NwModule(uint objectId, CNWSModule module) : base(objectId)
+    {
+      this.module = module;
+    }
+
+    public static implicit operator CNWSModule(NwModule module)
+    {
+      return module?.module;
+    }
+
+    public static readonly NwModule Instance = new NwModule(NWScript.GetModule(), LowLevel.ServerExoApp.GetModule());
 
     /// <summary>
     /// Gets or sets the XP scale for this module. Must be a value between 0-200.
