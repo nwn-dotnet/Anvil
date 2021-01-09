@@ -10,7 +10,7 @@ namespace NWN.API
   {
     private readonly CNWSDoor door;
 
-    internal NwDoor(uint objectId, CNWSDoor door) : base(objectId)
+    internal NwDoor(uint objectId, CNWSDoor door) : base(objectId, door)
     {
       this.door = door;
     }
@@ -18,6 +18,15 @@ namespace NWN.API
     public static implicit operator CNWSDoor(NwDoor door)
     {
       return door?.door;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        door.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>

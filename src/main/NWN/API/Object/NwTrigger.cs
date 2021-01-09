@@ -10,7 +10,7 @@ namespace NWN.API
   {
     private readonly CNWSTrigger trigger;
 
-    internal NwTrigger(uint objectId, CNWSTrigger trigger) : base(objectId)
+    internal NwTrigger(uint objectId, CNWSTrigger trigger) : base(objectId, trigger)
     {
       this.trigger = trigger;
     }
@@ -18,6 +18,15 @@ namespace NWN.API
     public static implicit operator CNWSTrigger(NwTrigger trigger)
     {
       return trigger?.trigger;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        trigger.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>

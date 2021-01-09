@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using NWN.API;
 using NWN.API.Constants;
@@ -12,11 +13,13 @@ namespace NWNX.API
       PluginUtils.AssertPluginExists<ObjectPlugin>();
     }
 
+    [Obsolete("Plugin APIs are deprecated and will be removed in an upcoming release.")]
     public static void AddToArea(this NwGameObject gameObject, Location location)
     {
       ObjectPlugin.AddToArea(gameObject, location.Area, location.Position);
     }
 
+    [Obsolete("Plugin APIs are deprecated and will be removed in an upcoming release.")]
     public static void AddToArea(this NwGameObject gameObject, NwArea area, Vector3 position)
     {
       ObjectPlugin.AddToArea(gameObject, area, position);

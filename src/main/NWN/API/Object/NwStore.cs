@@ -9,7 +9,7 @@ namespace NWN.API
   {
     private readonly CNWSStore store;
 
-    internal NwStore(uint objectId, CNWSStore store) : base(objectId)
+    internal NwStore(uint objectId, CNWSStore store) : base(objectId, store)
     {
       this.store = store;
     }
@@ -17,6 +17,15 @@ namespace NWN.API
     public static implicit operator CNWSStore(NwStore store)
     {
       return store?.store;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        store.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
     }
 
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")

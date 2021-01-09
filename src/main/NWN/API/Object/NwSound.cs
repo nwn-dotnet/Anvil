@@ -9,7 +9,7 @@ namespace NWN.API
   {
     private readonly CNWSSoundObject soundObject;
 
-    public NwSound(uint objectId, CNWSSoundObject soundObject) : base(objectId)
+    public NwSound(uint objectId, CNWSSoundObject soundObject) : base(objectId, soundObject)
     {
       this.soundObject = soundObject;
     }
@@ -17,6 +17,16 @@ namespace NWN.API
     public static implicit operator CNWSSoundObject(NwSound sound)
     {
       return sound?.soundObject;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        soundObject.AddToArea(value.Area);
+        Position = value.Position;
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>

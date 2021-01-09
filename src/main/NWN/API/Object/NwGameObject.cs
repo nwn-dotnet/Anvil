@@ -4,14 +4,21 @@ using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
+using NWN.Native.API;
+using Animation = NWN.API.Constants.Animation;
+using SavingThrow = NWN.API.Constants.SavingThrow;
+using SavingThrowType = NWN.API.Constants.SavingThrowType;
 using Vector3 = System.Numerics.Vector3;
 
 namespace NWN.API
 {
   public abstract class NwGameObject : NwObject
   {
-    internal NwGameObject(uint objectId) : base(objectId)
+    private readonly CNWSObject gameObject;
+
+    internal NwGameObject(uint objectId, CNWSObject gameObject) : base(objectId)
     {
+      this.gameObject = gameObject;
       faction = new NwFaction(this);
     }
 
@@ -23,8 +30,7 @@ namespace NWN.API
       get => NWScript.GetLocation(this);
       set
       {
-        ObjectPlugin.AddToArea(this, value.Area, value.Position);
-        Rotation = value.Rotation;
+        throw new NotSupportedException();
       }
     }
 

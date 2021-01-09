@@ -1,15 +1,16 @@
 using System;
 using System.Numerics;
 using System.Threading.Tasks;
-using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
+using NWN.Native.API;
+using SavingThrow = NWN.API.Constants.SavingThrow;
 
 namespace NWN.API
 {
   public abstract class NwStationary : NwTrappable
   {
-    internal NwStationary(uint objectId) : base(objectId) {}
+    internal NwStationary(uint objectId, CNWSObject gameObject) : base(objectId, gameObject) {}
 
     /// <summary>
     /// Gets or sets a value indicating whether this stationary object is locked.

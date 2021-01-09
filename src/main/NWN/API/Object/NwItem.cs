@@ -12,7 +12,7 @@ namespace NWN.API
   {
     private readonly CNWSItem item;
 
-    internal NwItem(uint objectId, CNWSItem item) : base(objectId)
+    internal NwItem(uint objectId, CNWSItem item) : base(objectId, item)
     {
       this.item = item;
     }
@@ -20,6 +20,15 @@ namespace NWN.API
     public static implicit operator CNWSItem(NwItem item)
     {
       return item?.item;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        item.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>

@@ -10,7 +10,7 @@ namespace NWN.API
   {
     private readonly CNWSEncounter encounter;
 
-    internal NwEncounter(uint objectId, CNWSEncounter encounter) : base(objectId)
+    internal NwEncounter(uint objectId, CNWSEncounter encounter) : base(objectId, encounter)
     {
       this.encounter = encounter;
     }
@@ -18,6 +18,15 @@ namespace NWN.API
     public static implicit operator CNWSEncounter(NwEncounter encounter)
     {
       return encounter?.encounter;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        encounter.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>

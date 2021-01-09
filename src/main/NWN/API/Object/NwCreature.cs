@@ -27,7 +27,7 @@ namespace NWN.API
   {
     protected readonly CNWSCreature creature;
 
-    internal NwCreature(uint objectId, CNWSCreature creature) : base(objectId)
+    internal NwCreature(uint objectId, CNWSCreature creature) : base(objectId, creature)
     {
       this.creature = creature;
     }
@@ -35,6 +35,15 @@ namespace NWN.API
     public static implicit operator CNWSCreature(NwCreature creature)
     {
       return creature?.creature;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>

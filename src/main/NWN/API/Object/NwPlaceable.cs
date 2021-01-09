@@ -11,7 +11,7 @@ namespace NWN.API
   {
     private readonly CNWSPlaceable placeable;
 
-    internal NwPlaceable(uint objectId, CNWSPlaceable placeable) : base(objectId)
+    internal NwPlaceable(uint objectId, CNWSPlaceable placeable) : base(objectId, placeable)
     {
       this.placeable = placeable;
     }
@@ -19,6 +19,15 @@ namespace NWN.API
     public static implicit operator CNWSPlaceable(NwPlaceable placeable)
     {
       return placeable?.placeable;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        placeable.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
     }
 
     public bool Occupied => NWScript.GetSittingCreature(this) != INVALID;
