@@ -23,7 +23,7 @@ namespace NWN.API
 
     public static MonsterHitEffect Fear(IPOnHitDuration duration) => new MonsterHitEffect(IPOnMonsterHit.Fear, (int) duration);
 
-    public static MonsterHitEffect Poison(IPPoisonDamage poisonType) => new MonsterHitEffect(IPOnMonsterHit.Poison, (int) poisonType);
+    public static MonsterHitEffect Poison(PoisonType poisonType) => new MonsterHitEffect(IPOnMonsterHit.Poison, (int) poisonType);
 
     public static MonsterHitEffect Slow(IPOnHitDuration duration) => new MonsterHitEffect(IPOnMonsterHit.Slow, (int) duration);
 
