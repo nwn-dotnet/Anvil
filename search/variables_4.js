@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['eventscripttype_1838',['EventScriptType',['../classNWN_1_1API_1_1Events_1_1NativeEventAttribute.html#a84ef54c0cb5e187dbd660ab401e9873a',1,'NWN::API::Events::NativeEventAttribute']]]
+  ['feettometers_1834',['FeetToMeters',['../classNWN_1_1API_1_1NwMath.html#aa2b603133b035108b540d3f33ac294fd',1,'NWN::API::NwMath']]]
 ];

@@ -20,14 +20,14 @@ var classNWN_1_1API_1_1NwObject =
     [ "SpeakString", "classNWN_1_1API_1_1NwObject.html#a18e3d56f9f6f3db910a9675458b39366", null ],
     [ "ToString", "classNWN_1_1API_1_1NwObject.html#a968275a432b6201d9b6c635ef2d9717e", null ],
     [ "WaitForObjectContext", "classNWN_1_1API_1_1NwObject.html#a939d84e27244659e861c19659d2a0490", null ],
-    [ "IsValid", "classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5", null ],
     [ "ObjectId", "classNWN_1_1API_1_1NwObject.html#aa5269deb0d931d58d06bfb4560db00e1", null ],
-    [ "OriginalDescription", "classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c", null ],
-    [ "ResRef", "classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20", null ],
     [ "Description", "classNWN_1_1API_1_1NwObject.html#a0bdb7ce7e123f0c2a21b9607232a8f26", null ],
     [ "HasUUID", "classNWN_1_1API_1_1NwObject.html#a6c292d28d7777f769fb4b4803a90f575", null ],
+    [ "IsValid", "classNWN_1_1API_1_1NwObject.html#a268221225d35f6ef5ecdc8f3238006a5", null ],
     [ "LocalVariables", "classNWN_1_1API_1_1NwObject.html#ad7f386189507d0e10b7748b364db6167", null ],
     [ "Name", "classNWN_1_1API_1_1NwObject.html#aa846acd023d4bb670627fc7e9ed00376", null ],
+    [ "OriginalDescription", "classNWN_1_1API_1_1NwObject.html#a805a9020f0c0b1f22bcd7d19c54a1c8c", null ],
+    [ "ResRef", "classNWN_1_1API_1_1NwObject.html#a92c1cc970908425a4c8af6ceffce4e20", null ],
     [ "Tag", "classNWN_1_1API_1_1NwObject.html#af8c04196c92a3d0b71fcea855c1ce869", null ],
     [ "UUID", "classNWN_1_1API_1_1NwObject.html#a9bc2179ca37cfd5a6ea4dd360429c662", null ]
 ];

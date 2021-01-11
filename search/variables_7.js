@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hasnothing_1842',['HasNothing',['../classNWN_1_1API_1_1LocalVariable.html#a23b5a7424d74855543e22231a37e0e94',1,'NWN::API::LocalVariable']]]
+  ['nextupdate_1838',['NextUpdate',['../classNWN_1_1Services_1_1SchedulerService.html#ab01e7b63f6cb2a63c9aa505ea6be47f8',1,'NWN::Services::SchedulerService']]]
 ];

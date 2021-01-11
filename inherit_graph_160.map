@@ -1,4 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interfaceNWN_1_1Services_1_1IUpdateable.html" title="Implement this interface in your service to get a callback each server loop." alt="" coords="5,5,187,32"/>
-<area shape="rect" id="node2" href="$classNWN_1_1Services_1_1SchedulerService.html" title=" " alt="" coords="235,5,448,32"/>
+<area shape="rect" id="node1" href="$structNWN_1_1Services_1_1NwDateTime.html" title=" " alt="" coords="5,5,192,32"/>
 </map>

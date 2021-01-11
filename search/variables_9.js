@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['meterstofeet_1849',['MetersToFeet',['../classNWN_1_1API_1_1NwMath.html#ae50b99ae80a04c8da0441ecb27c336a6',1,'NWN::API::NwMath']]],
-  ['meterstoyards_1850',['MetersToYards',['../classNWN_1_1API_1_1NwMath.html#ac084a74a4414a10c25ffd652936f158c',1,'NWN::API::NwMath']]]
+  ['radtodeg_1840',['RadToDeg',['../classNWN_1_1API_1_1NwMath.html#a5f534c1cec239b44b861ce8265cee6d8',1,'NWN::API::NwMath']]],
+  ['red_1841',['Red',['../structNWN_1_1API_1_1Color.html#ac947196c2f08226044340756eab31e11',1,'NWN::API::Color']]]
 ];
