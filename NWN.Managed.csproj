@@ -36,17 +36,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="src/resources/**/*">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <Pack>true</Pack>
-          <Visible>false</Visible>
-          <Link>%(Filename)%(Extension)</Link>
-          <PackagePath>contentFiles/any/any;content/</PackagePath>
-          <PackageCopyToOutput>true</PackageCopyToOutput>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Remove="docs\**" />
       <EmbeddedResource Remove="docs\**" />
       <EmbeddedResource Remove="src\lib\src\**" />
