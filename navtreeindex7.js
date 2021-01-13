@@ -1,5 +1,6 @@
 var NAVTREEINDEX7 =
 {
+"classNWN_1_1Services_1_1ServiceBindingAttribute.html#ad61c17ec49e4a1329414f12f99f2520e":[0,0,0,2,9,0],
 "classNWN_1_1Services_1_1ServiceBindingAttribute.html#adce5d0451f1157a95b859bc9f568dff3":[0,0,0,2,9,1],
 "classNWN_1_1Services_1_1ServiceInstaller.html":[0,0,0,2,13],
 "classNWN_1_1Services_1_1ServiceInstaller.html#a50ca6892eb9097ca49fd8a95ce363a6d":[0,0,0,2,13,1],
@@ -9,8 +10,8 @@ var NAVTREEINDEX7 =
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html":[0,0,0,2,17],
 "classNWN_1_1Services_1_1TwoDimArrayFactory.html#a1c968df35aaa7022a3a950c76ca9bf63":[0,0,0,2,17,0],
 "classes.html":[0,1],
-"functions.html":[0,3,0,0],
 "functions.html":[0,3,0],
+"functions.html":[0,3,0,0],
 "functions_b.html":[0,3,0,1],
 "functions_c.html":[0,3,0,2],
 "functions_d.html":[0,3,0,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX7 =
 "structNWN_1_1Services_1_1NwDateTime.html#a8f60d8e99cf375d2e151f1b631736faa":[0,0,0,2,15,4],
 "structNWN_1_1Services_1_1NwDateTime.html#a91916161370be318203c04fca7435852":[0,0,0,2,15,22],
 "structNWN_1_1Services_1_1NwDateTime.html#aa7cf9ca3dd4a6678e0a1697aac7eba31":[0,0,0,2,15,2],
-"structNWN_1_1Services_1_1NwDateTime.html#aaead875219bd5f131adc1c38e71db898":[0,0,0,2,15,32],
-"structNWN_1_1Services_1_1NwDateTime.html#ab71037926f1a0c99033a6b91fa574bee":[0,0,0,2,15,15]
+"structNWN_1_1Services_1_1NwDateTime.html#aaead875219bd5f131adc1c38e71db898":[0,0,0,2,15,32]
 };
