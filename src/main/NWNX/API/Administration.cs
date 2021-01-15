@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.Core;
 using NWN.Core.NWNX;
@@ -15,6 +16,7 @@ namespace NWNX.API
     /// <summary>
     /// Gets or sets the current player password.
     /// </summary>
+    [Obsolete("Use NWServer.PlayerPassword instead.")]
     public static string PlayerPassword
     {
       get => AdminPlugin.GetPlayerPassword();
@@ -34,6 +36,7 @@ namespace NWNX.API
     /// <summary>
     /// Gets or sets the current DM password.
     /// </summary>
+    [Obsolete("Use NWServer.DMPassword instead.")]
     public static string DMPassword
     {
       get => AdminPlugin.GetDMPassword();
@@ -51,44 +54,53 @@ namespace NWNX.API
     /// </summary>
     /// <param name="player">The player to delete.</param>
     /// <param name="preserveBackup">If true, it will leave the file on the server, only appending ".deleted0" to the bic filename.</param>
+    [Obsolete("Use NwPlayer.Delete instead.")]
     public static void DeletePlayerCharacter(NwPlayer player, bool preserveBackup) => AdminPlugin.DeletePlayerCharacter(player, preserveBackup.ToInt());
 
     /// <summary>
     /// Bans the provided IP.
     /// </summary>
     /// <param name="ip">The IP Address to ban.</param>
+    [Obsolete("Use NwServer.AddBannedIP instead.")]
     public static void AddBannedIP(string ip) => AdminPlugin.AddBannedIP(ip);
 
     /// <summary>
     /// Removes the ban on the provided IP.
     /// </summary>
     /// <param name="ip">The IP Address to unban.</param>
+    [Obsolete("Use NwServer.RemoveBannedIP instead.")]
     public static void RemoveBannedIP(string ip) => AdminPlugin.RemoveBannedIP(ip);
 
     // / @brief Bans the provided Public CD Key.
     // / @param key The Public CD Key to ban.
+    [Obsolete("Use NwServer.AddBannedCDKey instead.")]
     public static void AddBannedCDKey(string key) => AdminPlugin.AddBannedCDKey(key);
 
     // / @brief Removes the ban on the provided Public CD Key.
     // / @param key The Public CD Key to unban.
+    [Obsolete("Use NwServer.RemoveBannedCDKey instead.")]
     public static void RemoveBannedCDKey(string key) => AdminPlugin.RemoveBannedCDKey(key);
 
     // / @brief Bans the provided playername.
     // / @param playerName The player name (community name) to ban.
     // / @warning A user can change their playername at will.
+    [Obsolete("Use NwServer.AddBannedPlayerName instead.")]
     public static void AddBannedPlayerName(string playerName) => AdminPlugin.AddBannedPlayerName(playerName);
 
     // / @brief Removes the ban on the provided playername.
     // / @param playerName The player name (community name) to unban.
+    [Obsolete("Use NwServer.RemoveBannedPlayerName instead.")]
     public static void RemoveBannedPlayerName(string playerName) => AdminPlugin.RemoveBannedPlayerName(playerName);
 
     // / @brief Get a list of all banned IPs/Keys/names as a string.
     // / @return A string with a listing of the banned IPs/Keys/names.
+    [Obsolete("Use NwServer.BannedList instead.")]
     public static string GetBannedList() => AdminPlugin.GetBannedList();
 
     /// <summary>
     /// Gets or sets the module's name as shown to the server list.
     /// </summary>
+    [Obsolete("Use NwServer.ServerInfo.ModuleName instead.")]
     public static string ModuleName
     {
       get => NWScript.GetModuleName();
@@ -98,6 +110,7 @@ namespace NWNX.API
     /// <summary>
     /// Gets or sets the server name as shown to the server list.
     /// </summary>
+    [Obsolete("Use NwServer.ServerInfo.ServerName instead.")]
     public static string ServerName
     {
       get => AdminPlugin.GetServerName();
@@ -118,9 +131,11 @@ namespace NWNX.API
     /// Reloads all game rules (2da stuff, etc).<br/>
     /// @warning DANGER, DRAGONS. Bad things may or may not happen. Only use this if you know what you are doing.
     /// </summary>
+    [Obsolete("Use NwServer.ReloadRules instead.")]
     public static void ReloadRules() => AdminPlugin.ReloadRules();
 
     // TODO document
+    [Obsolete("Use NwServer.ServerInfo.PlayOptions instead.")]
     public static class GameOptions
     {
       public static bool AllKillable

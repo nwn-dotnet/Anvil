@@ -114,7 +114,9 @@ namespace NWN.API
 
       return (ObjectType)gameObject.m_nObjectType switch
       {
-        ObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE ? new NwPlayer(objectId, gameObject.AsNWSCreature(), gameObject.AsNWSPlayerTURD()) : new NwCreature(objectId, gameObject.AsNWSCreature()),
+        ObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE
+          ? new NwPlayer(objectId, gameObject.AsNWSCreature(), LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId), gameObject.AsNWSPlayerTURD())
+          : new NwCreature(objectId, gameObject.AsNWSCreature()),
         ObjectType.Item => new NwItem(objectId, gameObject.AsNWSItem()),
         ObjectType.Placeable => new NwPlaceable(objectId, gameObject.AsNWSPlaceable()),
         ObjectType.Module => NwModule.Instance,

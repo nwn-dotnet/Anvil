@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using NLog;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -9,14 +11,18 @@ namespace NWN.API
 {
   public sealed class NwPlayer : NwCreature
   {
-    private readonly CNWSPlayerTURD player;
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    internal NwPlayer(uint objectId, CNWSCreature creature, CNWSPlayerTURD player) : base(objectId, creature)
+    private readonly CNWSPlayer player;
+    private readonly CNWSPlayerTURD turd;
+
+    internal NwPlayer(uint objectId, CNWSCreature creature, CNWSPlayer player, CNWSPlayerTURD turd) : base(objectId, creature)
     {
       this.player = player;
+      this.turd = turd;
     }
 
-    public static implicit operator CNWSPlayerTURD(NwPlayer player)
+    public static implicit operator CNWSPlayer(NwPlayer player)
     {
       return player?.player;
     }
@@ -161,7 +167,7 @@ namespace NWN.API
     public void OpenInventory(NwCreature target)
       => NWScript.OpenInventory(target, this);
 
-      /// <summary>
+    /// <summary>
     /// Gets the specified campaign variable for this player.
     /// </summary>
     /// <param name="campaign">The name of the campaign.</param>
@@ -252,7 +258,7 @@ namespace NWN.API
     public async Task SetCameraFacing(float direction, float pitch = -1.0f, float distance = -1.0f, CameraTransitionType transitionType = CameraTransitionType.Snap)
     {
       await WaitForObjectContext();
-      NWScript.SetCameraFacing(direction, distance, pitch, (int) transitionType);
+      NWScript.SetCameraFacing(direction, distance, pitch, (int)transitionType);
     }
 
     /// <summary>
@@ -286,7 +292,7 @@ namespace NWN.API
     /// <param name="strength">The intensity of the vibration.</param>
     /// <param name="duration">How long to vibrate for.</param>
     public void Vibrate(VibratorMotor motor, float strength, TimeSpan duration)
-      => NWScript.Vibrate(this, (int) motor, strength, (float) duration.TotalSeconds);
+      => NWScript.Vibrate(this, (int)motor, strength, (float)duration.TotalSeconds);
 
     /// <summary>
     /// Unlock an achievement for this player who must be logged in.
@@ -339,7 +345,7 @@ namespace NWN.API
       start ??= Color.WHITE;
       end ??= Color.WHITE;
 
-      NWScript.PostString(this, message, xPos, yPos, (int) anchor, life, start.Value.ToInt(), end.Value.ToInt(), id, font);
+      NWScript.PostString(this, message, xPos, yPos, (int)anchor, life, start.Value.ToInt(), end.Value.ToInt(), id, font);
     }
 
     /// <summary>
@@ -348,7 +354,7 @@ namespace NWN.API
     /// <param name="strRef">The string ref index to use.</param>
     /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
     public void FloatingTextStrRef(int strRef, bool broadcastToParty = true)
-        => NWScript.FloatingTextStrRefOnCreature(strRef, this, broadcastToParty.ToInt());
+      => NWScript.FloatingTextStrRefOnCreature(strRef, this, broadcastToParty.ToInt());
 
     /// <summary>
     /// Briefly displays a floating text message above this player's head.
@@ -356,7 +362,7 @@ namespace NWN.API
     /// <param name="message">The message to display.</param>
     /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
     public void FloatingTextString(string message, bool broadcastToParty = true)
-        => NWScript.FloatingTextStringOnCreature(message, this, broadcastToParty.ToInt());
+      => NWScript.FloatingTextStringOnCreature(message, this, broadcastToParty.ToInt());
 
     /// <summary>
     /// Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br/>
@@ -452,5 +458,44 @@ namespace NWN.API
     /// Removes any current fading effects or black screen from the monitor of the player.
     /// </summary>
     public void StopFade() => NWScript.StopFade(this);
+
+    public async Task Delete(string kickMessage, bool preserveBackup = true)
+    {
+      uint playerId = player.m_nPlayerID;
+
+      string bicName = player.m_resFileName.GetResRefStr();
+      string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
+      string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
+
+      string fileName = $"{serverVault}{playerDir}/{bicName}.bic";
+      if (!File.Exists(fileName))
+      {
+        Log.Error($"File {fileName} not found.");
+        return;
+      }
+
+      await NwTask.NextFrame();
+
+      BootPlayer(kickMessage);
+
+      CExoLinkedListCNWSPlayerTURD turds = NwModule.Instance.Module.m_lstTURDList;
+      for (CExoLinkedListNode node = turds.GetHeadPos(); node != null; node = node.pNext)
+      {
+        if (turds.GetAtPos(node).m_oidPlayer == turd.m_oidPlayer)
+        {
+          turds.Remove(node);
+          break;
+        }
+      }
+
+      if (preserveBackup)
+      {
+        File.Move(fileName, $"{fileName}.deleted");
+      }
+      else
+      {
+        File.Delete(fileName);
+      }
+    }
   }
 }

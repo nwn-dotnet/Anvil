@@ -471,12 +471,13 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the amount of gold carried by this creature.<br/>
-    /// See <see cref="GiveGold"/>, <see cref="TakeGold"/> for adding/removing gold from this creature.
+    /// Gets or sets the amount of gold carried by this creature.<br/>
+    /// This property does not display feedback to the creature. See <see cref="AddGold"/> and <see cref="TakeGold"/> for options that provide feedback.
     /// </summary>
-    public int Gold
+    public uint Gold
     {
-      get => NWScript.GetGold(this);
+      get => creature.m_nGold;
+      set => creature.m_nGold = value;
     }
 
     /// <summary>
@@ -609,29 +610,17 @@ namespace NWN.API
     /// Gives gold to this creature.
     /// </summary>
     /// <param name="amount">The amount of gold to give.</param>
-    public void GiveGold(int amount)
-      => NWScript.GiveGoldToCreature(this, amount);
+    /// <param name="showFeedback">If true, shows "Acquired xgp" feedback to the creature.</param>
+    public void AddGold(int amount, bool showFeedback = true)
+      => creature.AddGold(amount, showFeedback.ToInt());
 
     /// <summary>
     /// Takes gold away from this creature.
     /// </summary>
     /// <param name="amount">The amount of gold to take.</param>
-    public async Task TakeGold(int amount)
-    {
-      await WaitForObjectContext();
-      NWScript.TakeGoldFromCreature(amount, this, true.ToInt());
-    }
-
-    /// <summary>
-    /// Gives gold to this creature by taking it from another.
-    /// </summary>
-    /// <param name="amount">The amount of gold to take.</param>
-    /// <param name="target">The target creature to take the gold from.</param>
-    public async Task TakeGoldFrom(int amount, NwCreature target)
-    {
-      await WaitForObjectContext();
-      NWScript.TakeGoldFromCreature(amount, target, false.ToInt());
-    }
+    /// <param name="showFeedback">If true, shows "Lost xgp" feedback to the creature.</param>
+    public void TakeGold(int amount, bool showFeedback = true)
+      => creature.RemoveGold(amount, showFeedback.ToInt());
 
     /// <summary>
     /// Creates a creature at the specified location.
@@ -698,48 +687,19 @@ namespace NWN.API
       => NWScript.GetAbilityModifier((int)ability, this);
 
     /// <summary>
-    /// Gets the DC to save against for a spell (10 + spell level + relevant ability bonus).
+    /// Gets the last target this creature tried to attack.
     /// </summary>
-    public async Task<int> GetSpellSaveDC()
+    public NwGameObject AttemptedAttackTarget
     {
-      await WaitForObjectContext();
-      return NWScript.GetSpellSaveDC();
+      get => creature.m_oidAttemptedAttackTarget.ToNwObject<NwGameObject>();
     }
 
     /// <summary>
-    /// Returns the last target this creature tried to attack. Reset at the end of combat.
+    /// Gets the target this creature attempted to cast a spell at.
     /// </summary>
-    public async Task<NwGameObject> GetAttemptedAttackTarget()
+    public NwGameObject AttemptedSpellTarget
     {
-      await WaitForObjectContext();
-      return NWScript.GetAttemptedAttackTarget().ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the target object of this creature's last spell.
-    /// </summary>
-    public async Task<NwGameObject> GetLastSpellTargetObject()
-    {
-      await WaitForObjectContext();
-      return NWScript.GetSpellTargetObject().ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the target location of this creature's last spell.
-    /// </summary>
-    public async Task<Location> GetLastSpellTargetLocation()
-    {
-      await WaitForObjectContext();
-      return NWScript.GetSpellTargetLocation();
-    }
-
-    /// <summary>
-    /// Gets the target this creature attempted to cast a spell at. Reset at the end of combat.
-    /// </summary>
-    public async Task<NwGameObject> GetAttemptedSpellTarget()
-    {
-      await WaitForObjectContext();
-      return NWScript.GetAttemptedSpellTarget().ToNwObject<NwGameObject>();
+      get => creature.m_oidAttemptedSpellTarget.ToNwObject<NwGameObject>();
     }
 
     /// <summary>

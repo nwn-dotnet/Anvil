@@ -4,6 +4,7 @@ using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
+using NWN.API;
 using NWN.Core.NWNX;
 using NWN.Native.API;
 
@@ -54,7 +55,7 @@ namespace NWN
     private LoggingConfiguration GetConfigFromFile(string path)
     {
       LoggingConfiguration config = new XmlLoggingConfiguration(path);
-      config.Variables["nwn_home"] = UserDirectory;
+      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
 
       return config;
     }
@@ -62,7 +63,7 @@ namespace NWN
     private LoggingConfiguration GetDefaultConfig()
     {
       LoggingConfiguration config = new LoggingConfiguration();
-      config.Variables["nwn_home"] = UserDirectory;
+      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
 
       ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget("console");
       consoleTarget.Layout = DefaultLayout;

@@ -9,16 +9,16 @@ namespace NWN.API
   [NativeObjectInfo(0, ObjectType.Module)]
   public sealed class NwModule : NwObject
   {
-    private readonly CNWSModule module;
+    internal readonly CNWSModule Module;
 
     internal NwModule(uint objectId, CNWSModule module) : base(objectId)
     {
-      this.module = module;
+      this.Module = module;
     }
 
     public static implicit operator CNWSModule(NwModule module)
     {
-      return module?.module;
+      return module?.Module;
     }
 
     public static readonly NwModule Instance = new NwModule(NWScript.GetModule(), LowLevel.ServerExoApp.GetModule());
