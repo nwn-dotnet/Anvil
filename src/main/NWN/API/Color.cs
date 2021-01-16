@@ -26,7 +26,7 @@ namespace NWN.API
     public static readonly Color PURPLE = new (128, 0, 128);
     public static readonly Color TEAL = new (0, 128, 128);
     public static readonly Color NAVY = new (0, 0, 128);
-
+    public static readonly Color ORANGE = new (255, 165, 0);
 
     /// <summary>
     /// Gets the red value of this color as a byte (0-255).
