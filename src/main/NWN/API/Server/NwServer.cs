@@ -17,7 +17,7 @@ namespace NWN.API
       this.netLayer = server.GetNetLayer();
 
       UserDirectory = exoBase.m_sUserDirectory.ToString();
-      ServerInfo = new ServerInfo(server.GetServerInfo());
+      ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
     }
 
     /// <summary>
