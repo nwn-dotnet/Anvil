@@ -26,7 +26,7 @@ made by the toolset and IDE will immediately be picked up when you restart your 
 0. **Create a backup** of `C:\Users\<USER>\Documents\Neverwinter Nights` to a location of your choice (just in case).
 1. Open `C:\Users\<USER>\Documents\Neverwinter Nights`. I will refer to this folder as `root\` from now on.
 2. Download and extract the latest `NWN.Managed.zip` from github: https://github.com/nwn-dotnet/NWN.Managed/releases to `root\NWN.Managed`
-3. Clone https://github.com/nwn-dotnet/NWN.Samples/tree/master/managed/plugin-sample to `root\plugin-sample`
+3. Clone https://github.com/nwn-dotnet/NWN.Samples/tree/master/managed/plugin-sample to `root\plugin-sample` (ATTENTION: `plugin-sample` is NOT the root of the repository but a subfolder. You have to clone to a different location first and copy the appropriate folder to the described location)
 4. Open `root\plugin-sample\plugin-sample.csproj` in your IDE
 5. Compile the project using the IDE, make sure that `root\plugin-sample\bin\Debug\Plugins\plugin-sample\plugin-sample.dll` is created
 6. Create the following file `root/docker-compose.yml` with content. Replace `NWN_MODULE` with the name of your module from `root\modules`.
