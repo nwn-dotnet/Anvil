@@ -43,11 +43,11 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
     // Gets the server log. By default, this reports to "nwm.log"
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly EventService eventService;
+    private readonly NativeEventService eventService;
 
     // As this class has the ServiceBinding attribute, the constructor of this class will be called during server startup.
     // The EventService is a core service from NWN.Managed. As it is defined as a constructor parameter, it will be injected during startup.
-    public MyScriptHandler(EventService eventService)
+    public MyScriptHandler(NativeEventService eventService)
     {
       this.eventService = eventService;
     }
@@ -112,7 +112,7 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
 
     // We set the EventService as a dependency so we can subscribe to the module chat event.
     // And we add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.
-    public ChatHandler(EventService eventService, IEnumerable<IChatCommand> commands)
+    public ChatHandler(NativeEventService eventService, IEnumerable<IChatCommand> commands)
     {
       // Store all define chat commands.
       this.chatCommands = commands.ToList();
@@ -150,7 +150,7 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
   [ServiceBinding(typeof(WelcomeMessageService))]
   public class WelcomeMessageService
   {
-    public WelcomeMessageService(EventService eventService)
+    public WelcomeMessageService(NativeEventService eventService)
     {
       eventService.Subscribe<NwModule, ModuleEvents.OnClientEnter>(NwModule.Instance, OnClientEnter);
     }
@@ -324,7 +324,7 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
   {
     private readonly ExpTable expTable;
 
-    public XPReportService(EventService eventService, TwoDimArrayFactory twoDimArrayFactory)
+    public XPReportService(NativeEventService eventService, TwoDimArrayFactory twoDimArrayFactory)
     {
       eventService.Subscribe<NwModule, ModuleEvents.OnClientEnter>(NwModule.Instance, OnClientEnter);
       expTable = twoDimArrayFactory.Get2DA<ExpTable>("exptable");
