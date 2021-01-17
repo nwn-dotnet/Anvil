@@ -1,18 +1,22 @@
 var NAVTREEINDEX4 =
 {
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html":[0,0,0,0,1,11,1],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a62ffa2e1ea738c087191b8502b700be1":[0,0,0,0,1,11,1,1],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a1d66cf566e3cca87a1a4f9d12c9b7a00":[0,0,0,0,1,11,1,1],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a62ffa2e1ea738c087191b8502b700be1":[0,0,0,0,1,11,1,2],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a955126dca1b75d0b77ae814a0d48f33c":[0,0,0,0,1,11,1,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html":[0,0,0,0,1,11,2],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a0553f3ed6c1fd229e5ccacfa10c9889a":[0,0,0,0,1,11,2,1],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a0553f3ed6c1fd229e5ccacfa10c9889a":[0,0,0,0,1,11,2,2],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a8443c0f98378b892a7f906e7bf9d25f8":[0,0,0,0,1,11,2,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#ad6a1b9a60f07da6cc9718cec3677aa96":[0,0,0,0,1,11,2,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html":[0,0,0,0,1,11,3],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#a056ab044f88b3664095036e101901a34":[0,0,0,0,1,11,3,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#a1d97bde9a2e0d6adcfe1ee227fa8530c":[0,0,0,0,1,11,3,0],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#ae02fa38b896a1fcbebf80dbe41c9fbd5":[0,0,0,0,1,11,3,1],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#ae02fa38b896a1fcbebf80dbe41c9fbd5":[0,0,0,0,1,11,3,2],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnHeartbeat.html":[0,0,0,0,1,11,4],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnHeartbeat.html#acbdfe09d3907320571452dd3a2d6969d":[0,0,0,0,1,11,4,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnHeartbeat.html#adcd13522031f80573a81f42c209fb0f3":[0,0,0,0,1,11,4,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnTrapTriggered.html":[0,0,0,0,1,11,5],
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnTrapTriggered.html#a2459e651c23945ef2dd1584d528ef0de":[0,0,0,0,1,11,5,2],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnTrapTriggered.html#a4873ad18bb0d7c77d71ce21e034e3d30":[0,0,0,0,1,11,5,1],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnTrapTriggered.html#aa5f9fdc8f70302ed820b85726a4f0b48":[0,0,0,0,1,11,5,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnUserDefined.html":[0,0,0,0,1,11,6],
@@ -245,9 +249,5 @@ var NAVTREEINDEX4 =
 "classNWN_1_1API_1_1NwCreature.html#a3925a950e97c82b9350bc0181b8c1b22":[0,0,0,0,22,110],
 "classNWN_1_1API_1_1NwCreature.html#a3a164fc85c36095dcff55b15a4f553f0":[0,0,0,0,22,139],
 "classNWN_1_1API_1_1NwCreature.html#a3a645e4416f6b1174de6a39e349888c5":[0,0,0,0,22,63],
-"classNWN_1_1API_1_1NwCreature.html#a3b0a06b8583fdce9a41afcf17a720209":[0,0,0,0,22,79],
-"classNWN_1_1API_1_1NwCreature.html#a3fdc3c34d9896c58b3453c63bbd0c800":[0,0,0,0,22,99],
-"classNWN_1_1API_1_1NwCreature.html#a4080ef60742d148235a304faf52933c7":[0,0,0,0,22,54],
-"classNWN_1_1API_1_1NwCreature.html#a40bf75941fb2d4db702de027d942bb38":[0,0,0,0,22,120],
-"classNWN_1_1API_1_1NwCreature.html#a4147d069795e27fb4dda4f5fba80d5b6":[0,0,0,0,22,81]
+"classNWN_1_1API_1_1NwCreature.html#a3b0a06b8583fdce9a41afcf17a720209":[0,0,0,0,22,79]
 };

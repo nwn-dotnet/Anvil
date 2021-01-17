@@ -1,5 +1,9 @@
 var NAVTREEINDEX6 =
 {
+"classNWN_1_1API_1_1NwModule.html#afe18eef01e7bb12860c9f3b472ef6e5a":[0,0,0,0,28,21],
+"classNWN_1_1API_1_1NwObject.html":[0,0,0,0,29],
+"classNWN_1_1API_1_1NwObject.html#a039c6922a250667b61069f5a1710988d":[0,0,0,0,29,1],
+"classNWN_1_1API_1_1NwObject.html#a0bdb7ce7e123f0c2a21b9607232a8f26":[0,0,0,0,29,21],
 "classNWN_1_1API_1_1NwObject.html#a18e3d56f9f6f3db910a9675458b39366":[0,0,0,0,29,17],
 "classNWN_1_1API_1_1NwObject.html#a18fb216402ebe5b8a0f0699eff33e10c":[0,0,0,0,29,12],
 "classNWN_1_1API_1_1NwObject.html#a1ed9cb1bd58f75cdbb580b64c688cddf":[0,0,0,0,29,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX6 =
 "classNWN_1_1Services_1_1ScriptEventService.html":[0,0,0,2,3],
 "classNWN_1_1Services_1_1ScriptEventService.html#a33858debb2ce7d8f0f5ea481dbd64470":[0,0,0,2,3,0],
 "classNWN_1_1Services_1_1ScriptEventService.html#a5ea130795efd7c18b5840b3675af6448":[0,0,0,2,3,1],
-"classNWN_1_1Services_1_1ScriptHandlerAttribute.html":[0,0,0,2,8],
-"classNWN_1_1Services_1_1ScriptHandlerAttribute.html#aa3d0f653ba6629dbb1717ad3f46057ae":[0,0,0,2,8,1],
-"classNWN_1_1Services_1_1ScriptHandlerAttribute.html#acf5cb5f98898c4c542e8d317a426685a":[0,0,0,2,8,0],
-"classNWN_1_1Services_1_1ServiceBindingAttribute.html":[0,0,0,2,9],
-"classNWN_1_1Services_1_1ServiceBindingAttribute.html#a9a6b1c0753361341655122f63c0ef7bb":[0,0,0,2,9,2]
+"classNWN_1_1Services_1_1ScriptHandlerAttribute.html":[0,0,0,2,8]
 };
