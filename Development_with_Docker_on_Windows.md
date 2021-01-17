@@ -48,10 +48,11 @@ services:
       - NWNX_UTIL_SKIP=n
       - NWNX_DOTNET_ASSEMBLY=/NWN.Managed/NWN.Managed
     volumes:
-      - ./:/nwn/home
+      - ./modules:/nwn/home/modules
+      - ./hak:/nwn/home/hak
+      - ./tlk:/nwn/home/tlk
       - ./NWN.Managed:/NWN.Managed
       - ./plugin-sample/bin/Debug/Plugins:/NWN.Managed/Plugins
-
 ````
 
 7. Your `C:\Users\<USER>\Documents\Neverwinter Nights` should now look like this:
