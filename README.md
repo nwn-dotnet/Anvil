@@ -20,6 +20,8 @@ The DotNET, Object and Util plugins are required for the library to work. Make s
 
 Other plugins are optional, but may be required to access some extension APIs. An exception will be raised if you try to use an extension without the dependent plugin loaded.
 
+For a step by step guide how to set up a local developement environment using your IDE of choice and windows. see [Development with Docker on Windows](Development with Docker on Windows.md).
+
 # Plugins & Services
 Adding module behaviours starts by creating your own plugin assembly (.dll).
 
