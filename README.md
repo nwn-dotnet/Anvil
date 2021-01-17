@@ -141,6 +141,40 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
   }
 ```
 
+**Example: Find a trigger by tag and attach OnEnter event**
+```csharp
+using System.Linq;
+using NLog;
+using NWN.API;
+using NWN.API.Events;
+using NWN.Services;
+
+namespace Sample
+{
+    // [ServiceBinding] indicates that this class will be created during server startup.
+    [ServiceBinding(typeof(MyPluginService))]
+    public class MyPluginService
+    {
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+        // Called at startup. NWN.Managed resolves EventService for us.
+        public MyPluginService(NativeEventService eventService)
+        {
+            var trigger = NwObject.FindObjectsWithTag<NwTrigger>("mytrigger").FirstOrDefault();
+            eventService.Subscribe<NwTrigger, TriggerEvents.OnEnter>(trigger, OnTriggerEnter);
+        }
+
+        private void OnTriggerEnter(TriggerEvents.OnEnter obj)
+        {
+            if (obj.EnteringObject is NwPlayer player)
+            {
+                Log.Info("Player entered trigger: " + player?.PlayerName);
+            }
+        }
+    }
+}
+```
+
 ## Core Services
 ### Event Service (NWN.Services.EventService)
 **Send a pink welcome message to a player when they connect**
