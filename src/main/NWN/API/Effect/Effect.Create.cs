@@ -371,7 +371,7 @@ namespace NWN.API
 
     public static Effect Ultravision() => NWScript.EffectUltravision();
 
-    public static Effect VisualEffect(VfxType visualEffectId, bool missEffect = false)
-      => NWScript.EffectVisualEffect((int) visualEffectId, missEffect.ToInt());
+    public static Effect VisualEffect(VfxType visualEffectId, bool missEffect = false, float fScale = 1.0f, System.Numerics.Vector3 vTranslate = default, System.Numerics.Vector3 vRotate = default)
+      => NWScript.EffectVisualEffect((int) visualEffectId, missEffect.ToInt(), fScale, vTranslate, vRotate);
   }
 }
