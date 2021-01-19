@@ -83,7 +83,7 @@ var classNWN_1_1API_1_1Effect =
     [ "TurnResistanceDecrease", "classNWN_1_1API_1_1Effect.html#ae22aa1707b6a5d435ae37e265d28db0d", null ],
     [ "TurnResistanceIncrease", "classNWN_1_1API_1_1Effect.html#a7bc0dbf4170917f65d4660bb62e4b11d", null ],
     [ "Ultravision", "classNWN_1_1API_1_1Effect.html#a67438ed3875cc0f9c3a61165cbcd4fb7", null ],
-    [ "VisualEffect", "classNWN_1_1API_1_1Effect.html#a84713fddcaeed64da1526321d339b3bb", null ],
+    [ "VisualEffect", "classNWN_1_1API_1_1Effect.html#a2eaef09f419b3b3692365e9258a42066", null ],
     [ "Creator", "classNWN_1_1API_1_1Effect.html#a44e95e77d276d929a3c3b0d1df3072b3", null ],
     [ "DurationRemaining", "classNWN_1_1API_1_1Effect.html#a17fdcc6f129e74d98d3db4bf99c8ffc3", null ],
     [ "DurationType", "classNWN_1_1API_1_1Effect.html#a54895925e777a5724009c32de6dd124e", null ],
