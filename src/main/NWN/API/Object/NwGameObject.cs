@@ -489,7 +489,7 @@ namespace NWN.API
     /// <param name="effect">The existing effect instance.</param>
     public void RemoveEffect(Effect effect)
       => NWScript.RemoveEffect(this, effect);
-    
+
     /// <summary>
     /// Causes object to run the event evToRun. The script on the object that is<br/>
     /// associated with the event specified will run.<br/>
