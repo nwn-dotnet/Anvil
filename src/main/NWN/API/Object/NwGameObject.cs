@@ -489,5 +489,28 @@ namespace NWN.API
     /// <param name="effect">The existing effect instance.</param>
     public void RemoveEffect(Effect effect)
       => NWScript.RemoveEffect(this, effect);
+    
+    /// <summary>
+    /// Causes object to run the event evToRun. The script on the object that is<br/>
+    /// associated with the event specified will run.<br/>
+    /// </summary>
+    /// <param name="evToRun">The event to have the object run. Must be constructed using one of the event functions.</param>
+    public void SignalEvent(IntPtr evToRun)
+      => NWScript.SignalEvent(this, evToRun);
+
+    /// <summary>
+    /// Create an event which triggers the "SpellCastAt" script<br/>
+    /// Note: This only creates the event. The event wont actually trigger until SignalEvent()<br/>
+    /// is called using this created SpellCastAt event as an argument.<br/>
+    /// For example:<br/>
+    ///     creature.SignalEvent(caster.EventSpellCastAt(Spell.MagicMissile, true));<br/>
+    /// This function doesn't cast the spell specified, it only creates an event so that<br/>
+    /// when the event is signaled on an object, the object will use its OnSpellCastAt script<br/>
+    /// to react to the spell being cast.<br/>
+    /// </summary>
+    /// <param name="spell">Spell being cast.</param>
+    /// <param name="harmful">Determines if the spell is harmful to its target.</param>
+    public IntPtr EventSpellCastAt(Spell spell, bool harmful=true)
+      => NWScript.EventSpellCastAt(this, (int)spell, harmful.ToInt());
   }
 }
