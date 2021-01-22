@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.API.Constants;
 using NWN.Core.NWNX;
@@ -12,6 +13,7 @@ namespace NWNX.API
       PluginUtils.AssertPluginExists<CreaturePlugin>();
     }
 
+    [Obsolete("Use NwCreature.AddFeat instead.")]
     public static void AddFeat(this NwCreature creature, Feat feat, int level = 0)
     {
       if (level > 0)
@@ -24,11 +26,13 @@ namespace NWNX.API
       }
     }
 
+    [Obsolete("Use NwCreature.KnowsFeat instead.")]
     public static bool KnowsFeat(this NwCreature creature, Feat feat)
     {
       return CreaturePlugin.GetKnowsFeat(creature, (int) feat).ToBool();
     }
 
+    [Obsolete("Use NwCreature.RemoveFeat instead.")]
     public static void RemoveFeat(this NwCreature creature, Feat feat)
     {
       CreaturePlugin.RemoveFeat(creature, (int) feat);

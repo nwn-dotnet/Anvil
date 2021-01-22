@@ -46,6 +46,7 @@ namespace NWNX.API
     /// <summary>
     /// Signals the server to immediately shutdown.
     /// </summary>
+    [Obsolete("Use NWServer.ShutdownServer instead.")]
     public static void ShutdownServer() => AdminPlugin.ShutdownServer();
 
     /// <summary>
@@ -125,6 +126,7 @@ namespace NWNX.API
     /// <param name="playerName">The community (login name).</param>
     /// <param name="characterName">The character name.</param>
     /// <returns>true if the TURD was successfully deleted.</returns>
+    [Obsolete("Use NwServer.DeleteTURD instead.")]
     public static bool DeleteTURD(string playerName, string characterName) => AdminPlugin.DeleteTURD(playerName, characterName).ToBool();
 
     /// <summary>
@@ -302,6 +304,7 @@ namespace NWNX.API
     }
 
     // TODO document
+    [Obsolete("Use NwServer.ServerInfo.DebugOptions instead.")]
     public static class DebugOptions
     {
       public static bool Combat

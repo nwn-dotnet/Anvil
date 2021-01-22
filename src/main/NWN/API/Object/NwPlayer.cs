@@ -459,10 +459,8 @@ namespace NWN.API
     /// </summary>
     public void StopFade() => NWScript.StopFade(this);
 
-    public async Task Delete(string kickMessage, bool preserveBackup = true)
+    public void Delete(string kickMessage, bool preserveBackup = true)
     {
-      uint playerId = player.m_nPlayerID;
-
       string bicName = player.m_resFileName.GetResRefStr();
       string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
       string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
@@ -473,8 +471,6 @@ namespace NWN.API
         Log.Error($"File {fileName} not found.");
         return;
       }
-
-      await NwTask.NextFrame();
 
       BootPlayer(kickMessage);
 
@@ -495,6 +491,24 @@ namespace NWN.API
       else
       {
         File.Delete(fileName);
+      }
+    }
+
+    /// <summary>
+    /// Delete the TURD of this player.
+    /// <para>At times a PC may get stuck in a permanent crash loop when attempting to login. This function allows administrators to delete their Temporary User
+    /// Resource Data where the PC's current location is stored allowing them to log into the starting area.</para>
+    /// </summary>
+    public void DeleteTURD()
+    {
+      CExoLinkedListInternal turds = NwModule.Instance.Module.m_lstTURDList.m_pcExoLinkedListInternal;
+      for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
+      {
+        if (node.pObject == turd.Pointer)
+        {
+          turds.Remove(node);
+          break;
+        }
       }
     }
   }

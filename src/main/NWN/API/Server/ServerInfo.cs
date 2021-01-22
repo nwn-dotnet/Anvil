@@ -11,13 +11,19 @@ namespace NWN.API
 
     public PersistentWorldOptions PersistentWorldOptions { get; }
 
-    public ServerInfo(CServerInfo serverInfo, CNetLayer netLayer)
+    public JoiningRestrictions JoiningRestrictions { get; }
+
+    public DebugOptions DebugOptions { get; }
+
+    internal ServerInfo(CServerInfo serverInfo, CNetLayer netLayer)
     {
       this.serverInfo = serverInfo;
       this.netLayer = netLayer;
 
       PlayOptions = new PlayOptions(serverInfo.m_PlayOptions);
-      PersistentWorldOptions = new PersistentWorldOptions(this.serverInfo.m_PersistantWorldOptions);
+      PersistentWorldOptions = new PersistentWorldOptions(serverInfo.m_PersistantWorldOptions);
+      JoiningRestrictions = new JoiningRestrictions(serverInfo.m_JoiningRestrictions);
+      DebugOptions = new DebugOptions();
     }
 
     /// <summary>

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
-using NWNX.API;
 using Ability = NWN.API.Constants.Ability;
 using Action = NWN.API.Constants.Action;
 using Alignment = NWN.API.Constants.Alignment;
@@ -743,7 +743,7 @@ namespace NWN.API
 
     /// <summary>
     /// Returns true if this creature knows the specified <see cref="Constants.Feat"/>, and can use it.<br/>
-    /// Use <see cref="Creature.KnowsFeat"/> to simply check if a creature knows <see cref="Constants.Feat"/>, but may or may not have uses remaining.
+    /// Use <see cref="KnowsFeat"/> to simply check if a creature knows <see cref="Constants.Feat"/>, but may or may not have uses remaining.
     /// </summary>
     public bool HasFeatPrepared(Feat feat)
       => NWScript.GetHasFeat((int)feat, this).ToBool();
@@ -1480,6 +1480,74 @@ namespace NWN.API
     {
       await WaitForObjectContext();
       NWScript.SpeakOneLinerConversation(dialogResRef, tokenTarget);
+    }
+
+    /// <summary>
+    /// Gives this creature the specified feat.<br/>
+    /// Consider using the <see cref="AddFeat(NWN.API.Constants.Feat, int)"/> overload to properly allocate the feat to a level.
+    /// </summary>
+    /// <param name="feat">The feat to give.</param>
+    public void AddFeat(Feat feat)
+    {
+      creature.m_pStats.AddFeat((ushort)feat);
+    }
+
+    /// <summary>
+    /// Gives this creature the specified feat at a level.<br/>
+    /// Consider using the <see cref="AddFeat(NWN.API.Constants.Feat, int)"/> overload to properly allocate the feat to a level.
+    /// </summary>
+    /// <param name="feat">The feat to give.</param>
+    /// <param name="level">The level the feat was gained.</param>
+    public void AddFeat(Feat feat, int level)
+    {
+      if (level <= 0 || level > creature.m_pStats.m_lstLevelStats.num)
+      {
+        return;
+      }
+
+      SWIGTYPE_p_p_CNWLevelStats levelStatsPtr = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1);
+      CNWLevelStats levelStats = new CNWLevelStats(Marshal.ReadIntPtr(levelStatsPtr.Pointer), false);
+      levelStats.AddFeat((ushort)feat);
+      creature.m_pStats.AddFeat((ushort)feat);
+    }
+
+    /// <summary>
+    /// Gets if this creature knows the specified feat.
+    /// </summary>
+    /// <param name="feat">The feat to check.</param>
+    /// <returns>True if the creature knows the feat, otherwise false.</returns>
+    public bool KnowsFeat(Feat feat)
+    {
+      return creature.m_pStats.HasFeat((ushort)feat).ToBool();
+    }
+
+    /// <summary>
+    /// Gets a collection containing the feats known by this creature at the specified level.
+    /// </summary>
+    /// <param name="level">The level to fetch feats.</param>
+    /// <returns>A collection containing level feats, otherwise empty if no feats were gained or the creature has not reached the specified level.</returns>
+    public IEnumerable<Feat> GetFeatsForLevel(int level)
+    {
+      if (level <= 0 || level > creature.m_pStats.m_lstLevelStats.num)
+      {
+        yield break;
+      }
+
+      SWIGTYPE_p_p_CNWLevelStats levelStatsPtr = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1);
+      CNWLevelStats levelStats = new CNWLevelStats(Marshal.ReadIntPtr(levelStatsPtr.Pointer), false);
+      for (int i = 0; i < levelStats.m_lstFeats.num; i++)
+      {
+        yield return (Feat)levelStats.m_lstFeats._OpIndex(i).Read();
+      }
+    }
+
+    /// <summary>
+    /// Removes the specified feat from this creature.
+    /// </summary>
+    /// <param name="feat">The feat to remove.</param>
+    public void RemoveFeat(Feat feat)
+    {
+      creature.m_pStats.RemoveFeat((ushort)feat);
     }
   }
 }

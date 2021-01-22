@@ -1,3 +1,4 @@
+using System;
 using NWN.Native.API;
 
 namespace NWN.API
@@ -21,14 +22,14 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the absolute path of the server's home directory (-userDirectory).
-    /// </summary>
-    public string UserDirectory { get; }
-
-    /// <summary>
     /// Gets server configuration and display info.
     /// </summary>
     public ServerInfo ServerInfo { get; }
+
+    /// <summary>
+    /// Gets the absolute path of the server's home directory (-userDirectory).
+    /// </summary>
+    public string UserDirectory { get; }
 
     /// <summary>
     /// Gets or sets the current player password.
@@ -112,8 +113,54 @@ namespace NWN.API
     /// <param name="alias">The alias name.</param>
     /// <returns>The path defined for the specified alias, otherwise null if the alias could not be found.</returns>
     public string GetAliasPath(string alias)
+      => exoBase.m_pcExoAliasList.GetAliasPath(new CExoString(alias), 0).ToString();
+
+    /// <summary>
+    /// Delete the TURD of playerName + characterName.
+    /// <para>At times a PC may get stuck in a permanent crash loop when attempting to login. This function allows administrators to delete their Temporary User
+    /// Resource Data where the PC's current location is stored allowing them to log into the starting area.</para>
+    /// </summary>
+    /// <param name="playerName">The community (login name).</param>
+    /// <param name="characterName">The character name.</param>
+    /// <returns>true if the TURD was successfully deleted.</returns>
+    public bool DeletePlayerTURD(string playerName, string characterName)
     {
-      return exoBase.m_pcExoAliasList.GetAliasPath(new CExoString(alias), 0).ToString();
+      if (string.IsNullOrEmpty(playerName) || string.IsNullOrEmpty(characterName))
+      {
+        return false;
+      }
+
+      CExoLinkedListInternal turds = NwModule.Instance.Module.m_lstTURDList.m_pcExoLinkedListInternal;
+      CExoLinkedListNode node = FindTURD(turds, playerName, characterName);
+      if (node == null)
+      {
+        return false;
+      }
+
+      turds.Remove(node);
+      return true;
     }
+
+    private CExoLinkedListNode FindTURD(CExoLinkedListInternal turds, string playerName, string characterName)
+    {
+      for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
+      {
+        CNWSPlayerTURD turd = new CNWSPlayerTURD(node.pObject, false);
+
+        string turdCharacterName = $"{turd.m_lsFirstName.ExtractLocString()} {turd.m_lsLastName.ExtractLocString()}";
+        if (playerName == turd.m_sCommunityName.ToString() || characterName == turdCharacterName)
+        {
+          return node;
+        }
+      }
+
+      return null;
+    }
+
+    /// <summary>
+    /// Signals the server to immediately shutdown.
+    /// </summary>
+    public void ShutdownServer()
+      => NWNXLib.ExitProgram().Write(true.ToInt());
   }
 }
