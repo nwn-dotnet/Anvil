@@ -410,5 +410,19 @@ namespace NWN.API
     /// <param name="delayTransitionTime">Time it takes for the daylight to fade in.</param>
     public void NightToDay(TimeSpan delayTransitionTime = default)
       => NWScript.NightToDay(this, (float)delayTransitionTime.TotalSeconds);
-    }
+
+    /// <summary>
+    /// Displays a death panel that can turn off the "Respawn" or "Wait for Help" buttons.<br/>
+    /// The "Wait for Help" button is only enabled when the game is running in multiplayer mode.<br/>
+    ///  By default if helpString isn't specified, the value used is "Choose an option below.<br/>
+    /// Respawning will incur a penalty of 50 XP per level of your character and the loss of 10% of your gold."<br/>
+    /// (strref 66219 single player, 6600 for multiplayer).<br/>
+    /// </summary>
+    /// <param name="respawnButton">If true the "Respawn" button will be enabled.</param>
+    /// <param name="waitForHelp">If true the "Wait For Help" button will be enabled.</param>
+    /// <param name="helpStringRef">String reference to display for hel.</param>
+    /// <param name="helpString">String to display for help which appears in the top of the panel.</param>
+    public void PopUpDeathPanel(bool respawnButton = true, bool waitForHelp = true, int helpStringRef = 0, string helpString = "")
+    => NWScript.PopUpDeathGUIPanel(this, respawnButton.ToInt(), waitForHelp.ToInt(), helpStringRef, helpString);
+  }
 }
