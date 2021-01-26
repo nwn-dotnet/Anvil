@@ -10,7 +10,7 @@ var searchData=
   ['endgame_202',['EndGame',['../classNWN_1_1API_1_1NwModule.html#a6a2f13c052802ed7d527eb360c099559',1,'NWN::API::NwModule']]],
   ['entangle_203',['Entangle',['../classNWN_1_1API_1_1Effect.html#a29ea2df82272f581e9a8c21ff016a3c6',1,'NWN::API::Effect']]],
   ['entercutscenemode_204',['EnterCutsceneMode',['../classNWN_1_1API_1_1NwPlayer.html#a0d3fcfe9ab1c855ae601e067576c3c59',1,'NWN::API::NwPlayer']]],
-  ['enteringobject_205',['EnteringObject',['../classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html#a5b30435d540ba83ed429ebe3ce989133',1,'NWN.API.Events.AreaEvents.OnEnter.EnteringObject()'],['../classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a8443c0f98378b892a7f906e7bf9d25f8',1,'NWN.API.Events.TriggerEvents.OnEnter.EnteringObject()']]],
+  ['enteringobject_205',['EnteringObject',['../classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a8443c0f98378b892a7f906e7bf9d25f8',1,'NWN.API.Events.TriggerEvents.OnEnter.EnteringObject()'],['../classNWN_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html#a5b30435d540ba83ed429ebe3ce989133',1,'NWN.API.Events.AreaEvents.OnEnter.EnteringObject()']]],
   ['entertargetmode_206',['EnterTargetMode',['../classNWN_1_1Services_1_1CursorTargetService.html#a595eb5cebed66dc7a967020bced165ad',1,'NWN::Services::CursorTargetService']]],
   ['environmentconfig_207',['EnvironmentConfig',['../classNWN_1_1EnvironmentConfig.html',1,'NWN']]],
   ['ethereal_208',['Ethereal',['../classNWN_1_1API_1_1Effect.html#accbd704684ea2809a8a04aac5e13704f',1,'NWN::API::Effect']]],

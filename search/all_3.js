@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['damage_141',['Damage',['../classNWNX_1_1API_1_1Damage.html',1,'NWNX.API.Damage'],['../classNWN_1_1API_1_1Effect.html#ac29ac1e15d7a93c2c70138726f6d62a3',1,'NWN.API.Effect.Damage()']]],
+  ['damage_141',['Damage',['../classNWN_1_1API_1_1Effect.html#ac29ac1e15d7a93c2c70138726f6d62a3',1,'NWN.API.Effect.Damage()'],['../classNWNX_1_1API_1_1Damage.html',1,'NWNX.API.Damage']]],
   ['damagebonuslimit_142',['DamageBonusLimit',['../classNWN_1_1API_1_1NwModule.html#a12dc3dddbd3cc4cf865488f31f28691c',1,'NWN::API::NwModule']]],
   ['damagedata_143',['DamageData',['../structNWNX_1_1API_1_1Events_1_1DamageData.html',1,'NWNX::API::Events']]],
   ['damagedecrease_144',['DamageDecrease',['../classNWN_1_1API_1_1Effect.html#a6a579b0881090122643d5cc9a813a1a2',1,'NWN::API::Effect']]],
@@ -22,7 +22,7 @@ var searchData=
   ['deity_160',['Deity',['../classNWN_1_1API_1_1NwCreature.html#a10fad5bfc41d505e4694b94282be2f4c',1,'NWN::API::NwCreature']]],
   ['delay_161',['Delay',['../classNWN_1_1API_1_1NwTask.html#a745a15b7000de7225503d84d01341725',1,'NWN::API::NwTask']]],
   ['delayframe_162',['DelayFrame',['../classNWN_1_1API_1_1NwTask.html#a23d901501001739035bb4de19e59fc42',1,'NWN::API::NwTask']]],
-  ['delete_163',['Delete',['../classNWN_1_1API_1_1CampaignVariable.html#aa3461b90faa069761f009823d1853756',1,'NWN.API.CampaignVariable.Delete()'],['../classNWN_1_1API_1_1LocalVariable.html#a611e334f586c492e5bb713f7a70369e2',1,'NWN.API.LocalVariable.Delete()']]],
+  ['delete_163',['Delete',['../classNWN_1_1API_1_1LocalVariable.html#a611e334f586c492e5bb713f7a70369e2',1,'NWN.API.LocalVariable.Delete()'],['../classNWN_1_1API_1_1CampaignVariable.html#aa3461b90faa069761f009823d1853756',1,'NWN.API.CampaignVariable.Delete()']]],
   ['deleteplayercharacter_164',['DeletePlayerCharacter',['../classNWNX_1_1API_1_1Administration.html#a633fc0156cb88f6cfa62e9cd539207cc',1,'NWNX::API::Administration']]],
   ['deleteturd_165',['DeleteTURD',['../classNWNX_1_1API_1_1Administration.html#a8831aeb56cb1d06e8400186ba7d7beb1',1,'NWNX::API::Administration']]],
   ['description_166',['Description',['../classNWN_1_1API_1_1NwObject.html#a0bdb7ce7e123f0c2a21b9607232a8f26',1,'NWN::API::NwObject']]],

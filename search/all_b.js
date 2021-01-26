@@ -15,7 +15,7 @@ var searchData=
   ['localvariable_426',['LocalVariable',['../classNWN_1_1API_1_1LocalVariable.html',1,'NWN::API']]],
   ['localvariableconverterattribute_427',['LocalVariableConverterAttribute',['../classNWN_1_1API_1_1LocalVariableConverterAttribute.html',1,'NWN::API']]],
   ['localvariables_428',['LocalVariables',['../classNWN_1_1API_1_1NwObject.html#ad7f386189507d0e10b7748b364db6167',1,'NWN::API::NwObject']]],
-  ['location_429',['Location',['../classNWN_1_1API_1_1Location.html',1,'NWN.API.Location'],['../classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2',1,'NWN.API.NwGameObject.Location()']]],
+  ['location_429',['Location',['../classNWN_1_1API_1_1NwGameObject.html#a992242d3ad4d409cb5a38ce9d91049f2',1,'NWN.API.NwGameObject.Location()'],['../classNWN_1_1API_1_1Location.html',1,'NWN.API.Location']]],
   ['lockable_430',['Lockable',['../classNWN_1_1API_1_1NwStationary.html#a7adb0ab235273075f4ea94f97436c30b',1,'NWN::API::NwStationary']]],
   ['lockcameradirection_431',['LockCameraDirection',['../classNWN_1_1API_1_1NwPlayer.html#a42a499e23f2fdbd655d1d51c11b8409c',1,'NWN::API::NwPlayer']]],
   ['lockcameradistance_432',['LockCameraDistance',['../classNWN_1_1API_1_1NwPlayer.html#ad4d028cee87beef7016eb3edf4863471',1,'NWN::API::NwPlayer']]],
