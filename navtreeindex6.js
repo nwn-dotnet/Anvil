@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc":[0,0,0,0,28,26],
 "classNWN_1_1API_1_1NwModule.html#afe18eef01e7bb12860c9f3b472ef6e5a":[0,0,0,0,28,21],
 "classNWN_1_1API_1_1NwObject.html":[0,0,0,0,29],
 "classNWN_1_1API_1_1NwObject.html#a039c6922a250667b61069f5a1710988d":[0,0,0,0,29,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "classNWN_1_1Services_1_1SchedulerService.html#ab01e7b63f6cb2a63c9aa505ea6be47f8":[0,0,0,2,6,3],
 "classNWN_1_1Services_1_1SchedulerService.html#aee1fd12f028e55b2a04d88161cdddf65":[0,0,0,2,6,1],
 "classNWN_1_1Services_1_1ScriptEventService.html":[0,0,0,2,3],
-"classNWN_1_1Services_1_1ScriptEventService.html#a33858debb2ce7d8f0f5ea481dbd64470":[0,0,0,2,3,0],
-"classNWN_1_1Services_1_1ScriptEventService.html#a5ea130795efd7c18b5840b3675af6448":[0,0,0,2,3,1]
+"classNWN_1_1Services_1_1ScriptEventService.html#a33858debb2ce7d8f0f5ea481dbd64470":[0,0,0,2,3,0]
 };

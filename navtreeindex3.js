@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a6bf0c93558006275ceeb5b7af3bf46c1":[0,0,0,0,1,12,0,4],
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#adb4ceaef57508d0e2fe5dcc3cf3f281e":[0,0,0,0,1,12,0,0],
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html":[0,0,0,0,1,12,1],
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#a08b6f260e981d2a15f2d7c1cdabfa75d":[0,0,0,0,1,12,1,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "classNWN_1_1API_1_1Events_1_1TriggerEvents.html":[0,0,0,0,1,11],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html":[0,0,0,0,1,11,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#a5573622a92222c5fe3d17a5bd11a9afc":[0,0,0,0,1,11,0,1],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aa2ca30fe86b4ec3120b6c840476677c8":[0,0,0,0,1,11,0,0],
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aec55b740ebe751453920ba156003306f":[0,0,0,0,1,11,0,2]
+"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aa2ca30fe86b4ec3120b6c840476677c8":[0,0,0,0,1,11,0,0]
 };

@@ -355,7 +355,7 @@ var annotated_dup =
         [ "SkillRanks", "classNWNX_1_1API_1_1SkillRanks.html", null ],
         [ "Util", "classNWNX_1_1API_1_1Util.html", "classNWNX_1_1API_1_1Util" ],
         [ "Visibility", "classNWNX_1_1API_1_1Visibility.html", null ],
-        [ "Weapon", "classNWNX_1_1API_1_1Weapon.html", null ]
+        [ "Weapon", "classNWNX_1_1API_1_1Weapon.html", "classNWNX_1_1API_1_1Weapon" ]
       ] ],
       [ "Services", "namespaceNWNX_1_1Services.html", [
         [ "NWNXEventService", "classNWNX_1_1Services_1_1NWNXEventService.html", "classNWNX_1_1Services_1_1NWNXEventService" ]

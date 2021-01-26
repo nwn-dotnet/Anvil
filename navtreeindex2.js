@@ -20,6 +20,7 @@ var NAVTREEINDEX2 =
 "classNWNX_1_1API_1_1Util.html#ae84abb4b38ec96f8d96d5a8b8008aa35":[0,0,1,0,20,1],
 "classNWNX_1_1API_1_1Visibility.html":[0,0,1,0,21],
 "classNWNX_1_1API_1_1Weapon.html":[0,0,1,0,22],
+"classNWNX_1_1API_1_1Weapon.html#a17a1b5d6b2f7d61c7e8431976b3c36f0":[0,0,1,0,22,0],
 "classNWNX_1_1PluginUtils.html":[0,0,1,2],
 "classNWNX_1_1Services_1_1NWNXEventService.html":[0,0,1,1,0],
 "classNWNX_1_1Services_1_1NWNXEventService.html#a1c26d19d0c3545962f9ec366aa6e93d0":[0,0,1,1,0,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a07681a200d88f50ad3ae071f77350af1":[0,0,0,0,1,12,0,1],
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a16ee0ee5f0d5fd4416e848d5a5081231":[0,0,0,0,1,12,0,2],
 "classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a45a2621cd4602a1c055b86a2ff3e7dea":[0,0,0,0,1,12,0,3],
-"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a45e1b1dde0f5d9f57858c7b89df578ec":[0,0,0,0,1,12,0,5],
-"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a6bf0c93558006275ceeb5b7af3bf46c1":[0,0,0,0,1,12,0,4]
+"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a45e1b1dde0f5d9f57858c7b89df578ec":[0,0,0,0,1,12,0,5]
 };
