@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Runtime.CompilerServices;
 using NLog;
-using NLog.Config;
 using NWN.API;
 using NWN.Core;
 using NWN.Core.NWNX;
@@ -30,6 +28,7 @@ namespace NWN
     // Core Services
     private readonly IBindingInstaller bindingInstaller;
     private readonly ITypeLoader typeLoader;
+    private readonly LoggerManager loggerManager;
 
     private ServiceManager serviceManager;
 
@@ -96,6 +95,7 @@ namespace NWN
     {
       this.bindingInstaller = bindingInstaller;
       this.typeLoader = typeLoader;
+      this.loggerManager = new LoggerManager();
     }
 
     void IGameManager.OnSignal(string signal)
@@ -116,7 +116,7 @@ namespace NWN
 
     private void Init()
     {
-      InitLogManager();
+      loggerManager.Init();
       Log.Info($"Loading NWN.Managed - {AssemblyConstants.ManagedAssemblyName.Version}");
       CheckPluginDependencies();
 
@@ -139,17 +139,6 @@ namespace NWN
       typeLoader.Dispose();
     }
 
-    private void InitLogManager()
-    {
-      if (File.Exists(EnvironmentConfig.NLogConfigPath))
-      {
-        LogManager.Configuration = new XmlLoggingConfiguration(EnvironmentConfig.NLogConfigPath);
-      }
-
-      LogManager.Configuration.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
-      Log.Info($"Using Logger config: \"{EnvironmentConfig.NLogConfigPath}\"");
-    }
-
     private void CheckPluginDependencies()
     {
       Log.Info("Checking Plugin Dependencies");
@@ -160,7 +149,7 @@ namespace NWN
     private void Shutdown()
     {
       Dispose();
-      LogManager.Shutdown();
+      loggerManager.Dispose();
     }
 
     void IGameManager.OnMainLoop(ulong frame)

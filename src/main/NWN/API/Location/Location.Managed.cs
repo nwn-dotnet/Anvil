@@ -124,10 +124,23 @@ namespace NWN.API
       return Vector3.DistanceSquared(target.Position, Position);
     }
 
-    public IEnumerable<T> GetObjectsInShape<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
+    public IEnumerable<NwGameObject> GetObjectsInShape(Shape shape, float size, bool losCheck, ObjectTypes objTypes = ObjectTypes.Creature, Vector3 origin = default)
     {
-      int typeFilter = (int) NwObject.GetObjectType<T>();
-      int nShape = (int) shape;
+      int typeFilter = (int)objTypes;
+      int nShape = (int)shape;
+
+      for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
+        obj != NWScript.OBJECT_INVALID;
+        obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin))
+      {
+        yield return obj.ToNwObject<NwGameObject>();
+      }
+    }
+
+    public IEnumerable<T> GetObjectsInShapeByType<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
+    {
+      int typeFilter = (int)NwObject.GetObjectType<T>();
+      int nShape = (int)shape;
 
       for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
         obj != NWScript.OBJECT_INVALID;

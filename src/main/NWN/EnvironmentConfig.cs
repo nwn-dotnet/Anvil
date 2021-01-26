@@ -7,7 +7,7 @@ namespace NWN
   {
     // NWN.Managed
     public static readonly string PluginsPath = Environment.GetEnvironmentVariable("NWM_PLUGIN_PATH") ?? Path.Combine(AssemblyConstants.AssemblyDir, "Plugins");
-    public static readonly string NLogConfigPath = Environment.GetEnvironmentVariable("NWM_NLOG_CONFIG") ?? Path.Combine(AssemblyConstants.AssemblyDir, "nlog.config");
+    public static readonly string NLogConfigPath = Environment.GetEnvironmentVariable("NWM_NLOG_CONFIG");
     public static readonly bool ReloadEnabled = string.Equals(Environment.GetEnvironmentVariable("NWM_RELOAD_ENABLED"), "true", StringComparison.InvariantCultureIgnoreCase);
 
     // NWNX
