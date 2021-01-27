@@ -1489,5 +1489,11 @@ namespace NWN.API
       await WaitForObjectContext();
       NWScript.SpeakOneLinerConversation(dialogResRef, tokenTarget);
     }
+
+    public async Task FadeFromBlack(NwCreature creature, float fadeSpeed)
+    {
+      await WaitForObjectContext();
+      NWScript.FadeFromBlack(creature, fadeSpeed);
+    }
   }
 }
