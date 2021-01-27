@@ -424,5 +424,22 @@ namespace NWN.API
     /// <param name="helpString">String to display for help which appears in the top of the panel.</param>
     public void PopUpDeathPanel(bool respawnButton = true, bool waitForHelp = true, int helpStringRef = 0, string helpString = "")
     => NWScript.PopUpDeathGUIPanel(this, respawnButton.ToInt(), waitForHelp.ToInt(), helpStringRef, helpString);
+
+    /// <summary>
+    /// Fades the screen for a given player from black to regular screen.
+    /// </summary>
+    /// <param name="fadeSpeed">Determines how fast the fade occurs.</param>
+    public void FadeFromBlack(float fadeSpeed) => NWScript.FadeFromBlack(this, fadeSpeed);
+
+    /// <summary>
+    /// Fades the screen for a given player from a regular screen to black.
+    /// </summary>
+    /// <param name="fadeSpeed">Determines how fast the fade occurs.</param>
+    public void FadeToBlack(float fadeSpeed) => NWScript.FadeToBlack(this, fadeSpeed);
+
+    /// <summary>
+    /// Removes any current fading effects or black screen from the monitor of the player.
+    /// </summary>
+    public void StopFade() => NWScript.StopFade(this);
   }
 }
