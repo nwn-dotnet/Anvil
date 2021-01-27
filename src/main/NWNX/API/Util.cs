@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NWN.API;
 using NWN.Core;
@@ -56,13 +57,6 @@ namespace NWNX.API
     public static NWN.API.Effect AsEffect(this NWN.API.ItemProperty ip) => UtilPlugin.ItemPropertyToEffect(ip);
 
     /// <summary>
-    /// Strip any color codes from a string.
-    /// </summary>
-    /// <param name="str">The string to strip of color.</param>
-    /// <returns>The new string without any color codes.</returns>
-    public static string StripColors(this string str) => UtilPlugin.StripColors(str);
-
-    /// <summary>
     /// Determines if the supplied resref exists and is of the specified type.
     /// </summary>
     /// <param name="resRef">The resref to check.</param>
@@ -80,6 +74,7 @@ namespace NWNX.API
     /// <summary>
     /// Gets or sets the module real life minutes per in game hour.
     /// </summary>
+    [Obsolete("Use NWServer.WorldTimer.MinutesPerHour instead.")]
     public static int MinutesPerHour
     {
       get => UtilPlugin.GetMinutesPerHour();
@@ -209,6 +204,7 @@ namespace NWNX.API
     /// <summary>
     /// Gets the absolute path of the server's home directory (-userDirectory).
     /// </summary>
+    [Obsolete("Use NwServer.UserDirectory instead.")]
     public static string UserDirectory => UtilPlugin.GetUserDirectory();
 
     /// <summary>

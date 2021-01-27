@@ -7,17 +7,20 @@ namespace NWN.API
   {
     private readonly CExoBase exoBase;
     private readonly CServerExoApp server;
+    private readonly CVirtualMachine virtualMachine;
     private readonly CNetLayer netLayer;
 
-    public static readonly NwServer Instance = new NwServer(NWNXLib.ExoBase(), NWNXLib.AppManager().m_pServerExoApp);
+    public static readonly NwServer Instance = new NwServer(NWNXLib.ExoBase(), NWNXLib.AppManager().m_pServerExoApp, NWNXLib.VirtualMachine());
 
-    internal NwServer(CExoBase exoBase, CServerExoApp server)
+    internal NwServer(CExoBase exoBase, CServerExoApp server, CVirtualMachine virtualMachine)
     {
       this.exoBase = exoBase;
       this.server = server;
+      this.virtualMachine = virtualMachine;
       this.netLayer = server.GetNetLayer();
 
       UserDirectory = exoBase.m_sUserDirectory.ToString();
+      WorldTimer = new WorldTimer(server.GetWorldTimer());
       ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
     }
 
@@ -27,9 +30,23 @@ namespace NWN.API
     public ServerInfo ServerInfo { get; }
 
     /// <summary>
+    /// Gets the server world timer.
+    /// </summary>
+    public WorldTimer WorldTimer { get; }
+
+    /// <summary>
     /// Gets the absolute path of the server's home directory (-userDirectory).
     /// </summary>
     public string UserDirectory { get; }
+
+    /// <summary>
+    /// Gets or sets the instruction limit for the NWScript VM.
+    /// </summary>
+    public uint InstructionLimit
+    {
+      get => virtualMachine.m_nInstructionLimit;
+      set => virtualMachine.m_nInstructionLimit = value;
+    }
 
     /// <summary>
     /// Gets or sets the current player password.

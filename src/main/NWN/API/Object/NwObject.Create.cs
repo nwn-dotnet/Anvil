@@ -106,7 +106,7 @@ namespace NWN.API
 
     private static NwObject ConstructManagedObject(uint objectId)
     {
-      CGameObject gameObject = LowLevel.ServerExoApp.GetGameObject(objectId);
+      ICGameObject gameObject = LowLevel.ServerExoApp.GetGameObject(objectId);
       if (gameObject == null)
       {
         return null;

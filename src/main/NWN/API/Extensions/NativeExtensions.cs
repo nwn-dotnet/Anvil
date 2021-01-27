@@ -22,5 +22,8 @@ namespace NWN.API
 
     public static void Write(this SWIGTYPE_p_unsigned_short ptr, ushort value)
       => Marshal.StructureToPtr(value, ptr.Pointer, false);
+
+    public static CNWLevelStats Read(this SWIGTYPE_p_p_CNWLevelStats ptr)
+      => new CNWLevelStats(Marshal.ReadIntPtr(ptr.Pointer), false);
   }
 }

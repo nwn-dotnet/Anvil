@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
@@ -128,6 +128,15 @@ namespace NWN.API
     {
       get => (FootstepType)NWScript.GetFootstepType(this);
       set => NWScript.SetFootstepType((int)value, this);
+    }
+
+    /// <summary>
+    /// Gets or sets the base AC for this creature.
+    /// </summary>
+    public sbyte BaseAC
+    {
+      get => (sbyte)creature.m_pStats.m_nACNaturalBase;
+      set => creature.m_pStats.m_nACNaturalBase = (char)value;
     }
 
     /// <summary>
@@ -533,6 +542,21 @@ namespace NWN.API
         }
 
         return classes.AsReadOnly();
+      }
+    }
+
+    /// <summary>
+    /// Gets an enumerable containing information about this creature's levels (feats, skills, class taken, etc).
+    /// </summary>
+    public IEnumerable<LevelStats> LevelStats
+    {
+      get
+      {
+        for (byte i = 0; i < creature.m_pStats.m_lstLevelStats.num; i++)
+        {
+          CNWLevelStats levelStats = creature.m_pStats.m_lstLevelStats._OpIndex(i).Read();
+          yield return new LevelStats(this, levelStats);
+        }
       }
     }
 
@@ -1500,13 +1524,10 @@ namespace NWN.API
     /// <param name="level">The level the feat was gained.</param>
     public void AddFeat(Feat feat, int level)
     {
-      if (level <= 0 || level > creature.m_pStats.m_lstLevelStats.num)
-      {
-        return;
-      }
+      Contract.Requires<ArgumentOutOfRangeException>(level > 0 && level <= creature.m_pStats.m_lstLevelStats.num);
 
-      SWIGTYPE_p_p_CNWLevelStats levelStatsPtr = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1);
-      CNWLevelStats levelStats = new CNWLevelStats(Marshal.ReadIntPtr(levelStatsPtr.Pointer), false);
+      CNWLevelStats levelStats = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
+
       levelStats.AddFeat((ushort)feat);
       creature.m_pStats.AddFeat((ushort)feat);
     }
@@ -1522,32 +1543,25 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets a collection containing the feats known by this creature at the specified level.
-    /// </summary>
-    /// <param name="level">The level to fetch feats.</param>
-    /// <returns>A collection containing level feats, otherwise empty if no feats were gained or the creature has not reached the specified level.</returns>
-    public IEnumerable<Feat> GetFeatsForLevel(int level)
-    {
-      if (level <= 0 || level > creature.m_pStats.m_lstLevelStats.num)
-      {
-        yield break;
-      }
-
-      SWIGTYPE_p_p_CNWLevelStats levelStatsPtr = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1);
-      CNWLevelStats levelStats = new CNWLevelStats(Marshal.ReadIntPtr(levelStatsPtr.Pointer), false);
-      for (int i = 0; i < levelStats.m_lstFeats.num; i++)
-      {
-        yield return (Feat)levelStats.m_lstFeats._OpIndex(i).Read();
-      }
-    }
-
-    /// <summary>
     /// Removes the specified feat from this creature.
     /// </summary>
     /// <param name="feat">The feat to remove.</param>
     public void RemoveFeat(Feat feat)
     {
       creature.m_pStats.RemoveFeat((ushort)feat);
+    }
+
+    /// <summary>
+    /// Gets the level stat info for the specified level (feat, class, skills, etc.)
+    /// </summary>
+    /// <param name="level">The level to lookup.</param>
+    /// <returns>A <see cref="LevelStats"/> object containing level info.</returns>
+    public LevelStats GetLevelStats(int level)
+    {
+      Contract.Requires<ArgumentOutOfRangeException>(level > 0 && level <= creature.m_pStats.m_lstLevelStats.num);
+
+      CNWLevelStats levelStats = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
+      return new LevelStats(this, levelStats);
     }
   }
 }

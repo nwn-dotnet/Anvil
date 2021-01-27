@@ -38,6 +38,7 @@ namespace NWNX.API
       CreaturePlugin.RemoveFeat(creature, (int) feat);
     }
 
+    [Obsolete("Use NwCreature.LevelStats instead.")]
     public static int GetFeatGrantLevel(this NwCreature creature, Feat feat)
     {
       return CreaturePlugin.GetFeatGrantLevel(creature, (int) feat);
