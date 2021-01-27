@@ -1,26 +1,26 @@
 using System;
 using System.Runtime.InteropServices;
-using NWN.Native.API;
+using NWN.Core;
 
 namespace NWN.Services
 {
   public class FunctionHook<T> : IDisposable where T : Delegate
   {
     private readonly HookService hookService;
-    private readonly FunctionHook nativeHook;
+    private readonly IntPtr nativeFuncPtr;
 
     public readonly T Original;
 
-    internal FunctionHook(HookService hookService, FunctionHook nativeHook)
+    internal FunctionHook(HookService hookService, IntPtr nativeFuncPtr)
     {
       this.hookService = hookService;
-      this.nativeHook = nativeHook;
-      Original = Marshal.GetDelegateForFunctionPointer<T>(nativeHook.m_trampoline);
+      this.nativeFuncPtr = nativeFuncPtr;
+      Original = Marshal.GetDelegateForFunctionPointer<T>(nativeFuncPtr);
     }
 
     public void Dispose()
     {
-      nativeHook?.Dispose();
+      VM.ReturnHook(nativeFuncPtr);
       hookService.RemoveHook(this);
     }
   }

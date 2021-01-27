@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using NLog;
 using NWN.Core;
-using NWN.Native.API;
 
 namespace NWN.Services
 {
@@ -18,14 +17,13 @@ namespace NWN.Services
     public FunctionHook<T> RequestHook<T>(T handler, uint address, int priority = 0) where T : Delegate
     {
       Log.Debug($"Requesting function hook for {typeof(T).Name}, address 0x{address:X}");
-      IntPtr handlerPtr = Marshal.GetFunctionPointerForDelegate(handler);
-      IntPtr hook = VM.RequestHook(new IntPtr(address), handlerPtr, priority);
+      IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
+      IntPtr nativeFuncPtr = VM.RequestHook(new IntPtr(address), managedFuncPtr, priority);
 
-      FunctionHook nativeHook = new FunctionHook(hook, true);
-      FunctionHook<T> managedHook = new FunctionHook<T>(this, nativeHook);
+      FunctionHook<T> hook = new FunctionHook<T>(this, nativeFuncPtr);
+      hooks.Add(hook);
 
-      hooks.Add(managedHook);
-      return managedHook;
+      return hook;
     }
 
     internal void RemoveHook<T>(FunctionHook<T> hook) where T : Delegate
@@ -33,7 +31,7 @@ namespace NWN.Services
       hooks.Remove(hook);
     }
 
-    public void Dispose()
+    void IDisposable.Dispose()
     {
       foreach (IDisposable hook in hooks.ToList())
       {
