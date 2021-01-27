@@ -1495,5 +1495,11 @@ namespace NWN.API
       await WaitForObjectContext();
       NWScript.FadeFromBlack(creature, fadeSpeed);
     }
+
+    public async Task FadeToBlack(NwCreature creature, float fadeSpeed)
+    {
+      await WaitForObjectContext();
+      NWScript.FadeToBlack(creature, fadeSpeed);
+    }
   }
 }
