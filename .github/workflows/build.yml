@@ -61,5 +61,8 @@ jobs:
       - name: Pack for NuGet
         run: dotnet pack NWN.Managed.csproj --configuration Release -p:PackageVersion=${{ steps.name_version.outputs.version }} -o output
 
-      - name: Publish Package to NuGet
+      - name: NuGet Publish
         run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+        
+      - name: GitHub Publish
+        run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
