@@ -1489,37 +1489,5 @@ namespace NWN.API
       await WaitForObjectContext();
       NWScript.SpeakOneLinerConversation(dialogResRef, tokenTarget);
     }
-
-    /// <summary>
-    /// Fades the screen for a given creature or player from black to regular screen.
-    /// </summary>
-    /// <param name="creature">Creature to fade the screen of from black to normal.</param>
-    /// <param name="fadeSpeed">Determines how fast the fade occurs.</param>
-    public async Task FadeFromBlack(NwCreature creature, float fadeSpeed)
-    {
-      await WaitForObjectContext();
-      NWScript.FadeFromBlack(creature, fadeSpeed);
-    }
-
-    /// <summary>
-    /// Fades the screen for a given player or creature from a regular screen to black.
-    /// </summary>
-    /// <param name="creature">Creature controlled by a player to fade the screen of.</param>
-    /// <param name="fadeSpeed">Determines how fast the fade occurs.</param>
-    public async Task FadeToBlack(NwCreature creature, float fadeSpeed)
-    {
-      await WaitForObjectContext();
-      NWScript.FadeToBlack(creature, fadeSpeed);
-    }
-
-    /// <summary>
-    /// Removes any current fading effects or black screen from the monitor of the player controlling Creature.
-    /// </summary>
-    /// <param name="creature">Creature to fade the screen of from black to normal.</param>
-    public async Task StopFade(NwCreature creature)
-    {
-      await WaitForObjectContext();
-      NWScript.StopFade(creature);
-    }
   }
 }
