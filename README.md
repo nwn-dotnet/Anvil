@@ -20,6 +20,8 @@ The DotNET, Object and Util plugins are required for the library to work. Make s
 
 Other plugins are optional, but may be required to access some extension APIs. An exception will be raised if you try to use an extension without the dependent plugin loaded.
 
+For a step by step guide how to set up a local developement environment using your IDE of choice and windows. see [Development with Docker on Windows](Development_with_Docker_on_Windows.md).
+
 # Plugins & Services
 Adding module behaviours starts by creating your own plugin assembly (.dll).
 
@@ -43,11 +45,11 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
     // Gets the server log. By default, this reports to "nwm.log"
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly EventService eventService;
+    private readonly NativeEventService eventService;
 
     // As this class has the ServiceBinding attribute, the constructor of this class will be called during server startup.
     // The EventService is a core service from NWN.Managed. As it is defined as a constructor parameter, it will be injected during startup.
-    public MyScriptHandler(EventService eventService)
+    public MyScriptHandler(NativeEventService eventService)
     {
       this.eventService = eventService;
     }
@@ -112,7 +114,7 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
 
     // We set the EventService as a dependency so we can subscribe to the module chat event.
     // And we add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.
-    public ChatHandler(EventService eventService, IEnumerable<IChatCommand> commands)
+    public ChatHandler(NativeEventService eventService, IEnumerable<IChatCommand> commands)
     {
       // Store all define chat commands.
       this.chatCommands = commands.ToList();
@@ -139,6 +141,40 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
   }
 ```
 
+**Example: Find a trigger by tag and attach OnEnter event**
+```csharp
+using System.Linq;
+using NLog;
+using NWN.API;
+using NWN.API.Events;
+using NWN.Services;
+
+namespace Sample
+{
+    // [ServiceBinding] indicates that this class will be created during server startup.
+    [ServiceBinding(typeof(MyPluginService))]
+    public class MyPluginService
+    {
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+        // Called at startup. NWN.Managed resolves EventService for us.
+        public MyPluginService(NativeEventService eventService)
+        {
+            var trigger = NwObject.FindObjectsWithTag<NwTrigger>("mytrigger").FirstOrDefault();
+            eventService.Subscribe<NwTrigger, TriggerEvents.OnEnter>(trigger, OnTriggerEnter);
+        }
+
+        private void OnTriggerEnter(TriggerEvents.OnEnter obj)
+        {
+            if (obj.EnteringObject is NwPlayer player)
+            {
+                Log.Info("Player entered trigger: " + player?.PlayerName);
+            }
+        }
+    }
+}
+```
+
 ## Core Services
 ### Event Service (NWN.Services.EventService)
 **Send a pink welcome message to a player when they connect**
@@ -150,7 +186,7 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
   [ServiceBinding(typeof(WelcomeMessageService))]
   public class WelcomeMessageService
   {
-    public WelcomeMessageService(EventService eventService)
+    public WelcomeMessageService(NativeEventService eventService)
     {
       eventService.Subscribe<NwModule, ModuleEvents.OnClientEnter>(NwModule.Instance, OnClientEnter);
     }
@@ -324,7 +360,7 @@ Using a class attribute (ServiceBinding), the system will automatically wire up 
   {
     private readonly ExpTable expTable;
 
-    public XPReportService(EventService eventService, TwoDimArrayFactory twoDimArrayFactory)
+    public XPReportService(NativeEventService eventService, TwoDimArrayFactory twoDimArrayFactory)
     {
       eventService.Subscribe<NwModule, ModuleEvents.OnClientEnter>(NwModule.Instance, OnClientEnter);
       expTable = twoDimArrayFactory.Get2DA<ExpTable>("exptable");
