@@ -51,5 +51,13 @@ namespace NWNX.API
     /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
     /// <return>true if exported successfully, false if not.</return>
     public static bool ExportARE(this NwArea area, string fileName = "", string newName = "", string newTag = "", string alias = "NWNX") => AreaPlugin.ExportARE(area, fileName, newName, newTag, alias).ToBool();
+
+    /// <summary>
+    /// Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.
+    /// </summary>
+    /// <param name="area">The NwArea to check.</param>
+    /// <param name="windPower">Set to 0, 1 or 2.</param>
+    public static void SetWindPower(this NwArea area, int windPower) =>
+      NWNX.API.Area.SetWindPower(area, windPower);
   }
 }
