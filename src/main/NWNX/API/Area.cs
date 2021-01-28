@@ -53,7 +53,7 @@ namespace NWNX.API
     public static bool ExportARE(this NwArea area, string fileName = "", string newName = "", string newTag = "", string alias = "NWNX") => AreaPlugin.ExportARE(area, fileName, newName, newTag, alias).ToBool();
 
     /// <summary>
-    /// Export the .git file of this area to the UserDirectory/nwnx folder, or to the location of alias.
+    /// Set the wind power in area.
     /// </summary>
     /// <param name="area">The NwArea to check.</param>
     /// <param name="windPower">Set to 0, 1 or 2.</param>
