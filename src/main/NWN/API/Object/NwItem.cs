@@ -306,5 +306,8 @@ namespace NWN.API
 
     public int ItemAppearanceWeaponColor(ItemAppearanceType type, ItemAppearanceWeaponColor weaponColor)
       => NWScript.GetItemAppearance(this, (int)type, (int)weaponColor);
+
+    public int ItemAppearanceWeaponModel(ItemAppearanceType type, ItemAppearanceWeaponModel weaponModel)
+      => NWScript.GetItemAppearance(this, (int)type, (int)weaponModel);
   }
 }
