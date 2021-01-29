@@ -3,7 +3,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public class NwServer
+  public unsafe class NwServer
   {
     private readonly CExoBase exoBase;
     private readonly CServerExoApp server;
@@ -178,6 +178,6 @@ namespace NWN.API
     /// Signals the server to immediately shutdown.
     /// </summary>
     public void ShutdownServer()
-      => NWNXLib.ExitProgram().Write(true.ToInt());
+      => *NWNXLib.ExitProgram() = 1;
   }
 }

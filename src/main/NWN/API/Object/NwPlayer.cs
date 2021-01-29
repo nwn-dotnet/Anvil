@@ -499,12 +499,12 @@ namespace NWN.API
     /// <para>At times a PC may get stuck in a permanent crash loop when attempting to login. This function allows administrators to delete their Temporary User
     /// Resource Data where the PC's current location is stored allowing them to log into the starting area.</para>
     /// </summary>
-    public void DeleteTURD()
+    public unsafe void DeleteTURD()
     {
       CExoLinkedListInternal turds = NwModule.Instance.Module.m_lstTURDList.m_pcExoLinkedListInternal;
       for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
       {
-        if (node.pObject == turd.Pointer)
+        if (node.pObject == (void*)turd.Pointer)
         {
           turds.Remove(node);
           break;

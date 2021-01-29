@@ -5,7 +5,7 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API
 {
-  public class LevelStats
+  public unsafe class LevelStats
   {
     private readonly NwCreature creature;
     private readonly CNWLevelStats levelStats;
@@ -19,14 +19,17 @@ namespace NWN.API
     /// <summary>
     /// Gets the feats gained at this level.
     /// </summary>
-    public IEnumerable<Feat> Feats
+    public List<Feat> Feats
     {
       get
       {
+        List<Feat> feats = new List<Feat>(levelStats.m_lstFeats.num);
         for (int i = 0; i < levelStats.m_lstFeats.num; i++)
         {
-          yield return (Feat)levelStats.m_lstFeats._OpIndex(i).Read();
+          feats.Add((Feat)(*levelStats.m_lstFeats._OpIndex(i)));
         }
+
+        return feats;
       }
     }
 
