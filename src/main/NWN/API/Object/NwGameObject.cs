@@ -491,7 +491,7 @@ namespace NWN.API
       => NWScript.RemoveEffect(this, effect);
 
     /// <summary>
-    /// Applies the specified effect to this game object.
+    /// Applies an effect at a location.
     /// </summary>
     /// <param name="durationType">The duration type to apply with this effect.</param>
     /// <param name="effect">The effect to apply.</param>
