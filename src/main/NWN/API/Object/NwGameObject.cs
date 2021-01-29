@@ -489,5 +489,15 @@ namespace NWN.API
     /// <param name="effect">The existing effect instance.</param>
     public void RemoveEffect(Effect effect)
       => NWScript.RemoveEffect(this, effect);
+
+    /// <summary>
+    /// Applies the specified effect to this game object.
+    /// </summary>
+    /// <param name="durationType">The duration type to apply with this effect.</param>
+    /// <param name="effect">The effect to apply.</param>
+    /// <param name="location">The location where you want to apply the effect..</param>
+    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
+    public void ApplyEffectAtLocation(EffectDuration durationType, Effect effect, Location location, TimeSpan duration = default)
+      => NWScript.ApplyEffectAtLocation((int)durationType, effect, location, (float)duration.TotalSeconds);
   }
 }
