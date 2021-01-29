@@ -298,16 +298,16 @@ namespace NWN.API
     public NwItem Copy(NwGameObject targetInventory, bool copyVars)
       => NWScript.CopyItem(this, targetInventory, copyVars.ToInt()).ToNwObject<NwItem>();
 
-    public int ItemAppearanceArmorColor(ItemAppearanceType type, ItemAppearanceArmorColor color)
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceArmorColor color)
       => NWScript.GetItemAppearance(this, (int)type, (int)color);
 
-    public int ItemAppearanceArmorModel(ItemAppearanceType type, ItemAppearanceArmorModel armorModel)
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceArmorModel armorModel)
       => NWScript.GetItemAppearance(this, (int)type, (int)armorModel);
 
-    public int ItemAppearanceWeaponColor(ItemAppearanceType type, ItemAppearanceWeaponColor weaponColor)
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceWeaponColor weaponColor)
       => NWScript.GetItemAppearance(this, (int)type, (int)weaponColor);
 
-    public int ItemAppearanceWeaponModel(ItemAppearanceType type, ItemAppearanceWeaponModel weaponModel)
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceWeaponModel weaponModel)
       => NWScript.GetItemAppearance(this, (int)type, (int)weaponModel);
   }
 }
