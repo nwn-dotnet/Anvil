@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
@@ -1552,7 +1553,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the level stat info for the specified level (feat, class, skills, etc.)
+    /// Gets the level stat info for the specified level (feat, class, skills, etc.).
     /// </summary>
     /// <param name="level">The level to lookup.</param>
     /// <returns>A <see cref="LevelStats"/> object containing level info.</returns>
@@ -1562,6 +1563,69 @@ namespace NWN.API
 
       CNWLevelStats levelStats = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
       return new LevelStats(this, levelStats);
+    }
+
+    public unsafe byte[] SerializeQuickbar()
+    {
+      void* pData = null;
+      int dataLength = 0;
+
+      using CResGFF resGff = new CResGFF();
+      using CResStruct resStruct = new CResStruct();
+
+      if (resGff.CreateGFFFile(resStruct, new CExoString("GFF "), new CExoString("V2.0")).ToBool())
+      {
+        creature.SaveQuickButtons(resGff, resStruct);
+        resGff.WriteGFFToPointer(&pData, &dataLength);
+      }
+
+      byte[] serialized = new byte[dataLength];
+      Marshal.Copy((IntPtr)(pData), serialized, 0, dataLength);
+      Marshal.FreeHGlobal((IntPtr)pData);
+
+      return serialized;
+    }
+
+    public unsafe bool DeserializeQuickbar(byte[] serialized)
+    {
+      using CResGFF resGff = new CResGFF();
+      using CResStruct resStruct = new CResStruct();
+
+      IntPtr dataPtr = Marshal.AllocHGlobal(serialized.Length);
+      Marshal.Copy(serialized, 0, dataPtr, serialized.Length);
+
+      void* data = (void*)dataPtr;
+
+      if (!resGff.GetDataFromPointer(data, serialized.Length).ToBool())
+      {
+        return false;
+      }
+
+      resGff.InitializeForWriting();
+
+      if (!resGff.GetTopLevelStruct(resStruct).ToBool())
+      {
+        return false;
+      }
+
+      CExoString sFileType = new CExoString();
+      CExoString sFileVersion = new CExoString();
+      resGff.GetGFFFileInfo(sFileType, sFileVersion);
+
+      if (sFileType.ToString() != "GFF ")
+      {
+        return false;
+      }
+
+      creature.LoadQuickButtons(resGff, resStruct);
+
+      if (this is NwPlayer player)
+      {
+        CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+        message.SendServerToPlayerGuiQuickbar_SetButton(player, 0, true.ToInt());
+      }
+
+      return true;
     }
   }
 }
