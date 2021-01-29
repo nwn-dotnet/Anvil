@@ -297,5 +297,8 @@ namespace NWN.API
     /// <param name="copyVars">If true then local variables on item are copied.</param>
     public NwItem Copy(NwGameObject targetInventory, bool copyVars)
       => NWScript.CopyItem(this, targetInventory, copyVars.ToInt()).ToNwObject<NwItem>();
+
+    public int ItemAppearanceArmorColor(ItemAppearanceType type, ItemAppearanceArmorColor color)
+      => NWScript.GetItemAppearance(this, (int)type, (int)color);
   }
 }
