@@ -303,7 +303,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="type">The type of the armor<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
     /// <param name="color">The color of the armor<see cref="NWN.API.Constants.ItemAppearanceArmorColor"/>.</param>
-    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceArmorColor color)
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceArmorColor armorColor)
       => NWScript.GetItemAppearance(this, (int)type, (int)color);
 
     /// <summary>
