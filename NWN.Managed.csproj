@@ -22,6 +22,7 @@
         <RootNamespace />
         <LangVersion>9.0</LangVersion>
         <CodeAnalysisRuleSet>NWN.Managed.ruleset</CodeAnalysisRuleSet>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DefineConstants>TRACE</DefineConstants>
@@ -29,7 +30,8 @@
 
     <ItemGroup>
         <PackageReference Include="NLog" Version="4.7.7" />
-        <PackageReference Include="NWN.Core" Version="8193.20.10" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Core" Version="8193.20.18" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Native" Version="8193.20.7" PrivateAssets="compile" />
         <PackageReference Include="SimpleInjector" Version="5.2.1" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="All" />
