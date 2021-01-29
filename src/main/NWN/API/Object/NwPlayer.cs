@@ -441,5 +441,17 @@ namespace NWN.API
     /// Removes any current fading effects or black screen from the monitor of the player.
     /// </summary>
     public void StopFade() => NWScript.StopFade(this);
+
+    /// <summary>
+    /// Move instantly to the location referenced by lLocation.
+    /// </summary>
+    /// <param name="location">Location to jump to.</param>
+    /// <remarks>It might be a good idea to clear all of the intended target's actions first.
+    /// Does not affect creatures that are dead; they must have HP above 0 for this to work properly.</remarks>
+    public async Task JumpToLocation(Location location)
+    {
+      await WaitForObjectContext();
+      NWScript.JumpToLocation(location);
+    }
   }
 }
