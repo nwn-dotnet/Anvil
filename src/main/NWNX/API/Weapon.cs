@@ -18,7 +18,6 @@ namespace NWNX.API
     /// <param name="baseItem">BaseItemType for monk weapon.</param>
     public static void SetWeaponIsMonkWeapon(this BaseItemType baseItem) => WeaponPlugin.SetWeaponIsMonkWeapon((int)baseItem);
 
-
     /// <summary>
     /// Set weapon base item to be considered as unarmed for weapon finesse feat.
     /// </summary>
