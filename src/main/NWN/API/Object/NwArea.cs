@@ -133,6 +133,16 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the wind power for this area.<br/>
+    /// Set to 0, 1 or 2.
+    /// </summary>
+    public byte WindPower
+    {
+      get => Area.m_nWindAmount;
+      set => Area.m_nWindAmount = value;
+    }
+
+    /// <summary>
     /// Gets all Objects currently in this area.
     /// </summary>
     public IEnumerable<NwGameObject> Objects
