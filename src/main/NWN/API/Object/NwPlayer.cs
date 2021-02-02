@@ -13,18 +13,18 @@ namespace NWN.API
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly CNWSPlayer player;
-    private readonly CNWSPlayerTURD turd;
+    internal readonly CNWSPlayer Player;
+    internal readonly CNWSPlayerTURD Turd;
 
     internal NwPlayer(uint objectId, CNWSCreature creature, CNWSPlayer player, CNWSPlayerTURD turd) : base(objectId, creature)
     {
-      this.player = player;
-      this.turd = turd;
+      this.Player = player;
+      this.Turd = turd;
     }
 
     public static implicit operator CNWSPlayer(NwPlayer player)
     {
-      return player?.player;
+      return player?.Player;
     }
 
     /// <summary>
@@ -461,7 +461,7 @@ namespace NWN.API
 
     public void Delete(string kickMessage, bool preserveBackup = true)
     {
-      string bicName = player.m_resFileName.GetResRefStr();
+      string bicName = Player.m_resFileName.GetResRefStr();
       string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
       string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
 
@@ -477,7 +477,7 @@ namespace NWN.API
       CExoLinkedListCNWSPlayerTURD turds = NwModule.Instance.Module.m_lstTURDList;
       for (CExoLinkedListNode node = turds.GetHeadPos(); node != null; node = node.pNext)
       {
-        if (turds.GetAtPos(node).m_oidPlayer == turd.m_oidPlayer)
+        if (turds.GetAtPos(node).m_oidPlayer == Turd.m_oidPlayer)
         {
           turds.Remove(node);
           break;
@@ -504,7 +504,7 @@ namespace NWN.API
       CExoLinkedListInternal turds = NwModule.Instance.Module.m_lstTURDList.m_pcExoLinkedListInternal;
       for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
       {
-        if (node.pObject == (void*)turd.Pointer)
+        if (node.pObject == (void*)Turd.Pointer)
         {
           turds.Remove(node);
           break;

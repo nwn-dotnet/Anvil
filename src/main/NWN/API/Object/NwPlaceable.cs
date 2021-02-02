@@ -9,23 +9,23 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Placeable, ObjectType.Placeable)]
   public sealed class NwPlaceable : NwStationary
   {
-    private readonly CNWSPlaceable placeable;
+    internal readonly CNWSPlaceable Placeable;
 
     internal NwPlaceable(uint objectId, CNWSPlaceable placeable) : base(objectId, placeable)
     {
-      this.placeable = placeable;
+      this.Placeable = placeable;
     }
 
     public static implicit operator CNWSPlaceable(NwPlaceable placeable)
     {
-      return placeable?.placeable;
+      return placeable?.Placeable;
     }
 
     public override Location Location
     {
       set
       {
-        placeable.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Placeable.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
       }
     }

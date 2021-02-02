@@ -7,23 +7,23 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
   public class NwSound : NwGameObject
   {
-    private readonly CNWSSoundObject soundObject;
+    internal readonly CNWSSoundObject SoundObject;
 
     public NwSound(uint objectId, CNWSSoundObject soundObject) : base(objectId, soundObject)
     {
-      this.soundObject = soundObject;
+      this.SoundObject = soundObject;
     }
 
     public static implicit operator CNWSSoundObject(NwSound sound)
     {
-      return sound?.soundObject;
+      return sound?.SoundObject;
     }
 
     public override Location Location
     {
       set
       {
-        soundObject.AddToArea(value.Area);
+        SoundObject.AddToArea(value.Area);
         Position = value.Position;
         Rotation = value.Rotation;
       }

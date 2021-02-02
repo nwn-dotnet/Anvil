@@ -26,24 +26,41 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
-    protected readonly CNWSCreature creature;
+    internal readonly CNWSCreature Creature;
+
+    private NwFaction faction;
 
     internal NwCreature(uint objectId, CNWSCreature creature) : base(objectId, creature)
     {
-      this.creature = creature;
+      this.Creature = creature;
+      this.faction = new NwFaction(creature.GetFaction());
     }
 
     public static implicit operator CNWSCreature(NwCreature creature)
     {
-      return creature?.creature;
+      return creature?.Creature;
     }
 
     public override Location Location
     {
       set
       {
-        creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets the faction of this object.
+    /// </summary>
+    public NwFaction Faction
+    {
+      get => faction;
+      set
+      {
+        Contract.Requires<ArgumentNullException>(value != null, "New faction must not be null.");
+        faction = value;
+        faction.AddMember(this);
       }
     }
 
@@ -136,8 +153,8 @@ namespace NWN.API
     /// </summary>
     public sbyte BaseAC
     {
-      get => (sbyte)creature.m_pStats.m_nACNaturalBase;
-      set => creature.m_pStats.m_nACNaturalBase = (char)value;
+      get => (sbyte)Creature.m_pStats.m_nACNaturalBase;
+      set => Creature.m_pStats.m_nACNaturalBase = (char)value;
     }
 
     /// <summary>
@@ -486,8 +503,8 @@ namespace NWN.API
     /// </summary>
     public uint Gold
     {
-      get => creature.m_nGold;
-      set => creature.m_nGold = value;
+      get => Creature.m_nGold;
+      set => Creature.m_nGold = value;
     }
 
     /// <summary>
@@ -553,9 +570,9 @@ namespace NWN.API
     {
       get
       {
-        for (byte i = 0; i < creature.m_pStats.m_lstLevelStats.num; i++)
+        for (byte i = 0; i < Creature.m_pStats.m_lstLevelStats.num; i++)
         {
-          CNWLevelStats levelStats = creature.m_pStats.m_lstLevelStats._OpIndex(i).Read();
+          CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats._OpIndex(i).Read();
           yield return new LevelStats(this, levelStats);
         }
       }
@@ -637,7 +654,7 @@ namespace NWN.API
     /// <param name="amount">The amount of gold to give.</param>
     /// <param name="showFeedback">If true, shows "Acquired xgp" feedback to the creature.</param>
     public void AddGold(int amount, bool showFeedback = true)
-      => creature.AddGold(amount, showFeedback.ToInt());
+      => Creature.AddGold(amount, showFeedback.ToInt());
 
     /// <summary>
     /// Takes gold away from this creature.
@@ -645,7 +662,7 @@ namespace NWN.API
     /// <param name="amount">The amount of gold to take.</param>
     /// <param name="showFeedback">If true, shows "Lost xgp" feedback to the creature.</param>
     public void TakeGold(int amount, bool showFeedback = true)
-      => creature.RemoveGold(amount, showFeedback.ToInt());
+      => Creature.RemoveGold(amount, showFeedback.ToInt());
 
     /// <summary>
     /// Creates a creature at the specified location.
@@ -716,7 +733,7 @@ namespace NWN.API
     /// </summary>
     public NwGameObject AttemptedAttackTarget
     {
-      get => creature.m_oidAttemptedAttackTarget.ToNwObject<NwGameObject>();
+      get => Creature.m_oidAttemptedAttackTarget.ToNwObject<NwGameObject>();
     }
 
     /// <summary>
@@ -724,7 +741,7 @@ namespace NWN.API
     /// </summary>
     public NwGameObject AttemptedSpellTarget
     {
-      get => creature.m_oidAttemptedSpellTarget.ToNwObject<NwGameObject>();
+      get => Creature.m_oidAttemptedSpellTarget.ToNwObject<NwGameObject>();
     }
 
     /// <summary>
@@ -1514,7 +1531,7 @@ namespace NWN.API
     /// <param name="feat">The feat to give.</param>
     public void AddFeat(Feat feat)
     {
-      creature.m_pStats.AddFeat((ushort)feat);
+      Creature.m_pStats.AddFeat((ushort)feat);
     }
 
     /// <summary>
@@ -1525,12 +1542,12 @@ namespace NWN.API
     /// <param name="level">The level the feat was gained.</param>
     public void AddFeat(Feat feat, int level)
     {
-      Contract.Requires<ArgumentOutOfRangeException>(level > 0 && level <= creature.m_pStats.m_lstLevelStats.num);
+      Contract.Requires<ArgumentOutOfRangeException>(level > 0 && level <= Creature.m_pStats.m_lstLevelStats.num);
 
-      CNWLevelStats levelStats = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
+      CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
 
       levelStats.AddFeat((ushort)feat);
-      creature.m_pStats.AddFeat((ushort)feat);
+      Creature.m_pStats.AddFeat((ushort)feat);
     }
 
     /// <summary>
@@ -1540,7 +1557,7 @@ namespace NWN.API
     /// <returns>True if the creature knows the feat, otherwise false.</returns>
     public bool KnowsFeat(Feat feat)
     {
-      return creature.m_pStats.HasFeat((ushort)feat).ToBool();
+      return Creature.m_pStats.HasFeat((ushort)feat).ToBool();
     }
 
     /// <summary>
@@ -1549,7 +1566,7 @@ namespace NWN.API
     /// <param name="feat">The feat to remove.</param>
     public void RemoveFeat(Feat feat)
     {
-      creature.m_pStats.RemoveFeat((ushort)feat);
+      Creature.m_pStats.RemoveFeat((ushort)feat);
     }
 
     /// <summary>
@@ -1559,9 +1576,9 @@ namespace NWN.API
     /// <returns>A <see cref="LevelStats"/> object containing level info.</returns>
     public LevelStats GetLevelStats(int level)
     {
-      Contract.Requires<ArgumentOutOfRangeException>(level > 0 && level <= creature.m_pStats.m_lstLevelStats.num);
+      Contract.Requires<ArgumentOutOfRangeException>(level > 0 && level <= Creature.m_pStats.m_lstLevelStats.num);
 
-      CNWLevelStats levelStats = creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
+      CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
       return new LevelStats(this, levelStats);
     }
 
@@ -1575,12 +1592,12 @@ namespace NWN.API
 
       if (resGff.CreateGFFFile(resStruct, new CExoString("GFF "), new CExoString("V2.0")).ToBool())
       {
-        creature.SaveQuickButtons(resGff, resStruct);
+        Creature.SaveQuickButtons(resGff, resStruct);
         resGff.WriteGFFToPointer(&pData, &dataLength);
       }
 
       byte[] serialized = new byte[dataLength];
-      Marshal.Copy((IntPtr)(pData), serialized, 0, dataLength);
+      Marshal.Copy((IntPtr)pData, serialized, 0, dataLength);
       Marshal.FreeHGlobal((IntPtr)pData);
 
       return serialized;
@@ -1617,7 +1634,7 @@ namespace NWN.API
         return false;
       }
 
-      creature.LoadQuickButtons(resGff, resStruct);
+      Creature.LoadQuickButtons(resGff, resStruct);
 
       if (this is NwPlayer player)
       {

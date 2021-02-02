@@ -1,6 +1,6 @@
+using System;
 using NWN.API;
 using NWN.API.Constants;
-using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API
@@ -24,6 +24,7 @@ namespace NWNX.API
     /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
     /// <param name="objectsToIgnore">The NwObjects we want to not export. Players are already ignored.</param>
     /// <return>true if exported successfully, false if not.</return>
+    [Obsolete("Use NwArea.SerializeGIT instead.")]
     public static bool ExportGIT(this NwArea area, string fileName = "", bool exportVariables = true, bool exportUUID = true, ObjectTypes objectTypeFilter = ObjectTypes.All, string alias = "NWNX", params NwObject[] objectsToIgnore)
     {
       foreach (var obj in objectsToIgnore)
@@ -50,6 +51,7 @@ namespace NWNX.API
     /// <param name="newTag">Optional new tag of the area. Leave blank to use the current tag.</param>
     /// <param name="alias">The alias of the resource directory to add the .git file to. Default: 'UserDirectory/nwnx'.</param>
     /// <return>true if exported successfully, false if not.</return>
+    [Obsolete("Use NwArea.SerializeARE instead.")]
     public static bool ExportARE(this NwArea area, string fileName = "", string newName = "", string newTag = "", string alias = "NWNX") => AreaPlugin.ExportARE(area, fileName, newName, newTag, alias).ToBool();
   }
 }

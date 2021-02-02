@@ -10,23 +10,23 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Item, ObjectType.Item)]
   public sealed class NwItem : NwGameObject
   {
-    private readonly CNWSItem item;
+    internal readonly CNWSItem Item;
 
     internal NwItem(uint objectId, CNWSItem item) : base(objectId, item)
     {
-      this.item = item;
+      this.Item = item;
     }
 
     public static implicit operator CNWSItem(NwItem item)
     {
-      return item?.item;
+      return item?.Item;
     }
 
     public override Location Location
     {
       set
       {
-        item.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Item.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
       }
     }

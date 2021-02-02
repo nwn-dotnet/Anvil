@@ -8,23 +8,23 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Trigger, ObjectType.Trigger)]
   public sealed class NwTrigger : NwTrappable
   {
-    private readonly CNWSTrigger trigger;
+    internal readonly CNWSTrigger Trigger;
 
     internal NwTrigger(uint objectId, CNWSTrigger trigger) : base(objectId, trigger)
     {
-      this.trigger = trigger;
+      this.Trigger = trigger;
     }
 
     public static implicit operator CNWSTrigger(NwTrigger trigger)
     {
-      return trigger?.trigger;
+      return trigger?.Trigger;
     }
 
     public override Location Location
     {
       set
       {
-        trigger.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Trigger.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
       }
     }

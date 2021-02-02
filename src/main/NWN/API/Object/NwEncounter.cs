@@ -8,23 +8,23 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Encounter, ObjectType.Encounter)]
   public sealed class NwEncounter : NwGameObject
   {
-    private readonly CNWSEncounter encounter;
+    internal readonly CNWSEncounter Encounter;
 
     internal NwEncounter(uint objectId, CNWSEncounter encounter) : base(objectId, encounter)
     {
-      this.encounter = encounter;
+      this.Encounter = encounter;
     }
 
     public static implicit operator CNWSEncounter(NwEncounter encounter)
     {
-      return encounter?.encounter;
+      return encounter?.Encounter;
     }
 
     public override Location Location
     {
       set
       {
-        encounter.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Encounter.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
       }
     }

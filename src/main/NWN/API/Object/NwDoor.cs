@@ -8,23 +8,23 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Door, ObjectType.Door)]
   public sealed class NwDoor : NwStationary
   {
-    private readonly CNWSDoor door;
+    internal readonly CNWSDoor Door;
 
     internal NwDoor(uint objectId, CNWSDoor door) : base(objectId, door)
     {
-      this.door = door;
+      this.Door = door;
     }
 
     public static implicit operator CNWSDoor(NwDoor door)
     {
-      return door?.door;
+      return door?.Door;
     }
 
     public override Location Location
     {
       set
       {
-        door.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Door.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
       }
     }

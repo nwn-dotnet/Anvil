@@ -7,23 +7,23 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
   public sealed class NwStore : NwGameObject
   {
-    private readonly CNWSStore store;
+    internal readonly CNWSStore Store;
 
     internal NwStore(uint objectId, CNWSStore store) : base(objectId, store)
     {
-      this.store = store;
+      this.Store = store;
     }
 
     public static implicit operator CNWSStore(NwStore store)
     {
-      return store?.store;
+      return store?.Store;
     }
 
     public override Location Location
     {
       set
       {
-        store.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Store.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
       }
     }

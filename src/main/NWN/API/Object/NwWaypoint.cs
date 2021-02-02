@@ -6,23 +6,23 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Waypoint, ObjectType.Waypoint)]
   public sealed class NwWaypoint : NwGameObject
   {
-    private readonly CNWSWaypoint waypoint;
+    internal readonly CNWSWaypoint Waypoint;
 
     internal NwWaypoint(uint objectId, CNWSWaypoint waypoint) : base(objectId, waypoint)
     {
-      this.waypoint = waypoint;
+      this.Waypoint = waypoint;
     }
 
     public static implicit operator CNWSWaypoint(NwWaypoint waypoint)
     {
-      return waypoint?.waypoint;
+      return waypoint?.Waypoint;
     }
 
     public override Location Location
     {
       set
       {
-        waypoint.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Waypoint.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
       }
     }

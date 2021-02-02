@@ -19,7 +19,6 @@ namespace NWN.API
     internal NwGameObject(uint objectId, CNWSObject gameObject) : base(objectId)
     {
       this.gameObject = gameObject;
-      faction = new NwFaction(this);
     }
 
     /// <summary>
@@ -40,17 +39,6 @@ namespace NWN.API
     public NwArea Area
     {
       get => NWScript.GetArea(this).ToNwObject<NwArea>();
-    }
-
-    private readonly NwFaction faction;
-
-    /// <summary>
-    /// Gets or sets the faction of this object.
-    /// </summary>
-    public NwFaction Faction
-    {
-      get => faction;
-      set => NWScript.ChangeFaction(this, value.GameObject);
     }
 
     /// <summary>
