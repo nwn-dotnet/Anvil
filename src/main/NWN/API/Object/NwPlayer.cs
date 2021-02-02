@@ -428,10 +428,9 @@ namespace NWN.API
     /// <summary>
     /// Displays a GUI panel to a player.
     /// </summary>
-    /// <param name="panel">Constant specifying the panel to display.</param>
-    /// <remarks>Currently only one GUI panel exists: the player death panel.</remarks>
-    public void PopUpGUIPanel(int panel = 0)
-      => NWScript.PopUpGUIPanel(this, panel);
+    /// <param name="panel">The panel type to display.</param>
+    public void PopUpGUIPanel(GUIPanel panel = GUIPanel.Death)
+      => NWScript.PopUpGUIPanel(this, (int)panel);
 
     /// <summary>
     /// Fades the screen for a given player from black to regular screen.
