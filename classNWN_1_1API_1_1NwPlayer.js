@@ -23,6 +23,7 @@ var classNWN_1_1API_1_1NwPlayer =
     [ "OpenInventory", "classNWN_1_1API_1_1NwPlayer.html#a7a438e1b7f0252be539bba06f35c6332", null ],
     [ "OpenInventory", "classNWN_1_1API_1_1NwPlayer.html#a50b61c337ac6f2d52b15b74780e79961", null ],
     [ "PopUpDeathPanel", "classNWN_1_1API_1_1NwPlayer.html#a895b6c2659e6bb0b6367c4669196805d", null ],
+    [ "PopUpGUIPanel", "classNWN_1_1API_1_1NwPlayer.html#a189f2c34dcaed27418054eeb4aa27fc0", null ],
     [ "PostString", "classNWN_1_1API_1_1NwPlayer.html#af8cde1180fa89713242f00b074afda62", null ],
     [ "RemoveFromCurrentParty", "classNWN_1_1API_1_1NwPlayer.html#af579918539409eac24ff1ad318af22b1", null ],
     [ "RestoreCameraFacing", "classNWN_1_1API_1_1NwPlayer.html#a5adabc878a47e14c4aeaa370f108df85", null ],

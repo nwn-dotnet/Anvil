@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"structNWN_1_1Services_1_1NwDateTime.html#a12e925bda0267486cc0ba396dc63cff2":[0,0,0,2,15,18],
 "structNWN_1_1Services_1_1NwDateTime.html#a162dcbf2b29d942c32bef3b21f3c8625":[0,0,0,2,15,12],
 "structNWN_1_1Services_1_1NwDateTime.html#a18b3d883198a5221f9872bcf5b22a4bd":[0,0,0,2,15,30],
 "structNWN_1_1Services_1_1NwDateTime.html#a2ada94b3034b6fdb55c319fdad63134e":[0,0,0,2,15,26],

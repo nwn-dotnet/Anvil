@@ -48,8 +48,8 @@ var NAVTREEINDEX =
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aec55b740ebe751453920ba156003306f",
 "classNWN_1_1API_1_1NwCreature.html#a3b0a06b8583fdce9a41afcf17a720209",
 "classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc",
-"classNWN_1_1Services_1_1SchedulerService.html#aee1fd12f028e55b2a04d88161cdddf65",
-"structNWN_1_1Services_1_1NwDateTime.html#a162dcbf2b29d942c32bef3b21f3c8625"
+"classNWN_1_1Services_1_1SchedulerService.html#ab01e7b63f6cb2a63c9aa505ea6be47f8",
+"structNWN_1_1Services_1_1NwDateTime.html#a12e925bda0267486cc0ba396dc63cff2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
