@@ -59,7 +59,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Pack for NuGet
-        run: dotnet pack NWN.Managed.csproj --configuration Release -p:PackageVersion=${{ steps.name_version.outputs.version }} -o output
+        run: dotnet pack NWN.Managed.csproj --configuration Release -p:Version=${{ steps.name_version.outputs.version }} -o output
 
       - name: NuGet Publish
         run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
