@@ -1,0 +1,185 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  compile:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.100
+
+      - name: Build
+        run: dotnet build --configuration Release /warnaserror
+
+  build:
+    runs-on: ubuntu-20.04
+    if: github.event_name == 'push'
+    needs: compile
+    outputs:
+      version: ${{ steps.vars.outputs.version }}
+      sha_short: ${{ steps.vars.outputs.sha_short }}
+      image_repository: ${{ steps.vars.outputs.image_repository }}
+      tag: ${{ steps.bump_version.outputs.tag }}
+      created: ${{ steps.build.outputs.created }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+    
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.100
+
+      - name: Version and Tag
+        id: bump_version
+        uses: anothrNick/github-tag-action@1.22.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          RELEASE_BRANCHES: master
+          WITH_V: true
+
+      - name: Prepare Outputs
+        id: vars
+        run: |
+          echo "::set-output name=version::$(echo ${{ steps.bump_version.outputs.tag }} | sed 's/[v]//g')"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
+
+      - name: Build Release Binaries
+        id: build
+        run: |
+          dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
+          echo "::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+       
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Binaries
+          path: |
+            output/
+            NWN.Managed.zip
+          if-no-files-found: error
+
+  release:
+    runs-on: ubuntu-20.04
+    if: github.event_name == 'push'
+    needs: build
+    steps:
+      - name: Download Release Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: Binaries
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ needs.build.outputs.tag }}
+          release_name: Release ${{ needs.build.outputs.version }}
+          draft: false
+          prerelease: true
+
+      - name: Upload Release Binaries
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./NWN.Managed.zip
+          asset_name: NWN.Managed.zip
+          asset_content_type: application/zip
+
+  nuget:
+    runs-on: ubuntu-20.04
+    if: github.event_name == 'push'
+    needs: build
+    steps:
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.100
+
+      - name: Download Release Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: Binaries
+
+      - name: NuGet Publish
+        run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+        
+      - name: GitHub Publish
+        run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
+
+  docker:
+    runs-on: ubuntu-20.04
+    if: github.event_name == 'push'
+    needs: build
+    steps:
+      - name: Download Release Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: Binaries
+          
+      - name: Remove NuGet packages
+        run: rm output/*nupkg
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./dockerfile
+          push: true
+          build-args: BINARY_PATH=/output
+          labels: |
+              org.opencontainers.image.title=NWN.Managed
+              org.opencontainers.image.description=NWN.Managed is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use NWN.Managed.
+              org.opencontainers.image.author=NWN DotNET
+              org.opencontainers.image.vendor=NWN DotNET
+              org.opencontainers.image.source=https://github.com/${{ github.repository_owner }}/${{ github.repository }}
+              org.opencontainers.image.created=${{ needs.build.outputs.created }}
+              org.opencontainers.image.revision=${{ github.sha }}
+              org.opencontainers.image.documentation=https://nwn-dotnet.github.io/NWN.Managed
+          tags: |
+            ${{ needs.build.outputs.image_repository }}:latest
+            ${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.version }}
+            ${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.sha_short }}
+            ghcr.io/${{ needs.build.outputs.image_repository }}:latest
+            ghcr.io/${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.version }}
+            ghcr.io/${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.sha_short }}
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
