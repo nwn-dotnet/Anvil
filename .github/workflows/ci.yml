@@ -177,9 +177,9 @@ jobs:
               org.opencontainers.image.revision=${{ github.sha }}
               org.opencontainers.image.documentation=https://nwn-dotnet.github.io/NWN.Managed
           tags: |
-            ${{ needs.build.outputs.image_repository }}:latest
-            ${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.version }}
-            ${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.sha_short }}
+            nwndotnet/nwn.managed:latest
+            nwndotnet/nwn.managed:${{ needs.build.outputs.version }}
+            nwndotnet/nwn.managed:${{ needs.build.outputs.sha_short }}
             ghcr.io/${{ needs.build.outputs.image_repository }}:latest
             ghcr.io/${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.version }}
             ghcr.io/${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.sha_short }}
