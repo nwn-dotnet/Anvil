@@ -172,7 +172,7 @@ jobs:
               org.opencontainers.image.description=NWN.Managed is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use NWN.Managed.
               org.opencontainers.image.author=NWN DotNET
               org.opencontainers.image.vendor=NWN DotNET
-              org.opencontainers.image.source=https://github.com/${{ github.repository_owner }}/${{ github.repository }}
+              org.opencontainers.image.source=https://github.com/${{ github.repository }}
               org.opencontainers.image.created=${{ needs.build.outputs.created }}
               org.opencontainers.image.revision=${{ github.sha }}
               org.opencontainers.image.documentation=https://nwn-dotnet.github.io/NWN.Managed
