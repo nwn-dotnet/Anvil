@@ -1584,17 +1584,19 @@ namespace NWN.API
 
     public unsafe byte[] SerializeQuickbar()
     {
-      void* pData = null;
-      int dataLength = 0;
+      void* pData;
+      int dataLength;
 
       using CResGFF resGff = new CResGFF();
       using CResStruct resStruct = new CResStruct();
 
-      if (resGff.CreateGFFFile(resStruct, new CExoString("GFF "), new CExoString("V2.0")).ToBool())
+      if (!resGff.CreateGFFFile(resStruct, new CExoString("GFF "), new CExoString("V2.0")).ToBool())
       {
-        Creature.SaveQuickButtons(resGff, resStruct);
-        resGff.WriteGFFToPointer(&pData, &dataLength);
+        return null;
       }
+
+      Creature.SaveQuickButtons(resGff, resStruct);
+      resGff.WriteGFFToPointer(&pData, &dataLength);
 
       byte[] serialized = new byte[dataLength];
       Marshal.Copy((IntPtr)pData, serialized, 0, dataLength);

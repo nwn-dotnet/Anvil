@@ -394,8 +394,8 @@ namespace NWN.API
         Area.m_pUUID.SaveToGff(resGff, resStruct);
       }
 
-      void* pData = null;
-      int dataLength = 0;
+      void* pData;
+      int dataLength;
 
       resGff.WriteGFFToPointer(&pData, &dataLength);
       byte[] serialized = new byte[dataLength];
@@ -492,8 +492,8 @@ namespace NWN.API
         resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop3, "Tile_AnimLoop3");
       }
 
-      void* pData = null;
-      int dataLength = 0;
+      void* pData;
+      int dataLength;
 
       resGff.WriteGFFToPointer(&pData, &dataLength);
       byte[] serialized = new byte[dataLength];
