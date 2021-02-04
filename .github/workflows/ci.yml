@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-    
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
@@ -135,6 +135,9 @@ jobs:
     if: github.event_name == 'push'
     needs: build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
@@ -142,7 +145,7 @@ jobs:
           
       - name: Remove NuGet packages
         run: rm output/*nupkg
-      
+
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
