@@ -12,7 +12,7 @@ Builders can add functionality like opening a store from a dialogue with a few l
 ### Running NWN.Managed - Docker
 NWN.Managed has its own docker images that are automatically configured to start and run NWN.Managed and NWNXEE. Similar to the parent images, NWN.Managed is configured by environment variables passed during `docker run`.
 
-By default, NWN.Managed will look in the `/nwn/nwnm/Plugins` directory in the container for [managed plugins](https://github.com/nwn-dotnet/NWN.Managed#plugins--services). A volume containing your plugins can be mounted here to automatically run on startup.
+By default, NWN.Managed will look in the `/nwn/nwnm/Plugins` directory in the container for [managed plugins](#plugins--services). A volume containing your plugins can be mounted here to automatically run on startup.
 
 Running the image is exactly the same as running the `beamdog/nwserver` or `nwnxee/unified` images. See the [NWNX](https://nwnxee.github.io/unified/) and [NWServer](https://hub.docker.com/r/beamdog/nwserver/) README's for configuring these images.
 
