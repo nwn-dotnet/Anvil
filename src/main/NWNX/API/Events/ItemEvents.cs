@@ -1,3 +1,4 @@
+using System.Numerics;
 using NWN.API;
 using NWN.API.Constants;
 using NWN.Core.NWNX;
@@ -62,10 +63,28 @@ namespace NWNX.API.Events
 
       public NwItem Item { get; private set; }
 
+      public NwGameObject TargetObject { get; private set; }
+
+      public int ItemPropertyIndex { get; private set; }
+
+      public int ItemSubPropertyIndex { get; private set; }
+
+      public Vector3 TargetPosition { get; private set; }
+
+      public int UseCharges { get; private set; }
+
       protected override void PrepareEvent(NwObject objSelf)
       {
         Creature = (NwCreature)objSelf;
         Item = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
+        TargetObject = EventsPlugin.GetEventData("TARGET_OBJECT_ID").ParseObject<NwGameObject>();
+        ItemPropertyIndex = EventsPlugin.GetEventData("ITEM_PROPERTY_INDEX").ParseInt();
+        ItemSubPropertyIndex = EventsPlugin.GetEventData("ITEM_SUB_PROPERTY_INDEX").ParseInt();
+        float targetX = EventsPlugin.GetEventData("TARGET_POSITION_X").ParseFloat();
+        float targetY = EventsPlugin.GetEventData("TARGET_POSITION_Y").ParseFloat();
+        float targetZ = EventsPlugin.GetEventData("TARGET_POSITION_Z").ParseFloat();
+        TargetPosition = new Vector3(targetX, targetY, targetZ);
+        UseCharges = EventsPlugin.GetEventData("USE_CHARGES").ParseInt();
       }
     }
 
