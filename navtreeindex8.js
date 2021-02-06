@@ -1,5 +1,10 @@
 var NAVTREEINDEX8 =
 {
+"structNWN_1_1API_1_1Vector2Int.html#ae71406911f39ef138483959cbe216989":[0,0,0,0,49,9],
+"structNWN_1_1API_1_1Vector2Int.html#af51be95509200c8d9592481e3ad8e146":[0,0,0,0,49,0],
+"structNWN_1_1API_1_1Vector2Int.html#af72fe965def64c1f1f0bd3d125257afb":[0,0,0,0,49,1],
+"structNWN_1_1Services_1_1NwDateTime.html":[0,0,0,2,15],
+"structNWN_1_1Services_1_1NwDateTime.html#a118aab7bb4538556942fad66c1860475":[0,0,0,2,15,25],
 "structNWN_1_1Services_1_1NwDateTime.html#a12e925bda0267486cc0ba396dc63cff2":[0,0,0,2,15,18],
 "structNWN_1_1Services_1_1NwDateTime.html#a162dcbf2b29d942c32bef3b21f3c8625":[0,0,0,2,15,12],
 "structNWN_1_1Services_1_1NwDateTime.html#a18b3d883198a5221f9872bcf5b22a4bd":[0,0,0,2,15,30],

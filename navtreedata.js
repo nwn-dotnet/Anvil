@@ -43,13 +43,13 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html#a3a0c5701835ef1c6e74687c6eabf6709",
-"classNWNX_1_1API_1_1Util.html#a383da6823f91f4a8b9c981645248ae31",
-"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a6bf0c93558006275ceeb5b7af3bf46c1",
-"classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#aec55b740ebe751453920ba156003306f",
-"classNWN_1_1API_1_1NwCreature.html#a3b0a06b8583fdce9a41afcf17a720209",
-"classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc",
-"classNWN_1_1Services_1_1SchedulerService.html#ab01e7b63f6cb2a63c9aa505ea6be47f8",
-"structNWN_1_1Services_1_1NwDateTime.html#a12e925bda0267486cc0ba396dc63cff2"
+"classNWNX_1_1API_1_1Util.html#a139b7dffa0257f2fa4a3dd49af35c55a",
+"classNWN_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html",
+"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#abf1be6b06eed900054b730f5d6b5124c",
+"classNWN_1_1API_1_1NwCreature.html#a36c8243a16892c95520b3c967eba73db",
+"classNWN_1_1API_1_1NwModule.html#ac90eca988214874c450a5e2ba9ff2240",
+"classNWN_1_1Services_1_1NativeEventService.html#a1e89d6a176084cbf7931d20579ab9df4",
+"structNWN_1_1API_1_1Vector2Int.html#ae71406911f39ef138483959cbe216989"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

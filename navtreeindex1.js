@@ -23,8 +23,13 @@ var NAVTREEINDEX1 =
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemPayToIdentifyBefore.html#ac30d7b6c247fcc01857e1604d6491be5":[0,0,1,0,0,18,6,1],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html":[0,0,1,0,0,18,7],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html#a1fdc68a7b37b9ec21df54d73944d9820":[0,0,1,0,0,18,7,2],
+"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html#a72557fb8571879cccfef9a6d278d2847":[0,0,1,0,0,18,7,5],
+"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html#a9a40304ed6d4b6144961c61e4b29bac0":[0,0,1,0,0,18,7,7],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html#abb2dd7221784f733c5a3dc72d6ee7d81":[0,0,1,0,0,18,7,0],
+"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html#ac479c98d5e803ae32a9e5d6351f59e4a":[0,0,1,0,0,18,7,6],
+"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html#ae4cf24151c60365eda034c8d180d28a5":[0,0,1,0,0,18,7,3],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html#aeb1ceddc14fa33e818f54f6de07aaf1a":[0,0,1,0,0,18,7,1],
+"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnItemUseBefore.html#afcd627bfcc757787a56d6d34aba6c672":[0,0,1,0,0,18,7,4],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html":[0,0,1,0,0,18,8],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html#a04afc58fcd4b0e80e9732b7b0e7387e1":[0,0,1,0,0,18,8,0],
 "classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnValidateEquipItemAfter.html#a13632cbc3d231025529f40daca47e060":[0,0,1,0,0,18,8,3],
@@ -244,10 +249,5 @@ var NAVTREEINDEX1 =
 "classNWNX_1_1API_1_1SkillRanks.html":[0,0,1,0,19],
 "classNWNX_1_1API_1_1Util.html":[0,0,1,0,20],
 "classNWNX_1_1API_1_1Util.html#a02b1e3547b5644231099474587ca5ae7":[0,0,1,0,20,12],
-"classNWNX_1_1API_1_1Util.html#a0dd470aeb74ef110a809b4d604ae3a7d":[0,0,1,0,20,18],
-"classNWNX_1_1API_1_1Util.html#a139b7dffa0257f2fa4a3dd49af35c55a":[0,0,1,0,20,22],
-"classNWNX_1_1API_1_1Util.html#a224388ba20b53b78c932078c74bcddf0":[0,0,1,0,20,8],
-"classNWNX_1_1API_1_1Util.html#a2615e37b39e39171a84d4a31d554d02b":[0,0,1,0,20,0],
-"classNWNX_1_1API_1_1Util.html#a2fbeae02fb9f8784a1dafa60dcabd021":[0,0,1,0,20,17],
-"classNWNX_1_1API_1_1Util.html#a35d9e71a8f89ba1e792f7d73a10a3cfb":[0,0,1,0,20,5]
+"classNWNX_1_1API_1_1Util.html#a0dd470aeb74ef110a809b4d604ae3a7d":[0,0,1,0,20,18]
 };
