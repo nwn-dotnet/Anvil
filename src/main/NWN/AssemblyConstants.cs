@@ -16,6 +16,7 @@ namespace NWN
     {
       ManagedAssembly,
       typeof(Core.NWNCore).Assembly,
+      typeof(Native.API.NWNXLib).Assembly,
       typeof(NLog.Logger).Assembly,
       typeof(SimpleInjector.Container).Assembly
     };
