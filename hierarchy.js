@@ -448,23 +448,11 @@ var hierarchy =
     [ "NWNX.API.Events.NWNXEvent< OnCalendarYear >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
       [ "NWNX.API.Events.CalendarEvents.OnCalendarYear", "classNWNX_1_1API_1_1Events_1_1CalendarEvents_1_1OnCalendarYear.html", null ]
     ] ],
-    [ "NWNX.API.Events.NWNXEvent< OnEnterStealthAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
-      [ "NWNX.API.Events.StealthEvents.OnEnterStealthAfter", "classNWNX_1_1API_1_1Events_1_1StealthEvents_1_1OnEnterStealthAfter.html", null ]
-    ] ],
-    [ "NWNX.API.Events.NWNXEvent< OnEnterStealthBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
-      [ "NWNX.API.Events.StealthEvents.OnEnterStealthBefore", "classNWNX_1_1API_1_1Events_1_1StealthEvents_1_1OnEnterStealthBefore.html", null ]
-    ] ],
     [ "NWNX.API.Events.NWNXEvent< OnExamineObjectAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
       [ "NWNX.API.Events.ExamineEvents.OnExamineObjectAfter", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectAfter.html", null ]
     ] ],
     [ "NWNX.API.Events.NWNXEvent< OnExamineObjectBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
       [ "NWNX.API.Events.ExamineEvents.OnExamineObjectBefore", "classNWNX_1_1API_1_1Events_1_1ExamineEvents_1_1OnExamineObjectBefore.html", null ]
-    ] ],
-    [ "NWNX.API.Events.NWNXEvent< OnExitStealthAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
-      [ "NWNX.API.Events.StealthEvents.OnExitStealthAfter", "classNWNX_1_1API_1_1Events_1_1StealthEvents_1_1OnExitStealthAfter.html", null ]
-    ] ],
-    [ "NWNX.API.Events.NWNXEvent< OnExitStealthBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
-      [ "NWNX.API.Events.StealthEvents.OnExitStealthBefore", "classNWNX_1_1API_1_1Events_1_1StealthEvents_1_1OnExitStealthBefore.html", null ]
     ] ],
     [ "NWNX.API.Events.NWNXEvent< OnRemoveAssociateAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEvent.html", [
       [ "NWNX.API.Events.AssociateEvents.OnRemoveAssociateAfter", "classNWNX_1_1API_1_1Events_1_1AssociateEvents_1_1OnRemoveAssociateAfter.html", null ]
@@ -522,6 +510,18 @@ var hierarchy =
     ] ],
     [ "NWNX.API.Events.NWNXEventSkippable< OnClientDisconnectBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
       [ "NWNX.API.Events.ClientEvents.OnClientDisconnectBefore", "classNWNX_1_1API_1_1Events_1_1ClientEvents_1_1OnClientDisconnectBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnEnterStealthAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.StealthEvents.OnEnterStealthAfter", "classNWNX_1_1API_1_1Events_1_1StealthEvents_1_1OnEnterStealthAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnEnterStealthBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.StealthEvents.OnEnterStealthBefore", "classNWNX_1_1API_1_1Events_1_1StealthEvents_1_1OnEnterStealthBefore.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnExitStealthAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.StealthEvents.OnExitStealthAfter", "classNWNX_1_1API_1_1Events_1_1StealthEvents_1_1OnExitStealthAfter.html", null ]
+    ] ],
+    [ "NWNX.API.Events.NWNXEventSkippable< OnExitStealthBefore >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
+      [ "NWNX.API.Events.StealthEvents.OnExitStealthBefore", "classNWNX_1_1API_1_1Events_1_1StealthEvents_1_1OnExitStealthBefore.html", null ]
     ] ],
     [ "NWNX.API.Events.NWNXEventSkippable< OnHealAfter >", "classNWNX_1_1API_1_1Events_1_1NWNXEventSkippable.html", [
       [ "NWNX.API.Events.HealEvents.OnHealAfter", "classNWNX_1_1API_1_1Events_1_1HealEvents_1_1OnHealAfter.html", null ]
