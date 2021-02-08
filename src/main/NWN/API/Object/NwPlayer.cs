@@ -440,7 +440,7 @@ namespace NWN.API
     /// <param name="helpStringRef">String reference to display for hel.</param>
     /// <param name="helpString">String to display for help which appears in the top of the panel.</param>
     public void PopUpDeathPanel(bool respawnButton = true, bool waitForHelp = true, int helpStringRef = 0, string helpString = "")
-    => NWScript.PopUpDeathGUIPanel(this, respawnButton.ToInt(), waitForHelp.ToInt(), helpStringRef, helpString);
+      => NWScript.PopUpDeathGUIPanel(this, respawnButton.ToInt(), waitForHelp.ToInt(), helpStringRef, helpString);
 
     /// <summary>
     /// Displays a GUI panel to a player.
@@ -466,6 +466,11 @@ namespace NWN.API
     /// </summary>
     public void StopFade() => NWScript.StopFade(this);
 
+    /// <summary>
+    /// Immediately kicks this player and deletes their character file (.bic)
+    /// </summary>
+    /// <param name="kickMessage">The kick message to show to the player.</param>
+    /// <param name="preserveBackup">If true, instead of being deleted it will be renamed to be hidden from the character list, but remain in the vault directory.</param>
     public void Delete(string kickMessage, bool preserveBackup = true)
     {
       string bicName = Player.m_resFileName.GetResRefStr();
@@ -475,7 +480,7 @@ namespace NWN.API
       string fileName = $"{serverVault}{playerDir}/{bicName}.bic";
       if (!File.Exists(fileName))
       {
-        Log.Error($"File {fileName} not found.");
+        Log.Error($"Character file {fileName} not found.");
         return;
       }
 
