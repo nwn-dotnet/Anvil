@@ -316,5 +316,37 @@ namespace NWN.API
     /// <param name="copyVars">If true then local variables on item are copied.</param>
     public NwItem Copy(NwGameObject targetInventory, bool copyVars)
       => NWScript.CopyItem(this, targetInventory, copyVars.ToInt()).ToNwObject<NwItem>();
+
+    /// <summary>
+    /// Returns the appearance of an item.
+    /// </summary>
+    /// <param name="type">The type of the armor<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
+    /// <param name="armorColor">The color of the armor<see cref="NWN.API.Constants.ItemAppearanceArmorColor"/>.</param>
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceArmorColor armorColor)
+      => NWScript.GetItemAppearance(this, (int)type, (int)armorColor);
+
+    /// <summary>
+    /// Returns the appearance of an item.
+    /// </summary>
+    /// <param name="type">The type of the armor<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
+    /// <param name="armorModel">The model of the armor<see cref="NWN.API.Constants.ItemAppearanceArmorModel"/>.</param>
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceArmorModel armorModel)
+      => NWScript.GetItemAppearance(this, (int)type, (int)armorModel);
+
+    /// <summary>
+    /// Returns the appearance of an item.
+    /// </summary>
+    /// <param name="type">The type of the weapon<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
+    /// <param name="weaponColor">The color of the weapon<see cref="NWN.API.Constants.ItemAppearanceWeaponColor"/>.</param>
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceWeaponColor weaponColor)
+      => NWScript.GetItemAppearance(this, (int)type, (int)weaponColor);
+
+    /// <summary>
+    /// Returns the appearance of an item.
+    /// </summary>
+    /// <param name="type">The type of the weapon<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
+    /// <param name="weaponModel">The model of the weapon<see cref="NWN.API.Constants.ItemAppearanceWeaponModel"/>.</param>
+    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceWeaponModel weaponModel)
+      => NWScript.GetItemAppearance(this, (int)type, (int)weaponModel);
   }
 }
