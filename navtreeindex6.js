@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"classNWN_1_1API_1_1NwModule.html#ac704f5c91730658ca7a8fa4209b58a55":[0,0,0,0,28,19],
 "classNWN_1_1API_1_1NwModule.html#ac90eca988214874c450a5e2ba9ff2240":[0,0,0,0,28,15],
 "classNWN_1_1API_1_1NwModule.html#ad6e1e412dd751f7c5b96a45caf809695":[0,0,0,0,28,4],
 "classNWN_1_1API_1_1NwModule.html#adbd637693ac6c90fef4333797609c78d":[0,0,0,0,28,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "classNWN_1_1Services_1_1InstallerInfo.html#ade0ecfe148c322a9e755934189f4a92e":[0,0,0,2,12,1],
 "classNWN_1_1Services_1_1LoopTimeService.html":[0,0,0,2,5],
 "classNWN_1_1Services_1_1LoopTimeService.html#a1ca394e877016dc8308008bd74208ae0":[0,0,0,2,5,1],
-"classNWN_1_1Services_1_1LoopTimeService.html#ab55804a7372f24f96b714cad5d3654dc":[0,0,0,2,5,0],
-"classNWN_1_1Services_1_1NativeEventService.html":[0,0,0,2,2]
+"classNWN_1_1Services_1_1LoopTimeService.html#ab55804a7372f24f96b714cad5d3654dc":[0,0,0,2,5,0]
 };

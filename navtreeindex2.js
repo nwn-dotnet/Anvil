@@ -26,6 +26,7 @@ var NAVTREEINDEX2 =
 "classNWNX_1_1API_1_1Visibility.html":[0,0,1,0,21],
 "classNWNX_1_1API_1_1Weapon.html":[0,0,1,0,22],
 "classNWNX_1_1API_1_1Weapon.html#a17a1b5d6b2f7d61c7e8431976b3c36f0":[0,0,1,0,22,0],
+"classNWNX_1_1API_1_1Weapon.html#a6a5a11761ae9fc724949b8704c9d3ff6":[0,0,1,0,22,1],
 "classNWNX_1_1PluginUtils.html":[0,0,1,2],
 "classNWNX_1_1Services_1_1NWNXEventService.html":[0,0,1,1,0],
 "classNWNX_1_1Services_1_1NWNXEventService.html#a1c26d19d0c3545962f9ec366aa6e93d0":[0,0,1,1,0,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html":[0,0,0,0,1,3,12],
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html#a02f97791bb97ed5162db2cd9e580060f":[0,0,0,0,1,3,12,0],
 "classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html#a9043dd94f9d147051f24920f6e438862":[0,0,0,0,1,3,12,1],
-"classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html#aa60247283c75d8b01e093b607d506590":[0,0,0,0,1,3,12,2],
-"classNWN_1_1API_1_1Events_1_1DialogEvents.html":[0,0,0,0,1,12]
+"classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnUserDefined.html#aa60247283c75d8b01e093b607d506590":[0,0,0,0,1,3,12,2]
 };

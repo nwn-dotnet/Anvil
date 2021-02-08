@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#a7eb549b9007ebc486a4c07cf99b6d7cf":[0,0,0,0,1,10,1,1],
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#abf1be6b06eed900054b730f5d6b5124c":[0,0,0,0,1,10,1,0],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents.html":[0,0,0,0,1,11],
 "classNWN_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html":[0,0,0,0,1,11,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "classNWN_1_1API_1_1NwCreature.html#a2a5a2c3d6bd68ad33153d7916381db6a":[0,0,0,0,22,5],
 "classNWN_1_1API_1_1NwCreature.html#a302595b0b1d57a0f293671d9709669b1":[0,0,0,0,22,7],
 "classNWN_1_1API_1_1NwCreature.html#a32f57417ac5858b4e668927a3c772498":[0,0,0,0,22,11],
-"classNWN_1_1API_1_1NwCreature.html#a34a90b54acab49dc0b394f0809db1879":[0,0,0,0,22,49],
-"classNWN_1_1API_1_1NwCreature.html#a35e26386397823e2160047a9c107fa9e":[0,0,0,0,22,131]
+"classNWN_1_1API_1_1NwCreature.html#a34a90b54acab49dc0b394f0809db1879":[0,0,0,0,22,49]
 };
