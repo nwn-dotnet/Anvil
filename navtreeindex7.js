@@ -1,5 +1,9 @@
 var NAVTREEINDEX7 =
 {
+"classNWN_1_1Services_1_1InstallerInfo.html#ade0ecfe148c322a9e755934189f4a92e":[0,0,0,2,12,1],
+"classNWN_1_1Services_1_1LoopTimeService.html":[0,0,0,2,5],
+"classNWN_1_1Services_1_1LoopTimeService.html#a1ca394e877016dc8308008bd74208ae0":[0,0,0,2,5,1],
+"classNWN_1_1Services_1_1LoopTimeService.html#ab55804a7372f24f96b714cad5d3654dc":[0,0,0,2,5,0],
 "classNWN_1_1Services_1_1NativeEventService.html":[0,0,0,2,2],
 "classNWN_1_1Services_1_1NativeEventService.html#a1e89d6a176084cbf7931d20579ab9df4":[0,0,0,2,2,1],
 "classNWN_1_1Services_1_1NativeEventService.html#a881c4ef184a21a0c7fb02ff09eec39bf":[0,0,0,2,2,0],
@@ -33,8 +37,8 @@ var NAVTREEINDEX7 =
 "functions_d.html":[0,3,0,3],
 "functions_e.html":[0,3,0,4],
 "functions_f.html":[0,3,0,5],
-"functions_func.html":[0,3,1,0],
 "functions_func.html":[0,3,1],
+"functions_func.html":[0,3,1,0],
 "functions_func_b.html":[0,3,1,1],
 "functions_func_c.html":[0,3,1,2],
 "functions_func_d.html":[0,3,1,3],
@@ -245,9 +249,5 @@ var NAVTREEINDEX7 =
 "structNWN_1_1API_1_1MonsterHitEffect.html#af34c96000db00b406bb6889ec70e6a55":[0,0,0,0,13,7],
 "structNWN_1_1API_1_1Vector2Int.html":[0,0,0,0,49],
 "structNWN_1_1API_1_1Vector2Int.html#a044a09c01cbc0376f2b485585d84f4f4":[0,0,0,0,49,4],
-"structNWN_1_1API_1_1Vector2Int.html#a1faaa4e233314791eb88e897f9915488":[0,0,0,0,49,7],
-"structNWN_1_1API_1_1Vector2Int.html#a45defc57b3efb3155a6f6d09f89b3d79":[0,0,0,0,49,2],
-"structNWN_1_1API_1_1Vector2Int.html#a52b276d38bc37ddaaed22c4b39c3d54f":[0,0,0,0,49,8],
-"structNWN_1_1API_1_1Vector2Int.html#a5e90514a3288ad58aa9d969622be9393":[0,0,0,0,49,6],
-"structNWN_1_1API_1_1Vector2Int.html#a5f09b310451415808c019461caa72228":[0,0,0,0,49,3]
+"structNWN_1_1API_1_1Vector2Int.html#a1faaa4e233314791eb88e897f9915488":[0,0,0,0,49,7]
 };
