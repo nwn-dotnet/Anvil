@@ -96,7 +96,7 @@ jobs:
           tag_name: ${{ needs.build.outputs.tag }}
           release_name: Release ${{ needs.build.outputs.version }}
           draft: false
-          prerelease: true
+          prerelease: false
 
       - name: Upload Release Binaries
         id: upload-release-asset
