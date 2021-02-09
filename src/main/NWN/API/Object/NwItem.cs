@@ -4,6 +4,7 @@ using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
+using ItemAppearanceType = NWN.API.Constants.ItemAppearanceType;
 
 namespace NWN.API
 {

@@ -116,6 +116,7 @@ namespace NWNX.API
     /// <summary>
     /// Gets the server's current tick rate.
     /// </summary>
+    [Obsolete]
     public static int ServerTicksPerSecond
     {
       get => UtilPlugin.GetServerTicksPerSecond();
@@ -175,6 +176,7 @@ namespace NWNX.API
     /// <summary>
     /// Sets the NWScript instruction limit. -1 resets the value to default.
     /// </summary>
+    [Obsolete("Use NwServer.InstructionLimit instead.")]
     public static int InstructionLimit
     {
       set => UtilPlugin.SetInstructionLimit(value);
