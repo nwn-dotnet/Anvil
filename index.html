@@ -85,23 +85,78 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">NWN.Managed </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a>NWN.Managed is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. It is a managed implementation of <a href="https://github.com/nwn-dotnet/NWN.Core">NWN.Core</a>.</p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a>NWN.Managed is a C# framework for building behaviours and adding new functionalty to Neverwinter Nights: Enhanced Edition. The library allows server owners and builders to create simple behaviours, while giving plugin developers the option to implement complex systems or modify existing hardcoded rules.</p>
+<p>Builders can add functionality like opening a store from a dialogue with a few lines of code, while plugin developers can leverage <a href="https://www.nuget.org/packages">NuGet</a> to add new functionality with external packages and the <a href="https://github.com/nwn-dotnet/NWN.Native">NWN.Native</a> library to completely rewrite existing game systems and mechanics.</p>
+<ul>
+<li>Latest <a href="https://github.com/nwn-dotnet/NWN.Managed/releases/latest">Release</a></li>
+<li>View <a href="https://github.com/nwn-dotnet/NWN.Managed/discussions/categories/plugins">Community Submitted Plugins</a></li>
+<li>Join the community: <a href="https://discord.gg/gKt495UBgS"><img src="https://img.shields.io/discord/714927668826472600?color=7289DA&amp;label=Discord&amp;logo=discord&amp;logoColor=7289DA" alt="Discord" class="inline"/></a></li>
+</ul>
 <h1>Getting Started</h1>
-<h3>Running NWN.Managed</h3>
+<h3>Running NWN.Managed - Docker</h3>
+<p>NWN.Managed has its own docker images that are automatically configured to start and run NWN.Managed and NWNXEE. Similar to the parent images, NWN.Managed is configured by environment variables passed during <code>docker run</code>.</p>
+<p>By default, NWN.Managed will look in the <code>/nwn/nwnm/Plugins</code> directory in the container for <a href="#plugins--services">managed plugins</a>. A volume containing your plugins can be mounted here to automatically run on startup.</p>
+<p>Running the image is exactly the same as running the <code>beamdog/nwserver</code> or <code>nwnxee/unified</code> images. See the <a href="https://nwnxee.github.io/unified/">NWNX</a> and <a href="https://hub.docker.com/r/beamdog/nwserver/">NWServer</a> README's for configuring these images.</p>
+<p>The following tags are supported:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Tag   </th><th class="markdownTableHeadNone">Example    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>latest</code>   </td><td class="markdownTableBodyNone"><code>nwndotnet/nwn.managed:latest</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>&lt;version&gt;</code>   </td><td class="markdownTableBodyNone"><code>nwndotnet/nwn.managed:8193.20.29</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>&lt;commit-hash&gt;</code>   </td><td class="markdownTableBodyNone"><code>nwndotnet/nwn.managed:c09d2f6</code>   </td></tr>
+</table>
+<h3>Running NWN.Managed - Native</h3>
 <ol type="1">
-<li>Download the latest <a href="https://github.com/nwn-dotnet/NWN.Managed/releases">Release</a> for your server version.</li>
-<li>Extract the Binaries to a folder accessible by the server.</li>
-<li>Configure <a class="el" href="namespaceNWNX.html">NWNX</a> options to the following:</li>
-</ol>
-<div class="fragment"><div class="line">NWNX_DOTNET_SKIP=n</div>
+<li>Download and extract the dedicated server package: <a href="https://forums.beamdog.com/discussion/67157/server-download-packages-and-docker-support/p1">Server packages</a></li>
+<li>Download and extract <a class="el" href="namespaceNWNX.html">NWNX</a>: <a href="https://github.com/nwnxee/unified/releases">https://github.com/nwnxee/unified/releases</a></li>
+<li>Download and extract the NWN.Managed <a href="https://github.com/nwn-dotnet/NWN.Managed/releases">Release</a> for your server/NWNX version.</li>
+<li>The directory structure should look like the following: <div class="fragment"><div class="line">bin/</div>
+<div class="line">|----linux-x86</div>
+<div class="line">     |----nwserver-linux</div>
+<div class="line">     |----NWNX_DotNET.so</div>
+<div class="line">     |----NWNX_Object.so</div>
+<div class="line">     |----NWNX_SWIG_DotNET.so</div>
+<div class="line">     |----NWNX_Util.so</div>
+<div class="line">modbin/</div>
+<div class="line">|----NLog.dll</div>
+<div class="line">|----NWN.Core.dll</div>
+<div class="line">|----NWN.Managed.deps.json</div>
+<div class="line">|----NWN.Managed.dll</div>
+<div class="line">|----NWN.Managed.runtimeconfig.dev.json</div>
+<div class="line">|----NWN.Managed.runtimeconfig.json</div>
+<div class="line">|----NWN.Managed.xml</div>
+<div class="line">|----NWN.Native.dll</div>
+<div class="line">|----SimpleInjector.dll</div>
+<div class="line">|----Plugins/</div>
+<div class="line">     |----YourPlugin/</div>
+<div class="line">          |----YourPlugin.dll</div>
+</div><!-- fragment --></li>
+<li>Configure <a class="el" href="namespaceNWNX.html">NWNX</a> options to the following: <div class="fragment"><div class="line">NWNX_DOTNET_SKIP=n</div>
 <div class="line">NWNX_OBJECT_SKIP=n</div>
 <div class="line">NWNX_UTIL_SKIP=n</div>
-<div class="line">NWNX_DOTNET_ASSEMBLY=/your/path/to/NWN.Managed # Where &quot;NWN.Managed.dll&quot; was extracted in step 2, without the extension. E.g: NWNX_DOTNET_ASSEMBLY=/nwn/home/modbin/NWN.Managed</div>
+<div class="line">NWNX_DOTNET_ASSEMBLY=/your/path/to/NWN.Managed # Where &quot;NWN.Managed.dll&quot; was extracted in step 3, without the extension. E.g: NWNX_DOTNET_ASSEMBLY=/nwn/home/modbin/NWN.Managed</div>
 <div class="line"># NWNX_DOTNET_ENTRYPOINT= # Make sure this option does not exist in your config</div>
-</div><!-- fragment --><p>The DotNET, Object and Util plugins are required for the library to work. Make sure they are enabled!</p>
+</div><!-- fragment --> The DotNET, Object and Util plugins are required for the library to work. Make sure they are enabled!</li>
+</ol>
 <p>Other plugins are optional, but may be required to access some extension APIs. An exception will be raised if you try to use an extension without the dependent plugin loaded.</p>
 <p>For a step by step guide how to set up a local developement environment using your IDE of choice and windows. see Development with Docker on Windows.</p>
-<h1>Plugins &amp; Services</h1>
+<h3>Configuration Options</h3>
+<p>The following options can be configured via environment variables:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Variable   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>NWM_PLUGIN_PATH</code>   </td><td class="markdownTableBodyNone"><code>/path/to/NWN.Managed/Plugins</code>   </td><td class="markdownTableBodyNone">The root plugin path that NWN.Managed will search for plugins.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone" colspan="2"><code>NWM_NLOG_CONFIG</code>   </td><td class="markdownTableBodyNone">Custom path to a NLog XML config file. See the <a href="https://github.com/nlog/NLog/wiki/Configuration-file">NLog Wiki</a> for configuration options.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>NWM_RELOAD_ENABLED</code>   </td><td class="markdownTableBodyNone"><code>false</code>   </td><td class="markdownTableBodyNone">Enables support for plugin hot-reloading via <code>NManager.Reload()</code>. Recommended for advanced users.   </td></tr>
+</table>
+<h1>Builder/Developer's Guide</h1>
+<h2>Plugins &amp; Services</h2>
 <p>Adding module behaviours starts by creating your own plugin assembly (.dll).</p>
 <p>To get started, it is recommended to start by making a copy of the sample project found <a href="https://github.com/nwn-dotnet/NWN.Samples/tree/master/managed/plugin-sample">HERE</a> with the package dependencies already setup for you.</p>
 <p>The core of NWN.Managed is built around a dependency injection model, and the library expects you to implement features in your plugins a similar way.</p>
