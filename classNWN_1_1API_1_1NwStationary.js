@@ -1,5 +1,6 @@
 var classNWN_1_1API_1_1NwStationary =
 [
+    [ "CreateTrap", "classNWN_1_1API_1_1NwStationary.html#ac3b5965b0a75ec918891a0659adb5e19", null ],
     [ "FaceToPoint", "classNWN_1_1API_1_1NwStationary.html#a9b0a7a8522dc559016b34a41bafe55fb", null ],
     [ "GetLastLockedBy", "classNWN_1_1API_1_1NwStationary.html#aec2ac4e6ffac04904c8a8a0b3aa66990", null ],
     [ "SetSavingThrow", "classNWN_1_1API_1_1NwStationary.html#ae38c7fc735f96e4cfdb7573587f65c8e", null ],

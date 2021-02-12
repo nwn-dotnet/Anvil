@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['feettometers_1854',['FeetToMeters',['../classNWN_1_1API_1_1NwMath.html#aa2b603133b035108b540d3f33ac294fd',1,'NWN::API::NwMath']]]
+  ['feettometers_1856',['FeetToMeters',['../classNWN_1_1API_1_1NwMath.html#aa2b603133b035108b540d3f33ac294fd',1,'NWN::API::NwMath']]]
 ];

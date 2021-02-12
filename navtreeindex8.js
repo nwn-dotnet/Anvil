@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"structNWN_1_1API_1_1Vector2Int.html#a1faaa4e233314791eb88e897f9915488":[0,0,0,0,49,7],
 "structNWN_1_1API_1_1Vector2Int.html#a45defc57b3efb3155a6f6d09f89b3d79":[0,0,0,0,49,2],
 "structNWN_1_1API_1_1Vector2Int.html#a52b276d38bc37ddaaed22c4b39c3d54f":[0,0,0,0,49,8],
 "structNWN_1_1API_1_1Vector2Int.html#a5e90514a3288ad58aa9d969622be9393":[0,0,0,0,49,6],
