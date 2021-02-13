@@ -4,6 +4,12 @@ using NWN.Core.NWNX;
 
 namespace NWN.Services
 {
+  //! ## Examples
+  //! @include XPReportService.cs
+
+  /// <summary>
+  /// Creates a deserialized 2da structure using a <see cref="ITwoDimArray"/> converter.
+  /// </summary>
   [ServiceBinding(typeof(TwoDimArrayFactory))]
   public sealed class TwoDimArrayFactory
   {
@@ -14,7 +20,7 @@ namespace NWN.Services
     /// </summary>
     /// <param name="name">The name of the 2DA resource.</param>
     /// <param name="forceRefresh">If true, always reloads the 2DA instead of using a cached version.</param>
-    /// <typeparam name="T">The deserialized type.</typeparam>
+    /// <typeparam name="T">The <see cref="ITwoDimArray"/> type to use to deserialize.</typeparam>
     /// <returns>The deserialized 2DA.</returns>
     public T Get2DA<T>(string name, bool forceRefresh = false) where T : ITwoDimArray, new()
     {

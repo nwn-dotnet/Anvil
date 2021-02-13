@@ -2,6 +2,7 @@
 <RuleSet Name="NWN Managed Rules" ToolsVersion="16.0">
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA1003" Action="None" />
+    <Rule Id="SA1005" Action="None" />
     <Rule Id="SA1008" Action="None" />
     <Rule Id="SA1009" Action="None" />
     <Rule Id="SA1012" Action="None" />

@@ -23,6 +23,8 @@
         <LangVersion>9.0</LangVersion>
         <CodeAnalysisRuleSet>NWN.Managed.ruleset</CodeAnalysisRuleSet>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Configurations>Debug;Release;Samples</Configurations>
+        <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DefineConstants>TRACE</DefineConstants>
@@ -30,25 +32,21 @@
 
     <ItemGroup>
         <PackageReference Include="NLog" Version="4.7.7" />
-        <PackageReference Include="NWN.Core" Version="8193.20.23" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Core" Version="8193.20.25" PrivateAssets="compile" />
         <PackageReference Include="NWN.Native" Version="8193.20.9" PrivateAssets="compile" />
         <PackageReference Include="SimpleInjector" Version="5.2.1" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="All" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Remove="docs\**" />
-      <EmbeddedResource Remove="docs\**" />
-      <EmbeddedResource Remove="src\lib\src\**" />
-      <None Remove="docs\**" />
+    <ItemGroup Condition=" '$(Configuration)' != 'Samples'">
+        <None Remove="docs\**" />
+        <EmbeddedResource Remove="docs\**" />
+        <Compile Remove="docs\**" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="stylecop.json" />
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="stylecop.json" />
     </ItemGroup>
 

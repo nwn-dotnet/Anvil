@@ -2,6 +2,9 @@ using System.Diagnostics;
 
 namespace NWN.Services
 {
+  /// <summary>
+  /// Tracks per-loop and total server run time.
+  /// </summary>
   [ServiceBinding(typeof(LoopTimeService))]
   public class LoopTimeService
   {

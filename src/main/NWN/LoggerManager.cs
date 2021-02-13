@@ -10,7 +10,7 @@ using NWN.Native.API;
 
 namespace NWN
 {
-  public class LoggerManager : IDisposable
+  internal class LoggerManager : IDisposable
   {
     private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message} ${exception}");
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
