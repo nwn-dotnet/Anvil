@@ -2,6 +2,9 @@ using System;
 
 namespace NWN.API
 {
+  /// <summary>
+  /// Represents a vector with two 32 bit integer values.
+  /// </summary>
   public struct Vector2Int : IEquatable<Vector2Int>
   {
     public readonly int X;

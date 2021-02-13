@@ -4,7 +4,7 @@ using System.Text;
 namespace NWN.API
 {
   /// <summary>
-  /// Represents a Color structure.
+  /// Represents an 8 bit Color structure.
   /// </summary>
   public readonly struct Color
   {

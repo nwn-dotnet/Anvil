@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWNX.API.Constants;
 
 namespace NWN.API

@@ -4,6 +4,9 @@ using NWN.API.Events;
 
 namespace NWN.Services
 {
+  /// <summary>
+  /// The selection info returned from the CursorTargetService when a selection is made.
+  /// </summary>
   public class CursorTargetData
   {
     /// <summary>

@@ -3,7 +3,10 @@ using System.IO;
 
 namespace NWN
 {
-  public sealed class EnvironmentConfig
+  /// <summary>
+  /// NWN.Managed settings that are configured through Environment Variables.
+  /// </summary>
+  public static class EnvironmentConfig
   {
     // NWN.Managed
     public static readonly string PluginsPath = Environment.GetEnvironmentVariable("NWM_PLUGIN_PATH") ?? Path.Combine(AssemblyConstants.AssemblyDir, "Plugins");
