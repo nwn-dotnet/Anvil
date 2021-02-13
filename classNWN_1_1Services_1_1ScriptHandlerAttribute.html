@@ -89,21 +89,28 @@ $(document).ready(function(){initNavTree('classNWN_1_1Services_1_1ScriptHandlerA
 <div class="title">NWN.Services.ScriptHandlerAttribute Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for NWN.Services.ScriptHandlerAttribute:</div>
-<div class="dyncontent">
+
+<p>Indicates that the method in the service should be used to handle all NWScript calls to the specified ScriptName.  
+ <a href="classNWN_1_1Services_1_1ScriptHandlerAttribute.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for NWN.Services.ScriptHandlerAttribute:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classNWN_1_1Services_1_1ScriptHandlerAttribute__inherit__graph.png" border="0" usemap="#aNWN_8Services_8ScriptHandlerAttribute_inherit__map" alt="Inheritance graph"/></div>
 <map name="aNWN_8Services_8ScriptHandlerAttribute_inherit__map" id="aNWN_8Services_8ScriptHandlerAttribute_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,196,121"/>
+<area shape="rect" title="Indicates that the method in the service should be used to handle all NWScript calls to the specified..." alt="" coords="5,80,196,121"/>
 <area shape="rect" title=" " alt="" coords="65,5,136,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for NWN.Services.ScriptHandlerAttribute:</div>
-<div class="dyncontent">
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for NWN.Services.ScriptHandlerAttribute:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classNWN_1_1Services_1_1ScriptHandlerAttribute__coll__graph.png" border="0" usemap="#aNWN_8Services_8ScriptHandlerAttribute_coll__map" alt="Collaboration graph"/></div>
 <map name="aNWN_8Services_8ScriptHandlerAttribute_coll__map" id="aNWN_8Services_8ScriptHandlerAttribute_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,196,121"/>
+<area shape="rect" title="Indicates that the method in the service should be used to handle all NWScript calls to the specified..." alt="" coords="5,80,196,121"/>
 <area shape="rect" title=" " alt="" coords="65,5,136,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -120,7 +127,45 @@ Public Attributes</h2></td></tr>
 readonly string&#160;</td><td class="memItemRight" valign="bottom"><b>ScriptName</b></td></tr>
 <tr class="separator:aa3d0f653ba6629dbb1717ad3f46057ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Indicates that the method in the service should be used to handle all NWScript calls to the specified ScriptName. </p>
+<h2>Examples</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Define a method (OnScriptCalled) to be called when the NwScript &quot;test_nwscript&quot; would be called by the game.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> NLog;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1Services.html">Services</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The &quot;ServiceBinding&quot; attribute indicates this class should be created on start, and available to other classes as a dependency &quot;MyScriptHandler&quot;</span></div>
+<div class="line"><span class="comment">// You can also bind yourself to an interface or base class. The system also supports multiple bindings.</span></div>
+<div class="line">[ServiceBinding(typeof(BasicScriptHandler))]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>BasicScriptHandler</div>
+<div class="line">{</div>
+<div class="line">  <span class="comment">// Gets the server log. By default, this reports to &quot;nwm.log&quot;</span></div>
+<div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> readonly Logger Log = LogManager.GetCurrentClassLogger();</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">private</span> readonly NativeEventService eventService;</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// As this class has the ServiceBinding attribute, the constructor of this class will be called during server startup.</span></div>
+<div class="line">  <span class="comment">// The EventService is a core service from NWN.Managed. As it is defined as a constructor parameter, it will be injected during startup.</span></div>
+<div class="line">  <span class="keyword">public</span> BasicScriptHandler(NativeEventService eventService)</div>
+<div class="line">  {</div>
+<div class="line">    this.eventService = eventService;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// This function will be called as if the same script was called by a toolset event, or by another script.</span></div>
+<div class="line">  <span class="comment">// Script name must be &lt;= 16 characters similar to the toolset.</span></div>
+<div class="line">  <span class="comment">// This function must always return void, or a bool in the case of a conditional.</span></div>
+<div class="line">  <span class="comment">// The NwObject parameter is optional, but if defined, must always be a single parameter of the NWObject type.</span></div>
+<div class="line">  [ScriptHandler(<span class="stringliteral">&quot;test_nwscript&quot;</span>)]</div>
+<div class="line">  <span class="keyword">private</span> <span class="keywordtype">void</span> OnScriptCalled(CallInfo callInfo)</div>
+<div class="line">  {</div>
+<div class="line">    Log.Info($<span class="stringliteral">&quot;test_nwscript called by {callInfo.ObjectSelf.Name}&quot;</span>);</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --></div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWN/Services/ScriptDispatch/ScriptHandlerAttribute.cs</li>
 </ul>
 </div><!-- contents -->

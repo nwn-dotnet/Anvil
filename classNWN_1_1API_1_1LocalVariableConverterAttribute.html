@@ -89,29 +89,36 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1LocalVariableConver
 <div class="title">NWN.API.LocalVariableConverterAttribute Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for NWN.API.LocalVariableConverterAttribute:</div>
-<div class="dyncontent">
+
+<p>The attribute used in conjunction with ILocalVariableConverter&lt;T&gt; to implement a variable converter for the specified type.  
+ <a href="classNWN_1_1API_1_1LocalVariableConverterAttribute.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for NWN.API.LocalVariableConverterAttribute:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classNWN_1_1API_1_1LocalVariableConverterAttribute__inherit__graph.png" border="0" usemap="#aNWN_8API_8LocalVariableConverterAttribute_inherit__map" alt="Inheritance graph"/></div>
 <map name="aNWN_8API_8LocalVariableConverterAttribute_inherit__map" id="aNWN_8API_8LocalVariableConverterAttribute_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,223,121"/>
+<area shape="rect" title="The attribute used in conjunction with ILocalVariableConverter&lt;T&gt; to implement a variable converter f..." alt="" coords="5,80,223,121"/>
 <area shape="rect" title=" " alt="" coords="79,5,149,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for NWN.API.LocalVariableConverterAttribute:</div>
-<div class="dyncontent">
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for NWN.API.LocalVariableConverterAttribute:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classNWN_1_1API_1_1LocalVariableConverterAttribute__coll__graph.png" border="0" usemap="#aNWN_8API_8LocalVariableConverterAttribute_coll__map" alt="Collaboration graph"/></div>
 <map name="aNWN_8API_8LocalVariableConverterAttribute_coll__map" id="aNWN_8API_8LocalVariableConverterAttribute_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,223,121"/>
+<area shape="rect" title="The attribute used in conjunction with ILocalVariableConverter&lt;T&gt; to implement a variable converter f..." alt="" coords="5,80,223,121"/>
 <area shape="rect" title=" " alt="" coords="79,5,149,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae72df337c9e9ab25849ac13429b29bb8"><td class="memItemLeft" align="right" valign="top"><a id="ae72df337c9e9ab25849ac13429b29bb8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LocalVariableConverterAttribute</b> (params Type[] types)</td></tr>
+<tr class="memitem:ae72df337c9e9ab25849ac13429b29bb8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1LocalVariableConverterAttribute.html#ae72df337c9e9ab25849ac13429b29bb8">LocalVariableConverterAttribute</a> (params Type[] types)</td></tr>
+<tr class="memdesc:ae72df337c9e9ab25849ac13429b29bb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines this class as a variable converter. MUST NOT BE USED WITH <a class="el" href="classNWN_1_1Services_1_1ServiceBindingAttribute.html" title="The main attribute used to define new services and run them.  Each class flagged with a ServiceBindin...">NWN.Services.ServiceBindingAttribute</a>.  <a href="classNWN_1_1API_1_1LocalVariableConverterAttribute.html#ae72df337c9e9ab25849ac13429b29bb8">More...</a><br /></td></tr>
 <tr class="separator:ae72df337c9e9ab25849ac13429b29bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -120,6 +127,71 @@ Public Attributes</h2></td></tr>
 readonly Type[]&#160;</td><td class="memItemRight" valign="bottom"><b>Types</b></td></tr>
 <tr class="separator:abcfca175d7e36bca8af175ebe54fab7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The attribute used in conjunction with ILocalVariableConverter&lt;T&gt; to implement a variable converter for the specified type. </p>
+<h2>Examples</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Store a C# DateTime object in a local variable by setting an epoch timestamp.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> System;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.Core;</div>
+<div class="line"> </div>
+<div class="line">[LocalVariableConverter(typeof(DateTime))]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>DateTimeLocalVariableConverter : ILocalVariableConverter&lt;DateTime&gt;</div>
+<div class="line">{</div>
+<div class="line">  <span class="keyword">public</span> DateTime GetLocal(NwObject nwObject, <span class="keywordtype">string</span> name)</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keywordflow">return</span> DateTime.UnixEpoch + TimeSpan.FromSeconds(NWScript.GetLocalInt(nwObject, name));</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">public</span> <span class="keywordtype">void</span> SetLocal(NwObject nwObject, <span class="keywordtype">string</span> name, DateTime value)</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keywordtype">int</span> seconds = (int)(value.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds;</div>
+<div class="line">    NWScript.SetLocalInt(nwObject, name, seconds);</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">public</span> <span class="keywordtype">void</span> ClearLocal(NwObject nwObject, <span class="keywordtype">string</span> name)</div>
+<div class="line">  {</div>
+<div class="line">    NWScript.DeleteLocalInt(nwObject, name);</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae72df337c9e9ab25849ac13429b29bb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae72df337c9e9ab25849ac13429b29bb8">&#9670;&nbsp;</a></span>LocalVariableConverterAttribute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NWN.API.LocalVariableConverterAttribute.LocalVariableConverterAttribute </td>
+          <td>(</td>
+          <td class="paramtype">params Type[]&#160;</td>
+          <td class="paramname"><em>types</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Defines this class as a variable converter. MUST NOT BE USED WITH <a class="el" href="classNWN_1_1Services_1_1ServiceBindingAttribute.html" title="The main attribute used to define new services and run them.  Each class flagged with a ServiceBindin...">NWN.Services.ServiceBindingAttribute</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">types</td><td>The type/s handled by this converter. Each type must have a corresponding ILocalVariableConverter&lt;T&gt; interface that is implemented in the class.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/NWN/API/Variable/Local/LocalVariableConverterAttribute.cs</li>
 </ul>

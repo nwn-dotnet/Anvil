@@ -88,6 +88,9 @@ $(document).ready(function(){initNavTree('classNWN_1_1Services_1_1TwoDimArrayFac
 <div class="title">NWN.Services.TwoDimArrayFactory Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Creates a deserialized 2da structure using a <a class="el" href="interfaceNWN_1_1Services_1_1ITwoDimArray.html" title="Implement this interface to use the class as a deserialization target for TwoDimArrayFactory....">ITwoDimArray</a> converter.  
+ <a href="classNWN_1_1Services_1_1TwoDimArrayFactory.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -95,7 +98,105 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1c968df35aaa7022a3a950c76ca9bf63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes the given 2da using the specified format.  <a href="classNWN_1_1Services_1_1TwoDimArrayFactory.html#a1c968df35aaa7022a3a950c76ca9bf63">More...</a><br /></td></tr>
 <tr class="separator:a1c968df35aaa7022a3a950c76ca9bf63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Creates a deserialized 2da structure using a <a class="el" href="interfaceNWN_1_1Services_1_1ITwoDimArray.html" title="Implement this interface to use the class as a deserialization target for TwoDimArrayFactory....">ITwoDimArray</a> converter. </p>
+<h2>Examples</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Define a implementation to deserialize &quot;xptable.2da&quot;, and use this class to determine how much XP is remaining until the next level.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><span class="keyword">using</span> System.Globalization;</div>
+<div class="line"><span class="keyword">using</span> System.Linq;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1API.html">API</a>.<a class="code" href="namespaceNWN_1_1API_1_1Events.html">Events</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1Services.html">Services</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// This is the deserialization class for this specific type of 2da.</span></div>
+<div class="line"><span class="comment">// We can implement our own helper functions here that operate on the 2da data, and cache it.</span></div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>ExpTable : ITwoDimArray</div>
+<div class="line">{</div>
+<div class="line">  <span class="keyword">private</span> readonly List&lt;Entry&gt; entries = <span class="keyword">new</span> List&lt;Entry&gt;();</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">public</span> <span class="keywordtype">int</span> MaxLevel =&gt; entries[^1].Level;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">public</span> <span class="keywordtype">int</span> GetXpForLevel(<span class="keywordtype">int</span> level)</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keywordflow">return</span> entries.First(entry =&gt; entry.Level == level).XP;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">public</span> <span class="keywordtype">int</span> GetLevelFromXp(<span class="keywordtype">int</span> xp)</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keywordtype">int</span> level = 1;</div>
+<div class="line">    <span class="keywordflow">foreach</span> (Entry entry <span class="keywordflow">in</span> entries)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="keywordflow">if</span> (entry.XP &gt; xp)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">break</span>;</div>
+<div class="line">      }</div>
+<div class="line"> </div>
+<div class="line">      level = entry.Level;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> level;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordtype">void</span> ITwoDimArray.DeserializeRow(<span class="keywordtype">int</span> rowIndex, TwoDimEntry twoDimEntry)</div>
+<div class="line">  {</div>
+<div class="line">    <span class="comment">// Use twoDimEntry(columnName) to get your serialized data, then convert it here.</span></div>
+<div class="line">    <span class="keywordtype">int</span> level = <span class="keywordtype">int</span>.Parse(twoDimEntry(<span class="stringliteral">&quot;Level&quot;</span>));</div>
+<div class="line">    uint xp = ParseXpColumn(twoDimEntry(<span class="stringliteral">&quot;XP&quot;</span>));</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> (xp &gt; <span class="keywordtype">int</span>.MaxValue)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="keywordflow">return</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    entries.Add(<span class="keyword">new</span> Entry(level, (<span class="keywordtype">int</span>)xp));</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">private</span> uint ParseXpColumn(<span class="keywordtype">string</span> value)</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keywordflow">return</span> uint.TryParse(value, out uint retVal) ? retVal : uint.Parse(value.Substring(2), NumberStyles.AllowHexSpecifier);</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">private</span> readonly <span class="keyword">struct </span>Entry</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keyword">public</span> readonly <span class="keywordtype">int</span> Level;</div>
+<div class="line">    <span class="keyword">public</span> readonly <span class="keywordtype">int</span> XP;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> Entry(<span class="keywordtype">int</span> level, <span class="keywordtype">int</span> xp)</div>
+<div class="line">    {</div>
+<div class="line">      Level = level;</div>
+<div class="line">      XP = xp;</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">[ServiceBinding(typeof(XPReportService))]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>XPReportService</div>
+<div class="line">{</div>
+<div class="line">  <span class="keyword">private</span> readonly ExpTable expTable;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">public</span> XPReportService(NativeEventService eventService, TwoDimArrayFactory twoDimArrayFactory)</div>
+<div class="line">  {</div>
+<div class="line">    eventService.Subscribe&lt;NwModule, ModuleEvents.OnClientEnter&gt;(NwModule.Instance, OnClientEnter);</div>
+<div class="line">    expTable = twoDimArrayFactory.Get2DA&lt;ExpTable&gt;(<span class="stringliteral">&quot;exptable&quot;</span>);</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">private</span> <span class="keywordtype">void</span> OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)</div>
+<div class="line">  {</div>
+<div class="line">    NwPlayer player = onClientEnter.Player;</div>
+<div class="line">    <span class="keywordtype">int</span> nextLevel = expTable.GetLevelFromXp(player.Xp) + 1;</div>
+<div class="line">    <span class="keywordflow">if</span> (nextLevel &gt; expTable.MaxLevel)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="keywordflow">return</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {expTable.GetXpForLevel(nextLevel) - player.Xp}&quot;</span>);</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --></div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1c968df35aaa7022a3a950c76ca9bf63"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1c968df35aaa7022a3a950c76ca9bf63">&#9670;&nbsp;</a></span>Get2DA&lt; T &gt;()</h2>
 
@@ -140,7 +241,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The deserialized type.</td></tr>
+    <tr><td class="paramname">T</td><td>The <a class="el" href="interfaceNWN_1_1Services_1_1ITwoDimArray.html" title="Implement this interface to use the class as a deserialization target for TwoDimArrayFactory....">ITwoDimArray</a> type to use to deserialize.</td></tr>
   </table>
   </dd>
 </dl>

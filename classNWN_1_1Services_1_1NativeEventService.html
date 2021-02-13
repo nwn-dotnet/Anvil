@@ -88,21 +88,29 @@ $(document).ready(function(){initNavTree('classNWN_1_1Services_1_1NativeEventSer
 <div class="title">NWN.Services.NativeEventService Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for NWN.Services.NativeEventService:</div>
-<div class="dyncontent">
+
+<p>Provides access to subscribe and unsubscribe from object events.<br  />
+  
+ <a href="classNWN_1_1Services_1_1NativeEventService.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for NWN.Services.NativeEventService:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classNWN_1_1Services_1_1NativeEventService__inherit__graph.png" border="0" usemap="#aNWN_8Services_8NativeEventService_inherit__map" alt="Inheritance graph"/></div>
 <map name="aNWN_8Services_8NativeEventService_inherit__map" id="aNWN_8Services_8NativeEventService_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,188,121"/>
+<area shape="rect" title="Provides access to subscribe and unsubscribe from object events." alt="" coords="5,80,188,121"/>
 <area shape="rect" href="interfaceNWN_1_1Services_1_1IScriptDispatcher.html" title="Implement in a service to add a custom handler for event scripts." alt="" coords="35,5,158,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for NWN.Services.NativeEventService:</div>
-<div class="dyncontent">
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for NWN.Services.NativeEventService:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classNWN_1_1Services_1_1NativeEventService__coll__graph.png" border="0" usemap="#aNWN_8Services_8NativeEventService_coll__map" alt="Collaboration graph"/></div>
 <map name="aNWN_8Services_8NativeEventService_coll__map" id="aNWN_8Services_8NativeEventService_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,188,121"/>
+<area shape="rect" title="Provides access to subscribe and unsubscribe from object events." alt="" coords="5,80,188,121"/>
 <area shape="rect" href="interfaceNWN_1_1Services_1_1IScriptDispatcher.html" title="Implement in a service to add a custom handler for event scripts." alt="" coords="35,5,158,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -116,7 +124,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1e89d6a176084cbf7931d20579ab9df4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an existing event handler from an object that was added using <a class="el" href="classNWN_1_1Services_1_1NativeEventService.html#a881c4ef184a21a0c7fb02ff09eec39bf" title="Subscribes to the specified event on the given object.">Subscribe&lt;TObject,TEvent&gt;</a>.  <a href="classNWN_1_1Services_1_1NativeEventService.html#a1e89d6a176084cbf7931d20579ab9df4">More...</a><br /></td></tr>
 <tr class="separator:a1e89d6a176084cbf7931d20579ab9df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Provides access to subscribe and unsubscribe from object events.<br  />
+ </p>
+<h2>Examples</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Send a welcome message to each player that joins the server.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1API.html">API</a>.<a class="code" href="namespaceNWN_1_1API_1_1Events.html">Events</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1Services.html">Services</a>;</div>
+<div class="line"> </div>
+<div class="line">[ServiceBinding(typeof(WelcomeMessageService))]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>WelcomeMessageService</div>
+<div class="line">{</div>
+<div class="line">  <span class="keyword">public</span> WelcomeMessageService(NativeEventService eventService)</div>
+<div class="line">  {</div>
+<div class="line">    eventService.Subscribe&lt;NwModule, ModuleEvents.OnClientEnter&gt;(NwModule.Instance, OnClientEnter);</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">private</span> <span class="keywordtype">void</span> OnClientEnter(ModuleEvents.OnClientEnter onEnter)</div>
+<div class="line">  {</div>
+<div class="line">    onEnter.Player.SendServerMessage($<span class="stringliteral">&quot;Welcome to the server, {onEnter.Player}!&quot;</span>, Color.PINK);</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --></div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a881c4ef184a21a0c7fb02ff09eec39bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a881c4ef184a21a0c7fb02ff09eec39bf">&#9670;&nbsp;</a></span>Subscribe&lt; TObject, TEvent &gt;()</h2>
 

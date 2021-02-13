@@ -25,17 +25,7 @@
 var NAVTREE =
 [
   [ "NWN.Managed", "index.html", [
-    [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
-      [ "Class Members", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
-        [ "Properties", "functions_prop.html", "functions_prop" ]
-      ] ]
-    ] ]
+    [ "API", "annotated.html", "annotated" ]
   ] ]
 ];
 
@@ -48,8 +38,7 @@ var NAVTREEINDEX =
 "classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#a7eb549b9007ebc486a4c07cf99b6d7cf",
 "classNWN_1_1API_1_1NwCreature.html#a35e26386397823e2160047a9c107fa9e",
 "classNWN_1_1API_1_1NwModule.html#a8c804e25b0f5ff8fe32ef009123ffcd0",
-"classNWN_1_1Services_1_1InstallerInfo.html#a4b6aa2277c7f31b6bcfd06dbde9c708e",
-"structNWN_1_1API_1_1Vector2Int.html#a1faaa4e233314791eb88e897f9915488"
+"classNWN_1_1Services_1_1LoopTimeService.html#ab55804a7372f24f96b714cad5d3654dc"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

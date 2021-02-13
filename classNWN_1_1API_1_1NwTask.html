@@ -93,18 +93,14 @@ $(document).ready(function(){initNavTree('classNWN_1_1API_1_1NwTask.html',''); i
 <p>Awaiters for running <a class="el" href="namespaceNWN.html">NWN</a> code in an async context.  
  <a href="classNWN_1_1API_1_1NwTask.html#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><b>TaskRunner</b></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a745a15b7000de7225503d84d01341725"><td class="memItemLeft" align="right" valign="top">static async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwTask.html#a745a15b7000de7225503d84d01341725">Delay</a> (TimeSpan delay)</td></tr>
 <tr class="memdesc:a745a15b7000de7225503d84d01341725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the specified amount of time has passed.  <a href="classNWN_1_1API_1_1NwTask.html#a745a15b7000de7225503d84d01341725">More...</a><br /></td></tr>
 <tr class="separator:a745a15b7000de7225503d84d01341725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5c4f503bdd13be84b94e3202f545a59"><td class="memItemLeft" align="right" valign="top">static async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwTask.html#ab5c4f503bdd13be84b94e3202f545a59">SwitchToMainThread</a> ()</td></tr>
-<tr class="memdesc:ab5c4f503bdd13be84b94e3202f545a59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely returns to a NWScript context from another thread.  <a href="classNWN_1_1API_1_1NwTask.html#ab5c4f503bdd13be84b94e3202f545a59">More...</a><br /></td></tr>
+<tr class="memdesc:ab5c4f503bdd13be84b94e3202f545a59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely returns to a NWScript context from another thread.<br  />
+ This must ALWAYS be called after an external callback, or thread switch before using any <a class="el" href="namespaceNWN.html">NWN</a> APIs.  <a href="classNWN_1_1API_1_1NwTask.html#ab5c4f503bdd13be84b94e3202f545a59">More...</a><br /></td></tr>
 <tr class="separator:ab5c4f503bdd13be84b94e3202f545a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f4e6db66a44b051a6f98b76dbd88fb4"><td class="memItemLeft" align="right" valign="top">static async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1NwTask.html#a9f4e6db66a44b051a6f98b76dbd88fb4">NextFrame</a> ()</td></tr>
 <tr class="memdesc:a9f4e6db66a44b051a6f98b76dbd88fb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the next server frame/loop.  <a href="classNWN_1_1API_1_1NwTask.html#a9f4e6db66a44b051a6f98b76dbd88fb4">More...</a><br /></td></tr>
@@ -151,6 +147,8 @@ static async Task&lt; Task&lt; TResult &gt; &gt;&#160;</td><td class="memItemRig
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Awaiters for running <a class="el" href="namespaceNWN.html">NWN</a> code in an async context. </p>
+<h2>Examples</h2>
+<p>@import AsyncService.cs</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a745a15b7000de7225503d84d01341725"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a745a15b7000de7225503d84d01341725">&#9670;&nbsp;</a></span>Delay()</h2>
@@ -304,7 +302,8 @@ static async Task&lt; Task&lt; TResult &gt; &gt;&#160;</td><td class="memItemRig
 </table>
 </div><div class="memdoc">
 
-<p>Safely returns to a NWScript context from another thread. </p>
+<p>Safely returns to a NWScript context from another thread.<br  />
+ This must ALWAYS be called after an external callback, or thread switch before using any <a class="el" href="namespaceNWN.html">NWN</a> APIs. </p>
 
 </div>
 </div>

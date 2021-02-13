@@ -161,329 +161,43 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <p>To get started, it is recommended to start by making a copy of the sample project found <a href="https://github.com/nwn-dotnet/NWN.Samples/tree/master/managed/plugin-sample">HERE</a> with the package dependencies already setup for you.</p>
 <p>The core of NWN.Managed is built around a dependency injection model, and the library expects you to implement features in your plugins a similar way.</p>
 <p>Using a class attribute (ServiceBinding), the system will automatically wire up all of the dependencies for that class as defined in the parameters of its constructor:</p>
-<p><b>Example: Basic Script Handler</b> </p><div class="fragment"><div class="line">using NLog;</div>
-<div class="line">using NWN.API;</div>
+<div class="fragment"><div class="line">using NLog;</div>
 <div class="line">using NWN.Services;</div>
 <div class="line"> </div>
-<div class="line">// The &quot;ServiceBinding&quot; attribute indicates this class should be created on start, and available to other classes as a dependency &quot;MyScriptHandler&quot;</div>
-<div class="line">// You can also bind yourself to an interface or base class. The system also supports multiple bindings.</div>
-<div class="line">[ServiceBinding(typeof(MyScriptHandler))]</div>
-<div class="line">public class MyScriptHandler</div>
+<div class="line">// The &quot;ServiceBinding&quot; attribute indicates this class will be created on start, and available to other classes as &quot;ServiceA&quot;.</div>
+<div class="line">[ServiceBinding(typeof(ServiceA))]</div>
+<div class="line">public class ServiceA</div>
 <div class="line">{</div>
-<div class="line">  // Gets the server log. By default, this reports to &quot;nwm.log&quot;</div>
+<div class="line">  // Gets the logger for this service. By default, this reports to &quot;logs.0/nwm.log&quot;</div>
 <div class="line">  private static readonly Logger Log = LogManager.GetCurrentClassLogger();</div>
 <div class="line"> </div>
-<div class="line">  private readonly NativeEventService eventService;</div>
-<div class="line"> </div>
-<div class="line">  // As this class has the ServiceBinding attribute, the constructor of this class will be called during server startup.</div>
-<div class="line">  // The EventService is a core service from NWN.Managed. As it is defined as a constructor parameter, it will be injected during startup.</div>
-<div class="line">  public MyScriptHandler(NativeEventService eventService)</div>
+<div class="line">  // As &quot;ServiceA&quot; has the ServiceBinding attribute, this constructor will be called during server startup.</div>
+<div class="line">  public ServiceA()</div>
 <div class="line">  {</div>
-<div class="line">    this.eventService = eventService;</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  // This function will be called as if the same script was called by a toolset event, or by another script.</div>
-<div class="line">  // Script name must be &lt;= 16 characters similar to the toolset.</div>
-<div class="line">  // This function must always return void, or a bool in the case of a conditional.</div>
-<div class="line">  // The NwObject parameter is optional, but if defined, must always be a single parameter of the NWObject type.</div>
-<div class="line">  [ScriptHandler(&quot;test_nwscript&quot;)]</div>
-<div class="line">  private void OnScriptCalled(CallInfo callInfo)</div>
-<div class="line">  {</div>
-<div class="line">    Log.Info($&quot;test_nwscript called by {callInfo.ObjectSelf.Name}&quot;);</div>
+<div class="line">    Log.Info(&quot;Service A Loaded!&quot;);</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-</div><!-- fragment --><p><b>Example: Chat Command System using interfaces</b> </p><div class="fragment"><div class="line">using System.Collections.Generic;</div>
-<div class="line">using System.Linq;</div>
-<div class="line">using NWN.API;</div>
-<div class="line">using NWN.API.Events;</div>
-<div class="line">using NWN.Services;</div>
 <div class="line"> </div>
-<div class="line">// Our base chat command interface...</div>
-<div class="line">public interface IChatCommand</div>
+<div class="line">// This class will be available to other classes as &quot;ServiceB&quot;.</div>
+<div class="line">[ServiceBinding(typeof(ServiceB))]</div>
+<div class="line">public class ServiceB</div>
 <div class="line">{</div>
-<div class="line">  string Command { get; }</div>
-<div class="line">  void ExecuteCommand(NwPlayer caller);</div>
-<div class="line">}</div>
+<div class="line">  private static readonly Logger Log = LogManager.GetCurrentClassLogger();</div>
 <div class="line"> </div>
-<div class="line">// ...Each one of our commands implements the IChatCommand interface...</div>
-<div class="line">[ServiceBinding(typeof(IChatCommand))]</div>
-<div class="line">public class GpCommand : IChatCommand</div>
-<div class="line">{</div>
-<div class="line">  public string Command { get; } = &quot;!gp&quot;;</div>
-<div class="line">  private const int AMOUNT = 10000;</div>
-<div class="line"> </div>
-<div class="line">  public void ExecuteCommand(NwPlayer caller)</div>
+<div class="line">  // As &quot;ServiceB&quot; also has the ServiceBinding attribute, this constructor will also be called during server startup,</div>
+<div class="line">  // but since &quot;ServiceA&quot; is specified as a parameter (dependency), it will only be started after &quot;ServiceA&quot; has loaded.</div>
+<div class="line">  public ServiceB(ServiceA serviceA)</div>
 <div class="line">  {</div>
-<div class="line">    caller.Gold += AMOUNT;</div>
+<div class="line">    Log.Info(&quot;Service B Loaded!&quot;);</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-<div class="line"> </div>
-<div class="line">/// ...and uses the interface type instead of the class type inside the ServiceBinding attribute.</div>
-<div class="line">[ServiceBinding(typeof(IChatCommand))]</div>
-<div class="line">public class SaveCommand : IChatCommand</div>
-<div class="line">{</div>
-<div class="line">  public string Command { get; } = &quot;!save&quot;;</div>
-<div class="line"> </div>
-<div class="line">  public void ExecuteCommand(NwPlayer caller)</div>
-<div class="line">  {</div>
-<div class="line">    caller.ExportCharacter();</div>
-<div class="line">    caller.SendServerMessage(&quot;Character Saved&quot;);</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line">[ServiceBinding(typeof(ChatHandler))]</div>
-<div class="line">public class ChatHandler</div>
-<div class="line">{</div>
-<div class="line">  private readonly List&lt;IChatCommand&gt; chatCommands;</div>
-<div class="line"> </div>
-<div class="line">  // We set the EventService as a dependency so we can subscribe to the module chat event.</div>
-<div class="line">  // And we add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.</div>
-<div class="line">  public ChatHandler(NativeEventService eventService, IEnumerable&lt;IChatCommand&gt; commands)</div>
-<div class="line">  {</div>
-<div class="line">    // Store all define chat commands.</div>
-<div class="line">    this.chatCommands = commands.ToList();</div>
-<div class="line"> </div>
-<div class="line">    // Using the event service, subscribe to the global module chat event. When this event occurs, we call the OnChatMessage method.</div>
-<div class="line">    eventService.Subscribe&lt;NwModule, ModuleEvents.OnPlayerChat&gt;(NwModule.Instance, OnChatMessage);</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  public void OnChatMessage(ModuleEvents.OnPlayerChat eventInfo)</div>
-<div class="line">  {</div>
-<div class="line">    // Get the message from the event.</div>
-<div class="line">    string message = eventInfo.Message;</div>
-<div class="line"> </div>
-<div class="line">    // Loop through all of our created commands, and execute the behaviour of the one that matches.</div>
-<div class="line">    foreach (IChatCommand command in chatCommands)</div>
-<div class="line">    {</div>
-<div class="line">      if (command.Command == message)</div>
-<div class="line">      {</div>
-<div class="line">        command.ExecuteCommand(eventInfo.Sender);</div>
-<div class="line">        break;</div>
-<div class="line">      }</div>
-<div class="line">    }</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-</div><!-- fragment --><p><b>Example: Find a trigger by tag and attach OnEnter event</b> </p><div class="fragment"><div class="line">using System.Linq;</div>
-<div class="line">using NLog;</div>
-<div class="line">using NWN.API;</div>
-<div class="line">using NWN.API.Events;</div>
-<div class="line">using NWN.Services;</div>
-<div class="line"> </div>
-<div class="line">namespace Sample</div>
-<div class="line">{</div>
-<div class="line">    // [ServiceBinding] indicates that this class will be created during server startup.</div>
-<div class="line">    [ServiceBinding(typeof(MyPluginService))]</div>
-<div class="line">    public class MyPluginService</div>
-<div class="line">    {</div>
-<div class="line">        private static readonly Logger Log = LogManager.GetCurrentClassLogger();</div>
-<div class="line"> </div>
-<div class="line">        // Called at startup. NWN.Managed resolves EventService for us.</div>
-<div class="line">        public MyPluginService(NativeEventService eventService)</div>
-<div class="line">        {</div>
-<div class="line">            var trigger = NwObject.FindObjectsWithTag&lt;NwTrigger&gt;(&quot;mytrigger&quot;).FirstOrDefault();</div>
-<div class="line">            eventService.Subscribe&lt;NwTrigger, TriggerEvents.OnEnter&gt;(trigger, OnTriggerEnter);</div>
-<div class="line">        }</div>
-<div class="line"> </div>
-<div class="line">        private void OnTriggerEnter(TriggerEvents.OnEnter obj)</div>
-<div class="line">        {</div>
-<div class="line">            if (obj.EnteringObject is NwPlayer player)</div>
-<div class="line">            {</div>
-<div class="line">                Log.Info(&quot;Player entered trigger: &quot; + player?.PlayerName);</div>
-<div class="line">            }</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line">}</div>
+</div><!-- fragment --><p>Checking in the console or server logs, you should get the following output: </p><div class="fragment"><div class="line">[ServiceA] Service A Loaded!</div>
+<div class="line">[ServiceB] Service B Loaded!</div>
 </div><!-- fragment --><h2>Core Services</h2>
-<h3>Event Service (NWN.Services.EventService)</h3>
-<p><b>Send a pink welcome message to a player when they connect</b> </p><div class="fragment"><div class="line">using NWN.API;</div>
-<div class="line">using NWN.API.Events;</div>
-<div class="line">using NWN.Services;</div>
-<div class="line"> </div>
-<div class="line">[ServiceBinding(typeof(WelcomeMessageService))]</div>
-<div class="line">public class WelcomeMessageService</div>
-<div class="line">{</div>
-<div class="line">  public WelcomeMessageService(NativeEventService eventService)</div>
-<div class="line">  {</div>
-<div class="line">    eventService.Subscribe&lt;NwModule, ModuleEvents.OnClientEnter&gt;(NwModule.Instance, OnClientEnter);</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  private void OnClientEnter(ModuleEvents.OnClientEnter eventInfo)</div>
-<div class="line">  {</div>
-<div class="line">    eventInfo.Player.SendServerMessage($&quot;Welcome to the server, {eventInfo.Player.Name}!&quot;, Color.PINK);</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-</div><!-- fragment --><h3>Async Tasks (<a class="el" href="classNWN_1_1API_1_1NwTask.html" title="Awaiters for running NWN code in an async context.">NWN.API.NwTask</a>)</h3>
-<div class="fragment"><div class="line">using System;</div>
-<div class="line">using System.Linq;</div>
-<div class="line">using System.Threading;</div>
-<div class="line">using System.Threading.Tasks;</div>
-<div class="line">using NWN.API;</div>
-<div class="line">using NWN.Services;</div>
-<div class="line"> </div>
-<div class="line">[ServiceBinding(typeof(MyAsyncService))]</div>
-<div class="line">public class MyAsyncService</div>
-<div class="line">{</div>
-<div class="line">  public MyAsyncService()</div>
-<div class="line">  {</div>
-<div class="line">    DoAsyncStuff();</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  private async void DoAsyncStuff()</div>
-<div class="line">  {</div>
-<div class="line">    // Do some heavy work on another thread using a standard task, then return to a safe script context.</div>
-<div class="line">    await Task.Run(() =&gt; Thread.Sleep(1000));</div>
-<div class="line">    await NwTask.SwitchToMainThread();</div>
-<div class="line"> </div>
-<div class="line">    // Wait for a frame, or a certain amount of frames to pass.</div>
-<div class="line">    await NwTask.NextFrame();</div>
-<div class="line">    await NwTask.DelayFrame(100);</div>
-<div class="line"> </div>
-<div class="line">    // Wait for 30 seconds to pass. (DelayCommand replacement)</div>
-<div class="line">    await NwTask.Delay(TimeSpan.FromSeconds(30));</div>
-<div class="line"> </div>
-<div class="line">    // Wait for a certain game period to pass.</div>
-<div class="line">    await NwTask.Delay(NwTimeSpan.FromRounds(2));</div>
-<div class="line">    await NwTask.Delay(NwTimeSpan.FromTurns(3));</div>
-<div class="line">    await NwTask.Delay(NwTimeSpan.FromHours(1));</div>
-<div class="line"> </div>
-<div class="line">    // Wait for an expression to evaluate to true</div>
-<div class="line">    await NwTask.WaitUntil(() =&gt; NwModule.Instance.Players.Count() &gt; 5);</div>
-<div class="line"> </div>
-<div class="line">    // Wait for a value to change.</div>
-<div class="line">    await NwTask.WaitUntilValueChanged(() =&gt; NwModule.Instance.Players.Count());</div>
-<div class="line"> </div>
-<div class="line">    // Start some tasks.</div>
-<div class="line">    Task task1 = Task.Run(() =&gt; true); // Executed in the thread pool, you cannot use NWN APIs here.</div>
-<div class="line"> </div>
-<div class="line">    Task task2 = Task.Run(async () =&gt;</div>
-<div class="line">    {</div>
-<div class="line">      // Executed in the thread pool, you cannot use NWN APIs here.</div>
-<div class="line">      await Task.Delay(TimeSpan.FromSeconds(5));</div>
-<div class="line">      return 20;</div>
-<div class="line">    });</div>
-<div class="line"> </div>
-<div class="line">    Task task3 = NwTask.Run(async () =&gt;</div>
-<div class="line">    {</div>
-<div class="line">      // Executed in the server thread, you can use NWN APIs here.</div>
-<div class="line">      await NwTask.Delay(NwTimeSpan.FromRounds(5));</div>
-<div class="line">      NwModule.Instance.SendMessageToAllDMs(&quot;5 rounds elapsed!&quot;);</div>
-<div class="line">      return 20;</div>
-<div class="line">    });</div>
-<div class="line"> </div>
-<div class="line">    // ...wait for any of them to complete.</div>
-<div class="line">    await NwTask.WhenAny(task1, task2, task3);</div>
-<div class="line"> </div>
-<div class="line">    // ...wait for all of them to complete.</div>
-<div class="line">    await NwTask.WhenAll(task1, task2, task3);</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-</div><!-- fragment --><h3>Loop Service (NWN.Services.LoopService)</h3>
-<p><b>Report the tick rate of the server every server loop.</b> </p><div class="fragment"><div class="line">[ServiceBinding(typeof(IUpdateable))]</div>
-<div class="line">[ServiceBinding(typeof(PerformanceReportService))]</div>
-<div class="line">public class PerformanceReportService : IUpdateable</div>
-<div class="line">{</div>
-<div class="line">  public void Update()</div>
-<div class="line">  {</div>
-<div class="line">    Console.WriteLine($&quot;Current tick rate: {Util.ServerTicksPerSecond}&quot;);</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-</div><!-- fragment --><h3>2DA Factory (<a class="el" href="classNWN_1_1Services_1_1TwoDimArrayFactory.html">NWN.Services.TwoDimArrayFactory</a>)</h3>
-<p><b>Report the amount of XP the player has until their next level.</b> </p><div class="fragment"><div class="line">// This is the deserialization class for this specific type of 2da.</div>
-<div class="line">// We can implement our own helper functions here that operate on the 2da data, and cache it.</div>
-<div class="line">public class ExpTable : ITwoDimArray</div>
-<div class="line">{</div>
-<div class="line">  private readonly List&lt;Entry&gt; entries = new List&lt;Entry&gt;();</div>
-<div class="line"> </div>
-<div class="line">  /// &lt;summary&gt;</div>
-<div class="line">  /// Gets the max possible player level.</div>
-<div class="line">  /// &lt;/summary&gt;</div>
-<div class="line">  public int MaxLevel =&gt; entries[^1].Level;</div>
-<div class="line"> </div>
-<div class="line">  /// &lt;summary&gt;</div>
-<div class="line">  /// Gets the amount of XP needed for the specified level.</div>
-<div class="line">  /// &lt;/summary&gt;</div>
-<div class="line">  /// &lt;param name=&quot;level&quot;&gt;The level to lookup.&lt;/param&gt;</div>
-<div class="line">  public int GetXpForLevel(int level)</div>
-<div class="line">  {</div>
-<div class="line">    return entries.First(entry =&gt; entry.Level == level).XP;</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  /// &lt;summary&gt;</div>
-<div class="line">  /// Gets the current level for a player with the specified XP.</div>
-<div class="line">  /// &lt;/summary&gt;</div>
-<div class="line">  /// &lt;param name=&quot;xp&quot;&gt;The amount of xp.&lt;/param&gt;</div>
-<div class="line">  public int GetLevelFromXp(int xp)</div>
-<div class="line">  {</div>
-<div class="line">    int level = 1;</div>
-<div class="line">    foreach (Entry entry in entries)</div>
-<div class="line">    {</div>
-<div class="line">      if (entry.XP &gt; xp)</div>
-<div class="line">      {</div>
-<div class="line">        break;</div>
-<div class="line">      }</div>
-<div class="line"> </div>
-<div class="line">      level = entry.Level;</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    return level;</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  void ITwoDimArray.DeserializeRow(int rowIndex, TwoDimEntry twoDimEntry)</div>
-<div class="line">  {</div>
-<div class="line">    // Use twoDimEntry(columnName) to get your serialized data, then convert it here.</div>
-<div class="line">    int level = int.Parse(twoDimEntry(&quot;Level&quot;));</div>
-<div class="line">    uint xp = ParseXpColumn(twoDimEntry(&quot;XP&quot;));</div>
-<div class="line"> </div>
-<div class="line">    if (xp &gt; int.MaxValue)</div>
-<div class="line">    {</div>
-<div class="line">      return;</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    entries.Add(new Entry(level, (int) xp));</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  private uint ParseXpColumn(string value)</div>
-<div class="line">  {</div>
-<div class="line">    return uint.TryParse(value, out uint retVal) ? retVal : uint.Parse(value.Substring(2), NumberStyles.AllowHexSpecifier);</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  private readonly struct Entry</div>
-<div class="line">  {</div>
-<div class="line">    public readonly int Level;</div>
-<div class="line">    public readonly int XP;</div>
-<div class="line"> </div>
-<div class="line">    public Entry(int level, int xp)</div>
-<div class="line">    {</div>
-<div class="line">      Level = level;</div>
-<div class="line">      XP = xp;</div>
-<div class="line">    }</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line">[ServiceBinding(typeof(XPReportService))]</div>
-<div class="line">public class XPReportService</div>
-<div class="line">{</div>
-<div class="line">  private readonly ExpTable expTable;</div>
-<div class="line"> </div>
-<div class="line">  public XPReportService(NativeEventService eventService, TwoDimArrayFactory twoDimArrayFactory)</div>
-<div class="line">  {</div>
-<div class="line">    eventService.Subscribe&lt;NwModule, ModuleEvents.OnClientEnter&gt;(NwModule.Instance, OnClientEnter);</div>
-<div class="line">    expTable = twoDimArrayFactory.Get2DA&lt;ExpTable&gt;(&quot;exptable&quot;);</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  private void OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)</div>
-<div class="line">  {</div>
-<div class="line">    NwPlayer player = onClientEnter.Player;</div>
-<div class="line">    int nextLevel = expTable.GetLevelFromXp(player.Xp) + 1;</div>
-<div class="line">    if (nextLevel &gt; expTable.MaxLevel)</div>
-<div class="line">    {</div>
-<div class="line">      return;</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    player.SendServerMessage($&quot;Next level up: {expTable.GetXpForLevel(nextLevel) - player.Xp}&quot;);</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+<p>NWN.Managed is bundled with a core set of services that you can depend on in your own plugins and systems.</p>
+<p>These services handle game events, task scheduling, and more! Examples of how to use these services can be found in the <a href="https://nwn-dotnet.github.io/NWN.Managed/classNWN_1_1Services_1_1ServiceBindingAttribute.html#details">NWN.Managed docs</a>.</p>
+<p>You can also find a full list of the services bundled by NWN.Managed <a href="https://nwn-dotnet.github.io/NWN.Managed/namespaceNWN_1_1Services.html">HERE</a>. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

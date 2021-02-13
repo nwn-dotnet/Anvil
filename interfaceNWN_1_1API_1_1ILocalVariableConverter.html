@@ -88,21 +88,28 @@ $(document).ready(function(){initNavTree('interfaceNWN_1_1API_1_1ILocalVariableC
 <div class="title">NWN.API.ILocalVariableConverter&lt; T &gt; Interface Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for NWN.API.ILocalVariableConverter&lt; T &gt;:</div>
-<div class="dyncontent">
+
+<p>The interface used in conjunction with the <a class="el" href="classNWN_1_1API_1_1LocalVariableConverterAttribute.html" title="The attribute used in conjunction with ILocalVariableConverter&lt;T&gt; to implement a variable converter f...">LocalVariableConverterAttribute</a> to implement a variable converter for the specified type.  
+ <a href="interfaceNWN_1_1API_1_1ILocalVariableConverter.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for NWN.API.ILocalVariableConverter&lt; T &gt;:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="interfaceNWN_1_1API_1_1ILocalVariableConverter__inherit__graph.png" border="0" usemap="#aNWN_8API_8ILocalVariableConverter_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aNWN_8API_8ILocalVariableConverter_3_01T_01_4_inherit__map" id="aNWN_8API_8ILocalVariableConverter_3_01T_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,256,107"/>
+<area shape="rect" title="The interface used in conjunction with the LocalVariableConverterAttribute to implement a variable co..." alt="" coords="5,80,256,107"/>
 <area shape="rect" title=" " alt="" coords="50,5,211,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for NWN.API.ILocalVariableConverter&lt; T &gt;:</div>
-<div class="dyncontent">
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for NWN.API.ILocalVariableConverter&lt; T &gt;:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="interfaceNWN_1_1API_1_1ILocalVariableConverter__coll__graph.png" border="0" usemap="#aNWN_8API_8ILocalVariableConverter_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aNWN_8API_8ILocalVariableConverter_3_01T_01_4_coll__map" id="aNWN_8API_8ILocalVariableConverter_3_01T_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,256,107"/>
+<area shape="rect" title="The interface used in conjunction with the LocalVariableConverterAttribute to implement a variable co..." alt="" coords="5,80,256,107"/>
 <area shape="rect" title=" " alt="" coords="50,5,211,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -119,7 +126,43 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLocal</b> (<a clas
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearLocal</b> (<a class="el" href="classNWN_1_1API_1_1NwObject.html">NwObject</a> nwObject, string name)</td></tr>
 <tr class="separator:a0097241069ee3d0de3e8231b7e01dde7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this interface was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The interface used in conjunction with the <a class="el" href="classNWN_1_1API_1_1LocalVariableConverterAttribute.html" title="The attribute used in conjunction with ILocalVariableConverter&lt;T&gt; to implement a variable converter f...">LocalVariableConverterAttribute</a> to implement a variable converter for the specified type. </p>
+<h2>Examples</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Store a C# DateTime object in a local variable by setting an epoch timestamp.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> System;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.<a class="code" href="namespaceNWN_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceNWN.html">NWN</a>.Core;</div>
+<div class="line"> </div>
+<div class="line">[LocalVariableConverter(typeof(DateTime))]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>DateTimeLocalVariableConverter : ILocalVariableConverter&lt;DateTime&gt;</div>
+<div class="line">{</div>
+<div class="line">  <span class="keyword">public</span> DateTime GetLocal(NwObject nwObject, <span class="keywordtype">string</span> name)</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keywordflow">return</span> DateTime.UnixEpoch + TimeSpan.FromSeconds(NWScript.GetLocalInt(nwObject, name));</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">public</span> <span class="keywordtype">void</span> SetLocal(NwObject nwObject, <span class="keywordtype">string</span> name, DateTime value)</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keywordtype">int</span> seconds = (int)(value.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds;</div>
+<div class="line">    NWScript.SetLocalInt(nwObject, name, seconds);</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">public</span> <span class="keywordtype">void</span> ClearLocal(NwObject nwObject, <span class="keywordtype">string</span> name)</div>
+<div class="line">  {</div>
+<div class="line">    NWScript.DeleteLocalInt(nwObject, name);</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of variable handled by this converter.</td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>The documentation for this interface was generated from the following file:<ul>
 <li>src/main/NWN/API/Variable/Local/ILocalVariableConverter.cs</li>
 </ul>
 </div><!-- contents -->

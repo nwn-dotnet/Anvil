@@ -1,4 +1,4 @@
 <map id="NWN.Services.NativeEventService" name="NWN.Services.NativeEventService">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,188,121"/>
+<area shape="rect" id="node1" title="Provides access to subscribe and unsubscribe from object events." alt="" coords="5,80,188,121"/>
 <area shape="rect" id="node2" href="$interfaceNWN_1_1Services_1_1IScriptDispatcher.html" title="Implement in a service to add a custom handler for event scripts." alt="" coords="35,5,158,32"/>
 </map>

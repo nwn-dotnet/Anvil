@@ -1,7 +1,4 @@
 <map id="NWN.API.NwFaction" name="NWN.API.NwFaction">
-<area shape="rect" id="node1" title="The faction info of a Creature/Player/GameObject." alt="" coords="38,247,183,273"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,157,173,184"/>
-<area shape="rect" id="node3" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="198,157,373,184"/>
-<area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwObject.html" title=" " alt="" coords="245,81,325,108"/>
-<area shape="rect" id="node5" title=" " alt="" coords="204,5,367,32"/>
+<area shape="rect" id="node1" title="The faction info of a Creature/Player/GameObject." alt="" coords="17,80,162,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,173,32"/>
 </map>

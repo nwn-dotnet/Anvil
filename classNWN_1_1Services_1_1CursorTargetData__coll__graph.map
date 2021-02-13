@@ -1,5 +1,5 @@
 <map id="NWN.Services.CursorTargetData" name="NWN.Services.CursorTargetData">
-<area shape="rect" id="node1" title=" " alt="" coords="5,399,219,425"/>
+<area shape="rect" id="node1" title="The selection info returned from the CursorTargetService when a selection is made." alt="" coords="5,399,219,425"/>
 <area shape="rect" id="node2" href="$classNWN_1_1API_1_1NwPlayer.html" title=" " alt="" coords="43,309,181,336"/>
 <area shape="rect" id="node3" href="$classNWN_1_1API_1_1NwCreature.html" title=" " alt="" coords="67,233,157,260"/>
 <area shape="rect" id="node4" href="$classNWN_1_1API_1_1NwGameObject.html" title=" " alt="" coords="55,157,169,184"/>
