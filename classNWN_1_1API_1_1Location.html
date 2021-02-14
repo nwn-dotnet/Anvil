@@ -124,6 +124,9 @@ IEnumerable&lt; <a class="el" href="classNWN_1_1API_1_1NwCreature.html">NwCreatu
 <tr class="memitem:a4f807a68f1086a77b0bd16e6fa94d918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#a4f807a68f1086a77b0bd16e6fa94d918">ApplyEffect</a> (EffectDuration durationType, <a class="el" href="classNWN_1_1API_1_1Effect.html">Effect</a> effect, TimeSpan duration=default)</td></tr>
 <tr class="memdesc:a4f807a68f1086a77b0bd16e6fa94d918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the specified effect at this location.  <a href="classNWN_1_1API_1_1Location.html#a4f807a68f1086a77b0bd16e6fa94d918">More...</a><br /></td></tr>
 <tr class="separator:a4f807a68f1086a77b0bd16e6fa94d918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aa55652263d1bdf1ef78a764ec497bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNWN_1_1API_1_1Location.html#a9aa55652263d1bdf1ef78a764ec497bf">CreateTrap</a> (TrapBaseType trap, float size=2.0f, string tag=&quot;&quot;, string disarm=&quot;&quot;, string triggered=&quot;&quot;)</td></tr>
+<tr class="memdesc:a9aa55652263d1bdf1ef78a764ec497bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the specified trap.  <a href="classNWN_1_1API_1_1Location.html#a9aa55652263d1bdf1ef78a764ec497bf">More...</a><br /></td></tr>
+<tr class="separator:a9aa55652263d1bdf1ef78a764ec497bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -218,6 +221,64 @@ Properties</h2></td></tr>
     <tr><td class="paramname">durationType</td><td>The duration type to apply with this effect.</td></tr>
     <tr><td class="paramname">effect</td><td>The effect to apply.</td></tr>
     <tr><td class="paramname">duration</td><td>If duration type is EffectDuration.Temporary, the duration of this effect.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9aa55652263d1bdf1ef78a764ec497bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aa55652263d1bdf1ef78a764ec497bf">&#9670;&nbsp;</a></span>CreateTrap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NWN.API.Location.CreateTrap </td>
+          <td>(</td>
+          <td class="paramtype">TrapBaseType&#160;</td>
+          <td class="paramname"><em>trap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>size</em> = <code>2.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>tag</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>disarm</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>triggered</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates the specified trap. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">trap</td><td>The base type of trap.</td></tr>
+    <tr><td class="paramname">size</td><td>The size of the trap. Minimum size allowed is 1.0f. If no value set, defaults to 2.0f.</td></tr>
+    <tr><td class="paramname">tag</td><td>The tag of the trap being created. If no value set, defaults to an empty string.</td></tr>
+    <tr><td class="paramname">disarm</td><td>The script that will fire when the trap is disarmed. If no value set, defaults to an empty string and no script will fire.</td></tr>
+    <tr><td class="paramname">triggered</td><td>The script that will fire when the trap is triggered. If no value set, defaults to an empty string and the default OnTrapTriggered script for the trap type specified will fire instead (as specified in the traps.2da).</td></tr>
   </table>
   </dd>
 </dl>

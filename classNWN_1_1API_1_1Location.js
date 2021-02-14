@@ -2,6 +2,7 @@ var classNWN_1_1API_1_1Location =
 [
     [ "ApplyEffect", "classNWN_1_1API_1_1Location.html#a4f807a68f1086a77b0bd16e6fa94d918", null ],
     [ "Create", "classNWN_1_1API_1_1Location.html#a6a63718493c0a557babadb1793758ef9", null ],
+    [ "CreateTrap", "classNWN_1_1API_1_1Location.html#a9aa55652263d1bdf1ef78a764ec497bf", null ],
     [ "Distance", "classNWN_1_1API_1_1Location.html#ac635616881a756050eb747942f267882", null ],
     [ "DistanceSquared", "classNWN_1_1API_1_1Location.html#a6f21d48a27b05d5f5f467d451b958d39", null ],
     [ "GetNearestCreatures", "classNWN_1_1API_1_1Location.html#a94fd7cc964ec94086be8e329bd4ca9f3", null ],

@@ -11,7 +11,7 @@ var searchData=
   ['confused_1595',['Confused',['../classNWN_1_1API_1_1Effect.html#a1269a123d6abab9d127536fe27be5e43',1,'NWN::API::Effect']]],
   ['copy_1596',['Copy',['../classNWN_1_1API_1_1NwItem.html#a9d940a639a9705f910bd87da8fb71473',1,'NWN::API::NwItem']]],
   ['create_1597',['Create',['../classNWN_1_1API_1_1NwArea.html#a5414b671f5deb5cd318b1f13fb70211f',1,'NWN.API.NwArea.Create()'],['../classNWN_1_1API_1_1NwCreature.html#a36c8243a16892c95520b3c967eba73db',1,'NWN.API.NwCreature.Create()'],['../classNWN_1_1API_1_1NwItem.html#aa01bedecd284575884575037c594b295',1,'NWN.API.NwItem.Create(string template, Location location, bool useAppearAnim=false, string newTag=null)'],['../classNWN_1_1API_1_1NwItem.html#ad800910fe3916e64433bc460393d0513',1,'NWN.API.NwItem.Create(string template, NwGameObject target=null, int stackSize=1, string newTag=null)']]],
-  ['createtrap_1598',['CreateTrap',['../classNWN_1_1API_1_1NwStationary.html#ac3b5965b0a75ec918891a0659adb5e19',1,'NWN::API::NwStationary']]],
+  ['createtrap_1598',['CreateTrap',['../classNWN_1_1API_1_1Location.html#a9aa55652263d1bdf1ef78a764ec497bf',1,'NWN.API.Location.CreateTrap()'],['../classNWN_1_1API_1_1NwStationary.html#ac3b5965b0a75ec918891a0659adb5e19',1,'NWN.API.NwStationary.CreateTrap()']]],
   ['curse_1599',['Curse',['../classNWN_1_1API_1_1Effect.html#a83684d10f9ff381de0a8360aa8b1a46e',1,'NWN::API::Effect']]],
   ['cutscenedominated_1600',['CutsceneDominated',['../classNWN_1_1API_1_1Effect.html#ab252004bdcba739cd59e1a561a6e678b',1,'NWN::API::Effect']]],
   ['cutsceneghost_1601',['CutsceneGhost',['../classNWN_1_1API_1_1Effect.html#acae71fe8b506f02fe048d0f91486873e',1,'NWN::API::Effect']]],
