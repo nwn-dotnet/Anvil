@@ -4,6 +4,9 @@ using NWN.Core;
 
 namespace NWN.API
 {
+  /// <summary>
+  /// Functions for generating random values (numbers, names).
+  /// </summary>
   public static class NwRandom
   {
     /// <summary>

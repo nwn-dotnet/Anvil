@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NWN.API
 {
+  //! ## Examples
+  //! @import AsyncService.cs
+
   /// <summary>
   /// Awaiters for running NWN code in an async context.
   /// </summary>
@@ -22,7 +25,8 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Safely returns to a NWScript context from another thread.
+    /// Safely returns to a NWScript context from another thread.<br/>
+    /// This must ALWAYS be called after an external callback, or thread switch before using any NWN APIs.
     /// </summary>
     public static async Task SwitchToMainThread()
     {

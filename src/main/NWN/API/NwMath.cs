@@ -3,6 +3,9 @@ using System.Numerics;
 
 namespace NWN.API
 {
+  /// <summary>
+  /// Common math functions and constants.
+  /// </summary>
   public static class NwMath
   {
     /// <summary>

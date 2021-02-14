@@ -9,6 +9,12 @@ using NWN.Core;
 
 namespace NWN.Services
 {
+  //! ## Examples
+  //! @include WelcomeMessageService.cs
+
+  /// <summary>
+  /// Provides access to subscribe and unsubscribe from object events.<br/>
+  /// </summary>
   [ServiceBinding(typeof(IScriptDispatcher))]
   [ServiceBinding(typeof(NativeEventService))]
   public sealed class NativeEventService : IScriptDispatcher

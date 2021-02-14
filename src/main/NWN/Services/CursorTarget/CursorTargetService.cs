@@ -6,6 +6,9 @@ using NWN.Core;
 
 namespace NWN.Services
 {
+  /// <summary>
+  /// A managed implementation of selection/target mode logic utilising C# style callbacks.
+  /// </summary>
   [ServiceBinding(typeof(CursorTargetService))]
   public class CursorTargetService
   {

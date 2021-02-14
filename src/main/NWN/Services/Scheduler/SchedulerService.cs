@@ -5,6 +5,12 @@ using NWN.API;
 
 namespace NWN.Services
 {
+  //! ## Examples
+  //! @include SchedulerServiceExample.cs
+
+  /// <summary>
+  /// A service for scheduling tasks to run with a timed delay and/or repeat with a regular interval.
+  /// </summary>
   [ServiceBinding(typeof(IUpdateable))]
   [ServiceBinding(typeof(SchedulerService))]
   public class SchedulerService : IUpdateable
