@@ -58,7 +58,11 @@ namespace NWN.API
       get => faction;
       set
       {
-        Contract.Requires<ArgumentNullException>(value != null, "New faction must not be null.");
+        if (value == null)
+        {
+          throw new ArgumentNullException(nameof(Faction), "New faction must not be null.");
+        }
+
         faction = value;
         faction.AddMember(this);
       }
@@ -1542,7 +1546,10 @@ namespace NWN.API
     /// <param name="level">The level the feat was gained.</param>
     public void AddFeat(Feat feat, int level)
     {
-      Contract.Requires<ArgumentOutOfRangeException>(level > 0 && level <= Creature.m_pStats.m_lstLevelStats.num);
+      if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
+      {
+        throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
+      }
 
       CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
 
@@ -1576,7 +1583,10 @@ namespace NWN.API
     /// <returns>A <see cref="LevelStats"/> object containing level info.</returns>
     public LevelStats GetLevelStats(int level)
     {
-      Contract.Requires<ArgumentOutOfRangeException>(level > 0 && level <= Creature.m_pStats.m_lstLevelStats.num);
+      if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
+      {
+        throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
+      }
 
       CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
       return new LevelStats(this, levelStats);

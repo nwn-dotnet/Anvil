@@ -261,8 +261,15 @@ namespace NWN.API
     {
       resRef ??= ResRef;
 
-      Contract.Requires<ArgumentOutOfRangeException>(!string.IsNullOrEmpty(resRef), "The new ResRef must not be empty.");
-      Contract.Requires<ArgumentOutOfRangeException>(resRef.Length <= 16, "The new ResRef must smaller than 17 characters.");
+      if (string.IsNullOrEmpty(resRef))
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must not be empty.");
+      }
+
+      if (resRef.Length > 16)
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must smaller than 17 characters.");
+      }
 
       using CResGFF resGff = new CResGFF();
       using CResStruct resStruct = new CResStruct();
@@ -416,8 +423,15 @@ namespace NWN.API
       areaName ??= Name;
       resRef ??= ResRef;
 
-      Contract.Requires<ArgumentOutOfRangeException>(!string.IsNullOrEmpty(resRef), "The new ResRef must not be empty.");
-      Contract.Requires<ArgumentOutOfRangeException>(resRef.Length <= 16, "The new ResRef must smaller than 17 characters.");
+      if (string.IsNullOrEmpty(resRef))
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must not be empty.");
+      }
+
+      if (resRef.Length > 16)
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must smaller than 17 characters.");
+      }
 
       using CResGFF resGff = new CResGFF();
       using CResStruct resStruct = new CResStruct();
@@ -433,7 +447,7 @@ namespace NWN.API
       resGff.WriteFieldCExoString(resStruct, new CExoString(ResRef), "ResRef");
       resGff.WriteFieldINT(resStruct, Size.X, "Width");
       resGff.WriteFieldINT(resStruct, Size.Y, "Height");
-      resGff.WriteFieldCResRef(resStruct, Area.m_refTileSet, "Height");
+      resGff.WriteFieldCResRef(resStruct, Area.m_refTileSet, "Tileset");
 
       // Less Important Stuff
       resGff.WriteFieldINT(resStruct, Area.m_nChanceOfLightning, "ChanceLightning");
@@ -470,7 +484,7 @@ namespace NWN.API
       // Tile Stuff
       using CResList resList = new CResList();
       resGff.AddList(resList, resStruct, "Tile_List");
-      int tileCount = Size.X * Size.Y;
+      int tileCount = Area.m_nWidth * Area.m_nHeight;
       CNWSTileArray tiles = CNWSTileArray.FromPointer(Area.m_pTile);
 
       for (int i = 0; i < tileCount; i++)
