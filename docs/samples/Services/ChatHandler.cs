@@ -24,7 +24,7 @@ public class GpCommand : IChatCommand
 
   public void ExecuteCommand(NwPlayer caller)
   {
-    caller.GiveGold(AMOUNT);
+    caller.AddGold(AMOUNT);
   }
 }
 
