@@ -162,6 +162,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets a value indicating whether this creature is flat footed.
+    /// </summary>
+    public bool FlatFooted
+    {
+      get => Creature.GetFlatFooted().ToBool();
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
     public bool IsDead
@@ -508,7 +516,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gets or sets the amount of gold carried by this creature.<br/>
-    /// This property does not display feedback to the creature. See <see cref="AddGold"/> and <see cref="TakeGold"/> for options that provide feedback.
+    /// This property does not display feedback to the creature. See <see cref="GiveGold"/> and <see cref="TakeGold"/> for options that provide feedback.
     /// </summary>
     public uint Gold
     {
@@ -667,7 +675,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="amount">The amount of gold to give.</param>
     /// <param name="showFeedback">If true, shows "Acquired xgp" feedback to the creature.</param>
-    public void AddGold(int amount, bool showFeedback = true)
+    public void GiveGold(int amount, bool showFeedback = true)
       => Creature.AddGold(amount, showFeedback.ToInt());
 
     /// <summary>

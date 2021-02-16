@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NWN.API.Constants;
 using NWN.Native.API;
 using ClassType = NWN.API.Constants.ClassType;
 
@@ -10,11 +11,22 @@ namespace NWN.API
   /// </summary>
   public sealed class NwFaction : IEquatable<NwFaction>
   {
-    internal readonly CNWSFaction Faction;
+    private static readonly CFactionManager factionManager = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pFactionManager;
+
+    private readonly CNWSFaction faction;
+
+    public NwFaction(int factionId)
+    {
+      faction = factionManager.GetFaction(factionId);
+      if (faction == null)
+      {
+        throw new ArgumentOutOfRangeException(nameof(factionId), "Invalid faction ID specified.");
+      }
+    }
 
     internal NwFaction(CNWSFaction faction)
     {
-      this.Faction = faction;
+      this.faction = faction;
     }
 
     /// <summary>
@@ -23,7 +35,7 @@ namespace NWN.API
     /// </summary>
     public ClassType MostFrequentClass
     {
-      get => (ClassType)Faction.GetMostFrequentClass();
+      get => (ClassType)faction.GetMostFrequentClass();
     }
 
     /// <summary>
@@ -32,7 +44,7 @@ namespace NWN.API
     /// </summary>
     public int AverageLevel
     {
-      get => Faction.GetAverageLevel();
+      get => faction.GetAverageLevel();
     }
 
     /// <summary>
@@ -41,7 +53,7 @@ namespace NWN.API
     /// </summary>
     public int AverageXP
     {
-      get => Faction.GetAverageXP();
+      get => faction.GetAverageXP();
     }
 
     /// <summary>
@@ -50,7 +62,7 @@ namespace NWN.API
     /// </summary>
     public int Gold
     {
-      get => Faction.GetGold();
+      get => faction.GetGold();
     }
 
     /// <summary>
@@ -59,7 +71,7 @@ namespace NWN.API
     /// </summary>
     public int AverageGoodEvilAlignment
     {
-      get => Faction.GetAverageGoodEvilAlignment();
+      get => faction.GetAverageGoodEvilAlignment();
     }
 
     /// <summary>
@@ -68,7 +80,7 @@ namespace NWN.API
     /// </summary>
     public int AverageLawChaosAlignment
     {
-      get => Faction.GetAverageLawChaosAlignment();
+      get => faction.GetAverageLawChaosAlignment();
     }
 
     /// <summary>
@@ -76,7 +88,7 @@ namespace NWN.API
     /// </summary>
     public NwPlayer Leader
     {
-      get => Faction.GetLeader().ToNwObject<NwPlayer>();
+      get => faction.GetLeader().ToNwObject<NwPlayer>();
     }
 
     /// <summary>
@@ -89,9 +101,9 @@ namespace NWN.API
     {
       List<T> members = new List<T>();
 
-      for (int i = 0; i < Faction.m_listFactionMembers.num; i++)
+      for (int i = 0; i < faction.m_listFactionMembers.num; i++)
       {
-        T member = (*Faction.m_listFactionMembers._OpIndex(i)).ToNwObjectSafe<T>();
+        T member = (*faction.m_listFactionMembers._OpIndex(i)).ToNwObjectSafe<T>();
         members.Add(member);
       }
 
@@ -106,7 +118,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="target">The target object to check.</param>
     public int GetAverageReputation(NwGameObject target)
-      => Faction.GetAverageReputation(target);
+      => faction.GetAverageReputation(target);
 
     /// <summary>
     /// Gets the member with the highest AC in this faction.
@@ -114,7 +126,7 @@ namespace NWN.API
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the best AC member.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
     public NwCreature GetBestACMember(NwCreature referenceCreature = null, bool visible = false)
-      => Faction.GetBestAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      => faction.GetBestAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the member with the lowest AC in this faction that is visible from the specified object.
@@ -122,7 +134,7 @@ namespace NWN.API
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the worst AC member.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
     public NwCreature GetWorstACMember(NwCreature referenceCreature = null, bool visible = false)
-      => Faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      => faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the weakest member in this faction that is visible from the specified object.
@@ -130,7 +142,7 @@ namespace NWN.API
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the weakest member.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
     public NwCreature GetWeakestMember(NwCreature referenceCreature = null, bool visible = false)
-      => Faction.GetWeakestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      => faction.GetWeakestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the strongest member in this faction that is visible from the specified object.
@@ -138,7 +150,7 @@ namespace NWN.API
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the strongest member.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
     public NwCreature GetStrongestMember(NwCreature referenceCreature = null, bool visible = false)
-      => Faction.GetStrongestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      => faction.GetStrongestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the most damaged member in this faction that is visible from the specified object.
@@ -146,7 +158,7 @@ namespace NWN.API
     /// <param name="referenceCreature">The reference creature, used to determine visibility.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
     public NwCreature GetMostDamagedMember(NwCreature referenceCreature = null, bool visible = false)
-      => Faction.GetMostDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      => faction.GetMostDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the least damaged member in this faction that is visible from the specified object.
@@ -154,7 +166,7 @@ namespace NWN.API
     /// <param name="referenceCreature">The reference creature, used to determine visibility.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
     public NwCreature GetLeastDamagedMember(NwCreature referenceCreature = null, bool visible = false)
-      => Faction.GetLeastDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      => faction.GetLeastDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Adjusts how this faction feels about the specified creature.
@@ -162,11 +174,11 @@ namespace NWN.API
     /// <param name="creature">The target creature for the reputation change.</param>
     /// <param name="adjustment">The adjustment in reputation to make.</param>
     public void AdjustReputation(NwCreature creature, int adjustment)
-      => creature.Creature.AdjustReputation(Faction.m_nFactionId, adjustment);
+      => creature.Creature.AdjustReputation(faction.m_nFactionId, adjustment);
 
     internal void AddMember(NwCreature creature)
     {
-      Faction.AddMember(creature);
+      faction.AddMember(creature);
     }
 
     public bool Equals(NwFaction other)
@@ -181,7 +193,7 @@ namespace NWN.API
         return true;
       }
 
-      return Faction.Equals(other.Faction);
+      return faction.Equals(other.faction);
     }
 
     public override bool Equals(object obj)
@@ -191,7 +203,7 @@ namespace NWN.API
 
     public override int GetHashCode()
     {
-      return Faction.GetHashCode();
+      return faction.GetHashCode();
     }
 
     public static bool operator ==(NwFaction left, NwFaction right)
