@@ -51,11 +51,12 @@ jobs:
 
       - name: Version and Tag
         id: bump_version
-        uses: anothrNick/github-tag-action@1.22.0
+        uses: anothrNick/github-tag-action@1.34.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           RELEASE_BRANCHES: master
+          PRERELEASE_SUFFIX: dev
           WITH_V: true
 
       - name: Prepare Outputs
