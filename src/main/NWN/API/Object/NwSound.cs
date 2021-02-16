@@ -30,6 +30,6 @@ namespace NWN.API
     /// <summary>
     /// Set the location of this sound object.
     /// </summary>
-    public void Location(Location destination) => NWScript.SoundObjectSetPosition(this, destination.Position);
+    public new void Location(Location destination) => NWScript.SoundObjectSetPosition(this, destination.Position);
   }
 }
