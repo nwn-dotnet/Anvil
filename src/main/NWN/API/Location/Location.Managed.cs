@@ -227,7 +227,6 @@ namespace NWN.API
     public void CreateTrap(TrapBaseType trap, float size = 2.0f, string tag = "", string disarm = "", string triggered = "")
       => NWScript.CreateTrapAtLocation((int)trap, this, size, tag, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
 
-
     /// <summary>
     /// Returns is the location walkable.
     /// </summary>
