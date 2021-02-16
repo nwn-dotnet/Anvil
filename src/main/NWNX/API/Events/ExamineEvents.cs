@@ -19,7 +19,7 @@ namespace NWNX.API.Events
         Examiner = (NwPlayer) objSelf;
         Examinee = EventsPlugin.GetEventData("EXAMINEE_OBJECT_ID").ParseObject();
 
-        if (Examinee is NwTrappable)
+        if (Examinee is NwTrappable {TrapActive: true})
         {
           TrapExamineSuccess = EventsPlugin.GetEventData("TRAP_EXAMINE_SUCCESS").ParseIntBool();
         }
