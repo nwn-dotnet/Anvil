@@ -114,7 +114,7 @@ jobs:
 
   nuget:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push'
     needs: build
     steps:
       - name: Setup .NET Core
