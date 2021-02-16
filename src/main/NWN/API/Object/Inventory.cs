@@ -7,7 +7,7 @@ namespace NWN.API
 {
   public class Inventory
   {
-    private static readonly CNWBaseItemArray baseItemArray = NWNXLib.Rules().m_pBaseItemArray;
+    private static readonly CNWBaseItemArray BaseItemArray = NWNXLib.Rules().m_pBaseItemArray;
 
     private readonly NwGameObject owner;
     private readonly CItemRepository repo;
@@ -52,8 +52,8 @@ namespace NWN.API
       CNWSItem tmp = new CNWSItem(NwObject.INVALID);
       tmp.m_nBaseItem = (uint)baseItem;
 
-      byte width = baseItemArray.GetBaseItem((int)baseItem).m_nInvSlotWidth;
-      byte height = baseItemArray.GetBaseItem((int)baseItem).m_nInvSlotHeight;
+      byte width = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotWidth;
+      byte height = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotHeight;
 
       for (byte y = 0; y < (repo.m_nHeight - height + 1); y++)
       {

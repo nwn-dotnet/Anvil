@@ -42,7 +42,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the amount of skill points unspent at this level.
+    /// Gets or sets the amount of skill points unspent at this level.
     /// </summary>
     public ushort SkillPointsRemaining
     {

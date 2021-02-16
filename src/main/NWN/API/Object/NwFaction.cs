@@ -11,13 +11,13 @@ namespace NWN.API
   /// </summary>
   public sealed class NwFaction : IEquatable<NwFaction>
   {
-    private static readonly CFactionManager factionManager = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pFactionManager;
+    private static readonly CFactionManager FactionManager = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pFactionManager;
 
     private readonly CNWSFaction faction;
 
     public NwFaction(int factionId)
     {
-      faction = factionManager.GetFaction(factionId);
+      faction = FactionManager.GetFaction(factionId);
       if (faction == null)
       {
         throw new ArgumentOutOfRangeException(nameof(factionId), "Invalid faction ID specified.");

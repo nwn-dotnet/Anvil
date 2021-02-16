@@ -6,7 +6,7 @@ namespace NWN.API
 {
   public static class StringExtensions
   {
-    private static readonly Regex stripColorsRegex = new Regex("<c.+?(?=>)>|<\\/c>");
+    private static readonly Regex StripColorsRegex = new Regex("<c.+?(?=>)>|<\\/c>");
 
     public static bool TryParseFloat(this string floatString, out float result)
     {
@@ -108,7 +108,7 @@ namespace NWN.API
     /// <returns>The new string without any color codes.</returns>
     public static string StripColors(this string input)
     {
-      return stripColorsRegex.Replace(input, "");
+      return StripColorsRegex.Replace(input, string.Empty);
     }
   }
 }

@@ -355,34 +355,42 @@ namespace NWN.API
       {
         Area.SaveCreatures(resGff, resStruct, creatures, false.ToInt());
       }
+
       if (objectFilter.HasFlag(ObjectTypes.Item))
       {
         Area.SaveItems(resGff, resStruct, items, false.ToInt());
       }
+
       if (objectFilter.HasFlag(ObjectTypes.Trigger))
       {
         Area.SaveTriggers(resGff, resStruct, triggers, false.ToInt());
       }
+
       if (objectFilter.HasFlag(ObjectTypes.Door))
       {
         Area.SaveDoors(resGff, resStruct, doors, false.ToInt());
       }
+
       if (objectFilter.HasFlag(ObjectTypes.AreaOfEffect))
       {
         Area.SaveAreaEffects(resGff, resStruct, aoes, false.ToInt());
       }
+
       if (objectFilter.HasFlag(ObjectTypes.Waypoint))
       {
         Area.SaveWaypoints(resGff, resStruct, waypoints, false.ToInt());
       }
+
       if (objectFilter.HasFlag(ObjectTypes.Placeable))
       {
         Area.SavePlaceables(resGff, resStruct, placeables, false.ToInt());
       }
+
       if (objectFilter.HasFlag(ObjectTypes.Store))
       {
         Area.SaveStores(resGff, resStruct, stores, false.ToInt());
       }
+
       if (objectFilter.HasFlag(ObjectTypes.Encounter))
       {
         Area.SaveEncounters(resGff, resStruct, encounters, false.ToInt());

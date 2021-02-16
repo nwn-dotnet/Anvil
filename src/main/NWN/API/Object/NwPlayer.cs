@@ -494,7 +494,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Immediately kicks this player and deletes their character file (.bic)
+    /// Immediately kicks this player and deletes their character file (.bic).
     /// </summary>
     /// <param name="kickMessage">The kick message to show to the player.</param>
     /// <param name="preserveBackup">If true, instead of being deleted it will be renamed to be hidden from the character list, but remain in the vault directory.</param>
