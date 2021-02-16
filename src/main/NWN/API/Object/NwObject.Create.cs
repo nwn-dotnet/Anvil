@@ -120,6 +120,7 @@ namespace NWN.API
         InternalObjectType.Encounter => new NwEncounter(objectId),
         InternalObjectType.Store => new NwStore(objectId),
         InternalObjectType.Sound => new NwSound(objectId),
+        InternalObjectType.AreaOfEffect => new NwAreaOfEffect(objectId),
         _ => new NwObject(objectId),
       };
     }
