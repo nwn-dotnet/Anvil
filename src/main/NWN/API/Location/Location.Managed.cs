@@ -230,7 +230,7 @@ namespace NWN.API
     /// <summary>
     /// Returns is the location walkable.
     /// </summary>
-    public bool IsWalkable(Location location)
-      => NWScript.Get2DAString("surfacemat", "Walk", location.SurfaceMaterial).ParseIntBool();
+    public bool IsWalkable()
+      => NWScript.Get2DAString("surfacemat", "Walk", this.SurfaceMaterial).ParseIntBool();
   }
 }
