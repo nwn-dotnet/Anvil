@@ -2,16 +2,26 @@ using System.Collections.Generic;
 using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(0, InternalObjectType.Module)]
+  [NativeObjectInfo(0, ObjectType.Module)]
   public sealed class NwModule : NwObject
   {
-    internal NwModule(uint objectId) : base(objectId) {}
+    internal readonly CNWSModule Module;
 
-    public static readonly NwModule Instance = new NwModule(NWScript.GetModule());
+    internal NwModule(uint objectId, CNWSModule module) : base(objectId)
+    {
+      this.Module = module;
+    }
+
+    public static implicit operator CNWSModule(NwModule module)
+    {
+      return module?.Module;
+    }
+
+    public static readonly NwModule Instance = new NwModule(NWScript.GetModule(), LowLevel.ServerExoApp.GetModule());
 
     /// <summary>
     /// Gets or sets the XP scale for this module. Must be a value between 0-200.

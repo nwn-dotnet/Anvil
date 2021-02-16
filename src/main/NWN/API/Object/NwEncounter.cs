@@ -1,14 +1,33 @@
 using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Encounter, InternalObjectType.Encounter)]
+  [NativeObjectInfo(ObjectTypes.Encounter, ObjectType.Encounter)]
   public sealed class NwEncounter : NwGameObject
   {
-    internal NwEncounter(uint objectId) : base(objectId) {}
+    internal readonly CNWSEncounter Encounter;
+
+    internal NwEncounter(uint objectId, CNWSEncounter encounter) : base(objectId, encounter)
+    {
+      this.Encounter = encounter;
+    }
+
+    public static implicit operator CNWSEncounter(NwEncounter encounter)
+    {
+      return encounter?.Encounter;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        Encounter.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
+    }
 
     /// <summary>
     /// Gets or sets a value indicating whether this encounter is spawned and active.

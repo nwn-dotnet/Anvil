@@ -1,13 +1,33 @@
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.All, InternalObjectType.Sound)]
+  [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
   public class NwSound : NwGameObject
   {
-    public NwSound(uint objectId) : base(objectId) {}
+    internal readonly CNWSSoundObject SoundObject;
+
+    public NwSound(uint objectId, CNWSSoundObject soundObject) : base(objectId, soundObject)
+    {
+      this.SoundObject = soundObject;
+    }
+
+    public static implicit operator CNWSSoundObject(NwSound sound)
+    {
+      return sound?.SoundObject;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        SoundObject.AddToArea(value.Area);
+        Position = value.Position;
+        Rotation = value.Rotation;
+      }
+    }
 
     /// <summary>
     /// Sets the volume for this sound object (0-127).

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NWN.API;
 using NWN.Core;
@@ -28,13 +29,6 @@ namespace NWNX.API
     public static string AsciiTableString { get; } = UtilPlugin.GetAsciiTableString();
 
     /// <summary>
-    /// Gets an integer hash of a string.
-    /// </summary>
-    /// <param name="str">The string to hash.</param>
-    /// <returns>The hashed string as an integer.</returns>
-    public static int Hash(string str) => UtilPlugin.Hash(str);
-
-    /// <summary>
     /// Gets the vaulte of customTokenNumber.
     /// </summary>
     /// <param name="customTokenNumber">The token number to query.</param>
@@ -56,13 +50,6 @@ namespace NWNX.API
     public static NWN.API.Effect AsEffect(this NWN.API.ItemProperty ip) => UtilPlugin.ItemPropertyToEffect(ip);
 
     /// <summary>
-    /// Strip any color codes from a string.
-    /// </summary>
-    /// <param name="str">The string to strip of color.</param>
-    /// <returns>The new string without any color codes.</returns>
-    public static string StripColors(this string str) => UtilPlugin.StripColors(str);
-
-    /// <summary>
     /// Determines if the supplied resref exists and is of the specified type.
     /// </summary>
     /// <param name="resRef">The resref to check.</param>
@@ -71,15 +58,9 @@ namespace NWNX.API
     public static int IsValidResRef(this string resRef, ResRefType type = ResRefType.Creature) => UtilPlugin.IsValidResRef(resRef);
 
     /// <summary>
-    /// Retrieves an environment variable.
-    /// </summary>
-    /// <param name="sVarname">The environment variable to query.The environment variable to query.</param>
-    /// <returns>The value of the environment variable.</returns>
-    public static string GetEnvironmentVariable(string sVarname) => UtilPlugin.GetEnvironmentVariable(sVarname);
-
-    /// <summary>
     /// Gets or sets the module real life minutes per in game hour.
     /// </summary>
+    [Obsolete("Use NWServer.WorldTimer.MinutesPerHour instead.")]
     public static int MinutesPerHour
     {
       get => UtilPlugin.GetMinutesPerHour();
@@ -121,6 +102,7 @@ namespace NWNX.API
     /// <summary>
     /// Gets the server's current tick rate.
     /// </summary>
+    [Obsolete]
     public static int ServerTicksPerSecond
     {
       get => UtilPlugin.GetServerTicksPerSecond();
@@ -180,6 +162,7 @@ namespace NWNX.API
     /// <summary>
     /// Sets the NWScript instruction limit. -1 resets the value to default.
     /// </summary>
+    [Obsolete("Use NwServer.InstructionLimit instead.")]
     public static int InstructionLimit
     {
       set => UtilPlugin.SetInstructionLimit(value);
@@ -209,6 +192,7 @@ namespace NWNX.API
     /// <summary>
     /// Gets the absolute path of the server's home directory (-userDirectory).
     /// </summary>
+    [Obsolete("Use NwServer.UserDirectory instead.")]
     public static string UserDirectory => UtilPlugin.GetUserDirectory();
 
     /// <summary>

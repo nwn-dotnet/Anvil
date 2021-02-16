@@ -1,14 +1,33 @@
 using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Trigger, InternalObjectType.Trigger)]
+  [NativeObjectInfo(ObjectTypes.Trigger, ObjectType.Trigger)]
   public sealed class NwTrigger : NwTrappable
   {
-    internal NwTrigger(uint objectId) : base(objectId) {}
+    internal readonly CNWSTrigger Trigger;
+
+    internal NwTrigger(uint objectId, CNWSTrigger trigger) : base(objectId, trigger)
+    {
+      this.Trigger = trigger;
+    }
+
+    public static implicit operator CNWSTrigger(NwTrigger trigger)
+    {
+      return trigger?.Trigger;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        Trigger.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
+    }
 
     /// <summary>
     /// Gets all objects of the given type that are currently in this trigger.

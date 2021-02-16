@@ -4,7 +4,7 @@ using System.Reflection;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
@@ -106,20 +106,27 @@ namespace NWN.API
 
     private static NwObject ConstructManagedObject(uint objectId)
     {
-      return ((InternalObjectType)ObjectPlugin.GetInternalObjectType(objectId)) switch
+      ICGameObject gameObject = LowLevel.ServerExoApp.GetGameObject(objectId);
+      if (gameObject == null)
       {
-        InternalObjectType.Invalid => null,
-        InternalObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE ? new NwPlayer(objectId) : new NwCreature(objectId),
-        InternalObjectType.Item => new NwItem(objectId),
-        InternalObjectType.Placeable => new NwPlaceable(objectId),
-        InternalObjectType.Module => NwModule.Instance,
-        InternalObjectType.Area => new NwArea(objectId),
-        InternalObjectType.Trigger => new NwTrigger(objectId),
-        InternalObjectType.Door => new NwDoor(objectId),
-        InternalObjectType.Waypoint => new NwWaypoint(objectId),
-        InternalObjectType.Encounter => new NwEncounter(objectId),
-        InternalObjectType.Store => new NwStore(objectId),
-        InternalObjectType.Sound => new NwSound(objectId),
+        return null;
+      }
+
+      return (ObjectType)gameObject.m_nObjectType switch
+      {
+        ObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE
+          ? new NwPlayer(objectId, gameObject.AsNWSCreature(), LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId), gameObject.AsNWSPlayerTURD())
+          : new NwCreature(objectId, gameObject.AsNWSCreature()),
+        ObjectType.Item => new NwItem(objectId, gameObject.AsNWSItem()),
+        ObjectType.Placeable => new NwPlaceable(objectId, gameObject.AsNWSPlaceable()),
+        ObjectType.Module => NwModule.Instance,
+        ObjectType.Area => new NwArea(objectId, gameObject.AsNWSArea()),
+        ObjectType.Trigger => new NwTrigger(objectId, gameObject.AsNWSTrigger()),
+        ObjectType.Door => new NwDoor(objectId, gameObject.AsNWSDoor()),
+        ObjectType.Waypoint => new NwWaypoint(objectId, gameObject.AsNWSWaypoint()),
+        ObjectType.Encounter => new NwEncounter(objectId, gameObject.AsNWSEncounter()),
+        ObjectType.Store => new NwStore(objectId, gameObject.AsNWSStore()),
+        ObjectType.Sound => new NwSound(objectId, gameObject.AsNWSSoundObject()),
         _ => new NwObject(objectId),
       };
     }
@@ -129,9 +136,9 @@ namespace NWN.API
       return GetNativeObjectInfo(typeof(T)).ObjectType;
     }
 
-    internal static InternalObjectType GetInternalObjectType<T>() where T : NwObject
+    internal static ObjectType GetNativeObjectType<T>() where T : NwObject
     {
-      return GetNativeObjectInfo(typeof(T)).InternalObjectType;
+      return GetNativeObjectInfo(typeof(T)).NativeObjectType;
     }
 
     private static NativeObjectInfoAttribute GetNativeObjectInfo(Type type)

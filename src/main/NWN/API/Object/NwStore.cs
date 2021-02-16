@@ -1,13 +1,33 @@
+using System;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Store, InternalObjectType.Store)]
+  [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
   public sealed class NwStore : NwGameObject
   {
-    internal NwStore(uint objectId) : base(objectId) {}
+    internal readonly CNWSStore Store;
+
+    internal NwStore(uint objectId, CNWSStore store) : base(objectId, store)
+    {
+      this.Store = store;
+    }
+
+    public static implicit operator CNWSStore(NwStore store)
+    {
+      return store?.Store;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        Store.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
+    }
 
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
@@ -43,6 +63,16 @@ namespace NWN.API
     public void Open(NwPlayer player, int bonusMarkup = 0, int bonusMarkDown = 0)
     {
       NWScript.OpenStore(this, player, bonusMarkup, bonusMarkDown);
+    }
+
+    public void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      Store.AcquireItem(item.Item, true.ToInt(), 0xFF, 0xFF);
     }
   }
 }

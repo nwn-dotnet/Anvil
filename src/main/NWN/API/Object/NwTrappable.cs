@@ -1,12 +1,13 @@
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
+using NWN.Native.API;
 
 namespace NWN.API
 {
   public abstract class NwTrappable : NwGameObject
   {
-    internal NwTrappable(uint objectId) : base(objectId) {}
+    internal NwTrappable(uint objectId, CNWSObject gameObject) : base(objectId, gameObject) {}
 
     /// <summary>
     /// Gets a value indicating whether this object is trapped.

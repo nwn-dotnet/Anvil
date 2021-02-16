@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using NWN.API.Constants;
-using NWN.Core;
+using NWN.Native.API;
+using ClassType = NWN.API.Constants.ClassType;
 
 namespace NWN.API
 {
@@ -11,11 +11,22 @@ namespace NWN.API
   /// </summary>
   public sealed class NwFaction : IEquatable<NwFaction>
   {
-    internal readonly NwGameObject GameObject;
+    private static readonly CFactionManager FactionManager = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pFactionManager;
 
-    internal NwFaction(NwGameObject gameObject)
+    private readonly CNWSFaction faction;
+
+    public NwFaction(int factionId)
     {
-      this.GameObject = gameObject;
+      faction = FactionManager.GetFaction(factionId);
+      if (faction == null)
+      {
+        throw new ArgumentOutOfRangeException(nameof(factionId), "Invalid faction ID specified.");
+      }
+    }
+
+    internal NwFaction(CNWSFaction faction)
+    {
+      this.faction = faction;
     }
 
     /// <summary>
@@ -24,7 +35,7 @@ namespace NWN.API
     /// </summary>
     public ClassType MostFrequentClass
     {
-      get => (ClassType) NWScript.GetFactionMostFrequentClass(GameObject);
+      get => (ClassType)faction.GetMostFrequentClass();
     }
 
     /// <summary>
@@ -33,7 +44,7 @@ namespace NWN.API
     /// </summary>
     public int AverageLevel
     {
-      get => NWScript.GetFactionAverageLevel(GameObject);
+      get => faction.GetAverageLevel();
     }
 
     /// <summary>
@@ -42,7 +53,7 @@ namespace NWN.API
     /// </summary>
     public int AverageXP
     {
-      get => NWScript.GetFactionAverageXP(GameObject);
+      get => faction.GetAverageXP();
     }
 
     /// <summary>
@@ -51,7 +62,7 @@ namespace NWN.API
     /// </summary>
     public int Gold
     {
-      get => NWScript.GetFactionGold(GameObject);
+      get => faction.GetGold();
     }
 
     /// <summary>
@@ -60,7 +71,7 @@ namespace NWN.API
     /// </summary>
     public int AverageGoodEvilAlignment
     {
-      get => NWScript.GetFactionAverageGoodEvilAlignment(GameObject);
+      get => faction.GetAverageGoodEvilAlignment();
     }
 
     /// <summary>
@@ -69,61 +80,7 @@ namespace NWN.API
     /// </summary>
     public int AverageLawChaosAlignment
     {
-      get => NWScript.GetFactionAverageLawChaosAlignment(GameObject);
-    }
-
-    /// <summary>
-    /// Gets the member with the highest AC in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions. Consider using <see cref="VisibleHighestACMember"/> instead.
-    /// </summary>
-    public NwGameObject HighestACMember
-    {
-      get => NWScript.GetFactionBestAC(GameObject, false.ToInt()).ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the member with the lowest AC in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions. Consider using <see cref="VisibleLowestACMember"/> instead.
-    /// </summary>
-    public NwGameObject LowestACMember
-    {
-      get => NWScript.GetFactionWorstAC(GameObject, false.ToInt()).ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the weakest member in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions. Consider using <see cref="VisibleWeakestMember"/> instead.
-    /// </summary>
-    public NwGameObject WeakestMember
-    {
-      get => NWScript.GetFactionWeakestMember(GameObject, false.ToInt()).ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the strongest member in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions. Consider using <see cref="VisibleStrongestMember"/> instead.
-    /// </summary>
-    public NwGameObject StrongestMember
-    {
-      get => NWScript.GetFactionStrongestMember(GameObject, false.ToInt()).ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the most damaged member in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions. Consider using <see cref="VisibleMostDamagedMember"/> instead.
-    /// </summary>
-    public NwGameObject MostDamagedMember
-    {
-      get => NWScript.GetFactionMostDamagedMember(GameObject, false.ToInt()).ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the least damaged member in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions. Consider using <see cref="VisibleLeastDamagedMember"/> instead.
-    /// </summary>
-    public NwGameObject LeastDamagedMember
-    {
-      get => NWScript.GetFactionLeastDamagedMember(GameObject, false.ToInt()).ToNwObject<NwGameObject>();
+      get => faction.GetAverageLawChaosAlignment();
     }
 
     /// <summary>
@@ -131,7 +88,7 @@ namespace NWN.API
     /// </summary>
     public NwPlayer Leader
     {
-      get => NWScript.GetFactionLeader(GameObject).ToNwObject<NwPlayer>();
+      get => faction.GetLeader().ToNwObject<NwPlayer>();
     }
 
     /// <summary>
@@ -140,20 +97,17 @@ namespace NWN.API
     /// </summary>
     /// <typeparam name="T">The type of members to get.</typeparam>
     /// <returns>All members in this faction of type T.</returns>
-    public IEnumerable<T> GetMembers<T>() where T : NwGameObject
+    public unsafe List<T> GetMembers<T>() where T : NwCreature
     {
-      int pcOnly = (typeof(T) == typeof(NwPlayer)).ToInt();
+      List<T> members = new List<T>();
 
-      for (uint obj = NWScript.GetFirstFactionMember(GameObject, pcOnly);
-        obj != NWScript.OBJECT_INVALID;
-        obj = NWScript.GetNextFactionMember(GameObject, pcOnly))
+      for (int i = 0; i < faction.m_listFactionMembers.num; i++)
       {
-        T next = obj.ToNwObject<T>();
-        if (next != null)
-        {
-          yield return next;
-        }
+        T member = (*faction.m_listFactionMembers._OpIndex(i)).ToNwObjectSafe<T>();
+        members.Add(member);
       }
+
+      return members;
     }
 
     /// <summary>
@@ -164,61 +118,55 @@ namespace NWN.API
     /// </summary>
     /// <param name="target">The target object to check.</param>
     public int GetAverageReputation(NwGameObject target)
-      => NWScript.GetFactionAverageReputation(GameObject, target);
+      => faction.GetAverageReputation(target);
 
     /// <summary>
-    /// Gets the member with the highest AC in this faction that is visible from the specified object.
+    /// Gets the member with the highest AC in this faction.
     /// </summary>
-    public async Task<NwGameObject> VisibleHighestACMember(NwGameObject visibleFrom)
-    {
-      await visibleFrom.WaitForObjectContext();
-      return NWScript.GetFactionBestAC(GameObject, true.ToInt()).ToNwObject<NwGameObject>();
-    }
+    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the best AC member.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetBestACMember(NwCreature referenceCreature = null, bool visible = false)
+      => faction.GetBestAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the member with the lowest AC in this faction that is visible from the specified object.
     /// </summary>
-    public async Task<NwGameObject> VisibleLowestACMember(NwGameObject visibleFrom)
-    {
-      await visibleFrom.WaitForObjectContext();
-      return NWScript.GetFactionWorstAC(GameObject, true.ToInt()).ToNwObject<NwGameObject>();
-    }
+    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the worst AC member.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetWorstACMember(NwCreature referenceCreature = null, bool visible = false)
+      => faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the weakest member in this faction that is visible from the specified object.
     /// </summary>
-    public async Task<NwGameObject> VisibleWeakestMember(NwGameObject visibleFrom)
-    {
-      await visibleFrom.WaitForObjectContext();
-      return NWScript.GetFactionWeakestMember(GameObject, true.ToInt()).ToNwObject<NwGameObject>();
-    }
+    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the weakest member.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetWeakestMember(NwCreature referenceCreature = null, bool visible = false)
+      => faction.GetWeakestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the strongest member in this faction that is visible from the specified object.
     /// </summary>
-    public async Task<NwGameObject> VisibleStrongestMember(NwGameObject visibleFrom)
-    {
-      await visibleFrom.WaitForObjectContext();
-      return NWScript.GetFactionStrongestMember(GameObject, true.ToInt()).ToNwObject<NwGameObject>();
-    }
+    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the strongest member.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetStrongestMember(NwCreature referenceCreature = null, bool visible = false)
+      => faction.GetStrongestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the most damaged member in this faction that is visible from the specified object.
     /// </summary>
-    public async Task<NwGameObject> VisibleMostDamagedMember(NwGameObject visibleFrom)
-    {
-      await visibleFrom.WaitForObjectContext();
-      return NWScript.GetFactionMostDamagedMember(GameObject, true.ToInt()).ToNwObject<NwGameObject>();
-    }
+    /// <param name="referenceCreature">The reference creature, used to determine visibility.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetMostDamagedMember(NwCreature referenceCreature = null, bool visible = false)
+      => faction.GetMostDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the least damaged member in this faction that is visible from the specified object.
     /// </summary>
-    public async Task<NwGameObject> VisibleLeastDamagedMember(NwGameObject visibleFrom)
-    {
-      await visibleFrom.WaitForObjectContext();
-      return NWScript.GetFactionLeastDamagedMember(GameObject, true.ToInt()).ToNwObject<NwGameObject>();
-    }
+    /// <param name="referenceCreature">The reference creature, used to determine visibility.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetLeastDamagedMember(NwCreature referenceCreature = null, bool visible = false)
+      => faction.GetLeastDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Adjusts how this faction feels about the specified creature.
@@ -226,7 +174,12 @@ namespace NWN.API
     /// <param name="creature">The target creature for the reputation change.</param>
     /// <param name="adjustment">The adjustment in reputation to make.</param>
     public void AdjustReputation(NwCreature creature, int adjustment)
-      => NWScript.AdjustReputation(creature, GameObject, adjustment);
+      => creature.Creature.AdjustReputation(faction.m_nFactionId, adjustment);
+
+    internal void AddMember(NwCreature creature)
+    {
+      faction.AddMember(creature);
+    }
 
     public bool Equals(NwFaction other)
     {
@@ -240,7 +193,7 @@ namespace NWN.API
         return true;
       }
 
-      return NWScript.GetFactionEqual(GameObject, other.GameObject).ToBool();
+      return faction.Equals(other.faction);
     }
 
     public override bool Equals(object obj)
@@ -250,7 +203,7 @@ namespace NWN.API
 
     public override int GetHashCode()
     {
-      return GameObject != null ? GameObject.GetHashCode() : 0;
+      return faction.GetHashCode();
     }
 
     public static bool operator ==(NwFaction left, NwFaction right)

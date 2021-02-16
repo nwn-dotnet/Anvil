@@ -1,18 +1,72 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API;
-using NWNX.API.Constants;
+using NWN.Native.API;
+using Ability = NWN.API.Constants.Ability;
 using Action = NWN.API.Constants.Action;
+using Alignment = NWN.API.Constants.Alignment;
+using AssociateType = NWN.API.Constants.AssociateType;
+using ClassType = NWN.API.Constants.ClassType;
+using CombatMode = NWN.API.Constants.CombatMode;
+using CreatureSize = NWN.API.Constants.CreatureSize;
+using Feat = NWN.API.Constants.Feat;
+using ImmunityType = NWN.API.Constants.ImmunityType;
+using InventorySlot = NWN.API.Constants.InventorySlot;
+using MovementRate = NWN.API.Constants.MovementRate;
+using ObjectType = NWN.Native.API.ObjectType;
+using RacialType = NWN.API.Constants.RacialType;
+using Skill = NWN.API.Constants.Skill;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Creature, InternalObjectType.Creature)]
+  [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
-    internal NwCreature(uint objectId) : base(objectId) {}
+    internal readonly CNWSCreature Creature;
+
+    private NwFaction faction;
+
+    internal NwCreature(uint objectId, CNWSCreature creature) : base(objectId, creature)
+    {
+      this.Creature = creature;
+      this.faction = new NwFaction(creature.GetFaction());
+      this.Inventory = new Inventory(this, Creature.m_pcItemRepository);
+    }
+
+    public static implicit operator CNWSCreature(NwCreature creature)
+    {
+      return creature?.Creature;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets the faction of this object.
+    /// </summary>
+    public NwFaction Faction
+    {
+      get => faction;
+      set
+      {
+        if (value == null)
+        {
+          throw new ArgumentNullException(nameof(Faction), "New faction must not be null.");
+        }
+
+        faction = value;
+        faction.AddMember(this);
+      }
+    }
 
     /// <summary>
     /// Gets or sets the name of this creature's deity.
@@ -96,6 +150,23 @@ namespace NWN.API
     {
       get => (FootstepType)NWScript.GetFootstepType(this);
       set => NWScript.SetFootstepType((int)value, this);
+    }
+
+    /// <summary>
+    /// Gets or sets the base AC for this creature.
+    /// </summary>
+    public sbyte BaseAC
+    {
+      get => (sbyte)Creature.m_pStats.m_nACNaturalBase;
+      set => Creature.m_pStats.m_nACNaturalBase = (char)value;
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this creature is flat footed.
+    /// </summary>
+    public bool FlatFooted
+    {
+      get => Creature.GetFlatFooted().ToBool();
     }
 
     /// <summary>
@@ -439,12 +510,18 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the amount of gold carried by this creature.<br/>
-    /// See <see cref="GiveGold"/>, <see cref="TakeGold"/> for adding/removing gold from this creature.
+    /// Gets the inventory of this creature.
     /// </summary>
-    public int Gold
+    public Inventory Inventory { get; }
+
+    /// <summary>
+    /// Gets or sets the amount of gold carried by this creature.<br/>
+    /// This property does not display feedback to the creature. See <see cref="GiveGold"/> and <see cref="TakeGold"/> for options that provide feedback.
+    /// </summary>
+    public uint Gold
     {
-      get => NWScript.GetGold(this);
+      get => Creature.m_nGold;
+      set => Creature.m_nGold = value;
     }
 
     /// <summary>
@@ -500,6 +577,26 @@ namespace NWN.API
         }
 
         return classes.AsReadOnly();
+      }
+    }
+
+    /// <summary>
+    /// Gets an enumerable containing information about this creature's levels (feats, skills, class taken, etc).
+    /// </summary>
+    public unsafe List<LevelStats> LevelStats
+    {
+      get
+      {
+        int statCount = Creature.m_pStats.m_lstLevelStats.num;
+        List<LevelStats> retVal = new List<LevelStats>(statCount);
+
+        for (int i = 0; i < statCount; i++)
+        {
+          CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(i), false);
+          retVal.Add(new LevelStats(this, levelStats));
+        }
+
+        return retVal;
       }
     }
 
@@ -577,29 +674,17 @@ namespace NWN.API
     /// Gives gold to this creature.
     /// </summary>
     /// <param name="amount">The amount of gold to give.</param>
-    public void GiveGold(int amount)
-      => NWScript.GiveGoldToCreature(this, amount);
+    /// <param name="showFeedback">If true, shows "Acquired xgp" feedback to the creature.</param>
+    public void GiveGold(int amount, bool showFeedback = true)
+      => Creature.AddGold(amount, showFeedback.ToInt());
 
     /// <summary>
     /// Takes gold away from this creature.
     /// </summary>
     /// <param name="amount">The amount of gold to take.</param>
-    public async Task TakeGold(int amount)
-    {
-      await WaitForObjectContext();
-      NWScript.TakeGoldFromCreature(amount, this, true.ToInt());
-    }
-
-    /// <summary>
-    /// Gives gold to this creature by taking it from another.
-    /// </summary>
-    /// <param name="amount">The amount of gold to take.</param>
-    /// <param name="target">The target creature to take the gold from.</param>
-    public async Task TakeGoldFrom(int amount, NwCreature target)
-    {
-      await WaitForObjectContext();
-      NWScript.TakeGoldFromCreature(amount, target, false.ToInt());
-    }
+    /// <param name="showFeedback">If true, shows "Lost xgp" feedback to the creature.</param>
+    public void TakeGold(int amount, bool showFeedback = true)
+      => Creature.RemoveGold(amount, showFeedback.ToInt());
 
     /// <summary>
     /// Creates a creature at the specified location.
@@ -666,48 +751,19 @@ namespace NWN.API
       => NWScript.GetAbilityModifier((int)ability, this);
 
     /// <summary>
-    /// Gets the DC to save against for a spell (10 + spell level + relevant ability bonus).
+    /// Gets the last target this creature tried to attack.
     /// </summary>
-    public async Task<int> GetSpellSaveDC()
+    public NwGameObject AttemptedAttackTarget
     {
-      await WaitForObjectContext();
-      return NWScript.GetSpellSaveDC();
+      get => Creature.m_oidAttemptedAttackTarget.ToNwObject<NwGameObject>();
     }
 
     /// <summary>
-    /// Returns the last target this creature tried to attack. Reset at the end of combat.
+    /// Gets the target this creature attempted to cast a spell at.
     /// </summary>
-    public async Task<NwGameObject> GetAttemptedAttackTarget()
+    public NwGameObject AttemptedSpellTarget
     {
-      await WaitForObjectContext();
-      return NWScript.GetAttemptedAttackTarget().ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the target object of this creature's last spell.
-    /// </summary>
-    public async Task<NwGameObject> GetLastSpellTargetObject()
-    {
-      await WaitForObjectContext();
-      return NWScript.GetSpellTargetObject().ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets the target location of this creature's last spell.
-    /// </summary>
-    public async Task<Location> GetLastSpellTargetLocation()
-    {
-      await WaitForObjectContext();
-      return NWScript.GetSpellTargetLocation();
-    }
-
-    /// <summary>
-    /// Gets the target this creature attempted to cast a spell at. Reset at the end of combat.
-    /// </summary>
-    public async Task<NwGameObject> GetAttemptedSpellTarget()
-    {
-      await WaitForObjectContext();
-      return NWScript.GetAttemptedSpellTarget().ToNwObject<NwGameObject>();
+      get => Creature.m_oidAttemptedSpellTarget.ToNwObject<NwGameObject>();
     }
 
     /// <summary>
@@ -750,8 +806,8 @@ namespace NWN.API
       => NWScript.GetIsSkillSuccessful(this, (int)skill, difficultyClass).ToBool();
 
     /// <summary>
-    /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
-    /// Use <see cref="Creature.KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
+    /// Returns true if this creature knows the specified <see cref="Constants.Feat"/>, and can use it.<br/>
+    /// Use <see cref="KnowsFeat"/> to simply check if a creature knows <see cref="Constants.Feat"/>, but may or may not have uses remaining.
     /// </summary>
     public bool HasFeatPrepared(Feat feat)
       => NWScript.GetHasFeat((int)feat, this).ToBool();
@@ -1488,6 +1544,146 @@ namespace NWN.API
     {
       await WaitForObjectContext();
       NWScript.SpeakOneLinerConversation(dialogResRef, tokenTarget);
+    }
+
+    /// <summary>
+    /// Gives this creature the specified feat.<br/>
+    /// Consider using the <see cref="AddFeat(NWN.API.Constants.Feat, int)"/> overload to properly allocate the feat to a level.
+    /// </summary>
+    /// <param name="feat">The feat to give.</param>
+    public void AddFeat(Feat feat)
+    {
+      Creature.m_pStats.AddFeat((ushort)feat);
+    }
+
+    /// <summary>
+    /// Gives this creature the specified feat at a level.<br/>
+    /// Consider using the <see cref="AddFeat(NWN.API.Constants.Feat, int)"/> overload to properly allocate the feat to a level.
+    /// </summary>
+    /// <param name="feat">The feat to give.</param>
+    /// <param name="level">The level the feat was gained.</param>
+    public unsafe void AddFeat(Feat feat, int level)
+    {
+      if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
+      {
+        throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
+      }
+
+      CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1), false);
+
+      levelStats.AddFeat((ushort)feat);
+      Creature.m_pStats.AddFeat((ushort)feat);
+    }
+
+    /// <summary>
+    /// Gets if this creature knows the specified feat.
+    /// </summary>
+    /// <param name="feat">The feat to check.</param>
+    /// <returns>True if the creature knows the feat, otherwise false.</returns>
+    public bool KnowsFeat(Feat feat)
+    {
+      return Creature.m_pStats.HasFeat((ushort)feat).ToBool();
+    }
+
+    /// <summary>
+    /// Removes the specified feat from this creature.
+    /// </summary>
+    /// <param name="feat">The feat to remove.</param>
+    public void RemoveFeat(Feat feat)
+    {
+      Creature.m_pStats.RemoveFeat((ushort)feat);
+    }
+
+    /// <summary>
+    /// Gets the level stat info for the specified level (feat, class, skills, etc.).
+    /// </summary>
+    /// <param name="level">The level to lookup.</param>
+    /// <returns>A <see cref="LevelStats"/> object containing level info.</returns>
+    public unsafe LevelStats GetLevelStats(int level)
+    {
+      if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
+      {
+        throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
+      }
+
+      CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1), false);
+      return new LevelStats(this, levelStats);
+    }
+
+    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      void* itemPtr = item.Item;
+      Creature.AcquireItem(&itemPtr, INVALID, INVALID, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
+    }
+
+    public unsafe byte[] SerializeQuickbar()
+    {
+      void* pData;
+      int dataLength;
+
+      using CResGFF resGff = new CResGFF();
+      using CResStruct resStruct = new CResStruct();
+
+      if (!resGff.CreateGFFFile(resStruct, new CExoString("GFF "), new CExoString("V2.0")).ToBool())
+      {
+        return null;
+      }
+
+      Creature.SaveQuickButtons(resGff, resStruct);
+      resGff.WriteGFFToPointer(&pData, &dataLength);
+
+      byte[] serialized = new byte[dataLength];
+      Marshal.Copy((IntPtr)pData, serialized, 0, dataLength);
+      Marshal.FreeHGlobal((IntPtr)pData);
+
+      return serialized;
+    }
+
+    public unsafe bool DeserializeQuickbar(byte[] serialized)
+    {
+      using CResGFF resGff = new CResGFF();
+      using CResStruct resStruct = new CResStruct();
+
+      IntPtr dataPtr = Marshal.AllocHGlobal(serialized.Length);
+      Marshal.Copy(serialized, 0, dataPtr, serialized.Length);
+
+      void* data = (void*)dataPtr;
+
+      if (!resGff.GetDataFromPointer(data, serialized.Length).ToBool())
+      {
+        return false;
+      }
+
+      resGff.InitializeForWriting();
+
+      if (!resGff.GetTopLevelStruct(resStruct).ToBool())
+      {
+        return false;
+      }
+
+      CExoString sFileType = new CExoString();
+      CExoString sFileVersion = new CExoString();
+      resGff.GetGFFFileInfo(sFileType, sFileVersion);
+
+      if (sFileType.ToString() != "GFF ")
+      {
+        return false;
+      }
+
+      Creature.LoadQuickButtons(resGff, resStruct);
+
+      if (this is NwPlayer player)
+      {
+        CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+        message.SendServerToPlayerGuiQuickbar_SetButton(player, 0, true.ToInt());
+      }
+
+      return true;
     }
   }
 }

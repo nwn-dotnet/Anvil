@@ -3,14 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
+using ItemAppearanceType = NWN.API.Constants.ItemAppearanceType;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.Item, InternalObjectType.Item)]
+  [NativeObjectInfo(ObjectTypes.Item, ObjectType.Item)]
   public sealed class NwItem : NwGameObject
   {
-    internal NwItem(uint objectId) : base(objectId) {}
+    internal readonly CNWSItem Item;
+
+    internal NwItem(uint objectId, CNWSItem item) : base(objectId, item)
+    {
+      this.Item = item;
+      this.Inventory = new Inventory(this, item.m_pItemRepository);
+    }
+
+    public static implicit operator CNWSItem(NwItem item)
+    {
+      return item?.Item;
+    }
+
+    public override Location Location
+    {
+      set
+      {
+        Item.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
+    }
 
     /// <summary>
     /// Gets the original unidentified description for this item.
@@ -19,6 +40,11 @@ namespace NWN.API
     {
       get => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
     }
+
+    /// <summary>
+    /// Gets the inventory of this item, if it is a container.
+    /// </summary>
+    public Inventory Inventory { get; }
 
     /// <summary>
     /// Gets or sets the unidentified description for this item.
@@ -329,5 +355,16 @@ namespace NWN.API
     /// <param name="weaponModel">The model of the weapon<see cref="NWN.API.Constants.ItemAppearanceWeaponModel"/>.</param>
     public int ItemAppearance(ItemAppearanceType type, ItemAppearanceWeaponModel weaponModel)
       => NWScript.GetItemAppearance(this, (int)type, (int)weaponModel);
+
+    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      void* itemPtr = item.Item;
+      Item.AcquireItem(&itemPtr, INVALID, 0xFF, 0xFF, displayFeedback.ToInt());
+    }
   }
 }

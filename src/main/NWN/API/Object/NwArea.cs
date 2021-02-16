@@ -1,14 +1,28 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
+using AssociateType = NWN.API.Constants.AssociateType;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(0, InternalObjectType.Area)]
+  [NativeObjectInfo(0, ObjectType.Area)]
   public sealed class NwArea : NwObject
   {
-    internal NwArea(uint objectId) : base(objectId) { }
+    internal readonly CNWSArea Area;
+
+    internal NwArea(uint objectId, CNWSArea area) : base(objectId)
+    {
+      this.Area = area;
+    }
+
+    public static implicit operator CNWSArea(NwArea area)
+    {
+      return area?.Area;
+    }
 
     /// <summary>
     /// Gets the size of this area.
@@ -116,6 +130,16 @@ namespace NWN.API
     {
       get => NWScript.MusicBackgroundGetBattleTrack(this);
       set => NWScript.MusicBattleChange(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the wind power for this area.<br/>
+    /// Set to 0, 1 or 2.
+    /// </summary>
+    public byte WindPower
+    {
+      get => Area.m_nWindAmount;
+      set => Area.m_nWindAmount = value;
     }
 
     /// <summary>
@@ -231,6 +255,274 @@ namespace NWN.API
           yield return obj;
         }
       }
+    }
+
+    public unsafe byte[] SerializeGIT(ObjectTypes objectFilter = ObjectTypes.All, ICollection<NwGameObject> exclusionList = null, bool exportVarTable = true, bool exportUUID = true, string resRef = null)
+    {
+      resRef ??= ResRef;
+
+      if (string.IsNullOrEmpty(resRef))
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must not be empty.");
+      }
+
+      if (resRef.Length > 16)
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must smaller than 17 characters.");
+      }
+
+      using CResGFF resGff = new CResGFF();
+      using CResStruct resStruct = new CResStruct();
+
+      if (!resGff.CreateGFFFile(resStruct, new CExoString("GIT "), new CExoString("V3.2")).ToBool())
+      {
+        return null;
+      }
+
+      CExoArrayListObjectId creatures = new CExoArrayListObjectId();
+      CExoArrayListObjectId items = new CExoArrayListObjectId();
+      CExoArrayListObjectId doors = new CExoArrayListObjectId();
+      CExoArrayListObjectId triggers = new CExoArrayListObjectId();
+      CExoArrayListObjectId encounters = new CExoArrayListObjectId();
+      CExoArrayListObjectId waypoints = new CExoArrayListObjectId();
+      CExoArrayListObjectId sounds = new CExoArrayListObjectId();
+      CExoArrayListObjectId placeables = new CExoArrayListObjectId();
+      CExoArrayListObjectId stores = new CExoArrayListObjectId();
+      CExoArrayListObjectId aoes = new CExoArrayListObjectId();
+
+      List<NwCreature> addedCreatures = new List<NwCreature>();
+
+      foreach (NwGameObject gameObject in Objects)
+      {
+        if (exclusionList != null && exclusionList.Contains(gameObject))
+        {
+          continue;
+        }
+
+        if (gameObject is NwCreature creature)
+        {
+          if (creature is NwPlayer || creature.AssociateType != AssociateType.None)
+          {
+            continue;
+          }
+
+          // Temporarily set pCreature's areaID to OBJECT_INVALID
+          // When loading the creatures from the GIT, if the creature's areaID is the same as pArea's it
+          // won't call AddToArea() which leaves all the creatures in limbo.
+          creature.Creature.m_oidArea = INVALID;
+          creatures.Add(creature);
+          addedCreatures.Add(creature);
+        }
+        else if (gameObject is NwItem item)
+        {
+          items.Add(item);
+        }
+        else if (gameObject is NwDoor door)
+        {
+          doors.Add(door);
+        }
+        else if (gameObject is NwTrigger trigger)
+        {
+          triggers.Add(trigger);
+        }
+        else if (gameObject is NwEncounter encounter)
+        {
+          encounters.Add(encounter);
+        }
+        else if (gameObject is NwWaypoint waypoint)
+        {
+          waypoints.Add(waypoint);
+        }
+        else if (gameObject is NwSound sound)
+        {
+          sounds.Add(sound);
+        }
+        else if (gameObject is NwPlaceable placeable)
+        {
+          placeables.Add(placeable);
+        }
+        else if (gameObject is NwStore store)
+        {
+          stores.Add(store);
+        }
+        else if (gameObject is NwAreaOfEffect areaOfEffect)
+        {
+          aoes.Add(areaOfEffect);
+        }
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.Creature))
+      {
+        Area.SaveCreatures(resGff, resStruct, creatures, false.ToInt());
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.Item))
+      {
+        Area.SaveItems(resGff, resStruct, items, false.ToInt());
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.Trigger))
+      {
+        Area.SaveTriggers(resGff, resStruct, triggers, false.ToInt());
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.Door))
+      {
+        Area.SaveDoors(resGff, resStruct, doors, false.ToInt());
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.AreaOfEffect))
+      {
+        Area.SaveAreaEffects(resGff, resStruct, aoes, false.ToInt());
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.Waypoint))
+      {
+        Area.SaveWaypoints(resGff, resStruct, waypoints, false.ToInt());
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.Placeable))
+      {
+        Area.SavePlaceables(resGff, resStruct, placeables, false.ToInt());
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.Store))
+      {
+        Area.SaveStores(resGff, resStruct, stores, false.ToInt());
+      }
+
+      if (objectFilter.HasFlag(ObjectTypes.Encounter))
+      {
+        Area.SaveEncounters(resGff, resStruct, encounters, false.ToInt());
+      }
+
+      Area.SaveStores(resGff, resStruct, sounds, false.ToInt());
+      Area.SaveProperties(resGff, resStruct);
+
+      if (exportVarTable)
+      {
+        Area.m_ScriptVars.SaveVarTable(resGff, resStruct);
+      }
+
+      if (exportUUID)
+      {
+        Area.m_pUUID.SaveToGff(resGff, resStruct);
+      }
+
+      void* pData;
+      int dataLength;
+
+      resGff.WriteGFFToPointer(&pData, &dataLength);
+      byte[] serialized = new byte[dataLength];
+      Marshal.Copy((IntPtr)pData, serialized, 0, dataLength);
+      Marshal.FreeHGlobal((IntPtr)pData);
+
+      // Restore the areaIDs of all creatures
+      foreach (NwCreature creature in addedCreatures)
+      {
+        creature.Creature.m_oidArea = this;
+      }
+
+      return serialized;
+    }
+
+    public unsafe byte[] SerializeARE(string areaName = null, string resRef = null)
+    {
+      areaName ??= Name;
+      resRef ??= ResRef;
+
+      if (string.IsNullOrEmpty(resRef))
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must not be empty.");
+      }
+
+      if (resRef.Length > 16)
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must smaller than 17 characters.");
+      }
+
+      using CResGFF resGff = new CResGFF();
+      using CResStruct resStruct = new CResStruct();
+
+      if (!resGff.CreateGFFFile(resStruct, new CExoString("ARE "), new CExoString("V3.2")).ToBool())
+      {
+        return null;
+      }
+
+      // Important Stuff
+      resGff.WriteFieldCExoLocString(resStruct, areaName.ToExoLocString(), "Name");
+      resGff.WriteFieldCExoString(resStruct, new CExoString(Tag), "Tag");
+      resGff.WriteFieldCExoString(resStruct, new CExoString(ResRef), "ResRef");
+      resGff.WriteFieldINT(resStruct, Size.X, "Width");
+      resGff.WriteFieldINT(resStruct, Size.Y, "Height");
+      resGff.WriteFieldCResRef(resStruct, Area.m_refTileSet, "Tileset");
+
+      // Less Important Stuff
+      resGff.WriteFieldINT(resStruct, Area.m_nChanceOfLightning, "ChanceLightning");
+      resGff.WriteFieldINT(resStruct, Area.m_nChanceOfRain, "ChanceRain");
+      resGff.WriteFieldINT(resStruct, Area.m_nChanceOfSnow, "ChanceSnow");
+      resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bUseDayNightCycle, "DayNightCycle");
+      resGff.WriteFieldDWORD(resStruct, Area.m_nFlags, "Flags");
+      resGff.WriteFieldFLOAT(resStruct, Area.m_fFogClipDistance, "FogClipDist");
+      resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bIsNight, "IsNight");
+      resGff.WriteFieldBYTE(resStruct, Area.m_nLightingScheme, "LightingScheme");
+      resGff.WriteFieldWORD(resStruct, Area.m_nLoadScreenID, "LoadScreenID");
+      resGff.WriteFieldINT(resStruct, Area.m_nAreaListenModifier, "ModListenCheck");
+      resGff.WriteFieldINT(resStruct, Area.m_nAreaSpotModifier, "ModSpotCheck");
+      resGff.WriteFieldDWORD(resStruct, Area.m_nMoonAmbientColor, "MoonAmbientColor");
+      resGff.WriteFieldDWORD(resStruct, Area.m_nMoonDiffuseColor, "MoonDiffuseColor");
+      resGff.WriteFieldBYTE(resStruct, Area.m_nMoonFogAmount, "MoonFogAmount");
+      resGff.WriteFieldDWORD(resStruct, Area.m_nMoonFogColor, "MoonFogColor");
+      resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bMoonShadows, "MoonShadows");
+      resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bNoRestingAllowed, "NoRest");
+      resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[0]), "OnHeartbeat");
+      resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[1]), "OnUserDefined");
+      resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[2]), "OnEnter");
+      resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[3]), "OnExit");
+      resGff.WriteFieldBYTE(resStruct, Area.m_nPVPSetting, "PlayerVsPlayer");
+      resGff.WriteFieldBYTE(resStruct, Area.m_nShadowOpacity, "ShadowOpacity");
+      resGff.WriteFieldBYTE(resStruct, Area.m_nSkyBox, "SkyBox");
+      resGff.WriteFieldDWORD(resStruct, Area.m_nSunAmbientColor, "SunAmbientColor");
+      resGff.WriteFieldDWORD(resStruct, Area.m_nSunDiffuseColor, "SunDiffuseColor");
+      resGff.WriteFieldBYTE(resStruct, Area.m_nSunFogAmount, "SunFogAmount");
+      resGff.WriteFieldDWORD(resStruct, Area.m_nSunFogColor, "SunFogColor");
+      resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bSunShadows, "SunShadows");
+      resGff.WriteFieldINT(resStruct, Area.m_nWindAmount, "WindPower");
+
+      // Tile Stuff
+      using CResList resList = new CResList();
+      resGff.AddList(resList, resStruct, "Tile_List");
+      int tileCount = Area.m_nWidth * Area.m_nHeight;
+      CNWSTileArray tiles = CNWSTileArray.FromPointer(Area.m_pTile);
+
+      for (int i = 0; i < tileCount; i++)
+      {
+        CNWTile tile = tiles[i];
+        resGff.AddListElement(resStruct, resList, 1);
+        resGff.WriteFieldINT(resStruct, tile.m_nID, "Tile_ID");
+        resGff.WriteFieldINT(resStruct, tile.m_nOrientation, "Tile_Orientation");
+        resGff.WriteFieldINT(resStruct, tile.m_nHeight, "Tile_Height");
+
+        resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight1Color == 255 ? 0 : tile.m_nMainLight1Color, "Tile_MainLight1");
+        resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight2Color == 255 ? 0 : tile.m_nMainLight2Color, "Tile_MainLight2");
+
+        resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight1Color == 255 ? 0 : tile.m_nSourceLight1Color, "Tile_SrcLight1");
+        resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight2Color == 255 ? 0 : tile.m_nSourceLight2Color, "Tile_SrcLight2");
+
+        resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop1, "Tile_AnimLoop1");
+        resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop2, "Tile_AnimLoop2");
+        resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop3, "Tile_AnimLoop3");
+      }
+
+      void* pData;
+      int dataLength;
+
+      resGff.WriteGFFToPointer(&pData, &dataLength);
+      byte[] serialized = new byte[dataLength];
+      Marshal.Copy((IntPtr)pData, serialized, 0, dataLength);
+      Marshal.FreeHGlobal((IntPtr)pData);
+
+      return serialized;
     }
   }
 }

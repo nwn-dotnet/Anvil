@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.API.Constants;
 using NWN.Core.NWNX;
@@ -12,6 +13,7 @@ namespace NWNX.API
       PluginUtils.AssertPluginExists<CreaturePlugin>();
     }
 
+    [Obsolete("Use NwCreature.AddFeat instead.")]
     public static void AddFeat(this NwCreature creature, Feat feat, int level = 0)
     {
       if (level > 0)
@@ -24,16 +26,19 @@ namespace NWNX.API
       }
     }
 
+    [Obsolete("Use NwCreature.KnowsFeat instead.")]
     public static bool KnowsFeat(this NwCreature creature, Feat feat)
     {
       return CreaturePlugin.GetKnowsFeat(creature, (int) feat).ToBool();
     }
 
+    [Obsolete("Use NwCreature.RemoveFeat instead.")]
     public static void RemoveFeat(this NwCreature creature, Feat feat)
     {
       CreaturePlugin.RemoveFeat(creature, (int) feat);
     }
 
+    [Obsolete("Use NwCreature.LevelStats instead.")]
     public static int GetFeatGrantLevel(this NwCreature creature, Feat feat)
     {
       return CreaturePlugin.GetFeatGrantLevel(creature, (int) feat);
@@ -54,11 +59,13 @@ namespace NWNX.API
       return (ClassType) CreaturePlugin.GetClassByLevel(creature, level);
     }
 
+    [Obsolete("Use NwCreature.SerializeQuickbar instead.")]
     public static string SerializeQuickbar(this NwCreature creature)
     {
       return CreaturePlugin.SerializeQuickbar(creature);
     }
 
+    [Obsolete("Use NwCreature.DeserializeQuickbar instead.")]
     public static bool DeserializeQuickbar(this NwCreature creature, string serializedQuickbar)
     {
       return CreaturePlugin.DeserializeQuickbar(creature, serializedQuickbar).ToBool();

@@ -1,10 +1,13 @@
 using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace NWN.API
 {
   public static class StringExtensions
   {
+    private static readonly Regex StripColorsRegex = new Regex("<c.+?(?=>)>|<\\/c>");
+
     public static bool TryParseFloat(this string floatString, out float result)
     {
       return float.TryParse(floatString, out result);
@@ -96,6 +99,16 @@ namespace NWN.API
     public static string ColorString(this string input, Color color)
     {
       return $"<c{color.ToColorToken()}>{input}</c>";
+    }
+
+    /// <summary>
+    /// Strip any color codes from a string.
+    /// </summary>
+    /// <param name="input">The string to strip of color.</param>
+    /// <returns>The new string without any color codes.</returns>
+    public static string StripColors(this string input)
+    {
+      return StripColorsRegex.Replace(input, string.Empty);
     }
   }
 }

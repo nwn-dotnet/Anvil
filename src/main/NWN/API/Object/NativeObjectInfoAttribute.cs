@@ -1,6 +1,6 @@
 using System;
 using NWN.API.Constants;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
@@ -8,12 +8,12 @@ namespace NWN.API
   internal class NativeObjectInfoAttribute : Attribute
   {
     public readonly ObjectTypes ObjectType;
-    public readonly InternalObjectType InternalObjectType;
+    public readonly ObjectType NativeObjectType;
 
-    public NativeObjectInfoAttribute(ObjectTypes objectType, InternalObjectType internalObjectType)
+    public NativeObjectInfoAttribute(ObjectTypes objectType, ObjectType nativeObjectType)
     {
       this.ObjectType = objectType;
-      this.InternalObjectType = internalObjectType;
+      this.NativeObjectType = nativeObjectType;
     }
   }
 }

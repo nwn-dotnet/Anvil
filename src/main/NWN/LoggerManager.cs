@@ -4,7 +4,9 @@ using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
+using NWN.API;
 using NWN.Core.NWNX;
+using NWN.Native.API;
 
 namespace NWN
 {
@@ -12,6 +14,7 @@ namespace NWN
   {
     private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message} ${exception}");
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+    private static readonly string UserDirectory = NWNXLib.ExoBase().m_sUserDirectory.ToString();
 
     public LoggerManager()
     {
@@ -52,7 +55,7 @@ namespace NWN
     private LoggingConfiguration GetConfigFromFile(string path)
     {
       LoggingConfiguration config = new XmlLoggingConfiguration(path);
-      config.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
+      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
 
       return config;
     }
@@ -60,7 +63,7 @@ namespace NWN
     private LoggingConfiguration GetDefaultConfig()
     {
       LoggingConfiguration config = new LoggingConfiguration();
-      config.Variables["nwn_home"] = UtilPlugin.GetUserDirectory();
+      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
 
       ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget("console");
       consoleTarget.Layout = DefaultLayout;

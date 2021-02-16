@@ -1,14 +1,19 @@
 using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
-using NWNX.API.Constants;
+using NWN.Native.API;
 
 namespace NWN.API
 {
-  [NativeObjectInfo(ObjectTypes.AreaOfEffect, InternalObjectType.AreaOfEffect)]
-  public class NwAreaOfEffect : NwObject
+  [NativeObjectInfo(ObjectTypes.AreaOfEffect, ObjectType.AreaOfEffect)]
+  public class NwAreaOfEffect : NwGameObject
   {
-    internal NwAreaOfEffect(uint objectId) : base(objectId) {}
+    internal readonly CNWSAreaOfEffectObject AreaOfEffect;
+
+    internal NwAreaOfEffect(uint objectId, CNWSAreaOfEffectObject areaOfEffectObject) : base(objectId, areaOfEffectObject)
+    {
+      this.AreaOfEffect = areaOfEffectObject;
+    }
 
     /// <summary>
     /// Gets the creator of this Area of Effect.
