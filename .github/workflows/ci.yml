@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - master
+      - development
     paths-ignore:
       - '**.md'
   pull_request:
     branches:
       - master
+      - development
     paths-ignore:
       - '**.md'
 
@@ -80,7 +82,7 @@ jobs:
 
   release:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: build
     steps:
       - name: Download Release Artifacts
@@ -112,7 +114,7 @@ jobs:
 
   nuget:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: build
     steps:
       - name: Setup .NET Core
