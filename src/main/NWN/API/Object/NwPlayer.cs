@@ -101,6 +101,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the name of this player's .bic file.
+    /// </summary>
+    public string BicFileName
+    {
+      get => Player.m_resFileName.GetResRefStr();
+    }
+
+    /// <summary>
     /// Gets the members in this player's party.
     /// </summary>
     public IEnumerable<NwPlayer> PartyMembers
@@ -465,6 +473,25 @@ namespace NWN.API
     /// Removes any current fading effects or black screen from the monitor of the player.
     /// </summary>
     public void StopFade() => NWScript.StopFade(this);
+
+    /// <summary>
+    /// Forces this player to open the inventory of the specified placeable.
+    /// </summary>
+    /// <param name="target">The placeable inventory to be viewed.</param>
+    public void ForceOpenInventory(NwPlaceable target)
+    {
+      target.Placeable.m_bHasInventory = 1;
+      target.Placeable.OpenInventory(this);
+    }
+
+    /// <summary>
+    /// Forces this player to examine the specified placeable.
+    /// </summary>
+    /// <param name="target">The placeable to examine.</param>
+    public void ForceExamine(NwPlaceable target)
+    {
+      LowLevel.Message.SendServerToPlayerExamineGui_PlaceableData(this, target);
+    }
 
     /// <summary>
     /// Immediately kicks this player and deletes their character file (.bic)

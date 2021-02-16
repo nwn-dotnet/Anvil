@@ -131,6 +131,7 @@ namespace NWN.API
     /// <summary>
     /// Gets all items belonging to this object's inventory.
     /// </summary>
+    [Obsolete("Use Inventory.Items instead.")]
     public IEnumerable<NwItem> Items
     {
       get

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using NWN.API.Constants;
@@ -34,6 +33,7 @@ namespace NWN.API
     {
       this.Creature = creature;
       this.faction = new NwFaction(creature.GetFaction());
+      this.Inventory = new Inventory(this, Creature.m_pcItemRepository);
     }
 
     public static implicit operator CNWSCreature(NwCreature creature)
@@ -502,6 +502,11 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the inventory of this creature.
+    /// </summary>
+    public Inventory Inventory { get; }
+
+    /// <summary>
     /// Gets or sets the amount of gold carried by this creature.<br/>
     /// This property does not display feedback to the creature. See <see cref="AddGold"/> and <see cref="TakeGold"/> for options that provide feedback.
     /// </summary>
@@ -570,15 +575,20 @@ namespace NWN.API
     /// <summary>
     /// Gets an enumerable containing information about this creature's levels (feats, skills, class taken, etc).
     /// </summary>
-    public IEnumerable<LevelStats> LevelStats
+    public unsafe List<LevelStats> LevelStats
     {
       get
       {
-        for (byte i = 0; i < Creature.m_pStats.m_lstLevelStats.num; i++)
+        int statCount = Creature.m_pStats.m_lstLevelStats.num;
+        List<LevelStats> retVal = new List<LevelStats>(statCount);
+
+        for (int i = 0; i < statCount; i++)
         {
-          CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats._OpIndex(i).Read();
-          yield return new LevelStats(this, levelStats);
+          CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(i), false);
+          retVal.Add(new LevelStats(this, levelStats));
         }
+
+        return retVal;
       }
     }
 
@@ -1544,14 +1554,14 @@ namespace NWN.API
     /// </summary>
     /// <param name="feat">The feat to give.</param>
     /// <param name="level">The level the feat was gained.</param>
-    public void AddFeat(Feat feat, int level)
+    public unsafe void AddFeat(Feat feat, int level)
     {
       if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
       {
         throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
       }
 
-      CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
+      CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1), false);
 
       levelStats.AddFeat((ushort)feat);
       Creature.m_pStats.AddFeat((ushort)feat);
@@ -1581,15 +1591,26 @@ namespace NWN.API
     /// </summary>
     /// <param name="level">The level to lookup.</param>
     /// <returns>A <see cref="LevelStats"/> object containing level info.</returns>
-    public LevelStats GetLevelStats(int level)
+    public unsafe LevelStats GetLevelStats(int level)
     {
       if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
       {
         throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
       }
 
-      CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1).Read();
+      CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1), false);
       return new LevelStats(this, levelStats);
+    }
+
+    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      void* itemPtr = item.Item;
+      Creature.AcquireItem(&itemPtr, INVALID, INVALID, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
     }
 
     public unsafe byte[] SerializeQuickbar()

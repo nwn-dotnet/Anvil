@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
@@ -14,6 +15,7 @@ namespace NWN.API
     internal NwPlaceable(uint objectId, CNWSPlaceable placeable) : base(objectId, placeable)
     {
       this.Placeable = placeable;
+      this.Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 
     public static implicit operator CNWSPlaceable(NwPlaceable placeable)
@@ -33,6 +35,11 @@ namespace NWN.API
     public bool Occupied => NWScript.GetSittingCreature(this) != INVALID;
 
     public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
+
+    /// <summary>
+    /// Gets the inventory of this placeable.
+    /// </summary>
+    public Inventory Inventory { get; }
 
     /// <summary>
     /// Gets or sets a value indicating whether this placeable should illuminate.
@@ -120,5 +127,16 @@ namespace NWN.API
     /// <returns>true if the specified action can be performed, otherwise false.</returns>
     public bool IsPlaceableActionPossible(PlaceableAction action)
       => NWScript.GetIsPlaceableObjectActionPossible(this, (int)action).ToBool();
+
+    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      void* pItem = item.Item;
+      Placeable.AcquireItem(&pItem, INVALID, 0xFF, 0xFF, displayFeedback.ToInt());
+    }
   }
 }

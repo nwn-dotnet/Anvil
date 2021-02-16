@@ -16,6 +16,7 @@ namespace NWN.API
     internal NwItem(uint objectId, CNWSItem item) : base(objectId, item)
     {
       this.Item = item;
+      this.Inventory = new Inventory(this, item.m_pItemRepository);
     }
 
     public static implicit operator CNWSItem(NwItem item)
@@ -39,6 +40,11 @@ namespace NWN.API
     {
       get => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
     }
+
+    /// <summary>
+    /// Gets the inventory of this item, if it is a container.
+    /// </summary>
+    public Inventory Inventory { get; }
 
     /// <summary>
     /// Gets or sets the unidentified description for this item.
@@ -349,5 +355,16 @@ namespace NWN.API
     /// <param name="weaponModel">The model of the weapon<see cref="NWN.API.Constants.ItemAppearanceWeaponModel"/>.</param>
     public int ItemAppearance(ItemAppearanceType type, ItemAppearanceWeaponModel weaponModel)
       => NWScript.GetItemAppearance(this, (int)type, (int)weaponModel);
+
+    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      void* itemPtr = item.Item;
+      Item.AcquireItem(&itemPtr, INVALID, 0xFF, 0xFF, displayFeedback.ToInt());
+    }
   }
 }

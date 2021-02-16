@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.Core.NWNX;
 
@@ -16,14 +17,10 @@ namespace NWNX.API
       PlayerPlugin.SetQuickBarSlot(player, slot, data);
     }
 
+
     public static QuickBarSlot GetQuickBarSlot(this NwPlayer player, int slot)
     {
       return PlayerPlugin.GetQuickBarSlot(player, slot);
-    }
-
-    public static void ForceOpenInventory(this NwPlayer player, NwPlaceable target)
-    {
-      PlayerPlugin.ForcePlaceableInventoryWindow(player, target);
     }
 
     public static void SetPlaceableNameOverride(this NwPlayer player, NwPlaceable placeable, string name)
@@ -39,6 +36,7 @@ namespace NWNX.API
     public static void DisplayFloatingTextStringOnCreature(this NwPlayer player, NwCreature creature, string text)
       => PlayerPlugin.FloatingTextStringOnCreature(player, creature, text);
 
+    [Obsolete("Use NwPlayer.BicFileName instead.")]
     public static string GetBicFileName(this NwPlayer player)
       => PlayerPlugin.GetBicFileName(player);
   }

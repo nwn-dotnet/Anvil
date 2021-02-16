@@ -1,3 +1,4 @@
+using System;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -62,6 +63,16 @@ namespace NWN.API
     public void Open(NwPlayer player, int bonusMarkup = 0, int bonusMarkDown = 0)
     {
       NWScript.OpenStore(this, player, bonusMarkup, bonusMarkDown);
+    }
+
+    public void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      Store.AcquireItem(item.Item, true.ToInt(), 0xFF, 0xFF);
     }
   }
 }

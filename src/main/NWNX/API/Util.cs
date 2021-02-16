@@ -29,13 +29,6 @@ namespace NWNX.API
     public static string AsciiTableString { get; } = UtilPlugin.GetAsciiTableString();
 
     /// <summary>
-    /// Gets an integer hash of a string.
-    /// </summary>
-    /// <param name="str">The string to hash.</param>
-    /// <returns>The hashed string as an integer.</returns>
-    public static int Hash(string str) => UtilPlugin.Hash(str);
-
-    /// <summary>
     /// Gets the vaulte of customTokenNumber.
     /// </summary>
     /// <param name="customTokenNumber">The token number to query.</param>
@@ -63,13 +56,6 @@ namespace NWNX.API
     /// <param name="type">The type of this resref.</param>
     /// <returns>true if the supplied resref exists and is of the specified type, otherwise false.</returns>
     public static int IsValidResRef(this string resRef, ResRefType type = ResRefType.Creature) => UtilPlugin.IsValidResRef(resRef);
-
-    /// <summary>
-    /// Retrieves an environment variable.
-    /// </summary>
-    /// <param name="sVarname">The environment variable to query.The environment variable to query.</param>
-    /// <returns>The value of the environment variable.</returns>
-    public static string GetEnvironmentVariable(string sVarname) => UtilPlugin.GetEnvironmentVariable(sVarname);
 
     /// <summary>
     /// Gets or sets the module real life minutes per in game hour.
