@@ -62,7 +62,7 @@ jobs:
       - name: Prepare Outputs
         id: vars
         run: |
-          echo "::set-output name=version::$(echo ${{ steps.bump_version.outputs.tag }} | sed 's/[v]//g')"
+          echo "::set-output name=version::$(echo ${{ steps.bump_version.outputs.tag }} | sed '0,/v/s///')"
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
 
