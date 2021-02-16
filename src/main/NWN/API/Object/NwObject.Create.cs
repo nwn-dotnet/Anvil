@@ -127,6 +127,7 @@ namespace NWN.API
         ObjectType.Encounter => new NwEncounter(objectId, gameObject.AsNWSEncounter()),
         ObjectType.Store => new NwStore(objectId, gameObject.AsNWSStore()),
         ObjectType.Sound => new NwSound(objectId, gameObject.AsNWSSoundObject()),
+        ObjectType.AreaOfEffect => new NwAreaOfEffect(objectId, gameObject.AsNWSAreaOfEffectObject()),
         _ => new NwObject(objectId),
       };
     }
