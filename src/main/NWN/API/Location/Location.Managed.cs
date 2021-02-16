@@ -226,5 +226,12 @@ namespace NWN.API
     /// <param name="triggered">The script that will fire when the trap is triggered. If no value set, defaults to an empty string and the default OnTrapTriggered script for the trap type specified will fire instead (as specified in the traps.2da).</param>
     public void CreateTrap(TrapBaseType trap, float size = 2.0f, string tag = "", string disarm = "", string triggered = "")
       => NWScript.CreateTrapAtLocation((int)trap, this, size, tag, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
+
+
+    /// <summary>
+    /// Returns is the location walkable.
+    /// </summary>
+    public bool Walkable(this Location location)
+      => NWScript.Get2DAString("surfacemat", "Walk", location.SurfaceMaterial).ParseIntBool();
   }
 }
