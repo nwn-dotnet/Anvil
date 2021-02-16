@@ -26,5 +26,10 @@ namespace NWN.API
     /// Stops this sound object from playing.
     /// </summary>
     public void Stop() => NWScript.SoundObjectStop(this);
+
+    /// <summary>
+    /// Set the location of this sound object.
+    /// </summary>
+    public void Location(Location destination) => NWScript.SoundObjectSetPosition(this, destination.Position);
   }
 }
