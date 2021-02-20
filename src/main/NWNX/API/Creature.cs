@@ -69,7 +69,7 @@ namespace NWNX.API
     /// </summary>
     /// <param name="creature">This creature object.</param>
     /// <param name="ability">The base ability score.</param>
-    public static void GetBaseAbilityScore(this NwCreature creature, Ability ability)
+    public static int GetBaseAbilityScore(this NwCreature creature, Ability ability)
       => CreaturePlugin.GetRawAbilityScore(creature, (int)ability);
   }
 }
