@@ -63,5 +63,13 @@ namespace NWNX.API
     {
       return CreaturePlugin.DeserializeQuickbar(creature, serializedQuickbar).ToBool();
     }
+
+    /// <summary>
+    /// Gets the ability score of this creature.
+    /// </summary>
+    /// <param name="creature">This creature object.</param>
+    /// <param name="ability">The base ability score.</param>
+    public static void GetBaseAbilityScore(this NwCreature creature, Ability ability)
+      => CreaturePlugin.GetRawAbilityScore(creature, (int)ability);
   }
 }
