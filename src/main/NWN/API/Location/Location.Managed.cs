@@ -228,7 +228,7 @@ namespace NWN.API
       => NWScript.CreateTrapAtLocation((int)trap, this, size, tag, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
 
     /// <summary>
-    /// Returns is the location walkable.
+    /// Returns true if the location is walkable.
     /// </summary>
     public bool IsWalkable()
       => NWScript.Get2DAString("surfacemat", "Walk", this.SurfaceMaterial).ParseIntBool();
