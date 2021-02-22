@@ -4,6 +4,11 @@ namespace NWN.API
 {
   public static class NativeUtils
   {
+    public static CExoString ToExoString(this string str)
+    {
+      return new CExoString(str);
+    }
+
     public static CExoLocString ToExoLocString(this string str, int nId = 0, byte gender = 0)
     {
       CExoLocString locString = new CExoLocString();

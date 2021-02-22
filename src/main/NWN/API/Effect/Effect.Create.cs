@@ -4,7 +4,7 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public partial class Effect
+  public sealed partial class Effect
   {
     /// <summary>
     /// Creates an effect that decreases a certain ability score.
