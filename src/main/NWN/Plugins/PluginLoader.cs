@@ -38,6 +38,13 @@ namespace NWN.Plugins
     private void BootstrapPlugins()
     {
       string[] pluginPaths = Directory.GetDirectories(EnvironmentConfig.PluginsPath);
+
+      if (EnvironmentConfig.PreventStartNoPlugin && pluginPaths.Length == 0)
+      {
+        throw new Exception($"No plugins are available to load, and NWM_PREVENT_START_NO_PLUGIN is enabled.\n" +
+          $"Check your plugins are available at {EnvironmentConfig.PluginsPath}, or update NWM_PLUGIN_PATH to the correct location.");
+      }
+
       foreach (string pluginRoot in pluginPaths)
       {
         string pluginName = new DirectoryInfo(pluginRoot).Name;
