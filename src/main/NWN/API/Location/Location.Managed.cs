@@ -94,7 +94,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns true if the location is walkable.
+    /// Gets a value indicating whether the location is walkable.
     /// </summary>
     public bool IsWalkable
     {
