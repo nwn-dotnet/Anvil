@@ -3,7 +3,7 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public partial class ItemProperty
+  public sealed partial class ItemProperty
   {
     public static ItemProperty AbilityBonus(IPAbility ability, int bonus)
       => NWScript.ItemPropertyAbilityBonus((int) ability, bonus);
