@@ -92,11 +92,11 @@ namespace NWN.API
     {
       get => (TileSourceLightColor)NWScript.GetTileSourceLight2Color(this);
     }
-    
+
     /// <summary>
     /// Returns true if the location is walkable.
     /// </summary>
-    public bool IsWalkable 
+    public bool IsWalkable
     {
       get => NWScript.Get2DAString("surfacemat", "Walk", this.SurfaceMaterial).ParseIntBool();
     }
