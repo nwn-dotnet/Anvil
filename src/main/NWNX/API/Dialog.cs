@@ -34,36 +34,3 @@ namespace NWNX.API
         DialogPlugin.End(creature);
   }
 }
-
-/* 
-int NWNX_Dialog_GetCurrentNodeType()
-{
-    string sFunc = "GetCurrentNodeType";
-
-    NWNX_CallFunction(NWNX_Dialog, sFunc);
-    return NWNX_GetReturnValueInt(NWNX_Dialog, sFunc);
-}
-
-int NWNX_Dialog_GetCurrentScriptType()
-{
-    string sFunc = "GetCurrentScriptType";
-
-    NWNX_CallFunction(NWNX_Dialog, sFunc);
-    return NWNX_GetReturnValueInt(NWNX_Dialog, sFunc);
-}
-
-int NWNX_Dialog_GetCurrentNodeID()
-{
-    string sFunc = "GetCurrentNodeID";
-
-    NWNX_CallFunction(NWNX_Dialog, sFunc);
-    return NWNX_GetReturnValueInt(NWNX_Dialog, sFunc);
-}
-
-int NWNX_Dialog_GetCurrentNodeIndex()
-{
-    string sFunc = "GetCurrentNodeIndex";
-
-    NWNX_CallFunction(NWNX_Dialog, sFunc);
-    return NWNX_GetReturnValueInt(NWNX_Dialog, sFunc);
-}
