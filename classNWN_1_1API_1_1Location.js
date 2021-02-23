@@ -17,6 +17,7 @@ var classNWN_1_1API_1_1Location =
     [ "Area", "classNWN_1_1API_1_1Location.html#add8f5a9e2bef4cc69334d922c3b6fadc", null ],
     [ "FlippedRotation", "classNWN_1_1API_1_1Location.html#af30fa56b3430c72d7a0c0f3dc7d4919d", null ],
     [ "GroundHeight", "classNWN_1_1API_1_1Location.html#ae2a469bd1f8713a836045fea38e16fd9", null ],
+    [ "IsWalkable", "classNWN_1_1API_1_1Location.html#ae58a6d1201b1751330d9c68bd1dfb530", null ],
     [ "Position", "classNWN_1_1API_1_1Location.html#a6985a72d1f171e9a6df3ab46a2cd49d3", null ],
     [ "Rotation", "classNWN_1_1API_1_1Location.html#a66fd6234f492772916c70730b7af033a", null ],
     [ "SurfaceMaterial", "classNWN_1_1API_1_1Location.html#a771b312aea8208117e40ef593a89fb1e", null ],
