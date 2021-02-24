@@ -2,7 +2,7 @@ using System;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
-using EffectSubType = NWN.Native.API.EffectSubType;
+using EffectSubType = NWN.API.Constants.EffectSubType;
 
 namespace NWN.API
 {
