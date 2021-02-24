@@ -10,6 +10,8 @@ namespace NWNX.API.Events
     public AttackResult AttackResult;
     public AttackType AttackType;
     public SneakAttack SneakAttack;
+    public bool KillingBlow;
+    public int AttackStyle;
 
     internal static AttackData FromNative(AttackEventData attackEventData)
     {
@@ -18,6 +20,8 @@ namespace NWNX.API.Events
       attackData.AttackResult = (AttackResult) attackEventData.iAttackResult;
       attackData.AttackType = (AttackType) attackEventData.iAttackType;
       attackData.SneakAttack = (SneakAttack) attackEventData.iSneakAttack;
+      attackData.KillingBlow = attackEventData.bKillingBlow.ToBool();
+      attackData.AttackStyle = attackEventData.iAttackType_REAL;
 
       return attackData;
     }
@@ -44,6 +48,8 @@ namespace NWNX.API.Events
       attackEventData.iAttackResult = (int) AttackResult;
       attackEventData.iAttackType = (int) AttackType;
       attackEventData.iSneakAttack = (int) SneakAttack;
+      attackEventData.bKillingBlow = KillingBlow.ToInt();
+      attackEventData.iAttackType_REAL = AttackStyle;
 
       return attackEventData;
     }
