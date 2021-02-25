@@ -86,10 +86,10 @@ public class XPReportService
 {
   private readonly ExpTable expTable;
 
-  public XPReportService(NativeEventService eventService, TwoDimArrayFactory twoDimArrayFactory)
+  public XPReportService(TwoDimArrayFactory twoDimArrayFactory)
   {
-    eventService.Subscribe<NwModule, ModuleEvents.OnClientEnter>(NwModule.Instance, OnClientEnter);
     expTable = twoDimArrayFactory.Get2DA<ExpTable>("exptable");
+    NwModule.Instance.OnClientEnter += OnClientEnter;
   }
 
   private void OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)
