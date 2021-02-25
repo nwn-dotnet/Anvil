@@ -13,20 +13,20 @@ namespace NWN.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    protected ITypeLoader TypeLoader;
-    protected ServiceContainer ServiceContainer;
+    protected ITypeLoader typeLoader;
+    protected ServiceContainer serviceContainer;
 
     public ServiceContainer Setup(ITypeLoader typeLoader)
     {
-      this.TypeLoader = typeLoader;
-      this.ServiceContainer = new ServiceContainer(new ContainerOptions {EnablePropertyInjection = false});
+      this.typeLoader = typeLoader;
+      this.serviceContainer = new ServiceContainer(new ContainerOptions {EnablePropertyInjection = false});
 
-      return ServiceContainer;
+      return serviceContainer;
     }
 
     public void RegisterCoreService<T>(T instance)
     {
-      ServiceContainer.RegisterInstance(instance);
+      serviceContainer.RegisterInstance(instance);
     }
 
     public void BuildContainer()
@@ -38,7 +38,7 @@ namespace NWN.Services
     private void SearchForBindings()
     {
       Log.Info("Loading managed services...");
-      foreach (Type type in TypeLoader.LoadedTypes)
+      foreach (Type type in typeLoader.LoadedTypes)
       {
         RegisterBindings(type, type.GetCustomAttributes<ServiceBindingAttribute>());
       }
@@ -52,16 +52,16 @@ namespace NWN.Services
       }
 
       PerContainerLifetime lifeTime = new PerContainerLifetime();
-      ServiceContainer.Register(typeof(object), bindTo, lifeTime);
+      serviceContainer.Register(typeof(object), bindTo, lifeTime);
 
       if (bindTo.IsAssignableTo(typeof(IDisposable)))
       {
-        ServiceContainer.Register(typeof(IDisposable), bindTo, lifeTime);
+        serviceContainer.Register(typeof(IDisposable), bindTo, lifeTime);
       }
 
       foreach (ServiceBindingAttribute bindingInfo in newBindings)
       {
-        ServiceContainer.Register(bindingInfo.BindFrom, bindTo, lifeTime);
+        serviceContainer.Register(bindingInfo.BindFrom, bindTo, lifeTime);
         Log.Debug($"Bind: {bindingInfo.BindFrom.FullName} -> {bindTo.FullName}");
       }
 
