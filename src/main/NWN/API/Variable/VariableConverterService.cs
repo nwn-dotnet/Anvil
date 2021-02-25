@@ -6,7 +6,7 @@ using NWN.Services;
 
 namespace NWN.API
 {
-  [ServiceBinding(typeof(VariableConverterService), BindingContext.API)]
+  [ServiceBinding(typeof(VariableConverterService))]
   internal class VariableConverterService
   {
     private static readonly Dictionary<Type, ILocalVariableConverter> LocalVariableConverters = new Dictionary<Type, ILocalVariableConverter>();

@@ -18,7 +18,7 @@ namespace NWN
       typeof(Core.NWNCore).Assembly,
       typeof(Native.API.NWNXLib).Assembly,
       typeof(NLog.Logger).Assembly,
-      typeof(SimpleInjector.Container).Assembly
+      typeof(LightInject.ServiceContainer).Assembly
     };
 
     public static readonly List<string> ReservedAssemblyNames = ManagedAssemblies

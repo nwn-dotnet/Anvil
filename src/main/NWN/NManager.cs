@@ -13,7 +13,7 @@ namespace NWN
 {
   /// <summary>
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the managed %API. The entry point of the implementing module should point to this class.<br/>
-  /// Until <see cref="Init(IntPtr, int, IBindingInstaller, ITypeLoader)"/> is called, all APIs are unavailable for usage.
+  /// Until <see cref="Init(IntPtr, int, IContainerBuilder, ITypeLoader)"/> is called, all APIs are unavailable for usage.
   /// </summary>
   public class NManager : IGameManager
   {
@@ -26,7 +26,7 @@ namespace NWN
     private readonly Dictionary<ulong, ActionDelegate> closures = new Dictionary<ulong, ActionDelegate>();
 
     // Core Services
-    private readonly IBindingInstaller bindingInstaller;
+    private readonly IContainerBuilder containerBuilder;
     private readonly ITypeLoader typeLoader;
     private readonly LoggerManager loggerManager;
 
@@ -49,16 +49,16 @@ namespace NWN
     /// </summary>
     /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
     /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
-    /// <param name="bindingInstaller">An optional custom binding installer to use instead of the default <see cref="ServiceInstaller"/>.</param>
+    /// <param name="containerBuilder">An optional custom binding installer to use instead of the default <see cref="ServiceBindingContainerBuilder"/>.</param>
     /// <param name="typeLoader">An optional type loader to use instead of the default <see cref="PluginLoader"/>.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IBindingInstaller bindingInstaller = default, ITypeLoader typeLoader = default)
+    public static int Init(IntPtr arg, int argLength, IContainerBuilder containerBuilder = default, ITypeLoader typeLoader = default)
     {
       typeLoader ??= new PluginLoader();
-      bindingInstaller ??= new ServiceInstaller();
+      containerBuilder ??= new ServiceBindingContainerBuilder();
 
-      instance = new NManager(bindingInstaller, typeLoader);
+      instance = new NManager(containerBuilder, typeLoader);
       return NWNCore.Init(arg, argLength, instance);
     }
 
@@ -91,9 +91,9 @@ namespace NWN
       instance.Init();
     }
 
-    private NManager(IBindingInstaller bindingInstaller, ITypeLoader typeLoader)
+    private NManager(IContainerBuilder containerBuilder, ITypeLoader typeLoader)
     {
-      this.bindingInstaller = bindingInstaller;
+      this.containerBuilder = containerBuilder;
       this.typeLoader = typeLoader;
       this.loggerManager = new LoggerManager();
     }
@@ -121,7 +121,7 @@ namespace NWN
       CheckPluginDependencies();
 
       typeLoader.Init();
-      serviceManager = new ServiceManager(typeLoader, bindingInstaller);
+      serviceManager = new ServiceManager(typeLoader, containerBuilder);
       serviceManager.Init();
 
       runScriptHandler = GetService<ICoreRunScriptHandler>();

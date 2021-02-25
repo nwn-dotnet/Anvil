@@ -1,40 +1,37 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using LightInject;
 using NLog;
 using NWN.Plugins;
-using SimpleInjector;
 
 namespace NWN.Services
 {
   public class ServiceManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-    private readonly Container coreContainer;
-    private readonly Container serviceContainer;
 
-    public IReadOnlyList<object> RegisteredServices { get; private set; }
+    private readonly ServiceContainer serviceContainer;
+    private List<IDisposable> disposables;
 
-    internal ServiceManager(ITypeLoader typeLoader, IBindingInstaller bindingInstaller)
+    public List<object> RegisteredServices { get; private set; }
+
+    internal ServiceManager(ITypeLoader typeLoader, IContainerBuilder containerBuilder)
     {
-      Log.Info($"Using \"{bindingInstaller.GetType().FullName}\" to install service bindings.");
+      Log.Info($"Using \"{containerBuilder.GetType().FullName}\" to install service bindings.");
 
-      coreContainer = new Container();
-      serviceContainer = new Container();
+      serviceContainer = containerBuilder.Setup(typeLoader);
 
-      InstallerInfo installerInfo = new InstallerInfo
-      {
-        CoreContainer = coreContainer,
-        ServiceContainer = serviceContainer,
-        ServiceManager = this,
-        TypeLoader = typeLoader
-      };
+      containerBuilder.RegisterCoreService(typeLoader);
+      containerBuilder.RegisterCoreService(this);
 
-      bindingInstaller.ConfigureBindings(installerInfo);
+      containerBuilder.BuildContainer();
     }
 
     internal void Init()
     {
-      InitServices();
+      RegisteredServices = serviceContainer.GetAllInstances<object>().ToList();
+      disposables = serviceContainer.GetAllInstances<IDisposable>().ToList();
       NotifyInitComplete();
     }
 
@@ -45,25 +42,7 @@ namespace NWN.Services
 
     internal T GetService<T>() where T : class
     {
-      if (!serviceContainer.IsLocked)
-      {
-        return coreContainer.GetInstance<T>();
-      }
-
       return serviceContainer.GetInstance<T>();
-    }
-
-    private void InitServices()
-    {
-      coreContainer.Verify();
-
-      foreach (InstanceProducer instanceProducer in coreContainer.GetCurrentRegistrations())
-      {
-        serviceContainer.RegisterInstance(instanceProducer.ServiceType, instanceProducer.GetInstance());
-      }
-
-      serviceContainer.Verify();
-      RegisteredServices = GetRegisteredServices(serviceContainer).ToList().AsReadOnly();
     }
 
     private void NotifyInitComplete()
@@ -74,18 +53,14 @@ namespace NWN.Services
       }
     }
 
-    private IEnumerable<object> GetRegisteredServices(Container container)
-    {
-      return container.GetCurrentRegistrations()
-        .Where(producer => producer.Lifestyle == Lifestyle.Singleton)
-        .Select(producer => producer.GetInstance())
-        .Distinct();
-    }
-
     internal void Dispose()
     {
+      foreach (IDisposable disposable in disposables)
+      {
+        disposable?.Dispose();
+      }
+
       serviceContainer?.Dispose();
-      coreContainer?.Dispose();
     }
   }
 }
