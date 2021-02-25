@@ -5,7 +5,6 @@ using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
 using NWN.API;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 
 namespace NWN

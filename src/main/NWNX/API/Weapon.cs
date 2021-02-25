@@ -1,4 +1,3 @@
-using NWN.API;
 using NWN.API.Constants;
 using NWN.Core.NWNX;
 

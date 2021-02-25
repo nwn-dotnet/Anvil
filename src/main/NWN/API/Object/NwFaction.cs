@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using NWN.API.Constants;
 using NWN.Native.API;
 using ClassType = NWN.API.Constants.ClassType;
 

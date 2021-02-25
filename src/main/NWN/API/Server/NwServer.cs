@@ -1,4 +1,3 @@
-using System;
 using NWN.Native.API;
 
 namespace NWN.API
