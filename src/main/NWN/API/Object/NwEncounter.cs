@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -18,6 +20,36 @@ namespace NWN.API
     public static implicit operator CNWSEncounter(NwEncounter encounter)
     {
       return encounter?.Encounter;
+    }
+
+    public event Action<EncounterEvents.OnEnter> OnEnter
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<EncounterEvents.OnExit> OnExit
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<EncounterEvents.OnHeartbeat> OnHeartbeat
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<EncounterEvents.OnExhausted> OnExhausted
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<EncounterEvents.OnUserDefined> OnUserDefined
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
     }
 
     public override Location Location

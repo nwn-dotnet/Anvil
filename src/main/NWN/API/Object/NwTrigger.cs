@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -18,6 +20,48 @@ namespace NWN.API
     public static implicit operator CNWSTrigger(NwTrigger trigger)
     {
       return trigger?.Trigger;
+    }
+
+    public event Action<TriggerEvents.OnHeartbeat> OnHeartbeat
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<TriggerEvents.OnEnter> OnEnter
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<TriggerEvents.OnExit> OnExit
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<TriggerEvents.OnUserDefined> OnUserDefined
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<TriggerEvents.OnTrapTriggered> OnTrapTriggered
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<TriggerEvents.OnDisarmed> OnDisarmed
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<TriggerEvents.OnClicked> OnClicked
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
     }
 
     public override Location Location

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
+using NWN.Services;
 
 namespace NWN.API
 {
@@ -12,6 +13,8 @@ namespace NWN.API
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   public partial class NwObject : IEquatable<NwObject>
   {
+    private protected static readonly NativeEventService NativeEventService = NManager.GetService<NativeEventService>();
+
     internal const uint INVALID = NWScript.OBJECT_INVALID;
     protected readonly uint ObjectId;
 

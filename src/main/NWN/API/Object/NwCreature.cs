@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 using Ability = NWN.API.Constants.Ability;
@@ -39,6 +40,90 @@ namespace NWN.API
     public static implicit operator CNWSCreature(NwCreature creature)
     {
       return creature?.Creature;
+    }
+
+    /// <summary>
+    /// Called when the creature is blocked by a door.
+    /// </summary>
+    public event Action<CreatureEvents.OnBlocked> OnBlocked
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    /// <summary>
+    /// Called at the end of the creature's combat round.
+    /// </summary>
+    public event Action<CreatureEvents.OnCombatRoundEnd> OnCombatRoundEnd
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnConversation> OnConversation
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnDamaged> OnDamaged
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnDeath> OnDeath
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnDisturbed> OnDisturbed
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnHeartbeat> OnHeartbeat
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnPerception> OnPerception
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnPhysicalAttacked> OnPhysicalAttacked
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnRested> OnRested
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnSpawn> OnSpawn
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnSpellCastAt> OnSpellCastAt
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<CreatureEvents.OnUserDefined> OnUserDefined
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
     }
 
     public override Location Location

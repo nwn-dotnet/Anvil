@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 using AssociateType = NWN.API.Constants.AssociateType;
@@ -21,6 +22,39 @@ namespace NWN.API
     public static implicit operator CNWSArea(NwArea area)
     {
       return area?.Area;
+    }
+
+    /// <summary>
+    /// Called when a new object has entered this area.
+    /// </summary>
+    public event Action<AreaEvents.OnEnter> OnEnter
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    /// <summary>
+    /// Called when an object leaves this area.
+    /// </summary>
+    public event Action<AreaEvents.OnExit> OnExit
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    /// <summary>
+    /// Called at a regular interval (approx. 6 seconds).
+    /// </summary>
+    public event Action<AreaEvents.OnHeartbeat> OnHeartbeat
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<AreaEvents.OnUserDefined> OnUserDefined
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
     }
 
     /// <summary>
