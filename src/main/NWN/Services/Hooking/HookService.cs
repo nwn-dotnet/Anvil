@@ -10,7 +10,7 @@ namespace NWN.Services
   /// <summary>
   /// An advanced service for hooking native NWN functions.
   /// </summary>
-  [ServiceBinding(typeof(HookService), BindingContext.API)]
+  [ServiceBinding(typeof(HookService))]
   public class HookService : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

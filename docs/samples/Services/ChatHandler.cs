@@ -46,15 +46,14 @@ public class ChatHandler
 {
   private readonly List<IChatCommand> chatCommands;
 
-  // We set the EventService as a dependency so we can subscribe to the module chat event.
-  // And we add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.
-  public ChatHandler(NativeEventService eventService, IEnumerable<IChatCommand> commands)
+  // We add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.
+  public ChatHandler(IEnumerable<IChatCommand> commands)
   {
     // Store all define chat commands.
     this.chatCommands = commands.ToList();
 
-    // Using the event service, subscribe to the global module chat event. When this event occurs, we call the OnChatMessage method.
-    eventService.Subscribe<NwModule, ModuleEvents.OnPlayerChat>(NwModule.Instance, OnChatMessage);
+    // Subscribe to the global module chat event. When this event occurs, we call the OnChatMessage method.
+    NwModule.Instance.OnPlayerChat += OnChatMessage;
   }
 
   public void OnChatMessage(ModuleEvents.OnPlayerChat eventInfo)

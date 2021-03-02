@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Core.NWNX;
 using NWN.Native.API;
@@ -21,6 +22,102 @@ namespace NWN.API
     public static implicit operator CNWSPlaceable(NwPlaceable placeable)
     {
       return placeable?.Placeable;
+    }
+
+    public event Action<PlaceableEvents.OnClose> OnClose
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnDamaged> OnDamaged
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnDeath> OnDeath
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnDisarm> OnDisarm
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnHeartbeat> OnHeartbeat
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnDisturbed> OnDisturbed
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnLock> OnLock
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnPhysicalAttacked> OnPhysicalAttacked
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnOpen> OnOpen
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnSpellCastAt> OnSpellCastAt
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnTrapTriggered> OnTrapTriggered
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnUnlock> OnUnlock
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnUsed> OnUsed
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnUserDefined> OnUserDefined
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnDialogue> OnDialogue
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<PlaceableEvents.OnLeftClick> OnLeftClick
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
     }
 
     public override Location Location

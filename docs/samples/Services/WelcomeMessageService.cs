@@ -9,9 +9,9 @@ using NWN.Services;
 [ServiceBinding(typeof(WelcomeMessageService))]
 public class WelcomeMessageService
 {
-  public WelcomeMessageService(NativeEventService eventService)
+  public WelcomeMessageService()
   {
-    eventService.Subscribe<NwModule, ModuleEvents.OnClientEnter>(NwModule.Instance, OnClientEnter);
+    NwModule.Instance.OnClientEnter += OnClientEnter;
   }
 
   private void OnClientEnter(ModuleEvents.OnClientEnter onEnter)

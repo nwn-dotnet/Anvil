@@ -1,5 +1,6 @@
 using System;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -18,6 +19,18 @@ namespace NWN.API
     public static implicit operator CNWSStore(NwStore store)
     {
       return store?.Store;
+    }
+
+    public event Action<StoreEvents.OnOpen> OnOpen
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<StoreEvents.OnClose> OnClose
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
     }
 
     public override Location Location

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -13,6 +15,39 @@ namespace NWN.API
     internal NwAreaOfEffect(uint objectId, CNWSAreaOfEffectObject areaOfEffectObject) : base(objectId, areaOfEffectObject)
     {
       this.AreaOfEffect = areaOfEffectObject;
+    }
+
+    /// <summary>
+    /// Called when an object enters this area of effect.
+    /// </summary>
+    public event Action<AreaOfEffectEvents.OnEnter> OnEnter
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    /// <summary>
+    /// Called when an object exits this area of effect.
+    /// </summary>
+    public event Action<AreaOfEffectEvents.OnExit> OnExit
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    /// <summary>
+    /// Called at a regular interval (approx. 6 seconds).
+    /// </summary>
+    public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
+    }
+
+    public event Action<AreaOfEffectEvents.OnUserDefined> OnUserDefined
+    {
+      add => NativeEventService.Subscribe(this, value);
+      remove => NativeEventService.Unsubscribe(this, value);
     }
 
     /// <summary>
