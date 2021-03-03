@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.API.Events;
@@ -126,6 +127,17 @@ namespace NWN.API
       {
         Placeable.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
+      }
+    }
+
+    public override float Rotation
+    {
+      get => (360 - NWScript.GetFacing(this)) % 360;
+      set
+      {
+        float radians = (360 - value % 360) * NwMath.DegToRad;
+        Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
+        Placeable.SetOrientation(orientation.ToNativeVector());
       }
     }
 

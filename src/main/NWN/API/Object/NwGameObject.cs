@@ -47,7 +47,7 @@ namespace NWN.API
     public Vector3 Position
     {
       get => NWScript.GetPosition(this);
-      set => ObjectPlugin.SetPosition(this, value);
+      set => gameObject.SetPosition(value.ToNativeVector(), false.ToInt());
     }
 
     /// <summary>
@@ -65,7 +65,12 @@ namespace NWN.API
     public virtual float Rotation
     {
       get => NWScript.GetFacing(this) % 360;
-      set => ObjectPlugin.SetFacing(this, value % 360);
+      set
+      {
+        float radians = (value % 360) * NwMath.DegToRad;
+        Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
+        gameObject.SetOrientation(orientation.ToNativeVector());
+      }
     }
 
     /// <summary>

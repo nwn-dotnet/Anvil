@@ -104,12 +104,6 @@ namespace NWN.API
       await base.FaceToPoint(Position - direction);
     }
 
-    public override float Rotation
-    {
-      get => (360 - NWScript.GetFacing(this)) % 360;
-      set => base.Rotation = 360 - value;
-    }
-
     public override Location Location
     {
       get => Location.Create(Area, Position, Rotation);
