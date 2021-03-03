@@ -109,11 +109,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the maximum HP for this object. Returns 0 if this object has no defined HP.
+    /// Gets or sets the maximum HP for this object. Returns 0 if this object has no defined HP.
     /// </summary>
     public int MaxHP
     {
       get => NWScript.GetMaxHitPoints(this);
+      set => gameObject.m_nBaseHitPoints = value;
     }
 
     /// <summary>
