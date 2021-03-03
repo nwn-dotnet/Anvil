@@ -129,6 +129,12 @@ namespace NWN.API
       }
     }
 
+    public override bool KeyAutoRemoved
+    {
+      get => Placeable.m_bAutoRemoveKey.ToBool();
+      set => Placeable.m_bAutoRemoveKey = value.ToInt();
+    }
+
     public bool Occupied => NWScript.GetSittingCreature(this) != INVALID;
 
     public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();

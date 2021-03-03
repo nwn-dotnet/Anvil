@@ -52,11 +52,7 @@ namespace NWN.API
     /// <summary>
     /// Gets or sets a value indicating whether the key for this lock should "break"/be removed from the creature's inventory when used on this lock.
     /// </summary>
-    public bool KeyAutoRemoved
-    {
-      get => ObjectPlugin.GetAutoRemoveKey(this).ToBool();
-      set => ObjectPlugin.SetAutoRemoveKey(this, value.ToInt());
-    }
+    public abstract bool KeyAutoRemoved { get; set; }
 
     /// <summary>
     /// Gets or sets the skill DC required to lock this stationary object.

@@ -121,6 +121,12 @@ namespace NWN.API
       }
     }
 
+    public override bool KeyAutoRemoved
+    {
+      get => Door.m_bAutoRemoveKey.ToBool();
+      set => Door.m_bAutoRemoveKey = value.ToInt();
+    }
+
     /// <summary>
     /// Opens this door.
     /// </summary>
