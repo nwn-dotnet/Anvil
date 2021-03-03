@@ -21,7 +21,7 @@ namespace NWN.Plugins
 
     protected override Assembly Load(AssemblyName assemblyName)
     {
-      if (!AssemblyConstants.ReservedAssemblyNames.Contains(assemblyName.Name))
+      if (!NWN.Assemblies.ReservedNames.Contains(assemblyName.Name))
       {
         // Try resolving locally from the plugin folder.
         string assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);

@@ -1,3 +1,4 @@
+using System;
 using NWN.Native.API;
 
 namespace NWN.API
@@ -21,6 +22,7 @@ namespace NWN.API
       UserDirectory = exoBase.m_sUserDirectory.ToString();
       WorldTimer = new WorldTimer(server.GetWorldTimer());
       ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
+      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
     }
 
     /// <summary>
@@ -37,6 +39,11 @@ namespace NWN.API
     /// Gets the absolute path of the server's home directory (-userDirectory).
     /// </summary>
     public string UserDirectory { get; }
+
+    /// <summary>
+    /// Gets the version of this server.
+    /// </summary>
+    public Version ServerVersion { get; }
 
     /// <summary>
     /// Gets or sets the instruction limit for the NWScript VM.

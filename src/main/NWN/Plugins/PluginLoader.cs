@@ -20,7 +20,6 @@ namespace NWN.Plugins
 
     public void Init()
     {
-      Log.Info($"Loading DotNET plugins from: {EnvironmentConfig.PluginsPath}");
       LoadCore();
       BootstrapPlugins();
       LoadPlugins();
@@ -29,7 +28,7 @@ namespace NWN.Plugins
 
     private void LoadCore()
     {
-      foreach (Assembly assembly in AssemblyConstants.ManagedAssemblies)
+      foreach (Assembly assembly in Assemblies.AllAssemblies)
       {
         loadedAssemblies.Add(assembly);
       }
@@ -38,6 +37,8 @@ namespace NWN.Plugins
     private void BootstrapPlugins()
     {
       string[] pluginPaths = Directory.GetDirectories(EnvironmentConfig.PluginsPath);
+
+      Log.Info($"Loading {pluginPaths.Length} DotNET plugin/s from: {EnvironmentConfig.PluginsPath}");
 
       if (EnvironmentConfig.PreventStartNoPlugin && pluginPaths.Length == 0)
       {
@@ -74,7 +75,7 @@ namespace NWN.Plugins
 
     private static bool PluginNameIsReserved(string pluginName)
     {
-      return AssemblyConstants.ReservedAssemblyNames.Contains(pluginName);
+      return Assemblies.ReservedNames.Contains(pluginName);
     }
 
     private void LoadPlugins()
@@ -118,7 +119,7 @@ namespace NWN.Plugins
 
     private Assembly ResolveDependencyFromManaged(string pluginName, AssemblyName dependencyName)
     {
-      foreach (Assembly assembly in AssemblyConstants.ManagedAssemblies)
+      foreach (Assembly assembly in Assemblies.AllAssemblies)
       {
         AssemblyName assemblyName = assembly.GetName();
         if (assemblyName.Name != dependencyName.Name)
