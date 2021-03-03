@@ -105,7 +105,7 @@ namespace NWN.API
     public int HP
     {
       get => NWScript.GetCurrentHitPoints(this);
-      set => ObjectPlugin.SetCurrentHitPoints(this, value);
+      set => gameObject.m_nCurrentHitPoints = value;
     }
 
     /// <summary>
