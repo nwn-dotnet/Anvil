@@ -1,10 +1,13 @@
 using NWN.Core;
 using NWN.Core.NWNX;
+using NWN.Native.API;
 
 namespace NWN.API
 {
   public sealed class ScriptParams
   {
+    private static readonly CVirtualMachine VirtualMachine = NWNXLib.VirtualMachine();
+
     /// <summary>
     /// Gets the specified parameter value.
     /// </summary>
@@ -21,6 +24,23 @@ namespace NWN.API
     /// <param name="paramName">The parameter name to query.</param>
     /// <returns>true if the specified parameter is set, otherwise false.</returns>
     public bool IsSet(string paramName)
-      => UtilPlugin.GetScriptParamIsSet(paramName).ToBool();
+    {
+      if (VirtualMachine.m_nRecursionLevel < 0)
+      {
+        return false;
+      }
+
+      CExoArrayListScriptParam scriptParams = VirtualMachine.m_lScriptParams.GetItem(VirtualMachine.m_nRecursionLevel);
+      for (int i = 0; i < scriptParams.num; i++)
+      {
+        ScriptParam scriptParam = scriptParams._OpIndex(i);
+        if (scriptParam.key.ToString() == paramName)
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
   }
 }
