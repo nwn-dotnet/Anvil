@@ -27,10 +27,7 @@ namespace NWN.API
     public virtual Location Location
     {
       get => NWScript.GetLocation(this);
-      set
-      {
-        throw new NotSupportedException();
-      }
+      set => throw new NotSupportedException();
     }
 
     /// <summary>

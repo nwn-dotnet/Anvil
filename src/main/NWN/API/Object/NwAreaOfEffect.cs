@@ -50,6 +50,15 @@ namespace NWN.API
       remove => NativeEventService.Unsubscribe(this, value);
     }
 
+    public override Location Location
+    {
+      set
+      {
+        AreaOfEffect.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
+        Rotation = value.Rotation;
+      }
+    }
+
     /// <summary>
     /// Gets the creator of this Area of Effect.
     /// </summary>

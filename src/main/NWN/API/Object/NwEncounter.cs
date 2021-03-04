@@ -56,7 +56,7 @@ namespace NWN.API
     {
       set
       {
-        Encounter.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Encounter.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
         Rotation = value.Rotation;
       }
     }

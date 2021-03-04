@@ -23,7 +23,7 @@ namespace NWN.API
     {
       set
       {
-        SoundObject.AddToArea(value.Area);
+        SoundObject.AddToArea(value.Area, true.ToInt());
         Position = value.Position;
         Rotation = value.Rotation;
       }

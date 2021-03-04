@@ -28,7 +28,7 @@ namespace NWN.API
     {
       set
       {
-        Item.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Item.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
         Rotation = value.Rotation;
       }
     }
