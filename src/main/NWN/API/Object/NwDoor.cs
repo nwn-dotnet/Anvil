@@ -116,7 +116,14 @@ namespace NWN.API
     {
       set
       {
-        Door.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Door.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
+
+        // If the door is trapped it needs to be added to the area's trap list for it to be detectable by players.
+        if (IsTrapped)
+        {
+          value.Area.Area.m_pTrapList.Add(this);
+        }
+
         Rotation = value.Rotation;
       }
     }

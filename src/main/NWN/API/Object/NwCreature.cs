@@ -130,7 +130,7 @@ namespace NWN.API
     {
       set
       {
-        Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
         Rotation = value.Rotation;
       }
     }
