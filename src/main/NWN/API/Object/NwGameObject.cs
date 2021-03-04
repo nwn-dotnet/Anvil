@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 using Animation = NWN.API.Constants.Animation;
 using SavingThrow = NWN.API.Constants.SavingThrow;

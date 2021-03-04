@@ -8,7 +8,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public partial class NwObject
+  public abstract partial class NwObject
   {
     private static readonly Dictionary<Type, NativeObjectInfoAttribute> CachedTypeInfo = new Dictionary<Type, NativeObjectInfoAttribute>();
 
@@ -128,7 +128,7 @@ namespace NWN.API
         ObjectType.Store => new NwStore(objectId, gameObject.AsNWSStore()),
         ObjectType.Sound => new NwSound(objectId, gameObject.AsNWSSoundObject()),
         ObjectType.AreaOfEffect => new NwAreaOfEffect(objectId, gameObject.AsNWSAreaOfEffectObject()),
-        _ => new NwObject(objectId),
+        _ => null
       };
     }
 

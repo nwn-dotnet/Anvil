@@ -11,7 +11,7 @@ namespace NWN.API
 {
   // TODO Add missing properties/functions from NWScript
   [DebuggerDisplay("{" + nameof(Name) + "}")]
-  public partial class NwObject : IEquatable<NwObject>
+  public abstract partial class NwObject : IEquatable<NwObject>
   {
     private protected static readonly NativeEventService NativeEventService = NManager.GetService<NativeEventService>();
 
