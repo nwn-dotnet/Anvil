@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
@@ -112,10 +113,13 @@ namespace NWN.API
     {
       get
       {
-        for (int i = 0; i < ObjectPlugin.GetLocalVariableCount(this); i++)
+        foreach (KeyValuePair<CExoString,CNWSScriptVar> variable in ScriptVarTable.m_vars)
         {
-          Core.NWNX.LocalVariable rawVar = ObjectPlugin.GetLocalVariable(this, i);
-          yield return LocalVariable.Create(this, rawVar);
+          if (variable.Value.HasFloat()) yield return LocalVariable<float>.Create(this, variable.Key.ToString());
+          if (variable.Value.HasInt()) yield return LocalVariable<int>.Create(this, variable.Key.ToString());
+          if (variable.Value.HasLocation()) yield return LocalVariable<Location>.Create(this, variable.Key.ToString());
+          if (variable.Value.HasObject()) yield return LocalVariable<NwObject>.Create(this, variable.Key.ToString());
+          if (variable.Value.HasString()) yield return LocalVariable<string>.Create(this, variable.Key.ToString());
         }
       }
     }
