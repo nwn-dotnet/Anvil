@@ -3,7 +3,6 @@ using System.Numerics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 using SavingThrow = NWN.API.Constants.SavingThrow;
 

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 
 namespace NWN.API

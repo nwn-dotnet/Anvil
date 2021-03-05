@@ -5,10 +5,8 @@ using System.Runtime.InteropServices;
 using NLog;
 using NWN.API;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Plugins;
 using NWN.Services;
-using NWNX;
 
 namespace NWN
 {
