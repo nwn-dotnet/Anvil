@@ -180,7 +180,7 @@ namespace NWN.API
     public bool HasInventory
     {
       get => NWScript.GetHasInventory(this).ToBool();
-      set => ObjectPlugin.SetHasInventory(this, value.ToInt());
+      set => Placeable.m_bHasInventory = value.ToInt();
     }
 
     /// <summary>
