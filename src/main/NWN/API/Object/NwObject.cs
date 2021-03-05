@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
+using NWN.Native.API;
 using NWN.Services;
 
 namespace NWN.API
@@ -27,6 +28,8 @@ namespace NWN.API
     {
       ObjectId = objectId;
     }
+
+    internal abstract CNWSScriptVarTable ScriptVarTable { get; }
 
     /// <summary>
     /// Gets the globally unique identifier for this object.

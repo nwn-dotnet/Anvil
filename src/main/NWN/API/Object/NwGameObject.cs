@@ -20,6 +20,11 @@ namespace NWN.API
       this.gameObject = gameObject;
     }
 
+    internal override CNWSScriptVarTable ScriptVarTable
+    {
+      get => gameObject.m_ScriptVars;
+    }
+
     /// <summary>
     /// Gets or sets the location of this object.
     /// </summary>

@@ -65,20 +65,7 @@ namespace NWN.API
     /// </summary>
     public bool HasValue
     {
-      get
-      {
-        int localCount = ObjectPlugin.GetLocalVariableCount(Object);
-        for (int i = 0; i < localCount; i++)
-        {
-          Core.NWNX.LocalVariable variable = ObjectPlugin.GetLocalVariable(Object, i);
-          if (variable.key == Name)
-          {
-            return true;
-          }
-        }
-
-        return false;
-      }
+      get => Object.ScriptVarTable.m_vars.ContainsKey(Name.ToExoString());
     }
 
     /// <summary>

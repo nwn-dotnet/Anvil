@@ -57,6 +57,11 @@ namespace NWN.API
       remove => NativeEventService.Unsubscribe(this, value);
     }
 
+    internal override CNWSScriptVarTable ScriptVarTable
+    {
+      get => Area.m_ScriptVars;
+    }
+
     /// <summary>
     /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>
