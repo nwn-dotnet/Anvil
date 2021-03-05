@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using NWN.API;
 using NWN.Core;
-using NWN.Core.NWNX;
+using NWN.Native.API;
 
 namespace NWN.Services
 {
@@ -13,6 +14,7 @@ namespace NWN.Services
   [ServiceBinding(typeof(TwoDimArrayFactory))]
   public sealed class TwoDimArrayFactory
   {
+    private readonly CTwoDimArrays twoDimArrays = NWNXLib.Rules().m_p2DArrays;
     private readonly Dictionary<string, ITwoDimArray> cache = new Dictionary<string, ITwoDimArray>();
 
     /// <summary>
@@ -37,7 +39,14 @@ namespace NWN.Services
     private T Load2DAToCache<T>(string name) where T : ITwoDimArray, new()
     {
       T new2da = new T();
-      for (int i = 0; i < UtilPlugin.Get2DARowCount(name); i++)
+
+      C2DA twoDimArray = twoDimArrays.GetCached2DA(name.ToExoString(), true.ToInt());
+      if (twoDimArray == null)
+      {
+        return default;
+      }
+
+      for (int i = 0; i < twoDimArray.m_nNumRows; i++)
       {
         int rowIndex = i;
         new2da.DeserializeRow(rowIndex, (column) => NWScript.Get2DAString(name, column, rowIndex));

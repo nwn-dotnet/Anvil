@@ -1,9 +1,9 @@
 using System;
+using System.Numerics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 
 namespace NWN.API
@@ -136,6 +136,23 @@ namespace NWN.API
       }
     }
 
+    public override float Rotation
+    {
+      get => (360 - NWScript.GetFacing(this)) % 360;
+      set
+      {
+        float radians = (360 - value % 360) * NwMath.DegToRad;
+        Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
+        Placeable.SetOrientation(orientation.ToNativeVector());
+      }
+    }
+
+    public override bool KeyAutoRemoved
+    {
+      get => Placeable.m_bAutoRemoveKey.ToBool();
+      set => Placeable.m_bAutoRemoveKey = value.ToInt();
+    }
+
     public bool Occupied => NWScript.GetSittingCreature(this) != INVALID;
 
     public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
@@ -169,7 +186,7 @@ namespace NWN.API
     public bool HasInventory
     {
       get => NWScript.GetHasInventory(this).ToBool();
-      set => ObjectPlugin.SetHasInventory(this, value.ToInt());
+      set => Placeable.m_bHasInventory = value.ToInt();
     }
 
     /// <summary>

@@ -139,6 +139,11 @@ namespace NWN.API
       remove => NativeEventService.Unsubscribe(this, value);
     }
 
+    internal override CNWSScriptVarTable ScriptVarTable
+    {
+      get => Module.m_ScriptVars;
+    }
+
     /// <summary>
     /// Gets or sets the XP scale for this module. Must be a value between 0-200.
     /// </summary>
@@ -285,6 +290,11 @@ namespace NWN.API
           yield return player.ToNwObject<NwPlayer>();
         }
       }
+    }
+
+    public override Guid? PeekUUID()
+    {
+      return null;
     }
 
     /// <summary>

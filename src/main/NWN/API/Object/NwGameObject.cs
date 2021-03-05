@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 using Animation = NWN.API.Constants.Animation;
 using SavingThrow = NWN.API.Constants.SavingThrow;
@@ -19,6 +18,11 @@ namespace NWN.API
     internal NwGameObject(uint objectId, CNWSObject gameObject) : base(objectId)
     {
       this.gameObject = gameObject;
+    }
+
+    internal override CNWSScriptVarTable ScriptVarTable
+    {
+      get => gameObject.m_ScriptVars;
     }
 
     /// <summary>
@@ -44,7 +48,7 @@ namespace NWN.API
     public Vector3 Position
     {
       get => NWScript.GetPosition(this);
-      set => ObjectPlugin.SetPosition(this, value);
+      set => gameObject.SetPosition(value.ToNativeVector(), false.ToInt());
     }
 
     /// <summary>
@@ -62,7 +66,12 @@ namespace NWN.API
     public virtual float Rotation
     {
       get => NWScript.GetFacing(this) % 360;
-      set => ObjectPlugin.SetFacing(this, value % 360);
+      set
+      {
+        float radians = (value % 360) * NwMath.DegToRad;
+        Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
+        gameObject.SetOrientation(orientation.ToNativeVector());
+      }
     }
 
     /// <summary>
@@ -97,15 +106,16 @@ namespace NWN.API
     public int HP
     {
       get => NWScript.GetCurrentHitPoints(this);
-      set => ObjectPlugin.SetCurrentHitPoints(this, value);
+      set => gameObject.m_nCurrentHitPoints = value;
     }
 
     /// <summary>
-    /// Gets the maximum HP for this object. Returns 0 if this object has no defined HP.
+    /// Gets or sets the maximum HP for this object. Returns 0 if this object has no defined HP.
     /// </summary>
     public int MaxHP
     {
       get => NWScript.GetMaxHitPoints(this);
+      set => gameObject.m_nBaseHitPoints = value;
     }
 
     /// <summary>
@@ -138,6 +148,18 @@ namespace NWN.API
           yield return item.ToNwObject<NwItem>();
         }
       }
+    }
+
+    public override Guid? PeekUUID()
+    {
+      CNWSUUID uid = gameObject.m_pUUID;
+      if (!uid.CanCarryUUID())
+      {
+        return null;
+      }
+
+      CExoString uidString = uid.m_uuid;
+      return uidString != null ? Guid.Parse(uidString.ToString()) : null;
     }
 
     /// <summary>

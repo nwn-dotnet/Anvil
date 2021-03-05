@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using NLog;
 using NWN.API;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Plugins;
 using NWN.Services;
-using NWNX;
 
 namespace NWN
 {
@@ -117,8 +116,14 @@ namespace NWN
     private void Init()
     {
       loggerManager.Init();
-      Log.Info($"Loading NWN.Managed - {AssemblyConstants.ManagedAssemblyName.Version}");
-      CheckPluginDependencies();
+      PrelinkNative();
+      loggerManager.InitVariables();
+
+      Log.Info($"Loading NWN.Managed {Assemblies.Managed.GetName().Version} (NWN.Core: {Assemblies.Core.GetName().Version}, NWN.Native: {Assemblies.Native.GetName().Version}).");
+      Log.Info($".NET runtime is \"{RuntimeInformation.FrameworkDescription}\", running on \"{RuntimeInformation.OSDescription}\", installed at \"{RuntimeEnvironment.GetRuntimeDirectory()}\"");
+      Log.Info($"Server is running Neverwinter Nights {NwServer.Instance.ServerVersion}.");
+
+      CheckServerVersion();
 
       typeLoader.Init();
       serviceManager = new ServiceManager(typeLoader, containerBuilder);
@@ -139,11 +144,36 @@ namespace NWN
       typeLoader.Dispose();
     }
 
-    private void CheckPluginDependencies()
+    private void PrelinkNative()
     {
-      Log.Info("Checking Plugin Dependencies");
-      PluginUtils.AssertPluginExists<UtilPlugin>();
-      PluginUtils.AssertPluginExists<ObjectPlugin>();
+      Log.Info("Prelinking native methods.");
+
+      try
+      {
+        Marshal.PrelinkAll(typeof(NWN.Native.API.NWNXLibPINVOKE));
+        Log.Info("Prelinking complete.");
+      }
+      catch (TypeInitializationException)
+      {
+        Log.Fatal("The NWNX_SWIG_DotNET plugin could not be found. Has it been enabled? (NWNX_SWIG_DOTNET_SKIP=n)");
+        throw;
+      }
+      catch (Exception)
+      {
+        Log.Fatal($"The NWNX_SWIG_DotNET plugin could not be loaded.");
+        throw;
+      }
+    }
+
+    private void CheckServerVersion()
+    {
+      Version managedVersion = Assemblies.Managed.GetName().Version;
+      Version serverVersion = NwServer.Instance.ServerVersion;
+
+      if (managedVersion.Major != serverVersion.Major || managedVersion.Minor != serverVersion.Minor)
+      {
+        Log.Warn($"The current version of NWN.Managed targets version {managedVersion}, but the server is running {serverVersion}! You may encounter compatibility issues.");
+      }
     }
 
     private void Shutdown()

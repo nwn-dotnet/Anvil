@@ -1,9 +1,22 @@
+using System.Numerics;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
+using Vector = NWN.Native.API.Vector;
 
 namespace NWN.API
 {
   public static class NativeUtils
   {
+    public static unsafe Vector ToNativeVector(this Vector3 vector)
+    {
+      return new Vector(&vector, false);
+    }
+
+    public static Vector3 ToManagedVector(this Vector vector)
+    {
+      return Marshal.PtrToStructure<Vector3>(vector);
+    }
+
     public static CExoString ToExoString(this string str)
     {
       return new CExoString(str);

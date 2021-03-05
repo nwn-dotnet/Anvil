@@ -3,7 +3,6 @@ using System.Numerics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 using SavingThrow = NWN.API.Constants.SavingThrow;
 
@@ -52,11 +51,7 @@ namespace NWN.API
     /// <summary>
     /// Gets or sets a value indicating whether the key for this lock should "break"/be removed from the creature's inventory when used on this lock.
     /// </summary>
-    public bool KeyAutoRemoved
-    {
-      get => ObjectPlugin.GetAutoRemoveKey(this).ToBool();
-      set => ObjectPlugin.SetAutoRemoveKey(this, value.ToInt());
-    }
+    public abstract bool KeyAutoRemoved { get; set; }
 
     /// <summary>
     /// Gets or sets the skill DC required to lock this stationary object.
@@ -106,12 +101,6 @@ namespace NWN.API
     {
       Vector3 direction = Vector3.Normalize(point - Position);
       await base.FaceToPoint(Position - direction);
-    }
-
-    public override float Rotation
-    {
-      get => (360 - NWScript.GetFacing(this)) % 360;
-      set => base.Rotation = 360 - value;
     }
 
     public override Location Location

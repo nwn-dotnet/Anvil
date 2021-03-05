@@ -4,14 +4,13 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Core.NWNX;
+using NWN.Native.API;
 using NWN.Services;
 
 namespace NWN.API
 {
-  // TODO Add missing properties/functions from NWScript
   [DebuggerDisplay("{" + nameof(Name) + "}")]
-  public partial class NwObject : IEquatable<NwObject>
+  public abstract partial class NwObject : IEquatable<NwObject>
   {
     private protected static readonly NativeEventService NativeEventService = NManager.GetService<NativeEventService>();
 
@@ -27,6 +26,8 @@ namespace NWN.API
     {
       ObjectId = objectId;
     }
+
+    internal abstract CNWSScriptVarTable ScriptVarTable { get; }
 
     /// <summary>
     /// Gets the globally unique identifier for this object.
@@ -57,18 +58,24 @@ namespace NWN.API
     /// </summary>
     public bool HasUUID
     {
-      get => string.IsNullOrEmpty(ObjectPlugin.PeekUUID(this));
+      get => PeekUUID() != null;
     }
 
     /// <summary>
     /// Gets the resource reference used to create this object.
     /// </summary>
-    public string ResRef => NWScript.GetResRef(this);
+    public string ResRef
+    {
+      get => NWScript.GetResRef(this);
+    }
 
     /// <summary>
     /// Gets a value indicating whether this is a valid object.
     /// </summary>
-    public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
+    public bool IsValid
+    {
+      get => NWScript.GetIsObjectValid(this).ToBool();
+    }
 
     /// <summary>
     /// Gets or sets the name of this object.
@@ -109,10 +116,32 @@ namespace NWN.API
     {
       get
       {
-        for (int i = 0; i < ObjectPlugin.GetLocalVariableCount(this); i++)
+        foreach ((CExoString key, CNWSScriptVar value) in ScriptVarTable.m_vars)
         {
-          Core.NWNX.LocalVariable rawVar = ObjectPlugin.GetLocalVariable(this, i);
-          yield return LocalVariable.Create(this, rawVar);
+          if (value.HasFloat())
+          {
+            yield return LocalVariable<float>.Create(this, key.ToString());
+          }
+
+          if (value.HasInt())
+          {
+            yield return LocalVariable<int>.Create(this, key.ToString());
+          }
+
+          if (value.HasLocation())
+          {
+            yield return LocalVariable<Location>.Create(this, key.ToString());
+          }
+
+          if (value.HasObject())
+          {
+            yield return LocalVariable<NwObject>.Create(this, key.ToString());
+          }
+
+          if (value.HasString())
+          {
+            yield return LocalVariable<string>.Create(this, key.ToString());
+          }
         }
       }
     }
@@ -195,25 +224,11 @@ namespace NWN.API
     /// Attempts to get the UUID of this object, if assigned.
     /// </summary>
     /// <returns>The UUID if assigned, otherwise no value.</returns>
-    public Guid? PeekUUID()
-    {
-      string guidString = ObjectPlugin.PeekUUID(this);
-      if (!string.IsNullOrWhiteSpace(guidString))
-      {
-        return Guid.Parse(guidString);
-      }
-
-      return null;
-    }
+    public abstract Guid? PeekUUID();
 
     public void ForceRefreshUUID()
     {
       NWScript.ForceRefreshObjectUUID(this);
-    }
-
-    public string Serialize()
-    {
-      return ObjectPlugin.Serialize(this);
     }
 
     /// <summary>

@@ -1,6 +1,4 @@
 using System;
-using NWN.Core.NWNX;
-using NWNX.API.Constants;
 
 namespace NWN.API
 {
@@ -9,20 +7,6 @@ namespace NWN.API
     public string Name { get; protected set; }
 
     public NwObject Object { get; protected set; }
-
-    internal static LocalVariable Create(NwObject nwObject, Core.NWNX.LocalVariable variable)
-    {
-      LocalVarType varType = (LocalVarType)variable.type;
-      return varType switch
-      {
-        LocalVarType.Int => LocalVariable<int>.Create(nwObject, variable.key),
-        LocalVarType.Float => LocalVariable<float>.Create(nwObject, variable.key),
-        LocalVarType.String => LocalVariable<string>.Create(nwObject, variable.key),
-        LocalVarType.Object => LocalVariable<NwObject>.Create(nwObject, variable.key),
-        LocalVarType.Location => LocalVariable<Location>.Create(nwObject, variable.key),
-        _ => throw new ArgumentOutOfRangeException(),
-      };
-    }
 
     public abstract void Delete();
   }
@@ -65,20 +49,7 @@ namespace NWN.API
     /// </summary>
     public bool HasValue
     {
-      get
-      {
-        int localCount = ObjectPlugin.GetLocalVariableCount(Object);
-        for (int i = 0; i < localCount; i++)
-        {
-          Core.NWNX.LocalVariable variable = ObjectPlugin.GetLocalVariable(Object, i);
-          if (variable.key == Name)
-          {
-            return true;
-          }
-        }
-
-        return false;
-      }
+      get => Object.ScriptVarTable.m_vars.ContainsKey(Name.ToExoString());
     }
 
     /// <summary>
