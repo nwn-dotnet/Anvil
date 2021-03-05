@@ -153,6 +153,18 @@ namespace NWN.API
       }
     }
 
+    public override Guid? PeekUUID()
+    {
+      CNWSUUID uid = gameObject.m_pUUID;
+      if (!uid.CanCarryUUID())
+      {
+        return null;
+      }
+
+      CExoString uidString = uid.m_uuid;
+      return uidString != null ? Guid.Parse(uidString.ToString()) : null;
+    }
+
     /// <summary>
     /// Returns the distance to the target.<br/>
     /// If you only need to compare the distance, you can compare the squared distance using <see cref="DistanceSquared"/> to avoid a costly sqrt operation.

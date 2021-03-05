@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
@@ -61,18 +60,24 @@ namespace NWN.API
     /// </summary>
     public bool HasUUID
     {
-      get => string.IsNullOrEmpty(ObjectPlugin.PeekUUID(this));
+      get => PeekUUID() != null;
     }
 
     /// <summary>
     /// Gets the resource reference used to create this object.
     /// </summary>
-    public string ResRef => NWScript.GetResRef(this);
+    public string ResRef
+    {
+      get => NWScript.GetResRef(this);
+    }
 
     /// <summary>
     /// Gets a value indicating whether this is a valid object.
     /// </summary>
-    public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
+    public bool IsValid
+    {
+      get => NWScript.GetIsObjectValid(this).ToBool();
+    }
 
     /// <summary>
     /// Gets or sets the name of this object.
@@ -202,16 +207,7 @@ namespace NWN.API
     /// Attempts to get the UUID of this object, if assigned.
     /// </summary>
     /// <returns>The UUID if assigned, otherwise no value.</returns>
-    public Guid? PeekUUID()
-    {
-      string guidString = ObjectPlugin.PeekUUID(this);
-      if (!string.IsNullOrWhiteSpace(guidString))
-      {
-        return Guid.Parse(guidString);
-      }
-
-      return null;
-    }
+    public abstract Guid? PeekUUID();
 
     public void ForceRefreshUUID()
     {

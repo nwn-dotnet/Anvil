@@ -62,6 +62,18 @@ namespace NWN.API
       get => Area.m_ScriptVars;
     }
 
+    public override Guid? PeekUUID()
+    {
+      CNWSUUID uid = Area.m_pUUID;
+      if (!uid.CanCarryUUID())
+      {
+        return null;
+      }
+
+      CExoString uidString = uid.m_uuid;
+      return uidString != null ? Guid.Parse(uidString.ToString()) : null;
+    }
+
     /// <summary>
     /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>

@@ -292,6 +292,11 @@ namespace NWN.API
       }
     }
 
+    public override Guid? PeekUUID()
+    {
+      return null;
+    }
+
     /// <summary>
     /// Gets the specified global campaign variable.
     /// </summary>
