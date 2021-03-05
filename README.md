@@ -54,8 +54,7 @@ The following tags are supported:
 5. Configure NWNX options to the following:
 ```sh
 NWNX_DOTNET_SKIP=n
-NWNX_OBJECT_SKIP=n
-NWNX_UTIL_SKIP=n
+NWNX_SWIG_DOTNET_SKIP=n
 NWNX_DOTNET_ASSEMBLY=/your/path/to/NWN.Managed # Where "NWN.Managed.dll" was extracted in step 3, without the extension. E.g: NWNX_DOTNET_ASSEMBLY=/nwn/home/modbin/NWN.Managed
 # NWNX_DOTNET_ENTRYPOINT= # Make sure this option does not exist in your config
 ```

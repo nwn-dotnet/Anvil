@@ -126,7 +126,6 @@ namespace NWN
       Log.Info($"Server is running Neverwinter Nights {NwServer.Instance.ServerVersion}.");
 
       CheckServerVersion();
-      CheckPluginDependencies();
 
       typeLoader.Init();
       serviceManager = new ServiceManager(typeLoader, containerBuilder);
@@ -166,14 +165,6 @@ namespace NWN
         Log.Fatal($"The NWNX_SWIG_DotNET plugin could not be loaded.");
         throw;
       }
-    }
-
-    private void CheckPluginDependencies()
-    {
-      Log.Info("Checking NWNX Plugin Dependencies.");
-      PluginUtils.AssertPluginExists<UtilPlugin>();
-      PluginUtils.AssertPluginExists<ObjectPlugin>();
-      Log.Info("Dependencies OK.");
     }
 
     private void CheckServerVersion()
