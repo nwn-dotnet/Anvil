@@ -116,13 +116,32 @@ namespace NWN.API
     {
       get
       {
-        foreach (KeyValuePair<CExoString,CNWSScriptVar> variable in ScriptVarTable.m_vars)
+        foreach ((CExoString key, CNWSScriptVar value) in ScriptVarTable.m_vars)
         {
-          if (variable.Value.HasFloat()) yield return LocalVariable<float>.Create(this, variable.Key.ToString());
-          if (variable.Value.HasInt()) yield return LocalVariable<int>.Create(this, variable.Key.ToString());
-          if (variable.Value.HasLocation()) yield return LocalVariable<Location>.Create(this, variable.Key.ToString());
-          if (variable.Value.HasObject()) yield return LocalVariable<NwObject>.Create(this, variable.Key.ToString());
-          if (variable.Value.HasString()) yield return LocalVariable<string>.Create(this, variable.Key.ToString());
+          if (value.HasFloat())
+          {
+            yield return LocalVariable<float>.Create(this, key.ToString());
+          }
+
+          if (value.HasInt())
+          {
+            yield return LocalVariable<int>.Create(this, key.ToString());
+          }
+
+          if (value.HasLocation())
+          {
+            yield return LocalVariable<Location>.Create(this, key.ToString());
+          }
+
+          if (value.HasObject())
+          {
+            yield return LocalVariable<NwObject>.Create(this, key.ToString());
+          }
+
+          if (value.HasString())
+          {
+            yield return LocalVariable<string>.Create(this, key.ToString());
+          }
         }
       }
     }

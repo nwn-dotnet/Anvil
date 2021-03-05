@@ -156,15 +156,14 @@ namespace NWN
         Marshal.PrelinkAll(typeof(NWN.Native.API.NWNXLibPINVOKE));
         Log.Info("Prelinking complete.");
       }
-      catch (TypeInitializationException e)
+      catch (TypeInitializationException)
       {
         Log.Fatal("The NWNX_SWIG_DotNET plugin could not be found. Has it been enabled? (NWNX_SWIG_DOTNET_SKIP=n)");
         throw;
       }
-      catch (Exception e)
+      catch (Exception)
       {
-        Log.Fatal($"The NWNX_SWIG_DotNET plugin could not be loaded:\n" +
-          $"{e.Message}");
+        Log.Fatal($"The NWNX_SWIG_DotNET plugin could not be loaded.");
         throw;
       }
     }
