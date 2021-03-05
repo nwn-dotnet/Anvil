@@ -4,13 +4,11 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 using NWN.Services;
 
 namespace NWN.API
 {
-  // TODO Add missing properties/functions from NWScript
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   public abstract partial class NwObject : IEquatable<NwObject>
   {
@@ -212,11 +210,6 @@ namespace NWN.API
     public void ForceRefreshUUID()
     {
       NWScript.ForceRefreshObjectUUID(this);
-    }
-
-    public string Serialize()
-    {
-      return ObjectPlugin.Serialize(this);
     }
 
     /// <summary>
