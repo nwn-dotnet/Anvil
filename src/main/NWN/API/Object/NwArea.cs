@@ -553,11 +553,11 @@ namespace NWN.API
         resGff.WriteFieldINT(resStruct, tile.m_nOrientation, "Tile_Orientation");
         resGff.WriteFieldINT(resStruct, tile.m_nHeight, "Tile_Height");
 
-        resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight1Color == 255 ? 0 : tile.m_nMainLight1Color, "Tile_MainLight1");
-        resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight2Color == 255 ? 0 : tile.m_nMainLight2Color, "Tile_MainLight2");
+        resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight1Color, "Tile_MainLight1");
+        resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight2Color, "Tile_MainLight2");
 
-        resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight1Color == 255 ? 0 : tile.m_nSourceLight1Color, "Tile_SrcLight1");
-        resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight2Color == 255 ? 0 : tile.m_nSourceLight2Color, "Tile_SrcLight2");
+        resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight1Color, "Tile_SrcLight1");
+        resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight2Color, "Tile_SrcLight2");
 
         resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop1, "Tile_AnimLoop1");
         resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop2, "Tile_AnimLoop2");
