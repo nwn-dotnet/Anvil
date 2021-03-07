@@ -17,6 +17,7 @@ namespace NWN.Services
   /// </summary>
   [ServiceBinding(typeof(IScriptDispatcher))]
   [ServiceBinding(typeof(NativeEventService))]
+  [BindingOrder(BindingOrder.API)]
   public sealed class NativeEventService : IScriptDispatcher
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
