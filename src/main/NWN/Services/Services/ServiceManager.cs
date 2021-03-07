@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using LightInject;
@@ -7,12 +6,12 @@ using NWN.Plugins;
 
 namespace NWN.Services
 {
+  [BindingOrder(BindingOrder.Core)]
   public class ServiceManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly ServiceContainer serviceContainer;
-    private List<IDisposable> disposables;
 
     public List<object> RegisteredServices { get; private set; }
 
@@ -31,7 +30,6 @@ namespace NWN.Services
     internal void Init()
     {
       RegisteredServices = serviceContainer.GetAllInstances<object>().ToList();
-      disposables = serviceContainer.GetAllInstances<IDisposable>().ToList();
       NotifyInitComplete();
     }
 
@@ -55,11 +53,6 @@ namespace NWN.Services
 
     internal void Dispose()
     {
-      foreach (IDisposable disposable in disposables)
-      {
-        disposable?.Dispose();
-      }
-
       serviceContainer?.Dispose();
     }
   }

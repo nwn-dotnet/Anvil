@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using LightInject;
 using NLog;
 using NWN.API;
@@ -19,14 +20,15 @@ namespace NWN.Services
     public ServiceContainer Setup(ITypeLoader typeLoader)
     {
       this.typeLoader = typeLoader;
-      this.serviceContainer = new ServiceContainer(new ContainerOptions {EnablePropertyInjection = false});
+      this.serviceContainer = new ServiceContainer(new ContainerOptions {EnablePropertyInjection = false, EnableVariance = false});
 
       return serviceContainer;
     }
 
     public void RegisterCoreService<T>(T instance)
     {
-      serviceContainer.RegisterInstance(instance);
+      string serviceName = GetServiceName(instance.GetType());
+      serviceContainer.RegisterInstance(instance, serviceName);
     }
 
     public void BuildContainer()
@@ -38,6 +40,7 @@ namespace NWN.Services
     private void SearchForBindings()
     {
       Log.Info("Loading managed services...");
+
       foreach (Type type in typeLoader.LoadedTypes)
       {
         RegisterBindings(type, type.GetCustomAttributes<ServiceBindingAttribute>());
@@ -51,21 +54,26 @@ namespace NWN.Services
         return;
       }
 
+      string serviceName = GetServiceName(bindTo);
       PerContainerLifetime lifeTime = new PerContainerLifetime();
-      serviceContainer.Register(typeof(object), bindTo, lifeTime);
 
-      if (bindTo.IsAssignableTo(typeof(IDisposable)))
-      {
-        serviceContainer.Register(typeof(IDisposable), bindTo, lifeTime);
-      }
+      serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
 
       foreach (ServiceBindingAttribute bindingInfo in newBindings)
       {
-        serviceContainer.Register(bindingInfo.BindFrom, bindTo, lifeTime);
+        serviceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
         Log.Debug($"Bind: {bindingInfo.BindFrom.FullName} -> {bindTo.FullName}");
       }
 
       Log.Info($"Registered service: {bindTo.FullName}");
+    }
+
+    private string GetServiceName(Type implementation)
+    {
+      BindingOrderAttribute attribute = implementation.GetCustomAttribute<BindingOrderAttribute>();
+      BindingOrder bindingOrder = attribute?.Order ?? BindingOrder.Default;
+
+      return ((short)bindingOrder).ToString("D5") + implementation.FullName;
     }
 
     /// <summary>

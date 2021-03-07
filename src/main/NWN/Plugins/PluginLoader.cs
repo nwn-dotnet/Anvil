@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using NLog;
+using NWN.Services;
 
 namespace NWN.Plugins
 {
   /// <summary>
   /// Loads all available plugins and their types for service initialisation.
   /// </summary>
+  [BindingOrder(BindingOrder.Core)]
   internal class PluginLoader : ITypeLoader
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

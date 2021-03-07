@@ -31,6 +31,7 @@ namespace NWN.API
     }
 
     [ServiceBinding(typeof(IUpdateable))]
+    [BindingOrder(BindingOrder.API)]
     internal class TaskRunner : IUpdateable
     {
       public TaskRunner(DispatchServiceManager dispatchServiceManager)
