@@ -94,6 +94,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets a value indicating whether the location is walkable.
+    /// </summary>
+    public bool IsWalkable
+    {
+      get => NWScript.Get2DAString("surfacemat", "Walk", this.SurfaceMaterial).ParseIntBool();
+    }
+
+    /// <summary>
     /// Returns the distance to the target.<br/>
     /// If you only need to compare the distance, you can compare the squared distance using <see cref="DistanceSquared"/> to avoid a costly sqrt operation.
     /// </summary>
