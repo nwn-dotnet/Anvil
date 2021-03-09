@@ -395,28 +395,36 @@ namespace NWN.API
         case ItemAppearanceType.SimpleModel:
           if (value > 0)
           {
-            Item.m_nModelPart[0] = value;
+            byte[] modelParts = Item.m_nModelPart;
+            modelParts[0] = value;
+            Item.m_nModelPart = modelParts;
           }
 
           break;
         case ItemAppearanceType.WeaponColor:
           if (value <= 255 && index >= 0 && index <= 5)
           {
-            Item.m_nLayeredTextureColors[index] = value;
+            byte[] layeredTextureColors = Item.m_nLayeredTextureColors;
+            layeredTextureColors[index] = value;
+            Item.m_nLayeredTextureColors = layeredTextureColors;
           }
 
           break;
         case ItemAppearanceType.WeaponModel:
           if (index >= 0 && index <= 2)
           {
-            Item.m_nModelPart[index] = value;
+            byte[] modelParts = Item.m_nModelPart;
+            modelParts[index] = value;
+            Item.m_nModelPart = modelParts;
           }
 
           break;
         case ItemAppearanceType.ArmorModel:
           if (index >= 0 && index <= 18)
           {
-            Item.m_nArmorModelPart[index] = value;
+            byte[] armorModelParts = Item.m_nArmorModelPart;
+            armorModelParts[index] = value;
+            Item.m_nArmorModelPart = armorModelParts;
           }
 
           break;
@@ -426,7 +434,9 @@ namespace NWN.API
             //1.69 colors
             if (index <= 5)
             {
-              Item.m_nLayeredTextureColors[index] = value;
+              byte[] layeredTextureColors = Item.m_nLayeredTextureColors;
+              layeredTextureColors[index] = value;
+              Item.m_nLayeredTextureColors = layeredTextureColors;
             }
 
             //per-part coloring
