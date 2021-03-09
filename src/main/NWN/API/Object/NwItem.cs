@@ -259,10 +259,10 @@ namespace NWN.API
     /// <returns>The newly cloned copy of the item.</returns>
     public NwItem Clone(NwGameObject targetInventory, string newTag = null, bool copyVars = true)
     {
-      NwItem clone = NWScript.CopyObject(this, targetInventory.Location, targetInventory, newTag).ToNwObject<NwItem>();
-      if (!copyVars)
+      NwItem clone = NWScript.CopyItem(this, targetInventory, copyVars.ToInt()).ToNwObject<NwItem>();
+      if (clone != null && newTag != null)
       {
-        CleanLocalVariables(clone);
+        clone.Tag = newTag;
       }
 
       return clone;
@@ -305,7 +305,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="property">Item property to check.</param>
     /// <returns>True if this item has a property of the given type, otherwise false.</returns>
-    public ItemPropertyType ItemHasItemProperty(ItemPropertyType property)
+    public ItemPropertyType HasItemProperty(ItemPropertyType property)
       => (ItemPropertyType)NWScript.GetItemHasItemProperty(this, (int)property);
 
     /// <summary>
@@ -317,44 +317,131 @@ namespace NWN.API
       => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
 
     /// <summary>
-    /// Gets the number of uses per day remaining for the specified item property on this item.
+    /// Gets the current base model of this item.
     /// </summary>
-    /// <param name="targetInventory">Create the item within this inventory.</param>
-    /// <param name="copyVars">If true then local variables on item are copied.</param>
-    public NwItem Copy(NwGameObject targetInventory, bool copyVars)
-      => NWScript.CopyItem(this, targetInventory, copyVars.ToInt()).ToNwObject<NwItem>();
+    public byte GetItemSimpleModel()
+      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.SimpleModel, 0);
 
     /// <summary>
-    /// Returns the appearance of an item.
+    /// Gets the current armor color of this item.
     /// </summary>
-    /// <param name="type">The type of the armor<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
-    /// <param name="armorColor">The color of the armor<see cref="NWN.API.Constants.ItemAppearanceArmorColor"/>.</param>
-    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceArmorColor armorColor)
-      => NWScript.GetItemAppearance(this, (int)type, (int)armorColor);
+    /// <param name="index">The armor color slot index to query.</param>
+    public byte GetArmorColor(ItemAppearanceArmorColor index)
+      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.ArmorColor, (int)index);
 
     /// <summary>
-    /// Returns the appearance of an item.
+    /// Gets the current armor model of this item.
     /// </summary>
-    /// <param name="type">The type of the armor<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
-    /// <param name="armorModel">The model of the armor<see cref="NWN.API.Constants.ItemAppearanceArmorModel"/>.</param>
-    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceArmorModel armorModel)
-      => NWScript.GetItemAppearance(this, (int)type, (int)armorModel);
+    /// <param name="index">The armor model slot index to query.</param>
+    public byte GetArmorModel(ItemAppearanceArmorModel index)
+      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.ArmorModel, (int)index);
 
     /// <summary>
-    /// Returns the appearance of an item.
+    /// Gets the current weapon color of this item.
     /// </summary>
-    /// <param name="type">The type of the weapon<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
-    /// <param name="weaponColor">The color of the weapon<see cref="NWN.API.Constants.ItemAppearanceWeaponColor"/>.</param>
-    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceWeaponColor weaponColor)
-      => NWScript.GetItemAppearance(this, (int)type, (int)weaponColor);
+    /// <param name="index">The weapon color index to query.</param>
+    public byte GetWeaponColor(ItemAppearanceWeaponColor index)
+      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.WeaponColor, (int)index);
 
     /// <summary>
-    /// Returns the appearance of an item.
+    /// Gets the current weapon model of this item.
     /// </summary>
-    /// <param name="type">The type of the weapon<see cref="NWN.API.Constants.ItemAppearanceType"/>.</param>
-    /// <param name="weaponModel">The model of the weapon<see cref="NWN.API.Constants.ItemAppearanceWeaponModel"/>.</param>
-    public int ItemAppearance(ItemAppearanceType type, ItemAppearanceWeaponModel weaponModel)
-      => NWScript.GetItemAppearance(this, (int)type, (int)weaponModel);
+    /// <param name="index">The weapon model index to query.</param>
+    public byte GetWeaponModelAppearance(ItemAppearanceWeaponModel index)
+      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.WeaponModel, (int)index);
+
+    /// <summary>
+    /// Sets the base model of this item.
+    /// </summary>
+    public void SetItemSimpleModel(byte value)
+      => SetItemAppearance(ItemAppearanceType.SimpleModel, 0, value);
+
+    /// <summary>
+    /// Sets the armor color of this item.
+    /// </summary>
+    /// <param name="index">The armor color slot index to query.</param>
+    /// <param name="value">The new color to assign.</param>
+    public void SetArmorColor(ItemAppearanceArmorColor index, byte value)
+      => SetItemAppearance(ItemAppearanceType.ArmorColor, (int)index, value);
+
+    /// <summary>
+    /// Sets the armor model of this item.
+    /// </summary>
+    /// <param name="index">The armor model slot index to query.</param>
+    /// <param name="value">The new model to assign.</param>
+    public void SetArmorModel(ItemAppearanceArmorModel index, byte value)
+      => SetItemAppearance(ItemAppearanceType.ArmorModel, (int)index, value);
+
+    /// <summary>
+    /// Sets the weapon color of this item.
+    /// </summary>
+    /// <param name="index">The weapon color index to query.</param>
+    /// <param name="value">The new color to assign.</param>
+    public void SetWeaponColor(ItemAppearanceWeaponColor index, byte value)
+      => SetItemAppearance(ItemAppearanceType.WeaponColor, (int)index, value);
+
+    /// <summary>
+    /// Sets the weapon model of this item.
+    /// </summary>
+    /// <param name="index">The weapon model index to query.</param>
+    /// <param name="value">The new model to assign.</param>
+    public void SetWeaponModelAppearance(ItemAppearanceWeaponModel index, byte value)
+      => SetItemAppearance(ItemAppearanceType.WeaponModel, (int)index, value);
+
+    /// <summary>
+    /// Makes a single change to the appearance of an item.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="index"></param>
+    /// <param name="value"></param>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    private void SetItemAppearance(ItemAppearanceType type, int index, byte value)
+    {
+      switch (type)
+      {
+        case ItemAppearanceType.SimpleModel:
+          if (value > 0)
+          {
+            Item.m_nModelPart[0] = value;
+          }
+          break;
+        case ItemAppearanceType.WeaponColor:
+          if (value <= 255 && index >= 0 && index <= 5)
+          {
+            Item.m_nLayeredTextureColors[index] = value;
+          }
+          break;
+        case ItemAppearanceType.WeaponModel:
+          if (index >= 0 && index <= 2)
+          {
+            Item.m_nModelPart[index] = value;
+          }
+          break;
+        case ItemAppearanceType.ArmorModel:
+          if (index >= 0 && index <= 18)
+          {
+            Item.m_nArmorModelPart[index] = value;
+          }
+          break;
+        case ItemAppearanceType.ArmorColor:
+          if (value <= 255 && index >= 0 && index <= 119)
+          {
+            if (index <= 5) //1.69 colors
+            {
+              Item.m_nLayeredTextureColors[index]=value;
+            }
+            else //per-part coloring
+            {
+              byte part = (byte)((index-6)/6);
+              byte texture = (byte)(index-6-part*6);
+              Item.SetLayeredTextureColorPerPart(texture, part, value);
+            }
+          }
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(type), type, null);
+      }
+    }
 
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
     {
