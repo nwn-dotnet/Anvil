@@ -388,13 +388,6 @@ namespace NWN.API
     public void SetWeaponModelAppearance(ItemAppearanceWeaponModel index, byte value)
       => SetItemAppearance(ItemAppearanceType.WeaponModel, (int)index, value);
 
-    /// <summary>
-    /// Makes a single change to the appearance of an item.
-    /// </summary>
-    /// <param name="type"></param>
-    /// <param name="index"></param>
-    /// <param name="value"></param>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
     private void SetItemAppearance(ItemAppearanceType type, int index, byte value)
     {
       switch (type)
@@ -404,39 +397,47 @@ namespace NWN.API
           {
             Item.m_nModelPart[0] = value;
           }
+
           break;
         case ItemAppearanceType.WeaponColor:
           if (value <= 255 && index >= 0 && index <= 5)
           {
             Item.m_nLayeredTextureColors[index] = value;
           }
+
           break;
         case ItemAppearanceType.WeaponModel:
           if (index >= 0 && index <= 2)
           {
             Item.m_nModelPart[index] = value;
           }
+
           break;
         case ItemAppearanceType.ArmorModel:
           if (index >= 0 && index <= 18)
           {
             Item.m_nArmorModelPart[index] = value;
           }
+
           break;
         case ItemAppearanceType.ArmorColor:
           if (value <= 255 && index >= 0 && index <= 119)
           {
-            if (index <= 5) //1.69 colors
+            //1.69 colors
+            if (index <= 5)
             {
-              Item.m_nLayeredTextureColors[index]=value;
+              Item.m_nLayeredTextureColors[index] = value;
             }
-            else //per-part coloring
+
+            //per-part coloring
+            else
             {
-              byte part = (byte)((index-6)/6);
-              byte texture = (byte)(index-6-part*6);
+              byte part = (byte)((index - 6) / 6);
+              byte texture = (byte)(index - 6 - part * 6);
               Item.SetLayeredTextureColorPerPart(texture, part, value);
             }
           }
+
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(type), type, null);
