@@ -5,12 +5,12 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API
 {
-  public unsafe class LevelStats
+  public unsafe class CreatureLevelStats
   {
     private readonly NwCreature creature;
     private readonly CNWLevelStats levelStats;
 
-    public LevelStats(NwCreature creature, CNWLevelStats levelStats)
+    public CreatureLevelStats(NwCreature creature, CNWLevelStats levelStats)
     {
       this.creature = creature;
       this.levelStats = levelStats;

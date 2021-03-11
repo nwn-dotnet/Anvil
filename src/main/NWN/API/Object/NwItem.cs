@@ -4,7 +4,6 @@ using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
-using ItemAppearanceType = NWN.API.Constants.ItemAppearanceType;
 
 namespace NWN.API
 {
@@ -13,10 +12,21 @@ namespace NWN.API
   {
     internal readonly CNWSItem Item;
 
+    /// <summary>
+    /// Gets the inventory of this item, if it is a container.
+    /// </summary>
+    public Inventory Inventory { get; }
+
+    /// <summary>
+    /// Gets the appearance properties of this item.
+    /// </summary>
+    public ItemAppearance Appearance { get; }
+
     internal NwItem(uint objectId, CNWSItem item) : base(objectId, item)
     {
       this.Item = item;
       this.Inventory = new Inventory(this, item.m_pItemRepository);
+      this.Appearance = new ItemAppearance(item);
     }
 
     public static implicit operator CNWSItem(NwItem item)
@@ -40,11 +50,6 @@ namespace NWN.API
     {
       get => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
     }
-
-    /// <summary>
-    /// Gets the inventory of this item, if it is a container.
-    /// </summary>
-    public Inventory Inventory { get; }
 
     /// <summary>
     /// Gets or sets the unidentified description for this item.
@@ -315,144 +320,6 @@ namespace NWN.API
     /// <returns>The number of uses per day remaining for the specified item property, or 0 if this item property is not uses/day, or belongs to a different item.</returns>
     public int UsesPerDayRemaining(ItemProperty property)
       => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
-
-    /// <summary>
-    /// Gets the current base model of this item.
-    /// </summary>
-    public byte GetItemSimpleModel()
-      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.SimpleModel, 0);
-
-    /// <summary>
-    /// Gets the current armor color of this item.
-    /// </summary>
-    /// <param name="index">The armor color slot index to query.</param>
-    public byte GetArmorColor(ItemAppearanceArmorColor index)
-      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.ArmorColor, (int)index);
-
-    /// <summary>
-    /// Gets the current armor model of this item.
-    /// </summary>
-    /// <param name="index">The armor model slot index to query.</param>
-    public byte GetArmorModel(ItemAppearanceArmorModel index)
-      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.ArmorModel, (int)index);
-
-    /// <summary>
-    /// Gets the current weapon color of this item.
-    /// </summary>
-    /// <param name="index">The weapon color index to query.</param>
-    public byte GetWeaponColor(ItemAppearanceWeaponColor index)
-      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.WeaponColor, (int)index);
-
-    /// <summary>
-    /// Gets the current weapon model of this item.
-    /// </summary>
-    /// <param name="index">The weapon model index to query.</param>
-    public byte GetWeaponModelAppearance(ItemAppearanceWeaponModel index)
-      => (byte)NWScript.GetItemAppearance(this, (int)ItemAppearanceType.WeaponModel, (int)index);
-
-    /// <summary>
-    /// Sets the base model of this item.
-    /// </summary>
-    public void SetItemSimpleModel(byte value)
-      => SetItemAppearance(ItemAppearanceType.SimpleModel, 0, value);
-
-    /// <summary>
-    /// Sets the armor color of this item.
-    /// </summary>
-    /// <param name="index">The armor color slot index to query.</param>
-    /// <param name="value">The new color to assign.</param>
-    public void SetArmorColor(ItemAppearanceArmorColor index, byte value)
-      => SetItemAppearance(ItemAppearanceType.ArmorColor, (int)index, value);
-
-    /// <summary>
-    /// Sets the armor model of this item.
-    /// </summary>
-    /// <param name="index">The armor model slot index to query.</param>
-    /// <param name="value">The new model to assign.</param>
-    public void SetArmorModel(ItemAppearanceArmorModel index, byte value)
-      => SetItemAppearance(ItemAppearanceType.ArmorModel, (int)index, value);
-
-    /// <summary>
-    /// Sets the weapon color of this item.
-    /// </summary>
-    /// <param name="index">The weapon color index to query.</param>
-    /// <param name="value">The new color to assign.</param>
-    public void SetWeaponColor(ItemAppearanceWeaponColor index, byte value)
-      => SetItemAppearance(ItemAppearanceType.WeaponColor, (int)index, value);
-
-    /// <summary>
-    /// Sets the weapon model of this item.
-    /// </summary>
-    /// <param name="index">The weapon model index to query.</param>
-    /// <param name="value">The new model to assign.</param>
-    public void SetWeaponModelAppearance(ItemAppearanceWeaponModel index, byte value)
-      => SetItemAppearance(ItemAppearanceType.WeaponModel, (int)index, value);
-
-    private void SetItemAppearance(ItemAppearanceType type, int index, byte value)
-    {
-      switch (type)
-      {
-        case ItemAppearanceType.SimpleModel:
-          if (value > 0)
-          {
-            byte[] modelParts = Item.m_nModelPart;
-            modelParts[0] = value;
-            Item.m_nModelPart = modelParts;
-          }
-
-          break;
-        case ItemAppearanceType.WeaponColor:
-          if (value <= 255 && index >= 0 && index <= 5)
-          {
-            byte[] layeredTextureColors = Item.m_nLayeredTextureColors;
-            layeredTextureColors[index] = value;
-            Item.m_nLayeredTextureColors = layeredTextureColors;
-          }
-
-          break;
-        case ItemAppearanceType.WeaponModel:
-          if (index >= 0 && index <= 2)
-          {
-            byte[] modelParts = Item.m_nModelPart;
-            modelParts[index] = value;
-            Item.m_nModelPart = modelParts;
-          }
-
-          break;
-        case ItemAppearanceType.ArmorModel:
-          if (index >= 0 && index <= 18)
-          {
-            byte[] armorModelParts = Item.m_nArmorModelPart;
-            armorModelParts[index] = value;
-            Item.m_nArmorModelPart = armorModelParts;
-          }
-
-          break;
-        case ItemAppearanceType.ArmorColor:
-          if (value <= 255 && index >= 0 && index <= 119)
-          {
-            //1.69 colors
-            if (index <= 5)
-            {
-              byte[] layeredTextureColors = Item.m_nLayeredTextureColors;
-              layeredTextureColors[index] = value;
-              Item.m_nLayeredTextureColors = layeredTextureColors;
-            }
-
-            //per-part coloring
-            else
-            {
-              byte part = (byte)((index - 6) / 6);
-              byte texture = (byte)(index - 6 - part * 6);
-              Item.SetLayeredTextureColorPerPart(texture, part, value);
-            }
-          }
-
-          break;
-        default:
-          throw new ArgumentOutOfRangeException(nameof(type), type, null);
-      }
-    }
 
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
     {
