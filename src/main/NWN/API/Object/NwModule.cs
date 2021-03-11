@@ -27,116 +27,116 @@ namespace NWN.API
 
     public event Action<ModuleEvents.OnAcquireItem> OnAcquireItem
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnActivateItem> OnActivateItem
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnClientEnter> OnClientEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnClientLeave> OnClientLeave
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnCutsceneAbort> OnCutsceneAbort
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnModuleLoad> OnModuleLoad
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnModuleStart> OnModuleStart
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerChat> OnPlayerChat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerTarget> OnPlayerTarget
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerDeath> OnPlayerDeath
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerDying> OnPlayerDying
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerEquipItem> OnPlayerEquipItem
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerLevelUp> OnPlayerLevelUp
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerRespawn> OnPlayerRespawn
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerRest> OnPlayerRest
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnPlayerUnequipItem> OnPlayerUnequipItem
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnUnacquireItem> OnUnacquireItem
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     public event Action<ModuleEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe(this, value);
+      remove => EventService.Unsubscribe(this, value);
     }
 
     internal override CNWSScriptVarTable ScriptVarTable

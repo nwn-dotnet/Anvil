@@ -29,8 +29,8 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaEvents.OnEnter> OnEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaEvents.OnEnter, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<AreaEvents.OnEnter, GameEventFactory>(this, value);
     }
 
     /// <summary>
@@ -38,8 +38,8 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaEvents.OnExit> OnExit
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaEvents.OnExit, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<AreaEvents.OnExit, GameEventFactory>(this, value);
     }
 
     /// <summary>
@@ -47,14 +47,14 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<AreaEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     internal override CNWSScriptVarTable ScriptVarTable

@@ -24,92 +24,92 @@ namespace NWN.API
 
     public event Action<DoorEvents.OnOpen> OnOpen
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnOpen, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnOpen, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnClose> OnClose
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnClose, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnClose, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnDamaged> OnDamaged
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnDamaged, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnDamaged, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnDeath> OnDeath
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnDeath, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnDeath, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnDisarm> OnDisarm
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnDisarm, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnDisarm, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnHeartbeat, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnLock> OnLock
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnLock, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnLock, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnPhysicalAttacked> OnPhysicalAttacked
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnSpellCastAt> OnSpellCastAt
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnSpellCastAt, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnSpellCastAt, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnTrapTriggered> OnTrapTriggered
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnTrapTriggered, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnTrapTriggered, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnUnlock> OnUnlock
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnUnlock, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnUnlock, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnUserDefined, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnAreaTransitionClick> OnAreaTransitionClick
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnAreaTransitionClick, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnAreaTransitionClick, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnDialogue> OnDialogue
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnDialogue, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnDialogue, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnFailToOpen> OnFailToOpen
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<DoorEvents.OnFailToOpen, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<DoorEvents.OnFailToOpen, GameEventFactory>(this, value);
     }
 
     public override Location Location

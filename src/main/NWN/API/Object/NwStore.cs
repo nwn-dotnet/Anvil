@@ -23,14 +23,14 @@ namespace NWN.API
 
     public event Action<StoreEvents.OnOpen> OnOpen
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<StoreEvents.OnOpen, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<StoreEvents.OnOpen, GameEventFactory>(this, value);
     }
 
     public event Action<StoreEvents.OnClose> OnClose
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<StoreEvents.OnClose, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<StoreEvents.OnClose, GameEventFactory>(this, value);
     }
 
     public override Location Location

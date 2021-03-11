@@ -47,8 +47,8 @@ namespace NWN.API
     /// </summary>
     public event Action<CreatureEvents.OnBlocked> OnBlocked
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnBlocked, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnBlocked, GameEventFactory>(this, value);
     }
 
     /// <summary>
@@ -56,74 +56,74 @@ namespace NWN.API
     /// </summary>
     public event Action<CreatureEvents.OnCombatRoundEnd> OnCombatRoundEnd
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnCombatRoundEnd, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnCombatRoundEnd, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnConversation> OnConversation
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnConversation, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnConversation, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnDamaged> OnDamaged
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnDamaged, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnDamaged, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnDeath> OnDeath
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnDeath, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnDeath, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnDisturbed> OnDisturbed
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnDisturbed, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnDisturbed, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnHeartbeat, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnPerception> OnPerception
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnPerception, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnPerception, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnPhysicalAttacked> OnPhysicalAttacked
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnRested> OnRested
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnRested, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnRested, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnSpawn> OnSpawn
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnSpawn, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnSpawn, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnSpellCastAt> OnSpellCastAt
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnSpellCastAt, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnSpellCastAt, GameEventFactory>(this, value);
     }
 
     public event Action<CreatureEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnUserDefined, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<CreatureEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public override Location Location

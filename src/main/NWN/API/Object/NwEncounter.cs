@@ -24,32 +24,32 @@ namespace NWN.API
 
     public event Action<EncounterEvents.OnEnter> OnEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value);
     }
 
     public event Action<EncounterEvents.OnExit> OnExit
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnExit, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<EncounterEvents.OnExit, GameEventFactory>(this, value);
     }
 
     public event Action<EncounterEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<EncounterEvents.OnExhausted> OnExhausted
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value);
     }
 
     public event Action<EncounterEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnUserDefined, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<EncounterEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public override Location Location

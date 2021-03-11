@@ -22,8 +22,8 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaOfEffectEvents.OnEnter> OnEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaOfEffectEvents.OnExit> OnExit
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
     }
 
     /// <summary>
@@ -40,14 +40,14 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<AreaOfEffectEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public override Location Location

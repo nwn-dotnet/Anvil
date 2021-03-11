@@ -5,7 +5,7 @@ using NWN.API.Constants;
 namespace NWN.API.Events
 {
   [AttributeUsage(AttributeTargets.Class)]
-  [BaseTypeRequired(typeof(NativeEvent<,>))]
+  [BaseTypeRequired(typeof(IEvent))]
   public class NativeEventAttribute : Attribute
   {
     /// <summary>

@@ -24,44 +24,44 @@ namespace NWN.API
 
     public event Action<TriggerEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnEnter> OnEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnExit> OnExit
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnExit, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnExit, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnTrapTriggered> OnTrapTriggered
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnDisarmed> OnDisarmed
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnClicked> OnClicked
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value);
     }
 
     public override Location Location

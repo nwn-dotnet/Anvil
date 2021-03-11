@@ -5,44 +5,60 @@ using NWN.API.Events;
 
 namespace NWN.Services
 {
-  internal sealed class EventHandler
+  internal class EventHandler
   {
-    private readonly Dictionary<NwObject, IEvent> objectEvents = new Dictionary<NwObject, IEvent>();
+    public NwObject Context { get; init; }
+  }
 
-    public readonly string ScriptName = ScriptNameGenerator.Create();
+  internal class EventHandler<T> : EventHandler where T : IEvent
+  {
+    private Action<T> globalCallback;
+    private Dictionary<NwObject, Action<T>> filteredCallbacks = new Dictionary<NwObject, Action<T>>();
 
-    internal void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> handler) where TEvent : NativeEvent<TObject, TEvent>, new() where TObject : NwObject
+    public bool HasSubscribers
     {
-      if (objectEvents.TryGetValue(nwObject, out IEvent objEvent))
+      get => globalCallback != null && filteredCallbacks.Count > 0;
+    }
+
+    public void ProcessEvent(T evt)
+    {
+      globalCallback?.Invoke(evt);
+
+      if (evt.HasContext && filteredCallbacks.TryGetValue(evt.Context, out Action<T> callback))
       {
-        ((IEvent<TEvent>)objEvent).Subscribe(handler);
+        callback?.Invoke(evt);
+      }
+    }
+
+    public void Subscribe(NwObject obj, Action<T> newHandler)
+    {
+      filteredCallbacks.TryGetValue(obj, out Action<T> handler);
+      handler += newHandler;
+      filteredCallbacks[obj] = handler;
+    }
+
+    public void SubscribeAll(Action<T> newHandler)
+    {
+      globalCallback += newHandler;
+    }
+
+    public void Unsubscribe(NwObject obj, Action<T> handlerToRemove)
+    {
+      if (!filteredCallbacks.TryGetValue(obj, out Action<T> handler))
+      {
         return;
       }
 
-      TEvent newHandler = new TEvent();
-      ((IEvent<TEvent>)newHandler).Subscribe(handler);
-      objectEvents[nwObject] = newHandler;
+      handler -= handlerToRemove;
+      if (handler == null)
+      {
+        filteredCallbacks.Remove(obj);
+      }
     }
 
-    internal bool Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> existingHandler) where TEvent : NativeEvent<TObject, TEvent>, new() where TObject : NwObject
+    public void UnsubscribeAll(Action<T> handlerToRemove)
     {
-      if (objectEvents.TryGetValue(nwObject, out IEvent objEvent))
-      {
-        ((IEvent<TEvent>)objEvent).Unsubscribe(existingHandler);
-        return !objEvent.HasSubscribers;
-      }
-
-      return false;
-    }
-
-    internal ScriptHandleResult CallEvents(NwObject objSelf)
-    {
-      if (objectEvents.TryGetValue(objSelf, out IEvent objEvent))
-      {
-        return objEvent.Broadcast(objSelf);
-      }
-
-      return ScriptHandleResult.NotHandled;
+      globalCallback -= handlerToRemove;
     }
   }
 }

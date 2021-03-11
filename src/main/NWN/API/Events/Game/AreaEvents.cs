@@ -13,21 +13,25 @@ namespace NWN.API.Events
     /// Called when a new object has entered the area.
     /// </summary>
     [NativeEvent(EventScriptType.AreaOnEnter)]
-    public sealed class OnEnter : NativeEvent<NwArea, OnEnter>
+    public sealed record OnEnter : IEvent
     {
       /// <summary>
       /// Gets the area that was entered.
       /// </summary>
-      public NwArea Area { get; private set; }
+      public NwArea Area { get; }
 
       /// <summary>
       /// Gets the game object that entered the area.
       /// </summary>
-      public NwGameObject EnteringObject { get; private set; }
+      public NwGameObject EnteringObject { get; }
 
-      protected override void PrepareEvent(NwArea objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Area;
+
+      public OnEnter()
       {
-        Area = objSelf;
+        Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
         EnteringObject = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
       }
     }
@@ -36,21 +40,25 @@ namespace NWN.API.Events
     /// Called when an object leaves the area.
     /// </summary>
     [NativeEvent(EventScriptType.AreaOnExit)]
-    public sealed class OnExit : NativeEvent<NwArea, OnExit>
+    public sealed record OnExit : IEvent
     {
       /// <summary>
       /// Gets the area that was left.
       /// </summary>
-      public NwArea Area { get; private set; }
+      public NwArea Area { get; }
 
       /// <summary>
       /// Gets the game object that left the area.
       /// </summary>
-      public NwGameObject ExitingObject { get; private set; }
+      public NwGameObject ExitingObject { get; }
 
-      protected override void PrepareEvent(NwArea objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Area;
+
+      public OnExit()
       {
-        Area = objSelf;
+        Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
         ExitingObject = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
       }
     }
@@ -59,26 +67,34 @@ namespace NWN.API.Events
     /// Called at a regular interval (approx. 6 seconds).
     /// </summary>
     [NativeEvent(EventScriptType.AreaOnHeartbeat)]
-    public sealed class OnHeartbeat : NativeEvent<NwArea, OnHeartbeat>
+    public sealed record OnHeartbeat : IEvent
     {
-      public NwArea Area { get; private set; }
+      public NwArea Area { get; }
 
-      protected override void PrepareEvent(NwArea objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Area;
+
+      public OnHeartbeat()
       {
-        Area = objSelf;
+        Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
       }
     }
 
     [NativeEvent(EventScriptType.AreaOnUserDefinedEvent)]
-    public sealed class OnUserDefined : NativeEvent<NwArea, OnUserDefined>
+    public sealed record OnUserDefined : IEvent
     {
-      public NwArea Area { get; private set; }
+      public NwArea Area { get; }
 
-      public int EventNumber { get; private set; }
+      public int EventNumber { get; }
 
-      protected override void PrepareEvent(NwArea objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Area;
+
+      public OnUserDefined()
       {
-        Area = objSelf;
+        Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
         EventNumber = NWScript.GetUserDefinedEventNumber();
       }
     }
