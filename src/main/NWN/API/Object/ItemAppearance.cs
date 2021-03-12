@@ -167,6 +167,7 @@ namespace NWN.API
         byte[] armorModelParts = item.m_nArmorModelPart;
         armorModelParts[index] = value;
         item.m_nArmorModelPart = armorModelParts;
+        item.m_nArmorValue = item.ComputeArmorClass();
       }
     }
 
