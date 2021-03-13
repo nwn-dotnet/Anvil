@@ -111,13 +111,27 @@ namespace NWN.API
     /// <summary>
     /// Gets the members in this player's party.
     /// </summary>
-    public IEnumerable<NwPlayer> PartyMembers
+    public IEnumerable<NwPlayer> PartyPlayerMembers
     {
       get
       {
         for (uint member = NWScript.GetFirstFactionMember(this); member != INVALID; member = NWScript.GetNextFactionMember(this))
         {
           yield return member.ToNwObject<NwPlayer>();
+        }
+      }
+    }
+
+    /// <summary>
+    /// Gets the members in this player's party.
+    /// </summary>
+    public IEnumerable<NwCreature> PartyMembers
+    {
+      get
+      {
+        for (uint member = NWScript.GetFirstFactionMember(this, 0); member != INVALID; member = NWScript.GetNextFactionMember(this, 0))
+        {
+          yield return member.ToNwObject<NwCreature>();
         }
       }
     }
