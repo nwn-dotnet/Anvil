@@ -359,7 +359,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the movement rate of this creature.
+    /// Gets or sets the movement rate of this creature.
     /// </summary>
     public MovementRate MovementRate
     {
