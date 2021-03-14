@@ -49,9 +49,6 @@ namespace NWN.API
     /// <returns>True if the item will fit, otherwise false.</returns>
     public bool CheckFit(BaseItemType baseItem)
     {
-      CNWSItem tmp = new CNWSItem(NwObject.INVALID);
-      tmp.m_nBaseItem = (uint)baseItem;
-
       byte width = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotWidth;
       byte height = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotHeight;
 
@@ -59,7 +56,7 @@ namespace NWN.API
       {
         for (byte x = 0; x < (repo.m_nWidth - width + 1); x++)
         {
-          if (repo.CheckFit(tmp, x, y).ToBool())
+          if (repo.CheckBaseItemFits((uint)baseItem, x, y).ToBool())
           {
             return true;
           }

@@ -3,7 +3,7 @@ using NWN.Core;
 namespace NWN.API
 {
   [LocalVariableConverter(typeof(string), typeof(float), typeof(int), typeof(Location), typeof(NwObject))]
-  internal class NativeLocalVariableConverters : ILocalVariableConverter<string>, ILocalVariableConverter<float>, ILocalVariableConverter<int>, ILocalVariableConverter<Location>, ILocalVariableConverter<NwObject>
+  internal class NativeLocalVariableConverters : ILocalVariableConverter<string>, ILocalVariableConverter<float>, ILocalVariableConverter<int>, ILocalVariableConverter<Location>, ILocalVariableConverter<NwObject>, ILocalVariableConverter<Cassowary>
   {
     string ILocalVariableConverter<string>.GetLocal(NwObject nwObject, string name)
       => NWScript.GetLocalString(nwObject, name);
@@ -49,5 +49,14 @@ namespace NWN.API
 
     void ILocalVariableConverter<NwObject>.ClearLocal(NwObject nwObject, string name)
       => NWScript.DeleteLocalObject(nwObject, name);
+
+    Cassowary ILocalVariableConverter<Cassowary>.GetLocal(NwObject nwObject, string name)
+      => NWScript.GetLocalCassowary(nwObject, name);
+
+    void ILocalVariableConverter<Cassowary>.SetLocal(NwObject nwObject, string name, Cassowary value)
+      => NWScript.SetLocalCassowary(nwObject, name, value);
+
+    void ILocalVariableConverter<Cassowary>.ClearLocal(NwObject nwObject, string name)
+      => NWScript.DeleteLocalCassowary(nwObject, name);
   }
 }

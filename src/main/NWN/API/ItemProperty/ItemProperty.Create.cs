@@ -238,5 +238,8 @@ namespace NWN.API
 
     public static ItemProperty WeightReduction(IPReducedWeight weightReduction)
       => NWScript.ItemPropertyWeightReduction((int) weightReduction);
+
+    public static ItemProperty Custom(int type, int subType = -1, int costTableValue = -1, int param1Value = -1)
+      => NWScript.ItemPropertyCustom(type, subType, costTableValue, param1Value);
   }
 }
