@@ -246,6 +246,30 @@ namespace NWN.API
       set => Creature.m_pStats.m_nACNaturalBase = (char)value;
     }
 
+    public sbyte ArmorCheckPenalty
+    {
+      get => (sbyte)Creature.m_pStats.m_nArmorCheckPenalty;
+      set => Creature.m_pStats.m_nArmorCheckPenalty = (char)value;
+    }
+
+    public sbyte ShieldCheckPenalty
+    {
+      get => (sbyte)Creature.m_pStats.m_nShieldCheckPenalty;
+      set => Creature.m_pStats.m_nShieldCheckPenalty = (char)value;
+    }
+
+    public byte BaseArmorArcaneSpellFailure
+    {
+      get => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure;
+      set => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure = value;
+    }
+
+    public byte BaseShieldArcaneSpellFailure
+    {
+      get => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
+      set => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure = value;
+    }
+
     /// <summary>
     /// Gets a value indicating whether this creature is flat footed.
     /// </summary>
