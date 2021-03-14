@@ -35,10 +35,10 @@ jobs:
     if: github.event_name == 'push'
     needs: compile
     outputs:
-      version: ${{ steps.vars.outputs.version }}
+      tag: ${{ steps.bump_version.outputs.new_tag }}
+      version: ${{ steps.bump_version.outputs.new_version }}
       sha_short: ${{ steps.vars.outputs.sha_short }}
       image_repository: ${{ steps.vars.outputs.image_repository }}
-      tag: ${{ steps.bump_version.outputs.tag }}
       created: ${{ steps.build.outputs.created }}
     steps:
       - name: Checkout
@@ -51,25 +51,24 @@ jobs:
 
       - name: Version and Tag
         id: bump_version
-        uses: anothrNick/github-tag-action@1.34.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BUMP: patch
-          RELEASE_BRANCHES: master
-          PRERELEASE_SUFFIX: dev
-          WITH_V: true
+        uses: mathieudutour/github-tag-action@v5.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pre_release_branches: development
+          default_bump: patch
+          append_to_pre_release_tag: dev
+          custom_release_rules:
 
       - name: Prepare Outputs
         id: vars
         run: |
-          echo "::set-output name=version::$(echo ${{ steps.bump_version.outputs.tag }} | sed '0,/v/s///')"
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
 
       - name: Build Release Binaries
         id: build
         run: |
-          dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
+          dotnet build --configuration Release -p:Version=${{ steps.bump_version.outputs.new_version }} -o output
           echo "::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
        
       - name: Upload Build Artifacts
