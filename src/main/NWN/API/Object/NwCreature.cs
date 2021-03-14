@@ -363,7 +363,16 @@ namespace NWN.API
     /// </summary>
     public MovementRate MovementRate
     {
-      get => (MovementRate)NWScript.GetMovementRate(this);
+      get => (MovementRate)Creature.m_pStats.m_nMovementRate;
+      set
+      {
+          if (MovementRate == MovementRate.Immobile)
+          {
+              Creature.m_nAIState |= (ushort)AIState.CanUseLegs;
+          }
+
+          Creature.m_pStats.SetMovementRate((int)value);
+      }
     }
 
     /// <summary>
