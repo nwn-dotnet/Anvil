@@ -359,11 +359,20 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the movement rate of this creature.
+    /// Gets or sets the movement rate of this creature.
     /// </summary>
     public MovementRate MovementRate
     {
-      get => (MovementRate)NWScript.GetMovementRate(this);
+      get => (MovementRate)Creature.m_pStats.m_nMovementRate;
+      set
+      {
+          if (MovementRate == MovementRate.Immobile)
+          {
+              Creature.m_nAIState |= (ushort)AIState.CanUseLegs;
+          }
+
+          Creature.m_pStats.SetMovementRate((int)value);
+      }
     }
 
     /// <summary>
