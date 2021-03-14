@@ -550,5 +550,26 @@ namespace NWN.API
         }
       }
     }
+
+    /// <summary>
+    /// Overrides the specified string from the TlkTable using the specified override for this player only.<br/>
+    /// Overrides will not persist through re-logging.
+    /// </summary>
+    /// <param name="strRef">The string reference to be overriden.</param>
+    /// <param name="strOverride">The new string to assign.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when an invalid str ref is specified (&lt; 0).</exception>
+    public void SetTlkOverride(int strRef, string strOverride)
+    {
+      if (strRef < 0)
+      {
+        throw new ArgumentOutOfRangeException(nameof(strRef), "StrRef must be greater than 0.");
+      }
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      if (message != null)
+      {
+        message.SendServerToPlayerSetTlkOverride(Player.m_nPlayerID, strRef, strOverride.ToExoString());
+      }
+    }
   }
 }
