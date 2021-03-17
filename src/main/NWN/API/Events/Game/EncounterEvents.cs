@@ -1,4 +1,5 @@
 using NWN.API.Constants;
+using NWN.Core;
 
 // TODO Populate event data.
 namespace NWN.API.Events
@@ -9,57 +10,77 @@ namespace NWN.API.Events
   public static class EncounterEvents
   {
     [NativeEvent(EventScriptType.EncounterOnObjectEnter)]
-    public sealed class OnEnter : NativeEvent<NwEncounter, OnEnter>
+    public sealed class OnEnter : IEvent
     {
-      public NwEncounter Encounter { get; private set; }
+      public NwEncounter Encounter { get; }
 
-      protected override void PrepareEvent(NwEncounter objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Encounter;
+
+      public OnEnter()
       {
-        Encounter = objSelf;
+        Encounter = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
       }
     }
 
     [NativeEvent(EventScriptType.EncounterOnObjectExit)]
-    public sealed class OnExit : NativeEvent<NwEncounter, OnExit>
+    public sealed class OnExit : IEvent
     {
-      public NwEncounter Encounter { get; private set; }
+      public NwEncounter Encounter { get; }
 
-      protected override void PrepareEvent(NwEncounter objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Encounter;
+
+      public OnExit()
       {
-        Encounter = objSelf;
+        Encounter = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
       }
     }
 
     [NativeEvent(EventScriptType.EncounterOnHeartbeat)]
-    public sealed class OnHeartbeat : NativeEvent<NwEncounter, OnHeartbeat>
+    public sealed class OnHeartbeat : IEvent
     {
-      public NwEncounter Encounter { get; private set; }
+      public NwEncounter Encounter { get; }
 
-      protected override void PrepareEvent(NwEncounter objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Encounter;
+
+      public OnHeartbeat()
       {
-        Encounter = objSelf;
+        Encounter = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
       }
     }
 
     [NativeEvent(EventScriptType.EncounterOnEncounterExhausted)]
-    public sealed class OnExhausted : NativeEvent<NwEncounter, OnExhausted>
+    public sealed class OnExhausted : IEvent
     {
-      public NwEncounter Encounter { get; private set; }
+      public NwEncounter Encounter { get; }
 
-      protected override void PrepareEvent(NwEncounter objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Encounter;
+
+      public OnExhausted()
       {
-        Encounter = objSelf;
+        Encounter = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
       }
     }
 
     [NativeEvent(EventScriptType.EncounterOnUserDefinedEvent)]
-    public sealed class OnUserDefined : NativeEvent<NwEncounter, OnUserDefined>
+    public sealed class OnUserDefined : IEvent
     {
-      public NwEncounter Encounter { get; private set; }
+      public NwEncounter Encounter { get; }
 
-      protected override void PrepareEvent(NwEncounter objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Encounter;
+
+      public OnUserDefined()
       {
-        Encounter = objSelf;
+        Encounter = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
       }
     }
   }

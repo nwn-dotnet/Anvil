@@ -1,4 +1,5 @@
 using System;
+using NWN.API.Events;
 using NWN.Core;
 
 namespace NWN.API
@@ -33,6 +34,11 @@ namespace NWN.API
     public static NwObject ToNwObject(this uint objectId)
     {
       return NwObject.CreateInternal(objectId);
+    }
+
+    public static HookInfo HookWithOrder(this uint address, int order)
+    {
+      return new HookInfo(address, order);
     }
   }
 }

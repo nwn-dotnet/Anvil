@@ -10,7 +10,7 @@ namespace NWN.API.Events
   public static class StoreEvents
   {
     [NativeEvent(EventScriptType.StoreOnOpen)]
-    public sealed class OnOpen : NativeEvent<NwStore, OnOpen>
+    public sealed class OnOpen : IEvent
     {
       /// <summary>
       /// Gets the store being open.
@@ -22,15 +22,19 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwStore objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Store;
+
+      public OnOpen()
       {
-        Store = objSelf;
+        Store = NWScript.OBJECT_SELF.ToNwObject<NwStore>();
         Player = NWScript.GetLastOpenedBy().ToNwObject<NwPlayer>();
       }
     }
 
     [NativeEvent(EventScriptType.StoreOnClose)]
-    public sealed class OnClose : NativeEvent<NwStore, OnClose>
+    public sealed class OnClose : IEvent
     {
       /// <summary>
       /// Gets the store being closed.
@@ -42,9 +46,13 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; private set; }
 
-      protected override void PrepareEvent(NwStore objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Store;
+
+      public OnClose()
       {
-        Store = objSelf;
+        Store = NWScript.OBJECT_SELF.ToNwObject<NwStore>();
         Player = NWScript.GetLastClosedBy().ToNwObject<NwPlayer>();
       }
     }

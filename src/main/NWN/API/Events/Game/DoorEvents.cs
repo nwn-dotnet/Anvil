@@ -10,119 +10,155 @@ namespace NWN.API.Events
   public static class DoorEvents
   {
     [NativeEvent(EventScriptType.DoorOnOpen)]
-    public sealed class OnOpen : NativeEvent<NwDoor, OnOpen>
+    public sealed class OnOpen : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnOpen()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnClose)]
-    public sealed class OnClose : NativeEvent<NwDoor, OnClose>
+    public sealed class OnClose : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnClose()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnDamage)]
-    public sealed class OnDamaged : NativeEvent<NwDoor, OnDamaged>
+    public sealed class OnDamaged : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnDamaged()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnDeath)]
-    public sealed class OnDeath : NativeEvent<NwDoor, OnDeath>
+    public sealed class OnDeath : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnDeath()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnDisarm)]
-    public sealed class OnDisarm : NativeEvent<NwDoor, OnDisarm>
+    public sealed class OnDisarm : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnDisarm()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnHeartbeat)]
-    public sealed class OnHeartbeat : NativeEvent<NwDoor, OnHeartbeat>
+    public sealed class OnHeartbeat : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnHeartbeat()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnLock)]
-    public sealed class OnLock : NativeEvent<NwDoor, OnLock>
+    public sealed class OnLock : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnLock()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnMeleeAttacked)]
-    public sealed class OnPhysicalAttacked : NativeEvent<NwDoor, OnPhysicalAttacked>
+    public sealed class OnPhysicalAttacked : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnPhysicalAttacked()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnSpellCastAt)]
-    public sealed class OnSpellCastAt : NativeEvent<NwDoor, OnSpellCastAt>
+    public sealed class OnSpellCastAt : IEvent
     {
       /// <summary>
       /// Gets the door targeted by this spell.
       /// </summary>
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
       /// <summary>
       /// Gets the caster of this spell (creature, placeable, door). Returns null from an area of effect.
       /// </summary>
-      public NwGameObject Caster { get; private set; }
+      public NwGameObject Caster { get; }
 
       /// <summary>
       /// Gets the spell that was cast.
       /// </summary>
-      public Spell Spell { get; private set; }
+      public Spell Spell { get; }
 
       /// <summary>
       /// Gets a value indicating whether this spell is considered harmful.
       /// </summary>
-      public bool Harmful { get; private set; }
+      public bool Harmful { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnSpellCastAt()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
         Caster = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
         Spell = (Spell)NWScript.GetLastSpell();
         Harmful = NWScript.GetLastSpellHarmful().ToBool();
@@ -130,71 +166,95 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.DoorOnTrapTriggered)]
-    public sealed class OnTrapTriggered : NativeEvent<NwDoor, OnTrapTriggered>
+    public sealed class OnTrapTriggered : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnTrapTriggered()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnUnlock)]
-    public sealed class OnUnlock : NativeEvent<NwDoor, OnUnlock>
+    public sealed class OnUnlock : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnUnlock()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnUserDefined)]
-    public sealed class OnUserDefined : NativeEvent<NwDoor, OnUserDefined>
+    public sealed class OnUserDefined : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnUserDefined()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnClicked)]
-    public sealed class OnAreaTransitionClick : NativeEvent<NwDoor, OnAreaTransitionClick>
+    public sealed class OnAreaTransitionClick : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      public NwPlayer ClickedBy { get; private set; }
+      public NwPlayer ClickedBy { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnAreaTransitionClick()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
         ClickedBy = NWScript.GetClickingObject().ToNwObject<NwPlayer>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnDialogue)]
-    public sealed class OnDialogue : NativeEvent<NwDoor, OnDialogue>
+    public sealed class OnDialogue : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnDialogue()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
 
     [NativeEvent(EventScriptType.DoorOnFailToOpen)]
-    public sealed class OnFailToOpen : NativeEvent<NwDoor, OnFailToOpen>
+    public sealed class OnFailToOpen : IEvent
     {
-      public NwDoor Door { get; private set; }
+      public NwDoor Door { get; }
 
-      protected override void PrepareEvent(NwDoor objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Door;
+
+      public OnFailToOpen()
       {
-        Door = objSelf;
+        Door = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
       }
     }
   }

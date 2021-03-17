@@ -6,7 +6,7 @@ namespace NWN.API.Events
 {
   public static class ClientEvents
   {
-    public sealed record OnClientDisconnect : IEvent<OnClientDisconnect>
+    public sealed record OnClientDisconnect : IEvent
     {
       /// <summary>
       /// Gets the player that disconnected.
@@ -24,9 +24,8 @@ namespace NWN.API.Events
       {
         public Factory(HookService hookService) : base(hookService) {}
 
-        protected override uint Address => NWNXLib.Functions._ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer;
-
-        protected override int HookOrder => Services.HookOrder.Earliest;
+        protected override HookInfo HookInfo { get; } = NWNXLib.Functions._ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer
+          .HookWithOrder(HookOrder.Earliest);
 
         protected override RemovePCFromWorldHook Handler => OnRemovePCFromWorld;
 
@@ -42,7 +41,7 @@ namespace NWN.API.Events
       }
     }
 
-    public sealed record OnServerCharacterSave : IEvent<OnServerCharacterSave>
+    public sealed record OnServerCharacterSave : IEvent
     {
       /// <summary>
       /// Gets the player that is being saved.
@@ -62,9 +61,8 @@ namespace NWN.API.Events
       {
         public Factory(HookService hookService) : base(hookService) {}
 
-        protected override uint Address => NWNXLib.Functions._ZN10CNWSPlayer19SaveServerCharacterEi;
-
-        protected override int HookOrder => Services.HookOrder.Early;
+        protected override HookInfo HookInfo { get; } = NWNXLib.Functions._ZN10CNWSPlayer19SaveServerCharacterEi
+          .HookWithOrder(HookOrder.Early);
 
         protected override SaveServerCharacterHook Handler => OnSaveServerCharacter;
 

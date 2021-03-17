@@ -11,15 +11,19 @@ namespace NWN.API.Events
   public static class ModuleEvents
   {
     [NativeEvent(EventScriptType.ModuleOnAcquireItem)]
-    public sealed class OnAcquireItem : NativeEvent<NwModule, OnAcquireItem>
+    public sealed class OnAcquireItem : IEvent
     {
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; }
 
-      public NwGameObject AcquiredBy { get; private set; }
+      public NwGameObject AcquiredBy { get; }
 
-      public NwGameObject AcquiredFrom { get; private set; }
+      public NwGameObject AcquiredFrom { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Item;
+
+      public OnAcquireItem()
       {
         Item = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
         AcquiredBy = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
@@ -28,17 +32,21 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.ModuleOnActivateItem)]
-    public sealed class OnActivateItem : NativeEvent<NwModule, OnActivateItem>
+    public sealed class OnActivateItem : IEvent
     {
-      public NwItem ActivatedItem { get; private set; }
+      public NwItem ActivatedItem { get; }
 
-      public NwCreature ItemActivator { get; private set; }
+      public NwCreature ItemActivator { get; }
 
-      public NwGameObject TargetObject { get; private set; }
+      public NwGameObject TargetObject { get; }
 
-      public Location TargetLocation { get; private set; }
+      public Location TargetLocation { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => ActivatedItem;
+
+      public OnActivateItem()
       {
         ActivatedItem = NWScript.GetItemActivated().ToNwObject<NwItem>();
         ItemActivator = NWScript.GetItemActivator().ToNwObject<NwCreature>();
@@ -48,58 +56,76 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.ModuleOnClientEnter)]
-    public sealed class OnClientEnter : NativeEvent<NwModule, OnClientEnter>
+    public sealed class OnClientEnter : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnClientEnter()
       {
         Player = NWScript.GetEnteringObject().ToNwObject<NwPlayer>();
       }
     }
 
     [NativeEvent(EventScriptType.ModuleOnClientExit)]
-    public sealed class OnClientLeave : NativeEvent<NwModule, OnClientLeave>
+    public sealed class OnClientLeave : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnClientLeave()
       {
         Player = NWScript.GetExitingObject().ToNwObject<NwPlayer>();
       }
     }
 
     [NativeEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
-    public sealed class OnCutsceneAbort : NativeEvent<NwModule, OnCutsceneAbort>
+    public sealed class OnCutsceneAbort : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnCutsceneAbort()
       {
         Player = NWScript.GetLastPCToCancelCutscene().ToNwObject<NwPlayer>();
       }
     }
 
     [NativeEvent(EventScriptType.ModuleOnHeartbeat)]
-    public sealed class OnHeartbeat : NativeEvent<NwModule, OnHeartbeat>
+    public sealed class OnHeartbeat : IEvent
     {
-      protected override void PrepareEvent(NwModule objSelf) {}
+      bool IEvent.HasContext => false;
+
+      NwObject IEvent.Context => null;
     }
 
     [NativeEvent(EventScriptType.ModuleOnModuleLoad)]
-    public sealed class OnModuleLoad : NativeEvent<NwModule, OnModuleLoad>
+    public sealed class OnModuleLoad : IEvent
     {
-      protected override void PrepareEvent(NwModule objSelf) {}
+      bool IEvent.HasContext => false;
+
+      NwObject IEvent.Context => null;
     }
 
     [NativeEvent(EventScriptType.ModuleOnModuleStart)]
-    public sealed class OnModuleStart : NativeEvent<NwModule, OnModuleStart>
+    public sealed class OnModuleStart : IEvent
     {
-      protected override void PrepareEvent(NwModule objSelf) {}
+      bool IEvent.HasContext => false;
+
+      NwObject IEvent.Context => null;
     }
 
     [NativeEvent(EventScriptType.ModuleOnPlayerChat)]
-    public sealed class OnPlayerChat : NativeEvent<NwModule, OnPlayerChat>
+    public sealed class OnPlayerChat : IEvent
     {
       public NwPlayer Sender { get; private set; }
 
@@ -115,46 +141,34 @@ namespace NWN.API.Events
         set => NWScript.SetPCChatVolume((int) value);
       }
 
-      private bool callingChatHandlers;
+      bool IEvent.HasContext => true;
 
-      protected override void PrepareEvent(NwModule objSelf)
-      {
-        Sender = NWScript.GetPCChatSpeaker().ToNwObject<NwPlayer>();
-      }
-
-      protected override void ProcessEvent()
-      {
-        // Prevent infinite recursion from use of send message in event.
-        if (callingChatHandlers)
-        {
-          return;
-        }
-
-        callingChatHandlers = true;
-        InvokeCallbacks();
-        callingChatHandlers = false;
-      }
+      NwObject IEvent.Context => Sender;
     }
 
     [NativeEvent(EventScriptType.ModuleOnPlayerTarget)]
-    public sealed class OnPlayerTarget : NativeEvent<NwModule, OnPlayerTarget>
+    public sealed class OnPlayerTarget : IEvent
     {
       /// <summary>
       /// Gets the player that has targeted something.
       /// </summary>
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; }
 
       /// <summary>
       /// Gets the object that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
       /// </summary>
-      public NwObject TargetObject { get; private set; }
+      public NwObject TargetObject { get; }
 
       /// <summary>
       /// Gets the position targeted by the player.
       /// </summary>
-      public Vector3 TargetPosition { get; private set; }
+      public Vector3 TargetPosition { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnPlayerTarget()
       {
         Player = NWScript.GetLastPlayerToSelectTarget().ToNwObject<NwPlayer>();
         TargetObject = NWScript.GetTargetingModeSelectedObject().ToNwObject();
@@ -163,13 +177,17 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.ModuleOnPlayerDeath)]
-    public sealed class OnPlayerDeath : NativeEvent<NwModule, OnPlayerDeath>
+    public sealed class OnPlayerDeath : IEvent
     {
-      public NwPlayer DeadPlayer { get; private set; }
+      public NwPlayer DeadPlayer { get; }
 
-      public NwGameObject Killer { get; private set; }
+      public NwGameObject Killer { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => DeadPlayer;
+
+      public OnPlayerDeath()
       {
         DeadPlayer = NWScript.GetLastPlayerDied().ToNwObject<NwPlayer>();
         Killer = NWScript.GetLastHostileActor().ToNwObject<NwGameObject>();
@@ -177,24 +195,32 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.ModuleOnPlayerDying)]
-    public sealed class OnPlayerDying : NativeEvent<NwModule, OnPlayerDying>
+    public sealed class OnPlayerDying : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnPlayerDying()
       {
         Player = NWScript.GetLastPlayerDying().ToNwObject<NwPlayer>();
       }
     }
 
     [NativeEvent(EventScriptType.ModuleOnEquipItem)]
-    public sealed class OnPlayerEquipItem : NativeEvent<NwModule, OnPlayerEquipItem>
+    public sealed class OnPlayerEquipItem : IEvent
     {
-      public NwCreature Player { get; private set; }
+      public NwCreature Player { get; }
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnPlayerEquipItem()
       {
         Player = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
         Item = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
@@ -202,35 +228,47 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.ModuleOnPlayerLevelUp)]
-    public sealed class OnPlayerLevelUp : NativeEvent<NwModule, OnPlayerLevelUp>
+    public sealed class OnPlayerLevelUp : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnPlayerLevelUp()
       {
         Player = NWScript.GetPCLevellingUp().ToNwObject<NwPlayer>();
       }
     }
 
     [NativeEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
-    public sealed class OnPlayerRespawn : NativeEvent<NwModule, OnPlayerRespawn>
+    public sealed class OnPlayerRespawn : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnPlayerRespawn()
       {
         Player = NWScript.GetLastRespawnButtonPresser().ToNwObject<NwPlayer>();
       }
     }
 
     [NativeEvent(EventScriptType.ModuleOnPlayerRest)]
-    public sealed class OnPlayerRest : NativeEvent<NwModule, OnPlayerRest>
+    public sealed class OnPlayerRest : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; }
 
-      public RestEventType RestEventType { get; private set; }
+      public RestEventType RestEventType { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Player;
+
+      public OnPlayerRest()
       {
         Player = NWScript.GetLastPCRested().ToNwObject<NwPlayer>();
         RestEventType = (RestEventType) NWScript.GetLastRestEventType();
@@ -238,13 +276,17 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.ModuleOnUnequipItem)]
-    public sealed class OnPlayerUnequipItem : NativeEvent<NwModule, OnPlayerUnequipItem>
+    public sealed class OnPlayerUnequipItem : IEvent
     {
-      public NwCreature UnequippedBy { get; private set; }
+      public NwCreature UnequippedBy { get; }
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => UnequippedBy;
+
+      public OnPlayerUnequipItem()
       {
         UnequippedBy = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>();
         Item = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>();
@@ -252,13 +294,17 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.ModuleOnLoseItem)]
-    public sealed class OnUnacquireItem : NativeEvent<NwModule, OnUnacquireItem>
+    public sealed class OnUnacquireItem : IEvent
     {
-      public NwCreature LostBy { get; private set; }
+      public NwCreature LostBy { get; }
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => LostBy;
+
+      public OnUnacquireItem()
       {
         LostBy = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>();
         Item = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
@@ -266,11 +312,15 @@ namespace NWN.API.Events
     }
 
     [NativeEvent(EventScriptType.ModuleOnUserDefinedEvent)]
-    public sealed class OnUserDefined : NativeEvent<NwModule, OnUserDefined>
+    public sealed class OnUserDefined : IEvent
     {
-      public int EventNumber { get; private set; }
+      public int EventNumber { get; }
 
-      protected override void PrepareEvent(NwModule objSelf)
+      bool IEvent.HasContext => false;
+
+      NwObject IEvent.Context => null;
+
+      public OnUserDefined()
       {
         EventNumber = NWScript.GetUserDefinedEventNumber();
       }

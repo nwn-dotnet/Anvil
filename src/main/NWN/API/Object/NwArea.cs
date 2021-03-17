@@ -29,7 +29,8 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaEvents.OnEnter> OnEnter
     {
-      add => EventService.Subscribe<AreaEvents.OnEnter, GameEventFactory>(this, value);
+      add => EventService.Subscribe<AreaEvents.OnEnter, GameEventFactory>(this, value)
+        .Register<AreaEvents.OnEnter>(this);
       remove => EventService.Unsubscribe<AreaEvents.OnEnter, GameEventFactory>(this, value);
     }
 

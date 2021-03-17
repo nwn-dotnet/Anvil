@@ -18,13 +18,8 @@ namespace NWN.Services
 
     public CursorTargetService(NativeEventService eventService)
     {
-      eventService.Subscribe<NwModule, ModuleEvents.OnPlayerTarget>(NwModule.Instance, OnPlayerTarget);
-      eventService.Subscribe<NwModule, ModuleEvents.OnClientLeave>(NwModule.Instance, OnPlayerLeave);
-    }
-
-    private void OnPlayerLeave(ModuleEvents.OnClientLeave leaveEvent)
-    {
-      awaitingTargetActions.Remove(leaveEvent.Player);
+      NwModule.Instance.OnPlayerTarget += OnPlayerTarget;
+      NwModule.Instance.OnClientLeave += OnPlayerLeave;
     }
 
     /// <summary>
@@ -58,6 +53,11 @@ namespace NWN.Services
       }
 
       callback?.Invoke(eventData);
+    }
+
+    private void OnPlayerLeave(ModuleEvents.OnClientLeave leaveEvent)
+    {
+      awaitingTargetActions.Remove(leaveEvent.Player);
     }
   }
 }

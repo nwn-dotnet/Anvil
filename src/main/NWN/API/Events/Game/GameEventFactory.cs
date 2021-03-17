@@ -1,36 +1,41 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using NLog;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Services;
 
 namespace NWN.API.Events
 {
-  [ServiceBinding(typeof(GameEventFactory))]
+  [ServiceBinding(typeof(IEventFactory))]
+  [ServiceBinding(typeof(IScriptDispatcher))]
   public sealed class GameEventFactory : IEventFactory, IScriptDispatcher
   {
     private const string InternalScriptName = "_____nman_event";
 
-    // Type info cache
-    private readonly Dictionary<Type, NativeEventAttribute> cachedEventInfo = new Dictionary<Type, NativeEventAttribute>();
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    // Caches
+    private readonly Dictionary<Type, NativeEventAttribute> eventInfoCache = new Dictionary<Type, NativeEventAttribute>();
+    private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
 
     private EventService eventService;
-    private Dictionary<EventScriptType, Func<IEvent>> eventConstructors = new Dictionary<EventScriptType, Func<IEvent>>();
 
-    public void Init(EventService eventService)
+    public void Register<TEvent>(NwObject nwObject) where TEvent : IEvent, new()
+    {
+      EventScriptType eventScriptType = GetEventInfo(typeof(TEvent)).EventScriptType;
+      CheckConstructorRegistered<TEvent>(eventScriptType);
+
+      UpdateEventScript(nwObject, eventScriptType);
+    }
+
+    void IEventFactory.Init(EventService eventService)
     {
       this.eventService = eventService;
     }
 
-    public void Register<TEvent>(NwObject obj) where TEvent : IEvent, new()
-    {
-      EventScriptType scriptType = GetEventInfo(typeof(TEvent)).EventScriptType;
-      CheckConstructorRegistered<TEvent>(scriptType);
-      NWScript.SetEventScript(obj, (int)scriptType, InternalScriptName);
-    }
-
-    public void Unregister<TEvent>() where TEvent : IEvent {}
+    void IEventFactory.Unregister<TEvent>() {}
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
@@ -45,7 +50,7 @@ namespace NWN.API.Events
         return ScriptHandleResult.NotHandled;
       }
 
-      if (eventConstructors.TryGetValue(eventScriptType, out Func<IEvent> value))
+      if (eventConstructorCache.TryGetValue(eventScriptType, out Func<IEvent> value))
       {
         eventService.ProcessEvent(value.Invoke());
         return ScriptHandleResult.Handled;
@@ -54,15 +59,27 @@ namespace NWN.API.Events
       return ScriptHandleResult.NotHandled;
     }
 
+    private void UpdateEventScript(NwObject nwObject, EventScriptType eventType)
+    {
+      string existingScript = NWScript.GetEventScript(nwObject, (int) eventType);
+      if (existingScript == InternalScriptName)
+      {
+        return;
+      }
+
+      Log.Debug($"Hooking native script event \"{eventType}\" on object \"{nwObject.Name}\". Previous script: \"{existingScript}\"");
+      NWScript.SetEventScript(nwObject, (int) eventType, InternalScriptName);
+    }
+
     private NativeEventAttribute GetEventInfo(Type type)
     {
-      if (cachedEventInfo.TryGetValue(type, out NativeEventAttribute eventAttribute))
+      if (eventInfoCache.TryGetValue(type, out NativeEventAttribute eventAttribute))
       {
         return eventAttribute;
       }
 
       eventAttribute = LoadEventInfo(type);
-      cachedEventInfo[type] = eventAttribute;
+      eventInfoCache[type] = eventAttribute;
 
       return eventAttribute;
     }
@@ -80,13 +97,13 @@ namespace NWN.API.Events
 
     private void CheckConstructorRegistered<TEvent>(EventScriptType eventScriptType) where TEvent : IEvent, new()
     {
-      if (eventConstructors.ContainsKey(eventScriptType))
+      if (eventConstructorCache.ContainsKey(eventScriptType))
       {
         return;
       }
 
       static IEvent Constructor() => new TEvent();
-      eventConstructors[eventScriptType] = Constructor;
+      eventConstructorCache[eventScriptType] = Constructor;
     }
   }
 }

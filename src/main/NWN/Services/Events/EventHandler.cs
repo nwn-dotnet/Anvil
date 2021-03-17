@@ -5,15 +5,12 @@ using NWN.API.Events;
 
 namespace NWN.Services
 {
-  internal class EventHandler
-  {
-    public NwObject Context { get; init; }
-  }
+  internal class EventHandler {}
 
   internal class EventHandler<T> : EventHandler where T : IEvent
   {
     private Action<T> globalCallback;
-    private Dictionary<NwObject, Action<T>> filteredCallbacks = new Dictionary<NwObject, Action<T>>();
+    private readonly Dictionary<NwObject, Action<T>> filteredCallbacks = new Dictionary<NwObject, Action<T>>();
 
     public bool HasSubscribers
     {

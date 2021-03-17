@@ -4,7 +4,7 @@ using NWN.Services;
 namespace NWN.API.Events
 {
   public abstract class NativeEventFactory<TEvent, THook> : IEventFactory
-    where TEvent : IEvent<TEvent>
+    where TEvent : IEvent
     where THook : Delegate
   {
     private readonly HookService hookService;
@@ -12,30 +12,29 @@ namespace NWN.API.Events
 
     protected FunctionHook<THook> Hook { get; private set; }
 
-    protected abstract uint Address { get; }
+    protected abstract HookInfo HookInfo { get; }
 
     protected abstract THook Handler { get; }
 
-    protected virtual int HookOrder { get; } = Services.HookOrder.Default;
-
-    public NativeEventFactory(HookService hookService)
+    protected NativeEventFactory(HookService hookService)
     {
       this.hookService = hookService;
     }
 
-    public void Init(EventService eventService)
+    void IEventFactory.Init(EventService eventService)
     {
       this.eventService = eventService;
+
+      if (Hook != null)
+      {
+        Hook = hookService.RequestHook(HookInfo.Address, Handler, HookInfo.Order);
+      }
     }
 
-    public void Register<T>(NwObject obj) where T : IEvent<T>, new()
-    {
-      Hook = hookService.RequestHook(Address, Handler, HookOrder);
-    }
-
-    public void Unregister<T>() where T : IEvent<T>
+    void IEventFactory.Unregister<T>()
     {
       Hook.Dispose();
+      Hook = null;
     }
 
     protected TEvent ProcessEvent(TEvent evt)

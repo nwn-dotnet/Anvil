@@ -25,24 +25,27 @@ namespace NWN.Services
       }
     }
 
-    public void Subscribe<TEvent, TEventFactory>(NwObject obj, Action<TEvent> handler, Action<TEventFactory> factory = null)
+    public TEventFactory Subscribe<TEvent, TEventFactory>(NwObject nwObject, Action<TEvent> handler)
       where TEvent : IEvent, new()
       where TEventFactory : IEventFactory
     {
-      TEventFactory eventFactory = GetEventFactory<TEventFactory>();
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
+      eventHandler.Subscribe(nwObject, handler);
 
-      if (activeFactories.Add(eventFactory))
-      {
-        eventFactory.Init(this);
-      }
-
-      eventFactory.Register<TEvent>(obj);
-      eventHandler.Subscribe(obj, handler);
-      factory?.Invoke(eventFactory);
+      return GetEventFactory<TEventFactory>();
     }
 
-    public void Unsubscribe<TEvent, TEventFactory>(NwObject obj, Action<TEvent> handler)
+    public TEventFactory SubscribeAll<TEvent, TEventFactory>(Action<TEvent> handler)
+      where TEvent : IEvent, new()
+      where TEventFactory : IEventFactory
+    {
+      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
+      eventHandler.SubscribeAll(handler);
+
+      return GetEventFactory<TEventFactory>();
+    }
+
+    public void Unsubscribe<TEvent, TEventFactory>(NwObject nwObject, Action<TEvent> handler)
       where TEvent : IEvent, new()
       where TEventFactory : IEventFactory, new()
     {
@@ -53,19 +56,38 @@ namespace NWN.Services
         return;
       }
 
-      eventHandler.Unsubscribe(obj, handler);
+      eventHandler.Unsubscribe(nwObject, handler);
 
       if (!eventHandler.HasSubscribers)
       {
         TEventFactory eventFactory = GetEventFactory<TEventFactory>();
         eventFactory.Unregister<TEvent>();
-
         eventHandlers.Remove(typeof(TEvent));
-        activeFactories.Remove(eventFactory);
       }
     }
 
-    internal TEvent ProcessEvent<TEvent>(TEvent eventData) where TEvent : IEvent
+    public void UnsubscribeAll<TEvent, TEventFactory>(Action<TEvent> handler)
+      where TEvent : IEvent, new()
+      where TEventFactory : IEventFactory, new()
+    {
+      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
+
+      if (eventHandler == null)
+      {
+        return;
+      }
+
+      eventHandler.UnsubscribeAll(handler);
+
+      if (!eventHandler.HasSubscribers)
+      {
+        TEventFactory eventFactory = GetEventFactory<TEventFactory>();
+        eventFactory.Unregister<TEvent>();
+        eventHandlers.Remove(typeof(TEvent));
+      }
+    }
+
+    public TEvent ProcessEvent<TEvent>(TEvent eventData) where TEvent : IEvent
     {
       if (!eventHandlers.TryGetValue(typeof(EventHandler<TEvent>), out EventHandler handler))
       {
@@ -76,11 +98,17 @@ namespace NWN.Services
       return eventData;
     }
 
-    private TEventFactory GetEventFactory<TEventFactory>() where TEventFactory : IEventFactory
+    public TEventFactory GetEventFactory<TEventFactory>() where TEventFactory : IEventFactory
     {
       if (!eventFactories.TryGetValue(typeof(TEventFactory), out IEventFactory factory))
       {
         Log.Error($"Cannot find event factory of type {typeof(TEventFactory).GetFullName()}. Are you missing a ServiceBinding?");
+        return default;
+      }
+
+      if (activeFactories.Add(factory))
+      {
+        factory.Init(this);
       }
 
       return (TEventFactory)factory;

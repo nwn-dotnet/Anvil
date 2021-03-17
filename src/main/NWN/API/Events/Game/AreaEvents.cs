@@ -18,22 +18,16 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the area that was entered.
       /// </summary>
-      public NwArea Area { get; }
+      public readonly NwArea Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
 
       /// <summary>
       /// Gets the game object that entered the area.
       /// </summary>
-      public NwGameObject EnteringObject { get; }
+      public readonly NwGameObject EnteringObject = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
       bool IEvent.HasContext => true;
 
       NwObject IEvent.Context => Area;
-
-      public OnEnter()
-      {
-        Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
-        EnteringObject = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
-      }
     }
 
     /// <summary>

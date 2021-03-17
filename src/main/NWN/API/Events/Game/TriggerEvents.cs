@@ -11,21 +11,25 @@ namespace NWN.API.Events
   public static class TriggerEvents
   {
     [NativeEvent(EventScriptType.TriggerOnHeartbeat)]
-    public sealed class OnHeartbeat : NativeEvent<NwTrigger, OnHeartbeat>
+    public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
       /// Gets the trigger associated with this heartbeat event.
       /// </summary>
       public NwTrigger Trigger { get; private set; }
 
-      protected override void PrepareEvent(NwTrigger objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Trigger;
+
+      public OnHeartbeat()
       {
-        Trigger = objSelf;
+        Trigger = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
       }
     }
 
     [NativeEvent(EventScriptType.TriggerOnObjectEnter)]
-    public sealed class OnEnter : NativeEvent<NwTrigger, OnEnter>
+    public sealed class OnEnter : IEvent
     {
       /// <summary>
       /// Gets the trigger that was entered.
@@ -37,15 +41,19 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject EnteringObject { get; private set; }
 
-      protected override void PrepareEvent(NwTrigger objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Trigger;
+
+      public OnEnter()
       {
-        Trigger = objSelf;
+        Trigger = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
         EnteringObject = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
       }
     }
 
     [NativeEvent(EventScriptType.TriggerOnObjectExit)]
-    public sealed class OnExit : NativeEvent<NwTrigger, OnExit>
+    public sealed class OnExit : IEvent
     {
       /// <summary>
       /// Gets the trigger that was left.
@@ -57,25 +65,33 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject ExitingObject { get; private set; }
 
-      protected override void PrepareEvent(NwTrigger objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Trigger;
+
+      public OnExit()
       {
-        Trigger = objSelf;
+        Trigger = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
       }
     }
 
     [NativeEvent(EventScriptType.TriggerOnUserDefinedEvent)]
-    public sealed class OnUserDefined : NativeEvent<NwTrigger, OnUserDefined>
+    public sealed class OnUserDefined : IEvent
     {
       public NwTrigger Trigger { get; private set; }
 
-      protected override void PrepareEvent(NwTrigger objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Trigger;
+
+      public OnUserDefined()
       {
-        Trigger = objSelf;
+        Trigger = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
       }
     }
 
     [NativeEvent(EventScriptType.TriggerOnTrapTriggered)]
-    public sealed class OnTrapTriggered : NativeEvent<NwTrigger, OnTrapTriggered>
+    public sealed class OnTrapTriggered : IEvent
     {
       /// <summary>
       /// Gets the trigger associated with this trap.
@@ -87,15 +103,19 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject TriggeredBy { get; private set; }
 
-      protected override void PrepareEvent(NwTrigger objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Trigger;
+
+      public OnTrapTriggered()
       {
-        Trigger = objSelf;
+        Trigger = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
         TriggeredBy = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
       }
     }
 
     [NativeEvent(EventScriptType.TriggerOnDisarmed)]
-    public sealed class OnDisarmed : NativeEvent<NwTrigger, OnDisarmed>
+    public sealed class OnDisarmed : IEvent
     {
       /// <summary>
       /// Gets the trigger that was disarmed.
@@ -107,15 +127,19 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature DisarmedBy { get; private set; }
 
-      protected override void PrepareEvent(NwTrigger objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Trigger;
+
+      public OnDisarmed()
       {
-        Trigger = objSelf;
+        Trigger = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
         DisarmedBy = NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
       }
     }
 
     [NativeEvent(EventScriptType.TriggerOnClicked)]
-    public sealed class OnClicked : NativeEvent<NwTrigger, OnClicked>
+    public sealed class OnClicked : IEvent
     {
       /// <summary>
       /// Gets the trigger that was clicked.
@@ -127,9 +151,13 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature ClickedBy { get; private set; }
 
-      protected override void PrepareEvent(NwTrigger objSelf)
+      bool IEvent.HasContext => true;
+
+      NwObject IEvent.Context => Trigger;
+
+      public OnClicked()
       {
-        Trigger = objSelf;
+        Trigger = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
         ClickedBy = NWScript.GetClickingObject().ToNwObject<NwCreature>();
       }
     }
