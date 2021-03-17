@@ -23,13 +23,15 @@ namespace NWN.API
 
     public event Action<StoreEvents.OnOpen> OnOpen
     {
-      add => EventService.Subscribe<StoreEvents.OnOpen, GameEventFactory>(this, value);
+      add => EventService.Subscribe<StoreEvents.OnOpen, GameEventFactory>(this, value)
+        .Register<StoreEvents.OnOpen>(this);
       remove => EventService.Unsubscribe<StoreEvents.OnOpen, GameEventFactory>(this, value);
     }
 
     public event Action<StoreEvents.OnClose> OnClose
     {
-      add => EventService.Subscribe<StoreEvents.OnClose, GameEventFactory>(this, value);
+      add => EventService.Subscribe<StoreEvents.OnClose, GameEventFactory>(this, value)
+        .Register<StoreEvents.OnClose>(this);
       remove => EventService.Unsubscribe<StoreEvents.OnClose, GameEventFactory>(this, value);
     }
 

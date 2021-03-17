@@ -39,7 +39,8 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaEvents.OnExit> OnExit
     {
-      add => EventService.Subscribe<AreaEvents.OnExit, GameEventFactory>(this, value);
+      add => EventService.Subscribe<AreaEvents.OnExit, GameEventFactory>(this, value)
+        .Register<AreaEvents.OnExit>(this);
       remove => EventService.Unsubscribe<AreaEvents.OnExit, GameEventFactory>(this, value);
     }
 
@@ -48,13 +49,15 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaEvents.OnHeartbeat> OnHeartbeat
     {
-      add => EventService.Subscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value);
+      add => EventService.Subscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<AreaEvents.OnHeartbeat>(this);
       remove => EventService.Unsubscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<AreaEvents.OnUserDefined> OnUserDefined
     {
-      add => EventService.Subscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value);
+      add => EventService.Subscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<AreaEvents.OnUserDefined>(this);
       remove => EventService.Unsubscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 

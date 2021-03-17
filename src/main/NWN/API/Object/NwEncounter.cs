@@ -24,31 +24,36 @@ namespace NWN.API
 
     public event Action<EncounterEvents.OnEnter> OnEnter
     {
-      add => EventService.Subscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnEnter>(this);
       remove => EventService.Unsubscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value);
     }
 
     public event Action<EncounterEvents.OnExit> OnExit
     {
-      add => EventService.Subscribe<EncounterEvents.OnExit, GameEventFactory>(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnExit, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnExit>(this);
       remove => EventService.Unsubscribe<EncounterEvents.OnExit, GameEventFactory>(this, value);
     }
 
     public event Action<EncounterEvents.OnHeartbeat> OnHeartbeat
     {
-      add => EventService.Subscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnHeartbeat>(this);
       remove => EventService.Unsubscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<EncounterEvents.OnExhausted> OnExhausted
     {
-      add => EventService.Subscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnExhausted>(this);
       remove => EventService.Unsubscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value);
     }
 
     public event Action<EncounterEvents.OnUserDefined> OnUserDefined
     {
-      add => EventService.Subscribe<EncounterEvents.OnUserDefined, GameEventFactory>(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnUserDefined>(this);
       remove => EventService.Unsubscribe<EncounterEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 

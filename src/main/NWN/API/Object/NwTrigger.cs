@@ -24,43 +24,50 @@ namespace NWN.API
 
     public event Action<TriggerEvents.OnHeartbeat> OnHeartbeat
     {
-      add => EventService.Subscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnHeartbeat>(this);
       remove => EventService.Unsubscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnEnter> OnEnter
     {
-      add => EventService.Subscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnEnter>(this);
       remove => EventService.Unsubscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnExit> OnExit
     {
-      add => EventService.Subscribe<TriggerEvents.OnExit, GameEventFactory>(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnExit, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnExit>(this);
       remove => EventService.Unsubscribe<TriggerEvents.OnExit, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnUserDefined> OnUserDefined
     {
-      add => EventService.Subscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnUserDefined>(this);
       remove => EventService.Unsubscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnTrapTriggered> OnTrapTriggered
     {
-      add => EventService.Subscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnTrapTriggered>(this);
       remove => EventService.Unsubscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnDisarmed> OnDisarmed
     {
-      add => EventService.Subscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnDisarmed>(this);
       remove => EventService.Unsubscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value);
     }
 
     public event Action<TriggerEvents.OnClicked> OnClicked
     {
-      add => EventService.Subscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnClicked>(this);
       remove => EventService.Unsubscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value);
     }
 

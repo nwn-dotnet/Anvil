@@ -24,91 +24,106 @@ namespace NWN.API
 
     public event Action<DoorEvents.OnOpen> OnOpen
     {
-      add => EventService.Subscribe<DoorEvents.OnOpen, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnOpen, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnOpen>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnOpen, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnClose> OnClose
     {
-      add => EventService.Subscribe<DoorEvents.OnClose, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnClose, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnClose>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnClose, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnDamaged> OnDamaged
     {
-      add => EventService.Subscribe<DoorEvents.OnDamaged, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnDamaged, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnDamaged>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnDamaged, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnDeath> OnDeath
     {
-      add => EventService.Subscribe<DoorEvents.OnDeath, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnDeath, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnDeath>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnDeath, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnDisarm> OnDisarm
     {
-      add => EventService.Subscribe<DoorEvents.OnDisarm, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnDisarm, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnDisarm>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnDisarm, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnHeartbeat> OnHeartbeat
     {
-      add => EventService.Subscribe<DoorEvents.OnHeartbeat, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnHeartbeat>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnLock> OnLock
     {
-      add => EventService.Subscribe<DoorEvents.OnLock, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnLock, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnLock>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnLock, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnPhysicalAttacked> OnPhysicalAttacked
     {
-      add => EventService.Subscribe<DoorEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnPhysicalAttacked, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnPhysicalAttacked>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnSpellCastAt> OnSpellCastAt
     {
-      add => EventService.Subscribe<DoorEvents.OnSpellCastAt, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnSpellCastAt, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnSpellCastAt>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnSpellCastAt, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnTrapTriggered> OnTrapTriggered
     {
-      add => EventService.Subscribe<DoorEvents.OnTrapTriggered, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnTrapTriggered, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnTrapTriggered>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnTrapTriggered, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnUnlock> OnUnlock
     {
-      add => EventService.Subscribe<DoorEvents.OnUnlock, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnUnlock, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnUnlock>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnUnlock, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnUserDefined> OnUserDefined
     {
-      add => EventService.Subscribe<DoorEvents.OnUserDefined, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnUserDefined>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnAreaTransitionClick> OnAreaTransitionClick
     {
-      add => EventService.Subscribe<DoorEvents.OnAreaTransitionClick, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnAreaTransitionClick, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnAreaTransitionClick>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnAreaTransitionClick, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnDialogue> OnDialogue
     {
-      add => EventService.Subscribe<DoorEvents.OnDialogue, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnDialogue, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnDialogue>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnDialogue, GameEventFactory>(this, value);
     }
 
     public event Action<DoorEvents.OnFailToOpen> OnFailToOpen
     {
-      add => EventService.Subscribe<DoorEvents.OnFailToOpen, GameEventFactory>(this, value);
+      add => EventService.Subscribe<DoorEvents.OnFailToOpen, GameEventFactory>(this, value)
+        .Register<DoorEvents.OnFailToOpen>(this);
       remove => EventService.Unsubscribe<DoorEvents.OnFailToOpen, GameEventFactory>(this, value);
     }
 

@@ -22,7 +22,8 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaOfEffectEvents.OnEnter> OnEnter
     {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value)
+        .Register<AreaOfEffectEvents.OnEnter>(this);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
     }
 
@@ -31,7 +32,8 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaOfEffectEvents.OnExit> OnExit
     {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value)
+        .Register<AreaOfEffectEvents.OnExit>(this);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
     }
 
@@ -40,13 +42,15 @@ namespace NWN.API
     /// </summary>
     public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
     {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<AreaOfEffectEvents.OnHeartbeat>(this);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     public event Action<AreaOfEffectEvents.OnUserDefined> OnUserDefined
     {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<AreaOfEffectEvents.OnUserDefined>(this);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
