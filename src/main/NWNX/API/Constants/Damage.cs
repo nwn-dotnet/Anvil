@@ -1,6 +1,6 @@
 namespace NWNX.API.Constants
 {
-  public enum AttackType
+  public enum WeaponAttackType
   {
     MainHand = 1,
     OffHand = 2,
