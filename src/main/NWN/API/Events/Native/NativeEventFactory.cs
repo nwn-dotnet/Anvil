@@ -3,8 +3,8 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public abstract class NativeEventFactory<TEvent, THook> : IEventFactory
-    where TEvent : IEvent
+  [ServiceBinding(typeof(IEventFactory))]
+  public abstract class NativeEventFactory<THook> : IEventFactory
     where THook : Delegate
   {
     private readonly HookService hookService;
@@ -37,7 +37,7 @@ namespace NWN.API.Events
       Hook = null;
     }
 
-    protected TEvent ProcessEvent(TEvent evt)
+    protected TEvent ProcessEvent<TEvent>(TEvent evt) where TEvent : IEvent
       => eventService.ProcessEvent(evt);
   }
 }

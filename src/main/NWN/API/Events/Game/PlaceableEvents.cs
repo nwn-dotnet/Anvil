@@ -9,304 +9,182 @@ namespace NWN.API.Events
   /// </summary>
   public static class PlaceableEvents
   {
-    [NativeEvent(EventScriptType.PlaceableOnClosed)]
+    [GameEvent(EventScriptType.PlaceableOnClosed)]
     public sealed class OnClose : IEvent
     {
-      public NwPlaceable Placeable { get; }
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public NwCreature LastClosedBy { get; }
-
-      bool IEvent.HasContext => true;
+      public NwCreature LastClosedBy { get; } = NWScript.GetLastClosedBy().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnClose()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        LastClosedBy = NWScript.GetLastClosedBy().ToNwObject<NwCreature>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnDamaged)]
+    [GameEvent(EventScriptType.PlaceableOnDamaged)]
     public sealed class OnDamaged : IEvent
     {
-      public NwPlaceable DamagedObject { get; }
+      public NwPlaceable DamagedObject { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public NwGameObject Damager { get; }
+      public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
 
-      public int DamageAmount { get; }
-
-      bool IEvent.HasContext => true;
+      public int DamageAmount { get; } = NWScript.GetTotalDamageDealt();
 
       NwObject IEvent.Context => DamagedObject;
-
-      public OnDamaged()
-      {
-        DamagedObject = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        Damager = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
-        DamageAmount = NWScript.GetTotalDamageDealt();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnDeath)]
+    [GameEvent(EventScriptType.PlaceableOnDeath)]
     public sealed class OnDeath : IEvent
     {
-      public NwPlaceable KilledObject { get; }
+      public NwPlaceable KilledObject { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public NwGameObject Killer { get; }
-
-      bool IEvent.HasContext => true;
+      public NwGameObject Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => KilledObject;
-
-      public OnDeath()
-      {
-        KilledObject = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        Killer = NWScript.GetLastKiller().ToNwObject<NwGameObject>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnDisarm)]
+    [GameEvent(EventScriptType.PlaceableOnDisarm)]
     public sealed class OnDisarm : IEvent
     {
-      public NwPlaceable Placeable { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnDisarm()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnHeartbeat)]
+    [GameEvent(EventScriptType.PlaceableOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
-      public NwPlaceable Placeable { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnHeartbeat()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnInventoryDisturbed)]
+    [GameEvent(EventScriptType.PlaceableOnInventoryDisturbed)]
     public sealed class OnDisturbed : IEvent
     {
-      public InventoryDisturbType DisturbType { get; }
+      public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType) NWScript.GetInventoryDisturbType();
 
-      public NwPlaceable Placeable { get; }
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public NwCreature Disturber { get; }
+      public NwCreature Disturber { get; } = NWScript.GetLastDisturbed().ToNwObject<NwCreature>();
 
-      public NwItem DisturbedItem { get; }
-
-      bool IEvent.HasContext => true;
+      public NwItem DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnDisturbed()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        DisturbType = (InventoryDisturbType) NWScript.GetInventoryDisturbType();
-        Disturber = NWScript.GetLastDisturbed().ToNwObject<NwCreature>();
-        DisturbedItem = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnLock)]
+    [GameEvent(EventScriptType.PlaceableOnLock)]
     public sealed class OnLock : IEvent
     {
-      public NwPlaceable LockedPlaceable { get; }
+      public NwPlaceable LockedPlaceable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public int LockDC { get; }
-
-      bool IEvent.HasContext => true;
+      public int LockDC { get; } = NWScript.GetLockLockDC(NWScript.OBJECT_SELF);
 
       NwObject IEvent.Context => LockedPlaceable;
-
-      public OnLock()
-      {
-        LockedPlaceable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        LockDC = NWScript.GetLockLockDC(NWScript.OBJECT_SELF);
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnMeleeAttacked)]
+    [GameEvent(EventScriptType.PlaceableOnMeleeAttacked)]
     public sealed class OnPhysicalAttacked : IEvent
     {
-      public NwPlaceable Placeable { get; }
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public NwCreature Attacker { get; }
-
-      bool IEvent.HasContext => true;
+      public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnPhysicalAttacked()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        Attacker = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnOpen)]
+    [GameEvent(EventScriptType.PlaceableOnOpen)]
     public sealed class OnOpen : IEvent
     {
-      public NwPlaceable Placeable { get; }
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public NwCreature OpenedBy { get; }
-
-      bool IEvent.HasContext => true;
+      public NwCreature OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnOpen()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        OpenedBy = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnSpellCastAt)]
+    [GameEvent(EventScriptType.PlaceableOnSpellCastAt)]
     public sealed class OnSpellCastAt : IEvent
     {
       /// <summary>
       /// Gets the placeable targeted by this spell.
       /// </summary>
-      public NwPlaceable Placeable { get; }
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       /// <summary>
       /// Gets the caster of this spell (creature, placeable, door). Returns null from an area of effect.
       /// </summary>
-      public NwGameObject Caster { get; }
+      public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the spell that was cast.
       /// </summary>
-      public Spell Spell { get; }
+      public Spell Spell { get; } = (Spell)NWScript.GetLastSpell();
 
       /// <summary>
       /// Gets a value indicating whether this spell is considered harmful.
       /// </summary>
-      public bool Harmful { get; }
-
-      bool IEvent.HasContext => true;
+      public bool Harmful { get; } = NWScript.GetLastSpellHarmful().ToBool();
 
       NwObject IEvent.Context => Placeable;
 
-      public OnSpellCastAt()
+      public static void Signal(NwObject caster, NwPlaceable target, Spell spell, bool harmful = true)
       {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        Caster = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
-        Spell = (Spell)NWScript.GetLastSpell();
-        Harmful = NWScript.GetLastSpellHarmful().ToBool();
+        Event nwEvent = NWScript.EventSpellCastAt(caster, (int)spell, harmful.ToInt());
+        NWScript.SignalEvent(target, nwEvent);
       }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnTrapTriggered)]
+    [GameEvent(EventScriptType.PlaceableOnTrapTriggered)]
     public sealed class OnTrapTriggered : IEvent
     {
-      public NwPlaceable Placeable { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnTrapTriggered()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnUnlock)]
+    [GameEvent(EventScriptType.PlaceableOnUnlock)]
     public sealed class OnUnlock : IEvent
     {
-      public NwPlaceable Placeable { get; }
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public NwCreature UnlockedBy { get; }
-
-      bool IEvent.HasContext => true;
+      public NwCreature UnlockedBy { get; } = NWScript.GetLastUnlocked().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnUnlock()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        UnlockedBy = NWScript.GetLastUnlocked().ToNwObject<NwCreature>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnUsed)]
+    [GameEvent(EventScriptType.PlaceableOnUsed)]
     public sealed class OnUsed : IEvent
     {
-      public NwPlaceable Placeable { get; }
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public NwCreature UsedBy { get; }
-
-      bool IEvent.HasContext => true;
+      public NwCreature UsedBy { get; } = NWScript.GetLastUsedBy().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnUsed()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        UsedBy = NWScript.GetLastUsedBy().ToNwObject<NwCreature>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnUserDefinedEvent)]
+    [GameEvent(EventScriptType.PlaceableOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
-      public NwPlaceable Placeable { get; }
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      public int EventNumber { get; }
-
-      bool IEvent.HasContext => true;
+      public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnUserDefined()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-        EventNumber = NWScript.GetUserDefinedEventNumber();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnDialogue)]
+    [GameEvent(EventScriptType.PlaceableOnDialogue)]
     public sealed class OnDialogue : IEvent
     {
-      public NwPlaceable Placeable { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnDialogue()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-      }
     }
 
-    [NativeEvent(EventScriptType.PlaceableOnLeftClick)]
+    [GameEvent(EventScriptType.PlaceableOnLeftClick)]
     public sealed class OnLeftClick : IEvent
     {
-      public NwPlaceable Placeable { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       NwObject IEvent.Context => Placeable;
-
-      public OnLeftClick()
-      {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-      }
     }
   }
 }

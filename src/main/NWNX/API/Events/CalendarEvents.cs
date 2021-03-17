@@ -1,4 +1,5 @@
 using NWN.API;
+using NWN.API.Events;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -6,89 +7,55 @@ namespace NWNX.API.Events
   public static class CalendarEvents
   {
     [NWNXEvent("NWNX_ON_CALENDAR_HOUR")]
-    public class OnCalendarHour : NWNXEvent<OnCalendarHour>
+    public sealed class OnCalendarHour : IEvent
     {
-      public NwModule Module { get; private set; }
+      public int Old { get; } = EventsPlugin.GetEventData("OLD").ParseInt();
 
-      public int Old { get; private set; }
+      public int New { get; } = EventsPlugin.GetEventData("NEW").ParseInt();
 
-      public int New { get; private set; }
-
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Module = (NwModule) objSelf;
-        Old = EventsPlugin.GetEventData("OLD").ParseInt();
-        New = EventsPlugin.GetEventData("NEW").ParseInt();
-      }
+      NwObject IEvent.Context => null;
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_DAY")]
-    public class OnCalendarDay : NWNXEvent<OnCalendarDay>
+    public sealed class OnCalendarDay : IEvent
     {
-      public NwModule Module { get; private set; }
+      public int Old { get; } = EventsPlugin.GetEventData("OLD").ParseInt();
 
-      public int Old { get; private set; }
+      public int New { get; } = EventsPlugin.GetEventData("NEW").ParseInt();
 
-      public int New { get; private set; }
-
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Module = (NwModule) objSelf;
-        Old = EventsPlugin.GetEventData("OLD").ParseInt();
-        New = EventsPlugin.GetEventData("NEW").ParseInt();
-      }
+      NwObject IEvent.Context => null;
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_MONTH")]
-    public class OnCalendarMonth : NWNXEvent<OnCalendarMonth>
+    public sealed class OnCalendarMonth : IEvent
     {
-      public NwModule Module { get; private set; }
+      public int Old { get; } = EventsPlugin.GetEventData("OLD").ParseInt();
 
-      public int Old { get; private set; }
+      public int New { get; } = EventsPlugin.GetEventData("NEW").ParseInt();
 
-      public int New { get; private set; }
-
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Module = (NwModule) objSelf;
-        Old = EventsPlugin.GetEventData("OLD").ParseInt();
-        New = EventsPlugin.GetEventData("NEW").ParseInt();
-      }
+      NwObject IEvent.Context => null;
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_YEAR")]
-    public class OnCalendarYear : NWNXEvent<OnCalendarYear>
+    public sealed class OnCalendarYear : IEvent
     {
-      public NwModule Module { get; private set; }
+      public int Old { get; } = EventsPlugin.GetEventData("OLD").ParseInt();
 
-      public int Old { get; private set; }
+      public int New { get; } = EventsPlugin.GetEventData("NEW").ParseInt();
 
-      public int New { get; private set; }
-
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Module = (NwModule) objSelf;
-        Old = EventsPlugin.GetEventData("OLD").ParseInt();
-        New = EventsPlugin.GetEventData("NEW").ParseInt();
-      }
+      NwObject IEvent.Context => null;
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_DAWN")]
-    public class OnCalendarDawn : NWNXEvent<OnCalendarDawn>
+    public sealed class OnCalendarDawn : IEvent
     {
-      public NwModule Module { get; private set; }
-
-      protected override void PrepareEvent(NwObject objSelf)
-        => Module = (NwModule) objSelf;
+      NwObject IEvent.Context => null;
     }
 
     [NWNXEvent("NWNX_ON_CALENDAR_DUSK")]
-    public class OnCalendarDusk : NWNXEvent<OnCalendarDusk>
+    public sealed class OnCalendarDusk : IEvent
     {
-      public NwModule Module { get; private set; }
-
-      protected override void PrepareEvent(NwObject objSelf)
-        => Module = (NwModule) objSelf;
+      NwObject IEvent.Context => null;
     }
   }
 }

@@ -10,121 +10,81 @@ namespace NWN.API.Events
   /// </summary>
   public static class ModuleEvents
   {
-    [NativeEvent(EventScriptType.ModuleOnAcquireItem)]
+    [GameEvent(EventScriptType.ModuleOnAcquireItem)]
     public sealed class OnAcquireItem : IEvent
     {
-      public NwItem Item { get; }
+      public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
 
-      public NwGameObject AcquiredBy { get; }
+      public NwGameObject AcquiredBy { get; } = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
 
-      public NwGameObject AcquiredFrom { get; }
+      public NwGameObject AcquiredFrom { get; } = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
 
-      bool IEvent.HasContext => true;
-
-      NwObject IEvent.Context => Item;
-
-      public OnAcquireItem()
-      {
-        Item = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
-        AcquiredBy = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
-        AcquiredFrom = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
-      }
+      NwObject IEvent.Context => AcquiredBy;
     }
 
-    [NativeEvent(EventScriptType.ModuleOnActivateItem)]
+    [GameEvent(EventScriptType.ModuleOnActivateItem)]
     public sealed class OnActivateItem : IEvent
     {
-      public NwItem ActivatedItem { get; }
+      public NwItem ActivatedItem { get; } = NWScript.GetItemActivated().ToNwObject<NwItem>();
 
-      public NwCreature ItemActivator { get; }
+      public NwCreature ItemActivator { get; } = NWScript.GetItemActivator().ToNwObject<NwCreature>();
 
-      public NwGameObject TargetObject { get; }
+      public NwGameObject TargetObject { get; } = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
 
-      public Location TargetLocation { get; }
+      public Location TargetLocation { get; } = NWScript.GetItemActivatedTargetLocation();
 
-      bool IEvent.HasContext => true;
+      NwObject IEvent.Context => ItemActivator;
 
-      NwObject IEvent.Context => ActivatedItem;
-
-      public OnActivateItem()
+      public static void Signal(NwItem item, Location targetLocation, NwGameObject targetObject = null)
       {
-        ActivatedItem = NWScript.GetItemActivated().ToNwObject<NwItem>();
-        ItemActivator = NWScript.GetItemActivator().ToNwObject<NwCreature>();
-        TargetObject = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
-        TargetLocation = NWScript.GetItemActivatedTargetLocation();
+        Event nwEvent = NWScript.EventActivateItem(item, targetLocation, targetObject);
+        NWScript.SignalEvent(NwModule.Instance, nwEvent);
       }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnClientEnter)]
+    [GameEvent(EventScriptType.ModuleOnClientEnter)]
     public sealed class OnClientEnter : IEvent
     {
-      public NwPlayer Player { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlayer Player { get; } = NWScript.GetEnteringObject().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
-
-      public OnClientEnter()
-      {
-        Player = NWScript.GetEnteringObject().ToNwObject<NwPlayer>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnClientExit)]
+    [GameEvent(EventScriptType.ModuleOnClientExit)]
     public sealed class OnClientLeave : IEvent
     {
-      public NwPlayer Player { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
-
-      public OnClientLeave()
-      {
-        Player = NWScript.GetExitingObject().ToNwObject<NwPlayer>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
+    [GameEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
     public sealed class OnCutsceneAbort : IEvent
     {
-      public NwPlayer Player { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlayer Player { get; } = NWScript.GetLastPCToCancelCutscene().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
-
-      public OnCutsceneAbort()
-      {
-        Player = NWScript.GetLastPCToCancelCutscene().ToNwObject<NwPlayer>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnHeartbeat)]
+    [GameEvent(EventScriptType.ModuleOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
-      bool IEvent.HasContext => false;
-
       NwObject IEvent.Context => null;
     }
 
-    [NativeEvent(EventScriptType.ModuleOnModuleLoad)]
+    [GameEvent(EventScriptType.ModuleOnModuleLoad)]
     public sealed class OnModuleLoad : IEvent
     {
-      bool IEvent.HasContext => false;
-
       NwObject IEvent.Context => null;
     }
 
-    [NativeEvent(EventScriptType.ModuleOnModuleStart)]
+    [GameEvent(EventScriptType.ModuleOnModuleStart)]
     public sealed class OnModuleStart : IEvent
     {
-      bool IEvent.HasContext => false;
-
       NwObject IEvent.Context => null;
     }
 
-    [NativeEvent(EventScriptType.ModuleOnPlayerChat)]
+    [GameEvent(EventScriptType.ModuleOnPlayerChat)]
     public sealed class OnPlayerChat : IEvent
     {
       public NwPlayer Sender { get; private set; }
@@ -141,189 +101,110 @@ namespace NWN.API.Events
         set => NWScript.SetPCChatVolume((int) value);
       }
 
-      bool IEvent.HasContext => true;
-
       NwObject IEvent.Context => Sender;
     }
 
-    [NativeEvent(EventScriptType.ModuleOnPlayerTarget)]
+    [GameEvent(EventScriptType.ModuleOnPlayerTarget)]
     public sealed class OnPlayerTarget : IEvent
     {
       /// <summary>
       /// Gets the player that has targeted something.
       /// </summary>
-      public NwPlayer Player { get; }
+      public NwPlayer Player { get; } = NWScript.GetLastPlayerToSelectTarget().ToNwObject<NwPlayer>();
 
       /// <summary>
       /// Gets the object that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
       /// </summary>
-      public NwObject TargetObject { get; }
+      public NwObject TargetObject { get; } = NWScript.GetTargetingModeSelectedObject().ToNwObject();
 
       /// <summary>
       /// Gets the position targeted by the player.
       /// </summary>
-      public Vector3 TargetPosition { get; }
-
-      bool IEvent.HasContext => true;
+      public Vector3 TargetPosition { get; } = NWScript.GetTargetingModeSelectedPosition();
 
       NwObject IEvent.Context => Player;
-
-      public OnPlayerTarget()
-      {
-        Player = NWScript.GetLastPlayerToSelectTarget().ToNwObject<NwPlayer>();
-        TargetObject = NWScript.GetTargetingModeSelectedObject().ToNwObject();
-        TargetPosition = NWScript.GetTargetingModeSelectedPosition();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnPlayerDeath)]
+    [GameEvent(EventScriptType.ModuleOnPlayerDeath)]
     public sealed class OnPlayerDeath : IEvent
     {
-      public NwPlayer DeadPlayer { get; }
+      public NwPlayer DeadPlayer { get; } = NWScript.GetLastPlayerDied().ToNwObject<NwPlayer>();
 
-      public NwGameObject Killer { get; }
-
-      bool IEvent.HasContext => true;
+      public NwGameObject Killer { get; } = NWScript.GetLastHostileActor().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => DeadPlayer;
-
-      public OnPlayerDeath()
-      {
-        DeadPlayer = NWScript.GetLastPlayerDied().ToNwObject<NwPlayer>();
-        Killer = NWScript.GetLastHostileActor().ToNwObject<NwGameObject>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnPlayerDying)]
+    [GameEvent(EventScriptType.ModuleOnPlayerDying)]
     public sealed class OnPlayerDying : IEvent
     {
-      public NwPlayer Player { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlayer Player { get; } = NWScript.GetLastPlayerDying().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
-
-      public OnPlayerDying()
-      {
-        Player = NWScript.GetLastPlayerDying().ToNwObject<NwPlayer>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnEquipItem)]
+    [GameEvent(EventScriptType.ModuleOnEquipItem)]
     public sealed class OnPlayerEquipItem : IEvent
     {
-      public NwCreature Player { get; }
+      public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
 
-      public NwItem Item { get; }
-
-      bool IEvent.HasContext => true;
+      public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => Player;
-
-      public OnPlayerEquipItem()
-      {
-        Player = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
-        Item = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnPlayerLevelUp)]
+    [GameEvent(EventScriptType.ModuleOnPlayerLevelUp)]
     public sealed class OnPlayerLevelUp : IEvent
     {
-      public NwPlayer Player { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
-
-      public OnPlayerLevelUp()
-      {
-        Player = NWScript.GetPCLevellingUp().ToNwObject<NwPlayer>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
+    [GameEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
     public sealed class OnPlayerRespawn : IEvent
     {
-      public NwPlayer Player { get; }
-
-      bool IEvent.HasContext => true;
+      public NwPlayer Player { get; } = NWScript.GetLastRespawnButtonPresser().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
-
-      public OnPlayerRespawn()
-      {
-        Player = NWScript.GetLastRespawnButtonPresser().ToNwObject<NwPlayer>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnPlayerRest)]
+    [GameEvent(EventScriptType.ModuleOnPlayerRest)]
     public sealed class OnPlayerRest : IEvent
     {
-      public NwPlayer Player { get; }
+      public NwPlayer Player { get; } = NWScript.GetLastPCRested().ToNwObject<NwPlayer>();
 
-      public RestEventType RestEventType { get; }
-
-      bool IEvent.HasContext => true;
+      public RestEventType RestEventType { get; } = (RestEventType) NWScript.GetLastRestEventType();
 
       NwObject IEvent.Context => Player;
-
-      public OnPlayerRest()
-      {
-        Player = NWScript.GetLastPCRested().ToNwObject<NwPlayer>();
-        RestEventType = (RestEventType) NWScript.GetLastRestEventType();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnUnequipItem)]
+    [GameEvent(EventScriptType.ModuleOnUnequipItem)]
     public sealed class OnPlayerUnequipItem : IEvent
     {
-      public NwCreature UnequippedBy { get; }
+      public NwCreature UnequippedBy { get; } = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>();
 
-      public NwItem Item { get; }
-
-      bool IEvent.HasContext => true;
+      public NwItem Item { get; } = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => UnequippedBy;
-
-      public OnPlayerUnequipItem()
-      {
-        UnequippedBy = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>();
-        Item = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnLoseItem)]
+    [GameEvent(EventScriptType.ModuleOnLoseItem)]
     public sealed class OnUnacquireItem : IEvent
     {
-      public NwCreature LostBy { get; }
+      public NwCreature LostBy { get; } = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>();
 
-      public NwItem Item { get; }
-
-      bool IEvent.HasContext => true;
+      public NwItem Item { get; } = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => LostBy;
-
-      public OnUnacquireItem()
-      {
-        LostBy = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>();
-        Item = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
-      }
     }
 
-    [NativeEvent(EventScriptType.ModuleOnUserDefinedEvent)]
+    [GameEvent(EventScriptType.ModuleOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
-      public int EventNumber { get; }
-
-      bool IEvent.HasContext => false;
+      public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => null;
-
-      public OnUserDefined()
-      {
-        EventNumber = NWScript.GetUserDefinedEventNumber();
-      }
     }
   }
 }

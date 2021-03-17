@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-using NLog;
 using NWN.API;
-using NWN.API.Constants;
 using NWN.API.Events;
-using NWN.Core;
 
 namespace NWN.Services
 {
@@ -37,7 +32,17 @@ namespace NWN.Services
       where TEvent : IEvent, new()
       where TObject : NwObject
     {
-      eventService.Subscribe<TEvent, GameEventFactory>(nwObject, callback).Register<TEvent>(nwObject);
+      // To maintain previous behaviour, we invoke "SubscribeAll" for module events, which previously did not have an object context.
+      if (nwObject is NwModule)
+      {
+        eventService.SubscribeAll<TEvent, GameEventFactory>(callback)
+          .Register<TEvent>(nwObject);
+      }
+      else
+      {
+        eventService.Subscribe<TEvent, GameEventFactory>(nwObject, callback)
+          .Register<TEvent>(nwObject);
+      }
     }
 
     /// <summary>
@@ -52,7 +57,15 @@ namespace NWN.Services
       where TEvent : IEvent, new()
       where TObject : NwObject
     {
-      eventService.Unsubscribe<TEvent, GameEventFactory>(nwObject, callback);
+      // To maintain previous behaviour, we invoke "UnsubscribeAll" for module events, which previously did not have an object context.
+      if (nwObject is NwModule)
+      {
+        eventService.UnsubscribeAll<TEvent, GameEventFactory>(callback);
+      }
+      else
+      {
+        eventService.Unsubscribe<TEvent, GameEventFactory>(nwObject, callback);
+      }
     }
   }
 }

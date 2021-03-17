@@ -1,43 +1,49 @@
 using NWN.API;
+using NWN.API.Events;
+using NWN.Core;
 
 namespace NWNX.API.Events
 {
   public static class StealthEvents
   {
     [NWNXEvent("NWNX_ON_ENTER_STEALTH_BEFORE")]
-    public class OnEnterStealthBefore : NWNXEventSkippable<OnEnterStealthBefore>
+    public sealed class OnEnterStealthBefore : IEventSkippable
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-        => Player = (NwPlayer) objSelf;
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Player;
     }
 
     [NWNXEvent("NWNX_ON_ENTER_STEALTH_AFTER")]
-    public class OnEnterStealthAfter : NWNXEventSkippable<OnEnterStealthAfter>
+    public sealed class OnEnterStealthAfter : IEventSkippable
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-        => Player = (NwPlayer) objSelf;
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Player;
     }
 
     [NWNXEvent("NWNX_ON_EXIT_STEALTH_BEFORE")]
-    public class OnExitStealthBefore : NWNXEventSkippable<OnExitStealthBefore>
+    public sealed class OnExitStealthBefore : IEventSkippable
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-        => Player = (NwPlayer) objSelf;
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Player;
     }
 
     [NWNXEvent("NWNX_ON_EXIT_STEALTH_AFTER")]
-    public class OnExitStealthAfter : NWNXEventSkippable<OnExitStealthAfter>
+    public sealed class OnExitStealthAfter : IEventSkippable
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-        => Player = (NwPlayer) objSelf;
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Player;
     }
   }
 }

@@ -12,8 +12,8 @@ namespace NWN.API.Events
     /// <summary>
     /// Called when a new object has entered the area.
     /// </summary>
-    [NativeEvent(EventScriptType.AreaOnEnter)]
-    public sealed record OnEnter : IEvent
+    [GameEvent(EventScriptType.AreaOnEnter)]
+    public sealed class OnEnter : IEvent
     {
       /// <summary>
       /// Gets the area that was entered.
@@ -25,72 +25,47 @@ namespace NWN.API.Events
       /// </summary>
       public readonly NwGameObject EnteringObject = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
-      bool IEvent.HasContext => true;
-
       NwObject IEvent.Context => Area;
     }
 
     /// <summary>
     /// Called when an object leaves the area.
     /// </summary>
-    [NativeEvent(EventScriptType.AreaOnExit)]
-    public sealed record OnExit : IEvent
+    [GameEvent(EventScriptType.AreaOnExit)]
+    public sealed class OnExit : IEvent
     {
       /// <summary>
       /// Gets the area that was left.
       /// </summary>
-      public NwArea Area { get; }
+      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
 
       /// <summary>
       /// Gets the game object that left the area.
       /// </summary>
-      public NwGameObject ExitingObject { get; }
-
-      bool IEvent.HasContext => true;
+      public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => Area;
-
-      public OnExit()
-      {
-        Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
-        ExitingObject = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
-      }
     }
 
     /// <summary>
     /// Called at a regular interval (approx. 6 seconds).
     /// </summary>
-    [NativeEvent(EventScriptType.AreaOnHeartbeat)]
-    public sealed record OnHeartbeat : IEvent
+    [GameEvent(EventScriptType.AreaOnHeartbeat)]
+    public sealed class OnHeartbeat : IEvent
     {
-      public NwArea Area { get; }
-
-      bool IEvent.HasContext => true;
+      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
 
       NwObject IEvent.Context => Area;
-
-      public OnHeartbeat()
-      {
-        Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
-      }
     }
 
-    [NativeEvent(EventScriptType.AreaOnUserDefinedEvent)]
-    public sealed record OnUserDefined : IEvent
+    [GameEvent(EventScriptType.AreaOnUserDefinedEvent)]
+    public sealed class OnUserDefined : IEvent
     {
-      public NwArea Area { get; }
+      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
 
-      public int EventNumber { get; }
-
-      bool IEvent.HasContext => true;
+      public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => Area;
-
-      public OnUserDefined()
-      {
-        Area = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
-        EventNumber = NWScript.GetUserDefinedEventNumber();
-      }
     }
   }
 }

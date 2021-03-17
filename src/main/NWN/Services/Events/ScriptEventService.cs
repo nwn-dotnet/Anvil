@@ -19,6 +19,7 @@ namespace NWN.Services
     public void SetHandler<T>(string scriptName, Action<T> callback, bool callOriginal = false) where T : IEvent, new()
     {
       eventService.SubscribeAll<T, ScriptEventFactory>(callback).Register<T>(scriptName);
+
       // if (eventHandlers.TryGetValue(scriptName, out EventHandler handler))
       // {
       //   handler.ScriptEvent.ClearSubscribers();
@@ -33,6 +34,7 @@ namespace NWN.Services
     public void ClearHandler(string scriptName)
     {
       eventService.GetEventFactory<ScriptEventFactory>().Unregister(scriptName);
+
       // if (eventHandlers.TryGetValue(scriptName, out EventHandler handler))
       // {
       //   handler.ScriptEvent.ClearSubscribers();

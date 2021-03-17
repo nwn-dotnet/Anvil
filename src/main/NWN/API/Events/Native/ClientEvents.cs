@@ -6,21 +6,18 @@ namespace NWN.API.Events
 {
   public static class ClientEvents
   {
-    public sealed record OnClientDisconnect : IEvent
+    public sealed class OnClientDisconnect : IEvent
     {
       /// <summary>
       /// Gets the player that disconnected.
       /// </summary>
       public NwPlayer Player { get; init; }
 
-      bool IEvent.HasContext => true;
-
       NwObject IEvent.Context => Player;
 
       internal delegate void RemovePCFromWorldHook(IntPtr pServerExoAppInternal, IntPtr pPlayer);
 
-      [ServiceBinding(typeof(IEventFactory))]
-      internal class Factory : NativeEventFactory<OnClientDisconnect, RemovePCFromWorldHook>
+      internal class Factory : NativeEventFactory<RemovePCFromWorldHook>
       {
         public Factory(HookService hookService) : base(hookService) {}
 
@@ -41,7 +38,7 @@ namespace NWN.API.Events
       }
     }
 
-    public sealed record OnServerCharacterSave : IEvent
+    public sealed class OnServerCharacterSave : IEvent
     {
       /// <summary>
       /// Gets the player that is being saved.
@@ -50,14 +47,11 @@ namespace NWN.API.Events
 
       public bool Skip { get; set; }
 
-      bool IEvent.HasContext => true;
-
       NwObject IEvent.Context => Player;
 
       internal delegate int SaveServerCharacterHook(IntPtr pPlayer, int bBackupPlayer);
 
-      [ServiceBinding(typeof(IEventFactory))]
-      internal class Factory : NativeEventFactory<OnServerCharacterSave, SaveServerCharacterHook>
+      internal class Factory : NativeEventFactory<SaveServerCharacterHook>
       {
         public Factory(HookService hookService) : base(hookService) {}
 

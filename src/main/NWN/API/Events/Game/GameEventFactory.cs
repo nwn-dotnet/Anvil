@@ -17,7 +17,7 @@ namespace NWN.API.Events
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     // Caches
-    private readonly Dictionary<Type, NativeEventAttribute> eventInfoCache = new Dictionary<Type, NativeEventAttribute>();
+    private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
 
     private EventService eventService;
@@ -71,9 +71,9 @@ namespace NWN.API.Events
       NWScript.SetEventScript(nwObject, (int) eventType, InternalScriptName);
     }
 
-    private NativeEventAttribute GetEventInfo(Type type)
+    private GameEventAttribute GetEventInfo(Type type)
     {
-      if (eventInfoCache.TryGetValue(type, out NativeEventAttribute eventAttribute))
+      if (eventInfoCache.TryGetValue(type, out GameEventAttribute eventAttribute))
       {
         return eventAttribute;
       }
@@ -84,9 +84,9 @@ namespace NWN.API.Events
       return eventAttribute;
     }
 
-    private NativeEventAttribute LoadEventInfo(Type type)
+    private GameEventAttribute LoadEventInfo(Type type)
     {
-      NativeEventAttribute attribute = type.GetCustomAttribute<NativeEventAttribute>();
+      GameEventAttribute attribute = type.GetCustomAttribute<GameEventAttribute>();
       if (attribute != null)
       {
         return attribute;

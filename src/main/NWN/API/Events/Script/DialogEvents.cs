@@ -22,8 +22,6 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject LastSpeaker { get; }
 
-      bool IEvent.HasContext => true;
-
       NwObject IEvent.Context => CurrentSpeaker;
 
       public ActionTaken()
@@ -61,8 +59,6 @@ namespace NWN.API.Events
       /// Gets the last creature/object that spoke in this conversation.
       /// </summary>
       public NwGameObject LastSpeaker { get; }
-
-      bool IEvent.HasContext => true;
 
       NwObject IEvent.Context => CurrentSpeaker;
 

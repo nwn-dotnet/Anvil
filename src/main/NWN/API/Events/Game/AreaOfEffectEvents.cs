@@ -12,32 +12,18 @@ namespace NWN.API.Events
     /// <summary>
     /// Called at a regular interval (approx. 6 seconds).
     /// </summary>
-    [NativeEvent(EventScriptType.AreaOfEffectOnHeartbeat)]
+    [GameEvent(EventScriptType.AreaOfEffectOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
-      public NwAreaOfEffect Effect { get; }
-
-      public OnHeartbeat()
-      {
-        Effect = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
-      }
-
-      bool IEvent.HasContext => true;
+      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
 
       NwObject IEvent.Context => Effect;
     }
 
-    [NativeEvent(EventScriptType.AreaOfEffectOnUserDefinedEvent)]
+    [GameEvent(EventScriptType.AreaOfEffectOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
-      public NwAreaOfEffect Effect { get; }
-
-      public OnUserDefined()
-      {
-        Effect = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
-      }
-
-      bool IEvent.HasContext => true;
+      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
 
       NwObject IEvent.Context => Effect;
     }
@@ -45,17 +31,10 @@ namespace NWN.API.Events
     /// <summary>
     /// Called when an object enters the area of effect.
     /// </summary>
-    [NativeEvent(EventScriptType.AreaOfEffectOnObjectEnter)]
+    [GameEvent(EventScriptType.AreaOfEffectOnObjectEnter)]
     public sealed class OnEnter : IEvent
     {
-      public NwAreaOfEffect Effect { get; }
-
-      public OnEnter()
-      {
-        Effect = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
-      }
-
-      bool IEvent.HasContext => true;
+      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
 
       NwObject IEvent.Context => Effect;
     }
@@ -63,17 +42,10 @@ namespace NWN.API.Events
     /// <summary>
     /// Called when an object exits the area of effect.
     /// </summary>
-    [NativeEvent(EventScriptType.AreaOfEffectOnObjectExit)]
+    [GameEvent(EventScriptType.AreaOfEffectOnObjectExit)]
     public sealed class OnExit : IEvent
     {
-      public NwAreaOfEffect Effect { get; }
-
-      public OnExit()
-      {
-        Effect = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
-      }
-
-      bool IEvent.HasContext => true;
+      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
 
       NwObject IEvent.Context => Effect;
     }

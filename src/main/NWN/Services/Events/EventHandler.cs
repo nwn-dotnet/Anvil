@@ -9,8 +9,9 @@ namespace NWN.Services
 
   internal class EventHandler<T> : EventHandler where T : IEvent
   {
-    private Action<T> globalCallback;
     private readonly Dictionary<NwObject, Action<T>> filteredCallbacks = new Dictionary<NwObject, Action<T>>();
+
+    private Action<T> globalCallback;
 
     public bool HasSubscribers
     {
@@ -21,7 +22,7 @@ namespace NWN.Services
     {
       globalCallback?.Invoke(evt);
 
-      if (evt.HasContext && filteredCallbacks.TryGetValue(evt.Context, out Action<T> callback))
+      if (evt.Context != null && filteredCallbacks.TryGetValue(evt.Context, out Action<T> callback))
       {
         callback?.Invoke(evt);
       }

@@ -52,8 +52,6 @@ namespace NWN.API.Events
       /// </summary>
       public MetaMagic MetaMagicFeat { get; }
 
-      bool IEvent.HasContext => true;
-
       NwObject IEvent.Context => Caster;
 
       public OnSpellCast()
