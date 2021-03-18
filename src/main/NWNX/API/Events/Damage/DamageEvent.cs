@@ -5,7 +5,6 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  [NWNXDamageEvent]
   public sealed class DamageEvent : IEvent
   {
     public NwGameObject Attacker { get; }
