@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace NWN.API
 {
@@ -49,7 +50,10 @@ namespace NWN.API
     /// </summary>
     public bool HasValue
     {
-      get => Object.ScriptVarTable.m_vars.ContainsKey(Name.ToExoString());
+        get
+        {
+            return Object.ScriptVarTable.m_vars.Keys.Any(scriptVar => scriptVar.ToString() == Name);
+        }
     }
 
     /// <summary>
