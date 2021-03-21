@@ -50,10 +50,7 @@ namespace NWN.API
     /// </summary>
     public bool HasValue
     {
-        get
-        {
-            return Object.ScriptVarTable.m_vars.Keys.Any(scriptVar => scriptVar.ToString() == Name);
-        }
+      get => Object.ScriptVarTable.m_vars.Keys.Any(scriptVar => scriptVar.ToString() == Name);
     }
 
     /// <summary>
@@ -101,7 +98,7 @@ namespace NWN.API
         return false;
       }
 
-      return Equals((LocalVariable<T>) obj);
+      return Equals((LocalVariable<T>)obj);
     }
 
     public override int GetHashCode()
