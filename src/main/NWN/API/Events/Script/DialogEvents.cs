@@ -38,7 +38,7 @@ namespace NWN.API.Events
         => NWScript.ActionResumeConversation();
     }
 
-    public class AppearsWhen : IEvent
+    public class AppearsWhen : IEventScriptResult
     {
       /// <summary>
       /// Gets or sets a value indicating whether this dialog option should be shown.
@@ -61,6 +61,8 @@ namespace NWN.API.Events
       public NwGameObject LastSpeaker { get; }
 
       NwObject IEvent.Context => CurrentSpeaker;
+
+      ScriptHandleResult IEventScriptResult.Result => ShouldShow ? ScriptHandleResult.True : ScriptHandleResult.False;
 
       public AppearsWhen()
       {

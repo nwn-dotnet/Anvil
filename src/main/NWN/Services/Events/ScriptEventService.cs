@@ -5,67 +5,68 @@ using NWN.API.Events;
 namespace NWN.Services
 {
   [ServiceBinding(typeof(ScriptEventService))]
-  public sealed class ScriptEventService
+  [ServiceBinding(typeof(IScriptDispatcher))]
+  public sealed class ScriptEventService : IScriptDispatcher
   {
     private readonly Dictionary<string, EventHandler> eventHandlers = new Dictionary<string, EventHandler>();
 
-    private readonly EventService eventService;
-
-    public ScriptEventService(EventService eventService)
-    {
-      this.eventService = eventService;
-    }
-
+    [Obsolete("The ScriptEventService will be removed in a future release. Events can be made using ScriptHandler attributes, and calling the event constructor manually.")]
     public void SetHandler<T>(string scriptName, Action<T> callback, bool callOriginal = false) where T : IEvent, new()
     {
-      eventService.SubscribeAll<T, ScriptEventFactory>(callback).Register<T>(scriptName);
-
-      // if (eventHandlers.TryGetValue(scriptName, out EventHandler handler))
-      // {
-      //   handler.ScriptEvent.ClearSubscribers();
-      // }
-      //
-      // T scriptEvent = new T();
-      // scriptEvent.Subscribe(callback);
-      //
-      // eventHandlers[scriptName] = new EventHandler(scriptEvent, callOriginal);
+      EventHandler<T> handler = new EventHandler<T>(() => new T(), callback, callOriginal);
+      eventHandlers[scriptName] = handler;
     }
 
     public void ClearHandler(string scriptName)
     {
-      eventService.GetEventFactory<ScriptEventFactory>().Unregister(scriptName);
-
-      // if (eventHandlers.TryGetValue(scriptName, out EventHandler handler))
-      // {
-      //   handler.ScriptEvent.ClearSubscribers();
-      //   eventHandlers.Remove(scriptName);
-      // }
+      eventHandlers.Remove(scriptName);
     }
 
-    private ScriptHandleResult ExecuteScript(string scriptName, uint oidSelf)
+    ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
-      ScriptHandleResult result = ScriptHandleResult.NotHandled;
       if (eventHandlers.TryGetValue(scriptName, out EventHandler handler))
       {
-        //result = handler.ScriptEvent.Broadcast(oidSelf.ToNwObject());
-        if (handler.CallOriginal)
-        {
-          result = ScriptHandleResult.NotHandled;
-        }
+        return handler.Broadcast();
       }
 
-      return result;
+      return ScriptHandleResult.NotHandled;
     }
 
-    private class EventHandler
+    private abstract class EventHandler
     {
-      public readonly IEvent ScriptEvent;
+      public abstract ScriptHandleResult Broadcast();
+    }
+
+    private class EventHandler<T> : EventHandler where T : IEvent
+    {
+      public readonly Action<T> Callback;
+
+      public readonly Func<T> ScriptEvent;
       public readonly bool CallOriginal;
 
-      public EventHandler(IEvent scriptEvent, bool callOriginal)
+      public EventHandler(Func<T> scriptEvent, Action<T> callback, bool callOriginal)
       {
         ScriptEvent = scriptEvent;
+        Callback = callback;
         CallOriginal = callOriginal;
+      }
+
+      public override ScriptHandleResult Broadcast()
+      {
+        T eventData = ScriptEvent.Invoke();
+        Callback?.Invoke(eventData);
+
+        if (CallOriginal)
+        {
+          return ScriptHandleResult.NotHandled;
+        }
+
+        if (eventData is IEventScriptResult scriptResult)
+        {
+          return scriptResult.Result;
+        }
+
+        return ScriptHandleResult.Handled;
       }
     }
   }
