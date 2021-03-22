@@ -22,12 +22,12 @@ namespace NWN.API.Events
 
     private EventService eventService;
 
-    public void Register<TEvent>(NwObject nwObject) where TEvent : IEvent, new()
+    public void Register<TEvent>(NwObject nwObject, bool callOriginal = true) where TEvent : IEvent, new()
     {
       EventScriptType eventScriptType = GetEventInfo(typeof(TEvent)).EventScriptType;
-      CheckConstructorRegistered<TEvent>(eventScriptType);
 
-      UpdateEventScript(nwObject, eventScriptType);
+      CheckConstructorRegistered<TEvent>(eventScriptType);
+      UpdateEventScript<TEvent>(nwObject, eventScriptType, callOriginal);
     }
 
     void IEventFactory.Init(EventService eventService)
@@ -59,7 +59,7 @@ namespace NWN.API.Events
       return ScriptHandleResult.NotHandled;
     }
 
-    private void UpdateEventScript(NwObject nwObject, EventScriptType eventType)
+    private void UpdateEventScript<TEvent>(NwObject nwObject, EventScriptType eventType, bool callOriginal) where TEvent : IEvent, new()
     {
       string existingScript = NWScript.GetEventScript(nwObject, (int) eventType);
       if (existingScript == InternalScriptName)
@@ -69,6 +69,11 @@ namespace NWN.API.Events
 
       Log.Debug($"Hooking native script event \"{eventType}\" on object \"{nwObject.Name}\". Previous script: \"{existingScript}\"");
       NWScript.SetEventScript(nwObject, (int) eventType, InternalScriptName);
+
+      if (callOriginal)
+      {
+        eventService.Subscribe<TEvent, GameEventFactory>(nwObject, (_) => NWScript.ExecuteScript(existingScript));
+      }
     }
 
     private GameEventAttribute GetEventInfo(Type type)
