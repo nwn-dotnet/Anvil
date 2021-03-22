@@ -12,24 +12,24 @@ namespace NWN.Services
 
     private class EventHandler<T> : EventHandler where T : IEvent
     {
-      private readonly Action<T> Callback;
+      private readonly Action<T> callback;
 
-      private readonly Func<T> ScriptEvent;
-      private readonly bool CallOriginal;
+      private readonly Func<T> scriptEvent;
+      private readonly bool callOriginal;
 
       public EventHandler(Func<T> scriptEvent, Action<T> callback, bool callOriginal)
       {
-        ScriptEvent = scriptEvent;
-        Callback = callback;
-        CallOriginal = callOriginal;
+        this.scriptEvent = scriptEvent;
+        this.callback = callback;
+        this.callOriginal = callOriginal;
       }
 
       public override ScriptHandleResult Broadcast()
       {
-        T eventData = ScriptEvent.Invoke();
-        Callback?.Invoke(eventData);
+        T eventData = scriptEvent.Invoke();
+        callback?.Invoke(eventData);
 
-        if (CallOriginal)
+        if (callOriginal)
         {
           return ScriptHandleResult.NotHandled;
         }
