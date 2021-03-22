@@ -8,7 +8,7 @@ namespace NWN.Services
 {
   [ServiceBinding(typeof(EventService))]
   [BindingOrder(BindingOrder.API)]
-  public class EventService
+  public sealed partial class EventService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -89,12 +89,12 @@ namespace NWN.Services
 
     public TEvent ProcessEvent<TEvent>(TEvent eventData) where TEvent : IEvent
     {
-      if (!eventHandlers.TryGetValue(typeof(EventHandler<TEvent>), out EventHandler handler))
+      if (!eventHandlers.TryGetValue(eventData.GetType(), out EventHandler handler))
       {
         return eventData;
       }
 
-      ((EventHandler<TEvent>)handler).ProcessEvent(eventData);
+      handler.ProcessEvent(eventData);
       return eventData;
     }
 
@@ -116,10 +116,10 @@ namespace NWN.Services
 
     private EventHandler<TEvent> GetEventHandler<TEvent>(bool createMissing) where TEvent : IEvent
     {
-      if (!eventHandlers.TryGetValue(typeof(EventHandler<TEvent>), out EventHandler handler) && createMissing)
+      if (!eventHandlers.TryGetValue(typeof(TEvent), out EventHandler handler) && createMissing)
       {
         handler = new EventHandler<TEvent>();
-        eventHandlers[typeof(EventHandler<TEvent>)] = handler;
+        eventHandlers[typeof(TEvent)] = handler;
       }
 
       return (EventHandler<TEvent>)handler;

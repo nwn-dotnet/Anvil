@@ -6,7 +6,7 @@ namespace NWN.Services
 {
   [ServiceBinding(typeof(ScriptEventService))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public sealed class ScriptEventService : IScriptDispatcher
+  public sealed partial class ScriptEventService : IScriptDispatcher
   {
     private readonly Dictionary<string, EventHandler> eventHandlers = new Dictionary<string, EventHandler>();
 
@@ -30,44 +30,6 @@ namespace NWN.Services
       }
 
       return ScriptHandleResult.NotHandled;
-    }
-
-    private abstract class EventHandler
-    {
-      public abstract ScriptHandleResult Broadcast();
-    }
-
-    private class EventHandler<T> : EventHandler where T : IEvent
-    {
-      public readonly Action<T> Callback;
-
-      public readonly Func<T> ScriptEvent;
-      public readonly bool CallOriginal;
-
-      public EventHandler(Func<T> scriptEvent, Action<T> callback, bool callOriginal)
-      {
-        ScriptEvent = scriptEvent;
-        Callback = callback;
-        CallOriginal = callOriginal;
-      }
-
-      public override ScriptHandleResult Broadcast()
-      {
-        T eventData = ScriptEvent.Invoke();
-        Callback?.Invoke(eventData);
-
-        if (CallOriginal)
-        {
-          return ScriptHandleResult.NotHandled;
-        }
-
-        if (eventData is IEventScriptResult scriptResult)
-        {
-          return scriptResult.Result;
-        }
-
-        return ScriptHandleResult.Handled;
-      }
     }
   }
 }
