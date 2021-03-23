@@ -12,7 +12,7 @@ namespace NWN.API
   {
     internal readonly CNWSEncounter Encounter;
 
-    internal NwEncounter(uint objectId, CNWSEncounter encounter) : base(objectId, encounter)
+    internal NwEncounter(CNWSEncounter encounter) : base(encounter)
     {
       this.Encounter = encounter;
     }
@@ -22,34 +22,44 @@ namespace NWN.API
       return encounter?.Encounter;
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnEnter"/>
     public event Action<EncounterEvents.OnEnter> OnEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnEnter>(this);
+      remove => EventService.Unsubscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnExit"/>
     public event Action<EncounterEvents.OnExit> OnExit
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnExit, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnExit>(this);
+      remove => EventService.Unsubscribe<EncounterEvents.OnExit, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnHeartbeat"/>
     public event Action<EncounterEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnHeartbeat>(this);
+      remove => EventService.Unsubscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnExhausted"/>
     public event Action<EncounterEvents.OnExhausted> OnExhausted
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnExhausted>(this);
+      remove => EventService.Unsubscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnUserDefined"/>
     public event Action<EncounterEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<EncounterEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<EncounterEvents.OnUserDefined>(this);
+      remove => EventService.Unsubscribe<EncounterEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public override Location Location

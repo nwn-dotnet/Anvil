@@ -1,4 +1,6 @@
 using NWN.API;
+using NWN.API.Events;
+using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -9,83 +11,75 @@ namespace NWNX.API.Events
   public static partial class ItemEvents
   {
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_OPEN_BEFORE")]
-    public class OnInventoryOpenBefore : NWNXEventSkippable<OnInventoryOpenBefore>
+    public sealed class OnInventoryOpenBefore : IEventSkippable
     {
       /// <summary>
       /// Gets the container being opened.
       /// </summary>
-      public NwItem Container { get; private set; }
+      public NwItem Container { get; } = (NwItem)NWScript.OBJECT_SELF.ToNwObject<NwItem>();
 
       /// <summary>
       /// Gets the container's owner.
       /// </summary>
-      public NwCreature Owner { get; private set; }
+      public NwCreature Owner { get; } = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Container = (NwItem)objSelf;
-        Owner = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Container;
     }
 
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_OPEN_AFTER")]
-    public class OnInventoryOpenAfter : NWNXEventSkippable<OnInventoryOpenAfter>
+    public sealed class OnInventoryOpenAfter : IEventSkippable
     {
       /// <summary>
       /// Gets the container being opened.
       /// </summary>
-      public NwItem Container { get; private set; }
+      public NwItem Container { get; }= (NwItem)NWScript.OBJECT_SELF.ToNwObject<NwItem>();
 
       /// <summary>
       /// Gets the container's owner.
       /// </summary>
-      public NwCreature Owner { get; private set; }
+      public NwCreature Owner { get; }= EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Container = (NwItem)objSelf;
-        Owner = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Container;
     }
 
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_CLOSE_BEFORE")]
-    public class OnInventoryCloseBefore : NWNXEventSkippable<OnInventoryCloseBefore>
+    public sealed class OnInventoryCloseBefore : IEventSkippable
     {
       /// <summary>
       /// Gets the container being closed.
       /// </summary>
-      public NwItem Container { get; private set; }
+      public NwItem Container { get; } = (NwItem)NWScript.OBJECT_SELF.ToNwObject<NwItem>();
 
       /// <summary>
       /// Gets the container's owner.
       /// </summary>
-      public NwCreature Owner { get; private set; }
+      public NwCreature Owner { get; } = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Container = (NwItem)objSelf;
-        Owner = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Container;
     }
 
     [NWNXEvent("NWNX_ON_ITEM_INVENTORY_CLOSE_AFTER")]
-    public class OnInventoryCloseAfter : NWNXEventSkippable<OnInventoryCloseAfter>
+    public sealed class OnInventoryCloseAfter : IEventSkippable
     {
       /// <summary>
       /// Gets the container being closed.
       /// </summary>
-      public NwItem Container { get; private set; }
+      public NwItem Container { get; } = (NwItem)NWScript.OBJECT_SELF.ToNwObject<NwItem>();
 
       /// <summary>
       /// Gets the container's owner.
       /// </summary>
-      public NwCreature Owner { get; private set; }
+      public NwCreature Owner { get; } = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Container = (NwItem)objSelf;
-        Owner = EventsPlugin.GetEventData("OWNER").ParseObject<NwCreature>();
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Container;
     }
   }
 }

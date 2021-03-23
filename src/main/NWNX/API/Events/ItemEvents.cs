@@ -1,6 +1,8 @@
 using System.Numerics;
 using NWN.API;
 using NWN.API.Constants;
+using NWN.API.Events;
+using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -8,132 +10,103 @@ namespace NWNX.API.Events
   public static partial class ItemEvents
   {
     [NWNXEvent("NWNX_ON_VALIDATE_USE_ITEM_AFTER")]
-    public sealed class OnValidateUseItemAfter : NWNXEvent<OnValidateUseItemAfter>
+    public sealed class OnValidateUseItemAfter : IEventNWNXResult
     {
-      public NwCreature Creature { get; private set; }
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
 
-      public bool Result { get; set; }
+      public bool Result { get; set; } = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Creature = (NwCreature)objSelf;
-        Item = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
-        Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
-      }
+      NwObject IEvent.Context => Creature;
 
-      protected override void ProcessEvent()
-      {
-        InvokeCallbacks();
-        EventsPlugin.SetEventResult(Result.ToInt().ToString());
-      }
+      string IEventNWNXResult.EventResult => Result.ToString();
     }
 
     [NWNXEvent("NWNX_ON_VALIDATE_ITEM_EQUIP_AFTER")]
-    public sealed class OnValidateEquipItemAfter : NWNXEvent<OnValidateEquipItemAfter>
+    public sealed class OnValidateEquipItemAfter : IEventNWNXResult
     {
-      public NwCreature Creature { get; private set; }
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
 
-      public InventorySlot Slot { get; private set; }
+      public InventorySlot Slot { get; } = (InventorySlot)EventsPlugin.GetEventData("SLOT").ParseInt();
 
-      public bool Result { get; set; }
+      public bool Result { get; set; } = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Creature = (NwCreature)objSelf;
-        Item = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
-        Slot = (InventorySlot)EventsPlugin.GetEventData("SLOT").ParseInt();
-        Result = EventsPlugin.GetEventData("BEFORE_RESULT").ParseInt().ToBool();
-      }
+      NwObject IEvent.Context => Creature;
 
-      protected override void ProcessEvent()
-      {
-        InvokeCallbacks();
-        EventsPlugin.SetEventResult(Result.ToInt().ToString());
-      }
+      string IEventNWNXResult.EventResult => Result.ToString();
     }
 
     [NWNXEvent("NWNX_ON_USE_ITEM_BEFORE")]
-    public sealed class OnItemUseBefore : NWNXEventSkippable<OnItemUseBefore>
+    public sealed class OnItemUseBefore : IEventSkippable
     {
-      public NwCreature Creature { get; private set; }
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
 
-      public NwGameObject TargetObject { get; private set; }
+      public NwGameObject TargetObject { get; } = EventsPlugin.GetEventData("TARGET_OBJECT_ID").ParseObject<NwGameObject>();
 
-      public int ItemPropertyIndex { get; private set; }
+      public int ItemPropertyIndex { get; } = EventsPlugin.GetEventData("ITEM_PROPERTY_INDEX").ParseInt();
 
-      public int ItemSubPropertyIndex { get; private set; }
+      public int ItemSubPropertyIndex { get; } = EventsPlugin.GetEventData("ITEM_SUB_PROPERTY_INDEX").ParseInt();
 
-      public Vector3 TargetPosition { get; private set; }
+      public int UseCharges { get; } = EventsPlugin.GetEventData("USE_CHARGES").ParseInt();
 
-      public int UseCharges { get; private set; }
+      public Vector3 TargetPosition { get; }
 
-      protected override void PrepareEvent(NwObject objSelf)
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Creature;
+
+      public OnItemUseBefore()
       {
-        Creature = (NwCreature)objSelf;
-        Item = EventsPlugin.GetEventData("ITEM_OBJECT_ID").ParseObject<NwItem>();
-        TargetObject = EventsPlugin.GetEventData("TARGET_OBJECT_ID").ParseObject<NwGameObject>();
-        ItemPropertyIndex = EventsPlugin.GetEventData("ITEM_PROPERTY_INDEX").ParseInt();
-        ItemSubPropertyIndex = EventsPlugin.GetEventData("ITEM_SUB_PROPERTY_INDEX").ParseInt();
         float targetX = EventsPlugin.GetEventData("TARGET_POSITION_X").ParseFloat();
         float targetY = EventsPlugin.GetEventData("TARGET_POSITION_Y").ParseFloat();
         float targetZ = EventsPlugin.GetEventData("TARGET_POSITION_Z").ParseFloat();
         TargetPosition = new Vector3(targetX, targetY, targetZ);
-        UseCharges = EventsPlugin.GetEventData("USE_CHARGES").ParseInt();
       }
     }
 
     [NWNXEvent("NWNX_ON_ITEM_EQUIP_BEFORE")]
-    public sealed class OnItemEquipBefore : NWNXEventSkippable<OnItemEquipBefore>
+    public sealed class OnItemEquipBefore : IEventSkippable
     {
-      public NwCreature Creature { get; private set; }
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Creature = (NwCreature)objSelf;
-        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Creature;
     }
 
     [NWNXEvent("NWNX_ON_ITEM_PAY_TO_IDENTIFY_BEFORE")]
-    public sealed class OnItemPayToIdentifyBefore : NWNXEventSkippable<OnItemPayToIdentifyBefore>
+    public sealed class OnItemPayToIdentifyBefore : IEventSkippable
     {
-      public NwCreature Creature { get; private set; }
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
 
-      public NwStore Store { get; private set; }
+      public NwStore Store { get; } = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Creature = (NwCreature)objSelf;
-        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
-        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Creature;
     }
 
     [NWNXEvent("NWNX_ON_ITEM_PAY_TO_IDENTIFY_AFTER")]
-    public sealed class OnItemPayToIdentifyAfter : NWNXEventSkippable<OnItemPayToIdentifyAfter>
+    public sealed class OnItemPayToIdentifyAfter : IEventSkippable
     {
-      public NwCreature Creature { get; private set; }
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
 
-      public NwStore Store { get; private set; }
+      public NwStore Store { get; } = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Creature = (NwCreature)objSelf;
-        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
-        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Creature;
     }
   }
 }

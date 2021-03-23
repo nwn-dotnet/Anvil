@@ -115,19 +115,19 @@ namespace NWN.API
       return (ObjectType)gameObject.m_nObjectType switch
       {
         ObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE
-          ? new NwPlayer(objectId, gameObject.AsNWSCreature(), LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId), gameObject.AsNWSPlayerTURD())
-          : new NwCreature(objectId, gameObject.AsNWSCreature()),
-        ObjectType.Item => new NwItem(objectId, gameObject.AsNWSItem()),
-        ObjectType.Placeable => new NwPlaceable(objectId, gameObject.AsNWSPlaceable()),
+          ? new NwPlayer(LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId), gameObject.AsNWSCreature())
+          : new NwCreature(gameObject.AsNWSCreature()),
+        ObjectType.Item => new NwItem(gameObject.AsNWSItem()),
+        ObjectType.Placeable => new NwPlaceable(gameObject.AsNWSPlaceable()),
         ObjectType.Module => NwModule.Instance,
-        ObjectType.Area => new NwArea(objectId, gameObject.AsNWSArea()),
-        ObjectType.Trigger => new NwTrigger(objectId, gameObject.AsNWSTrigger()),
-        ObjectType.Door => new NwDoor(objectId, gameObject.AsNWSDoor()),
-        ObjectType.Waypoint => new NwWaypoint(objectId, gameObject.AsNWSWaypoint()),
-        ObjectType.Encounter => new NwEncounter(objectId, gameObject.AsNWSEncounter()),
-        ObjectType.Store => new NwStore(objectId, gameObject.AsNWSStore()),
-        ObjectType.Sound => new NwSound(objectId, gameObject.AsNWSSoundObject()),
-        ObjectType.AreaOfEffect => new NwAreaOfEffect(objectId, gameObject.AsNWSAreaOfEffectObject()),
+        ObjectType.Area => new NwArea(gameObject.AsNWSArea()),
+        ObjectType.Trigger => new NwTrigger(gameObject.AsNWSTrigger()),
+        ObjectType.Door => new NwDoor(gameObject.AsNWSDoor()),
+        ObjectType.Waypoint => new NwWaypoint(gameObject.AsNWSWaypoint()),
+        ObjectType.Encounter => new NwEncounter(gameObject.AsNWSEncounter()),
+        ObjectType.Store => new NwStore(gameObject.AsNWSStore()),
+        ObjectType.Sound => new NwSound(gameObject.AsNWSSoundObject()),
+        ObjectType.AreaOfEffect => new NwAreaOfEffect(gameObject.AsNWSAreaOfEffectObject()),
         _ => null
       };
     }

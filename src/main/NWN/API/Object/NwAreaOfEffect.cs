@@ -12,42 +12,41 @@ namespace NWN.API
   {
     internal readonly CNWSAreaOfEffectObject AreaOfEffect;
 
-    internal NwAreaOfEffect(uint objectId, CNWSAreaOfEffectObject areaOfEffectObject) : base(objectId, areaOfEffectObject)
+    internal NwAreaOfEffect(CNWSAreaOfEffectObject areaOfEffectObject) : base(areaOfEffectObject)
     {
       this.AreaOfEffect = areaOfEffectObject;
     }
 
-    /// <summary>
-    /// Called when an object enters this area of effect.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnEnter"/>
     public event Action<AreaOfEffectEvents.OnEnter> OnEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value)
+        .Register<AreaOfEffectEvents.OnEnter>(this);
+      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
     }
 
-    /// <summary>
-    /// Called when an object exits this area of effect.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnExit"/>
     public event Action<AreaOfEffectEvents.OnExit> OnExit
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value)
+        .Register<AreaOfEffectEvents.OnExit>(this);
+      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
     }
 
-    /// <summary>
-    /// Called at a regular interval (approx. 6 seconds).
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnHeartbeat"/>
     public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<AreaOfEffectEvents.OnHeartbeat>(this);
+      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnUserDefined"/>
     public event Action<AreaOfEffectEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<AreaOfEffectEvents.OnUserDefined>(this);
+      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public override Location Location

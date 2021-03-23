@@ -30,7 +30,7 @@ namespace NWN.API
 
     private NwFaction faction;
 
-    internal NwCreature(uint objectId, CNWSCreature creature) : base(objectId, creature)
+    internal NwCreature(CNWSCreature creature) : base(creature)
     {
       this.Creature = creature;
       this.faction = new NwFaction(creature.GetFaction());
@@ -42,88 +42,108 @@ namespace NWN.API
       return creature?.Creature;
     }
 
-    /// <summary>
-    /// Called when the creature is blocked by a door.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnBlocked"/>
     public event Action<CreatureEvents.OnBlocked> OnBlocked
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnBlocked, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnBlocked>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnBlocked, GameEventFactory>(this, value);
     }
 
-    /// <summary>
-    /// Called at the end of the creature's combat round.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnCombatRoundEnd"/>
     public event Action<CreatureEvents.OnCombatRoundEnd> OnCombatRoundEnd
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnCombatRoundEnd, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnCombatRoundEnd>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnCombatRoundEnd, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnConversation"/>
     public event Action<CreatureEvents.OnConversation> OnConversation
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnConversation, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnConversation>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnConversation, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnDamaged"/>
     public event Action<CreatureEvents.OnDamaged> OnDamaged
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnDamaged, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnDamaged>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnDamaged, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnDeath"/>
     public event Action<CreatureEvents.OnDeath> OnDeath
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnDeath, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnDeath>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnDeath, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnDisturbed"/>
     public event Action<CreatureEvents.OnDisturbed> OnDisturbed
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnDisturbed, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnDisturbed>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnDisturbed, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnHeartbeat"/>
     public event Action<CreatureEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnHeartbeat>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnPerception"/>
     public event Action<CreatureEvents.OnPerception> OnPerception
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnPerception, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnPerception>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnPerception, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnPhysicalAttacked"/>
     public event Action<CreatureEvents.OnPhysicalAttacked> OnPhysicalAttacked
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnPhysicalAttacked, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnPhysicalAttacked>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnRested"/>
     public event Action<CreatureEvents.OnRested> OnRested
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnRested, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnRested>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnRested, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnSpawn"/>
     public event Action<CreatureEvents.OnSpawn> OnSpawn
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnSpawn, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnSpawn>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnSpawn, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnSpellCastAt"/>
     public event Action<CreatureEvents.OnSpellCastAt> OnSpellCastAt
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnSpellCastAt, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnSpellCastAt>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnSpellCastAt, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnUserDefined"/>
     public event Action<CreatureEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<CreatureEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<CreatureEvents.OnUserDefined>(this);
+      remove => EventService.Unsubscribe<CreatureEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public override Location Location

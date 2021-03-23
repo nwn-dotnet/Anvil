@@ -61,6 +61,7 @@ namespace NWN.Plugins
         string pluginPath = Path.Combine(pluginRoot, $"{pluginName}.dll");
         if (!File.Exists(pluginPath))
         {
+          Log.Warn($"Cannot find plugin assembly \"{pluginPath}\". Does your plugin assembly match the name of the directory?");
           continue;
         }
 

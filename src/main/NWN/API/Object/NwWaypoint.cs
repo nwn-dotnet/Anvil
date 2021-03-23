@@ -8,7 +8,7 @@ namespace NWN.API
   {
     internal readonly CNWSWaypoint Waypoint;
 
-    internal NwWaypoint(uint objectId, CNWSWaypoint waypoint) : base(objectId, waypoint)
+    internal NwWaypoint(CNWSWaypoint waypoint) : base(waypoint)
     {
       this.Waypoint = waypoint;
     }

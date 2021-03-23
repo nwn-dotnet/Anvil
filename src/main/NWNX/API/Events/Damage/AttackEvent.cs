@@ -1,33 +1,30 @@
 using NWN.API;
+using NWN.API.Events;
+using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
-  [NWNXAttackEvent]
-  public sealed class AttackEvent : NWNXEvent<AttackEvent>
+  public sealed class AttackEvent : IEvent
   {
-    public NwObject Attacker { get; private set; }
+    public NwObject Attacker { get; }
 
-    public NwObject Target { get; private set; }
+    public NwObject Target { get; }
 
     public AttackData AttackData { get; set; }
 
     public DamageData DamageData { get; set; }
 
-    protected override void PrepareEvent(NwObject objSelf)
+    public AttackEvent()
     {
       AttackEventData attackEventData = DamagePlugin.GetAttackEventData();
       AttackData = AttackData.FromNative(attackEventData);
       DamageData = DamageData.FromNative(attackEventData);
 
-      Attacker = objSelf;
+      Attacker = NWScript.OBJECT_SELF.ToNwObject();
       Target = attackEventData.oTarget.ToNwObject();
     }
 
-    protected override void ProcessEvent()
-    {
-      InvokeCallbacks();
-      DamagePlugin.SetAttackEventData(AttackData.ToNative(Target, DamageData));
-    }
+    NwObject IEvent.Context => Attacker;
   }
 }

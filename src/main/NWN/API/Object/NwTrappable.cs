@@ -7,7 +7,7 @@ namespace NWN.API
 {
   public abstract class NwTrappable : NwGameObject
   {
-    internal NwTrappable(uint objectId, CNWSObject gameObject) : base(objectId, gameObject) {}
+    internal NwTrappable(CNWSObject gameObject) : base(gameObject) {}
 
     /// <summary>
     /// Gets a value indicating whether this object is trapped.

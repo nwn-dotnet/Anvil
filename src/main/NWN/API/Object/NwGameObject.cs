@@ -15,7 +15,7 @@ namespace NWN.API
   {
     private readonly CNWSObject gameObject;
 
-    internal NwGameObject(uint objectId, CNWSObject gameObject) : base(objectId)
+    internal NwGameObject(CNWSObject gameObject) : base(gameObject.m_idSelf)
     {
       this.gameObject = gameObject;
     }

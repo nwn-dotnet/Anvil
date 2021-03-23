@@ -9,7 +9,7 @@ namespace NWN.API
   {
     internal readonly CNWSSoundObject SoundObject;
 
-    public NwSound(uint objectId, CNWSSoundObject soundObject) : base(objectId, soundObject)
+    public NwSound(CNWSSoundObject soundObject) : base(soundObject)
     {
       this.SoundObject = soundObject;
     }

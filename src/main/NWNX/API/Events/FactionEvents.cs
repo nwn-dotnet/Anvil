@@ -1,4 +1,5 @@
 using NWN.API;
+using NWN.API.Events;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -6,83 +7,76 @@ namespace NWNX.API.Events
   public static class FactionEvents
   {
     [NWNXEvent("NWNX_ON_SET_NPC_FACTION_REPUTATION_BEFORE")]
-    public class OnSetNPCFactionReputationBefore : NWNXEventSkippable<OnSetNPCFactionReputationBefore>
+    public sealed class OnSetNPCFactionReputationBefore : IEventSkippable, IEventNWNXResult
     {
+      private int newReputation = EventsPlugin.GetEventData("NEW_REPUTATION").ParseInt();
+
       /// <summary>
       /// Gets the unique faction ID whose reputation value to <see cref="SubjectFactionId"/> is being modified.
       /// </summary>
-      public int FactionId { get; private set; }
+      public int FactionId { get; } = EventsPlugin.GetEventData("FACTION_ID").ParseInt();
 
       /// <summary>
       /// Gets the unique faction ID whose reputation value from <see cref="FactionId"/> is being modified.
       /// </summary>
-      public int SubjectFactionId { get; private set; }
+      public int SubjectFactionId { get; } = EventsPlugin.GetEventData("SUBJECT_FACTION_ID").ParseInt();
 
       /// <summary>
       /// Gets the previous reputation value before this event.
       /// </summary>
-      public int PreviousReputation { get; private set; }
+      public int PreviousReputation { get; } = EventsPlugin.GetEventData("PREVIOUS_REPUTATION").ParseInt();
 
       /// <summary>
       /// Gets or sets the new reputation value to be assigned.
       /// </summary>
-      public int NewReputation { get; set; }
-
-      protected override void PrepareEvent(NwObject objSelf)
+      public int NewReputation
       {
-        FactionId = EventsPlugin.GetEventData("FACTION_ID").ParseInt();
-        SubjectFactionId = EventsPlugin.GetEventData("SUBJECT_FACTION_ID").ParseInt();
-        PreviousReputation = EventsPlugin.GetEventData("PREVIOUS_REPUTATION").ParseInt();
-        NewReputation = EventsPlugin.GetEventData("NEW_REPUTATION").ParseInt();
-      }
-
-      protected override void ProcessEvent()
-      {
-        Skip = false;
-        int originalValue = NewReputation;
-
-        InvokeCallbacks();
-
-        if (NewReputation != originalValue)
+        get => newReputation;
+        set
         {
-          EventsPlugin.SetEventResult(NewReputation.ToString());
+          if (newReputation == value)
+          {
+            return;
+          }
+
+          newReputation = value;
           Skip = true;
         }
-
-        CheckEventSkip();
       }
+
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => null;
+
+      string IEventNWNXResult.EventResult => Skip ? NewReputation.ToString() : null;
     }
 
     [NWNXEvent("NWNX_ON_SET_NPC_FACTION_REPUTATION_AFTER")]
-    public class OnSetNPCFactionReputationAfter : NWNXEventSkippable<OnSetNPCFactionReputationAfter>
+    public sealed class OnSetNPCFactionReputationAfter : IEventSkippable
     {
       /// <summary>
       /// Gets the unique faction ID whose reputation value to <see cref="SubjectFactionId"/> is being modified.
       /// </summary>
-      public int FactionId { get; private set; }
+      public int FactionId { get; } = EventsPlugin.GetEventData("FACTION_ID").ParseInt();
 
       /// <summary>
       /// Gets the unique faction ID whose reputation value from <see cref="FactionId"/> is being modified.
       /// </summary>
-      public int SubjectFactionId { get; private set; }
+      public int SubjectFactionId { get; } = EventsPlugin.GetEventData("SUBJECT_FACTION_ID").ParseInt();
 
       /// <summary>
       /// Gets the previous reputation value before this event.
       /// </summary>
-      public int PreviousReputation { get; private set; }
+      public int PreviousReputation { get; } = EventsPlugin.GetEventData("PREVIOUS_REPUTATION").ParseInt();
 
       /// <summary>
       /// Gets the new reputation value that was assigned.
       /// </summary>
-      public int NewReputation { get; private set; }
+      public int NewReputation { get; } = EventsPlugin.GetEventData("NEW_REPUTATION").ParseInt();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        FactionId = EventsPlugin.GetEventData("FACTION_ID").ParseInt();
-        SubjectFactionId = EventsPlugin.GetEventData("SUBJECT_FACTION_ID").ParseInt();
-        PreviousReputation = EventsPlugin.GetEventData("PREVIOUS_REPUTATION").ParseInt();
-        NewReputation = EventsPlugin.GetEventData("NEW_REPUTATION").ParseInt();
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => null;
     }
   }
 }

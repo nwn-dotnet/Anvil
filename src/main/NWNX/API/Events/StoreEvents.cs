@@ -1,4 +1,6 @@
 using NWN.API;
+using NWN.API.Events;
+using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -6,83 +8,59 @@ namespace NWNX.API.Events
   public static class StoreEvents
   {
     [NWNXEvent("NWNX_ON_STORE_REQUEST_BUY_BEFORE")]
-    public class OnStoreRequestBuyBefore : NWNXEvent<OnStoreRequestBuyBefore>
+    public sealed class OnStoreRequestBuyBefore : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
 
-      public NwStore Store { get; private set; }
+      public NwStore Store { get; } = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
 
-      public int Price { get; private set; }
+      public int Price { get; } = EventsPlugin.GetEventData("PRICE").ParseInt();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Player = (NwPlayer) objSelf;
-        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
-        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
-        Price = EventsPlugin.GetEventData("PRICE").ParseInt();
-      }
+      NwObject IEvent.Context => Player;
     }
 
     [NWNXEvent("NWNX_ON_STORE_REQUEST_BUY_AFTER")]
-    public class OnStoreRequestBuyAfter : NWNXEvent<OnStoreRequestBuyAfter>
+    public sealed class OnStoreRequestBuyAfter : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
 
-      public NwStore Store { get; private set; }
+      public NwStore Store { get; } = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
 
-      public int Price { get; private set; }
+      public int Price { get; } = EventsPlugin.GetEventData("PRICE").ParseInt();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Player = (NwPlayer) objSelf;
-        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
-        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
-        Price = EventsPlugin.GetEventData("PRICE").ParseInt();
-      }
+      NwObject IEvent.Context => Player;
     }
 
     [NWNXEvent("NWNX_ON_STORE_REQUEST_SELL_BEFORE")]
-    public class OnStoreRequestSellBefore : NWNXEvent<OnStoreRequestSellBefore>
+    public sealed class OnStoreRequestSellBefore : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
 
-      public NwStore Store { get; private set; }
+      public NwStore Store { get; } = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
 
-      public int Price { get; private set; }
+      public int Price { get; } = EventsPlugin.GetEventData("PRICE").ParseInt();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Player = (NwPlayer) objSelf;
-        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
-        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
-        Price = EventsPlugin.GetEventData("PRICE").ParseInt();
-      }
+      NwObject IEvent.Context => Player;
     }
 
     [NWNXEvent("NWNX_ON_STORE_REQUEST_SELL_AFTER")]
-    public class OnStoreRequestSellAfter : NWNXEvent<OnStoreRequestSellAfter>
+    public sealed class OnStoreRequestSellAfter : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      public NwItem Item { get; private set; }
+      public NwItem Item { get; } = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
 
-      public NwStore Store { get; private set; }
+      public NwStore Store { get; } = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
 
-      public int Price { get; private set; }
+      public int Price { get; } = EventsPlugin.GetEventData("PRICE").ParseInt();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Player = (NwPlayer) objSelf;
-        Item = EventsPlugin.GetEventData("ITEM").ParseObject<NwItem>();
-        Store = EventsPlugin.GetEventData("STORE").ParseObject<NwStore>();
-        Price = EventsPlugin.GetEventData("PRICE").ParseInt();
-      }
+      NwObject IEvent.Context => Player;
     }
   }
 }
