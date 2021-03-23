@@ -169,6 +169,12 @@ namespace NWN.API.Events
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => Placeable;
+
+      public static void Signal(NwPlaceable placeable, int eventId)
+      {
+        Event nwEvent = NWScript.EventUserDefined(eventId);
+        NWScript.SignalEvent(placeable, nwEvent);
+      }
     }
 
     [GameEvent(EventScriptType.PlaceableOnDialogue)]

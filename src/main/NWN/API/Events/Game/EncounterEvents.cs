@@ -47,6 +47,12 @@ namespace NWN.API.Events
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
       NwObject IEvent.Context => Encounter;
+
+      public static void Signal(NwEncounter encounter, int eventId)
+      {
+        Event nwEvent = NWScript.EventUserDefined(eventId);
+        NWScript.SignalEvent(encounter, nwEvent);
+      }
     }
   }
 }

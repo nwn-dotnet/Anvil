@@ -222,6 +222,12 @@ namespace NWN.API.Events
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Creature;
+
+      public static void Signal(NwCreature creature, int eventId)
+      {
+        Event nwEvent = NWScript.EventUserDefined(eventId);
+        NWScript.SignalEvent(creature, nwEvent);
+      }
     }
   }
 }

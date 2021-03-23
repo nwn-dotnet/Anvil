@@ -127,6 +127,12 @@ namespace NWN.API.Events
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       NwObject IEvent.Context => Door;
+
+      public static void Signal(NwDoor door, int eventId)
+      {
+        Event nwEvent = NWScript.EventUserDefined(eventId);
+        NWScript.SignalEvent(door, nwEvent);
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnClicked)]

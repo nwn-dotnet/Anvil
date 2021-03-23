@@ -26,6 +26,12 @@ namespace NWN.API.Events
       public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
 
       NwObject IEvent.Context => Effect;
+
+      public static void Signal(NwAreaOfEffect areaOfEffect, int eventId)
+      {
+        Event nwEvent = NWScript.EventUserDefined(eventId);
+        NWScript.SignalEvent(areaOfEffect, nwEvent);
+      }
     }
 
     /// <summary>

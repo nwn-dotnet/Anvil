@@ -66,6 +66,12 @@ namespace NWN.API.Events
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => Area;
+
+      public static void Signal(NwArea area, int eventId)
+      {
+        Event nwEvent = NWScript.EventUserDefined(eventId);
+        NWScript.SignalEvent(area, nwEvent);
+      }
     }
   }
 }
