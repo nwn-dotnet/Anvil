@@ -26,7 +26,7 @@ namespace NWN.Services
     }
 
     public TEventFactory Subscribe<TEvent, TEventFactory>(NwObject nwObject, Action<TEvent> handler)
-      where TEvent : IEvent, new()
+      where TEvent : IEvent
       where TEventFactory : IEventFactory
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
@@ -36,7 +36,7 @@ namespace NWN.Services
     }
 
     public TEventFactory SubscribeAll<TEvent, TEventFactory>(Action<TEvent> handler)
-      where TEvent : IEvent, new()
+      where TEvent : IEvent
       where TEventFactory : IEventFactory
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
@@ -46,8 +46,8 @@ namespace NWN.Services
     }
 
     public void Unsubscribe<TEvent, TEventFactory>(NwObject nwObject, Action<TEvent> handler)
-      where TEvent : IEvent, new()
-      where TEventFactory : IEventFactory, new()
+      where TEvent : IEvent
+      where TEventFactory : IEventFactory
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
 
@@ -67,8 +67,8 @@ namespace NWN.Services
     }
 
     public void UnsubscribeAll<TEvent, TEventFactory>(Action<TEvent> handler)
-      where TEvent : IEvent, new()
-      where TEventFactory : IEventFactory, new()
+      where TEvent : IEvent
+      where TEventFactory : IEventFactory
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
 
