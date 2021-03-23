@@ -35,10 +35,5 @@ namespace NWN.API
     {
       return NwObject.CreateInternal(objectId);
     }
-
-    public static HookInfo HookWithOrder(this uint address, int order)
-    {
-      return new HookInfo(address, order);
-    }
   }
 }

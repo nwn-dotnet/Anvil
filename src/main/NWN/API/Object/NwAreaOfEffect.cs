@@ -17,9 +17,7 @@ namespace NWN.API
       this.AreaOfEffect = areaOfEffectObject;
     }
 
-    /// <summary>
-    /// Called when an object enters this area of effect.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnEnter"/>
     public event Action<AreaOfEffectEvents.OnEnter> OnEnter
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value)
@@ -27,9 +25,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
     }
 
-    /// <summary>
-    /// Called when an object exits this area of effect.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnExit"/>
     public event Action<AreaOfEffectEvents.OnExit> OnExit
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value)
@@ -37,9 +33,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
     }
 
-    /// <summary>
-    /// Called at a regular interval (approx. 6 seconds).
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnHeartbeat"/>
     public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value)
@@ -47,6 +41,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnUserDefined"/>
     public event Action<AreaOfEffectEvents.OnUserDefined> OnUserDefined
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value)

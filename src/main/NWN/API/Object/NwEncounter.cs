@@ -22,6 +22,7 @@ namespace NWN.API
       return encounter?.Encounter;
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnEnter"/>
     public event Action<EncounterEvents.OnEnter> OnEnter
     {
       add => EventService.Subscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value)
@@ -29,6 +30,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnExit"/>
     public event Action<EncounterEvents.OnExit> OnExit
     {
       add => EventService.Subscribe<EncounterEvents.OnExit, GameEventFactory>(this, value)
@@ -36,6 +38,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<EncounterEvents.OnExit, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnHeartbeat"/>
     public event Action<EncounterEvents.OnHeartbeat> OnHeartbeat
     {
       add => EventService.Subscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value)
@@ -43,6 +46,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnExhausted"/>
     public event Action<EncounterEvents.OnExhausted> OnExhausted
     {
       add => EventService.Subscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value)
@@ -50,6 +54,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnUserDefined"/>
     public event Action<EncounterEvents.OnUserDefined> OnUserDefined
     {
       add => EventService.Subscribe<EncounterEvents.OnUserDefined, GameEventFactory>(this, value)

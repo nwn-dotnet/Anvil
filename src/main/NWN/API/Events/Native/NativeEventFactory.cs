@@ -10,9 +10,9 @@ namespace NWN.API.Events
     private readonly HookService hookService;
     private EventService eventService;
 
-    protected FunctionHook<THook> Hook { get; private set; }
+    protected FunctionHook<THook> FunctionHook { get; private set; }
 
-    protected abstract HookInfo HookInfo { get; }
+    protected virtual int FunctionHookOrder { get; } = HookOrder.Default;
 
     protected abstract THook Handler { get; }
 
@@ -24,17 +24,13 @@ namespace NWN.API.Events
     void IEventFactory.Init(EventService eventService)
     {
       this.eventService = eventService;
-
-      if (Hook != null)
-      {
-        Hook = hookService.RequestHook(HookInfo.Address, Handler, HookInfo.Order);
-      }
+      FunctionHook ??= hookService.RequestHook(Handler, FunctionHookOrder);
     }
 
     void IEventFactory.Unregister<T>()
     {
-      Hook.Dispose();
-      Hook = null;
+      FunctionHook.Dispose();
+      FunctionHook = null;
     }
 
     protected TEvent ProcessEvent<TEvent>(TEvent evt) where TEvent : IEvent

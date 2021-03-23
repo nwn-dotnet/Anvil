@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.API.Events;
 using NWN.Core;
@@ -7,6 +8,7 @@ namespace NWNX.API.Events
 {
   public static class ClientEvents
   {
+    [Obsolete("Use NwModule/NwPlayer.OnClientDisconnect instead.")]
     [NWNXEvent("NWNX_ON_CLIENT_DISCONNECT_BEFORE")]
     public sealed class OnClientDisconnectBefore : IEventSkippable
     {
@@ -17,6 +19,7 @@ namespace NWNX.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    [Obsolete("Use NwModule/NwPlayer.OnClientDisconnect instead.")]
     [NWNXEvent("NWNX_ON_CLIENT_DISCONNECT_AFTER")]
     public sealed class OnClientDisconnectAfter : IEventSkippable
     {
@@ -27,6 +30,7 @@ namespace NWNX.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    [Obsolete("Use NwModule/NwPlayer.OnClientConnect instead.")]
     [NWNXEvent("NWNX_ON_CLIENT_CONNECT_BEFORE")]
     public sealed class OnClientConnectBefore : IEventSkippable
     {
@@ -43,6 +47,7 @@ namespace NWNX.API.Events
       NwObject IEvent.Context => null;
     }
 
+    [Obsolete("Use NwModule/NwPlayer.OnClientConnect instead.")]
     [NWNXEvent("NWNX_ON_CLIENT_CONNECT_AFTER")]
     public sealed class OnClientConnectAfter : IEventSkippable
     {

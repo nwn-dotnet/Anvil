@@ -10,18 +10,30 @@ namespace NWN.API.Events
   /// </summary>
   public static class ModuleEvents
   {
+    /// <summary>
+    /// Triggered whenever an item is added to someone's inventory.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnAcquireItem)]
     public sealed class OnAcquireItem : IEvent
     {
       public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
 
+      /// <summary>
+      /// Gets the object that acquired the item.
+      /// </summary>
       public NwGameObject AcquiredBy { get; } = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
 
+      /// <summary>
+      /// Gets the object that the item was taken from.
+      /// </summary>
       public NwGameObject AcquiredFrom { get; } = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => AcquiredBy;
     }
 
+    /// <summary>
+    /// Triggered when an item that has the item property spell "Unique Power" (targeted) or "Unique Power - Self Only" (self) casts its spell.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnActivateItem)]
     public sealed class OnActivateItem : IEvent
     {
@@ -42,6 +54,9 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Triggered when a player selects a character, and loads into the module.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientEnter)]
     public sealed class OnClientEnter : IEvent
     {
@@ -50,6 +65,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered when a player character leaves the server.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientExit)]
     public sealed class OnClientLeave : IEvent
     {
@@ -58,6 +76,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered when a player tries to cancel a cutscene (ESC).
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
     public sealed class OnCutsceneAbort : IEvent
     {
@@ -66,12 +87,18 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered every server heartbeat (~6 seconds).
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
       NwObject IEvent.Context => null;
     }
 
+    /// <summary>
+    /// Triggered when the module is initially loaded. This event must be hooked in your service constructor, otherwise it will be missed.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnModuleLoad)]
     public sealed class OnModuleLoad : IEvent
     {
@@ -84,6 +111,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => null;
     }
 
+    /// <summary>
+    /// Triggered when any player sends a non-tell based chat message.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerChat)]
     public sealed class OnPlayerChat : IEvent
     {
@@ -125,6 +155,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered when a player dies.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerDeath)]
     public sealed class OnPlayerDeath : IEvent
     {
@@ -135,6 +168,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => DeadPlayer;
     }
 
+    /// <summary>
+    /// Triggered when a player enters a dying state (&lt; 0 HP).
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerDying)]
     public sealed class OnPlayerDying : IEvent
     {
@@ -143,6 +179,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered when a player equips an item.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnEquipItem)]
     public sealed class OnPlayerEquipItem : IEvent
     {
@@ -153,6 +192,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered when a player levels up.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerLevelUp)]
     public sealed class OnPlayerLevelUp : IEvent
     {
@@ -161,6 +203,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered when a player clicks the respawn button on the death screen.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
     public sealed class OnPlayerRespawn : IEvent
     {
@@ -169,6 +214,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered when any player presses the rest button, or when the rest is finished.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerRest)]
     public sealed class OnPlayerRest : IEvent
     {
@@ -179,6 +227,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Player;
     }
 
+    /// <summary>
+    /// Triggered just before a player un-equips an item.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnUnequipItem)]
     public sealed class OnPlayerUnequipItem : IEvent
     {
@@ -189,6 +240,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => UnequippedBy;
     }
 
+    /// <summary>
+    /// Triggered when an item stack is removed from a creature's inventory.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnLoseItem)]
     public sealed class OnUnacquireItem : IEvent
     {

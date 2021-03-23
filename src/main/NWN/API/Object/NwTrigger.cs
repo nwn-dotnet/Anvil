@@ -22,6 +22,7 @@ namespace NWN.API
       return trigger?.Trigger;
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnHeartbeat"/>
     public event Action<TriggerEvents.OnHeartbeat> OnHeartbeat
     {
       add => EventService.Subscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value)
@@ -29,6 +30,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnEnter"/>
     public event Action<TriggerEvents.OnEnter> OnEnter
     {
       add => EventService.Subscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value)
@@ -36,6 +38,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnExit"/>
     public event Action<TriggerEvents.OnExit> OnExit
     {
       add => EventService.Subscribe<TriggerEvents.OnExit, GameEventFactory>(this, value)
@@ -43,6 +46,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<TriggerEvents.OnExit, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnUserDefined"/>
     public event Action<TriggerEvents.OnUserDefined> OnUserDefined
     {
       add => EventService.Subscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value)
@@ -50,6 +54,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnTrapTriggered"/>
     public event Action<TriggerEvents.OnTrapTriggered> OnTrapTriggered
     {
       add => EventService.Subscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value)
@@ -57,6 +62,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnDisarmed"/>
     public event Action<TriggerEvents.OnDisarmed> OnDisarmed
     {
       add => EventService.Subscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value)
@@ -64,6 +70,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnClicked"/>
     public event Action<TriggerEvents.OnClicked> OnClicked
     {
       add => EventService.Subscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value)

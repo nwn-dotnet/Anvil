@@ -21,6 +21,7 @@ namespace NWN.API
       return store?.Store;
     }
 
+    /// <inheritdoc cref="NWN.API.Events.StoreEvents.OnOpen"/>
     public event Action<StoreEvents.OnOpen> OnOpen
     {
       add => EventService.Subscribe<StoreEvents.OnOpen, GameEventFactory>(this, value)
@@ -28,6 +29,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<StoreEvents.OnOpen, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.StoreEvents.OnClose"/>
     public event Action<StoreEvents.OnClose> OnClose
     {
       add => EventService.Subscribe<StoreEvents.OnClose, GameEventFactory>(this, value)

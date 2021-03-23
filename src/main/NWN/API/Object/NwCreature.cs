@@ -42,9 +42,7 @@ namespace NWN.API
       return creature?.Creature;
     }
 
-    /// <summary>
-    /// Called when the creature is blocked by a door.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnBlocked"/>
     public event Action<CreatureEvents.OnBlocked> OnBlocked
     {
       add => EventService.Subscribe<CreatureEvents.OnBlocked, GameEventFactory>(this, value)
@@ -52,9 +50,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnBlocked, GameEventFactory>(this, value);
     }
 
-    /// <summary>
-    /// Called at the end of the creature's combat round.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnCombatRoundEnd"/>
     public event Action<CreatureEvents.OnCombatRoundEnd> OnCombatRoundEnd
     {
       add => EventService.Subscribe<CreatureEvents.OnCombatRoundEnd, GameEventFactory>(this, value)
@@ -62,6 +58,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnCombatRoundEnd, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnConversation"/>
     public event Action<CreatureEvents.OnConversation> OnConversation
     {
       add => EventService.Subscribe<CreatureEvents.OnConversation, GameEventFactory>(this, value)
@@ -69,6 +66,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnConversation, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnDamaged"/>
     public event Action<CreatureEvents.OnDamaged> OnDamaged
     {
       add => EventService.Subscribe<CreatureEvents.OnDamaged, GameEventFactory>(this, value)
@@ -76,6 +74,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnDamaged, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnDeath"/>
     public event Action<CreatureEvents.OnDeath> OnDeath
     {
       add => EventService.Subscribe<CreatureEvents.OnDeath, GameEventFactory>(this, value)
@@ -83,6 +82,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnDeath, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnDisturbed"/>
     public event Action<CreatureEvents.OnDisturbed> OnDisturbed
     {
       add => EventService.Subscribe<CreatureEvents.OnDisturbed, GameEventFactory>(this, value)
@@ -90,6 +90,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnDisturbed, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnHeartbeat"/>
     public event Action<CreatureEvents.OnHeartbeat> OnHeartbeat
     {
       add => EventService.Subscribe<CreatureEvents.OnHeartbeat, GameEventFactory>(this, value)
@@ -97,6 +98,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnPerception"/>
     public event Action<CreatureEvents.OnPerception> OnPerception
     {
       add => EventService.Subscribe<CreatureEvents.OnPerception, GameEventFactory>(this, value)
@@ -104,6 +106,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnPerception, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnPhysicalAttacked"/>
     public event Action<CreatureEvents.OnPhysicalAttacked> OnPhysicalAttacked
     {
       add => EventService.Subscribe<CreatureEvents.OnPhysicalAttacked, GameEventFactory>(this, value)
@@ -111,6 +114,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnRested"/>
     public event Action<CreatureEvents.OnRested> OnRested
     {
       add => EventService.Subscribe<CreatureEvents.OnRested, GameEventFactory>(this, value)
@@ -118,6 +122,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnRested, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnSpawn"/>
     public event Action<CreatureEvents.OnSpawn> OnSpawn
     {
       add => EventService.Subscribe<CreatureEvents.OnSpawn, GameEventFactory>(this, value)
@@ -125,6 +130,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnSpawn, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnSpellCastAt"/>
     public event Action<CreatureEvents.OnSpellCastAt> OnSpellCastAt
     {
       add => EventService.Subscribe<CreatureEvents.OnSpellCastAt, GameEventFactory>(this, value)
@@ -132,6 +138,7 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnSpellCastAt, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnUserDefined"/>
     public event Action<CreatureEvents.OnUserDefined> OnUserDefined
     {
       add => EventService.Subscribe<CreatureEvents.OnUserDefined, GameEventFactory>(this, value)
