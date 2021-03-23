@@ -101,7 +101,7 @@ namespace NWN.API
         return false;
       }
 
-      return Equals((LocalVariable<T>) obj);
+      return Equals((LocalVariable<T>)obj);
     }
 
     public override int GetHashCode()
