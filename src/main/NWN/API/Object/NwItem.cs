@@ -310,8 +310,8 @@ namespace NWN.API
     /// </summary>
     /// <param name="property">Item property to check.</param>
     /// <returns>True if this item has a property of the given type, otherwise false.</returns>
-    public ItemPropertyType HasItemProperty(ItemPropertyType property)
-      => (ItemPropertyType)NWScript.GetItemHasItemProperty(this, (int)property);
+    public bool HasItemProperty(ItemPropertyType property)
+      => NWScript.GetItemHasItemProperty(this, (int)property).ToBool();
 
     /// <summary>
     /// Gets the number of uses per day remaining for the specified item property on this item.

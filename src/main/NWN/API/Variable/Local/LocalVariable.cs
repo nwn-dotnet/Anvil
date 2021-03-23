@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace NWN.API
 {
@@ -49,7 +50,7 @@ namespace NWN.API
     /// </summary>
     public bool HasValue
     {
-      get => Object.ScriptVarTable.m_vars.ContainsKey(Name.ToExoString());
+      get => Object.ScriptVarTable.m_vars.Keys.Any(scriptVar => scriptVar.ToString() == Name);
     }
 
     /// <summary>
@@ -97,7 +98,7 @@ namespace NWN.API
         return false;
       }
 
-      return Equals((LocalVariable<T>) obj);
+      return Equals((LocalVariable<T>)obj);
     }
 
     public override int GetHashCode()
