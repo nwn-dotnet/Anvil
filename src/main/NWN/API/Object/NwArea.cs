@@ -14,7 +14,7 @@ namespace NWN.API
   {
     internal readonly CNWSArea Area;
 
-    internal NwArea(uint objectId, CNWSArea area) : base(objectId)
+    internal NwArea(CNWSArea area) : base(area.m_idSelf)
     {
       this.Area = area;
     }

@@ -16,10 +16,16 @@ namespace NWN.API
     internal readonly CNWSPlayer Player;
     internal readonly CNWSPlayerTURD Turd;
 
-    internal NwPlayer(uint objectId, CNWSCreature creature, CNWSPlayer player, CNWSPlayerTURD turd) : base(objectId, creature)
+    internal NwPlayer(CNWSPlayer player, CNWSCreature creature) : base(creature)
     {
       this.Player = player;
-      this.Turd = turd;
+      this.Turd = Creature.AsNWSPlayerTURD();
+    }
+
+    internal NwPlayer(CNWSPlayer player) : base(LowLevel.ServerExoApp.GetCreatureByGameObjectID(player.m_oidPCObject))
+    {
+      this.Player = player;
+      this.Turd = Creature.AsNWSPlayerTURD();
     }
 
     public static implicit operator CNWSPlayer(NwPlayer player)

@@ -30,7 +30,7 @@ namespace NWN.API
 
     private NwFaction faction;
 
-    internal NwCreature(uint objectId, CNWSCreature creature) : base(objectId, creature)
+    internal NwCreature(CNWSCreature creature) : base(creature)
     {
       this.Creature = creature;
       this.faction = new NwFaction(creature.GetFaction());

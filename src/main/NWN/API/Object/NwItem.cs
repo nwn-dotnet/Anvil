@@ -22,7 +22,7 @@ namespace NWN.API
     /// </summary>
     public ItemAppearance Appearance { get; }
 
-    internal NwItem(uint objectId, CNWSItem item) : base(objectId, item)
+    internal NwItem(CNWSItem item) : base(item)
     {
       this.Item = item;
       this.Inventory = new Inventory(this, item.m_pItemRepository);

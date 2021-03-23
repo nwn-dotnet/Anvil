@@ -12,7 +12,7 @@ namespace NWN.API
   {
     internal readonly CNWSTrigger Trigger;
 
-    internal NwTrigger(uint objectId, CNWSTrigger trigger) : base(objectId, trigger)
+    internal NwTrigger(CNWSTrigger trigger) : base(trigger)
     {
       this.Trigger = trigger;
     }

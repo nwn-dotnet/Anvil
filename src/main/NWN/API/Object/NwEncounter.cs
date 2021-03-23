@@ -12,7 +12,7 @@ namespace NWN.API
   {
     internal readonly CNWSEncounter Encounter;
 
-    internal NwEncounter(uint objectId, CNWSEncounter encounter) : base(objectId, encounter)
+    internal NwEncounter(CNWSEncounter encounter) : base(encounter)
     {
       this.Encounter = encounter;
     }

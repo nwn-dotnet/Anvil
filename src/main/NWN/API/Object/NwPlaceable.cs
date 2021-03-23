@@ -13,7 +13,7 @@ namespace NWN.API
   {
     internal readonly CNWSPlaceable Placeable;
 
-    internal NwPlaceable(uint objectId, CNWSPlaceable placeable) : base(objectId, placeable)
+    internal NwPlaceable(CNWSPlaceable placeable) : base(placeable)
     {
       this.Placeable = placeable;
       this.Inventory = new Inventory(this, placeable.m_pcItemRepository);

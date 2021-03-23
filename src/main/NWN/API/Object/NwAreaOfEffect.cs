@@ -12,7 +12,7 @@ namespace NWN.API
   {
     internal readonly CNWSAreaOfEffectObject AreaOfEffect;
 
-    internal NwAreaOfEffect(uint objectId, CNWSAreaOfEffectObject areaOfEffectObject) : base(objectId, areaOfEffectObject)
+    internal NwAreaOfEffect(CNWSAreaOfEffectObject areaOfEffectObject) : base(areaOfEffectObject)
     {
       this.AreaOfEffect = areaOfEffectObject;
     }

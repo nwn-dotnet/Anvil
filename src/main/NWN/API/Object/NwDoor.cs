@@ -12,7 +12,7 @@ namespace NWN.API
   {
     internal readonly CNWSDoor Door;
 
-    internal NwDoor(uint objectId, CNWSDoor door) : base(objectId, door)
+    internal NwDoor(CNWSDoor door) : base(door)
     {
       this.Door = door;
     }

@@ -11,7 +11,7 @@ namespace NWN.API
   {
     internal readonly CNWSStore Store;
 
-    internal NwStore(uint objectId, CNWSStore store) : base(objectId, store)
+    internal NwStore(CNWSStore store) : base(store)
     {
       this.Store = store;
     }
