@@ -13,6 +13,7 @@ namespace NWN.API.Events
   public sealed class GameEventFactory : IEventFactory, IScriptDispatcher
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private const string InternalScriptName = "____nwnm_event";
 
     private readonly Lazy<EventService> eventService;

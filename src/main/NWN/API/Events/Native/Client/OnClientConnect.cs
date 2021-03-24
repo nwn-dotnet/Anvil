@@ -67,8 +67,7 @@ namespace NWN.API.Events
           CNWSPlayer player = new CNWSPlayer(pPlayer, false);
           uint playerId = player.m_nPlayerID;
 
-          OnClientConnect eventData = new OnClientConnect(NetLayer.GetPlayerInfo(playerId), NetLayer.GetPlayerAddress(playerId).ToString());
-          ProcessEvent(eventData);
+          OnClientConnect eventData = ProcessEvent(new OnClientConnect(NetLayer.GetPlayerInfo(playerId), NetLayer.GetPlayerAddress(playerId).ToString()));
 
           if (!eventData.BlockConnection)
           {
