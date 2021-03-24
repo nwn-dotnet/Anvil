@@ -8,7 +8,7 @@ namespace NWN.API
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private static readonly CVirtualMachine vm = NWNXLib.VirtualMachine();
+    private static readonly CVirtualMachine VM = NWNXLib.VirtualMachine();
 
     public static void ExecuteInScriptContext(Action action, uint objectId = NwObject.INVALID)
     {
@@ -29,41 +29,41 @@ namespace NWN.API
 
     public static int PushScriptContext(uint oid, int scriptEventId, bool valid)
     {
-      CNWVirtualMachineCommands cmd = new CNWVirtualMachineCommands(vm.m_pCmdImplementer.Pointer, false);
+      CNWVirtualMachineCommands cmd = new CNWVirtualMachineCommands(VM.m_pCmdImplementer.Pointer, false);
 
-      if (vm.m_nRecursionLevel++ == -1)
+      if (VM.m_nRecursionLevel++ == -1)
       {
-        vm.m_cRunTimeStack.InitializeStack();
-        vm.m_cRunTimeStack.m_pVMachine = vm;
-        vm.m_nInstructPtrLevel = 0;
-        vm.m_nInstructionsExecuted = 0;
+        VM.m_cRunTimeStack.InitializeStack();
+        VM.m_cRunTimeStack.m_pVMachine = VM;
+        VM.m_nInstructPtrLevel = 0;
+        VM.m_nInstructionsExecuted = 0;
       }
 
-      uint[] m_oidObjectRunScript = vm.m_oidObjectRunScript;
-      int[] m_bValidObjectRunScript = vm.m_bValidObjectRunScript;
-      m_oidObjectRunScript[vm.m_nRecursionLevel] = oid;
-      m_bValidObjectRunScript[vm.m_nRecursionLevel] = valid.ToInt();
+      uint[] m_oidObjectRunScript = VM.m_oidObjectRunScript;
+      int[] m_bValidObjectRunScript = VM.m_bValidObjectRunScript;
+      m_oidObjectRunScript[VM.m_nRecursionLevel] = oid;
+      m_bValidObjectRunScript[VM.m_nRecursionLevel] = valid.ToInt();
 
-      vm.m_oidObjectRunScript = m_oidObjectRunScript;
-      vm.m_bValidObjectRunScript = m_bValidObjectRunScript;
-      vm.m_pVirtualMachineScript[vm.m_nRecursionLevel].m_nScriptEventID = scriptEventId;
-      cmd.m_oidObjectRunScript = vm.m_oidObjectRunScript[vm.m_nRecursionLevel];
-      cmd.m_bValidObjectRunScript = vm.m_bValidObjectRunScript[vm.m_nRecursionLevel];
+      VM.m_oidObjectRunScript = m_oidObjectRunScript;
+      VM.m_bValidObjectRunScript = m_bValidObjectRunScript;
+      VM.m_pVirtualMachineScript[VM.m_nRecursionLevel].m_nScriptEventID = scriptEventId;
+      cmd.m_oidObjectRunScript = VM.m_oidObjectRunScript[VM.m_nRecursionLevel];
+      cmd.m_bValidObjectRunScript = VM.m_bValidObjectRunScript[VM.m_nRecursionLevel];
 
-      return vm.m_cRunTimeStack.GetStackPointer();
+      return VM.m_cRunTimeStack.GetStackPointer();
     }
 
     public static int PopScriptContext()
     {
-      CNWVirtualMachineCommands cmd = new CNWVirtualMachineCommands(vm.m_pCmdImplementer.Pointer, false);
+      CNWVirtualMachineCommands cmd = new CNWVirtualMachineCommands(VM.m_pCmdImplementer.Pointer, false);
 
-      if (--vm.m_nRecursionLevel != -1)
+      if (--VM.m_nRecursionLevel != -1)
       {
-        cmd.m_oidObjectRunScript    = vm.m_oidObjectRunScript[vm.m_nRecursionLevel];
-        cmd.m_bValidObjectRunScript = vm.m_bValidObjectRunScript[vm.m_nRecursionLevel];
+        cmd.m_oidObjectRunScript = VM.m_oidObjectRunScript[VM.m_nRecursionLevel];
+        cmd.m_bValidObjectRunScript = VM.m_bValidObjectRunScript[VM.m_nRecursionLevel];
       }
 
-      return vm.m_cRunTimeStack.GetStackPointer();
+      return VM.m_cRunTimeStack.GetStackPointer();
     }
   }
 }
