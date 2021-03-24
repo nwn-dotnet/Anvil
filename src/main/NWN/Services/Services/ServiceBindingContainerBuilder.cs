@@ -43,6 +43,11 @@ namespace NWN.Services
 
       foreach (Type type in typeLoader.LoadedTypes)
       {
+        if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
+        {
+          continue;
+        }
+
         RegisterBindings(type, type.GetCustomAttributes<ServiceBindingAttribute>());
       }
     }

@@ -12,7 +12,7 @@ namespace NWN.API
   {
     internal readonly CNWSTrigger Trigger;
 
-    internal NwTrigger(uint objectId, CNWSTrigger trigger) : base(objectId, trigger)
+    internal NwTrigger(CNWSTrigger trigger) : base(trigger)
     {
       this.Trigger = trigger;
     }
@@ -22,46 +22,60 @@ namespace NWN.API
       return trigger?.Trigger;
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnHeartbeat"/>
     public event Action<TriggerEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnHeartbeat>(this);
+      remove => EventService.Unsubscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnEnter"/>
     public event Action<TriggerEvents.OnEnter> OnEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnEnter>(this);
+      remove => EventService.Unsubscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnExit"/>
     public event Action<TriggerEvents.OnExit> OnExit
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnExit, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnExit>(this);
+      remove => EventService.Unsubscribe<TriggerEvents.OnExit, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnUserDefined"/>
     public event Action<TriggerEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnUserDefined>(this);
+      remove => EventService.Unsubscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnTrapTriggered"/>
     public event Action<TriggerEvents.OnTrapTriggered> OnTrapTriggered
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnTrapTriggered>(this);
+      remove => EventService.Unsubscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnDisarmed"/>
     public event Action<TriggerEvents.OnDisarmed> OnDisarmed
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnDisarmed>(this);
+      remove => EventService.Unsubscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnClicked"/>
     public event Action<TriggerEvents.OnClicked> OnClicked
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value)
+        .Register<TriggerEvents.OnClicked>(this);
+      remove => EventService.Unsubscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value);
     }
 
     public override Location Location

@@ -10,7 +10,7 @@ namespace NWN.API
 {
   public abstract class NwStationary : NwTrappable
   {
-    internal NwStationary(uint objectId, CNWSObject gameObject) : base(objectId, gameObject) {}
+    internal NwStationary(CNWSObject gameObject) : base(gameObject) {}
 
     /// <summary>
     /// Gets or sets a value indicating whether this stationary object is locked.

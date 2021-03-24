@@ -14,7 +14,7 @@ namespace NWN.API
   {
     internal readonly CNWSArea Area;
 
-    internal NwArea(uint objectId, CNWSArea area) : base(objectId)
+    internal NwArea(CNWSArea area) : base(area.m_idSelf)
     {
       this.Area = area;
     }
@@ -24,37 +24,36 @@ namespace NWN.API
       return area?.Area;
     }
 
-    /// <summary>
-    /// Called when a new object has entered this area.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnEnter"/>
     public event Action<AreaEvents.OnEnter> OnEnter
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaEvents.OnEnter, GameEventFactory>(this, value)
+        .Register<AreaEvents.OnEnter>(this);
+      remove => EventService.Unsubscribe<AreaEvents.OnEnter, GameEventFactory>(this, value);
     }
 
-    /// <summary>
-    /// Called when an object leaves this area.
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnExit"/>
     public event Action<AreaEvents.OnExit> OnExit
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaEvents.OnExit, GameEventFactory>(this, value)
+        .Register<AreaEvents.OnExit>(this);
+      remove => EventService.Unsubscribe<AreaEvents.OnExit, GameEventFactory>(this, value);
     }
 
-    /// <summary>
-    /// Called at a regular interval (approx. 6 seconds).
-    /// </summary>
+    /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnHeartbeat"/>
     public event Action<AreaEvents.OnHeartbeat> OnHeartbeat
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value)
+        .Register<AreaEvents.OnHeartbeat>(this);
+      remove => EventService.Unsubscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnUserDefined"/>
     public event Action<AreaEvents.OnUserDefined> OnUserDefined
     {
-      add => NativeEventService.Subscribe(this, value);
-      remove => NativeEventService.Unsubscribe(this, value);
+      add => EventService.Subscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value)
+        .Register<AreaEvents.OnUserDefined>(this);
+      remove => EventService.Unsubscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     internal override CNWSScriptVarTable ScriptVarTable

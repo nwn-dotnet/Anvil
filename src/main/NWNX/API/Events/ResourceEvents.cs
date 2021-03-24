@@ -1,4 +1,5 @@
 using NWN.API;
+using NWN.API.Events;
 using NWN.Core.NWNX;
 using NWNX.API.Constants;
 
@@ -7,63 +8,45 @@ namespace NWNX.API.Events
   public static class ResourceEvents
   {
     [NWNXEvent("NWNX_ON_RESOURCE_ADDED")]
-    public class OnResourceAdded : NWNXEventSkippable<OnResourceAdded>
+    public sealed class OnResourceAdded : IEventSkippable
     {
-      public NwModule Module { get; private set; }
+      public string Alias { get; } = EventsPlugin.GetEventData("ALIAS");
 
-      public string Alias { get; private set; }
+      public string ResRef { get; } = EventsPlugin.GetEventData("RESREF");
 
-      public string ResRef { get; private set; }
+      public ResRefType Type { get; } = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
 
-      public ResRefType Type { get; private set; }
+      public bool Skip { get; set; }
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Module = (NwModule) objSelf;
-        Alias = EventsPlugin.GetEventData("ALIAS");
-        ResRef = EventsPlugin.GetEventData("RESREF");
-        Type = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
-      }
+      NwObject IEvent.Context => null;
     }
 
     [NWNXEvent("NWNX_ON_RESOURCE_REMOVED")]
-    public class OnResourceRemoved : NWNXEventSkippable<OnResourceRemoved>
+    public sealed class OnResourceRemoved : IEventSkippable
     {
-      public NwModule Module { get; private set; }
+      public string Alias { get; } = EventsPlugin.GetEventData("ALIAS");
 
-      public string Alias { get; private set; }
+      public string ResRef { get; } = EventsPlugin.GetEventData("RESREF");
 
-      public string ResRef { get; private set; }
+      public ResRefType Type { get; } = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
 
-      public ResRefType Type { get; private set; }
+      public bool Skip { get; set; }
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Module = (NwModule) objSelf;
-        Alias = EventsPlugin.GetEventData("ALIAS");
-        ResRef = EventsPlugin.GetEventData("RESREF");
-        Type = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
-      }
+      NwObject IEvent.Context => null;
     }
 
     [NWNXEvent("NWNX_ON_RESOURCE_MODIFIED")]
-    public class OnResourceModified : NWNXEventSkippable<OnResourceModified>
+    public sealed class OnResourceModified : IEventSkippable
     {
-      public NwModule Module { get; private set; }
+      public string Alias { get; } = EventsPlugin.GetEventData("ALIAS");
 
-      public string Alias { get; private set; }
+      public string ResRef { get; } = EventsPlugin.GetEventData("RESREF");
 
-      public string ResRef { get; private set; }
+      public ResRefType Type { get; } = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
 
-      public ResRefType Type { get; private set; }
+      public bool Skip { get; set; }
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Module = (NwModule) objSelf;
-        Alias = EventsPlugin.GetEventData("ALIAS");
-        ResRef = EventsPlugin.GetEventData("RESREF");
-        Type = (ResRefType) EventsPlugin.GetEventData("TYPE").ParseInt();
-      }
+      NwObject IEvent.Context => null;
     }
   }
 }

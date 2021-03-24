@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-using NLog;
 using NWN.API;
-using NWN.API.Constants;
 using NWN.API.Events;
-using NWN.Core;
 
 namespace NWN.Services
 {
@@ -15,19 +10,15 @@ namespace NWN.Services
   /// <summary>
   /// Provides access to subscribe and unsubscribe from object events.<br/>
   /// </summary>
-  [ServiceBinding(typeof(IScriptDispatcher))]
   [ServiceBinding(typeof(NativeEventService))]
-  [BindingOrder(BindingOrder.API)]
-  public sealed class NativeEventService : IScriptDispatcher
+  public sealed class NativeEventService
   {
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+    private readonly EventService eventService;
 
-    // Type info cache
-    private readonly Dictionary<Type, NativeEventAttribute> cachedEventInfo = new Dictionary<Type, NativeEventAttribute>();
-
-    // Lookup Data
-    private readonly Dictionary<string, EventHandler> scriptToEventMap = new Dictionary<string, EventHandler>();
-    private readonly Dictionary<Type, EventHandler> typeToHandlerMap = new Dictionary<Type, EventHandler>();
+    public NativeEventService(EventService eventService)
+    {
+      this.eventService = eventService;
+    }
 
     /// <summary>
     /// Subscribes to the specified event on the given object.
@@ -36,16 +27,22 @@ namespace NWN.Services
     /// <param name="callback">The callback function/handler for this event.</param>
     /// <typeparam name="TObject">The type of nwObject.</typeparam>
     /// <typeparam name="TEvent">The event to subscribe to.</typeparam>
+    [Obsolete("Use the available C# events instead (e.g. NwModule.OnClientEnter)")]
     public void Subscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> callback)
-      where TEvent : NativeEvent<TObject, TEvent>, new()
+      where TEvent : IEvent, new()
       where TObject : NwObject
     {
-      EventHandler eventHandler = GetOrCreateHandler<TObject, TEvent>();
-
-      NativeEventAttribute eventInfo = GetEventInfo(typeof(TEvent));
-      InitObjectHook<TObject, TEvent>(eventHandler, nwObject, eventInfo.EventScriptType);
-
-      eventHandler.Subscribe(nwObject, callback);
+      // To maintain previous behaviour, we invoke "SubscribeAll" for module events, which previously did not have an object context.
+      if (nwObject is NwModule)
+      {
+        eventService.SubscribeAll<TEvent, GameEventFactory>(callback)
+          .Register<TEvent>(nwObject);
+      }
+      else
+      {
+        eventService.Subscribe<TEvent, GameEventFactory>(nwObject, callback)
+          .Register<TEvent>(nwObject);
+      }
     }
 
     /// <summary>
@@ -55,106 +52,20 @@ namespace NWN.Services
     /// <param name="callback">The existing handler/callback.</param>
     /// <typeparam name="TObject">The type of nwObject.</typeparam>
     /// <typeparam name="TEvent">The event to unsubscribe from.</typeparam>
+    [Obsolete("Use the available C# events instead (e.g. NwModule.OnClientEnter)")]
     public void Unsubscribe<TObject, TEvent>(TObject nwObject, Action<TEvent> callback)
-      where TEvent : NativeEvent<TObject, TEvent>, new()
+      where TEvent : IEvent, new()
       where TObject : NwObject
     {
-      if (typeToHandlerMap.TryGetValue(typeof(TEvent), out EventHandler eventHandler))
+      // To maintain previous behaviour, we invoke "UnsubscribeAll" for module events, which previously did not have an object context.
+      if (nwObject is NwModule)
       {
-        bool canRemove = eventHandler.Unsubscribe(nwObject, callback);
-        if (canRemove)
-        {
-          RemoveHandler(typeof(TEvent), eventHandler.ScriptName);
-        }
+        eventService.UnsubscribeAll<TEvent, GameEventFactory>(callback);
       }
-    }
-
-    ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
-    {
-      if (scriptToEventMap.TryGetValue(scriptName, out EventHandler eventHandler))
+      else
       {
-        return eventHandler.CallEvents(oidSelf.ToNwObject());
+        eventService.Unsubscribe<TEvent, GameEventFactory>(nwObject, callback);
       }
-
-      return ScriptHandleResult.NotHandled;
-    }
-
-    private EventHandler GetOrCreateHandler<TObject, TEvent>()
-      where TEvent : NativeEvent<TObject, TEvent>, new()
-      where TObject : NwObject
-    {
-      if (typeToHandlerMap.TryGetValue(typeof(TEvent), out EventHandler eventHandler))
-      {
-        return eventHandler;
-      }
-
-      return CreateEventHandler<TObject, TEvent>();
-    }
-
-    private NativeEventAttribute GetEventInfo(Type type)
-    {
-      if (cachedEventInfo.TryGetValue(type, out NativeEventAttribute eventAttribute))
-      {
-        return eventAttribute;
-      }
-
-      eventAttribute = LoadEventInfo(type);
-      cachedEventInfo[type] = eventAttribute;
-
-      return eventAttribute;
-    }
-
-    private NativeEventAttribute LoadEventInfo(Type type)
-    {
-      NativeEventAttribute attribute = type.GetCustomAttribute<NativeEventAttribute>();
-      if (attribute != null)
-      {
-        return attribute;
-      }
-
-      throw new InvalidOperationException($"Event Type {type.GetFullName()} does not define an event info attribute!");
-    }
-
-    private EventHandler CreateEventHandler<TObject, TEvent>()
-      where TEvent : NativeEvent<TObject, TEvent>, new()
-      where TObject : NwObject
-    {
-      EventHandler eventHandler = new EventHandler();
-
-      scriptToEventMap[eventHandler.ScriptName] = eventHandler;
-      typeToHandlerMap[typeof(TEvent)] = eventHandler;
-
-      return eventHandler;
-    }
-
-    private void InitObjectHook<TObject, TEvent>(EventHandler eventHandler, TObject nwObject, EventScriptType eventScriptType)
-      where TEvent : NativeEvent<TObject, TEvent>, new()
-      where TObject : NwObject
-    {
-      string existingScript = NWScript.GetEventScript(nwObject, (int) eventScriptType);
-      if (existingScript == eventHandler.ScriptName)
-      {
-        return;
-      }
-
-      Log.Debug($"Hooking native script event \"{eventScriptType}\" on object \"{nwObject.Name}\". Previous script: \"{existingScript}\"");
-
-      NWScript.SetEventScript(nwObject, (int) eventScriptType, eventHandler.ScriptName);
-      if (!string.IsNullOrEmpty(existingScript))
-      {
-        eventHandler.Subscribe<TObject, TEvent>(nwObject, gameEvent => ContinueWithNative(existingScript, nwObject));
-      }
-    }
-
-    private void ContinueWithNative(string scriptName, NwObject objSelf)
-    {
-      NativeScript.Execute(scriptName, objSelf);
-    }
-
-    private void RemoveHandler(Type type, string scriptName)
-    {
-      typeToHandlerMap.Remove(type);
-      scriptToEventMap.Remove(scriptName);
     }
   }
 }

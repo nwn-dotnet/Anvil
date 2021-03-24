@@ -1,6 +1,8 @@
 using System.Numerics;
 using NWN.API;
 using NWN.API.Constants;
+using NWN.API.Events;
+using NWN.Core;
 using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
@@ -8,22 +10,22 @@ namespace NWNX.API.Events
   public static class FeatUseEvents
   {
     [NWNXEvent("NWNX_ON_USE_FEAT_BEFORE")]
-    public class OnUseFeatBefore : NWNXEventSkippable<OnUseFeatBefore>
+    public sealed class OnUseFeatBefore : IEventSkippable
     {
-      public NwCreature FeatUser { get; private set; }
+      public NwCreature FeatUser { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      public Feat Feat { get; private set; }
+      public Feat Feat { get; } = (Feat) EventsPlugin.GetEventData("FEAT_ID").ParseInt();
 
-      public NwGameObject TargetGameObject { get; private set; }
+      public NwGameObject TargetGameObject { get; } = EventsPlugin.GetEventData("TARGET_OBJECT_ID").ParseObject<NwGameObject>();
 
-      public Vector3 TargetPosition { get; private set; }
+      public Vector3 TargetPosition { get; }
 
-      protected override void PrepareEvent(NwObject objSelf)
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => FeatUser;
+
+      public OnUseFeatBefore()
       {
-        FeatUser = (NwCreature) objSelf;
-        Feat = (Feat) EventsPlugin.GetEventData("FEAT_ID").ParseInt();
-        TargetGameObject = EventsPlugin.GetEventData("TARGET_OBJECT_ID").ParseObject<NwGameObject>();
-
         Vector3 position;
         position.X = EventsPlugin.GetEventData("TARGET_POSITION_X").ParseFloat();
         position.Y = EventsPlugin.GetEventData("TARGET_POSITION_Y").ParseFloat();

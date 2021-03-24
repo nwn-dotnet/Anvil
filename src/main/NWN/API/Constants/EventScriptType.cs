@@ -4,6 +4,7 @@ namespace NWN.API.Constants
 {
   public enum EventScriptType
   {
+    None = 0,
     ModuleOnHeartbeat = NWScript.EVENT_SCRIPT_MODULE_ON_HEARTBEAT,
     ModuleOnUserDefinedEvent = NWScript.EVENT_SCRIPT_MODULE_ON_USER_DEFINED_EVENT,
     ModuleOnModuleLoad = NWScript.EVENT_SCRIPT_MODULE_ON_MODULE_LOAD,

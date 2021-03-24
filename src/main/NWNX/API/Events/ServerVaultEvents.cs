@@ -1,29 +1,29 @@
+using System;
 using NWN.API;
+using NWN.API.Events;
+using NWN.Core;
 
 namespace NWNX.API.Events
 {
   public static class ServerVaultEvents
   {
+    [Obsolete("Use NwModule/NwPlayer.On instead.")]
     [NWNXEvent("NWNX_ON_SERVER_CHARACTER_SAVE_BEFORE")]
-    public class OnServerCharacterSaveBefore : NWNXEventSkippable<OnServerCharacterSaveBefore>
+    public sealed class OnServerCharacterSaveBefore : IEventSkippable
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Player = (NwPlayer) objSelf;
-      }
+      public bool Skip { get; set; }
+
+      NwObject IEvent.Context => Player;
     }
 
     [NWNXEvent("NWNX_ON_SERVER_CHARACTER_SAVE_AFTER")]
-    public class OnServerCharacterSaveAfter : NWNXEvent<OnServerCharacterSaveAfter>
+    public sealed class OnServerCharacterSaveAfter : IEvent
     {
-      public NwPlayer Player { get; private set; }
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
 
-      protected override void PrepareEvent(NwObject objSelf)
-      {
-        Player = (NwPlayer) objSelf;
-      }
+      NwObject IEvent.Context => Player;
     }
   }
 }

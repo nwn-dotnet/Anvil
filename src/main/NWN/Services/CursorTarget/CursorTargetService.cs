@@ -16,15 +16,13 @@ namespace NWN.Services
 
     private readonly Dictionary<NwPlayer, TargetEvent> awaitingTargetActions = new Dictionary<NwPlayer, TargetEvent>();
 
-    public CursorTargetService(NativeEventService eventService)
+    public CursorTargetService(EventService eventService)
     {
-      eventService.Subscribe<NwModule, ModuleEvents.OnPlayerTarget>(NwModule.Instance, OnPlayerTarget);
-      eventService.Subscribe<NwModule, ModuleEvents.OnClientLeave>(NwModule.Instance, OnPlayerLeave);
-    }
+      eventService.SubscribeAll<ModuleEvents.OnPlayerTarget, GameEventFactory>(OnPlayerTarget)
+        .Register<ModuleEvents.OnPlayerTarget>(NwModule.Instance);
 
-    private void OnPlayerLeave(ModuleEvents.OnClientLeave leaveEvent)
-    {
-      awaitingTargetActions.Remove(leaveEvent.Player);
+      eventService.SubscribeAll<ModuleEvents.OnClientLeave, GameEventFactory>(OnPlayerLeave)
+        .Register<ModuleEvents.OnClientLeave>(NwModule.Instance);
     }
 
     /// <summary>
@@ -58,6 +56,11 @@ namespace NWN.Services
       }
 
       callback?.Invoke(eventData);
+    }
+
+    private void OnPlayerLeave(ModuleEvents.OnClientLeave leaveEvent)
+    {
+      awaitingTargetActions.Remove(leaveEvent.Player);
     }
   }
 }
