@@ -7,6 +7,7 @@ namespace NWN.Services
   public class FunctionHook<T> : IDisposable where T : Delegate
   {
     private readonly HookService hookService;
+    private readonly T handler; // We hold a reference to the delegate to prevent clean up from the garbage collector.
     private readonly IntPtr nativeFuncPtr;
 
     /// <summary>
@@ -14,9 +15,10 @@ namespace NWN.Services
     /// </summary>
     public readonly T Original;
 
-    internal FunctionHook(HookService hookService, IntPtr nativeFuncPtr)
+    internal FunctionHook(HookService hookService, T handler, IntPtr nativeFuncPtr)
     {
       this.hookService = hookService;
+      this.handler = handler;
       this.nativeFuncPtr = nativeFuncPtr;
       Original = Marshal.GetDelegateForFunctionPointer<T>(nativeFuncPtr);
     }

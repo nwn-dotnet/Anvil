@@ -12,15 +12,19 @@ namespace NWN.API.Events
   [ServiceBinding(typeof(IScriptDispatcher))]
   public sealed class GameEventFactory : IEventFactory, IScriptDispatcher
   {
-    private const string InternalScriptName = "_____nman_event";
-
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+    private const string InternalScriptName = "____nwnm_event";
+
+    private readonly Lazy<EventService> eventService;
 
     // Caches
     private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
 
-    private EventService eventService;
+    public GameEventFactory(Lazy<EventService> eventService)
+    {
+      this.eventService = eventService;
+    }
 
     public void Register<TEvent>(NwObject nwObject, bool callOriginal = true) where TEvent : IEvent, new()
     {
@@ -30,10 +34,7 @@ namespace NWN.API.Events
       UpdateEventScript<TEvent>(nwObject, eventScriptType, callOriginal);
     }
 
-    void IEventFactory.Init(EventService eventService)
-    {
-      this.eventService = eventService;
-    }
+    void IEventFactory.Init() {}
 
     void IEventFactory.Unregister<TEvent>() {}
 
@@ -52,7 +53,7 @@ namespace NWN.API.Events
 
       if (eventConstructorCache.TryGetValue(eventScriptType, out Func<IEvent> value))
       {
-        eventService.ProcessEvent(value.Invoke());
+        eventService.Value.ProcessEvent(value.Invoke());
         return ScriptHandleResult.Handled;
       }
 
@@ -72,7 +73,7 @@ namespace NWN.API.Events
 
       if (callOriginal)
       {
-        eventService.Subscribe<TEvent, GameEventFactory>(nwObject, (_) => NWScript.ExecuteScript(existingScript));
+        eventService.Value.Subscribe<TEvent, GameEventFactory>(nwObject, (_) => NWScript.ExecuteScript(existingScript));
       }
     }
 

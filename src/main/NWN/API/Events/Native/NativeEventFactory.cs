@@ -4,36 +4,39 @@ using NWN.Services;
 namespace NWN.API.Events
 {
   [ServiceBinding(typeof(IEventFactory))]
-  public abstract class NativeEventFactory<THook> : IEventFactory
+  public abstract class NativeEventFactory<THook> : IEventFactory, IDisposable
     where THook : Delegate
   {
+    private readonly Lazy<EventService> eventService;
     private readonly HookService hookService;
-    private EventService eventService;
 
-    protected FunctionHook<THook> FunctionHook { get; private set; }
-
-    protected virtual int FunctionHookOrder { get; } = HookOrder.Default;
-
-    protected abstract THook Handler { get; }
-
-    protected NativeEventFactory(HookService hookService)
+    protected NativeEventFactory(Lazy<EventService> eventService, HookService hookService)
     {
+      this.eventService = eventService;
       this.hookService = hookService;
     }
 
-    void IEventFactory.Init(EventService eventService)
+    protected FunctionHook<THook> Hook { get; private set; }
+
+    protected abstract FunctionHook<THook> RequestHook(HookService hookService);
+
+    protected TEvent ProcessEvent<TEvent>(TEvent evt) where TEvent : IEvent
+      => eventService.Value.ProcessEvent(evt);
+
+    void IEventFactory.Init()
     {
-      this.eventService = eventService;
-      FunctionHook ??= hookService.RequestHook(Handler, FunctionHookOrder);
+      Hook ??= RequestHook(hookService);
     }
 
     void IEventFactory.Unregister<T>()
     {
-      FunctionHook.Dispose();
-      FunctionHook = null;
+      Hook.Dispose();
+      Hook = null;
     }
 
-    protected TEvent ProcessEvent<TEvent>(TEvent evt) where TEvent : IEvent
-      => eventService.ProcessEvent(evt);
+    void IDisposable.Dispose()
+    {
+      Hook?.Dispose();
+    }
   }
 }

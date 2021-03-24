@@ -43,7 +43,7 @@ namespace NWN.Services
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
       IntPtr nativeFuncPtr = VM.RequestHook(new IntPtr(address), managedFuncPtr, order);
 
-      FunctionHook<T> hook = new FunctionHook<T>(this, nativeFuncPtr);
+      FunctionHook<T> hook = new FunctionHook<T>(this, handler, nativeFuncPtr);
       hooks.Add(hook);
 
       return hook;

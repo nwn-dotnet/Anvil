@@ -57,11 +57,10 @@ namespace NWN.API.Events
       {
         private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
-        public Factory(HookService hookService) : base(hookService) {}
+        public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
 
-        protected override int FunctionHookOrder { get; } = HookOrder.Early;
-
-        protected override SendServerToPlayerCharListHook Handler => OnSendServerToPlayerCharList;
+        protected override FunctionHook<SendServerToPlayerCharListHook> RequestHook(HookService hookService)
+          => hookService.RequestHook<SendServerToPlayerCharListHook>(OnSendServerToPlayerCharList, HookOrder.Early);
 
         private int OnSendServerToPlayerCharList(IntPtr pThis, IntPtr pPlayer)
         {
@@ -73,7 +72,7 @@ namespace NWN.API.Events
 
           if (!eventData.BlockConnection)
           {
-            return FunctionHook.Original.Invoke(pThis, pPlayer);
+            return Hook.Original.Invoke(pThis, pPlayer);
           }
 
           string kickMessage = eventData.KickMessage ?? string.Empty;
