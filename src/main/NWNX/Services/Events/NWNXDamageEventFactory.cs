@@ -1,3 +1,4 @@
+using System;
 using NWN.API.Events;
 using NWN.Core.NWNX;
 using NWN.Services;
@@ -9,14 +10,18 @@ namespace NWNX.Services
   [ServiceBinding(typeof(IScriptDispatcher))]
   public class NWNXDamageEventFactory : IEventFactory, IScriptDispatcher
   {
-    private const string AttackScriptName = "__nwnxatk_event";
-    private const string DamageScriptName = "__nwnxdmg_event";
+    private const string AttackScriptName = "___nwnmxatk_evt";
+    private const string DamageScriptName = "___nwnmxdmg_evt";
 
-    private EventService eventService;
+    private readonly Lazy<EventService> eventService;
 
-    void IEventFactory.Init(EventService eventService)
+    public NWNXDamageEventFactory(Lazy<EventService> eventService)
     {
       this.eventService = eventService;
+    }
+
+    void IEventFactory.Init()
+    {
       DamagePlugin.SetAttackEventScript(AttackScriptName);
       DamagePlugin.SetDamageEventScript(DamageScriptName);
     }
@@ -33,11 +38,11 @@ namespace NWNX.Services
       switch (scriptName)
       {
         case AttackScriptName:
-          AttackEvent attackEvent = eventService.ProcessEvent(new AttackEvent());
+          AttackEvent attackEvent = eventService.Value.ProcessEvent(new AttackEvent());
           DamagePlugin.SetAttackEventData(attackEvent.AttackData.ToNative(attackEvent.Target, attackEvent.DamageData));
           return ScriptHandleResult.Handled;
         case DamageScriptName:
-          DamageEvent damageEvent = eventService.ProcessEvent(new DamageEvent());
+          DamageEvent damageEvent = eventService.Value.ProcessEvent(new DamageEvent());
           DamagePlugin.SetDamageEventData(damageEvent.DamageData.ToNative(damageEvent.Attacker));
           return ScriptHandleResult.Handled;
         default:

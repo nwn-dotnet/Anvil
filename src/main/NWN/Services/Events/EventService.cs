@@ -108,7 +108,7 @@ namespace NWN.Services
 
       if (activeFactories.Add(factory))
       {
-        factory.Init(this);
+        factory.Init();
       }
 
       return (TEventFactory)factory;

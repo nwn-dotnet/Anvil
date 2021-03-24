@@ -33,16 +33,15 @@ namespace NWN.API.Events
 
     internal class Factory : NativeEventFactory<SaveServerCharacterHook>
     {
-      public Factory(HookService hookService) : base(hookService) {}
+      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
 
-      protected override int FunctionHookOrder { get; } = HookOrder.Early;
-
-      protected override SaveServerCharacterHook Handler => OnSaveServerCharacter;
+      protected override FunctionHook<SaveServerCharacterHook> RequestHook(HookService hookService)
+        => hookService.RequestHook<SaveServerCharacterHook>(OnSaveServerCharacter, HookOrder.Early);
 
       private int OnSaveServerCharacter(IntPtr pPlayer, int bBackupPlayer)
       {
         OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave(new CNWSPlayer(pPlayer, false)));
-        return !eventData.PreventSave ? FunctionHook.Original.Invoke(pPlayer, bBackupPlayer) : 0;
+        return !eventData.PreventSave ? Hook.Original.Invoke(pPlayer, bBackupPlayer) : 0;
       }
     }
   }
