@@ -27,16 +27,15 @@ namespace NWN.API.Events
 
     internal class Factory : NativeEventFactory<RemovePCFromWorldHook>
     {
-      public Factory(HookService hookService) : base(hookService) {}
+      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
 
-      protected override int FunctionHookOrder { get; } = HookOrder.Earliest;
-
-      protected override RemovePCFromWorldHook Handler => OnRemovePCFromWorld;
+      protected override FunctionHook<RemovePCFromWorldHook> RequestHook(HookService hookService)
+        => hookService.RequestHook<RemovePCFromWorldHook>(OnRemovePCFromWorld, HookOrder.Earliest);
 
       private void OnRemovePCFromWorld(IntPtr pServerExoAppInternal, IntPtr pPlayer)
       {
         ProcessEvent(new OnClientDisconnect(new CNWSPlayer(pPlayer, false)));
-        FunctionHook.Original.Invoke(pServerExoAppInternal, pPlayer);
+        Hook.Original.Invoke(pServerExoAppInternal, pPlayer);
       }
     }
   }

@@ -14,15 +14,20 @@ namespace NWNX.Services
   [ServiceBinding(typeof(IScriptDispatcher))]
   public class NWNXEventFactory : IEventFactory, IScriptDispatcher
   {
-    private const string InternalScriptName = "____nixie_event";
-
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private const string InternalScriptName = "____nwnmx_event";
+
+    private readonly Lazy<EventService> eventService;
 
     // Caches
     private readonly Dictionary<Type, NWNXEventAttribute> eventInfoCache = new Dictionary<Type, NWNXEventAttribute>();
     private readonly Dictionary<string, Func<IEvent>> eventConstructorCache = new Dictionary<string, Func<IEvent>>();
 
-    private EventService eventService;
+    public NWNXEventFactory(Lazy<EventService> eventService)
+    {
+      this.eventService = eventService;
+    }
 
     public void Register<TEvent>() where TEvent : IEvent, new()
     {
@@ -32,10 +37,7 @@ namespace NWNX.Services
       UpdateEventScript(eventName);
     }
 
-    void IEventFactory.Init(EventService eventService)
-    {
-      this.eventService = eventService;
-    }
+    void IEventFactory.Init() {}
 
     void IEventFactory.Unregister<TEvent>()
     {
@@ -67,7 +69,7 @@ namespace NWNX.Services
 
     private void ProcessEvent(IEvent eventInstance)
     {
-      eventService.ProcessEvent(eventInstance);
+      eventService.Value.ProcessEvent(eventInstance);
 
       if (eventInstance is IEventNWNXResult nwnxEvent && nwnxEvent.EventResult != null)
       {
