@@ -1,28 +1,15 @@
-using NWN.Core;
+using System;
 
 namespace NWN.API
 {
   public static class NativeScript
   {
-    /// <summary>
-    /// Executes the specified NWN script.
-    /// If scriptName does not specify a compiled script, nothing happens.
-    /// </summary>
+    [Obsolete("Moved to VirtualMachine.Execute")]
     public static void Execute(string scriptName, NwObject target, params (string ParamName, string ParamValue)[] scriptParams)
-    {
-      foreach ((string ParamName, string ParamValue) scriptParam in scriptParams)
-      {
-        NWScript.SetScriptParam(scriptParam.ParamName, scriptParam.ParamValue);
-      }
+      => VirtualMachine.Execute(scriptName, target, scriptParams);
 
-      NWScript.ExecuteScript(scriptName, target);
-    }
-
-    /// <summary>
-    /// Executes the specified NWN script.
-    /// If scriptName does not specify a compiled script, nothing happens.
-    /// </summary>
+    [Obsolete("Moved to VirtualMachine.Execute")]
     public static void Execute(string scriptName, params (string ParamName, string ParamValue)[] scriptParams)
-      => Execute(scriptName, null, scriptParams);
+      => VirtualMachine.Execute(scriptName, null, scriptParams);
   }
 }

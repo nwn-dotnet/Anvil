@@ -11,15 +11,20 @@ namespace NWN.API
       sortedList.Insert(index, item);
     }
 
-    public static void AddElement<TKey, TValue>(this IDictionary<TKey, List<TValue>> mutableLookup, TKey key, TValue value)
+    public static void AddElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>, new()
     {
-      if (!mutableLookup.TryGetValue(key, out List<TValue> values))
+      if (!mutableLookup.TryGetValue(key, out TCollection values))
       {
-        values = new List<TValue>();
+        values = new TCollection();
         mutableLookup[key] = values;
       }
 
       values.Add(value);
+    }
+
+    public static bool ContainsElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>
+    {
+      return mutableLookup.TryGetValue(key, out TCollection values) && values.Contains(value);
     }
 
     public static TValue SafeGet<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)

@@ -20,7 +20,7 @@ namespace NWN.Services
 
         public bool HasSubscribers
         {
-          get => globalCallback != null && filteredCallbacks.Count > 0;
+          get => globalCallback != null || filteredCallbacks.Count > 0;
         }
 
         public override void ProcessEvent(IEvent eventData)

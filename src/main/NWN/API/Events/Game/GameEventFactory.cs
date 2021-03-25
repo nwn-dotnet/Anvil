@@ -10,7 +10,7 @@ namespace NWN.API.Events
 {
   [ServiceBinding(typeof(IEventFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public sealed class GameEventFactory : IEventFactory, IScriptDispatcher
+  public sealed partial class GameEventFactory : IEventFactory, IScriptDispatcher
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -21,6 +21,7 @@ namespace NWN.API.Events
     // Caches
     private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
+    private readonly Dictionary<EventKey, string> originalCallLookup = new Dictionary<EventKey, string>();
 
     public GameEventFactory(Lazy<EventService> eventService)
     {
@@ -32,7 +33,7 @@ namespace NWN.API.Events
       EventScriptType eventScriptType = GetEventInfo(typeof(TEvent)).EventScriptType;
 
       CheckConstructorRegistered<TEvent>(eventScriptType);
-      UpdateEventScript<TEvent>(nwObject, eventScriptType, callOriginal);
+      UpdateEventScript(nwObject, eventScriptType, callOriginal);
     }
 
     void IEventFactory.Init() {}
@@ -54,6 +55,11 @@ namespace NWN.API.Events
 
       if (eventConstructorCache.TryGetValue(eventScriptType, out Func<IEvent> value))
       {
+        if (originalCallLookup.TryGetValue(new EventKey(eventScriptType, oidSelf), out scriptName))
+        {
+          NWScript.ExecuteScript(scriptName, oidSelf);
+        }
+
         eventService.Value.ProcessEvent(value.Invoke());
         return ScriptHandleResult.Handled;
       }
@@ -61,7 +67,7 @@ namespace NWN.API.Events
       return ScriptHandleResult.NotHandled;
     }
 
-    private void UpdateEventScript<TEvent>(NwObject nwObject, EventScriptType eventType, bool callOriginal) where TEvent : IEvent, new()
+    private void UpdateEventScript(NwObject nwObject, EventScriptType eventType, bool callOriginal)
     {
       string existingScript = NWScript.GetEventScript(nwObject, (int) eventType);
       if (existingScript == InternalScriptName)
@@ -72,9 +78,9 @@ namespace NWN.API.Events
       Log.Debug($"Hooking native script event \"{eventType}\" on object \"{nwObject.Name}\". Previous script: \"{existingScript}\"");
       NWScript.SetEventScript(nwObject, (int) eventType, InternalScriptName);
 
-      if (callOriginal)
+      if (callOriginal && !string.IsNullOrWhiteSpace(existingScript))
       {
-        eventService.Value.Subscribe<TEvent, GameEventFactory>(nwObject, (_) => NWScript.ExecuteScript(existingScript));
+        originalCallLookup[new EventKey(eventType, nwObject)] = existingScript;
       }
     }
 
