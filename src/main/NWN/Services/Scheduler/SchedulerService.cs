@@ -54,7 +54,7 @@ namespace NWN.Services
       }
 
       Log.Debug($"Scheduled Future Task: {task.Method.GetFullName()}");
-      ScheduledItem item = new ScheduledItem(this, task, loopTimeService.Time + delay.TotalSeconds);
+      ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;
     }
@@ -81,7 +81,7 @@ namespace NWN.Services
       }
 
       Log.Debug($"Scheduled Repeating Task: {task.Method.GetFullName()}");
-      ScheduledItem item = new ScheduledItem(this, task, loopTimeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
+      ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;
     }
@@ -102,8 +102,14 @@ namespace NWN.Services
           break;
         }
 
+        if (item.Disposed)
+        {
+          continue;
+        }
+
         item.Execute();
-        if (!item.Repeating)
+
+        if (!item.Repeating || item.Disposed)
         {
           continue;
         }
