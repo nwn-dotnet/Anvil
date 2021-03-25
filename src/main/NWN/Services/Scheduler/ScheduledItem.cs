@@ -5,25 +5,24 @@ namespace NWN.Services
 {
   internal class ScheduledItem : IDisposable
   {
-    private readonly SchedulerService schedulerService;
     private readonly Action task;
 
     public double ExecutionTime { get; private set; }
 
+    public bool Disposed { get; private set; }
+
     public readonly bool Repeating;
     public readonly double Schedule;
 
-    public ScheduledItem(SchedulerService schedulerService, Action task, double executionTime)
+    public ScheduledItem(Action task, double executionTime)
     {
-      this.schedulerService = schedulerService;
       this.task = task;
       this.ExecutionTime = executionTime;
       Repeating = false;
     }
 
-    public ScheduledItem(SchedulerService schedulerService, Action task, double executionTime, double schedule)
+    public ScheduledItem(Action task, double executionTime, double schedule)
     {
-      this.schedulerService = schedulerService;
       this.task = task;
       this.ExecutionTime = executionTime;
       this.Schedule = schedule;
@@ -42,7 +41,7 @@ namespace NWN.Services
 
     public void Dispose()
     {
-      schedulerService.Unschedule(this);
+      Disposed = true;
     }
 
     public sealed class SortedByExecutionTime : IComparer<ScheduledItem>
