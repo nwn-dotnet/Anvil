@@ -1,3 +1,6 @@
+using NWN.API.Constants;
+using NWN.Core;
+
 namespace NWN.API
 {
   /// <summary>
@@ -26,10 +29,16 @@ namespace NWN.API
     /// </summary>
     public string ScriptName { get; }
 
+    /// <summary>
+    /// Gets the type of event that called the script that is being executing.
+    /// </summary>
+    public EventScriptType ScriptType { get; }
+
     public CallInfo(string scriptName, NwObject objSelf)
     {
       this.ScriptName = scriptName;
       this.ObjectSelf = objSelf;
+      this.ScriptType = (EventScriptType) NWScript.GetCurrentlyRunningEvent();
     }
   }
 }
