@@ -30,7 +30,7 @@ namespace NWN.API
     public string ScriptName { get; }
 
     /// <summary>
-    /// Gets the type of event that called the script that is being executing.
+    /// Gets the event that triggered the execution of this script.
     /// </summary>
     public EventScriptType ScriptType { get; }
 
