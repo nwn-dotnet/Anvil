@@ -220,7 +220,7 @@ namespace NWN.API.Events
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Get the specific event number used to trigger this user-defined event.
+      /// Gets the specific event number used to trigger this user-defined event.
       /// </summary>
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
