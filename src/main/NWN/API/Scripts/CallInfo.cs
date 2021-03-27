@@ -52,7 +52,7 @@ namespace NWN.API
     public bool TryGetEvent<TEvent>(out TEvent eventData) where TEvent : IEvent, new()
     {
       GameEventAttribute gameEventAttribute = typeof(TEvent).GetCustomAttribute<GameEventAttribute>();
-      if (gameEventAttribute != null && gameEventAttribute.EventScriptType == ScriptType)
+      if (gameEventAttribute?.EventScriptType == ScriptType)
       {
         eventData = new TEvent();
         return true;
