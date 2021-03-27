@@ -1,4 +1,6 @@
+using System.Reflection;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 
 namespace NWN.API
@@ -39,6 +41,25 @@ namespace NWN.API
       this.ScriptName = scriptName;
       this.ObjectSelf = objSelf;
       this.ScriptType = (EventScriptType) NWScript.GetCurrentlyRunningEvent();
+    }
+
+    /// <summary>
+    /// Attempts to get the current running event.
+    /// </summary>
+    /// <param name="eventData">When this method returns, contains the created event if the current event is a TEvent. Otherwise, returns the default value for TEvent.</param>
+    /// <typeparam name="TEvent">The expected event type. Only events attributed with <see cref="GameEventAttribute"/> are supported.</typeparam>
+    /// <returns>true if the current running script is a TEvent, otherwise false.</returns>
+    public bool TryGetEvent<TEvent>(out TEvent eventData) where TEvent : IEvent, new()
+    {
+      GameEventAttribute gameEventAttribute = typeof(TEvent).GetCustomAttribute<GameEventAttribute>();
+      if (gameEventAttribute?.EventScriptType == ScriptType)
+      {
+        eventData = new TEvent();
+        return true;
+      }
+
+      eventData = default;
+      return false;
     }
   }
 }
