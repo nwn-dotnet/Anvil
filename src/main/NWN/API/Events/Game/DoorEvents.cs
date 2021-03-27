@@ -12,12 +12,12 @@ namespace NWN.API.Events
     public sealed class OnOpen : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that was opened.
+      /// Gets the <see cref="NwDoor"/> that was opened.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCreature that opened the door.
+      /// Gets the <see cref="NwCreature"/> that opened the <see cref="NwDoor"/>.
       /// </summary>
       public NwCreature OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
 
@@ -28,12 +28,12 @@ namespace NWN.API.Events
     public sealed class OnClose : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that was closed.
+      /// Gets the <see cref="NwDoor"/> that was closed.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCreature that closed the door.
+      /// Gets the <see cref="NwCreature"/> that closed the <see cref="NwDoor"/>.
       /// </summary>
       public NwCreature ClosedBy { get; } = NWScript.GetLastClosedBy().ToNwObject<NwCreature>();
 
@@ -44,22 +44,22 @@ namespace NWN.API.Events
     public sealed class OnDamaged : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that was damaged.
+      /// Gets the <see cref="NwDoor"/> that was damaged.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCreature that damaged the door.
+      /// Gets the <see cref="NwCreature"/> that damaged the <see cref="NwDoor"/>.
       /// </summary>
       public NwCreature DamagedBy { get; } = NWScript.GetLastDamager().ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the total damage dealt to the NwDoor.
+      /// Gets the total damage dealt to the <see cref="NwDoor"/>.
       /// </summary>
       public int TotalDamageDealt { get; } = NWScript.GetTotalDamageDealt();
 
       /// <summary>
-      /// Gets damage damage dealt to NwDoor, by DamageType.
+      /// Gets damage dealt to <see cref="NwDoor"/>, by <see cref="DamageType"/>.
       /// </summary>
       public int GetDamageDealtByType(DamageType damageType)
         => NWScript.GetDamageDealtByType((int) damageType);
@@ -71,12 +71,12 @@ namespace NWN.API.Events
     public sealed class OnDeath : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that was destroy.
+      /// Gets the <see cref="NwDoor"/> that was destroy.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCreature that killed the NwDoor.
+      /// Gets the <see cref="NwCreature"/> that killed the <see cref="NwDoor"/>.
       /// </summary>
       public NwCreature Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwCreature>();
 
@@ -87,7 +87,7 @@ namespace NWN.API.Events
     public sealed class OnDisarm : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that was disarmed.
+      /// Gets the <see cref="NwDoor"/> that was disarmed.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
@@ -98,7 +98,7 @@ namespace NWN.API.Events
     public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that had a heartbeat.
+      /// Gets the <see cref="NwDoor"/> that had a heartbeat.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
@@ -109,12 +109,12 @@ namespace NWN.API.Events
     public sealed class OnLock : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that was locked.
+      /// Gets the <see cref="NwDoor"/> that was locked.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the LockDC on NwPlaceable.
+      /// Gets the LockDC on <see cref="NwPlaceable"/>.
       /// </summary>
       public int LockDC { get; } = NWScript.GetLockLockDC(NWScript.OBJECT_SELF);
 
@@ -125,27 +125,27 @@ namespace NWN.API.Events
     public sealed class OnPhysicalAttacked : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that was physically attacked.
+      /// Gets the <see cref="NwDoor"/> that was physically attacked.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCreature that attacked the NwDoor.
+      /// Gets the <see cref="NwCreature"/> that attacked the <see cref="NwDoor"/>.
       /// </summary>
       public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the NwItem used to damage NwDoor.
+      /// Gets the <see cref="NwItem"/> used to damage <see cref="NwDoor"/>.
       /// </summary>
       public NwItem WeaponUsed(NwCreature attacker) => NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
 
       /// <summary>
-      /// Gets the AttackType used to damage NwDoor.
+      /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwDoor"/>.
       /// </summary>
       public SpecialAttack AttackType { get; } = (SpecialAttack) NWScript.GetLastAttackType();
 
       /// <summary>
-      /// Gets the AttackMode used to damage NwDoor.
+      /// Gets the <see cref="ActionMode"/> used to damage <see cref="NwDoor"/>.
       /// </summary>
       public ActionMode AttackMode(NwCreature attacker) => (ActionMode) NWScript.GetLastAttackMode(attacker);
 
@@ -156,17 +156,17 @@ namespace NWN.API.Events
     public sealed class OnSpellCastAt : IEvent
     {
       /// <summary>
-      /// Gets the door targeted by this spell.
+      /// Gets the <see cref="NwDoor"/> targeted by this <see cref="Spell"/>.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the caster of this spell (creature, placeable, door). Returns null from an area of effect.
+      /// Gets the caster of this <see cref="Spell"/> (<see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwDoor"/>). Returns null from an <see cref="NwAreaOfEffect"/>.
       /// </summary>
       public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the spell that was cast.
+      /// Gets the <see cref="Spell"/> that was cast.
       /// </summary>
       public Spell Spell { get; } = (Spell)NWScript.GetLastSpell();
 
@@ -188,7 +188,7 @@ namespace NWN.API.Events
     public sealed class OnTrapTriggered : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that has had a trap triggered.
+      /// Gets the <see cref="NwDoor"/> that has had a trap triggered.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
@@ -199,12 +199,12 @@ namespace NWN.API.Events
     public sealed class OnUnlock : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that was unlocked.
+      /// Gets the <see cref="NwDoor"/> that was unlocked.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCreature that unlocked NwDoor.
+      /// Gets the <see cref="NwCreature"/> that unlocked <see cref="NwDoor"/>.
       /// </summary>
       public NwCreature UnlockedBy { get; } = NWScript.GetLastUnlocked().ToNwObject<NwCreature>();
 
@@ -215,7 +215,7 @@ namespace NWN.API.Events
     public sealed class OnUserDefined : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that is running a user defined event.
+      /// Gets the <see cref="NwDoor"/> that is running a user defined event.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
@@ -237,17 +237,17 @@ namespace NWN.API.Events
     public sealed class OnAreaTransitionClick : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that has the transition.
+      /// Gets the <see cref="NwDoor"/> that has the transition.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCreature that clicked the trigger.
+      /// Gets the <see cref="NwCreature"/> that clicked the transition.
       /// </summary>
       public NwPlayer ClickedBy { get; } = NWScript.GetClickingObject().ToNwObject<NwPlayer>();
 
       /// <summary>
-      /// Gets the transition target for this NwDoor.
+      /// Gets the transition target for this <see cref="NwDoor"/>.
       /// </summary>
       public NwStationary TransitionTarget { get; } = NWScript.GetTransitionTarget(NWScript.OBJECT_SELF).ToNwObject<NwStationary>();
 
@@ -258,7 +258,7 @@ namespace NWN.API.Events
     public sealed class OnDialogue : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that is in dialog.
+      /// Gets the <see cref="NwDoor"/> that is in dialog.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
@@ -269,12 +269,12 @@ namespace NWN.API.Events
     public sealed class OnFailToOpen : IEvent
     {
       /// <summary>
-      /// Gets the NwDoor that failed to open.
+      /// Gets the <see cref="NwDoor"/> that failed to open.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCreature that failed to unlock this NwDoor.
+      /// Gets the <see cref="NwCreature"/> that failed to unlock this <see cref="NwDoor"/>.
       /// </summary>
       public NwCreature WhoFailed { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>();
 
