@@ -175,6 +175,18 @@ namespace NWN.API
     public void OpenInventory(NwCreature target)
       => NWScript.OpenInventory(target, this);
 
+
+    /// <summary>
+    /// Forces this player to open the inventory of the specified placeable.
+    /// </summary>
+    /// <param name="target">The placeable inventory to be viewed.</param>
+    [Obsolete("Use NwCreature.OpenInventory instead.")]
+    public void ForceOpenInventory(NwPlaceable target)
+    {
+      target.Placeable.m_bHasInventory = 1;
+      target.Placeable.OpenInventory(this);
+    }
+
     /// <summary>
     /// Forces this player to open the inventory of the specified placeable.
     /// </summary>
