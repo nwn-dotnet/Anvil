@@ -49,7 +49,7 @@ namespace NWN.API.Events
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
-      /// Gets the NwCretaure that damaged the door.
+      /// Gets the NwCreature that damaged the door.
       /// </summary>
       public NwCreature DamagedBy { get; } = NWScript.GetLastDamager().ToNwObject<NwCreature>();
 
@@ -213,6 +213,11 @@ namespace NWN.API.Events
       /// Gets the NwDoor that is running a user defined event.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+
+      /// <summary>
+      /// Get the specific event number used to trigger this user-defined event.
+      /// </summary>
+      public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => Door;
 
