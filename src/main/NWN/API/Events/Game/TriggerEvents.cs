@@ -1,8 +1,6 @@
 using NWN.API.Constants;
-
 using NWN.Core;
 
-// TODO Populate event data.
 namespace NWN.API.Events
 {
   /// <summary>
@@ -41,14 +39,14 @@ namespace NWN.API.Events
     public sealed class OnExit : IEvent
     {
       /// <summary>
-      /// Gets the trigger that was left.
+      /// Gets the NwTrigger that was left.
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       /// <summary>
-      /// Gets the object that left this trigger.
+      /// Gets the NwGameObject that left this trigger.
       /// </summary>
-      public NwGameObject ExitingObject { get; private set; }
+      public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => Trigger;
     }
@@ -56,7 +54,15 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.TriggerOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
+      /// <summary>
+      /// Gets the NwTrigger that is running a user defined event.
+      /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
+
+      /// <summary>
+      /// Gets the specific event number used to trigger this user-defined event.
+      /// </summary>
+      public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => Trigger;
 
@@ -71,12 +77,12 @@ namespace NWN.API.Events
     public sealed class OnTrapTriggered : IEvent
     {
       /// <summary>
-      /// Gets the trigger associated with this trap.
+      /// Gets the NwTrigger associated with this NwTrap.
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       /// <summary>
-      /// Gets the object that triggered this trap.
+      /// Gets the NwGameObject that triggered this NwTrap.
       /// </summary>
       public NwGameObject TriggeredBy { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
