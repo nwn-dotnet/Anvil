@@ -112,6 +112,7 @@ namespace NWN.API.Events
       /// Gets the NwDoor that was locked.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+      
       NwObject IEvent.Context => Door;
     }
 
@@ -136,7 +137,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the AttackType used to damage NwDoor.
       /// </summary>
-      public SpecialAttack AttackType { get;} = (SpecialAttack) NWScript.GetLastAttackType();
+      public SpecialAttack AttackType { get; } = (SpecialAttack) NWScript.GetLastAttackType();
 
       /// <summary>
       /// Gets the AttackMode used to damage NwDoor.
