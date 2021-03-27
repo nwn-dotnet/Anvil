@@ -1,7 +1,6 @@
 using NWN.API.Constants;
 using NWN.Core;
 
-// TODO Populate event data.
 namespace NWN.API.Events
 {
   /// <summary>
@@ -267,7 +266,7 @@ namespace NWN.API.Events
       /// Gets the NwCreature that failed to unlock this NwDoor.
       /// </summary>
       public NwCreature WhoFailed { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>();
-      
+
       NwObject IEvent.Context => Door;
     }
   }
