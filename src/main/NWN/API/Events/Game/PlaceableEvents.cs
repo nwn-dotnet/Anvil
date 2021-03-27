@@ -262,7 +262,7 @@ namespace NWN.API.Events
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       /// <summary>
-      /// Get the specific event number used to trigger this user-defined event.
+      /// Gets the specific event number used to trigger this user-defined event.
       /// </summary>
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
