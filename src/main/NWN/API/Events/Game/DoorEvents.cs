@@ -112,7 +112,7 @@ namespace NWN.API.Events
       /// Gets the NwDoor that was locked.
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
-      
+
       NwObject IEvent.Context => Door;
     }
 
