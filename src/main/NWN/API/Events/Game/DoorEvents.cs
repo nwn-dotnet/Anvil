@@ -113,6 +113,11 @@ namespace NWN.API.Events
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
+      /// <summary>
+      /// Gets the LockDC on NwPlaceable.
+      /// </summary>
+      public int LockDC { get; } = NWScript.GetLockLockDC(NWScript.OBJECT_SELF);
+
       NwObject IEvent.Context => Door;
     }
 
