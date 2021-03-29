@@ -124,9 +124,9 @@ namespace NWN.API.Events
       public NwPlaceable LockedPlaceable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       /// <summary>
-      /// Gets the LockDC on <see cref="NwPlaceable"/>.
+      /// Gets the <see cref="NwCreature"/> that locked this <see cref="NwPlaceable"/>.
       /// </summary>
-      public int LockDC { get; } = NWScript.GetLockLockDC(NWScript.OBJECT_SELF);
+      public NwCreature LockedBy { get; } = NWScript.GetLastLocked().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => LockedPlaceable;
     }
