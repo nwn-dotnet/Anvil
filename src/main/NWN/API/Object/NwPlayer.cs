@@ -277,6 +277,24 @@ namespace NWN.API
       => NWScript.OpenInventory(target, this);
 
     /// <summary>
+    /// Forces this player to open the inventory of the specified placeable.
+    /// </summary>
+    /// <param name="target">The placeable inventory to be viewed.</param>
+    [Obsolete("Use NwCreature.OpenInventory instead.")]
+    public void ForceOpenInventory(NwPlaceable target)
+      => OpenInventory(target);
+
+    /// <summary>
+    /// Forces this player to open the inventory of the specified placeable.
+    /// </summary>
+    /// <param name="target">The placeable inventory to be viewed.</param>
+    public void OpenInventory(NwPlaceable target)
+    {
+      target.Placeable.m_bHasInventory = 1;
+      target.Placeable.OpenInventory(this);
+    }
+
+    /// <summary>
     /// Gets the specified campaign variable for this player.
     /// </summary>
     /// <param name="campaign">The name of the campaign.</param>
@@ -574,16 +592,6 @@ namespace NWN.API
     /// Removes any current fading effects or black screen from the monitor of the player.
     /// </summary>
     public void StopFade() => NWScript.StopFade(this);
-
-    /// <summary>
-    /// Forces this player to open the inventory of the specified placeable.
-    /// </summary>
-    /// <param name="target">The placeable inventory to be viewed.</param>
-    public void ForceOpenInventory(NwPlaceable target)
-    {
-      target.Placeable.m_bHasInventory = 1;
-      target.Placeable.OpenInventory(this);
-    }
 
     /// <summary>
     /// Forces this player to examine the specified placeable.
