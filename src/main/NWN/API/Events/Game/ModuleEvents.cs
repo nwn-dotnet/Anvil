@@ -117,14 +117,23 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.ModuleOnPlayerChat)]
     public sealed class OnPlayerChat : IEvent
     {
-      public NwPlayer Sender { get; private set; }
+      /// <summary>
+      /// Gets the player that sent this message.
+      /// </summary>
+      public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwObject<NwPlayer>();
 
+      /// <summary>
+      /// Gets or sets the message that is to be sent.
+      /// </summary>
       public string Message
       {
         get => NWScript.GetPCChatMessage();
         set => NWScript.SetPCChatMessage(value);
       }
 
+      /// <summary>
+      /// Gets or sets the volume of this message.
+      /// </summary>
       public TalkVolume Volume
       {
         get => (TalkVolume) NWScript.GetPCChatVolume();
