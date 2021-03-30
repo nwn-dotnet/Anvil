@@ -170,7 +170,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="slot">The armor color slot index to be assigned.</param>
     /// <param name="value">The new color to assign.</param>
-    public unsafe void SetArmorColor(ItemAppearanceArmorColor slot, byte value)
+    public void SetArmorColor(ItemAppearanceArmorColor slot, byte value)
     {
       int index = (int)slot;
 
