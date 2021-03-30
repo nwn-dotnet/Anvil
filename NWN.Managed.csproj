@@ -34,7 +34,7 @@
         <PackageReference Include="LightInject" Version="6.4.0" />
         <PackageReference Include="NLog" Version="4.7.9" />
         <PackageReference Include="NWN.Core" Version="8193.21.4" PrivateAssets="compile" />
-        <PackageReference Include="NWN.Native" Version="8193.21.2" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Native" Version="8193.21.3" PrivateAssets="compile" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="All" />
     </ItemGroup>
