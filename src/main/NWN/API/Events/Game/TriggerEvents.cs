@@ -1,8 +1,6 @@
 using NWN.API.Constants;
-
 using NWN.Core;
 
-// TODO Populate event data.
 namespace NWN.API.Events
 {
   /// <summary>
@@ -14,7 +12,7 @@ namespace NWN.API.Events
     public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
-      /// Gets the trigger associated with this heartbeat event.
+      /// Gets the <see cref="NwTrigger"/> associated with this heartbeat event.
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
@@ -25,12 +23,12 @@ namespace NWN.API.Events
     public sealed class OnEnter : IEvent
     {
       /// <summary>
-      /// Gets the trigger that was entered.
+      /// Gets the <see cref="NwTrigger"/> that was entered.
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       /// <summary>
-      /// Gets the object that entered this trigger.
+      /// Gets the <see cref="NwGameObject"/> that entered this <see cref="NwTrigger"/>.
       /// </summary>
       public NwGameObject EnteringObject { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
@@ -41,14 +39,14 @@ namespace NWN.API.Events
     public sealed class OnExit : IEvent
     {
       /// <summary>
-      /// Gets the trigger that was left.
+      /// Gets the <see cref="NwTrigger"/> that was left.
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       /// <summary>
-      /// Gets the object that left this trigger.
+      /// Gets the <see cref="NwGameObject"/> that left this <see cref="NwTrigger"/>.
       /// </summary>
-      public NwGameObject ExitingObject { get; private set; }
+      public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => Trigger;
     }
@@ -56,7 +54,15 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.TriggerOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwTrigger"/> that is running a user defined event.
+      /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
+
+      /// <summary>
+      /// Gets the specific event number used to trigger this user-defined event.
+      /// </summary>
+      public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => Trigger;
 
@@ -71,12 +77,12 @@ namespace NWN.API.Events
     public sealed class OnTrapTriggered : IEvent
     {
       /// <summary>
-      /// Gets the trigger associated with this trap.
+      /// Gets the <see cref="NwTrigger"/> that was triggered.
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       /// <summary>
-      /// Gets the object that triggered this trap.
+      /// Gets the <see cref="NwGameObject"/> that triggered this <see cref="NwTrigger"/>.
       /// </summary>
       public NwGameObject TriggeredBy { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
@@ -87,12 +93,12 @@ namespace NWN.API.Events
     public sealed class OnDisarmed : IEvent
     {
       /// <summary>
-      /// Gets the trigger that was disarmed.
+      /// Gets the <see cref="NwTrigger"/> that was disarmed.
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       /// <summary>
-      /// Gets the creature who disarmed this trigger.
+      /// Gets the <see cref="NwCreature"/> who disarmed this trigger.
       /// </summary>
       public NwCreature DisarmedBy { get; } = NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
 
@@ -103,12 +109,12 @@ namespace NWN.API.Events
     public sealed class OnClicked : IEvent
     {
       /// <summary>
-      /// Gets the trigger that was clicked.
+      /// Gets the <see cref="NwTrigger"/> that was clicked.
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       /// <summary>
-      /// Gets the creature that clicked this trigger.
+      /// Gets the <see cref="NwCreature"/> that clicked this <see cref="NwTrigger"/>.
       /// </summary>
       public NwCreature ClickedBy { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>();
 
