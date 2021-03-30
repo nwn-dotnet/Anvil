@@ -61,13 +61,9 @@ namespace NWN.API
         VM.m_nInstructionsExecuted = 0;
       }
 
-      uint[] m_oidObjectRunScript = VM.m_oidObjectRunScript;
-      int[] m_bValidObjectRunScript = VM.m_bValidObjectRunScript;
-      m_oidObjectRunScript[VM.m_nRecursionLevel] = oid;
-      m_bValidObjectRunScript[VM.m_nRecursionLevel] = valid.ToInt();
+      VM.m_oidObjectRunScript[VM.m_nRecursionLevel] = oid;
+      VM.m_bValidObjectRunScript[VM.m_nRecursionLevel] = valid.ToInt();
 
-      VM.m_oidObjectRunScript = m_oidObjectRunScript;
-      VM.m_bValidObjectRunScript = m_bValidObjectRunScript;
       VM.m_pVirtualMachineScript[VM.m_nRecursionLevel].m_nScriptEventID = scriptEventId;
       cmd.m_oidObjectRunScript = VM.m_oidObjectRunScript[VM.m_nRecursionLevel];
       cmd.m_bValidObjectRunScript = VM.m_bValidObjectRunScript[VM.m_nRecursionLevel];

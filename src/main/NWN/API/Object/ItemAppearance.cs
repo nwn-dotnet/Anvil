@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.InteropServices;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -113,9 +115,7 @@ namespace NWN.API
     {
       if (value > 0)
       {
-        byte[] modelParts = item.m_nModelPart;
-        modelParts[0] = value;
-        item.m_nModelPart = modelParts;
+        item.m_nModelPart[0] = value;
       }
     }
 
@@ -130,9 +130,7 @@ namespace NWN.API
 
       if (value <= 255 && index >= 0 && index <= 5)
       {
-        byte[] layeredTextureColors = item.m_nLayeredTextureColors;
-        layeredTextureColors[index] = value;
-        item.m_nLayeredTextureColors = layeredTextureColors;
+        item.m_nLayeredTextureColors[index] = value;
       }
     }
 
@@ -147,9 +145,7 @@ namespace NWN.API
 
       if (index >= 0 && index <= 2)
       {
-        byte[] modelParts = item.m_nModelPart;
-        modelParts[index] = value;
-        item.m_nModelPart = modelParts;
+        item.m_nModelPart[index] = value;
       }
     }
 
@@ -164,9 +160,7 @@ namespace NWN.API
 
       if (index >= 0 && index <= 18)
       {
-        byte[] armorModelParts = item.m_nArmorModelPart;
-        armorModelParts[index] = value;
-        item.m_nArmorModelPart = armorModelParts;
+        item.m_nArmorModelPart[index] = value;
         item.m_nArmorValue = item.ComputeArmorClass();
       }
     }
@@ -176,7 +170,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="slot">The armor color slot index to be assigned.</param>
     /// <param name="value">The new color to assign.</param>
-    public void SetArmorColor(ItemAppearanceArmorColor slot, byte value)
+    public unsafe void SetArmorColor(ItemAppearanceArmorColor slot, byte value)
     {
       int index = (int)slot;
 
@@ -185,9 +179,7 @@ namespace NWN.API
         //1.69 colors
         if (index <= 5)
         {
-          byte[] layeredTextureColors = item.m_nLayeredTextureColors;
-          layeredTextureColors[index] = value;
-          item.m_nLayeredTextureColors = layeredTextureColors;
+          item.m_nLayeredTextureColors[index] = value;
         }
 
         //per-part coloring
