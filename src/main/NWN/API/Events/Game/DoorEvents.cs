@@ -19,7 +19,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that opened the <see cref="NwDoor"/>.
       /// </summary>
-      public NwCreature OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
+      public NwGameObject OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => Door;
     }
@@ -35,7 +35,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that closed the <see cref="NwDoor"/>.
       /// </summary>
-      public NwCreature ClosedBy { get; } = NWScript.GetLastClosedBy().ToNwObject<NwCreature>();
+      public NwGameObject ClosedBy { get; } = NWScript.GetLastClosedBy().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => Door;
     }
