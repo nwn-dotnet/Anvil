@@ -8,5 +8,7 @@ namespace NWN.Plugins
     void Init();
 
     IReadOnlyCollection<Type> LoadedTypes { get; }
+
+    IReadOnlyCollection<string> ResourcePaths { get; }
   }
 }

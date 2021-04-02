@@ -2,38 +2,46 @@ using System;
 using System.IO;
 using NWN.API;
 using NWN.Native.API;
+using NWN.Plugins;
 
 namespace NWN.Services.ResourceManager
 {
   [ServiceBinding(typeof(ResourceManager))]
   public sealed class ResourceManager : IDisposable
   {
-    private const string AliasName = "NMAN_TEMP";
+    private const string AliasBaseName = "NMAN";
+    private const uint BasePriority = 70000000;
 
     private static readonly CExoBase exoBase = NWNXLib.ExoBase();
     private static readonly CExoResMan resMan = NWNXLib.ExoResMan();
 
-    public ResourceManager()
+    private uint currentIndex;
+
+    public ResourceManager(ITypeLoader typeLoader)
     {
       Directory.Delete(EnvironmentConfig.ResourcePath, true);
-      CreateResourceDirectory(AliasName, EnvironmentConfig.ResourcePath, 100000);
+      CreateResourceDirectory(EnvironmentConfig.ResourcePath);
+
+      foreach (string resourcePath in typeLoader.ResourcePaths)
+      {
+        CreateResourceDirectory(resourcePath);
+      }
     }
 
-    private void CreateResourceDirectory(string aliasName, string path, uint priority)
+    private void CreateResourceDirectory(string path)
     {
-      if (string.IsNullOrEmpty(aliasName))
+      if (string.IsNullOrEmpty(path))
       {
-        throw new ArgumentOutOfRangeException(nameof(aliasName), "Alias name must not be empty or null.");
+        throw new ArgumentOutOfRangeException(nameof(path), "Path must not be empty or null.");
       }
 
-      if (!exoBase.m_pcExoAliasList.GetAliasPath(aliasName.ToExoString()).IsEmpty().ToBool())
-      {
-        throw new Exception($"Alias name {aliasName} already exists. Please use nwn.ini to redefine base game resource directories.");
-      }
+      string aliasName = AliasBaseName + currentIndex;
 
       exoBase.m_pcExoAliasList.Add(aliasName.ToExoString(), path.ToExoString());
       resMan.CreateDirectory(aliasName.ToExoString());
-      resMan.AddResourceDirectory(aliasName.ToExoString(), priority, true.ToInt());
+      resMan.AddResourceDirectory(aliasName.ToExoString(), BasePriority + currentIndex, true.ToInt());
+
+      currentIndex++;
     }
 
     void IDisposable.Dispose()

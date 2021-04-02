@@ -14,9 +14,12 @@ namespace NWN.Plugins
   [BindingOrder(BindingOrder.Core)]
   internal class PluginLoader : ITypeLoader
   {
+    private const string PluginResourceDir = "resources";
+
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     public IReadOnlyCollection<Type> LoadedTypes { get; private set; }
+    public IReadOnlyCollection<string> ResourcePaths { get; private set; }
 
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
     private readonly List<Plugin> plugins = new List<Plugin>();
@@ -26,7 +29,9 @@ namespace NWN.Plugins
       LoadCore();
       BootstrapPlugins();
       LoadPlugins();
+
       LoadedTypes = GetLoadedTypes();
+      ResourcePaths = GetResourcePaths();
     }
 
     private void LoadCore()
@@ -66,15 +71,15 @@ namespace NWN.Plugins
           continue;
         }
 
-        Plugin plugin = CreatePlugin(pluginPath, pluginName);
+        Plugin plugin = CreatePlugin(pluginPath, Path.Combine(pluginRoot, PluginResourceDir), pluginName);
         plugins.Add(plugin);
       }
     }
 
-    private Plugin CreatePlugin(string pluginPath, string pluginName)
+    private Plugin CreatePlugin(string pluginPath, string resourcePath, string pluginName)
     {
       PluginLoadContext pluginLoadContext = new PluginLoadContext(this, pluginPath, pluginName);
-      return new Plugin(pluginPath, pluginLoadContext);
+      return new Plugin(pluginPath, resourcePath, pluginLoadContext);
     }
 
     private static bool PluginNameIsReserved(string pluginName)
@@ -179,10 +184,25 @@ namespace NWN.Plugins
       return loadedTypes.AsReadOnly();
     }
 
+    private IReadOnlyCollection<string> GetResourcePaths()
+    {
+      List<string> resourcePaths = new List<string>();
+      foreach (Plugin plugin in plugins)
+      {
+        if (plugin.HasResourceDirectory)
+        {
+          resourcePaths.Add(plugin.ResourcePath);
+        }
+      }
+
+      return resourcePaths.AsReadOnly();
+    }
+
     public void Dispose()
     {
       loadedAssemblies.Clear();
       LoadedTypes = null;
+      ResourcePaths = null;
 
       foreach (Plugin plugin in plugins)
       {
