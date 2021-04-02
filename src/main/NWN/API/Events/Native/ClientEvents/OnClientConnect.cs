@@ -43,7 +43,7 @@ namespace NWN.API.Events
       NwObject IEvent.Context => null;
 
       [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer)]
-      internal delegate int SendServerToPlayerCharListHook(IntPtr pThis, IntPtr pPlayer);
+      internal delegate int SendServerToPlayerCharListHook(IntPtr pMessage, IntPtr pPlayer);
 
       internal class Factory : NativeEventFactory<SendServerToPlayerCharListHook>
       {
@@ -54,7 +54,7 @@ namespace NWN.API.Events
         protected override FunctionHook<SendServerToPlayerCharListHook> RequestHook(HookService hookService)
           => hookService.RequestHook<SendServerToPlayerCharListHook>(OnSendServerToPlayerCharList, HookOrder.Early);
 
-        private int OnSendServerToPlayerCharList(IntPtr pThis, IntPtr pPlayer)
+        private int OnSendServerToPlayerCharList(IntPtr pMessage, IntPtr pPlayer)
         {
           CNWSPlayer player = new CNWSPlayer(pPlayer, false);
           uint playerId = player.m_nPlayerID;
@@ -72,7 +72,7 @@ namespace NWN.API.Events
 
           if (!eventData.BlockConnection)
           {
-            return Hook.Original.Invoke(pThis, pPlayer);
+            return Hook.Original.Invoke(pMessage, pPlayer);
           }
 
           string kickMessage = eventData.KickMessage ?? string.Empty;
