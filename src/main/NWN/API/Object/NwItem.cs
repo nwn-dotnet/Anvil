@@ -235,11 +235,14 @@ namespace NWN.API
     /// <param name="template">The item template (.uti) to use.</param>
     /// <param name="location">The world location for the created item.</param>
     /// <param name="useAppearAnim">If true, whether an appear animation should play for the item.</param>
+    /// <param name="stackSize">The stack size of the created item.</param>
     /// <param name="newTag">A new tag for the item, otherwise the value set in the blueprint.</param>
     /// <returns>The created item.</returns>
-    public static NwItem Create(string template, Location location, bool useAppearAnim = false, string newTag = null)
+    public static NwItem Create(string template, Location location, bool useAppearAnim = false, int stackSize = 1, string newTag = null)
     {
-      return NwObject.CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
+      NwItem item = NwObject.CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
+      item.StackSize = stackSize;
+      return item;
     }
 
     /// <summary>
