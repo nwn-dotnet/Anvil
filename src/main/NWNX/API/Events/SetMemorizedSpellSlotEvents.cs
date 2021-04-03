@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.API.Constants;
 using NWN.API.Events;
@@ -9,6 +10,7 @@ namespace NWNX.API.Events
   public static class SetMemorizedSpellSlotEvents
   {
     [NWNXEvent("NWNX_SET_MEMORIZED_SPELL_SLOT_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnSpellSlotMemorize instead.")]
     public sealed class OnSetMemorizedSpellSlotBefore : IEventSkippable
     {
       public NwCreature Preparer { get; }

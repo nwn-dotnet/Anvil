@@ -181,6 +181,20 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnUseFeat, OnUseFeat.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnSpellSlotClear"/>
+    public event Action<OnSpellSlotClear> OnSpellSlotClear
+    {
+      add => EventService.Subscribe<OnSpellSlotClear, OnSpellSlotClear.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellSlotClear, OnSpellSlotClear.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnSpellSlotMemorize"/>
+    public event Action<OnSpellSlotMemorize> OnSpellSlotMemorize
+    {
+      add => EventService.Subscribe<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(this, value);
+    }
+
     public override Location Location
     {
       set

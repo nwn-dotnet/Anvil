@@ -246,6 +246,34 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
+    public event Action<OnSpellCast> OnSpellCast
+    {
+      add => EventService.SubscribeAll<OnSpellCast, OnSpellCast.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellCast, OnSpellCast.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnSpellInterrupted"/>
+    public event Action<OnSpellInterrupted> OnSpellInterrupted
+    {
+      add => EventService.SubscribeAll<OnSpellInterrupted, OnSpellInterrupted.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellInterrupted, OnSpellInterrupted.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnSpellSlotClear"/>
+    public event Action<OnSpellSlotClear> OnSpellSlotClear
+    {
+      add => EventService.SubscribeAll<OnSpellSlotClear, OnSpellSlotClear.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellSlotClear, OnSpellSlotClear.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnSpellSlotMemorize"/>
+    public event Action<OnSpellSlotMemorize> OnSpellSlotMemorize
+    {
+      add => EventService.SubscribeAll<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(value);
+    }
+
     internal override CNWSScriptVarTable ScriptVarTable
     {
       get => Module.m_ScriptVars;

@@ -1,7 +1,9 @@
+using System;
 using NWN.Core;
 
 namespace NWN.API.Constants
 {
+  [Flags]
   public enum MetaMagic
   {
     None = NWScript.METAMAGIC_NONE,
