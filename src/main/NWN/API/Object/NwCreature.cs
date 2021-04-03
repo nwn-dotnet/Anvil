@@ -174,6 +174,13 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnFamiliarUnpossess, OnFamiliarUnpossess.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnUseFeat"/>
+    public event Action<OnUseFeat> OnUseFeat
+    {
+      add => EventService.Subscribe<OnUseFeat, OnUseFeat.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnUseFeat, OnUseFeat.Factory>(this, value);
+    }
+
     public override Location Location
     {
       set

@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using NWN.API;
 using NWN.API.Constants;
@@ -10,6 +11,7 @@ namespace NWNX.API.Events
   public static class FeatUseEvents
   {
     [NWNXEvent("NWNX_ON_USE_FEAT_BEFORE")]
+    [Obsolete("Use NWModule/NwPlayer.OnUseFeat instead.")]
     public sealed class OnUseFeatBefore : IEventSkippable
     {
       public NwCreature FeatUser { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();

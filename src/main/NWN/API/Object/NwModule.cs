@@ -239,6 +239,13 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnExamineTrap, OnExamineTrap.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnUseFeat"/>
+    public event Action<OnUseFeat> OnUseFeat
+    {
+      add => EventService.SubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
+    }
+
     internal override CNWSScriptVarTable ScriptVarTable
     {
       get => Module.m_ScriptVars;
