@@ -146,6 +146,34 @@ namespace NWN.API
       remove => EventService.Unsubscribe<CreatureEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnAssociateAdd"/>
+    public event Action<OnAssociateAdd> OnAssociateAdd
+    {
+      add => EventService.Subscribe<OnAssociateAdd, OnAssociateAdd.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnAssociateAdd, OnAssociateAdd.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnAssociateRemove"/>
+    public event Action<OnAssociateRemove> OnAssociateRemove
+    {
+      add => EventService.Subscribe<OnAssociateRemove, OnAssociateRemove.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnAssociateRemove, OnAssociateRemove.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnFamiliarPossess"/>
+    public event Action<OnFamiliarPossess> OnFamiliarPossess
+    {
+      add => EventService.Subscribe<OnFamiliarPossess, OnFamiliarPossess.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnFamiliarPossess, OnFamiliarPossess.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnFamiliarUnpossess"/>
+    public event Action<OnFamiliarUnpossess> OnFamiliarUnpossess
+    {
+      add => EventService.Subscribe<OnFamiliarUnpossess, OnFamiliarUnpossess.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnFamiliarUnpossess, OnFamiliarUnpossess.Factory>(this, value);
+    }
+
     public override Location Location
     {
       set
