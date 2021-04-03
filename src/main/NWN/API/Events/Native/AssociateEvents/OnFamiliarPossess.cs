@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnFamiliarPossess : IEvent
+  public sealed class OnFamiliarPossess : IEvent
   {
     public NwCreature Owner { get; private init; }
 
@@ -32,7 +32,7 @@ namespace NWN.API.Events
           Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>()
         });
 
-        Hook.Original.Invoke(pCreature);
+        Hook.CallOriginal(pCreature);
       }
     }
   }

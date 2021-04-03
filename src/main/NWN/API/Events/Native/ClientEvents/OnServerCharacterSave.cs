@@ -40,7 +40,7 @@ namespace NWN.API.Events
           Player = new NwPlayer(new CNWSPlayer(pPlayer, false))
         });
 
-        return !eventData.PreventSave ? Hook.Original.Invoke(pPlayer, bBackupPlayer) : 0;
+        return !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;
       }
     }
   }

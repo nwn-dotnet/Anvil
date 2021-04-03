@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnAssociateRemove : IEvent
+  public sealed class OnAssociateRemove : IEvent
   {
     public NwCreature Owner { get; private init; }
 
@@ -32,7 +32,7 @@ namespace NWN.API.Events
           Associate = associate.ToNwObject<NwCreature>()
         });
 
-        Hook.Original.Invoke(pCreature, associate);
+        Hook.CallOriginal(pCreature, associate);
       }
     }
   }

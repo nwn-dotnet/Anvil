@@ -32,7 +32,7 @@ namespace NWN.API.Events
           Associate = associate.ToNwObject<NwCreature>()
         });
 
-        Hook.Original.Invoke(pCreature, associate, associateType);
+        Hook.CallOriginal(pCreature, associate, associateType);
       }
     }
   }

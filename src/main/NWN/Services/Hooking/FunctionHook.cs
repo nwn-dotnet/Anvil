@@ -13,14 +13,14 @@ namespace NWN.Services
     /// <summary>
     /// The original function call - invoke this to run the standard game behaviour.
     /// </summary>
-    public readonly T Original;
+    public readonly T CallOriginal;
 
     internal FunctionHook(HookService hookService, T handler, IntPtr nativeFuncPtr)
     {
       this.hookService = hookService;
       this.handler = handler;
       this.nativeFuncPtr = nativeFuncPtr;
-      Original = Marshal.GetDelegateForFunctionPointer<T>(nativeFuncPtr);
+      CallOriginal = Marshal.GetDelegateForFunctionPointer<T>(nativeFuncPtr);
     }
 
     /// <summary>

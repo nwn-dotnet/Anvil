@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnBarterStart : IEvent
+  public sealed class OnBarterStart : IEvent
   {
     public NwPlayer Initiator { get; private init; }
 
@@ -32,7 +32,7 @@ namespace NWN.API.Events
           Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwObject<NwPlayer>()
         });
 
-        Hook.Original.Invoke(pMessage, pPlayer);
+        Hook.CallOriginal(pMessage, pPlayer);
       }
     }
   }

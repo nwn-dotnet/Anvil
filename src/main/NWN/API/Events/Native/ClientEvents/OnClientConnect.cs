@@ -72,7 +72,7 @@ namespace NWN.API.Events
 
           if (!eventData.BlockConnection)
           {
-            return Hook.Original.Invoke(pMessage, pPlayer);
+            return Hook.CallOriginal(pMessage, pPlayer);
           }
 
           string kickMessage = eventData.KickMessage ?? string.Empty;

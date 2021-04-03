@@ -36,7 +36,7 @@ namespace NWN.API.Events
           Player = player.m_oidPCObject == NwObject.INVALID ? null : new NwPlayer(player)
         });
 
-        Hook.Original.Invoke(pServerExoAppInternal, pPlayer);
+        Hook.CallOriginal(pServerExoAppInternal, pPlayer);
       }
     }
   }
