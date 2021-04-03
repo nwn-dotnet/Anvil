@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public sealed class OnAddAssociate : IEvent
+  public sealed class OnAssociateAdd : IEvent
   {
     public NwCreature Owner { get; private init; }
 
@@ -26,7 +26,7 @@ namespace NWN.API.Events
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 
-        ProcessEvent(new OnAddAssociate
+        ProcessEvent(new OnAssociateAdd
         {
           Owner = creature.m_idSelf.ToNwObject<NwCreature>(),
           Associate = associate.ToNwObject<NwCreature>()
