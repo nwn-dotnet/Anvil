@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.API.Events;
 using NWN.Core;
@@ -8,6 +9,7 @@ namespace NWNX.API.Events
   public static class ExamineEvents
   {
     [NWNXEvent("NWNX_ON_EXAMINE_OBJECT_BEFORE")]
+    [Obsolete("Use NWModule/NwPlayer.OnExamineObject & NWModule/NwPlayer.OnExamineTrap instead.")]
     public sealed class OnExamineObjectBefore : IEvent
     {
       public NwPlayer Examiner { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
@@ -28,6 +30,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_EXAMINE_OBJECT_AFTER")]
+    [Obsolete("Use NWModule/NwPlayer.OnExamineObject & NWModule/NwPlayer.OnExamineTrap instead.")]
     public sealed class OnExamineObjectAfter : IEvent
     {
       public NwPlayer Examiner { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();

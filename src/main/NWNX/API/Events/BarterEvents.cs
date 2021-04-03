@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.API.Events;
 using NWN.Core;
@@ -8,6 +9,7 @@ namespace NWNX.API.Events
   public static class BarterEvents
   {
     [NWNXEvent("NWNX_ON_BARTER_START_BEFORE")]
+    [Obsolete("Use NWModule/NwPlayer.OnBarterStart instead.")]
     public sealed class OnBarterStartBefore : IEventSkippable
     {
       public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
@@ -20,6 +22,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_BARTER_START_AFTER")]
+    [Obsolete("Use NWModule/NwPlayer.OnBarterStart instead.")]
     public sealed class OnBarterStartAfter : IEventSkippable
     {
       public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
