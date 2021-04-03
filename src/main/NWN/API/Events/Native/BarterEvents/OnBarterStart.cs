@@ -26,7 +26,7 @@ namespace NWN.API.Events
       {
         CNWSMessage message = new CNWSMessage(pMessage, false);
 
-        ProcessEvent(new OnBarterStart()
+        ProcessEvent(new OnBarterStart
         {
           Initiator = new NwPlayer(new CNWSPlayer(pPlayer, false)),
           Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwObject<NwPlayer>()

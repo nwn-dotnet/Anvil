@@ -7,7 +7,7 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API.Events
 {
-  public class OnUseFeat : IEvent
+  public sealed class OnUseFeat : IEvent
   {
     public bool PreventFeatUse { get; set; }
 
@@ -39,7 +39,7 @@ namespace NWN.API.Events
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 
-        OnUseFeat eventData = ProcessEvent(new OnUseFeat()
+        OnUseFeat eventData = ProcessEvent(new OnUseFeat
         {
           Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
           Feat = (Feat)nFeat,

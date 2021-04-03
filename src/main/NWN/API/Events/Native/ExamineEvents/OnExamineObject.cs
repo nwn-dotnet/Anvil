@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnExamineObject : IEvent
+  public sealed class OnExamineObject : IEvent
   {
     public NwPlayer ExaminedBy { get; private init; }
 
@@ -35,7 +35,7 @@ namespace NWN.API.Events
 
       private void OnCreatureExamine(IntPtr pMessage, IntPtr pPlayer, uint creature)
       {
-        ProcessEvent(new OnExamineObject()
+        ProcessEvent(new OnExamineObject
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
           ExaminedObject = creature.ToNwObject<NwCreature>()
@@ -54,7 +54,7 @@ namespace NWN.API.Events
 
       private void OnDoorExamine(IntPtr pMessage, IntPtr pPlayer, uint door)
       {
-        ProcessEvent(new OnExamineObject()
+        ProcessEvent(new OnExamineObject
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
           ExaminedObject = door.ToNwObject<NwDoor>()
@@ -73,7 +73,7 @@ namespace NWN.API.Events
 
       private void OnItemExamine(IntPtr pMessage, IntPtr pPlayer, uint item)
       {
-        ProcessEvent(new OnExamineObject()
+        ProcessEvent(new OnExamineObject
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
           ExaminedObject = item.ToNwObject<NwItem>()
@@ -92,7 +92,7 @@ namespace NWN.API.Events
 
       private void OnPlaceableExamine(IntPtr pMessage, IntPtr pPlayer, uint placeable)
       {
-        ProcessEvent(new OnExamineObject()
+        ProcessEvent(new OnExamineObject
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
           ExaminedObject = placeable.ToNwObject<NwPlaceable>()

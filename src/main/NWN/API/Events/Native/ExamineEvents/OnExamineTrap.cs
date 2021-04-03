@@ -26,7 +26,7 @@ namespace NWN.API.Events
 
       private void OnExamineTrap(IntPtr pMessage, IntPtr pPlayer, uint trap, IntPtr pCreature, int bSuccess)
       {
-        ProcessEvent(new OnExamineTrap()
+        ProcessEvent(new OnExamineTrap
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
           ExaminedObject = trap.ToNwObject<NwGameObject>(),
