@@ -17,7 +17,7 @@ namespace NWN.API.Events
 
     public int SubFeatId { get; private init; }
 
-    public NwGameObject Target { get; private init; }
+    public NwGameObject TargetObject { get; private init; }
 
     public NwArea TargetArea { get; private init; }
 
@@ -44,7 +44,7 @@ namespace NWN.API.Events
           Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
           Feat = (Feat)nFeat,
           SubFeatId = nSubFeat,
-          Target = targetObj.ToNwObject<NwGameObject>(),
+          TargetObject = targetObj.ToNwObject<NwGameObject>(),
           TargetArea = targetArea.ToNwObject<NwArea>(),
           TargetPosition = pTargetPos != IntPtr.Zero ? Marshal.PtrToStructure<Vector3>(pTargetPos) : Vector3.Zero
         });
