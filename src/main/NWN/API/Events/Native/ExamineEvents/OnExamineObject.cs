@@ -24,6 +24,8 @@ namespace NWN.API.Events
     [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj)]
     internal delegate void PlaceableExamineHook(IntPtr pMessage, IntPtr pPlayer, uint placeable);
 
+    public static Type[] FactoryTypes { get; } = {typeof(CreatureEventFactory), typeof(DoorEventFactory), typeof(ItemEventFactory), typeof(PlaceableEventFactory)};
+
     internal class CreatureEventFactory : NativeEventFactory<CreatureExamineHook>
     {
       public CreatureEventFactory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
