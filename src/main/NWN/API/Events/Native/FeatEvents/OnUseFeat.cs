@@ -26,7 +26,7 @@ namespace NWN.API.Events
     NwObject IEvent.Context => Creature;
 
     [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature7UseFeatEttjjP6Vector)]
-    internal delegate int CreatureUseFeatHook(IntPtr pCreature, ushort nFeat, ushort nSubFeat, uint targetObj, uint targetArea, IntPtr pTargetPos);
+    internal delegate int CreatureUseFeatHook(IntPtr pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, IntPtr pTargetPos);
 
     internal class Factory : NativeEventFactory<CreatureUseFeatHook>
     {
@@ -35,7 +35,7 @@ namespace NWN.API.Events
       protected override FunctionHook<CreatureUseFeatHook> RequestHook(HookService hookService)
         => hookService.RequestHook<CreatureUseFeatHook>(OnCreatureUseFeat, HookOrder.Earliest);
 
-      private int OnCreatureUseFeat(IntPtr pCreature, ushort nFeat, ushort nSubFeat, uint targetObj, uint targetArea, IntPtr pTargetPos)
+      private int OnCreatureUseFeat(IntPtr pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, IntPtr pTargetPos)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 
@@ -44,12 +44,12 @@ namespace NWN.API.Events
           Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
           Feat = (Feat)nFeat,
           SubFeatId = nSubFeat,
-          TargetObject = targetObj.ToNwObject<NwGameObject>(),
-          TargetArea = targetArea.ToNwObject<NwArea>(),
+          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
+          TargetArea = oidArea.ToNwObject<NwArea>(),
           TargetPosition = pTargetPos != IntPtr.Zero ? Marshal.PtrToStructure<Vector3>(pTargetPos) : Vector3.Zero
         });
 
-        return !eventData.PreventFeatUse ? Hook.CallOriginal(pCreature, nFeat, nSubFeat, targetObj, targetArea, pTargetPos) : false.ToInt();
+        return !eventData.PreventFeatUse ? Hook.CallOriginal(pCreature, nFeat, nSubFeat, oidTarget, oidArea, pTargetPos) : false.ToInt();
       }
     }
   }

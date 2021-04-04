@@ -31,7 +31,7 @@ namespace NWN.API.Events
     NwObject IEvent.Context => Caster;
 
     [NativeFunction(NWNXLib.Functions._ZN10CNWSObject18SpellCastAndImpactEj6Vectorjhjiihi)]
-    internal delegate void SpellCastAndImpactHook(IntPtr pObject, int nSpellId, Vector3 targetPosition, uint targetObj,
+    internal delegate void SpellCastAndImpactHook(IntPtr pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
       byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell);
 
     internal class Factory : NativeEventFactory<SpellCastAndImpactHook>
@@ -41,7 +41,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SpellCastAndImpactHook> RequestHook(HookService hookService)
         => hookService.RequestHook<SpellCastAndImpactHook>(OnSpellCastAndImpact, HookOrder.Early);
 
-      private void OnSpellCastAndImpact(IntPtr pObject, int nSpellId, Vector3 targetPosition, uint targetObj,
+      private void OnSpellCastAndImpact(IntPtr pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
         byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell)
       {
         CNWSObject gameObject = new CNWSObject(pObject, false);
@@ -61,7 +61,7 @@ namespace NWN.API.Events
 
         if (!eventData.PreventSpellCast)
         {
-          Hook.CallOriginal(pObject, nSpellId, targetPosition, targetObj, nMultiClass, itemObj, bSpellCountered, bCounteringSpell, projectilePathType, bInstantSpell);
+          Hook.CallOriginal(pObject, nSpellId, targetPosition, oidTarget, nMultiClass, itemObj, bSpellCountered, bCounteringSpell, projectilePathType, bInstantSpell);
         }
         else
         {

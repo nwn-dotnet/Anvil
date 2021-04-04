@@ -20,14 +20,14 @@ namespace NWN.API.Events
 
     protected abstract FunctionHook<THook> RequestHook(HookService hookService);
 
-    protected TEvent ProcessEvent<TEvent>(TEvent evt) where TEvent : IEvent
+    protected TEvent ProcessEvent<TEvent>(TEvent eventData) where TEvent : IEvent
     {
       VirtualMachine.ExecuteInScriptContext(() =>
       {
-        evt = eventService.Value.ProcessEvent(evt);
+        eventData = eventService.Value.ProcessEvent(eventData);
       });
 
-      return evt;
+      return eventData;
     }
 
     void IEventFactory.Init()

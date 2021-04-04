@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnStealthModeUpdate : IEvent
+  public sealed class OnStealthModeUpdate : IEvent
   {
     /// <summary>
     /// Gets or sets an override behaviour to use if <see cref="EventType"/> is an Enter event.

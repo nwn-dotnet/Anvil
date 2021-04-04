@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnSpellSlotClear : IEvent
+  public sealed class OnSpellSlotClear : IEvent
   {
     public bool PreventClear { get; set; }
 

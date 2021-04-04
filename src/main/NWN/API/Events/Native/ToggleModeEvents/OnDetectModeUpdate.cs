@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnDetectModeUpdate : IEvent
+  public sealed class OnDetectModeUpdate : IEvent
   {
     /// <summary>
     /// Gets or sets a value indicating whether this creature should be prevented from entering/exiting detect mode.

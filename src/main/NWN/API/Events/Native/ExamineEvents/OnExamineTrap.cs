@@ -15,7 +15,7 @@ namespace NWN.API.Events
     NwObject IEvent.Context => ExaminedBy;
 
     [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_TrapDataEP10CNWSPlayerjP12CNWSCreaturei)]
-    internal delegate void TrapExamineHook(IntPtr pMessage, IntPtr pPlayer, uint trap, IntPtr pCreature, int bSuccess);
+    internal delegate void TrapExamineHook(IntPtr pMessage, IntPtr pPlayer, uint oidTrap, IntPtr pCreature, int bSuccess);
 
     internal class Factory : NativeEventFactory<TrapExamineHook>
     {
@@ -24,16 +24,16 @@ namespace NWN.API.Events
       protected override FunctionHook<TrapExamineHook> RequestHook(HookService hookService)
         => hookService.RequestHook<TrapExamineHook>(OnExamineTrap, HookOrder.Earliest);
 
-      private void OnExamineTrap(IntPtr pMessage, IntPtr pPlayer, uint trap, IntPtr pCreature, int bSuccess)
+      private void OnExamineTrap(IntPtr pMessage, IntPtr pPlayer, uint oidTrap, IntPtr pCreature, int bSuccess)
       {
         ProcessEvent(new OnExamineTrap
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
-          ExaminedObject = trap.ToNwObject<NwGameObject>(),
+          ExaminedObject = oidTrap.ToNwObject<NwGameObject>(),
           Success = bSuccess.ToBool()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, trap, pCreature, bSuccess);
+        Hook.CallOriginal(pMessage, pPlayer, oidTrap, pCreature, bSuccess);
       }
     }
   }

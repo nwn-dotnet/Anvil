@@ -13,16 +13,16 @@ namespace NWN.API.Events
     NwObject IEvent.Context => ExaminedBy;
 
     [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj)]
-    internal delegate void CreatureExamineHook(IntPtr pMessage, IntPtr pPlayer, uint creature);
+    internal delegate void CreatureExamineHook(IntPtr pMessage, IntPtr pPlayer, uint oidCreature);
 
     [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_DoorDataEP10CNWSPlayerj)]
-    internal delegate void DoorExamineHook(IntPtr pMessage, IntPtr pPlayer, uint door);
+    internal delegate void DoorExamineHook(IntPtr pMessage, IntPtr pPlayer, uint oidDoor);
 
     [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_ItemDataEP10CNWSPlayerj)]
-    internal delegate void ItemExamineHook(IntPtr pMessage, IntPtr pPlayer, uint item);
+    internal delegate void ItemExamineHook(IntPtr pMessage, IntPtr pPlayer, uint oidItem);
 
     [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj)]
-    internal delegate void PlaceableExamineHook(IntPtr pMessage, IntPtr pPlayer, uint placeable);
+    internal delegate void PlaceableExamineHook(IntPtr pMessage, IntPtr pPlayer, uint oidPlaceable);
 
     public static Type[] FactoryTypes { get; } = {typeof(CreatureEventFactory), typeof(DoorEventFactory), typeof(ItemEventFactory), typeof(PlaceableEventFactory)};
 
@@ -33,15 +33,15 @@ namespace NWN.API.Events
       protected override FunctionHook<CreatureExamineHook> RequestHook(HookService hookService)
         => hookService.RequestHook<CreatureExamineHook>(OnCreatureExamine, HookOrder.Earliest);
 
-      private void OnCreatureExamine(IntPtr pMessage, IntPtr pPlayer, uint creature)
+      private void OnCreatureExamine(IntPtr pMessage, IntPtr pPlayer, uint oidCreature)
       {
         ProcessEvent(new OnExamineObject
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
-          ExaminedObject = creature.ToNwObject<NwCreature>()
+          ExaminedObject = oidCreature.ToNwObject<NwCreature>()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, creature);
+        Hook.CallOriginal(pMessage, pPlayer, oidCreature);
       }
     }
 
@@ -52,15 +52,15 @@ namespace NWN.API.Events
       protected override FunctionHook<DoorExamineHook> RequestHook(HookService hookService)
         => hookService.RequestHook<DoorExamineHook>(OnDoorExamine, HookOrder.Earliest);
 
-      private void OnDoorExamine(IntPtr pMessage, IntPtr pPlayer, uint door)
+      private void OnDoorExamine(IntPtr pMessage, IntPtr pPlayer, uint oidDoor)
       {
         ProcessEvent(new OnExamineObject
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
-          ExaminedObject = door.ToNwObject<NwDoor>()
+          ExaminedObject = oidDoor.ToNwObject<NwDoor>()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, door);
+        Hook.CallOriginal(pMessage, pPlayer, oidDoor);
       }
     }
 
@@ -71,15 +71,15 @@ namespace NWN.API.Events
       protected override FunctionHook<ItemExamineHook> RequestHook(HookService hookService)
         => hookService.RequestHook<ItemExamineHook>(OnItemExamine, HookOrder.Earliest);
 
-      private void OnItemExamine(IntPtr pMessage, IntPtr pPlayer, uint item)
+      private void OnItemExamine(IntPtr pMessage, IntPtr pPlayer, uint oidItem)
       {
         ProcessEvent(new OnExamineObject
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
-          ExaminedObject = item.ToNwObject<NwItem>()
+          ExaminedObject = oidItem.ToNwObject<NwItem>()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, item);
+        Hook.CallOriginal(pMessage, pPlayer, oidItem);
       }
     }
 
@@ -90,15 +90,15 @@ namespace NWN.API.Events
       protected override FunctionHook<PlaceableExamineHook> RequestHook(HookService hookService)
         => hookService.RequestHook<PlaceableExamineHook>(OnPlaceableExamine, HookOrder.Earliest);
 
-      private void OnPlaceableExamine(IntPtr pMessage, IntPtr pPlayer, uint placeable)
+      private void OnPlaceableExamine(IntPtr pMessage, IntPtr pPlayer, uint oidPlaceable)
       {
         ProcessEvent(new OnExamineObject
         {
           ExaminedBy = new NwPlayer(new CNWSPlayer(pPlayer, false)),
-          ExaminedObject = placeable.ToNwObject<NwPlaceable>()
+          ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, placeable);
+        Hook.CallOriginal(pMessage, pPlayer, oidPlaceable);
       }
     }
   }

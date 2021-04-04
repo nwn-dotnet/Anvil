@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnDoListenDetection : IEvent
+  public sealed class OnDoListenDetection : IEvent
   {
     public VisibilityOverride VisibilityOverride { get; set; }
 

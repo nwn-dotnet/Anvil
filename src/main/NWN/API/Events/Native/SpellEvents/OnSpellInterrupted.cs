@@ -6,7 +6,7 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API.Events
 {
-  public class OnSpellInterrupted : IEvent
+  public sealed class OnSpellInterrupted : IEvent
   {
     public NwGameObject InterruptedCaster { get; private init; }
 
