@@ -8,6 +8,10 @@ namespace NWN.API.Events
   {
     public bool PreventSell { get; set; }
 
+    public NativeEventType EventType { get; private set; }
+
+    public bool Result { get; private set; }
+
     public NwCreature Creature { get; private init; }
 
     public NwItem Item { get; private init; }
@@ -43,13 +47,18 @@ namespace NWN.API.Events
 
         OnStoreRequestSell eventData = ProcessEvent(new OnStoreRequestSell
         {
+          EventType = NativeEventType.Before,
           Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
           Item = item,
           Store = store,
           Price = price
         });
 
-        return !eventData.PreventSell ? Hook.CallOriginal(pCreature, oidItemToSell, oidStore) : false.ToInt();
+        eventData.EventType = NativeEventType.After;
+        eventData.Result = !eventData.PreventSell && Hook.CallOriginal(pCreature, oidItemToSell, oidStore).ToBool();
+        ProcessEvent(eventData);
+
+        return eventData.Result.ToInt();
       }
     }
   }
