@@ -181,6 +181,20 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnUseFeat, OnUseFeat.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnDoListenDetection"/>
+    public event Action<OnDoListenDetection> OnDoListenDetection
+    {
+      add => EventService.Subscribe<OnDoListenDetection, OnDoListenDetection.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnDoListenDetection, OnDoListenDetection.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnDoSpotDetection"/>
+    public event Action<OnDoSpotDetection> OnDoSpotDetection
+    {
+      add => EventService.Subscribe<OnDoSpotDetection, OnDoSpotDetection.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnDoSpotDetection, OnDoSpotDetection.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnSpellSlotClear"/>
     public event Action<OnSpellSlotClear> OnSpellSlotClear
     {
@@ -193,6 +207,20 @@ namespace NWN.API
     {
       add => EventService.Subscribe<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(this, value);
       remove => EventService.Unsubscribe<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnDetectModeUpdate"/>
+    public event Action<OnDetectModeUpdate> OnDetectModeUpdate
+    {
+      add => EventService.Subscribe<OnDetectModeUpdate, OnDetectModeUpdate.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnDetectModeUpdate, OnDetectModeUpdate.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnStealthModeUpdate"/>
+    public event Action<OnStealthModeUpdate> OnStealthModeUpdate
+    {
+      add => EventService.Subscribe<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(this, value);
     }
 
     public override Location Location

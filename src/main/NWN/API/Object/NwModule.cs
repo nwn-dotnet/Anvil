@@ -246,6 +246,20 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnDoListenDetection"/>
+    public event Action<OnDoListenDetection> OnDoListenDetection
+    {
+      add => EventService.SubscribeAll<OnDoListenDetection, OnDoListenDetection.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnDoListenDetection, OnDoListenDetection.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnDoSpotDetection"/>
+    public event Action<OnDoSpotDetection> OnDoSpotDetection
+    {
+      add => EventService.SubscribeAll<OnDoSpotDetection, OnDoSpotDetection.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnDoSpotDetection, OnDoSpotDetection.Factory>(value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
     public event Action<OnSpellCast> OnSpellCast
     {
@@ -272,6 +286,20 @@ namespace NWN.API
     {
       add => EventService.SubscribeAll<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(value);
       remove => EventService.UnsubscribeAll<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnDetectModeUpdate"/>
+    public event Action<OnDetectModeUpdate> OnDetectModeUpdate
+    {
+      add => EventService.SubscribeAll<OnDetectModeUpdate, OnDetectModeUpdate.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnDetectModeUpdate, OnDetectModeUpdate.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnStealthModeUpdate"/>
+    public event Action<OnStealthModeUpdate> OnStealthModeUpdate
+    {
+      add => EventService.SubscribeAll<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(value);
     }
 
     internal override CNWSScriptVarTable ScriptVarTable
