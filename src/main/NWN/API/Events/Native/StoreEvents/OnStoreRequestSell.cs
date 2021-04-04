@@ -6,7 +6,7 @@ namespace NWN.API.Events
 {
   public class OnStoreRequestSell : IEvent
   {
-    public bool PreventBuy { get; set; }
+    public bool PreventSell { get; set; }
 
     public NwCreature Creature { get; private init; }
 
@@ -49,7 +49,7 @@ namespace NWN.API.Events
           Price = price
         });
 
-        return !eventData.PreventBuy ? Hook.CallOriginal(pCreature, oidItemToSell, oidStore) : false.ToInt();
+        return !eventData.PreventSell ? Hook.CallOriginal(pCreature, oidItemToSell, oidStore) : false.ToInt();
       }
     }
   }
