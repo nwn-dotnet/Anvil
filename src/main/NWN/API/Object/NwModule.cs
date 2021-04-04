@@ -288,6 +288,20 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnStoreRequestBuy"/>
+    public event Action<OnStoreRequestBuy> OnStoreRequestBuy
+    {
+      add => EventService.SubscribeAll<OnStoreRequestBuy, OnStoreRequestBuy.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnStoreRequestBuy, OnStoreRequestBuy.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnStoreRequestSell"/>
+    public event Action<OnStoreRequestSell> OnStoreRequestSell
+    {
+      add => EventService.SubscribeAll<OnStoreRequestSell, OnStoreRequestSell.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnStoreRequestSell, OnStoreRequestSell.Factory>(value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnDetectModeUpdate"/>
     public event Action<OnDetectModeUpdate> OnDetectModeUpdate
     {
