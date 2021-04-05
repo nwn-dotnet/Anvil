@@ -190,6 +190,34 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnServerCharacterSave, OnServerCharacterSave.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnCombatDRBroken"/>
+    public event Action<OnCombatDRBroken> OnCombatDRBroken
+    {
+      add => EventService.SubscribeAll<OnCombatDRBroken, OnCombatDRBroken.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCombatDRBroken, OnCombatDRBroken.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
+    public event Action<OnCombatStatusChange> OnCombatStatusChange
+    {
+      add => EventService.SubscribeAll<OnCombatStatusChange, OnCombatStatusChange.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCombatStatusChange, OnCombatStatusChange.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnDisarm"/>
+    public event Action<OnDisarm> OnDisarm
+    {
+      add => EventService.SubscribeAll<OnDisarm, OnDisarm.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnDisarm, OnDisarm.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnStartCombatRound"/>
+    public event Action<OnStartCombatRound> OnStartCombatRound
+    {
+      add => EventService.SubscribeAll<OnStartCombatRound, OnStartCombatRound.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnStartCombatRound, OnStartCombatRound.Factory>(value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnAssociateAdd"/>
     public event Action<OnAssociateAdd> OnAssociateAdd
     {

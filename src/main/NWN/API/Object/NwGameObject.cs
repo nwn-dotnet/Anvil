@@ -26,6 +26,13 @@ namespace NWN.API
       get => gameObject.m_ScriptVars;
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnDisarm"/>
+    public event Action<OnDisarm> OnDisarm
+    {
+      add => EventService.Subscribe<OnDisarm, OnDisarm.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnDisarm, OnDisarm.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
     public event Action<OnSpellCast> OnSpellCast
     {

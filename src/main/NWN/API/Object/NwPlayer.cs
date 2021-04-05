@@ -114,6 +114,13 @@ namespace NWN.API
       remove => EventService.Unsubscribe<ModuleEvents.OnPlayerUnequipItem, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnBarterStart"/>
+    public event Action<OnBarterStart> OnBarterStart
+    {
+      add => EventService.Subscribe<OnBarterStart, OnBarterStart.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnBarterStart, OnBarterStart.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnClientDisconnect"/>
     public event Action<OnClientDisconnect> OnServerDisconnect
     {
@@ -128,11 +135,11 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnServerCharacterSave, OnServerCharacterSave.Factory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnBarterStart"/>
-    public event Action<OnBarterStart> OnBarterStart
+    /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
+    public event Action<OnCombatStatusChange> OnCombatStatusChange
     {
-      add => EventService.Subscribe<OnBarterStart, OnBarterStart.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnBarterStart, OnBarterStart.Factory>(this, value);
+      add => EventService.Subscribe<OnCombatStatusChange, OnCombatStatusChange.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnCombatStatusChange, OnCombatStatusChange.Factory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnExamineObject"/>
