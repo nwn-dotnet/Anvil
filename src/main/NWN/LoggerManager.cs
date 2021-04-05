@@ -10,7 +10,7 @@ namespace NWN
 {
   internal class LoggerManager : IDisposable
   {
-    private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message} ${exception}");
+    private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message} ${exception:format=toString,Data}");
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     public LoggerManager()
@@ -39,7 +39,7 @@ namespace NWN
         catch (NLogConfigurationException e)
         {
           LogManager.Configuration = GetDefaultConfig();
-          Log.Warn($"Using default configuration as the logger configuration at \"{EnvironmentConfig.NLogConfigPath}\" failed to load:\n{e}");
+          Log.Warn(e, $"Using default configuration as the logger configuration at \"{EnvironmentConfig.NLogConfigPath}\" failed to load.");
         }
       }
       else
