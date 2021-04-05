@@ -14,7 +14,7 @@ namespace NWN.API.Events
     /// <summary>
     /// Gets the player that is being saved.
     /// </summary>
-    public NwPlayer Player { get; }
+    public NwPlayer Player { get; private init; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the character should be prevented from being saved.
@@ -22,11 +22,6 @@ namespace NWN.API.Events
     public bool PreventSave { get; set; }
 
     NwObject IEvent.Context => Player;
-
-    private OnServerCharacterSave(CNWSPlayer player)
-    {
-      Player = new NwPlayer(player);
-    }
 
     [NativeFunction(NWNXLib.Functions._ZN10CNWSPlayer19SaveServerCharacterEi)]
     internal delegate int SaveServerCharacterHook(IntPtr pPlayer, int bBackupPlayer);
@@ -40,8 +35,12 @@ namespace NWN.API.Events
 
       private int OnSaveServerCharacter(IntPtr pPlayer, int bBackupPlayer)
       {
-        OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave(new CNWSPlayer(pPlayer, false)));
-        return !eventData.PreventSave ? Hook.Original.Invoke(pPlayer, bBackupPlayer) : 0;
+        OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave
+        {
+          Player = new NwPlayer(new CNWSPlayer(pPlayer, false))
+        });
+
+        return !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;
       }
     }
   }

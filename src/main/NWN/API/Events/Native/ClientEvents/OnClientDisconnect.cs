@@ -13,14 +13,9 @@ namespace NWN.API.Events
     /// <summary>
     /// Gets the player that disconnected. Returns null if the player disconnected on the character screen.
     /// </summary>
-    public NwPlayer Player { get; }
+    public NwPlayer Player { get; private init; }
 
     NwObject IEvent.Context => Player;
-
-    private OnClientDisconnect(CNWSPlayer player)
-    {
-      Player = player.m_oidPCObject == NwObject.INVALID ? null : new NwPlayer(player);
-    }
 
     [NativeFunction(NWNXLib.Functions._ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer)]
     internal delegate void RemovePCFromWorldHook(IntPtr pServerExoAppInternal, IntPtr pPlayer);
@@ -34,8 +29,14 @@ namespace NWN.API.Events
 
       private void OnRemovePCFromWorld(IntPtr pServerExoAppInternal, IntPtr pPlayer)
       {
-        ProcessEvent(new OnClientDisconnect(new CNWSPlayer(pPlayer, false)));
-        Hook.Original.Invoke(pServerExoAppInternal, pPlayer);
+        CNWSPlayer player = new CNWSPlayer(pPlayer, false);
+
+        ProcessEvent(new OnClientDisconnect
+        {
+          Player = player.m_oidPCObject == NwObject.INVALID ? null : new NwPlayer(player)
+        });
+
+        Hook.CallOriginal(pServerExoAppInternal, pPlayer);
       }
     }
   }

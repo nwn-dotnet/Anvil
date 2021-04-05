@@ -13,22 +13,22 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the player name of the connecting client.
       /// </summary>
-      public string PlayerName { get; }
+      public string PlayerName { get; private init; }
 
       /// <summary>
       /// Gets the public CD Key of the connecting client.
       /// </summary>
-      public string CDKey { get; }
+      public string CDKey { get; private init; }
 
       /// <summary>
       /// Gets a value indicating whether the client is connecting as a DM (true) or player (false).
       /// </summary>
-      public bool DM { get; }
+      public bool DM { get; private init; }
 
       /// <summary>
       /// Gets the IP address of the connecting client.
       /// </summary>
-      public string IP { get; }
+      public string IP { get; private init; }
 
       /// <summary>
       /// Gets or sets a value indicating whether this client connection should be prevented.
@@ -42,16 +42,8 @@ namespace NWN.API.Events
 
       NwObject IEvent.Context => null;
 
-      private OnClientConnect(CNetLayerPlayerInfo playerInfo, string ipAddress)
-      {
-        PlayerName = playerInfo.m_sPlayerName.ToString();
-        CDKey = playerInfo.m_lstKeys._OpIndex(0).ToString();
-        DM = playerInfo.m_bGameMasterPrivileges.ToBool();
-        IP = ipAddress;
-      }
-
       [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer)]
-      internal delegate int SendServerToPlayerCharListHook(IntPtr pThis, IntPtr pPlayer);
+      internal delegate int SendServerToPlayerCharListHook(IntPtr pMessage, IntPtr pPlayer);
 
       internal class Factory : NativeEventFactory<SendServerToPlayerCharListHook>
       {
@@ -62,16 +54,25 @@ namespace NWN.API.Events
         protected override FunctionHook<SendServerToPlayerCharListHook> RequestHook(HookService hookService)
           => hookService.RequestHook<SendServerToPlayerCharListHook>(OnSendServerToPlayerCharList, HookOrder.Early);
 
-        private int OnSendServerToPlayerCharList(IntPtr pThis, IntPtr pPlayer)
+        private int OnSendServerToPlayerCharList(IntPtr pMessage, IntPtr pPlayer)
         {
           CNWSPlayer player = new CNWSPlayer(pPlayer, false);
           uint playerId = player.m_nPlayerID;
 
-          OnClientConnect eventData = ProcessEvent(new OnClientConnect(NetLayer.GetPlayerInfo(playerId), NetLayer.GetPlayerAddress(playerId).ToString()));
+          CNetLayerPlayerInfo playerInfo = NetLayer.GetPlayerInfo(playerId);
+          string ipAddress = NetLayer.GetPlayerAddress(playerId).ToString();
+
+          OnClientConnect eventData = ProcessEvent(new OnClientConnect
+          {
+            PlayerName = playerInfo.m_sPlayerName.ToString(),
+            CDKey = playerInfo.m_lstKeys._OpIndex(0).ToString(),
+            DM = playerInfo.m_bGameMasterPrivileges.ToBool(),
+            IP = ipAddress
+          });
 
           if (!eventData.BlockConnection)
           {
-            return Hook.Original.Invoke(pThis, pPlayer);
+            return Hook.CallOriginal(pMessage, pPlayer);
           }
 
           string kickMessage = eventData.KickMessage ?? string.Empty;

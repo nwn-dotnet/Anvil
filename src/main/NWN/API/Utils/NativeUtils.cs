@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using NWN.Native.API;
@@ -42,6 +43,12 @@ namespace NWN.API
       locStr.GetStringLoc(nID, str, gender);
 
       return str.ToString();
+    }
+
+    public static unsafe T PeekMessage<T>(this CNWSMessage message, int offset) where T : unmanaged
+    {
+      byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
+      return Marshal.PtrToStructure<T>((IntPtr)ptr);
     }
   }
 }

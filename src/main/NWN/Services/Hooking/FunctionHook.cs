@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using JetBrains.Annotations;
 using NWN.Core;
 
 namespace NWN.Services
@@ -7,20 +8,23 @@ namespace NWN.Services
   public class FunctionHook<T> : IDisposable where T : Delegate
   {
     private readonly HookService hookService;
-    private readonly T handler; // We hold a reference to the delegate to prevent clean up from the garbage collector.
     private readonly IntPtr nativeFuncPtr;
+
+    // We hold a reference to the delegate to prevent clean up from the garbage collector.
+    [UsedImplicitly]
+    private readonly T handler;
 
     /// <summary>
     /// The original function call - invoke this to run the standard game behaviour.
     /// </summary>
-    public readonly T Original;
+    public readonly T CallOriginal;
 
     internal FunctionHook(HookService hookService, T handler, IntPtr nativeFuncPtr)
     {
       this.hookService = hookService;
       this.handler = handler;
       this.nativeFuncPtr = nativeFuncPtr;
-      Original = Marshal.GetDelegateForFunctionPointer<T>(nativeFuncPtr);
+      CallOriginal = Marshal.GetDelegateForFunctionPointer<T>(nativeFuncPtr);
     }
 
     /// <summary>

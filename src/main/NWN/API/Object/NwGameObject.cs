@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 using Animation = NWN.API.Constants.Animation;
@@ -23,6 +24,34 @@ namespace NWN.API
     internal override CNWSScriptVarTable ScriptVarTable
     {
       get => gameObject.m_ScriptVars;
+    }
+
+    /// <inheritdoc cref="Events.OnDisarmWeapon"/>
+    public event Action<OnDisarmWeapon> OnDisarmWeapon
+    {
+      add => EventService.Subscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
+    public event Action<OnSpellBroadcast> OnSpellBroadcast
+    {
+      add => EventService.Subscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
+    public event Action<OnSpellCast> OnSpellCast
+    {
+      add => EventService.Subscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnSpellInterrupted"/>
+    public event Action<OnSpellInterrupted> OnSpellInterrupted
+    {
+      add => EventService.Subscribe<OnSpellInterrupted, OnSpellInterrupted.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellInterrupted, OnSpellInterrupted.Factory>(this, value);
     }
 
     /// <summary>

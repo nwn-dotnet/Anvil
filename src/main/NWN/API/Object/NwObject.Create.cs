@@ -114,9 +114,7 @@ namespace NWN.API
 
       return (ObjectType)gameObject.m_nObjectType switch
       {
-        ObjectType.Creature => NWScript.GetIsPC(objectId) == NWScript.TRUE
-          ? new NwPlayer(LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId), gameObject.AsNWSCreature())
-          : new NwCreature(gameObject.AsNWSCreature()),
+        ObjectType.Creature => ConstructCreature(gameObject),
         ObjectType.Item => new NwItem(gameObject.AsNWSItem()),
         ObjectType.Placeable => new NwPlaceable(gameObject.AsNWSPlaceable()),
         ObjectType.Module => NwModule.Instance,
@@ -130,6 +128,15 @@ namespace NWN.API
         ObjectType.AreaOfEffect => new NwAreaOfEffect(gameObject.AsNWSAreaOfEffectObject()),
         _ => null
       };
+    }
+
+    private static NwCreature ConstructCreature(ICGameObject gameObject)
+    {
+      CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByObjectId(gameObject.m_idSelf);
+
+      return player == null
+        ? new NwCreature(gameObject.AsNWSCreature())
+        : new NwPlayer(player, gameObject.AsNWSCreature());
     }
 
     internal static ObjectTypes GetObjectType<T>() where T : NwObject
