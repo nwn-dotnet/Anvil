@@ -4,7 +4,7 @@ namespace NWN.API.Events
 {
   public enum PartyEventType
   {
-    Leave =  MessagePartyMinor.Leave,
+    Leave = MessagePartyMinor.Leave,
     Kick = MessagePartyMinor.Kick,
     TransferLeadership = MessagePartyMinor.TransferLeadership,
     Invite = MessagePartyMinor.Invite,
