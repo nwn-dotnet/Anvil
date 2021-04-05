@@ -181,11 +181,11 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnCombatDRBroken, OnCombatDRBroken.Factory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnStartCombatRound"/>
-    public event Action<OnStartCombatRound> OnStartCombatRound
+    /// <inheritdoc cref="Events.OnCombatRoundStart"/>
+    public event Action<OnCombatRoundStart> OnCombatRoundStart
     {
-      add => EventService.Subscribe<OnStartCombatRound, OnStartCombatRound.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnStartCombatRound, OnStartCombatRound.Factory>(this, value);
+      add => EventService.Subscribe<OnCombatRoundStart, OnCombatRoundStart.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnCombatRoundStart, OnCombatRoundStart.Factory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnUseFeat"/>

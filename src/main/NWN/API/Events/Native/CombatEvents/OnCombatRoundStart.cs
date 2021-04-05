@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnStartCombatRound : IEvent
+  public class OnCombatRoundStart : IEvent
   {
     public NwCreature Creature { get; private init; }
 
@@ -26,7 +26,7 @@ namespace NWN.API.Events
       {
         CNWSCombatRound combatRound = new CNWSCombatRound(pCombatRound, false);
 
-        ProcessEvent(new OnStartCombatRound
+        ProcessEvent(new OnCombatRoundStart
         {
           Creature = combatRound.m_pBaseCreature.m_idSelf.ToNwObject<NwCreature>(),
           Target = oidTarget.ToNwObject<NwGameObject>()
