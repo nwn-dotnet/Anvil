@@ -31,6 +31,8 @@ namespace NWN.API.Events
           Creature = combatRound.m_pBaseCreature.m_idSelf.ToNwObject<NwCreature>(),
           Target = oidTarget.ToNwObject<NwGameObject>()
         });
+
+        Hook.CallOriginal(pCombatRound, oidTarget);
       }
     }
   }
