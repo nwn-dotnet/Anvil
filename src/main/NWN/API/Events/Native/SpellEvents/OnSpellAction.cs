@@ -25,7 +25,7 @@ namespace NWN.API.Events
 
     public Vector3 TargetPosition { get; private init; }
 
-    public NwObject TargetObject { get; private init; }
+    public NwGameObject TargetObject { get; private init; }
 
     public bool IsAreaTarget { get; private init; }
 
@@ -70,7 +70,7 @@ namespace NWN.API.Events
           MetaMagic = (MetaMagic)nMetaType,
           IsSpontaneous = bSpontaneousCast.ToBool(),
           TargetPosition = vTargetLocation,
-          TargetObject = oidTarget.ToNwObject(),
+          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
           IsAreaTarget = bAreaTarget.ToBool(),
           IsFake = bFake.ToBool(),
           ProjectilePath = (ProjectilePathType)nProjectilePathType,
