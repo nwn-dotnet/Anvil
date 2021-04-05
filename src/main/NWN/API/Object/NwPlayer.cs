@@ -156,6 +156,13 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnExamineTrap, OnExamineTrap.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnPartyEvent"/>
+    public event Action<OnPartyEvent> OnPartyEvent
+    {
+      add => EventService.Subscribe<OnPartyEvent, OnPartyEvent.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnPartyEvent, OnPartyEvent.Factory>(this, value);
+    }
+
     /// <summary>
     /// Gets a value indicating whether this Player is a Dungeon Master.
     /// </summary>

@@ -274,6 +274,13 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnPartyEvent"/>
+    public event Action<OnPartyEvent> OnPartyEvent
+    {
+      add => EventService.SubscribeAll<OnPartyEvent, OnPartyEvent.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnPartyEvent, OnPartyEvent.Factory>(value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnDoListenDetection"/>
     public event Action<OnDoListenDetection> OnDoListenDetection
     {
