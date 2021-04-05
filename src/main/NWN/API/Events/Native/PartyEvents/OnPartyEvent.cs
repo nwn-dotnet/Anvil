@@ -14,7 +14,7 @@ namespace NWN.API.Events
 
     public NwPlayer Player { get; private init; }
 
-    public NwPlayer Target { get; private init; }
+    public NwCreature Target { get; private init; }
 
     NwObject IEvent.Context => Player;
 
@@ -44,7 +44,7 @@ namespace NWN.API.Events
         {
           EventType = eventType,
           Player = pPlayer != IntPtr.Zero ? new NwPlayer(new CNWSPlayer(pPlayer, false)) : null,
-          Target = oidTarget.ToNwObject<NwPlayer>()
+          Target = oidTarget.ToNwObject<NwCreature>()
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventEvent && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());

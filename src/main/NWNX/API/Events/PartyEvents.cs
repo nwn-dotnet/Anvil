@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.API.Events;
 using NWN.Core;
@@ -8,6 +9,7 @@ namespace NWNX.API.Events
   public static class PartyEvents
   {
     [NWNXEvent("NWNX_ON_PARTY_LEAVE_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnLeaveBefore : IEventSkippable
     {
       /// <summary>
@@ -21,6 +23,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_PARTY_LEAVE_AFTER")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnLeaveAfter : IEventSkippable
     {
       /// <summary>
@@ -34,6 +37,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_PARTY_KICK_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnKickBefore : IEventSkippable
     {
       /// <summary>
@@ -52,6 +56,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_PARTY_KICK_AFTER")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnKickAfter : IEventSkippable
     {
       /// <summary>
@@ -70,6 +75,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_PARTY_TRANSFER_LEADERSHIP_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnTransferLeadershipBefore : IEventSkippable
     {
       /// <summary>
@@ -88,6 +94,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_PARTY_TRANSFER_LEADERSHIP_AFTER")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnTransferLeadershipAfter : IEventSkippable
     {
       /// <summary>
@@ -106,6 +113,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_PARTY_INVITE_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnInviteBefore : IEventSkippable
     {
       /// <summary>
@@ -124,6 +132,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_PARTY_INVITE_AFTER")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnInviteAfter : IEventSkippable
     {
       /// <summary>
@@ -142,6 +151,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_IGNORE_INVITATION_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnIgnoreInvitationBefore : IEventSkippable
     {
       /// <summary>
@@ -160,6 +170,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_IGNORE_INVITATION_AFTER")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnIgnoreInvitationAfter : IEventSkippable
     {
       /// <summary>
@@ -178,6 +189,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ACCEPT_INVITATION_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnAcceptInvitationBefore : IEventSkippable
     {
       /// <summary>
@@ -196,6 +208,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_ACCEPT_INVITATION_AFTER")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnAcceptInvitationAfter : IEventSkippable
     {
       /// <summary>
@@ -214,6 +227,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_REJECT_INVITATION_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnRejectInvitationBefore : IEventSkippable
     {
       /// <summary>
@@ -232,6 +246,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_REJECT_INVITATION_AFTER")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnRejectInvitationAfter : IEventSkippable
     {
       /// <summary>
@@ -250,6 +265,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_KICK_HENCHMAN_BEFORE")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnKickHenchmanBefore : IEventSkippable
     {
       /// <summary>
@@ -268,6 +284,7 @@ namespace NWNX.API.Events
     }
 
     [NWNXEvent("NWNX_ON_KICK_HENCHMAN_AFTER")]
+    [Obsolete("Use NwModule/NwPlayer.OnPartyEvent instead.")]
     public sealed class OnKickHenchmanAfter : IEventSkippable
     {
       /// <summary>
