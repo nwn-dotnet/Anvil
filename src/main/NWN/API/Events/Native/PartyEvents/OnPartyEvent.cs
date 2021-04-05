@@ -8,6 +8,8 @@ namespace NWN.API.Events
   {
     public bool PreventEvent { get; set; }
 
+    public Lazy<bool> Result { get; private set; }
+
     public PartyEventType EventType { get; private init; }
 
     public NwPlayer Player { get; private init; }
@@ -38,14 +40,18 @@ namespace NWN.API.Events
         CNWSMessage message = new CNWSMessage(pMessage, false);
         uint oidTarget = message.PeekMessage<uint>(0) & 0x7FFFFFFF;
 
-        OnPartyEvent eventData = ProcessEvent(new OnPartyEvent
+        OnPartyEvent eventData = new OnPartyEvent
         {
           EventType = eventType,
           Player = pPlayer != IntPtr.Zero ? new NwPlayer(new CNWSPlayer(pPlayer, false)) : null,
           Target = oidTarget.ToNwObject<NwPlayer>()
-        });
+        };
 
-        return (!eventData.PreventEvent && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool()).ToInt();
+        eventData.Result = new Lazy<bool>(() => !eventData.PreventEvent && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());
+
+        ProcessEvent(eventData);
+
+        return eventData.Result.Value.ToInt();
       }
     }
   }
