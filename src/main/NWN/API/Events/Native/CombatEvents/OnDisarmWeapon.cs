@@ -5,7 +5,7 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API.Events
 {
-  public class OnDisarm : IEvent
+  public class OnDisarmWeapon : IEvent
   {
     public bool PreventDisarm { get; set; }
 
@@ -36,7 +36,7 @@ namespace NWN.API.Events
         CNWSObject gameObject = new CNWSObject(pObject, false);
         CGameEffect gameEffect = new CGameEffect(pEffect, false);
 
-        OnDisarm eventData = ProcessEvent(new OnDisarm
+        OnDisarmWeapon eventData = ProcessEvent(new OnDisarmWeapon
         {
           EventType = NativeEventType.Before,
           DisarmedObject = gameObject.m_idSelf.ToNwObject<NwGameObject>(),

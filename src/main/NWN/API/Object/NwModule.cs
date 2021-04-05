@@ -204,11 +204,11 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnCombatStatusChange, OnCombatStatusChange.Factory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDisarm"/>
-    public event Action<OnDisarm> OnDisarm
+    /// <inheritdoc cref="OnDisarmWeapon"/>
+    public event Action<OnDisarmWeapon> OnDisarm
     {
-      add => EventService.SubscribeAll<OnDisarm, OnDisarm.Factory>(value);
-      remove => EventService.UnsubscribeAll<OnDisarm, OnDisarm.Factory>(value);
+      add => EventService.SubscribeAll<OnDisarmWeapon, OnDisarmWeapon.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnDisarmWeapon, OnDisarmWeapon.Factory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnStartCombatRound"/>
