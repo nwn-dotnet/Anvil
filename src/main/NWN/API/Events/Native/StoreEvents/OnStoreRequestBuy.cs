@@ -8,9 +8,7 @@ namespace NWN.API.Events
   {
     public bool PreventBuy { get; set; }
 
-    public NativeEventType EventType { get; private set; }
-
-    public bool Result { get; private set; }
+    public Lazy<bool> Result { get; private set; }
 
     public NwCreature Creature { get; private init; }
 
@@ -45,20 +43,18 @@ namespace NWN.API.Events
           price = store.Store.CalculateItemSellPrice(item, creature.m_idSelf);
         }
 
-        OnStoreRequestBuy eventData = ProcessEvent(new OnStoreRequestBuy
+        OnStoreRequestBuy eventData = new OnStoreRequestBuy
         {
-          EventType = NativeEventType.Before,
           Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
           Item = item,
           Store = store,
           Price = price
-        });
+        };
 
-        eventData.EventType = NativeEventType.After;
-        eventData.Result = !eventData.PreventBuy && Hook.CallOriginal(pCreature, oidItemToBuy, oidStore, oidDesiredRepository).ToBool();
+        eventData.Result = new Lazy<bool>(() => !eventData.PreventBuy && Hook.CallOriginal(pCreature, oidItemToBuy, oidStore, oidDesiredRepository).ToBool());
         ProcessEvent(eventData);
 
-        return eventData.Result.ToInt();
+        return eventData.Result.Value.ToInt();
       }
     }
   }

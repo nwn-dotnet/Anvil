@@ -9,9 +9,7 @@ namespace NWN.API.Events
   {
     public bool PreventDisarm { get; set; }
 
-    public NativeEventType EventType { get; private set; }
-
-    public bool Result { get; private set; }
+    public Lazy<bool> Result { get; private set; }
 
     public NwGameObject DisarmedObject { get; private init; }
 
@@ -36,19 +34,17 @@ namespace NWN.API.Events
         CNWSObject gameObject = new CNWSObject(pObject, false);
         CGameEffect gameEffect = new CGameEffect(pEffect, false);
 
-        OnDisarmWeapon eventData = ProcessEvent(new OnDisarmWeapon
+        OnDisarmWeapon eventData = new OnDisarmWeapon
         {
-          EventType = NativeEventType.Before,
           DisarmedObject = gameObject.m_idSelf.ToNwObject<NwGameObject>(),
           DisarmedBy = gameEffect.m_oidCreator.ToNwObject<NwGameObject>(),
           Feat = gameEffect.GetInteger(0) == 1 ? Feat.ImprovedDisarm : Feat.Disarm
-        });
+        };
 
-        eventData.EventType = NativeEventType.After;
-        eventData.Result = !eventData.PreventDisarm && Hook.CallOriginal(pEffectHandler, pObject, pEffect, bLoadingGame).ToBool();
+        eventData.Result = new Lazy<bool>(() => !eventData.PreventDisarm && Hook.CallOriginal(pEffectHandler, pObject, pEffect, bLoadingGame).ToBool());
         ProcessEvent(eventData);
 
-        return eventData.Result.ToInt();
+        return eventData.Result.Value.ToInt();
       }
     }
   }
