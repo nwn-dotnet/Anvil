@@ -288,6 +288,20 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnDoSpotDetection, OnDoSpotDetection.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnSpellAction"/>
+    public event Action<OnSpellAction> OnSpellAction
+    {
+      add => EventService.SubscribeAll<OnSpellAction, OnSpellAction.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellAction, OnSpellAction.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
+    public event Action<OnSpellBroadcast> OnSpellBroadcast
+    {
+      add => EventService.SubscribeAll<OnSpellBroadcast, OnSpellBroadcast.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellBroadcast, OnSpellBroadcast.Factory>(value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
     public event Action<OnSpellCast> OnSpellCast
     {

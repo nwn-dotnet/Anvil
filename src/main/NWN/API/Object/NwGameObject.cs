@@ -33,6 +33,13 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
+    public event Action<OnSpellBroadcast> OnSpellBroadcast
+    {
+      add => EventService.Subscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
     public event Action<OnSpellCast> OnSpellCast
     {

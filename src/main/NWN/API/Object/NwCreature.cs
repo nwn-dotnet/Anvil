@@ -209,6 +209,13 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnDoSpotDetection, OnDoSpotDetection.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnSpellAction"/>
+    public event Action<OnSpellAction> OnSpellAction
+    {
+      add => EventService.Subscribe<OnSpellAction, OnSpellAction.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellAction, OnSpellAction.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnSpellSlotClear"/>
     public event Action<OnSpellSlotClear> OnSpellSlotClear
     {
