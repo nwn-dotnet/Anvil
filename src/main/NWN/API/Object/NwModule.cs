@@ -246,6 +246,13 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnFamiliarUnpossess, OnFamiliarUnpossess.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnBarterEnd"/>
+    public event Action<OnBarterEnd> OnBarterEnd
+    {
+      add => EventService.SubscribeAll(Events.OnBarterEnd.FactoryTypes, value);
+      remove => EventService.UnsubscribeAll(Events.OnBarterEnd.FactoryTypes, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnBarterStart"/>
     public event Action<OnBarterStart> OnBarterStart
     {
