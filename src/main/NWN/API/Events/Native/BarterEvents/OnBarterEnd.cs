@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using NWN.Native.API;
 using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnBarterEnd : IEvent
+  public sealed class OnBarterEnd : IEvent
   {
     public NwPlayer Initiator { get; private init; }
 
