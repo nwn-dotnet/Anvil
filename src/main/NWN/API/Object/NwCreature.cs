@@ -188,6 +188,20 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnCombatRoundStart, OnCombatRoundStart.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnCreatureAttack"/>
+    public event Action<OnCreatureAttack> OnCreatureAttack
+    {
+      add => EventService.Subscribe(this, Events.OnCreatureAttack.FactoryTypes, value);
+      remove => EventService.Unsubscribe(this, Events.OnCreatureAttack.FactoryTypes, value);
+    }
+
+    /// <inheritdoc cref="Events.OnCreatureDamage"/>
+    public event Action<OnCreatureDamage> OnCreatureDamage
+    {
+      add => EventService.Subscribe<OnCreatureDamage, OnCreatureDamage.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnCreatureDamage, OnCreatureDamage.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnUseFeat"/>
     public event Action<OnUseFeat> OnUseFeat
     {
