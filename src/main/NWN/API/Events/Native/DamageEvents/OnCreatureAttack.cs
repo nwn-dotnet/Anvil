@@ -80,21 +80,22 @@ namespace NWN.API.Events
 
     private static OnCreatureAttack[] GetAttackEvents(IntPtr pCreature, IntPtr pTarget, int nAttacks)
     {
-      CNWSCreature creature = new CNWSCreature(pCreature, false);
+      CNWSCreature cnwsCreature = new CNWSCreature(pCreature, false);
+      NwCreature creature = cnwsCreature.m_idSelf.ToNwObject<NwCreature>();
       NwGameObject target = new CNWSObject(pTarget, false).m_idSelf.ToNwObject<NwGameObject>();
 
       // m_nCurrentAttack points to the attack after this flurry.
-      int attackNumberOffset = creature.m_pcCombatRound.m_nCurrentAttack - nAttacks;
-      CNWSCombatRound combatRound = creature.m_pcCombatRound;
+      int attackNumberOffset = cnwsCreature.m_pcCombatRound.m_nCurrentAttack - nAttacks;
+      CNWSCombatRound combatRound = cnwsCreature.m_pcCombatRound;
 
       // Create an event for each attack in the flurry
-      OnCreatureAttack[] retVal = new OnCreatureAttack[nAttacks];
+      OnCreatureAttack[] attackEvents = new OnCreatureAttack[nAttacks];
       for (int i = 0; i < nAttacks; i++)
       {
-        retVal[i] = GetEventData(creature.m_idSelf.ToNwObject<NwCreature>(), target, combatRound, attackNumberOffset + i);
+        attackEvents[i] = GetEventData(creature, target, combatRound, attackNumberOffset + i);
       }
 
-      return retVal;
+      return attackEvents;
     }
 
     private static OnCreatureAttack GetEventData(NwCreature creature, NwGameObject target, CNWSCombatRound combatRound, int attackNumber)
