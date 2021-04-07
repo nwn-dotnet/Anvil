@@ -12,7 +12,7 @@ namespace NWN.API.Events
       set => combatAttackData.m_nAttackResult = (byte)value;
     }
 
-    public NwCreature DamagedBy { get; private init; }
+    public NwCreature Attacker { get; private init; }
 
     public NwGameObject Target { get; private init; }
 
@@ -30,7 +30,7 @@ namespace NWN.API.Events
 
     private CNWSCombatAttackData combatAttackData { get; init; }
 
-    NwObject IEvent.Context => DamagedBy;
+    NwObject IEvent.Context => Attacker;
 
     [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti)]
     internal delegate void SignalMeleeDamageHook(IntPtr pCreature, IntPtr pTarget, int nAttacks);
@@ -105,7 +105,7 @@ namespace NWN.API.Events
       return new OnCreatureAttack
       {
         combatAttackData = combatAttackData,
-        DamagedBy = creature,
+        Attacker = creature,
         Target = target,
         AttackNumber = attackNumber + 1, // 1-based for backwards compatibility
         WeaponAttackType = (WeaponAttackType)combatAttackData.m_nWeaponAttackType,
