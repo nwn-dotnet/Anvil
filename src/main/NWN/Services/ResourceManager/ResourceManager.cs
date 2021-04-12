@@ -35,11 +35,11 @@ namespace NWN.Services
         throw new ArgumentOutOfRangeException(nameof(path), "Path must not be empty or null.");
       }
 
-      string aliasName = AliasBaseName + currentIndex;
+      CExoString aliasName = (AliasBaseName + currentIndex).ToExoString();
 
-      ExoBase.m_pcExoAliasList.Add(aliasName.ToExoString(), path.ToExoString());
-      ResMan.CreateDirectory(aliasName.ToExoString());
-      ResMan.AddResourceDirectory(aliasName.ToExoString(), BasePriority + currentIndex, true.ToInt());
+      ExoBase.m_pcExoAliasList.Add(aliasName, path.ToExoString());
+      ResMan.CreateDirectory(aliasName);
+      ResMan.AddResourceDirectory(aliasName, BasePriority + currentIndex, true.ToInt());
 
       currentIndex++;
     }
