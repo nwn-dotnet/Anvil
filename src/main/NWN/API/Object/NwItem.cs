@@ -199,6 +199,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the base armor class of this item.
+    /// </summary>
+    public int BaseACValue
+    {
+      get => Item.m_nArmorValue;
+    }
+
+    /// <summary>
     /// Gets all active item properties currently applied to this object.
     /// </summary>
     public IEnumerable<ItemProperty> ItemProperties
