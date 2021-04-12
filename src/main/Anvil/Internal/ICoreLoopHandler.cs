@@ -1,4 +1,4 @@
-namespace NWN
+namespace Anvil.Internal
 {
   internal interface ICoreLoopHandler
   {

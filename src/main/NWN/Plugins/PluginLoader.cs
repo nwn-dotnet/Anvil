@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Anvil.Internal;
 using NLog;
 using NWN.Services;
 

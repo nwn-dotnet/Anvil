@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace NWN
+namespace Anvil.Internal
 {
   /// <summary>
   /// NWN.Managed settings that are configured through Environment Variables.

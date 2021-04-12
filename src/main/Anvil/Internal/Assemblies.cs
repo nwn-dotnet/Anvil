@@ -3,13 +3,13 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace NWN
+namespace Anvil.Internal
 {
   internal static class Assemblies
   {
     internal static readonly Assembly Managed = typeof(Assemblies).Assembly;
-    internal static readonly Assembly Core = typeof(Core.NWNCore).Assembly;
-    internal static readonly Assembly Native = typeof(Native.API.NWNXLib).Assembly;
+    internal static readonly Assembly Core = typeof(NWN.Core.NWNCore).Assembly;
+    internal static readonly Assembly Native = typeof(NWN.Native.API.NWNXLib).Assembly;
 
     internal static readonly string AssemblyDir = Path.GetDirectoryName(Managed.Location);
 

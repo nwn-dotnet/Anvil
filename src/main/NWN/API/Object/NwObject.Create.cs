@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Anvil.Internal;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Core.NWNX;
