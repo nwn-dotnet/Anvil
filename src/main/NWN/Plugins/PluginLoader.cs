@@ -19,6 +19,7 @@ namespace NWN.Plugins
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     public IReadOnlyCollection<Type> LoadedTypes { get; private set; }
+
     public IReadOnlyCollection<string> ResourcePaths { get; private set; }
 
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();

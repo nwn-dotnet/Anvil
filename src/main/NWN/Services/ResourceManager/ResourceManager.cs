@@ -4,7 +4,7 @@ using NWN.API;
 using NWN.Native.API;
 using NWN.Plugins;
 
-namespace NWN.Services.ResourceManager
+namespace NWN.Services
 {
   [ServiceBinding(typeof(ResourceManager))]
   public sealed class ResourceManager : IDisposable
@@ -12,8 +12,8 @@ namespace NWN.Services.ResourceManager
     private const string AliasBaseName = "NMAN";
     private const uint BasePriority = 70000000;
 
-    private static readonly CExoBase exoBase = NWNXLib.ExoBase();
-    private static readonly CExoResMan resMan = NWNXLib.ExoResMan();
+    private static readonly CExoBase ExoBase = NWNXLib.ExoBase();
+    private static readonly CExoResMan ResMan = NWNXLib.ExoResMan();
 
     private uint currentIndex;
 
@@ -37,9 +37,9 @@ namespace NWN.Services.ResourceManager
 
       string aliasName = AliasBaseName + currentIndex;
 
-      exoBase.m_pcExoAliasList.Add(aliasName.ToExoString(), path.ToExoString());
-      resMan.CreateDirectory(aliasName.ToExoString());
-      resMan.AddResourceDirectory(aliasName.ToExoString(), BasePriority + currentIndex, true.ToInt());
+      ExoBase.m_pcExoAliasList.Add(aliasName.ToExoString(), path.ToExoString());
+      ResMan.CreateDirectory(aliasName.ToExoString());
+      ResMan.AddResourceDirectory(aliasName.ToExoString(), BasePriority + currentIndex, true.ToInt());
 
       currentIndex++;
     }
