@@ -1,10 +1,23 @@
 using System;
 using System.Linq;
+using NWN.Services;
 
 namespace NWN.API
 {
   public abstract class LocalVariable
   {
+    private protected static VariableConverterService VariableConverterService { get; private set; }
+
+    [ServiceBinding(typeof(APIBindings))]
+    [BindingOrder(BindingOrder.API)]
+    internal sealed class APIBindings
+    {
+      public APIBindings(VariableConverterService variableConverterService)
+      {
+        VariableConverterService = variableConverterService;
+      }
+    }
+
     public string Name { get; protected set; }
 
     public NwObject Object { get; protected set; }

@@ -10,8 +10,8 @@ namespace NWN.API
   [BindingOrder(BindingOrder.API)]
   internal class VariableConverterService
   {
-    private static readonly Dictionary<Type, ILocalVariableConverter> LocalVariableConverters = new Dictionary<Type, ILocalVariableConverter>();
-    private static readonly Dictionary<Type, ICampaignVariableConverter> CampaignVariableConverters = new Dictionary<Type, ICampaignVariableConverter>();
+    private readonly Dictionary<Type, ILocalVariableConverter> localVariableConverters = new Dictionary<Type, ILocalVariableConverter>();
+    private readonly Dictionary<Type, ICampaignVariableConverter> campaignVariableConverters = new Dictionary<Type, ICampaignVariableConverter>();
 
     public VariableConverterService(ITypeLoader typeLoader)
     {
@@ -22,10 +22,10 @@ namespace NWN.API
       }
     }
 
-    internal static ILocalVariableConverter<T> GetLocalConverter<T>()
+    internal ILocalVariableConverter<T> GetLocalConverter<T>()
     {
       Type type = typeof(T);
-      if (LocalVariableConverters.TryGetValue(type, out ILocalVariableConverter retVal))
+      if (localVariableConverters.TryGetValue(type, out ILocalVariableConverter retVal))
       {
         return (ILocalVariableConverter<T>) retVal;
       }
@@ -33,10 +33,10 @@ namespace NWN.API
       throw new Exception($"No valid variable converter found for type {type.FullName}!");
     }
 
-    internal static ICampaignVariableConverter<T> GetCampaignConverter<T>()
+    internal ICampaignVariableConverter<T> GetCampaignConverter<T>()
     {
       Type type = typeof(T);
-      if (CampaignVariableConverters.TryGetValue(type, out ICampaignVariableConverter retVal))
+      if (campaignVariableConverters.TryGetValue(type, out ICampaignVariableConverter retVal))
       {
         return (ICampaignVariableConverter<T>) retVal;
       }
@@ -55,7 +55,7 @@ namespace NWN.API
       ILocalVariableConverter converter = (ILocalVariableConverter) Activator.CreateInstance(type);
       foreach (Type infoType in info.Types)
       {
-        LocalVariableConverters[infoType] = converter;
+        localVariableConverters[infoType] = converter;
       }
     }
 
@@ -70,7 +70,7 @@ namespace NWN.API
       ICampaignVariableConverter converter = (ICampaignVariableConverter) Activator.CreateInstance(type);
       foreach (Type infoType in info.Types)
       {
-        CampaignVariableConverters[infoType] = converter;
+        campaignVariableConverters[infoType] = converter;
       }
     }
   }

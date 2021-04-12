@@ -12,7 +12,17 @@ namespace NWN.API
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   public abstract partial class NwObject : IEquatable<NwObject>
   {
-    private protected static readonly EventService EventService = NManager.GetService<EventService>();
+    private protected static EventService EventService { get; private set; }
+
+    [ServiceBinding(typeof(APIBindings))]
+    [BindingOrder(BindingOrder.API)]
+    internal sealed class APIBindings
+    {
+      public APIBindings(EventService eventService)
+      {
+        EventService = eventService;
+      }
+    }
 
     internal const uint INVALID = NWScript.OBJECT_INVALID;
     protected readonly uint ObjectId;

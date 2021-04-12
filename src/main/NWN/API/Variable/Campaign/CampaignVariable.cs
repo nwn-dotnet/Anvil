@@ -1,15 +1,36 @@
 using System;
+using NWN.Services;
 
 namespace NWN.API
 {
-  public class CampaignVariable<T> : IEquatable<CampaignVariable<T>>
+  public abstract class CampaignVariable
   {
-    public string Campaign { get; private set; }
+    private protected static VariableConverterService VariableConverterService { get; private set; }
 
-    public string Name { get; private set; }
+    [ServiceBinding(typeof(APIBindings))]
+    [BindingOrder(BindingOrder.API)]
+    internal sealed class APIBindings
+    {
+      public APIBindings(VariableConverterService variableConverterService)
+      {
+        VariableConverterService = variableConverterService;
+      }
+    }
 
-    public NwPlayer Player { get; private set; }
+    public string Campaign { get; protected set; }
 
+    public string Name { get; protected set; }
+
+    public NwPlayer Player { get; protected set; }
+
+    /// <summary>
+    /// Deletes the value of this variable.
+    /// </summary>
+    public abstract void Delete();
+  }
+
+  public sealed class CampaignVariable<T> : CampaignVariable, IEquatable<CampaignVariable<T>>
+  {
     private ICampaignVariableConverter<T> converter;
 
     private CampaignVariable() {}
@@ -42,10 +63,7 @@ namespace NWN.API
       return value.Value;
     }
 
-    /// <summary>
-    /// Deletes the value of this variable.
-    /// </summary>
-    public void Delete() => converter.ClearCampaign(Campaign, Name, Player);
+    public override void Delete() => converter.ClearCampaign(Campaign, Name, Player);
 
     public bool Equals(CampaignVariable<T> other)
     {
