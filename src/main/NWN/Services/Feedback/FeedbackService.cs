@@ -23,10 +23,6 @@ namespace NWN.Services
     [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString)]
     private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString);
 
-    private FunctionHook<SendFeedbackMessageHook> sendFeedbackMessageHook;
-    private FunctionHook<SendServerToPlayerCCMessageHook> sendServerToPlayerCCMessageHook;
-    private FunctionHook<SendServerToPlayerJournalUpdatedHook> sendServerToPlayerJournalUpdatedHook;
-
     private readonly HookService hookService;
 
     private readonly HashSet<CombatLogMessage> globalFilterListCombatMessage = new HashSet<CombatLogMessage>();
@@ -35,17 +31,37 @@ namespace NWN.Services
     private readonly Dictionary<uint, HashSet<CombatLogMessage>> playerFilterListCombatMessage = new Dictionary<uint, HashSet<CombatLogMessage>>();
     private readonly Dictionary<uint, HashSet<FeedbackMessage>> playerFilterListFeedbackMessage = new Dictionary<uint, HashSet<FeedbackMessage>>();
 
-    private FilterMode filterMode;
+    private FunctionHook<SendFeedbackMessageHook> sendFeedbackMessageHook;
+    private FunctionHook<SendServerToPlayerCCMessageHook> sendServerToPlayerCCMessageHook;
+    private FunctionHook<SendServerToPlayerJournalUpdatedHook> sendServerToPlayerJournalUpdatedHook;
 
-    public FilterMode FilterMode
+    private FilterMode combatMessageFilterMode;
+
+    public FilterMode CombatMessageFilterMode
     {
-      get => filterMode;
+      get => combatMessageFilterMode;
       set
       {
-        filterMode = value;
+        combatMessageFilterMode = value;
         if (value == FilterMode.Whitelist)
         {
-          InitHooks();
+          sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage, HookOrder.Late);
+        }
+      }
+    }
+
+    private FilterMode feedbackMessageFilterMode;
+
+    public FilterMode FeedbackMessageFilterMode
+    {
+      get => feedbackMessageFilterMode;
+      set
+      {
+        feedbackMessageFilterMode = value;
+        if (value == FilterMode.Whitelist)
+        {
+          sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage, HookOrder.Late);
+          sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated, HookOrder.Late);
         }
       }
     }
@@ -96,40 +112,33 @@ namespace NWN.Services
     }
 
     public bool IsFeedbackMessageHidden(FeedbackMessage message)
-      => IsMessageHidden(globalFilterListFeedbackMessage, message);
+      => IsMessageHidden(globalFilterListFeedbackMessage, message, FeedbackMessageFilterMode);
 
     public bool IsFeedbackMessageHidden(FeedbackMessage message, NwPlayer player)
-      => IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, message, player);
+      => IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player, message, FeedbackMessageFilterMode);
 
     public bool IsCombatLogMessageHidden(CombatLogMessage message)
-      => IsMessageHidden(globalFilterListCombatMessage, message);
+      => IsMessageHidden(globalFilterListCombatMessage, message, CombatMessageFilterMode);
 
     public bool IsCombatLogMessageHidden(CombatLogMessage message, NwPlayer player)
-      => IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, message, player);
+      => IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player, message, CombatMessageFilterMode);
 
-    private void InitHooks()
-    {
-      sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage, HookOrder.Late);
-      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage, HookOrder.Late);
-      sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated, HookOrder.Late);
-    }
-
-    private bool IsMessageHidden<T>(HashSet<T> globalFilter, T message)
+    private bool IsMessageHidden<T>(HashSet<T> globalFilter, T message, FilterMode filterMode)
     {
       bool hasFilter = globalFilter.Contains(message);
-      return FilterMode == FilterMode.Blacklist ? hasFilter : !hasFilter;
+      return filterMode == FilterMode.Blacklist ? hasFilter : !hasFilter;
     }
 
-    private bool IsMessageHidden<T>(HashSet<T> globalFilter, Dictionary<uint, HashSet<T>> playerFilter, T message, uint player)
+    private bool IsMessageHidden<T>(HashSet<T> globalFilter, Dictionary<uint, HashSet<T>> playerFilter, uint player, T message, FilterMode filterMode)
     {
       bool hasFilter = globalFilter.Contains(message) || playerFilter.ContainsElement(player, message);
-      return FilterMode == FilterMode.Blacklist ? hasFilter : !hasFilter;
+      return CombatMessageFilterMode == FilterMode.Blacklist ? hasFilter : !hasFilter;
     }
 
     private void OnSendFeedbackMessage(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer)
     {
       CNWSCreature creature = new CNWSCreature(pCreature, false);
-      if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, (FeedbackMessage)nFeedbackId, creature.m_idSelf))
+      if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, creature.m_idSelf, (FeedbackMessage)nFeedbackId, FeedbackMessageFilterMode))
       {
         return;
       }
@@ -140,7 +149,7 @@ namespace NWN.Services
     private int OnSendServerToPlayerCCMessage(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData)
     {
       CNWSPlayer player = ServerExoApp.GetClientObjectByPlayerId(nPlayerId, 0).AsNWSPlayer();
-      if (IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, (CombatLogMessage)nMinor, player.m_oidPCObject))
+      if (IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player.m_oidPCObject, (CombatLogMessage)nMinor, CombatMessageFilterMode))
       {
         return false.ToInt();
       }
@@ -151,7 +160,7 @@ namespace NWN.Services
     private int OnSendServerToPlayerJournalUpdated(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString)
     {
       CNWSPlayer player = new CNWSPlayer(pPlayer, false);
-      if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, FeedbackMessage.JournalUpdated, player.m_oidPCObject))
+      if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.m_oidPCObject, FeedbackMessage.JournalUpdated, FeedbackMessageFilterMode))
       {
         return false.ToInt();
       }
