@@ -511,9 +511,12 @@ namespace NWN.API
     {
       get
       {
-        for (uint player = NWScript.GetFirstPC(); player != INVALID; player = NWScript.GetNextPC())
+        CExoLinkedListCNWSClient playerList = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList;
+
+        for (CExoLinkedListNode node = playerList.GetHeadPos(); node != null; node = node.pNext)
         {
-          yield return player.ToNwObject<NwPlayer>();
+          CNWSPlayer player = playerList.GetAtPos(node).AsNWSPlayer();
+          yield return new NwPlayer(player, player.m_oidPCObject.ToNwObject<NwCreature>());
         }
       }
     }
