@@ -114,6 +114,13 @@ namespace NWN.API
       remove => EventService.Unsubscribe<ModuleEvents.OnPlayerUnequipItem, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnBarterEnd"/>
+    public event Action<OnBarterEnd> OnBarterEnd
+    {
+      add => EventService.Subscribe(this, Events.OnBarterEnd.FactoryTypes, value);
+      remove => EventService.Unsubscribe(this, Events.OnBarterEnd.FactoryTypes, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnBarterStart"/>
     public event Action<OnBarterStart> OnBarterStart
     {

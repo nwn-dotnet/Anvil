@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnCombatRoundStart : IEvent
+  public sealed class OnCombatRoundStart : IEvent
   {
     public NwCreature Creature { get; private init; }
 

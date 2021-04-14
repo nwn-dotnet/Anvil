@@ -5,7 +5,7 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API.Events
 {
-  public class OnDisarmWeapon : IEvent
+  public sealed class OnDisarmWeapon : IEvent
   {
     public bool PreventDisarm { get; set; }
 

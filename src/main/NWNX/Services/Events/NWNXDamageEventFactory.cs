@@ -8,6 +8,8 @@ namespace NWNX.Services
 {
   [ServiceBinding(typeof(IEventFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
+  [Obsolete("The NWNXDamageEventFactory is obsolete and will be removed in the next release.\n" +
+    "Use NwModule/NwCreature.OnCreatureAttack/Damage instead.")]
   public class NWNXDamageEventFactory : IEventFactory, IScriptDispatcher
   {
     private const string AttackScriptName = "___nwnmxatk_evt";

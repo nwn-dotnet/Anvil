@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnCombatStatusChange : IEvent
+  public sealed class OnCombatStatusChange : IEvent
   {
     private static readonly CServerExoApp ServerExoApp = NWNXLib.AppManager().m_pServerExoApp;
 
