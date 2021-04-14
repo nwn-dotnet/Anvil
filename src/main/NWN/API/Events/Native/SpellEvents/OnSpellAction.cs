@@ -7,7 +7,7 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API.Events
 {
-  public class OnSpellAction : IEvent
+  public sealed class OnSpellAction : IEvent
   {
     public bool PreventSpellCast { get; set; }
 

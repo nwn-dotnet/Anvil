@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnPartyEvent : IEvent
+  public sealed class OnPartyEvent : IEvent
   {
     public bool PreventEvent { get; set; }
 

@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnStoreRequestSell : IEvent
+  public sealed class OnStoreRequestSell : IEvent
   {
     public bool PreventSell { get; set; }
 

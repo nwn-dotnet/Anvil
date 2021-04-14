@@ -1,3 +1,4 @@
+using System;
 using NWN.API;
 using NWN.API.Events;
 using NWN.Core;
@@ -5,6 +6,7 @@ using NWN.Core.NWNX;
 
 namespace NWNX.API.Events
 {
+  [Obsolete("Use NwModule/NwCreature.OnCreatureDamage instead.")]
   public sealed class DamageEvent : IEvent
   {
     public NwGameObject Attacker { get; }
