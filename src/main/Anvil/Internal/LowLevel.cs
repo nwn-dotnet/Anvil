@@ -1,6 +1,6 @@
 using NWN.Native.API;
 
-namespace NWN
+namespace Anvil.Internal
 {
   internal static class LowLevel
   {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Anvil.Internal;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;

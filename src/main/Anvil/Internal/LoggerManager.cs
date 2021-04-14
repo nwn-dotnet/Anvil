@@ -6,7 +6,7 @@ using NLog.Layouts;
 using NLog.Targets;
 using NWN.API;
 
-namespace NWN
+namespace Anvil.Internal
 {
   internal class LoggerManager : IDisposable
   {
