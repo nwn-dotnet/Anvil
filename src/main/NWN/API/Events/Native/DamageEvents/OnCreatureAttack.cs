@@ -8,8 +8,8 @@ namespace NWN.API.Events
   {
     public AttackResult AttackResult
     {
-      get => (AttackResult)combatAttackData.m_nAttackResult;
-      set => combatAttackData.m_nAttackResult = (byte)value;
+      get => (AttackResult)CombatAttackData.m_nAttackResult;
+      set => CombatAttackData.m_nAttackResult = (byte)value;
     }
 
     public NwCreature Attacker { get; private init; }
@@ -28,7 +28,7 @@ namespace NWN.API.Events
 
     public DamageData<short> DamageData { get; private init; }
 
-    private CNWSCombatAttackData combatAttackData { get; init; }
+    private CNWSCombatAttackData CombatAttackData { get; init; }
 
     NwObject IEvent.Context => Attacker;
 
@@ -104,7 +104,7 @@ namespace NWN.API.Events
 
       return new OnCreatureAttack
       {
-        combatAttackData = combatAttackData,
+        CombatAttackData = combatAttackData,
         Attacker = creature,
         Target = target,
         AttackNumber = attackNumber + 1, // 1-based for backwards compatibility
