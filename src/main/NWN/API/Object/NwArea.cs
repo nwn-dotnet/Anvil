@@ -573,5 +573,13 @@ namespace NWN.API
 
       return serialized;
     }
+
+    public static NwArea Deserialize(string resRef, byte[] serializedGIT, byte[] serializedARE, string newTag = "", string newName = "")
+    {
+      ResourceManager.WriteTempResource(resRef + ".git", serializedGIT);
+      ResourceManager.WriteTempResource(resRef + ".are", serializedARE);
+
+      return Create(resRef, newTag, newName);
+    }
   }
 }
