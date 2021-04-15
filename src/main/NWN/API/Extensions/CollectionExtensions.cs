@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NWN.API
 {
@@ -20,6 +21,22 @@ namespace NWN.API
       }
 
       values.Add(value);
+    }
+
+    public static bool RemoveElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>, new()
+    {
+        bool retVal = false;
+
+        if (mutableLookup.TryGetValue(key, out TCollection values))
+        {
+            retVal = values.Remove(value);
+            if (values.Any())
+            {
+                mutableLookup.Remove(key);
+            }
+        }
+
+        return retVal;
     }
 
     public static bool ContainsElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>

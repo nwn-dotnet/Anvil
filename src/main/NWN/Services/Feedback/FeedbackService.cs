@@ -111,6 +111,26 @@ namespace NWN.Services
       playerFilterListFeedbackMessage.AddElement(player, message);
     }
 
+    public void RemoveFeedbackMessageFilter(FeedbackMessage message)
+    {
+        globalFilterListFeedbackMessage.Remove(message);
+    }
+
+    public void RemoveFeedbackMessageFilter(FeedbackMessage message, NwPlayer player)
+    {
+        playerFilterListFeedbackMessage.RemoveElement(player, message);
+    }
+
+    public void RemoveCombatMessageFilter(CombatLogMessage message)
+    {
+        globalFilterListCombatMessage.Remove(message);
+    }
+
+    public void RemoveCombatMessageFilter(CombatLogMessage message, NwPlayer player)
+    {
+        playerFilterListCombatMessage.RemoveElement(player, message);
+    }
+
     public bool IsFeedbackMessageHidden(FeedbackMessage message)
       => IsMessageHidden(globalFilterListFeedbackMessage, message, FeedbackMessageFilterMode);
 
