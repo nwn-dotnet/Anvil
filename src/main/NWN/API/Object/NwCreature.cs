@@ -385,6 +385,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the sound set index for this creature.
+    /// </summary>
+    public ushort SoundSet
+    {
+      get => Creature.m_nSoundSet;
+      set => Creature.m_nSoundSet = value;
+    }
+
+    /// <summary>
     /// Gets or sets the base AC for this creature.
     /// </summary>
     public sbyte BaseAC
