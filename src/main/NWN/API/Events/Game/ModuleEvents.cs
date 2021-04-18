@@ -11,20 +11,23 @@ namespace NWN.API.Events
   public static class ModuleEvents
   {
     /// <summary>
-    /// Triggered whenever an item is added to someone's inventory.
+    /// Triggered whenever an <see cref="NwItem"/> is added to <see cref="NwGameObject"/> inventory.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnAcquireItem)]
     public sealed class OnAcquireItem : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwItem"/> that triggered the event.
+      /// </summary>
       public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
 
       /// <summary>
-      /// Gets the object that acquired the item.
+      /// Gets the <see cref="NwGameObject"/> that acquired the <see cref="NwItem"/>.
       /// </summary>
       public NwGameObject AcquiredBy { get; } = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the object that the item was taken from.
+      /// Gets the <see cref="NwGameObject"/> that the <see cref="NwItem"/> was taken from.
       /// </summary>
       public NwGameObject AcquiredFrom { get; } = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
 
@@ -55,24 +58,27 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player selects a character, and loads into the module.
+    /// Triggered when a <see cref="NwPlayer"/> selects a character and logged into the module.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientEnter)]
     public sealed class OnClientEnter : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetEnteringObject().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
     }
 
     /// <summary>
-    /// Triggered when a player character leaves the server.
+    /// Triggered when a <see cref="NwCreature"/> leaves the server.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientExit)]
     public sealed class OnClientLeave : IEvent
     {
       /// <summary>
-      /// Gets the player that is leaving.<br/>
+      /// Gets the <see cref="NwPlayer"/>  that is leaving.<br/>
       /// Note! This will be a <see cref="NwCreature"/> if the leaving player is possessing a creature.
       /// </summary>
       public NwCreature Player { get; } = NWScript.GetExitingObject().ToNwObject<NwPlayer>();
@@ -81,11 +87,14 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player tries to cancel a cutscene (ESC).
+    /// Triggered when a <see cref="NwPlayer"/> tries to cancel a cutscene (ESC).
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
     public sealed class OnCutsceneAbort : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPCToCancelCutscene().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
@@ -116,13 +125,13 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when any player sends a non-tell based chat message.
+    /// Triggered when any <see cref="NwPlayer"/> sends a chat message. Private channel not hooked.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerChat)]
     public sealed class OnPlayerChat : IEvent
     {
       /// <summary>
-      /// Gets the player that sent this message.
+      /// Gets the <see cref="NwPlayer"/> that sent this message.
       /// </summary>
       public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwObject<NwPlayer>();
 
@@ -147,21 +156,24 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Sender;
     }
 
+      /// <summary>
+      /// Triggered when a <see cref="NwPlayer"/> that has targeted something.
+      /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerTarget)]
     public sealed class OnPlayerTarget : IEvent
     {
       /// <summary>
-      /// Gets the player that has targeted something.
+      /// Gets the <see cref="NwPlayer"/> that has targeted something.
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPlayerToSelectTarget().ToNwObject<NwPlayer>();
 
       /// <summary>
-      /// Gets the object that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
+      /// Gets the <see cref="NwObject"/> that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
       /// </summary>
       public NwObject TargetObject { get; } = NWScript.GetTargetingModeSelectedObject().ToNwObject();
 
       /// <summary>
-      /// Gets the position targeted by the player.
+      /// Gets the position targeted by the <see cref="NwPlayer"/>.
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetTargetingModeSelectedPosition();
 
@@ -169,98 +181,137 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player dies.
+    /// Triggered when a <see cref="NwPlayer"/> dies.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerDeath)]
     public sealed class OnPlayerDeath : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that has triggered the event.
+      /// </summary>
       public NwPlayer DeadPlayer { get; } = NWScript.GetLastPlayerDied().ToNwObject<NwPlayer>();
 
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that caused <see cref="NwPlayer"/> to trigger the event.
+      /// </summary>
       public NwGameObject Killer { get; } = NWScript.GetLastHostileActor().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => DeadPlayer;
     }
 
     /// <summary>
-    /// Triggered when a player enters a dying state (&lt; 0 HP).
+    /// Triggered when a <see cref="NwPlayer"/> enters a dying state (&lt; 0 HP).
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerDying)]
     public sealed class OnPlayerDying : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that has triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPlayerDying().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
     }
 
     /// <summary>
-    /// Triggered when a player equips an item.
+    /// Triggered when a <see cref="NwCreature"/> equips an <see cref="NwItem"/>.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnEquipItem)]
     public sealed class OnPlayerEquipItem : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that last equipped <see cref="NwItem"/>.
+      /// </summary>
       public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the last equipped <see cref="NwItem"/> that triggered the event.
+      /// </summary>
       public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => Player;
     }
 
     /// <summary>
-    /// Triggered when a player levels up.
+    /// Triggered when a <see cref="NwPlayer"/> levels up.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerLevelUp)]
     public sealed class OnPlayerLevelUp : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that has triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
     }
 
     /// <summary>
-    /// Triggered when a player clicks the respawn button on the death screen.
+    /// Triggered when a <see cref="NwPlayer"/> clicks the respawn button on the death screen.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
     public sealed class OnPlayerRespawn : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that clicked the respawn button on the death screen.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastRespawnButtonPresser().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
     }
 
     /// <summary>
-    /// Triggered when any player presses the rest button, or when the rest is finished.
+    /// Triggered when <see cref="NwPlayer"/> presses the rest button and begins to rest, cancelled rest, or finished rest.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerRest)]
     public sealed class OnPlayerRest : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPCRested().ToNwObject<NwPlayer>();
 
+      /// <summary>
+      /// Gets the <see cref="RestEventType"/> that was triggered.
+      /// </summary>
       public RestEventType RestEventType { get; } = (RestEventType) NWScript.GetLastRestEventType();
 
       NwObject IEvent.Context => Player;
     }
 
     /// <summary>
-    /// Triggered just before a player un-equips an item.
+    /// Triggered just before a <see cref="NwCreature"/> un-equips an <see cref="NwItem"/>.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnUnequipItem)]
     public sealed class OnPlayerUnequipItem : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that triggered the event.
+      /// </summary>
       public NwCreature UnequippedBy { get; } = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the <see cref="NwItem"/> that was last unequipped.
+      /// </summary>
       public NwItem Item { get; } = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => UnequippedBy;
     }
 
     /// <summary>
-    /// Triggered when an item stack is removed from a creature's inventory.
+    /// Triggered when a <see cref="NwItem"/> is removed from a <see cref="NwCreature"/>'s inventory.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnLoseItem)]
     public sealed class OnUnacquireItem : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that lost the <see cref="NwItem"/>.
+      /// </summary>
       public NwCreature LostBy { get; } = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the <see cref="NwItem"/> that was lost by <see cref="NwCreature"/>.
+      /// </summary>
       public NwItem Item { get; } = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => LostBy;
