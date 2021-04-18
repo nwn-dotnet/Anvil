@@ -16,7 +16,7 @@ namespace NWN.Services
 
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private const string AliasBaseName = "NMAN";
+    private const string AliasBaseName = "ANVILRES";
     private const string AliasSuffix = ":";
     private const uint BasePriority = 70500000;
 
