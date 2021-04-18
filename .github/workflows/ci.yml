@@ -79,7 +79,7 @@ jobs:
           name: Binaries
           path: |
             output/
-            NWN.Managed.zip
+            NWN.Anvil.zip
           if-no-files-found: error
 
   release:
@@ -110,8 +110,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./NWN.Managed.zip
-          asset_name: NWN.Managed.zip
+          asset_path: ./NWN.Anvil.zip
+          asset_name: NWN.Anvil.zip
           asset_content_type: application/zip
 
   nuget:
@@ -173,18 +173,18 @@ jobs:
           push: true
           build-args: BINARY_PATH=/output
           labels: |
-              org.opencontainers.image.title=NWN.Managed
-              org.opencontainers.image.description=NWN.Managed is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use NWN.Managed.
+              org.opencontainers.image.title=Anvil
+              org.opencontainers.image.description=Anvil is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use Anvil.
               org.opencontainers.image.author=NWN DotNET
               org.opencontainers.image.vendor=NWN DotNET
               org.opencontainers.image.source=https://github.com/${{ github.repository }}
               org.opencontainers.image.created=${{ needs.build.outputs.created }}
               org.opencontainers.image.revision=${{ github.sha }}
-              org.opencontainers.image.documentation=https://nwn-dotnet.github.io/NWN.Managed
+              org.opencontainers.image.documentation=https://nwn-dotnet.github.io/Anvil
           tags: |
-            nwndotnet/nwn.managed:latest
-            nwndotnet/nwn.managed:${{ needs.build.outputs.version }}
-            nwndotnet/nwn.managed:${{ needs.build.outputs.sha_short }}
+            nwndotnet/anvil:latest
+            nwndotnet/anvil:${{ needs.build.outputs.version }}
+            nwndotnet/anvil:${{ needs.build.outputs.sha_short }}
             ghcr.io/${{ needs.build.outputs.image_repository }}:latest
             ghcr.io/${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.version }}
             ghcr.io/${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.sha_short }}

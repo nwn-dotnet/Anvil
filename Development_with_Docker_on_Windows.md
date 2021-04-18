@@ -1,10 +1,10 @@
-﻿# Running NWN.Managed in docker on windows
+﻿# Running Anvil in docker on windows
 
-To get NWN.Managed up an running for development and testing, the easiest way
+To get Anvil up an running for development and testing, the easiest way
 is to run it in docker (which is can also be used in Docker with WSL).
 
 #### Why this guide?
-Pragmatic, opionated way to setup a NWN.Managed development environment.
+Pragmatic, opionated way to setup a Anvil development environment.
 
 #### Preperation
 There are some things that you need to install, which is not part of this guide:
@@ -25,7 +25,7 @@ made by the toolset and IDE will immediately be picked up when you restart your 
 #### Steps
 0. **Create a backup** of `C:\Users\<USER>\Documents\Neverwinter Nights` to a location of your choice (just in case).
 1. Open `C:\Users\<USER>\Documents\Neverwinter Nights`. I will refer to this folder as `root\` from now on.
-2. Download and extract the latest `NWN.Managed.zip` from github: https://github.com/nwn-dotnet/NWN.Managed/releases to `root\NWN.Managed`
+2. Download and extract the latest `Anvil.zip` from github: https://github.com/nwn-dotnet/Anvil/releases to `root\Anvil`
 3. Clone https://github.com/nwn-dotnet/NWN.Samples/tree/master/managed/plugin-sample to `root\plugin-sample` (ATTENTION: `plugin-sample` is NOT the root of the repository but a subfolder. You have to clone to a different location first and copy the appropriate folder to the described location)
 4. Open `root\plugin-sample\plugin-sample.csproj` in your IDE
 5. Compile the project using the IDE, make sure that `root\plugin-sample\bin\Debug\Plugins\plugin-sample\plugin-sample.dll` is created
@@ -46,13 +46,13 @@ services:
       - NWNX_DOTNET_SKIP=n
       - NWNX_OBJECT_SKIP=n
       - NWNX_UTIL_SKIP=n
-      - NWNX_DOTNET_ASSEMBLY=/NWN.Managed/NWN.Managed
+      - NWNX_DOTNET_ASSEMBLY=/Anvil/NWN.Anvil
     volumes:
       - ./modules:/nwn/home/modules
       - ./hak:/nwn/home/hak
       - ./tlk:/nwn/home/tlk
-      - ./NWN.Managed:/NWN.Managed
-      - ./plugin-sample/bin/Debug/Plugins:/NWN.Managed/Plugins
+      - ./Anvil:/Anvil
+      - ./plugin-sample/bin/Debug/Plugins:/Anvil/Plugins
 ````
 
 7. Your `C:\Users\<USER>\Documents\Neverwinter Nights` should now look like this:
@@ -68,10 +68,10 @@ services:
 ├── modules\
 ├── movies\
 ├── music\
-├── NWN.Managed\              <-- Added by you
+├── Anvil\              <-- Added by you
 │   │   ├── Plugins
 │   │   │   ├── [empty, no files]
-│   ├── NWN.Managed.dll
+│   ├── NWN.Anvil.dll
 │   ├── [...]
 ├── nwsync\
 ├── override\
