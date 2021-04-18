@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using NWN.Core;
 
 namespace NWN.API
 {
@@ -157,18 +155,6 @@ namespace NWN.API
       Task<TResult> results = await Task.WhenAny(tasks);
       await SwitchToMainThread();
       return results;
-    }
-
-    internal static async Task WaitForNativeMainThread()
-    {
-      TaskCompletionSource tcs = new TaskCompletionSource();
-      Action waitAction = () =>
-      {
-        tcs.SetResult();
-      };
-
-      VM.QueueOnMainThread(Marshal.GetFunctionPointerForDelegate(waitAction));
-      await tcs.Task;
     }
   }
 }

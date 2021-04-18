@@ -86,10 +86,8 @@ namespace Anvil
 
     void ICoreSignalHandler.OnShutdown() => Shutdown();
 
-    private async void Init()
+    private void Init()
     {
-      await NwTask.WaitForNativeMainThread();
-
       loggerManager.Init();
       PrelinkNative();
       loggerManager.InitVariables();
