@@ -172,13 +172,19 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player dies.
+    /// Triggered when a <see cref="NwPlayer"/> dies.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerDeath)]
     public sealed class OnPlayerDeath : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that has triggered the event.
+      /// </summary>
       public NwPlayer DeadPlayer { get; } = NWScript.GetLastPlayerDied().ToNwObject<NwPlayer>();
 
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that caused <see cref="NwPlayer"/> to trigger the event.
+      /// </summary>
       public NwGameObject Killer { get; } = NWScript.GetLastHostileActor().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => DeadPlayer;
