@@ -33,18 +33,18 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Called when an object leaves the area.
+    /// Called when an <see cref="NwGameObject"/> leaves the <see cref="NwArea"/>.
     /// </summary>
     [NativeEvent(EventScriptType.AreaOnExit)]
     public sealed class OnExit : NativeEvent<NwArea, OnExit>
     {
       /// <summary>
-      /// Gets the area that was left.
+      /// Gets the <see cref="NwGameObject"/> that was left.
       /// </summary>
       public NwArea Area { get; private set; }
 
       /// <summary>
-      /// Gets the game object that left the area.
+      /// Gets the <see cref="NwGameObject"/> that left the <see cref="NwArea"/>.
       /// </summary>
       public NwGameObject ExitingObject { get; private set; }
 
