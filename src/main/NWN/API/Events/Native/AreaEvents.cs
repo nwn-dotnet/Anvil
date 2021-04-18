@@ -10,18 +10,18 @@ namespace NWN.API.Events
   public static class AreaEvents
   {
     /// <summary>
-    /// Called when a new object has entered the area.
+    /// Called when a new <see cref="NwGameObject"/> has entered the <see cref="NwArea"/>.
     /// </summary>
     [NativeEvent(EventScriptType.AreaOnEnter)]
     public sealed class OnEnter : NativeEvent<NwArea, OnEnter>
     {
       /// <summary>
-      /// Gets the area that was entered.
+      /// Gets the <see cref="NwArea"/> that was entered.
       /// </summary>
       public NwArea Area { get; private set; }
 
       /// <summary>
-      /// Gets the game object that entered the area.
+      /// Gets the <see cref="NwGameObject"/> that entered the area.
       /// </summary>
       public NwGameObject EnteringObject { get; private set; }
 
