@@ -147,21 +147,24 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Sender;
     }
 
+      /// <summary>
+      /// Triggered when a <see cref="NwPlayer"/> that has targeted something.
+      /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerTarget)]
     public sealed class OnPlayerTarget : IEvent
     {
       /// <summary>
-      /// Gets the player that has targeted something.
+      /// Gets the <see cref="NwPlayer"/> that has targeted something.
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPlayerToSelectTarget().ToNwObject<NwPlayer>();
 
       /// <summary>
-      /// Gets the object that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
+      /// Gets the <see cref="NwObject"/> that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
       /// </summary>
       public NwObject TargetObject { get; } = NWScript.GetTargetingModeSelectedObject().ToNwObject();
 
       /// <summary>
-      /// Gets the position targeted by the player.
+      /// Gets the position targeted by the <see cref="NwPlayer"/>.
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetTargetingModeSelectedPosition();
 
