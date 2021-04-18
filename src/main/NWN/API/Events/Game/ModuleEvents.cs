@@ -72,7 +72,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a <see cref="NwPlayer"/> character leaves the server.
+    /// Triggered when a <see cref="NwCreature"/> leaves the server.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientExit)]
     public sealed class OnClientLeave : IEvent
@@ -92,6 +92,9 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
     public sealed class OnCutsceneAbort : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPCToCancelCutscene().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
