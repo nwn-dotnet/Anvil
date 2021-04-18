@@ -252,13 +252,19 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when any player presses the rest button, or when the rest is finished.
+    /// Triggered when <see cref="NwPlayer"/> presses the rest button and begins to rest, cancelled rest, or finished rest.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerRest)]
     public sealed class OnPlayerRest : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPCRested().ToNwObject<NwPlayer>();
 
+    /// <summary>
+    /// Gets the <see cref="RestEventType"/> that was triggered.
+    /// </summary>
       public RestEventType RestEventType { get; } = (RestEventType) NWScript.GetLastRestEventType();
 
       NwObject IEvent.Context => Player;
