@@ -63,6 +63,9 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.ModuleOnClientEnter)]
     public sealed class OnClientEnter : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetEnteringObject().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
