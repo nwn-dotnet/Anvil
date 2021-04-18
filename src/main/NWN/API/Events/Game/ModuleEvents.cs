@@ -290,13 +290,19 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when an item stack is removed from a creature's inventory.
+    /// Triggered when a <see cref="NwItem"/> is removed from a <see cref="NwCreature"/>'s inventory.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnLoseItem)]
     public sealed class OnUnacquireItem : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that lost the <see cref="NwItem"/>.
+      /// </summary>
       public NwCreature LostBy { get; } = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the <see cref="NwItem"/> that was lost by <see cref="NwCreature"/>.
+      /// </summary>
       public NwItem Item { get; } = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => LostBy;
