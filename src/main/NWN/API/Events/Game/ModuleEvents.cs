@@ -55,7 +55,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player selects a character, and loads into the module.
+    /// Triggered when a <see cref="NwPlayer"/> selects a character and logged into the module.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientEnter)]
     public sealed class OnClientEnter : IEvent
@@ -66,7 +66,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player character leaves the server.
+    /// Triggered when a <see cref="NwPlayer"/> character leaves the server.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnClientExit)]
     public sealed class OnClientLeave : IEvent
