@@ -191,11 +191,14 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player enters a dying state (&lt; 0 HP).
+    /// Triggered when a <see cref="NwPlayer"/> enters a dying state (&lt; 0 HP).
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerDying)]
     public sealed class OnPlayerDying : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that has triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPlayerDying().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
