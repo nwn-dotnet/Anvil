@@ -12,12 +12,12 @@ namespace Anvil.Internal
     private readonly Stack<uint> scriptContexts = new Stack<uint>();
     private readonly Dictionary<ulong, Action> closures = new Dictionary<ulong, Action>();
 
-    private uint objectSelf;
-    private ulong nextEventId;
-
     private readonly ICoreSignalHandler signalHandler;
     private ICoreRunScriptHandler scriptHandler;
     private ICoreLoopHandler loopHandler;
+
+    private uint objectSelf;
+    private ulong nextEventId;
 
     uint ICoreFunctionHandler.ObjectSelf
     {
