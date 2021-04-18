@@ -122,7 +122,7 @@ namespace NWN.API.Events
     public sealed class OnPlayerChat : IEvent
     {
       /// <summary>
-      /// Gets the player that sent this message.
+      /// Gets the <see cref="NwPlayer"/> that sent this message.
       /// </summary>
       public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwObject<NwPlayer>();
 
