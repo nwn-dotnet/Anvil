@@ -11,7 +11,7 @@ namespace NWN.API.Events
   public static class ModuleEvents
   {
     /// <summary>
-    /// Triggered whenever an item is added to someone's inventory.
+    /// Triggered whenever an <see cref="NwItem"/> is added to <see cref="NwPlayer"/> inventory.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnAcquireItem)]
     public sealed class OnAcquireItem : IEvent
@@ -19,12 +19,12 @@ namespace NWN.API.Events
       public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
 
       /// <summary>
-      /// Gets the object that acquired the item.
+      /// Gets the <see cref="NwGameObject"/> that acquired the <see cref="NwItem"/>.
       /// </summary>
       public NwGameObject AcquiredBy { get; } = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the object that the item was taken from.
+      /// Gets the <see cref="NwGameObject"/> that the <see cref="NwItem"/> was taken from.
       /// </summary>
       public NwGameObject AcquiredFrom { get; } = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
 
