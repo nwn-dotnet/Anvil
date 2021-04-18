@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
@@ -8,17 +9,17 @@ using NWN.Core;
 using NWN.Plugins;
 using NWN.Services;
 
-namespace NWN
+namespace Anvil
 {
   /// <summary>
-  /// Handles bootstrap and interop between %NWN, %NWN.Core and the managed %API. The entry point of the implementing module should point to this class.<br/>
+  /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
   /// Until <see cref="Init(IntPtr, int, IContainerBuilder, ITypeLoader)"/> is called, all APIs are unavailable for usage.
   /// </summary>
-  public sealed class AnvilServer : ICoreSignalHandler
+  public sealed class AnvilCore : ICoreSignalHandler
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private static AnvilServer instance;
+    private static AnvilCore instance;
 
     // Core Services
     private CoreInteropHandler interopHandler;
@@ -41,7 +42,7 @@ namespace NWN
       typeLoader ??= new PluginLoader();
       containerBuilder ??= new ServiceBindingContainerBuilder();
 
-      instance = new AnvilServer();
+      instance = new AnvilCore();
       instance.interopHandler = new CoreInteropHandler(instance);
       instance.containerBuilder = containerBuilder;
       instance.typeLoader = typeLoader;
@@ -64,13 +65,13 @@ namespace NWN
     {
       if (!EnvironmentConfig.ReloadEnabled)
       {
-        Log.Error("Managed reload is not enabled (NWM_RELOAD_ENABLED=true)");
+        Log.Error("Hot Reload of plugins is not enabled (NWM_RELOAD_ENABLED=true)");
         return;
       }
 
       await NwTask.NextFrame();
 
-      Log.Info("Reloading NWN.Managed.");
+      Log.Info("Reloading Anvil.");
 
       instance.Shutdown(true);
 
@@ -93,7 +94,9 @@ namespace NWN
       PrelinkNative();
       loggerManager.InitVariables();
 
-      Log.Info($"Loading NWN.Managed {Assemblies.Managed.GetName().Version} (NWN.Core: {Assemblies.Core.GetName().Version}, NWN.Native: {Assemblies.Native.GetName().Version}).");
+      AssemblyName assemblyName = Assemblies.Anvil.GetName();
+
+      Log.Info($"Loading {assemblyName.Name} {Assemblies.Anvil.GetName().Version} (NWN.Core: {Assemblies.Core.GetName().Version}, NWN.Native: {Assemblies.Native.GetName().Version}).");
       Log.Info($".NET runtime is \"{RuntimeInformation.FrameworkDescription}\", running on \"{RuntimeInformation.OSDescription}\", installed at \"{RuntimeEnvironment.GetRuntimeDirectory()}\"");
       Log.Info($"Server is running Neverwinter Nights {NwServer.Instance.ServerVersion}.");
 
@@ -127,12 +130,12 @@ namespace NWN
 
     private void CheckServerVersion()
     {
-      Version managedVersion = Assemblies.Managed.GetName().Version;
+      AssemblyName assemblyName = Assemblies.Anvil.GetName();
       Version serverVersion = NwServer.Instance.ServerVersion;
 
-      if (managedVersion.Major != serverVersion.Major || managedVersion.Minor != serverVersion.Minor)
+      if (assemblyName.Version.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
       {
-        Log.Warn($"The current version of NWN.Managed targets version {managedVersion}, but the server is running {serverVersion}! You may encounter compatibility issues.");
+        Log.Warn($"The current version of {assemblyName.Name} targets version {assemblyName.Version}, but the server is running {serverVersion}! You may encounter compatibility issues.");
       }
     }
 

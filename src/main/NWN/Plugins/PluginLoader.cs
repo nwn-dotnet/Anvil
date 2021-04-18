@@ -112,7 +112,7 @@ namespace NWN.Plugins
 
     public Assembly ResolveDependency(string pluginName, AssemblyName dependencyName)
     {
-      Assembly assembly = ResolveDependencyFromManaged(pluginName, dependencyName);
+      Assembly assembly = ResolveDependencyFromAnvil(pluginName, dependencyName);
       if (assembly == null)
       {
         assembly = ResolveDependencyFromPlugins(pluginName, dependencyName);
@@ -121,7 +121,7 @@ namespace NWN.Plugins
       return assembly;
     }
 
-    private Assembly ResolveDependencyFromManaged(string pluginName, AssemblyName dependencyName)
+    private Assembly ResolveDependencyFromAnvil(string pluginName, AssemblyName dependencyName)
     {
       foreach (Assembly assembly in Assemblies.AllAssemblies)
       {

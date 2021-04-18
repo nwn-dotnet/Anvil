@@ -7,15 +7,15 @@ namespace Anvil.Internal
 {
   internal static class Assemblies
   {
-    internal static readonly Assembly Managed = typeof(Assemblies).Assembly;
+    internal static readonly Assembly Anvil = typeof(Assemblies).Assembly;
     internal static readonly Assembly Core = typeof(NWN.Core.NWNCore).Assembly;
     internal static readonly Assembly Native = typeof(NWN.Native.API.NWNXLib).Assembly;
 
-    internal static readonly string AssemblyDir = Path.GetDirectoryName(Managed.Location);
+    internal static readonly string AssemblyDir = Path.GetDirectoryName(Anvil.Location);
 
     public static readonly Assembly[] AllAssemblies =
     {
-      Managed,
+      Anvil,
       Core,
       Native,
       typeof(NLog.Logger).Assembly,
