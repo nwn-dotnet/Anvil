@@ -16,7 +16,7 @@ namespace NWNX.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private const string InternalScriptName = "____nwnmx_event";
+    private const string InternalScriptName = "___anvilx_event";
 
     private readonly Lazy<EventService> eventService;
 

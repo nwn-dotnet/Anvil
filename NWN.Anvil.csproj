@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-        <PackageId>NWN.Managed</PackageId>
+        <PackageId>NWN.Anvil</PackageId>
         <Authors>NWN.NET</Authors>
         <PackageTags>Neverwinter Nights;NWN;</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -13,7 +13,7 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <RepositoryUrl>https://github.com/nwn-dotnet/NWN.Managed</RepositoryUrl>
+        <RepositoryUrl>https://github.com/nwn-dotnet/Anvil</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -21,7 +21,7 @@
         <NoWarn>1591</NoWarn>
         <RootNamespace />
         <LangVersion>9.0</LangVersion>
-        <CodeAnalysisRuleSet>NWN.Managed.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>NWN.Anvil.ruleset</CodeAnalysisRuleSet>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Configurations>Debug;Release;Samples</Configurations>
         <Platforms>AnyCPU</Platforms>
@@ -33,8 +33,8 @@
     <ItemGroup>
         <PackageReference Include="LightInject" Version="6.4.0" />
         <PackageReference Include="NLog" Version="4.7.9" />
-        <PackageReference Include="NWN.Core" Version="8193.21.8" PrivateAssets="compile" />
-        <PackageReference Include="NWN.Native" Version="8193.21.3" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Core" Version="8193.22.2" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Native" Version="8193.22.0" PrivateAssets="compile" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="All" />
     </ItemGroup>

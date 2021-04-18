@@ -182,7 +182,7 @@ namespace NWN.API
     /// <summary>
     /// Inserts the function call aCommand into the Action Queue, ensuring the calling object will perform actions in a particular order.
     /// </summary>
-    public async Task AddActionToQueue(ActionDelegate action)
+    public async Task AddActionToQueue(System.Action action)
     {
       await WaitForObjectContext();
       NWScript.ActionDoCommand(action);

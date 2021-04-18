@@ -1,4 +1,5 @@
 using System;
+using Anvil;
 using JetBrains.Annotations;
 
 namespace NWN
@@ -8,7 +9,7 @@ namespace NWN
   {
     [UsedImplicitly] // Called by NWNX
     public static int Bootstrap(IntPtr arg, int argLength)
-      => NManager.Init(arg, argLength);
+      => Anvil.AnvilCore.Init(arg, argLength);
   }
 
   // @endcond

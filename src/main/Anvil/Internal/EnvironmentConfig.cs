@@ -1,21 +1,50 @@
 using System;
 using System.IO;
+using NWN.API;
 
 namespace Anvil.Internal
 {
   /// <summary>
-  /// NWN.Managed settings that are configured through Environment Variables.
+  /// Anvil settings that are configured through Environment Variables.
   /// </summary>
   public static class EnvironmentConfig
   {
-    // NWN.Managed
-    public static readonly string PluginsPath = Environment.GetEnvironmentVariable("NWM_PLUGIN_PATH") ?? Path.Combine(Assemblies.AssemblyDir, "Plugins");
-    public static readonly string NLogConfigPath = Environment.GetEnvironmentVariable("NWM_NLOG_CONFIG");
-    public static readonly bool ReloadEnabled = string.Equals(Environment.GetEnvironmentVariable("NWM_RELOAD_ENABLED"), "true", StringComparison.InvariantCultureIgnoreCase);
-    public static readonly bool PreventStartNoPlugin = string.Equals(Environment.GetEnvironmentVariable("NWM_PREVENT_START_NO_PLUGIN"), "true", StringComparison.InvariantCultureIgnoreCase);
+    private static readonly string[] VariablePrefixes = {"ANVIL_", "NWM_"};
+
+    // Anvil
+    public static readonly string PluginsPath = GetAnvilVariableString("PLUGIN_PATH", Path.Combine(Assemblies.AssemblyDir, "Plugins"));
+    public static readonly string NLogConfigPath = GetAnvilVariableString("NLOG_CONFIG");
+    public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
+    public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
 
     // NWNX
     public static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
     public static readonly string CoreShutdownScript = Environment.GetEnvironmentVariable("NWNX_CORE_SHUTDOWN_SCRIPT");
+
+    private static int GetAnvilVariableInt(string key, int defaultValue = 0)
+    {
+      string value = GetAnvilVariableString(key, defaultValue.ToString());
+      return value.ParseInt(defaultValue);
+    }
+
+    private static bool GetAnvilVariableBool(string key, bool defaultValue = false)
+    {
+      string value = GetAnvilVariableString(key, defaultValue.ToString());
+      return value.Equals("true", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string GetAnvilVariableString(string key, string defaultValue = null)
+    {
+      foreach (string prefix in VariablePrefixes)
+      {
+        string value = Environment.GetEnvironmentVariable(prefix + key);
+        if (value != null)
+        {
+          return value;
+        }
+      }
+
+      return defaultValue;
+    }
   }
 }

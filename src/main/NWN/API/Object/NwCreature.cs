@@ -542,12 +542,12 @@ namespace NWN.API
       get => (MovementRate)Creature.m_pStats.m_nMovementRate;
       set
       {
-          if (MovementRate == MovementRate.Immobile)
-          {
-              Creature.m_nAIState |= (ushort)AIState.CanUseLegs;
-          }
+        if (MovementRate == MovementRate.Immobile)
+        {
+          Creature.m_nAIState |= (ushort)AIState.CanUseLegs;
+        }
 
-          Creature.m_pStats.SetMovementRate((int)value);
+        Creature.m_pStats.SetMovementRate((int)value);
       }
     }
 

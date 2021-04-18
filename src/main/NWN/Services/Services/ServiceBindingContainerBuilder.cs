@@ -39,7 +39,7 @@ namespace NWN.Services
 
     private void SearchForBindings()
     {
-      Log.Info("Loading managed services...");
+      Log.Info("Loading services...");
 
       foreach (Type type in typeLoader.LoadedTypes)
       {
