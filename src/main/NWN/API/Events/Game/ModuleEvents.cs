@@ -224,11 +224,14 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player levels up.
+    /// Triggered when a <see cref="NwPlayer"/> levels up.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerLevelUp)]
     public sealed class OnPlayerLevelUp : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that has triggered the event.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
