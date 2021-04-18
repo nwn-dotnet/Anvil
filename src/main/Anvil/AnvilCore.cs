@@ -48,13 +48,7 @@ namespace Anvil
       instance.typeLoader = typeLoader;
       instance.loggerManager = new LoggerManager();
 
-      int result = NWNCore.Init(arg, argLength, instance.interopHandler, instance.interopHandler);
-      if (result == 0)
-      {
-        instance.Init();
-      }
-
-      return result;
+      return NWNCore.Init(arg, argLength, instance.interopHandler, instance.interopHandler);
     }
 
     /// <summary>
@@ -82,7 +76,13 @@ namespace Anvil
       instance.Start();
     }
 
-    void ICoreSignalHandler.OnStart() => Start();
+    private AnvilCore() {}
+
+    void ICoreSignalHandler.OnStart()
+    {
+      Init();
+      Start();
+    }
 
     void ICoreSignalHandler.OnShutdown() => Shutdown();
 
