@@ -205,13 +205,19 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player equips an item.
+    /// Triggered when a <see cref="NwCreature"/> equips an <see cref="NwItem"/>.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnEquipItem)]
     public sealed class OnPlayerEquipItem : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that last equipped <see cref="NwItem"/>.
+      /// </summary>
       public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the last equipped <see cref="NwItem"/> that triggered the event.
+      /// </summary>
       public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => Player;
