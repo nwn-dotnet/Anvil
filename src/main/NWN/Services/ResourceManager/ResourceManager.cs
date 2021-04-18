@@ -17,12 +17,13 @@ namespace NWN.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private const string AliasBaseName = "NMAN";
+    private const string AliasSuffix = ":";
     private const uint BasePriority = 70500000;
 
     private static readonly CExoBase ExoBase = NWNXLib.ExoBase();
     private static readonly CExoResMan ResMan = NWNXLib.ExoResMan();
 
-    private readonly CExoString TempAlias;
+    private readonly CExoString tempAlias;
 
     private uint currentIndex;
 
@@ -33,7 +34,7 @@ namespace NWN.Services
         Directory.Delete(EnvironmentConfig.ResourcePath, true);
       }
 
-      TempAlias = CreateResourceDirectory(EnvironmentConfig.ResourcePath).ToExoString();
+      tempAlias = CreateResourceDirectory(EnvironmentConfig.ResourcePath).ToExoString();
 
       foreach (string resourcePath in typeLoader.ResourcePaths)
       {
@@ -56,6 +57,7 @@ namespace NWN.Services
       }
 
       File.WriteAllBytes(Path.Combine(EnvironmentConfig.ResourcePath, resourceName), data);
+      ResMan.UpdateResourceDirectory(tempAlias);
     }
 
     private string CreateResourceDirectory(string path)
@@ -65,11 +67,11 @@ namespace NWN.Services
         throw new ArgumentOutOfRangeException(nameof(path), "Path must not be empty or null.");
       }
 
-      string alias = AliasBaseName + currentIndex;
+      string alias = AliasBaseName + currentIndex + AliasSuffix;
       CExoString exoAlias = alias.ToExoString();
 
-      Directory.CreateDirectory(path);
       ExoBase.m_pcExoAliasList.Add(exoAlias, path.ToExoString());
+      ResMan.CreateDirectory(exoAlias);
       ResMan.AddResourceDirectory(exoAlias, BasePriority + currentIndex, true.ToInt());
 
       currentIndex++;
