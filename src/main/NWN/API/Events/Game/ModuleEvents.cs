@@ -238,11 +238,14 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player clicks the respawn button on the death screen.
+    /// Triggered when a <see cref="NwPlayer"/> clicks the respawn button on the death screen.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnRespawnButtonPressed)]
     public sealed class OnPlayerRespawn : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that clicked the respawn button on the death screen.
+      /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastRespawnButtonPresser().ToNwObject<NwPlayer>();
 
       NwObject IEvent.Context => Player;
