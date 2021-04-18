@@ -116,7 +116,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when any player sends a non-tell based chat message.
+    /// Triggered when any <see cref="NwPlayer"/> sends a non-tell based chat message.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerChat)]
     public sealed class OnPlayerChat : IEvent
