@@ -72,7 +72,8 @@ namespace NWN.Services
 
       ExoBase.m_pcExoAliasList.Add(exoAlias, path.ToExoString());
       ResMan.CreateDirectory(exoAlias);
-      ResMan.AddResourceDirectory(exoAlias, BasePriority + currentIndex, true.ToInt());
+      ResMan.AddResourceDirectory(exoAlias, BasePriority + currentIndex, false.ToInt());
+      ResMan.UpdateResourceDirectory(exoAlias);
 
       currentIndex++;
 

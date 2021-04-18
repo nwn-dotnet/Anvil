@@ -585,9 +585,9 @@ namespace NWN.API
     /// <summary>
     /// Creates an area from the specified serialized area data.
     /// </summary>
-    /// <param name="resRef"></param>
-    /// <param name="serializedARE">The serialized static area information (.are)</param>
-    /// <param name="serializedGIT">The serialized dynamic area information (.git)</param>
+    /// <param name="resRef">The base resref name to use (e.g. area001). Overrides previous areas with the same resref (excl. development folder areas).</param>
+    /// <param name="serializedARE">The serialized static area information (.are).</param>
+    /// <param name="serializedGIT">The serialized dynamic area information (.git).</param>
     /// <param name="newTag">A new tag for this area. Defaults to the tag set in the toolset.</param>
     /// <param name="newName">A new name for this area. Defaults to the name set in the toolset.</param>
     /// <returns>The created area.</returns>
