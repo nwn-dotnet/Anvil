@@ -8,7 +8,7 @@ namespace NWN
   {
     [UsedImplicitly] // Called by NWNX
     public static int Bootstrap(IntPtr arg, int argLength)
-      => NManager.Init(arg, argLength);
+      => AnvilServer.Init(arg, argLength);
   }
 
   // @endcond

@@ -11,7 +11,10 @@ namespace NWN.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly ServiceContainer serviceContainer;
+    private readonly ITypeLoader typeLoader;
+    private readonly IContainerBuilder containerBuilder;
+
+    private ServiceContainer serviceContainer;
 
     public List<object> RegisteredServices { get; private set; }
 
@@ -19,16 +22,16 @@ namespace NWN.Services
     {
       Log.Info($"Using \"{containerBuilder.GetType().FullName}\" to install service bindings.");
 
-      serviceContainer = containerBuilder.Setup(typeLoader);
-
-      containerBuilder.RegisterCoreService(typeLoader);
-      containerBuilder.RegisterCoreService(this);
-
-      containerBuilder.BuildContainer();
+      this.typeLoader = typeLoader;
+      this.containerBuilder = containerBuilder;
+      this.serviceContainer = containerBuilder.Setup(typeLoader);
     }
+
+    internal void RegisterCoreService<T>(T instance) => containerBuilder.RegisterCoreService(instance);
 
     internal void Init()
     {
+      containerBuilder.BuildContainer();
       RegisteredServices = serviceContainer.GetAllInstances<object>().ToList();
       NotifyInitComplete();
     }
