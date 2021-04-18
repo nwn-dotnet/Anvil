@@ -5,6 +5,7 @@ using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
+using NWN.Services;
 using AssociateType = NWN.API.Constants.AssociateType;
 
 namespace NWN.API
@@ -572,6 +573,30 @@ namespace NWN.API
       Marshal.FreeHGlobal((IntPtr)pData);
 
       return serialized;
+    }
+
+    /// <inheritdoc cref="Deserialize(string,byte[],byte[],string,string)"/>
+    public static NwArea Deserialize(byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
+    {
+      string resourceName = ResourceNameGenerator.Create();
+      return Deserialize(resourceName, serializedARE, serializedGIT, newTag, newName);
+    }
+
+    /// <summary>
+    /// Creates an area from the specified serialized area data.
+    /// </summary>
+    /// <param name="resRef">The base resref name to use (e.g. area001). Overrides previous areas with the same resref (excl. development folder areas).</param>
+    /// <param name="serializedARE">The serialized static area information (.are).</param>
+    /// <param name="serializedGIT">The serialized dynamic area information (.git).</param>
+    /// <param name="newTag">A new tag for this area. Defaults to the tag set in the toolset.</param>
+    /// <param name="newName">A new name for this area. Defaults to the name set in the toolset.</param>
+    /// <returns>The created area.</returns>
+    public static NwArea Deserialize(string resRef, byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
+    {
+      ResourceManager.WriteTempResource(resRef + ".git", serializedGIT);
+      ResourceManager.WriteTempResource(resRef + ".are", serializedARE);
+
+      return Create(resRef, newTag, newName);
     }
   }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Reflection;
 using Anvil.Internal;
 
@@ -7,6 +8,8 @@ namespace NWN.Plugins
   internal sealed class Plugin : IDisposable
   {
     public readonly string PluginPath;
+    public readonly string ResourcePath;
+    public readonly bool HasResourceDirectory;
     public readonly AssemblyName AssemblyName;
 
     private PluginLoadContext pluginLoadContext;
@@ -20,10 +23,12 @@ namespace NWN.Plugins
 
     public Assembly Assembly;
 
-    public Plugin(string pluginPath, PluginLoadContext pluginLoadContext)
+    public Plugin(string pluginPath, string resourcePath, PluginLoadContext pluginLoadContext)
     {
       PluginPath = pluginPath;
+      ResourcePath = resourcePath;
       AssemblyName = AssemblyName.GetAssemblyName(pluginPath);
+      HasResourceDirectory = Directory.Exists(resourcePath);
       this.pluginLoadContext = pluginLoadContext;
     }
 

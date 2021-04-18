@@ -14,13 +14,16 @@ namespace NWN.API
   {
     private protected static EventService EventService { get; private set; }
 
+    private protected static ResourceManager ResourceManager { get; private set; }
+
     [ServiceBinding(typeof(APIBindings))]
     [BindingOrder(BindingOrder.API)]
     internal sealed class APIBindings
     {
-      public APIBindings(EventService eventService)
+      public APIBindings(EventService eventService, ResourceManager resourceManager)
       {
         EventService = eventService;
+        ResourceManager = resourceManager;
       }
     }
 
