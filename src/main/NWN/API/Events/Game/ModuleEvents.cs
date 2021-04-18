@@ -81,7 +81,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Triggered when a player tries to cancel a cutscene (ESC).
+    /// Triggered when a <see cref="NwPlayer"/> tries to cancel a cutscene (ESC).
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerCancelCutscene)]
     public sealed class OnCutsceneAbort : IEvent
