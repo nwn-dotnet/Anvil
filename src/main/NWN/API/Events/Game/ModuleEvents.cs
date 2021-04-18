@@ -11,11 +11,14 @@ namespace NWN.API.Events
   public static class ModuleEvents
   {
     /// <summary>
-    /// Triggered whenever an <see cref="NwItem"/> is added to <see cref="NwPlayer"/> inventory.
+    /// Triggered whenever an <see cref="NwItem"/> is added to <see cref="NwGameObject"/> inventory.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnAcquireItem)]
     public sealed class OnAcquireItem : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwItem"/> that triggered the event.
+      /// </summary>
       public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
 
       /// <summary>
