@@ -11,7 +11,7 @@ using NWN.Services;
 [ServiceBinding(typeof(BasicScriptHandler))]
 public class BasicScriptHandler
 {
-  // Gets the server log. By default, this reports to "nwm.log"
+  // Gets the server log. By default, this reports to "anvil.log"
   private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
   // This function will be called as if the same script was called by a toolset event, or by another script.

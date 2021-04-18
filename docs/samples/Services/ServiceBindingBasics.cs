@@ -9,7 +9,7 @@ using NWN.Services;
 [ServiceBinding(typeof(ServiceA))]
 public class ServiceA
 {
-  // Gets the logger for this service. By default, this reports to "logs.0/nwm.log"
+  // Gets the logger for this service. By default, this reports to "logs.0/anvil.log"
   private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
   // As "ServiceA" has the ServiceBinding attribute, this constructor will be called during server startup.
@@ -33,7 +33,7 @@ public class ServiceB
   }
 }
 
-// Checking in the console, or "logs.0/nwm.log", the output should look like this:
+// Checking in the console, or "logs.0/anvil.log", the output should look like this:
 /*
 [ServiceA] Service A Loaded!
 [ServiceB] Service B Loaded!

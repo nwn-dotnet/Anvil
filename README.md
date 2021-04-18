@@ -71,7 +71,7 @@ The following options can be configured via environment variables:
 |-|-|-|
 |`ANVIL_PLUGIN_PATH`|`/path/to/NWN.Anvil/Plugins`|The root plugin path that Anvil will search for plugins.|
 |`ANVIL_NLOG_CONFIG`||Custom path to a NLog XML config file. See the [NLog Wiki](https://github.com/nlog/NLog/wiki/Configuration-file) for configuration options.|
-|`ANVIL_RELOAD_ENABLED`|`false`|Enables support for plugin hot-reloading via `NManager.Reload()`. Recommended for advanced users.|
+|`ANVIL_RELOAD_ENABLED`|`false`|Enables support for plugin hot-reloading via `AnvilCore.Reload()`. Recommended for advanced users.|
 
 # Builder/Developer's Guide
 
