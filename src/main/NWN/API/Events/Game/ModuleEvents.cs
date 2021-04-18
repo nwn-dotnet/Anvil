@@ -72,7 +72,7 @@ namespace NWN.API.Events
     public sealed class OnClientLeave : IEvent
     {
       /// <summary>
-      /// Gets the player that is leaving.<br/>
+      /// Gets the <see cref="NwPlayer"/>  that is leaving.<br/>
       /// Note! This will be a <see cref="NwCreature"/> if the leaving player is possessing a creature.
       /// </summary>
       public NwCreature Player { get; } = NWScript.GetExitingObject().ToNwObject<NwPlayer>();
