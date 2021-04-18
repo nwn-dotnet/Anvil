@@ -12,8 +12,8 @@ namespace NWNX.Services
     "Use NwModule/NwCreature.OnCreatureAttack/Damage instead.")]
   public class NWNXDamageEventFactory : IEventFactory, IScriptDispatcher
   {
-    private const string AttackScriptName = "___nwnmxatk_evt";
-    private const string DamageScriptName = "___nwnmxdmg_evt";
+    private const string AttackScriptName = "__anvilxdmg_evt";
+    private const string DamageScriptName = "__anvilxatk_evt";
 
     private readonly Lazy<EventService> eventService;
 

@@ -12,7 +12,7 @@ Builders can add functionality like opening a store from a dialogue with a few l
 ### Running Anvil - Docker
 Anvil has its own docker images that are automatically configured to start and run Anvil and NWNXEE. Similar to the parent images, Anvil is configured by environment variables passed during `docker run`.
 
-By default, Anvil will look in the `/nwn/nwnm/Plugins` directory in the container for [managed plugins](#plugins--services). A volume containing your plugins can be mounted here to automatically run on startup.
+By default, Anvil will look in the `/nwn/anvil/Plugins` directory in the container for [managed plugins](#plugins--services). A volume containing your plugins can be mounted here to automatically run on startup.
 
 Running the image is exactly the same as running the `beamdog/nwserver` or `nwnxee/unified` images. See the [NWNX](https://nwnxee.github.io/unified/) and [NWServer](https://hub.docker.com/r/beamdog/nwserver/) README's for configuring these images.
 
@@ -69,9 +69,9 @@ The following options can be configured via environment variables:
 
 |Variable|Default|Description|
 |-|-|-|
-|`NWM_PLUGIN_PATH`|`/path/to/NWN.Anvil/Plugins`|The root plugin path that Anvil will search for plugins.|
-|`NWM_NLOG_CONFIG`||Custom path to a NLog XML config file. See the [NLog Wiki](https://github.com/nlog/NLog/wiki/Configuration-file) for configuration options.|
-|`NWM_RELOAD_ENABLED`|`false`|Enables support for plugin hot-reloading via `NManager.Reload()`. Recommended for advanced users.|
+|`ANVIL_PLUGIN_PATH`|`/path/to/NWN.Anvil/Plugins`|The root plugin path that Anvil will search for plugins.|
+|`ANVIL_NLOG_CONFIG`||Custom path to a NLog XML config file. See the [NLog Wiki](https://github.com/nlog/NLog/wiki/Configuration-file) for configuration options.|
+|`ANVIL_RELOAD_ENABLED`|`false`|Enables support for plugin hot-reloading via `NManager.Reload()`. Recommended for advanced users.|
 
 # Builder/Developer's Guide
 
@@ -92,7 +92,7 @@ using NWN.Services;
 [ServiceBinding(typeof(ServiceA))]
 public class ServiceA
 {
-  // Gets the logger for this service. By default, this reports to "logs.0/nwm.log"
+  // Gets the logger for this service. By default, this reports to "logs.0/anvil.log"
   private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
   // As "ServiceA" has the ServiceBinding attribute, this constructor will be called during server startup.

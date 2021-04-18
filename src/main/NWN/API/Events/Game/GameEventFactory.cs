@@ -14,7 +14,7 @@ namespace NWN.API.Events
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private const string InternalScriptName = "____nwnm_event";
+    private const string InternalScriptName = "____anvil_event";
 
     private readonly Lazy<EventService> eventService;
 

@@ -68,9 +68,9 @@ namespace Anvil.Internal
       ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget("console");
       consoleTarget.Layout = DefaultLayout;
 
-      FileTarget fileTarget = new FileTarget("nwm.log");
+      FileTarget fileTarget = new FileTarget("anvil.log");
       fileTarget.Layout = DefaultLayout;
-      fileTarget.FileName = new SimpleLayout("${var:nwn_home}/logs.0/nwm.log");
+      fileTarget.FileName = new SimpleLayout("${var:nwn_home}/logs.0/anvil.log");
       fileTarget.CreateDirs = false;
       fileTarget.KeepFileOpen = true;
       fileTarget.OpenFileCacheTimeout = 30;
