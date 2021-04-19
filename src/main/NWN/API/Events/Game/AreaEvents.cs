@@ -35,12 +35,12 @@ namespace NWN.API.Events
     public sealed class OnExit : IEvent
     {
       /// <summary>
-      /// Gets the area that was left.
+      /// Gets the <see cref="NwArea"/> that was left.
       /// </summary>
       public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
 
       /// <summary>
-      /// Gets the game object that left the area.<br/>
+      /// Gets the <see cref="NwGameObject"/> that left the <see cref="NwArea"/>.<br/>
       /// If this is a disconnecting player, this value will be a <see cref="NwCreature"/>. See <see cref="IsDisconnectingPlayer"/> to determine this state.
       /// </summary>
       public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
