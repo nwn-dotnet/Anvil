@@ -86,7 +86,7 @@ namespace NWN.API.Events
     {
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that is taking damage.
-      /// </summary>   
+      /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
@@ -110,7 +110,7 @@ namespace NWN.API.Events
     {
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that is killed.
-      /// </summary> 
+      /// </summary>
       public NwCreature KilledCreature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
