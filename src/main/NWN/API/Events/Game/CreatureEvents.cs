@@ -5,23 +5,23 @@ using NWN.Core;
 namespace NWN.API.Events
 {
   /// <summary>
-  /// Events for Creatures.
+  /// Events for <see cref="NwCreature"/>.
   /// </summary>
   public static class CreatureEvents
   {
     /// <summary>
-    /// Called when the creature is blocked by a door.
+    /// Called when the <see cref="NwCreature"/> is blocked by a <see cref="NwDoor"/>.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnBlockedByDoor)]
     public sealed class OnBlocked : IEvent
     {
       /// <summary>
-      /// Gets the blocked creature.
+      /// Gets the blocked <see cref="NwCreature"/>.
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the door that is blocking the creature.
+      /// Gets the <see cref="NwDoor"/> that is blocking the <see cref="NwCreature"/>.
       /// </summary>
       public NwDoor BlockingDoor { get; } = NWScript.GetBlockingDoor().ToNwObject<NwDoor>();
 
