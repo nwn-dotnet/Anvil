@@ -226,9 +226,15 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Creature;
     }
 
+    /// <summary>
+    /// Triggered by <see cref="NwCreature"/> when resting.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnRested)]
     public sealed class OnRested : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> is resting.
+      /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Creature;
