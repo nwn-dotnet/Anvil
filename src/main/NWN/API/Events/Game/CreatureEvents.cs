@@ -158,13 +158,25 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Creature;
     }
 
+    /// <summary>
+    /// Triggered by <see cref="NwCreature"/> when its perception is triggered by another <see cref="NwCreature"/>.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnNotice)]
     public sealed class OnPerception : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> associated with the perception event.
+      /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the perception event triggered.
+      /// </summary>
       public PerceptionEventType PerceptionEventType { get; } = GetPerceptionEventType();
 
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that was perceived by <see cref="NwCreature"/>.
+      /// </summary>
       public NwCreature PerceivedCreature { get; } = NWScript.GetLastPerceived().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Creature;
