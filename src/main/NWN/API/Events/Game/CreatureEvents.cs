@@ -75,13 +75,25 @@ namespace NWN.API.Events
         => NWScript.ActionResumeConversation();
     }
 
+    /// <summary>
+    /// Called by <see cref="NwCreature"/> when taken damage from <see cref="NwGameObject"/>.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnDamaged)]
     public sealed class OnDamaged : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that is taking damage.
+      /// </summary>   
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that damaged <see cref="NwCreature"/>.
+      /// </summary>
       public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
 
+      /// <summary>
+      /// Gets the amount of damage done by <see cref="NwGameObject"/> to <see cref="NwCreature"/>.
+      /// </summary>
       public int DamageAmount { get; } = NWScript.GetTotalDamageDealt();
 
       NwObject IEvent.Context => Creature;
