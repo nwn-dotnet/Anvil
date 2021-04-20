@@ -5,12 +5,12 @@ using NWN.Core;
 namespace NWN.API.Events
 {
   /// <summary>
-  /// Events for Areas.
+  /// Events for <see cref="NwArea"/>.
   /// </summary>
   public static class AreaEvents
   {
     /// <summary>
-    /// Called when a new object has entered the area.
+    /// Called when a new <see cref="NwGameObject"/> has entered the <see cref="NwArea"/>.
     /// </summary>
     [GameEvent(EventScriptType.AreaOnEnter)]
     public sealed class OnEnter : IEvent
