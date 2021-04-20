@@ -118,15 +118,27 @@ namespace NWN.API.Events
       NwObject IEvent.Context => KilledCreature;
     }
 
+    /// <summary>
+    /// Triggered by <see cref="NwCreature"/> when its inventory has been disturbed.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnDisturbed)]
     public sealed class OnDisturbed : IEvent
     {
       public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType) NWScript.GetInventoryDisturbType();
 
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that had its inventory disturbed.
+      /// </summary>
       public NwCreature CreatureDisturbed { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that disturbed another <see cref="NwCreature"/> inventory.
+      /// </summary>
       public NwCreature Disturber { get; } = NWScript.GetLastDisturbed().ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the <see cref="NwItem"/> that was disturbed in the inventory.
+      /// </summary>
       public NwItem DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
 
       NwObject IEvent.Context => CreatureDisturbed;
