@@ -10,7 +10,7 @@ namespace NWN.API.Events
   public static class CreatureEvents
   {
     /// <summary>
-    /// Called when the <see cref="NwCreature"/> is blocked by a <see cref="NwDoor"/>.
+    /// Triggered when the <see cref="NwCreature"/> is blocked by a <see cref="NwDoor"/>.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnBlockedByDoor)]
     public sealed class OnBlocked : IEvent
@@ -29,7 +29,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Called at the end of the <see cref="NwCreature"/> combat round.
+    /// Triggered at the end of the <see cref="NwCreature"/> combat round.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnEndCombatRound)]
     public sealed class OnCombatRoundEnd : IEvent
@@ -42,6 +42,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Creature;
     }
 
+    /// <summary>
+    /// Triggered when <see cref="NwCreature"/> begins a conversation.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnDialogue)]
     public sealed class OnConversation : IEvent
     {
@@ -76,7 +79,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Called by <see cref="NwCreature"/> when taken damage from <see cref="NwGameObject"/>.
+    /// Triggered by <see cref="NwCreature"/> when taken damage from <see cref="NwGameObject"/>.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnDamaged)]
     public sealed class OnDamaged : IEvent
@@ -100,7 +103,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Called by <see cref="NwCreature"/> when killed by <see cref="NwGameObject"/>.
+    /// Triggered by <see cref="NwCreature"/> when killed by <see cref="NwGameObject"/>.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnDeath)]
     public sealed class OnDeath : IEvent
@@ -170,7 +173,7 @@ namespace NWN.API.Events
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the perception event triggered.
+      /// Gets the <see cref="PerceptionEventType"/> event triggered.
       /// </summary>
       public PerceptionEventType PerceptionEventType { get; } = GetPerceptionEventType();
 
