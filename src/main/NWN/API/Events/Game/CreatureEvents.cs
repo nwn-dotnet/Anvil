@@ -99,11 +99,20 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Creature;
     }
 
+    /// <summary>
+    /// Called by <see cref="NwCreature"/> when killed by <see cref="NwGameObject"/>.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnDeath)]
     public sealed class OnDeath : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that is killed.
+      /// </summary> 
       public NwCreature KilledCreature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that killed <see cref="NwCreature"/>.
+      /// </summary>
       public NwGameObject Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context => KilledCreature;
