@@ -207,11 +207,20 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Triggered by <see cref="NwCreature"/> when physically attacked by another <see cref="NwCreature"/>.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnMeleeAttacked)]
     public sealed class OnPhysicalAttacked : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that was physically attacked.
+      /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that physically attacked <see cref="NwCreature"/>.
+      /// </summary>
       public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Creature;
