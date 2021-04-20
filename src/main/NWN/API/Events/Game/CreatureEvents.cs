@@ -144,9 +144,15 @@ namespace NWN.API.Events
       NwObject IEvent.Context => CreatureDisturbed;
     }
 
+    /// <summary>
+    /// Called at a regular interval (approx. 6 seconds).
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> associated with the heartbeat event.
+      /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Creature;
