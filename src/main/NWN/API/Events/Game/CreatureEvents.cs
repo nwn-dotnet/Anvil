@@ -29,13 +29,13 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Called at the end of the creature's combat round.
+    /// Called at the end of the <see cref="NwCreature"/> combat round.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnEndCombatRound)]
     public sealed class OnCombatRoundEnd : IEvent
     {
       /// <summary>
-      /// Gets the creature whose combat round is ending.
+      /// Gets the <see cref="NwCreature"/> whose combat round is ending.
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
