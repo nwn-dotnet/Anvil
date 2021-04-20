@@ -240,9 +240,15 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Creature;
     }
 
+    /// <summary>
+    /// Triggered by <see cref="NwCreature"/> upon spawning into the game.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnSpawnIn)]
     public sealed class OnSpawn : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that has spawned into the game.
+      /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Creature;
