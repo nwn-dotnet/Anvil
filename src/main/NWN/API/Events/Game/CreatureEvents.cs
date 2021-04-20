@@ -254,21 +254,24 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Creature;
     }
 
+    /// <summary>
+    /// Triggered by <see cref="NwCreature"/> when a spell is cast upon it.
+    /// </summary>
     [GameEvent(EventScriptType.CreatureOnSpellCastAt)]
     public sealed class OnSpellCastAt : IEvent
     {
       /// <summary>
-      /// Gets the creature targeted by this spell.
+      /// Gets the <see cref="NwCreature"/> targeted by this spell.
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the caster of this spell (creature, placeable, door). Returns null from an area of effect.
+      /// Gets the <see cref="NwGameObject"/> of this spell. Returns null from an area of effect.
       /// </summary>
       public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the spell that was cast.
+      /// Gets the <see cref="Spell"/>  that was cast.
       /// </summary>
       public Spell Spell { get; } = (Spell)NWScript.GetLastSpell();
 
