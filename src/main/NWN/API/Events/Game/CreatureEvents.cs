@@ -46,17 +46,17 @@ namespace NWN.API.Events
     public sealed class OnConversation : IEvent
     {
       /// <summary>
-      /// Gets the creature/object currently speaking.
+      /// Gets the <see cref="NwCreature"/> currently speaking.
       /// </summary>
       public NwCreature CurrentSpeaker { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the player speaker in this conversation.
+      /// Gets the <see cref="NwPlayer"/> speaker in this conversation.
       /// </summary>
       public NwPlayer PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
 
       /// <summary>
-      /// Gets the last creature/object that spoke in this conversation.
+      /// Gets the last <see cref="NwGameObject"/> that spoke in this conversation.
       /// </summary>
       public NwGameObject LastSpeaker { get; } = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
 
