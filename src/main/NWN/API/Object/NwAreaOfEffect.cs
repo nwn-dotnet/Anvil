@@ -93,5 +93,8 @@ namespace NWN.API
         yield return obj.ToNwObject<NwGameObject>();
       }
     }
+
+    public override byte[] Serialize()
+      => throw new NotSupportedException();
   }
 }

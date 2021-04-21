@@ -347,5 +347,37 @@ namespace NWN.API
       void* itemPtr = item.Item;
       Item.AcquireItem(&itemPtr, INVALID, 0xFF, 0xFF, displayFeedback.ToInt());
     }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTI", (resGff, resStruct) =>
+      {
+        return Item.SaveItem(resGff, resStruct, 0).ToBool();
+      });
+    }
+
+    public static NwPlaceable Deserialize(byte[] serialized)
+    {
+      CNWSPlaceable placeable = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTI"))
+        {
+          return false;
+        }
+
+        placeable = new CNWSPlaceable(INVALID);
+        if (placeable.LoadPlaceable(resGff, resStruct, null).ToBool())
+        {
+          return true;
+        }
+
+        placeable.Dispose();
+        return false;
+      });
+
+      return placeable != null ? placeable.m_idSelf.ToNwObject<NwPlaceable>() : null;
+    }
   }
 }

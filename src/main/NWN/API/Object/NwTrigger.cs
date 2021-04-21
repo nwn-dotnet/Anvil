@@ -121,5 +121,39 @@ namespace NWN.API
         yield return obj.ToNwObject<NwGameObject>();
       }
     }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTT", (resGff, resStruct) =>
+      {
+        Trigger.SaveObjectState(resGff, resStruct);
+        return Trigger.SaveTrigger(resGff, resStruct).ToBool();
+      });
+    }
+
+    public static NwTrigger Deserialize(byte[] serialized)
+    {
+      CNWSTrigger trigger = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTT"))
+        {
+          return false;
+        }
+
+        trigger = new CNWSTrigger(INVALID);
+        if (trigger.LoadTrigger(resGff, resStruct).ToBool())
+        {
+          trigger.LoadObjectState(resGff, resStruct);
+          return true;
+        }
+
+        trigger.Dispose();
+        return false;
+      });
+
+      return trigger != null ? trigger.m_idSelf.ToNwObject<NwTrigger>() : null;
+    }
   }
 }

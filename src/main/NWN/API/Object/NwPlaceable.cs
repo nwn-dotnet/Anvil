@@ -185,9 +185,15 @@ namespace NWN.API
       set => Placeable.m_bAutoRemoveKey = value.ToInt();
     }
 
-    public bool Occupied => NWScript.GetSittingCreature(this) != INVALID;
+    public bool Occupied
+    {
+      get => NWScript.GetSittingCreature(this) != INVALID;
+    }
 
-    public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
+    public NwCreature SittingCreature
+    {
+      get => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
+    }
 
     /// <summary>
     /// Gets the inventory of this placeable.
@@ -210,6 +216,12 @@ namespace NWN.API
     {
       get => NWScript.GetUseableFlag(this).ToBool();
       set => NWScript.SetUseableFlag(this, value.ToInt());
+    }
+
+    public bool IsStatic
+    {
+      get => Placeable.m_bStaticObject.ToBool();
+      set => Placeable.m_bStaticObject = value.ToInt();
     }
 
     /// <summary>
@@ -290,6 +302,40 @@ namespace NWN.API
 
       void* pItem = item.Item;
       Placeable.AcquireItem(&pItem, INVALID, 0xFF, 0xFF, displayFeedback.ToInt());
+    }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTP", (resGff, resStruct) =>
+      {
+        Placeable.SaveObjectState(resGff, resStruct);
+        return Placeable.SavePlaceable(resGff, resStruct, 0).ToBool();
+      });
+    }
+
+    public static NwPlaceable Deserialize(byte[] serialized)
+    {
+      CNWSPlaceable placeable = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTP"))
+        {
+          return false;
+        }
+
+        placeable = new CNWSPlaceable(INVALID);
+        if (placeable.LoadPlaceable(resGff, resStruct, null).ToBool())
+        {
+          placeable.LoadObjectState(resGff, resStruct);
+          return true;
+        }
+
+        placeable.Dispose();
+        return false;
+      });
+
+      return placeable != null ? placeable.m_idSelf.ToNwObject<NwPlaceable>() : null;
     }
   }
 }

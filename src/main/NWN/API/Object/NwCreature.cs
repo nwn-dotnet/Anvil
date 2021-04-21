@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using NWN.API.Constants;
@@ -1891,69 +1890,69 @@ namespace NWN.API
       Creature.AcquireItem(&itemPtr, INVALID, INVALID, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
     }
 
-    public unsafe byte[] SerializeQuickbar()
+    public byte[] SerializeQuickbar()
     {
-      void* pData;
-      int dataLength;
-
-      using CResGFF resGff = new CResGFF();
-      using CResStruct resStruct = new CResStruct();
-
-      if (!resGff.CreateGFFFile(resStruct, new CExoString("GFF "), new CExoString("V2.0")).ToBool())
+      return NativeUtils.SerializeGff("GFF", (resGff, resStruct) =>
       {
-        return null;
-      }
-
-      Creature.SaveQuickButtons(resGff, resStruct);
-      resGff.WriteGFFToPointer(&pData, &dataLength);
-
-      byte[] serialized = new byte[dataLength];
-      Marshal.Copy((IntPtr)pData, serialized, 0, dataLength);
-      Marshal.FreeHGlobal((IntPtr)pData);
-
-      return serialized;
+        Creature.SaveQuickButtons(resGff, resStruct);
+        return true;
+      });
     }
 
-    public unsafe bool DeserializeQuickbar(byte[] serialized)
+    public bool DeserializeQuickbar(byte[] serialized)
     {
-      using CResGFF resGff = new CResGFF();
-      using CResStruct resStruct = new CResStruct();
-
-      IntPtr dataPtr = Marshal.AllocHGlobal(serialized.Length);
-      Marshal.Copy(serialized, 0, dataPtr, serialized.Length);
-
-      void* data = (void*)dataPtr;
-
-      if (!resGff.GetDataFromPointer(data, serialized.Length).ToBool())
+      bool retVal = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
-        return false;
-      }
+        if (!resGff.IsValidGff("GFF"))
+        {
+          return false;
+        }
 
-      resGff.InitializeForWriting();
+        Creature.LoadQuickButtons(resGff, resStruct);
+        return true;
+      });
 
-      if (!resGff.GetTopLevelStruct(resStruct).ToBool())
-      {
-        return false;
-      }
-
-      CExoString sFileType = new CExoString();
-      CExoString sFileVersion = new CExoString();
-      resGff.GetGFFFileInfo(sFileType, sFileVersion);
-
-      if (sFileType.ToString() != "GFF ")
-      {
-        return false;
-      }
-
-      Creature.LoadQuickButtons(resGff, resStruct);
-
-      if (this is NwPlayer player)
+      if (retVal && this is NwPlayer player)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
         message.SendServerToPlayerGuiQuickbar_SetButton(player, 0, true.ToInt());
       }
 
-      return true;
+      return retVal;
+    }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("BIC", (resGff, resStruct) =>
+      {
+        Creature.SaveObjectState(resGff, resStruct);
+        return Creature.SaveCreature(resGff, resStruct).ToBool();
+      });
+    }
+
+    public static NwCreature Deserialize(byte[] serialized)
+    {
+      CNWSCreature creature = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff(new[] {"BIC", "GFF", "UTC"}))
+        {
+          return false;
+        }
+
+        creature = new CNWSCreature(INVALID, 0, 1);
+        if (creature.LoadCreature(resGff, resStruct, 0, 0, 0, 0).ToBool())
+        {
+          creature.LoadObjectState(resGff, resStruct);
+          return true;
+        }
+
+        creature.Dispose();
+        return false;
+      });
+
+      return creature != null ? creature.m_idSelf.ToNwObject<NwCreature>() : null;
     }
   }
 }

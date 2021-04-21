@@ -91,5 +91,39 @@ namespace NWN.API
 
       Store.AcquireItem(item.Item, true.ToInt(), 0xFF, 0xFF);
     }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTM", (resGff, resStruct) =>
+      {
+        Store.SaveObjectState(resGff, resStruct);
+        return Store.SaveStore(resGff, resStruct, 0).ToBool();
+      });
+    }
+
+    public static NwStore Deserialize(byte[] serialized)
+    {
+      CNWSStore store = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTM"))
+        {
+          return false;
+        }
+
+        store = new CNWSStore(INVALID);
+        if (store.LoadStore(resGff, resStruct, null).ToBool())
+        {
+          store.LoadObjectState(resGff, resStruct);
+          return true;
+        }
+
+        store.Dispose();
+        return false;
+      });
+
+      return store != null ? store.m_idSelf.ToNwObject<NwStore>() : null;
+    }
   }
 }

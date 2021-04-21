@@ -47,11 +47,13 @@ namespace NWNX.API
       ObjectPlugin.SetString(obj, key, value, true.ToInt());
     }
 
+    [Obsolete("Use NwPlaceable.IsStatic instead.")]
     public static bool GetIsStatic(this NwPlaceable placeable)
     {
       return ObjectPlugin.GetPlaceableIsStatic(placeable).ToBool();
     }
 
+    [Obsolete("Use NwPlaceable.IsStatic instead.")]
     public static void SetIsStatic(this NwPlaceable placeable, bool value)
     {
       ObjectPlugin.SetPlaceableIsStatic(placeable, value.ToInt());
@@ -63,6 +65,7 @@ namespace NWNX.API
       return ObjectPlugin.PeekUUID(obj);
     }
 
+    [Obsolete("Use NwXXX.Serialize instead.")]
     public static string Serialize(this NwObject obj)
     {
       return ObjectPlugin.Serialize(obj);

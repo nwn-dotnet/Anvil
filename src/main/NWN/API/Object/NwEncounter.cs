@@ -134,5 +134,39 @@ namespace NWN.API
         yield return obj.ToNwObject<NwGameObject>();
       }
     }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTE", (resGff, resStruct) =>
+      {
+        Encounter.SaveObjectState(resGff, resStruct);
+        return Encounter.SaveEncounter(resGff, resStruct).ToBool();
+      });
+    }
+
+    public static NwEncounter Deserialize(byte[] serialized)
+    {
+      CNWSEncounter encounter = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTE"))
+        {
+          return false;
+        }
+
+        encounter = new CNWSEncounter(INVALID);
+        if (encounter.LoadEncounter(resGff, resStruct).ToBool())
+        {
+          encounter.LoadObjectState(resGff, resStruct);
+          return true;
+        }
+
+        encounter.Dispose();
+        return false;
+      });
+
+      return encounter != null ? encounter.m_idSelf.ToNwObject<NwEncounter>() : null;
+    }
   }
 }
