@@ -314,6 +314,9 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> starts a conversation.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDialogue)]
     public sealed class OnDialogue : IEvent
     {
