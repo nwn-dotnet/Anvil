@@ -12,6 +12,7 @@ namespace NWNX.API
       PluginUtils.AssertPluginExists<ItemPlugin>();
     }
 
+    [Obsolete("Use NWItem.Weight instead.")]
     public static void SetWeight(this NwItem item, decimal weight)
       => ItemPlugin.SetWeight(item, (int) Math.Round(weight * 10.0m, MidpointRounding.ToZero));
   }
