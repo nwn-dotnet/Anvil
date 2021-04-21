@@ -186,6 +186,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been opened.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnOpen)]
     public sealed class OnOpen : IEvent
     {
