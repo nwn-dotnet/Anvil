@@ -328,6 +328,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been mousepad (left) clicked.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnLeftClick)]
     public sealed class OnLeftClick : IEvent
     {
