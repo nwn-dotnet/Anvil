@@ -100,7 +100,8 @@ namespace NWN.API
 
     public static unsafe bool DeserializeGff(byte[] serialized, Func<CResGFF, CResStruct, bool> deserializeAction)
     {
-      if (serialized.Length < 14 * 4) // GFF header size
+      // GFF header size
+      if (serialized.Length < 14 * 4)
       {
         return false;
       }
@@ -133,7 +134,6 @@ namespace NWN.API
 
       Marshal.FreeHGlobal(dataPtr);
       return false;
-
     }
 
     private static unsafe byte[] SerializeGff(CExoString fileType, CExoString version, Func<CResGFF, CResStruct, bool> serializeAction)
