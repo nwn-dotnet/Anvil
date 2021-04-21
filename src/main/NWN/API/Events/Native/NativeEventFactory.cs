@@ -25,7 +25,7 @@ namespace NWN.API.Events
       VirtualMachine.ExecuteInScriptContext(() =>
       {
         eventData = eventService.Value.ProcessEvent(eventData);
-      });
+      }, eventData.Context);
 
       return eventData;
     }
