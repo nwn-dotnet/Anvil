@@ -90,11 +90,14 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called every 6 seconds on <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwPlaceable"/> that had a heartbeat.
+      /// Gets the <see cref="NwPlaceable"/> heartbeat.
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
