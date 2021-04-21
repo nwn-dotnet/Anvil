@@ -9,7 +9,7 @@ namespace NWN.API.Events
   public static class PlaceableEvents
   {
     /// <summary>
-    /// Called when a <see cref="NwCreature"/> has interacted with a <see cref="NwPlaceable"/>.
+    /// Called when <see cref="NwCreature"/> has closed a <see cref="NwPlaceable"/>.
     /// </summary>
     [GameEvent(EventScriptType.PlaceableOnClosed)]
     public sealed class OnClose : IEvent
@@ -27,6 +27,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwGameObject"/> has damaged <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDamaged)]
     public sealed class OnDamaged : IEvent
     {
