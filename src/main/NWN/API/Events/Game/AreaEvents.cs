@@ -5,23 +5,23 @@ using NWN.Core;
 namespace NWN.API.Events
 {
   /// <summary>
-  /// Events for Areas.
+  /// Events for <see cref="NwArea"/>.
   /// </summary>
   public static class AreaEvents
   {
     /// <summary>
-    /// Called when a new object has entered the area.
+    /// Called when a new <see cref="NwGameObject"/> has entered the <see cref="NwArea"/>.
     /// </summary>
     [GameEvent(EventScriptType.AreaOnEnter)]
     public sealed class OnEnter : IEvent
     {
       /// <summary>
-      /// Gets the area that was entered.
+      /// Gets the <see cref="NwArea"/> that was entered.
       /// </summary>
       public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
 
       /// <summary>
-      /// Gets the game object that entered the area.
+      /// Gets the <see cref="NwGameObject"/> that entered the <see cref="NwArea"/>.
       /// </summary>
       public NwGameObject EnteringObject { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
@@ -29,7 +29,7 @@ namespace NWN.API.Events
     }
 
     /// <summary>
-    /// Called when an object leaves the area.
+    /// Called when an <see cref="NwGameObject"/> leaves the <see cref="NwArea"/>.
     /// </summary>
     [GameEvent(EventScriptType.AreaOnExit)]
     public sealed class OnExit : IEvent
