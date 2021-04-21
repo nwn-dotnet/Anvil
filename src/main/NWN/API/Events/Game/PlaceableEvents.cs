@@ -273,6 +273,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> is being used.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnUsed)]
     public sealed class OnUsed : IEvent
     {
