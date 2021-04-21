@@ -152,6 +152,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => LockedPlaceable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been physically attacked.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnMeleeAttacked)]
     public sealed class OnPhysicalAttacked : IEvent
     {
