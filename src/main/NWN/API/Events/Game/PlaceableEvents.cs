@@ -4,10 +4,13 @@ using NWN.Core;
 namespace NWN.API.Events
 {
   /// <summary>
-  /// Events for Placeables.
+  /// Events for <see cref="NwPlaceable"/>.
   /// </summary>
   public static class PlaceableEvents
   {
+    /// <summary>
+    /// Called when <see cref="NwCreature"/> has closed a <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnClosed)]
     public sealed class OnClose : IEvent
     {
@@ -24,6 +27,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwGameObject"/> has damaged <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDamaged)]
     public sealed class OnDamaged : IEvent
     {
@@ -33,17 +39,17 @@ namespace NWN.API.Events
       public NwPlaceable DamagedObject { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> that damaged the NwPlaceable.
+      /// Gets the <see cref="NwGameObject"/> that damaged the <see cref="NwPlaceable"/>.
       /// </summary>
       public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the total damage dealt to the <see cref="NwDoor"/>.
+      /// Gets the total damage dealt to <see cref="NwPlaceable"/>.
       /// </summary>
       public int TotalDamageDealt { get; } = NWScript.GetTotalDamageDealt();
 
       /// <summary>
-      /// Gets damage damage dealt to <see cref="NwPlaceable"/>, by <see cref="DamageType"/>.
+      /// Gets <see cref="DamageType"/> dealt to <see cref="NwPlaceable"/>.
       /// </summary>
       public int GetDamageDealtByType(DamageType damageType)
         => NWScript.GetDamageDealtByType((int) damageType);
@@ -51,6 +57,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => DamagedObject;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwCreature"/> has destroyed <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDeath)]
     public sealed class OnDeath : IEvent
     {
@@ -67,6 +76,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => KilledObject;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been disarmed.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDisarm)]
     public sealed class OnDisarm : IEvent
     {
@@ -78,17 +90,23 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called every 6 seconds on <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwDoor"/> that had a heartbeat.
+      /// Gets the <see cref="NwPlaceable"/> heartbeat.
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> inventory has been disturbed.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnInventoryDisturbed)]
     public sealed class OnDisturbed : IEvent
     {
@@ -115,6 +133,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been locked.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnLock)]
     public sealed class OnLock : IEvent
     {
@@ -131,6 +152,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => LockedPlaceable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been physically attacked.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnMeleeAttacked)]
     public sealed class OnPhysicalAttacked : IEvent
     {
@@ -150,18 +174,21 @@ namespace NWN.API.Events
       public NwItem WeaponUsed(NwCreature attacker) => NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
 
       /// <summary>
-      /// Gets the <see cref="AttackType"/> used to damage <see cref="NwPlaceable"/>.
+      /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
       public SpecialAttack AttackType { get; } = (SpecialAttack) NWScript.GetLastAttackType();
 
       /// <summary>
-      /// Gets the <see cref="AttackMode"/> used to damage <see cref="NwPlaceable"/>.
+      /// Gets the <see cref="ActionMode"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
       public ActionMode AttackMode(NwCreature attacker) => (ActionMode) NWScript.GetLastAttackMode(attacker);
 
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been opened.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnOpen)]
     public sealed class OnOpen : IEvent
     {
@@ -178,6 +205,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="Spell"/> has been casted on <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnSpellCastAt)]
     public sealed class OnSpellCastAt : IEvent
     {
@@ -187,7 +217,7 @@ namespace NWN.API.Events
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       /// <summary>
-      /// Gets the <see cref="NwGameObject"/> who cast this spell (<see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwDoor"/>). Returns null from an <see cref="NwAreaOfEffect"/>.
+      /// Gets the <see cref="NwGameObject"/> who cast <see cref="Spell"/> (<see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwDoor"/>). Returns null from an <see cref="NwAreaOfEffect"/>.
       /// </summary>
       public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
 
@@ -210,6 +240,9 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has a trap triggered.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnTrapTriggered)]
     public sealed class OnTrapTriggered : IEvent
     {
@@ -221,6 +254,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been unlocked.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnUnlock)]
     public sealed class OnUnlock : IEvent
     {
@@ -237,6 +273,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> is being used.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnUsed)]
     public sealed class OnUsed : IEvent
     {
@@ -275,6 +314,9 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> starts a conversation.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDialogue)]
     public sealed class OnDialogue : IEvent
     {
@@ -286,6 +328,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been mousepad (left) clicked.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnLeftClick)]
     public sealed class OnLeftClick : IEvent
     {
