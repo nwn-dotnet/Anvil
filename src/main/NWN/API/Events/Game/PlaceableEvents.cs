@@ -4,7 +4,7 @@ using NWN.Core;
 namespace NWN.API.Events
 {
   /// <summary>
-  /// Events for Placeables.
+  /// Events for <see cref="NwPlaceable"/>.
   /// </summary>
   public static class PlaceableEvents
   {
@@ -33,17 +33,17 @@ namespace NWN.API.Events
       public NwPlaceable DamagedObject { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> that damaged the NwPlaceable.
+      /// Gets the <see cref="NwGameObject"/> that damaged the NwPlaceable.
       /// </summary>
       public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the total damage dealt to the <see cref="NwDoor"/>.
+      /// Gets the total damage dealt to <see cref="NwPlaceable"/>.
       /// </summary>
       public int TotalDamageDealt { get; } = NWScript.GetTotalDamageDealt();
 
       /// <summary>
-      /// Gets damage damage dealt to <see cref="NwPlaceable"/>, by <see cref="DamageType"/>.
+      /// Gets <see cref="DamageType"/> dealt to <see cref="NwPlaceable"/>.
       /// </summary>
       public int GetDamageDealtByType(DamageType damageType)
         => NWScript.GetDamageDealtByType((int) damageType);
@@ -82,7 +82,7 @@ namespace NWN.API.Events
     public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwDoor"/> that had a heartbeat.
+      /// Gets the <see cref="NwPlaceable"/> that had a heartbeat.
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
@@ -150,12 +150,12 @@ namespace NWN.API.Events
       public NwItem WeaponUsed(NwCreature attacker) => NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
 
       /// <summary>
-      /// Gets the <see cref="AttackType"/> used to damage <see cref="NwPlaceable"/>.
+      /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
       public SpecialAttack AttackType { get; } = (SpecialAttack) NWScript.GetLastAttackType();
 
       /// <summary>
-      /// Gets the <see cref="AttackMode"/> used to damage <see cref="NwPlaceable"/>.
+      /// Gets the <see cref="ActionMode"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
       public ActionMode AttackMode(NwCreature attacker) => (ActionMode) NWScript.GetLastAttackMode(attacker);
 
