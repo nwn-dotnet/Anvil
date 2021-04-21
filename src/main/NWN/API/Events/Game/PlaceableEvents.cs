@@ -240,6 +240,9 @@ namespace NWN.API.Events
       }
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has a trap triggered.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnTrapTriggered)]
     public sealed class OnTrapTriggered : IEvent
     {
