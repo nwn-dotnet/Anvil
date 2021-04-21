@@ -133,6 +133,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been locked.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnLock)]
     public sealed class OnLock : IEvent
     {
