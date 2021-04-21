@@ -177,11 +177,16 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the weight of this item, in pounds.
+    /// Gets or sets the weight of this item, in pounds.
     /// </summary>
     public decimal Weight
     {
       get => NWScript.GetWeight(this) / 10.0m;
+      set
+      {
+        Item.m_nWeight = (int)Math.Round(value * 10.0m, MidpointRounding.ToZero);
+        Item.m_oidPossessor.ToNwObject<NwCreature>()?.Creature.UpdateEncumbranceState();
+      }
     }
 
     /// <summary>
