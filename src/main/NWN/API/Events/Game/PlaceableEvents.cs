@@ -8,6 +8,9 @@ namespace NWN.API.Events
   /// </summary>
   public static class PlaceableEvents
   {
+    /// <summary>
+    /// Called when a <see cref="NwCreature"/> has interacted with a <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnClosed)]
     public sealed class OnClose : IEvent
     {
