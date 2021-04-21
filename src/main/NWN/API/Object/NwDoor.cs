@@ -189,5 +189,39 @@ namespace NWN.API
     /// <returns>true if the specified action can be performed, otherwise false.</returns>
     public bool IsDoorActionPossible(DoorAction action)
       => NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTD", (resGff, resStruct) =>
+      {
+        Door.SaveObjectState(resGff, resStruct);
+        return Door.SaveDoor(resGff, resStruct).ToBool();
+      });
+    }
+
+    public static NwDoor Deserialize(byte[] serialized)
+    {
+      CNWSDoor door = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTD"))
+        {
+          return false;
+        }
+
+        door = new CNWSDoor(INVALID);
+        if (door.LoadDoor(resGff, resStruct).ToBool())
+        {
+          door.LoadObjectState(resGff, resStruct);
+          return true;
+        }
+
+        door.Dispose();
+        return false;
+      });
+
+      return door != null ? door.m_idSelf.ToNwObject<NwDoor>() : null;
+    }
   }
 }

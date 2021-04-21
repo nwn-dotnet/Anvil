@@ -745,5 +745,26 @@ namespace NWN.API
 
       SetTlkOverride(strRef, strOverride);
     }
+
+    public byte[] Serialize(bool stripPCFlags = false)
+    {
+      if (!stripPCFlags)
+      {
+        return base.Serialize();
+      }
+
+      Creature.m_bPlayerCharacter = (!Creature.m_bPlayerCharacter.ToBool()).ToInt();
+      Creature.m_pStats.m_bIsPC = (!Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
+
+      try
+      {
+        return base.Serialize();
+      }
+      finally
+      {
+        Creature.m_bPlayerCharacter = (!Creature.m_bPlayerCharacter.ToBool()).ToInt();
+        Creature.m_pStats.m_bIsPC = (!Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
+      }
+    }
   }
 }

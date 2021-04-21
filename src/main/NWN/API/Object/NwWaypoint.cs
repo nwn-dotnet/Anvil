@@ -27,6 +27,40 @@ namespace NWN.API
       }
     }
 
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTW", (resGff, resStruct) =>
+      {
+        Waypoint.SaveObjectState(resGff, resStruct);
+        return Waypoint.SaveWaypoint(resGff, resStruct).ToBool();
+      });
+    }
+
+    public static NwWaypoint Deserialize(byte[] serialized)
+    {
+      CNWSWaypoint waypoint = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTW"))
+        {
+          return false;
+        }
+
+        waypoint = new CNWSWaypoint(INVALID);
+        if (waypoint.LoadWaypoint(resGff, resStruct, null).ToBool())
+        {
+          waypoint.LoadObjectState(resGff, resStruct);
+          return true;
+        }
+
+        waypoint.Dispose();
+        return false;
+      });
+
+      return waypoint != null ? waypoint.m_idSelf.ToNwObject<NwWaypoint>() : null;
+    }
+
     public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return NwObject.CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);

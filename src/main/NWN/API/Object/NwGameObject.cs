@@ -532,5 +532,7 @@ namespace NWN.API
     /// <param name="effect">The existing effect instance.</param>
     public void RemoveEffect(Effect effect)
       => NWScript.RemoveEffect(this, effect);
+
+    public abstract byte[] Serialize();
   }
 }
