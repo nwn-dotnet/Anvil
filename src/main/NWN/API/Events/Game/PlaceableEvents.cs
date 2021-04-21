@@ -104,6 +104,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => Placeable;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> inventory has been disturbed.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnInventoryDisturbed)]
     public sealed class OnDisturbed : IEvent
     {
