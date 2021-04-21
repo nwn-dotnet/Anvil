@@ -39,7 +39,7 @@ namespace NWN.API.Events
       public NwPlaceable DamagedObject { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       /// <summary>
-      /// Gets the <see cref="NwGameObject"/> that damaged the NwPlaceable.
+      /// Gets the <see cref="NwGameObject"/> that damaged the <see cref="NwPlaceable"/>.
       /// </summary>
       public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
 
@@ -57,6 +57,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => DamagedObject;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwCreature"/> has destroyed <see cref="NwPlaceable"/>.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDeath)]
     public sealed class OnDeath : IEvent
     {
