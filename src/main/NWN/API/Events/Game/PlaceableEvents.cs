@@ -76,6 +76,9 @@ namespace NWN.API.Events
       NwObject IEvent.Context => KilledObject;
     }
 
+    /// <summary>
+    /// Called when <see cref="NwPlaceable"/> has been disarmed.
+    /// </summary>
     [GameEvent(EventScriptType.PlaceableOnDisarm)]
     public sealed class OnDisarm : IEvent
     {
