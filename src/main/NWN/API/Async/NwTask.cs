@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace NWN.API
@@ -31,11 +30,6 @@ namespace NWN.API
     public static async Task SwitchToMainThread()
     {
       // We can execute immediately as we are already in a safe script context.
-      if (isInScriptContext && Thread.CurrentThread == mainThread)
-      {
-        return;
-      }
-
       await DelayFrame(1);
     }
 
