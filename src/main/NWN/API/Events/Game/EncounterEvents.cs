@@ -35,7 +35,7 @@ namespace NWN.API.Events
     public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwEncounter"/> when triggered on heartbeat.
+      /// Gets the <see cref="NwEncounter"/> on heartbeat.
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
@@ -45,6 +45,9 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.EncounterOnEncounterExhausted)]
     public sealed class OnExhausted : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwEncounter"/> on exhausted.
+      /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
       NwObject IEvent.Context => Encounter;
