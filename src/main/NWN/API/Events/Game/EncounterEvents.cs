@@ -5,13 +5,16 @@ using NWN.Core;
 namespace NWN.API.Events
 {
   /// <summary>
-  /// Events for Encounter triggers.
+  /// Events for <see cref="NwEncounter"/> triggers.
   /// </summary>
   public static class EncounterEvents
   {
     [GameEvent(EventScriptType.EncounterOnObjectEnter)]
     public sealed class OnEnter : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwObject"/> that entered <see cref="NwEncounter"/>.
+      /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
       NwObject IEvent.Context => Encounter;
