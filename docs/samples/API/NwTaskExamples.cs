@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using NWN.API;
 using NWN.Services;
 
-[ServiceBinding(typeof(MyAsyncService))]
-public class MyAsyncService
+[ServiceBinding(typeof(NwTaskExamples))]
+public class NwTaskExamples
 {
-  public MyAsyncService()
+  public NwTaskExamples()
   {
     DoAsyncStuff();
   }

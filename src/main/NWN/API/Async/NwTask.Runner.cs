@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using NWN.Services;
@@ -8,7 +8,8 @@ namespace NWN.API
 {
   public static partial class NwTask
   {
-    private static readonly BlockingCollection<ScheduledItem> ScheduledItems = new BlockingCollection<ScheduledItem>();
+    private static readonly List<ScheduledItem> ScheduledItems = new List<ScheduledItem>();
+    private static readonly object SchedulerLock = new object();
 
     private static int managedThreadId;
 
@@ -20,7 +21,10 @@ namespace NWN.API
       }
 
       ScheduledItem scheduledItem = new ScheduledItem(completionSource);
-      ScheduledItems.Add(scheduledItem);
+      lock (SchedulerLock)
+      {
+        ScheduledItems.Add(scheduledItem);
+      }
 
       await scheduledItem.TaskCompletionSource.Task.ConfigureAwait(false);
     }
@@ -36,15 +40,22 @@ namespace NWN.API
 
       void IUpdateable.Update()
       {
-        foreach (ScheduledItem item in ScheduledItems.GetConsumingEnumerable())
+        ScheduledItem[] items;
+        lock (SchedulerLock)
         {
-          if (!item.CompletionSource())
-          {
-            ScheduledItems.Add(item);
-            continue;
-          }
+          items = ScheduledItems.ToArray();
+          Console.WriteLine(items.Length);
+        }
 
-          item.TaskCompletionSource.SetResult(true);
+        foreach (ScheduledItem item in items)
+        {
+          if (item.IsComplete())
+          {
+            lock (SchedulerLock)
+            {
+              ScheduledItems.Remove(item);
+            }
+          }
         }
       }
     }
@@ -52,11 +63,21 @@ namespace NWN.API
     private class ScheduledItem
     {
       public readonly Func<bool> CompletionSource;
-      public readonly TaskCompletionSource<bool> TaskCompletionSource = new TaskCompletionSource<bool>();
+      public readonly TaskCompletionSource TaskCompletionSource = new TaskCompletionSource();
 
       public ScheduledItem(Func<bool> completionSource)
       {
         CompletionSource = completionSource;
+      }
+
+      public bool IsComplete()
+      {
+        if (CompletionSource())
+        {
+          TaskCompletionSource.SetResult();
+        }
+
+        return TaskCompletionSource.Task.IsCompleted;
       }
     }
   }
