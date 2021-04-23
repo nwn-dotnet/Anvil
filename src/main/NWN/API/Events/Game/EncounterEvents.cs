@@ -56,6 +56,9 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.EncounterOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
+      /// <summary>
+      /// Gets the <see cref="NwEncounter"/> on user defined.
+      /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
       NwObject IEvent.Context => Encounter;
