@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using NWN.API.Constants;
@@ -358,26 +358,26 @@ namespace NWN.API
 
     public static NwItem Deserialize(byte[] serialized)
     {
-        CNWSItem item = null;
+      CNWSItem item = null;
 
-        NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTI"))
         {
-            if (!resGff.IsValidGff("UTI"))
-            {
-                return false;
-            }
+          return false;
+        }
 
-            item = new CNWSItem(INVALID);
-            if (item.LoadItem(resGff, resStruct).ToBool())
-            {
-                return true;
-            }
+        item = new CNWSItem(INVALID);
+        if (item.LoadItem(resGff, resStruct).ToBool())
+        {
+          return true;
+        }
 
-            item.Dispose();
-            return false;
-        });
+        item.Dispose();
+        return false;
+      });
 
-        return item != null ? item.m_idSelf.ToNwObject<NwItem>() : null;
+      return item != null ? item.m_idSelf.ToNwObject<NwItem>() : null;
     }
   }
 }
