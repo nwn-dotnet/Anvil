@@ -81,7 +81,7 @@ namespace NWN.API
     /// Waits until the specified expression returns true.
     /// </summary>
     /// <param name="test">The test expression.</param>
-    ///     /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
+    /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
     public static async Task WaitUntil(Func<bool> test, CancellationToken? cancellationToken = null)
     {
       await RunAndAwait(test, cancellationToken);
@@ -91,7 +91,7 @@ namespace NWN.API
     /// Waits until the specified value source changes.
     /// </summary>
     /// <param name="valueSource">The watched value source.</param>
-    ///     /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
+    /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
     public static async Task WaitUntilValueChanged<T>(Func<T> valueSource, CancellationToken? cancellationToken = null)
     {
       T currentVal = valueSource();
