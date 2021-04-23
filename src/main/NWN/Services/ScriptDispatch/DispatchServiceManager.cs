@@ -9,6 +9,7 @@ namespace NWN.Services
   internal class DispatchServiceManager : ICoreRunScriptHandler
   {
     private readonly List<IScriptDispatcher> dispatchers;
+
     public DispatchServiceManager(IEnumerable<IScriptDispatcher> dispatchers)
     {
       this.dispatchers = dispatchers.ToList();
