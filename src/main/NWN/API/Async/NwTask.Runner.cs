@@ -83,7 +83,6 @@ namespace NWN.API
         {
           TaskCompletionSource.SetResult();
         }
-
         else if (CancellationToken.HasValue && CancellationToken.Value.IsCancellationRequested)
         {
           TaskCompletionSource.SetCanceled();
