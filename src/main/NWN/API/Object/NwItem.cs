@@ -356,28 +356,28 @@ namespace NWN.API
       });
     }
 
-    public static NwPlaceable Deserialize(byte[] serialized)
+    public static NwItem Deserialize(byte[] serialized)
     {
-      CNWSPlaceable placeable = null;
+        CNWSItem item = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
-      {
-        if (!resGff.IsValidGff("UTI"))
+        NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
         {
-          return false;
-        }
+            if (!resGff.IsValidGff("UTI"))
+            {
+                return false;
+            }
 
-        placeable = new CNWSPlaceable(INVALID);
-        if (placeable.LoadPlaceable(resGff, resStruct, null).ToBool())
-        {
-          return true;
-        }
+            item = new CNWSItem(INVALID);
+            if (item.LoadItem(resGff, resStruct).ToBool())
+            {
+                return true;
+            }
 
-        placeable.Dispose();
-        return false;
-      });
+            item.Dispose();
+            return false;
+        });
 
-      return placeable != null ? placeable.m_idSelf.ToNwObject<NwPlaceable>() : null;
+        return item != null ? item.m_idSelf.ToNwObject<NwItem>() : null;
     }
   }
 }
