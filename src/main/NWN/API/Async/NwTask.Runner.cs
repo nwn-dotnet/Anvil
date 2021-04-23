@@ -13,14 +13,14 @@ namespace NWN.API
 
     private static int managedThreadId;
 
-    private static async Task RunAndAwait(Func<bool> completionSource)
+    private static async Task RunAndAwait(Func<bool> completionSource, CancellationToken? cancellationToken = null)
     {
       if (completionSource())
       {
         await Task.CompletedTask;
       }
 
-      ScheduledItem scheduledItem = new ScheduledItem(completionSource);
+      ScheduledItem scheduledItem = new ScheduledItem(completionSource, cancellationToken);
       lock (SchedulerLock)
       {
         ScheduledItems.Add(scheduledItem);
@@ -44,7 +44,6 @@ namespace NWN.API
         lock (SchedulerLock)
         {
           items = ScheduledItems.ToArray();
-          Console.WriteLine(items.Length);
         }
 
         foreach (ScheduledItem item in items)
@@ -64,10 +63,12 @@ namespace NWN.API
     {
       public readonly Func<bool> CompletionSource;
       public readonly TaskCompletionSource TaskCompletionSource = new TaskCompletionSource();
+      public readonly CancellationToken? CancellationToken;
 
-      public ScheduledItem(Func<bool> completionSource)
+      public ScheduledItem(Func<bool> completionSource, CancellationToken? cancellationToken)
       {
         CompletionSource = completionSource;
+        CancellationToken = cancellationToken;
       }
 
       public bool IsComplete()
@@ -77,7 +78,7 @@ namespace NWN.API
           TaskCompletionSource.SetResult();
         }
 
-        return TaskCompletionSource.Task.IsCompleted;
+        return  TaskCompletionSource.Task.IsCompleted || CancellationToken.HasValue && CancellationToken.Value.IsCancellationRequested;
       }
     }
   }
