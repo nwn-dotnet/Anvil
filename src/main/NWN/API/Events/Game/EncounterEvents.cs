@@ -22,7 +22,10 @@ namespace NWN.API.Events
 
     [GameEvent(EventScriptType.EncounterOnObjectExit)]
     public sealed class OnExit : IEvent
-    {
+    {      
+      /// <summary>
+      /// Gets the <see cref="NwObject"/> that exited <see cref="NwEncounter"/>.
+      /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
       NwObject IEvent.Context => Encounter;
