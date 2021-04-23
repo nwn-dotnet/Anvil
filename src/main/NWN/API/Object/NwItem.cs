@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using NWN.API.Constants;
@@ -356,9 +356,9 @@ namespace NWN.API
       });
     }
 
-    public static NwPlaceable Deserialize(byte[] serialized)
+    public static NwItem Deserialize(byte[] serialized)
     {
-      CNWSPlaceable placeable = null;
+      CNWSItem item = null;
 
       NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
@@ -367,17 +367,17 @@ namespace NWN.API
           return false;
         }
 
-        placeable = new CNWSPlaceable(INVALID);
-        if (placeable.LoadPlaceable(resGff, resStruct, null).ToBool())
+        item = new CNWSItem(INVALID);
+        if (item.LoadItem(resGff, resStruct).ToBool())
         {
           return true;
         }
 
-        placeable.Dispose();
+        item.Dispose();
         return false;
       });
 
-      return placeable != null ? placeable.m_idSelf.ToNwObject<NwPlaceable>() : null;
+      return item != null ? item.m_idSelf.ToNwObject<NwItem>() : null;
     }
   }
 }
