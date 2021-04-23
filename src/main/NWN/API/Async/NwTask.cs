@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace NWN.API
 {
   //! ## Examples
-  //! @import AsyncService.cs
+  //! @import NwTaskExamples.cs
 
   /// <summary>
   /// Awaiters for running NWN code in an async context.
@@ -125,7 +125,8 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Waits until any of the specified tasks have completed.
+    /// Waits until any of the specified tasks have completed.<br/>
+    /// NOTE: This will not cancel other tasks that have not finished running.
     /// </summary>
     /// <param name="tasks">The tasks to wait on for completion.</param>
     public static async Task WhenAny(params Task[] tasks)
