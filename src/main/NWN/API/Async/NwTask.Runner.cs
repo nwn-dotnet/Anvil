@@ -73,12 +73,23 @@ namespace NWN.API
 
       public bool IsComplete()
       {
+        Task task = TaskCompletionSource.Task;
+        if (task.IsCompleted)
+        {
+          return true;
+        }
+
         if (CompletionSource())
         {
           TaskCompletionSource.SetResult();
         }
 
-        return  TaskCompletionSource.Task.IsCompleted || CancellationToken.HasValue && CancellationToken.Value.IsCancellationRequested;
+        else if (CancellationToken.HasValue && CancellationToken.Value.IsCancellationRequested)
+        {
+          TaskCompletionSource.SetCanceled();
+        }
+
+        return task.IsCompleted;
       }
     }
   }

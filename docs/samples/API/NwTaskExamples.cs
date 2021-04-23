@@ -15,6 +15,7 @@ public class NwTaskExamples
   public NwTaskExamples()
   {
     DoAsyncStuff();
+    CancellationTokenExample();
   }
 
   private async void DoAsyncStuff()
@@ -59,10 +60,24 @@ public class NwTaskExamples
       return 20;
     });
 
-    // ...wait for any of them to complete.
+    // ...wait for any of them to complete. The others will still keep running in the background!
     await NwTask.WhenAny(task1, task2, task3);
 
     // ...wait for all of them to complete.
     await NwTask.WhenAll(task1, task2, task3);
+  }
+
+  private async void CancellationTokenExample()
+  {
+    // Create a token that will be used to cancel the other tasks.
+    CancellationTokenSource tokenSource = new CancellationTokenSource();
+
+    // Start some tasks
+    Task task1 = NwTask.WaitUntil(() => NwModule.Instance.Players.Any(), tokenSource.Token);
+    Task task2 = NwTask.Delay(TimeSpan.FromSeconds(10), tokenSource.Token);
+
+    // When any of them complete, cancel the other tasks.
+    await NwTask.WhenAny(task1, task2);
+    tokenSource.Cancel();
   }
 }
