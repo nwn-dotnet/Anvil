@@ -13,7 +13,7 @@ namespace NWN.API.Events
     public sealed class OnEnter : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwObject"/> that entered <see cref="NwEncounter"/>.
+      /// Gets the <see cref="NwEncounter"/> that was entered.
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
@@ -24,7 +24,7 @@ namespace NWN.API.Events
     public sealed class OnExit : IEvent
     {      
       /// <summary>
-      /// Gets the <see cref="NwObject"/> that exited <see cref="NwEncounter"/>.
+      /// Gets the <see cref="NwEncounter"/> that was exited.
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
