@@ -11,8 +11,7 @@ namespace NWN.API
     private static readonly HashSet<ScheduledItem> ScheduledItems = new HashSet<ScheduledItem>();
     private static readonly object SchedulerLock = new object();
 
-    private static bool isInScriptContext;
-    private static Thread mainThread;
+    private static int managedThreadId;
 
     private static async Task RunAndAwait(Func<bool> completionSource)
     {
@@ -34,17 +33,13 @@ namespace NWN.API
     [BindingOrder(BindingOrder.API)]
     internal class TaskRunner : IUpdateable
     {
-      public TaskRunner(DispatchServiceManager dispatchServiceManager)
+      public TaskRunner()
       {
-        mainThread = Thread.CurrentThread;
-        dispatchServiceManager.OnScriptContextBegin += () => isInScriptContext = true;
-        dispatchServiceManager.OnScriptContextEnd += () => isInScriptContext = false;
+        managedThreadId = Thread.CurrentThread.ManagedThreadId;
       }
 
       void IUpdateable.Update()
       {
-        isInScriptContext = true;
-
         lock (SchedulerLock)
         {
           ScheduledItems.RemoveWhere(item =>
@@ -58,8 +53,6 @@ namespace NWN.API
             return true;
           });
         }
-
-        isInScriptContext = false;
       }
     }
 

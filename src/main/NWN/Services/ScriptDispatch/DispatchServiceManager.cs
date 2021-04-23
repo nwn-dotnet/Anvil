@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Anvil.Internal;
@@ -10,11 +9,6 @@ namespace NWN.Services
   internal class DispatchServiceManager : ICoreRunScriptHandler
   {
     private readonly List<IScriptDispatcher> dispatchers;
-
-    public event Action OnScriptContextBegin;
-
-    public event Action OnScriptContextEnd;
-
     public DispatchServiceManager(IEnumerable<IScriptDispatcher> dispatchers)
     {
       this.dispatchers = dispatchers.ToList();
@@ -23,22 +17,13 @@ namespace NWN.Services
     public int OnRunScript(string script, uint oidSelf)
     {
       ScriptHandleResult result = ScriptHandleResult.NotHandled;
-      OnScriptContextBegin?.Invoke();
-
-      try
+      foreach (IScriptDispatcher dispatcher in dispatchers)
       {
-        foreach (IScriptDispatcher dispatcher in dispatchers)
+        result = dispatcher.ExecuteScript(script, oidSelf);
+        if (result != ScriptHandleResult.NotHandled)
         {
-          result = dispatcher.ExecuteScript(script, oidSelf);
-          if (result != ScriptHandleResult.NotHandled)
-          {
-            break;
-          }
+          break;
         }
-      }
-      finally
-      {
-        OnScriptContextEnd?.Invoke();
       }
 
       return (int) result;
