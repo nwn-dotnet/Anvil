@@ -18,10 +18,11 @@ namespace NWN.API
     /// Waits until the specified amount of time has passed.
     /// </summary>
     /// <param name="delay">How long to wait.</param>
-    public static async Task Delay(TimeSpan delay)
+    /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
+    public static async Task Delay(TimeSpan delay, CancellationToken? cancellationToken = null)
     {
       Stopwatch stopwatch = Stopwatch.StartNew();
-      await RunAndAwait(() => delay < stopwatch.Elapsed);
+      await RunAndAwait(() => delay < stopwatch.Elapsed, cancellationToken);
     }
 
     /// <summary>
@@ -48,14 +49,15 @@ namespace NWN.API
     /// Waits until the specified amount of frames have passed.
     /// </summary>
     /// <param name="frames">The number of frames to wait.</param>
-    public static async Task DelayFrame(int frames)
+    /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
+    public static async Task DelayFrame(int frames, CancellationToken? cancellationToken = null)
     {
       await RunAndAwait(() =>
       {
         bool retVal = frames <= 0;
         frames--;
         return retVal;
-      });
+      }, cancellationToken);
     }
 
     /// <summary>
@@ -79,13 +81,18 @@ namespace NWN.API
     /// Waits until the specified expression returns true.
     /// </summary>
     /// <param name="test">The test expression.</param>
-    public static async Task WaitUntil(Func<bool> test) => await RunAndAwait(test);
+    /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
+    public static async Task WaitUntil(Func<bool> test, CancellationToken? cancellationToken = null)
+    {
+      await RunAndAwait(test, cancellationToken);
+    }
 
     /// <summary>
     /// Waits until the specified value source changes.
     /// </summary>
     /// <param name="valueSource">The watched value source.</param>
-    public static async Task WaitUntilValueChanged<T>(Func<T> valueSource)
+    /// <param name="cancellationToken">A cancellation token that should be used to cancel the work.</param>
+    public static async Task WaitUntilValueChanged<T>(Func<T> valueSource, CancellationToken? cancellationToken = null)
     {
       T currentVal = valueSource();
       await RunAndAwait(() => !valueSource().Equals(currentVal));
@@ -126,7 +133,7 @@ namespace NWN.API
 
     /// <summary>
     /// Waits until any of the specified tasks have completed.<br/>
-    /// NOTE: This will not cancel other tasks that have not finished running.
+    /// NOTE: This will not cancel other tasks that have not finished running. Specify a common <see cref="CancellationToken"/> in each of the source tasks.
     /// </summary>
     /// <param name="tasks">The tasks to wait on for completion.</param>
     public static async Task WhenAny(params Task[] tasks)
