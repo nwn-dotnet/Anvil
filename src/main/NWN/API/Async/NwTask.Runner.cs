@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 using NWN.Services;
@@ -8,8 +8,7 @@ namespace NWN.API
 {
   public static partial class NwTask
   {
-    private static readonly HashSet<ScheduledItem> ScheduledItems = new HashSet<ScheduledItem>();
-    private static readonly object SchedulerLock = new object();
+    private static readonly BlockingCollection<ScheduledItem> ScheduledItems = new BlockingCollection<ScheduledItem>();
 
     private static int managedThreadId;
 
@@ -21,10 +20,7 @@ namespace NWN.API
       }
 
       ScheduledItem scheduledItem = new ScheduledItem(completionSource);
-      lock (SchedulerLock)
-      {
-        ScheduledItems.Add(scheduledItem);
-      }
+      ScheduledItems.Add(scheduledItem);
 
       await scheduledItem.TaskCompletionSource.Task.ConfigureAwait(false);
     }
@@ -40,18 +36,15 @@ namespace NWN.API
 
       void IUpdateable.Update()
       {
-        lock (SchedulerLock)
+        foreach (ScheduledItem item in ScheduledItems.GetConsumingEnumerable())
         {
-          ScheduledItems.RemoveWhere(item =>
+          if (!item.CompletionSource())
           {
-            if (!item.CompletionSource())
-            {
-              return false;
-            }
+            ScheduledItems.Add(item);
+            continue;
+          }
 
-            item.TaskCompletionSource.SetResult(true);
-            return true;
-          });
+          item.TaskCompletionSource.SetResult(true);
         }
       }
     }
