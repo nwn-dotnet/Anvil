@@ -57,7 +57,7 @@ namespace NWN.API.Events
     public sealed class OnUserDefined : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwEncounter"/> on user defined.
+      /// Gets the <see cref="NwEncounter"/> associated with this user defined event.
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
