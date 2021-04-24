@@ -35,7 +35,7 @@ namespace NWN.API.Events
     public sealed class OnHeartbeat : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwEncounter"/> on heartbeat.
+      /// Gets the <see cref="NwEncounter"/> associated with this heartbeat event.
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
