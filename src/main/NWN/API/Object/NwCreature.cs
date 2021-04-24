@@ -1869,7 +1869,7 @@ namespace NWN.API
     /// </summary>
     public void RestoreSpells(byte level)
     {
-      if (level < 0 || level > 9)
+      if (level > 9)
       {
         throw new ArgumentOutOfRangeException(nameof(level), "Level must be a spell level between 0 and 9.");
       }
