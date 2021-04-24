@@ -11,6 +11,11 @@ namespace NWN.API
 
     private static readonly CVirtualMachine VM = NWNXLib.VirtualMachine();
 
+    public static bool IsInScriptContext
+    {
+      get => VM.m_nRecursionLevel >= 0;
+    }
+
     /// <summary>
     /// Executes the specified NWN script.
     /// If scriptName does not specify a compiled script, nothing happens.
