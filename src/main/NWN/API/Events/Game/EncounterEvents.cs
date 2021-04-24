@@ -13,7 +13,7 @@ namespace NWN.API.Events
     public sealed class OnEnter : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwEncounter"/> on entered.
+      /// Gets the <see cref="NwEncounter"/> that was entered.
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
