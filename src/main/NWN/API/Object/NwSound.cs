@@ -46,5 +46,40 @@ namespace NWN.API
     /// Stops this sound object from playing.
     /// </summary>
     public void Stop() => NWScript.SoundObjectStop(this);
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTS", (resGff, resStruct) =>
+      {
+        SoundObject.SaveObjectState(resGff, resStruct);
+        SoundObject.Save(resGff, resStruct);
+        return true;
+      });
+    }
+
+    public static NwSound Deserialize(byte[] serialized)
+    {
+      CNWSSoundObject soundObject = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTS"))
+        {
+          return false;
+        }
+
+        soundObject = new CNWSSoundObject(INVALID);
+        if (soundObject.Load(resGff, resStruct).ToBool())
+        {
+          soundObject.LoadObjectState(resGff, resStruct);
+          return true;
+        }
+
+        soundObject.Dispose();
+        return false;
+      });
+
+      return soundObject != null ? soundObject.m_idSelf.ToNwObject<NwSound>() : null;
+    }
   }
 }

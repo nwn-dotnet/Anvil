@@ -13,12 +13,12 @@ namespace NWN.API.Events
     public sealed class OnOpen : IEvent
     {
       /// <summary>
-      /// Gets the store being open.
+      /// Gets the <see cref="NwStore"/> being open.
       /// </summary>
       public NwStore Store { get; } = NWScript.OBJECT_SELF.ToNwObject<NwStore>();
 
       /// <summary>
-      /// Gets the player that last opened this store.
+      /// Gets the <see cref="NwPlayer"/> that last opened this store.
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwPlayer>();
 
@@ -29,12 +29,12 @@ namespace NWN.API.Events
     public sealed class OnClose : IEvent
     {
       /// <summary>
-      /// Gets the store being closed.
+      /// Gets the <see cref="NwStore"/> being closed.
       /// </summary>
       public NwStore Store { get; } = NWScript.OBJECT_SELF.ToNwObject<NwStore>();
 
       /// <summary>
-      /// Gets the player that last closed this store.
+      /// Gets the <see cref="NwPlayer"/> that last closed this <see cref="NwStore"/>.
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastClosedBy().ToNwObject<NwPlayer>();
 

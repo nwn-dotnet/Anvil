@@ -4,7 +4,6 @@ using System.Reflection;
 using Anvil.Internal;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Core.NWNX;
 using NWN.Native.API;
 
 namespace NWN.API
@@ -12,16 +11,6 @@ namespace NWN.API
   public abstract partial class NwObject
   {
     private static readonly Dictionary<Type, NativeObjectInfoAttribute> CachedTypeInfo = new Dictionary<Type, NativeObjectInfoAttribute>();
-
-    public static T Deserialize<T>(string serializedObject) where T : NwObject
-    {
-      return (T) Deserialize(serializedObject);
-    }
-
-    public static NwObject Deserialize(string serializedObject)
-    {
-      return CreateInternal(ObjectPlugin.Deserialize(serializedObject));
-    }
 
     /// <summary>
     /// Locates all objects of that have the specified tag.

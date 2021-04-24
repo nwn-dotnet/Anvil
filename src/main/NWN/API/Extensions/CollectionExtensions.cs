@@ -25,18 +25,18 @@ namespace NWN.API
 
     public static bool RemoveElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>, new()
     {
-        bool retVal = false;
+      bool retVal = false;
 
-        if (mutableLookup.TryGetValue(key, out TCollection values))
+      if (mutableLookup.TryGetValue(key, out TCollection values))
+      {
+        retVal = values.Remove(value);
+        if (values.Any())
         {
-            retVal = values.Remove(value);
-            if (values.Any())
-            {
-                mutableLookup.Remove(key);
-            }
+          mutableLookup.Remove(key);
         }
+      }
 
-        return retVal;
+      return retVal;
     }
 
     public static bool ContainsElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>

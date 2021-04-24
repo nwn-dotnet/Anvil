@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using NWN.API.Constants;
@@ -177,11 +177,16 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the weight of this item, in pounds.
+    /// Gets or sets the weight of this item, in pounds.
     /// </summary>
     public decimal Weight
     {
       get => NWScript.GetWeight(this) / 10.0m;
+      set
+      {
+        Item.m_nWeight = (int)Math.Round(value * 10.0m, MidpointRounding.ToZero);
+        Item.m_oidPossessor.ToNwObject<NwCreature>()?.Creature.UpdateEncumbranceState();
+      }
     }
 
     /// <summary>
@@ -341,6 +346,38 @@ namespace NWN.API
 
       void* itemPtr = item.Item;
       Item.AcquireItem(&itemPtr, INVALID, 0xFF, 0xFF, displayFeedback.ToInt());
+    }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTI", (resGff, resStruct) =>
+      {
+        return Item.SaveItem(resGff, resStruct, 0).ToBool();
+      });
+    }
+
+    public static NwItem Deserialize(byte[] serialized)
+    {
+      CNWSItem item = null;
+
+      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTI"))
+        {
+          return false;
+        }
+
+        item = new CNWSItem(INVALID);
+        if (item.LoadItem(resGff, resStruct).ToBool())
+        {
+          return true;
+        }
+
+        item.Dispose();
+        return false;
+      });
+
+      return item != null ? item.m_idSelf.ToNwObject<NwItem>() : null;
     }
   }
 }

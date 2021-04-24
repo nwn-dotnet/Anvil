@@ -1,5 +1,3 @@
-using System;
-using System.Runtime.InteropServices;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;

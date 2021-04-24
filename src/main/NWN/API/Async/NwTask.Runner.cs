@@ -8,69 +8,87 @@ namespace NWN.API
 {
   public static partial class NwTask
   {
-    private static readonly HashSet<ScheduledItem> ScheduledItems = new HashSet<ScheduledItem>();
+    private static readonly List<ScheduledItem> ScheduledItems = new List<ScheduledItem>();
     private static readonly object SchedulerLock = new object();
 
-    private static bool isInScriptContext;
-    private static Thread mainThread;
+    private static int managedThreadId;
 
-    private static Task RunAndAwait(Func<bool> completionSource)
+    private static async Task RunAndAwait(Func<bool> completionSource, CancellationToken? cancellationToken = null)
     {
       if (completionSource())
       {
-        return Task.CompletedTask;
+        await Task.CompletedTask;
       }
 
-      ScheduledItem scheduledItem = new ScheduledItem(completionSource);
+      ScheduledItem scheduledItem = new ScheduledItem(completionSource, cancellationToken);
       lock (SchedulerLock)
       {
         ScheduledItems.Add(scheduledItem);
       }
 
-      return scheduledItem.TaskCompletionSource.Task;
+      await scheduledItem.TaskCompletionSource.Task.ConfigureAwait(false);
     }
 
     [ServiceBinding(typeof(IUpdateable))]
     [BindingOrder(BindingOrder.API)]
     internal class TaskRunner : IUpdateable
     {
-      public TaskRunner(DispatchServiceManager dispatchServiceManager)
+      public TaskRunner()
       {
-        mainThread = Thread.CurrentThread;
-        dispatchServiceManager.OnScriptContextBegin += () => isInScriptContext = true;
-        dispatchServiceManager.OnScriptContextEnd += () => isInScriptContext = false;
+        managedThreadId = Thread.CurrentThread.ManagedThreadId;
       }
 
       void IUpdateable.Update()
       {
-        isInScriptContext = true;
-
+        ScheduledItem[] items;
         lock (SchedulerLock)
         {
-          ScheduledItems.RemoveWhere(item =>
-          {
-            if (!item.CompletionSource())
-            {
-              return false;
-            }
-
-            item.TaskCompletionSource.SetResult(true);
-            return true;
-          });
+          items = ScheduledItems.ToArray();
         }
 
-        isInScriptContext = false;
+        foreach (ScheduledItem item in items)
+        {
+          if (item.IsComplete())
+          {
+            lock (SchedulerLock)
+            {
+              ScheduledItems.Remove(item);
+            }
+          }
+        }
       }
     }
 
     private class ScheduledItem
     {
       public readonly Func<bool> CompletionSource;
-      public readonly TaskCompletionSource<bool> TaskCompletionSource = new TaskCompletionSource<bool>();
+      public readonly TaskCompletionSource TaskCompletionSource = new TaskCompletionSource();
+      public readonly CancellationToken? CancellationToken;
 
-      public ScheduledItem(Func<bool> completionSource)
+      public ScheduledItem(Func<bool> completionSource, CancellationToken? cancellationToken)
       {
         CompletionSource = completionSource;
+        CancellationToken = cancellationToken;
+      }
+
+      public bool IsComplete()
+      {
+        Task task = TaskCompletionSource.Task;
+        if (task.IsCompleted)
+        {
+          return true;
+        }
+
+        if (CompletionSource())
+        {
+          TaskCompletionSource.SetResult();
+        }
+        else if (CancellationToken.HasValue && CancellationToken.Value.IsCancellationRequested)
+        {
+          TaskCompletionSource.SetCanceled();
+        }
+
+        return task.IsCompleted;
       }
     }
   }

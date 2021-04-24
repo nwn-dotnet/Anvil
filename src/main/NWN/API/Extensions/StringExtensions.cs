@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -109,6 +110,16 @@ namespace NWN.API
     public static string StripColors(this string input)
     {
       return StripColorsRegex.Replace(input, string.Empty);
+    }
+
+    public static string ToBase64EncodedString(this byte[] data)
+    {
+      return Convert.ToBase64String(data);
+    }
+
+    public static byte[] ToByteArray(this string base64String)
+    {
+      return Convert.FromBase64String(base64String);
     }
   }
 }

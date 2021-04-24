@@ -10,6 +10,8 @@ namespace NWN.API.Events
 
     public NwCreature Associate { get; private init; }
 
+    public AssociateType AssociateType { get; private init; }
+
     NwObject IEvent.Context => Owner;
 
     [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature12AddAssociateEjt)]
@@ -29,7 +31,8 @@ namespace NWN.API.Events
         ProcessEvent(new OnAssociateAdd
         {
           Owner = creature.m_idSelf.ToNwObject<NwCreature>(),
-          Associate = oidAssociate.ToNwObject<NwCreature>()
+          Associate = oidAssociate.ToNwObject<NwCreature>(),
+          AssociateType = (AssociateType)associateType
         });
 
         Hook.CallOriginal(pCreature, oidAssociate, associateType);
