@@ -1864,6 +1864,30 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Restore all <see cref="NwCreature" /> spells per day for given level.
+    /// </summary>
+    public void RestoreSpells(byte level)
+    {
+      if (level > 9)
+      {
+        throw new ArgumentOutOfRangeException(nameof(level), "Level must be a spell level between 0 and 9.");
+      }
+
+      Creature.m_pStats.ReadySpellLevel(level);
+    }
+
+    /// <summary>
+    /// Restore all <see cref="NwCreature" /> spells per day for all levels.
+    /// </summary>
+    public void RestoreAllSpells()
+    {
+      for (byte i = 0; i <= 9; i++)
+      {
+        Creature.m_pStats.ReadySpellLevel(i);
+      }
+    }
+
+    /// <summary>
     /// Gets the level stat info for the specified level (feat, class, skills, etc.).
     /// </summary>
     /// <param name="level">The level to lookup.</param>
