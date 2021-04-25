@@ -169,7 +169,7 @@ namespace NWN.Services
 
       foreach (Type eventFactory in factoryTypes)
       {
-        if (eventFactories.TryGetValue(eventFactory, out IEventFactory factory) && activeFactories.Contains(factory))
+        if (eventFactories.TryGetValue(eventFactory, out IEventFactory factory) && activeFactories.Remove(factory))
         {
           factory.Unregister<TEvent>();
         }
