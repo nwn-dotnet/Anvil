@@ -280,11 +280,6 @@ namespace NWN.API
         return true;
       }
 
-      if (obj.GetType() != this.GetType())
-      {
-        return false;
-      }
-
       return Equals((NwObject) obj);
     }
 
