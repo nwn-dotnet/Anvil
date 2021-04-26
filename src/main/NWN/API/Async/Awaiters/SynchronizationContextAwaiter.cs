@@ -6,7 +6,7 @@ namespace NWN.API
 {
   public sealed class SynchronizationContextAwaiter : INotifyCompletion
   {
-    private static readonly SendOrPostCallback postCallback = state => ((Action)state)?.Invoke();
+    private static readonly SendOrPostCallback PostCallback = state => ((Action)state)?.Invoke();
 
     private readonly SynchronizationContext context;
 
@@ -22,7 +22,7 @@ namespace NWN.API
 
     public void OnCompleted(Action continuation)
     {
-      context.Post(postCallback, continuation);
+      context.Post(PostCallback, continuation);
     }
 
     public void GetResult() {}
