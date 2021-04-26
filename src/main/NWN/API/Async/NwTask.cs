@@ -37,7 +37,7 @@ namespace NWN.API
         return;
       }
 
-      await DelayFrame(1);
+      await MainThreadScriptContext;
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ namespace NWN.API
     public static async Task WaitUntilValueChanged<T>(Func<T> valueSource, CancellationToken? cancellationToken = null)
     {
       T currentVal = valueSource();
-      await RunAndAwait(() => !valueSource().Equals(currentVal));
+      await RunAndAwait(() => !Equals(currentVal, valueSource()), cancellationToken);
     }
 
     /// <summary>
@@ -163,6 +163,19 @@ namespace NWN.API
       Task<TResult> results = await Task.WhenAny(tasks);
       await SwitchToMainThread();
       return results;
+    }
+
+    private static async Task RunAndAwait(Func<bool> completionSource, CancellationToken? cancellationToken)
+    {
+      if (completionSource())
+      {
+        await Task.CompletedTask;
+        await SwitchToMainThread();
+        return;
+      }
+
+      await taskRunner.Schedule(completionSource, cancellationToken);
+      await SwitchToMainThread();
     }
   }
 }
