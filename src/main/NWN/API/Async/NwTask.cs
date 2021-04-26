@@ -95,7 +95,7 @@ namespace NWN.API
     public static async Task WaitUntilValueChanged<T>(Func<T> valueSource, CancellationToken? cancellationToken = null)
     {
       T currentVal = valueSource();
-      await RunAndAwait(() => !valueSource().Equals(currentVal));
+      await RunAndAwait(() => !valueSource().Equals(currentVal), cancellationToken);
     }
 
     /// <summary>
@@ -165,7 +165,7 @@ namespace NWN.API
       return results;
     }
 
-    private static async Task RunAndAwait(Func<bool> completionSource, CancellationToken? cancellationToken = null)
+    private static async Task RunAndAwait(Func<bool> completionSource, CancellationToken? cancellationToken)
     {
       if (completionSource())
       {
