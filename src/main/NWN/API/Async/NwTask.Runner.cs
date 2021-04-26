@@ -2,90 +2,110 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using NLog;
 using NWN.Services;
 
 namespace NWN.API
 {
   public static partial class NwTask
   {
-    private static readonly List<ScheduledItem> ScheduledItems = new List<ScheduledItem>();
-    private static readonly object SchedulerLock = new object();
-
     private static int managedThreadId;
+    private static TaskRunner taskRunner;
 
-    private static async Task RunAndAwait(Func<bool> completionSource, CancellationToken? cancellationToken = null)
-    {
-      if (completionSource())
-      {
-        await Task.CompletedTask;
-      }
-
-      ScheduledItem scheduledItem = new ScheduledItem(completionSource, cancellationToken);
-      lock (SchedulerLock)
-      {
-        ScheduledItems.Add(scheduledItem);
-      }
-
-      await scheduledItem.TaskCompletionSource.Task.ConfigureAwait(false);
-    }
+    public static SyncContext MainThreadScriptContext { get; private set; }
 
     [ServiceBinding(typeof(IUpdateable))]
     [BindingOrder(BindingOrder.API)]
     internal class TaskRunner : IUpdateable
     {
+      private readonly List<ScheduledItem> currentWork = new List<ScheduledItem>();
+      private readonly List<ScheduledItem> scheduledItems = new List<ScheduledItem>();
+
       public TaskRunner()
       {
         managedThreadId = Thread.CurrentThread.ManagedThreadId;
+        MainThreadScriptContext = new SyncContext();
+        taskRunner = this;
+      }
+
+      public Task Schedule(Func<bool> completionSource, CancellationToken? cancellationToken = null)
+      {
+        ScheduledItem scheduledItem = new ScheduledItem(completionSource, cancellationToken);
+        lock (scheduledItems)
+        {
+          scheduledItems.Add(scheduledItem);
+        }
+
+        return scheduledItem.Task;
       }
 
       void IUpdateable.Update()
       {
-        ScheduledItem[] items;
-        lock (SchedulerLock)
+        MainThreadScriptContext.Update();
+
+        lock (scheduledItems)
         {
-          items = ScheduledItems.ToArray();
+          currentWork.AddRange(scheduledItems);
         }
 
-        foreach (ScheduledItem item in items)
+        foreach (ScheduledItem item in currentWork)
         {
           if (item.IsComplete())
           {
-            lock (SchedulerLock)
+            lock (scheduledItems)
             {
-              ScheduledItems.Remove(item);
+              scheduledItems.Remove(item);
             }
           }
         }
+
+        currentWork.Clear();
       }
     }
 
     private class ScheduledItem
     {
-      public readonly Func<bool> CompletionSource;
-      public readonly TaskCompletionSource TaskCompletionSource = new TaskCompletionSource();
-      public readonly CancellationToken? CancellationToken;
+      private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+      private readonly Func<bool> completionSource;
+      private readonly TaskCompletionSource taskCompletionSource;
+      private readonly CancellationToken? cancellationToken;
+
+      public Task Task { get; }
 
       public ScheduledItem(Func<bool> completionSource, CancellationToken? cancellationToken)
       {
-        CompletionSource = completionSource;
-        CancellationToken = cancellationToken;
+        this.completionSource = completionSource;
+        this.taskCompletionSource = new TaskCompletionSource();
+        this.cancellationToken = cancellationToken;
+
+        Task = taskCompletionSource.Task;
       }
 
       public bool IsComplete()
       {
-        Task task = TaskCompletionSource.Task;
+        Task task = taskCompletionSource.Task;
         if (task.IsCompleted)
         {
           return true;
         }
 
-        if (CompletionSource())
+        try
         {
-          TaskCompletionSource.SetResult();
+          if (completionSource())
+          {
+            taskCompletionSource.SetResult();
+          }
+          else if (cancellationToken.HasValue && cancellationToken.Value.IsCancellationRequested)
+          {
+            taskCompletionSource.SetCanceled();
+          }
         }
-        else if (CancellationToken.HasValue && CancellationToken.Value.IsCancellationRequested)
+        catch (Exception e)
         {
-          TaskCompletionSource.SetCanceled();
+          Log.Error(e);
+          taskCompletionSource.SetException(e);
+          return true;
         }
 
         return task.IsCompleted;

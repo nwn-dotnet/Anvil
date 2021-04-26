@@ -37,7 +37,7 @@ namespace NWN.API
         return;
       }
 
-      await DelayFrame(1);
+      await MainThreadScriptContext;
     }
 
     /// <summary>
@@ -163,6 +163,19 @@ namespace NWN.API
       Task<TResult> results = await Task.WhenAny(tasks);
       await SwitchToMainThread();
       return results;
+    }
+
+    private static async Task RunAndAwait(Func<bool> completionSource, CancellationToken? cancellationToken = null)
+    {
+      if (completionSource())
+      {
+        await Task.CompletedTask;
+        await SwitchToMainThread();
+        return;
+      }
+
+      await taskRunner.Schedule(completionSource, cancellationToken);
+      await SwitchToMainThread();
     }
   }
 }
