@@ -69,7 +69,7 @@ namespace NWN.API
     public string DMPassword
     {
       get => netLayer.GetGameMasterPassword().ToString();
-      set => netLayer.SetPlayerPassword(new CExoString(value));
+      set => netLayer.SetGameMasterPassword(new CExoString(value));
     }
 
     /// <summary>
