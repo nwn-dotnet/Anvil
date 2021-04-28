@@ -16,7 +16,7 @@ namespace NWN.API
       set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, (uint)value, IsDomainSpell.ToInt(), (byte)MetaMagic);
     }
 
-    public bool Ready
+    public bool IsReady
     {
       get => spellStats.m_bReadied.ToBool();
       set => classInfo.SetMemorizedSpellInSlotReady(spellLevel, spellSlot, value.ToInt());
