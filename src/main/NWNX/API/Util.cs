@@ -58,16 +58,6 @@ namespace NWNX.API
     public static int IsValidResRef(this string resRef, ResRefType type = ResRefType.Creature) => UtilPlugin.IsValidResRef(resRef);
 
     /// <summary>
-    /// Gets or sets the module real life minutes per in game hour.
-    /// </summary>
-    [Obsolete("Use NWServer.WorldTimer.MinutesPerHour instead.")]
-    public static int MinutesPerHour
-    {
-      get => UtilPlugin.GetMinutesPerHour();
-      set => UtilPlugin.SetMinutesPerHour(value);
-    }
-
-    /// <summary>
     /// Encodes a string for usage in a URL.
     /// </summary>
     /// <param name="str">The string to encode for a URL.</param>
@@ -97,15 +87,6 @@ namespace NWNX.API
       {
         yield return resRef;
       }
-    }
-
-    /// <summary>
-    /// Gets the server's current tick rate.
-    /// </summary>
-    [Obsolete]
-    public static int ServerTicksPerSecond
-    {
-      get => UtilPlugin.GetServerTicksPerSecond();
     }
 
     /// <summary>
@@ -160,15 +141,6 @@ namespace NWNX.API
     public static bool RemoveNWNXResourceFile(string fileName, ResRefType refType) => UtilPlugin.RemoveNWNXResourceFile(fileName, (int) refType).ToBool();
 
     /// <summary>
-    /// Sets the NWScript instruction limit. -1 resets the value to default.
-    /// </summary>
-    [Obsolete("Use NwServer.InstructionLimit instead.")]
-    public static int InstructionLimit
-    {
-      set => UtilPlugin.SetInstructionLimit(value);
-    }
-
-    /// <summary>
     /// Register a server console command that will execute a script chunk.
     /// </summary>
     /// <param name="command">The name of the command.</param>
@@ -188,12 +160,6 @@ namespace NWNX.API
     /// <param name="plugin">The name of the plugin to check. This is the case sensitive plugin name as used by NWNX_CallFunction, NWNX_PushArgumentX (e.g. "NWNX_Creature").</param>
     /// <returns>true if the plugin exists and is enabled, otherwise false.</returns>
     public static bool PluginExists(string plugin) => UtilPlugin.PluginExists(plugin).ToBool();
-
-    /// <summary>
-    /// Gets the absolute path of the server's home directory (-userDirectory).
-    /// </summary>
-    [Obsolete("Use NwServer.UserDirectory instead.")]
-    public static string UserDirectory => UtilPlugin.GetUserDirectory();
 
     /// <summary>
     /// Gets the return value of the last run script with a StartingConditional.
