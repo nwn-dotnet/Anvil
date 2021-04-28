@@ -6,6 +6,8 @@ namespace NWN.Native
   [StructLayout(LayoutKind.Sequential)]
   internal readonly struct CNWSQuickbarButtonStruct
   {
+#pragma warning disable SA1307
+#pragma warning disable SA1308
     public readonly uint m_oidItem;
     public readonly uint m_oidSecondaryItem;
     public readonly byte m_nObjectType;
@@ -19,6 +21,8 @@ namespace NWN.Native
     public readonly byte m_nDomainLevel;
     public readonly ushort m_nAssociateType;
     public readonly uint m_oidAssociate;
+#pragma warning restore SA1307
+#pragma warning restore SA1308
 
     public static unsafe implicit operator CNWSQuickbarButton(CNWSQuickbarButtonStruct quickBarButtonStruct)
     {

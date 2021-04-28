@@ -77,7 +77,11 @@ namespace NWN.API
         int i = low + ((high - low) >> 1);
         int order = comparer.Compare(array[i], value);
 
-        if (order == 0) return i;
+        if (order == 0)
+        {
+          return i;
+        }
+
         if (order < 0)
         {
           low = i + 1;

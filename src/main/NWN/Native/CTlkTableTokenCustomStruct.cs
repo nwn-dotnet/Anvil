@@ -7,8 +7,12 @@ namespace NWN.Native
   [StructLayout(LayoutKind.Sequential)]
   internal readonly struct CTlkTableTokenCustomStruct : IEquatable<CTlkTableTokenCustomStruct>
   {
+#pragma warning disable SA1307
+#pragma warning disable SA1308
     public readonly uint m_nNumber;
     public readonly CExoStringStruct m_sValue;
+#pragma warning restore SA1307
+#pragma warning restore SA1308
 
     public CTlkTableTokenCustomStruct(uint m_nNumber, CExoStringStruct m_sValue)
     {
