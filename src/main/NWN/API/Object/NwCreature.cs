@@ -839,6 +839,8 @@ namespace NWN.API
         for (int i = 0; i < MaxClasses; i++)
         {
           CNWSCreatureStats_ClassInfo classInfo = nativeClasses[i];
+          GC.SuppressFinalize(classInfo);
+
           ClassType classType = (ClassType)classInfo.m_nClass;
           if (classType == ClassType.Invalid)
           {
