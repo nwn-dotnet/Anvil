@@ -5,12 +5,12 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API
 {
-  public unsafe class CreatureLevelStats
+  public unsafe class CreatureLevelInfo
   {
     private readonly NwCreature creature;
     private readonly CNWLevelStats levelStats;
 
-    public CreatureLevelStats(NwCreature creature, CNWLevelStats levelStats)
+    internal CreatureLevelInfo(NwCreature creature, CNWLevelStats levelStats)
     {
       this.creature = creature;
       this.levelStats = levelStats;
@@ -38,7 +38,7 @@ namespace NWN.API
     /// </summary>
     public ClassType Class
     {
-      get => creature.Classes[levelStats.m_nClass - 1].Type;
+      get => creature.Classes[levelStats.m_nClass - 1];
     }
 
     /// <summary>
