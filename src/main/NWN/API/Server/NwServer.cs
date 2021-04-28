@@ -7,16 +7,14 @@ namespace NWN.API
   {
     private readonly CExoBase exoBase;
     private readonly CServerExoApp server;
-    private readonly CVirtualMachine virtualMachine;
     private readonly CNetLayer netLayer;
 
-    public static readonly NwServer Instance = new NwServer(NWNXLib.ExoBase(), NWNXLib.AppManager().m_pServerExoApp, NWNXLib.VirtualMachine());
+    public static readonly NwServer Instance = new NwServer(NWNXLib.ExoBase(), NWNXLib.AppManager().m_pServerExoApp);
 
-    internal NwServer(CExoBase exoBase, CServerExoApp server, CVirtualMachine virtualMachine)
+    internal NwServer(CExoBase exoBase, CServerExoApp server)
     {
       this.exoBase = exoBase;
       this.server = server;
-      this.virtualMachine = virtualMachine;
       this.netLayer = server.GetNetLayer();
 
       UserDirectory = exoBase.m_sUserDirectory.ToString();
@@ -44,15 +42,6 @@ namespace NWN.API
     /// Gets the version of this server.
     /// </summary>
     public Version ServerVersion { get; }
-
-    /// <summary>
-    /// Gets or sets the instruction limit for the NWScript VM.
-    /// </summary>
-    public uint InstructionLimit
-    {
-      get => virtualMachine.m_nInstructionLimit;
-      set => virtualMachine.m_nInstructionLimit = value;
-    }
 
     /// <summary>
     /// Gets or sets the current player password.

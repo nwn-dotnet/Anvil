@@ -32,7 +32,7 @@ namespace NWN.API
     public static async Task SwitchToMainThread()
     {
       // We can execute immediately as we are already in a safe script context.
-      if (Thread.CurrentThread.ManagedThreadId == managedThreadId && VirtualMachine.IsInScriptContext)
+      if (Thread.CurrentThread.ManagedThreadId == managedThreadId && VirtualMachine.Instance.IsInScriptContext)
       {
         return;
       }

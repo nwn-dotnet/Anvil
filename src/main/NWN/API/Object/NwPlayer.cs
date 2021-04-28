@@ -7,6 +7,7 @@ using NLog;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;
+using NWN.Native;
 using NWN.Native.API;
 
 namespace NWN.API
@@ -765,6 +766,67 @@ namespace NWN.API
         Creature.m_bPlayerCharacter = (!Creature.m_bPlayerCharacter.ToBool()).ToInt();
         Creature.m_pStats.m_bIsPC = (!Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
       }
+    }
+
+    public unsafe PlayerQuickBarButton GetQuickBarSlot(int slotIndex)
+    {
+      if (slotIndex > 36)
+      {
+        throw new ArgumentOutOfRangeException($"Slot index must be < 36");
+      }
+
+      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      {
+        Creature.InitializeQuickbar();
+      }
+
+      CNWSQuickbarButtonStruct* quickBarButtons = (CNWSQuickbarButtonStruct*)Creature.m_pQuickbarButton;
+      CNWSQuickbarButton button = quickBarButtons[slotIndex];
+
+      return new PlayerQuickBarButton(button);
+    }
+
+    public unsafe void SetQuickBarSlot(byte slotIndex, PlayerQuickBarButton data)
+    {
+      if (slotIndex > 36)
+      {
+        throw new ArgumentOutOfRangeException($"Slot index must be < 36");
+      }
+
+      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      {
+        Creature.InitializeQuickbar();
+      }
+
+      CNWSQuickbarButtonStruct* quickBarButtons = (CNWSQuickbarButtonStruct*)Creature.m_pQuickbarButton;
+      CNWSQuickbarButton button = quickBarButtons[slotIndex];
+
+      data.ApplyToNativeStructure(button);
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      message.SendServerToPlayerGuiQuickbar_SetButton(this, slotIndex, false.ToInt());
+    }
+
+    public void DisplayFloatingTextStringOnCreature(NwCreature target, string text)
+    {
+      if (target == null)
+      {
+        throw new ArgumentNullException(nameof(target), "Target cannot be null.");
+      }
+
+      if (text == null)
+      {
+        throw new ArgumentNullException(nameof(text), "Text cannot be null.");
+      }
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+
+      CNWCCMessageData messageData = new CNWCCMessageData();
+      messageData.SetObjectID(0, target);
+      messageData.SetInteger(9, 94);
+      messageData.SetString(0, text.ToExoString());
+
+      message.SendServerToPlayerCCMessage(Player.m_nPlayerID, (byte)MessageClientSideMsgMinor.Feedback, messageData, null);
     }
   }
 }

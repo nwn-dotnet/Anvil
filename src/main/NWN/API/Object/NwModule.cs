@@ -621,5 +621,32 @@ namespace NWN.API
     /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
     public void AddJournalQuestEntry(string categoryTag, int entryId, bool allowOverrideHigher = false)
       => NWScript.AddJournalQuestEntry(categoryTag, entryId, Players.FirstOrDefault(), true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
+
+    /// <summary>
+    /// Gets the last objects that were created in the module. Use LINQ to skip or limit the query.
+    /// </summary>
+    /// <returns>An enumerable containing the last created objects.</returns>
+    public IEnumerable<NwObject> GetLastCreatedObjects()
+    {
+      CGameObjectArray gameObjectArray = LowLevel.ServerExoApp.GetObjectArray();
+
+      for (uint objectId = gameObjectArray.m_nNextObjectArrayID[0] - 1; objectId > 0; objectId--)
+      {
+        if (TryGetObject(objectId, out NwObject gameObject))
+        {
+          yield return gameObject;
+        }
+      }
+
+      unsafe bool TryGetObject(uint objectId, out NwObject gameObject)
+      {
+        void* pObject;
+
+        bool retVal = gameObjectArray.GetGameObject(objectId, &pObject) == 0;
+        gameObject = retVal ? objectId.ToNwObject() : default;
+
+        return retVal;
+      }
+    }
   }
 }

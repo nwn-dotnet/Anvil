@@ -1,7 +1,7 @@
 using NWN.API;
+using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core.NWNX;
-using NWNX.API.Constants;
 
 namespace NWNX.API.Events
 {

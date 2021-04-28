@@ -1,6 +1,6 @@
-namespace NWNX.API.Constants
+namespace NWN.API.Constants
 {
-  public enum QuickBarSlotType
+  public enum QuickBarButtonType
   {
     Empty = 0,
     Item = 1,
@@ -19,6 +19,6 @@ namespace NWNX.API.Constants
     Barter = 41,
     QuickChat = 42,
     CancelPolymorph = 43,
-    SpellLikeAbility = 44
+    SpellLikeAbility = 44,
   }
 }

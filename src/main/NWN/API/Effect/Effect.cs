@@ -14,6 +14,8 @@ namespace NWN.API
 
     public static implicit operator Effect(IntPtr intPtr) => new Effect(intPtr, new CGameEffect(intPtr, false));
 
+    public static explicit operator Effect(ItemProperty itemProperty) => new Effect(itemProperty, itemProperty);
+
     private protected override void ReleaseUnmanagedResources()
     {
       VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_EFFECT, Handle);
