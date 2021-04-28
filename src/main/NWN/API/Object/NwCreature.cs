@@ -26,6 +26,8 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
+    private const int MaxClasses = 3;
+
     internal readonly CNWSCreature Creature;
 
     private NwFaction faction;
@@ -824,26 +826,50 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets this creature's classes, and associated class info.
+    /// Gets this creature's classes.
     /// </summary>
-    public IReadOnlyList<ClassInfo> Classes
+    public IReadOnlyList<ClassType> Classes
     {
       get
       {
-        const int maxClasses = 3;
-
         CNWSCreatureStats_ClassInfoArray nativeClasses = Creature.m_pStats.m_ClassInfo;
-        List<ClassInfo> classes = new List<ClassInfo>(maxClasses);
+        List<ClassType> classes = new List<ClassType>(MaxClasses);
 
-        for (int i = 0; i < maxClasses; i++)
+        for (int i = 0; i < MaxClasses; i++)
+        {
+          CNWSCreatureStats_ClassInfo classInfo = nativeClasses[i];
+          ClassType classType = (ClassType)classInfo.m_nClass;
+          if (classType == ClassType.Invalid)
+          {
+            break;
+          }
+
+          classes.Add(classType);
+        }
+
+        return classes.AsReadOnly();
+      }
+    }
+
+    /// <summary>
+    /// Gets this creature's classes, and associated class info.
+    /// </summary>
+    public IReadOnlyList<CreatureClassInfo> ClassInfo
+    {
+      get
+      {
+        CNWSCreatureStats_ClassInfoArray nativeClasses = Creature.m_pStats.m_ClassInfo;
+        List<CreatureClassInfo> classes = new List<CreatureClassInfo>(MaxClasses);
+
+        for (int i = 0; i < MaxClasses; i++)
         {
           CNWSCreatureStats_ClassInfo classInfo = nativeClasses[i];
           if (classInfo.m_nClass == (int)ClassType.Invalid)
           {
-            continue;
+            break;
           }
 
-          classes.Add(new ClassInfo(classInfo));
+          classes.Add(new CreatureClassInfo(classInfo));
         }
 
         return classes.AsReadOnly();
@@ -853,7 +879,7 @@ namespace NWN.API
     /// <summary>
     /// Gets an enumerable containing information about this creature's levels (feats, skills, class taken, etc).
     /// </summary>
-    public unsafe List<CreatureLevelInfo> LevelStats
+    public unsafe List<CreatureLevelInfo> LevelInfo
     {
       get
       {
@@ -1892,7 +1918,7 @@ namespace NWN.API
     /// Gets the level stat info for the specified level (feat, class, skills, etc.).
     /// </summary>
     /// <param name="level">The level to lookup.</param>
-    /// <returns>A <see cref="LevelStats"/> object containing level info.</returns>
+    /// <returns>A <see cref="LevelInfo"/> object containing level info.</returns>
     public unsafe CreatureLevelInfo GetLevelStats(int level)
     {
       if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)

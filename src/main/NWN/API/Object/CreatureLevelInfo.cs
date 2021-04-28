@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using NWN.Native.API;
 using ClassType = NWN.API.Constants.ClassType;
 using Feat = NWN.API.Constants.Feat;
-using Skill = NWN.API.Constants.Skill;
 
 namespace NWN.API
 {
@@ -39,7 +38,7 @@ namespace NWN.API
     /// </summary>
     public ClassType Class
     {
-      get => creature.Classes[levelStats.m_nClass - 1].Type;
+      get => creature.Classes[levelStats.m_nClass - 1];
     }
 
     /// <summary>

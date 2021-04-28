@@ -4,11 +4,11 @@ using ClassType = NWN.API.Constants.ClassType;
 
 namespace NWN.API
 {
-  public sealed class ClassInfo
+  public sealed class CreatureClassInfo
   {
     private readonly CNWSCreatureStats_ClassInfo classInfo;
 
-    internal ClassInfo(CNWSCreatureStats_ClassInfo classInfo)
+    internal CreatureClassInfo(CNWSCreatureStats_ClassInfo classInfo)
     {
       this.classInfo = classInfo;
     }
