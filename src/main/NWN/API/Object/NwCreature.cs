@@ -824,7 +824,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets this creature's classes.
+    /// Gets this creature's classes, and associated class info.
     /// </summary>
     public IReadOnlyList<ClassInfo> Classes
     {
@@ -832,17 +832,18 @@ namespace NWN.API
       {
         const int maxClasses = 3;
 
+        CNWSCreatureStats_ClassInfoArray nativeClasses = Creature.m_pStats.m_ClassInfo;
         List<ClassInfo> classes = new List<ClassInfo>(maxClasses);
-        for (int i = 1; i <= maxClasses; i++)
+
+        for (int i = 0; i < maxClasses; i++)
         {
-          ClassType classType = (ClassType)NWScript.GetClassByPosition(i, this);
-          if (classType == ClassType.Invalid)
+          CNWSCreatureStats_ClassInfo classInfo = nativeClasses[i];
+          if (classInfo.m_nClass == (int)ClassType.Invalid)
           {
-            break;
+            continue;
           }
 
-          int level = NWScript.GetLevelByPosition(i, this);
-          classes.Add(new ClassInfo(classType, level));
+          classes.Add(new ClassInfo(classInfo));
         }
 
         return classes.AsReadOnly();
@@ -852,17 +853,17 @@ namespace NWN.API
     /// <summary>
     /// Gets an enumerable containing information about this creature's levels (feats, skills, class taken, etc).
     /// </summary>
-    public unsafe List<CreatureLevelStats> LevelStats
+    public unsafe List<CreatureLevelInfo> LevelStats
     {
       get
       {
         int statCount = Creature.m_pStats.m_lstLevelStats.num;
-        List<CreatureLevelStats> retVal = new List<CreatureLevelStats>(statCount);
+        List<CreatureLevelInfo> retVal = new List<CreatureLevelInfo>(statCount);
 
         for (int i = 0; i < statCount; i++)
         {
           CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(i), false);
-          retVal.Add(new CreatureLevelStats(this, levelStats));
+          retVal.Add(new CreatureLevelInfo(this, levelStats));
         }
 
         return retVal;
@@ -1892,7 +1893,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="level">The level to lookup.</param>
     /// <returns>A <see cref="LevelStats"/> object containing level info.</returns>
-    public unsafe CreatureLevelStats GetLevelStats(int level)
+    public unsafe CreatureLevelInfo GetLevelStats(int level)
     {
       if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
       {
@@ -1900,7 +1901,7 @@ namespace NWN.API
       }
 
       CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1), false);
-      return new CreatureLevelStats(this, levelStats);
+      return new CreatureLevelInfo(this, levelStats);
     }
 
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)

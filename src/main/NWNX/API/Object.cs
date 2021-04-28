@@ -1,7 +1,4 @@
-using System;
-using System.Numerics;
 using NWN.API;
-using NWN.API.Constants;
 using NWN.Core.NWNX;
 
 namespace NWNX.API

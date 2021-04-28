@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using NWN.Native.API;
 using ClassType = NWN.API.Constants.ClassType;
 using Feat = NWN.API.Constants.Feat;
+using Skill = NWN.API.Constants.Skill;
 
 namespace NWN.API
 {
-  public unsafe class CreatureLevelStats
+  public unsafe class CreatureLevelInfo
   {
     private readonly NwCreature creature;
     private readonly CNWLevelStats levelStats;
 
-    public CreatureLevelStats(NwCreature creature, CNWLevelStats levelStats)
+    internal CreatureLevelInfo(NwCreature creature, CNWLevelStats levelStats)
     {
       this.creature = creature;
       this.levelStats = levelStats;
