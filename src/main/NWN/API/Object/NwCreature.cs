@@ -27,8 +27,6 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
-    private const int MaxClasses = 3;
-
     internal readonly CNWSCreature Creature;
 
     private NwFaction faction;
@@ -833,15 +831,12 @@ namespace NWN.API
     {
       get
       {
-        CNWSCreatureStats_ClassInfoArray nativeClasses = Creature.m_pStats.m_ClassInfo;
-        List<ClassType> classes = new List<ClassType>(MaxClasses);
+        int classCount = Creature.m_pStats.m_nNumMultiClasses;
+        List<ClassType> classes = new List<ClassType>(classCount);
 
-        for (int i = 0; i < MaxClasses; i++)
+        for (byte i = 0; i < classCount; i++)
         {
-          CNWSCreatureStats_ClassInfo classInfo = nativeClasses[i];
-          GC.SuppressFinalize(classInfo);
-
-          ClassType classType = (ClassType)classInfo.m_nClass;
+          ClassType classType = (ClassType)Creature.m_pStats.GetClass(i);
           if (classType == ClassType.Invalid)
           {
             break;
@@ -861,13 +856,12 @@ namespace NWN.API
     {
       get
       {
-        CNWSCreatureStats_ClassInfoArray nativeClasses = Creature.m_pStats.m_ClassInfo;
-        List<CreatureClassInfo> classes = new List<CreatureClassInfo>(MaxClasses);
+        int classCount = Creature.m_pStats.m_nNumMultiClasses;
+        List<CreatureClassInfo> classes = new List<CreatureClassInfo>(classCount);
 
-        for (int i = 0; i < MaxClasses; i++)
+        for (byte i = 0; i < classCount; i++)
         {
-          CNWSCreatureStats_ClassInfo classInfo = nativeClasses[i];
-          GC.SuppressFinalize(classInfo);
+          CNWSCreatureStats_ClassInfo classInfo = Creature.m_pStats.GetClassInfo(i);
 
           if (classInfo.m_nClass == (int)ClassType.Invalid)
           {
