@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using NWN.API.Constants;
@@ -1063,10 +1064,14 @@ namespace NWN.API
     }
 
     /// <summary>
-    ///  Determine the number of levels this creature holds in the specified <see cref="ClassType"/>.
+    /// Gets the <see cref="CreatureClassInfo"/> associated with the specified class type.
     /// </summary>
-    public int GetLevelByClass(ClassType classType)
-      => NWScript.GetLevelByClass((int)classType, this);
+    /// <param name="classType">The class type to query.</param>
+    /// <returns>The <see cref="CreatureClassInfo"/> for the specified class, otherwise null if this creature does not have any levels in the class.</returns>
+    public CreatureClassInfo GetClassInfo(ClassType classType)
+    {
+      return ClassInfo.FirstOrDefault(classInfo => classInfo.Type == classType);
+    }
 
     /// <summary>
     /// Gets if this creature has the specified spell available to cast.
