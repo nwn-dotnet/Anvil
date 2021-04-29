@@ -106,8 +106,8 @@ namespace NWN.API
         return false;
       }
 
-      using CResGFF resGff = new CResGFF();
-      using CResStruct resStruct = new CResStruct();
+      CResGFF resGff = new CResGFF();
+      CResStruct resStruct = new CResStruct();
 
       IntPtr dataPtr = Marshal.AllocHGlobal(serialized.Length);
       Marshal.Copy(serialized, 0, dataPtr, serialized.Length);
@@ -129,6 +129,8 @@ namespace NWN.API
 
       if (deserializeAction(resGff, resStruct))
       {
+        GC.SuppressFinalize(resGff);
+        GC.SuppressFinalize(resStruct);
         return true;
       }
 
