@@ -387,6 +387,13 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnCalendarTimeChange"/>
+    public event Action<OnCalendarTimeChange> OnCalendarTimeChange
+    {
+      add => EventService.SubscribeAll<OnCalendarTimeChange, OnCalendarTimeChange.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCalendarTimeChange, OnCalendarTimeChange.Factory>(value);
+    }
+
     internal override CNWSScriptVarTable ScriptVarTable
     {
       get => Module.m_ScriptVars;
