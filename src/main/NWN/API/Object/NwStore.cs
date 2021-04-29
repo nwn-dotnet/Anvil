@@ -105,7 +105,7 @@ namespace NWN.API
     {
       CNWSStore store = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTM"))
         {
@@ -116,6 +116,7 @@ namespace NWN.API
         if (store.LoadStore(resGff, resStruct, null).ToBool())
         {
           store.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(store);
           return true;
         }
 
@@ -123,7 +124,7 @@ namespace NWN.API
         return false;
       });
 
-      return store != null ? store.m_idSelf.ToNwObject<NwStore>() : null;
+      return result && store != null ? store.m_idSelf.ToNwObject<NwStore>() : null;
     }
   }
 }

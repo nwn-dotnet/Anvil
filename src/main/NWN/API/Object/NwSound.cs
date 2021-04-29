@@ -1,3 +1,4 @@
+using System;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -61,7 +62,7 @@ namespace NWN.API
     {
       CNWSSoundObject soundObject = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTS"))
         {
@@ -72,6 +73,7 @@ namespace NWN.API
         if (soundObject.Load(resGff, resStruct).ToBool())
         {
           soundObject.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(soundObject);
           return true;
         }
 
@@ -79,7 +81,7 @@ namespace NWN.API
         return false;
       });
 
-      return soundObject != null ? soundObject.m_idSelf.ToNwObject<NwSound>() : null;
+      return result && soundObject != null ? soundObject.m_idSelf.ToNwObject<NwSound>() : null;
     }
   }
 }

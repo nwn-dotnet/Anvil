@@ -360,7 +360,7 @@ namespace NWN.API
     {
       CNWSItem item = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTI"))
         {
@@ -370,6 +370,7 @@ namespace NWN.API
         item = new CNWSItem(INVALID);
         if (item.LoadItem(resGff, resStruct).ToBool())
         {
+          GC.SuppressFinalize(item);
           return true;
         }
 
@@ -377,7 +378,7 @@ namespace NWN.API
         return false;
       });
 
-      return item != null ? item.m_idSelf.ToNwObject<NwItem>() : null;
+      return result && item != null ? item.m_idSelf.ToNwObject<NwItem>() : null;
     }
   }
 }
