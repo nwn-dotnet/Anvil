@@ -1,3 +1,4 @@
+using System;
 using NWN.API.Constants;
 using NWN.Native.API;
 
@@ -40,7 +41,7 @@ namespace NWN.API
     {
       CNWSWaypoint waypoint = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTW"))
         {
@@ -51,6 +52,7 @@ namespace NWN.API
         if (waypoint.LoadWaypoint(resGff, resStruct, null).ToBool())
         {
           waypoint.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(waypoint);
           return true;
         }
 
@@ -58,7 +60,7 @@ namespace NWN.API
         return false;
       });
 
-      return waypoint != null ? waypoint.m_idSelf.ToNwObject<NwWaypoint>() : null;
+      return result && waypoint != null ? waypoint.m_idSelf.ToNwObject<NwWaypoint>() : null;
     }
 
     public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")

@@ -135,7 +135,7 @@ namespace NWN.API
     {
       CNWSTrigger trigger = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTT"))
         {
@@ -146,6 +146,7 @@ namespace NWN.API
         if (trigger.LoadTrigger(resGff, resStruct).ToBool())
         {
           trigger.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(trigger);
           return true;
         }
 
@@ -153,7 +154,7 @@ namespace NWN.API
         return false;
       });
 
-      return trigger != null ? trigger.m_idSelf.ToNwObject<NwTrigger>() : null;
+      return result && trigger != null ? trigger.m_idSelf.ToNwObject<NwTrigger>() : null;
     }
   }
 }

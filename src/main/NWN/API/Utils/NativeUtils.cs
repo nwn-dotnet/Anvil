@@ -10,8 +10,8 @@ namespace NWN.API
 {
   public static class NativeUtils
   {
-    private const string DefaultGffVersion = "V2.0";
-    private static readonly CExoString DefaultGffVersionExoString = "V2.0".ToExoString();
+    private const string DefaultGffVersion = "V3.2";
+    private static readonly CExoString DefaultGffVersionExoString = "V3.2".ToExoString();
 
     public static unsafe Vector ToNativeVector(this Vector3 vector)
     {
@@ -52,10 +52,10 @@ namespace NWN.API
 
     public static bool IsValidGff(this CResGFF resGff, string expectedFileType, string expectedVersion = DefaultGffVersion)
     {
-      return IsValidGff(resGff, expectedFileType.Yield(), expectedVersion);
+      return IsValidGff(resGff, expectedFileType.Yield(), expectedVersion.Yield());
     }
 
-    public static bool IsValidGff(this CResGFF resGff, IEnumerable<string> expectedFileTypes, string expectedVersion = DefaultGffVersion)
+    public static bool IsValidGff(this CResGFF resGff, IEnumerable<string> expectedFileTypes, IEnumerable<string> expectedVersions)
     {
       CExoString sFileType = new CExoString();
       CExoString sFileVersion = new CExoString();
@@ -64,7 +64,8 @@ namespace NWN.API
       string fileType = sFileType.ToString();
       string fileVersion = sFileVersion.ToString();
 
-      return fileVersion == expectedVersion && expectedFileTypes.Any(expectedFileType => expectedFileType + " " == fileType);
+      return expectedVersions.Any(expectedVersion => expectedVersion == fileVersion) &&
+        expectedFileTypes.Any(expectedFileType => expectedFileType + " " == fileType);
     }
 
     public static unsafe T PeekMessage<T>(this CNWSMessage message, int offset) where T : unmanaged
@@ -106,8 +107,8 @@ namespace NWN.API
         return false;
       }
 
-      using CResGFF resGff = new CResGFF();
-      using CResStruct resStruct = new CResStruct();
+      CResGFF resGff = new CResGFF();
+      CResStruct resStruct = new CResStruct();
 
       IntPtr dataPtr = Marshal.AllocHGlobal(serialized.Length);
       Marshal.Copy(serialized, 0, dataPtr, serialized.Length);
@@ -129,6 +130,8 @@ namespace NWN.API
 
       if (deserializeAction(resGff, resStruct))
       {
+        GC.SuppressFinalize(resGff);
+        GC.SuppressFinalize(resStruct);
         return true;
       }
 

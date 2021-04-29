@@ -317,7 +317,7 @@ namespace NWN.API
     {
       CNWSPlaceable placeable = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTP"))
         {
@@ -328,6 +328,7 @@ namespace NWN.API
         if (placeable.LoadPlaceable(resGff, resStruct, null).ToBool())
         {
           placeable.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(placeable);
           return true;
         }
 
@@ -335,7 +336,7 @@ namespace NWN.API
         return false;
       });
 
-      return placeable != null ? placeable.m_idSelf.ToNwObject<NwPlaceable>() : null;
+      return result && placeable != null ? placeable.m_idSelf.ToNwObject<NwPlaceable>() : null;
     }
   }
 }

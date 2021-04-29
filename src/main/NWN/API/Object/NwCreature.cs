@@ -1955,7 +1955,7 @@ namespace NWN.API
 
     public bool DeserializeQuickbar(byte[] serialized)
     {
-      bool retVal = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("GFF"))
         {
@@ -1966,13 +1966,13 @@ namespace NWN.API
         return true;
       });
 
-      if (retVal && this is NwPlayer player)
+      if (result && this is NwPlayer player)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
         message.SendServerToPlayerGuiQuickbar_SetButton(player, 0, true.ToInt());
       }
 
-      return retVal;
+      return result;
     }
 
     public override byte[] Serialize()
@@ -1988,9 +1988,9 @@ namespace NWN.API
     {
       CNWSCreature creature = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
-        if (!resGff.IsValidGff(new[] {"BIC", "GFF", "UTC"}))
+        if (!resGff.IsValidGff(new[] {"BIC", "GFF", "UTC"}, new[] {"V3.2"}))
         {
           return false;
         }
@@ -1999,6 +1999,7 @@ namespace NWN.API
         if (creature.LoadCreature(resGff, resStruct, 0, 0, 0, 0).ToBool())
         {
           creature.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(creature);
           return true;
         }
 
@@ -2006,7 +2007,7 @@ namespace NWN.API
         return false;
       });
 
-      return creature != null ? creature.m_idSelf.ToNwObject<NwCreature>() : null;
+      return result && creature != null ? creature.m_idSelf.ToNwObject<NwCreature>() : null;
     }
   }
 }
