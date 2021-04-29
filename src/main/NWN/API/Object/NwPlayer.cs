@@ -767,45 +767,6 @@ namespace NWN.API
       }
     }
 
-    public PlayerQuickBarButton GetQuickBarSlot(int slotIndex)
-    {
-      if (slotIndex > 36)
-      {
-        throw new ArgumentOutOfRangeException($"Slot index must be < 36");
-      }
-
-      if (Creature.m_pQuickbarButton == IntPtr.Zero)
-      {
-        Creature.InitializeQuickbar();
-      }
-
-      CNWSQuickbarButtonArray quickBarButtons = CNWSQuickbarButtonArray.FromPointer(Creature.m_pQuickbarButton);
-      CNWSQuickbarButton button = quickBarButtons[slotIndex];
-
-      return new PlayerQuickBarButton(button);
-    }
-
-    public void SetQuickBarSlot(byte slotIndex, PlayerQuickBarButton data)
-    {
-      if (slotIndex > 36)
-      {
-        throw new ArgumentOutOfRangeException($"Slot index must be < 36");
-      }
-
-      if (Creature.m_pQuickbarButton == IntPtr.Zero)
-      {
-        Creature.InitializeQuickbar();
-      }
-
-      CNWSQuickbarButtonArray quickBarButtons = CNWSQuickbarButtonArray.FromPointer(Creature.m_pQuickbarButton);
-      CNWSQuickbarButton button = quickBarButtons[slotIndex];
-
-      data.ApplyToNativeStructure(button);
-
-      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
-      message.SendServerToPlayerGuiQuickbar_SetButton(this, slotIndex, false.ToInt());
-    }
-
     public void DisplayFloatingTextStringOnCreature(NwCreature target, string text)
     {
       if (target == null)
