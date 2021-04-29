@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,15 +30,10 @@ namespace NWN.API
     /// Safely returns to a NWScript context from another thread.<br/>
     /// This must ALWAYS be called after an external callback, or thread switch before using any NWN APIs.
     /// </summary>
-    public static async Task SwitchToMainThread()
+    [Pure]
+    public static IAwaitable SwitchToMainThread()
     {
-      // We can execute immediately as we are already in a safe script context.
-      if (Thread.CurrentThread.ManagedThreadId == managedThreadId && VirtualMachine.IsInScriptContext)
-      {
-        return;
-      }
-
-      await MainThreadScriptContext;
+      return MainThreadScriptContext;
     }
 
     /// <summary>
@@ -170,12 +166,10 @@ namespace NWN.API
       if (completionSource())
       {
         await Task.CompletedTask;
-        await SwitchToMainThread();
         return;
       }
 
       await taskRunner.Schedule(completionSource, cancellationToken);
-      await SwitchToMainThread();
     }
   }
 }
