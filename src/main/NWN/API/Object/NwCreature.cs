@@ -1990,7 +1990,7 @@ namespace NWN.API
 
       NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
-        if (!resGff.IsValidGff(new[] {"BIC", "GFF", "UTC"}))
+        if (!resGff.IsValidGff(new[] {"BIC", "GFF", "UTC"}, new []{"V3.2"}))
         {
           return false;
         }
