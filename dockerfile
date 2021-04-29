@@ -3,6 +3,9 @@ FROM nwnxee/unified:latest
 ARG BINARY_PATH
 COPY ${BINARY_PATH} /nwn/anvil/
 
+# Set which kill signal to exit upon
+STOPSIGNAL SIGINT
+
 # Enable and configure DotNET plugins + dependencies
 ENV NWNX_DOTNET_SKIP=n
 ENV NWNX_SWIG_DOTNET_SKIP=n
