@@ -7,7 +7,6 @@ using NLog;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;
-using NWN.Native;
 using NWN.Native.API;
 
 namespace NWN.API
@@ -768,7 +767,7 @@ namespace NWN.API
       }
     }
 
-    public unsafe PlayerQuickBarButton GetQuickBarSlot(int slotIndex)
+    public PlayerQuickBarButton GetQuickBarSlot(int slotIndex)
     {
       if (slotIndex > 36)
       {
@@ -780,13 +779,13 @@ namespace NWN.API
         Creature.InitializeQuickbar();
       }
 
-      CNWSQuickbarButtonStruct* quickBarButtons = (CNWSQuickbarButtonStruct*)Creature.m_pQuickbarButton;
+      CNWSQuickbarButtonArray quickBarButtons = CNWSQuickbarButtonArray.FromPointer(Creature.m_pQuickbarButton);
       CNWSQuickbarButton button = quickBarButtons[slotIndex];
 
       return new PlayerQuickBarButton(button);
     }
 
-    public unsafe void SetQuickBarSlot(byte slotIndex, PlayerQuickBarButton data)
+    public void SetQuickBarSlot(byte slotIndex, PlayerQuickBarButton data)
     {
       if (slotIndex > 36)
       {
@@ -798,7 +797,7 @@ namespace NWN.API
         Creature.InitializeQuickbar();
       }
 
-      CNWSQuickbarButtonStruct* quickBarButtons = (CNWSQuickbarButtonStruct*)Creature.m_pQuickbarButton;
+      CNWSQuickbarButtonArray quickBarButtons = CNWSQuickbarButtonArray.FromPointer(Creature.m_pQuickbarButton);
       CNWSQuickbarButton button = quickBarButtons[slotIndex];
 
       data.ApplyToNativeStructure(button);

@@ -1,4 +1,3 @@
-using NWN.Native;
 using NWN.Native.API;
 
 namespace NWN.API
@@ -14,14 +13,14 @@ namespace NWN.API
       this.tlkTable = tlkTable;
     }
 
-    public unsafe string GetCustomToken(uint tokenNumber)
+    public string GetCustomToken(uint tokenNumber)
     {
       int numTokens = (int)tlkTable.m_nTokensCustom;
 
-      CTlkTableTokenCustomStruct* tokenArray = (CTlkTableTokenCustomStruct*)tlkTable.m_pTokensCustom.Pointer;
-      CTlkTableTokenCustomStruct token = new CTlkTableTokenCustomStruct(tokenNumber, default);
+      CTlkTableTokenCustomArray tokenArray = CTlkTableTokenCustomArray.FromPointer(tlkTable.m_pTokensCustom);
+      CTlkTableTokenCustom token = new CTlkTableTokenCustom { m_nNumber = tokenNumber };
 
-      int index = NativeUtils.BinarySearch(tokenArray, 0, numTokens, token, CTlkTableTokenCustomStruct.TokenNumberComparer);
+      int index = BinarySearch(tokenArray, 0, numTokens, token);
       if (index < 0)
       {
         return null;
@@ -29,6 +28,34 @@ namespace NWN.API
 
       CExoString retVal = tokenArray[index].m_sValue;
       return retVal.ToString();
+    }
+
+    private int BinarySearch(CTlkTableTokenCustomArray array, int index, int length, CTlkTableTokenCustom value)
+    {
+      int low = index;
+      int high = index + length - 1;
+
+      while (low <= high)
+      {
+        int i = low + ((high - low) >> 1);
+        int order = array[i].m_nNumber.CompareTo(value.m_nNumber);
+
+        if (order == 0)
+        {
+          return i;
+        }
+
+        if (order < 0)
+        {
+          low = i + 1;
+        }
+        else
+        {
+          high = i - 1;
+        }
+      }
+
+      return ~low;
     }
 
     public string GetSimpleString(uint strRef)

@@ -67,34 +67,6 @@ namespace NWN.API
       return fileVersion == expectedVersion && expectedFileTypes.Any(expectedFileType => expectedFileType + " " == fileType);
     }
 
-    public static int BinarySearch<T>(T* array, int index, int length, T value, IComparer<T> comparer) where T : unmanaged
-    {
-      int low = index;
-      int high = index + length - 1;
-
-      while (low <= high)
-      {
-        int i = low + ((high - low) >> 1);
-        int order = comparer.Compare(array[i], value);
-
-        if (order == 0)
-        {
-          return i;
-        }
-
-        if (order < 0)
-        {
-          low = i + 1;
-        }
-        else
-        {
-          high = i - 1;
-        }
-      }
-
-      return ~low;
-    }
-
     public static T PeekMessage<T>(this CNWSMessage message, int offset) where T : unmanaged
     {
       byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
