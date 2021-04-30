@@ -1,10 +1,9 @@
 using System;
-using System.Runtime.CompilerServices;
 using System.Threading;
 
 namespace NWN.API
 {
-  public sealed class SynchronizationContextAwaiter : INotifyCompletion
+  public readonly struct SynchronizationContextAwaiter : IAwaiter
   {
     private static readonly SendOrPostCallback PostCallback = state => ((Action)state)?.Invoke();
 
