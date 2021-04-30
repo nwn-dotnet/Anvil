@@ -339,6 +339,11 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that clicked on the <see cref="NwPlaceable"/>.
+      /// </summary>
+      public NwPlayer ClickedBy { get; } = NWScript.GetPlaceableLastClickedBy().ToNwObject<NwPlayer>();
+
       NwObject IEvent.Context => Placeable;
     }
   }
