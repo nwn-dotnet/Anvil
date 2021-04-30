@@ -46,6 +46,11 @@ namespace NWN.API
         }
       }
 
+      public IAwaiter GetAwaiter()
+      {
+        return new SynchronizationContextAwaiter(this);
+      }
+
       private readonly struct QueuedTask
       {
         private readonly SendOrPostCallback callback;
@@ -68,11 +73,6 @@ namespace NWN.API
             Log.Error(e);
           }
         }
-      }
-
-      public IAwaiter GetAwaiter()
-      {
-        return default(SynchronizationContextAwaiter);
       }
     }
   }
