@@ -14,16 +14,16 @@ namespace NWN.API
 {
   public abstract class NwGameObject : NwObject
   {
-    private readonly CNWSObject gameObject;
+    internal readonly CNWSObject GameObject;
 
-    internal NwGameObject(CNWSObject gameObject) : base(gameObject.m_idSelf)
+    internal NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
-      this.gameObject = gameObject;
+      this.GameObject = gameObject;
     }
 
     internal override CNWSScriptVarTable ScriptVarTable
     {
-      get => gameObject.m_ScriptVars;
+      get => GameObject.m_ScriptVars;
     }
 
     /// <inheritdoc cref="Events.OnDisarmWeapon"/>
@@ -77,7 +77,7 @@ namespace NWN.API
     public Vector3 Position
     {
       get => NWScript.GetPosition(this);
-      set => gameObject.SetPosition(value.ToNativeVector(), false.ToInt());
+      set => GameObject.SetPosition(value.ToNativeVector(), false.ToInt());
     }
 
     /// <summary>
@@ -99,7 +99,7 @@ namespace NWN.API
       {
         float radians = (value % 360) * NwMath.DegToRad;
         Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
-        gameObject.SetOrientation(orientation.ToNativeVector());
+        GameObject.SetOrientation(orientation.ToNativeVector());
       }
     }
 
@@ -135,7 +135,7 @@ namespace NWN.API
     public int HP
     {
       get => NWScript.GetCurrentHitPoints(this);
-      set => gameObject.m_nCurrentHitPoints = value;
+      set => GameObject.m_nCurrentHitPoints = value;
     }
 
     /// <summary>
@@ -144,7 +144,7 @@ namespace NWN.API
     public int MaxHP
     {
       get => NWScript.GetMaxHitPoints(this);
-      set => gameObject.m_nBaseHitPoints = value;
+      set => GameObject.m_nBaseHitPoints = value;
     }
 
     /// <summary>
@@ -181,7 +181,7 @@ namespace NWN.API
 
     public override Guid? PeekUUID()
     {
-      CNWSUUID uid = gameObject.m_pUUID;
+      CNWSUUID uid = GameObject.m_pUUID;
       if (!uid.CanCarryUUID())
       {
         return null;

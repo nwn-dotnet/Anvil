@@ -14,7 +14,7 @@ namespace NWN.API
   {
     internal readonly CNWSModule Module;
 
-    internal NwModule(uint objectId, CNWSModule module) : base(objectId)
+    internal NwModule(CNWSModule module) : base(module)
     {
       this.Module = module;
     }
@@ -24,7 +24,7 @@ namespace NWN.API
       return module?.Module;
     }
 
-    public static readonly NwModule Instance = new NwModule(NWScript.GetModule(), LowLevel.ServerExoApp.GetModule());
+    public static readonly NwModule Instance = new NwModule(LowLevel.ServerExoApp.GetModule());
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnAcquireItem"/>
     public event Action<ModuleEvents.OnAcquireItem> OnAcquireItem

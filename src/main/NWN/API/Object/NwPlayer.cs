@@ -35,6 +35,11 @@ namespace NWN.API
       return player?.Player;
     }
 
+    public static explicit operator NwPlayer(CNWSPlayer player)
+    {
+      return player == null ? null : new NwPlayer(player);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnClientLeave"/>
     public event Action<ModuleEvents.OnClientLeave> OnLeaveServer
     {
@@ -642,7 +647,7 @@ namespace NWN.API
     /// <param name="target">The placeable to examine.</param>
     public void ForceExamine(NwPlaceable target)
     {
-      LowLevel.Message.SendServerToPlayerExamineGui_PlaceableData(this, target);
+      LowLevel.Message.SendServerToPlayerExamineGui_PlaceableData(Player, target);
     }
 
     /// <summary>

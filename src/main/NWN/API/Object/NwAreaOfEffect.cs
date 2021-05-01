@@ -17,6 +17,11 @@ namespace NWN.API
       this.AreaOfEffect = areaOfEffectObject;
     }
 
+    public static implicit operator CNWSAreaOfEffectObject(NwAreaOfEffect areaOfEffect)
+    {
+      return areaOfEffect?.AreaOfEffect;
+    }
+
     /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnEnter"/>
     public event Action<AreaOfEffectEvents.OnEnter> OnEnter
     {

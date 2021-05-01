@@ -28,16 +28,19 @@ namespace NWN.API
     }
 
     internal const uint INVALID = NWScript.OBJECT_INVALID;
+
+    internal readonly ICGameObject Object;
     protected readonly uint ObjectId;
 
-    public static implicit operator uint(NwObject obj)
+    protected NwObject(ICGameObject gameObject)
     {
-      return obj == null ? INVALID : obj.ObjectId;
+      Object = gameObject;
+      ObjectId = gameObject.m_idSelf;
     }
 
-    internal NwObject(uint objectId)
+    public static implicit operator uint(NwObject gameObject)
     {
-      ObjectId = objectId;
+      return gameObject == null ? INVALID : gameObject.ObjectId;
     }
 
     internal abstract CNWSScriptVarTable ScriptVarTable { get; }
