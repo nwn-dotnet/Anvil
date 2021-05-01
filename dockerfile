@@ -3,6 +3,9 @@ FROM nwnxee/unified:latest
 ARG BINARY_PATH
 COPY ${BINARY_PATH} /nwn/anvil/
 
+# Define we are an Anvil based container
+ENV ANVIL_IMAGE=1
+
 # Set which kill signal to exit upon
 STOPSIGNAL SIGINT
 
