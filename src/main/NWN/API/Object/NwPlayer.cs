@@ -148,6 +148,13 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnServerCharacterSave, OnServerCharacterSave.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnServerSendArea"/>
+    public event Action<OnServerSendArea> OnServerSendArea
+    {
+      add => EventService.Subscribe<OnServerSendArea, OnServerSendArea.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnServerSendArea, OnServerSendArea.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
     public event Action<OnCombatStatusChange> OnCombatStatusChange
     {
@@ -167,6 +174,13 @@ namespace NWN.API
     {
       add => EventService.Subscribe<OnExamineTrap, OnExamineTrap.Factory>(this, value);
       remove => EventService.Unsubscribe<OnExamineTrap, OnExamineTrap.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnClientLevelUpBegin"/>
+    public event Action<OnClientLevelUpBegin> OnClientLevelUpBegin
+    {
+      add => EventService.Subscribe<OnClientLevelUpBegin, OnClientLevelUpBegin.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnClientLevelUpBegin, OnClientLevelUpBegin.Factory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnPartyEvent"/>

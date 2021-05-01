@@ -152,6 +152,20 @@ namespace NWN.API
       remove => EventService.Unsubscribe<PlaceableEvents.OnLeftClick, GameEventFactory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemAdd"/>
+    public event Action<OnInventoryItemAdd> OnInventoryItemAdd
+    {
+      add => EventService.Subscribe<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemRemove"/>
+    public event Action<OnInventoryItemRemove> OnInventoryItemRemove
+    {
+      add => EventService.Subscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
+    }
+
     public override Location Location
     {
       set

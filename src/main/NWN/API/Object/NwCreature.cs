@@ -212,6 +212,41 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnUseFeat, OnUseFeat.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryGoldAdd"/>
+    public event Action<OnInventoryGoldAdd> OnInventoryGoldAdd
+    {
+      add => EventService.Subscribe<OnInventoryGoldAdd, OnInventoryGoldAdd.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnInventoryGoldAdd, OnInventoryGoldAdd.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryGoldRemove"/>
+    public event Action<OnInventoryGoldRemove> OnInventoryGoldRemove
+    {
+      add => EventService.Subscribe<OnInventoryGoldRemove, OnInventoryGoldRemove.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnInventoryGoldRemove, OnInventoryGoldRemove.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnLevelDown"/>
+    public event Action<OnLevelDown> OnLevelDown
+    {
+      add => EventService.Subscribe<OnLevelDown, OnLevelDown.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnLevelDown, OnLevelDown.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnLevelUp"/>
+    public event Action<OnLevelUp> OnLevelUp
+    {
+      add => EventService.Subscribe<OnLevelUp, OnLevelUp.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnLevelUp, OnLevelUp.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnLevelUpAutomatic"/>
+    public event Action<OnLevelUpAutomatic> OnLevelUpAutomatic
+    {
+      add => EventService.Subscribe<OnLevelUpAutomatic, OnLevelUpAutomatic.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnLevelUpAutomatic, OnLevelUpAutomatic.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnDoListenDetection"/>
     public event Action<OnDoListenDetection> OnDoListenDetection
     {

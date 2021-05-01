@@ -33,6 +33,13 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnHeal"/>
+    public event Action<OnHeal> OnHeal
+    {
+      add => EventService.Subscribe<OnHeal, OnHeal.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnHeal, OnHeal.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
     public event Action<OnSpellBroadcast> OnSpellBroadcast
     {
@@ -47,11 +54,11 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnSpellInterrupted"/>
-    public event Action<OnSpellInterrupted> OnSpellInterrupted
+    /// <inheritdoc cref="Events.OnSpellInterrupt"/>
+    public event Action<OnSpellInterrupt> OnSpellInterrupt
     {
-      add => EventService.Subscribe<OnSpellInterrupted, OnSpellInterrupted.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnSpellInterrupted, OnSpellInterrupted.Factory>(this, value);
+      add => EventService.Subscribe<OnSpellInterrupt, OnSpellInterrupt.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellInterrupt, OnSpellInterrupt.Factory>(this, value);
     }
 
     /// <summary>
