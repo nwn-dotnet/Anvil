@@ -7,7 +7,7 @@ namespace NWN.API
 {
   public static partial class NwTask
   {
-    public sealed class SyncContext : SynchronizationContext
+    public sealed class SyncContext : SynchronizationContext, IAwaitable
     {
       private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -32,12 +32,23 @@ namespace NWN.API
 
       public override void Post(SendOrPostCallback callback, object state)
       {
-        queuedTasks.Add(new QueuedTask(callback, state));
+        lock (queuedTasks)
+        {
+          queuedTasks.Add(new QueuedTask(callback, state));
+        }
       }
 
       public override void Send(SendOrPostCallback callback, object state)
       {
-        queuedTasks.Add(new QueuedTask(callback, state));
+        lock (queuedTasks)
+        {
+          queuedTasks.Add(new QueuedTask(callback, state));
+        }
+      }
+
+      public IAwaiter GetAwaiter()
+      {
+        return new SynchronizationContextAwaiter(this);
       }
 
       private readonly struct QueuedTask

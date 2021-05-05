@@ -203,7 +203,7 @@ namespace NWN.API
     {
       CNWSDoor door = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTD"))
         {
@@ -214,6 +214,7 @@ namespace NWN.API
         if (door.LoadDoor(resGff, resStruct).ToBool())
         {
           door.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(door);
           return true;
         }
 
@@ -221,7 +222,7 @@ namespace NWN.API
         return false;
       });
 
-      return door != null ? door.m_idSelf.ToNwObject<NwDoor>() : null;
+      return result && door != null ? door.m_idSelf.ToNwObject<NwDoor>() : null;
     }
   }
 }

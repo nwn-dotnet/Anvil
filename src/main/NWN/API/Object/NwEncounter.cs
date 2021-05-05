@@ -148,7 +148,7 @@ namespace NWN.API
     {
       CNWSEncounter encounter = null;
 
-      NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTE"))
         {
@@ -159,6 +159,7 @@ namespace NWN.API
         if (encounter.LoadEncounter(resGff, resStruct).ToBool())
         {
           encounter.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(encounter);
           return true;
         }
 
@@ -166,7 +167,7 @@ namespace NWN.API
         return false;
       });
 
-      return encounter != null ? encounter.m_idSelf.ToNwObject<NwEncounter>() : null;
+      return result && encounter != null ? encounter.m_idSelf.ToNwObject<NwEncounter>() : null;
     }
   }
 }
