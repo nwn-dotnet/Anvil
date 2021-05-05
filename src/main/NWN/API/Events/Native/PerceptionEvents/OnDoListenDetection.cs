@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -14,17 +15,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature17DoListenDetectionEPS_i)]
-    internal delegate int DoListenDetectionHook(IntPtr pCreature, IntPtr pTarget, int bTargetInvisible);
-
-    internal class Factory : NativeEventFactory<DoListenDetectionHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.DoListenDetectionHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int DoListenDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
 
-      protected override FunctionHook<DoListenDetectionHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<DoListenDetectionHook>(OnDoListenDetection, HookOrder.Early);
+      protected override FunctionHook<DoListenDetectionHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, int, int> pHook = &OnDoListenDetection;
+        return HookService.RequestHook<DoListenDetectionHook>(NWNXLib.Functions._ZN12CNWSCreature17DoListenDetectionEPS_i, pHook, HookOrder.Early);
+      }
 
-      private int OnDoListenDetection(IntPtr pCreature, IntPtr pTarget, int bTargetInvisible)
+      [UnmanagedCallersOnly]
+      private static int OnDoListenDetection(void* pCreature, void* pTarget, int bTargetInvisible)
       {
         CNWSCreature target = new CNWSCreature(pTarget, false);
         if (target.m_nStealthMode == 0 && !bTargetInvisible.ToBool())

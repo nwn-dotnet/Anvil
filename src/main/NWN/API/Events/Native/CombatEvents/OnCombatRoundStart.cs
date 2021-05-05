@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -12,17 +13,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN15CNWSCombatRound16StartCombatRoundEj)]
-    internal delegate void StartCombatRoundHook(IntPtr pCombatRound, uint oidTarget);
-
-    internal class Factory : NativeEventFactory<StartCombatRoundHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.StartCombatRoundHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void StartCombatRoundHook(void* pCombatRound, uint oidTarget);
 
-      protected override FunctionHook<StartCombatRoundHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<StartCombatRoundHook>(OnStartCombatRound, HookOrder.Earliest);
+      protected override FunctionHook<StartCombatRoundHook> RequestHook()
+      {
+        delegate* unmanaged<void*, uint, void> pHook = &OnStartCombatRound;
+        return HookService.RequestHook<StartCombatRoundHook>(NWNXLib.Functions._ZN15CNWSCombatRound16StartCombatRoundEj, pHook, HookOrder.Earliest);
+      }
 
-      private void OnStartCombatRound(IntPtr pCombatRound, uint oidTarget)
+      [UnmanagedCallersOnly]
+      private static void OnStartCombatRound(void* pCombatRound, uint oidTarget)
       {
         CNWSCombatRound combatRound = new CNWSCombatRound(pCombatRound, false);
 

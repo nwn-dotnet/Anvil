@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -17,17 +18,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    [NativeFunction(NWNXLib.Functions._ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer)]
-    internal delegate void RemovePCFromWorldHook(IntPtr pServerExoAppInternal, IntPtr pPlayer);
-
-    internal class Factory : NativeEventFactory<RemovePCFromWorldHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.RemovePCFromWorldHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void RemovePCFromWorldHook(void* pServerExoAppInternal, void* pPlayer);
 
-      protected override FunctionHook<RemovePCFromWorldHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<RemovePCFromWorldHook>(OnRemovePCFromWorld, HookOrder.Earliest);
+      protected override FunctionHook<RemovePCFromWorldHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, void> pHook = &OnRemovePCFromWorld;
+        return HookService.RequestHook<RemovePCFromWorldHook>(NWNXLib.Functions._ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer, pHook, HookOrder.Earliest);
+      }
 
-      private void OnRemovePCFromWorld(IntPtr pServerExoAppInternal, IntPtr pPlayer)
+      [UnmanagedCallersOnly]
+      private static void OnRemovePCFromWorld(void* pServerExoAppInternal, void* pPlayer)
       {
         CNWSPlayer player = new CNWSPlayer(pPlayer, false);
 

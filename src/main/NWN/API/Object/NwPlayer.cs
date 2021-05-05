@@ -89,7 +89,7 @@ namespace NWN.API
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerLevelUp"/>
-    public event Action<ModuleEvents.OnPlayerLevelUp> OnLevelUp
+    public event Action<ModuleEvents.OnPlayerLevelUp> OnPlayerLevelUp
     {
       add => EventService.Subscribe<ModuleEvents.OnPlayerLevelUp, GameEventFactory>(this, value)
         .Register<ModuleEvents.OnPlayerLevelUp>(NwModule.Instance);

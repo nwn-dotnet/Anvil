@@ -1,10 +1,11 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public sealed unsafe class OnInventoryItemAdd : IEvent
+  public sealed class OnInventoryItemAdd : IEvent
   {
     public NwGameObject AcquiredBy { get; private init; }
 
@@ -16,17 +17,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => AcquiredBy;
 
-    [NativeFunction(NWNXLib.Functions._ZN15CItemRepository7AddItemEPP8CNWSItemhhii)]
-    internal delegate int AddItemHook(IntPtr pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem);
-
-    internal class Factory : NativeEventFactory<AddItemHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.AddItemHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int AddItemHook(void* pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem);
 
-      protected override FunctionHook<AddItemHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<AddItemHook>(OnAddItem, HookOrder.Early);
+      protected override FunctionHook<AddItemHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void**, byte, byte, byte, int, int, int> pHook = &OnAddItem;
+        return HookService.RequestHook<AddItemHook>(NWNXLib.Functions._ZN15CItemRepository7AddItemEPP8CNWSItemhhii, pHook, HookOrder.Early);
+      }
 
-      private int OnAddItem(IntPtr pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem)
+      [UnmanagedCallersOnly]
+      private static int OnAddItem(void* pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem)
       {
         CItemRepository itemRepository = new CItemRepository(pItemRepository, false);
         NwGameObject parent = itemRepository.m_oidParent.ToNwObject<NwGameObject>();

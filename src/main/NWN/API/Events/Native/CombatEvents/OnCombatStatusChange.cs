@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -14,17 +15,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage40SendServerToPlayerAmbientBattleMusicPlayEji)]
-    internal delegate int SendServerToPlayerAmbientBattleMusicPlayHook(IntPtr pMessage, uint nPlayer, int bPlay);
-
-    internal class Factory : NativeEventFactory<SendServerToPlayerAmbientBattleMusicPlayHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.SendServerToPlayerAmbientBattleMusicPlayHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int SendServerToPlayerAmbientBattleMusicPlayHook(void* pMessage, uint nPlayer, int bPlay);
 
-      protected override FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SendServerToPlayerAmbientBattleMusicPlayHook>(OnSendServerToPlayerAmbientBattleMusicPlay, HookOrder.Earliest);
+      protected override FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> RequestHook()
+      {
+        delegate* unmanaged<void*, uint, int, int> pHook = &OnSendServerToPlayerAmbientBattleMusicPlay;
+        return HookService.RequestHook<SendServerToPlayerAmbientBattleMusicPlayHook>(NWNXLib.Functions._ZN11CNWSMessage40SendServerToPlayerAmbientBattleMusicPlayEji, pHook, HookOrder.Earliest);
+      }
 
-      private int OnSendServerToPlayerAmbientBattleMusicPlay(IntPtr pMessage, uint nPlayer, int bPlay)
+      [UnmanagedCallersOnly]
+      private static int OnSendServerToPlayerAmbientBattleMusicPlay(void* pMessage, uint nPlayer, int bPlay)
       {
         CNWSPlayer player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).AsNWSPlayer();
         if (player != null)

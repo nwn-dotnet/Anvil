@@ -19,11 +19,11 @@ namespace NWN.Services
     /// </summary>
     public readonly T CallOriginal;
 
-    internal FunctionHook(HookService hookService, T handler, IntPtr nativeFuncPtr)
+    internal FunctionHook(HookService hookService, IntPtr nativeFuncPtr, T handler = null)
     {
       this.hookService = hookService;
-      this.handler = handler;
       this.nativeFuncPtr = nativeFuncPtr;
+      this.handler = handler;
       CallOriginal = Marshal.GetDelegateForFunctionPointer<T>(nativeFuncPtr);
     }
 

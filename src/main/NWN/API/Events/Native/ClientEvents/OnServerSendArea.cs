@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -17,17 +18,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage33SendServerToPlayerArea_ClientAreaEP10CNWSPlayerP8CNWSAreafffRK6Vectori)]
-    internal delegate int SendServerToPlayerAreaClientAreaHook(IntPtr pMessage, IntPtr pPlayer, IntPtr pArea, float fX, float fY, float fZ, IntPtr vNewOrientation, int bPlayerIsNewToModule);
-
-    internal class Factory : NativeEventFactory<SendServerToPlayerAreaClientAreaHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.SendServerToPlayerAreaClientAreaHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int SendServerToPlayerAreaClientAreaHook(void* pMessage, void* pPlayer, void* pArea, float fX, float fY, float fZ, void* vNewOrientation, int bPlayerIsNewToModule);
 
-      protected override FunctionHook<SendServerToPlayerAreaClientAreaHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SendServerToPlayerAreaClientAreaHook>(OnSendServerToPlayerAreaClientArea, HookOrder.Earliest);
+      protected override FunctionHook<SendServerToPlayerAreaClientAreaHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, void*, float, float, float, void*, int, int> pHook = &OnSendServerToPlayerAreaClientArea;
+        return HookService.RequestHook<SendServerToPlayerAreaClientAreaHook>(NWNXLib.Functions._ZN11CNWSMessage33SendServerToPlayerArea_ClientAreaEP10CNWSPlayerP8CNWSAreafffRK6Vectori, pHook, HookOrder.Earliest);
+      }
 
-      private int OnSendServerToPlayerAreaClientArea(IntPtr pMessage, IntPtr pPlayer, IntPtr pArea, float fX, float fY, float fZ, IntPtr vNewOrientation, int bPlayerIsNewToModule)
+      [UnmanagedCallersOnly]
+      private static int OnSendServerToPlayerAreaClientArea(void* pMessage, void* pPlayer, void* pArea, float fX, float fY, float fZ, void* vNewOrientation, int bPlayerIsNewToModule)
       {
         ProcessEvent(new OnServerSendArea
         {

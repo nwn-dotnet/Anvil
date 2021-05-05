@@ -1,10 +1,11 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public class OnCalendarTimeChange : IEvent
+  public sealed unsafe class OnCalendarTimeChange : IEvent
   {
     public TimeChangeType TimeChangeType { get; private init; }
 
@@ -14,17 +15,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => null;
 
-    [NativeFunction(NWNXLib.Functions._ZN10CNWSModule10UpdateTimeEjjj)]
-    internal delegate void UpdateTimeHook(IntPtr pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
-
-    internal class Factory : NativeEventFactory<UpdateTimeHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.UpdateTimeHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
 
-      protected override FunctionHook<UpdateTimeHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<UpdateTimeHook>(OnUpdateTime, HookOrder.Earliest);
+      protected override FunctionHook<UpdateTimeHook> RequestHook()
+      {
+        delegate* unmanaged<void*, uint, uint, uint, void> pHook = &OnUpdateTime;
+        return HookService.RequestHook<UpdateTimeHook>(NWNXLib.Functions._ZN10CNWSModule10UpdateTimeEjjj, pHook, HookOrder.Earliest);
+      }
 
-      private void OnUpdateTime(IntPtr pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference)
+      [UnmanagedCallersOnly]
+      private static void OnUpdateTime(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference)
       {
         CNWSModule module = new CNWSModule(pModule, false);
         uint hour = module.m_nCurrentHour;

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -12,17 +13,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => RemovedFrom;
 
-    [NativeFunction(NWNXLib.Functions._ZN15CItemRepository10RemoveItemEP8CNWSItem)]
-    internal delegate int RemoveItemHook(IntPtr pItemRepository, IntPtr pItem);
-
-    internal class Factory : NativeEventFactory<RemoveItemHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.RemoveItemHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int RemoveItemHook(void* pItemRepository, void* pItem);
 
-      protected override FunctionHook<RemoveItemHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<RemoveItemHook>(OnRemoveItem, HookOrder.Earliest);
+      protected override FunctionHook<RemoveItemHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, int> pHook = &OnRemoveItem;
+        return HookService.RequestHook<RemoveItemHook>(NWNXLib.Functions._ZN15CItemRepository10RemoveItemEP8CNWSItem, pHook, HookOrder.Earliest);
+      }
 
-      private int OnRemoveItem(IntPtr pItemRepository, IntPtr pItem)
+      [UnmanagedCallersOnly]
+      private static int OnRemoveItem(void* pItemRepository, void* pItem)
       {
         CItemRepository itemRepository = new CItemRepository(pItemRepository, false);
         NwGameObject parent = itemRepository.m_oidParent.ToNwObject<NwGameObject>();

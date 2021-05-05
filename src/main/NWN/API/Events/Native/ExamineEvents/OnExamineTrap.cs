@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -14,17 +15,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => ExaminedBy;
 
-    [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_TrapDataEP10CNWSPlayerjP12CNWSCreaturei)]
-    internal delegate void TrapExamineHook(IntPtr pMessage, IntPtr pPlayer, uint oidTrap, IntPtr pCreature, int bSuccess);
-
-    internal class Factory : NativeEventFactory<TrapExamineHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.TrapExamineHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void TrapExamineHook(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess);
 
-      protected override FunctionHook<TrapExamineHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<TrapExamineHook>(OnExamineTrap, HookOrder.Earliest);
+      protected override FunctionHook<TrapExamineHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, uint, void*, int, void> pHook = &OnExamineTrap;
+        return HookService.RequestHook<TrapExamineHook>(NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_TrapDataEP10CNWSPlayerjP12CNWSCreaturei, pHook, HookOrder.Earliest);
+      }
 
-      private void OnExamineTrap(IntPtr pMessage, IntPtr pPlayer, uint oidTrap, IntPtr pCreature, int bSuccess)
+      [UnmanagedCallersOnly]
+      private static void OnExamineTrap(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess)
       {
         ProcessEvent(new OnExamineTrap
         {

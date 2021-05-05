@@ -3,28 +3,37 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
+  public abstract class NativeEventFactory
+  {
+    protected static Lazy<EventService> EventService { get; private set; }
+
+    protected static HookService HookService { get; private set; }
+
+    [ServiceBinding(typeof(APIBindings))]
+    [BindingOrder(BindingOrder.API)]
+    internal sealed class APIBindings
+    {
+      public APIBindings(Lazy<EventService> eventService, HookService hookService)
+      {
+        EventService = eventService;
+        HookService = hookService;
+      }
+    }
+  }
+
   [ServiceBinding(typeof(IEventFactory))]
-  public abstract class NativeEventFactory<THook> : IEventFactory, IDisposable
+  public abstract class NativeEventFactory<THook> : NativeEventFactory, IEventFactory, IDisposable
     where THook : Delegate
   {
-    private readonly Lazy<EventService> eventService;
-    private readonly HookService hookService;
+    protected static FunctionHook<THook> Hook { get; set; }
 
-    protected NativeEventFactory(Lazy<EventService> eventService, HookService hookService)
-    {
-      this.eventService = eventService;
-      this.hookService = hookService;
-    }
+    protected abstract FunctionHook<THook> RequestHook();
 
-    protected FunctionHook<THook> Hook { get; private set; }
-
-    protected abstract FunctionHook<THook> RequestHook(HookService hookService);
-
-    protected TEvent ProcessEvent<TEvent>(TEvent eventData) where TEvent : IEvent
+    protected static TEvent ProcessEvent<TEvent>(TEvent eventData) where TEvent : IEvent
     {
       VirtualMachine.Instance.ExecuteInScriptContext(() =>
       {
-        eventData = eventService.Value.ProcessEvent(eventData);
+        eventData = EventService.Value.ProcessEvent(eventData);
       }, eventData.Context);
 
       return eventData;
@@ -32,7 +41,7 @@ namespace NWN.API.Events
 
     void IEventFactory.Init()
     {
-      Hook ??= RequestHook(hookService);
+      Hook ??= RequestHook();
     }
 
     void IEventFactory.Unregister<T>()
@@ -44,6 +53,7 @@ namespace NWN.API.Events
     void IDisposable.Dispose()
     {
       Hook?.Dispose();
+      Hook = null;
     }
   }
 }

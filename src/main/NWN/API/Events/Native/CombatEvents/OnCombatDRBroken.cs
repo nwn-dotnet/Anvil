@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -12,25 +13,26 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer)]
-    internal delegate void SendFeedbackMessageHook(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer);
-
-    internal class Factory : NativeEventFactory<SendFeedbackMessageHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.SendFeedbackMessageHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void SendFeedbackMessageHook(void* pCreature, ushort nFeedbackId, void* pMessageData, void* pFeedbackPlayer);
 
-      protected override FunctionHook<SendFeedbackMessageHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage, HookOrder.Earliest);
+      protected override FunctionHook<SendFeedbackMessageHook> RequestHook()
+      {
+        delegate* unmanaged<void*, ushort, void*, void*, void> pHook = &OnSendFeedbackMessage;
+        return HookService.RequestHook<SendFeedbackMessageHook>(NWNXLib.Functions._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, pHook, HookOrder.Earliest);
+      }
 
-      private void OnSendFeedbackMessage(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer)
+      [UnmanagedCallersOnly]
+      private static void OnSendFeedbackMessage(void* pCreature, ushort nFeedbackId, void* pMessageData, void* pFeedbackPlayer)
       {
         const ushort resistanceId = 66;
         const ushort reductionId = 67;
         const int remainingDRIndex = 2;
 
-        if (pMessageData == IntPtr.Zero)
+        if (pMessageData == null)
         {
-          Hook.CallOriginal(pCreature, nFeedbackId, pMessageData, pFeedbackPlayer);
+          Hook.CallOriginal(pCreature, nFeedbackId, null, pFeedbackPlayer);
           return;
         }
 

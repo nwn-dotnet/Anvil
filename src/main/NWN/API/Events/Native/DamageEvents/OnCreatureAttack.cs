@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -32,22 +33,20 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Attacker;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti)]
-    internal delegate void SignalMeleeDamageHook(IntPtr pCreature, IntPtr pTarget, int nAttacks);
-
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti)]
-    internal delegate void SignalRangedDamageHook(IntPtr pCreature, IntPtr pTarget, int nAttacks);
-
     public static Type[] FactoryTypes { get; } = {typeof(MeleeDamageFactory), typeof(RangedDamageFactory)};
 
-    internal class MeleeDamageFactory : NativeEventFactory<SignalMeleeDamageHook>
+    internal sealed unsafe class MeleeDamageFactory : NativeEventFactory<MeleeDamageFactory.SignalMeleeDamageHook>
     {
-      public MeleeDamageFactory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void SignalMeleeDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
-      protected override FunctionHook<SignalMeleeDamageHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SignalMeleeDamageHook>(OnSignalMeleeDamage, HookOrder.Late);
+      protected override FunctionHook<SignalMeleeDamageHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, int, void> pHook = &OnSignalMeleeDamage;
+        return HookService.RequestHook<SignalMeleeDamageHook>(NWNXLib.Functions._ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti, pHook, HookOrder.Late);
+      }
 
-      private void OnSignalMeleeDamage(IntPtr pCreature, IntPtr pTarget, int nAttacks)
+      [UnmanagedCallersOnly]
+      private static void OnSignalMeleeDamage(void* pCreature, void* pTarget, int nAttacks)
       {
         OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
         foreach (OnCreatureAttack eventData in attackEvents)
@@ -59,14 +58,18 @@ namespace NWN.API.Events
       }
     }
 
-    internal class RangedDamageFactory : NativeEventFactory<SignalRangedDamageHook>
+    internal sealed unsafe class RangedDamageFactory : NativeEventFactory<RangedDamageFactory.SignalRangedDamageHook>
     {
-      public RangedDamageFactory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void SignalRangedDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
-      protected override FunctionHook<SignalRangedDamageHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SignalRangedDamageHook>(OnSignalRangedDamage, HookOrder.Late);
+      protected override FunctionHook<SignalRangedDamageHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, int, void> pHook = &OnSignalRangedDamage;
+        return HookService.RequestHook<SignalRangedDamageHook>(NWNXLib.Functions._ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti, pHook, HookOrder.Late);
+      }
 
-      private void OnSignalRangedDamage(IntPtr pCreature, IntPtr pTarget, int nAttacks)
+      [UnmanagedCallersOnly]
+      private static void OnSignalRangedDamage(void* pCreature, void* pTarget, int nAttacks)
       {
         OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
         foreach (OnCreatureAttack eventData in attackEvents)
@@ -78,7 +81,7 @@ namespace NWN.API.Events
       }
     }
 
-    private static OnCreatureAttack[] GetAttackEvents(IntPtr pCreature, IntPtr pTarget, int nAttacks)
+    private static unsafe OnCreatureAttack[] GetAttackEvents(void* pCreature, void* pTarget, int nAttacks)
     {
       CNWSCreature cnwsCreature = new CNWSCreature(pCreature, false);
       NwCreature creature = cnwsCreature.m_idSelf.ToNwObject<NwCreature>();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Anvil.Internal;
 using NWN.Native.API;
 using NWN.Services;
@@ -20,24 +21,22 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Initiator;
 
-    [NativeFunction(NWNXLib.Functions._ZN10CNWSBarter15SetListAcceptedEi)]
-    internal delegate int SetListAcceptedHook(IntPtr pBarter, int bAccepted);
-
-    [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji)]
-    internal delegate int SendServerToPlayerBarterCloseBarterHook(IntPtr pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
-
     public static Type[] FactoryTypes { get; } = {typeof(SetListAcceptedFactory), typeof(SendServerToPlayerBarterCloseBarterFactory)};
 
-    internal class SetListAcceptedFactory : NativeEventFactory<SetListAcceptedHook>
+    internal sealed unsafe class SetListAcceptedFactory : NativeEventFactory<SetListAcceptedFactory.SetListAcceptedHook>
     {
-      public SetListAcceptedFactory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int SetListAcceptedHook(void* pBarter, int bAccepted);
 
-      protected override FunctionHook<SetListAcceptedHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SetListAcceptedHook>(OnSetListAccepted, HookOrder.Earliest);
-
-      private int OnSetListAccepted(IntPtr pBarter, int bAccepted)
+      protected override FunctionHook<SetListAcceptedHook> RequestHook()
       {
-        if (pBarter != IntPtr.Zero && bAccepted.ToBool())
+        delegate* unmanaged<void*, int, int> pHook = &OnSetListAccepted;
+        return HookService.RequestHook<SetListAcceptedHook>(NWNXLib.Functions._ZN10CNWSBarter15SetListAcceptedEi, pHook, HookOrder.Earliest);
+      }
+
+      [UnmanagedCallersOnly]
+      private static int OnSetListAccepted(void* pBarter, int bAccepted)
+      {
+        if (pBarter != null && bAccepted.ToBool())
         {
           OnBarterEnd eventData = GetBarterEventData(new CNWSBarter(pBarter, false), bAccepted.ToBool());
 
@@ -51,14 +50,18 @@ namespace NWN.API.Events
       }
     }
 
-    internal class SendServerToPlayerBarterCloseBarterFactory : NativeEventFactory<SendServerToPlayerBarterCloseBarterHook>
+    internal sealed unsafe class SendServerToPlayerBarterCloseBarterFactory : NativeEventFactory<SendServerToPlayerBarterCloseBarterFactory.SendServerToPlayerBarterCloseBarterHook>
     {
-      public SendServerToPlayerBarterCloseBarterFactory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int SendServerToPlayerBarterCloseBarterHook(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
 
-      protected override FunctionHook<SendServerToPlayerBarterCloseBarterHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(OnSendServerToPlayerBarterCloseBarter, HookOrder.Earliest);
+      protected override FunctionHook<SendServerToPlayerBarterCloseBarterHook> RequestHook()
+      {
+        delegate* unmanaged<void*, uint, uint, int, int> pHook = &OnSendServerToPlayerBarterCloseBarter;
+        return HookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(NWNXLib.Functions._ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji, pHook, HookOrder.Earliest);
+      }
 
-      private int OnSendServerToPlayerBarterCloseBarter(IntPtr pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
+      [UnmanagedCallersOnly]
+      private static int OnSendServerToPlayerBarterCloseBarter(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
       {
         NwPlayer player = new NwPlayer(LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer());
         CNWSBarter barter = player.Creature.GetBarterInfo(0);

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -10,17 +11,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN17CNWSCreatureStats9LevelDownEP13CNWLevelStats)]
-    internal delegate void LevelDownHook(IntPtr pCreatureStats, IntPtr pLevelUpStats);
-
-    internal class Factory : NativeEventFactory<LevelDownHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.LevelDownHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void LevelDownHook(void* pCreatureStats, void* pLevelUpStats);
 
-      protected override FunctionHook<LevelDownHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<LevelDownHook>(OnLevelDown, HookOrder.Earliest);
+      protected override FunctionHook<LevelDownHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, void> pHook = &OnLevelDown;
+        return HookService.RequestHook<LevelDownHook>(NWNXLib.Functions._ZN17CNWSCreatureStats9LevelDownEP13CNWLevelStats, pHook, HookOrder.Earliest);
+      }
 
-      private void OnLevelDown(IntPtr pCreatureStats, IntPtr pLevelUpStats)
+      [UnmanagedCallersOnly]
+      private static void OnLevelDown(void* pCreatureStats, void* pLevelUpStats)
       {
         Hook.CallOriginal(pCreatureStats, pLevelUpStats);
 

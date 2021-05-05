@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -10,17 +11,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN17CNWSCreatureStats16LevelUpAutomaticEhih)]
-    internal delegate void LevelUpAutomaticHook(IntPtr pCreatureStats, byte nClass, int bReadyAllSpells, byte nPackage);
-
-    internal class Factory : NativeEventFactory<LevelUpAutomaticHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.LevelUpAutomaticHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void LevelUpAutomaticHook(void* pCreatureStats, byte nClass, int bReadyAllSpells, byte nPackage);
 
-      protected override FunctionHook<LevelUpAutomaticHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<LevelUpAutomaticHook>(OnLevelUpAutomatic, HookOrder.Earliest);
+      protected override FunctionHook<LevelUpAutomaticHook> RequestHook()
+      {
+        delegate* unmanaged<void*, byte, int, byte, void> pHook = &OnLevelUpAutomatic;
+        return HookService.RequestHook<LevelUpAutomaticHook>(NWNXLib.Functions._ZN17CNWSCreatureStats16LevelUpAutomaticEhih, pHook, HookOrder.Earliest);
+      }
 
-      private void OnLevelUpAutomatic(IntPtr pCreatureStats, byte nClass, int bReadyAllSpells, byte nPackage)
+      [UnmanagedCallersOnly]
+      private static void OnLevelUpAutomatic(void* pCreatureStats, byte nClass, int bReadyAllSpells, byte nPackage)
       {
         Hook.CallOriginal(pCreatureStats, nClass, bReadyAllSpells, nPackage);
 

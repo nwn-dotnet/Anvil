@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.API.Constants;
 using NWN.Native.API;
 using NWN.Services;
@@ -24,21 +25,22 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => InterruptedCaster;
 
-    [NativeFunction(NWNXLib.Functions._ZN21CNWSEffectListHandler15OnEffectAppliedEP10CNWSObjectP11CGameEffecti)]
-    internal delegate int OnEffectAppliedHook(IntPtr pEffectListHandler, IntPtr pObject, IntPtr pEffect, int bLoadingGame);
-
-    internal class Factory : NativeEventFactory<OnEffectAppliedHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.OnEffectAppliedHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int OnEffectAppliedHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
-      protected override FunctionHook<OnEffectAppliedHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<OnEffectAppliedHook>(OnEffectApplied, HookOrder.Earliest);
-
-      private unsafe int OnEffectApplied(IntPtr pEffectListHandler, IntPtr pObject, IntPtr pEffect, int bLoadingGame)
+      protected override FunctionHook<OnEffectAppliedHook> RequestHook()
       {
-        if (pEffect == IntPtr.Zero)
+        delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnEffectApplied;
+        return HookService.RequestHook<OnEffectAppliedHook>(NWNXLib.Functions._ZN21CNWSEffectListHandler15OnEffectAppliedEP10CNWSObjectP11CGameEffecti, pHook, HookOrder.Earliest);
+      }
+
+      [UnmanagedCallersOnly]
+      private static int OnEffectApplied(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame)
+      {
+        if (pEffect == null)
         {
-          return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
+          return Hook.CallOriginal(pEffectListHandler, pObject, null, bLoadingGame);
         }
 
         CGameEffect effect = new CGameEffect(pEffect, false);

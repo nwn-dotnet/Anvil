@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -18,17 +19,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN17CNWSCreatureStats23ClearMemorizedSpellSlotEhhh)]
-    internal delegate void ClearMemorizedSpellSlotHook(IntPtr pCreatureStats, byte nMultiClass, byte nSpellLevel, byte nSpellSlot);
-
-    internal class Factory : NativeEventFactory<ClearMemorizedSpellSlotHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.ClearMemorizedSpellSlotHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void ClearMemorizedSpellSlotHook(void* pCreatureStats, byte nMultiClass, byte nSpellLevel, byte nSpellSlot);
 
-      protected override FunctionHook<ClearMemorizedSpellSlotHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<ClearMemorizedSpellSlotHook>(OnClearMemorizedSpellSlot, HookOrder.Early);
+      protected override FunctionHook<ClearMemorizedSpellSlotHook> RequestHook()
+      {
+        delegate* unmanaged<void*, byte, byte, byte, void> pHook = &OnClearMemorizedSpellSlot;
+        return HookService.RequestHook<ClearMemorizedSpellSlotHook>(NWNXLib.Functions._ZN17CNWSCreatureStats23ClearMemorizedSpellSlotEhhh, pHook, HookOrder.Early);
+      }
 
-      private void OnClearMemorizedSpellSlot(IntPtr pCreatureStats, byte nMultiClass, byte nSpellLevel, byte nSpellSlot)
+      [UnmanagedCallersOnly]
+      private static void OnClearMemorizedSpellSlot(void* pCreatureStats, byte nMultiClass, byte nSpellLevel, byte nSpellSlot)
       {
         CNWSCreatureStats creatureStats = new CNWSCreatureStats(pCreatureStats, false);
 

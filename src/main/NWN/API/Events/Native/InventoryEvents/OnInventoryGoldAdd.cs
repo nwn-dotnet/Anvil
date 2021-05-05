@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -14,17 +15,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => null;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature7AddGoldEii)]
-    internal delegate void AddGoldHook(IntPtr pCreature, int nGold, int bDisplayFeedback);
-
-    internal class Factory : NativeEventFactory<AddGoldHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.AddGoldHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void AddGoldHook(void* pCreature, int nGold, int bDisplayFeedback);
 
-      protected override FunctionHook<AddGoldHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<AddGoldHook>(OnAddGold, HookOrder.Early);
+      protected override FunctionHook<AddGoldHook> RequestHook()
+      {
+        delegate* unmanaged<void*, int, int, void> pHook = &OnAddGold;
+        return HookService.RequestHook<AddGoldHook>(NWNXLib.Functions._ZN12CNWSCreature7AddGoldEii, pHook, HookOrder.Early);
+      }
 
-      private void OnAddGold(IntPtr pCreature, int nGold, int bDisplayFeedback)
+      [UnmanagedCallersOnly]
+      private static void OnAddGold(void* pCreature, int nGold, int bDisplayFeedback)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 

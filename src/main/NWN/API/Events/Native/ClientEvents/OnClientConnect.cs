@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Anvil.Internal;
 using NWN.Native.API;
 using NWN.Services;
@@ -43,19 +44,20 @@ namespace NWN.API.Events
 
       NwObject IEvent.Context => null;
 
-      [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer)]
-      internal delegate int SendServerToPlayerCharListHook(IntPtr pMessage, IntPtr pPlayer);
-
-      internal class Factory : NativeEventFactory<SendServerToPlayerCharListHook>
+      internal sealed unsafe class Factory : NativeEventFactory<Factory.SendServerToPlayerCharListHook>
       {
+        internal delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
+
         private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
-        public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+        protected override FunctionHook<SendServerToPlayerCharListHook> RequestHook()
+        {
+          delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
+          return HookService.RequestHook<SendServerToPlayerCharListHook>(NWNXLib.Functions._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer, pHook, HookOrder.Early);
+        }
 
-        protected override FunctionHook<SendServerToPlayerCharListHook> RequestHook(HookService hookService)
-          => hookService.RequestHook<SendServerToPlayerCharListHook>(OnSendServerToPlayerCharList, HookOrder.Early);
-
-        private int OnSendServerToPlayerCharList(IntPtr pMessage, IntPtr pPlayer)
+        [UnmanagedCallersOnly]
+        private static int OnSendServerToPlayerCharList(void* pMessage, void* pPlayer)
         {
           CNWSPlayer player = new CNWSPlayer(pPlayer, false);
           uint playerId = player.m_nPlayerID;

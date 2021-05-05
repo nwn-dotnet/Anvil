@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using NWN.API.Constants;
 using NWN.Native.API;
 using NWN.Services;
@@ -43,19 +44,20 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature19AddCastSpellActionsEjiiii6Vectorjiiihiiih)]
-    internal delegate int AddCastSpellActionsHook(IntPtr pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
-      int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,
-      int bFake, byte nProjectilePathType, int bInstant, int bAllowPolymorphedCast, int nFeat, byte nCasterLevel);
-
-    internal class Factory : NativeEventFactory<AddCastSpellActionsHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.AddCastSpellActionsHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int AddCastSpellActionsHook(void* pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
+        int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,
+        int bFake, byte nProjectilePathType, int bInstant, int bAllowPolymorphedCast, int nFeat, byte nCasterLevel);
 
-      protected override FunctionHook<AddCastSpellActionsHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<AddCastSpellActionsHook>(OnAddCastSpellActions, HookOrder.Early);
+      protected override FunctionHook<AddCastSpellActionsHook> RequestHook()
+      {
+        delegate* unmanaged<void*, uint, int, int, int, int, Vector3, uint, int, int, int, byte, int, int, int, byte, int> pHook = &OnAddCastSpellActions;
+        return HookService.RequestHook<AddCastSpellActionsHook>(NWNXLib.Functions._ZN12CNWSCreature19AddCastSpellActionsEjiiii6Vectorjiiihiiih, pHook, HookOrder.Early);
+      }
 
-      private int OnAddCastSpellActions(IntPtr pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
+      [UnmanagedCallersOnly]
+      private static int OnAddCastSpellActions(void* pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
         int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,
         int bFake, byte nProjectilePathType, int bInstant, int bAllowPolymorphedCast, int nFeat, byte nCasterLevel)
       {

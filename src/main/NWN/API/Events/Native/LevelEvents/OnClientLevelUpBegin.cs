@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -14,17 +15,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage34HandlePlayerToServerLevelUpMessageEP10CNWSPlayerh)]
-    internal delegate int HandlePlayerToServerLevelUpMessageHook(IntPtr pMessage, IntPtr pPlayer, byte nMinor);
-
-    internal class Factory : NativeEventFactory<HandlePlayerToServerLevelUpMessageHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.HandlePlayerToServerLevelUpMessageHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int HandlePlayerToServerLevelUpMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
-      protected override FunctionHook<HandlePlayerToServerLevelUpMessageHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<HandlePlayerToServerLevelUpMessageHook>(OnHandlePlayerToServerLevelUpMessage, HookOrder.Early);
+      protected override FunctionHook<HandlePlayerToServerLevelUpMessageHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePlayerToServerLevelUpMessage;
+        return HookService.RequestHook<HandlePlayerToServerLevelUpMessageHook>(NWNXLib.Functions._ZN11CNWSMessage34HandlePlayerToServerLevelUpMessageEP10CNWSPlayerh, pHook, HookOrder.Early);
+      }
 
-      private int OnHandlePlayerToServerLevelUpMessage(IntPtr pMessage, IntPtr pPlayer, byte nMinor)
+      [UnmanagedCallersOnly]
+      private static int OnHandlePlayerToServerLevelUpMessage(void* pMessage, void* pPlayer, byte nMinor)
       {
         if (nMinor != (byte)MessageLevelUpMinor.Begin)
         {

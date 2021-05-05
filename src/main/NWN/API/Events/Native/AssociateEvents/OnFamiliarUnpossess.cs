@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -12,24 +12,25 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature17UnpossessFamiliarEv)]
-    internal delegate void UnpossessFamiliarHook(IntPtr pCreature);
-
-    internal class Factory : NativeEventFactory<UnpossessFamiliarHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.UnpossessFamiliarHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void UnpossessFamiliarHook(void* pCreature);
 
-      protected override FunctionHook<UnpossessFamiliarHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<UnpossessFamiliarHook>(OnUnpossessFamiliar, HookOrder.Earliest);
+      protected override FunctionHook<UnpossessFamiliarHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void> pHook = &OnUnpossessFamiliar;
+        return HookService.RequestHook<UnpossessFamiliarHook>(NWNXLib.Functions._ZN12CNWSCreature17UnpossessFamiliarEv, pHook, HookOrder.Earliest);
+      }
 
-      private void OnUnpossessFamiliar(IntPtr pCreature)
+      [UnmanagedCallersOnly]
+      private static void OnUnpossessFamiliar(void* pCreature)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 
         ProcessEvent(new OnFamiliarUnpossess
         {
-          Owner = creature.m_idSelf.ToNwObject<NwCreature>(),
-          Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>()
+          Owner = creature.ToNwObject<NwCreature>(),
+          Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>(),
         });
 
         Hook.CallOriginal(pCreature);

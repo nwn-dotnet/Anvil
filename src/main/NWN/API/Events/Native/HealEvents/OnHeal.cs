@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -23,17 +24,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Healer;
 
-    [NativeFunction(NWNXLib.Functions._ZN21CNWSEffectListHandler11OnApplyHealEP10CNWSObjectP11CGameEffecti)]
-    internal delegate int OnApplyHealHook(IntPtr pEffectListHandler, IntPtr pObject, IntPtr pGameEffect, int bLoadingGame);
-
-    internal class Factory : NativeEventFactory<OnApplyHealHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.OnApplyHealHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int OnApplyHealHook(void* pEffectListHandler, void* pObject, void* pGameEffect, int bLoadingGame);
 
-      protected override FunctionHook<OnApplyHealHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<OnApplyHealHook>(OnOnApplyHeal, HookOrder.Early);
+      protected override FunctionHook<OnApplyHealHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyHeal;
+        return HookService.RequestHook<OnApplyHealHook>(NWNXLib.Functions._ZN21CNWSEffectListHandler11OnApplyHealEP10CNWSObjectP11CGameEffecti, pHook, HookOrder.Early);
+      }
 
-      private int OnOnApplyHeal(IntPtr pEffectListHandler, IntPtr pObject, IntPtr pGameEffect, int bLoadingGame)
+      [UnmanagedCallersOnly]
+      private static int OnApplyHeal(void* pEffectListHandler, void* pObject, void* pGameEffect, int bLoadingGame)
       {
         CGameEffect gameEffect = new CGameEffect(pGameEffect, false);
         CNWSObject target = new CNWSObject(pObject, false);

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -10,17 +11,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN17CNWSCreatureStats7LevelUpEP13CNWLevelStatshhhi)]
-    internal delegate void LevelUpHook(IntPtr pCreatureStats, IntPtr pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool, int bAddStatsToList);
-
-    internal class Factory : NativeEventFactory<LevelUpHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.LevelUpHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void LevelUpHook(void* pCreatureStats, void* pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool, int bAddStatsToList);
 
-      protected override FunctionHook<LevelUpHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<LevelUpHook>(OnLevelUp, HookOrder.Earliest);
+      protected override FunctionHook<LevelUpHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, byte, byte, byte, int, void> pHook = &OnLevelUp;
+        return HookService.RequestHook<LevelUpHook>(NWNXLib.Functions._ZN17CNWSCreatureStats7LevelUpEP13CNWLevelStatshhhi, pHook, HookOrder.Earliest);
+      }
 
-      private void OnLevelUp(IntPtr pCreatureStats, IntPtr pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool, int bAddStatsToList)
+      [UnmanagedCallersOnly]
+      private static void OnLevelUp(void* pCreatureStats, void* pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool, int bAddStatsToList)
       {
         Hook.CallOriginal(pCreatureStats, pLevelUpStats, nDomain1, nDomain2, nSchool, bAddStatsToList);
 

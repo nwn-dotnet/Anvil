@@ -25,17 +25,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature7UseFeatEttjjP6Vector)]
-    internal delegate int CreatureUseFeatHook(IntPtr pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, IntPtr pTargetPos);
-
-    internal class Factory : NativeEventFactory<CreatureUseFeatHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.CreatureUseFeatHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int CreatureUseFeatHook(void* pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, void* pTargetPos);
 
-      protected override FunctionHook<CreatureUseFeatHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<CreatureUseFeatHook>(OnCreatureUseFeat, HookOrder.Earliest);
+      protected override FunctionHook<CreatureUseFeatHook> RequestHook()
+      {
+        delegate* unmanaged<void*, ushort, ushort, uint, uint, void*, int> pHook = &OnCreatureUseFeat;
+        return HookService.RequestHook<CreatureUseFeatHook>(NWNXLib.Functions._ZN12CNWSCreature7UseFeatEttjjP6Vector, pHook, HookOrder.Earliest);
+      }
 
-      private int OnCreatureUseFeat(IntPtr pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, IntPtr pTargetPos)
+      [UnmanagedCallersOnly]
+      private static int OnCreatureUseFeat(void* pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, void* pTargetPos)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 
@@ -46,7 +47,7 @@ namespace NWN.API.Events
           SubFeatId = nSubFeat,
           TargetObject = oidTarget.ToNwObject<NwGameObject>(),
           TargetArea = oidArea.ToNwObject<NwArea>(),
-          TargetPosition = pTargetPos != IntPtr.Zero ? Marshal.PtrToStructure<Vector3>(pTargetPos) : Vector3.Zero
+          TargetPosition = pTargetPos != null ? Marshal.PtrToStructure<Vector3>((IntPtr)pTargetPos) : Vector3.Zero
         });
 
         return !eventData.PreventFeatUse ? Hook.CallOriginal(pCreature, nFeat, nSubFeat, oidTarget, oidArea, pTargetPos) : false.ToInt();

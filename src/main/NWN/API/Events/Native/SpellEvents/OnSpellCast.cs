@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using NWN.API.Constants;
 using NWN.Native.API;
 using NWN.Services;
@@ -32,18 +33,19 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    [NativeFunction(NWNXLib.Functions._ZN10CNWSObject18SpellCastAndImpactEj6Vectorjhjiihi)]
-    internal delegate void SpellCastAndImpactHook(IntPtr pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
-      byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell);
-
-    internal class Factory : NativeEventFactory<SpellCastAndImpactHook>
+    internal sealed unsafe class Factory : NativeEventFactory<Factory.SpellCastAndImpactHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void SpellCastAndImpactHook(void* pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
+        byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell);
 
-      protected override FunctionHook<SpellCastAndImpactHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SpellCastAndImpactHook>(OnSpellCastAndImpact, HookOrder.Early);
+      protected override FunctionHook<SpellCastAndImpactHook> RequestHook()
+      {
+        delegate* unmanaged<void*, int, Vector3, uint, byte, uint, int, int, byte, int, void> pHook = &OnSpellCastAndImpact;
+        return HookService.RequestHook<SpellCastAndImpactHook>(NWNXLib.Functions._ZN10CNWSObject18SpellCastAndImpactEj6Vectorjhjiihi, pHook, HookOrder.Early);
+      }
 
-      private void OnSpellCastAndImpact(IntPtr pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
+      [UnmanagedCallersOnly]
+      private static void OnSpellCastAndImpact(void* pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
         byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell)
       {
         CNWSObject gameObject = new CNWSObject(pObject, false);
