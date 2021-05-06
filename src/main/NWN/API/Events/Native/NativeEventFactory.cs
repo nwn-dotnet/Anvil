@@ -22,7 +22,7 @@ namespace NWN.API.Events
 
     protected TEvent ProcessEvent<TEvent>(TEvent eventData) where TEvent : IEvent
     {
-      VirtualMachine.ExecuteInScriptContext(() =>
+      VirtualMachine.Instance.ExecuteInScriptContext(() =>
       {
         eventData = eventService.Value.ProcessEvent(eventData);
       }, eventData.Context);

@@ -766,5 +766,27 @@ namespace NWN.API
         Creature.m_pStats.m_bIsPC = (!Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
       }
     }
+
+    public void DisplayFloatingTextStringOnCreature(NwCreature target, string text)
+    {
+      if (target == null)
+      {
+        throw new ArgumentNullException(nameof(target), "Target cannot be null.");
+      }
+
+      if (text == null)
+      {
+        throw new ArgumentNullException(nameof(text), "Text cannot be null.");
+      }
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+
+      CNWCCMessageData messageData = new CNWCCMessageData();
+      messageData.SetObjectID(0, target);
+      messageData.SetInteger(9, 94);
+      messageData.SetString(0, text.ToExoString());
+
+      message.SendServerToPlayerCCMessage(Player.m_nPlayerID, (byte)MessageClientSideMsgMinor.Feedback, messageData, null);
+    }
   }
 }

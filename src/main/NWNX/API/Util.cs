@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using NWN.API;
-using NWN.Core;
+using NWN.API.Constants;
 using NWN.Core.NWNX;
-using NWNX.API.Constants;
 
 namespace NWNX.API
 {
@@ -15,95 +13,11 @@ namespace NWNX.API
     }
 
     /// <summary>
-    /// Gets the name of the currently executing script.<br/>
-    /// If depth is > 0, it will return the name of the script that called this one via ExecuteScript().
-    /// </summary>
-    /// <param name="depth">depth to seek the executing script.</param>
-    /// <returns>The name of the currently executing script.</returns>
-    public static string GetCurrentScriptName(int depth = 0) => UtilPlugin.GetCurrentScriptName();
-
-    /// <summary>
-    /// Gets a string that contains all ascii characters at their position (e.g. 'A' at 65). The character at index 0 is a space.
-    /// </summary>
-    public static string AsciiTableString { get; } = UtilPlugin.GetAsciiTableString();
-
-    /// <summary>
     /// Gets the vaulte of customTokenNumber.
     /// </summary>
     /// <param name="customTokenNumber">The token number to query.</param>
     /// <returns>The string representation of the token value.</returns>
     public static string GetCustomToken(int customTokenNumber) => UtilPlugin.GetCustomToken(customTokenNumber);
-
-    /// <summary>
-    /// Convert an effect type to an itemproperty type.
-    /// </summary>
-    /// <param name="effect">The effect to convert to an itemproperty.</param>
-    /// <returns>The converted itemproperty.</returns>
-    public static NWN.API.ItemProperty AsItemProperty(this NWN.API.Effect effect) => UtilPlugin.EffectToItemProperty(effect);
-
-    /// <summary>
-    /// Convert an itemproperty type to an effect type.
-    /// </summary>
-    /// <param name="ip">ip The itemproperty to convert to an effect.</param>
-    /// <returns>The converted effect.</returns>
-    public static NWN.API.Effect AsEffect(this NWN.API.ItemProperty ip) => UtilPlugin.ItemPropertyToEffect(ip);
-
-    /// <summary>
-    /// Determines if the supplied resref exists and is of the specified type.
-    /// </summary>
-    /// <param name="resRef">The resref to check.</param>
-    /// <param name="type">The type of this resref.</param>
-    /// <returns>true if the supplied resref exists and is of the specified type, otherwise false.</returns>
-    public static int IsValidResRef(this string resRef, ResRefType type = ResRefType.Creature) => UtilPlugin.IsValidResRef(resRef);
-
-    /// <summary>
-    /// Encodes a string for usage in a URL.
-    /// </summary>
-    /// <param name="str">The string to encode for a URL.</param>
-    /// <returns>The url encoded string.</returns>
-    public static string EncodeForURL(this string str) => UtilPlugin.EncodeStringForURL(str);
-
-    /// <summary>
-    /// Gets the row count for a 2da.
-    /// </summary>
-    /// <param name="twoDimArray">The 2da to check (do not include the .2da).</param>
-    /// <returns>The amount of rows in the 2da.</returns>
-    public static int Get2DARowCount(string twoDimArray) => UtilPlugin.Get2DARowCount(twoDimArray);
-
-    /// <summary>
-    /// Gets all ResRefs for the given type and filter.
-    /// </summary>
-    /// <param name="type">A ResRef type.</param>
-    /// <param name="regexFilter">Lets you filter out resrefs using a regexfilter. For example: nwnx_.\* gets you all scripts prefixed with nwnx_.</param>
-    /// <param name="moduleResourcesOnly">If true, only bundled module resources will be returned.</param>
-    /// <returns>Any matching resrefs, otherwise an empty enumeration.</returns>
-    public static IEnumerable<string> GetResRefs(ResRefType type, string regexFilter = "", bool moduleResourcesOnly = true)
-    {
-      int refType = (int) type;
-      for (string resRef = UtilPlugin.GetFirstResRef(refType, regexFilter, moduleResourcesOnly.ToInt());
-        resRef != string.Empty;
-        resRef = UtilPlugin.GetNextResRef())
-      {
-        yield return resRef;
-      }
-    }
-
-    /// <summary>
-    /// Gets the last created objects of type T.
-    /// </summary>
-    /// <typeparam name="T">The object type.</typeparam>
-    /// <returns>The last created objects.</returns>
-    public static IEnumerable<T> GetLastCreatedObjects<T>() where T : NwObject
-    {
-      int objType = (int) NwObject.GetObjectType<T>();
-
-      uint current;
-      int i;
-      for (i = 1, current = UtilPlugin.GetLastCreatedObject(objType, i); current != NWScript.OBJECT_INVALID; i++, current = UtilPlugin.GetLastCreatedObject(objType, i))
-      {
-        yield return current.ToNwObject<T>();
-      }
-    }
 
     /// <summary>
     /// Compiles and adds a script to the UserDirectory/nwnx folder.<br/>

@@ -27,6 +27,8 @@ namespace NWN.API
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public class NwCreature : NwGameObject
   {
+    private const byte QuickBarButtonCount = 36;
+
     internal readonly CNWSCreature Creature;
 
     private NwFaction faction;
@@ -2008,6 +2010,87 @@ namespace NWN.API
       });
 
       return result && creature != null ? creature.m_idSelf.ToNwObject<NwCreature>() : null;
+    }
+
+    public PlayerQuickBarButton[] GetQuickBarButtons()
+    {
+      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      {
+        Creature.InitializeQuickbar();
+      }
+
+      PlayerQuickBarButton[] retVal = new PlayerQuickBarButton[QuickBarButtonCount];
+      for (byte i = 0; i < QuickBarButtonCount; i++)
+      {
+        retVal[i] = InternalGetQuickBarButton(i);
+      }
+
+      return retVal;
+    }
+
+    public void SetQuickBarButtons(PlayerQuickBarButton[] buttons)
+    {
+      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      {
+        Creature.InitializeQuickbar();
+      }
+
+      for (byte i = 0; i < buttons.Length && i < QuickBarButtonCount; i++)
+      {
+        InternalSetQuickBarButton(i, buttons[i]);
+      }
+    }
+
+    public PlayerQuickBarButton GetQuickBarButton(byte index)
+    {
+      if (index >= QuickBarButtonCount)
+      {
+        throw new ArgumentOutOfRangeException($"Index must be < 36");
+      }
+
+      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      {
+        Creature.InitializeQuickbar();
+      }
+
+      return InternalGetQuickBarButton(index);
+    }
+
+    public void SetQuickBarButton(byte index, PlayerQuickBarButton data)
+    {
+      if (index >= QuickBarButtonCount)
+      {
+        throw new ArgumentOutOfRangeException($"Index must be < 36");
+      }
+
+      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      {
+        Creature.InitializeQuickbar();
+      }
+
+      InternalSetQuickBarButton(index, data);
+
+      if (this is NwPlayer player)
+      {
+        CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+        message.SendServerToPlayerGuiQuickbar_SetButton(player, index, false.ToInt());
+      }
+    }
+
+    private PlayerQuickBarButton InternalGetQuickBarButton(byte index)
+    {
+      CNWSQuickbarButtonArray quickBarButtons = CNWSQuickbarButtonArray.FromPointer(Creature.m_pQuickbarButton);
+      CNWSQuickbarButton button = quickBarButtons[index];
+
+      return new PlayerQuickBarButton(button);
+    }
+
+    private void InternalSetQuickBarButton(byte index, PlayerQuickBarButton data)
+    {
+      CNWSQuickbarButtonArray quickBarButtons = CNWSQuickbarButtonArray.FromPointer(Creature.m_pQuickbarButton);
+      CNWSQuickbarButton button = quickBarButtons[index];
+
+      data.ApplyToNativeStructure(button);
     }
   }
 }

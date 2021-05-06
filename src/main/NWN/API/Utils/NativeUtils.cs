@@ -8,12 +8,12 @@ using Vector = NWN.Native.API.Vector;
 
 namespace NWN.API
 {
-  public static class NativeUtils
+  public static unsafe class NativeUtils
   {
     private const string DefaultGffVersion = "V3.2";
     private static readonly CExoString DefaultGffVersionExoString = "V3.2".ToExoString();
 
-    public static unsafe Vector ToNativeVector(this Vector3 vector)
+    public static Vector ToNativeVector(this Vector3 vector)
     {
       return new Vector(&vector, false);
     }
@@ -68,7 +68,7 @@ namespace NWN.API
         expectedFileTypes.Any(expectedFileType => expectedFileType + " " == fileType);
     }
 
-    public static unsafe T PeekMessage<T>(this CNWSMessage message, int offset) where T : unmanaged
+    public static T PeekMessage<T>(this CNWSMessage message, int offset) where T : unmanaged
     {
       byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
       return Marshal.PtrToStructure<T>((IntPtr)ptr);
@@ -99,7 +99,7 @@ namespace NWN.API
       return SerializeGff((fileType + " ").ToExoString(), DefaultGffVersionExoString, serializeAction);
     }
 
-    public static unsafe bool DeserializeGff(byte[] serialized, Func<CResGFF, CResStruct, bool> deserializeAction)
+    public static bool DeserializeGff(byte[] serialized, Func<CResGFF, CResStruct, bool> deserializeAction)
     {
       // GFF header size
       if (serialized.Length < 14 * 4)
@@ -139,7 +139,7 @@ namespace NWN.API
       return false;
     }
 
-    private static unsafe byte[] SerializeGff(CExoString fileType, CExoString version, Func<CResGFF, CResStruct, bool> serializeAction)
+    private static byte[] SerializeGff(CExoString fileType, CExoString version, Func<CResGFF, CResStruct, bool> serializeAction)
     {
       void* pData;
       int dataLength;

@@ -1,5 +1,4 @@
 using System;
-using Anvil;
 using JetBrains.Annotations;
 
 namespace NWN
