@@ -338,6 +338,55 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnItemEquip"/>
+    public event Action<OnItemEquip> OnItemEquip
+    {
+      add => EventService.SubscribeAll<OnItemEquip, OnItemEquip.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemEquip, OnItemEquip.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryClose"/>
+    public event Action<OnItemInventoryClose> OnItemInventoryClose
+    {
+      add => EventService.SubscribeAll<OnItemInventoryClose, OnItemInventoryClose.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemInventoryClose, OnItemInventoryClose.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryOpen"/>
+    public event Action<OnItemInventoryOpen> OnItemInventoryOpen
+    {
+      add => EventService.SubscribeAll<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemPayToIdentify"/>
+    public event Action<OnItemPayToIdentify> OnItemPayToIdentify
+    {
+      add => EventService.SubscribeAll<OnItemPayToIdentify, OnItemPayToIdentify.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemPayToIdentify, OnItemPayToIdentify.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemUse"/>
+    public event Action<OnItemUse> OnItemUse
+    {
+      add => EventService.SubscribeAll<OnItemUse, OnItemUse.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemUse, OnItemUse.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemValidateEquip"/>
+    public event Action<OnItemValidateEquip> OnItemValidateEquip
+    {
+      add => EventService.SubscribeAll<OnItemValidateEquip, OnItemValidateEquip.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemValidateEquip, OnItemValidateEquip.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemValidateUse"/>
+    public event Action<OnItemValidateUse> OnItemValidateUse
+    {
+      add => EventService.SubscribeAll<OnItemValidateUse, OnItemValidateUse.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemValidateUse, OnItemValidateUse.Factory>(value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnClientLevelUpBegin"/>
     public event Action<OnClientLevelUpBegin> OnClientLevelUpBegin
     {

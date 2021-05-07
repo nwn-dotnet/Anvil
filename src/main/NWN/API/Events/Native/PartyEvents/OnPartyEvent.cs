@@ -50,7 +50,6 @@ namespace NWN.API.Events
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventEvent && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());
-
         ProcessEvent(eventData);
 
         return eventData.Result.Value.ToInt();

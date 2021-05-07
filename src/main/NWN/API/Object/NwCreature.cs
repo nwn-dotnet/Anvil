@@ -226,6 +226,55 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnInventoryGoldRemove, OnInventoryGoldRemove.Factory>(this, value);
     }
 
+    /// <inheritdoc cref="NWN.API.Events.OnItemEquip"/>
+    public event Action<OnItemEquip> OnItemEquip
+    {
+      add => EventService.Subscribe<OnItemEquip, OnItemEquip.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemEquip, OnItemEquip.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryClose"/>
+    public event Action<OnItemInventoryClose> OnItemInventoryClose
+    {
+      add => EventService.Subscribe<OnItemInventoryClose, OnItemInventoryClose.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemInventoryClose, OnItemInventoryClose.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryOpen"/>
+    public event Action<OnItemInventoryOpen> OnItemInventoryOpen
+    {
+      add => EventService.Subscribe<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemPayToIdentify"/>
+    public event Action<OnItemPayToIdentify> OnItemPayToIdentify
+    {
+      add => EventService.Subscribe<OnItemPayToIdentify, OnItemPayToIdentify.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemPayToIdentify, OnItemPayToIdentify.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemUse"/>
+    public event Action<OnItemUse> OnItemUse
+    {
+      add => EventService.Subscribe<OnItemUse, OnItemUse.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemUse, OnItemUse.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemValidateEquip"/>
+    public event Action<OnItemValidateEquip> OnItemValidateEquip
+    {
+      add => EventService.Subscribe<OnItemValidateEquip, OnItemValidateEquip.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemValidateEquip, OnItemValidateEquip.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemValidateUse"/>
+    public event Action<OnItemValidateUse> OnItemValidateUse
+    {
+      add => EventService.Subscribe<OnItemValidateUse, OnItemValidateUse.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemValidateUse, OnItemValidateUse.Factory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.OnLevelDown"/>
     public event Action<OnLevelDown> OnLevelDown
     {
