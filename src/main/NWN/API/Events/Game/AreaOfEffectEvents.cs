@@ -42,6 +42,8 @@ namespace NWN.API.Events
     {
       public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
 
+      public NwGameObject Entering { get; } = NWScript.GetEnteringObject().ToNwObjectSafe<NwGameObject>();
+
       NwObject IEvent.Context => Effect;
     }
 
@@ -52,6 +54,8 @@ namespace NWN.API.Events
     public sealed class OnExit : IEvent
     {
       public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
+
+      public NwGameObject Exiting { get; } = NWScript.GetExitingObject().ToNwObjectSafe<NwGameObject>();
 
       NwObject IEvent.Context => Effect;
     }
