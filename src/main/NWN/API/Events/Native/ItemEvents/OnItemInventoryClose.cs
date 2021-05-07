@@ -18,7 +18,7 @@ namespace NWN.API.Events
     /// </summary>
     public NwItem Container { get; private init; }
 
-    NwObject IEvent.Context => null;
+    NwObject IEvent.Context => ClosedBy;
 
     internal sealed unsafe class Factory : NativeEventFactory<Factory.CloseInventoryHook>
     {
