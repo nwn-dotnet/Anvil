@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
 using NWN.Native.API;

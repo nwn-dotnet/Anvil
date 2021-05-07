@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
