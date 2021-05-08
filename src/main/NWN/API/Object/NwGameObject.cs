@@ -540,6 +540,15 @@ namespace NWN.API
     public void RemoveEffect(Effect effect)
       => NWScript.RemoveEffect(this, effect);
 
+    /// <summary>
+    /// Immediately ends this GameObject's current conversation.
+    /// </summary>
+    public async void EndConversation()
+    {
+      await NwTask.NextFrame();
+      GameObject.StopDialog();
+    }
+
     public abstract byte[] Serialize();
   }
 }
