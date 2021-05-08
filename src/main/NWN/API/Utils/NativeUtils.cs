@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using System.Text;
 using NWN.Native.API;
 using Vector = NWN.Native.API.Vector;
 
@@ -10,6 +11,8 @@ namespace NWN.API
 {
   public static unsafe class NativeUtils
   {
+    public static readonly Encoding StringEncoding = Encoding.GetEncoding("ISO-8859-1");
+
     private const string DefaultGffVersion = "V3.2";
     private static readonly CExoString DefaultGffVersionExoString = "V3.2".ToExoString();
 

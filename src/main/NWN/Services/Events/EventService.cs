@@ -7,7 +7,7 @@ using NWN.API.Events;
 namespace NWN.Services
 {
   [ServiceBinding(typeof(EventService))]
-  [BindingOrder(BindingOrder.API)]
+  [ServiceBindingOptions(BindingOrder.API)]
   public sealed partial class EventService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

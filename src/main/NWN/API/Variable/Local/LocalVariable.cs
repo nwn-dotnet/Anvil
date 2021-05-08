@@ -9,7 +9,7 @@ namespace NWN.API
     private protected static VariableConverterService VariableConverterService { get; private set; }
 
     [ServiceBinding(typeof(APIBindings))]
-    [BindingOrder(BindingOrder.API)]
+    [ServiceBindingOptions(BindingOrder.API)]
     internal sealed class APIBindings
     {
       public APIBindings(VariableConverterService variableConverterService)

@@ -13,6 +13,11 @@ namespace NWN.API
       this.tlkTable = tlkTable;
     }
 
+    /// <summary>
+    /// Gets the value of customTokenNumber.
+    /// </summary>
+    /// <param name="tokenNumber">The token number to query.</param>
+    /// <returns>The string representation of the token value.</returns>
     public string GetCustomToken(uint tokenNumber)
     {
       int numTokens = (int)tlkTable.m_nTokensCustom;

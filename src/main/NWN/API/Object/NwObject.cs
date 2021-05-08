@@ -17,7 +17,7 @@ namespace NWN.API
     private protected static ResourceManager ResourceManager { get; private set; }
 
     [ServiceBinding(typeof(APIBindings))]
-    [BindingOrder(BindingOrder.API)]
+    [ServiceBindingOptions(BindingOrder.API)]
     internal sealed class APIBindings
     {
       public APIBindings(EventService eventService, ResourceManager resourceManager)

@@ -49,8 +49,6 @@ namespace NWN.API
     /// </summary>
     public readonly byte Alpha;
 
-    private static readonly Encoding ENCODING = Encoding.GetEncoding("ISO-8859-1");
-
     /// <summary>
     /// Constructs a new Color from the given rgba values.
     /// </summary>
@@ -122,7 +120,7 @@ namespace NWN.API
     {
       const byte tokenMinVal = 1;
       ReadOnlySpan<byte> tokenBytes = stackalloc[] {Math.Max(Red, tokenMinVal), Math.Max(Green, tokenMinVal), Math.Max(Blue, tokenMinVal)};
-      return ENCODING.GetString(tokenBytes);
+      return NativeUtils.StringEncoding.GetString(tokenBytes);
     }
 
     /// <summary>

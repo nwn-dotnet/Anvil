@@ -27,7 +27,10 @@ namespace NWN.Services
 
     public void RegisterCoreService<T>(T instance)
     {
-      string serviceName = GetServiceName(instance.GetType());
+      Type instanceType = instance.GetType();
+      ServiceBindingOptionsAttribute options = instanceType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+
+      string serviceName = GetServiceName(instanceType, options);
       serviceContainer.RegisterInstance(instance, serviceName);
     }
 
@@ -59,10 +62,15 @@ namespace NWN.Services
         return;
       }
 
-      string serviceName = GetServiceName(bindTo);
+      ServiceBindingOptionsAttribute options = bindTo.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      string serviceName = GetServiceName(bindTo, options);
+
       PerContainerLifetime lifeTime = new PerContainerLifetime();
 
-      serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
+      if (options is { Lazy: false })
+      {
+        serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
+      }
 
       foreach (ServiceBindingAttribute bindingInfo in newBindings)
       {
@@ -73,12 +81,10 @@ namespace NWN.Services
       Log.Info($"Registered service: {bindTo.FullName}");
     }
 
-    private string GetServiceName(Type implementation)
+    private string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
     {
-      BindingOrderAttribute attribute = implementation.GetCustomAttribute<BindingOrderAttribute>();
-      BindingOrder bindingOrder = attribute?.Order ?? BindingOrder.Default;
-
-      return ((short)bindingOrder).ToString("D5") + implementation.FullName;
+      short bindingOrder = options?.Order ?? (short)BindingOrder.Default;
+      return bindingOrder.ToString("D5") + implementation.FullName;
     }
 
     /// <summary>

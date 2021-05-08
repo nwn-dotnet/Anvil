@@ -11,7 +11,7 @@ namespace NWN.Plugins
   /// <summary>
   /// Loads all available plugins and their types for service initialisation.
   /// </summary>
-  [BindingOrder(BindingOrder.Core)]
+  [ServiceBindingOptions(BindingOrder.Core)]
   internal class PluginLoader : ITypeLoader
   {
     private const string PluginResourceDir = "resources";

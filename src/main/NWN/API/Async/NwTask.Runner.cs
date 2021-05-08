@@ -15,7 +15,7 @@ namespace NWN.API
     public static SyncContext MainThreadScriptContext { get; private set; }
 
     [ServiceBinding(typeof(IUpdateable))]
-    [BindingOrder(BindingOrder.API)]
+    [ServiceBindingOptions(BindingOrder.API)]
     internal class TaskRunner : IUpdateable
     {
       private readonly List<ScheduledItem> currentWork = new List<ScheduledItem>();
