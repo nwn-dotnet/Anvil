@@ -19,7 +19,7 @@ namespace NWN.API.Events
       protected override FunctionHook<RemoveAssociateHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnRemoveAssociate;
-        return HookService.RequestHook<RemoveAssociateHook>(NWNXLib.Functions._ZN12CNWSCreature15RemoveAssociateEj, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<RemoveAssociateHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature15RemoveAssociateEj, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

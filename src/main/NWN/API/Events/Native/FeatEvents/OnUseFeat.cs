@@ -32,7 +32,7 @@ namespace NWN.API.Events
       protected override FunctionHook<CreatureUseFeatHook> RequestHook()
       {
         delegate* unmanaged<void*, ushort, ushort, uint, uint, void*, int> pHook = &OnCreatureUseFeat;
-        return HookService.RequestHook<CreatureUseFeatHook>(NWNXLib.Functions._ZN12CNWSCreature7UseFeatEttjjP6Vector, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<CreatureUseFeatHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature7UseFeatEttjjP6Vector, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

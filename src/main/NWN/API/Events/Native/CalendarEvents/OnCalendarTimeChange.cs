@@ -21,7 +21,7 @@ namespace NWN.API.Events
       protected override FunctionHook<UpdateTimeHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, uint, uint, void> pHook = &OnUpdateTime;
-        return HookService.RequestHook<UpdateTimeHook>(NWNXLib.Functions._ZN10CNWSModule10UpdateTimeEjjj, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<UpdateTimeHook>(pHook, NWNXLib.Functions._ZN10CNWSModule10UpdateTimeEjjj, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

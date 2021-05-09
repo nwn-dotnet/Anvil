@@ -30,7 +30,7 @@ namespace NWN.API.Events
       protected override FunctionHook<OnApplyHealHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyHeal;
-        return HookService.RequestHook<OnApplyHealHook>(NWNXLib.Functions._ZN21CNWSEffectListHandler11OnApplyHealEP10CNWSObjectP11CGameEffecti, pHook, HookOrder.Early);
+        return HookService.RequestHook<OnApplyHealHook>(pHook, NWNXLib.Functions._ZN21CNWSEffectListHandler11OnApplyHealEP10CNWSObjectP11CGameEffecti, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

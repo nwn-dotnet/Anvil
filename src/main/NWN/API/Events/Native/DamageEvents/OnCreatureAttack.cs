@@ -42,7 +42,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SignalMeleeDamageHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, int, void> pHook = &OnSignalMeleeDamage;
-        return HookService.RequestHook<SignalMeleeDamageHook>(NWNXLib.Functions._ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti, pHook, HookOrder.Late);
+        return HookService.RequestHook<SignalMeleeDamageHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti, HookOrder.Late);
       }
 
       [UnmanagedCallersOnly]
@@ -65,7 +65,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SignalRangedDamageHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, int, void> pHook = &OnSignalRangedDamage;
-        return HookService.RequestHook<SignalRangedDamageHook>(NWNXLib.Functions._ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti, pHook, HookOrder.Late);
+        return HookService.RequestHook<SignalRangedDamageHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti, HookOrder.Late);
       }
 
       [UnmanagedCallersOnly]

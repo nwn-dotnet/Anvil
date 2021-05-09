@@ -24,7 +24,7 @@ namespace NWN.API.Events
       protected override FunctionHook<RemovePCFromWorldHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, void> pHook = &OnRemovePCFromWorld;
-        return HookService.RequestHook<RemovePCFromWorldHook>(NWNXLib.Functions._ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<RemovePCFromWorldHook>(pHook, NWNXLib.Functions._ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

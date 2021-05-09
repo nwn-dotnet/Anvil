@@ -27,7 +27,7 @@ namespace NWN.API.Events
       protected override FunctionHook<BroadcastSpellCastHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, byte, ushort, void> pHook = &OnBroadcastSpellCast;
-        return HookService.RequestHook<BroadcastSpellCastHook>(NWNXLib.Functions._ZN12CNWSCreature18BroadcastSpellCastEjht, pHook, HookOrder.Early);
+        return HookService.RequestHook<BroadcastSpellCastHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature18BroadcastSpellCastEjht, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

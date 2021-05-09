@@ -19,7 +19,7 @@ namespace NWN.API.Events
       protected override FunctionHook<RemoveItemHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnRemoveItem;
-        return HookService.RequestHook<RemoveItemHook>(NWNXLib.Functions._ZN15CItemRepository10RemoveItemEP8CNWSItem, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<RemoveItemHook>(pHook, NWNXLib.Functions._ZN15CItemRepository10RemoveItemEP8CNWSItem, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

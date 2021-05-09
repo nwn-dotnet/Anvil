@@ -19,7 +19,7 @@ namespace NWN.API.Events
       protected override FunctionHook<StartCombatRoundHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnStartCombatRound;
-        return HookService.RequestHook<StartCombatRoundHook>(NWNXLib.Functions._ZN15CNWSCombatRound16StartCombatRoundEj, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<StartCombatRoundHook>(pHook, NWNXLib.Functions._ZN15CNWSCombatRound16StartCombatRoundEj, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

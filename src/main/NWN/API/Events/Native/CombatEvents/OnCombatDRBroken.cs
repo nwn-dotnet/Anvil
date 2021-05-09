@@ -19,7 +19,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SendFeedbackMessageHook> RequestHook()
       {
         delegate* unmanaged<void*, ushort, void*, void*, void> pHook = &OnSendFeedbackMessage;
-        return HookService.RequestHook<SendFeedbackMessageHook>(NWNXLib.Functions._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<SendFeedbackMessageHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

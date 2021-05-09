@@ -36,7 +36,7 @@ namespace NWN.API.Events
       protected override FunctionHook<UseItemHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, byte, byte, uint, Vector3, uint, int, int> pHook = &OnUseItem;
-        return HookService.RequestHook<UseItemHook>(NWNXLib.Functions._ZN12CNWSCreature7UseItemEjhhj6Vectorji, pHook, HookOrder.Early);
+        return HookService.RequestHook<UseItemHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature7UseItemEjhhj6Vectorji, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

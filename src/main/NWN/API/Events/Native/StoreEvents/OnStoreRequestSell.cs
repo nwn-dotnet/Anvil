@@ -28,7 +28,7 @@ namespace NWN.API.Events
       protected override FunctionHook<RequestSellHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, uint, int> pHook = &OnRequestSell;
-        return HookService.RequestHook<RequestSellHook>(NWNXLib.Functions._ZN12CNWSCreature11RequestSellEjj, pHook, HookOrder.Early);
+        return HookService.RequestHook<RequestSellHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature11RequestSellEjj, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

@@ -21,7 +21,7 @@ namespace NWN.API.Events
       protected override FunctionHook<TrapExamineHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, uint, void*, int, void> pHook = &OnExamineTrap;
-        return HookService.RequestHook<TrapExamineHook>(NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_TrapDataEP10CNWSPlayerjP12CNWSCreaturei, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<TrapExamineHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_TrapDataEP10CNWSPlayerjP12CNWSCreaturei, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

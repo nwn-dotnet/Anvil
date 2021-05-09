@@ -47,13 +47,13 @@ namespace NWN.Services
 
     public DialogService(HookService hookService)
     {
-      getStartEntryHook = hookService.RequestHook<GetStartEntryHook>(NWNXLib.Functions._ZN10CNWSDialog13GetStartEntryEP10CNWSObject, OnGetStartEntry, HookOrder.Early);
-      getStartEntryOneLinerHook = hookService.RequestHook<GetStartEntryOneLinerHook>(NWNXLib.Functions._ZN10CNWSDialog21GetStartEntryOneLinerEP10CNWSObjectR13CExoLocStringR7CResRefS5_R13CExoArrayListI11ScriptParamE, OnGetStartEntryOneLiner, HookOrder.Early);
-      sendDialogEntryHook = hookService.RequestHook<SendDialogEntryHook>(NWNXLib.Functions._ZN10CNWSDialog15SendDialogEntryEP10CNWSObjectjji, OnSendDialogEntry, HookOrder.Early);
-      sendDialogRepliesHook = hookService.RequestHook<SendDialogRepliesHook>(NWNXLib.Functions._ZN10CNWSDialog17SendDialogRepliesEP10CNWSObjectj, OnSendDialogReplies, HookOrder.Early);
-      handleReplyHook = hookService.RequestHook<HandleReplyHook>(NWNXLib.Functions._ZN10CNWSDialog11HandleReplyEjP10CNWSObjectjij, OnHandleReply, HookOrder.Early);
-      checkScriptHook = hookService.RequestHook<CheckScriptHook>(NWNXLib.Functions._ZN10CNWSDialog11CheckScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, OnCheckScript, HookOrder.Early);
-      runScriptHook = hookService.RequestHook<RunScriptHook>(NWNXLib.Functions._ZN10CNWSDialog9RunScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, OnRunScript, HookOrder.Early);
+      getStartEntryHook = hookService.RequestHook<GetStartEntryHook>(OnGetStartEntry, NWNXLib.Functions._ZN10CNWSDialog13GetStartEntryEP10CNWSObject, HookOrder.Early);
+      getStartEntryOneLinerHook = hookService.RequestHook<GetStartEntryOneLinerHook>(OnGetStartEntryOneLiner, NWNXLib.Functions._ZN10CNWSDialog21GetStartEntryOneLinerEP10CNWSObjectR13CExoLocStringR7CResRefS5_R13CExoArrayListI11ScriptParamE, HookOrder.Early);
+      sendDialogEntryHook = hookService.RequestHook<SendDialogEntryHook>(OnSendDialogEntry, NWNXLib.Functions._ZN10CNWSDialog15SendDialogEntryEP10CNWSObjectjji, HookOrder.Early);
+      sendDialogRepliesHook = hookService.RequestHook<SendDialogRepliesHook>(OnSendDialogReplies, NWNXLib.Functions._ZN10CNWSDialog17SendDialogRepliesEP10CNWSObjectj, HookOrder.Early);
+      handleReplyHook = hookService.RequestHook<HandleReplyHook>(OnHandleReply, NWNXLib.Functions._ZN10CNWSDialog11HandleReplyEjP10CNWSObjectjij, HookOrder.Early);
+      checkScriptHook = hookService.RequestHook<CheckScriptHook>(OnCheckScript, NWNXLib.Functions._ZN10CNWSDialog11CheckScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, HookOrder.Early);
+      runScriptHook = hookService.RequestHook<RunScriptHook>(OnRunScript, NWNXLib.Functions._ZN10CNWSDialog9RunScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, HookOrder.Early);
     }
 
     public ScriptType CurrentScriptType { get; private set; }

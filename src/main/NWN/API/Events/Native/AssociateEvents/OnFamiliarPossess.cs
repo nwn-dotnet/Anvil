@@ -19,7 +19,7 @@ namespace NWN.API.Events
       protected override FunctionHook<PossessFamiliarHook> RequestHook()
       {
         delegate* unmanaged<void*, void> pHook = &OnPossessFamiliar;
-        return HookService.RequestHook<PossessFamiliarHook>(NWNXLib.Functions._ZN12CNWSCreature15PossessFamiliarEv, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<PossessFamiliarHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature15PossessFamiliarEv, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

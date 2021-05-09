@@ -21,7 +21,7 @@ namespace NWN.API.Events
       protected override FunctionHook<DoListenDetectionHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, int, int> pHook = &OnDoListenDetection;
-        return HookService.RequestHook<DoListenDetectionHook>(NWNXLib.Functions._ZN12CNWSCreature17DoListenDetectionEPS_i, pHook, HookOrder.Early);
+        return HookService.RequestHook<DoListenDetectionHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature17DoListenDetectionEPS_i, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

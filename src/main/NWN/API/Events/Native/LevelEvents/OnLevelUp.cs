@@ -17,7 +17,7 @@ namespace NWN.API.Events
       protected override FunctionHook<LevelUpHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, byte, byte, byte, int, void> pHook = &OnLevelUp;
-        return HookService.RequestHook<LevelUpHook>(NWNXLib.Functions._ZN17CNWSCreatureStats7LevelUpEP13CNWLevelStatshhhi, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<LevelUpHook>(pHook, NWNXLib.Functions._ZN17CNWSCreatureStats7LevelUpEP13CNWLevelStatshhhi, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

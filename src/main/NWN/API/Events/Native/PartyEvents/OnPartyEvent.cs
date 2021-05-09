@@ -26,7 +26,7 @@ namespace NWN.API.Events
       protected override FunctionHook<HandlePartyMessageHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePartyMessage;
-        return HookService.RequestHook<HandlePartyMessageHook>(NWNXLib.Functions._ZN11CNWSMessage25HandlePlayerToServerPartyEP10CNWSPlayerh, pHook, HookOrder.Early);
+        return HookService.RequestHook<HandlePartyMessageHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage25HandlePlayerToServerPartyEP10CNWSPlayerh, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

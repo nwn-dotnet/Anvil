@@ -52,7 +52,7 @@ namespace NWN.API.Events
         protected override FunctionHook<SendServerToPlayerCharListHook> RequestHook()
         {
           delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
-          return HookService.RequestHook<SendServerToPlayerCharListHook>(NWNXLib.Functions._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer, pHook, HookOrder.Early);
+          return HookService.RequestHook<SendServerToPlayerCharListHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer, HookOrder.Early);
         }
 
         [UnmanagedCallersOnly]

@@ -21,7 +21,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, int, int> pHook = &OnSendServerToPlayerAmbientBattleMusicPlay;
-        return HookService.RequestHook<SendServerToPlayerAmbientBattleMusicPlayHook>(NWNXLib.Functions._ZN11CNWSMessage40SendServerToPlayerAmbientBattleMusicPlayEji, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<SendServerToPlayerAmbientBattleMusicPlayHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage40SendServerToPlayerAmbientBattleMusicPlayEji, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

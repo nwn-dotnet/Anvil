@@ -21,31 +21,12 @@ namespace NWN.Services
     /// <summary>
     /// Requests a hook for a native function.
     /// </summary>
-    /// <param name="address">The address of the native function. Use the constants available in the NWN.Native.NWNXLib.Functions library.</param>
-    /// <param name="hook">A delegate pointer (delegate*) to be invoked when the original game function is called. Once hooked, the original function will not be called, and must be invoked manually via the returned object.</param>
-    /// <param name="order">The execution order for this hook. See the constants in <see cref="HookOrder"/>.</param>
-    /// <typeparam name="T">The delegate type that identically matches the native function signature.</typeparam>
-    /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
-    public FunctionHook<T> RequestHook<T>(uint address, void* hook, int order = HookOrder.Default) where T : Delegate
-    {
-      Log.Debug($"Requesting function hook for {typeof(T).Name}, address 0x{address:X}");
-      IntPtr nativeFuncPtr = VM.RequestHook(new IntPtr(address), (IntPtr)hook, order);
-
-      FunctionHook<T> retVal = new FunctionHook<T>(this, nativeFuncPtr);
-      hooks.Add(retVal);
-
-      return retVal;
-    }
-
-    /// <summary>
-    /// Requests a hook for a native function.
-    /// </summary>
-    /// <param name="address">The address of the native function. Use the constants available in the NWN.Native.NWNXLib.Functions library.</param>
     /// <param name="handler">The handler to be invoked when this function is called. Once hooked, the original function will not be called, and must be invoked manually via the returned object.</param>
+    /// <param name="address">The address of the native function. Use the constants available in the NWN.Native.NWNXLib.Functions library.</param>
     /// <param name="order">The execution order for this hook. See the constants in <see cref="HookOrder"/>.</param>
     /// <typeparam name="T">The delegate type that identically matches the native function signature.</typeparam>
     /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
-    public FunctionHook<T> RequestHook<T>(uint address, T handler, int order = HookOrder.Default) where T : Delegate
+    public FunctionHook<T> RequestHook<T>(T handler, uint address, int order = HookOrder.Default) where T : Delegate
     {
       Log.Debug($"Requesting function hook for {typeof(T).Name}, address 0x{address:X}");
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
@@ -55,6 +36,25 @@ namespace NWN.Services
       hooks.Add(hook);
 
       return hook;
+    }
+
+    /// <summary>
+    /// Requests a hook for a native function.
+    /// </summary>
+    /// <param name="handler">A delegate pointer (delegate*) to be invoked when the original game function is called. Once hooked, the original function will not be called, and must be invoked manually via the returned object.</param>
+    /// <param name="address">The address of the native function. Use the constants available in the NWN.Native.NWNXLib.Functions library.</param>
+    /// <param name="order">The execution order for this hook. See the constants in <see cref="HookOrder"/>.</param>
+    /// <typeparam name="T">The delegate type that identically matches the native function signature.</typeparam>
+    /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
+    public FunctionHook<T> RequestHook<T>(void* handler, uint address, int order = HookOrder.Default) where T : Delegate
+    {
+      Log.Debug($"Requesting function hook for {typeof(T).Name}, address 0x{address:X}");
+      IntPtr nativeFuncPtr = VM.RequestHook(new IntPtr(address), (IntPtr)handler, order);
+
+      FunctionHook<T> retVal = new FunctionHook<T>(this, nativeFuncPtr);
+      hooks.Add(retVal);
+
+      return retVal;
     }
 
     internal void RemoveHook<T>(FunctionHook<T> hook) where T : Delegate

@@ -33,7 +33,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SetMemorizedSpellSlotHook> RequestHook()
       {
         delegate* unmanaged<void*, byte, byte, uint, byte, byte, int, int> pHook = &OnSetMemorizedSpellSlot;
-        return HookService.RequestHook<SetMemorizedSpellSlotHook>(NWNXLib.Functions._ZN17CNWSCreatureStats21SetMemorizedSpellSlotEhhjhhi, pHook, HookOrder.Early);
+        return HookService.RequestHook<SetMemorizedSpellSlotHook>(pHook, NWNXLib.Functions._ZN17CNWSCreatureStats21SetMemorizedSpellSlotEhhjhhi, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

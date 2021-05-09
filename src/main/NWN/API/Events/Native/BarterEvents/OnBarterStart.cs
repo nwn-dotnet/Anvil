@@ -19,7 +19,7 @@ namespace NWN.API.Events
       protected override FunctionHook<StartBarterHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, void> pHook = &OnStartBarter;
-        return HookService.RequestHook<StartBarterHook>(NWNXLib.Functions._ZN11CNWSMessage38HandlePlayerToServerBarter_StartBarterEP10CNWSPlayer, pHook, HookOrder.Earliest);
+        return HookService.RequestHook<StartBarterHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage38HandlePlayerToServerBarter_StartBarterEP10CNWSPlayer, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

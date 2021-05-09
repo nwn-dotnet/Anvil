@@ -22,7 +22,7 @@ namespace NWN.API.Events
       protected override FunctionHook<HandlePlayerToServerLevelUpMessageHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePlayerToServerLevelUpMessage;
-        return HookService.RequestHook<HandlePlayerToServerLevelUpMessageHook>(NWNXLib.Functions._ZN11CNWSMessage34HandlePlayerToServerLevelUpMessageEP10CNWSPlayerh, pHook, HookOrder.Early);
+        return HookService.RequestHook<HandlePlayerToServerLevelUpMessageHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage34HandlePlayerToServerLevelUpMessageEP10CNWSPlayerh, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

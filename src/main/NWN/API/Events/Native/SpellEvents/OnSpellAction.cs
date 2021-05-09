@@ -53,7 +53,7 @@ namespace NWN.API.Events
       protected override FunctionHook<AddCastSpellActionsHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, int, int, int, int, Vector3, uint, int, int, int, byte, int, int, int, byte, int> pHook = &OnAddCastSpellActions;
-        return HookService.RequestHook<AddCastSpellActionsHook>(NWNXLib.Functions._ZN12CNWSCreature19AddCastSpellActionsEjiiii6Vectorjiiihiiih, pHook, HookOrder.Early);
+        return HookService.RequestHook<AddCastSpellActionsHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature19AddCastSpellActionsEjiiii6Vectorjiiihiiih, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

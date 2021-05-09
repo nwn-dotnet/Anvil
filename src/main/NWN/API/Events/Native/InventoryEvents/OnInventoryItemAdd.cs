@@ -24,7 +24,7 @@ namespace NWN.API.Events
       protected override FunctionHook<AddItemHook> RequestHook()
       {
         delegate* unmanaged<void*, void**, byte, byte, byte, int, int, int> pHook = &OnAddItem;
-        return HookService.RequestHook<AddItemHook>(NWNXLib.Functions._ZN15CItemRepository7AddItemEPP8CNWSItemhhii, pHook, HookOrder.Early);
+        return HookService.RequestHook<AddItemHook>(pHook, NWNXLib.Functions._ZN15CItemRepository7AddItemEPP8CNWSItemhhii, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

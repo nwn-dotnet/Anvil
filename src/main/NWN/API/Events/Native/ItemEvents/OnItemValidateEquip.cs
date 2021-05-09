@@ -24,7 +24,7 @@ namespace NWN.API.Events
       protected override FunctionHook<CanEquipItemHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, uint*, int, int, int, void*, int> pHook = &OnCanEquipItem;
-        return HookService.RequestHook<CanEquipItemHook>(NWNXLib.Functions._ZN12CNWSCreature12CanEquipItemEP8CNWSItemPjiiiP10CNWSPlayer, pHook, HookOrder.Early);
+        return HookService.RequestHook<CanEquipItemHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature12CanEquipItemEP8CNWSItemPjiiiP10CNWSPlayer, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

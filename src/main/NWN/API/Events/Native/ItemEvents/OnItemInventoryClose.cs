@@ -27,7 +27,7 @@ namespace NWN.API.Events
       protected override FunctionHook<CloseInventoryHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, int, void> pHook = &OnCloseInventory;
-        return HookService.RequestHook<CloseInventoryHook>(NWNXLib.Functions._ZN8CNWSItem14CloseInventoryEji, pHook, HookOrder.Early);
+        return HookService.RequestHook<CloseInventoryHook>(pHook, NWNXLib.Functions._ZN8CNWSItem14CloseInventoryEji, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

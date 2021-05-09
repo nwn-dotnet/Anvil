@@ -27,7 +27,7 @@ namespace NWN.API.Events
       protected override FunctionHook<ApplyDisarmHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyDisarm;
-        return HookService.RequestHook<ApplyDisarmHook>(NWNXLib.Functions._ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti, pHook, HookOrder.Early);
+        return HookService.RequestHook<ApplyDisarmHook>(pHook, NWNXLib.Functions._ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

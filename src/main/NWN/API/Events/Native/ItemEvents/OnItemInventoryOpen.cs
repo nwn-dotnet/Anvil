@@ -27,7 +27,7 @@ namespace NWN.API.Events
       protected override FunctionHook<OpenInventoryHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnOpenInventory;
-        return HookService.RequestHook<OpenInventoryHook>(NWNXLib.Functions._ZN8CNWSItem13OpenInventoryEj, pHook, HookOrder.Early);
+        return HookService.RequestHook<OpenInventoryHook>(pHook, NWNXLib.Functions._ZN8CNWSItem13OpenInventoryEj, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]
