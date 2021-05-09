@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NWN.API;
 using NWN.API.Constants;
 using NWN.Native.API;
 
@@ -57,7 +58,7 @@ namespace NWN.Services
 
     public ScriptType CurrentScriptType { get; private set; }
 
-    public int loopCount { get; private set; }
+    public int CurrentNodeIndex { get; private set; }
 
     public NodeType CurrentNodeType
     {
@@ -85,13 +86,13 @@ namespace NWN.Services
         switch (stateStack.Peek())
         {
           case DialogState.Start:
-            return startingEntries[loopCount].m_nIndex;
+            return startingEntries[CurrentNodeIndex].m_nIndex;
           case DialogState.SendEntry:
             return indexEntry;
           case DialogState.HandleReply:
             return dialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
           case DialogState.SendReplies:
-            return dialogueEntries[(int)dialog.m_currentEntryIndex].GetReply(loopCount).m_nIndex;
+            return dialogueEntries[(int)dialog.m_currentEntryIndex].GetReply(CurrentNodeIndex).m_nIndex;
           default:
             return null;
         }
@@ -100,45 +101,34 @@ namespace NWN.Services
 
     public string GetCurrentNodeText(Language language = Language.English, Gender gender = Gender.Male)
     {
-      CExoLocString locString = null;
+      CExoLocString locString = GetCurrentNodeLocString(language, gender);
 
-      switch (stateStack.Peek())
+      if (locString == null)
       {
-        case DialogState.Start:
-          locString = dialogueEntries[(int)startingEntries[loopCount].m_nIndex].m_sText;
-          break;
-        case DialogState.SendEntry:
-          locString = dialogueEntries[(int)indexEntry].m_sText;
-          break;
-        case DialogState.HandleReply:
-          int handleIndex = (int)dialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
-          locString = dialogueReplies[handleIndex].m_sText;
-          break;
-        case DialogState.SendReplies:
-          int sendIndex = (int)dialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
-          locString = dialogueReplies[sendIndex].m_sText;
-          break;
+        return null;
       }
 
-      if (locString != null)
-      {
-        CExoString str = new CExoString();
-        locString.GetString((int)language, str, (byte)gender, true);
-        return str.ToString();
-      }
-
-      return null;
+      CExoString str = new CExoString();
+      locString.GetString((int)language, str, (byte)gender, true);
+      return str.ToString();
     }
 
     public void SetCurrentNodeText(string text, Language language = Language.English, Gender gender = Gender.Male)
     {
-      // TODO
+      CExoLocString locString = GetCurrentNodeLocString(language, gender);
+      if (locString == null)
+      {
+        return;
+      }
+
+      CExoString exoString = text.ToExoString();
+      locString.AddString((int)language, exoString, (byte)gender);
     }
 
     private uint OnGetStartEntry(void* pDialog, void* pNWSObjectOwner)
     {
       dialog = new CNWSDialog(pDialog, false);
-      loopCount = 0;
+      CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.Start);
       uint retVal = getStartEntryHook.CallOriginal(pDialog, pNWSObjectOwner);
@@ -150,7 +140,7 @@ namespace NWN.Services
     private int OnGetStartEntryOneLiner(void* pDialog, void* pNWSObjectOwner, void* sOneLiner, void* sSound, void* sScript, void* scriptParams)
     {
       dialog = new CNWSDialog(pDialog, false);
-      loopCount = 0;
+      CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.Start);
       int retVal = getStartEntryOneLinerHook.CallOriginal(pDialog, pNWSObjectOwner, sOneLiner, sSound, sScript, scriptParams);
@@ -162,7 +152,7 @@ namespace NWN.Services
     private int OnSendDialogEntry(void* pDialog, void* pNWSObjectOwner, uint nPlayerIdGUIOnly, uint iEntry, int bPlayHelloSound)
     {
       dialog = new CNWSDialog(pDialog, false);
-      loopCount = 0;
+      CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.SendEntry);
       indexEntry = iEntry;
@@ -175,7 +165,7 @@ namespace NWN.Services
     private int OnSendDialogReplies(void* pDialog, void* pNWSObjectOwner, uint nPlayerIdGUIOnly)
     {
       dialog = new CNWSDialog(pDialog, false);
-      loopCount = 0;
+      CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.SendReplies);
       int retVal = sendDialogRepliesHook.CallOriginal(pDialog, pNWSObjectOwner, nPlayerIdGUIOnly);
@@ -187,7 +177,7 @@ namespace NWN.Services
     private int OnHandleReply(void* pDialog, uint nPlayerID, void* pNWSObjectOwner, uint nReplyIndex, int bEscapeDialog, uint currentEntryIndex)
     {
       dialog = new CNWSDialog(pDialog, false);
-      loopCount = 0;
+      CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.HandleReply);
       indexEntry = currentEntryIndex;
@@ -211,12 +201,12 @@ namespace NWN.Services
         CNWSDialogReplyArray replies = CNWSDialogReplyArray.FromPointer(dialog.m_pReplies);
 
         indexReply = CNWSDialogLinkReplyArray.FromPointer(entries[(int)indexEntry].m_pReplies)[(int)indexReply].m_nIndex;
-        indexEntry = CNWSDialogLinkEntryArray.FromPointer(replies[(int)indexReply].m_pEntries)[loopCount].m_nIndex;
+        indexEntry = CNWSDialogLinkEntryArray.FromPointer(replies[(int)indexReply].m_pEntries)[CurrentNodeIndex].m_nIndex;
       }
 
       CurrentScriptType = ScriptType.StartingConditional;
       int retVal = checkScriptHook.CallOriginal(pDialog, pNWSObjectOwner, sActive, scriptParams);
-      loopCount++;
+      CurrentNodeIndex++;
       CurrentScriptType = ScriptType.Other;
 
       return retVal;
@@ -229,6 +219,31 @@ namespace NWN.Services
       CurrentScriptType = ScriptType.ActionTaken;
       runScriptHook.CallOriginal(pDialog, pNWSObjectOwner, sScript, scriptParams);
       CurrentScriptType = ScriptType.Other;
+    }
+
+    private CExoLocString GetCurrentNodeLocString(Language language, Gender gender)
+    {
+      CExoLocString locString = null;
+
+      switch (stateStack.Peek())
+      {
+        case DialogState.Start:
+          locString = dialogueEntries[(int)startingEntries[CurrentNodeIndex].m_nIndex].m_sText;
+          break;
+        case DialogState.SendEntry:
+          locString = dialogueEntries[(int)indexEntry].m_sText;
+          break;
+        case DialogState.HandleReply:
+          int handleIndex = (int)dialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
+          locString = dialogueReplies[handleIndex].m_sText;
+          break;
+        case DialogState.SendReplies:
+          int sendIndex = (int)dialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
+          locString = dialogueReplies[sendIndex].m_sText;
+          break;
+      }
+
+      return locString;
     }
 
     void IDisposable.Dispose()
