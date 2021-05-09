@@ -76,7 +76,11 @@ namespace NWN.API
       int objType = (int) GetObjectType<T>();
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
-        yield return obj.ToNwObject<T>();
+        T gameObject = obj.ToNwObjectSafe<T>();
+        if (gameObject != null)
+        {
+          yield return gameObject;
+        }
       }
     }
 
