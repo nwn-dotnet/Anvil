@@ -113,7 +113,10 @@ namespace NWN.Services
 
     void IDisposable.Dispose()
     {
-      Directory.Delete(EnvironmentConfig.ResourcePath, true);
+      if (Directory.Exists(EnvironmentConfig.ResourcePath))
+      {
+        Directory.Delete(EnvironmentConfig.ResourcePath, true);
+      }
     }
   }
 }
