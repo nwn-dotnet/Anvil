@@ -31,7 +31,7 @@ namespace NWN.API.Events
       protected override FunctionHook<OnEffectAppliedHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnEffectApplied;
-        return HookService.RequestHook<OnEffectAppliedHook>(pHook, NWNXLib.Functions._ZN21CNWSEffectListHandler15OnEffectAppliedEP10CNWSObjectP11CGameEffecti, HookOrder.Earliest);
+        return HookService.RequestHook<OnEffectAppliedHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler15OnEffectAppliedEP10CNWSObjectP11CGameEffecti, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

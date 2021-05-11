@@ -26,7 +26,7 @@ namespace NWN.API.Events
       protected override FunctionHook<RunEquipHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, uint, uint, int> pHook = &OnRunEquip;
-        return HookService.RequestHook<RunEquipHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature8RunEquipEjjj, HookOrder.Early);
+        return HookService.RequestHook<RunEquipHook>(pHook, FunctionsLinux._ZN12CNWSCreature8RunEquipEjjj, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

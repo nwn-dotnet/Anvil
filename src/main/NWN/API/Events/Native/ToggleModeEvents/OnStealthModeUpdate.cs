@@ -29,7 +29,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SetStealthModeHook> RequestHook()
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetStealthMode;
-        return HookService.RequestHook<SetStealthModeHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature14SetStealthModeEh, HookOrder.Early);
+        return HookService.RequestHook<SetStealthModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature14SetStealthModeEh, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

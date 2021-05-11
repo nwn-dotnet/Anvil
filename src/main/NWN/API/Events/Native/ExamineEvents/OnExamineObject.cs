@@ -22,7 +22,7 @@ namespace NWN.API.Events
       protected override FunctionHook<CreatureExamineHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, uint, void> pHook = &OnCreatureExamine;
-        return HookService.RequestHook<CreatureExamineHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj, HookOrder.Earliest);
+        return HookService.RequestHook<CreatureExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]
@@ -45,7 +45,7 @@ namespace NWN.API.Events
       protected override FunctionHook<DoorExamineHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, uint, void> pHook = &OnDoorExamine;
-        return HookService.RequestHook<DoorExamineHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_DoorDataEP10CNWSPlayerj, HookOrder.Earliest);
+        return HookService.RequestHook<DoorExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_DoorDataEP10CNWSPlayerj, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]
@@ -68,7 +68,7 @@ namespace NWN.API.Events
       protected override FunctionHook<ItemExamineHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, uint, void> pHook = &OnItemExamine;
-        return HookService.RequestHook<ItemExamineHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage37SendServerToPlayerExamineGui_ItemDataEP10CNWSPlayerj, HookOrder.Earliest);
+        return HookService.RequestHook<ItemExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_ItemDataEP10CNWSPlayerj, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]
@@ -91,7 +91,7 @@ namespace NWN.API.Events
       protected override FunctionHook<PlaceableExamineHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, uint, void> pHook = &OnPlaceableExamine;
-        return HookService.RequestHook<PlaceableExamineHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj, HookOrder.Earliest);
+        return HookService.RequestHook<PlaceableExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

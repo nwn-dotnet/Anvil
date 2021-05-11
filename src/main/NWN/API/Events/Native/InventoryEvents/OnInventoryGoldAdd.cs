@@ -21,7 +21,7 @@ namespace NWN.API.Events
       protected override FunctionHook<AddGoldHook> RequestHook()
       {
         delegate* unmanaged<void*, int, int, void> pHook = &OnAddGold;
-        return HookService.RequestHook<AddGoldHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature7AddGoldEii, HookOrder.Early);
+        return HookService.RequestHook<AddGoldHook>(pHook, FunctionsLinux._ZN12CNWSCreature7AddGoldEii, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

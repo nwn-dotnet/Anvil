@@ -24,7 +24,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SendServerToPlayerAreaClientAreaHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, void*, float, float, float, void*, int, int> pHook = &OnSendServerToPlayerAreaClientArea;
-        return HookService.RequestHook<SendServerToPlayerAreaClientAreaHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage33SendServerToPlayerArea_ClientAreaEP10CNWSPlayerP8CNWSAreafffRK6Vectori, HookOrder.Earliest);
+        return HookService.RequestHook<SendServerToPlayerAreaClientAreaHook>(pHook, FunctionsLinux._ZN11CNWSMessage33SendServerToPlayerArea_ClientAreaEP10CNWSPlayerP8CNWSAreafffRK6Vectori, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

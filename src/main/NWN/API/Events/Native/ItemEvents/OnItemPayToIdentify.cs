@@ -23,7 +23,7 @@ namespace NWN.API.Events
       protected override FunctionHook<PayToIdentifyItemHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, uint, void> pHook = &OnPayToIdentifyItem;
-        return HookService.RequestHook<PayToIdentifyItemHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature17PayToIdentifyItemEjj, HookOrder.Early);
+        return HookService.RequestHook<PayToIdentifyItemHook>(pHook, FunctionsLinux._ZN12CNWSCreature17PayToIdentifyItemEjj, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

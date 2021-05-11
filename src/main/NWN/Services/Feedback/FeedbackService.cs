@@ -43,7 +43,7 @@ namespace NWN.Services
         if (value == FilterMode.Whitelist)
         {
           sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
-            NWNXLib.Functions._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
+            FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
         }
       }
     }
@@ -59,10 +59,10 @@ namespace NWN.Services
         if (value == FilterMode.Whitelist)
         {
           sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
-            NWNXLib.Functions._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
+            FunctionsLinux._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
 
           sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
-            NWNXLib.Functions._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
+            FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
         }
       }
     }
@@ -75,7 +75,7 @@ namespace NWN.Services
     public void AddCombatLogMessageFilter(CombatLogMessage message)
     {
       sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
-        NWNXLib.Functions._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
+        FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
 
       globalFilterListCombatMessage.Add(message);
     }
@@ -83,7 +83,7 @@ namespace NWN.Services
     public void AddCombatLogMessageFilter(CombatLogMessage message, NwPlayer player)
     {
       sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
-        NWNXLib.Functions._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
+        FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
 
       playerFilterListCombatMessage.AddElement(player, message);
     }
@@ -93,12 +93,12 @@ namespace NWN.Services
       if (message == FeedbackMessage.JournalUpdated)
       {
         sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
-          NWNXLib.Functions._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
+          FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
       }
       else
       {
         sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
-          NWNXLib.Functions._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
+          FunctionsLinux._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
       }
 
       globalFilterListFeedbackMessage.Add(message);
@@ -109,12 +109,12 @@ namespace NWN.Services
       if (message == FeedbackMessage.JournalUpdated)
       {
         sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
-          NWNXLib.Functions._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
+          FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
       }
       else
       {
         sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
-          NWNXLib.Functions._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
+          FunctionsLinux._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
       }
 
       playerFilterListFeedbackMessage.AddElement(player, message);

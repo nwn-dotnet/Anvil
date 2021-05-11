@@ -30,7 +30,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SetListAcceptedHook> RequestHook()
       {
         delegate* unmanaged<void*, int, int> pHook = &OnSetListAccepted;
-        return HookService.RequestHook<SetListAcceptedHook>(pHook, NWNXLib.Functions._ZN10CNWSBarter15SetListAcceptedEi, HookOrder.Earliest);
+        return HookService.RequestHook<SetListAcceptedHook>(pHook, FunctionsLinux._ZN10CNWSBarter15SetListAcceptedEi, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]
@@ -57,7 +57,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SendServerToPlayerBarterCloseBarterHook> RequestHook()
       {
         delegate* unmanaged<void*, uint, uint, int, int> pHook = &OnSendServerToPlayerBarterCloseBarter;
-        return HookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(pHook, NWNXLib.Functions._ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji, HookOrder.Earliest);
+        return HookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(pHook, FunctionsLinux._ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji, HookOrder.Earliest);
       }
 
       [UnmanagedCallersOnly]

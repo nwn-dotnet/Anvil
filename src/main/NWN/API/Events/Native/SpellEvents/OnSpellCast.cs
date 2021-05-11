@@ -40,7 +40,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SpellCastAndImpactHook> RequestHook()
       {
         delegate* unmanaged<void*, int, Vector3, uint, byte, uint, int, int, byte, int, void> pHook = &OnSpellCastAndImpact;
-        return HookService.RequestHook<SpellCastAndImpactHook>(pHook, NWNXLib.Functions._ZN10CNWSObject18SpellCastAndImpactEj6Vectorjhjiihi, HookOrder.Early);
+        return HookService.RequestHook<SpellCastAndImpactHook>(pHook, FunctionsLinux._ZN10CNWSObject18SpellCastAndImpactEj6Vectorjhjiihi, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

@@ -25,7 +25,7 @@ namespace NWN.API.Events
       protected override FunctionHook<ClearMemorizedSpellSlotHook> RequestHook()
       {
         delegate* unmanaged<void*, byte, byte, byte, void> pHook = &OnClearMemorizedSpellSlot;
-        return HookService.RequestHook<ClearMemorizedSpellSlotHook>(pHook, NWNXLib.Functions._ZN17CNWSCreatureStats23ClearMemorizedSpellSlotEhhh, HookOrder.Early);
+        return HookService.RequestHook<ClearMemorizedSpellSlotHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats23ClearMemorizedSpellSlotEhhh, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

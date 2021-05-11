@@ -30,7 +30,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SaveServerCharacterHook> RequestHook()
       {
         delegate* unmanaged<void*, int, int> pHook = &OnSaveServerCharacter;
-        return HookService.RequestHook<SaveServerCharacterHook>(pHook, NWNXLib.Functions._ZN10CNWSPlayer19SaveServerCharacterEi, HookOrder.Early);
+        return HookService.RequestHook<SaveServerCharacterHook>(pHook, FunctionsLinux._ZN10CNWSPlayer19SaveServerCharacterEi, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

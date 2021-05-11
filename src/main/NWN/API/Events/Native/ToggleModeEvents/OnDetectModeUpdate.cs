@@ -24,7 +24,7 @@ namespace NWN.API.Events
       protected override FunctionHook<SetDetectModeHook> RequestHook()
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetDetectMode;
-        return HookService.RequestHook<SetDetectModeHook>(pHook, NWNXLib.Functions._ZN12CNWSCreature13SetDetectModeEh, HookOrder.Early);
+        return HookService.RequestHook<SetDetectModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature13SetDetectModeEh, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]

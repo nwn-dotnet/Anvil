@@ -14,11 +14,11 @@ namespace NWN.Services
 
     private CNWSDialog dialog;
 
-    private CNWSDialogEntryArray dialogueEntries => CNWSDialogEntryArray.FromPointer(dialog.m_pEntries);
+    private CNWSDialogEntryArray DialogueEntries => CNWSDialogEntryArray.FromPointer(dialog.m_pEntries);
 
-    private CNWSDialogReplyArray dialogueReplies => CNWSDialogReplyArray.FromPointer(dialog.m_pReplies);
+    private CNWSDialogReplyArray DialogueReplies => CNWSDialogReplyArray.FromPointer(dialog.m_pReplies);
 
-    private CNWSDialogLinkEntryArray startingEntries => CNWSDialogLinkEntryArray.FromPointer(dialog.m_pStartingEntries);
+    private CNWSDialogLinkEntryArray StartingEntries => CNWSDialogLinkEntryArray.FromPointer(dialog.m_pStartingEntries);
 
     private uint indexEntry;
     private uint indexReply;
@@ -47,13 +47,13 @@ namespace NWN.Services
 
     public DialogService(HookService hookService)
     {
-      getStartEntryHook = hookService.RequestHook<GetStartEntryHook>(OnGetStartEntry, NWNXLib.Functions._ZN10CNWSDialog13GetStartEntryEP10CNWSObject, HookOrder.Early);
-      getStartEntryOneLinerHook = hookService.RequestHook<GetStartEntryOneLinerHook>(OnGetStartEntryOneLiner, NWNXLib.Functions._ZN10CNWSDialog21GetStartEntryOneLinerEP10CNWSObjectR13CExoLocStringR7CResRefS5_R13CExoArrayListI11ScriptParamE, HookOrder.Early);
-      sendDialogEntryHook = hookService.RequestHook<SendDialogEntryHook>(OnSendDialogEntry, NWNXLib.Functions._ZN10CNWSDialog15SendDialogEntryEP10CNWSObjectjji, HookOrder.Early);
-      sendDialogRepliesHook = hookService.RequestHook<SendDialogRepliesHook>(OnSendDialogReplies, NWNXLib.Functions._ZN10CNWSDialog17SendDialogRepliesEP10CNWSObjectj, HookOrder.Early);
-      handleReplyHook = hookService.RequestHook<HandleReplyHook>(OnHandleReply, NWNXLib.Functions._ZN10CNWSDialog11HandleReplyEjP10CNWSObjectjij, HookOrder.Early);
-      checkScriptHook = hookService.RequestHook<CheckScriptHook>(OnCheckScript, NWNXLib.Functions._ZN10CNWSDialog11CheckScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, HookOrder.Early);
-      runScriptHook = hookService.RequestHook<RunScriptHook>(OnRunScript, NWNXLib.Functions._ZN10CNWSDialog9RunScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, HookOrder.Early);
+      getStartEntryHook = hookService.RequestHook<GetStartEntryHook>(OnGetStartEntry, FunctionsLinux._ZN10CNWSDialog13GetStartEntryEP10CNWSObject, HookOrder.Early);
+      getStartEntryOneLinerHook = hookService.RequestHook<GetStartEntryOneLinerHook>(OnGetStartEntryOneLiner, FunctionsLinux._ZN10CNWSDialog21GetStartEntryOneLinerEP10CNWSObjectR13CExoLocStringR7CResRefS5_R13CExoArrayListI11ScriptParamE, HookOrder.Early);
+      sendDialogEntryHook = hookService.RequestHook<SendDialogEntryHook>(OnSendDialogEntry, FunctionsLinux._ZN10CNWSDialog15SendDialogEntryEP10CNWSObjectjji, HookOrder.Early);
+      sendDialogRepliesHook = hookService.RequestHook<SendDialogRepliesHook>(OnSendDialogReplies, FunctionsLinux._ZN10CNWSDialog17SendDialogRepliesEP10CNWSObjectj, HookOrder.Early);
+      handleReplyHook = hookService.RequestHook<HandleReplyHook>(OnHandleReply, FunctionsLinux._ZN10CNWSDialog11HandleReplyEjP10CNWSObjectjij, HookOrder.Early);
+      checkScriptHook = hookService.RequestHook<CheckScriptHook>(OnCheckScript, FunctionsLinux._ZN10CNWSDialog11CheckScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, HookOrder.Early);
+      runScriptHook = hookService.RequestHook<RunScriptHook>(OnRunScript, FunctionsLinux._ZN10CNWSDialog9RunScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, HookOrder.Early);
     }
 
     public ScriptType CurrentScriptType { get; private set; }
@@ -86,13 +86,13 @@ namespace NWN.Services
         switch (stateStack.Peek())
         {
           case DialogState.Start:
-            return startingEntries[CurrentNodeIndex].m_nIndex;
+            return StartingEntries[CurrentNodeIndex].m_nIndex;
           case DialogState.SendEntry:
             return indexEntry;
           case DialogState.HandleReply:
-            return dialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
+            return DialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
           case DialogState.SendReplies:
-            return dialogueEntries[(int)dialog.m_currentEntryIndex].GetReply(CurrentNodeIndex).m_nIndex;
+            return DialogueEntries[(int)dialog.m_currentEntryIndex].GetReply(CurrentNodeIndex).m_nIndex;
           default:
             return null;
         }
@@ -228,18 +228,18 @@ namespace NWN.Services
       switch (stateStack.Peek())
       {
         case DialogState.Start:
-          locString = dialogueEntries[(int)startingEntries[CurrentNodeIndex].m_nIndex].m_sText;
+          locString = DialogueEntries[(int)StartingEntries[CurrentNodeIndex].m_nIndex].m_sText;
           break;
         case DialogState.SendEntry:
-          locString = dialogueEntries[(int)indexEntry].m_sText;
+          locString = DialogueEntries[(int)indexEntry].m_sText;
           break;
         case DialogState.HandleReply:
-          int handleIndex = (int)dialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
-          locString = dialogueReplies[handleIndex].m_sText;
+          int handleIndex = (int)DialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
+          locString = DialogueReplies[handleIndex].m_sText;
           break;
         case DialogState.SendReplies:
-          int sendIndex = (int)dialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
-          locString = dialogueReplies[sendIndex].m_sText;
+          int sendIndex = (int)DialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
+          locString = DialogueReplies[sendIndex].m_sText;
           break;
       }
 
