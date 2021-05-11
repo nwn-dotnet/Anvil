@@ -380,6 +380,11 @@ namespace NWN.API
       }
     }
 
+    public NwPlayer ControllingPlayer
+    {
+      get => ObjectId.ToNwPlayer();
+    }
+
     /// <summary>
     /// Gets or sets the name of this creature's deity.
     /// </summary>
@@ -2046,7 +2051,9 @@ namespace NWN.API
         return true;
       });
 
-      if (result && this is NwPlayer player)
+      NwPlayer player = ControllingPlayer;
+
+      if (result && player != null)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
         message.SendServerToPlayerGuiQuickbar_SetButton(player, 0, true.ToInt());
@@ -2148,7 +2155,9 @@ namespace NWN.API
 
       InternalSetQuickBarButton(index, data);
 
-      if (this is NwPlayer player)
+      NwPlayer player = ControllingPlayer;
+
+      if (player != null)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
         message.SendServerToPlayerGuiQuickbar_SetButton(player, index, false.ToInt());

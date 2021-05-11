@@ -77,7 +77,7 @@ namespace NWN.API
     /// <remarks>If bonusMarkup is given a value of 10, prices will be 110% of the normal prices.</remarks>
     public void Open(NwPlayer player, int bonusMarkup = 0, int bonusMarkDown = 0)
     {
-      NWScript.OpenStore(this, player, bonusMarkup, bonusMarkDown);
+      NWScript.OpenStore(this, player.ControlledCreature, bonusMarkup, bonusMarkDown);
     }
 
     public void AcquireItem(NwItem item, bool displayFeedback = true)

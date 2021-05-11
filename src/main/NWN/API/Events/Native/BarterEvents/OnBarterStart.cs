@@ -10,7 +10,7 @@ namespace NWN.API.Events
 
     public NwPlayer Target { get; private init; }
 
-    NwObject IEvent.Context => Initiator;
+    NwObject IEvent.Context => Initiator.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartBarterHook>
     {
@@ -30,7 +30,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnBarterStart
         {
           Initiator = new NwPlayer(new CNWSPlayer(pPlayer, false)),
-          Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwObject<NwPlayer>()
+          Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwPlayer()
         });
 
         Hook.CallOriginal(pMessage, pPlayer);

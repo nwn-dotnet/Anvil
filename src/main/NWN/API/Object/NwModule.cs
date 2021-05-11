@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Anvil.Internal;
 using NWN.API.Constants;
 using NWN.API.Events;
@@ -646,9 +645,17 @@ namespace NWN.API
         for (CExoLinkedListNode node = playerList.GetHeadPos(); node != null; node = node.pNext)
         {
           CNWSPlayer player = playerList.GetAtPos(node).AsNWSPlayer();
-          yield return new NwPlayer(player, player.m_oidPCObject.ToNwObject<NwCreature>());
+          yield return new NwPlayer(player);
         }
       }
+    }
+
+    /// <summary>
+    /// Gets the current player count.
+    /// </summary>
+    public uint PlayerCount
+    {
+      get => LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.Count();
     }
 
     public override Guid? PeekUUID()
@@ -728,7 +735,7 @@ namespace NWN.API
     /// <param name="entryId">The ID of the Journal entry.</param>
     /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
     public void AddJournalQuestEntry(string categoryTag, int entryId, bool allowOverrideHigher = false)
-      => NWScript.AddJournalQuestEntry(categoryTag, entryId, Players.FirstOrDefault(), true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
+      => NWScript.AddJournalQuestEntry(categoryTag, entryId, NwObject.INVALID, true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
 
     /// <summary>
     /// Gets the last objects that were created in the module. Use LINQ to skip or limit the query.

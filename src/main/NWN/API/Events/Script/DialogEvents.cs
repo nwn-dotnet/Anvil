@@ -27,7 +27,7 @@ namespace NWN.API.Events
       public ActionTaken()
       {
         CurrentSpeaker = NWScript.OBJECT_SELF.ToNwObject<NwGameObject>();
-        PlayerSpeaker = NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
+        PlayerSpeaker = NWScript.GetPCSpeaker().ToNwPlayer();
         LastSpeaker = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
       }
 
@@ -67,7 +67,7 @@ namespace NWN.API.Events
       public AppearsWhen()
       {
         CurrentSpeaker = NWScript.OBJECT_SELF.ToNwObject<NwGameObject>();
-        PlayerSpeaker = NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
+        PlayerSpeaker = NWScript.GetPCSpeaker().ToNwPlayer();
         LastSpeaker = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
       }
     }

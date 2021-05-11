@@ -56,7 +56,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> speaker in this conversation.
       /// </summary>
-      public NwPlayer PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwObject<NwPlayer>();
+      public NwPlayer PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
 
       /// <summary>
       /// Gets the last <see cref="NwGameObject"/> that spoke in this conversation.

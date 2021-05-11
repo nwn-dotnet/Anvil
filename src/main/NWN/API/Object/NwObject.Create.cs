@@ -105,13 +105,12 @@ namespace NWN.API
       {
         CNWSArea area => area != IntPtr.Zero ? new NwArea(area) : null,
         CNWSAreaOfEffectObject areaOfEffect => areaOfEffect != IntPtr.Zero ? new NwAreaOfEffect(areaOfEffect) : null,
-        CNWSCreature creature => creature != IntPtr.Zero ? ConstructCreature(creature) : null,
+        CNWSCreature creature => creature != IntPtr.Zero ? new NwCreature(creature) : null,
         CNWSDoor door => door != IntPtr.Zero ? new NwDoor(door) : null,
         CNWSEncounter encounter => encounter != IntPtr.Zero ? new NwEncounter(encounter) : null,
         CNWSItem item => item != IntPtr.Zero ? new NwItem(item) : null,
         CNWSModule => NwModule.Instance,
         CNWSPlaceable placeable => placeable != IntPtr.Zero ? new NwPlaceable(placeable) : null,
-        CNWSPlayerTURD playerTurd => playerTurd != IntPtr.Zero ? ConstructCreature(playerTurd) : null,
         CNWSSoundObject soundObject => soundObject != IntPtr.Zero ? new NwSound(soundObject) : null,
         CNWSStore store => store != IntPtr.Zero ? new NwStore(store) : null,
         CNWSTrigger trigger => trigger != IntPtr.Zero ? new NwTrigger(trigger) : null,
@@ -126,7 +125,7 @@ namespace NWN.API
     {
       return (ObjectType)gameObject.m_nObjectType switch
       {
-        ObjectType.Creature => ConstructCreature(gameObject),
+        ObjectType.Creature => new NwCreature(gameObject.AsNWSCreature()),
         ObjectType.Item => new NwItem(gameObject.AsNWSItem()),
         ObjectType.Placeable => new NwPlaceable(gameObject.AsNWSPlaceable()),
         ObjectType.Module => NwModule.Instance,
@@ -140,15 +139,6 @@ namespace NWN.API
         ObjectType.AreaOfEffect => new NwAreaOfEffect(gameObject.AsNWSAreaOfEffectObject()),
         _ => null,
       };
-    }
-
-    private static NwCreature ConstructCreature(ICGameObject gameObject)
-    {
-      CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByObjectId(gameObject.m_idSelf);
-
-      return player == null
-        ? new NwCreature(gameObject.AsNWSCreature())
-        : new NwPlayer(player, gameObject.AsNWSCreature());
     }
 
     internal static ObjectTypes GetObjectType<T>() where T : NwObject

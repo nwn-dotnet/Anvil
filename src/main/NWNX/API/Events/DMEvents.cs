@@ -13,7 +13,7 @@ namespace NWNX.API.Events
       /// <summary>
       /// Gets the player attempting to login as a DM.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwPlayer();
 
       /// <summary>
       /// Gets the password specified in this login attempt.
@@ -22,7 +22,7 @@ namespace NWNX.API.Events
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     [NWNXEvent("NWNX_ON_DM_PLAYERDM_LOGIN_AFTER")]
@@ -31,7 +31,7 @@ namespace NWNX.API.Events
       /// <summary>
       /// Gets the player/DM attempting to login as a DM.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwPlayer();
 
       /// <summary>
       /// Gets the password specified in this login attempt.
@@ -40,7 +40,7 @@ namespace NWNX.API.Events
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     [NWNXEvent("NWNX_ON_DM_PLAYERDM_LOGOUT_BEFORE")]
@@ -49,11 +49,11 @@ namespace NWNX.API.Events
       /// <summary>
       /// Gets the player/DM attempting to logout.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwPlayer();
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     [NWNXEvent("NWNX_ON_DM_PLAYERDM_LOGOUT_AFTER")]
@@ -62,11 +62,11 @@ namespace NWNX.API.Events
       /// <summary>
       /// Gets the player/DM attempting to logout.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwPlayer();
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
   }
 }

@@ -66,9 +66,9 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that triggered the event.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetEnteringObject().ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.GetEnteringObject().ToNwPlayer();
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     /// <summary>
@@ -78,10 +78,10 @@ namespace NWN.API.Events
     public sealed class OnClientLeave : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwPlayer"/>  that is leaving.<br/>
+      /// Gets the <see cref="NwPlayer"/> that is leaving.<br/>
       /// Note! This will be a <see cref="NwCreature"/> if the leaving player is possessing a creature.
       /// </summary>
-      public NwCreature Player { get; } = NWScript.GetExitingObject().ToNwObject<NwPlayer>();
+      public NwCreature Player { get; } = NWScript.GetExitingObject().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context => Player;
     }
@@ -95,9 +95,9 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that triggered the event.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastPCToCancelCutscene().ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.GetLastPCToCancelCutscene().ToNwPlayer();
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     /// <summary>
@@ -133,7 +133,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that sent this message.
       /// </summary>
-      public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwObject<NwPlayer>();
+      public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwPlayer();
 
       /// <summary>
       /// Gets or sets the message that is to be sent.
@@ -153,7 +153,7 @@ namespace NWN.API.Events
         set => NWScript.SetPCChatVolume((int) value);
       }
 
-      NwObject IEvent.Context => Sender;
+      NwObject IEvent.Context => Sender.ControlledCreature;
     }
 
       /// <summary>
@@ -165,7 +165,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has targeted something.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastPlayerToSelectTarget().ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.GetLastPlayerToSelectTarget().ToNwPlayer();
 
       /// <summary>
       /// Gets the <see cref="NwObject"/> that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
@@ -177,7 +177,7 @@ namespace NWN.API.Events
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetTargetingModeSelectedPosition();
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     /// <summary>
@@ -189,14 +189,14 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has triggered the event.
       /// </summary>
-      public NwPlayer DeadPlayer { get; } = NWScript.GetLastPlayerDied().ToNwObject<NwPlayer>();
+      public NwPlayer DeadPlayer { get; } = NWScript.GetLastPlayerDied().ToNwPlayer();
 
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that caused <see cref="NwPlayer"/> to trigger the event.
       /// </summary>
       public NwGameObject Killer { get; } = NWScript.GetLastHostileActor().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => DeadPlayer;
+      NwObject IEvent.Context => DeadPlayer.ControlledCreature;
     }
 
     /// <summary>
@@ -208,9 +208,9 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has triggered the event.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastPlayerDying().ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.GetLastPlayerDying().ToNwPlayer();
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     /// <summary>
@@ -241,9 +241,9 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has triggered the event.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwPlayer();
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     /// <summary>
@@ -255,9 +255,9 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that clicked the respawn button on the death screen.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastRespawnButtonPresser().ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.GetLastRespawnButtonPresser().ToNwPlayer();
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     /// <summary>
@@ -269,14 +269,14 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that triggered the event.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastPCRested().ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.GetLastPCRested().ToNwPlayer();
 
       /// <summary>
       /// Gets the <see cref="RestEventType"/> that was triggered.
       /// </summary>
       public RestEventType RestEventType { get; } = (RestEventType) NWScript.GetLastRestEventType();
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     /// <summary>

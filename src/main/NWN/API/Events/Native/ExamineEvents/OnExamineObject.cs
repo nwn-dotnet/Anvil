@@ -11,7 +11,7 @@ namespace NWN.API.Events
 
     public NwGameObject ExaminedObject { get; private init; }
 
-    NwObject IEvent.Context => ExaminedBy;
+    NwObject IEvent.Context => ExaminedBy.ControlledCreature;
 
     internal sealed unsafe class Factory : MultiHookEventFactory
     {
