@@ -16,6 +16,8 @@ namespace NWN.API.Events
 
     public Vector3 TargetPosition { get; private init; }
 
+    public NwGameObject TargetObject { get; private init; }
+
     public int ClassIndex { get; private init; }
 
     public NwItem Item { get; private init; }
@@ -51,6 +53,7 @@ namespace NWN.API.Events
           Caster = gameObject.m_idSelf.ToNwObject<NwCreature>(),
           Spell = (Spell)nSpellId,
           TargetPosition = targetPosition,
+          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
           ClassIndex = nMultiClass,
           Item = itemObj.ToNwObject<NwItem>(),
           SpellCountered = bSpellCountered.ToBool(),
