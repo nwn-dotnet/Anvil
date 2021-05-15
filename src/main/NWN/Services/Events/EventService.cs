@@ -29,7 +29,7 @@ namespace NWN.Services
       where TEvent : IEvent
       where TEventFactory : IEventFactory
     {
-      if (nwObject == null)
+      if (ReferenceEquals(nwObject, null))
       {
         return default;
       }
@@ -41,7 +41,7 @@ namespace NWN.Services
     public void Subscribe<TEvent>(NwObject nwObject, IEnumerable<Type> factoryTypes, Action<TEvent> handler)
       where TEvent : IEvent
     {
-      if (nwObject == null)
+      if (ReferenceEquals(nwObject, null))
       {
         return;
       }
@@ -69,7 +69,7 @@ namespace NWN.Services
       where TEvent : IEvent
       where TEventFactory : IEventFactory
     {
-      if (nwObject == null)
+      if (ReferenceEquals(nwObject, null))
       {
         return;
       }
@@ -81,7 +81,7 @@ namespace NWN.Services
     public void Unsubscribe<TEvent>(NwObject nwObject, IEnumerable<Type> factoryTypes, Action<TEvent> handler)
       where TEvent : IEvent
     {
-      if (nwObject == null)
+      if (ReferenceEquals(nwObject, null))
       {
         return;
       }
@@ -107,7 +107,7 @@ namespace NWN.Services
 
     public void ClearObjectSubscriptions(NwObject nwObject)
     {
-      if (nwObject == null)
+      if (ReferenceEquals(nwObject, null))
       {
         return;
       }
