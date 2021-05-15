@@ -10,6 +10,7 @@ namespace NWN.Services
       private abstract class EventHandler
       {
         public abstract void ProcessEvent(IEvent eventData);
+        public abstract void ClearObjectSubscriptions(NwObject gameObject);
       }
 
       private class EventHandler<T> : EventHandler where T : IEvent
@@ -24,7 +25,14 @@ namespace NWN.Services
         }
 
         public override void ProcessEvent(IEvent eventData)
-          => ProcessEvent((T)eventData);
+        {
+          ProcessEvent((T)eventData);
+        }
+
+        public override void ClearObjectSubscriptions(NwObject gameObject)
+        {
+          filteredCallbacks.Remove(gameObject);
+        }
 
         private void ProcessEvent(T evt)
         {

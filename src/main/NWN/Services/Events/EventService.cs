@@ -29,6 +29,11 @@ namespace NWN.Services
       where TEvent : IEvent
       where TEventFactory : IEventFactory
     {
+      if (nwObject == null)
+      {
+        return default;
+      }
+
       AddObjectHandler(nwObject, handler);
       return InitEventFactory<TEventFactory>();
     }
@@ -36,6 +41,11 @@ namespace NWN.Services
     public void Subscribe<TEvent>(NwObject nwObject, IEnumerable<Type> factoryTypes, Action<TEvent> handler)
       where TEvent : IEvent
     {
+      if (nwObject == null)
+      {
+        return;
+      }
+
       AddObjectHandler(nwObject, handler);
       InitEventFactories(factoryTypes);
     }
@@ -59,6 +69,11 @@ namespace NWN.Services
       where TEvent : IEvent
       where TEventFactory : IEventFactory
     {
+      if (nwObject == null)
+      {
+        return;
+      }
+
       RemoveObjectHandler(nwObject, handler);
       TryCleanupHandler<TEvent>(typeof(TEventFactory).Yield());
     }
@@ -66,6 +81,11 @@ namespace NWN.Services
     public void Unsubscribe<TEvent>(NwObject nwObject, IEnumerable<Type> factoryTypes, Action<TEvent> handler)
       where TEvent : IEvent
     {
+      if (nwObject == null)
+      {
+        return;
+      }
+
       RemoveObjectHandler(nwObject, handler);
       TryCleanupHandler<TEvent>(factoryTypes);
     }
@@ -83,6 +103,19 @@ namespace NWN.Services
     {
       RemoveGlobalHandler(handler);
       TryCleanupHandler<TEvent>(factoryTypes);
+    }
+
+    public void ClearObjectSubscriptions(NwObject nwObject)
+    {
+      if (nwObject == null)
+      {
+        return;
+      }
+
+      foreach (EventHandler eventHandler in eventHandlers.Values)
+      {
+        eventHandler.ClearObjectSubscriptions(nwObject);
+      }
     }
 
     public TEvent ProcessEvent<TEvent>(TEvent eventData)

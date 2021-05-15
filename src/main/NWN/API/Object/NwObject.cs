@@ -248,6 +248,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Clears any event subscriptions associated with this object.
+    /// </summary>
+    public void ClearEventSubscriptions()
+    {
+      EventService.ClearObjectSubscriptions(this);
+    }
+
+    /// <summary>
     /// The ID of this object as a string. Can be used in <see cref="StringExtensions.ParseObject"/> while the object is alive.<br/>
     /// This cannot be used across server restarts. See <see cref="UUID"/> for a persistent unique identifier.
     /// </summary>
