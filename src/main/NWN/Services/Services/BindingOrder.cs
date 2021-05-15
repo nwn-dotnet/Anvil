@@ -4,6 +4,6 @@ namespace NWN.Services
   {
     Core = short.MinValue,
     API = -30000,
-    Default = 0,
+    Default = 15000,
   }
 }

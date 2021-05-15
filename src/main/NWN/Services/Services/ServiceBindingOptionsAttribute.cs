@@ -37,6 +37,9 @@ namespace NWN.Services
       this.order = (short)order;
     }
 
-    public ServiceBindingOptionsAttribute() {}
+    public ServiceBindingOptionsAttribute()
+    {
+      this.order = (short)BindingOrder.Default;
+    }
   }
 }
