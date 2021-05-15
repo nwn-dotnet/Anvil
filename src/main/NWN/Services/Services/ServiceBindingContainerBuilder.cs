@@ -67,7 +67,7 @@ namespace NWN.Services
 
       PerContainerLifetime lifeTime = new PerContainerLifetime();
 
-      if (options is { Lazy: false })
+      if (options is not { Lazy: true })
       {
         serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
       }
