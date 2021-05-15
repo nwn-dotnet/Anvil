@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
+using InventorySlot = NWN.API.Constants.InventorySlot;
 
 namespace NWN.API.Events
 {
@@ -11,7 +12,7 @@ namespace NWN.API.Events
 
     public NwItem Item { get; private init; }
 
-    public EquipmentSlot Slot { get; private init; }
+    public InventorySlot Slot { get; private init; }
 
     public bool PreventEquip { get; set; }
 
@@ -44,7 +45,7 @@ namespace NWN.API.Events
         {
           EquippedBy = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
           Item = oidItemToEquip.ToNwObject<NwItem>(),
-          Slot = (EquipmentSlot)slotId,
+          Slot = (InventorySlot)slotId,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventEquip && Hook.CallOriginal(pCreature, oidItemToEquip, nInventorySlot, oidFeedbackPlayer).ToBool());
