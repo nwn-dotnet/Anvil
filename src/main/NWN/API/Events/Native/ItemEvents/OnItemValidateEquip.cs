@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
+using InventorySlot = NWN.API.Constants.InventorySlot;
 
 namespace NWN.API.Events
 {
@@ -11,7 +12,7 @@ namespace NWN.API.Events
 
     public NwItem Item { get; private init; }
 
-    public EquipmentSlot Slot { get; private init; }
+    public InventorySlot Slot { get; private init; }
 
     public EquipValidationResult Result { get; set; }
 
@@ -34,7 +35,7 @@ namespace NWN.API.Events
         {
           UsedBy = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
           Item = new CNWSItem(pItem, false).ToNwObject<NwItem>(),
-          Slot = (EquipmentSlot)Math.Round(Math.Log2(*pEquipToSLot)),
+          Slot = (InventorySlot)Math.Round(Math.Log2(*pEquipToSLot)),
           Result = (EquipValidationResult)Hook.CallOriginal(pCreature, pItem, pEquipToSLot, bEquipping, bLoading, bDisplayFeedback, pFeedbackPlayer),
         });
 
