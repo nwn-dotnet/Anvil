@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using NWN.Services;
 
 namespace NWN.API.Events
 {
+  [ServiceBinding(typeof(IEventFactory))]
   public abstract class MultiHookEventFactory : HookEventFactory, IEventFactory<NullRegistrationData>, IDisposable
   {
     private readonly HashSet<Type> activeEvents = new HashSet<Type>();
