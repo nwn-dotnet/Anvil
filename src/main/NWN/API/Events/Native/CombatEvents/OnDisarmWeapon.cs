@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 using Feat = NWN.API.Constants.Feat;
@@ -19,17 +20,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => DisarmedObject;
 
-    [NativeFunction(NWNXLib.Functions._ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti)]
-    internal delegate int ApplyDisarmHook(IntPtr pEffectHandler, IntPtr pObject, IntPtr pEffect, int bLoadingGame);
-
-    internal class Factory : NativeEventFactory<ApplyDisarmHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.ApplyDisarmHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int ApplyDisarmHook(void* pEffectHandler, void* pObject, void* pEffect, int bLoadingGame);
 
-      protected override FunctionHook<ApplyDisarmHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<ApplyDisarmHook>(OnApplyDisarm, HookOrder.Early);
+      protected override FunctionHook<ApplyDisarmHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyDisarm;
+        return HookService.RequestHook<ApplyDisarmHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti, HookOrder.Early);
+      }
 
-      private int OnApplyDisarm(IntPtr pEffectHandler, IntPtr pObject, IntPtr pEffect, int bLoadingGame)
+      [UnmanagedCallersOnly]
+      private static int OnApplyDisarm(void* pEffectHandler, void* pObject, void* pEffect, int bLoadingGame)
       {
         CNWSObject gameObject = new CNWSObject(pObject, false);
         CGameEffect gameEffect = new CGameEffect(pEffect, false);

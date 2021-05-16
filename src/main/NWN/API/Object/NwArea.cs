@@ -14,7 +14,7 @@ namespace NWN.API
   {
     internal readonly CNWSArea Area;
 
-    internal NwArea(CNWSArea area) : base(area.m_idSelf)
+    internal NwArea(CNWSArea area) : base(area)
     {
       this.Area = area;
     }
@@ -27,32 +27,28 @@ namespace NWN.API
     /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnEnter"/>
     public event Action<AreaEvents.OnEnter> OnEnter
     {
-      add => EventService.Subscribe<AreaEvents.OnEnter, GameEventFactory>(this, value)
-        .Register<AreaEvents.OnEnter>(this);
+      add => EventService.Subscribe<AreaEvents.OnEnter, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaEvents.OnEnter, GameEventFactory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnExit"/>
     public event Action<AreaEvents.OnExit> OnExit
     {
-      add => EventService.Subscribe<AreaEvents.OnExit, GameEventFactory>(this, value)
-        .Register<AreaEvents.OnExit>(this);
+      add => EventService.Subscribe<AreaEvents.OnExit, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaEvents.OnExit, GameEventFactory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnHeartbeat"/>
     public event Action<AreaEvents.OnHeartbeat> OnHeartbeat
     {
-      add => EventService.Subscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value)
-        .Register<AreaEvents.OnHeartbeat>(this);
+      add => EventService.Subscribe<AreaEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnUserDefined"/>
     public event Action<AreaEvents.OnUserDefined> OnUserDefined
     {
-      add => EventService.Subscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value)
-        .Register<AreaEvents.OnUserDefined>(this);
+      add => EventService.Subscribe<AreaEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 

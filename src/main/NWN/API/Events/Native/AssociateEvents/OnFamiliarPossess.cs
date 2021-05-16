@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -12,17 +12,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature15PossessFamiliarEv)]
-    internal delegate void PossessFamiliarHook(IntPtr pCreature);
-
-    internal class Factory : NativeEventFactory<PossessFamiliarHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.PossessFamiliarHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void PossessFamiliarHook(void* pCreature);
 
-      protected override FunctionHook<PossessFamiliarHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<PossessFamiliarHook>(OnPossessFamiliar, HookOrder.Earliest);
+      protected override FunctionHook<PossessFamiliarHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void> pHook = &OnPossessFamiliar;
+        return HookService.RequestHook<PossessFamiliarHook>(pHook, FunctionsLinux._ZN12CNWSCreature15PossessFamiliarEv, HookOrder.Earliest);
+      }
 
-      private void OnPossessFamiliar(IntPtr pCreature)
+      [UnmanagedCallersOnly]
+      private static void OnPossessFamiliar(void* pCreature)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 

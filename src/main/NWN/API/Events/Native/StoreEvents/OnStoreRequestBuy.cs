@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -20,17 +21,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature10RequestBuyEjjj)]
-    internal delegate int RequestBuyHook(IntPtr pCreature, uint oidItemToBuy, uint oidStore, uint oidDesiredRepository);
-
-    internal class Factory : NativeEventFactory<RequestBuyHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RequestBuyHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int RequestBuyHook(void* pCreature, uint oidItemToBuy, uint oidStore, uint oidDesiredRepository);
 
-      protected override FunctionHook<RequestBuyHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<RequestBuyHook>(OnRequestBuy, HookOrder.Early);
+      protected override FunctionHook<RequestBuyHook> RequestHook()
+      {
+        delegate* unmanaged<void*, uint, uint, uint, int> pHook = &OnRequestBuy;
+        return HookService.RequestHook<RequestBuyHook>(pHook, FunctionsLinux._ZN12CNWSCreature10RequestBuyEjjj, HookOrder.Early);
+      }
 
-      private int OnRequestBuy(IntPtr pCreature, uint oidItemToBuy, uint oidStore, uint oidDesiredRepository)
+      [UnmanagedCallersOnly]
+      private static int OnRequestBuy(void* pCreature, uint oidItemToBuy, uint oidStore, uint oidDesiredRepository)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
         NwItem item = oidItemToBuy.ToNwObject<NwItem>();

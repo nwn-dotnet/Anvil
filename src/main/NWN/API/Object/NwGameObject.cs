@@ -14,23 +14,44 @@ namespace NWN.API
 {
   public abstract class NwGameObject : NwObject
   {
-    private readonly CNWSObject gameObject;
+    internal readonly CNWSObject GameObject;
 
-    internal NwGameObject(CNWSObject gameObject) : base(gameObject.m_idSelf)
+    internal NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
-      this.gameObject = gameObject;
+      this.GameObject = gameObject;
     }
 
     internal override CNWSScriptVarTable ScriptVarTable
     {
-      get => gameObject.m_ScriptVars;
+      get => GameObject.m_ScriptVars;
     }
 
-    /// <inheritdoc cref="Events.OnDisarmWeapon"/>
+    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnAcquireItem"/>
+    public event Action<ModuleEvents.OnAcquireItem> OnAcquireItem
+    {
+      add => EventService.Subscribe<ModuleEvents.OnAcquireItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnAcquireItem, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnUnacquireItem"/>
+    public event Action<ModuleEvents.OnUnacquireItem> OnUnacquireItem
+    {
+      add => EventService.Subscribe<ModuleEvents.OnUnacquireItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnUnacquireItem, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnDisarmWeapon"/>
     public event Action<OnDisarmWeapon> OnDisarmWeapon
     {
       add => EventService.Subscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
       remove => EventService.Unsubscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnHeal"/>
+    public event Action<OnHeal> OnHeal
+    {
+      add => EventService.Subscribe<OnHeal, OnHeal.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnHeal, OnHeal.Factory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
@@ -47,11 +68,11 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnSpellInterrupted"/>
-    public event Action<OnSpellInterrupted> OnSpellInterrupted
+    /// <inheritdoc cref="Events.OnSpellInterrupt"/>
+    public event Action<OnSpellInterrupt> OnSpellInterrupt
     {
-      add => EventService.Subscribe<OnSpellInterrupted, OnSpellInterrupted.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnSpellInterrupted, OnSpellInterrupted.Factory>(this, value);
+      add => EventService.Subscribe<OnSpellInterrupt, OnSpellInterrupt.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellInterrupt, OnSpellInterrupt.Factory>(this, value);
     }
 
     /// <summary>
@@ -77,7 +98,7 @@ namespace NWN.API
     public Vector3 Position
     {
       get => NWScript.GetPosition(this);
-      set => gameObject.SetPosition(value.ToNativeVector(), false.ToInt());
+      set => GameObject.SetPosition(value.ToNativeVector(), false.ToInt());
     }
 
     /// <summary>
@@ -99,7 +120,7 @@ namespace NWN.API
       {
         float radians = (value % 360) * NwMath.DegToRad;
         Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
-        gameObject.SetOrientation(orientation.ToNativeVector());
+        GameObject.SetOrientation(orientation.ToNativeVector());
       }
     }
 
@@ -135,7 +156,7 @@ namespace NWN.API
     public int HP
     {
       get => NWScript.GetCurrentHitPoints(this);
-      set => gameObject.m_nCurrentHitPoints = value;
+      set => GameObject.m_nCurrentHitPoints = value;
     }
 
     /// <summary>
@@ -144,7 +165,7 @@ namespace NWN.API
     public int MaxHP
     {
       get => NWScript.GetMaxHitPoints(this);
-      set => gameObject.m_nBaseHitPoints = value;
+      set => GameObject.m_nBaseHitPoints = value;
     }
 
     /// <summary>
@@ -181,7 +202,7 @@ namespace NWN.API
 
     public override Guid? PeekUUID()
     {
-      CNWSUUID uid = gameObject.m_pUUID;
+      CNWSUUID uid = GameObject.m_pUUID;
       if (!uid.CanCarryUUID())
       {
         return null;
@@ -532,6 +553,15 @@ namespace NWN.API
     /// <param name="effect">The existing effect instance.</param>
     public void RemoveEffect(Effect effect)
       => NWScript.RemoveEffect(this, effect);
+
+    /// <summary>
+    /// Immediately ends this GameObject's current conversation.
+    /// </summary>
+    public async void EndConversation()
+    {
+      await NwTask.NextFrame();
+      GameObject.StopDialog();
+    }
 
     public abstract byte[] Serialize();
   }

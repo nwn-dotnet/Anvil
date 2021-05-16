@@ -17,7 +17,7 @@ namespace NWN.API
     private protected static ResourceManager ResourceManager { get; private set; }
 
     [ServiceBinding(typeof(APIBindings))]
-    [BindingOrder(BindingOrder.API)]
+    [ServiceBindingOptions(BindingOrder.API)]
     internal sealed class APIBindings
     {
       public APIBindings(EventService eventService, ResourceManager resourceManager)
@@ -28,16 +28,19 @@ namespace NWN.API
     }
 
     internal const uint INVALID = NWScript.OBJECT_INVALID;
+
+    internal readonly ICGameObject Object;
     protected readonly uint ObjectId;
 
-    public static implicit operator uint(NwObject obj)
+    protected NwObject(ICGameObject gameObject)
     {
-      return obj == null ? INVALID : obj.ObjectId;
+      Object = gameObject;
+      ObjectId = gameObject.m_idSelf;
     }
 
-    internal NwObject(uint objectId)
+    public static implicit operator uint(NwObject gameObject)
     {
-      ObjectId = objectId;
+      return gameObject == null ? INVALID : gameObject.ObjectId;
     }
 
     internal abstract CNWSScriptVarTable ScriptVarTable { get; }
@@ -242,6 +245,14 @@ namespace NWN.API
     public void ForceRefreshUUID()
     {
       NWScript.ForceRefreshObjectUUID(this);
+    }
+
+    /// <summary>
+    /// Clears any event subscriptions associated with this object.
+    /// </summary>
+    public void ClearEventSubscriptions()
+    {
+      EventService.ClearObjectSubscriptions(this);
     }
 
     /// <summary>

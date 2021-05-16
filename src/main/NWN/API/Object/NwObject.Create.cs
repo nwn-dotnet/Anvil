@@ -91,17 +91,39 @@ namespace NWN.API
         return NwModule.Instance;
       }
 
-      return ConstructManagedObject(objectId);
+      return CreateInternal(LowLevel.ServerExoApp.GetGameObject(objectId));
     }
 
-    private static NwObject ConstructManagedObject(uint objectId)
+    internal static NwObject CreateInternal(ICGameObject gameObject)
     {
-      ICGameObject gameObject = LowLevel.ServerExoApp.GetGameObject(objectId);
       if (gameObject == null)
       {
         return null;
       }
 
+      return gameObject switch
+      {
+        CNWSArea area => area != IntPtr.Zero ? new NwArea(area) : null,
+        CNWSAreaOfEffectObject areaOfEffect => areaOfEffect != IntPtr.Zero ? new NwAreaOfEffect(areaOfEffect) : null,
+        CNWSCreature creature => creature != IntPtr.Zero ? ConstructCreature(creature) : null,
+        CNWSDoor door => door != IntPtr.Zero ? new NwDoor(door) : null,
+        CNWSEncounter encounter => encounter != IntPtr.Zero ? new NwEncounter(encounter) : null,
+        CNWSItem item => item != IntPtr.Zero ? new NwItem(item) : null,
+        CNWSModule => NwModule.Instance,
+        CNWSPlaceable placeable => placeable != IntPtr.Zero ? new NwPlaceable(placeable) : null,
+        CNWSPlayerTURD playerTurd => playerTurd != IntPtr.Zero ? ConstructCreature(playerTurd) : null,
+        CNWSSoundObject soundObject => soundObject != IntPtr.Zero ? new NwSound(soundObject) : null,
+        CNWSStore store => store != IntPtr.Zero ? new NwStore(store) : null,
+        CNWSTrigger trigger => trigger != IntPtr.Zero ? new NwTrigger(trigger) : null,
+        CNWSWaypoint waypoint => waypoint != IntPtr.Zero ? new NwWaypoint(waypoint) : null,
+        CNWSObject obj => obj != IntPtr.Zero ? CreateFromVirtualType(gameObject) : null,
+        CGameObject gameObj => gameObj != IntPtr.Zero ? CreateFromVirtualType(gameObject) : null,
+        _ => null,
+      };
+    }
+
+    private static NwObject CreateFromVirtualType(ICGameObject gameObject)
+    {
       return (ObjectType)gameObject.m_nObjectType switch
       {
         ObjectType.Creature => ConstructCreature(gameObject),
@@ -116,7 +138,7 @@ namespace NWN.API
         ObjectType.Store => new NwStore(gameObject.AsNWSStore()),
         ObjectType.Sound => new NwSound(gameObject.AsNWSSoundObject()),
         ObjectType.AreaOfEffect => new NwAreaOfEffect(gameObject.AsNWSAreaOfEffectObject()),
-        _ => null
+        _ => null,
       };
     }
 

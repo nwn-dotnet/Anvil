@@ -6,7 +6,7 @@ using NWN.Plugins;
 
 namespace NWN.Services
 {
-  [BindingOrder(BindingOrder.Core)]
+  [ServiceBindingOptions(BindingOrder.Core)]
   public class ServiceManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

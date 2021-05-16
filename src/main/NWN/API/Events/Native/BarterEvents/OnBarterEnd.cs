@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Anvil.Internal;
 using NWN.Native.API;
 using NWN.Services;
@@ -20,24 +21,30 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Initiator;
 
-    [NativeFunction(NWNXLib.Functions._ZN10CNWSBarter15SetListAcceptedEi)]
-    internal delegate int SetListAcceptedHook(IntPtr pBarter, int bAccepted);
-
-    [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji)]
-    internal delegate int SendServerToPlayerBarterCloseBarterHook(IntPtr pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
-
-    public static Type[] FactoryTypes { get; } = {typeof(SetListAcceptedFactory), typeof(SendServerToPlayerBarterCloseBarterFactory)};
-
-    internal class SetListAcceptedFactory : NativeEventFactory<SetListAcceptedHook>
+    internal sealed unsafe class Factory : MultiHookEventFactory
     {
-      public SetListAcceptedFactory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int SetListAcceptedHook(void* pBarter, int bAccepted);
 
-      protected override FunctionHook<SetListAcceptedHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SetListAcceptedHook>(OnSetListAccepted, HookOrder.Earliest);
+      internal delegate int SendServerToPlayerBarterCloseBarterHook(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
 
-      private int OnSetListAccepted(IntPtr pBarter, int bAccepted)
+      private static FunctionHook<SetListAcceptedHook> setListAcceptedHook;
+      private static FunctionHook<SendServerToPlayerBarterCloseBarterHook> sendServerToPlayerBarterCloseBarterHook;
+
+      protected override IDisposable[] RequestHooks()
       {
-        if (pBarter != IntPtr.Zero && bAccepted.ToBool())
+        delegate* unmanaged<void*, int, int> pSetListAcceptedHook = &OnSetListAccepted;
+        setListAcceptedHook = HookService.RequestHook<SetListAcceptedHook>(pSetListAcceptedHook, FunctionsLinux._ZN10CNWSBarter15SetListAcceptedEi, HookOrder.Earliest);
+
+        delegate* unmanaged<void*, uint, uint, int, int> pSendServerToPlayerBarterCloseBarterHook = &OnSendServerToPlayerBarterCloseBarter;
+        sendServerToPlayerBarterCloseBarterHook = HookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(pSendServerToPlayerBarterCloseBarterHook, FunctionsLinux._ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji, HookOrder.Earliest);
+
+        return new IDisposable[] { setListAcceptedHook, sendServerToPlayerBarterCloseBarterHook };
+      }
+
+      [UnmanagedCallersOnly]
+      private static int OnSetListAccepted(void* pBarter, int bAccepted)
+      {
+        if (pBarter != null && bAccepted.ToBool())
         {
           OnBarterEnd eventData = GetBarterEventData(new CNWSBarter(pBarter, false), bAccepted.ToBool());
 
@@ -47,18 +54,11 @@ namespace NWN.API.Events
           }
         }
 
-        return Hook.CallOriginal(pBarter, bAccepted);
+        return setListAcceptedHook.CallOriginal(pBarter, bAccepted);
       }
-    }
 
-    internal class SendServerToPlayerBarterCloseBarterFactory : NativeEventFactory<SendServerToPlayerBarterCloseBarterHook>
-    {
-      public SendServerToPlayerBarterCloseBarterFactory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
-
-      protected override FunctionHook<SendServerToPlayerBarterCloseBarterHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(OnSendServerToPlayerBarterCloseBarter, HookOrder.Earliest);
-
-      private int OnSendServerToPlayerBarterCloseBarter(IntPtr pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
+      [UnmanagedCallersOnly]
+      private static int OnSendServerToPlayerBarterCloseBarter(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
       {
         NwPlayer player = new NwPlayer(LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer());
         CNWSBarter barter = player.Creature.GetBarterInfo(0);
@@ -74,74 +74,74 @@ namespace NWN.API.Events
           }
         }
 
-        return Hook.CallOriginal(pMessage, nInitiatorId, nRecipientId, bAccepted);
-      }
-    }
-
-    private static OnBarterEnd GetBarterEventData(CNWSBarter barter, bool accepted)
-    {
-      NwCreature other = barter.m_oidBarrator.ToNwObject<NwCreature>();
-      if (other == null)
-      {
-        return null;
+        return sendServerToPlayerBarterCloseBarterHook.CallOriginal(pMessage, nInitiatorId, nRecipientId, bAccepted);
       }
 
-      CNWSBarter otherBarter = other.Creature.GetBarterInfo(0);
-      CNWSBarter initiatorBarter = barter.m_bInitiator.ToBool() ? barter : otherBarter;
-      CNWSBarter targetBarter = barter.m_bInitiator.ToBool() ? otherBarter : barter;
-
-      return accepted ? GetBarterAcceptedEventData(otherBarter, initiatorBarter, targetBarter) : GetBarterCancelledEventData(initiatorBarter, targetBarter);
-    }
-
-    private static OnBarterEnd GetBarterAcceptedEventData(CNWSBarter other, CNWSBarter initiator, CNWSBarter target)
-    {
-      // We only handle a completed barter when the other player has already accepted
-      if (!other.m_bListAccepted.ToBool())
+      private static OnBarterEnd GetBarterEventData(CNWSBarter barter, bool accepted)
       {
-        return null;
-      }
-
-      return new OnBarterEnd
-      {
-        Initiator = initiator.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
-        Target = target.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
-        Complete = true,
-        InitiatorItems = GetBarterItems(initiator),
-        TargetItems = GetBarterItems(target)
-      };
-    }
-
-    private static OnBarterEnd GetBarterCancelledEventData(CNWSBarter initiator, CNWSBarter target)
-    {
-      return new OnBarterEnd
-      {
-        Initiator = initiator.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
-        Target = target.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
-        Complete = false,
-        InitiatorItems = new NwItem[0],
-        TargetItems = new NwItem[0]
-      };
-    }
-
-    private static unsafe IReadOnlyList<NwItem> GetBarterItems(CNWSBarter barter)
-    {
-      List<NwItem> items = new List<NwItem>();
-      if (barter.m_pBarterList == null)
-      {
-        return items;
-      }
-
-      CExoLinkedListInternal itemList = barter.m_pBarterList.m_oidItems.m_pcExoLinkedListInternal;
-      for (CExoLinkedListNode node = itemList.pHead; node != null; node = node.pNext)
-      {
-        NwItem item = (*(uint*)node.pObject).ToNwObject<NwItem>();
-        if (item != null)
+        NwCreature other = barter.m_oidBarrator.ToNwObject<NwCreature>();
+        if (other == null)
         {
-          items.Add(item);
+          return null;
         }
+
+        CNWSBarter otherBarter = other.Creature.GetBarterInfo(0);
+        CNWSBarter initiatorBarter = barter.m_bInitiator.ToBool() ? barter : otherBarter;
+        CNWSBarter targetBarter = barter.m_bInitiator.ToBool() ? otherBarter : barter;
+
+        return accepted ? GetBarterAcceptedEventData(otherBarter, initiatorBarter, targetBarter) : GetBarterCancelledEventData(initiatorBarter, targetBarter);
       }
 
-      return items.AsReadOnly();
+      private static OnBarterEnd GetBarterAcceptedEventData(CNWSBarter other, CNWSBarter initiator, CNWSBarter target)
+      {
+        // We only handle a completed barter when the other player has already accepted
+        if (!other.m_bListAccepted.ToBool())
+        {
+          return null;
+        }
+
+        return new OnBarterEnd
+        {
+          Initiator = initiator.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
+          Target = target.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
+          Complete = true,
+          InitiatorItems = GetBarterItems(initiator),
+          TargetItems = GetBarterItems(target)
+        };
+      }
+
+      private static OnBarterEnd GetBarterCancelledEventData(CNWSBarter initiator, CNWSBarter target)
+      {
+        return new OnBarterEnd
+        {
+          Initiator = initiator.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
+          Target = target.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
+          Complete = false,
+          InitiatorItems = new NwItem[0],
+          TargetItems = new NwItem[0],
+        };
+      }
+
+      private static unsafe IReadOnlyList<NwItem> GetBarterItems(CNWSBarter barter)
+      {
+        List<NwItem> items = new List<NwItem>();
+        if (barter.m_pBarterList == null)
+        {
+          return items;
+        }
+
+        CExoLinkedListInternal itemList = barter.m_pBarterList.m_oidItems.m_pcExoLinkedListInternal;
+        for (CExoLinkedListNode node = itemList.pHead; node != null; node = node.pNext)
+        {
+          NwItem item = (*(uint*)node.pObject).ToNwObject<NwItem>();
+          if (item != null)
+          {
+            items.Add(item);
+          }
+        }
+
+        return items.AsReadOnly();
+      }
     }
   }
 }

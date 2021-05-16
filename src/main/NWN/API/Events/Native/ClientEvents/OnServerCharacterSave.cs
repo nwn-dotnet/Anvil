@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -23,17 +23,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    [NativeFunction(NWNXLib.Functions._ZN10CNWSPlayer19SaveServerCharacterEi)]
-    internal delegate int SaveServerCharacterHook(IntPtr pPlayer, int bBackupPlayer);
-
-    internal class Factory : NativeEventFactory<SaveServerCharacterHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SaveServerCharacterHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int SaveServerCharacterHook(void* pPlayer, int bBackupPlayer);
 
-      protected override FunctionHook<SaveServerCharacterHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SaveServerCharacterHook>(OnSaveServerCharacter, HookOrder.Early);
+      protected override FunctionHook<SaveServerCharacterHook> RequestHook()
+      {
+        delegate* unmanaged<void*, int, int> pHook = &OnSaveServerCharacter;
+        return HookService.RequestHook<SaveServerCharacterHook>(pHook, FunctionsLinux._ZN10CNWSPlayer19SaveServerCharacterEi, HookOrder.Early);
+      }
 
-      private int OnSaveServerCharacter(IntPtr pPlayer, int bBackupPlayer)
+      [UnmanagedCallersOnly]
+      private static int OnSaveServerCharacter(void* pPlayer, int bBackupPlayer)
       {
         OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave
         {

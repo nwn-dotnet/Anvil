@@ -17,35 +17,36 @@ namespace NWN.API
       this.AreaOfEffect = areaOfEffectObject;
     }
 
+    public static implicit operator CNWSAreaOfEffectObject(NwAreaOfEffect areaOfEffect)
+    {
+      return areaOfEffect?.AreaOfEffect;
+    }
+
     /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnEnter"/>
     public event Action<AreaOfEffectEvents.OnEnter> OnEnter
     {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value)
-        .Register<AreaOfEffectEvents.OnEnter>(this);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnExit"/>
     public event Action<AreaOfEffectEvents.OnExit> OnExit
     {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value)
-        .Register<AreaOfEffectEvents.OnExit>(this);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnHeartbeat"/>
     public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
     {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value)
-        .Register<AreaOfEffectEvents.OnHeartbeat>(this);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnUserDefined"/>
     public event Action<AreaOfEffectEvents.OnUserDefined> OnUserDefined
     {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value)
-        .Register<AreaOfEffectEvents.OnUserDefined>(this);
+      add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 

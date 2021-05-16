@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.API.Constants;
 using NWN.Native.API;
 using NWN.Services;
@@ -20,17 +20,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature18BroadcastSpellCastEjht)]
-    internal delegate void BroadcastSpellCastHook(IntPtr pCreature, uint nSpellId, byte nMultiClass, ushort nFeat);
-
-    internal class Factory : NativeEventFactory<BroadcastSpellCastHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.BroadcastSpellCastHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void BroadcastSpellCastHook(void* pCreature, uint nSpellId, byte nMultiClass, ushort nFeat);
 
-      protected override FunctionHook<BroadcastSpellCastHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<BroadcastSpellCastHook>(OnBroadcastSpellCast, HookOrder.Early);
+      protected override FunctionHook<BroadcastSpellCastHook> RequestHook()
+      {
+        delegate* unmanaged<void*, uint, byte, ushort, void> pHook = &OnBroadcastSpellCast;
+        return HookService.RequestHook<BroadcastSpellCastHook>(pHook, FunctionsLinux._ZN12CNWSCreature18BroadcastSpellCastEjht, HookOrder.Early);
+      }
 
-      private void OnBroadcastSpellCast(IntPtr pCreature, uint nSpellId, byte nMultiClass, ushort nFeat)
+      [UnmanagedCallersOnly]
+      private static void OnBroadcastSpellCast(void* pCreature, uint nSpellId, byte nMultiClass, ushort nFeat)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 

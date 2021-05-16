@@ -35,13 +35,11 @@ namespace NWN.Services
       // To maintain previous behaviour, we invoke "SubscribeAll" for module events, which previously did not have an object context.
       if (nwObject is NwModule)
       {
-        eventService.SubscribeAll<TEvent, GameEventFactory>(callback)
-          .Register<TEvent>(nwObject);
+        eventService.SubscribeAll<TEvent, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(nwObject), callback);
       }
       else
       {
-        eventService.Subscribe<TEvent, GameEventFactory>(nwObject, callback)
-          .Register<TEvent>(nwObject);
+        eventService.Subscribe<TEvent, GameEventFactory, GameEventFactory.RegistrationData>(nwObject, new GameEventFactory.RegistrationData(nwObject), callback);
       }
     }
 

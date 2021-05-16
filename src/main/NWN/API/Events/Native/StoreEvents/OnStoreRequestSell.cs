@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -20,17 +21,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature11RequestSellEjj)]
-    internal delegate int RequestSellHook(IntPtr pCreature, uint oidItemToBuy, uint oidStore);
-
-    internal class Factory : NativeEventFactory<RequestSellHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RequestSellHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int RequestSellHook(void* pCreature, uint oidItemToBuy, uint oidStore);
 
-      protected override FunctionHook<RequestSellHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<RequestSellHook>(OnRequestSell, HookOrder.Early);
+      protected override FunctionHook<RequestSellHook> RequestHook()
+      {
+        delegate* unmanaged<void*, uint, uint, int> pHook = &OnRequestSell;
+        return HookService.RequestHook<RequestSellHook>(pHook, FunctionsLinux._ZN12CNWSCreature11RequestSellEjj, HookOrder.Early);
+      }
 
-      private int OnRequestSell(IntPtr pCreature, uint oidItemToSell, uint oidStore)
+      [UnmanagedCallersOnly]
+      private static int OnRequestSell(void* pCreature, uint oidItemToSell, uint oidStore)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
         NwItem item = oidItemToSell.ToNwObject<NwItem>();

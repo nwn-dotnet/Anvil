@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -17,17 +17,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature13SetDetectModeEh)]
-    internal delegate void SetDetectModeHook(IntPtr pCreature, byte nDetectMode);
-
-    internal class Factory : NativeEventFactory<SetDetectModeHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetDetectModeHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void SetDetectModeHook(void* pCreature, byte nDetectMode);
 
-      protected override FunctionHook<SetDetectModeHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SetDetectModeHook>(OnSetDetectMode, HookOrder.Early);
+      protected override FunctionHook<SetDetectModeHook> RequestHook()
+      {
+        delegate* unmanaged<void*, byte, void> pHook = &OnSetDetectMode;
+        return HookService.RequestHook<SetDetectModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature13SetDetectModeEh, HookOrder.Early);
+      }
 
-      private void OnSetDetectMode(IntPtr pCreature, byte nDetectMode)
+      [UnmanagedCallersOnly]
+      private static void OnSetDetectMode(void* pCreature, byte nDetectMode)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 
@@ -48,7 +49,7 @@ namespace NWN.API.Events
         }
       }
 
-      private void HandleEnter(CNWSCreature creature, byte nDetectMode)
+      private static void HandleEnter(CNWSCreature creature, byte nDetectMode)
       {
         OnDetectModeUpdate eventData = ProcessEvent(new OnDetectModeUpdate
         {
@@ -66,7 +67,7 @@ namespace NWN.API.Events
         }
       }
 
-      private void HandleExit(CNWSCreature creature, byte nDetectMode)
+      private static void HandleExit(CNWSCreature creature, byte nDetectMode)
       {
         OnDetectModeUpdate eventData = ProcessEvent(new OnDetectModeUpdate
         {

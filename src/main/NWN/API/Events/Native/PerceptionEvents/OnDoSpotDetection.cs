@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -14,17 +14,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature15DoSpotDetectionEPS_i)]
-    internal delegate int DoSpotDetectionHook(IntPtr pCreature, IntPtr pTarget, int bTargetInvisible);
-
-    internal class Factory : NativeEventFactory<DoSpotDetectionHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.DoSpotDetectionHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int DoSpotDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
 
-      protected override FunctionHook<DoSpotDetectionHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<DoSpotDetectionHook>(OnDoSpotDetection, HookOrder.Early);
+      protected override FunctionHook<DoSpotDetectionHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, int, int> pHook = &OnDoSpotDetection;
+        return HookService.RequestHook<DoSpotDetectionHook>(pHook, FunctionsLinux._ZN12CNWSCreature15DoSpotDetectionEPS_i, HookOrder.Early);
+      }
 
-      private int OnDoSpotDetection(IntPtr pCreature, IntPtr pTarget, int bTargetInvisible)
+      [UnmanagedCallersOnly]
+      private static int OnDoSpotDetection(void* pCreature, void* pTarget, int bTargetInvisible)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
         CNWSCreature target = new CNWSCreature(pTarget, false);

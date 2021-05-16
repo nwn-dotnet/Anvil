@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -22,17 +22,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature14SetStealthModeEh)]
-    internal delegate void SetStealthModeHook(IntPtr pCreature, byte nStealthMode);
-
-    internal class Factory : NativeEventFactory<SetStealthModeHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetStealthModeHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void SetStealthModeHook(void* pCreature, byte nStealthMode);
 
-      protected override FunctionHook<SetStealthModeHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<SetStealthModeHook>(OnSetStealthMode, HookOrder.Early);
+      protected override FunctionHook<SetStealthModeHook> RequestHook()
+      {
+        delegate* unmanaged<void*, byte, void> pHook = &OnSetStealthMode;
+        return HookService.RequestHook<SetStealthModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature14SetStealthModeEh, HookOrder.Early);
+      }
 
-      private void OnSetStealthMode(IntPtr pCreature, byte nStealthMode)
+      [UnmanagedCallersOnly]
+      private static void OnSetStealthMode(void* pCreature, byte nStealthMode)
       {
         CNWSCreature creature = new CNWSCreature(pCreature, false);
 
@@ -53,7 +54,7 @@ namespace NWN.API.Events
         }
       }
 
-      private void HandleEnterStealth(CNWSCreature creature, byte nStealthMode)
+      private static void HandleEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
@@ -78,7 +79,7 @@ namespace NWN.API.Events
         }
       }
 
-      private void HandleExitStealth(CNWSCreature creature, byte nStealthMode)
+      private static void HandleExitStealth(CNWSCreature creature, byte nStealthMode)
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
@@ -96,7 +97,7 @@ namespace NWN.API.Events
         }
       }
 
-      private void ForceEnterStealth(CNWSCreature creature, byte nStealthMode)
+      private static void ForceEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
         bool noHIPS = false;
         if (!creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight).ToBool())
@@ -113,7 +114,7 @@ namespace NWN.API.Events
         }
       }
 
-      private void PreventHIPSEnterStealth(CNWSCreature creature, byte nStealthMode)
+      private static void PreventHIPSEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
         bool bHadHIPS = false;
         if (creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight).ToBool())

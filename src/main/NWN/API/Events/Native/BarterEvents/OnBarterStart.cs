@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -12,17 +12,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Initiator;
 
-    [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage38HandlePlayerToServerBarter_StartBarterEP10CNWSPlayer)]
-    internal delegate void StartBarterHook(IntPtr pMessage, IntPtr pPlayer);
-
-    internal class Factory : NativeEventFactory<StartBarterHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartBarterHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void StartBarterHook(void* pMessage, void* pPlayer);
 
-      protected override FunctionHook<StartBarterHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<StartBarterHook>(OnStartBarter, HookOrder.Earliest);
+      protected override FunctionHook<StartBarterHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, void> pHook = &OnStartBarter;
+        return HookService.RequestHook<StartBarterHook>(pHook, FunctionsLinux._ZN11CNWSMessage38HandlePlayerToServerBarter_StartBarterEP10CNWSPlayer, HookOrder.Earliest);
+      }
 
-      private void OnStartBarter(IntPtr pMessage, IntPtr pPlayer)
+      [UnmanagedCallersOnly]
+      private static void OnStartBarter(void* pMessage, void* pPlayer)
       {
         CNWSMessage message = new CNWSMessage(pMessage, false);
 

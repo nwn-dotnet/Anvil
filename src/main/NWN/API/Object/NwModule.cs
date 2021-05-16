@@ -14,7 +14,7 @@ namespace NWN.API
   {
     internal readonly CNWSModule Module;
 
-    internal NwModule(uint objectId, CNWSModule module) : base(objectId)
+    internal NwModule(CNWSModule module) : base(module)
     {
       this.Module = module;
     }
@@ -24,149 +24,131 @@ namespace NWN.API
       return module?.Module;
     }
 
-    public static readonly NwModule Instance = new NwModule(NWScript.GetModule(), LowLevel.ServerExoApp.GetModule());
+    public static readonly NwModule Instance = new NwModule(LowLevel.ServerExoApp.GetModule());
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnAcquireItem"/>
     public event Action<ModuleEvents.OnAcquireItem> OnAcquireItem
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnAcquireItem, GameEventFactory>(value)
-        .Register<ModuleEvents.OnAcquireItem>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnAcquireItem, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnAcquireItem, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnActivateItem"/>
     public event Action<ModuleEvents.OnActivateItem> OnActivateItem
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnActivateItem, GameEventFactory>(value)
-        .Register<ModuleEvents.OnActivateItem>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnActivateItem, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnActivateItem, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnClientEnter"/>
     public event Action<ModuleEvents.OnClientEnter> OnClientEnter
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnClientEnter, GameEventFactory>(value)
-        .Register<ModuleEvents.OnClientEnter>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnClientEnter, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnClientEnter, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnClientLeave"/>
     public event Action<ModuleEvents.OnClientLeave> OnClientLeave
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnClientLeave, GameEventFactory>(value)
-        .Register<ModuleEvents.OnClientLeave>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnClientLeave, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnClientLeave, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnCutsceneAbort"/>
     public event Action<ModuleEvents.OnCutsceneAbort> OnCutsceneAbort
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnCutsceneAbort, GameEventFactory>(value)
-        .Register<ModuleEvents.OnCutsceneAbort>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnCutsceneAbort, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnCutsceneAbort, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnHeartbeat"/>
     public event Action<ModuleEvents.OnHeartbeat> OnHeartbeat
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnHeartbeat, GameEventFactory>(value)
-        .Register<ModuleEvents.OnHeartbeat>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnHeartbeat, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnModuleLoad"/>
     public event Action<ModuleEvents.OnModuleLoad> OnModuleLoad
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnModuleLoad, GameEventFactory>(value)
-        .Register<ModuleEvents.OnModuleLoad>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnModuleLoad, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnModuleLoad, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnModuleStart"/>
     public event Action<ModuleEvents.OnModuleStart> OnModuleStart
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnModuleStart, GameEventFactory>(value)
-        .Register<ModuleEvents.OnModuleStart>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnModuleStart, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnModuleStart, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerChat"/>
     public event Action<ModuleEvents.OnPlayerChat> OnPlayerChat
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnPlayerChat, GameEventFactory>(value)
-        .Register<ModuleEvents.OnPlayerChat>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerChat, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerChat, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerDeath"/>
     public event Action<ModuleEvents.OnPlayerDeath> OnPlayerDeath
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnPlayerDeath, GameEventFactory>(value)
-        .Register<ModuleEvents.OnPlayerDeath>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerDeath, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerDeath, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerDying"/>
     public event Action<ModuleEvents.OnPlayerDying> OnPlayerDying
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnPlayerDying, GameEventFactory>(value)
-        .Register<ModuleEvents.OnPlayerDying>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerDying, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerDying, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerEquipItem"/>
     public event Action<ModuleEvents.OnPlayerEquipItem> OnPlayerEquipItem
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnPlayerEquipItem, GameEventFactory>(value)
-        .Register<ModuleEvents.OnPlayerEquipItem>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerEquipItem, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerEquipItem, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerLevelUp"/>
     public event Action<ModuleEvents.OnPlayerLevelUp> OnPlayerLevelUp
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnPlayerLevelUp, GameEventFactory>(value)
-        .Register<ModuleEvents.OnPlayerLevelUp>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerLevelUp, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerLevelUp, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerRespawn"/>
     public event Action<ModuleEvents.OnPlayerRespawn> OnPlayerRespawn
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnPlayerRespawn, GameEventFactory>(value)
-        .Register<ModuleEvents.OnPlayerRespawn>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerRespawn, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerRespawn, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerRest"/>
     public event Action<ModuleEvents.OnPlayerRest> OnPlayerRest
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnPlayerRest, GameEventFactory>(value)
-        .Register<ModuleEvents.OnPlayerRest>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerRest, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerRest, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerUnequipItem"/>
     public event Action<ModuleEvents.OnPlayerUnequipItem> OnPlayerUnequipItem
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnPlayerUnequipItem, GameEventFactory>(value)
-        .Register<ModuleEvents.OnPlayerUnequipItem>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerUnequipItem, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerUnequipItem, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnUnacquireItem"/>
     public event Action<ModuleEvents.OnUnacquireItem> OnUnacquireItem
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnUnacquireItem, GameEventFactory>(value)
-        .Register<ModuleEvents.OnUnacquireItem>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnUnacquireItem, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnUnacquireItem, GameEventFactory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnUserDefined"/>
     public event Action<ModuleEvents.OnUserDefined> OnUserDefined
     {
-      add => EventService.SubscribeAll<ModuleEvents.OnUserDefined, GameEventFactory>(value)
-        .Register<ModuleEvents.OnUserDefined>(this);
+      add => EventService.SubscribeAll<ModuleEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
       remove => EventService.UnsubscribeAll<ModuleEvents.OnUserDefined, GameEventFactory>(value);
     }
 
@@ -189,6 +171,13 @@ namespace NWN.API
     {
       add => EventService.SubscribeAll<OnServerCharacterSave, OnServerCharacterSave.Factory>(value);
       remove => EventService.UnsubscribeAll<OnServerCharacterSave, OnServerCharacterSave.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnServerSendArea"/>
+    public event Action<OnServerSendArea> OnServerSendArea
+    {
+      add => EventService.SubscribeAll<OnServerSendArea, OnServerSendArea.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnServerSendArea, OnServerSendArea.Factory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnCombatDRBroken"/>
@@ -215,8 +204,8 @@ namespace NWN.API
     /// <inheritdoc cref="NWN.API.Events.OnCreatureAttack"/>
     public event Action<OnCreatureAttack> OnCreatureAttack
     {
-      add => EventService.SubscribeAll(Events.OnCreatureAttack.FactoryTypes, value);
-      remove => EventService.UnsubscribeAll(Events.OnCreatureAttack.FactoryTypes, value);
+      add => EventService.SubscribeAll<OnCreatureAttack, OnCreatureDamage.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCreatureAttack, OnCreatureDamage.Factory>(value);
     }
 
     /// <inheritdoc cref="Events.OnCreatureDamage"/>
@@ -240,7 +229,7 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnAssociateAdd, OnAssociateAdd.Factory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnAssociateRemove"/>
+    /// <inheritdoc cref="Events.OnAssociateRemove"/>
     public event Action<OnAssociateRemove> OnAssociateRemove
     {
       add => EventService.SubscribeAll<OnAssociateRemove, OnAssociateRemove.Factory>(value);
@@ -264,8 +253,8 @@ namespace NWN.API
     /// <inheritdoc cref="NWN.API.Events.OnBarterEnd"/>
     public event Action<OnBarterEnd> OnBarterEnd
     {
-      add => EventService.SubscribeAll(Events.OnBarterEnd.FactoryTypes, value);
-      remove => EventService.UnsubscribeAll(Events.OnBarterEnd.FactoryTypes, value);
+      add => EventService.SubscribeAll<OnBarterEnd, OnBarterEnd.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnBarterEnd, OnBarterEnd.Factory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnBarterStart"/>
@@ -278,8 +267,8 @@ namespace NWN.API
     /// <inheritdoc cref="NWN.API.Events.OnExamineObject"/>
     public event Action<OnExamineObject> OnExamineObject
     {
-      add => EventService.SubscribeAll(Events.OnExamineObject.FactoryTypes, value);
-      remove => EventService.UnsubscribeAll(Events.OnExamineObject.FactoryTypes, value);
+      add => EventService.SubscribeAll<OnExamineObject, OnExamineObject.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnExamineObject, OnExamineObject.Factory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnExamineTrap"/>
@@ -294,6 +283,118 @@ namespace NWN.API
     {
       add => EventService.SubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
       remove => EventService.UnsubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnHeal"/>
+    public event Action<OnHeal> OnHeal
+    {
+      add => EventService.SubscribeAll<OnHeal, OnHeal.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnHeal, OnHeal.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryGoldAdd"/>
+    public event Action<OnInventoryGoldAdd> OnInventoryGoldAdd
+    {
+      add => EventService.SubscribeAll<OnInventoryGoldAdd, OnInventoryGoldAdd.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnInventoryGoldAdd, OnInventoryGoldAdd.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryGoldRemove"/>
+    public event Action<OnInventoryGoldRemove> OnInventoryGoldRemove
+    {
+      add => EventService.SubscribeAll<OnInventoryGoldRemove, OnInventoryGoldRemove.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnInventoryGoldRemove, OnInventoryGoldRemove.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemAdd"/>
+    public event Action<OnInventoryItemAdd> OnInventoryItemAdd
+    {
+      add => EventService.SubscribeAll<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemRemove"/>
+    public event Action<OnInventoryItemRemove> OnInventoryItemRemove
+    {
+      add => EventService.SubscribeAll<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemEquip"/>
+    public event Action<OnItemEquip> OnItemEquip
+    {
+      add => EventService.SubscribeAll<OnItemEquip, OnItemEquip.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemEquip, OnItemEquip.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryClose"/>
+    public event Action<OnItemInventoryClose> OnItemInventoryClose
+    {
+      add => EventService.SubscribeAll<OnItemInventoryClose, OnItemInventoryClose.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemInventoryClose, OnItemInventoryClose.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryOpen"/>
+    public event Action<OnItemInventoryOpen> OnItemInventoryOpen
+    {
+      add => EventService.SubscribeAll<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemPayToIdentify"/>
+    public event Action<OnItemPayToIdentify> OnItemPayToIdentify
+    {
+      add => EventService.SubscribeAll<OnItemPayToIdentify, OnItemPayToIdentify.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemPayToIdentify, OnItemPayToIdentify.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemUse"/>
+    public event Action<OnItemUse> OnItemUse
+    {
+      add => EventService.SubscribeAll<OnItemUse, OnItemUse.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemUse, OnItemUse.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemValidateEquip"/>
+    public event Action<OnItemValidateEquip> OnItemValidateEquip
+    {
+      add => EventService.SubscribeAll<OnItemValidateEquip, OnItemValidateEquip.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemValidateEquip, OnItemValidateEquip.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnItemValidateUse"/>
+    public event Action<OnItemValidateUse> OnItemValidateUse
+    {
+      add => EventService.SubscribeAll<OnItemValidateUse, OnItemValidateUse.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemValidateUse, OnItemValidateUse.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnClientLevelUpBegin"/>
+    public event Action<OnClientLevelUpBegin> OnClientLevelUpBegin
+    {
+      add => EventService.SubscribeAll<OnClientLevelUpBegin, OnClientLevelUpBegin.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnClientLevelUpBegin, OnClientLevelUpBegin.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnLevelDown"/>
+    public event Action<OnLevelDown> OnLevelDown
+    {
+      add => EventService.SubscribeAll<OnLevelDown, OnLevelDown.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnLevelDown, OnLevelDown.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnLevelUp"/>
+    public event Action<OnLevelUp> OnLevelUp
+    {
+      add => EventService.SubscribeAll<OnLevelUp, OnLevelUp.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnLevelUp, OnLevelUp.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnLevelUpAutomatic"/>
+    public event Action<OnLevelUpAutomatic> OnLevelUpAutomatic
+    {
+      add => EventService.SubscribeAll<OnLevelUpAutomatic, OnLevelUpAutomatic.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnLevelUpAutomatic, OnLevelUpAutomatic.Factory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnPartyEvent"/>
@@ -338,11 +439,11 @@ namespace NWN.API
       remove => EventService.UnsubscribeAll<OnSpellCast, OnSpellCast.Factory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnSpellInterrupted"/>
-    public event Action<OnSpellInterrupted> OnSpellInterrupted
+    /// <inheritdoc cref="Events.OnSpellInterrupt"/>
+    public event Action<OnSpellInterrupt> OnSpellInterrupt
     {
-      add => EventService.SubscribeAll<OnSpellInterrupted, OnSpellInterrupted.Factory>(value);
-      remove => EventService.UnsubscribeAll<OnSpellInterrupted, OnSpellInterrupted.Factory>(value);
+      add => EventService.SubscribeAll<OnSpellInterrupt, OnSpellInterrupt.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellInterrupt, OnSpellInterrupt.Factory>(value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnSpellSlotClear"/>
@@ -385,6 +486,13 @@ namespace NWN.API
     {
       add => EventService.SubscribeAll<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(value);
       remove => EventService.UnsubscribeAll<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnCalendarTimeChange"/>
+    public event Action<OnCalendarTimeChange> OnCalendarTimeChange
+    {
+      add => EventService.SubscribeAll<OnCalendarTimeChange, OnCalendarTimeChange.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCalendarTimeChange, OnCalendarTimeChange.Factory>(value);
     }
 
     internal override CNWSScriptVarTable ScriptVarTable

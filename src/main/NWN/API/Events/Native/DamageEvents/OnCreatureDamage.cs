@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -14,17 +14,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => DamagedBy;
 
-    [NativeFunction(NWNXLib.Functions._ZN21CNWSEffectListHandler13OnApplyDamageEP10CNWSObjectP11CGameEffecti)]
-    internal delegate void OnApplyDamageHook(IntPtr pEffectListHandler, IntPtr pObject, IntPtr pEffect, int bLoadingGame);
-
-    internal class Factory : NativeEventFactory<OnApplyDamageHook>
+    internal unsafe class Factory : SingleHookEventFactory<Factory.OnApplyDamageHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
-      protected override FunctionHook<OnApplyDamageHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<OnApplyDamageHook>(OnApplyDamage, HookOrder.Late);
+      protected override FunctionHook<OnApplyDamageHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, void*, int, void> pHook = &OnApplyDamage;
+        return HookService.RequestHook<OnApplyDamageHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDamageEP10CNWSObjectP11CGameEffecti, HookOrder.Late);
+      }
 
-      private unsafe void OnApplyDamage(IntPtr pEffectListHandler, IntPtr pObject, IntPtr pEffect, int bLoadingGame)
+      [UnmanagedCallersOnly]
+      private static void OnApplyDamage(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame)
       {
         CNWSObject gameObject = new CNWSObject(pObject, false);
         if (IsValidObjectTarget((ObjectType)gameObject.m_nObjectType))
@@ -42,7 +43,7 @@ namespace NWN.API.Events
         Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
       }
 
-      private bool IsValidObjectTarget(ObjectType objectType)
+      private static bool IsValidObjectTarget(ObjectType objectType)
       {
         return objectType == ObjectType.Creature || objectType == ObjectType.Placeable;
       }

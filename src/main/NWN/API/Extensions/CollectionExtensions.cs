@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -58,6 +59,19 @@ namespace NWN.API
     public static IEnumerable<T> Yield<T>(this T item)
     {
       yield return item;
+    }
+
+    public static void DisposeAll(this IEnumerable<IDisposable> disposables)
+    {
+      if (disposables == null)
+      {
+        return;
+      }
+
+      foreach (IDisposable disposable in disposables)
+      {
+        disposable?.Dispose();
+      }
     }
   }
 }

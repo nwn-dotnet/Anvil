@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -18,17 +19,18 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    [NativeFunction(NWNXLib.Functions._ZN11CNWSMessage25HandlePlayerToServerPartyEP10CNWSPlayerh)]
-    internal delegate int HandlePartyMessageHook(IntPtr pMessage, IntPtr pPlayer, byte nMinor);
-
-    internal class Factory : NativeEventFactory<HandlePartyMessageHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.HandlePartyMessageHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate int HandlePartyMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
-      protected override FunctionHook<HandlePartyMessageHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<HandlePartyMessageHook>(OnHandlePartyMessage, HookOrder.Early);
+      protected override FunctionHook<HandlePartyMessageHook> RequestHook()
+      {
+        delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePartyMessage;
+        return HookService.RequestHook<HandlePartyMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage25HandlePlayerToServerPartyEP10CNWSPlayerh, HookOrder.Early);
+      }
 
-      private int OnHandlePartyMessage(IntPtr pMessage, IntPtr pPlayer, byte nMinor)
+      [UnmanagedCallersOnly]
+      private static int OnHandlePartyMessage(void* pMessage, void* pPlayer, byte nMinor)
       {
         PartyEventType eventType = (PartyEventType)nMinor;
 
@@ -43,12 +45,11 @@ namespace NWN.API.Events
         OnPartyEvent eventData = new OnPartyEvent
         {
           EventType = eventType,
-          Player = pPlayer != IntPtr.Zero ? new NwPlayer(new CNWSPlayer(pPlayer, false)) : null,
+          Player = pPlayer != null ? new NwPlayer(new CNWSPlayer(pPlayer, false)) : null,
           Target = oidTarget.ToNwObject<NwCreature>()
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventEvent && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());
-
         ProcessEvent(eventData);
 
         return eventData.Result.Value.ToInt();

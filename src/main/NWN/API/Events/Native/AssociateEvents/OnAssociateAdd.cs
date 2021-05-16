@@ -1,4 +1,4 @@
-using System;
+using System.Runtime.InteropServices;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -14,25 +14,24 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    [NativeFunction(NWNXLib.Functions._ZN12CNWSCreature12AddAssociateEjt)]
-    internal delegate void AddAssociateHook(IntPtr pCreature, uint oidAssociate, ushort associateType);
-
-    internal class Factory : NativeEventFactory<AddAssociateHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddAssociateHook>
     {
-      public Factory(Lazy<EventService> eventService, HookService hookService) : base(eventService, hookService) {}
+      internal delegate void AddAssociateHook(void* pCreature, uint oidAssociate, ushort associateType);
 
-      protected override FunctionHook<AddAssociateHook> RequestHook(HookService hookService)
-        => hookService.RequestHook<AddAssociateHook>(OnAddAssociate, HookOrder.Earliest);
-
-      private void OnAddAssociate(IntPtr pCreature, uint oidAssociate, ushort associateType)
+      protected override FunctionHook<AddAssociateHook> RequestHook()
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        delegate* unmanaged<void*, uint, ushort, void> pHook = &OnAddAssociate;
+        return HookService.RequestHook<AddAssociateHook>(pHook, FunctionsLinux._ZN12CNWSCreature12AddAssociateEjt, HookOrder.Earliest);
+      }
 
+      [UnmanagedCallersOnly]
+      private static void OnAddAssociate(void* pCreature, uint oidAssociate, ushort associateType)
+      {
         ProcessEvent(new OnAssociateAdd
         {
-          Owner = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Owner = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
           Associate = oidAssociate.ToNwObject<NwCreature>(),
-          AssociateType = (AssociateType)associateType
+          AssociateType = (AssociateType)associateType,
         });
 
         Hook.CallOriginal(pCreature, oidAssociate, associateType);

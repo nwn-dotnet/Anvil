@@ -24,16 +24,14 @@ namespace NWN.API
     /// <inheritdoc cref="NWN.API.Events.StoreEvents.OnOpen"/>
     public event Action<StoreEvents.OnOpen> OnOpen
     {
-      add => EventService.Subscribe<StoreEvents.OnOpen, GameEventFactory>(this, value)
-        .Register<StoreEvents.OnOpen>(this);
+      add => EventService.Subscribe<StoreEvents.OnOpen, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<StoreEvents.OnOpen, GameEventFactory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.StoreEvents.OnClose"/>
     public event Action<StoreEvents.OnClose> OnClose
     {
-      add => EventService.Subscribe<StoreEvents.OnClose, GameEventFactory>(this, value)
-        .Register<StoreEvents.OnClose>(this);
+      add => EventService.Subscribe<StoreEvents.OnClose, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<StoreEvents.OnClose, GameEventFactory>(this, value);
     }
 

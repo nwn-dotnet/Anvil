@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
 using Anvil.Internal;
 using NLog;
 using NWN.API;
@@ -86,6 +88,69 @@ namespace NWN.Services
     public unsafe bool IsValidResource(string name, ResRefType type = ResRefType.UTC)
     {
       return ResMan.Exists(new CResRef(name), (ushort)type, null).ToBool();
+    }
+
+    /// <summary>
+    /// Gets the raw data of the specified resource.
+    /// </summary>
+    /// <param name="name">The resource name to retrieve.</param>
+    /// <param name="type">The type of resource to retrieve.</param>
+    /// <returns>The raw data of the associated resource, otherwise null if the resource does not exist.</returns>
+    public byte[] GetResourceData(string name, ResRefType type)
+    {
+      switch (type)
+      {
+        case ResRefType.NSS:
+          string source = GetNSSContents(name.ToExoString());
+          return source != null ? NativeUtils.StringEncoding.GetBytes(source) : null;
+        case ResRefType.NCS:
+          return null;
+        default:
+          return GetStandardResourceData(name, (ushort)type);
+      }
+    }
+
+    /// <summary>
+    /// Gets the contents of a .nss script file as a string.
+    /// </summary>
+    /// <param name="scriptName">The name of the script to get the contents of.</param>
+    /// <returns>The script file contents or "" on error.</returns>
+    public unsafe string GetNSSContents(CExoString scriptName)
+    {
+      CScriptSourceFile scriptSourceFile = new CScriptSourceFile();
+      char* data;
+      uint size = 0;
+
+      if (scriptSourceFile.LoadScript(scriptName, &data, &size) == 0)
+      {
+        string retVal = new string((sbyte*)data, 0, (int)size, NativeUtils.StringEncoding);
+        scriptSourceFile.UnloadScript();
+        return retVal;
+      }
+
+      return null;
+    }
+
+    private unsafe byte[] GetStandardResourceData(string name, ushort type)
+    {
+      CResRef resRef = new CResRef(name);
+      if (!ResMan.Exists(resRef, type).ToBool())
+      {
+        return null;
+      }
+
+      CRes res = ResMan.GetResObject(resRef, type);
+      if (res == null)
+      {
+        return null;
+      }
+
+      void* data = res.GetData();
+      int size = res.GetSize();
+
+      byte[] retVal = new byte[res.m_nSize];
+      Marshal.Copy((IntPtr)data, retVal, 0, size);
+      return retVal;
     }
 
     private string CreateResourceDirectory(string path)

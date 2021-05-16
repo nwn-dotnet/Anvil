@@ -23,8 +23,8 @@ namespace NWN.Services
     public void EnterTargetMode(NwPlayer player, Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
     {
       NWScript.EnterTargetingMode(player, (int) validTargets, (int) cursorType, (int) badTargetCursor);
-      player.OnCursorTarget -= handler;
-      player.OnCursorTarget += handler;
+      player.OnPlayerTarget -= handler;
+      player.OnPlayerTarget += handler;
     }
   }
 }

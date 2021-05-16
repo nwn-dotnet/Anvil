@@ -12,7 +12,7 @@ namespace NWNX.Services
 {
   [ServiceBinding(typeof(IEventFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public class NWNXEventFactory : IEventFactory, IScriptDispatcher
+  public class NWNXEventFactory : IEventFactory<NullRegistrationData>, IScriptDispatcher
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -29,7 +29,7 @@ namespace NWNX.Services
       this.eventService = eventService;
     }
 
-    public void Register<TEvent>() where TEvent : IEvent, new()
+    public void Register<TEvent>(NullRegistrationData data) where TEvent : IEvent, new()
     {
       string eventName = GetEventInfo(typeof(TEvent)).EventName;
       CheckConstructorRegistered<TEvent>(eventName);
@@ -37,9 +37,7 @@ namespace NWNX.Services
       UpdateEventScript(eventName);
     }
 
-    void IEventFactory.Init() {}
-
-    void IEventFactory.Unregister<TEvent>()
+    public void Unregister<TEvent>() where TEvent : IEvent, new()
     {
       string eventName = GetEventInfo(typeof(TEvent)).EventName;
       EventsPlugin.UnsubscribeEvent(eventName, InternalScriptName);
