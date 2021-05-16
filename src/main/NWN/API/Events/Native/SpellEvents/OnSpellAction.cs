@@ -44,7 +44,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.AddCastSpellActionsHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddCastSpellActionsHook>
     {
       internal delegate int AddCastSpellActionsHook(void* pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
         int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,

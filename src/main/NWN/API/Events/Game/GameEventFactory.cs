@@ -10,7 +10,7 @@ namespace NWN.API.Events
 {
   [ServiceBinding(typeof(IEventFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public sealed partial class GameEventFactory : IEventFactory, IScriptDispatcher
+  public sealed partial class GameEventFactory : IEventFactory<GameEventFactory.RegistrationData>, IScriptDispatcher
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -28,17 +28,15 @@ namespace NWN.API.Events
       this.eventService = eventService;
     }
 
-    public void Register<TEvent>(NwObject nwObject, bool callOriginal = true) where TEvent : IEvent, new()
+    public void Register<TEvent>(RegistrationData data) where TEvent : IEvent, new()
     {
       EventScriptType eventScriptType = GetEventInfo(typeof(TEvent)).EventScriptType;
 
       CheckConstructorRegistered<TEvent>(eventScriptType);
-      UpdateEventScript(nwObject, eventScriptType, callOriginal);
+      UpdateEventScript(data.NwObject, eventScriptType, data.CallOriginal);
     }
 
-    void IEventFactory.Init() {}
-
-    void IEventFactory.Unregister<TEvent>() {}
+    public void Unregister<TEvent>() where TEvent : IEvent, new() {}
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {

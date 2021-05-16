@@ -20,7 +20,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => OpenedBy;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.OpenInventoryHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.OpenInventoryHook>
     {
       internal delegate void OpenInventoryHook(void* pItem, uint oidOpener);
 

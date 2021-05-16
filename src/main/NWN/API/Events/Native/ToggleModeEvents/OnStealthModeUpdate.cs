@@ -22,7 +22,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.SetStealthModeHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetStealthModeHook>
     {
       internal delegate void SetStealthModeHook(void* pCreature, byte nStealthMode);
 

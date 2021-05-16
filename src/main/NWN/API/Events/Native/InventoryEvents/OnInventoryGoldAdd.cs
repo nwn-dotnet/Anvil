@@ -14,7 +14,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => null;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.AddGoldHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddGoldHook>
     {
       internal delegate void AddGoldHook(void* pCreature, int nGold, int bDisplayFeedback);
 

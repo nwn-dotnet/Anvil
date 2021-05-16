@@ -21,7 +21,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.RequestSellHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RequestSellHook>
     {
       internal delegate int RequestSellHook(void* pCreature, uint oidItemToBuy, uint oidStore);
 

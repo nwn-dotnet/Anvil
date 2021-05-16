@@ -14,7 +14,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => null;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.UpdateTimeHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.UpdateTimeHook>
     {
       internal delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
 

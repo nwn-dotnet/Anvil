@@ -12,7 +12,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.StartCombatRoundHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartCombatRoundHook>
     {
       internal delegate void StartCombatRoundHook(void* pCombatRound, uint oidTarget);
 

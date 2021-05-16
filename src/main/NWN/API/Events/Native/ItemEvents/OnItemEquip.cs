@@ -20,7 +20,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => EquippedBy;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.RunEquipHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RunEquipHook>
     {
       internal delegate int RunEquipHook(void* pCreature, uint oidItemToEquip, uint nInventorySlot, uint oidFeedbackPlayer);
 

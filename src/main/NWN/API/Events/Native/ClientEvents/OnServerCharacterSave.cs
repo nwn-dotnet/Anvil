@@ -23,7 +23,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.SaveServerCharacterHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SaveServerCharacterHook>
     {
       internal delegate int SaveServerCharacterHook(void* pPlayer, int bBackupPlayer);
 

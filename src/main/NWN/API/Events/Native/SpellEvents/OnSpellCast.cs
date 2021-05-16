@@ -32,7 +32,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.SpellCastAndImpactHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SpellCastAndImpactHook>
     {
       internal delegate void SpellCastAndImpactHook(void* pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
         byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell);

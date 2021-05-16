@@ -17,7 +17,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => UsedBy;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.CanEquipItemHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.CanEquipItemHook>
     {
       internal delegate int CanEquipItemHook(void* pCreature, void* pItem, uint* pEquipToSLot, int bEquipping, int bLoading, int bDisplayFeedback, void* pFeedbackPlayer);
 

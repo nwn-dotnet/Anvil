@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+
+namespace NWN.API.Events
+{
+  public abstract class MultiHookEventFactory : HookEventFactory, IEventFactory<NullRegistrationData>, IDisposable
+  {
+    private readonly HashSet<Type> activeEvents = new HashSet<Type>();
+    private IDisposable[] hooks;
+
+    public void Register<TEvent>(NullRegistrationData data) where TEvent : IEvent, new()
+    {
+      if (hooks == null)
+      {
+        hooks = RequestHooks();
+      }
+
+      activeEvents.Add(typeof(TEvent));
+    }
+
+    public void Unregister<TEvent>() where TEvent : IEvent, new()
+    {
+      activeEvents.Remove(typeof(TEvent));
+      if (activeEvents.Count == 0)
+      {
+        Dispose();
+      }
+    }
+
+    public void Dispose()
+    {
+      hooks.DisposeAll();
+      hooks = null;
+    }
+
+    protected abstract IDisposable[] RequestHooks();
+  }
+}

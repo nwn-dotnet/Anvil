@@ -24,7 +24,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => InterruptedCaster;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.OnEffectAppliedHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.OnEffectAppliedHook>
     {
       internal delegate int OnEffectAppliedHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 

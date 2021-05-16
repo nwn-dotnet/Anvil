@@ -14,7 +14,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.DoSpotDetectionHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.DoSpotDetectionHook>
     {
       internal delegate int DoSpotDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
 

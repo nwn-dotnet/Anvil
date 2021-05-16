@@ -33,16 +33,24 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Attacker;
 
-    public static Type[] FactoryTypes { get; } = {typeof(MeleeDamageFactory), typeof(RangedDamageFactory)};
-
-    internal sealed unsafe class MeleeDamageFactory : NativeEventFactory<MeleeDamageFactory.SignalMeleeDamageHook>
+    internal sealed unsafe class Factory : MultiHookEventFactory
     {
       internal delegate void SignalMeleeDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
-      protected override FunctionHook<SignalMeleeDamageHook> RequestHook()
+      internal delegate void SignalRangedDamageHook(void* pCreature, void* pTarget, int nAttacks);
+
+      private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook;
+      private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook;
+
+      protected override IDisposable[] RequestHooks()
       {
-        delegate* unmanaged<void*, void*, int, void> pHook = &OnSignalMeleeDamage;
-        return HookService.RequestHook<SignalMeleeDamageHook>(pHook, FunctionsLinux._ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti, HookOrder.Late);
+        delegate* unmanaged<void*, void*, int, void> pSignalMeleeDamageHook = &OnSignalMeleeDamage;
+        signalMeleeDamageHook = HookService.RequestHook<SignalMeleeDamageHook>(pSignalMeleeDamageHook, FunctionsLinux._ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti, HookOrder.Late);
+
+        delegate* unmanaged<void*, void*, int, void> pSignalRangedDamageHook = &OnSignalRangedDamage;
+        signalRangedDamageHook = HookService.RequestHook<SignalRangedDamageHook>(pSignalRangedDamageHook, FunctionsLinux._ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti, HookOrder.Late);
+
+        return new IDisposable[] { signalMeleeDamageHook, signalRangedDamageHook };
       }
 
       [UnmanagedCallersOnly]
@@ -54,18 +62,7 @@ namespace NWN.API.Events
           ProcessEvent(eventData);
         }
 
-        Hook.CallOriginal(pCreature, pTarget, nAttacks);
-      }
-    }
-
-    internal sealed unsafe class RangedDamageFactory : NativeEventFactory<RangedDamageFactory.SignalRangedDamageHook>
-    {
-      internal delegate void SignalRangedDamageHook(void* pCreature, void* pTarget, int nAttacks);
-
-      protected override FunctionHook<SignalRangedDamageHook> RequestHook()
-      {
-        delegate* unmanaged<void*, void*, int, void> pHook = &OnSignalRangedDamage;
-        return HookService.RequestHook<SignalRangedDamageHook>(pHook, FunctionsLinux._ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti, HookOrder.Late);
+        signalMeleeDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
       }
 
       [UnmanagedCallersOnly]
@@ -77,46 +74,46 @@ namespace NWN.API.Events
           ProcessEvent(eventData);
         }
 
-        Hook.CallOriginal(pCreature, pTarget, nAttacks);
-      }
-    }
-
-    private static unsafe OnCreatureAttack[] GetAttackEvents(void* pCreature, void* pTarget, int nAttacks)
-    {
-      CNWSCreature cnwsCreature = new CNWSCreature(pCreature, false);
-      NwCreature creature = cnwsCreature.m_idSelf.ToNwObject<NwCreature>();
-      NwGameObject target = new CNWSObject(pTarget, false).m_idSelf.ToNwObject<NwGameObject>();
-
-      // m_nCurrentAttack points to the attack after this flurry.
-      int attackNumberOffset = cnwsCreature.m_pcCombatRound.m_nCurrentAttack - nAttacks;
-      CNWSCombatRound combatRound = cnwsCreature.m_pcCombatRound;
-
-      // Create an event for each attack in the flurry
-      OnCreatureAttack[] attackEvents = new OnCreatureAttack[nAttacks];
-      for (int i = 0; i < nAttacks; i++)
-      {
-        attackEvents[i] = GetEventData(creature, target, combatRound, attackNumberOffset + i);
+        signalRangedDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
       }
 
-      return attackEvents;
-    }
-
-    private static OnCreatureAttack GetEventData(NwCreature creature, NwGameObject target, CNWSCombatRound combatRound, int attackNumber)
-    {
-      CNWSCombatAttackData combatAttackData = combatRound.GetAttack(attackNumber);
-
-      return new OnCreatureAttack
+      private static OnCreatureAttack[] GetAttackEvents(void* pCreature, void* pTarget, int nAttacks)
       {
-        CombatAttackData = combatAttackData,
-        Attacker = creature,
-        Target = target,
-        AttackNumber = attackNumber + 1, // 1-based for backwards compatibility
-        WeaponAttackType = (WeaponAttackType)combatAttackData.m_nWeaponAttackType,
-        SneakAttack = (SneakAttack)(combatAttackData.m_bSneakAttack + (combatAttackData.m_bDeathAttack << 1)),
-        KillingBlow = combatAttackData.m_bKillingBlow.ToBool(),
-        AttackType = combatAttackData.m_nAttackType,
-        DamageData = new DamageData<short>(combatAttackData.m_nDamage)
-      };
+        CNWSCreature cnwsCreature = new CNWSCreature(pCreature, false);
+        NwCreature creature = cnwsCreature.m_idSelf.ToNwObject<NwCreature>();
+        NwGameObject target = new CNWSObject(pTarget, false).m_idSelf.ToNwObject<NwGameObject>();
+
+        // m_nCurrentAttack points to the attack after this flurry.
+        int attackNumberOffset = cnwsCreature.m_pcCombatRound.m_nCurrentAttack - nAttacks;
+        CNWSCombatRound combatRound = cnwsCreature.m_pcCombatRound;
+
+        // Create an event for each attack in the flurry
+        OnCreatureAttack[] attackEvents = new OnCreatureAttack[nAttacks];
+        for (int i = 0; i < nAttacks; i++)
+        {
+          attackEvents[i] = GetEventData(creature, target, combatRound, attackNumberOffset + i);
+        }
+
+        return attackEvents;
+      }
+
+      private static OnCreatureAttack GetEventData(NwCreature creature, NwGameObject target, CNWSCombatRound combatRound, int attackNumber)
+      {
+        CNWSCombatAttackData combatAttackData = combatRound.GetAttack(attackNumber);
+
+        return new OnCreatureAttack
+        {
+          CombatAttackData = combatAttackData,
+          Attacker = creature,
+          Target = target,
+          AttackNumber = attackNumber + 1, // 1-based for backwards compatibility
+          WeaponAttackType = (WeaponAttackType)combatAttackData.m_nWeaponAttackType,
+          SneakAttack = (SneakAttack)(combatAttackData.m_bSneakAttack + (combatAttackData.m_bDeathAttack << 1)),
+          KillingBlow = combatAttackData.m_bKillingBlow.ToBool(),
+          AttackType = combatAttackData.m_nAttackType,
+          DamageData = new DamageData<short>(combatAttackData.m_nDamage)
+        };
+      }
     }
   }
 }

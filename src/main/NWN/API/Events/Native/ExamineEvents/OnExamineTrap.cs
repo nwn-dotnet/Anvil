@@ -14,7 +14,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => ExaminedBy;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.TrapExamineHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.TrapExamineHook>
     {
       internal delegate void TrapExamineHook(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess);
 

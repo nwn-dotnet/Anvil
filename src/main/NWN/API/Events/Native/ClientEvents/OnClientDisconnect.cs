@@ -17,7 +17,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.RemovePCFromWorldHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RemovePCFromWorldHook>
     {
       internal delegate void RemovePCFromWorldHook(void* pServerExoAppInternal, void* pPlayer);
 

@@ -22,8 +22,7 @@ namespace NWNX.Services
     [Obsolete("Use the EventService.SubscribeAll function, using the `NWNXEventFactory` as the factory. NWNX events will be removed in the future and replaced with native implementations.")]
     public void Subscribe<TEvent>(Action<TEvent> callback) where TEvent : IEvent, new()
     {
-      eventService.SubscribeAll<TEvent, NWNXEventFactory>(callback)
-        .Register<TEvent>();
+      eventService.SubscribeAll<TEvent, NWNXEventFactory>(callback);
     }
 
     /// <summary>

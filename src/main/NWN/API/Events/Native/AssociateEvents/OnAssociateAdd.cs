@@ -14,7 +14,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.AddAssociateHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddAssociateHook>
     {
       internal delegate void AddAssociateHook(void* pCreature, uint oidAssociate, ushort associateType);
 

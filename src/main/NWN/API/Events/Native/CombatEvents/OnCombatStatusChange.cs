@@ -14,7 +14,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.SendServerToPlayerAmbientBattleMusicPlayHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendServerToPlayerAmbientBattleMusicPlayHook>
     {
       internal delegate int SendServerToPlayerAmbientBattleMusicPlayHook(void* pMessage, uint nPlayer, int bPlay);
 

@@ -20,7 +20,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => DisarmedObject;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.ApplyDisarmHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.ApplyDisarmHook>
     {
       internal delegate int ApplyDisarmHook(void* pEffectHandler, void* pObject, void* pEffect, int bLoadingGame);
 

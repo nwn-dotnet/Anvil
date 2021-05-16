@@ -12,7 +12,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.SendFeedbackMessageHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendFeedbackMessageHook>
     {
       internal delegate void SendFeedbackMessageHook(void* pCreature, ushort nFeedbackId, void* pMessageData, void* pFeedbackPlayer);
 

@@ -43,7 +43,7 @@ namespace NWN.API.Events
 
       NwObject IEvent.Context => null;
 
-      internal sealed unsafe class Factory : NativeEventFactory<Factory.SendServerToPlayerCharListHook>
+      internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendServerToPlayerCharListHook>
       {
         internal delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
 

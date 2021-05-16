@@ -17,7 +17,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.SendServerToPlayerAreaClientAreaHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendServerToPlayerAreaClientAreaHook>
     {
       internal delegate int SendServerToPlayerAreaClientAreaHook(void* pMessage, void* pPlayer, void* pArea, float fX, float fY, float fZ, void* vNewOrientation, int bPlayerIsNewToModule);
 

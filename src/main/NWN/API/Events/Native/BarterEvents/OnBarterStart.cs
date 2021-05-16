@@ -12,7 +12,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Initiator;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.StartBarterHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartBarterHook>
     {
       internal delegate void StartBarterHook(void* pMessage, void* pPlayer);
 

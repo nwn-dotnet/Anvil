@@ -15,7 +15,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Player;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.HandlePlayerToServerLevelUpMessageHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.HandlePlayerToServerLevelUpMessageHook>
     {
       internal delegate int HandlePlayerToServerLevelUpMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 

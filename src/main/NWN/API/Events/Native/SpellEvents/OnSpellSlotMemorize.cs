@@ -25,7 +25,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.SetMemorizedSpellSlotHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetMemorizedSpellSlotHook>
     {
       internal delegate int SetMemorizedSpellSlotHook(void* pCreatureStats, byte nMultiClass, byte nSpellSlot,
         uint nSpellId, byte nDomainLevel, byte nMetaType, int bFromClient);

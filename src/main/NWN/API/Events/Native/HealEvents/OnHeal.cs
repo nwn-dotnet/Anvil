@@ -23,7 +23,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Healer;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.OnApplyHealHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.OnApplyHealHook>
     {
       internal delegate int OnApplyHealHook(void* pEffectListHandler, void* pObject, void* pGameEffect, int bLoadingGame);
 

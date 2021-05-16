@@ -13,16 +13,36 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => ExaminedBy;
 
-    public static Type[] FactoryTypes { get; } = {typeof(CreatureEventFactory), typeof(DoorEventFactory), typeof(ItemEventFactory), typeof(PlaceableEventFactory)};
-
-    internal sealed unsafe class CreatureEventFactory : NativeEventFactory<CreatureEventFactory.CreatureExamineHook>
+    internal sealed unsafe class Factory : MultiHookEventFactory
     {
       internal delegate void CreatureExamineHook(void* pMessage, void* pPlayer, uint oidCreature);
 
-      protected override FunctionHook<CreatureExamineHook> RequestHook()
+      internal delegate void DoorExamineHook(void* pMessage, void* pPlayer, uint oidDoor);
+
+      internal delegate void ItemExamineHook(void* pMessage, void* pPlayer, uint oidItem);
+
+      internal delegate void PlaceableExamineHook(void* pMessage, void* pPlayer, uint oidPlaceable);
+
+      private static FunctionHook<CreatureExamineHook> creatureExamineHook;
+      private static FunctionHook<DoorExamineHook> doorExamineHook;
+      private static FunctionHook<ItemExamineHook> itemExamineHook;
+      private static FunctionHook<PlaceableExamineHook> placeableExamineHook;
+
+      protected override IDisposable[] RequestHooks()
       {
-        delegate* unmanaged<void*, void*, uint, void> pHook = &OnCreatureExamine;
-        return HookService.RequestHook<CreatureExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj, HookOrder.Earliest);
+        delegate* unmanaged<void*, void*, uint, void> pCreatureExamineHook = &OnCreatureExamine;
+        creatureExamineHook = HookService.RequestHook<CreatureExamineHook>(pCreatureExamineHook, FunctionsLinux._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj, HookOrder.Earliest);
+
+        delegate* unmanaged<void*, void*, uint, void> pDoorExamineHook = &OnDoorExamine;
+        doorExamineHook = HookService.RequestHook<DoorExamineHook>(pDoorExamineHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_DoorDataEP10CNWSPlayerj, HookOrder.Earliest);
+
+        delegate* unmanaged<void*, void*, uint, void> pItemExamineHook = &OnItemExamine;
+        itemExamineHook = HookService.RequestHook<ItemExamineHook>(pItemExamineHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_ItemDataEP10CNWSPlayerj, HookOrder.Earliest);
+
+        delegate* unmanaged<void*, void*, uint, void> pPlaceableExamineHook = &OnPlaceableExamine;
+        placeableExamineHook = HookService.RequestHook<PlaceableExamineHook>(pPlaceableExamineHook, FunctionsLinux._ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj, HookOrder.Earliest);
+
+        return new IDisposable[] { creatureExamineHook, doorExamineHook, itemExamineHook, placeableExamineHook };
       }
 
       [UnmanagedCallersOnly]
@@ -34,18 +54,7 @@ namespace NWN.API.Events
           ExaminedObject = oidCreature.ToNwObject<NwCreature>()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, oidCreature);
-      }
-    }
-
-    internal sealed unsafe class DoorEventFactory : NativeEventFactory<DoorEventFactory.DoorExamineHook>
-    {
-      internal delegate void DoorExamineHook(void* pMessage, void* pPlayer, uint oidDoor);
-
-      protected override FunctionHook<DoorExamineHook> RequestHook()
-      {
-        delegate* unmanaged<void*, void*, uint, void> pHook = &OnDoorExamine;
-        return HookService.RequestHook<DoorExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_DoorDataEP10CNWSPlayerj, HookOrder.Earliest);
+        creatureExamineHook.CallOriginal(pMessage, pPlayer, oidCreature);
       }
 
       [UnmanagedCallersOnly]
@@ -57,18 +66,7 @@ namespace NWN.API.Events
           ExaminedObject = oidDoor.ToNwObject<NwDoor>()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, oidDoor);
-      }
-    }
-
-    internal sealed unsafe class ItemEventFactory : NativeEventFactory<ItemEventFactory.ItemExamineHook>
-    {
-      internal delegate void ItemExamineHook(void* pMessage, void* pPlayer, uint oidItem);
-
-      protected override FunctionHook<ItemExamineHook> RequestHook()
-      {
-        delegate* unmanaged<void*, void*, uint, void> pHook = &OnItemExamine;
-        return HookService.RequestHook<ItemExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_ItemDataEP10CNWSPlayerj, HookOrder.Earliest);
+        doorExamineHook.CallOriginal(pMessage, pPlayer, oidDoor);
       }
 
       [UnmanagedCallersOnly]
@@ -80,18 +78,7 @@ namespace NWN.API.Events
           ExaminedObject = oidItem.ToNwObject<NwItem>()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, oidItem);
-      }
-    }
-
-    internal sealed unsafe class PlaceableEventFactory : NativeEventFactory<PlaceableEventFactory.PlaceableExamineHook>
-    {
-      internal delegate void PlaceableExamineHook(void* pMessage, void* pPlayer, uint oidPlaceable);
-
-      protected override FunctionHook<PlaceableExamineHook> RequestHook()
-      {
-        delegate* unmanaged<void*, void*, uint, void> pHook = &OnPlaceableExamine;
-        return HookService.RequestHook<PlaceableExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj, HookOrder.Earliest);
+        itemExamineHook.CallOriginal(pMessage, pPlayer, oidItem);
       }
 
       [UnmanagedCallersOnly]
@@ -103,7 +90,7 @@ namespace NWN.API.Events
           ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>()
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, oidPlaceable);
+        placeableExamineHook.CallOriginal(pMessage, pPlayer, oidPlaceable);
       }
     }
   }

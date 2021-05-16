@@ -17,7 +17,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => AcquiredBy;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.AddItemHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddItemHook>
     {
       internal delegate int AddItemHook(void* pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem);
 

@@ -10,7 +10,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.LevelUpAutomaticHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.LevelUpAutomaticHook>
     {
       internal delegate void LevelUpAutomaticHook(void* pCreatureStats, byte nClass, int bReadyAllSpells, byte nPackage);
 

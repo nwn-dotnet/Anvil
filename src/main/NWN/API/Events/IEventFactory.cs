@@ -2,8 +2,11 @@ namespace NWN.API.Events
 {
   public interface IEventFactory
   {
-    void Init();
+    void Unregister<TEvent>() where TEvent : IEvent, new();
+  }
 
-    void Unregister<TEvent>() where TEvent : IEvent;
+  public interface IEventFactory<in TRegisterData> : IEventFactory
+  {
+    void Register<TEvent>(TRegisterData data) where TEvent : IEvent, new();
   }
 }

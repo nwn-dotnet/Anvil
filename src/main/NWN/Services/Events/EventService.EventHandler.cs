@@ -10,6 +10,7 @@ namespace NWN.Services
       private abstract class EventHandler
       {
         public abstract void ProcessEvent(IEvent eventData);
+
         public abstract void ClearObjectSubscriptions(NwObject gameObject);
       }
 

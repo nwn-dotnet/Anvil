@@ -20,7 +20,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => ClosedBy;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.CloseInventoryHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.CloseInventoryHook>
     {
       internal delegate void CloseInventoryHook(void* pItem, uint oidCloser, int bUpdatePlayer);
 

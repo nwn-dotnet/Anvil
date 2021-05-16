@@ -16,7 +16,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.PayToIdentifyItemHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.PayToIdentifyItemHook>
     {
       internal delegate void PayToIdentifyItemHook(void* pCreature, uint oidItem, uint oidStore);
 

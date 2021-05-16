@@ -25,7 +25,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.CreatureUseFeatHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.CreatureUseFeatHook>
     {
       internal delegate int CreatureUseFeatHook(void* pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, void* pTargetPos);
 

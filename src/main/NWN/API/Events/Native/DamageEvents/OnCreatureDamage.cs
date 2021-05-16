@@ -14,7 +14,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => DamagedBy;
 
-    internal unsafe class Factory : NativeEventFactory<Factory.OnApplyDamageHook>
+    internal unsafe class Factory : SingleHookEventFactory<Factory.OnApplyDamageHook>
     {
       internal delegate void OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 

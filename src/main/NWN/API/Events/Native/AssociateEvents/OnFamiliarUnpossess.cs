@@ -12,7 +12,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.UnpossessFamiliarHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.UnpossessFamiliarHook>
     {
       internal delegate void UnpossessFamiliarHook(void* pCreature);
 

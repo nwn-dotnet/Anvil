@@ -15,8 +15,6 @@ namespace NWN.Services
     private readonly Dictionary<Type, IEventFactory> eventFactories = new Dictionary<Type, IEventFactory>();
     private readonly Dictionary<Type, EventHandler> eventHandlers = new Dictionary<Type, EventHandler>();
 
-    private readonly HashSet<IEventFactory> activeFactories = new HashSet<IEventFactory>();
-
     public EventService(IEnumerable<IEventFactory> eventFactories)
     {
       foreach (IEventFactory eventFactory in eventFactories)
@@ -25,21 +23,16 @@ namespace NWN.Services
       }
     }
 
-    public TEventFactory Subscribe<TEvent, TEventFactory>(NwObject nwObject, Action<TEvent> handler)
-      where TEvent : IEvent
-      where TEventFactory : IEventFactory
+    public void Subscribe<TEvent, TFactory>(NwObject nwObject, Action<TEvent> handler)
+      where TEvent : IEvent, new()
+      where TFactory : IEventFactory<NullRegistrationData>
     {
-      if (ReferenceEquals(nwObject, null))
-      {
-        return default;
-      }
-
-      AddObjectHandler(nwObject, handler);
-      return InitEventFactory<TEventFactory>();
+      Subscribe<TEvent, TFactory, NullRegistrationData>(nwObject, default, handler);
     }
 
-    public void Subscribe<TEvent>(NwObject nwObject, IEnumerable<Type> factoryTypes, Action<TEvent> handler)
-      where TEvent : IEvent
+    public void Subscribe<TEvent, TFactory, TRegData>(NwObject nwObject, TRegData registrationData, Action<TEvent> handler)
+      where TEvent : IEvent, new()
+      where TFactory : IEventFactory<TRegData>
     {
       if (ReferenceEquals(nwObject, null))
       {
@@ -47,27 +40,29 @@ namespace NWN.Services
       }
 
       AddObjectHandler(nwObject, handler);
-      InitEventFactories(factoryTypes);
+      TFactory factory = GetEventFactory<TFactory>();
+      factory.Register<TEvent>(registrationData);
     }
 
-    public TEventFactory SubscribeAll<TEvent, TEventFactory>(Action<TEvent> handler)
-      where TEvent : IEvent
-      where TEventFactory : IEventFactory
+    public void SubscribeAll<TEvent, TFactory>(Action<TEvent> handler)
+      where TEvent : IEvent, new()
+      where TFactory : IEventFactory<NullRegistrationData>
+    {
+      SubscribeAll<TEvent, TFactory, NullRegistrationData>(default, handler);
+    }
+
+    public void SubscribeAll<TEvent, TFactory, TRegData>(TRegData registrationData, Action<TEvent> handler)
+      where TEvent : IEvent, new()
+      where TFactory : IEventFactory<TRegData>
     {
       AddGlobalHandler(handler);
-      return InitEventFactory<TEventFactory>();
+      TFactory factory = GetEventFactory<TFactory>();
+      factory.Register<TEvent>(registrationData);
     }
 
-    public void SubscribeAll<TEvent>(IEnumerable<Type> factoryTypes, Action<TEvent> handler)
-      where TEvent : IEvent
-    {
-      AddGlobalHandler(handler);
-      InitEventFactories(factoryTypes);
-    }
-
-    public void Unsubscribe<TEvent, TEventFactory>(NwObject nwObject, Action<TEvent> handler)
-      where TEvent : IEvent
-      where TEventFactory : IEventFactory
+    public void Unsubscribe<TEvent, TFactory>(NwObject nwObject, Action<TEvent> handler)
+      where TEvent : IEvent, new()
+      where TFactory : IEventFactory
     {
       if (ReferenceEquals(nwObject, null))
       {
@@ -75,34 +70,15 @@ namespace NWN.Services
       }
 
       RemoveObjectHandler(nwObject, handler);
-      TryCleanupHandler<TEvent>(typeof(TEventFactory).Yield());
+      TryCleanupHandler<TEvent, TFactory>();
     }
 
-    public void Unsubscribe<TEvent>(NwObject nwObject, IEnumerable<Type> factoryTypes, Action<TEvent> handler)
-      where TEvent : IEvent
-    {
-      if (ReferenceEquals(nwObject, null))
-      {
-        return;
-      }
-
-      RemoveObjectHandler(nwObject, handler);
-      TryCleanupHandler<TEvent>(factoryTypes);
-    }
-
-    public void UnsubscribeAll<TEvent, TEventFactory>(Action<TEvent> handler)
-      where TEvent : IEvent
-      where TEventFactory : IEventFactory
+    public void UnsubscribeAll<TEvent, TFactory>(Action<TEvent> handler)
+      where TEvent : IEvent, new()
+      where TFactory : IEventFactory
     {
       RemoveGlobalHandler(handler);
-      TryCleanupHandler<TEvent>(typeof(TEventFactory).Yield());
-    }
-
-    public void UnsubscribeAll<TEvent>(IEnumerable<Type> factoryTypes, Action<TEvent> handler)
-      where TEvent : IEvent
-    {
-      RemoveGlobalHandler(handler);
-      TryCleanupHandler<TEvent>(factoryTypes);
+      TryCleanupHandler<TEvent, TFactory>();
     }
 
     public void ClearObjectSubscriptions(NwObject nwObject)
@@ -158,36 +134,9 @@ namespace NWN.Services
       eventHandler?.UnsubscribeAll(handler);
     }
 
-    private void InitEventFactories(IEnumerable<Type> factoryTypes)
-    {
-      foreach (Type factoryType in factoryTypes)
-      {
-        InitEventFactory(factoryType);
-      }
-    }
-
-    private TEventFactory InitEventFactory<TEventFactory>() where TEventFactory : IEventFactory
-    {
-      return (TEventFactory)InitEventFactory(typeof(TEventFactory));
-    }
-
-    private IEventFactory InitEventFactory(Type factoryType)
-    {
-      if (!eventFactories.TryGetValue(factoryType, out IEventFactory factory))
-      {
-        Log.Error($"Cannot find event factory of type {factoryType.GetFullName()}. Are you missing a ServiceBinding?");
-        return default;
-      }
-
-      if (activeFactories.Add(factory))
-      {
-        factory.Init();
-      }
-
-      return factory;
-    }
-
-    private void TryCleanupHandler<TEvent>(IEnumerable<Type> factoryTypes) where TEvent : IEvent
+    private void TryCleanupHandler<TEvent, TFactory>()
+      where TEvent : IEvent, new()
+      where TFactory : IEventFactory
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
       if (eventHandler != null)
@@ -200,13 +149,21 @@ namespace NWN.Services
         eventHandlers.Remove(typeof(TEvent));
       }
 
-      foreach (Type eventFactory in factoryTypes)
+      TFactory factory = GetEventFactory<TFactory>();
+      factory.Unregister<TEvent>();
+    }
+
+    private TFactory GetEventFactory<TFactory>() where TFactory : IEventFactory
+    {
+      Type factoryType = typeof(TFactory);
+
+      if (!eventFactories.TryGetValue(factoryType, out IEventFactory factory))
       {
-        if (eventFactories.TryGetValue(eventFactory, out IEventFactory factory) && activeFactories.Remove(factory))
-        {
-          factory.Unregister<TEvent>();
-        }
+        Log.Error($"Cannot find event factory of type {factoryType.GetFullName()}. Are you missing a ServiceBinding?");
+        return default;
       }
+
+      return (TFactory)factory;
     }
 
     private EventHandler<TEvent> GetEventHandler<TEvent>(bool createMissing) where TEvent : IEvent

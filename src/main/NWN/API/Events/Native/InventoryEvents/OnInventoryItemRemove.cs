@@ -12,7 +12,7 @@ namespace NWN.API.Events
 
     NwObject IEvent.Context => RemovedFrom;
 
-    internal sealed unsafe class Factory : NativeEventFactory<Factory.RemoveItemHook>
+    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RemoveItemHook>
     {
       internal delegate int RemoveItemHook(void* pItemRepository, void* pItem);
 
