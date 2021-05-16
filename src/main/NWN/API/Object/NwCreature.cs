@@ -45,6 +45,13 @@ namespace NWN.API
       return creature?.Creature;
     }
 
+    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnActivateItem"/>
+    public event Action<ModuleEvents.OnActivateItem> OnActivateItem
+    {
+      add => EventService.Subscribe<ModuleEvents.OnActivateItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnActivateItem, GameEventFactory>(this, value);
+    }
+
     /// <inheritdoc cref="NWN.API.Events.CreatureEvents.OnBlocked"/>
     public event Action<CreatureEvents.OnBlocked> OnBlocked
     {

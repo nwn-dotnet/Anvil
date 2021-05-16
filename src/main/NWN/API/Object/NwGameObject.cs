@@ -26,7 +26,21 @@ namespace NWN.API
       get => GameObject.m_ScriptVars;
     }
 
-    /// <inheritdoc cref="Events.OnDisarmWeapon"/>
+    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnAcquireItem"/>
+    public event Action<ModuleEvents.OnAcquireItem> OnAcquireItem
+    {
+      add => EventService.Subscribe<ModuleEvents.OnAcquireItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnAcquireItem, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnUnacquireItem"/>
+    public event Action<ModuleEvents.OnUnacquireItem> OnUnacquireItem
+    {
+      add => EventService.Subscribe<ModuleEvents.OnUnacquireItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnUnacquireItem, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.OnDisarmWeapon"/>
     public event Action<OnDisarmWeapon> OnDisarmWeapon
     {
       add => EventService.Subscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
