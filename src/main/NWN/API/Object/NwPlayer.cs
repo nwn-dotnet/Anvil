@@ -63,8 +63,8 @@ namespace NWN.API
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnClientEnter"/>
     public event Action<ModuleEvents.OnClientEnter> OnClientEnter
     {
-      add => EventService.Subscribe<ModuleEvents.OnClientEnter, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
-      remove => EventService.Unsubscribe<ModuleEvents.OnClientEnter, GameEventFactory>(this, value);
+      add => EventService.Subscribe<ModuleEvents.OnClientEnter, GameEventFactory, GameEventFactory.RegistrationData>(ControlledCreature, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnClientEnter, GameEventFactory>(ControlledCreature, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnClientLeave"/>
@@ -77,8 +77,8 @@ namespace NWN.API
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnCutsceneAbort"/>
     public event Action<ModuleEvents.OnCutsceneAbort> OnCutsceneAbort
     {
-      add => EventService.Subscribe<ModuleEvents.OnCutsceneAbort, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
-      remove => EventService.Unsubscribe<ModuleEvents.OnCutsceneAbort, GameEventFactory>(this, value);
+      add => EventService.Subscribe<ModuleEvents.OnCutsceneAbort, GameEventFactory, GameEventFactory.RegistrationData>(ControlledCreature, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnCutsceneAbort, GameEventFactory>(ControlledCreature, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerChat"/>
