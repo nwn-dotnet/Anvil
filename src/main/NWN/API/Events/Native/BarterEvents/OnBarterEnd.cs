@@ -19,7 +19,7 @@ namespace NWN.API.Events
 
     public bool Complete { get; private init; }
 
-    NwObject IEvent.Context => Initiator;
+    NwObject IEvent.Context => Initiator.ControlledCreature;
 
     internal sealed unsafe class Factory : MultiHookEventFactory
     {
@@ -61,7 +61,7 @@ namespace NWN.API.Events
       private static int OnSendServerToPlayerBarterCloseBarter(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
       {
         NwPlayer player = new NwPlayer(LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer());
-        CNWSBarter barter = player.Creature.GetBarterInfo(0);
+        CNWSBarter barter = player.ControlledCreature.Creature.GetBarterInfo(0);
 
         // We only need to run the END on a CANCEL BARTER for the initiator
         if (barter != null && barter.m_bInitiator.ToBool() && !bAccepted.ToBool())
@@ -102,8 +102,8 @@ namespace NWN.API.Events
 
         return new OnBarterEnd
         {
-          Initiator = initiator.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
-          Target = target.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
+          Initiator = initiator.m_pOwner.m_idSelf.ToNwPlayer(),
+          Target = target.m_pOwner.m_idSelf.ToNwPlayer(),
           Complete = true,
           InitiatorItems = GetBarterItems(initiator),
           TargetItems = GetBarterItems(target)
@@ -114,8 +114,8 @@ namespace NWN.API.Events
       {
         return new OnBarterEnd
         {
-          Initiator = initiator.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
-          Target = target.m_pOwner.m_idSelf.ToNwObject<NwPlayer>(),
+          Initiator = initiator.m_pOwner.m_idSelf.ToNwPlayer(),
+          Target = target.m_pOwner.m_idSelf.ToNwPlayer(),
           Complete = false,
           InitiatorItems = new NwItem[0],
           TargetItems = new NwItem[0],

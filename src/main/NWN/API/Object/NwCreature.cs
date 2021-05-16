@@ -380,9 +380,33 @@ namespace NWN.API
       }
     }
 
+    /// <summary>
+    /// Gets the player currently controlling this creature.
+    /// </summary>
     public NwPlayer ControllingPlayer
     {
       get => ObjectId.ToNwPlayer();
+    }
+
+    /// <summary>
+    /// Gets the owner of this creature. This is the original player that logged in with this creature.
+    /// </summary>
+    public unsafe NwPlayer OwnerPlayer
+    {
+      get
+      {
+        CExoLinkedListInternal players = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.m_pcExoLinkedListInternal;
+        for (CExoLinkedListNode node = players.pHead; node != null; node = node.pNext)
+        {
+          CNWSPlayer player = new CNWSPlayer(node.pObject, false);
+          if (player.m_oidPCObject == this)
+          {
+            return new NwPlayer(player);
+          }
+        }
+
+        return null;
+      }
     }
 
     /// <summary>
