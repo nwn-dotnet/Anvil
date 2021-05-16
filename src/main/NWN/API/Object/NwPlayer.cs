@@ -76,7 +76,7 @@ namespace NWN.API
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnPlayerEquipItem"/>
-    public event Action<ModuleEvents.OnPlayerEquipItem> OnEquipItem
+    public event Action<ModuleEvents.OnPlayerEquipItem> OnPlayerEquipItem
     {
       add => EventService.Subscribe<ModuleEvents.OnPlayerEquipItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
       remove => EventService.Unsubscribe<ModuleEvents.OnPlayerEquipItem, GameEventFactory>(this, value);
