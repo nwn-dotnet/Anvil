@@ -55,11 +55,6 @@ namespace NWN.API
       return player?.Player;
     }
 
-    public static explicit operator NwPlayer(CNWSPlayer player)
-    {
-      return player == null ? null : new NwPlayer(player);
-    }
-
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnClientEnter"/>
     public event Action<ModuleEvents.OnClientEnter> OnClientEnter
     {

@@ -29,8 +29,8 @@ namespace NWN.API.Events
 
         ProcessEvent(new OnBarterStart
         {
-          Initiator = new NwPlayer(new CNWSPlayer(pPlayer, false)),
-          Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwPlayer()
+          Initiator = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwPlayer(),
         });
 
         Hook.CallOriginal(pMessage, pPlayer);

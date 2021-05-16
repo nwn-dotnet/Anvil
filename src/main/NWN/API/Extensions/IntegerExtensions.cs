@@ -25,7 +25,7 @@ namespace NWN.API
     public static NwPlayer ToNwPlayer(this uint objectId)
     {
       CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId);
-      return player != null ? new NwPlayer(player) : null;
+      return player != null && player != IntPtr.Zero ? new NwPlayer(player) : null;
     }
 
     public static Lazy<NwObject> ToNwObjectLazy(this uint objectId)

@@ -401,7 +401,7 @@ namespace NWN.API
           CNWSPlayer player = new CNWSPlayer(node.pObject, false);
           if (player.m_oidPCObject == this)
           {
-            return new NwPlayer(player);
+            return player.ToNwPlayer();
           }
         }
 

@@ -60,8 +60,13 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerBarterCloseBarter(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
       {
-        NwPlayer player = new NwPlayer(LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer());
-        CNWSBarter barter = player.ControlledCreature.Creature.GetBarterInfo(0);
+        NwPlayer player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer().ToNwPlayer();
+        if (player == null)
+        {
+          return sendServerToPlayerBarterCloseBarterHook.CallOriginal(pMessage, nInitiatorId, nRecipientId, bAccepted);
+        }
+
+        CNWSBarter barter = player.ControlledCreature?.Creature?.GetBarterInfo(0);
 
         // We only need to run the END on a CANCEL BARTER for the initiator
         if (barter != null && barter.m_bInitiator.ToBool() && !bAccepted.ToBool())

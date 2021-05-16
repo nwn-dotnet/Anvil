@@ -33,11 +33,9 @@ namespace NWN.API.Events
           return Hook.CallOriginal(pMessage, pPlayer, nMinor);
         }
 
-        CNWSPlayer player = new CNWSPlayer(pPlayer, false);
-
         OnClientLevelUpBegin eventData = new OnClientLevelUpBegin
         {
-          Player = new NwPlayer(player),
+          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventLevelUp && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());

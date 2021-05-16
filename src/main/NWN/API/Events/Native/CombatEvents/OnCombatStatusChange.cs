@@ -27,12 +27,12 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerAmbientBattleMusicPlay(void* pMessage, uint nPlayer, int bPlay)
       {
-        CNWSPlayer player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).AsNWSPlayer();
+        NwPlayer player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).AsNWSPlayer().ToNwPlayer();
         if (player != null)
         {
           ProcessEvent(new OnCombatStatusChange
           {
-            Player = new NwPlayer(player),
+            Player = player,
             CombatStatus = bPlay.ToBool() ? CombatStatus.EnterCombat : CombatStatus.ExitCombat
           });
         }

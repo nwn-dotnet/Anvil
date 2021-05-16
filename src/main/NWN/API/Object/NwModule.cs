@@ -645,7 +645,7 @@ namespace NWN.API
         for (CExoLinkedListNode node = playerList.GetHeadPos(); node != null; node = node.pNext)
         {
           CNWSPlayer player = playerList.GetAtPos(node).AsNWSPlayer();
-          yield return new NwPlayer(player);
+          yield return player.ToNwPlayer();
         }
       }
     }

@@ -32,8 +32,8 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnServerSendArea
         {
-          Area = new NwArea(new CNWSArea(pArea, false)),
-          Player = new NwPlayer(new CNWSPlayer(pPlayer, false)),
+          Area = new CNWSArea(pArea, false).ToNwObject<NwArea>(),
+          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
           IsPlayerNewToModule = bPlayerIsNewToModule.ToBool(),
         });
 
