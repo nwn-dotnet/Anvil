@@ -98,7 +98,25 @@ namespace NWN.Services
 
     private int OnGetWeaponFocus(void* pStats, void* pWeapon)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = new CNWSCreatureStats(pStats, false);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : new CNWSItem(pWeapon, false).m_nBaseItem;
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = weaponFocusMap.TryGetValue(weaponType, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool() || feat == (ushort)Feat.WeaponFocus_Creature && stats.HasFeat((ushort)Feat.WeaponFocus_UnarmedStrike).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      return applicableFeatExists && hasApplicableFeat ? 1 : getWeaponFocusHook.CallOriginal(pStats, pWeapon);
     }
 
     private int OnGetEpicWeaponFocus(void* pStats, void* pWeapon)
