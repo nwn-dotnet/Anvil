@@ -121,22 +121,87 @@ namespace NWN.Services
 
     private int OnGetEpicWeaponFocus(void* pStats, void* pWeapon)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = new CNWSCreatureStats(pStats, false);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : new CNWSItem(pWeapon, false).m_nBaseItem;
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = epicWeaponFocusMap.TryGetValue(weaponType, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool() || feat == (ushort)Feat.EpicWeaponFocus_Creature && stats.HasFeat((ushort)Feat.EpicWeaponFocus_Unarmed).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      return applicableFeatExists && hasApplicableFeat ? 1 : getEpicWeaponFocusHook.CallOriginal(pStats, pWeapon);
     }
 
     private int OnGetWeaponFinesse(void* pStats, void* pWeapon)
     {
-      throw new NotImplementedException();
+      if (pStats == null)
+      {
+        return false.ToInt();
+      }
+
+      CNWSCreatureStats creatureStats = new CNWSCreatureStats(pStats, false);
+      if (!creatureStats.HasFeat((ushort)Feat.WeaponFinesse).ToBool())
+      {
+        return 0;
+      }
+
+      return IsWeaponLight(creatureStats, new CNWSItem(pWeapon, false), true).ToInt();
     }
 
     private int OnGetWeaponImprovedCritical(void* pStats, void* pWeapon)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = new CNWSCreatureStats(pStats, false);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : new CNWSItem(pWeapon, false).m_nBaseItem;
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = weaponImprovedCriticalMap.TryGetValue(weaponType, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      return applicableFeatExists && hasApplicableFeat ? 1 : getWeaponImprovedCriticalHook.CallOriginal(pStats, pWeapon);
     }
 
     private int OnGetEpicWeaponOverwhelmingCritical(void* pStats, void* pWeapon)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = new CNWSCreatureStats(pStats, false);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : new CNWSItem(pWeapon, false).m_nBaseItem;
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = epicWeaponOverwhelmingCriticalMap.TryGetValue(weaponType, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      return applicableFeatExists && hasApplicableFeat ? 1 : getEpicWeaponOverwhelmingCriticalHook.CallOriginal(pStats, pWeapon);
     }
 
     private int OnGetEpicWeaponDevastatingCritical(void* pStats, void* pWeapon)
@@ -192,6 +257,68 @@ namespace NWN.Services
     private int OnGetUseMonkAttackTables(void* pStats, int bForceUnarmed)
     {
       throw new NotImplementedException();
+    }
+
+    private bool IsWeaponLight(CNWSCreatureStats stats, CNWSItem weapon, bool finesse)
+    {
+      if (IsUnarmedWeapon(weapon))
+      {
+        return true;
+      }
+
+      CNWSCreature creature = stats.m_pBaseCreature;
+
+      if (creature == null)
+      {
+        return false;
+      }
+
+      int creatureSize = creature.m_nCreatureSize;
+      if (creatureSize < (int)CreatureSize.Tiny || creatureSize > (int)CreatureSize.Huge)
+      {
+        return false;
+      }
+
+      if (finesse)
+      {
+        const byte defaultSize = (byte)CreatureSize.Huge + 1;
+        byte size = weaponFinesseSizeMap.GetValueOrDefault(weapon.m_nBaseItem, defaultSize);
+
+        if (creatureSize >= size)
+        {
+          return true;
+        }
+      }
+
+      int rel = stats.m_pBaseCreature.GetRelativeWeaponSize(weapon);
+      if (finesse && creatureSize < (int)CreatureSize.Small)
+      {
+        return rel <= 0;
+      }
+
+      return rel < 0;
+    }
+
+    private bool IsUnarmedWeapon(CNWSItem weapon)
+    {
+      if (weapon == null || weapon.Pointer == IntPtr.Zero)
+      {
+        return true;
+      }
+
+      // In case of standard unarmed weapon return true
+      switch ((BaseItem)weapon.m_nBaseItem)
+      {
+        case BaseItem.Gloves:
+        case BaseItem.Bracer:
+        case BaseItem.CreatureSlashWeapon:
+        case BaseItem.CreaturePierceWeapon:
+        case BaseItem.CreatureBludgeWeapon:
+        case BaseItem.CreatureSlashPierceWeapon:
+          return true;
+        default:
+          return weaponUnarmedSet.Contains(weapon.m_nBaseItem);
+      }
     }
   }
 }
