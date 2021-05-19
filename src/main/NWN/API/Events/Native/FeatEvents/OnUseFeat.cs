@@ -38,11 +38,11 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnCreatureUseFeat(void* pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, void* pTargetPos)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         OnUseFeat eventData = ProcessEvent(new OnUseFeat
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>(),
           Feat = (Feat)nFeat,
           SubFeatId = nSubFeat,
           TargetObject = oidTarget.ToNwObject<NwGameObject>(),

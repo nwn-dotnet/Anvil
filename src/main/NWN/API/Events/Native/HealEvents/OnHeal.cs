@@ -36,8 +36,8 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnApplyHeal(void* pEffectListHandler, void* pObject, void* pGameEffect, int bLoadingGame)
       {
-        CGameEffect gameEffect = new CGameEffect(pGameEffect, false);
-        CNWSObject target = new CNWSObject(pObject, false);
+        CGameEffect gameEffect = CGameEffect.FromPointer(pGameEffect);
+        CNWSObject target = CNWSObject.FromPointer(pObject);
 
         OnHeal eventData = ProcessEvent(new OnHeal
         {

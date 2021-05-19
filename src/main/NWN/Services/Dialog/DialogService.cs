@@ -127,7 +127,7 @@ namespace NWN.Services
 
     private uint OnGetStartEntry(void* pDialog, void* pNWSObjectOwner)
     {
-      dialog = new CNWSDialog(pDialog, false);
+      dialog = CNWSDialog.FromPointer(pDialog);
       CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.Start);
@@ -139,7 +139,7 @@ namespace NWN.Services
 
     private int OnGetStartEntryOneLiner(void* pDialog, void* pNWSObjectOwner, void* sOneLiner, void* sSound, void* sScript, void* scriptParams)
     {
-      dialog = new CNWSDialog(pDialog, false);
+      dialog = CNWSDialog.FromPointer(pDialog);
       CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.Start);
@@ -151,7 +151,7 @@ namespace NWN.Services
 
     private int OnSendDialogEntry(void* pDialog, void* pNWSObjectOwner, uint nPlayerIdGUIOnly, uint iEntry, int bPlayHelloSound)
     {
-      dialog = new CNWSDialog(pDialog, false);
+      dialog = CNWSDialog.FromPointer(pDialog);
       CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.SendEntry);
@@ -164,7 +164,7 @@ namespace NWN.Services
 
     private int OnSendDialogReplies(void* pDialog, void* pNWSObjectOwner, uint nPlayerIdGUIOnly)
     {
-      dialog = new CNWSDialog(pDialog, false);
+      dialog = CNWSDialog.FromPointer(pDialog);
       CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.SendReplies);
@@ -176,7 +176,7 @@ namespace NWN.Services
 
     private int OnHandleReply(void* pDialog, uint nPlayerID, void* pNWSObjectOwner, uint nReplyIndex, int bEscapeDialog, uint currentEntryIndex)
     {
-      dialog = new CNWSDialog(pDialog, false);
+      dialog = CNWSDialog.FromPointer(pDialog);
       CurrentNodeIndex = 0;
 
       stateStack.Push(DialogState.HandleReply);
@@ -190,7 +190,7 @@ namespace NWN.Services
 
     private int OnCheckScript(void* pDialog, void* pNWSObjectOwner, void* sActive, void* scriptParams)
     {
-      dialog = new CNWSDialog(pDialog, false);
+      dialog = CNWSDialog.FromPointer(pDialog);
 
       if (stateStack.Peek() == DialogState.HandleReply)
       {
@@ -214,7 +214,7 @@ namespace NWN.Services
 
     private void OnRunScript(void* pDialog, void* pNWSObjectOwner, void* sScript, void* scriptParams)
     {
-      dialog = new CNWSDialog(pDialog, false);
+      dialog = CNWSDialog.FromPointer(pDialog);
 
       CurrentScriptType = ScriptType.ActionTaken;
       runScriptHook.CallOriginal(pDialog, pNWSObjectOwner, sScript, scriptParams);

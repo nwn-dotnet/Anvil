@@ -214,7 +214,7 @@ namespace NWN.API
         return false;
       });
 
-      return result && door != null ? door.m_idSelf.ToNwObject<NwDoor>() : null;
+      return result && door != null ? door.ToNwObject<NwDoor>() : null;
     }
   }
 }

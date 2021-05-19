@@ -50,7 +50,7 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnExamineObject
         {
-          ExaminedBy = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
           ExaminedObject = oidCreature.ToNwObject<NwCreature>()
         });
 
@@ -62,7 +62,7 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnExamineObject
         {
-          ExaminedBy = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
           ExaminedObject = oidDoor.ToNwObject<NwDoor>()
         });
 
@@ -74,7 +74,7 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnExamineObject
         {
-          ExaminedBy = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
           ExaminedObject = oidItem.ToNwObject<NwItem>()
         });
 
@@ -86,7 +86,7 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnExamineObject
         {
-          ExaminedBy = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
           ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>()
         });
 

@@ -130,7 +130,7 @@ namespace NWN.API
         return false;
       });
 
-      return result && store != null ? store.m_idSelf.ToNwObject<NwStore>() : null;
+      return result && store != null ? store.ToNwObject<NwStore>() : null;
     }
   }
 }

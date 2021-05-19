@@ -33,8 +33,8 @@ namespace NWN.API.Events
       {
         OnItemValidateEquip eventData = ProcessEvent(new OnItemValidateEquip
         {
-          UsedBy = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
-          Item = new CNWSItem(pItem, false).ToNwObject<NwItem>(),
+          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
+          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
           Slot = (InventorySlot)Math.Round(Math.Log2(*pEquipToSLot)),
           Result = (EquipValidationResult)Hook.CallOriginal(pCreature, pItem, pEquipToSLot, bEquipping, bLoading, bDisplayFeedback, pFeedbackPlayer),
         });

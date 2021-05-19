@@ -16,7 +16,7 @@ namespace NWN.Native
 
     public static unsafe implicit operator CExoLocString(CExoLocStringStruct locStringStruct)
     {
-      return new CExoLocString(&locStringStruct, false);
+      return CExoLocString.FromPointer(&locStringStruct);
     }
   }
 }

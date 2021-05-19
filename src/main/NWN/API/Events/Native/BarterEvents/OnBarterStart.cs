@@ -25,11 +25,11 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnStartBarter(void* pMessage, void* pPlayer)
       {
-        CNWSMessage message = new CNWSMessage(pMessage, false);
+        CNWSMessage message = CNWSMessage.FromPointer(pMessage);
 
         ProcessEvent(new OnBarterStart
         {
-          Initiator = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          Initiator = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
           Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwPlayer(),
         });
 

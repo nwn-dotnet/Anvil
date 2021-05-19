@@ -27,7 +27,7 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnAssociateRemove
         {
-          Owner = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
+          Owner = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
           Associate = oidAssociate.ToNwObject<NwCreature>(),
         });
 

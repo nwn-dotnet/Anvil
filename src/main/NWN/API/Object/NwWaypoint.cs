@@ -68,7 +68,7 @@ namespace NWN.API
         return false;
       });
 
-      return result && waypoint != null ? waypoint.m_idSelf.ToNwObject<NwWaypoint>() : null;
+      return result && waypoint != null ? waypoint.ToNwObject<NwWaypoint>() : null;
     }
 
     public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")

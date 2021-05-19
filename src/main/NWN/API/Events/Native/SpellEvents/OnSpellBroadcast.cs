@@ -33,11 +33,11 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnBroadcastSpellCast(void* pCreature, uint nSpellId, byte nMultiClass, ushort nFeat)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         OnSpellBroadcast eventData = ProcessEvent(new OnSpellBroadcast
         {
-          Caster = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Caster = creature.ToNwObject<NwCreature>(),
           Spell = (Spell)nSpellId,
           ClassIndex = nMultiClass,
           Feat = (Feat)nFeat

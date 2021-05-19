@@ -170,7 +170,7 @@ namespace NWN.API
         return false;
       });
 
-      return result && encounter != null ? encounter.m_idSelf.ToNwObject<NwEncounter>() : null;
+      return result && encounter != null ? encounter.ToNwObject<NwEncounter>() : null;
     }
   }
 }

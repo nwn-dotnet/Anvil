@@ -61,11 +61,11 @@ namespace NWN.API.Events
         int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,
         int bFake, byte nProjectilePathType, int bInstant, int bAllowPolymorphedCast, int nFeat, byte nCasterLevel)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         OnSpellAction eventData = new OnSpellAction
         {
-          Caster = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Caster = creature.ToNwObject<NwCreature>(),
           Spell = (Spell)nSpellId,
           ClassIndex = nMultiClass,
           Domain = (Domain)nDomainLevel,

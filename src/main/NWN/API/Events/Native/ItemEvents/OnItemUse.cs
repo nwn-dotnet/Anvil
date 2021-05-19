@@ -44,7 +44,7 @@ namespace NWN.API.Events
       {
         OnItemUse eventData = ProcessEvent(new OnItemUse
         {
-          UsedBy = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
+          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
           Item = oidItem.ToNwObject<NwItem>(),
           TargetObject = oidTarget.ToNwObject<NwGameObject>(),
           ItemPropertyIndex = nActivePropertyIndex,

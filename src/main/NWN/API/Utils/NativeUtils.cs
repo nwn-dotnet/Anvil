@@ -23,7 +23,7 @@ namespace NWN.API
 
     public static Vector3 ToManagedVector(this Vector vector)
     {
-      return Marshal.PtrToStructure<Vector3>(vector);
+      return Marshal.PtrToStructure<Vector3>(vector.Pointer);
     }
 
     public static CExoString ToExoString(this string str)

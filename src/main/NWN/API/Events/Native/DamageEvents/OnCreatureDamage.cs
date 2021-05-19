@@ -27,15 +27,15 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnApplyDamage(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame)
       {
-        CNWSObject gameObject = new CNWSObject(pObject, false);
+        CNWSObject gameObject = CNWSObject.FromPointer(pObject);
         if (IsValidObjectTarget((ObjectType)gameObject.m_nObjectType))
         {
-          CGameEffect effect = new CGameEffect(pEffect, false);
+          CGameEffect effect = CGameEffect.FromPointer(pEffect);
 
           ProcessEvent(new OnCreatureDamage
           {
             DamagedBy = effect.m_oidCreator.ToNwObject<NwGameObject>(),
-            Target = gameObject.m_idSelf.ToNwObject<NwGameObject>(),
+            Target = gameObject.ToNwObject<NwGameObject>(),
             DamageData = new DamageData<int>(effect.m_nParamInteger)
           });
         }

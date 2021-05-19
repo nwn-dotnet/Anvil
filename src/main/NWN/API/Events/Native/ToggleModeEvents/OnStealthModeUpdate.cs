@@ -35,7 +35,7 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnSetStealthMode(void* pCreature, byte nStealthMode)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         bool willBeStealthed = nStealthMode != 0;
         bool currentlyStealthed = creature.m_nStealthMode != 0;
@@ -58,7 +58,7 @@ namespace NWN.API.Events
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>(),
           EventType = ToggleModeEventType.Enter
         });
 
@@ -83,7 +83,7 @@ namespace NWN.API.Events
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>(),
           EventType = ToggleModeEventType.Exit
         });
 

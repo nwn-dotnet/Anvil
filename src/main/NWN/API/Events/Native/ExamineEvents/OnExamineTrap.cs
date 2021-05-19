@@ -29,7 +29,7 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnExamineTrap
         {
-          ExaminedBy = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
           ExaminedObject = oidTrap.ToNwObject<NwGameObject>(),
           Success = bSuccess.ToBool()
         });

@@ -58,7 +58,7 @@ namespace NWN.API.Events
         [UnmanagedCallersOnly]
         private static int OnSendServerToPlayerCharList(void* pMessage, void* pPlayer)
         {
-          CNWSPlayer player = new CNWSPlayer(pPlayer, false);
+          CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
           uint playerId = player.m_nPlayerID;
 
           CNetLayerPlayerInfo playerInfo = NetLayer.GetPlayerInfo(playerId);

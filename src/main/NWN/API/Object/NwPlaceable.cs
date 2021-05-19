@@ -341,7 +341,7 @@ namespace NWN.API
         return false;
       });
 
-      return result && placeable != null ? placeable.m_idSelf.ToNwObject<NwPlaceable>() : null;
+      return result && placeable != null ? placeable.ToNwObject<NwPlaceable>() : null;
     }
   }
 }

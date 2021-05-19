@@ -157,7 +157,7 @@ namespace NWN.API
     {
       for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
       {
-        CNWSPlayerTURD turd = new CNWSPlayerTURD(node.pObject, false);
+        CNWSPlayerTURD turd = CNWSPlayerTURD.FromPointer(node.pObject);
 
         string turdCharacterName = $"{turd.m_lsFirstName.ExtractLocString()} {turd.m_lsLastName.ExtractLocString()}";
         if (playerName == turd.m_sCommunityName.ToString() || characterName == turdCharacterName)

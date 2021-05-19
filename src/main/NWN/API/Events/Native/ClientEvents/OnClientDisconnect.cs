@@ -32,7 +32,7 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnClientDisconnect
         {
-          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
         });
 
         Hook.CallOriginal(pServerExoAppInternal, pPlayer);

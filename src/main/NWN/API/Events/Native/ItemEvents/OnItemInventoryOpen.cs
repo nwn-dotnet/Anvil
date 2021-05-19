@@ -36,7 +36,7 @@ namespace NWN.API.Events
         OnItemInventoryOpen eventData = ProcessEvent(new OnItemInventoryOpen
         {
           OpenedBy = oidOpener.ToNwObject<NwCreature>(),
-          Container = new CNWSItem(pItem, false).ToNwObject<NwItem>(),
+          Container = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
         });
 
         if (!eventData.PreventOpen)

@@ -25,11 +25,11 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnPossessFamiliar(void* pCreature)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         ProcessEvent(new OnFamiliarPossess
         {
-          Owner = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Owner = creature.ToNwObject<NwCreature>(),
           Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>()
         });
 
