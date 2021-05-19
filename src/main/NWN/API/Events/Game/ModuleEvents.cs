@@ -79,11 +79,10 @@ namespace NWN.API.Events
     {
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that is leaving.<br/>
-      /// Note! This will be a <see cref="NwCreature"/> if the leaving player is possessing a creature.
       /// </summary>
-      public NwCreature Player { get; } = NWScript.GetExitingObject().ToNwObject<NwCreature>();
+      public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(false);
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.PlayerCreature;
     }
 
     /// <summary>

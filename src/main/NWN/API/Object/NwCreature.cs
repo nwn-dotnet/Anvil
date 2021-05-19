@@ -393,20 +393,7 @@ namespace NWN.API
     /// </summary>
     public unsafe NwPlayer OwnerPlayer
     {
-      get
-      {
-        CExoLinkedListInternal players = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.m_pcExoLinkedListInternal;
-        for (CExoLinkedListNode node = players.pHead; node != null; node = node.pNext)
-        {
-          CNWSPlayer player = new CNWSPlayer(node.pObject, false);
-          if (player.m_oidPCObject == this)
-          {
-            return player.ToNwPlayer();
-          }
-        }
-
-        return null;
-      }
+      get => ObjectId.ToNwPlayer(false);
     }
 
     /// <summary>
