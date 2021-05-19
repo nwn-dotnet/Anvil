@@ -78,7 +78,7 @@ namespace NWN.API.Events
     public sealed class OnClientLeave : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwPlayer"/> that is leaving.<br/>
+      /// Gets the <see cref="NwPlayer"/> that is leaving.
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(false);
 
