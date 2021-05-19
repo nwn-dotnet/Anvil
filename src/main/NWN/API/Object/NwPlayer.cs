@@ -35,16 +35,6 @@ namespace NWN.API
       this.Player = player;
     }
 
-    public NwCreature ControlledCreature
-    {
-      get => Player.m_oidNWSObject.ToNwObject<NwCreature>();
-    }
-
-    public NwCreature PlayerCreature
-    {
-      get => Player.m_oidPCObject.ToNwObject<NwCreature>();
-    }
-
     internal CNWSPlayerTURD Turd
     {
       get => PlayerCreature?.Creature.AsNWSPlayerTURD();
@@ -207,6 +197,23 @@ namespace NWN.API
     {
       add => EventService.Subscribe<OnPartyEvent, OnPartyEvent.Factory>(ControlledCreature, value);
       remove => EventService.Unsubscribe<OnPartyEvent, OnPartyEvent.Factory>(ControlledCreature, value);
+    }
+
+    /// <summary>
+    /// Gets the creature this player is currently controlling.<br/>
+    /// This will return the player's current possessed creature (familiar, DM possession), otherwise their player character if they are currently not possessing a creature.
+    /// </summary>
+    public NwCreature ControlledCreature
+    {
+      get => Player.m_oidNWSObject.ToNwObject<NwCreature>();
+    }
+
+    /// <summary>
+    /// Gets the original creature for this player. This is the creature the player logged in with.
+    /// </summary>
+    public NwCreature PlayerCreature
+    {
+      get => Player.m_oidPCObject.ToNwObject<NwCreature>();
     }
 
     /// <summary>

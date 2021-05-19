@@ -410,6 +410,22 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets if this creature is currently being controlled by a player/DM.
+    /// </summary>
+    public bool IsPlayerControlled
+    {
+      get => ControllingPlayer != null;
+    }
+
+    /// <summary>
+    /// Gets if this creature is a player character/DM avatar.
+    /// </summary>
+    public bool IsPlayerCharacter
+    {
+      get => OwnerPlayer != null;
+    }
+
+    /// <summary>
     /// Gets or sets the name of this creature's deity.
     /// </summary>
     public string Deity
