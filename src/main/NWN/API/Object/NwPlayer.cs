@@ -12,7 +12,7 @@ using NWN.Services;
 
 namespace NWN.API
 {
-  public sealed class NwPlayer
+  public sealed class NwPlayer : IEquatable<NwPlayer>
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -43,6 +43,41 @@ namespace NWN.API
     public static implicit operator CNWSPlayer(NwPlayer player)
     {
       return player?.Player;
+    }
+
+    public bool Equals(NwPlayer other)
+    {
+      if (ReferenceEquals(null, other))
+      {
+        return false;
+      }
+
+      if (ReferenceEquals(this, other))
+      {
+        return true;
+      }
+
+      return Player.Pointer.Equals(other.Player.Pointer);
+    }
+
+    public override bool Equals(object obj)
+    {
+      return ReferenceEquals(this, obj) || obj is NwPlayer other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+      return Player.Pointer.GetHashCode();
+    }
+
+    public static bool operator ==(NwPlayer left, NwPlayer right)
+    {
+      return Equals(left, right);
+    }
+
+    public static bool operator !=(NwPlayer left, NwPlayer right)
+    {
+      return !Equals(left, right);
     }
 
     /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnClientEnter"/>
