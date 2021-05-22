@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using NWN.API;
 using NWN.Native.API;
@@ -31,47 +32,48 @@ namespace NWN.Services
 
     private delegate int ToggleModeHook(void* pCreature, byte nMode);
 
-    private FunctionHook<GetWeaponFocusHook> getWeaponFocusHook;
-    private FunctionHook<GetEpicWeaponFocusHook> getEpicWeaponFocusHook;
-    private FunctionHook<GetWeaponFinesseHook> getWeaponFinesseHook;
-    private FunctionHook<GetWeaponImprovedCriticalHook> getWeaponImprovedCriticalHook;
-    private FunctionHook<GetEpicWeaponOverwhelmingCriticalHook> getEpicWeaponOverwhelmingCriticalHook;
-    private FunctionHook<GetEpicWeaponDevastatingCriticalHook> getEpicWeaponDevastatingCriticalHook;
-    private FunctionHook<GetWeaponSpecializationHook> getWeaponSpecializationHook;
-    private FunctionHook<GetEpicWeaponSpecializationHook> getEpicWeaponSpecializationHook;
-    private FunctionHook<GetIsWeaponOfChoiceHook> getIsWeaponOfChoiceHook;
-    private FunctionHook<GetDamageBonusHook> getDamageBonusHook;
-    private FunctionHook<GetMeleeDamageBonusHook> getMeleeDamageBonusHook;
-    private FunctionHook<GetRangedDamageBonusHook> getRangedDamageBonusHook;
-    private FunctionHook<GetMeleeAttackBonusHook> getMeleeAttackBonusHook;
-    private FunctionHook<GetRangedAttackBonusHook> getRangedAttackBonusHook;
-    private FunctionHook<GetAttackModifierVersusHook> getAttackModifierVersusHook;
-    private FunctionHook<GetUseMonkAttackTablesHook> getUseMonkAttackTablesHook;
-    private FunctionHook<ToggleModeHook> toggleModeHook;
+    private readonly FunctionHook<GetWeaponFocusHook> getWeaponFocusHook;
+    private readonly FunctionHook<GetEpicWeaponFocusHook> getEpicWeaponFocusHook;
+    private readonly FunctionHook<GetWeaponFinesseHook> getWeaponFinesseHook;
+    private readonly FunctionHook<GetWeaponImprovedCriticalHook> getWeaponImprovedCriticalHook;
+    private readonly FunctionHook<GetEpicWeaponOverwhelmingCriticalHook> getEpicWeaponOverwhelmingCriticalHook;
+    private readonly FunctionHook<GetEpicWeaponDevastatingCriticalHook> getEpicWeaponDevastatingCriticalHook;
+    private readonly FunctionHook<GetWeaponSpecializationHook> getWeaponSpecializationHook;
+    private readonly FunctionHook<GetEpicWeaponSpecializationHook> getEpicWeaponSpecializationHook;
+    private readonly FunctionHook<GetIsWeaponOfChoiceHook> getIsWeaponOfChoiceHook;
+    private readonly FunctionHook<GetDamageBonusHook> getDamageBonusHook;
+    private readonly FunctionHook<GetMeleeDamageBonusHook> getMeleeDamageBonusHook;
+    private readonly FunctionHook<GetRangedDamageBonusHook> getRangedDamageBonusHook;
+    private readonly FunctionHook<GetMeleeAttackBonusHook> getMeleeAttackBonusHook;
+    private readonly FunctionHook<GetRangedAttackBonusHook> getRangedAttackBonusHook;
+    private readonly FunctionHook<GetAttackModifierVersusHook> getAttackModifierVersusHook;
+    private readonly FunctionHook<GetUseMonkAttackTablesHook> getUseMonkAttackTablesHook;
+    private readonly FunctionHook<ToggleModeHook> toggleModeHook;
 
-    private Dictionary<uint, HashSet<ushort>> weaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, HashSet<ushort>> epicWeaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, byte> weaponFinesseSizeMap = new Dictionary<uint, byte>();
-    private Dictionary<uint, HashSet<ushort>> weaponImprovedCriticalMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, HashSet<ushort>> weaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, HashSet<ushort>> epicWeaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, HashSet<ushort>> epicWeaponOverwhelmingCriticalMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, HashSet<ushort>> epicWeaponDevastatingCriticalMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, HashSet<ushort>> weaponOfChoiceMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, HashSet<ushort>> greaterWeaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
-    private Dictionary<uint, HashSet<ushort>> greaterWeaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> weaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> epicWeaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, byte> weaponFinesseSizeMap = new Dictionary<uint, byte>();
+    private readonly Dictionary<uint, HashSet<ushort>> weaponImprovedCriticalMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> weaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> epicWeaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> epicWeaponOverwhelmingCriticalMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> epicWeaponDevastatingCriticalMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> weaponOfChoiceMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> greaterWeaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
+    private readonly Dictionary<uint, HashSet<ushort>> greaterWeaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
 
-    private HashSet<uint> weaponUnarmedSet = new HashSet<uint>();
-    private HashSet<uint> monkWeaponSet = new HashSet<uint>();
-
-    private DevastatingCriticalData dcData;
-    private Action<DevastatingCriticalData> dcCallback;
-
-    private int greaterFocusAttackBonus = 1;
-    private int greaterWeaponSpecializationDamageBonus = 2;
-    private bool gaSling = false;
+    private readonly HashSet<uint> weaponUnarmedSet = new HashSet<uint>();
+    private readonly HashSet<uint> monkWeaponSet = new HashSet<uint>();
 
     private Dictionary<uint, MaxRangedAttackDistanceOverride> maxRangedAttackDistanceOverrideMap = new Dictionary<uint, MaxRangedAttackDistanceOverride>();
+
+    public int EpicWeaponFocusAttackBonus { get; set; } = 1;
+
+    public int EpicWeaponSpecializationDamageBonus { get; set; } = 2;
+
+    public bool EnableSlingGoodAimFeat { get; set; } = false;
+
+    public event Action<DevastatingCriticalData> OnDevastatingCriticalHit;
 
     public WeaponService(HookService hookService)
     {
@@ -228,7 +230,7 @@ namespace NWN.Services
 
       bool canUseFeat = applicableFeatExists && hasApplicableFeat || getEpicWeaponDevastatingCriticalHook.CallOriginal(pStats, pWeapon).ToBool();
 
-      if (canUseFeat && dcCallback != null)
+      if (canUseFeat && OnDevastatingCriticalHit != null)
       {
         CNWSCreature creature = stats.m_pBaseCreature;
         CNWSCombatRound combatRound = creature.m_pcCombatRound;
@@ -241,7 +243,7 @@ namespace NWN.Services
           Damage = attackData.GetTotalDamage(1),
         };
 
-        dcCallback(devastatingCriticalData);
+        OnDevastatingCriticalHit(devastatingCriticalData);
         if (devastatingCriticalData.Bypass)
         {
           attackData.m_bKillingBlow = 0;
@@ -347,7 +349,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        damageBonus += greaterWeaponSpecializationDamageBonus;
+        damageBonus += EpicWeaponSpecializationDamageBonus;
         if ((*NWNXLib.EnableCombatDebugging()).ToBool() && stats.m_bIsPC.ToBool())
         {
           CNWSCombatAttackData currentAttack = creature.m_pcCombatRound.GetAttack(creature.m_pcCombatRound.m_nCurrentAttack);
@@ -357,14 +359,14 @@ namespace NWN.Services
           if (currentAttack.m_nAttackResult == 3)
           {
             int criticalThreat = stats.GetCriticalHitMultiplier(bOffHand);
-            debugMessage.Append(greaterWeaponSpecializationDamageBonus * criticalThreat);
+            debugMessage.Append(EpicWeaponSpecializationDamageBonus * criticalThreat);
             debugMessage.Append(" (Greater Weapon Specialization Feat) (Critical x");
             debugMessage.Append(criticalThreat);
             debugMessage.Append(")");
           }
           else
           {
-            debugMessage.Append(greaterWeaponSpecializationDamageBonus);
+            debugMessage.Append(EpicWeaponSpecializationDamageBonus);
             debugMessage.Append(" (Greater Weapon Specialization Feat) ");
           }
 
@@ -408,7 +410,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        return damageBonus + greaterWeaponSpecializationDamageBonus;
+        return damageBonus + EpicWeaponSpecializationDamageBonus;
       }
 
       return damageBonus;
@@ -444,7 +446,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        return damageBonus + greaterWeaponSpecializationDamageBonus;
+        return damageBonus + EpicWeaponSpecializationDamageBonus;
       }
 
       return damageBonus;
@@ -483,7 +485,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        return attackBonus + greaterFocusAttackBonus;
+        return attackBonus + EpicWeaponFocusAttackBonus;
       }
 
       return attackBonus;
@@ -524,10 +526,10 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        attackBonus += greaterFocusAttackBonus;
+        attackBonus += EpicWeaponFocusAttackBonus;
       }
 
-      if (gaSling && baseItem == (uint)BaseItem.Sling && stats.m_nRace != (ushort)RacialType.Halfling && stats.HasFeat((ushort)Feat.GoodAim).ToBool())
+      if (EnableSlingGoodAimFeat && baseItem == (uint)BaseItem.Sling && stats.m_nRace != (ushort)RacialType.Halfling && stats.HasFeat((ushort)Feat.GoodAim).ToBool())
       {
         attackBonus += 1;
       }
@@ -537,12 +539,112 @@ namespace NWN.Services
 
     private int OnGetAttackModifierVersus(void* pStats, void* pCreature)
     {
-      throw new NotImplementedException();
+      int attackMod = getAttackModifierVersusHook.CallOriginal(pStats, pCreature);
+
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      CNWSCreature creature = stats.m_pBaseCreature;
+      CNWSCombatRound combatRound = creature.m_pcCombatRound;
+
+      if (combatRound == null)
+      {
+        return attackMod;
+      }
+
+      CNWSItem weapon = combatRound.GetCurrentAttackWeapon(combatRound.GetWeaponAttackType());
+      if (weapon == null)
+      {
+        return attackMod;
+      }
+
+      uint baseItem = weapon.m_nBaseItem;
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      if (applicableFeatExists && hasApplicableFeat)
+      {
+        attackMod += EpicWeaponFocusAttackBonus;
+
+        if ((*NWNXLib.EnableCombatDebugging()).ToBool() && stats.m_bIsPC.ToBool())
+        {
+          CNWSCombatAttackData currentAttack = combatRound.GetAttack(combatRound.m_nCurrentAttack);
+          StringBuilder debugMessage = new StringBuilder(currentAttack.m_sDamageDebugText.ToString());
+          debugMessage.Append(" + ");
+          debugMessage.Append(EpicWeaponFocusAttackBonus);
+          debugMessage.Append(" (Greater Weapon Focus Feat)");
+
+          currentAttack.m_sDamageDebugText = debugMessage.ToString().ToExoString();
+        }
+      }
+
+      if (EnableSlingGoodAimFeat && baseItem == (uint)BaseItem.Sling && stats.m_nRace != (ushort)RacialType.Halfling && stats.HasFeat((ushort)Feat.GoodAim).ToBool())
+      {
+        int goodAimModifier = NWNXLib.Rules().GetRulesetIntEntry("GOOD_AIM_MODIFIER".ToExoString(), 1);
+        attackMod += goodAimModifier;
+
+        if ((*NWNXLib.EnableCombatDebugging()).ToBool() && stats.m_bIsPC.ToBool())
+        {
+          CNWSCombatAttackData currentAttack = combatRound.GetAttack(combatRound.m_nCurrentAttack);
+          StringBuilder debugMessage = new StringBuilder(currentAttack.m_sDamageDebugText.ToString());
+          debugMessage.Append(" + ");
+          debugMessage.Append(goodAimModifier);
+          debugMessage.Append(" (Good Aim Feat)");
+
+          currentAttack.m_sDamageDebugText = debugMessage.ToString().ToExoString();
+        }
+      }
+
+      return attackMod;
     }
 
     private int OnGetUseMonkAttackTables(void* pStats, int bForceUnarmed)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      CNWSCreature creature = stats.m_pBaseCreature;
+
+      int monkLevels = GetLevelByClass(stats, (uint)ClassType.Monk);
+
+      if (monkLevels < 1 || !creature.GetUseMonkAbilities().ToBool())
+      {
+        return false.ToInt();
+      }
+
+      CNWSItem mainWeapon = creature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.RightHand);
+      if (mainWeapon == null)
+      {
+        return true.ToInt();
+      }
+
+      if (bForceUnarmed.ToBool())
+      {
+        return false.ToInt();
+      }
+
+      uint mainWeaponType = mainWeapon.m_nBaseItem;
+      if (mainWeaponType != (uint)BaseItem.Kama && !monkWeaponSet.Contains(mainWeapon.m_nBaseItem))
+      {
+        return false.ToInt();
+      }
+
+      CNWSItem secondWeapon = creature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.LeftHand);
+      if (secondWeapon == null)
+      {
+        return true.ToInt();
+      }
+
+      uint secondWeaponType = secondWeapon.m_nBaseItem;
+      return (secondWeaponType == (uint)BaseItem.Kama || secondWeaponType == (uint)BaseItem.Torch || monkWeaponSet.Contains(secondWeaponType)).ToInt();
     }
 
     private bool IsWeaponLight(CNWSCreatureStats stats, CNWSItem weapon, bool finesse)
@@ -633,6 +735,20 @@ namespace NWN.Services
       }
 
       return weapon;
+    }
+
+    private int GetLevelByClass(CNWSCreatureStats stats, uint classType)
+    {
+      for (int i = 0; i < stats.m_nNumMultiClasses; i++)
+      {
+        CNWSCreatureStats_ClassInfo classInfo = stats.m_ClassInfo[i];
+        if (classInfo.m_nClass == classType)
+        {
+          return classInfo.m_nLevel;
+        }
+      }
+
+      return 0;
     }
   }
 }
