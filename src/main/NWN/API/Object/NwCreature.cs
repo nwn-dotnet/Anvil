@@ -381,7 +381,10 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the player currently controlling this creature.
+    /// Gets the player currently controlling this creature.<br/>
+    /// If this creature is a possessed familiar or is DM possessed, this will return the player or DM controlling this creature.<br/>
+    /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns null.<br/>
+    /// If no player is controlling this creature, this returns null.
     /// </summary>
     public NwPlayer ControllingPlayer
     {
@@ -389,9 +392,10 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the owner of this creature. This is the original player that logged in with this creature.
+    /// Gets the player that logged in with this creature.<br/>
+    /// If this creature is a NPC or familiar, regardless of possession, this will return null.<br/>
     /// </summary>
-    public unsafe NwPlayer OwnerPlayer
+    public NwPlayer LoginPlayer
     {
       get => ObjectId.ToNwPlayer(false);
     }
@@ -409,7 +413,7 @@ namespace NWN.API
     /// </summary>
     public bool IsPlayerCharacter
     {
-      get => OwnerPlayer != null;
+      get => LoginPlayer != null;
     }
 
     /// <summary>

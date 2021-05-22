@@ -82,7 +82,7 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(false);
 
-      NwObject IEvent.Context => Player.PlayerCreature;
+      NwObject IEvent.Context => Player.LoginCreature;
     }
 
     /// <summary>

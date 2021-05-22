@@ -37,7 +37,7 @@ namespace NWN.API
 
     internal CNWSPlayerTURD Turd
     {
-      get => PlayerCreature?.Creature.AsNWSPlayerTURD();
+      get => LoginCreature?.Creature.AsNWSPlayerTURD();
     }
 
     public static implicit operator CNWSPlayer(NwPlayer player)
@@ -244,15 +244,15 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the original creature for this player. This is the creature the player logged in with.
+    /// Gets the original creature that this player logged in with.
     /// </summary>
-    public NwCreature PlayerCreature
+    public NwCreature LoginCreature
     {
       get => Player.m_oidPCObject.ToNwObject<NwCreature>();
     }
 
     /// <summary>
-    /// Gets a value indicating whether ControlledCreature Player is a Dungeon Master.
+    /// Gets a value indicating whether the player is a Dungeon Master.
     /// </summary>
     public bool IsDM
     {
@@ -260,7 +260,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets a value indicating whether ControlledCreature player has DM privileges gained through a player login (as opposed to the DM client).
+    /// Gets a value indicating whether the player has DM privileges gained through a player login (as opposed to the DM client).
     /// </summary>
     public bool IsPlayerDM
     {
@@ -276,7 +276,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets ControlledCreature player's client version (Major + Minor).
+    /// Gets the player's client version (Major + Minor).
     /// </summary>
     public Version ClientVersion
     {
@@ -284,7 +284,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the public part of the CD key that ControlledCreature player used when logging in.
+    /// Gets the public part of the CD key that the player used when logging in.
     /// </summary>
     public string CDKey
     {
@@ -292,7 +292,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the connecting IP address for ControlledCreature player.
+    /// Gets the connecting IP address for the player.
     /// </summary>
     public string IPAddress
     {
@@ -300,7 +300,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets a value indicating whether ControlledCreature player has connected to the server over a relay (instead of directly).
+    /// Gets a value indicating whether the player has connected to the server over a relay (instead of directly).
     /// </summary>
     public bool IsConnectionRelayed
     {
@@ -325,7 +325,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the name of ControlledCreature player's .bic file.
+    /// Gets the name of the player's .bic file.
     /// </summary>
     public string BicFileName
     {
@@ -333,7 +333,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the members in ControlledCreature player's party.
+    /// Gets the members in the player's party.
     /// </summary>
     public IEnumerable<NwPlayer> PartyMembers
     {
@@ -347,50 +347,50 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Boots ControlledCreature player from the server.
+    /// Boots the player from the server.
     /// </summary>
     /// <param name="reason">An optional message to show to the player.</param>
     public void BootPlayer(string reason = "")
       => NWScript.BootPC(ControlledCreature, reason);
 
     /// <summary>
-    /// Adds ControlledCreature player to the specified party leader's party.
+    /// Adds the player to the specified party leader's party.
     /// </summary>
     /// <param name="partyLeader">The party leader of the party to join.</param>
     public void AddToParty(NwPlayer partyLeader)
       => NWScript.AddToParty(ControlledCreature, partyLeader.ControlledCreature);
 
     /// <summary>
-    /// Removes ControlledCreature player from their current party.
+    /// Removes the player from their current party.
     /// </summary>
     public void RemoveFromCurrentParty()
       => NWScript.RemoveFromParty(ControlledCreature);
 
     /// <summary>
-    /// Attaches the specified creature to ControlledCreature player as a henchmen.
+    /// Attaches the specified creature to the player as a henchmen.
     /// </summary>
-    /// <param name="henchmen">The henchmen to attach to ControlledCreature player.</param>
+    /// <param name="henchmen">The henchmen to attach to the player.</param>
     public void AddHenchmen(NwCreature henchmen)
       => NWScript.AddHenchman(ControlledCreature, henchmen);
 
     /// <summary>
-    /// Adds an entry to ControlledCreature player's journal.
+    /// Adds an entry to the player's journal.
     /// </summary>
     /// <param name="categoryTag">The tag of the Journal category (case-sensitive).</param>
     /// <param name="entryId">The ID of the Journal entry.</param>
-    /// <param name="allPartyMembers">If true, ControlledCreature entry is added to all players in ControlledCreature player's party.</param>
+    /// <param name="allPartyMembers">If true, ControlledCreature entry is added to all players in the player's party.</param>
     /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
     public void AddJournalQuestEntry(string categoryTag, int entryId, bool allPartyMembers = true, bool allowOverrideHigher = false)
       => NWScript.AddJournalQuestEntry(categoryTag, entryId, ControlledCreature, allPartyMembers.ToInt(), false.ToInt(), allowOverrideHigher.ToInt());
 
     /// <summary>
-    /// Instructs ControlledCreature player to open their inventory.
+    /// Instructs the player to open their inventory.
     /// </summary>
     public void OpenInventory()
       => NWScript.OpenInventory(ControlledCreature, ControlledCreature);
 
     /// <summary>
-    /// Opens the specified creatures inventory, and shows it to ControlledCreature player.<br/>
+    /// Opens the specified creatures inventory, and shows it to the player.<br/>
     /// </summary>
     /// <remarks>
     /// DMs can see any player or creature's inventory. Players can only view their own inventory, or that of a henchmen.
@@ -400,7 +400,7 @@ namespace NWN.API
       => NWScript.OpenInventory(target, ControlledCreature);
 
     /// <summary>
-    /// Forces ControlledCreature player to open the inventory of the specified placeable.
+    /// Forces the player to open the inventory of the specified placeable.
     /// </summary>
     /// <param name="target">The placeable inventory to be viewed.</param>
     [Obsolete("Use NwCreature.OpenInventory instead.")]
@@ -408,7 +408,7 @@ namespace NWN.API
       => OpenInventory(target);
 
     /// <summary>
-    /// Forces ControlledCreature player to open the inventory of the specified placeable.
+    /// Forces the player to open the inventory of the specified placeable.
     /// </summary>
     /// <param name="target">The placeable inventory to be viewed.</param>
     public void OpenInventory(NwPlaceable target)
@@ -418,7 +418,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the specified campaign variable for ControlledCreature player.
+    /// Gets the specified campaign variable for the player.
     /// </summary>
     /// <param name="campaign">The name of the campaign.</param>
     /// <param name="name">The variable name.</param>
@@ -428,7 +428,7 @@ namespace NWN.API
       => CampaignVariable<T>.Create(campaign, name, this);
 
     /// <summary>
-    /// Sends a server message to ControlledCreature player.
+    /// Sends a server message to the player.
     /// </summary>
     /// <param name="message">The message to send.</param>
     /// <param name="color">A color to apply to the message.</param>
@@ -440,9 +440,9 @@ namespace NWN.API
       => NWScript.SendMessageToPC(ControlledCreature, message);
 
     /// <summary>
-    /// Sets if ControlledCreature player should like, or unlike the specified player.
+    /// Sets if the player should like, or unlike the specified player.
     /// </summary>
-    /// <param name="like">true if ControlledCreature player should like the target, false if ControlledCreature player should dislike the target.</param>
+    /// <param name="like">true if the player should like the target, false if the player should dislike the target.</param>
     /// <param name="target">The target to like/dislike.</param>
     public void SetPCReputation(bool like, NwPlayer target)
     {
@@ -461,7 +461,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="converseWith">The target object to converse with.</param>
     /// <param name="dialogResRef">The dialogue to start. If ControlledCreature is unset, the target's own dialogue file will be used.</param>
-    /// <param name="isPrivate">Whether ControlledCreature dialogue should be visible to all nearby players, or visible to ControlledCreature player only.</param>
+    /// <param name="isPrivate">Whether ControlledCreature dialogue should be visible to all nearby players, or visible to the player only.</param>
     /// <param name="playHello">Whether the hello/greeting should be played once the dialogue starts.</param>
     public async Task ActionStartConversation(NwGameObject converseWith, string dialogResRef = "", bool isPrivate = false, bool playHello = true)
     {
@@ -499,7 +499,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Changes the direction ControlledCreature player's camera is facing.
+    /// Changes the direction the player's camera is facing.
     /// </summary>
     /// <param name="direction">Horizontal angle from East in degrees. -1 to leave the angle unmodified.</param>
     /// <param name="pitch">Vertical angle of the camera in degrees. -1 to leave the angle unmodified.</param>
@@ -512,23 +512,23 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Forces ControlledCreature player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc).
+    /// Forces the player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc).
     /// </summary>
     public void ExportCharacter()
       => NWScript.ExportSingleCharacter(ControlledCreature);
 
     /// <summary>
-    /// Sends ControlledCreature player to a new server, where the player's character will connect and log in.
+    /// Sends the player to a new server, where the player's character will connect and log in.
     /// </summary>
     /// <param name="ipAddress">DNS name or the IP address + port of the destination server.</param>
     /// <param name="password">The player password to connect to the destination server.</param>
-    /// <param name="waypointTag">The custom waypoint tag on the destination server for ControlledCreature player to jump to. Defaults to the module's start location.</param>
+    /// <param name="waypointTag">The custom waypoint tag on the destination server for the player to jump to. Defaults to the module's start location.</param>
     /// <param name="seamless">If true, the player will not be prompted with information about the new server, and they will not be allowed to save a copy of their character (if it is a local vault character).</param>
     public void SendToServer(string ipAddress = "", string password = "", string waypointTag = "", bool seamless = false)
       => NWScript.ActivatePortal(ControlledCreature, ipAddress, password, waypointTag, seamless.ToInt());
 
     /// <summary>
-    /// Sets whether ControlledCreature player has explored an area.
+    /// Sets whether the player has explored an area.
     /// </summary>
     /// <param name="area">The area to explore.</param>
     /// <param name="explored">true if ControlledCreature area has been explored, otherwise false to (re)hide the map.</param>
@@ -545,7 +545,7 @@ namespace NWN.API
       => NWScript.Vibrate(ControlledCreature, (int)motor, strength, (float)duration.TotalSeconds);
 
     /// <summary>
-    /// Unlock an achievement for ControlledCreature player who must be logged in.
+    /// Unlock an achievement for the player who must be logged in.
     /// </summary>
     /// <param name="achievementId">The achievement ID on the remote server.</param>
     /// <param name="lastValue">The previous value of the associated achievement stat.</param>
@@ -570,7 +570,7 @@ namespace NWN.API
       => NWScript.SetTextureOverride(texName, string.Empty, ControlledCreature);
 
     /// <summary>
-    /// Toggles the CutsceneMode state for ControlledCreature player.
+    /// Toggles the CutsceneMode state for the player.
     /// </summary>
     /// <param name="inCutscene">True if cutscene mode should be enabled, otherwise false.</param>
     /// <param name="leftClickEnabled">True if ControlledCreature user should be allowed to interact with the game with the left mouse button. False to prevent interaction.</param>
@@ -578,7 +578,7 @@ namespace NWN.API
       => NWScript.SetCutsceneMode(ControlledCreature, inCutscene.ToInt(), leftClickEnabled.ToInt());
 
     /// <summary>
-    /// Displays a message on ControlledCreature player's screen.<br/>
+    /// Displays a message on the player's screen.<br/>
     /// The message is always displayed on top of whatever is on the screen, including UI elements.
     /// </summary>
     /// <param name="message">The message to print.</param>
@@ -599,7 +599,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Briefly displays a floating text message above ControlledCreature player's head using the specified string reference.
+    /// Briefly displays a floating text message above the player's head using the specified string reference.
     /// </summary>
     /// <param name="strRef">The string ref index to use.</param>
     /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
@@ -607,7 +607,7 @@ namespace NWN.API
       => NWScript.FloatingTextStrRefOnCreature(strRef, ControlledCreature, broadcastToParty.ToInt());
 
     /// <summary>
-    /// Briefly displays a floating text message above ControlledCreature player's head.
+    /// Briefly displays a floating text message above the player's head.
     /// </summary>
     /// <param name="message">The message to display.</param>
     /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
@@ -644,7 +644,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gives the specified XP to ControlledCreature player, adjusted by any multiclass penalty.
+    /// Gives the specified XP to the player, adjusted by any multiclass penalty.
     /// </summary>
     /// <param name="xPAmount">Amount of experience to give.</param>
     public void GiveXp(int xPAmount)
@@ -672,7 +672,7 @@ namespace NWN.API
       => NWScript.LockCameraDistance(ControlledCreature, isLocked.ToInt());
 
     /// <summary>
-    /// Changes the current Day/Night cycle for ControlledCreature player to daylight.
+    /// Changes the current Day/Night cycle for the player to daylight.
     /// </summary>
     /// <param name="delayTransitionTime">Time it takes for the daylight to fade in.</param>
     public void NightToDay(TimeSpan delayTransitionTime = default)
@@ -717,7 +717,7 @@ namespace NWN.API
     public void StopFade() => NWScript.StopFade(ControlledCreature);
 
     /// <summary>
-    /// Forces ControlledCreature player to examine the specified placeable.
+    /// Forces the player to examine the specified placeable.
     /// </summary>
     /// <param name="target">The placeable to examine.</param>
     public void ForceExamine(NwPlaceable target)
@@ -726,7 +726,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Immediately kicks ControlledCreature player and deletes their character file (.bic).
+    /// Immediately kicks the player and deletes their character file (.bic).
     /// </summary>
     /// <param name="kickMessage">The kick message to show to the player.</param>
     /// <param name="preserveBackup">If true, instead of being deleted it will be renamed to be hidden from the character list, but remain in the vault directory.</param>
@@ -766,7 +766,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Delete the TURD of ControlledCreature player.
+    /// Delete the TURD of the player.
     /// <para>At times a PC may get stuck in a permanent crash loop when attempting to login. This function allows administrators to delete their Temporary User
     /// Resource Data where the PC's current location is stored allowing them to log into the starting area.</para>
     /// </summary>
@@ -784,7 +784,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Overrides the specified string from the TlkTable using the specified override for ControlledCreature player only.<br/>
+    /// Overrides the specified string from the TlkTable using the specified override for the player only.<br/>
     /// Overrides will not persist through re-logging.
     /// </summary>
     /// <param name="strRef">The string reference to be overridden.</param>
@@ -805,7 +805,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Clears the specified TlkTable override for ControlledCreature player, optionally restoring the global override.
+    /// Clears the specified TlkTable override for the player, optionally restoring the global override.
     /// </summary>
     /// <param name="strRef">The overridden string reference to restore.</param>
     /// <param name="restoreGlobal">If true, restores the global override current set for ControlledCreature string ref.</param>
