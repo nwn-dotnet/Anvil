@@ -4,9 +4,9 @@ namespace NWN.Services
 {
   public sealed class DevastatingCriticalData
   {
-    public readonly NwItem Weapon;
-    public readonly NwGameObject Target;
-    public int Damage;
-    public bool Bypass;
+    public NwItem Weapon { get; init; }
+    public NwGameObject Target { get; init; }
+    public int Damage { get; set; }
+    public bool Bypass { get; set; }
   }
 }

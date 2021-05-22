@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using NWN.API;
 using NWN.Native.API;
 
@@ -67,7 +68,7 @@ namespace NWN.Services
     private Action<DevastatingCriticalData> dcCallback;
 
     private int greaterFocusAttackBonus = 1;
-    private int greaeterWeaponSpecializationDamageBonus = 2;
+    private int greaterWeaponSpecializationDamageBonus = 2;
     private bool gaSling = false;
 
     private Dictionary<uint, MaxRangedAttackDistanceOverride> maxRangedAttackDistanceOverrideMap = new Dictionary<uint, MaxRangedAttackDistanceOverride>();
@@ -98,8 +99,8 @@ namespace NWN.Services
 
     private int OnGetWeaponFocus(void* pStats, void* pWeapon)
     {
-      CNWSCreatureStats stats = new CNWSCreatureStats(pStats, false);
-      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : new CNWSItem(pWeapon, false).m_nBaseItem;
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
       bool applicableFeatExists = weaponFocusMap.TryGetValue(weaponType, out HashSet<ushort> types);
@@ -121,8 +122,8 @@ namespace NWN.Services
 
     private int OnGetEpicWeaponFocus(void* pStats, void* pWeapon)
     {
-      CNWSCreatureStats stats = new CNWSCreatureStats(pStats, false);
-      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : new CNWSItem(pWeapon, false).m_nBaseItem;
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
       bool applicableFeatExists = epicWeaponFocusMap.TryGetValue(weaponType, out HashSet<ushort> types);
@@ -149,19 +150,19 @@ namespace NWN.Services
         return false.ToInt();
       }
 
-      CNWSCreatureStats creatureStats = new CNWSCreatureStats(pStats, false);
+      CNWSCreatureStats creatureStats = CNWSCreatureStats.FromPointer(pStats);
       if (!creatureStats.HasFeat((ushort)Feat.WeaponFinesse).ToBool())
       {
         return 0;
       }
 
-      return IsWeaponLight(creatureStats, new CNWSItem(pWeapon, false), true).ToInt();
+      return IsWeaponLight(creatureStats, CNWSItem.FromPointer(pWeapon), true).ToInt();
     }
 
     private int OnGetWeaponImprovedCritical(void* pStats, void* pWeapon)
     {
-      CNWSCreatureStats stats = new CNWSCreatureStats(pStats, false);
-      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : new CNWSItem(pWeapon, false).m_nBaseItem;
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
       bool applicableFeatExists = weaponImprovedCriticalMap.TryGetValue(weaponType, out HashSet<ushort> types);
@@ -183,8 +184,8 @@ namespace NWN.Services
 
     private int OnGetEpicWeaponOverwhelmingCritical(void* pStats, void* pWeapon)
     {
-      CNWSCreatureStats stats = new CNWSCreatureStats(pStats, false);
-      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : new CNWSItem(pWeapon, false).m_nBaseItem;
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
       bool applicableFeatExists = epicWeaponOverwhelmingCriticalMap.TryGetValue(weaponType, out HashSet<ushort> types);
@@ -206,47 +207,332 @@ namespace NWN.Services
 
     private int OnGetEpicWeaponDevastatingCritical(void* pStats, void* pWeapon)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      CNWSItem weapon = CNWSItem.FromPointer(pWeapon);
+      uint weaponType = weapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = epicWeaponDevastatingCriticalMap.TryGetValue(weaponType, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      bool canUseFeat = applicableFeatExists && hasApplicableFeat || getEpicWeaponDevastatingCriticalHook.CallOriginal(pStats, pWeapon).ToBool();
+
+      if (canUseFeat && dcCallback != null)
+      {
+        CNWSCreature creature = stats.m_pBaseCreature;
+        CNWSCombatRound combatRound = creature.m_pcCombatRound;
+        CNWSCombatAttackData attackData = combatRound.GetAttack(combatRound.m_nCurrentAttack);
+
+        DevastatingCriticalData devastatingCriticalData = new DevastatingCriticalData
+        {
+          Weapon = weapon.ToNwObject<NwItem>(),
+          Target = creature.m_oidAttackTarget.ToNwObject<NwGameObject>(),
+          Damage = attackData.GetTotalDamage(1),
+        };
+
+        dcCallback(devastatingCriticalData);
+        if (devastatingCriticalData.Bypass)
+        {
+          attackData.m_bKillingBlow = 0;
+          return 0;
+        }
+      }
+
+      return canUseFeat.ToInt();
     }
 
     private int OnGetWeaponSpecialization(void* pStats, void* pWeapon)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = weaponSpecializationMap.TryGetValue(weaponType, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      return applicableFeatExists && hasApplicableFeat ? 1 : getWeaponSpecializationHook.CallOriginal(pStats, pWeapon);
     }
 
     private int OnGetEpicWeaponSpecialization(void* pStats, void* pWeapon)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = epicWeaponSpecializationMap.TryGetValue(weaponType, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      return applicableFeatExists && hasApplicableFeat ? 1 : getEpicWeaponSpecializationHook.CallOriginal(pStats, pWeapon);
     }
 
     private int OnGetIsWeaponOfChoice(void* pStats, uint nBaseItem)
     {
-      throw new NotImplementedException();
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = weaponOfChoiceMap.TryGetValue(nBaseItem, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      return applicableFeatExists && hasApplicableFeat ? 1 : getIsWeaponOfChoiceHook.CallOriginal(pStats, nBaseItem);
     }
 
     private int OnGetDamageBonus(void* pStats, void* pCreature, int bOffHand)
     {
-      throw new NotImplementedException();
+      int damageBonus = getDamageBonusHook.CallOriginal(pStats, pCreature, bOffHand);
+
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      CNWSCreature creature = stats.m_pBaseCreature;
+      bool offHand = bOffHand.ToBool();
+      CNWSItem weapon = GetEquippedWeapon(creature, offHand);
+
+      uint baseItem = weapon != null ? weapon.m_nBaseItem : (uint)BaseItem.Gloves;
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      if (applicableFeatExists && hasApplicableFeat)
+      {
+        damageBonus += greaterWeaponSpecializationDamageBonus;
+        if ((*NWNXLib.EnableCombatDebugging()).ToBool() && stats.m_bIsPC.ToBool())
+        {
+          CNWSCombatAttackData currentAttack = creature.m_pcCombatRound.GetAttack(creature.m_pcCombatRound.m_nCurrentAttack);
+          StringBuilder debugMessage = new StringBuilder(currentAttack.m_sDamageDebugText.ToString());
+          debugMessage.Append(" + ");
+
+          if (currentAttack.m_nAttackResult == 3)
+          {
+            int criticalThreat = stats.GetCriticalHitMultiplier(bOffHand);
+            debugMessage.Append(greaterWeaponSpecializationDamageBonus * criticalThreat);
+            debugMessage.Append(" (Greater Weapon Specialization Feat) (Critical x");
+            debugMessage.Append(criticalThreat);
+            debugMessage.Append(")");
+          }
+          else
+          {
+            debugMessage.Append(greaterWeaponSpecializationDamageBonus);
+            debugMessage.Append(" (Greater Weapon Specialization Feat) ");
+          }
+
+          currentAttack.m_sDamageDebugText = debugMessage.ToString().ToExoString();
+        }
+      }
+
+      return damageBonus;
     }
 
     private int OnGetMeleeDamageBonus(void* pStats, int bOffHand, byte nCreatureWeaponIndex)
     {
-      throw new NotImplementedException();
+      int damageBonus = getMeleeDamageBonusHook.CallOriginal(pStats, bOffHand, nCreatureWeaponIndex);
+
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      CNWSCreature creature = stats.m_pBaseCreature;
+      bool offHand = bOffHand.ToBool();
+
+      CNWSItem weapon = null;
+
+      if (nCreatureWeaponIndex == 255)
+      {
+        weapon = GetEquippedWeapon(creature, offHand);
+      }
+
+      uint baseItem = weapon != null ? weapon.m_nBaseItem : (uint)BaseItem.Gloves;
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      if (applicableFeatExists && hasApplicableFeat)
+      {
+        return damageBonus + greaterWeaponSpecializationDamageBonus;
+      }
+
+      return damageBonus;
     }
 
     private int OnGetRangedDamageBonus(void* pStats)
     {
-      throw new NotImplementedException();
+      int damageBonus = getRangedDamageBonusHook.CallOriginal(pStats);
+
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      CNWSItem weapon = stats.m_pBaseCreature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.RightHand);
+
+      if (weapon == null)
+      {
+        return damageBonus;
+      }
+
+      uint baseItem = weapon.m_nBaseItem;
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      if (applicableFeatExists && hasApplicableFeat)
+      {
+        return damageBonus + greaterWeaponSpecializationDamageBonus;
+      }
+
+      return damageBonus;
     }
 
     private int OnGetMeleeAttackBonus(void* pStats, int bOffHand, int bIncludeBase, int bTouchAttack)
     {
-      throw new NotImplementedException();
+      int attackBonus = getMeleeAttackBonusHook.CallOriginal(pStats, bOffHand, bIncludeBase, bTouchAttack);
+
+      if (bTouchAttack.ToBool())
+      {
+        return attackBonus;
+      }
+
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      CNWSCreature creature = stats.m_pBaseCreature;
+      bool offHand = bOffHand.ToBool();
+
+      CNWSItem weapon = GetEquippedWeapon(creature, offHand);
+      uint baseItem = weapon != null ? weapon.m_nBaseItem : (uint)BaseItem.Gloves;
+
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      if (applicableFeatExists && hasApplicableFeat)
+      {
+        return attackBonus + greaterFocusAttackBonus;
+      }
+
+      return attackBonus;
     }
 
     private int OnGetRangedAttackBonus(void* pStats, int bIncludeBase, int bTouchAttack)
     {
-      throw new NotImplementedException();
+      int attackBonus = getRangedAttackBonusHook.CallOriginal(pStats, bIncludeBase, bTouchAttack);
+
+      if (bTouchAttack.ToBool())
+      {
+        return attackBonus;
+      }
+
+      CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
+      CNWSItem weapon = stats.m_pBaseCreature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.RightHand);
+
+      if (weapon == null)
+      {
+        return attackBonus;
+      }
+
+      uint baseItem = weapon.m_nBaseItem;
+      bool hasApplicableFeat = false;
+      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort> types);
+
+      if (applicableFeatExists)
+      {
+        foreach (ushort feat in types)
+        {
+          hasApplicableFeat = stats.HasFeat(feat).ToBool();
+          if (hasApplicableFeat)
+          {
+            break;
+          }
+        }
+      }
+
+      if (applicableFeatExists && hasApplicableFeat)
+      {
+        attackBonus += greaterFocusAttackBonus;
+      }
+
+      if (gaSling && baseItem == (uint)BaseItem.Sling && stats.m_nRace != (ushort)RacialType.Halfling && stats.HasFeat((ushort)Feat.GoodAim).ToBool())
+      {
+        attackBonus += 1;
+      }
+
+      return attackBonus;
     }
 
     private int OnGetAttackModifierVersus(void* pStats, void* pCreature)
@@ -319,6 +605,34 @@ namespace NWN.Services
         default:
           return weaponUnarmedSet.Contains(weapon.m_nBaseItem);
       }
+    }
+
+    private CNWSItem GetEquippedWeapon(CNWSCreature creature, bool offHand)
+    {
+      CNWSItem weapon;
+
+      if (offHand)
+      {
+        weapon = creature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.LeftHand);
+        if (weapon == null)
+        {
+          CNWSItem main = creature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.RightHand);
+          if (main != null)
+          {
+            CNWBaseItem baseWeapon = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)main.m_nBaseItem);
+            if (baseWeapon != null && baseWeapon.m_nWeaponWield == 8)
+            {
+              weapon = main;
+            }
+          }
+        }
+      }
+      else
+      {
+        weapon = creature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.RightHand);
+      }
+
+      return weapon;
     }
   }
 }
