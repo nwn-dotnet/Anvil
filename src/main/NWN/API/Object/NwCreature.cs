@@ -357,7 +357,15 @@ namespace NWN.API
     {
       set
       {
-        Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
+        if (value.Area != Area)
+        {
+          Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
+        }
+        else
+        {
+          Position = value.Position;
+        }
+
         Rotation = value.Rotation;
       }
     }
