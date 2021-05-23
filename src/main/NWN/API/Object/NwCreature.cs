@@ -401,7 +401,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gets the player that logged in with this creature.<br/>
-    /// If this creature is a NPC or familiar, regardless of possession, this will return null.<br/>
+    /// If this creature is a NPC or familiar, regardless of possession, this will return null.
     /// </summary>
     public NwPlayer LoginPlayer
     {
@@ -409,7 +409,10 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if this creature is currently being controlled by a player/DM.
+    /// Gets if this creature is currently being controlled by a player/DM.<br/>
+    /// If this creature is a possessed familiar or is DM possessed, this will return true.<br/>
+    /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns false.<br/>
+    /// If no player is controlling this creature, this returns false.
     /// </summary>
     public bool IsPlayerControlled
     {
@@ -417,9 +420,10 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets if this creature is a player character/DM avatar.
+    /// Gets if this creature is a player character/DM avatar.<br/>
+    /// If this creature is a NPC or familiar, regardless of possession, this will return false.
     /// </summary>
-    public bool IsPlayerCharacter
+    public bool IsLoginPlayerCharacter
     {
       get => LoginPlayer != null;
     }
