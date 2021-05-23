@@ -1,17 +1,24 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using NWN.API;
+using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Native.API;
+using ClassType = NWN.Native.API.ClassType;
+using CombatMode = NWN.API.Constants.CombatMode;
+using CreatureSize = NWN.Native.API.CreatureSize;
+using Feat = NWN.Native.API.Feat;
+using RacialType = NWN.Native.API.RacialType;
 
 namespace NWN.Services
 {
   [ServiceBinding(typeof(WeaponService))]
   [ServiceBindingOptions(Lazy = true)]
-  public sealed unsafe class WeaponService
+  public sealed unsafe class WeaponService : IDisposable
   {
     private readonly HookService hookService;
+    private readonly EventService eventService;
 
     private delegate int GetWeaponFocusHook(void* pStats, void* pWeapon);
     private delegate int GetEpicWeaponFocusHook(void* pStats, void* pWeapon);
@@ -30,7 +37,7 @@ namespace NWN.Services
     private delegate int GetAttackModifierVersusHook(void* pStats, void* pCreature);
     private delegate int GetUseMonkAttackTablesHook(void* pStats, int bForceUnarmed);
 
-    private delegate int ToggleModeHook(void* pCreature, byte nMode);
+    private delegate float MaxAttackRangeHook(void* pCreature, uint oidTarget, int bBaseValue, int bPassiveRange);
 
     private readonly FunctionHook<GetWeaponFocusHook> getWeaponFocusHook;
     private readonly FunctionHook<GetEpicWeaponFocusHook> getEpicWeaponFocusHook;
@@ -48,7 +55,8 @@ namespace NWN.Services
     private readonly FunctionHook<GetRangedAttackBonusHook> getRangedAttackBonusHook;
     private readonly FunctionHook<GetAttackModifierVersusHook> getAttackModifierVersusHook;
     private readonly FunctionHook<GetUseMonkAttackTablesHook> getUseMonkAttackTablesHook;
-    private readonly FunctionHook<ToggleModeHook> toggleModeHook;
+
+    private FunctionHook<MaxAttackRangeHook> maxAttackRangeHook;
 
     private readonly Dictionary<uint, HashSet<ushort>> weaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
     private readonly Dictionary<uint, HashSet<ushort>> epicWeaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
@@ -65,19 +73,14 @@ namespace NWN.Services
     private readonly HashSet<uint> weaponUnarmedSet = new HashSet<uint>();
     private readonly HashSet<uint> monkWeaponSet = new HashSet<uint>();
 
-    private Dictionary<uint, MaxRangedAttackDistanceOverride> maxRangedAttackDistanceOverrideMap = new Dictionary<uint, MaxRangedAttackDistanceOverride>();
+    private readonly Dictionary<uint, MaxRangedAttackDistanceOverride> maxRangedAttackDistanceOverrideMap = new Dictionary<uint, MaxRangedAttackDistanceOverride>();
 
-    public int EpicWeaponFocusAttackBonus { get; set; } = 1;
+    private bool combatModeEventSubscribed;
 
-    public int EpicWeaponSpecializationDamageBonus { get; set; } = 2;
-
-    public bool EnableSlingGoodAimFeat { get; set; } = false;
-
-    public event Action<DevastatingCriticalData> OnDevastatingCriticalHit;
-
-    public WeaponService(HookService hookService)
+    public WeaponService(HookService hookService, EventService eventService)
     {
       this.hookService = hookService;
+      this.eventService = eventService;
 
       getWeaponFocusHook = hookService.RequestHook<GetWeaponFocusHook>(OnGetWeaponFocus, FunctionsLinux._ZN17CNWSCreatureStats14GetWeaponFocusEP8CNWSItem, HookOrder.Late);
       getEpicWeaponFocusHook = hookService.RequestHook<GetEpicWeaponFocusHook>(OnGetEpicWeaponFocus, FunctionsLinux._ZN17CNWSCreatureStats18GetEpicWeaponFocusEP8CNWSItem, HookOrder.Late);
@@ -97,6 +100,237 @@ namespace NWN.Services
       getUseMonkAttackTablesHook = hookService.RequestHook<GetUseMonkAttackTablesHook>(OnGetUseMonkAttackTables, FunctionsLinux._ZN17CNWSCreatureStats22GetUseMonkAttackTablesEi, HookOrder.Final);
 
       weaponFinesseSizeMap[(uint)BaseItem.Rapier] = (byte)CreatureSize.Medium;
+    }
+
+    /// <summary>
+    /// Gets or sets the attack bonus granted to a creature with a "Greater Weapon Focus" feat.<br/>
+    /// This does not exist in the base game, see <see cref="AddGreaterWeaponFocusFeat"/> to add feats that grant this bonus.
+    /// </summary>
+    public int GreaterWeaponFocusAttackBonus { get; set; } = 1;
+
+    /// <summary>
+    /// Gets or sets the damage bonus granted to a creature with a "Greater Weapon Specialization" feat.<br/>
+    /// This does not exist in the base game, see <see cref="AddGreaterWeaponSpecializationFeat"/> to add feats that grant this bonus.
+    /// </summary>
+    public int GreaterWeaponSpecializationDamageBonus { get; set; } = 2;
+
+    /// <summary>
+    /// Gets or sets whether the "Good Aim" feat should also apply to slings.
+    /// </summary>
+    public bool EnableSlingGoodAimFeat { get; set; } = false;
+
+    /// <summary>
+    /// Called when an attack results in a devastating critical hit. Subscribe and modify the event data to implement custom behaviours.
+    /// </summary>
+    public event Action<DevastatingCriticalData> OnDevastatingCriticalHit;
+
+    /// <summary>
+    /// Adds the specified feat as a weapon focus feat for the specified base item type.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddWeaponFocusFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      weaponFocusMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as an epic weapon focus feat for the specified base item type.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddEpicWeaponFocusFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      epicWeaponFocusMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as an improved critical feat for the specified base item type.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddWeaponImprovedCriticalFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      weaponImprovedCriticalMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as a weapon specialization feat for the specified base item type.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddWeaponSpecializationFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      weaponSpecializationMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as an epic weapon specialization feat for the specified base item type.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddEpicWeaponSpecializationFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      epicWeaponSpecializationMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as an epic overwhelming critical feat for the specified base item type.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddEpicWeaponOverwhelmingCriticalFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      epicWeaponOverwhelmingCriticalMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as a devastating critical feat for the specified base item type.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddEpicWeaponDevastatingCriticalFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      epicWeaponDevastatingCriticalMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as a weapon of choice feat for the specified base item type.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddWeaponOfChoiceFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      weaponOfChoiceMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as a greater weapon focus feat for the specified base item type.<br/>
+    /// This adds the <see cref="GreaterWeaponFocusAttackBonus"/> to the weapon's attack roll for characters with the specified feat.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddGreaterWeaponFocusFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      greaterWeaponFocusMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Adds the specified feat as a greater weapon specialization feat for the specified base item type.<br/>
+    /// This adds the <see cref="GreaterWeaponSpecializationDamageBonus"/> to the weapon's damage roll for characters with the specified feat.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="feat">The feat to map to the base item.</param>
+    public void AddGreaterWeaponSpecializationFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    {
+      greaterWeaponSpecializationMap.AddElement((uint)baseItem, (ushort)feat);
+    }
+
+    /// <summary>
+    /// Gets the required creature size needed for the specified base item type to be finessable. This function only returns values assigned in <see cref="SetWeaponFinesseSize"/>.
+    /// </summary>
+    /// <param name="baseItem">The base item type to query.</param>
+    /// <returns>The size of the creature needed to consider this weapon finessable.</returns>
+    public API.Constants.CreatureSize GetWeaponFinesseSize(BaseItemType baseItem)
+    {
+      return weaponFinesseSizeMap.TryGetValue((uint)baseItem, out byte size) ? (API.Constants.CreatureSize)size : API.Constants.CreatureSize.Invalid;
+    }
+
+    /// <summary>
+    /// Sets the required creature size needed for the specified base item type to be finessable.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be mapped.</param>
+    /// <param name="size">The size of the creature needed to consider this weapon finessable.</param>
+    public void SetWeaponFinesseSize(BaseItemType baseItem, API.Constants.CreatureSize size)
+    {
+      weaponFinesseSizeMap[(uint)baseItem] = (byte)size;
+    }
+
+    /// <summary>
+    /// Sets the specified weapon base item to be considered as unarmed for the weapon finesse feat.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be considered unarmed.</param>
+    public void SetWeaponUnarmed(BaseItemType baseItem)
+    {
+      weaponUnarmedSet.Add((uint)baseItem);
+    }
+
+    /// <summary>
+    /// Sets the specified weapon base item to be considered a monk weapon.
+    /// </summary>
+    /// <param name="baseItem">The base item type to be considered a monk weapon.</param>
+    public void SetWeaponIsMonkWeapon(BaseItemType baseItem)
+    {
+      monkWeaponSet.Add((uint)baseItem);
+
+      if (!combatModeEventSubscribed)
+      {
+        eventService.SubscribeAll<OnCombatModeToggle, OnCombatModeToggle.Factory>(OnCombatModeToggle);
+        combatModeEventSubscribed = true;
+      }
+    }
+
+    /// <summary>
+    /// Overrides the max attack distance of ranged weapons.
+    /// </summary>
+    /// <param name="baseItem">The base item type.</param>
+    /// <param name="max">The maximum attack distance. Default is 40.0f.</param>
+    /// <param name="maxPassive">The maximum passive attack distance. Default is 20.0f. Seems to be used by the engine to determine a new nearby target when needed.</param>
+    /// <param name="preferred">The preferred attack distance. See the PrefAttackDist column in baseitems.2da, default seems to be 30.0f for ranged weapons.</param>
+    /// <remarks>maxPassive should probably be lower than max, half of max seems to be a good start. preferred should be at least ~0.5f lower than max.</remarks>
+    public void SetMaxRangedAttackDistanceOverride(BaseItemType baseItem, float max, float maxPassive, float preferred)
+    {
+      CNWBaseItem baseItemData = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)baseItem);
+      if (baseItemData == null || baseItemData.m_nWeaponRanged <= 0)
+      {
+        return;
+      }
+
+      baseItemData.m_fPreferredAttackDist = preferred;
+
+      MaxRangedAttackDistanceOverride overrideData;
+      overrideData.MaxRangedAttackDistance = max;
+      overrideData.MaxRangedPassiveAttackDistance = maxPassive;
+
+      maxRangedAttackDistanceOverrideMap[(uint)baseItem] = overrideData;
+
+      maxAttackRangeHook ??= hookService.RequestHook<MaxAttackRangeHook>((pCreature, oidTarget, bBaseValue, bPassiveRange) =>
+      {
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
+        CNWSItem equippedItem = creature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.RightHand);
+        if (equippedItem != null)
+        {
+          uint baseItemType = equippedItem.m_nBaseItem;
+          CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)baseItemType);
+          if (baseItem != null && baseItem.m_nWeaponRanged > 0 && maxRangedAttackDistanceOverrideMap.TryGetValue(baseItemType, out MaxRangedAttackDistanceOverride distanceOverride))
+          {
+            return bPassiveRange.ToBool() ? distanceOverride.MaxRangedPassiveAttackDistance : distanceOverride.MaxRangedAttackDistance;
+          }
+        }
+
+        return creature.DesiredAttackRange(oidTarget, bBaseValue) + 1.5f;
+      }, FunctionsLinux._ZN12CNWSCreature14MaxAttackRangeEjii, HookOrder.Final);
+    }
+
+    void IDisposable.Dispose()
+    {
+      getWeaponFocusHook?.Dispose();
+      getEpicWeaponFocusHook?.Dispose();
+      getWeaponFinesseHook?.Dispose();
+      getWeaponImprovedCriticalHook?.Dispose();
+      getEpicWeaponOverwhelmingCriticalHook?.Dispose();
+      getEpicWeaponDevastatingCriticalHook?.Dispose();
+      getWeaponSpecializationHook?.Dispose();
+      getEpicWeaponSpecializationHook?.Dispose();
+      getIsWeaponOfChoiceHook?.Dispose();
+      getDamageBonusHook?.Dispose();
+      getMeleeDamageBonusHook?.Dispose();
+      getRangedDamageBonusHook?.Dispose();
+      getMeleeAttackBonusHook?.Dispose();
+      getRangedAttackBonusHook?.Dispose();
+      getAttackModifierVersusHook?.Dispose();
+      getUseMonkAttackTablesHook?.Dispose();
+      maxAttackRangeHook?.Dispose();
     }
 
     private int OnGetWeaponFocus(void* pStats, void* pWeapon)
@@ -349,7 +583,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        damageBonus += EpicWeaponSpecializationDamageBonus;
+        damageBonus += GreaterWeaponSpecializationDamageBonus;
         if ((*NWNXLib.EnableCombatDebugging()).ToBool() && stats.m_bIsPC.ToBool())
         {
           CNWSCombatAttackData currentAttack = creature.m_pcCombatRound.GetAttack(creature.m_pcCombatRound.m_nCurrentAttack);
@@ -359,14 +593,14 @@ namespace NWN.Services
           if (currentAttack.m_nAttackResult == 3)
           {
             int criticalThreat = stats.GetCriticalHitMultiplier(bOffHand);
-            debugMessage.Append(EpicWeaponSpecializationDamageBonus * criticalThreat);
+            debugMessage.Append(GreaterWeaponSpecializationDamageBonus * criticalThreat);
             debugMessage.Append(" (Greater Weapon Specialization Feat) (Critical x");
             debugMessage.Append(criticalThreat);
             debugMessage.Append(")");
           }
           else
           {
-            debugMessage.Append(EpicWeaponSpecializationDamageBonus);
+            debugMessage.Append(GreaterWeaponSpecializationDamageBonus);
             debugMessage.Append(" (Greater Weapon Specialization Feat) ");
           }
 
@@ -410,7 +644,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        return damageBonus + EpicWeaponSpecializationDamageBonus;
+        return damageBonus + GreaterWeaponSpecializationDamageBonus;
       }
 
       return damageBonus;
@@ -446,7 +680,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        return damageBonus + EpicWeaponSpecializationDamageBonus;
+        return damageBonus + GreaterWeaponSpecializationDamageBonus;
       }
 
       return damageBonus;
@@ -485,7 +719,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        return attackBonus + EpicWeaponFocusAttackBonus;
+        return attackBonus + GreaterWeaponFocusAttackBonus;
       }
 
       return attackBonus;
@@ -526,7 +760,7 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        attackBonus += EpicWeaponFocusAttackBonus;
+        attackBonus += GreaterWeaponFocusAttackBonus;
       }
 
       if (EnableSlingGoodAimFeat && baseItem == (uint)BaseItem.Sling && stats.m_nRace != (ushort)RacialType.Halfling && stats.HasFeat((ushort)Feat.GoodAim).ToBool())
@@ -574,14 +808,14 @@ namespace NWN.Services
 
       if (applicableFeatExists && hasApplicableFeat)
       {
-        attackMod += EpicWeaponFocusAttackBonus;
+        attackMod += GreaterWeaponFocusAttackBonus;
 
         if ((*NWNXLib.EnableCombatDebugging()).ToBool() && stats.m_bIsPC.ToBool())
         {
           CNWSCombatAttackData currentAttack = combatRound.GetAttack(combatRound.m_nCurrentAttack);
           StringBuilder debugMessage = new StringBuilder(currentAttack.m_sDamageDebugText.ToString());
           debugMessage.Append(" + ");
-          debugMessage.Append(EpicWeaponFocusAttackBonus);
+          debugMessage.Append(GreaterWeaponFocusAttackBonus);
           debugMessage.Append(" (Greater Weapon Focus Feat)");
 
           currentAttack.m_sDamageDebugText = debugMessage.ToString().ToExoString();
@@ -645,6 +879,44 @@ namespace NWN.Services
 
       uint secondWeaponType = secondWeapon.m_nBaseItem;
       return (secondWeaponType == (uint)BaseItem.Kama || secondWeaponType == (uint)BaseItem.Torch || monkWeaponSet.Contains(secondWeaponType)).ToInt();
+    }
+
+    private void OnCombatModeToggle(OnCombatModeToggle onToggle)
+    {
+      CNWSCreature creature = onToggle.Creature.Creature;
+
+      // Flurry of blows automatic cancel
+      if (onToggle.NewMode == CombatMode.None && onToggle.ForceNewMode && creature.m_nCombatMode == (byte)CombatMode.FlurryOfBlows)
+      {
+        if (creature.m_pStats.GetUseMonkAttackTables(0).ToBool())
+        {
+          onToggle.PreventToggle = true;
+          return;
+        }
+      }
+
+      // Flurry of blows manual cancel
+      if (onToggle.NewMode == CombatMode.FlurryOfBlows && !onToggle.ForceNewMode)
+      {
+        onToggle.NewMode = CombatMode.None;
+        onToggle.ForceNewModeOverride = ForceNewModeOverride.Force;
+      }
+
+      if (onToggle.PreventToggle)
+      {
+        return;
+      }
+
+      // Flurry of blows manual activation.
+      if (onToggle.NewMode == CombatMode.FlurryOfBlows && onToggle.ForceNewMode)
+      {
+        if (creature.m_pStats.GetUseMonkAttackTables(0).ToBool())
+        {
+          creature.m_nCombatMode = (byte)CombatMode.FlurryOfBlows;
+          creature.SetActivity(0x4000, 1);
+          onToggle.PreventToggle = true;
+        }
+      }
     }
 
     private bool IsWeaponLight(CNWSCreatureStats stats, CNWSItem weapon, bool finesse)

@@ -4,6 +4,7 @@ namespace NWN.API.Constants
 {
   public enum CombatMode
   {
+    None = NWScript.COMBAT_MODE_INVALID,
     Invalid = NWScript.COMBAT_MODE_INVALID,
     Parry = NWScript.COMBAT_MODE_PARRY,
     PowerAttack = NWScript.COMBAT_MODE_POWER_ATTACK,
