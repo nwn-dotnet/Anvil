@@ -13,6 +13,10 @@ on:
       - development
     paths-ignore:
       - '**.md'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Commit Tag'
 
 jobs:
   compile:
@@ -39,38 +43,37 @@ jobs:
     needs: compile
     outputs:
       tag: ${{ steps.bump_version.outputs.new_tag }}
-      version: ${{ steps.bump_version.outputs.new_version }}
+      version: ${{ steps.vars.outputs.version }}
       sha_short: ${{ steps.vars.outputs.sha_short }}
       image_repository: ${{ steps.vars.outputs.image_repository }}
       created: ${{ steps.build.outputs.created }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.100
 
-      - name: Version and Tag
-        id: bump_version
-        uses: mathieudutour/github-tag-action@v5.3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pre_release_branches: development
-          append_to_pre_release_tag: dev
-          custom_release_rules:
+      - name: Tag Commit
+        if: github.event.inputs.tag != ''
+        run: |
+          git tag ${{ github.event.inputs.tag }} && git push origin ${{ github.event.inputs.tag }}
 
       - name: Prepare Outputs
         id: vars
         run: |
+          echo "::set-output name=version::$(git describe --tags | sed 's/^v//')"
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
 
       - name: Build Release Binaries
         id: build
         run: |
-          dotnet build --configuration Release -p:Version=${{ steps.bump_version.outputs.new_version }} -o output
+          dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
           echo "::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
        
       - name: Upload Build Artifacts
