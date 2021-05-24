@@ -34,9 +34,7 @@ The following tags are supported:
     |----linux-x86
          |----nwserver-linux
          |----NWNX_DotNET.so
-         |----NWNX_Object.so
          |----NWNX_SWIG_DotNET.so
-         |----NWNX_Util.so
     modbin/
     |----NLog.dll
     |----NWN.Core.dll
@@ -58,9 +56,7 @@ NWNX_SWIG_DOTNET_SKIP=n
 NWNX_DOTNET_ASSEMBLY=/your/path/to/NWN.Anvil # Where "NWN.Anvil.dll" was extracted in step 3, without the extension. E.g: NWNX_DOTNET_ASSEMBLY=/nwn/home/modbin/Anvil
 # NWNX_DOTNET_ENTRYPOINT= # Make sure this option does not exist in your config
 ```
-The DotNET, Object and Util plugins are required for the library to work. Make sure they are enabled!
-
-Other plugins are optional, but may be required to access some extension APIs. An exception will be raised if you try to use an extension without the dependent plugin loaded.
+The DotNET and SWIG_DotNET plugins are required for the library to work. Make sure they are enabled!
 
 For a step by step guide how to set up a local developement environment using your IDE of choice and windows. see [Development with Docker on Windows](Development_with_Docker_on_Windows.md).
 
