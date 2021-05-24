@@ -11,10 +11,16 @@ namespace NWN.API
 {
   public static unsafe class NativeUtils
   {
-    public static readonly Encoding StringEncoding = Encoding.GetEncoding("ISO-8859-1");
+    public static readonly Encoding StringEncoding;
 
     private const string DefaultGffVersion = "V3.2";
     private static readonly CExoString DefaultGffVersionExoString = "V3.2".ToExoString();
+
+    static NativeUtils()
+    {
+      Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+      StringEncoding = Encoding.GetEncoding("windows-1252");
+    }
 
     public static Vector ToNativeVector(this Vector3 vector)
     {
