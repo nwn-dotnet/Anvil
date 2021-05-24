@@ -193,9 +193,14 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that caused <see cref="NwPlayer"/> to trigger the event.
       /// </summary>
-      public NwGameObject Killer { get; } = NWScript.GetLastHostileActor().ToNwObject<NwGameObject>();
+      public NwGameObject Killer { get; }
 
       NwObject IEvent.Context => DeadPlayer.ControlledCreature;
+
+      public OnPlayerDeath()
+      {
+        Killer = NWScript.GetLastHostileActor(DeadPlayer.ControlledCreature).ToNwObject<NwGameObject>();
+      }
     }
 
     /// <summary>
