@@ -36,7 +36,7 @@ namespace NWN.API.Events
         OnItemInventoryClose eventData = ProcessEvent(new OnItemInventoryClose
         {
           ClosedBy = oidCloser.ToNwObject<NwCreature>(),
-          Container = new CNWSItem(pItem, false).ToNwObject<NwItem>(),
+          Container = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
         });
 
         if (!eventData.PreventClose)

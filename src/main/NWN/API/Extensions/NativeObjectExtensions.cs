@@ -27,7 +27,7 @@ namespace NWN.API
 
     public static NwPlayer ToNwPlayer(this CNWSPlayer player)
     {
-      return player != null && player != IntPtr.Zero ? new NwPlayer(player) : null;
+      return player != null && player.Pointer != IntPtr.Zero ? new NwPlayer(player) : null;
     }
   }
 }

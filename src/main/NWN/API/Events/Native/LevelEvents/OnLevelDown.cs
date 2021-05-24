@@ -25,11 +25,9 @@ namespace NWN.API.Events
       {
         Hook.CallOriginal(pCreatureStats, pLevelUpStats);
 
-        CNWSCreatureStats creatureStats = new CNWSCreatureStats(pCreatureStats, false);
-
         ProcessEvent(new OnLevelDown
         {
-          Creature = creatureStats.m_pBaseCreature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = CNWSCreatureStats.FromPointer(pCreatureStats)?.m_pBaseCreature.ToNwObject<NwCreature>(),
         });
       }
     }

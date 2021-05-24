@@ -33,12 +33,12 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnApplyDisarm(void* pEffectHandler, void* pObject, void* pEffect, int bLoadingGame)
       {
-        CNWSObject gameObject = new CNWSObject(pObject, false);
-        CGameEffect gameEffect = new CGameEffect(pEffect, false);
+        CNWSObject gameObject = CNWSObject.FromPointer(pObject);
+        CGameEffect gameEffect = CGameEffect.FromPointer(pEffect);
 
         OnDisarmWeapon eventData = new OnDisarmWeapon
         {
-          DisarmedObject = gameObject.m_idSelf.ToNwObject<NwGameObject>(),
+          DisarmedObject = gameObject.ToNwObject<NwGameObject>(),
           DisarmedBy = gameEffect.m_oidCreator.ToNwObject<NwGameObject>(),
           Feat = gameEffect.GetInteger(0) == 1 ? Feat.ImprovedDisarm : Feat.Disarm
         };

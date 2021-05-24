@@ -79,9 +79,9 @@ namespace NWN.API.Events
 
       private static OnCreatureAttack[] GetAttackEvents(void* pCreature, void* pTarget, int nAttacks)
       {
-        CNWSCreature cnwsCreature = new CNWSCreature(pCreature, false);
-        NwCreature creature = cnwsCreature.m_idSelf.ToNwObject<NwCreature>();
-        NwGameObject target = new CNWSObject(pTarget, false).m_idSelf.ToNwObject<NwGameObject>();
+        CNWSCreature cnwsCreature = CNWSCreature.FromPointer(pCreature);
+        NwCreature creature = cnwsCreature.ToNwObject<NwCreature>();
+        NwGameObject target = CNWSObject.FromPointer(pTarget).ToNwObject<NwGameObject>();
 
         // m_nCurrentAttack points to the attack after this flurry.
         int attackNumberOffset = cnwsCreature.m_pcCombatRound.m_nCurrentAttack - nAttacks;

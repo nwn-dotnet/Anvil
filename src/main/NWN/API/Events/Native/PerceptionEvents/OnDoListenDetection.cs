@@ -27,18 +27,18 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnDoListenDetection(void* pCreature, void* pTarget, int bTargetInvisible)
       {
-        CNWSCreature target = new CNWSCreature(pTarget, false);
+        CNWSCreature target = CNWSCreature.FromPointer(pTarget);
         if (target.m_nStealthMode == 0 && !bTargetInvisible.ToBool())
         {
           return true.ToInt();
         }
 
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         OnDoListenDetection eventData = ProcessEvent(new OnDoListenDetection
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
-          Target = target.m_idSelf.ToNwObject<NwCreature>()
+          Creature = creature.ToNwObject<NwCreature>(),
+          Target = target.ToNwObject<NwCreature>()
         });
 
         switch (eventData.VisibilityOverride)

@@ -30,7 +30,7 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnAddItem(void* pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem)
       {
-        CItemRepository itemRepository = new CItemRepository(pItemRepository, false);
+        CItemRepository itemRepository = CItemRepository.FromPointer(pItemRepository);
         NwGameObject parent = itemRepository.m_oidParent.ToNwObject<NwGameObject>();
 
         // Early out if parent isn't an item or placeable or Bad Things(tm) happen
@@ -42,7 +42,7 @@ namespace NWN.API.Events
         OnInventoryItemAdd eventData = new OnInventoryItemAdd
         {
           AcquiredBy = parent,
-          Item = ppItem == null || *ppItem == null ? null : new NwItem(new CNWSItem(*ppItem, false)),
+          Item = ppItem == null ? null : CNWSItem.FromPointer(*ppItem).ToNwObject<NwItem>()
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventItemAdd && Hook.CallOriginal(pItemRepository, ppItem, x, y, z, bAllowEncumbrance, bMergeItem).ToBool());

@@ -25,7 +25,7 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnUnpossessFamiliar(void* pCreature)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         ProcessEvent(new OnFamiliarUnpossess
         {

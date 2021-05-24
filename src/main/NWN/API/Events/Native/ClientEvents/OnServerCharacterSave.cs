@@ -38,7 +38,7 @@ namespace NWN.API.Events
       {
         OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave
         {
-          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer()
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()
         });
 
         return !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;

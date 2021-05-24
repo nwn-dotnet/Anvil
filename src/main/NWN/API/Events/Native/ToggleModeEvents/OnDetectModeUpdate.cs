@@ -30,7 +30,7 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnSetDetectMode(void* pCreature, byte nDetectMode)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         bool willBeDetecting = nDetectMode != 0;
         bool currentlyDetecting = creature.m_nDetectMode != 0;
@@ -53,7 +53,7 @@ namespace NWN.API.Events
       {
         OnDetectModeUpdate eventData = ProcessEvent(new OnDetectModeUpdate
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>(),
           EventType = ToggleModeEventType.Enter
         });
 
@@ -71,7 +71,7 @@ namespace NWN.API.Events
       {
         OnDetectModeUpdate eventData = ProcessEvent(new OnDetectModeUpdate
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>(),
           EventType = ToggleModeEventType.Exit
         });
 

@@ -40,11 +40,11 @@ namespace NWN.API.Events
       private static int OnSetMemorizedSpellSlot(void* pCreatureStats, byte nMultiClass, byte nSpellSlot,
         uint nSpellId, byte nDomainLevel, byte nMetaType, int bFromClient)
       {
-        CNWSCreatureStats creatureStats = new CNWSCreatureStats(pCreatureStats, false);
+        CNWSCreatureStats creatureStats = CNWSCreatureStats.FromPointer(pCreatureStats);
 
         OnSpellSlotMemorize eventData = ProcessEvent(new OnSpellSlotMemorize
         {
-          Creature = creatureStats.m_pBaseCreature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>(),
           ClassIndex = nMultiClass,
           SlotIndex = nSpellSlot,
           Spell = (Spell)nSpellId,

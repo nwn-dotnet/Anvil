@@ -103,20 +103,20 @@ namespace NWN.API
 
       return gameObject switch
       {
-        CNWSArea area => area != IntPtr.Zero ? new NwArea(area) : null,
-        CNWSAreaOfEffectObject areaOfEffect => areaOfEffect != IntPtr.Zero ? new NwAreaOfEffect(areaOfEffect) : null,
-        CNWSCreature creature => creature != IntPtr.Zero ? new NwCreature(creature) : null,
-        CNWSDoor door => door != IntPtr.Zero ? new NwDoor(door) : null,
-        CNWSEncounter encounter => encounter != IntPtr.Zero ? new NwEncounter(encounter) : null,
-        CNWSItem item => item != IntPtr.Zero ? new NwItem(item) : null,
+        CNWSArea area => new NwArea(area),
+        CNWSAreaOfEffectObject areaOfEffect => new NwAreaOfEffect(areaOfEffect),
+        CNWSCreature creature => new NwCreature(creature),
+        CNWSDoor door => new NwDoor(door),
+        CNWSEncounter encounter => new NwEncounter(encounter),
+        CNWSItem item => new NwItem(item),
+        CNWSPlaceable placeable => new NwPlaceable(placeable),
+        CNWSSoundObject soundObject => new NwSound(soundObject),
+        CNWSStore store => new NwStore(store),
+        CNWSTrigger trigger => new NwTrigger(trigger),
+        CNWSWaypoint waypoint => new NwWaypoint(waypoint),
+        CNWSObject => CreateFromVirtualType(gameObject),
+        CGameObject => CreateFromVirtualType(gameObject),
         CNWSModule => NwModule.Instance,
-        CNWSPlaceable placeable => placeable != IntPtr.Zero ? new NwPlaceable(placeable) : null,
-        CNWSSoundObject soundObject => soundObject != IntPtr.Zero ? new NwSound(soundObject) : null,
-        CNWSStore store => store != IntPtr.Zero ? new NwStore(store) : null,
-        CNWSTrigger trigger => trigger != IntPtr.Zero ? new NwTrigger(trigger) : null,
-        CNWSWaypoint waypoint => waypoint != IntPtr.Zero ? new NwWaypoint(waypoint) : null,
-        CNWSObject obj => obj != IntPtr.Zero ? CreateFromVirtualType(gameObject) : null,
-        CGameObject gameObj => gameObj != IntPtr.Zero ? CreateFromVirtualType(gameObject) : null,
         _ => null,
       };
     }

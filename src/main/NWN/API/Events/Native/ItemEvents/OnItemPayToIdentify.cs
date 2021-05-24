@@ -31,7 +31,7 @@ namespace NWN.API.Events
       {
         OnItemPayToIdentify eventData = ProcessEvent(new OnItemPayToIdentify
         {
-          Creature = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
+          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
           Item = oidItem.ToNwObject<NwItem>(),
           Store = oidStore.ToNwObject<NwStore>(),
         });

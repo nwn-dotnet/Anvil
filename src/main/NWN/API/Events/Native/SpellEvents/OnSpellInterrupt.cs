@@ -42,18 +42,18 @@ namespace NWN.API.Events
           return Hook.CallOriginal(pEffectListHandler, pObject, null, bLoadingGame);
         }
 
-        CGameEffect effect = new CGameEffect(pEffect, false);
+        CGameEffect effect = CGameEffect.FromPointer(pEffect);
         if (effect.m_nType != (int)EffectTrueType.VisualEffect || effect.m_nNumIntegers == 0 ||
           (effect.m_nParamInteger[0] != 292 && effect.m_nParamInteger[0] != 293))
         {
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
         }
 
-        CNWSObject gameObject = new CNWSObject(pObject, false);
+        CNWSObject gameObject = CNWSObject.FromPointer(pObject);
 
         ProcessEvent(new OnSpellInterrupt
         {
-          InterruptedCaster = gameObject.m_idSelf.ToNwObject<NwGameObject>(),
+          InterruptedCaster = gameObject.ToNwObject<NwGameObject>(),
           Spell = (Spell)gameObject.m_nLastSpellId,
           ClassIndex = gameObject.m_nLastSpellCastMulticlass,
           Feat = (Feat)gameObject.m_nLastSpellCastFeat,

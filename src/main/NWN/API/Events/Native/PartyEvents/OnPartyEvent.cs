@@ -39,13 +39,13 @@ namespace NWN.API.Events
           return Hook.CallOriginal(pMessage, pPlayer, nMinor);
         }
 
-        CNWSMessage message = new CNWSMessage(pMessage, false);
+        CNWSMessage message = CNWSMessage.FromPointer(pMessage);
         uint oidTarget = message.PeekMessage<uint>(0) & 0x7FFFFFFF;
 
         OnPartyEvent eventData = new OnPartyEvent
         {
           EventType = eventType,
-          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
           Target = oidTarget.ToNwObject<NwCreature>()
         };
 

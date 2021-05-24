@@ -47,11 +47,11 @@ namespace NWN.API.Events
       private static void OnSpellCastAndImpact(void* pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
         byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell)
       {
-        CNWSObject gameObject = new CNWSObject(pObject, false);
+        CNWSObject gameObject = CNWSObject.FromPointer(pObject);
 
         OnSpellCast eventData = ProcessEvent(new OnSpellCast
         {
-          Caster = gameObject.m_idSelf.ToNwObject<NwCreature>(),
+          Caster = gameObject.ToNwObject<NwCreature>(),
           Spell = (Spell)nSpellId,
           TargetPosition = targetPosition,
           TargetObject = oidTarget.ToNwObject<NwGameObject>(),

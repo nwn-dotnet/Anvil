@@ -1015,7 +1015,7 @@ namespace NWN.API
 
         for (int i = 0; i < statCount; i++)
         {
-          CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(i), false);
+          CNWLevelStats levelStats = CNWLevelStats.FromPointer(*Creature.m_pStats.m_lstLevelStats._OpIndex(i));
           retVal.Add(new CreatureLevelInfo(this, levelStats));
         }
 
@@ -1996,7 +1996,7 @@ namespace NWN.API
         throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
       }
 
-      CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1), false);
+      CNWLevelStats levelStats = CNWLevelStats.FromPointer(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1));
 
       levelStats.AddFeat((ushort)feat);
       Creature.m_pStats.AddFeat((ushort)feat);
@@ -2057,7 +2057,7 @@ namespace NWN.API
         throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
       }
 
-      CNWLevelStats levelStats = new CNWLevelStats(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1), false);
+      CNWLevelStats levelStats = CNWLevelStats.FromPointer(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1));
       return new CreatureLevelInfo(this, levelStats);
     }
 
@@ -2137,12 +2137,12 @@ namespace NWN.API
         return false;
       });
 
-      return result && creature != null ? creature.m_idSelf.ToNwObject<NwCreature>() : null;
+      return result && creature != null ? creature.ToNwObject<NwCreature>() : null;
     }
 
     public PlayerQuickBarButton[] GetQuickBarButtons()
     {
-      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      if (Creature.m_pQuickbarButton == null)
       {
         Creature.InitializeQuickbar();
       }
@@ -2158,7 +2158,7 @@ namespace NWN.API
 
     public void SetQuickBarButtons(PlayerQuickBarButton[] buttons)
     {
-      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      if (Creature.m_pQuickbarButton == null)
       {
         Creature.InitializeQuickbar();
       }
@@ -2176,7 +2176,7 @@ namespace NWN.API
         throw new ArgumentOutOfRangeException($"Index must be < 36");
       }
 
-      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      if (Creature.m_pQuickbarButton == null)
       {
         Creature.InitializeQuickbar();
       }
@@ -2191,7 +2191,7 @@ namespace NWN.API
         throw new ArgumentOutOfRangeException($"Index must be < 36");
       }
 
-      if (Creature.m_pQuickbarButton == IntPtr.Zero)
+      if (Creature.m_pQuickbarButton == null)
       {
         Creature.InitializeQuickbar();
       }

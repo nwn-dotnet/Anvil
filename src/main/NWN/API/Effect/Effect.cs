@@ -12,7 +12,7 @@ namespace NWN.API
 
     public static implicit operator IntPtr(Effect effect) => effect.Handle;
 
-    public static implicit operator Effect(IntPtr intPtr) => new Effect(intPtr, new CGameEffect(intPtr, false));
+    public static implicit operator Effect(IntPtr intPtr) => new Effect(intPtr, CGameEffect.FromPointer(intPtr));
 
     public static explicit operator Effect(ItemProperty itemProperty) => new Effect(itemProperty, itemProperty);
 

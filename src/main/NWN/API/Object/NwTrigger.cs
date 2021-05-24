@@ -154,7 +154,7 @@ namespace NWN.API
         return false;
       });
 
-      return result && trigger != null ? trigger.m_idSelf.ToNwObject<NwTrigger>() : null;
+      return result && trigger != null ? trigger.ToNwObject<NwTrigger>() : null;
     }
   }
 }

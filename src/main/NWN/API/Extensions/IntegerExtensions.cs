@@ -27,13 +27,13 @@ namespace NWN.API
       if (isControlledCreature)
       {
         CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId);
-        return player != null && player != IntPtr.Zero ? new NwPlayer(player) : null;
+        return player != null && player.Pointer != IntPtr.Zero ? new NwPlayer(player) : null;
       }
 
       CExoLinkedListInternal players = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.m_pcExoLinkedListInternal;
       for (CExoLinkedListNode node = players.pHead; node != null; node = node.pNext)
       {
-        CNWSPlayer player = new CNWSPlayer(node.pObject, false);
+        CNWSPlayer player = CNWSPlayer.FromPointer(node.pObject);
         if (player.m_oidPCObject == objectId)
         {
           return player.ToNwPlayer();

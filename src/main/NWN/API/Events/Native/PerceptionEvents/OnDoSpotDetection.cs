@@ -27,8 +27,8 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnDoSpotDetection(void* pCreature, void* pTarget, int bTargetInvisible)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
-        CNWSCreature target = new CNWSCreature(pTarget, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
+        CNWSCreature target = CNWSCreature.FromPointer(pTarget);
 
         if (bTargetInvisible.ToBool() || creature.GetBlind().ToBool())
         {
@@ -42,8 +42,8 @@ namespace NWN.API.Events
 
         OnDoSpotDetection eventData = ProcessEvent(new OnDoSpotDetection
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
-          Target = target.m_idSelf.ToNwObject<NwCreature>()
+          Creature = creature.ToNwObject<NwCreature>(),
+          Target = target.ToNwObject<NwCreature>()
         });
 
         switch (eventData.VisibilityOverride)

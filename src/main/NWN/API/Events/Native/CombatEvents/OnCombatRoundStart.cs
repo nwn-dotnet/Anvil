@@ -25,11 +25,11 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnStartCombatRound(void* pCombatRound, uint oidTarget)
       {
-        CNWSCombatRound combatRound = new CNWSCombatRound(pCombatRound, false);
+        CNWSCombatRound combatRound = CNWSCombatRound.FromPointer(pCombatRound);
 
         ProcessEvent(new OnCombatRoundStart
         {
-          Creature = combatRound.m_pBaseCreature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = combatRound.m_pBaseCreature.ToNwObject<NwCreature>(),
           Target = oidTarget.ToNwObject<NwGameObject>()
         });
 

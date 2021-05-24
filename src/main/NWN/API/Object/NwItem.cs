@@ -401,7 +401,7 @@ namespace NWN.API
         return false;
       });
 
-      return result && item != null ? item.m_idSelf.ToNwObject<NwItem>() : null;
+      return result && item != null ? item.ToNwObject<NwItem>() : null;
     }
   }
 }

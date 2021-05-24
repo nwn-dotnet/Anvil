@@ -43,7 +43,7 @@ namespace NWN.API.Events
 
         OnItemEquip eventData = new OnItemEquip
         {
-          EquippedBy = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
+          EquippedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
           Item = oidItemToEquip.ToNwObject<NwItem>(),
           Slot = (InventorySlot)slotId,
         };

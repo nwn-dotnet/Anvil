@@ -115,7 +115,7 @@ namespace NWN.API
 
     private int PushScriptContext(uint oid, int scriptEventId, bool valid)
     {
-      CNWVirtualMachineCommands cmd = new CNWVirtualMachineCommands(virtualMachine.m_pCmdImplementer.Pointer, false);
+      CNWVirtualMachineCommands cmd = CNWVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
 
       if (virtualMachine.m_nRecursionLevel++ == -1)
       {
@@ -137,7 +137,7 @@ namespace NWN.API
 
     private int PopScriptContext()
     {
-      CNWVirtualMachineCommands cmd = new CNWVirtualMachineCommands(virtualMachine.m_pCmdImplementer.Pointer, false);
+      CNWVirtualMachineCommands cmd = CNWVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
 
       if (--virtualMachine.m_nRecursionLevel != -1)
       {

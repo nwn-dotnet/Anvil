@@ -4,7 +4,7 @@ using NWN.Services;
 
 namespace NWN.API.Events
 {
-  public sealed unsafe class OnCalendarTimeChange : IEvent
+  public sealed class OnCalendarTimeChange : IEvent
   {
     public TimeChangeType TimeChangeType { get; private init; }
 
@@ -27,7 +27,7 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnUpdateTime(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference)
       {
-        CNWSModule module = new CNWSModule(pModule, false);
+        CNWSModule module = CNWSModule.FromPointer(pModule);
         uint hour = module.m_nCurrentHour;
         uint day = module.m_nCurrentDay;
         uint month = module.m_nCurrentMonth;

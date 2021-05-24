@@ -85,7 +85,7 @@ namespace NWN.API
         return false;
       });
 
-      return result && soundObject != null ? soundObject.m_idSelf.ToNwObject<NwSound>() : null;
+      return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
     }
   }
 }

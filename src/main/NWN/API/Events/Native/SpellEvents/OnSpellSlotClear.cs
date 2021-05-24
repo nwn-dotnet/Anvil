@@ -31,11 +31,11 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnClearMemorizedSpellSlot(void* pCreatureStats, byte nMultiClass, byte nSpellLevel, byte nSpellSlot)
       {
-        CNWSCreatureStats creatureStats = new CNWSCreatureStats(pCreatureStats, false);
+        CNWSCreatureStats creatureStats = CNWSCreatureStats.FromPointer(pCreatureStats);
 
         OnSpellSlotClear eventData = ProcessEvent(new OnSpellSlotClear
         {
-          Creature = creatureStats.m_pBaseCreature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>(),
           ClassIndex = nMultiClass,
           SpellLevel = nSpellLevel,
           SlotIndex = nSpellSlot

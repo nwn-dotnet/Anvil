@@ -29,8 +29,8 @@ namespace NWN.API.Events
       {
         OnItemValidateUse eventData = ProcessEvent(new OnItemValidateUse
         {
-          UsedBy = new CNWSCreature(pCreature, false).ToNwObject<NwCreature>(),
-          Item = new CNWSItem(pItem, false).ToNwObject<NwItem>(),
+          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
+          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
           CanUse = Hook.CallOriginal(pCreature, pItem, bIgnoreIdentifiedFlag).ToBool(),
         });
 

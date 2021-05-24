@@ -25,7 +25,7 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnRemoveItem(void* pItemRepository, void* pItem)
       {
-        CItemRepository itemRepository = new CItemRepository(pItemRepository, false);
+        CItemRepository itemRepository = CItemRepository.FromPointer(pItemRepository);
         NwGameObject parent = itemRepository.m_oidParent.ToNwObject<NwGameObject>();
 
         // Early out if parent isn't an item or placeable or Bad Things(tm) happen
@@ -37,7 +37,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnInventoryItemRemove
         {
           RemovedFrom = parent,
-          Item = new NwItem(new CNWSItem(pItem, false)),
+          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
         });
 
         return Hook.CallOriginal(pItemRepository, pItem);

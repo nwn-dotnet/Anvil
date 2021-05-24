@@ -27,11 +27,11 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnRemoveGold(void* pCreature, int nGold, int bDisplayFeedback)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
         OnInventoryGoldRemove eventData = ProcessEvent(new OnInventoryGoldRemove
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>(),
           Gold = nGold,
         });
 

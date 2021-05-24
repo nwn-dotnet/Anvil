@@ -35,8 +35,8 @@ namespace NWN.API.Events
           return;
         }
 
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
-        CNWCCMessageData messageData = new CNWCCMessageData(pMessageData, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
+        CNWCCMessageData messageData = CNWCCMessageData.FromPointer(pMessageData);
 
         if (nFeedbackId != resistanceId &&
           nFeedbackId != reductionId ||
@@ -49,7 +49,7 @@ namespace NWN.API.Events
 
         ProcessEvent(new OnCombatDRBroken
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>(),
           Type = nFeedbackId == resistanceId ? DRType.DamageResistance : DRType.DamageReduction
         });
 

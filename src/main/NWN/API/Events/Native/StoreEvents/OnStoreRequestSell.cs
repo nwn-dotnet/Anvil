@@ -34,7 +34,7 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static int OnRequestSell(void* pCreature, uint oidItemToSell, uint oidStore)
       {
-        CNWSCreature creature = new CNWSCreature(pCreature, false);
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
         NwItem item = oidItemToSell.ToNwObject<NwItem>();
         NwStore store = oidStore.ToNwObject<NwStore>();
 
@@ -47,7 +47,7 @@ namespace NWN.API.Events
 
         OnStoreRequestSell eventData = new OnStoreRequestSell
         {
-          Creature = creature.m_idSelf.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>(),
           Item = item,
           Store = store,
           Price = price

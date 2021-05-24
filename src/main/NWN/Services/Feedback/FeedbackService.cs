@@ -166,7 +166,7 @@ namespace NWN.Services
 
     private void OnSendFeedbackMessage(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer)
     {
-      CNWSCreature creature = new CNWSCreature(pCreature, false);
+      CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
       if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, creature.m_idSelf, (FeedbackMessage)nFeedbackId, FeedbackMessageFilterMode))
       {
         return;
@@ -188,7 +188,7 @@ namespace NWN.Services
 
     private int OnSendServerToPlayerJournalUpdated(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString)
     {
-      CNWSPlayer player = new CNWSPlayer(pPlayer, false);
+      CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
       if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.m_oidPCObject, FeedbackMessage.JournalUpdated, FeedbackMessageFilterMode))
       {
         return false.ToInt();

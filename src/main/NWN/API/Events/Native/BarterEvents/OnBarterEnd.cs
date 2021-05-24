@@ -46,7 +46,7 @@ namespace NWN.API.Events
       {
         if (pBarter != null && bAccepted.ToBool())
         {
-          OnBarterEnd eventData = GetBarterEventData(new CNWSBarter(pBarter, false), bAccepted.ToBool());
+          OnBarterEnd eventData = GetBarterEventData(CNWSBarter.FromPointer(pBarter),  bAccepted.ToBool());
 
           if (eventData != null)
           {
