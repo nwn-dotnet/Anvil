@@ -21,20 +21,35 @@ namespace NWN.Services
     private readonly EventService eventService;
 
     private delegate int GetWeaponFocusHook(void* pStats, void* pWeapon);
+
     private delegate int GetEpicWeaponFocusHook(void* pStats, void* pWeapon);
+
     private delegate int GetWeaponFinesseHook(void* pStats, void* pWeapon);
+
     private delegate int GetWeaponImprovedCriticalHook(void* pStats, void* pWeapon);
+
     private delegate int GetEpicWeaponOverwhelmingCriticalHook(void* pStats, void* pWeapon);
+
     private delegate int GetEpicWeaponDevastatingCriticalHook(void* pStats, void* pWeapon);
+
     private delegate int GetWeaponSpecializationHook(void* pStats, void* pWeapon);
+
     private delegate int GetEpicWeaponSpecializationHook(void* pStats, void* pWeapon);
+
     private delegate int GetIsWeaponOfChoiceHook(void* pStats, uint nBaseItem);
+
     private delegate int GetDamageBonusHook(void* pStats, void* pCreature, int bOffHand);
+
     private delegate int GetMeleeDamageBonusHook(void* pStats, int bOffHand, byte nCreatureWeaponIndex);
+
     private delegate int GetRangedDamageBonusHook(void* pStats);
+
     private delegate int GetMeleeAttackBonusHook(void* pStats, int bOffHand, int bIncludeBase, int bTouchAttack);
+
     private delegate int GetRangedAttackBonusHook(void* pStats, int bIncludeBase, int bTouchAttack);
+
     private delegate int GetAttackModifierVersusHook(void* pStats, void* pCreature);
+
     private delegate int GetUseMonkAttackTablesHook(void* pStats, int bForceUnarmed);
 
     private delegate float MaxAttackRangeHook(void* pCreature, uint oidTarget, int bBaseValue, int bPassiveRange);
@@ -56,8 +71,6 @@ namespace NWN.Services
     private readonly FunctionHook<GetAttackModifierVersusHook> getAttackModifierVersusHook;
     private readonly FunctionHook<GetUseMonkAttackTablesHook> getUseMonkAttackTablesHook;
 
-    private FunctionHook<MaxAttackRangeHook> maxAttackRangeHook;
-
     private readonly Dictionary<uint, HashSet<ushort>> weaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
     private readonly Dictionary<uint, HashSet<ushort>> epicWeaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
     private readonly Dictionary<uint, byte> weaponFinesseSizeMap = new Dictionary<uint, byte>();
@@ -75,6 +88,7 @@ namespace NWN.Services
 
     private readonly Dictionary<uint, MaxRangedAttackDistanceOverride> maxRangedAttackDistanceOverrideMap = new Dictionary<uint, MaxRangedAttackDistanceOverride>();
 
+    private FunctionHook<MaxAttackRangeHook> maxAttackRangeHook;
     private bool combatModeEventSubscribed;
 
     public WeaponService(HookService hookService, EventService eventService)
