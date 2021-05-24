@@ -40,27 +40,9 @@ namespace NWN.API.Events
       public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
 
       /// <summary>
-      /// Gets the <see cref="NwGameObject"/> that left the <see cref="NwArea"/>.<br/>
-      /// If this is a disconnecting player, this value will be a <see cref="NwCreature"/>. See <see cref="IsDisconnectingPlayer"/> to determine this state.
+      /// Gets the <see cref="NwGameObject"/> that left the <see cref="NwArea"/>.
       /// </summary>
       public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
-
-      /// <summary>
-      /// Gets a value indicating whether the <see cref="ExitingObject"/> is a player leaving the server.
-      /// </summary>
-      public bool IsDisconnectingPlayer
-      {
-        get
-        {
-          if (ExitingObject is NwCreature && !(ExitingObject is NwPlayer))
-          {
-            string objectId = ExitingObject.ToString();
-            return objectId.Length == 8 && objectId.StartsWith("7ff");
-          }
-
-          return false;
-        }
-      }
 
       NwObject IEvent.Context => Area;
     }

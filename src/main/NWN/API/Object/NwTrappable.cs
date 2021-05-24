@@ -90,7 +90,7 @@ namespace NWN.API
     /// <summary>
     /// Gets the player that created this trap. If the trap was placed in the toolset, this returns null.
     /// </summary>
-    public NwPlayer TrapCreator => NWScript.GetTrapCreator(this).ToNwObject<NwPlayer>();
+    public NwPlayer TrapCreator => NWScript.GetTrapCreator(this).ToNwPlayer();
 
     /// <summary>
     /// Gets a value indicating whether this trap has been flagged as visible to all creatures in the game.

@@ -15,7 +15,7 @@ namespace NWN.API.Events
     /// </summary>
     public bool IsPlayerNewToModule { get; private init; }
 
-    NwObject IEvent.Context => Player;
+    NwObject IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendServerToPlayerAreaClientAreaHook>
     {
@@ -32,8 +32,8 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnServerSendArea
         {
-          Area = new NwArea(new CNWSArea(pArea, false)),
-          Player = new NwPlayer(new CNWSPlayer(pPlayer, false)),
+          Area = new CNWSArea(pArea, false).ToNwObject<NwArea>(),
+          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
           IsPlayerNewToModule = bPlayerIsNewToModule.ToBool(),
         });
 

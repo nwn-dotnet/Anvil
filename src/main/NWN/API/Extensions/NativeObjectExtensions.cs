@@ -24,5 +24,10 @@ namespace NWN.API
     {
       return NwObject.CreateInternal(gameObject);
     }
+
+    public static NwPlayer ToNwPlayer(this CNWSPlayer player)
+    {
+      return player != null && player != IntPtr.Zero ? new NwPlayer(player) : null;
+    }
   }
 }

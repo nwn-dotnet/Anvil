@@ -244,7 +244,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that clicked the transition.
       /// </summary>
-      public NwPlayer ClickedBy { get; } = NWScript.GetClickingObject().ToNwObject<NwPlayer>();
+      public NwPlayer ClickedBy { get; } = NWScript.GetClickingObject().ToNwPlayer();
 
       /// <summary>
       /// Gets the transition target for this <see cref="NwDoor"/>.

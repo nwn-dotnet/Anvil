@@ -18,7 +18,7 @@ namespace NWN.API
 
     public static Vector ToNativeVector(this Vector3 vector)
     {
-      return new Vector(&vector, false);
+      return new Vector(vector.X, vector.Y, vector.Z);
     }
 
     public static Vector3 ToManagedVector(this Vector vector)

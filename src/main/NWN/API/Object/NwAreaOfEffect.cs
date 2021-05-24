@@ -54,7 +54,15 @@ namespace NWN.API
     {
       set
       {
-        AreaOfEffect.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
+        if (value.Area != Area)
+        {
+          AreaOfEffect.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
+        }
+        else
+        {
+          Position = value.Position;
+        }
+
         Rotation = value.Rotation;
       }
     }

@@ -357,7 +357,15 @@ namespace NWN.API
     {
       set
       {
-        Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
+        if (value.Area != Area)
+        {
+          Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
+        }
+        else
+        {
+          Position = value.Position;
+        }
+
         Rotation = value.Rotation;
       }
     }
@@ -378,6 +386,46 @@ namespace NWN.API
         faction = value;
         faction.AddMember(this);
       }
+    }
+
+    /// <summary>
+    /// Gets the player currently controlling this creature.<br/>
+    /// If this creature is a possessed familiar or is DM possessed, this will return the player or DM controlling this creature.<br/>
+    /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns null.<br/>
+    /// If no player is controlling this creature, this returns null.
+    /// </summary>
+    public NwPlayer ControllingPlayer
+    {
+      get => ObjectId.ToNwPlayer();
+    }
+
+    /// <summary>
+    /// Gets the player that logged in with this creature.<br/>
+    /// If this creature is a NPC or familiar, regardless of possession, this will return null.
+    /// </summary>
+    public NwPlayer LoginPlayer
+    {
+      get => ObjectId.ToNwPlayer(false);
+    }
+
+    /// <summary>
+    /// Gets if this creature is currently being controlled by a player/DM.<br/>
+    /// If this creature is a possessed familiar or is DM possessed, this will return true.<br/>
+    /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns false.<br/>
+    /// If no player is controlling this creature, this returns false.
+    /// </summary>
+    public bool IsPlayerControlled
+    {
+      get => ControllingPlayer != null;
+    }
+
+    /// <summary>
+    /// Gets if this creature is a player character/DM avatar.<br/>
+    /// If this creature is a NPC or familiar, regardless of possession, this will return false.
+    /// </summary>
+    public bool IsLoginPlayerCharacter
+    {
+      get => LoginPlayer != null;
     }
 
     /// <summary>
@@ -2046,7 +2094,9 @@ namespace NWN.API
         return true;
       });
 
-      if (result && this is NwPlayer player)
+      NwPlayer player = ControllingPlayer;
+
+      if (result && player != null)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
         message.SendServerToPlayerGuiQuickbar_SetButton(player, 0, true.ToInt());
@@ -2148,7 +2198,9 @@ namespace NWN.API
 
       InternalSetQuickBarButton(index, data);
 
-      if (this is NwPlayer player)
+      NwPlayer player = ControllingPlayer;
+
+      if (player != null)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
         message.SendServerToPlayerGuiQuickbar_SetButton(player, index, false.ToInt());

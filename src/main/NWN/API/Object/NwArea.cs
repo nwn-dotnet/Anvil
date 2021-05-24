@@ -342,7 +342,7 @@ namespace NWN.API
 
             if (gameObject is NwCreature creature)
             {
-              if (creature is NwPlayer || creature.AssociateType != AssociateType.None)
+              if (creature.ControllingPlayer != null || creature.AssociateType != AssociateType.None)
               {
                 continue;
               }

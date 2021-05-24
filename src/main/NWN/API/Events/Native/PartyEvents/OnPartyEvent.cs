@@ -17,7 +17,7 @@ namespace NWN.API.Events
 
     public NwCreature Target { get; private init; }
 
-    NwObject IEvent.Context => Player;
+    NwObject IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.HandlePartyMessageHook>
     {
@@ -45,7 +45,7 @@ namespace NWN.API.Events
         OnPartyEvent eventData = new OnPartyEvent
         {
           EventType = eventType,
-          Player = pPlayer != null ? new NwPlayer(new CNWSPlayer(pPlayer, false)) : null,
+          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
           Target = oidTarget.ToNwObject<NwCreature>()
         };
 

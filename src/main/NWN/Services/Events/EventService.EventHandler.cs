@@ -69,6 +69,10 @@ namespace NWN.Services
           {
             filteredCallbacks.Remove(obj);
           }
+          else
+          {
+            filteredCallbacks[obj] = handler;
+          }
         }
 
         public void UnsubscribeAll(Action<T> handlerToRemove)

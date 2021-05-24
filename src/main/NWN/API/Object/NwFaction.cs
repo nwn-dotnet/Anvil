@@ -88,7 +88,7 @@ namespace NWN.API
     /// </summary>
     public NwPlayer Leader
     {
-      get => faction.GetLeader().ToNwObject<NwPlayer>();
+      get => faction.GetLeader().ToNwPlayer();
     }
 
     /// <summary>

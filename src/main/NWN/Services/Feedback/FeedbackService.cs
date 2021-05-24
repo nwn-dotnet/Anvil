@@ -85,7 +85,7 @@ namespace NWN.Services
       sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
         FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
 
-      playerFilterListCombatMessage.AddElement(player, message);
+      playerFilterListCombatMessage.AddElement(player.ControlledCreature, message);
     }
 
     public void AddFeedbackMessageFilter(FeedbackMessage message)
@@ -117,7 +117,7 @@ namespace NWN.Services
           FunctionsLinux._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
       }
 
-      playerFilterListFeedbackMessage.AddElement(player, message);
+      playerFilterListFeedbackMessage.AddElement(player.ControlledCreature, message);
     }
 
     public void RemoveFeedbackMessageFilter(FeedbackMessage message)
@@ -127,7 +127,7 @@ namespace NWN.Services
 
     public void RemoveFeedbackMessageFilter(FeedbackMessage message, NwPlayer player)
     {
-      playerFilterListFeedbackMessage.RemoveElement(player, message);
+      playerFilterListFeedbackMessage.RemoveElement(player.ControlledCreature, message);
     }
 
     public void RemoveCombatMessageFilter(CombatLogMessage message)
@@ -137,20 +137,20 @@ namespace NWN.Services
 
     public void RemoveCombatMessageFilter(CombatLogMessage message, NwPlayer player)
     {
-      playerFilterListCombatMessage.RemoveElement(player, message);
+      playerFilterListCombatMessage.RemoveElement(player.ControlledCreature, message);
     }
 
     public bool IsFeedbackMessageHidden(FeedbackMessage message)
       => IsMessageHidden(globalFilterListFeedbackMessage, message, FeedbackMessageFilterMode);
 
     public bool IsFeedbackMessageHidden(FeedbackMessage message, NwPlayer player)
-      => IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player, message, FeedbackMessageFilterMode);
+      => IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.ControlledCreature, message, FeedbackMessageFilterMode);
 
     public bool IsCombatLogMessageHidden(CombatLogMessage message)
       => IsMessageHidden(globalFilterListCombatMessage, message, CombatMessageFilterMode);
 
     public bool IsCombatLogMessageHidden(CombatLogMessage message, NwPlayer player)
-      => IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player, message, CombatMessageFilterMode);
+      => IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player.ControlledCreature, message, CombatMessageFilterMode);
 
     private bool IsMessageHidden<T>(HashSet<T> globalFilter, T message, FilterMode filterMode)
     {

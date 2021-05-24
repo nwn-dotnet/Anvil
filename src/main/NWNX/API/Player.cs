@@ -13,12 +13,12 @@ namespace NWNX.API
 
     public static void SetPlaceableNameOverride(this NwPlayer player, NwPlaceable placeable, string name)
     {
-      PlayerPlugin.SetPlaceableNameOverride(player, placeable, name);
+      PlayerPlugin.SetPlaceableNameOverride(player.ControlledCreature, placeable, name);
     }
 
     public static void SetRestDuration(this NwPlayer player, int durationMs)
     {
-      PlayerPlugin.SetRestDuration(player, durationMs);
+      PlayerPlugin.SetRestDuration(player.ControlledCreature, durationMs);
     }
   }
 }

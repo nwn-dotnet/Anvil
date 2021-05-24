@@ -11,11 +11,11 @@ namespace NWN.API.Events
   public sealed class OnClientDisconnect : IEvent
   {
     /// <summary>
-    /// Gets the player that disconnected. Returns null if the player disconnected on the character screen.
+    /// Gets the player that disconnected.
     /// </summary>
     public NwPlayer Player { get; private init; }
 
-    NwObject IEvent.Context => Player;
+    NwObject IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RemovePCFromWorldHook>
     {
@@ -30,11 +30,9 @@ namespace NWN.API.Events
       [UnmanagedCallersOnly]
       private static void OnRemovePCFromWorld(void* pServerExoAppInternal, void* pPlayer)
       {
-        CNWSPlayer player = new CNWSPlayer(pPlayer, false);
-
         ProcessEvent(new OnClientDisconnect
         {
-          Player = player.m_oidPCObject == NwObject.INVALID ? null : new NwPlayer(player)
+          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
         });
 
         Hook.CallOriginal(pServerExoAppInternal, pPlayer);

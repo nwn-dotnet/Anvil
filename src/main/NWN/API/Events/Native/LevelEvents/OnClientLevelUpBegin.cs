@@ -13,7 +13,7 @@ namespace NWN.API.Events
 
     public Lazy<bool> Result { get; private set; }
 
-    NwObject IEvent.Context => Player;
+    NwObject IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.HandlePlayerToServerLevelUpMessageHook>
     {
@@ -33,11 +33,9 @@ namespace NWN.API.Events
           return Hook.CallOriginal(pMessage, pPlayer, nMinor);
         }
 
-        CNWSPlayer player = new CNWSPlayer(pPlayer, false);
-
         OnClientLevelUpBegin eventData = new OnClientLevelUpBegin
         {
-          Player = new NwPlayer(player),
+          Player = new CNWSPlayer(pPlayer, false).ToNwPlayer(),
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventLevelUp && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());

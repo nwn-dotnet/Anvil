@@ -1,5 +1,7 @@
 using System;
+using Anvil.Internal;
 using NWN.Core;
+using NWN.Native.API;
 
 namespace NWN.API
 {
@@ -18,6 +20,27 @@ namespace NWN.API
     public static T ToNwObjectSafe<T>(this uint objectId) where T : NwObject
     {
       return NwObject.CreateInternal(objectId) as T;
+    }
+
+    public static unsafe NwPlayer ToNwPlayer(this uint objectId, bool isControlledCreature = true)
+    {
+      if (isControlledCreature)
+      {
+        CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId);
+        return player != null && player != IntPtr.Zero ? new NwPlayer(player) : null;
+      }
+
+      CExoLinkedListInternal players = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.m_pcExoLinkedListInternal;
+      for (CExoLinkedListNode node = players.pHead; node != null; node = node.pNext)
+      {
+        CNWSPlayer player = new CNWSPlayer(node.pObject, false);
+        if (player.m_oidPCObject == objectId)
+        {
+          return player.ToNwPlayer();
+        }
+      }
+
+      return null;
     }
 
     public static Lazy<NwObject> ToNwObjectLazy(this uint objectId)

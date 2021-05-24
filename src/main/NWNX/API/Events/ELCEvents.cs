@@ -16,11 +16,11 @@ namespace NWNX.API.Events
       /// <summary>
       /// Gets the player being validated.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwPlayer();
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
 
     /// <summary>
@@ -32,11 +32,11 @@ namespace NWNX.API.Events
       /// <summary>
       /// Gets the player being validated.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlayer>();
+      public NwPlayer Player { get; } = NWScript.OBJECT_SELF.ToNwPlayer();
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
   }
 }
