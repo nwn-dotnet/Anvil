@@ -1,6 +1,8 @@
 using System;
 using Anvil.Internal;
+using NWN.API;
 using NWN.Native.API;
+using NWNX.API.Constants;
 
 namespace NWN.Services
 {
@@ -45,7 +47,6 @@ namespace NWN.Services
     private const int NumSpellLevels = 10;
 
     private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
-
     private readonly FunctionHook<ValidateCharacterHook> validateCharacterHook;
 
     public EnforceLegalCharacterService(HookService hookService)
@@ -87,11 +88,61 @@ namespace NWN.Services
         return StrRefCharacterDoesNotExist;
       }
       // **********************************************************************************************************************
+
+      // *** Server Restrictions **********************************************************************************************
+      JoiningRestrictions joinRestrictions = NwServer.Instance.ServerInfo.JoiningRestrictions;
+
+      int characterLevel = creatureStats.GetLevel(false.ToInt());
+
+      if (characterLevel > joinRestrictions.MaxLevel || characterLevel < joinRestrictions.MinLevel)
+      {
+        OnELCLevelValidationFailure failure = new OnELCLevelValidationFailure
+        {
+          Type = ElcFailureType.Character,
+          SubType = ElcFailureSubType.LevelRestriction,
+          Level = characterLevel,
+        };
+
+        if (HandleValidationFailure(failure))
+        {
+          *bFailedServerRestriction = true.ToInt();
+          return failure.StrRef;
+        }
+      }
+      // **********************************************************************************************************************
+
+      // *** Level Hack Check *************************************************************************************************
+      // Character level is stored in an uint8_t which means if a character has say 80/80/120 as their levels it'll wrap around
+      // to level 24 (280 - 256) thus not failing the above check
+      int totalLevels = 0;
+      for (byte i = 0; i < creatureStats.m_nNumMultiClasses; i++)
+      {
+        totalLevels += creatureStats.GetClassLevel(i, false.ToInt());
+
+        if (totalLevels > joinRestrictions.MaxLevel)
+        {
+          OnELCLevelValidationFailure failure = new OnELCLevelValidationFailure
+          {
+            Type = ElcFailureType.Character,
+            SubType = ElcFailureSubType.LevelRestriction,
+            Level = totalLevels,
+          };
+
+          if (HandleValidationFailure(failure))
+          {
+            *bFailedServerRestriction = true.ToInt();
+            return failure.StrRef;
+          }
+        }
+      }
+      // **********************************************************************************************************************
+
+      return 0;
     }
 
-    private bool HandleValidationFailure(ValidationFailureType failureType, ValidationFailureSubType failureSubType, int strRef)
+    private bool HandleValidationFailure(OnELCValidationFailure eventData)
     {
-
+      return true;
     }
 
     public void Dispose()

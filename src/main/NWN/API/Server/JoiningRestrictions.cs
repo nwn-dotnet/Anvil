@@ -11,6 +11,11 @@ namespace NWN.API
       this.joiningRestrictions = joiningRestrictions;
     }
 
+    public int MinLevel
+    {
+      get => joiningRestrictions.nMinLevel;
+    }
+
     public int MaxLevel
     {
       get => joiningRestrictions.nMaxLevel;
