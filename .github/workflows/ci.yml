@@ -66,7 +66,11 @@ jobs:
       - name: Prepare Outputs
         id: vars
         run: |
-          echo "::set-output name=version::$(git describe --tags | sed 's/^v//')"
+          if "${{ github.ref }}" == "refs/heads/master"; then
+            echo "::set-output name=version::$(git describe --tags | sed 's/^v//')"
+          else
+            echo "::set-output name=version::$(git describe --tags --long | sed 's/^v//')"
+          fi;
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
 
