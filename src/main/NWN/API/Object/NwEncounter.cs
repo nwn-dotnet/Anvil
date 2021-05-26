@@ -115,7 +115,7 @@ namespace NWN.API
     /// </summary>
     /// <typeparam name="T">The type of objects to return.</typeparam>
     /// <returns>An enumerable containing all objects currently in the effect area.</returns>
-    public IEnumerator<T> GetObjectsInEncounterArea<T>() where T : NwGameObject
+    public IEnumerable<T> GetObjectsInEncounterArea<T>() where T : NwGameObject
     {
       int objType = (int) GetObjectType<T>();
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
@@ -129,7 +129,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="objectTypes">The types of object to return.</param>
     /// <returns>An enumerable containing all objects currently in the effect area.</returns>
-    public IEnumerator<NwGameObject> GetObjectsInEncounterArea(ObjectTypes objectTypes)
+    public IEnumerable<NwGameObject> GetObjectsInEncounterArea(ObjectTypes objectTypes)
     {
       int objType = (int) objectTypes;
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
