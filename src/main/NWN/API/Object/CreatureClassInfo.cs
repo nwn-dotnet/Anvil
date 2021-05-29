@@ -46,8 +46,7 @@ namespace NWN.API
       List<MemorizedSpellSlot> memorizedSpells = new List<MemorizedSpellSlot>();
       for (byte i = 0; i < spellCount; i++)
       {
-        CNWSStats_Spell spellInfo = classInfo.GetMemorizedSpellInSlotDetails(spellLevel, i);
-        memorizedSpells.Add(new MemorizedSpellSlot(classInfo, spellInfo, spellLevel, i));
+        memorizedSpells.Add(new MemorizedSpellSlot(classInfo, spellLevel, i));
       }
 
       return memorizedSpells.AsReadOnly();
