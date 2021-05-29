@@ -10,6 +10,7 @@
           GitHub, Issues and Discussions - https://github.com/nwn-dotnet/Anvil
           Discord, Latest News, Help and Support - https://discord.gg/gKt495UBgS
         </Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Neverwinter Nights;NWN;</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -38,6 +39,10 @@
         <PackageReference Include="NWN.Core" Version="8193.23.4" PrivateAssets="compile" />
         <PackageReference Include="NWN.Native" Version="8193.23.3" PrivateAssets="compile" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="/"/>
     </ItemGroup>
 
     <ItemGroup Condition=" '$(Configuration)' != 'Samples'">
