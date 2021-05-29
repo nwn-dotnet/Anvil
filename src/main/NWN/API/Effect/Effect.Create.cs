@@ -55,7 +55,7 @@ namespace NWN.API
     }
 
     // TODO implement Action params
-    public static Effect AreaOfEffect(int areaEffectId, string onEnterScript = null, string heartbeatScript = null, string onExitScript = null)
+    public static Effect AreaOfEffect(int areaEffectId, string onEnterScript = "", string heartbeatScript = "", string onExitScript = "")
     {
       return NWScript.EffectAreaOfEffect(areaEffectId, onEnterScript, heartbeatScript, onExitScript);
     }
@@ -535,7 +535,7 @@ namespace NWN.API
       return NWScript.EffectSummonCreature(creatureResRef, (int)vfxType, (float)delay.TotalSeconds, appearType);
     }
 
-    public static Effect Swarm(bool loop, string creatureTemplate1, string creatureTemplate2 = null, string creatureTemplate3 = null, string creatureTemplate4 = null)
+    public static Effect Swarm(bool loop, string creatureTemplate1, string creatureTemplate2 = "", string creatureTemplate3 = "", string creatureTemplate4 = "")
     {
       return NWScript.EffectSwarm(loop.ToInt(), creatureTemplate1, creatureTemplate2, creatureTemplate3, creatureTemplate4);
     }

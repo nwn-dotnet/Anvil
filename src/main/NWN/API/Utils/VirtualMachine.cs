@@ -81,9 +81,9 @@ namespace NWN.API
     /// </summary>
     public void Execute(string scriptName, NwObject target, params (string ParamName, string ParamValue)[] scriptParams)
     {
-      foreach ((string ParamName, string ParamValue) scriptParam in scriptParams)
+      foreach ((string paramName, string paramValue) in scriptParams)
       {
-        NWScript.SetScriptParam(scriptParam.ParamName, scriptParam.ParamValue);
+        NWScript.SetScriptParam(paramName, paramValue);
       }
 
       NWScript.ExecuteScript(scriptName, target);
