@@ -37,6 +37,14 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release /warnaserror
 
+      - name: Check Code Format
+        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml
+        
+      - name: Parse Results
+        uses: glassechidna/resharper-action@master
+        with:
+          report: results.xml
+
   build:
     runs-on: ubuntu-20.04
     if: github.event_name == 'push'
