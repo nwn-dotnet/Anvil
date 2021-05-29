@@ -25,9 +25,9 @@ namespace NWN.API
 
     internal NwItem(CNWSItem item) : base(item)
     {
-      this.Item = item;
-      this.Inventory = new Inventory(this, item.m_pItemRepository);
-      this.Appearance = new ItemAppearance(item);
+      Item = item;
+      Inventory = new Inventory(this, item.m_pItemRepository);
+      Appearance = new ItemAppearance(item);
     }
 
     public static implicit operator CNWSItem(NwItem item)
@@ -280,7 +280,7 @@ namespace NWN.API
     /// <returns>The created item.</returns>
     public static NwItem Create(string template, Location location, bool useAppearAnim = false, int stackSize = 1, string newTag = null)
     {
-      NwItem item = NwObject.CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
+      NwItem item = CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
       item.StackSize = stackSize;
       return item;
     }

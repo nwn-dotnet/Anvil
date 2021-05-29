@@ -14,7 +14,7 @@ namespace NWN.API
 
     internal NwDoor(CNWSDoor door) : base(door)
     {
-      this.Door = door;
+      Door = door;
     }
 
     public static implicit operator CNWSDoor(NwDoor door)

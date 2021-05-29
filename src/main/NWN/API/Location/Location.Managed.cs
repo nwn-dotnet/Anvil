@@ -98,7 +98,7 @@ namespace NWN.API
     /// </summary>
     public bool IsWalkable
     {
-      get => NWScript.Get2DAString("surfacemat", "Walk", this.SurfaceMaterial).ParseIntBool();
+      get => NWScript.Get2DAString("surfacemat", "Walk", SurfaceMaterial).ParseIntBool();
     }
 
     /// <summary>

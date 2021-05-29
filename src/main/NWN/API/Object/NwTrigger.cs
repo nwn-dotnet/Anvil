@@ -14,7 +14,7 @@ namespace NWN.API
 
     internal NwTrigger(CNWSTrigger trigger) : base(trigger)
     {
-      this.Trigger = trigger;
+      Trigger = trigger;
     }
 
     public static implicit operator CNWSTrigger(NwTrigger trigger)

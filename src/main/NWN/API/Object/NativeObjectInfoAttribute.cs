@@ -12,8 +12,8 @@ namespace NWN.API
 
     public NativeObjectInfoAttribute(ObjectTypes objectType, ObjectType nativeObjectType)
     {
-      this.ObjectType = objectType;
-      this.NativeObjectType = nativeObjectType;
+      ObjectType = objectType;
+      NativeObjectType = nativeObjectType;
     }
   }
 }

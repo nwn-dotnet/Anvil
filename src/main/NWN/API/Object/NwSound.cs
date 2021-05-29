@@ -12,7 +12,7 @@ namespace NWN.API
 
     public NwSound(CNWSSoundObject soundObject) : base(soundObject)
     {
-      this.SoundObject = soundObject;
+      SoundObject = soundObject;
     }
 
     public static implicit operator CNWSSoundObject(NwSound sound)

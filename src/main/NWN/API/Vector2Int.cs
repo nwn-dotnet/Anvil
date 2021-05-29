@@ -12,8 +12,8 @@ namespace NWN.API
 
     public Vector2Int(int x = 0, int y = 0)
     {
-      this.X = x;
-      this.Y = y;
+      X = x;
+      Y = y;
     }
 
     public static Vector2Int operator -(Vector2Int a, Vector2Int b)

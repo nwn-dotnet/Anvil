@@ -15,7 +15,7 @@ namespace NWN.API
     {
       this.exoBase = exoBase;
       this.server = server;
-      this.netLayer = server.GetNetLayer();
+      netLayer = server.GetNetLayer();
 
       UserDirectory = exoBase.m_sUserDirectory.ToString();
       WorldTimer = new WorldTimer(server.GetWorldTimer());

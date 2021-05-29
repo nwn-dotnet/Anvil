@@ -32,7 +32,7 @@ namespace NWN.API
 
     internal NwPlayer(CNWSPlayer player)
     {
-      this.Player = player;
+      Player = player;
     }
 
     internal CNWSPlayerTURD Turd

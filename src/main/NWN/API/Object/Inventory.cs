@@ -52,9 +52,9 @@ namespace NWN.API
       byte width = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotWidth;
       byte height = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotHeight;
 
-      for (byte y = 0; y < (repo.m_nHeight - height + 1); y++)
+      for (byte y = 0; y < repo.m_nHeight - height + 1; y++)
       {
-        for (byte x = 0; x < (repo.m_nWidth - width + 1); x++)
+        for (byte x = 0; x < repo.m_nWidth - width + 1; x++)
         {
           if (repo.CheckBaseItemFits((uint)baseItem, x, y).ToBool())
           {

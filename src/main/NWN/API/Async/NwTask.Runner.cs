@@ -74,7 +74,7 @@ namespace NWN.API
       public ScheduledItem(Func<bool> completionSource, CancellationToken? cancellationToken)
       {
         this.completionSource = completionSource;
-        this.taskCompletionSource = new TaskCompletionSource();
+        taskCompletionSource = new TaskCompletionSource();
         this.cancellationToken = cancellationToken;
 
         Task = taskCompletionSource.Task;

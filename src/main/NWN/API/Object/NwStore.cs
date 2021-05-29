@@ -13,7 +13,7 @@ namespace NWN.API
 
     internal NwStore(CNWSStore store) : base(store)
     {
-      this.Store = store;
+      Store = store;
     }
 
     public static implicit operator CNWSStore(NwStore store)
@@ -54,7 +54,7 @@ namespace NWN.API
 
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return NwObject.CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
+      return CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
     }
 
     public int StoreGold

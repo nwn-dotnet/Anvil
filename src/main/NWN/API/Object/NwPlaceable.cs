@@ -15,8 +15,8 @@ namespace NWN.API
 
     internal NwPlaceable(CNWSPlaceable placeable) : base(placeable)
     {
-      this.Placeable = placeable;
-      this.Inventory = new Inventory(this, placeable.m_pcItemRepository);
+      Placeable = placeable;
+      Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 
     public static implicit operator CNWSPlaceable(NwPlaceable placeable)
@@ -287,7 +287,7 @@ namespace NWN.API
     public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       location = Location.Create(location.Area, location.Position, location.FlippedRotation);
-      return NwObject.CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
+      return CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
 
     /// <summary>

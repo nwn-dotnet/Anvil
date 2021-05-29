@@ -35,9 +35,9 @@ namespace NWN.API
 
     internal NwCreature(CNWSCreature creature) : base(creature)
     {
-      this.Creature = creature;
-      this.faction = new NwFaction(creature.GetFaction());
-      this.Inventory = new Inventory(this, Creature.m_pcItemRepository);
+      Creature = creature;
+      faction = new NwFaction(creature.GetFaction());
+      Inventory = new Inventory(this, Creature.m_pcItemRepository);
     }
 
     public static implicit operator CNWSCreature(NwCreature creature)

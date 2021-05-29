@@ -15,7 +15,7 @@ namespace NWN.API
 
     internal NwModule(CNWSModule module) : base(module)
     {
-      this.Module = module;
+      Module = module;
     }
 
     public static implicit operator CNWSModule(NwModule module)
@@ -754,7 +754,7 @@ namespace NWN.API
     /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
     public void AddJournalQuestEntry(string categoryTag, int entryId, bool allowOverrideHigher = false)
     {
-      NWScript.AddJournalQuestEntry(categoryTag, entryId, NwObject.Invalid, true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
+      NWScript.AddJournalQuestEntry(categoryTag, entryId, Invalid, true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
     }
 
     /// <summary>

@@ -9,8 +9,8 @@ namespace NWN.API
 
     internal CreatureTypeFilter(CreatureType key, int value)
     {
-      this.Key = (int)key;
-      this.Value = value;
+      Key = (int)key;
+      Value = value;
     }
 
     public static readonly CreatureTypeFilter None = new CreatureTypeFilter(CreatureType.None, -1);

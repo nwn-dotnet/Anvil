@@ -15,7 +15,7 @@ namespace NWN.API.Events
 
     public GameEventAttribute(EventScriptType eventScriptType)
     {
-      this.EventScriptType = eventScriptType;
+      EventScriptType = eventScriptType;
     }
   }
 }

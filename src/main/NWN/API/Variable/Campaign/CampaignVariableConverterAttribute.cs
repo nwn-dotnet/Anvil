@@ -11,7 +11,7 @@ namespace NWN.API
 
     public CampaignVariableConverterAttribute(params Type[] types)
     {
-      this.Types = types;
+      Types = types;
     }
   }
 }

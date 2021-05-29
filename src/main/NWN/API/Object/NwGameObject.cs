@@ -18,7 +18,7 @@ namespace NWN.API
 
     internal NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
-      this.GameObject = gameObject;
+      GameObject = gameObject;
     }
 
     internal override CNWSScriptVarTable ScriptVarTable
@@ -394,7 +394,7 @@ namespace NWN.API
     /// <typeparam name="T">The type of object to search.</typeparam>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int)NwObject.GetObjectType<T>();
+      int objType = (int)GetObjectType<T>();
       int i;
       uint current;
 

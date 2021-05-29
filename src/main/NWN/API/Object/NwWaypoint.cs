@@ -11,7 +11,7 @@ namespace NWN.API
 
     internal NwWaypoint(CNWSWaypoint waypoint) : base(waypoint)
     {
-      this.Waypoint = waypoint;
+      Waypoint = waypoint;
     }
 
     public static implicit operator CNWSWaypoint(NwWaypoint waypoint)
@@ -73,7 +73,7 @@ namespace NWN.API
 
     public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return NwObject.CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
+      return CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
     }
   }
 }

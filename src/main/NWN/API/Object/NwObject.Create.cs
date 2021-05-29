@@ -80,7 +80,7 @@ namespace NWN.API
     internal static NwObject CreateInternal(uint objectId)
     {
       // Not a valid object
-      if (objectId == NwObject.Invalid)
+      if (objectId == Invalid)
       {
         return null;
       }

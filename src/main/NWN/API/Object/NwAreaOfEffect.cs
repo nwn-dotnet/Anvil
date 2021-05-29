@@ -14,7 +14,7 @@ namespace NWN.API
 
     internal NwAreaOfEffect(CNWSAreaOfEffectObject areaOfEffectObject) : base(areaOfEffectObject)
     {
-      this.AreaOfEffect = areaOfEffectObject;
+      AreaOfEffect = areaOfEffectObject;
     }
 
     public static implicit operator CNWSAreaOfEffectObject(NwAreaOfEffect areaOfEffect)

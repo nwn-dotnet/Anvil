@@ -25,7 +25,7 @@ namespace NWN.Services
     /// <param name="bindFrom">The type to bind to. This should usually be the class name, but may be a base class or interface implemented by the class too.</param>
     public ServiceBindingAttribute(Type bindFrom)
     {
-      this.BindFrom = bindFrom;
+      BindFrom = bindFrom;
     }
   }
 }

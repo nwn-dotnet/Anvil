@@ -16,7 +16,7 @@ namespace NWN.API
 
     internal NwArea(CNWSArea area) : base(area)
     {
-      this.Area = area;
+      Area = area;
     }
 
     public static implicit operator CNWSArea(NwArea area)

@@ -14,7 +14,7 @@ namespace NWN.API
 
     internal NwEncounter(CNWSEncounter encounter) : base(encounter)
     {
-      this.Encounter = encounter;
+      Encounter = encounter;
     }
 
     public static implicit operator CNWSEncounter(NwEncounter encounter)

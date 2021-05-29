@@ -126,7 +126,7 @@ namespace NWN.Services
 
     private NwDateTime(long ticks)
     {
-      this.Ticks = ticks;
+      Ticks = ticks;
     }
 
     public static NwDateTime FromTicks(long ticks)

@@ -16,8 +16,8 @@ namespace NWN.API
 
     private protected EffectBase(IntPtr handle, CGameEffect effect)
     {
-      this.Handle = handle;
-      this.Effect = effect;
+      Handle = handle;
+      Effect = effect;
     }
 
     ~EffectBase()

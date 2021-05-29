@@ -38,9 +38,9 @@ namespace NWN.API
 
     public CallInfo(string scriptName, NwObject objSelf)
     {
-      this.ScriptName = scriptName;
-      this.ObjectSelf = objSelf;
-      this.ScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent();
+      ScriptName = scriptName;
+      ObjectSelf = objSelf;
+      ScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent();
     }
 
     /// <summary>
