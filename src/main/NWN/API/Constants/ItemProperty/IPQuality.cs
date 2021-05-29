@@ -19,6 +19,6 @@ namespace NWN.API.Constants
     GodLike = NWScript.IP_CONST_QUALITY_GOD_LIKE,
     Raw = NWScript.IP_CONST_QUALITY_RAW,
     Cut = NWScript.IP_CONST_QUALITY_CUT,
-    Polished = NWScript.IP_CONST_QUALITY_POLISHED
+    Polished = NWScript.IP_CONST_QUALITY_POLISHED,
   }
 }

@@ -19,7 +19,10 @@ namespace NWN.API.Events
 
     public int Price { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RequestBuyHook>
     {
@@ -50,7 +53,7 @@ namespace NWN.API.Events
           Creature = creature.ToNwObject<NwCreature>(),
           Item = item,
           Store = store,
-          Price = price
+          Price = price,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventBuy && Hook.CallOriginal(pCreature, oidItemToBuy, oidStore, oidDesiredRepository).ToBool());

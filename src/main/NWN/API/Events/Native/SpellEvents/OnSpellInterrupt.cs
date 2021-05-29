@@ -22,7 +22,10 @@ namespace NWN.API.Events
 
     public MetaMagic MetaMagic { get; private init; }
 
-    NwObject IEvent.Context => InterruptedCaster;
+    NwObject IEvent.Context
+    {
+      get => InterruptedCaster;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.OnEffectAppliedHook>
     {
@@ -44,7 +47,7 @@ namespace NWN.API.Events
 
         CGameEffect effect = CGameEffect.FromPointer(pEffect);
         if (effect.m_nType != (int)EffectTrueType.VisualEffect || effect.m_nNumIntegers == 0 ||
-          (effect.m_nParamInteger[0] != 292 && effect.m_nParamInteger[0] != 293))
+          effect.m_nParamInteger[0] != 292 && effect.m_nParamInteger[0] != 293)
         {
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
         }
@@ -59,7 +62,7 @@ namespace NWN.API.Events
           Feat = (Feat)gameObject.m_nLastSpellCastFeat,
           Domain = (Domain)gameObject.m_nLastDomainLevel,
           Spontaneous = gameObject.m_bLastSpellCastSpontaneous.ToBool(),
-          MetaMagic = (MetaMagic)gameObject.m_nLastSpellCastMetaType
+          MetaMagic = (MetaMagic)gameObject.m_nLastSpellCastMetaType,
         });
 
         return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);

@@ -626,7 +626,7 @@ namespace NWN.API
     {
       get
       {
-        for (uint area = NWScript.GetFirstArea(); area != INVALID; area = NWScript.GetNextArea())
+        for (uint area = NWScript.GetFirstArea(); area != Invalid; area = NWScript.GetNextArea())
         {
           yield return area.ToNwObject<NwArea>();
         }
@@ -671,14 +671,18 @@ namespace NWN.API
     /// <typeparam name="T">The variable type.</typeparam>
     /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
     public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
-      => CampaignVariable<T>.Create(campaign, name);
+    {
+      return CampaignVariable<T>.Create(campaign, name);
+    }
 
     /// <summary>
     /// Deletes the entire campaign database, if it exists.
     /// </summary>
     /// <param name="campaign">The campaign DB to delete.</param>
     public void DestroyCampaignDatabase(string campaign)
-      => NWScript.DestroyCampaignDatabase(campaign);
+    {
+      NWScript.DestroyCampaignDatabase(campaign);
+    }
 
     /// <summary>
     /// Broadcasts a message to the DM channel, sending a message to all DMs on the server.
@@ -686,25 +690,33 @@ namespace NWN.API
     /// <param name="message">The message to send.</param>
     /// <param name="color">A color to apply to the message.</param>
     public void SendMessageToAllDMs(string message, Color color)
-      => NWScript.SendMessageToAllDMs(message.ColorString(color));
+    {
+      NWScript.SendMessageToAllDMs(message.ColorString(color));
+    }
 
     /// <inheritdoc cref="SendMessageToAllDMs(string,NWN.API.Color)"/>
     public void SendMessageToAllDMs(string message)
-      => NWScript.SendMessageToAllDMs(message);
+    {
+      NWScript.SendMessageToAllDMs(message);
+    }
 
     /// <summary>
     /// Ends the current running game, plays the specified movie then returns all players to the main menu.
     /// </summary>
     /// <param name="endMovie">The filename of the movie to play, without file extension.</param>
     public void EndGame(string endMovie)
-      => NWScript.EndGame(endMovie);
+    {
+      NWScript.EndGame(endMovie);
+    }
 
     /// <summary>
     /// Forces all players who are currently game to have their characters
     /// exported to their respective directories i.e. LocalVault/ServerVault/ etc.
     /// </summary>
     public void ExportAllCharacters()
-      => NWScript.ExportAllCharacters();
+    {
+      NWScript.ExportAllCharacters();
+    }
 
     /// <summary>
     /// Makes all online PCs load a new texture instead of another.
@@ -712,20 +724,26 @@ namespace NWN.API
     /// <param name="oldTexName">The existing texture to replace.</param>
     /// <param name="newName">The new override texture.</param>
     public void SetTextureOverride(string oldTexName, string newName)
-      => NWScript.SetTextureOverride(oldTexName, newName);
+    {
+      NWScript.SetTextureOverride(oldTexName, newName);
+    }
 
     /// <summary>
     /// Removes the override for the specified texture, reverting to the original texture.
     /// </summary>
     /// <param name="texName">The name of the original texture.</param>
     public void ClearTextureOverride(string texName)
-      => NWScript.SetTextureOverride(texName, string.Empty);
+    {
+      NWScript.SetTextureOverride(texName, string.Empty);
+    }
 
     /// <summary>
     /// Finds the specified waypoint with the given tag.
     /// </summary>
     public NwWaypoint GetWaypointByTag(string tag)
-      => NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
+    {
+      return NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
+    }
 
     /// <summary>
     /// Adds an entry to the journal of all players in the module.<br/>
@@ -735,7 +753,9 @@ namespace NWN.API
     /// <param name="entryId">The ID of the Journal entry.</param>
     /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
     public void AddJournalQuestEntry(string categoryTag, int entryId, bool allowOverrideHigher = false)
-      => NWScript.AddJournalQuestEntry(categoryTag, entryId, NwObject.INVALID, true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
+    {
+      NWScript.AddJournalQuestEntry(categoryTag, entryId, NwObject.Invalid, true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
+    }
 
     /// <summary>
     /// Gets the last objects that were created in the module. Use LINQ to skip or limit the query.

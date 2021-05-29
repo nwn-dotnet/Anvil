@@ -30,7 +30,7 @@ namespace NWN.Services
 
       if (!forceRefresh && cache.TryGetValue(name, out ITwoDimArray value))
       {
-        return (T) value;
+        return (T)value;
       }
 
       return Load2DAToCache<T>(name);

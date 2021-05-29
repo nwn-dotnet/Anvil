@@ -37,11 +37,13 @@ namespace NWN.API
 
     internal static CampaignVariable<T> Create(string campaign, string name, NwPlayer player = null)
     {
-      CampaignVariable<T> variable = new CampaignVariable<T>();
-      variable.Campaign = campaign;
-      variable.Name = name;
-      variable.Player = player;
-      variable.converter = VariableConverterService.GetCampaignConverter<T>();
+      CampaignVariable<T> variable = new CampaignVariable<T>
+      {
+        Campaign = campaign,
+        Name = name,
+        Player = player,
+        converter = VariableConverterService.GetCampaignConverter<T>(),
+      };
 
       return variable;
     }
@@ -63,7 +65,10 @@ namespace NWN.API
       return value.Value;
     }
 
-    public override void Delete() => converter.ClearCampaign(Campaign, Name, Player);
+    public override void Delete()
+    {
+      converter.ClearCampaign(Campaign, Name, Player);
+    }
 
     public bool Equals(CampaignVariable<T> other)
     {
@@ -97,7 +102,7 @@ namespace NWN.API
         return false;
       }
 
-      return Equals((CampaignVariable<T>) obj);
+      return Equals((CampaignVariable<T>)obj);
     }
 
     public override int GetHashCode()

@@ -25,7 +25,7 @@ using Skill = NWN.API.Constants.Skill;
 namespace NWN.API
 {
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
-  public class NwCreature : NwGameObject
+  public sealed class NwCreature : NwGameObject
   {
     private const byte QuickBarButtonCount = 36;
 
@@ -945,7 +945,7 @@ namespace NWN.API
         uint current;
         const int henchmenType = (int)AssociateType.Henchman;
 
-        for (i = 1, current = NWScript.GetAssociate(henchmenType, this, i); current != INVALID; i++, current = NWScript.GetAssociate(henchmenType, this, i))
+        for (i = 1, current = NWScript.GetAssociate(henchmenType, this, i); current != Invalid; i++, current = NWScript.GetAssociate(henchmenType, this, i))
         {
           yield return current.ToNwObject<NwCreature>();
         }
@@ -1082,7 +1082,9 @@ namespace NWN.API
     /// </summary>
     /// <param name="newFaction">The NPCs new faction.</param>
     public void ChangeToStandardFaction(StandardFaction newFaction)
-      => NWScript.ChangeToStandardFaction(this, (int)newFaction);
+    {
+      NWScript.ChangeToStandardFaction(this, (int)newFaction);
+    }
 
     /// <summary>
     /// Gets whether this creature has a specific immunity.
@@ -1091,7 +1093,9 @@ namespace NWN.API
     /// <param name="verses">If specified, the race and alignment of verses will be considered when determining immunities.</param>
     /// <returns>True if the creature has the specified immunity, otherwise false.</returns>
     public bool IsImmuneTo(ImmunityType immunityType, NwGameObject verses = null)
-      => NWScript.GetIsImmune(this, (int)immunityType, verses).ToBool();
+    {
+      return NWScript.GetIsImmune(this, (int)immunityType, verses).ToBool();
+    }
 
     /// <summary>
     /// Gives gold to this creature.
@@ -1099,7 +1103,9 @@ namespace NWN.API
     /// <param name="amount">The amount of gold to give.</param>
     /// <param name="showFeedback">If true, shows "Acquired xgp" feedback to the creature.</param>
     public void GiveGold(int amount, bool showFeedback = true)
-      => Creature.AddGold(amount, showFeedback.ToInt());
+    {
+      Creature.AddGold(amount, showFeedback.ToInt());
+    }
 
     /// <summary>
     /// Takes gold away from this creature.
@@ -1107,7 +1113,9 @@ namespace NWN.API
     /// <param name="amount">The amount of gold to take.</param>
     /// <param name="showFeedback">If true, shows "Lost xgp" feedback to the creature.</param>
     public void TakeGold(int amount, bool showFeedback = true)
-      => Creature.RemoveGold(amount, showFeedback.ToInt());
+    {
+      Creature.RemoveGold(amount, showFeedback.ToInt());
+    }
 
     /// <summary>
     /// Creates a creature at the specified location.
@@ -1117,7 +1125,9 @@ namespace NWN.API
     /// <param name="useAppearAnim">If true, plays EffectAppear when created.</param>
     /// <param name="newTag">The new tag to assign this creature. Leave uninitialized/as null to use the template's tag.</param>
     public static NwCreature Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
-      => CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
+    {
+      return CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
+    }
 
     /// <summary>
     /// Gets the item that is equipped in the specified inventory slot.
@@ -1125,7 +1135,9 @@ namespace NWN.API
     /// <param name="slot">The inventory slot to check.</param>
     /// <returns>The item in the inventory slot, otherwise null if it is unpopulated.</returns>
     public NwItem GetItemInSlot(InventorySlot slot)
-      => NWScript.GetItemInSlot((int)slot, this).ToNwObject<NwItem>();
+    {
+      return NWScript.GetItemInSlot((int)slot, this).ToNwObject<NwItem>();
+    }
 
     /// <summary>
     /// Attempts to perform a melee touch attack on target. This is not a creature action, and assumes that this creature is already within range of the target.
@@ -1155,7 +1167,9 @@ namespace NWN.API
     /// <param name="alignment">The alignment to shift towards.</param>
     /// <param name="shift">The amount of alignment shift.</param>
     public void AdjustPartyAlignment(Alignment alignment, int shift)
-      => NWScript.AdjustAlignment(this, (int)alignment, shift);
+    {
+      NWScript.AdjustAlignment(this, (int)alignment, shift);
+    }
 
     /// <summary>
     /// Gets the specified ability score from this creature.
@@ -1163,7 +1177,9 @@ namespace NWN.API
     /// <param name="ability">The type of ability.</param>
     /// <param name="baseOnly">If true, will return the creature's base ability score without bonuses or penalties.</param>
     public int GetAbilityScore(Ability ability, bool baseOnly = false)
-      => NWScript.GetAbilityScore(this, (int)ability, baseOnly.ToInt());
+    {
+      return NWScript.GetAbilityScore(this, (int)ability, baseOnly.ToInt());
+    }
 
     /// <summary>
     /// Gets this creature's ability modifier for the specified ability.
@@ -1171,7 +1187,9 @@ namespace NWN.API
     /// <param name="ability">The ability to resolve.</param>
     /// <returns>An int representing the creature's ability modifier for the specified skill.</returns>
     public int GetAbilityModifier(Ability ability)
-      => NWScript.GetAbilityModifier((int)ability, this);
+    {
+      return NWScript.GetAbilityModifier((int)ability, this);
+    }
 
     /// <summary>
     /// Gets the last target this creature tried to attack.
@@ -1205,7 +1223,9 @@ namespace NWN.API
     /// <param name="spell">The spell to check.</param>
     /// <returns>True if this creature can immediately cast the spell.</returns>
     public bool HasSpellUse(Spell spell)
-      => NWScript.GetHasSpell((int)spell, this) > 0;
+    {
+      return NWScript.GetHasSpell((int)spell, this) > 0;
+    }
 
     /// <summary>
     /// Gets the number of ranks this creature has in the specified skill.
@@ -1214,7 +1234,9 @@ namespace NWN.API
     /// <param name="ranksOnly">If true, returns the base amount of skill ranks without any ability modifiers.</param>
     /// <returns>-1 if the creature does not have this skill, 0 if untrained, otherwise the number of skill ranks.</returns>
     public int GetSkillRank(Skill skill, bool ranksOnly = false)
-      => NWScript.GetSkillRank((int)skill, this, ranksOnly.ToInt());
+    {
+      return NWScript.GetSkillRank((int)skill, this, ranksOnly.ToInt());
+    }
 
     /// <summary>
     /// Returns true if this creature has the skill specified, and is useable.
@@ -1222,7 +1244,9 @@ namespace NWN.API
     /// <param name="skill">The skill to check.</param>
     /// <returns>True if the creature has this skill.</returns>
     public bool HasSkill(Skill skill)
-      => NWScript.GetHasSkill((int)skill, this).ToBool();
+    {
+      return NWScript.GetHasSkill((int)skill, this).ToBool();
+    }
 
     /// <summary>
     /// Returns true if 1d20 + skill rank is greater than, or equal to difficultyClass.
@@ -1230,14 +1254,18 @@ namespace NWN.API
     /// <param name="skill">The type of skill check.</param>
     /// <param name="difficultyClass">The DC of this skill check.</param>
     public bool DoSkillCheck(Skill skill, int difficultyClass)
-      => NWScript.GetIsSkillSuccessful(this, (int)skill, difficultyClass).ToBool();
+    {
+      return NWScript.GetIsSkillSuccessful(this, (int)skill, difficultyClass).ToBool();
+    }
 
     /// <summary>
     /// Returns true if this creature knows the specified <see cref="Constants.Feat"/>, and can use it.<br/>
     /// Use <see cref="KnowsFeat"/> to simply check if a creature knows <see cref="Constants.Feat"/>, but may or may not have uses remaining.
     /// </summary>
     public bool HasFeatPrepared(Feat feat)
-      => NWScript.GetHasFeat((int)feat, this).ToBool();
+    {
+      return NWScript.GetHasFeat((int)feat, this).ToBool();
+    }
 
     /// <summary>
     /// Determines whether this creature has the specified talent.
@@ -1245,7 +1273,9 @@ namespace NWN.API
     /// <param name="talent">The talent to check.</param>
     /// <returns>True if this creature has talent, otherwise false.</returns>
     public bool HasTalent(Talent talent)
-      => NWScript.GetCreatureHasTalent(talent, this).ToBool();
+    {
+      return NWScript.GetCreatureHasTalent(talent, this).ToBool();
+    }
 
     /// <summary>
     /// The creature will generate a random location near its current location
@@ -1397,7 +1427,7 @@ namespace NWN.API
     public async Task ActionEquipMostDamagingMelee(NwGameObject verses = null, bool offhand = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionEquipMostDamagingMelee();
+      NWScript.ActionEquipMostDamagingMelee(verses, offhand.ToInt());
     }
 
     /// <summary>
@@ -1407,7 +1437,7 @@ namespace NWN.API
     public async Task ActionEquipMostDamagingRanged(NwGameObject verses = null)
     {
       await WaitForObjectContext();
-      NWScript.ActionEquipMostDamagingRanged();
+      NWScript.ActionEquipMostDamagingRanged(verses);
     }
 
     /// <summary>
@@ -1449,11 +1479,7 @@ namespace NWN.API
     /// <returns>The cloned creature.</returns>
     public NwCreature Clone(Location location = null, string newTag = null)
     {
-      if (location == null)
-      {
-        location = Location;
-      }
-
+      location ??= Location;
       return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty).ToNwObject<NwCreature>();
     }
 
@@ -1507,7 +1533,9 @@ namespace NWN.API
     /// Get the item possessed by this creature with the tag itemTag.
     /// </summary>
     public NwItem FindItemWithTag(string itemTag)
-      => NWScript.GetItemPossessedBy(this, itemTag).ToNwObject<NwItem>();
+    {
+      return NWScript.GetItemPossessedBy(this, itemTag).ToNwObject<NwItem>();
+    }
 
     /// <summary>
     /// Instructs this creature to equip the specified item into the given inventory slot.<br/>
@@ -1575,14 +1603,18 @@ namespace NWN.API
     /// </summary>
     /// <param name="door">The door to lock.</param>
     public async Task ActionLockObject(NwDoor door)
-      => await DoActionLockObject(door);
+    {
+      await DoActionLockObject(door);
+    }
 
     /// <summary>
     /// Instructs this creature to approach and lock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to lock.</param>
     public async Task ActionLockObject(NwPlaceable placeable)
-      => await DoActionLockObject(placeable);
+    {
+      await DoActionLockObject(placeable);
+    }
 
     private async Task DoActionLockObject(NwGameObject target)
     {
@@ -1595,14 +1627,18 @@ namespace NWN.API
     /// </summary>
     /// <param name="door">The door to unlock.</param>
     public async Task ActionUnlockObject(NwDoor door)
-      => await DoActionUnlockObject(door);
+    {
+      await DoActionUnlockObject(door);
+    }
 
     /// <summary>
     /// Instructs this creature to approach and unlock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to unlock.</param>
     public async Task ActionUnlockObject(NwPlaceable placeable)
-      => await DoActionUnlockObject(placeable);
+    {
+      await DoActionUnlockObject(placeable);
+    }
 
     private async Task DoActionUnlockObject(NwGameObject target)
     {
@@ -1713,7 +1749,9 @@ namespace NWN.API
     /// <param name="target">The target creature.</param>
     /// <returns>true if target is an enemy, otherwise false.</returns>
     public bool IsEnemy(NwCreature target)
-      => NWScript.GetIsEnemy(target, this).ToBool();
+    {
+      return NWScript.GetIsEnemy(target, this).ToBool();
+    }
 
     /// <summary>
     /// Gets a value indicating whether this creature considers the target as neutral.
@@ -1721,7 +1759,9 @@ namespace NWN.API
     /// <param name="target">The target creature.</param>
     /// <returns>true if this creature considers the target as neutral, otherwise false.</returns>
     public bool IsNeutral(NwCreature target)
-      => NWScript.GetIsNeutral(target, this).ToBool();
+    {
+      return NWScript.GetIsNeutral(target, this).ToBool();
+    }
 
     /// <summary>
     /// Gets a value indicating whether this creature considers the target as a enemy.
@@ -1729,7 +1769,9 @@ namespace NWN.API
     /// <param name="target">The target creature.</param>
     /// <returns>true if target is a friend, otherwise false.</returns>
     public bool IsFriend(NwCreature target)
-      => NWScript.GetIsFriend(target, this).ToBool();
+    {
+      return NWScript.GetIsFriend(target, this).ToBool();
+    }
 
     /// <summary>
     /// Returns this creature's spell school specialization in the specified class.<br/>
@@ -1738,7 +1780,9 @@ namespace NWN.API
     /// <param name="classType">The class to query for specialized spell schools.</param>
     /// <returns>The creature's selected spell specialization.</returns>
     public SpellSchool GetSpecialization(ClassType classType = ClassType.Wizard)
-      => (SpellSchool)NWScript.GetSpecialization(this, (int)classType);
+    {
+      return (SpellSchool)NWScript.GetSpecialization(this, (int)classType);
+    }
 
     /// <summary>
     /// Returns this creature's domains in the specified class. Unless custom content is used, only clerics have domains.
@@ -1765,7 +1809,9 @@ namespace NWN.API
     /// <param name="actionMode">The action mode to query.</param>
     /// <returns>True if the specified action mode is currently active, otherwise false.</returns>
     public bool GetActionMode(ActionMode actionMode)
-      => NWScript.GetActionMode(this, (int)actionMode).ToBool();
+    {
+      return NWScript.GetActionMode(this, (int)actionMode).ToBool();
+    }
 
     /// <summary>
     /// Instructs this creature to enable/disable the specified action mode (parry, power attack, expertise, etc).
@@ -1773,25 +1819,33 @@ namespace NWN.API
     /// <param name="actionMode">The action mode to toggle.</param>
     /// <param name="status">The new state of the action mode.</param>
     public void SetActionMode(ActionMode actionMode, bool status)
-      => NWScript.SetActionMode(this, (int)actionMode, status.ToInt());
+    {
+      NWScript.SetActionMode(this, (int)actionMode, status.ToInt());
+    }
 
     /// <summary>
     /// Instantly gives this creature the benefits of a rest (restored hitpoints, spells, feats, etc...).
     /// </summary>
     public void ForceRest()
-      => NWScript.ForceRest(this);
+    {
+      NWScript.ForceRest(this);
+    }
 
     /// <summary>
     /// Returns the model number being used for the body part and creature.
     /// </summary>
     public CreatureModelType GetCreatureBodyPart(CreaturePart creaturePart)
-      => (CreatureModelType)NWScript.GetCreatureBodyPart((int)creaturePart, this);
+    {
+      return (CreatureModelType)NWScript.GetCreatureBodyPart((int)creaturePart, this);
+    }
 
     /// <summary>
     /// Sets the body part model to be used on the creature.
     /// </summary>
     public void SetCreatureBodyPart(CreaturePart creaturePart, CreatureModelType creatureModel)
-      => NWScript.SetCreatureBodyPart((int)creaturePart, (int)creatureModel, this);
+    {
+      NWScript.SetCreatureBodyPart((int)creaturePart, (int)creatureModel, this);
+    }
 
     /// <summary>
     /// Gets the associate of this creature with the matching associate type.<br/>
@@ -1800,49 +1854,63 @@ namespace NWN.API
     /// <param name="associateType">The type of associate to locate.</param>
     /// <returns>The associated creature, otherwise null if this creature does not have an associate of the specified type.</returns>
     public NwCreature GetAssociate(AssociateType associateType)
-      => NWScript.GetAssociate((int)associateType, this).ToNwObject<NwCreature>();
+    {
+      return NWScript.GetAssociate((int)associateType, this).ToNwObject<NwCreature>();
+    }
 
     /// <summary>
     /// Gets whether this creature is under the effects of the specified feat.
     /// </summary>
     /// <param name="feat">The feat to check.</param>
     public bool HasFeatEffect(Feat feat)
-      => NWScript.GetHasFeatEffect((int)feat, this).ToBool();
+    {
+      return NWScript.GetHasFeatEffect((int)feat, this).ToBool();
+    }
 
     /// <summary>
     /// Gets whether this creature is under the effects of the specified spell.
     /// </summary>
     /// <param name="spell">The spell to check.</param>
     public bool HasSpellEffect(Spell spell)
-      => NWScript.GetHasSpellEffect((int)spell, this).ToBool();
+    {
+      return NWScript.GetHasSpellEffect((int)spell, this).ToBool();
+    }
 
     /// <summary>
     /// Gets whether this creature has a friendly reaction towards another given creature.
     /// </summary>
     /// <param name="creature">The target creature to test.</param>
     public bool IsReactionTypeFriendly(NwCreature creature)
-      => NWScript.GetIsReactionTypeFriendly(creature, this).ToBool();
+    {
+      return NWScript.GetIsReactionTypeFriendly(creature, this).ToBool();
+    }
 
     /// <summary>
     /// Gets whether this creature has a hostile reaction towards another given creature.
     /// </summary>
     /// <param name="creature">The target creature to test.</param>
     public bool IsReactionTypeHostile(NwCreature creature)
-      => NWScript.GetIsReactionTypeHostile(creature, this).ToBool();
+    {
+      return NWScript.GetIsReactionTypeHostile(creature, this).ToBool();
+    }
 
     /// <summary>
     /// Gets whether this creature has a neutral reaction towards another given creature.
     /// </summary>
     /// <param name="creature">The target creature to test.</param>
     public bool IsReactionTypeNeutral(NwCreature creature)
-      => NWScript.GetIsReactionTypeNeutral(creature, this).ToBool();
+    {
+      return NWScript.GetIsReactionTypeNeutral(creature, this).ToBool();
+    }
 
     /// <summary>
     /// Gets how one creature feels toward this creature.
     /// </summary>
     /// <param name="creature">The creature whose feelings we wish to know.</param>
     public int Reputation(NwCreature creature)
-      => NWScript.GetReputation(this, creature);
+    {
+      return NWScript.GetReputation(this, creature);
+    }
 
     /// <summary>
     /// Gets the best talent from a group of talents.
@@ -1850,14 +1918,18 @@ namespace NWN.API
     /// <param name="category">The category of talents to pick from.</param>
     /// <param name="maxCr">The maximum Challenge Rating of the talent.</param>
     public TalentCategory TalentBest(TalentCategory category, int maxCr)
-      => (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
+    {
+      return (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
+    }
 
     /// <summary>
     /// Gets a random talent from a group of talents possessed by this creature.
     /// </summary>
     /// <param name="category">The category of talents to pick from.</param>
     public TalentCategory TalentRandom(TalentCategory category)
-      => (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
+    {
+      return (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
+    }
 
     /// <summary>
     /// Increment the remaining uses per day for this (creature) by the specified amount.<br/>
@@ -1900,20 +1972,26 @@ namespace NWN.API
     /// <param name="spellsReady">Determines if all memorizable spell slots will be filled without requiring rest.</param>
     /// <returns>Returns the new level if successful, or 0 if the function fails.</returns>
     public int LevelUpHenchman(ClassType classType, PackageType package, bool spellsReady = false)
-      => NWScript.LevelUpHenchman(this, (int)classType, (int)package, spellsReady.ToInt());
+    {
+      return NWScript.LevelUpHenchman(this, (int)classType, (int)package, spellsReady.ToInt());
+    }
 
     /// <summary>
     /// Instructs this creature to speak/play the specified voice chat.
     /// </summary>
     /// <param name="voiceChatType">The <see cref="NWN.API.Constants.VoiceChatType"/> for this creature to speak.</param>
     public void PlayVoiceChat(VoiceChatType voiceChatType)
-      => NWScript.PlayVoiceChat((int)voiceChatType, this);
+    {
+      NWScript.PlayVoiceChat((int)voiceChatType, this);
+    }
 
     /// <summary>
     /// Restores the number of base attacks back to it's original state on this (creature).
     /// </summary>
     public void RestoreBaseAttackBonus()
-      => NWScript.RestoreBaseAttackBonus(this);
+    {
+      NWScript.RestoreBaseAttackBonus(this);
+    }
 
     /// <summary>
     /// Gets whether the given area tile is visible on the map for this creature.<br/>
@@ -1924,7 +2002,9 @@ namespace NWN.API
     /// <param name="y">The location of the tile on the y axis.</param>
     /// <returns>True if this creature has explored this tile, otherwise false.</returns>
     public bool GetTileExplored(NwArea area, int x, int y)
-      => NWScript.GetTileExplored(this, area, x, y).ToBool();
+    {
+      return NWScript.GetTileExplored(this, area, x, y).ToBool();
+    }
 
     /// <summary>
     /// Gets whether the given area tile is visible on the map for this creature.<br/>
@@ -1936,7 +2016,9 @@ namespace NWN.API
     /// <param name="newState">The new exploration state for this tile (true = explored, false = unexplored).</param>
     /// <returns>The exploration state before newState. True if this creature has explored this tile, otherwise false.</returns>
     public bool SetTileExplored(NwArea area, int x, int y, bool newState)
-      => NWScript.SetTileExplored(this, area, x, y, newState.ToInt()).ToBool();
+    {
+      return NWScript.SetTileExplored(this, area, x, y, newState.ToInt()).ToBool();
+    }
 
     /// <summary>
     /// Check whether this creature can damage the specified object using their current weapon/s.
@@ -2069,7 +2151,7 @@ namespace NWN.API
       }
 
       void* itemPtr = item.Item;
-      Creature.AcquireItem(&itemPtr, INVALID, INVALID, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
+      Creature.AcquireItem(&itemPtr, Invalid, Invalid, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
     }
 
     public byte[] SerializeQuickbar()
@@ -2120,12 +2202,12 @@ namespace NWN.API
 
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
-        if (!resGff.IsValidGff(new[] {"BIC", "GFF", "UTC"}, new[] {"V3.2"}))
+        if (!resGff.IsValidGff(new[] { "BIC", "GFF", "UTC" }, new[] { "V3.2" }))
         {
           return false;
         }
 
-        creature = new CNWSCreature(INVALID, 0, 1);
+        creature = new CNWSCreature(Invalid, 0, 1);
         if (creature.LoadCreature(resGff, resStruct, 0, 0, 0, 0).ToBool())
         {
           creature.LoadObjectState(resGff, resStruct);
@@ -2173,7 +2255,7 @@ namespace NWN.API
     {
       if (index >= QuickBarButtonCount)
       {
-        throw new ArgumentOutOfRangeException($"Index must be < 36");
+        throw new ArgumentOutOfRangeException(nameof(index), "Index must be < 36");
       }
 
       if (Creature.m_pQuickbarButton == null)
@@ -2188,7 +2270,7 @@ namespace NWN.API
     {
       if (index >= QuickBarButtonCount)
       {
-        throw new ArgumentOutOfRangeException($"Index must be < 36");
+        throw new ArgumentOutOfRangeException(nameof(index), "Index must be < 36");
       }
 
       if (Creature.m_pQuickbarButton == null)

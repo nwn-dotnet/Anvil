@@ -6,7 +6,7 @@ namespace NWN.API.Events
 {
   [AttributeUsage(AttributeTargets.Class)]
   [BaseTypeRequired(typeof(IEvent))]
-  internal class GameEventAttribute : Attribute
+  internal sealed class GameEventAttribute : Attribute
   {
     /// <summary>
     /// The native event type for this event.

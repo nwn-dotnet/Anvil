@@ -15,7 +15,7 @@ namespace NWN.Services
   /// </summary>
   [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
   [MeansImplicitUse]
-  public class ServiceBindingAttribute : Attribute
+  public sealed class ServiceBindingAttribute : Attribute
   {
     public readonly Type BindFrom;
 

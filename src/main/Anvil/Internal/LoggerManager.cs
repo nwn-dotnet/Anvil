@@ -8,7 +8,7 @@ using NWN.API;
 
 namespace Anvil.Internal
 {
-  internal class LoggerManager : IDisposable
+  internal sealed class LoggerManager : IDisposable
   {
     private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message} ${exception:format=toString,Data}");
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
@@ -62,22 +62,27 @@ namespace Anvil.Internal
       return config;
     }
 
-    private LoggingConfiguration GetDefaultConfig()
+    private static LoggingConfiguration GetDefaultConfig()
     {
       LoggingConfiguration config = new LoggingConfiguration();
-      ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget("console");
-      consoleTarget.Layout = DefaultLayout;
+      ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget("console")
+      {
+        Layout = DefaultLayout,
+      };
 
-      FileTarget fileTarget = new FileTarget("anvil.log");
-      fileTarget.Layout = DefaultLayout;
-      fileTarget.FileName = new SimpleLayout("${var:nwn_home}/logs.0/anvil.log");
-      fileTarget.CreateDirs = false;
-      fileTarget.KeepFileOpen = true;
-      fileTarget.OpenFileCacheTimeout = 30;
-      fileTarget.ConcurrentWrites = false;
+      FileTarget fileTarget = new FileTarget("anvil.log")
+      {
+        Layout = DefaultLayout,
+        FileName = new SimpleLayout("${var:nwn_home}/logs.0/anvil.log"),
+        CreateDirs = false,
+        KeepFileOpen = true,
+        OpenFileCacheTimeout = 30,
+        ConcurrentWrites = false,
+      };
 
       config.AddTarget(consoleTarget);
       config.AddTarget(fileTarget);
+
       config.AddRule(LogLevel.Info, LogLevel.Fatal, consoleTarget);
       config.AddRule(LogLevel.Info, LogLevel.Fatal, fileTarget);
 

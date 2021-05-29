@@ -30,7 +30,10 @@ namespace NWN.API.Events
 
     public bool IsInstantSpell { get; private init; }
 
-    NwObject IEvent.Context => Caster;
+    NwObject IEvent.Context
+    {
+      get => Caster;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SpellCastAndImpactHook>
     {
@@ -60,7 +63,7 @@ namespace NWN.API.Events
           SpellCountered = bSpellCountered.ToBool(),
           CounteringSpell = bCounteringSpell.ToBool(),
           ProjectilePathType = (ProjectilePathType)projectilePathType,
-          IsInstantSpell = bInstantSpell.ToBool()
+          IsInstantSpell = bInstantSpell.ToBool(),
         });
 
         if (!eventData.PreventSpellCast)

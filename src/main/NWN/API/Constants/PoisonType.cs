@@ -47,6 +47,6 @@ namespace NWN.API.Constants
     ColossalSpiderVenom = NWScript.POISON_COLOSSAL_SPIDER_VENOM,
     PhaseSpiderVenom = NWScript.POISON_PHASE_SPIDER_VENOM,
     WraithSpiderVenom = NWScript.POISON_WRAITH_SPIDER_VENOM,
-    IronGolem = NWScript.POISON_IRON_GOLEM
+    IronGolem = NWScript.POISON_IRON_GOLEM,
   }
 }

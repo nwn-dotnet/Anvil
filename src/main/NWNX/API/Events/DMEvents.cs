@@ -22,7 +22,10 @@ namespace NWNX.API.Events
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     [NWNXEvent("NWNX_ON_DM_PLAYERDM_LOGIN_AFTER")]
@@ -40,7 +43,10 @@ namespace NWNX.API.Events
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     [NWNXEvent("NWNX_ON_DM_PLAYERDM_LOGOUT_BEFORE")]
@@ -53,7 +59,10 @@ namespace NWNX.API.Events
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     [NWNXEvent("NWNX_ON_DM_PLAYERDM_LOGOUT_AFTER")]
@@ -66,7 +75,10 @@ namespace NWNX.API.Events
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
   }
 }

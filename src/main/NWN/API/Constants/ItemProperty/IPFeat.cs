@@ -53,6 +53,6 @@ namespace NWN.API.Constants
     PlayerTool07 = NWScript.IP_CONST_FEAT_PLAYER_TOOL_07,
     PlayerTool08 = NWScript.IP_CONST_FEAT_PLAYER_TOOL_08,
     PlayerTool09 = NWScript.IP_CONST_FEAT_PLAYER_TOOL_09,
-    PlayerTool10 = NWScript.IP_CONST_FEAT_PLAYER_TOOL_10
+    PlayerTool10 = NWScript.IP_CONST_FEAT_PLAYER_TOOL_10,
   }
 }

@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     Small = NWScript.CREATURE_SIZE_SMALL,
     Medium = NWScript.CREATURE_SIZE_MEDIUM,
     Large = NWScript.CREATURE_SIZE_LARGE,
-    Huge = NWScript.CREATURE_SIZE_HUGE
+    Huge = NWScript.CREATURE_SIZE_HUGE,
   }
 }

@@ -23,7 +23,10 @@ namespace NWN.API.Events
 
     public Vector3 TargetPosition { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.CreatureUseFeatHook>
     {
@@ -47,7 +50,7 @@ namespace NWN.API.Events
           SubFeatId = nSubFeat,
           TargetObject = oidTarget.ToNwObject<NwGameObject>(),
           TargetArea = oidArea.ToNwObject<NwArea>(),
-          TargetPosition = pTargetPos != null ? Marshal.PtrToStructure<Vector3>((IntPtr)pTargetPos) : Vector3.Zero
+          TargetPosition = pTargetPos != null ? Marshal.PtrToStructure<Vector3>((IntPtr)pTargetPos) : Vector3.Zero,
         });
 
         return !eventData.PreventFeatUse ? Hook.CallOriginal(pCreature, nFeat, nSubFeat, oidTarget, oidArea, pTargetPos) : false.ToInt();

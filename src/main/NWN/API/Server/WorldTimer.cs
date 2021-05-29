@@ -2,7 +2,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public class WorldTimer
+  public sealed class WorldTimer
   {
     private readonly CWorldTimer worldTimer;
 

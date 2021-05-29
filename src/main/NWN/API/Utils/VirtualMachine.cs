@@ -94,9 +94,11 @@ namespace NWN.API
     /// If scriptName does not specify a compiled script, nothing happens.
     /// </summary>
     public void Execute(string scriptName, params (string ParamName, string ParamValue)[] scriptParams)
-      => Execute(scriptName, null, scriptParams);
+    {
+      Execute(scriptName, null, scriptParams);
+    }
 
-    public void ExecuteInScriptContext(Action action, uint objectId = NwObject.INVALID)
+    public void ExecuteInScriptContext(Action action, uint objectId = NwObject.Invalid)
     {
       int spBefore = PushScriptContext(objectId, 0, false);
       try

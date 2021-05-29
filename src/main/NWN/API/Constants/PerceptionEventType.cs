@@ -6,6 +6,6 @@ namespace NWN.API.Constants
     Seen,
     Vanished,
     Heard,
-    Inaudible
+    Inaudible,
   }
 }

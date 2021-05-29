@@ -17,7 +17,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
-      NwObject IEvent.Context => Encounter;
+      NwObject IEvent.Context
+      {
+        get => Encounter;
+      }
     }
 
     [GameEvent(EventScriptType.EncounterOnObjectExit)]
@@ -28,7 +31,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
-      NwObject IEvent.Context => Encounter;
+      NwObject IEvent.Context
+      {
+        get => Encounter;
+      }
     }
 
     [GameEvent(EventScriptType.EncounterOnHeartbeat)]
@@ -39,7 +45,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
-      NwObject IEvent.Context => Encounter;
+      NwObject IEvent.Context
+      {
+        get => Encounter;
+      }
     }
 
     [GameEvent(EventScriptType.EncounterOnEncounterExhausted)]
@@ -50,7 +59,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
-      NwObject IEvent.Context => Encounter;
+      NwObject IEvent.Context
+      {
+        get => Encounter;
+      }
     }
 
     [GameEvent(EventScriptType.EncounterOnUserDefinedEvent)]
@@ -61,7 +73,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
-      NwObject IEvent.Context => Encounter;
+      NwObject IEvent.Context
+      {
+        get => Encounter;
+      }
 
       public static void Signal(NwEncounter encounter, int eventId)
       {

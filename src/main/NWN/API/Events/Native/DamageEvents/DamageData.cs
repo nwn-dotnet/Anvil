@@ -3,7 +3,7 @@ using NWN.Native.API;
 
 namespace NWN.API.Events
 {
-  public unsafe class DamageData<T> where T : unmanaged
+  public sealed unsafe class DamageData<T> where T : unmanaged
   {
     private const int DamageArrayLength = 13;
 

@@ -84,7 +84,10 @@ namespace Anvil
       Start();
     }
 
-    void ICoreSignalHandler.OnShutdown() => Shutdown();
+    void ICoreSignalHandler.OnShutdown()
+    {
+      Shutdown();
+    }
 
     private void Init()
     {
@@ -153,7 +156,7 @@ namespace Anvil
       }
       catch (Exception)
       {
-        Log.Fatal($"The NWNX_SWIG_DotNET plugin could not be loaded.");
+        Log.Fatal("The NWNX_SWIG_DotNET plugin could not be loaded.");
         throw;
       }
     }

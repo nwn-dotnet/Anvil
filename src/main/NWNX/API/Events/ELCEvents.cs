@@ -20,7 +20,10 @@ namespace NWNX.API.Events
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     /// <summary>
@@ -36,7 +39,10 @@ namespace NWNX.API.Events
 
       public bool Skip { get; set; }
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
   }
 }

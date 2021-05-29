@@ -30,6 +30,6 @@ namespace NWN.API.Constants
     Vermin = NWScript.RACIAL_TYPE_VERMIN,
     All = NWScript.RACIAL_TYPE_ALL,
     Invalid = NWScript.RACIAL_TYPE_INVALID,
-    Ooze = NWScript.RACIAL_TYPE_OOZE
+    Ooze = NWScript.RACIAL_TYPE_OOZE,
   }
 }

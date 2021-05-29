@@ -96,6 +96,6 @@ namespace NWN.Services
       /// <summary>
       /// Unused.
       /// </summary>
-      Unlockachievement = 20
+      Unlockachievement = 20,
    }
 }

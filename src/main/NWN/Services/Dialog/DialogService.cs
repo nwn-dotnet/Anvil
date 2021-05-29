@@ -10,15 +10,24 @@ namespace NWN.Services
   [ServiceBindingOptions(Lazy = true)]
   public sealed unsafe class DialogService : IDisposable
   {
-    private Stack<DialogState> stateStack = new Stack<DialogState>();
+    private readonly Stack<DialogState> stateStack = new Stack<DialogState>();
 
     private CNWSDialog dialog;
 
-    private CNWSDialogEntryArray DialogueEntries => CNWSDialogEntryArray.FromPointer(dialog.m_pEntries);
+    private CNWSDialogEntryArray DialogueEntries
+    {
+      get => CNWSDialogEntryArray.FromPointer(dialog.m_pEntries);
+    }
 
-    private CNWSDialogReplyArray DialogueReplies => CNWSDialogReplyArray.FromPointer(dialog.m_pReplies);
+    private CNWSDialogReplyArray DialogueReplies
+    {
+      get => CNWSDialogReplyArray.FromPointer(dialog.m_pReplies);
+    }
 
-    private CNWSDialogLinkEntryArray StartingEntries => CNWSDialogLinkEntryArray.FromPointer(dialog.m_pStartingEntries);
+    private CNWSDialogLinkEntryArray StartingEntries
+    {
+      get => CNWSDialogLinkEntryArray.FromPointer(dialog.m_pStartingEntries);
+    }
 
     private uint indexEntry;
     private uint indexReply;
@@ -101,7 +110,7 @@ namespace NWN.Services
 
     public string GetCurrentNodeText(Language language = Language.English, Gender gender = Gender.Male)
     {
-      CExoLocString locString = GetCurrentNodeLocString(language, gender);
+      CExoLocString locString = GetCurrentNodeLocString();
 
       if (locString == null)
       {
@@ -115,7 +124,7 @@ namespace NWN.Services
 
     public void SetCurrentNodeText(string text, Language language = Language.English, Gender gender = Gender.Male)
     {
-      CExoLocString locString = GetCurrentNodeLocString(language, gender);
+      CExoLocString locString = GetCurrentNodeLocString();
       if (locString == null)
       {
         return;
@@ -221,7 +230,7 @@ namespace NWN.Services
       CurrentScriptType = ScriptType.Other;
     }
 
-    private CExoLocString GetCurrentNodeLocString(Language language, Gender gender)
+    private CExoLocString GetCurrentNodeLocString()
     {
       CExoLocString locString = null;
 

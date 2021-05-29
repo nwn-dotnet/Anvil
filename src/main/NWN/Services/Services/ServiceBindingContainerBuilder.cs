@@ -14,15 +14,15 @@ namespace NWN.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    protected ITypeLoader typeLoader;
-    protected ServiceContainer serviceContainer;
+    protected ITypeLoader TypeLoader;
+    protected ServiceContainer ServiceContainer;
 
     public ServiceContainer Setup(ITypeLoader typeLoader)
     {
-      this.typeLoader = typeLoader;
-      this.serviceContainer = new ServiceContainer(new ContainerOptions {EnablePropertyInjection = false, EnableVariance = false});
+      TypeLoader = typeLoader;
+      ServiceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = false, EnableVariance = false });
 
-      return serviceContainer;
+      return ServiceContainer;
     }
 
     public void RegisterCoreService<T>(T instance)
@@ -31,7 +31,7 @@ namespace NWN.Services
       ServiceBindingOptionsAttribute options = instanceType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
 
       string serviceName = GetServiceName(instanceType, options);
-      serviceContainer.RegisterInstance(instance, serviceName);
+      ServiceContainer.RegisterInstance(instance, serviceName);
     }
 
     public void BuildContainer()
@@ -44,7 +44,7 @@ namespace NWN.Services
     {
       Log.Info("Loading services...");
 
-      foreach (Type type in typeLoader.LoadedTypes)
+      foreach (Type type in TypeLoader.LoadedTypes)
       {
         if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
         {
@@ -69,12 +69,12 @@ namespace NWN.Services
 
       if (options is not { Lazy: true })
       {
-        serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
+        ServiceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
       }
 
       foreach (ServiceBindingAttribute bindingInfo in newBindings)
       {
-        serviceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
+        ServiceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
         Log.Debug($"Bind: {bindingInfo.BindFrom.FullName} -> {bindTo.FullName}");
       }
 

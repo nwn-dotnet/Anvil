@@ -10,6 +10,6 @@ namespace NWN.API.Constants
     Fast = 5,
     VeryFast = 6,
     CreatureDefault = 7,
-    DM = 8
+    DM = 8,
   }
 }

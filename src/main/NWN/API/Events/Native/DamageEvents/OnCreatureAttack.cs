@@ -31,7 +31,10 @@ namespace NWN.API.Events
 
     private CNWSCombatAttackData CombatAttackData { get; init; }
 
-    NwObject IEvent.Context => Attacker;
+    NwObject IEvent.Context
+    {
+      get => Attacker;
+    }
 
     internal sealed unsafe class Factory : MultiHookEventFactory
     {
@@ -111,7 +114,7 @@ namespace NWN.API.Events
           SneakAttack = (SneakAttack)(combatAttackData.m_bSneakAttack + (combatAttackData.m_bDeathAttack << 1)),
           KillingBlow = combatAttackData.m_bKillingBlow.ToBool(),
           AttackType = combatAttackData.m_nAttackType,
-          DamageData = new DamageData<short>(combatAttackData.m_nDamage)
+          DamageData = new DamageData<short>(combatAttackData.m_nDamage),
         };
       }
     }

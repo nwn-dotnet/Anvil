@@ -33,6 +33,6 @@ namespace NWN.API.Constants
     SmiteGood = NWScript.ACTION_SMITEGOOD,
     KiDamage = NWScript.ACTION_KIDAMAGE,
     RandomWalk = NWScript.ACTION_RANDOMWALK,
-    Invalid = NWScript.ACTION_INVALID
+    Invalid = NWScript.ACTION_INVALID,
   }
 }

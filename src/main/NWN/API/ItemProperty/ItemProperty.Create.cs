@@ -6,240 +6,398 @@ namespace NWN.API
   public sealed partial class ItemProperty
   {
     public static ItemProperty AbilityBonus(IPAbility ability, int bonus)
-      => NWScript.ItemPropertyAbilityBonus((int) ability, bonus);
+    {
+      return NWScript.ItemPropertyAbilityBonus((int)ability, bonus);
+    }
 
     public static ItemProperty ACBonus(int bonus)
-      => NWScript.ItemPropertyACBonus(bonus);
+    {
+      return NWScript.ItemPropertyACBonus(bonus);
+    }
 
     public static ItemProperty ACBonusVsAlign(IPAlignmentGroup alignmentGroup, int bonus)
-      => NWScript.ItemPropertyACBonusVsAlign((int) alignmentGroup, bonus);
+    {
+      return NWScript.ItemPropertyACBonusVsAlign((int)alignmentGroup, bonus);
+    }
 
     public static ItemProperty ACBonusVsDmgType(IPDamageType damageType, int bonus)
-      => NWScript.ItemPropertyACBonusVsDmgType((int) damageType, bonus);
+    {
+      return NWScript.ItemPropertyACBonusVsDmgType((int)damageType, bonus);
+    }
 
     public static ItemProperty ACBonusVsRace(IPRacialType racialType, int bonus)
-      => NWScript.ItemPropertyACBonusVsRace((int) racialType, bonus);
+    {
+      return NWScript.ItemPropertyACBonusVsRace((int)racialType, bonus);
+    }
 
     public static ItemProperty ACBonusVsSAlign(IPAlignment alignment, int bonus)
-      => NWScript.ItemPropertyACBonusVsSAlign((int) alignment, bonus);
+    {
+      return NWScript.ItemPropertyACBonusVsSAlign((int)alignment, bonus);
+    }
 
     public static ItemProperty Additional(IPAdditional additional)
-      => NWScript.ItemPropertyAdditional((int) additional);
+    {
+      return NWScript.ItemPropertyAdditional((int)additional);
+    }
 
     public static ItemProperty ArcaneSpellFailure(IPArcaneSpellFailure spellFailure)
-      => NWScript.ItemPropertyArcaneSpellFailure((int) spellFailure);
+    {
+      return NWScript.ItemPropertyArcaneSpellFailure((int)spellFailure);
+    }
 
     public static ItemProperty AttackBonus(int bonus)
-      => NWScript.ItemPropertyAttackBonus(bonus);
+    {
+      return NWScript.ItemPropertyAttackBonus(bonus);
+    }
 
     public static ItemProperty AttackBonusVsAlign(IPAlignmentGroup alignmentGroup, int bonus)
-      => NWScript.ItemPropertyAttackBonusVsAlign((int) alignmentGroup, bonus);
+    {
+      return NWScript.ItemPropertyAttackBonusVsAlign((int)alignmentGroup, bonus);
+    }
 
     public static ItemProperty AttackBonusVsRace(IPRacialType racialType, int bonus)
-      => NWScript.ItemPropertyAttackBonusVsRace((int) racialType, bonus);
+    {
+      return NWScript.ItemPropertyAttackBonusVsRace((int)racialType, bonus);
+    }
 
     public static ItemProperty AttackBonusVsSAlign(IPAlignment alignment, int bonus)
-      => NWScript.ItemPropertyAttackBonusVsSAlign((int) alignment, bonus);
+    {
+      return NWScript.ItemPropertyAttackBonusVsSAlign((int)alignment, bonus);
+    }
 
     public static ItemProperty AttackPenalty(int penalty)
-      => NWScript.ItemPropertyAttackPenalty(penalty);
+    {
+      return NWScript.ItemPropertyAttackPenalty(penalty);
+    }
 
     public static ItemProperty BonusFeat(IPFeat feat)
-      => NWScript.ItemPropertyBonusFeat((int) feat);
+    {
+      return NWScript.ItemPropertyBonusFeat((int)feat);
+    }
 
     public static ItemProperty BonusLevelSpell(IPClass classType, IPSpellLevel spellLevel)
-      => NWScript.ItemPropertyBonusLevelSpell((int) classType, (int) spellLevel);
+    {
+      return NWScript.ItemPropertyBonusLevelSpell((int)classType, (int)spellLevel);
+    }
 
     public static ItemProperty BonusSavingThrow(IPSaveBaseType saveType, int bonus)
-      => NWScript.ItemPropertyBonusSavingThrow((int) saveType, bonus);
+    {
+      return NWScript.ItemPropertyBonusSavingThrow((int)saveType, bonus);
+    }
 
     public static ItemProperty BonusSavingThrowVsX(IPSaveVs saveType, int bonus)
-      => NWScript.ItemPropertyBonusSavingThrowVsX((int) saveType, bonus);
+    {
+      return NWScript.ItemPropertyBonusSavingThrowVsX((int)saveType, bonus);
+    }
 
     public static ItemProperty BonusSpellResistance(IPSpellResistanceBonus resistBonus)
-      => NWScript.ItemPropertyBonusSpellResistance((int) resistBonus);
+    {
+      return NWScript.ItemPropertyBonusSpellResistance((int)resistBonus);
+    }
 
     public static ItemProperty CastSpell(IPCastSpell spell, IPCastSpellNumUses uses)
-      => NWScript.ItemPropertyCastSpell((int) spell, (int) uses);
+    {
+      return NWScript.ItemPropertyCastSpell((int)spell, (int)uses);
+    }
 
     public static ItemProperty ContainerReducedWeight(IPContainerWeightReduction weightReduction)
-      => NWScript.ItemPropertyContainerReducedWeight((int) weightReduction);
+    {
+      return NWScript.ItemPropertyContainerReducedWeight((int)weightReduction);
+    }
 
     public static ItemProperty DamageBonus(IPDamageType damageType, IPDamageBonus damageBonus)
-      => NWScript.ItemPropertyDamageBonus((int) damageType, (int) damageBonus);
+    {
+      return NWScript.ItemPropertyDamageBonus((int)damageType, (int)damageBonus);
+    }
 
     public static ItemProperty DamageBonusVsAlign(IPAlignmentGroup alignmentGroup, IPDamageType damageType, IPDamageBonus damageBonus)
-      => NWScript.ItemPropertyDamageBonusVsAlign((int) alignmentGroup, (int) damageType, (int) damageBonus);
+    {
+      return NWScript.ItemPropertyDamageBonusVsAlign((int)alignmentGroup, (int)damageType, (int)damageBonus);
+    }
 
     public static ItemProperty DamageBonusVsRace(IPRacialType racialType, IPDamageType damageType, IPDamageBonus damageBonus)
-      => NWScript.ItemPropertyDamageBonusVsRace((int) racialType, (int) damageType, (int) damageBonus);
+    {
+      return NWScript.ItemPropertyDamageBonusVsRace((int)racialType, (int)damageType, (int)damageBonus);
+    }
 
     public static ItemProperty DamageBonusVsSAlign(IPAlignment alignment, IPDamageType damageType, IPDamageBonus damageBonus)
-      => NWScript.ItemPropertyDamageBonusVsSAlign((int) alignment, (int) damageType, (int) damageBonus);
+    {
+      return NWScript.ItemPropertyDamageBonusVsSAlign((int)alignment, (int)damageType, (int)damageBonus);
+    }
 
     public static ItemProperty DamageImmunity(IPDamageType damageType, IPDamageImmunityType immunityType)
-      => NWScript.ItemPropertyDamageImmunity((int) damageType, (int) immunityType);
+    {
+      return NWScript.ItemPropertyDamageImmunity((int)damageType, (int)immunityType);
+    }
 
     public static ItemProperty DamagePenalty(int penalty)
-      => NWScript.ItemPropertyDamagePenalty(penalty);
+    {
+      return NWScript.ItemPropertyDamagePenalty(penalty);
+    }
 
     public static ItemProperty DamageReduction(IPDamageReduction damageReduction, IPDamageSoak damageSoak)
-      => NWScript.ItemPropertyDamageReduction((int) damageReduction, (int) damageSoak);
+    {
+      return NWScript.ItemPropertyDamageReduction((int)damageReduction, (int)damageSoak);
+    }
 
     public static ItemProperty DamageResistance(IPDamageType damageType, IPDamageResist damageResist)
-      => NWScript.ItemPropertyDamageResistance((int) damageType, (int) damageResist);
+    {
+      return NWScript.ItemPropertyDamageResistance((int)damageType, (int)damageResist);
+    }
 
     public static ItemProperty DamageVulnerability(IPDamageType damageType, IPDamageVulnerabilityType damageVulnerability)
-      => NWScript.ItemPropertyDamageVulnerability((int) damageType, (int) damageVulnerability);
+    {
+      return NWScript.ItemPropertyDamageVulnerability((int)damageType, (int)damageVulnerability);
+    }
 
     public static ItemProperty Darkvision()
-      => NWScript.ItemPropertyDarkvision();
+    {
+      return NWScript.ItemPropertyDarkvision();
+    }
 
     public static ItemProperty DecreaseAbility(IPAbility ability, int penalty)
-      => NWScript.ItemPropertyDecreaseAbility((int) ability, penalty);
+    {
+      return NWScript.ItemPropertyDecreaseAbility((int)ability, penalty);
+    }
 
     public static ItemProperty DecreaseAC(IPACModifierType modifierType, int penalty)
-      => NWScript.ItemPropertyDecreaseAC((int) modifierType, penalty);
+    {
+      return NWScript.ItemPropertyDecreaseAC((int)modifierType, penalty);
+    }
 
     public static ItemProperty DecreaseSkill(Skill skill, int penalty)
-      => NWScript.ItemPropertyDecreaseSkill((int) skill, penalty);
+    {
+      return NWScript.ItemPropertyDecreaseSkill((int)skill, penalty);
+    }
 
     public static ItemProperty EnhancementBonus(int bonus)
-      => NWScript.ItemPropertyEnhancementBonus(bonus);
+    {
+      return NWScript.ItemPropertyEnhancementBonus(bonus);
+    }
 
     public static ItemProperty EnhancementBonusVsAlign(IPAlignmentGroup alignmentGroup, int bonus)
-      => NWScript.ItemPropertyEnhancementBonusVsAlign((int) alignmentGroup, bonus);
+    {
+      return NWScript.ItemPropertyEnhancementBonusVsAlign((int)alignmentGroup, bonus);
+    }
 
     public static ItemProperty EnhancementBonusVsRace(IPRacialType racialType, int bonus)
-      => NWScript.ItemPropertyEnhancementBonusVsRace((int) racialType, bonus);
+    {
+      return NWScript.ItemPropertyEnhancementBonusVsRace((int)racialType, bonus);
+    }
 
     public static ItemProperty EnhancementBonusVsSAlign(IPAlignment alignment, int bonus)
-      => NWScript.ItemPropertyEnhancementBonusVsSAlign((int) alignment, bonus);
+    {
+      return NWScript.ItemPropertyEnhancementBonusVsSAlign((int)alignment, bonus);
+    }
 
     public static ItemProperty EnhancementPenalty(int penalty)
-      => NWScript.ItemPropertyEnhancementPenalty(penalty);
+    {
+      return NWScript.ItemPropertyEnhancementPenalty(penalty);
+    }
 
     public static ItemProperty ExtraMeleeDamageType(IPDamageType damageType)
-      => NWScript.ItemPropertyExtraMeleeDamageType((int) damageType);
+    {
+      return NWScript.ItemPropertyExtraMeleeDamageType((int)damageType);
+    }
 
     public static ItemProperty ExtraRangeDamageType(IPDamageType damageType)
-      => NWScript.ItemPropertyExtraRangeDamageType((int) damageType);
+    {
+      return NWScript.ItemPropertyExtraRangeDamageType((int)damageType);
+    }
 
     public static ItemProperty FreeAction()
-      => NWScript.ItemPropertyFreeAction();
+    {
+      return NWScript.ItemPropertyFreeAction();
+    }
 
     public static ItemProperty Haste()
-      => NWScript.ItemPropertyHaste();
+    {
+      return NWScript.ItemPropertyHaste();
+    }
 
     public static ItemProperty HealersKit(int level)
-      => NWScript.ItemPropertyHealersKit(level);
+    {
+      return NWScript.ItemPropertyHealersKit(level);
+    }
 
     public static ItemProperty HolyAvenger()
-      => NWScript.ItemPropertyHolyAvenger();
+    {
+      return NWScript.ItemPropertyHolyAvenger();
+    }
 
     public static ItemProperty ImmunityMisc(IPMiscImmunity immunityType)
-      => NWScript.ItemPropertyImmunityMisc((int) immunityType);
+    {
+      return NWScript.ItemPropertyImmunityMisc((int)immunityType);
+    }
 
     public static ItemProperty ImmunityToSpellLevel(IPSpellLevel spellLevel)
-      => NWScript.ItemPropertyImmunityToSpellLevel((int) spellLevel);
+    {
+      return NWScript.ItemPropertyImmunityToSpellLevel((int)spellLevel);
+    }
 
     public static ItemProperty ImprovedEvasion()
-      => NWScript.ItemPropertyImprovedEvasion();
+    {
+      return NWScript.ItemPropertyImprovedEvasion();
+    }
 
     public static ItemProperty Keen()
-      => NWScript.ItemPropertyKeen();
+    {
+      return NWScript.ItemPropertyKeen();
+    }
 
     public static ItemProperty Light(IPLightBrightness brightness, IPLightColor color)
-      => NWScript.ItemPropertyLight((int) brightness, (int) color);
+    {
+      return NWScript.ItemPropertyLight((int)brightness, (int)color);
+    }
 
     public static ItemProperty LimitUseByAlign(IPAlignmentGroup alignmentGroup)
-      => NWScript.ItemPropertyLimitUseByAlign((int) alignmentGroup);
+    {
+      return NWScript.ItemPropertyLimitUseByAlign((int)alignmentGroup);
+    }
 
     public static ItemProperty LimitUseByClass(IPClass classType)
-      => NWScript.ItemPropertyLimitUseByClass((int) classType);
+    {
+      return NWScript.ItemPropertyLimitUseByClass((int)classType);
+    }
 
     public static ItemProperty LimitUseByRace(IPRacialType racialType)
-      => NWScript.ItemPropertyLimitUseByRace((int) racialType);
+    {
+      return NWScript.ItemPropertyLimitUseByRace((int)racialType);
+    }
 
     public static ItemProperty LimitUseBySAlign(IPAlignment alignment)
-      => NWScript.ItemPropertyLimitUseBySAlign((int) alignment);
+    {
+      return NWScript.ItemPropertyLimitUseBySAlign((int)alignment);
+    }
 
     public static ItemProperty MassiveCritical(IPDamageBonus damageBonus)
-      => NWScript.ItemPropertyMassiveCritical((int) damageBonus);
+    {
+      return NWScript.ItemPropertyMassiveCritical((int)damageBonus);
+    }
 
     public static ItemProperty Material(int materialType)
-      => NWScript.ItemPropertyMaterial(materialType);
+    {
+      return NWScript.ItemPropertyMaterial(materialType);
+    }
 
     public static ItemProperty MaxRangeStrengthMod(int modifier)
-      => NWScript.ItemPropertyMaxRangeStrengthMod(modifier);
+    {
+      return NWScript.ItemPropertyMaxRangeStrengthMod(modifier);
+    }
 
     public static ItemProperty MonsterDamage(IPMonsterDamage monsterDamage)
-      => NWScript.ItemPropertyMonsterDamage((int) monsterDamage);
+    {
+      return NWScript.ItemPropertyMonsterDamage((int)monsterDamage);
+    }
 
     public static ItemProperty NoDamage()
-      => NWScript.ItemPropertyNoDamage();
+    {
+      return NWScript.ItemPropertyNoDamage();
+    }
 
     public static ItemProperty OnHitCastSpell(IPCastSpell spell, IPSpellLevel spellLevel)
-      => NWScript.ItemPropertyOnHitCastSpell((int) spell, (int) spellLevel);
+    {
+      return NWScript.ItemPropertyOnHitCastSpell((int)spell, (int)spellLevel);
+    }
 
     public static ItemProperty OnHitEffect(IPOnHitSaveDC saveDC, HitEffect effect)
-      => NWScript.ItemPropertyOnHitProps(effect.Property, (int) saveDC, effect.Special);
+    {
+      return NWScript.ItemPropertyOnHitProps(effect.Property, (int)saveDC, effect.Special);
+    }
 
     public static ItemProperty OnMonsterHitProperties(MonsterHitEffect effect)
-      => NWScript.ItemPropertyOnMonsterHitProperties(effect.Property, effect.Special);
+    {
+      return NWScript.ItemPropertyOnMonsterHitProperties(effect.Property, effect.Special);
+    }
 
     public static ItemProperty Quality(IPQuality quality)
-      => NWScript.ItemPropertyQuality((int) quality);
+    {
+      return NWScript.ItemPropertyQuality((int)quality);
+    }
 
     public static ItemProperty ReducedSavingThrow(IPSaveBaseType saveType, int penalty)
-      => NWScript.ItemPropertyReducedSavingThrow((int) saveType, penalty);
+    {
+      return NWScript.ItemPropertyReducedSavingThrow((int)saveType, penalty);
+    }
 
     public static ItemProperty ReducedSavingThrowVsX(IPSaveVs saveType, int penalty)
-      => NWScript.ItemPropertyReducedSavingThrowVsX((int) saveType, penalty);
+    {
+      return NWScript.ItemPropertyReducedSavingThrowVsX((int)saveType, penalty);
+    }
 
     public static ItemProperty Regeneration(int regenAmount)
-      => NWScript.ItemPropertyRegeneration(regenAmount);
+    {
+      return NWScript.ItemPropertyRegeneration(regenAmount);
+    }
 
     public static ItemProperty SkillBonus(Skill skill, int bonus)
-      => NWScript.ItemPropertySkillBonus((int) skill, bonus);
+    {
+      return NWScript.ItemPropertySkillBonus((int)skill, bonus);
+    }
 
     public static ItemProperty SpecialWalk()
-      => NWScript.ItemPropertySpecialWalk();
+    {
+      return NWScript.ItemPropertySpecialWalk();
+    }
 
     public static ItemProperty SpellImmunitySchool(IPSpellSchool spellSchool)
-      => NWScript.ItemPropertySpellImmunitySchool((int) spellSchool);
+    {
+      return NWScript.ItemPropertySpellImmunitySchool((int)spellSchool);
+    }
 
     public static ItemProperty SpellImmunitySpecific(IPSpellImmunity spell)
-      => NWScript.ItemPropertySpellImmunitySpecific((int) spell);
+    {
+      return NWScript.ItemPropertySpellImmunitySpecific((int)spell);
+    }
 
     public static ItemProperty ThievesTools(int modifier)
-      => NWScript.ItemPropertyThievesTools(modifier);
+    {
+      return NWScript.ItemPropertyThievesTools(modifier);
+    }
 
     public static ItemProperty Trap(IPTrapStrength trapStrength, IPTrapType trapType)
-      => NWScript.ItemPropertyTrap((int) trapStrength, (int) trapType);
+    {
+      return NWScript.ItemPropertyTrap((int)trapStrength, (int)trapType);
+    }
 
     public static ItemProperty TrueSeeing()
-      => NWScript.ItemPropertyTrueSeeing();
+    {
+      return NWScript.ItemPropertyTrueSeeing();
+    }
 
     public static ItemProperty TurnResistance(int modifier)
-      => NWScript.ItemPropertyTurnResistance(modifier);
+    {
+      return NWScript.ItemPropertyTurnResistance(modifier);
+    }
 
     public static ItemProperty UnlimitedAmmo(IPUnlimitedAmmoType ammoType = IPUnlimitedAmmoType.Basic)
-      => NWScript.ItemPropertyUnlimitedAmmo((int) ammoType);
+    {
+      return NWScript.ItemPropertyUnlimitedAmmo((int)ammoType);
+    }
 
     public static ItemProperty VampiricRegeneration(int regenAmount)
-      => NWScript.ItemPropertyVampiricRegeneration(regenAmount);
+    {
+      return NWScript.ItemPropertyVampiricRegeneration(regenAmount);
+    }
 
     public static ItemProperty VisualEffect(ItemVisual itemVisual)
-      => NWScript.ItemPropertyVisualEffect((int) itemVisual);
+    {
+      return NWScript.ItemPropertyVisualEffect((int)itemVisual);
+    }
 
     public static ItemProperty WeightIncrease(IPWeightIncrease weightIncrease)
-      => NWScript.ItemPropertyWeightIncrease((int) weightIncrease);
+    {
+      return NWScript.ItemPropertyWeightIncrease((int)weightIncrease);
+    }
 
     public static ItemProperty WeightReduction(IPReducedWeight weightReduction)
-      => NWScript.ItemPropertyWeightReduction((int) weightReduction);
+    {
+      return NWScript.ItemPropertyWeightReduction((int)weightReduction);
+    }
 
     public static ItemProperty Custom(int type, int subType = -1, int costTableValue = -1, int param1Value = -1)
-      => NWScript.ItemPropertyCustom(type, subType, costTableValue, param1Value);
+    {
+      return NWScript.ItemPropertyCustom(type, subType, costTableValue, param1Value);
+    }
   }
 }

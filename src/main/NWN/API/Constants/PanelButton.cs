@@ -11,6 +11,6 @@ namespace NWN.API.Constants
     Options = NWScript.PANEL_BUTTON_OPTIONS,
     Spells = NWScript.PANEL_BUTTON_SPELLS,
     Rest = NWScript.PANEL_BUTTON_REST,
-    PlayerVersusPlayer = NWScript.PANEL_BUTTON_PLAYER_VERSUS_PLAYER
+    PlayerVersusPlayer = NWScript.PANEL_BUTTON_PLAYER_VERSUS_PLAYER,
   }
 }

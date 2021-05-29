@@ -6,6 +6,6 @@ namespace NWN.API.Constants
   {
     Misc = NWScript.ATTACK_BONUS_MISC,
     OnHand = NWScript.ATTACK_BONUS_ONHAND,
-    OffHand = NWScript.ATTACK_BONUS_OFFHAND
+    OffHand = NWScript.ATTACK_BONUS_OFFHAND,
   }
 }

@@ -3,7 +3,7 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public partial class Location
+  public sealed partial class Location
   {
     private readonly IntPtr handle;
 
@@ -17,8 +17,14 @@ namespace NWN.API
       VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_LOCATION, handle);
     }
 
-    public static implicit operator IntPtr(Location effect) => effect.handle;
+    public static implicit operator IntPtr(Location effect)
+    {
+      return effect.handle;
+    }
 
-    public static implicit operator Location(IntPtr intPtr) => new Location(intPtr);
+    public static implicit operator Location(IntPtr intPtr)
+    {
+      return new Location(intPtr);
+    }
   }
 }

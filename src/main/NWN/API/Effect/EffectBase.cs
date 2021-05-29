@@ -9,7 +9,10 @@ namespace NWN.API
     protected readonly IntPtr Handle;
     internal readonly CGameEffect Effect;
 
-    public static implicit operator CGameEffect(EffectBase effect) => effect.Effect;
+    public static implicit operator CGameEffect(EffectBase effect)
+    {
+      return effect.Effect;
+    }
 
     private protected EffectBase(IntPtr handle, CGameEffect effect)
     {

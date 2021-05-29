@@ -3,7 +3,7 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public partial class Talent
+  public sealed partial class Talent
   {
     private readonly IntPtr handle;
 
@@ -17,8 +17,14 @@ namespace NWN.API
       VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_TALENT, handle);
     }
 
-    public static implicit operator IntPtr(Talent effect) => effect.handle;
+    public static implicit operator IntPtr(Talent talent)
+    {
+      return talent.handle;
+    }
 
-    public static implicit operator Talent(IntPtr intPtr) => new Talent(intPtr);
+    public static implicit operator Talent(IntPtr intPtr)
+    {
+      return new Talent(intPtr);
+    }
   }
 }

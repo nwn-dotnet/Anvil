@@ -11,6 +11,6 @@ namespace NWN.API.Events
     IgnoreInvitation = MessagePartyMinor.IgnoreInvitation,
     AcceptInvitation = MessagePartyMinor.AcceptInvitation,
     RejectInvitation = MessagePartyMinor.RejectInvitation,
-    KickHenchman = MessagePartyMinor.KickHenchman
+    KickHenchman = MessagePartyMinor.KickHenchman,
   }
 }

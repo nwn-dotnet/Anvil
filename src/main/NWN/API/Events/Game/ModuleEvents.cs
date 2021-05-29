@@ -31,7 +31,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject AcquiredFrom { get; } = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => AcquiredBy;
+      NwObject IEvent.Context
+      {
+        get => AcquiredBy;
+      }
     }
 
     /// <summary>
@@ -48,7 +51,10 @@ namespace NWN.API.Events
 
       public Location TargetLocation { get; } = NWScript.GetItemActivatedTargetLocation();
 
-      NwObject IEvent.Context => ItemActivator;
+      NwObject IEvent.Context
+      {
+        get => ItemActivator;
+      }
 
       public static void Signal(NwItem item, Location targetLocation, NwGameObject targetObject = null)
       {
@@ -68,7 +74,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetEnteringObject().ToNwPlayer();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     /// <summary>
@@ -82,7 +91,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(false);
 
-      NwObject IEvent.Context => Player.LoginCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.LoginCreature;
+      }
     }
 
     /// <summary>
@@ -96,7 +108,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPCToCancelCutscene().ToNwPlayer();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     /// <summary>
@@ -105,7 +120,10 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.ModuleOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
-      NwObject IEvent.Context => null;
+      NwObject IEvent.Context
+      {
+        get => null;
+      }
     }
 
     /// <summary>
@@ -114,13 +132,19 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.ModuleOnModuleLoad)]
     public sealed class OnModuleLoad : IEvent
     {
-      NwObject IEvent.Context => null;
+      NwObject IEvent.Context
+      {
+        get => null;
+      }
     }
 
     [GameEvent(EventScriptType.ModuleOnModuleStart)]
     public sealed class OnModuleStart : IEvent
     {
-      NwObject IEvent.Context => null;
+      NwObject IEvent.Context
+      {
+        get => null;
+      }
     }
 
     /// <summary>
@@ -148,16 +172,19 @@ namespace NWN.API.Events
       /// </summary>
       public TalkVolume Volume
       {
-        get => (TalkVolume) NWScript.GetPCChatVolume();
-        set => NWScript.SetPCChatVolume((int) value);
+        get => (TalkVolume)NWScript.GetPCChatVolume();
+        set => NWScript.SetPCChatVolume((int)value);
       }
 
-      NwObject IEvent.Context => Sender.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Sender.ControlledCreature;
+      }
     }
 
-      /// <summary>
-      /// Triggered when a <see cref="NwPlayer"/> that has targeted something.
-      /// </summary>
+    /// <summary>
+    /// Triggered when a <see cref="NwPlayer"/> that has targeted something.
+    /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerTarget)]
     public sealed class OnPlayerTarget : IEvent
     {
@@ -176,7 +203,10 @@ namespace NWN.API.Events
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetTargetingModeSelectedPosition();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     /// <summary>
@@ -195,7 +225,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject Killer { get; }
 
-      NwObject IEvent.Context => DeadPlayer.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => DeadPlayer.ControlledCreature;
+      }
 
       public OnPlayerDeath()
       {
@@ -214,7 +247,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPlayerDying().ToNwPlayer();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     /// <summary>
@@ -233,7 +269,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
 
-      NwObject IEvent.Context => Player;
+      NwObject IEvent.Context
+      {
+        get => Player;
+      }
     }
 
     /// <summary>
@@ -247,7 +286,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwPlayer();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     /// <summary>
@@ -261,7 +303,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastRespawnButtonPresser().ToNwPlayer();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     /// <summary>
@@ -278,9 +323,12 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="RestEventType"/> that was triggered.
       /// </summary>
-      public RestEventType RestEventType { get; } = (RestEventType) NWScript.GetLastRestEventType();
+      public RestEventType RestEventType { get; } = (RestEventType)NWScript.GetLastRestEventType();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
     }
 
     /// <summary>
@@ -299,7 +347,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwItem Item { get; } = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>();
 
-      NwObject IEvent.Context => UnequippedBy;
+      NwObject IEvent.Context
+      {
+        get => UnequippedBy;
+      }
     }
 
     /// <summary>
@@ -318,7 +369,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwItem Item { get; } = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
 
-      NwObject IEvent.Context => LostBy;
+      NwObject IEvent.Context
+      {
+        get => LostBy;
+      }
     }
 
     [GameEvent(EventScriptType.ModuleOnUserDefinedEvent)]
@@ -326,7 +380,10 @@ namespace NWN.API.Events
     {
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
-      NwObject IEvent.Context => null;
+      NwObject IEvent.Context
+      {
+        get => null;
+      }
 
       public static void Signal(int eventId)
       {

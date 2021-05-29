@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NWN.Services
 {
-  internal class ScheduledItem : IDisposable
+  internal sealed class ScheduledItem : IDisposable
   {
     private readonly Action task;
 

@@ -4,7 +4,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public class ItemAppearance
+  public sealed class ItemAppearance
   {
     private readonly CNWSItem item;
 
@@ -209,6 +209,8 @@ namespace NWN.API
     /// <param name="modelSlot">The model portion of the slot to clear.</param>
     /// <param name="colorSlot">The color portion of the slot to clear.</param>
     public void ClearArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
-      => SetArmorPieceColor(modelSlot, colorSlot, 255);
+    {
+      SetArmorPieceColor(modelSlot, colorSlot, 255);
+    }
   }
 }

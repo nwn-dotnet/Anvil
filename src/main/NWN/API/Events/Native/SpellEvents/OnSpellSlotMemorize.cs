@@ -23,7 +23,10 @@ namespace NWN.API.Events
 
     public bool FromClient { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetMemorizedSpellSlotHook>
     {
@@ -50,7 +53,7 @@ namespace NWN.API.Events
           Spell = (Spell)nSpellId,
           Domain = (Domain)nDomainLevel,
           MetaMagic = (MetaMagic)nMetaType,
-          FromClient = bFromClient.ToBool()
+          FromClient = bFromClient.ToBool(),
         });
 
         if (!eventData.PreventMemorize)

@@ -16,6 +16,6 @@ namespace NWN.API.Constants
     Negative = NWScript.DAMAGE_TYPE_NEGATIVE,
     Positive = NWScript.DAMAGE_TYPE_POSITIVE,
     Sonic = NWScript.DAMAGE_TYPE_SONIC,
-    BaseWeapon = NWScript.DAMAGE_TYPE_BASE_WEAPON
+    BaseWeapon = NWScript.DAMAGE_TYPE_BASE_WEAPON,
   }
 }

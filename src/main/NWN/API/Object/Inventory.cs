@@ -5,7 +5,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public class Inventory
+  public sealed class Inventory
   {
     private static readonly CNWBaseItemArray BaseItemArray = NWNXLib.Rules().m_pBaseItemArray;
 
@@ -25,7 +25,7 @@ namespace NWN.API
     {
       get
       {
-        for (uint item = NWScript.GetFirstItemInInventory(owner); item != NwObject.INVALID; item = NWScript.GetNextItemInInventory(owner))
+        for (uint item = NWScript.GetFirstItemInInventory(owner); item != NwObject.Invalid; item = NWScript.GetNextItemInInventory(owner))
         {
           yield return item.ToNwObject<NwItem>();
         }

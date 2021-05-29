@@ -8,7 +8,7 @@ using NWN.Native.API;
 namespace NWN.API
 {
   [NativeObjectInfo(ObjectTypes.AreaOfEffect, ObjectType.AreaOfEffect)]
-  public class NwAreaOfEffect : NwGameObject
+  public sealed class NwAreaOfEffect : NwGameObject
   {
     internal readonly CNWSAreaOfEffectObject AreaOfEffect;
 
@@ -82,8 +82,8 @@ namespace NWN.API
     /// <returns>An enumerable containing all objects currently in the effect area.</returns>
     public IEnumerable<T> GetObjectsInEffectArea<T>() where T : NwGameObject
     {
-      int objType = (int) GetObjectType<T>();
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int objType = (int)GetObjectType<T>();
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
         T gameObject = obj.ToNwObjectSafe<T>();
         if (gameObject != null)
@@ -100,14 +100,16 @@ namespace NWN.API
     /// <returns>An enumerable containing all objects currently in the effect area.</returns>
     public IEnumerable<NwGameObject> GetObjectsInEffectArea(ObjectTypes objectTypes)
     {
-      int objType = (int) objectTypes;
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int objType = (int)objectTypes;
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
         yield return obj.ToNwObject<NwGameObject>();
       }
     }
 
     public override byte[] Serialize()
-      => throw new NotSupportedException();
+    {
+      throw new NotSupportedException();
+    }
   }
 }

@@ -16,7 +16,10 @@ namespace NWN.API.Events
 
     public int SlotIndex { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.ClearMemorizedSpellSlotHook>
     {
@@ -38,7 +41,7 @@ namespace NWN.API.Events
           Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>(),
           ClassIndex = nMultiClass,
           SpellLevel = nSpellLevel,
-          SlotIndex = nSpellSlot
+          SlotIndex = nSpellSlot,
         });
 
         if (!eventData.PreventClear)

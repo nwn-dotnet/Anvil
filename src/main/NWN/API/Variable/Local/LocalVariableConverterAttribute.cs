@@ -11,7 +11,7 @@ namespace NWN.API
   /// </summary>
   [AttributeUsage(AttributeTargets.Class)]
   [MeansImplicitUse]
-  public class LocalVariableConverterAttribute : Attribute
+  public sealed class LocalVariableConverterAttribute : Attribute
   {
     public readonly Type[] Types;
 

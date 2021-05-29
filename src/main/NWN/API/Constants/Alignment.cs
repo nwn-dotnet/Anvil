@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     Lawful = NWScript.ALIGNMENT_LAWFUL,
     Chaotic = NWScript.ALIGNMENT_CHAOTIC,
     Good = NWScript.ALIGNMENT_GOOD,
-    Evil = NWScript.ALIGNMENT_EVIL
+    Evil = NWScript.ALIGNMENT_EVIL,
   }
 }

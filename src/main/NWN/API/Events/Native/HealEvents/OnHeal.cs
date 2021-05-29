@@ -21,7 +21,10 @@ namespace NWN.API.Events
     /// </summary>
     public int HealAmount { get; set; }
 
-    NwObject IEvent.Context => Healer;
+    NwObject IEvent.Context
+    {
+      get => Healer;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.OnApplyHealHook>
     {

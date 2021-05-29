@@ -20,6 +20,6 @@ namespace NWN.API.Constants
     Orange = NWScript.FOG_COLOR_ORANGE,
     OrangeDark = NWScript.FOG_COLOR_ORANGE_DARK,
     Brown = NWScript.FOG_COLOR_BROWN,
-    BrownDark = NWScript.FOG_COLOR_BROWN_DARK
+    BrownDark = NWScript.FOG_COLOR_BROWN_DARK,
   }
 }

@@ -255,7 +255,9 @@ namespace NWN.API
     /// <param name="durationType">(Permanent/Temporary) - the duration of this item property.</param>
     /// <param name="duration">If DurationType is temporary, how long this item property should stay applied.</param>
     public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default)
-      => NWScript.AddItemProperty((int)durationType, itemProperty, this, (float)duration.TotalSeconds);
+    {
+      NWScript.AddItemProperty((int)durationType, itemProperty, this, (float)duration.TotalSeconds);
+    }
 
     /// <summary>
     /// Removes the specified item property from this item.<br/>
@@ -263,7 +265,9 @@ namespace NWN.API
     /// </summary>
     /// <param name="itemProperty">The item property to remove.</param>
     public void RemoveItemProperty(ItemProperty itemProperty)
-      => NWScript.RemoveItemProperty(this, itemProperty);
+    {
+      NWScript.RemoveItemProperty(this, itemProperty);
+    }
 
     /// <summary>
     /// Creates a new item from a template ResRef.
@@ -289,7 +293,7 @@ namespace NWN.API
     /// <param name="stackSize">The stack size of the created item.</param>
     /// <param name="newTag">A new tag for the item, otherwise the value set in the blueprint.</param>
     /// <returns>The created item.</returns>
-    public static NwItem Create(string template, NwGameObject target = null, int stackSize = 1, string newTag = null)
+    public static NwItem Create(string template, NwGameObject target = null, int stackSize = 1, string newTag = "")
     {
       return NWScript.CreateItemOnObject(template, target, stackSize, newTag).ToNwObject<NwItem>();
     }
@@ -319,9 +323,9 @@ namespace NWN.API
     /// <param name="newTag">A new tag to assign the cloned item.</param>
     /// <param name="copyVars">If true, local variables on the item are copied.</param>
     /// <returns>The newly cloned copy of the item.</returns>
-    public NwItem Clone(Location location, string newTag = null, bool copyVars = true)
+    public NwItem Clone(Location location, string newTag = "", bool copyVars = true)
     {
-      NwItem clone = NWScript.CopyObject(this, location, INVALID, newTag).ToNwObject<NwItem>();
+      NwItem clone = NWScript.CopyObject(this, location, Invalid, newTag).ToNwObject<NwItem>();
       if (!copyVars)
       {
         CleanLocalVariables(clone);
@@ -350,7 +354,9 @@ namespace NWN.API
     /// <param name="property">Item property to check.</param>
     /// <returns>True if this item has a property of the given type, otherwise false.</returns>
     public bool HasItemProperty(ItemPropertyType property)
-      => NWScript.GetItemHasItemProperty(this, (int)property).ToBool();
+    {
+      return NWScript.GetItemHasItemProperty(this, (int)property).ToBool();
+    }
 
     /// <summary>
     /// Gets the number of uses per day remaining for the specified item property on this item.
@@ -358,7 +364,9 @@ namespace NWN.API
     /// <param name="property">The item property to test for uses remaining.</param>
     /// <returns>The number of uses per day remaining for the specified item property, or 0 if this item property is not uses/day, or belongs to a different item.</returns>
     public int UsesPerDayRemaining(ItemProperty property)
-      => NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
+    {
+      return NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
+    }
 
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
     {
@@ -368,15 +376,12 @@ namespace NWN.API
       }
 
       void* itemPtr = item.Item;
-      Item.AcquireItem(&itemPtr, INVALID, 0xFF, 0xFF, displayFeedback.ToInt());
+      Item.AcquireItem(&itemPtr, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
     }
 
     public override byte[] Serialize()
     {
-      return NativeUtils.SerializeGff("UTI", (resGff, resStruct) =>
-      {
-        return Item.SaveItem(resGff, resStruct, 0).ToBool();
-      });
+      return NativeUtils.SerializeGff("UTI", (resGff, resStruct) => Item.SaveItem(resGff, resStruct, 0).ToBool());
     }
 
     public static NwItem Deserialize(byte[] serialized)
@@ -390,7 +395,7 @@ namespace NWN.API
           return false;
         }
 
-        item = new CNWSItem(INVALID);
+        item = new CNWSItem(Invalid);
         if (item.LoadItem(resGff, resStruct).ToBool())
         {
           GC.SuppressFinalize(item);

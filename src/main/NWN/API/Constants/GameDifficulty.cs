@@ -8,6 +8,6 @@ namespace NWN.API.Constants
     Easy = NWScript.GAME_DIFFICULTY_EASY,
     Normal = NWScript.GAME_DIFFICULTY_NORMAL,
     CoreRules = NWScript.GAME_DIFFICULTY_CORE_RULES,
-    Difficult = NWScript.GAME_DIFFICULTY_DIFFICULT
+    Difficult = NWScript.GAME_DIFFICULTY_DIFFICULT,
   }
 }

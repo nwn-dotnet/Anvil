@@ -56,7 +56,7 @@ namespace NWN.API
           return false;
         }
 
-        waypoint = new CNWSWaypoint(INVALID);
+        waypoint = new CNWSWaypoint(Invalid);
         if (waypoint.LoadWaypoint(resGff, resStruct, null).ToBool())
         {
           waypoint.LoadObjectState(resGff, resStruct);

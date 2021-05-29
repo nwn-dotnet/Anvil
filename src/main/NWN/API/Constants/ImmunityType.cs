@@ -36,6 +36,6 @@ namespace NWN.API.Constants
     NegativeLevel = NWScript.IMMUNITY_TYPE_NEGATIVE_LEVEL,
     SneakAttack = NWScript.IMMUNITY_TYPE_SNEAK_ATTACK,
     CriticalHit = NWScript.IMMUNITY_TYPE_CRITICAL_HIT,
-    Death = NWScript.IMMUNITY_TYPE_DEATH
+    Death = NWScript.IMMUNITY_TYPE_DEATH,
   }
 }

@@ -12,7 +12,10 @@ namespace NWN.API.Events
 
     public bool PreventGoldAdd { get; set; }
 
-    NwObject IEvent.Context => null;
+    NwObject IEvent.Context
+    {
+      get => null;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddGoldHook>
     {

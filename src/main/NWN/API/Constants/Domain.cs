@@ -23,6 +23,6 @@ namespace NWN.API.Constants
     Travel = NWScript.DOMAIN_TRAVEL,
     Trickery = NWScript.DOMAIN_TRICKERY,
     War = NWScript.DOMAIN_WAR,
-    Water = NWScript.DOMAIN_WATER
+    Water = NWScript.DOMAIN_WATER,
   }
 }

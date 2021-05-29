@@ -12,7 +12,10 @@ namespace NWN.API
     /// <summary>
     /// Gets a value indicating whether this object is trapped.
     /// </summary>
-    public bool IsTrapped => NWScript.GetIsTrapped(this).ToBool();
+    public bool IsTrapped
+    {
+      get => NWScript.GetIsTrapped(this).ToBool();
+    }
 
     /// <summary>
     /// Gets or sets a value indicating whether this trap is an active trap. An inactive trap will not trigger when a creature steps on it.
@@ -90,24 +93,36 @@ namespace NWN.API
     /// <summary>
     /// Gets the player that created this trap. If the trap was placed in the toolset, this returns null.
     /// </summary>
-    public NwPlayer TrapCreator => NWScript.GetTrapCreator(this).ToNwPlayer();
+    public NwPlayer TrapCreator
+    {
+      get => NWScript.GetTrapCreator(this).ToNwPlayer();
+    }
 
     /// <summary>
     /// Gets a value indicating whether this trap has been flagged as visible to all creatures in the game.
     /// </summary>
-    public bool IsTrapFlagged => NWScript.GetTrapFlagged(this).ToBool();
+    public bool IsTrapFlagged
+    {
+      get => NWScript.GetTrapFlagged(this).ToBool();
+    }
 
     /// <summary>
     /// Gets the base type of this trap.
     /// </summary>
-    public TrapBaseType TrapBaseType => (TrapBaseType) NWScript.GetTrapBaseType(this);
+    public TrapBaseType TrapBaseType
+    {
+      get => (TrapBaseType)NWScript.GetTrapBaseType(this);
+    }
 
     /// <summary>
     /// Gets if the specified creature can see this trap.
     /// </summary>
     /// <param name="creature">The creature to check.</param>
     /// <returns>true if the creature can detect this trap, otherwise false.</returns>
-    public bool IsTrapDetectedBy(NwCreature creature) => NWScript.GetTrapDetectedBy(this, creature).ToBool();
+    public bool IsTrapDetectedBy(NwCreature creature)
+    {
+      return NWScript.GetTrapDetectedBy(this, creature).ToBool();
+    }
 
     /// <summary>
     /// Sets the detected state for this trap for the given creatures.
@@ -127,7 +142,10 @@ namespace NWN.API
     /// <summary>
     /// Disables this trap as if a creature disarmed it (calling the OnDisarm event respectively).
     /// </summary>
-    public void DisableTrap() => NWScript.SetTrapDisabled(this);
+    public void DisableTrap()
+    {
+      NWScript.SetTrapDisabled(this);
+    }
 
     /// <summary>
     /// Gets the creature who last disarmed the trap on this object.

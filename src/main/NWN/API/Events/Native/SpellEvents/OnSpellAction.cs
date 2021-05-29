@@ -42,7 +42,10 @@ namespace NWN.API.Events
 
     public int CasterLevel { get; private init; }
 
-    NwObject IEvent.Context => Caster;
+    NwObject IEvent.Context
+    {
+      get => Caster;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddCastSpellActionsHook>
     {
@@ -78,13 +81,13 @@ namespace NWN.API.Events
           ProjectilePath = (ProjectilePathType)nProjectilePathType,
           IsInstant = bInstant.ToBool(),
           Feat = (Feat)nFeat,
-          CasterLevel = nCasterLevel
+          CasterLevel = nCasterLevel,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventSpellCast &&
           Hook.CallOriginal(pCreature, nSpellId, nMultiClass, nDomainLevel,
-          nMetaType, bSpontaneousCast, vTargetLocation, oidTarget, bAreaTarget, bAddToFront,
-          bFake, nProjectilePathType, bInstant, bAllowPolymorphedCast, nFeat, nCasterLevel).ToBool());
+            nMetaType, bSpontaneousCast, vTargetLocation, oidTarget, bAreaTarget, bAddToFront,
+            bFake, nProjectilePathType, bInstant, bAllowPolymorphedCast, nFeat, nCasterLevel).ToBool());
 
         ProcessEvent(eventData);
 

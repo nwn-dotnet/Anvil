@@ -32,6 +32,8 @@ namespace NWN.API
     /// Generates a random name using the specified name table.
     /// </summary>
     public static string RandomName(NameTable name = NameTable.FirstGenericMale)
-      => NWScript.RandomName((int)name);
+    {
+      return NWScript.RandomName((int)name);
+    }
   }
 }

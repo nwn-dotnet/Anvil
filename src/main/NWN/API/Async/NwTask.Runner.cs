@@ -9,7 +9,6 @@ namespace NWN.API
 {
   public static partial class NwTask
   {
-    private static int managedThreadId;
     private static TaskRunner taskRunner;
 
     public static SyncContext MainThreadScriptContext { get; private set; }
@@ -23,7 +22,6 @@ namespace NWN.API
 
       public TaskRunner()
       {
-        managedThreadId = Thread.CurrentThread.ManagedThreadId;
         MainThreadScriptContext = new SyncContext();
         taskRunner = this;
       }
@@ -63,7 +61,7 @@ namespace NWN.API
       }
     }
 
-    private class ScheduledItem
+    private sealed class ScheduledItem
     {
       private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 

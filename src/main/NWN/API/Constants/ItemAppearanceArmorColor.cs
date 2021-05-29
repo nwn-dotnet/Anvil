@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     Cloth1 = NWScript.ITEM_APPR_ARMOR_COLOR_CLOTH1,
     Cloth2 = NWScript.ITEM_APPR_ARMOR_COLOR_CLOTH2,
     Metal1 = NWScript.ITEM_APPR_ARMOR_COLOR_METAL1,
-    Metal2 = NWScript.ITEM_APPR_ARMOR_COLOR_METAL2
+    Metal2 = NWScript.ITEM_APPR_ARMOR_COLOR_METAL2,
   }
 }

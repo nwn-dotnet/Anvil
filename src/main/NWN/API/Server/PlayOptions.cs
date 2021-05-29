@@ -2,7 +2,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public class PlayOptions
+  public sealed class PlayOptions
   {
     private readonly CPlayOptions playOptions;
 

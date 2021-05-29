@@ -22,7 +22,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastOpenedBy().ToNwPlayer();
 
-      NwObject IEvent.Context => Store;
+      NwObject IEvent.Context
+      {
+        get => Store;
+      }
     }
 
     [GameEvent(EventScriptType.StoreOnClose)]
@@ -38,7 +41,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature Creature { get; } = NWScript.GetLastClosedBy().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Store;
+      NwObject IEvent.Context
+      {
+        get => Store;
+      }
     }
   }
 }

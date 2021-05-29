@@ -133,6 +133,6 @@ namespace NWN.API.Constants
     WizardPalemaster2Ndclass = NWScript.PACKAGE_WIZARD_PALEMASTER_2NDCLASS,
     NpcAribethPaladin = NWScript.PACKAGE_NPC_ARIBETH_PALADIN,
     NpcAribethBlackguard = NWScript.PACKAGE_NPC_ARIBETH_BLACKGUARD,
-    Invalid = NWScript.PACKAGE_INVALID
+    Invalid = NWScript.PACKAGE_INVALID,
   }
 }

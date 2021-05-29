@@ -14,7 +14,9 @@ namespace NWN.API
     /// <param name="faction">The standard faction.</param>
     /// <returns>A NwFaction representing the specified standard faction.</returns>
     public static NwFaction ToFaction(this StandardFaction faction)
-      => new NwFaction((int)faction);
+    {
+      return new NwFaction((int)faction);
+    }
 
     /// <summary>
     /// Gets an integer between 0 and 100 (inclusive) that represents how this faction feels about the specified target.<br/>
@@ -26,7 +28,9 @@ namespace NWN.API
     /// <param name="target">The target object.</param>
     /// <returns>0-100 (inclusive) based on the standing of the target within this standard faction.</returns>
     public static int GetReputation(this StandardFaction faction, NwGameObject target)
-      => NWScript.GetStandardFactionReputation((int) faction, target);
+    {
+      return NWScript.GetStandardFactionReputation((int)faction, target);
+    }
 
     /// <summary>
     /// Sets how this standard faction feels about the specified creature.<br/>
@@ -38,6 +42,8 @@ namespace NWN.API
     /// <param name="target">The target object.</param>
     /// <param name="newReputation">A value between 0-100 (inclusive).</param>
     public static void SetReputation(this StandardFaction faction, NwGameObject target, int newReputation)
-      => NWScript.SetStandardFactionReputation((int) faction, newReputation, target);
+    {
+      NWScript.SetStandardFactionReputation((int)faction, newReputation, target);
+    }
   }
 }

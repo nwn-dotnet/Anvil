@@ -6,6 +6,6 @@ namespace NWN.API.Constants
   {
     All = NWScript.FOG_TYPE_ALL,
     Sun = NWScript.FOG_TYPE_SUN,
-    Moon = NWScript.FOG_TYPE_MOON
+    Moon = NWScript.FOG_TYPE_MOON,
   }
 }

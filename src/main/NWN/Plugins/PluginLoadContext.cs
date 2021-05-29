@@ -6,7 +6,7 @@ using Anvil.Internal;
 
 namespace NWN.Plugins
 {
-  internal class PluginLoadContext : AssemblyLoadContext
+  internal sealed class PluginLoadContext : AssemblyLoadContext
   {
     private readonly PluginLoader pluginLoader;
     private readonly string pluginName;

@@ -67,14 +67,14 @@ namespace NWN.API.Events
 
     private void UpdateEventScript(NwObject nwObject, EventScriptType eventType, bool callOriginal)
     {
-      string existingScript = NWScript.GetEventScript(nwObject, (int) eventType);
+      string existingScript = NWScript.GetEventScript(nwObject, (int)eventType);
       if (existingScript == InternalScriptName)
       {
         return;
       }
 
       Log.Debug($"Hooking native script event \"{eventType}\" on object \"{nwObject.Name}\". Previous script: \"{existingScript}\"");
-      NWScript.SetEventScript(nwObject, (int) eventType, InternalScriptName);
+      NWScript.SetEventScript(nwObject, (int)eventType, InternalScriptName);
 
       if (callOriginal && !string.IsNullOrWhiteSpace(existingScript))
       {
@@ -113,7 +113,11 @@ namespace NWN.API.Events
         return;
       }
 
-      static IEvent Constructor() => new TEvent();
+      static IEvent Constructor()
+      {
+        return new TEvent();
+      }
+
       eventConstructorCache[eventScriptType] = Constructor;
     }
   }

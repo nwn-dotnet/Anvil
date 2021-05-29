@@ -10,6 +10,6 @@ namespace NWN.API.Constants
     Low = NWScript.AI_LEVEL_LOW,
     Normal = NWScript.AI_LEVEL_NORMAL,
     High = NWScript.AI_LEVEL_HIGH,
-    VeryHigh = NWScript.AI_LEVEL_VERY_HIGH
+    VeryHigh = NWScript.AI_LEVEL_VERY_HIGH,
   }
 }

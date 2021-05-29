@@ -27,7 +27,7 @@ namespace NWN.API
       Type type = typeof(T);
       if (localVariableConverters.TryGetValue(type, out ILocalVariableConverter retVal))
       {
-        return (ILocalVariableConverter<T>) retVal;
+        return (ILocalVariableConverter<T>)retVal;
       }
 
       throw new Exception($"No valid variable converter found for type {type.FullName}!");
@@ -38,7 +38,7 @@ namespace NWN.API
       Type type = typeof(T);
       if (campaignVariableConverters.TryGetValue(type, out ICampaignVariableConverter retVal))
       {
-        return (ICampaignVariableConverter<T>) retVal;
+        return (ICampaignVariableConverter<T>)retVal;
       }
 
       throw new Exception($"No valid variable converter found for type {type.FullName}!");
@@ -52,7 +52,7 @@ namespace NWN.API
         return;
       }
 
-      ILocalVariableConverter converter = (ILocalVariableConverter) Activator.CreateInstance(type);
+      ILocalVariableConverter converter = (ILocalVariableConverter)Activator.CreateInstance(type);
       foreach (Type infoType in info.Types)
       {
         localVariableConverters[infoType] = converter;
@@ -67,7 +67,7 @@ namespace NWN.API
         return;
       }
 
-      ICampaignVariableConverter converter = (ICampaignVariableConverter) Activator.CreateInstance(type);
+      ICampaignVariableConverter converter = (ICampaignVariableConverter)Activator.CreateInstance(type);
       foreach (Type infoType in info.Types)
       {
         campaignVariableConverters[infoType] = converter;

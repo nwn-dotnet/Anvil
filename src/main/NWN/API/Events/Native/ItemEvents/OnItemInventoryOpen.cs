@@ -18,7 +18,10 @@ namespace NWN.API.Events
     /// </summary>
     public NwItem Container { get; private init; }
 
-    NwObject IEvent.Context => OpenedBy;
+    NwObject IEvent.Context
+    {
+      get => OpenedBy;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.OpenInventoryHook>
     {

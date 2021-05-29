@@ -3,7 +3,7 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public class Cassowary
+  public sealed class Cassowary
   {
     private readonly IntPtr handle;
 
@@ -17,9 +17,15 @@ namespace NWN.API
       VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_CASSOWARY, handle);
     }
 
-    public static implicit operator IntPtr(Cassowary effect) => effect.handle;
+    public static implicit operator IntPtr(Cassowary effect)
+    {
+      return effect.handle;
+    }
 
-    public static implicit operator Cassowary(IntPtr intPtr) => new Cassowary(intPtr);
+    public static implicit operator Cassowary(IntPtr intPtr)
+    {
+      return new Cassowary(intPtr);
+    }
 
     /// <summary>
     /// Adds a constraint to the system.<br/>
@@ -46,7 +52,9 @@ namespace NWN.API
     /// <param name="value">The suggested value.</param>
     /// <param name="strength">A value >= CASSOWARY_STRENGTH_WEAK &amp;&amp; &lt;= CASSOWARY_STRENGTH_REQUIRED.</param>
     public void SuggestValue(string varName, float value, float strength = CassowaryStrength.Strong)
-      => NWScript.CassowarySuggestValue(this, varName, value, strength);
+    {
+      NWScript.CassowarySuggestValue(this, varName, value, strength);
+    }
 
     /// <summary>
     /// Gets the value for the specified variable.
@@ -54,12 +62,16 @@ namespace NWN.API
     /// <param name="varName">The variable to query.</param>
     /// <returns>The value of the specified variable, otherwise 0.0 on an error.</returns>
     public float GetValue(string varName)
-      => NWScript.CassowaryGetValue(this, varName);
+    {
+      return NWScript.CassowaryGetValue(this, varName);
+    }
 
     /// <summary>
     /// Clear out this solver, removing all state, constraints and suggestions.
     /// </summary>
     public void Reset()
-      => NWScript.CassowaryReset(this);
+    {
+      NWScript.CassowaryReset(this);
+    }
   }
 }

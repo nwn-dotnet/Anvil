@@ -408,6 +408,6 @@ namespace NWN.API.Constants
     DrowWarrior2 = NWScript.APPEARANCE_TYPE_DROW_WARRIOR_2,
     DrowFemale1 = NWScript.APPEARANCE_TYPE_DROW_FEMALE_1,
     DrowFemale2 = NWScript.APPEARANCE_TYPE_DROW_FEMALE_2,
-    DrowWarrior3 = NWScript.APPEARANCE_TYPE_DROW_WARRIOR_3
+    DrowWarrior3 = NWScript.APPEARANCE_TYPE_DROW_WARRIOR_3,
   }
 }

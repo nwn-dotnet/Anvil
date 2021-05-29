@@ -10,7 +10,10 @@ namespace NWN.API.Events
 
     public NwCreature Familiar { get; private init; }
 
-    NwObject IEvent.Context => Owner;
+    NwObject IEvent.Context
+    {
+      get => Owner;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.PossessFamiliarHook>
     {
@@ -30,7 +33,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnFamiliarPossess
         {
           Owner = creature.ToNwObject<NwCreature>(),
-          Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>()
+          Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>(),
         });
 
         Hook.CallOriginal(pCreature);

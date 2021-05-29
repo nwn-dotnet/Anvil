@@ -17,6 +17,6 @@ namespace NWN.API.Constants
     Fire = NWScript.IP_CONST_DAMAGETYPE_FIRE,
     Negative = NWScript.IP_CONST_DAMAGETYPE_NEGATIVE,
     Positive = NWScript.IP_CONST_DAMAGETYPE_POSITIVE,
-    Sonic = NWScript.IP_CONST_DAMAGETYPE_SONIC
+    Sonic = NWScript.IP_CONST_DAMAGETYPE_SONIC,
   }
 }

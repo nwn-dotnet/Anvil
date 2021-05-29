@@ -9,6 +9,6 @@ namespace NWN.API
     KeepExisting = 1,
 
     // Adds itemproperty in any case - do not Use with OnHit or OnHitSpellCast props!
-    IgnoreExisting = 2
+    IgnoreExisting = 2,
   }
 }

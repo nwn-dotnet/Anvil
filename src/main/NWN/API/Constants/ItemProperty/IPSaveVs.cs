@@ -17,6 +17,6 @@ namespace NWN.API.Constants
     Poison = NWScript.IP_CONST_SAVEVS_POISON,
     Positive = NWScript.IP_CONST_SAVEVS_POSITIVE,
     Sonic = NWScript.IP_CONST_SAVEVS_SONIC,
-    Universal = NWScript.IP_CONST_SAVEVS_UNIVERSAL
+    Universal = NWScript.IP_CONST_SAVEVS_UNIVERSAL,
   }
 }

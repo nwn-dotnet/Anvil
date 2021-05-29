@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     GrassStorm = NWScript.SKYBOX_GRASS_STORM,
     DesertClear = NWScript.SKYBOX_DESERT_CLEAR,
     WinterClear = NWScript.SKYBOX_WINTER_CLEAR,
-    Icy = NWScript.SKYBOX_ICY
+    Icy = NWScript.SKYBOX_ICY,
   }
 }

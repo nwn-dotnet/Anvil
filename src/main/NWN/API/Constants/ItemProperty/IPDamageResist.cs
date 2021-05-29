@@ -13,6 +13,6 @@ namespace NWN.API.Constants
     Resist35 = NWScript.IP_CONST_DAMAGERESIST_35,
     Resist40 = NWScript.IP_CONST_DAMAGERESIST_40,
     Resist45 = NWScript.IP_CONST_DAMAGERESIST_45,
-    Resist50 = NWScript.IP_CONST_DAMAGERESIST_50
+    Resist50 = NWScript.IP_CONST_DAMAGERESIST_50,
   }
 }

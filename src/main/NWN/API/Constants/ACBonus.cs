@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     ArmourEnchantment = NWScript.AC_ARMOUR_ENCHANTMENT_BONUS,
     ShieldEnchantment = NWScript.AC_SHIELD_ENCHANTMENT_BONUS,
     Deflection = NWScript.AC_DEFLECTION_BONUS,
-    VsDamageTypeAll = NWScript.AC_VS_DAMAGE_TYPE_ALL
+    VsDamageTypeAll = NWScript.AC_VS_DAMAGE_TYPE_ALL,
   }
 }

@@ -5,6 +5,6 @@ namespace NWN.API.Events
     None,
     ForceEnter,
     PreventHIPSEnter,
-    PreventEnter
+    PreventEnter,
   }
 }

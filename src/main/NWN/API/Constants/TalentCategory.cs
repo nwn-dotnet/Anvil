@@ -25,6 +25,6 @@ namespace NWN.API.Constants
     DragonsBreath = NWScript.TALENT_CATEGORY_DRAGONS_BREATH,
     BeneficialProtectionPotion = NWScript.TALENT_CATEGORY_BENEFICIAL_PROTECTION_POTION,
     BeneficialEnhancementPotion = NWScript.TALENT_CATEGORY_BENEFICIAL_ENHANCEMENT_POTION,
-    HarmfulMelee = NWScript.TALENT_CATEGORY_HARMFUL_MELEE
+    HarmfulMelee = NWScript.TALENT_CATEGORY_HARMFUL_MELEE,
   }
 }

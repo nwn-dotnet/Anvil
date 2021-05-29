@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -27,9 +28,11 @@ namespace NWN.API
       }
     }
 
-    internal const uint INVALID = NWScript.OBJECT_INVALID;
+    internal const uint Invalid = NWScript.OBJECT_INVALID;
 
+    [UsedImplicitly]
     internal readonly ICGameObject Object;
+
     protected readonly uint ObjectId;
 
     protected NwObject(ICGameObject gameObject)
@@ -40,7 +43,7 @@ namespace NWN.API
 
     public static implicit operator uint(NwObject gameObject)
     {
-      return gameObject == null ? INVALID : gameObject.ObjectId;
+      return gameObject == null ? Invalid : gameObject.ObjectId;
     }
 
     internal abstract CNWSScriptVarTable ScriptVarTable { get; }
@@ -52,7 +55,7 @@ namespace NWN.API
     {
       get
       {
-        if (this == INVALID)
+        if (this == Invalid)
         {
           return Guid.Empty;
         }
@@ -105,7 +108,10 @@ namespace NWN.API
     /// <summary>
     /// Gets the original description for this object as defined in the toolset.
     /// </summary>
-    public string OriginalDescription => NWScript.GetDescription(this, true.ToInt());
+    public string OriginalDescription
+    {
+      get => NWScript.GetDescription(this, true.ToInt());
+    }
 
     /// <summary>
     /// Gets or sets the description for this object.
@@ -219,11 +225,11 @@ namespace NWN.API
       await WaitForObjectContext();
       if (!queueAsAction)
       {
-        NWScript.SpeakString(message, (int) talkVolume);
+        NWScript.SpeakString(message, (int)talkVolume);
       }
       else
       {
-        NWScript.ActionSpeakString(message, (int) talkVolume);
+        NWScript.ActionSpeakString(message, (int)talkVolume);
       }
     }
 
@@ -234,7 +240,9 @@ namespace NWN.API
     /// <typeparam name="T">The variable type.</typeparam>
     /// <returns>A LocalVariable instance for getting/setting the variable's value.</returns>
     public LocalVariable<T> GetLocalVariable<T>(string name)
-      => LocalVariable<T>.Create(this, name);
+    {
+      return LocalVariable<T>.Create(this, name);
+    }
 
     /// <summary>
     /// Attempts to get the UUID of this object, if assigned.
@@ -291,12 +299,12 @@ namespace NWN.API
         return true;
       }
 
-      return Equals((NwObject) obj);
+      return Equals((NwObject)obj);
     }
 
     public override int GetHashCode()
     {
-      return (int) ObjectId;
+      return (int)ObjectId;
     }
 
     public static bool operator ==(NwObject left, NwObject right)

@@ -18,7 +18,10 @@ namespace NWN.API.Events
 
     public Feat Feat { get; private init; }
 
-    NwObject IEvent.Context => Caster;
+    NwObject IEvent.Context
+    {
+      get => Caster;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.BroadcastSpellCastHook>
     {
@@ -40,7 +43,7 @@ namespace NWN.API.Events
           Caster = creature.ToNwObject<NwCreature>(),
           Spell = (Spell)nSpellId,
           ClassIndex = nMultiClass,
-          Feat = (Feat)nFeat
+          Feat = (Feat)nFeat,
         });
 
         if (!eventData.PreventSpellCast)

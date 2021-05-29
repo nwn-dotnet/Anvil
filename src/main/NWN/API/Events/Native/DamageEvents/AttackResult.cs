@@ -11,6 +11,6 @@ namespace NWN.API.Events
     AutomaticHit = 7,
     Concealed = 8,
     MissChance = 9,
-    DevastatingCritical = 10
+    DevastatingCritical = 10,
   }
 }

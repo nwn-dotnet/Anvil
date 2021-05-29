@@ -84,6 +84,6 @@ namespace NWN.API.Constants
     ArcaneSpellFailure = NWScript.ITEM_PROPERTY_ARCANE_SPELL_FAILURE,
     Material = NWScript.ITEM_PROPERTY_MATERIAL,
     Quality = NWScript.ITEM_PROPERTY_QUALITY,
-    Additional = NWScript.ITEM_PROPERTY_ADDITIONAL
+    Additional = NWScript.ITEM_PROPERTY_ADDITIONAL,
   }
 }

@@ -17,6 +17,6 @@ namespace NWN.API.Constants
     Encounter = NWScript.OBJECT_TYPE_ENCOUNTER,
     Tile = NWScript.OBJECT_TYPE_TILE,
     All = NWScript.OBJECT_TYPE_ALL,
-    Invalid = NWScript.OBJECT_TYPE_INVALID
+    Invalid = NWScript.OBJECT_TYPE_INVALID,
   }
 }

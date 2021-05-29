@@ -2,7 +2,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public class PersistentWorldOptions
+  public sealed class PersistentWorldOptions
   {
     private readonly CPersistantWorldOptions persistantWorldOptions;
 

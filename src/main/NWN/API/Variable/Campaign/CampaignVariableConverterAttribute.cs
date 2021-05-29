@@ -5,7 +5,7 @@ namespace NWN.API
 {
   [AttributeUsage(AttributeTargets.Class)]
   [MeansImplicitUse]
-  public class CampaignVariableConverterAttribute : Attribute
+  public sealed class CampaignVariableConverterAttribute : Attribute
   {
     public readonly Type[] Types;
 

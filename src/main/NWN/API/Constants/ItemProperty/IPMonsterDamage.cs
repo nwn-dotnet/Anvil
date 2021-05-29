@@ -60,6 +60,6 @@ namespace NWN.API.Constants
     Damage7d20 = NWScript.IP_CONST_MONSTERDAMAGE_7d20,
     Damage8d20 = NWScript.IP_CONST_MONSTERDAMAGE_8d20,
     Damage9d20 = NWScript.IP_CONST_MONSTERDAMAGE_9d20,
-    Damage10d20 = NWScript.IP_CONST_MONSTERDAMAGE_10d20
+    Damage10d20 = NWScript.IP_CONST_MONSTERDAMAGE_10d20,
   }
 }

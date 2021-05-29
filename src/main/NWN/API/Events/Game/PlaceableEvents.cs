@@ -24,7 +24,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature ClosedBy { get; } = NWScript.GetLastClosedBy().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -52,9 +55,14 @@ namespace NWN.API.Events
       /// Gets <see cref="DamageType"/> dealt to <see cref="NwPlaceable"/>.
       /// </summary>
       public int GetDamageDealtByType(DamageType damageType)
-        => NWScript.GetDamageDealtByType((int) damageType);
+      {
+        return NWScript.GetDamageDealtByType((int)damageType);
+      }
 
-      NwObject IEvent.Context => DamagedObject;
+      NwObject IEvent.Context
+      {
+        get => DamagedObject;
+      }
     }
 
     /// <summary>
@@ -73,7 +81,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => KilledObject;
+      NwObject IEvent.Context
+      {
+        get => KilledObject;
+      }
     }
 
     /// <summary>
@@ -87,7 +98,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -101,7 +115,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -113,7 +130,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="InventoryDisturbType"/>.
       /// </summary>
-      public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType) NWScript.GetInventoryDisturbType();
+      public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType)NWScript.GetInventoryDisturbType();
 
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was disturbed.
@@ -130,7 +147,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwItem DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -149,7 +169,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature LockedBy { get; } = NWScript.GetLastLocked().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => LockedPlaceable;
+      NwObject IEvent.Context
+      {
+        get => LockedPlaceable;
+      }
     }
 
     /// <summary>
@@ -171,19 +194,28 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwItem WeaponUsed(NwCreature attacker) => NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
+      public NwItem WeaponUsed(NwCreature attacker)
+      {
+        return NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
+      }
 
       /// <summary>
       /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
-      public SpecialAttack AttackType { get; } = (SpecialAttack) NWScript.GetLastAttackType();
+      public SpecialAttack AttackType { get; } = (SpecialAttack)NWScript.GetLastAttackType();
 
       /// <summary>
       /// Gets the <see cref="ActionMode"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
-      public ActionMode AttackMode(NwCreature attacker) => (ActionMode) NWScript.GetLastAttackMode(attacker);
+      public ActionMode AttackMode(NwCreature attacker)
+      {
+        return (ActionMode)NWScript.GetLastAttackMode(attacker);
+      }
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -202,7 +234,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -231,7 +266,10 @@ namespace NWN.API.Events
       /// </summary>
       public bool Harmful { get; } = NWScript.GetLastSpellHarmful().ToBool();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
 
       public static void Signal(NwObject caster, NwPlaceable target, Spell spell, bool harmful = true)
       {
@@ -251,7 +289,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -270,7 +311,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature UnlockedBy { get; } = NWScript.GetLastUnlocked().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -289,7 +333,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature UsedBy { get; } = NWScript.GetLastUsedBy().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     [GameEvent(EventScriptType.PlaceableOnUserDefinedEvent)]
@@ -305,7 +352,10 @@ namespace NWN.API.Events
       /// </summary>
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
 
       public static void Signal(NwPlaceable placeable, int eventId)
       {
@@ -325,7 +375,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
 
     /// <summary>
@@ -344,7 +397,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwPlayer ClickedBy { get; } = NWScript.GetPlaceableLastClickedBy().ToNwPlayer();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject IEvent.Context
+      {
+        get => Placeable;
+      }
     }
   }
 }

@@ -12,7 +12,10 @@ namespace NWN.API.Events
 
     public CombatStatus CombatStatus { get; private init; }
 
-    NwObject IEvent.Context => Player.ControlledCreature;
+    NwObject IEvent.Context
+    {
+      get => Player.ControlledCreature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendServerToPlayerAmbientBattleMusicPlayHook>
     {
@@ -33,7 +36,7 @@ namespace NWN.API.Events
           ProcessEvent(new OnCombatStatusChange
           {
             Player = player,
-            CombatStatus = bPlay.ToBool() ? CombatStatus.EnterCombat : CombatStatus.ExitCombat
+            CombatStatus = bPlay.ToBool() ? CombatStatus.EnterCombat : CombatStatus.ExitCombat,
           });
         }
 

@@ -88,7 +88,7 @@ namespace NWN.API
       NWScript.OpenStore(this, player.ControlledCreature, bonusMarkup, bonusMarkDown);
     }
 
-    public void AcquireItem(NwItem item, bool displayFeedback = true)
+    public void AcquireItem(NwItem item)
     {
       if (item == null)
       {
@@ -118,7 +118,7 @@ namespace NWN.API
           return false;
         }
 
-        store = new CNWSStore(INVALID);
+        store = new CNWSStore(Invalid);
         if (store.LoadStore(resGff, resStruct, null).ToBool())
         {
           store.LoadObjectState(resGff, resStruct);

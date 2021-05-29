@@ -10,7 +10,10 @@ namespace NWN.API.Events
 
     public NwCreature Associate { get; private init; }
 
-    NwObject IEvent.Context => Owner;
+    NwObject IEvent.Context
+    {
+      get => Owner;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RemoveAssociateHook>
     {

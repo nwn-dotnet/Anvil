@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     Constitution1d2 = NWScript.IP_CONST_POISON_1D2_CONDAMAGE,
     Intelligence1d2 = NWScript.IP_CONST_POISON_1D2_INTDAMAGE,
     Wisdom1d2 = NWScript.IP_CONST_POISON_1D2_WISDAMAGE,
-    Charisma1d2 = NWScript.IP_CONST_POISON_1D2_CHADAMAGE
+    Charisma1d2 = NWScript.IP_CONST_POISON_1D2_CHADAMAGE,
   }
 }

@@ -35,7 +35,7 @@ namespace NWN.API
         int i;
         uint current;
 
-        for (i = 0, current = NWScript.GetObjectByTag(tag, i); current != INVALID; i++, current = NWScript.GetObjectByTag(tag, i))
+        for (i = 0, current = NWScript.GetObjectByTag(tag, i); current != Invalid; i++, current = NWScript.GetObjectByTag(tag, i))
         {
           T obj = current.ToNwObjectSafe<T>();
           if (obj != null)
@@ -53,9 +53,9 @@ namespace NWN.API
     /// <returns>An enumeration containing all objects of the specified type.</returns>
     public static IEnumerable<T> FindObjectsOfType<T>() where T : NwObject
     {
-      for (uint currentArea = NWScript.GetFirstArea(); currentArea != INVALID; currentArea = NWScript.GetNextArea())
+      for (uint currentArea = NWScript.GetFirstArea(); currentArea != Invalid; currentArea = NWScript.GetNextArea())
       {
-        for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea); currentObj != INVALID; currentObj = NWScript.GetNextObjectInArea(currentArea))
+        for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(currentArea))
         {
           T obj = currentObj.ToNwObjectSafe<T>();
           if (obj != null)
@@ -74,13 +74,13 @@ namespace NWN.API
     internal static T CreateInternal<T>(string template, Location location, bool useAppearAnim, string newTag) where T : NwObject
     {
       ObjectTypes objectType = GetObjectType<T>();
-      return NWScript.CreateObject((int) objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
+      return NWScript.CreateObject((int)objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
     }
 
     internal static NwObject CreateInternal(uint objectId)
     {
       // Not a valid object
-      if (objectId == NwObject.INVALID)
+      if (objectId == NwObject.Invalid)
       {
         return null;
       }

@@ -10,7 +10,7 @@ namespace NWN.Services
       public abstract ScriptHandleResult Broadcast();
     }
 
-    private class EventHandler<T> : EventHandler where T : IEvent
+    private sealed class EventHandler<T> : EventHandler where T : IEvent
     {
       private readonly Action<T> callback;
 

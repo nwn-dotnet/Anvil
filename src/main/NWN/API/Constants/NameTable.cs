@@ -27,6 +27,6 @@ namespace NWN.API.Constants
     LastHalfOrc = NWScript.NAME_LAST_HALFORC,
     FirstHumanMale = NWScript.NAME_FIRST_HUMAN_MALE,
     FirstHumanFemale = NWScript.NAME_FIRST_HUMAN_FEMALE,
-    LastHuman = NWScript.NAME_LAST_HUMAN
+    LastHuman = NWScript.NAME_LAST_HUMAN,
   }
 }

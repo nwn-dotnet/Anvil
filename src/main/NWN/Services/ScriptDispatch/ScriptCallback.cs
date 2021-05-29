@@ -5,7 +5,7 @@ using NWN.API;
 
 namespace NWN.Services
 {
-  internal class ScriptCallback
+  internal sealed class ScriptCallback
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -53,7 +53,7 @@ namespace NWN.Services
       return result;
     }
 
-    public void AddCallback(object service, MethodInfo method, string scriptName)
+    public void AddCallback(object service, MethodInfo method)
     {
       switch (GetMethodType(method))
       {
@@ -64,7 +64,7 @@ namespace NWN.Services
             return;
           }
 
-          scriptHandler = (Action) Delegate.CreateDelegate(typeof(Action), service, method);
+          scriptHandler = (Action)Delegate.CreateDelegate(typeof(Action), service, method);
           break;
         case MethodType.HandlerWithMeta:
           if (scriptHandler != null || scriptHandlerWithMetaHandler != null)
@@ -73,7 +73,7 @@ namespace NWN.Services
             return;
           }
 
-          scriptHandlerWithMetaHandler = (Action<CallInfo>) Delegate.CreateDelegate(typeof(Action<CallInfo>), service, method);
+          scriptHandlerWithMetaHandler = (Action<CallInfo>)Delegate.CreateDelegate(typeof(Action<CallInfo>), service, method);
           break;
         case MethodType.Conditional:
           if (conditionalHandler != null || conditionalWithMetaHandler != null)
@@ -82,7 +82,7 @@ namespace NWN.Services
             return;
           }
 
-          conditionalHandler = (Func<bool>) Delegate.CreateDelegate(typeof(Func<bool>), service, method);
+          conditionalHandler = (Func<bool>)Delegate.CreateDelegate(typeof(Func<bool>), service, method);
           break;
         case MethodType.ConditionalWithMeta:
           if (conditionalHandler != null || conditionalWithMetaHandler != null)
@@ -91,7 +91,7 @@ namespace NWN.Services
             return;
           }
 
-          conditionalWithMetaHandler = (Func<CallInfo, bool>) Delegate.CreateDelegate(typeof(Func<CallInfo, bool>), service, method);
+          conditionalWithMetaHandler = (Func<CallInfo, bool>)Delegate.CreateDelegate(typeof(Func<CallInfo, bool>), service, method);
           break;
         case MethodType.Invalid:
           Log.Error($"Script Handler has invalid parameters or return value: {scriptName} -> {method.GetFullName()}");

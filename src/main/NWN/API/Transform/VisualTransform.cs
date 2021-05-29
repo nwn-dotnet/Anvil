@@ -3,14 +3,14 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public class VisualTransform
+  public sealed class VisualTransform
   {
     public static readonly VisualTransform Default = new VisualTransform(Vector3.One, Vector3.One);
 
-    public float Scale;
-    public Vector3 Translation;
-    public Vector3 Rotation;
-    public float AnimSpeed;
+    public float Scale { get; set; }
+    public Vector3 Translation { get; set; }
+    public Vector3 Rotation { get; set; }
+    public float AnimSpeed { get; set; }
 
     public VisualTransform() {}
 
@@ -52,10 +52,14 @@ namespace NWN.API
     }
 
     private static float GetValue(NwGameObject obj, VisualTransformProperty prop)
-      => NWScript.GetObjectVisualTransform(obj, (int) prop);
+    {
+      return NWScript.GetObjectVisualTransform(obj, (int)prop);
+    }
 
     private static void SetValue(NwGameObject obj, VisualTransformProperty prop, float value)
-      => NWScript.SetObjectVisualTransform(obj, (int) prop, value);
+    {
+      NWScript.SetObjectVisualTransform(obj, (int)prop, value);
+    }
 
     private enum VisualTransformProperty
     {
@@ -66,7 +70,7 @@ namespace NWN.API
       ObjectVisualTransformTranslateX = 31,
       ObjectVisualTransformTranslateY = 32,
       ObjectVisualTransformTranslateZ = 33,
-      ObjectVisualTransformAnimationSpeed = 40
+      ObjectVisualTransformAnimationSpeed = 40,
     }
   }
 }

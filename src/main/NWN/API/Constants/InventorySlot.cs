@@ -21,6 +21,6 @@ namespace NWN.API.Constants
     LeftRing = NWScript.INVENTORY_SLOT_LEFTRING,
     Neck = NWScript.INVENTORY_SLOT_NECK,
     RightHand = NWScript.INVENTORY_SLOT_RIGHTHAND,
-    RightRing = NWScript.INVENTORY_SLOT_RIGHTRING
+    RightRing = NWScript.INVENTORY_SLOT_RIGHTRING,
   }
 }

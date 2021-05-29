@@ -15,7 +15,10 @@ namespace NWN.API.Events
     /// </summary>
     public NwPlayer Player { get; private init; }
 
-    NwObject IEvent.Context => Player.ControlledCreature;
+    NwObject IEvent.Context
+    {
+      get => Player.ControlledCreature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RemovePCFromWorldHook>
     {

@@ -141,16 +141,24 @@ namespace NWN.Services
     }
 
     public bool IsFeedbackMessageHidden(FeedbackMessage message)
-      => IsMessageHidden(globalFilterListFeedbackMessage, message, FeedbackMessageFilterMode);
+    {
+      return IsMessageHidden(globalFilterListFeedbackMessage, message, FeedbackMessageFilterMode);
+    }
 
     public bool IsFeedbackMessageHidden(FeedbackMessage message, NwPlayer player)
-      => IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.ControlledCreature, message, FeedbackMessageFilterMode);
+    {
+      return IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.ControlledCreature, message, FeedbackMessageFilterMode);
+    }
 
     public bool IsCombatLogMessageHidden(CombatLogMessage message)
-      => IsMessageHidden(globalFilterListCombatMessage, message, CombatMessageFilterMode);
+    {
+      return IsMessageHidden(globalFilterListCombatMessage, message, CombatMessageFilterMode);
+    }
 
     public bool IsCombatLogMessageHidden(CombatLogMessage message, NwPlayer player)
-      => IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player.ControlledCreature, message, CombatMessageFilterMode);
+    {
+      return IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player.ControlledCreature, message, CombatMessageFilterMode);
+    }
 
     private bool IsMessageHidden<T>(HashSet<T> globalFilter, T message, FilterMode filterMode)
     {
@@ -161,7 +169,7 @@ namespace NWN.Services
     private bool IsMessageHidden<T>(HashSet<T> globalFilter, Dictionary<uint, HashSet<T>> playerFilter, uint player, T message, FilterMode filterMode)
     {
       bool hasFilter = globalFilter.Contains(message) || playerFilter.ContainsElement(player, message);
-      return CombatMessageFilterMode == FilterMode.Blacklist ? hasFilter : !hasFilter;
+      return filterMode == FilterMode.Blacklist ? hasFilter : !hasFilter;
     }
 
     private void OnSendFeedbackMessage(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer)

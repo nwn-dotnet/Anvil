@@ -22,6 +22,6 @@ namespace NWN.API.Constants
     WaterNormal = NWScript.FOOTSTEP_TYPE_WATER_NORMAL,
     WaterLarge = NWScript.FOOTSTEP_TYPE_WATER_LARGE,
     Horse = NWScript.FOOTSTEP_TYPE_HORSE,
-    Default = NWScript.FOOTSTEP_TYPE_DEFAULT
+    Default = NWScript.FOOTSTEP_TYPE_DEFAULT,
   }
 }

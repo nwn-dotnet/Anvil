@@ -21,7 +21,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnClose)]
@@ -37,7 +40,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject ClosedBy { get; } = NWScript.GetLastClosedBy().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnDamage)]
@@ -62,9 +68,14 @@ namespace NWN.API.Events
       /// Gets damage dealt to <see cref="NwDoor"/>, by <see cref="DamageType"/>.
       /// </summary>
       public int GetDamageDealtByType(DamageType damageType)
-        => NWScript.GetDamageDealtByType((int) damageType);
+      {
+        return NWScript.GetDamageDealtByType((int)damageType);
+      }
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnDeath)]
@@ -80,7 +91,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnDisarm)]
@@ -91,7 +105,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnHeartbeat)]
@@ -102,7 +119,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnLock)]
@@ -118,7 +138,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature LockedBy { get; } = NWScript.GetLastLocked().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnMeleeAttacked)]
@@ -137,19 +160,28 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> used to damage <see cref="NwDoor"/>.
       /// </summary>
-      public NwItem WeaponUsed(NwCreature attacker) => NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
+      public NwItem WeaponUsed(NwCreature attacker)
+      {
+        return NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
+      }
 
       /// <summary>
       /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwDoor"/>.
       /// </summary>
-      public SpecialAttack AttackType { get; } = (SpecialAttack) NWScript.GetLastAttackType();
+      public SpecialAttack AttackType { get; } = (SpecialAttack)NWScript.GetLastAttackType();
 
       /// <summary>
       /// Gets the <see cref="ActionMode"/> used to damage <see cref="NwDoor"/>.
       /// </summary>
-      public ActionMode AttackMode(NwCreature attacker) => (ActionMode) NWScript.GetLastAttackMode(attacker);
+      public ActionMode AttackMode(NwCreature attacker)
+      {
+        return (ActionMode)NWScript.GetLastAttackMode(attacker);
+      }
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnSpellCastAt)]
@@ -175,7 +207,10 @@ namespace NWN.API.Events
       /// </summary>
       public bool Harmful { get; } = NWScript.GetLastSpellHarmful().ToBool();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
 
       public static void Signal(NwObject caster, NwDoor target, Spell spell, bool harmful = true)
       {
@@ -192,7 +227,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnUnlock)]
@@ -208,7 +246,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature UnlockedBy { get; } = NWScript.GetLastUnlocked().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnUserDefined)]
@@ -224,7 +265,10 @@ namespace NWN.API.Events
       /// </summary>
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
 
       public static void Signal(NwDoor door, int eventId)
       {
@@ -251,7 +295,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwStationary TransitionTarget { get; } = NWScript.GetTransitionTarget(NWScript.OBJECT_SELF).ToNwObject<NwStationary>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnDialogue)]
@@ -262,7 +309,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnFailToOpen)]
@@ -278,7 +328,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature WhoFailed { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Door;
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
     }
   }
 }

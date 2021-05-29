@@ -16,7 +16,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
-      NwObject IEvent.Context => Trigger;
+      NwObject IEvent.Context
+      {
+        get => Trigger;
+      }
     }
 
     [GameEvent(EventScriptType.TriggerOnObjectEnter)]
@@ -32,7 +35,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject EnteringObject { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => Trigger;
+      NwObject IEvent.Context
+      {
+        get => Trigger;
+      }
     }
 
     [GameEvent(EventScriptType.TriggerOnObjectExit)]
@@ -48,7 +54,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => Trigger;
+      NwObject IEvent.Context
+      {
+        get => Trigger;
+      }
     }
 
     [GameEvent(EventScriptType.TriggerOnUserDefinedEvent)]
@@ -64,7 +73,10 @@ namespace NWN.API.Events
       /// </summary>
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
-      NwObject IEvent.Context => Trigger;
+      NwObject IEvent.Context
+      {
+        get => Trigger;
+      }
 
       public static void Signal(NwTrigger trigger, int eventId)
       {
@@ -86,7 +98,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject TriggeredBy { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => Trigger;
+      NwObject IEvent.Context
+      {
+        get => Trigger;
+      }
     }
 
     [GameEvent(EventScriptType.TriggerOnDisarmed)]
@@ -102,7 +117,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature DisarmedBy { get; } = NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Trigger;
+      NwObject IEvent.Context
+      {
+        get => Trigger;
+      }
     }
 
     [GameEvent(EventScriptType.TriggerOnClicked)]
@@ -118,7 +136,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature ClickedBy { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Trigger;
+      NwObject IEvent.Context
+      {
+        get => Trigger;
+      }
     }
   }
 }

@@ -7,78 +7,78 @@ namespace NWN.Services
 {
   public sealed partial class EventService
   {
-      private abstract class EventHandler
-      {
-        public abstract void ProcessEvent(IEvent eventData);
+    private abstract class EventHandler
+    {
+      public abstract void ProcessEvent(IEvent eventData);
 
-        public abstract void ClearObjectSubscriptions(NwObject gameObject);
+      public abstract void ClearObjectSubscriptions(NwObject gameObject);
+    }
+
+    private sealed class EventHandler<T> : EventHandler where T : IEvent
+    {
+      private readonly Dictionary<NwObject, Action<T>> filteredCallbacks = new Dictionary<NwObject, Action<T>>();
+
+      private Action<T> globalCallback;
+
+      public bool HasSubscribers
+      {
+        get => globalCallback != null || filteredCallbacks.Count > 0;
       }
 
-      private class EventHandler<T> : EventHandler where T : IEvent
+      public override void ProcessEvent(IEvent eventData)
       {
-        private readonly Dictionary<NwObject, Action<T>> filteredCallbacks = new Dictionary<NwObject, Action<T>>();
+        ProcessEvent((T)eventData);
+      }
 
-        private Action<T> globalCallback;
+      public override void ClearObjectSubscriptions(NwObject gameObject)
+      {
+        filteredCallbacks.Remove(gameObject);
+      }
 
-        public bool HasSubscribers
+      private void ProcessEvent(T evt)
+      {
+        globalCallback?.Invoke(evt);
+
+        if (evt.Context != null && filteredCallbacks.TryGetValue(evt.Context, out Action<T> callback))
         {
-          get => globalCallback != null || filteredCallbacks.Count > 0;
+          callback?.Invoke(evt);
+        }
+      }
+
+      public void Subscribe(NwObject obj, Action<T> newHandler)
+      {
+        filteredCallbacks.TryGetValue(obj, out Action<T> handler);
+        handler += newHandler;
+        filteredCallbacks[obj] = handler;
+      }
+
+      public void SubscribeAll(Action<T> newHandler)
+      {
+        globalCallback += newHandler;
+      }
+
+      public void Unsubscribe(NwObject obj, Action<T> handlerToRemove)
+      {
+        if (!filteredCallbacks.TryGetValue(obj, out Action<T> handler))
+        {
+          return;
         }
 
-        public override void ProcessEvent(IEvent eventData)
+        handler -= handlerToRemove;
+        if (handler == null)
         {
-          ProcessEvent((T)eventData);
+          filteredCallbacks.Remove(obj);
         }
-
-        public override void ClearObjectSubscriptions(NwObject gameObject)
+        else
         {
-          filteredCallbacks.Remove(gameObject);
-        }
-
-        private void ProcessEvent(T evt)
-        {
-          globalCallback?.Invoke(evt);
-
-          if (evt.Context != null && filteredCallbacks.TryGetValue(evt.Context, out Action<T> callback))
-          {
-            callback?.Invoke(evt);
-          }
-        }
-
-        public void Subscribe(NwObject obj, Action<T> newHandler)
-        {
-          filteredCallbacks.TryGetValue(obj, out Action<T> handler);
-          handler += newHandler;
           filteredCallbacks[obj] = handler;
         }
-
-        public void SubscribeAll(Action<T> newHandler)
-        {
-          globalCallback += newHandler;
-        }
-
-        public void Unsubscribe(NwObject obj, Action<T> handlerToRemove)
-        {
-          if (!filteredCallbacks.TryGetValue(obj, out Action<T> handler))
-          {
-            return;
-          }
-
-          handler -= handlerToRemove;
-          if (handler == null)
-          {
-            filteredCallbacks.Remove(obj);
-          }
-          else
-          {
-            filteredCallbacks[obj] = handler;
-          }
-        }
-
-        public void UnsubscribeAll(Action<T> handlerToRemove)
-        {
-          globalCallback -= handlerToRemove;
-        }
       }
+
+      public void UnsubscribeAll(Action<T> handlerToRemove)
+      {
+        globalCallback -= handlerToRemove;
+      }
+    }
   }
 }
