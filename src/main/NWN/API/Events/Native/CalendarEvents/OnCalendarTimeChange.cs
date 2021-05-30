@@ -12,7 +12,10 @@ namespace NWN.API.Events
 
     public uint NewValue { get; private init; }
 
-    NwObject IEvent.Context => null;
+    NwObject IEvent.Context
+    {
+      get => null;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.UpdateTimeHook>
     {

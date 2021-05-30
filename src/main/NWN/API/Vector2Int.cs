@@ -5,25 +5,25 @@ namespace NWN.API
   /// <summary>
   /// Represents a vector with two 32 bit integer values.
   /// </summary>
-  public struct Vector2Int : IEquatable<Vector2Int>
+  public readonly struct Vector2Int : IEquatable<Vector2Int>
   {
     public readonly int X;
     public readonly int Y;
 
     public Vector2Int(int x = 0, int y = 0)
     {
-      this.X = x;
-      this.Y = y;
+      X = x;
+      Y = y;
     }
 
-    public static Vector2Int operator - (Vector2Int a, Vector2Int b)
+    public static Vector2Int operator -(Vector2Int a, Vector2Int b)
     {
-      return new Vector2Int (a.X - b.X, a.Y - b.Y);
+      return new Vector2Int(a.X - b.X, a.Y - b.Y);
     }
 
-    public static Vector2Int operator + (Vector2Int a, Vector2Int b)
+    public static Vector2Int operator +(Vector2Int a, Vector2Int b)
     {
-      return new Vector2Int (a.X + b.X, a.Y + b.Y);
+      return new Vector2Int(a.X + b.X, a.Y + b.Y);
     }
 
     public bool Equals(Vector2Int other)

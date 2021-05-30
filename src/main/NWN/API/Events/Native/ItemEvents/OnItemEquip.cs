@@ -18,7 +18,10 @@ namespace NWN.API.Events
 
     public Lazy<bool> Result { get; private set; }
 
-    NwObject IEvent.Context => EquippedBy;
+    NwObject IEvent.Context
+    {
+      get => EquippedBy;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RunEquipHook>
     {

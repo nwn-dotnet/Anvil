@@ -2,7 +2,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public unsafe class DebugOptions
+  public sealed unsafe class DebugOptions
   {
     internal DebugOptions() {}
 

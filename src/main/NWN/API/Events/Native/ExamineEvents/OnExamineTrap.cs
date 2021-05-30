@@ -12,7 +12,10 @@ namespace NWN.API.Events
 
     public bool Success { get; private init; }
 
-    NwObject IEvent.Context => ExaminedBy.ControlledCreature;
+    NwObject IEvent.Context
+    {
+      get => ExaminedBy.ControlledCreature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.TrapExamineHook>
     {
@@ -31,7 +34,7 @@ namespace NWN.API.Events
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
           ExaminedObject = oidTrap.ToNwObject<NwGameObject>(),
-          Success = bSuccess.ToBool()
+          Success = bSuccess.ToBool(),
         });
 
         Hook.CallOriginal(pMessage, pPlayer, oidTrap, pCreature, bSuccess);

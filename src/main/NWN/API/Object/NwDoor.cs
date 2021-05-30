@@ -14,7 +14,7 @@ namespace NWN.API
 
     internal NwDoor(CNWSDoor door) : base(door)
     {
-      this.Door = door;
+      Door = door;
     }
 
     public static implicit operator CNWSDoor(NwDoor door)
@@ -180,7 +180,9 @@ namespace NWN.API
     /// <param name="action">The action to check.</param>
     /// <returns>true if the specified action can be performed, otherwise false.</returns>
     public bool IsDoorActionPossible(DoorAction action)
-      => NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
+    {
+      return NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
+    }
 
     public override byte[] Serialize()
     {
@@ -202,7 +204,7 @@ namespace NWN.API
           return false;
         }
 
-        door = new CNWSDoor(INVALID);
+        door = new CNWSDoor(Invalid);
         if (door.LoadDoor(resGff, resStruct).ToBool())
         {
           door.LoadObjectState(resGff, resStruct);

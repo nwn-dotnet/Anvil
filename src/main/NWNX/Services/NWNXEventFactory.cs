@@ -74,7 +74,7 @@ namespace NWNX.Services
         EventsPlugin.SetEventResult(nwnxEvent.EventResult);
       }
 
-      if (eventInstance is IEventSkippable {Skip: true})
+      if (eventInstance is IEventSkippable { Skip: true })
       {
         EventsPlugin.SkipEvent();
       }
@@ -117,7 +117,11 @@ namespace NWNX.Services
         return;
       }
 
-      static IEvent Constructor() => new TEvent();
+      static IEvent Constructor()
+      {
+        return new TEvent();
+      }
+
       eventConstructorCache[eventName] = Constructor;
     }
   }

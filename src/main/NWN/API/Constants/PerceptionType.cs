@@ -11,6 +11,6 @@ namespace NWN.API.Constants
     NotHeard = NWScript.PERCEPTION_NOT_HEARD,
     Heard = NWScript.PERCEPTION_HEARD,
     NotSeen = NWScript.PERCEPTION_NOT_SEEN,
-    Seen = NWScript.PERCEPTION_SEEN
+    Seen = NWScript.PERCEPTION_SEEN,
   }
 }

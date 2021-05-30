@@ -10,6 +10,6 @@ namespace NWN.API.Constants
     Bat = NWScript.CREATURE_WING_TYPE_BAT,
     Dragon = NWScript.CREATURE_WING_TYPE_DRAGON,
     Butterfly = NWScript.CREATURE_WING_TYPE_BUTTERFLY,
-    Bird = NWScript.CREATURE_WING_TYPE_BIRD
+    Bird = NWScript.CREATURE_WING_TYPE_BIRD,
   }
 }

@@ -10,7 +10,10 @@ namespace NWN.API.Events
 
     public DRType Type { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendFeedbackMessageHook>
     {
@@ -50,7 +53,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnCombatDRBroken
         {
           Creature = creature.ToNwObject<NwCreature>(),
-          Type = nFeedbackId == resistanceId ? DRType.DamageResistance : DRType.DamageReduction
+          Type = nFeedbackId == resistanceId ? DRType.DamageResistance : DRType.DamageReduction,
         });
 
         Hook.CallOriginal(pCreature, nFeedbackId, pMessageData, pFeedbackPlayer);

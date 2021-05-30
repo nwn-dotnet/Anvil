@@ -12,7 +12,7 @@ namespace NWN.Plugins
   /// Loads all available plugins and their types for service initialisation.
   /// </summary>
   [ServiceBindingOptions(BindingOrder.Core)]
-  internal class PluginLoader : ITypeLoader
+  internal sealed class PluginLoader : ITypeLoader
   {
     private const string PluginResourceDir = "resources";
 
@@ -51,7 +51,7 @@ namespace NWN.Plugins
 
       if (EnvironmentConfig.PreventStartNoPlugin && pluginPaths.Length == 0)
       {
-        throw new Exception($"No plugins are available to load, and NWM_PREVENT_START_NO_PLUGIN is enabled.\n" +
+        throw new Exception("No plugins are available to load, and NWM_PREVENT_START_NO_PLUGIN is enabled.\n" +
           $"Check your plugins are available at {EnvironmentConfig.PluginsPath}, or update NWM_PLUGIN_PATH to the correct location.");
       }
 

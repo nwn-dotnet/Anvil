@@ -52,14 +52,13 @@ namespace NWN.Services
         return;
       }
 
-      ScriptCallback callback;
-      if (!scriptHandlers.TryGetValue(scriptName, out callback))
+      if (!scriptHandlers.TryGetValue(scriptName, out ScriptCallback callback))
       {
         callback = new ScriptCallback(scriptName);
         scriptHandlers.Add(scriptName, callback);
       }
 
-      callback.AddCallback(service, method, scriptName);
+      callback.AddCallback(service, method);
     }
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint oidSelf)

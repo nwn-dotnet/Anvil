@@ -18,7 +18,10 @@ namespace NWN.API.Events
 
     public Feat Feat { get; private init; }
 
-    NwObject IEvent.Context => DisarmedObject;
+    NwObject IEvent.Context
+    {
+      get => DisarmedObject;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.ApplyDisarmHook>
     {
@@ -40,7 +43,7 @@ namespace NWN.API.Events
         {
           DisarmedObject = gameObject.ToNwObject<NwGameObject>(),
           DisarmedBy = gameEffect.m_oidCreator.ToNwObject<NwGameObject>(),
-          Feat = gameEffect.GetInteger(0) == 1 ? Feat.ImprovedDisarm : Feat.Disarm
+          Feat = gameEffect.GetInteger(0) == 1 ? Feat.ImprovedDisarm : Feat.Disarm,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventDisarm && Hook.CallOriginal(pEffectHandler, pObject, pEffect, bLoadingGame).ToBool());

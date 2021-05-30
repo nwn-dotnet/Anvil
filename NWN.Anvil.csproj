@@ -10,6 +10,7 @@
           GitHub, Issues and Discussions - https://github.com/nwn-dotnet/Anvil
           Discord, Latest News, Help and Support - https://discord.gg/gKt495UBgS
         </Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Neverwinter Nights;NWN;</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -27,13 +28,9 @@
         <NoWarn>1591</NoWarn>
         <RootNamespace />
         <LangVersion>9.0</LangVersion>
-        <CodeAnalysisRuleSet>NWN.Anvil.ruleset</CodeAnalysisRuleSet>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Configurations>Debug;Release;Samples</Configurations>
         <Platforms>AnyCPU</Platforms>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>TRACE</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
@@ -42,18 +39,16 @@
         <PackageReference Include="NWN.Core" Version="8193.23.4" PrivateAssets="compile" />
         <PackageReference Include="NWN.Native" Version="8193.23.3" PrivateAssets="compile" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="/" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(Configuration)' != 'Samples'">
         <None Remove="docs\**" />
         <EmbeddedResource Remove="docs\**" />
         <Compile Remove="docs\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="stylecop.json" />
-      <AdditionalFiles Include="stylecop.json" />
     </ItemGroup>
 
     <Target Name="CreatePluginsFolder" AfterTargets="Build">

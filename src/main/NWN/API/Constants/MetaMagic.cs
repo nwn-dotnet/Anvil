@@ -13,6 +13,6 @@ namespace NWN.API.Constants
     Quicken = NWScript.METAMAGIC_QUICKEN,
     Silent = NWScript.METAMAGIC_SILENT,
     Still = NWScript.METAMAGIC_STILL,
-    Any = NWScript.METAMAGIC_ANY
+    Any = NWScript.METAMAGIC_ANY,
   }
 }

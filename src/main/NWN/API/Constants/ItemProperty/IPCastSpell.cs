@@ -380,6 +380,6 @@ namespace NWN.API.Constants
     Web3 = NWScript.IP_CONST_CASTSPELL_WEB_3,
     Weird17 = NWScript.IP_CONST_CASTSPELL_WEIRD_17,
     WordOfFaith13 = NWScript.IP_CONST_CASTSPELL_WORD_OF_FAITH_13,
-    WoundingWhispers9 = NWScript.IP_CONST_CASTSPELL_WOUNDING_WHISPERS_9
+    WoundingWhispers9 = NWScript.IP_CONST_CASTSPELL_WOUNDING_WHISPERS_9,
   }
 }

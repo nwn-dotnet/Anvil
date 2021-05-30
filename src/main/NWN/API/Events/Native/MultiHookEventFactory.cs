@@ -12,11 +12,7 @@ namespace NWN.API.Events
 
     public void Register<TEvent>(NullRegistrationData data) where TEvent : IEvent, new()
     {
-      if (hooks == null)
-      {
-        hooks = RequestHooks();
-      }
-
+      hooks ??= RequestHooks();
       activeEvents.Add(typeof(TEvent));
     }
 

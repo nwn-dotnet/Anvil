@@ -12,7 +12,10 @@ namespace NWN.API.Events
 
     public DamageData<int> DamageData { get; private init; }
 
-    NwObject IEvent.Context => DamagedBy;
+    NwObject IEvent.Context
+    {
+      get => DamagedBy;
+    }
 
     internal unsafe class Factory : SingleHookEventFactory<Factory.OnApplyDamageHook>
     {
@@ -36,7 +39,7 @@ namespace NWN.API.Events
           {
             DamagedBy = effect.m_oidCreator.ToNwObject<NwGameObject>(),
             Target = gameObject.ToNwObject<NwGameObject>(),
-            DamageData = new DamageData<int>(effect.m_nParamInteger)
+            DamageData = new DamageData<int>(effect.m_nParamInteger),
           });
         }
 

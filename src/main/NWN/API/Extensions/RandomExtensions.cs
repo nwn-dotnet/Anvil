@@ -25,7 +25,10 @@ namespace NWN.API
     /// </summary>
     /// <param name="random">The random instance.</param>
     /// <returns>A random floating-point number that is greater than or equal to 0.0f, and less than 1.0f.</returns>
-    public static float NextFloat(this Random random) => (float) random.NextDouble();
+    public static float NextFloat(this Random random)
+    {
+      return (float)random.NextDouble();
+    }
 
     /// <summary>
     /// Returns a random float in the specified range.
@@ -35,6 +38,8 @@ namespace NWN.API
     /// <param name="maxValue">The maximum value (exclusive).</param>
     /// <returns>A random float in the specified range.</returns>
     public static float NextFloat(this Random random, float minValue, float maxValue)
-      => (float) random.NextDouble(minValue, maxValue);
+    {
+      return (float)random.NextDouble(minValue, maxValue);
+    }
   }
 }

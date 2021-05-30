@@ -10,7 +10,10 @@ namespace NWN.API.Events
 
     public NwPlayer Target { get; private init; }
 
-    NwObject IEvent.Context => Initiator.ControlledCreature;
+    NwObject IEvent.Context
+    {
+      get => Initiator.ControlledCreature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartBarterHook>
     {

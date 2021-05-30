@@ -8,7 +8,7 @@ namespace NWNX.API.Constants
     Skill,
     Feat,
     Spell,
-    Custom
+    Custom,
   }
 
   public enum ElcFailureSubType
@@ -60,6 +60,6 @@ namespace NWNX.API.Constants
     SkillListComparison,
     FeatListComparison,
     MiscSavingThrow,
-    NumFeatComparison
+    NumFeatComparison,
   }
 }

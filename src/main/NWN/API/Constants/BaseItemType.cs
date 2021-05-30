@@ -93,6 +93,6 @@ namespace NWN.API.Constants
     CraftMaterialMedium = NWScript.BASE_ITEM_CRAFTMATERIALMED,
     CraftMaterialSmall = NWScript.BASE_ITEM_CRAFTMATERIALSML,
     Whip = NWScript.BASE_ITEM_WHIP,
-    Invalid = NWScript.BASE_ITEM_INVALID
+    Invalid = NWScript.BASE_ITEM_INVALID,
   }
 }

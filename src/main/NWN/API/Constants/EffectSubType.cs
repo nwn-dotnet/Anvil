@@ -6,6 +6,6 @@ namespace NWN.API.Constants
   {
     Magical = NWScript.SUBTYPE_MAGICAL,
     Supernatural = NWScript.SUBTYPE_SUPERNATURAL,
-    Extraordinary = NWScript.SUBTYPE_EXTRAORDINARY
+    Extraordinary = NWScript.SUBTYPE_EXTRAORDINARY,
   }
 }

@@ -1038,6 +1038,6 @@ namespace NWN.API.Constants
     PlayerTool07 = NWScript.FEAT_PLAYER_TOOL_07,
     PlayerTool08 = NWScript.FEAT_PLAYER_TOOL_08,
     PlayerTool09 = NWScript.FEAT_PLAYER_TOOL_09,
-    PlayerTool10 = NWScript.FEAT_PLAYER_TOOL_10
+    PlayerTool10 = NWScript.FEAT_PLAYER_TOOL_10,
   }
 }

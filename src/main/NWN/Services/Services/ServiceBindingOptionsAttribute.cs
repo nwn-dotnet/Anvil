@@ -6,7 +6,7 @@ namespace NWN.Services
   /// Additional service binding options.
   /// </summary>
   [AttributeUsage(AttributeTargets.Class)]
-  public class ServiceBindingOptionsAttribute : Attribute
+  public sealed class ServiceBindingOptionsAttribute : Attribute
   {
     private readonly short order;
 
@@ -39,7 +39,7 @@ namespace NWN.Services
 
     public ServiceBindingOptionsAttribute()
     {
-      this.order = (short)BindingOrder.Default;
+      order = (short)BindingOrder.Default;
     }
   }
 }

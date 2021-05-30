@@ -14,7 +14,7 @@ namespace NWN.API
 
     internal NwTrigger(CNWSTrigger trigger) : base(trigger)
     {
-      this.Trigger = trigger;
+      Trigger = trigger;
     }
 
     public static implicit operator CNWSTrigger(NwTrigger trigger)
@@ -101,8 +101,8 @@ namespace NWN.API
     /// <returns>An enumerable containing all objects currently in the trigger.</returns>
     public IEnumerable<T> GetObjectsInTrigger<T>() where T : NwGameObject
     {
-      int objType = (int) GetObjectType<T>();
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int objType = (int)GetObjectType<T>();
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
         yield return obj.ToNwObject<T>();
       }
@@ -115,8 +115,8 @@ namespace NWN.API
     /// <returns>An enumerable containing all objects currently in the trigger.</returns>
     public IEnumerable<NwGameObject> GetObjectsInTrigger(ObjectTypes objectTypes = ObjectTypes.All)
     {
-      int objType = (int) objectTypes;
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int objType = (int)objectTypes;
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
         yield return obj.ToNwObject<NwGameObject>();
       }
@@ -142,7 +142,7 @@ namespace NWN.API
           return false;
         }
 
-        trigger = new CNWSTrigger(INVALID);
+        trigger = new CNWSTrigger(Invalid);
         if (trigger.LoadTrigger(resGff, resStruct).ToBool())
         {
           trigger.LoadObjectState(resGff, resStruct);

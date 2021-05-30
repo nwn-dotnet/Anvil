@@ -22,6 +22,6 @@ namespace NWN.API.Constants
     LeftShoulder = NWScript.CREATURE_PART_LEFT_SHOULDER,
     RightHand = NWScript.CREATURE_PART_RIGHT_HAND,
     LeftHand = NWScript.CREATURE_PART_LEFT_HAND,
-    Head = NWScript.CREATURE_PART_HEAD
+    Head = NWScript.CREATURE_PART_HEAD,
   }
 }

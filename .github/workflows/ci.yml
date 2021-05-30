@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - name: Check Line Endings
         uses: erclu/check-crlf@v1
 
@@ -36,6 +36,31 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release /warnaserror
+
+      - name: Prepare Outputs
+        id: vars
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Code Analysis Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/JetBrains
+          key: resharper-cache-${{ steps.vars.outputs.sha_short }}
+          restore-keys: |
+            resharper-cache-
+
+      - name: Code Analysis
+        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml && cat results.xml
+
+      - name: Parse Analysis Results
+        uses: glassechidna/resharper-action@master
+        with:
+          report: results.xml
+
+      - name: Analysis Result
+        run: |
+          ! grep "<Issue TypeId=" results.xml
 
   build:
     runs-on: ubuntu-20.04
@@ -79,7 +104,7 @@ jobs:
         run: |
           dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
           echo "::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-       
+
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
         with:

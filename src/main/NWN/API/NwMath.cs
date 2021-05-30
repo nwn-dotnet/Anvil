@@ -46,7 +46,7 @@ namespace NWN.API
     /// <example>
     /// <c>float radians = 180f * DegToRad;</c>.
     /// </example>
-    public const float DegToRad = (float) (Math.PI * 2f / 360f);
+    public const float DegToRad = (float)(Math.PI * 2f / 360f);
 
     /// <summary>
     /// Constant value for converting radians to degrees.
@@ -60,7 +60,7 @@ namespace NWN.API
     public static Vector2 AngleToVector2(float angle)
     {
       float radians = angle * DegToRad;
-      return new Vector2((float) Math.Cos(radians), (float) Math.Sin(radians));
+      return new Vector2((float)Math.Cos(radians), (float)Math.Sin(radians));
     }
 
     /// <summary>
@@ -71,13 +71,13 @@ namespace NWN.API
     public static Vector3 AngleToVector3(float angle)
     {
       float radians = angle * DegToRad;
-      return new Vector3((float) Math.Cos(radians), (float) Math.Sin(radians), 0f);
+      return new Vector3((float)Math.Cos(radians), (float)Math.Sin(radians), 0f);
     }
 
     /// <inheritdoc cref="VectorToAngle(System.Numerics.Vector3)"/>
     public static float VectorToAngle(Vector2 direction)
     {
-      return (float) (Math.Atan2(direction.Y, direction.X) * RadToDeg);
+      return (float)(Math.Atan2(direction.Y, direction.X) * RadToDeg);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ namespace NWN.API
     /// <returns>The angle, in degrees matching the direction of this vector.</returns>
     public static float VectorToAngle(Vector3 direction)
     {
-      return (float) (Math.Atan2(direction.Y, direction.X) * RadToDeg);
+      return (float)(Math.Atan2(direction.Y, direction.X) * RadToDeg);
     }
   }
 }

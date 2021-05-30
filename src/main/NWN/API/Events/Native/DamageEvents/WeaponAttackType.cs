@@ -10,6 +10,6 @@ namespace NWN.API.Events
     CreatureBite = 5,
     HastedAttack = 6,
     Unarmed = 7,
-    UnarmedExtra = 8
+    UnarmedExtra = 8,
   }
 }

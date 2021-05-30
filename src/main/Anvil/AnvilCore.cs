@@ -84,7 +84,10 @@ namespace Anvil
       Start();
     }
 
-    void ICoreSignalHandler.OnShutdown() => Shutdown();
+    void ICoreSignalHandler.OnShutdown()
+    {
+      Shutdown();
+    }
 
     private void Init()
     {
@@ -131,7 +134,7 @@ namespace Anvil
       AssemblyName assemblyName = Assemblies.Anvil.GetName();
       Version serverVersion = NwServer.Instance.ServerVersion;
 
-      if (assemblyName.Version.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
+      if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
       {
         Log.Warn($"The current version of {assemblyName.Name} targets version {assemblyName.Version}, but the server is running {serverVersion}! You may encounter compatibility issues.");
       }
@@ -153,7 +156,7 @@ namespace Anvil
       }
       catch (Exception)
       {
-        Log.Fatal($"The NWNX_SWIG_DotNET plugin could not be loaded.");
+        Log.Fatal("The NWNX_SWIG_DotNET plugin could not be loaded.");
         throw;
       }
     }

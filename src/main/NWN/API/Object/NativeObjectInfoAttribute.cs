@@ -5,15 +5,15 @@ using NWN.Native.API;
 namespace NWN.API
 {
   [AttributeUsage(AttributeTargets.Class)]
-  internal class NativeObjectInfoAttribute : Attribute
+  internal sealed class NativeObjectInfoAttribute : Attribute
   {
     public readonly ObjectTypes ObjectType;
     public readonly ObjectType NativeObjectType;
 
     public NativeObjectInfoAttribute(ObjectTypes objectType, ObjectType nativeObjectType)
     {
-      this.ObjectType = objectType;
-      this.NativeObjectType = nativeObjectType;
+      ObjectType = objectType;
+      NativeObjectType = nativeObjectType;
     }
   }
 }

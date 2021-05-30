@@ -76,6 +76,6 @@ namespace NWN.API.Constants
     RisenLord = NWScript.POLYMORPH_TYPE_RISEN_LORD,
     Spectre = NWScript.POLYMORPH_TYPE_SPECTRE,
     VampireFemale = NWScript.POLYMORPH_TYPE_VAMPIRE_FEMALE,
-    NullHuman = NWScript.POLYMORPH_TYPE_NULL_HUMAN
+    NullHuman = NWScript.POLYMORPH_TYPE_NULL_HUMAN,
   }
 }

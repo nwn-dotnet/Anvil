@@ -110,6 +110,6 @@ namespace NWN.API.Constants
     CaveEvil1Xp2 = NWScript.AMBIENT_SOUND_CAVE_EVIL_1_XP2,
     CaveEvil2Xp2 = NWScript.AMBIENT_SOUND_CAVE_EVIL_2_XP2,
     CaveEvil3Xp2 = NWScript.AMBIENT_SOUND_CAVE_EVIL_3_XP2,
-    TavernRowdy = NWScript.AMBIENT_SOUND_TAVERN_ROWDY
+    TavernRowdy = NWScript.AMBIENT_SOUND_TAVERN_ROWDY,
   }
 }

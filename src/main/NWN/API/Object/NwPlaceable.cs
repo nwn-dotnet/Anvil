@@ -15,8 +15,8 @@ namespace NWN.API
 
     internal NwPlaceable(CNWSPlaceable placeable) : base(placeable)
     {
-      this.Placeable = placeable;
-      this.Inventory = new Inventory(this, placeable.m_pcItemRepository);
+      Placeable = placeable;
+      Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 
     public static implicit operator CNWSPlaceable(NwPlaceable placeable)
@@ -192,7 +192,7 @@ namespace NWN.API
 
     public bool Occupied
     {
-      get => NWScript.GetSittingCreature(this) != INVALID;
+      get => NWScript.GetSittingCreature(this) != Invalid;
     }
 
     public NwCreature SittingCreature
@@ -287,7 +287,7 @@ namespace NWN.API
     public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       location = Location.Create(location.Area, location.Position, location.FlippedRotation);
-      return NwObject.CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
+      return CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
 
     /// <summary>
@@ -296,7 +296,9 @@ namespace NWN.API
     /// <param name="action">The action to check.</param>
     /// <returns>true if the specified action can be performed, otherwise false.</returns>
     public bool IsPlaceableActionPossible(PlaceableAction action)
-      => NWScript.GetIsPlaceableObjectActionPossible(this, (int)action).ToBool();
+    {
+      return NWScript.GetIsPlaceableObjectActionPossible(this, (int)action).ToBool();
+    }
 
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
     {
@@ -306,7 +308,7 @@ namespace NWN.API
       }
 
       void* pItem = item.Item;
-      Placeable.AcquireItem(&pItem, INVALID, 0xFF, 0xFF, displayFeedback.ToInt());
+      Placeable.AcquireItem(&pItem, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
     }
 
     public override byte[] Serialize()
@@ -329,7 +331,7 @@ namespace NWN.API
           return false;
         }
 
-        placeable = new CNWSPlaceable(INVALID);
+        placeable = new CNWSPlaceable(Invalid);
         if (placeable.LoadPlaceable(resGff, resStruct, null).ToBool())
         {
           placeable.LoadObjectState(resGff, resStruct);

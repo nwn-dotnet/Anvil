@@ -10,7 +10,10 @@ namespace NWN.API.Events
 
     public NwGameObject Target { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartCombatRoundHook>
     {
@@ -30,7 +33,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnCombatRoundStart
         {
           Creature = combatRound.m_pBaseCreature.ToNwObject<NwCreature>(),
-          Target = oidTarget.ToNwObject<NwGameObject>()
+          Target = oidTarget.ToNwObject<NwGameObject>(),
         });
 
         Hook.CallOriginal(pCombatRound, oidTarget);

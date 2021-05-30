@@ -6,7 +6,7 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public partial class Location
+  public sealed partial class Location
   {
     /// <summary>
     /// Gets the position Vector of this location.
@@ -98,7 +98,7 @@ namespace NWN.API
     /// </summary>
     public bool IsWalkable
     {
-      get => NWScript.Get2DAString("surfacemat", "Walk", this.SurfaceMaterial).ParseIntBool();
+      get => NWScript.Get2DAString("surfacemat", "Walk", SurfaceMaterial).ParseIntBool();
     }
 
     /// <summary>
@@ -160,10 +160,10 @@ namespace NWN.API
 
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int) NwObject.GetObjectType<T>();
+      int objType = (int)NwObject.GetObjectType<T>();
       int i;
       uint next;
-      for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.INVALID; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
+      for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.Invalid; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
       {
         T obj = next.ToNwObjectSafe<T>();
         if (obj != null)
@@ -173,11 +173,20 @@ namespace NWN.API
       }
     }
 
-    public IEnumerable<NwCreature> GetNearestCreatures() => GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures()
+    {
+      return GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    }
 
-    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1) => GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1)
+    {
+      return GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    }
 
-    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2) => GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
+    public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2)
+    {
+      return GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
+    }
 
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2, CreatureTypeFilter filter3)
     {
@@ -233,6 +242,8 @@ namespace NWN.API
     /// <param name="disarm">The script that will fire when the trap is disarmed. If no value set, defaults to an empty string and no script will fire.</param>
     /// <param name="triggered">The script that will fire when the trap is triggered. If no value set, defaults to an empty string and the default OnTrapTriggered script for the trap type specified will fire instead (as specified in the traps.2da).</param>
     public void CreateTrap(TrapBaseType trap, float size = 2.0f, string tag = "", string disarm = "", string triggered = "")
-      => NWScript.CreateTrapAtLocation((int)trap, this, size, tag, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
+    {
+      NWScript.CreateTrapAtLocation((int)trap, this, size, tag, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
+    }
   }
 }

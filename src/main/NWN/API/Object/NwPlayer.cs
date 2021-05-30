@@ -32,7 +32,7 @@ namespace NWN.API
 
     internal NwPlayer(CNWSPlayer player)
     {
-      this.Player = player;
+      Player = player;
     }
 
     internal CNWSPlayerTURD Turd
@@ -339,7 +339,7 @@ namespace NWN.API
     {
       get
       {
-        for (uint member = NWScript.GetFirstFactionMember(ControlledCreature); member != NwObject.INVALID; member = NWScript.GetNextFactionMember(ControlledCreature))
+        for (uint member = NWScript.GetFirstFactionMember(ControlledCreature); member != NwObject.Invalid; member = NWScript.GetNextFactionMember(ControlledCreature))
         {
           yield return member.ToNwPlayer();
         }
@@ -351,27 +351,35 @@ namespace NWN.API
     /// </summary>
     /// <param name="reason">An optional message to show to the player.</param>
     public void BootPlayer(string reason = "")
-      => NWScript.BootPC(ControlledCreature, reason);
+    {
+      NWScript.BootPC(ControlledCreature, reason);
+    }
 
     /// <summary>
     /// Adds the player to the specified party leader's party.
     /// </summary>
     /// <param name="partyLeader">The party leader of the party to join.</param>
     public void AddToParty(NwPlayer partyLeader)
-      => NWScript.AddToParty(ControlledCreature, partyLeader.ControlledCreature);
+    {
+      NWScript.AddToParty(ControlledCreature, partyLeader.ControlledCreature);
+    }
 
     /// <summary>
     /// Removes the player from their current party.
     /// </summary>
     public void RemoveFromCurrentParty()
-      => NWScript.RemoveFromParty(ControlledCreature);
+    {
+      NWScript.RemoveFromParty(ControlledCreature);
+    }
 
     /// <summary>
     /// Attaches the specified creature to the player as a henchmen.
     /// </summary>
     /// <param name="henchmen">The henchmen to attach to the player.</param>
     public void AddHenchmen(NwCreature henchmen)
-      => NWScript.AddHenchman(ControlledCreature, henchmen);
+    {
+      NWScript.AddHenchman(ControlledCreature, henchmen);
+    }
 
     /// <summary>
     /// Adds an entry to the player's journal.
@@ -381,13 +389,17 @@ namespace NWN.API
     /// <param name="allPartyMembers">If true, ControlledCreature entry is added to all players in the player's party.</param>
     /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
     public void AddJournalQuestEntry(string categoryTag, int entryId, bool allPartyMembers = true, bool allowOverrideHigher = false)
-      => NWScript.AddJournalQuestEntry(categoryTag, entryId, ControlledCreature, allPartyMembers.ToInt(), false.ToInt(), allowOverrideHigher.ToInt());
+    {
+      NWScript.AddJournalQuestEntry(categoryTag, entryId, ControlledCreature, allPartyMembers.ToInt(), false.ToInt(), allowOverrideHigher.ToInt());
+    }
 
     /// <summary>
     /// Instructs the player to open their inventory.
     /// </summary>
     public void OpenInventory()
-      => NWScript.OpenInventory(ControlledCreature, ControlledCreature);
+    {
+      NWScript.OpenInventory(ControlledCreature, ControlledCreature);
+    }
 
     /// <summary>
     /// Opens the specified creatures inventory, and shows it to the player.<br/>
@@ -397,7 +409,9 @@ namespace NWN.API
     /// </remarks>
     /// <param name="target">The target creature's inventory to view.</param>
     public void OpenInventory(NwCreature target)
-      => NWScript.OpenInventory(target, ControlledCreature);
+    {
+      NWScript.OpenInventory(target, ControlledCreature);
+    }
 
     /// <summary>
     /// Forces the player to open the inventory of the specified placeable.
@@ -405,7 +419,9 @@ namespace NWN.API
     /// <param name="target">The placeable inventory to be viewed.</param>
     [Obsolete("Use NwCreature.OpenInventory instead.")]
     public void ForceOpenInventory(NwPlaceable target)
-      => OpenInventory(target);
+    {
+      OpenInventory(target);
+    }
 
     /// <summary>
     /// Forces the player to open the inventory of the specified placeable.
@@ -425,7 +441,9 @@ namespace NWN.API
     /// <typeparam name="T">The variable type.</typeparam>
     /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
     public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
-      => CampaignVariable<T>.Create(campaign, name, this);
+    {
+      return CampaignVariable<T>.Create(campaign, name, this);
+    }
 
     /// <summary>
     /// Sends a server message to the player.
@@ -433,11 +451,15 @@ namespace NWN.API
     /// <param name="message">The message to send.</param>
     /// <param name="color">A color to apply to the message.</param>
     public void SendServerMessage(string message, Color color)
-      => NWScript.SendMessageToPC(ControlledCreature, message.ColorString(color));
+    {
+      NWScript.SendMessageToPC(ControlledCreature, message.ColorString(color));
+    }
 
     /// <inheritdoc cref="SendServerMessage(string,NWN.API.Color)"/>
     public void SendServerMessage(string message)
-      => NWScript.SendMessageToPC(ControlledCreature, message);
+    {
+      NWScript.SendMessageToPC(ControlledCreature, message);
+    }
 
     /// <summary>
     /// Sets if the player should like, or unlike the specified player.
@@ -515,7 +537,9 @@ namespace NWN.API
     /// Forces the player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc).
     /// </summary>
     public void ExportCharacter()
-      => NWScript.ExportSingleCharacter(ControlledCreature);
+    {
+      NWScript.ExportSingleCharacter(ControlledCreature);
+    }
 
     /// <summary>
     /// Sends the player to a new server, where the player's character will connect and log in.
@@ -525,7 +549,9 @@ namespace NWN.API
     /// <param name="waypointTag">The custom waypoint tag on the destination server for the player to jump to. Defaults to the module's start location.</param>
     /// <param name="seamless">If true, the player will not be prompted with information about the new server, and they will not be allowed to save a copy of their character (if it is a local vault character).</param>
     public void SendToServer(string ipAddress = "", string password = "", string waypointTag = "", bool seamless = false)
-      => NWScript.ActivatePortal(ControlledCreature, ipAddress, password, waypointTag, seamless.ToInt());
+    {
+      NWScript.ActivatePortal(ControlledCreature, ipAddress, password, waypointTag, seamless.ToInt());
+    }
 
     /// <summary>
     /// Sets whether the player has explored an area.
@@ -533,7 +559,9 @@ namespace NWN.API
     /// <param name="area">The area to explore.</param>
     /// <param name="explored">true if ControlledCreature area has been explored, otherwise false to (re)hide the map.</param>
     public void SetAreaExploreState(NwArea area, bool explored)
-      => NWScript.ExploreAreaForPlayer(area, ControlledCreature, explored.ToInt());
+    {
+      NWScript.ExploreAreaForPlayer(area, ControlledCreature, explored.ToInt());
+    }
 
     /// <summary>
     /// Vibrates the player's device or controller. Does nothing if vibration is not supported.
@@ -542,7 +570,9 @@ namespace NWN.API
     /// <param name="strength">The intensity of the vibration.</param>
     /// <param name="duration">How long to vibrate for.</param>
     public void Vibrate(VibratorMotor motor, float strength, TimeSpan duration)
-      => NWScript.Vibrate(ControlledCreature, (int)motor, strength, (float)duration.TotalSeconds);
+    {
+      NWScript.Vibrate(ControlledCreature, (int)motor, strength, (float)duration.TotalSeconds);
+    }
 
     /// <summary>
     /// Unlock an achievement for the player who must be logged in.
@@ -552,7 +582,9 @@ namespace NWN.API
     /// <param name="currentValue">The current value of the associated achievement stat.</param>
     /// <param name="maxValue">The maximum value of the associate achievement stat.</param>
     public void UnlockAchievement(string achievementId, int lastValue = 0, int currentValue = 0, int maxValue = 0)
-      => NWScript.UnlockAchievement(ControlledCreature, achievementId, lastValue, currentValue, maxValue);
+    {
+      NWScript.UnlockAchievement(ControlledCreature, achievementId, lastValue, currentValue, maxValue);
+    }
 
     /// <summary>
     /// Makes ControlledCreature PC load a new texture instead of another.
@@ -560,14 +592,18 @@ namespace NWN.API
     /// <param name="oldTexName">The existing texture to replace.</param>
     /// <param name="newTexName">The new override texture.</param>
     public void SetTextureOverride(string oldTexName, string newTexName)
-      => NWScript.SetTextureOverride(oldTexName, newTexName, ControlledCreature);
+    {
+      NWScript.SetTextureOverride(oldTexName, newTexName, ControlledCreature);
+    }
 
     /// <summary>
     /// Removes the override for the specified texture, reverting to the original texture.
     /// </summary>
     /// <param name="texName">The name of the original texture.</param>
     public void ClearTextureOverride(string texName)
-      => NWScript.SetTextureOverride(texName, string.Empty, ControlledCreature);
+    {
+      NWScript.SetTextureOverride(texName, string.Empty, ControlledCreature);
+    }
 
     /// <summary>
     /// Toggles the CutsceneMode state for the player.
@@ -575,7 +611,9 @@ namespace NWN.API
     /// <param name="inCutscene">True if cutscene mode should be enabled, otherwise false.</param>
     /// <param name="leftClickEnabled">True if ControlledCreature user should be allowed to interact with the game with the left mouse button. False to prevent interaction.</param>
     public void SetCutsceneMode(bool inCutscene = true, bool leftClickEnabled = false)
-      => NWScript.SetCutsceneMode(ControlledCreature, inCutscene.ToInt(), leftClickEnabled.ToInt());
+    {
+      NWScript.SetCutsceneMode(ControlledCreature, inCutscene.ToInt(), leftClickEnabled.ToInt());
+    }
 
     /// <summary>
     /// Displays a message on the player's screen.<br/>
@@ -592,8 +630,8 @@ namespace NWN.API
     /// <param name="font">If specified, the message will be rendered with the specified font instead of the default console font.</param>
     public void PostString(string message, int xPos, int yPos, ScreenAnchor anchor, float life, Color? start = null, Color? end = null, int id = 0, string font = "")
     {
-      start ??= Color.WHITE;
-      end ??= Color.WHITE;
+      start ??= ColorConstants.White;
+      end ??= ColorConstants.White;
 
       NWScript.PostString(ControlledCreature, message, xPos, yPos, (int)anchor, life, start.Value.ToInt(), end.Value.ToInt(), id, font);
     }
@@ -604,7 +642,9 @@ namespace NWN.API
     /// <param name="strRef">The string ref index to use.</param>
     /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
     public void FloatingTextStrRef(int strRef, bool broadcastToParty = true)
-      => NWScript.FloatingTextStrRefOnCreature(strRef, ControlledCreature, broadcastToParty.ToInt());
+    {
+      NWScript.FloatingTextStrRefOnCreature(strRef, ControlledCreature, broadcastToParty.ToInt());
+    }
 
     /// <summary>
     /// Briefly displays a floating text message above the player's head.
@@ -612,7 +652,9 @@ namespace NWN.API
     /// <param name="message">The message to display.</param>
     /// <param name="broadcastToParty">If true, shows the floating message to all players in the same party.</param>
     public void FloatingTextString(string message, bool broadcastToParty = true)
-      => NWScript.FloatingTextStringOnCreature(message, ControlledCreature, broadcastToParty.ToInt());
+    {
+      NWScript.FloatingTextStringOnCreature(message, ControlledCreature, broadcastToParty.ToInt());
+    }
 
     /// <summary>
     /// Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br/>
@@ -648,35 +690,45 @@ namespace NWN.API
     /// </summary>
     /// <param name="xPAmount">Amount of experience to give.</param>
     public void GiveXp(int xPAmount)
-      => NWScript.GiveXPToCreature(ControlledCreature, xPAmount);
+    {
+      NWScript.GiveXPToCreature(ControlledCreature, xPAmount);
+    }
 
     /// <summary>
     /// Locks the player's camera direction to its current direction,
     /// or unlocks the player's camera direction to enable it to move freely again.
     /// </summary>
     public void LockCameraDirection(bool isLocked = true)
-      => NWScript.LockCameraDirection(ControlledCreature, isLocked.ToInt());
+    {
+      NWScript.LockCameraDirection(ControlledCreature, isLocked.ToInt());
+    }
 
     /// <summary>
     /// Locks the player's camera pitch to its current pitch setting,
     /// or unlocks the player's camera pitch.
     /// </summary>
     public void LockCameraPitch(bool isLocked = true)
-      => NWScript.LockCameraPitch(ControlledCreature, isLocked.ToInt());
+    {
+      NWScript.LockCameraPitch(ControlledCreature, isLocked.ToInt());
+    }
 
     /// <summary>
     /// Locks the player's camera distance to its current distance setting,
     /// or unlocks the player's camera distance.
     /// </summary>
     public void LockCameraDistance(bool isLocked = true)
-      => NWScript.LockCameraDistance(ControlledCreature, isLocked.ToInt());
+    {
+      NWScript.LockCameraDistance(ControlledCreature, isLocked.ToInt());
+    }
 
     /// <summary>
     /// Changes the current Day/Night cycle for the player to daylight.
     /// </summary>
     /// <param name="delayTransitionTime">Time it takes for the daylight to fade in.</param>
     public void NightToDay(TimeSpan delayTransitionTime = default)
-      => NWScript.NightToDay(ControlledCreature, (float)delayTransitionTime.TotalSeconds);
+    {
+      NWScript.NightToDay(ControlledCreature, (float)delayTransitionTime.TotalSeconds);
+    }
 
     /// <summary>
     /// Displays a death panel that can turn off the "Respawn" or "Wait for Help" buttons.<br/>
@@ -690,31 +742,44 @@ namespace NWN.API
     /// <param name="helpStringRef">String reference to display for hel.</param>
     /// <param name="helpString">String to display for help which appears in the top of the panel.</param>
     public void PopUpDeathPanel(bool respawnButton = true, bool waitForHelp = true, int helpStringRef = 0, string helpString = "")
-      => NWScript.PopUpDeathGUIPanel(ControlledCreature, respawnButton.ToInt(), waitForHelp.ToInt(), helpStringRef, helpString);
+    {
+      NWScript.PopUpDeathGUIPanel(ControlledCreature, respawnButton.ToInt(), waitForHelp.ToInt(), helpStringRef, helpString);
+    }
 
     /// <summary>
     /// Displays a GUI panel to a player.
     /// </summary>
     /// <param name="panel">The panel type to display.</param>
     public void PopUpGUIPanel(GUIPanel panel = GUIPanel.Death)
-      => NWScript.PopUpGUIPanel(ControlledCreature, (int)panel);
+    {
+      NWScript.PopUpGUIPanel(ControlledCreature, (int)panel);
+    }
 
     /// <summary>
     /// Fades the screen for a given player from black to regular screen.
     /// </summary>
     /// <param name="fadeSpeed">Determines how fast the fade occurs.</param>
-    public void FadeFromBlack(float fadeSpeed) => NWScript.FadeFromBlack(ControlledCreature, fadeSpeed);
+    public void FadeFromBlack(float fadeSpeed)
+    {
+      NWScript.FadeFromBlack(ControlledCreature, fadeSpeed);
+    }
 
     /// <summary>
     /// Fades the screen for a given player from a regular screen to black.
     /// </summary>
     /// <param name="fadeSpeed">Determines how fast the fade occurs.</param>
-    public void FadeToBlack(float fadeSpeed) => NWScript.FadeToBlack(ControlledCreature, fadeSpeed);
+    public void FadeToBlack(float fadeSpeed)
+    {
+      NWScript.FadeToBlack(ControlledCreature, fadeSpeed);
+    }
 
     /// <summary>
     /// Removes any current fading effects or black screen from the monitor of the player.
     /// </summary>
-    public void StopFade() => NWScript.StopFade(ControlledCreature);
+    public void StopFade()
+    {
+      NWScript.StopFade(ControlledCreature);
+    }
 
     /// <summary>
     /// Forces the player to examine the specified placeable.

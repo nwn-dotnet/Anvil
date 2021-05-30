@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using Anvil.Internal;
 using NLog;
 using NWN.API;
@@ -57,7 +56,7 @@ namespace NWN.Services
 
       if (nameWithoutExtension.Any(c => !char.IsLetterOrDigit(c) && c != '_'))
       {
-        throw new ArgumentOutOfRangeException(nameof(resourceName), $"Resource name must only contain alphanumeric characters, or underscores.");
+        throw new ArgumentOutOfRangeException(nameof(resourceName), "Resource name must only contain alphanumeric characters, or underscores.");
       }
 
       File.WriteAllBytes(Path.Combine(EnvironmentConfig.ResourcePath, resourceName), data);

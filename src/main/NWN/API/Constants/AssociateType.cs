@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     AnimalCompanion = NWScript.ASSOCIATE_TYPE_ANIMALCOMPANION,
     Familiar = NWScript.ASSOCIATE_TYPE_FAMILIAR,
     Summoned = NWScript.ASSOCIATE_TYPE_SUMMONED,
-    Dominated = NWScript.ASSOCIATE_TYPE_DOMINATED
+    Dominated = NWScript.ASSOCIATE_TYPE_DOMINATED,
   }
 }

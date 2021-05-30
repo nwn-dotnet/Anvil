@@ -152,6 +152,8 @@ namespace NWN.API
     /// <param name="disarm">The script that will fire when the trap is disarmed. If no value set, defaults to an empty string and no script will fire.</param>
     /// <param name="triggered">The script that will fire when the trap is triggered. If no value set, defaults to an empty string and the default OnTrapTriggered script for the trap type specified will fire instead (as specified in the traps.2da).</param>
     public void CreateTrap(TrapBaseType trap, string disarm = "", string triggered = "")
-      => NWScript.CreateTrapOnObject((int)trap, this, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
+    {
+      NWScript.CreateTrapOnObject((int)trap, this, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
+    }
   }
 }

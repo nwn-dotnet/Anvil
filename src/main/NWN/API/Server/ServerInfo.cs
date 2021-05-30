@@ -2,7 +2,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public class ServerInfo
+  public sealed class ServerInfo
   {
     private readonly CServerInfo serverInfo;
     private readonly CNetLayer netLayer;

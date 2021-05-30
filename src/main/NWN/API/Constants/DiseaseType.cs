@@ -20,6 +20,6 @@ namespace NWN.API.Constants
     DreadBlisters = NWScript.DISEASE_DREAD_BLISTERS,
     BurrowMaggots = NWScript.DISEASE_BURROW_MAGGOTS,
     SoldierShakes = NWScript.DISEASE_SOLDIER_SHAKES,
-    VerminMadness = NWScript.DISEASE_VERMIN_MADNESS
+    VerminMadness = NWScript.DISEASE_VERMIN_MADNESS,
   }
 }

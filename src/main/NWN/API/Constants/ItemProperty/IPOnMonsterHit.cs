@@ -13,6 +13,6 @@ namespace NWN.API.Constants
     Poison = NWScript.IP_CONST_ONMONSTERHIT_POISON,
     Slow = NWScript.IP_CONST_ONMONSTERHIT_SLOW,
     Stun = NWScript.IP_CONST_ONMONSTERHIT_STUN,
-    Wounding = NWScript.IP_CONST_ONMONSTERHIT_WOUNDING
+    Wounding = NWScript.IP_CONST_ONMONSTERHIT_WOUNDING,
   }
 }

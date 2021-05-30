@@ -52,7 +52,10 @@ namespace NWN.API.Events
       /// </summary>
       public MetaMagic MetaMagicFeat { get; }
 
-      NwObject IEvent.Context => Caster;
+      NwObject IEvent.Context
+      {
+        get => Caster;
+      }
 
       public OnSpellCast()
       {

@@ -12,7 +12,10 @@ namespace NWN.API.Events
 
     public AssociateType AssociateType { get; private init; }
 
-    NwObject IEvent.Context => Owner;
+    NwObject IEvent.Context
+    {
+      get => Owner;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddAssociateHook>
     {

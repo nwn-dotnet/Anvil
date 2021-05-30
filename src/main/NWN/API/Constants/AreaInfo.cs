@@ -8,6 +8,6 @@ namespace NWN.API.Constants
     Natural = NWScript.AREA_NATURAL,
     Artificial = NWScript.AREA_ARTIFICIAL,
     AboveGround = NWScript.AREA_ABOVEGROUND,
-    UnderGround = NWScript.AREA_UNDERGROUND
+    UnderGround = NWScript.AREA_UNDERGROUND,
   }
 }

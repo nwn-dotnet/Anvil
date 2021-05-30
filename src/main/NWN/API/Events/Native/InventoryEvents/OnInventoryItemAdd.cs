@@ -15,7 +15,10 @@ namespace NWN.API.Events
 
     public Lazy<bool> Result { get; private set; }
 
-    NwObject IEvent.Context => AcquiredBy;
+    NwObject IEvent.Context
+    {
+      get => AcquiredBy;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddItemHook>
     {
@@ -42,7 +45,7 @@ namespace NWN.API.Events
         OnInventoryItemAdd eventData = new OnInventoryItemAdd
         {
           AcquiredBy = parent,
-          Item = ppItem == null ? null : CNWSItem.FromPointer(*ppItem).ToNwObject<NwItem>()
+          Item = ppItem == null ? null : CNWSItem.FromPointer(*ppItem).ToNwObject<NwItem>(),
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventItemAdd && Hook.CallOriginal(pItemRepository, ppItem, x, y, z, bAllowEncumbrance, bMergeItem).ToBool());

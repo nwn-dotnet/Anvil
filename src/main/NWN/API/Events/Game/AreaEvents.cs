@@ -25,7 +25,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject EnteringObject { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => Area;
+      NwObject IEvent.Context
+      {
+        get => Area;
+      }
     }
 
     /// <summary>
@@ -44,7 +47,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => Area;
+      NwObject IEvent.Context
+      {
+        get => Area;
+      }
     }
 
     /// <summary>
@@ -55,7 +61,10 @@ namespace NWN.API.Events
     {
       public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
 
-      NwObject IEvent.Context => Area;
+      NwObject IEvent.Context
+      {
+        get => Area;
+      }
     }
 
     [GameEvent(EventScriptType.AreaOnUserDefinedEvent)]
@@ -65,7 +74,10 @@ namespace NWN.API.Events
 
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
-      NwObject IEvent.Context => Area;
+      NwObject IEvent.Context
+      {
+        get => Area;
+      }
 
       public static void Signal(NwArea area, int eventId)
       {

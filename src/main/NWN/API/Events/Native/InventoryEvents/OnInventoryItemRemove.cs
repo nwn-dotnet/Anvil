@@ -10,7 +10,10 @@ namespace NWN.API.Events
 
     public NwItem Item { get; private init; }
 
-    NwObject IEvent.Context => RemovedFrom;
+    NwObject IEvent.Context
+    {
+      get => RemovedFrom;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RemoveItemHook>
     {

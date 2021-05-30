@@ -5,7 +5,7 @@ using NWN.Core;
 namespace NWN.Services
 {
   // TODO Cleanup/Docs
-  public struct NwDateTime
+  public readonly struct NwDateTime
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -24,13 +24,25 @@ namespace NWN.Services
 
     public readonly long Ticks;
 
-    public int Millisecond => (int)(Ticks % 1000);
+    public int Millisecond
+    {
+      get => (int)(Ticks % 1000);
+    }
 
-    public int Second => (int)(Ticks / TicksPerSecond % 60);
+    public int Second
+    {
+      get => (int)(Ticks / TicksPerSecond % 60);
+    }
 
-    public int Minute => (int)(Ticks / TicksPerMinute % 60);
+    public int Minute
+    {
+      get => (int)(Ticks / TicksPerMinute % 60);
+    }
 
-    public int Hour => (int)(Ticks / TicksPerHour % 24);
+    public int Hour
+    {
+      get => (int)(Ticks / TicksPerHour % 24);
+    }
 
     public int DayInTenday
     {
@@ -41,15 +53,30 @@ namespace NWN.Services
       }
     }
 
-    public int DayInMonth => (int)(Ticks / TicksPerDay % 28) + 1;
+    public int DayInMonth
+    {
+      get => (int)(Ticks / TicksPerDay % 28) + 1;
+    }
 
-    public int DayInYear => Month * DaysInMonth + DayInMonth;
+    public int DayInYear
+    {
+      get => Month * DaysInMonth + DayInMonth;
+    }
 
-    public int Month => (int)(Ticks / TicksPerMonth % 12) + 1;
+    public int Month
+    {
+      get => (int)(Ticks / TicksPerMonth % 12) + 1;
+    }
 
-    public int Year => (int)(Ticks / TicksPerYear);
+    public int Year
+    {
+      get => (int)(Ticks / TicksPerYear);
+    }
 
-    public NwDateTime Date => new NwDateTime(Ticks - Ticks % TicksPerDay);
+    public NwDateTime Date
+    {
+      get => new NwDateTime(Ticks - Ticks % TicksPerDay);
+    }
 
     /// <summary>
     ///  Gets or sets the current module date and time.
@@ -59,9 +86,8 @@ namespace NWN.Services
     /// </summary>
     public static NwDateTime Now
     {
-      get
-      {
-        return new NwDateTime(
+      get =>
+        new NwDateTime(
           NWScript.GetCalendarYear(),
           NWScript.GetCalendarMonth(),
           NWScript.GetCalendarDay(),
@@ -69,7 +95,6 @@ namespace NWN.Services
           NWScript.GetTimeMinute(),
           NWScript.GetTimeSecond(),
           NWScript.GetTimeMillisecond());
-      }
 
       set
       {
@@ -101,7 +126,7 @@ namespace NWN.Services
 
     private NwDateTime(long ticks)
     {
-      this.Ticks = ticks;
+      Ticks = ticks;
     }
 
     public static NwDateTime FromTicks(long ticks)
@@ -142,19 +167,40 @@ namespace NWN.Services
       return new NwDateTime(Ticks + value * scale);
     }
 
-    public NwDateTime AddMilliseconds(int milliseconds) => Add(milliseconds, 1);
+    public NwDateTime AddMilliseconds(int milliseconds)
+    {
+      return Add(milliseconds, 1);
+    }
 
-    public NwDateTime AddSeconds(int seconds) => Add(seconds, TicksPerSecond);
+    public NwDateTime AddSeconds(int seconds)
+    {
+      return Add(seconds, TicksPerSecond);
+    }
 
-    public NwDateTime AddMinutes(int minutes) => Add(minutes, TicksPerMinute);
+    public NwDateTime AddMinutes(int minutes)
+    {
+      return Add(minutes, TicksPerMinute);
+    }
 
-    public NwDateTime AddHours(int hours) => Add(hours, TicksPerHour);
+    public NwDateTime AddHours(int hours)
+    {
+      return Add(hours, TicksPerHour);
+    }
 
-    public NwDateTime AddDays(int days) => Add(days, TicksPerDay);
+    public NwDateTime AddDays(int days)
+    {
+      return Add(days, TicksPerDay);
+    }
 
-    public NwDateTime AddMonths(int months) => Add(months, TicksPerMonth);
+    public NwDateTime AddMonths(int months)
+    {
+      return Add(months, TicksPerMonth);
+    }
 
-    public NwDateTime AddYears(int years) => Add(years, TicksPerYear);
+    public NwDateTime AddYears(int years)
+    {
+      return Add(years, TicksPerYear);
+    }
 
     public override string ToString()
     {

@@ -39,7 +39,10 @@ namespace NWN.API
     /// <summary>
     /// Waits until the next server frame/loop.
     /// </summary>
-    public static async Task NextFrame() => await DelayFrame(1);
+    public static async Task NextFrame()
+    {
+      await DelayFrame(1);
+    }
 
     /// <summary>
     /// Waits until the specified amount of frames have passed.

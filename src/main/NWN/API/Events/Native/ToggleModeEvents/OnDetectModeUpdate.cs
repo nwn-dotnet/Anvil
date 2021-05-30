@@ -15,7 +15,10 @@ namespace NWN.API.Events
 
     public NwCreature Creature { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetDetectModeHook>
     {
@@ -54,7 +57,7 @@ namespace NWN.API.Events
         OnDetectModeUpdate eventData = ProcessEvent(new OnDetectModeUpdate
         {
           Creature = creature.ToNwObject<NwCreature>(),
-          EventType = ToggleModeEventType.Enter
+          EventType = ToggleModeEventType.Enter,
         });
 
         if (!eventData.Prevent)
@@ -72,7 +75,7 @@ namespace NWN.API.Events
         OnDetectModeUpdate eventData = ProcessEvent(new OnDetectModeUpdate
         {
           Creature = creature.ToNwObject<NwCreature>(),
-          EventType = ToggleModeEventType.Exit
+          EventType = ToggleModeEventType.Exit,
         });
 
         if (!eventData.Prevent)

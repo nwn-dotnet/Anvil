@@ -11,6 +11,6 @@ namespace NWN.API.Constants
     Attacked = NWScript.EVENT_ATTACKED,
     Damaged = NWScript.EVENT_DAMAGED,
     Disturbed = NWScript.EVENT_DISTURBED,
-    SpellCastAt = NWScript.EVENT_SPELL_CAST_AT
+    SpellCastAt = NWScript.EVENT_SPELL_CAST_AT,
   }
 }

@@ -27,7 +27,10 @@ namespace NWN.API.Events
 
     public bool SuppressCannotUseFeedback { get; set; }
 
-    NwObject IEvent.Context => UsedBy;
+    NwObject IEvent.Context
+    {
+      get => UsedBy;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.UseItemHook>
     {

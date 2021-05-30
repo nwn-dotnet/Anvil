@@ -556,6 +556,6 @@ namespace NWN.API.Constants
     HorsePartyMount = NWScript.SPELL_HORSE_PARTY_MOUNT,
     HorsePartyDismount = NWScript.SPELL_HORSE_PARTY_DISMOUNT,
     HorseAssignMount = NWScript.SPELL_HORSE_ASSIGN_MOUNT,
-    PaladinSummonMount = NWScript.SPELL_PALADIN_SUMMON_MOUNT
+    PaladinSummonMount = NWScript.SPELL_PALADIN_SUMMON_MOUNT,
   }
 }

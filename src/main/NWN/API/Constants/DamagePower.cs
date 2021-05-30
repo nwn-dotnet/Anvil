@@ -25,6 +25,6 @@ namespace NWN.API.Constants
     Plus18 = NWScript.DAMAGE_POWER_PLUS_EIGHTEEN,
     Plus19 = NWScript.DAMAGE_POWER_PLUS_NINTEEN,
     Plus20 = NWScript.DAMAGE_POWER_PLUS_TWENTY,
-    Energy = NWScript.DAMAGE_POWER_ENERGY
+    Energy = NWScript.DAMAGE_POWER_ENERGY,
   }
 }

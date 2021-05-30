@@ -28,7 +28,7 @@ namespace NWN.API
   /// <summary>
   /// Represents a local variable stored on an Object.
   /// </summary>
-  public class LocalVariable<T> : LocalVariable, IEquatable<LocalVariable<T>>
+  public sealed class LocalVariable<T> : LocalVariable, IEquatable<LocalVariable<T>>
   {
     private ILocalVariableConverter<T> converter;
 
@@ -36,10 +36,12 @@ namespace NWN.API
 
     internal static LocalVariable<T> Create(NwObject instance, string name)
     {
-      LocalVariable<T> variable = new LocalVariable<T>();
-      variable.Name = name;
-      variable.Object = instance;
-      variable.converter = VariableConverterService.GetLocalConverter<T>();
+      LocalVariable<T> variable = new LocalVariable<T>
+      {
+        Name = name,
+        Object = instance,
+        converter = VariableConverterService.GetLocalConverter<T>(),
+      };
 
       return variable;
     }
@@ -56,7 +58,10 @@ namespace NWN.API
     /// <summary>
     /// Gets a value indicating whether this variable has no value.
     /// </summary>
-    public bool HasNothing => !HasValue;
+    public bool HasNothing
+    {
+      get => !HasValue;
+    }
 
     /// <summary>
     /// Gets a value indicating whether this variable has a value.
@@ -77,7 +82,10 @@ namespace NWN.API
     /// <summary>
     /// Deletes the value of this variable.
     /// </summary>
-    public override void Delete() => converter.ClearLocal(Object, Name);
+    public override void Delete()
+    {
+      converter.ClearLocal(Object, Name);
+    }
 
     public bool Equals(LocalVariable<T> other)
     {
@@ -106,7 +114,7 @@ namespace NWN.API
         return true;
       }
 
-      if (obj.GetType() != this.GetType())
+      if (obj.GetType() != GetType())
       {
         return false;
       }

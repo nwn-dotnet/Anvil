@@ -6,6 +6,6 @@ namespace NWN.API.Constants
   {
     Normal = NWScript.INVISIBILITY_TYPE_NORMAL,
     Darkness = NWScript.INVISIBILITY_TYPE_DARKNESS,
-    Improved = NWScript.INVISIBILITY_TYPE_IMPROVED
+    Improved = NWScript.INVISIBILITY_TYPE_IMPROVED,
   }
 }

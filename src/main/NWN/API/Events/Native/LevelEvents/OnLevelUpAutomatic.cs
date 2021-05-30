@@ -8,7 +8,10 @@ namespace NWN.API.Events
   {
     public NwCreature Creature { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.LevelUpAutomaticHook>
     {

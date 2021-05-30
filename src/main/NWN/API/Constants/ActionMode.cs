@@ -15,6 +15,6 @@ namespace NWN.API.Constants
     Expertise = NWScript.ACTION_MODE_EXPERTISE,
     ImprovedExpertise = NWScript.ACTION_MODE_IMPROVED_EXPERTISE,
     DefensiveCast = NWScript.ACTION_MODE_DEFENSIVE_CAST,
-    DirtyFighting = NWScript.ACTION_MODE_DIRTY_FIGHTING
+    DirtyFighting = NWScript.ACTION_MODE_DIRTY_FIGHTING,
   }
 }

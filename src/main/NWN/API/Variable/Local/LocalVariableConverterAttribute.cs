@@ -11,7 +11,7 @@ namespace NWN.API
   /// </summary>
   [AttributeUsage(AttributeTargets.Class)]
   [MeansImplicitUse]
-  public class LocalVariableConverterAttribute : Attribute
+  public sealed class LocalVariableConverterAttribute : Attribute
   {
     public readonly Type[] Types;
 
@@ -21,7 +21,7 @@ namespace NWN.API
     /// <param name="types">The type/s handled by this converter. Each type must have a corresponding <see cref="ILocalVariableConverter{T}"/> interface that is implemented in the class.</param>
     public LocalVariableConverterAttribute(params Type[] types)
     {
-      this.Types = types;
+      Types = types;
     }
   }
 }

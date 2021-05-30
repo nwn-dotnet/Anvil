@@ -35,6 +35,6 @@ namespace NWN.API.Constants
     PaleDarkOrange = NWScript.TILE_MAIN_LIGHT_COLOR_PALE_DARK_ORANGE,
     DarkOrange = NWScript.TILE_MAIN_LIGHT_COLOR_DARK_ORANGE,
     PaleOrange = NWScript.TILE_MAIN_LIGHT_COLOR_PALE_ORANGE,
-    Orange = NWScript.TILE_MAIN_LIGHT_COLOR_ORANGE
+    Orange = NWScript.TILE_MAIN_LIGHT_COLOR_ORANGE,
   }
 }

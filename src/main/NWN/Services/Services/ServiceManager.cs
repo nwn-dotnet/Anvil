@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using LightInject;
 using NLog;
 using NWN.Plugins;
@@ -7,14 +8,15 @@ using NWN.Plugins;
 namespace NWN.Services
 {
   [ServiceBindingOptions(BindingOrder.Core)]
-  public class ServiceManager
+  public sealed class ServiceManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    [UsedImplicitly]
     private readonly ITypeLoader typeLoader;
-    private readonly IContainerBuilder containerBuilder;
 
-    private ServiceContainer serviceContainer;
+    private readonly IContainerBuilder containerBuilder;
+    private readonly ServiceContainer serviceContainer;
 
     public List<object> RegisteredServices { get; private set; }
 
@@ -24,10 +26,14 @@ namespace NWN.Services
 
       this.typeLoader = typeLoader;
       this.containerBuilder = containerBuilder;
-      this.serviceContainer = containerBuilder.Setup(typeLoader);
+
+      serviceContainer = containerBuilder.Setup(typeLoader);
     }
 
-    internal void RegisterCoreService<T>(T instance) => containerBuilder.RegisterCoreService(instance);
+    internal void RegisterCoreService<T>(T instance)
+    {
+      containerBuilder.RegisterCoreService(instance);
+    }
 
     internal void Init()
     {

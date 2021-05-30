@@ -20,7 +20,10 @@ namespace NWN.API.Events
 
     public NwCreature Creature { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetStealthModeHook>
     {
@@ -59,7 +62,7 @@ namespace NWN.API.Events
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
           Creature = creature.ToNwObject<NwCreature>(),
-          EventType = ToggleModeEventType.Enter
+          EventType = ToggleModeEventType.Enter,
         });
 
         switch (eventData.EnterOverride)
@@ -84,7 +87,7 @@ namespace NWN.API.Events
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
           Creature = creature.ToNwObject<NwCreature>(),
-          EventType = ToggleModeEventType.Exit
+          EventType = ToggleModeEventType.Exit,
         });
 
         if (eventData.PreventExit)

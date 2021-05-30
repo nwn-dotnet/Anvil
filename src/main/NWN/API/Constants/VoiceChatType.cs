@@ -52,6 +52,6 @@ namespace NWN.API.Constants
     TalkToMe = NWScript.VOICE_CHAT_TALKTOME,
     GoodIdea = NWScript.VOICE_CHAT_GOODIDEA,
     BadIdea = NWScript.VOICE_CHAT_BADIDEA,
-    Threaten = NWScript.VOICE_CHAT_THREATEN
+    Threaten = NWScript.VOICE_CHAT_THREATEN,
   }
 }

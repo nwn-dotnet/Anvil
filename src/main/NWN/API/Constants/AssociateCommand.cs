@@ -25,6 +25,6 @@ namespace NWN.API.Constants
     DisarmTrap = NWScript.ASSOCIATE_COMMAND_DISARMTRAP,
     ToggleCasting = NWScript.ASSOCIATE_COMMAND_TOGGLECASTING,
     ToggleStealth = NWScript.ASSOCIATE_COMMAND_TOGGLESTEALTH,
-    ToggleSearch = NWScript.ASSOCIATE_COMMAND_TOGGLESEARCH
+    ToggleSearch = NWScript.ASSOCIATE_COMMAND_TOGGLESEARCH,
   }
 }

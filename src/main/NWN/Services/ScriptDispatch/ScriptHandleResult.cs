@@ -5,6 +5,6 @@ namespace NWN.Services
     NotHandled = -1,
     Handled = 0,
     False = 0,
-    True = 1
+    True = 1,
   }
 }

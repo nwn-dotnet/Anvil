@@ -10,6 +10,6 @@ namespace NWN.API.Constants
     SilentTalk = NWScript.TALKVOLUME_SILENT_TALK,
     SilentShout = NWScript.TALKVOLUME_SILENT_SHOUT,
     Party = NWScript.TALKVOLUME_PARTY,
-    Tell = NWScript.TALKVOLUME_TELL
+    Tell = NWScript.TALKVOLUME_TELL,
   }
 }

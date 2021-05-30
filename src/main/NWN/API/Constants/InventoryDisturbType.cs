@@ -6,6 +6,6 @@ namespace NWN.API.Constants
   {
     Added = NWScript.INVENTORY_DISTURB_TYPE_ADDED,
     Removed = NWScript.INVENTORY_DISTURB_TYPE_REMOVED,
-    Stolen = NWScript.INVENTORY_DISTURB_TYPE_STOLEN
+    Stolen = NWScript.INVENTORY_DISTURB_TYPE_STOLEN,
   }
 }

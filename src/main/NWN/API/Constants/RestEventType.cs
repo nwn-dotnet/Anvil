@@ -7,6 +7,6 @@ namespace NWN.API.Constants
     Invalid = NWScript.REST_EVENTTYPE_REST_INVALID,
     Started = NWScript.REST_EVENTTYPE_REST_STARTED,
     Finished = NWScript.REST_EVENTTYPE_REST_FINISHED,
-    Cancelled = NWScript.REST_EVENTTYPE_REST_CANCELLED
+    Cancelled = NWScript.REST_EVENTTYPE_REST_CANCELLED,
   }
 }

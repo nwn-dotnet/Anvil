@@ -79,6 +79,6 @@ namespace NWN.API.Constants
     Ethereal = NWScript.EFFECT_TYPE_ETHEREAL,
     SpellFailure = NWScript.EFFECT_TYPE_SPELL_FAILURE,
     CutsceneGhost = NWScript.EFFECT_TYPE_CUTSCENEGHOST,
-    CutsceneImmobilize = NWScript.EFFECT_TYPE_CUTSCENEIMMOBILIZE
+    CutsceneImmobilize = NWScript.EFFECT_TYPE_CUTSCENEIMMOBILIZE,
   }
 }

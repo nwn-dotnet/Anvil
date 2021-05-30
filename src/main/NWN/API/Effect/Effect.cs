@@ -10,11 +10,20 @@ namespace NWN.API
   {
     internal Effect(IntPtr handle, CGameEffect effect) : base(handle, effect) {}
 
-    public static implicit operator IntPtr(Effect effect) => effect.Handle;
+    public static implicit operator IntPtr(Effect effect)
+    {
+      return effect.Handle;
+    }
 
-    public static implicit operator Effect(IntPtr intPtr) => new Effect(intPtr, CGameEffect.FromPointer(intPtr));
+    public static implicit operator Effect(IntPtr intPtr)
+    {
+      return new Effect(intPtr, CGameEffect.FromPointer(intPtr));
+    }
 
-    public static explicit operator Effect(ItemProperty itemProperty) => new Effect(itemProperty, itemProperty);
+    public static explicit operator Effect(ItemProperty itemProperty)
+    {
+      return new Effect(itemProperty, itemProperty);
+    }
 
     private protected override void ReleaseUnmanagedResources()
     {
@@ -26,7 +35,7 @@ namespace NWN.API
     /// </summary>
     public EffectType EffectType
     {
-      get => (EffectType) NWScript.GetEffectType(this);
+      get => (EffectType)NWScript.GetEffectType(this);
     }
 
     /// <summary>
@@ -34,7 +43,7 @@ namespace NWN.API
     /// </summary>
     public EffectDuration DurationType
     {
-      get => (EffectDuration) NWScript.GetEffectDurationType(this);
+      get => (EffectDuration)NWScript.GetEffectDurationType(this);
     }
 
     /// <summary>

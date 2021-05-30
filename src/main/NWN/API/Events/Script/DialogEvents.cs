@@ -22,7 +22,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject LastSpeaker { get; }
 
-      NwObject IEvent.Context => CurrentSpeaker;
+      NwObject IEvent.Context
+      {
+        get => CurrentSpeaker;
+      }
 
       public ActionTaken()
       {
@@ -32,10 +35,14 @@ namespace NWN.API.Events
       }
 
       public void PauseConversation()
-        => NWScript.ActionPauseConversation();
+      {
+        NWScript.ActionPauseConversation();
+      }
 
       public void ResumeConversation()
-        => NWScript.ActionResumeConversation();
+      {
+        NWScript.ActionResumeConversation();
+      }
     }
 
     public class AppearsWhen : IEventScriptResult
@@ -60,9 +67,15 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject LastSpeaker { get; }
 
-      NwObject IEvent.Context => CurrentSpeaker;
+      NwObject IEvent.Context
+      {
+        get => CurrentSpeaker;
+      }
 
-      ScriptHandleResult IEventScriptResult.Result => ShouldShow ? ScriptHandleResult.True : ScriptHandleResult.False;
+      ScriptHandleResult IEventScriptResult.Result
+      {
+        get => ShouldShow ? ScriptHandleResult.True : ScriptHandleResult.False;
+      }
 
       public AppearsWhen()
       {

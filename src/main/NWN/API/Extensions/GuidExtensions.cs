@@ -27,7 +27,7 @@ namespace NWN.API
     /// <exception cref="InvalidCastException">Object is not type T. See <see cref="ToNwObjectSafe{T}"/> if null should be returned in this case.</exception>
     public static T ToNwObject<T>(this Guid objectId) where T : NwObject
     {
-      return (T) NwObject.CreateInternal(objectId);
+      return (T)NwObject.CreateInternal(objectId);
     }
 
     /// <summary>

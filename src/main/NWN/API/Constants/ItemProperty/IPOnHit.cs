@@ -28,6 +28,6 @@ namespace NWN.API.Constants
     SlayAlignmentGroup = NWScript.IP_CONST_ONHIT_SLAYALIGNMENTGROUP,
     SlayAlignment = NWScript.IP_CONST_ONHIT_SLAYALIGNMENT,
     Vorpal = NWScript.IP_CONST_ONHIT_VORPAL,
-    Wounding = NWScript.IP_CONST_ONHIT_WOUNDING
+    Wounding = NWScript.IP_CONST_ONHIT_WOUNDING,
   }
 }

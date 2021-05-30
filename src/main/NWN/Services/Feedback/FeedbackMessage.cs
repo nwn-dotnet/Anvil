@@ -284,6 +284,6 @@ namespace NWN.Services
     CameraChaseCam = 258,
 
     Saving = 225,
-    SaveComplete = 226
+    SaveComplete = 226,
   }
 }

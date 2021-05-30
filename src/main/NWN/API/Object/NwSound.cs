@@ -6,13 +6,13 @@ using NWN.Native.API;
 namespace NWN.API
 {
   [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
-  public class NwSound : NwGameObject
+  public sealed class NwSound : NwGameObject
   {
     internal readonly CNWSSoundObject SoundObject;
 
     public NwSound(CNWSSoundObject soundObject) : base(soundObject)
     {
-      this.SoundObject = soundObject;
+      SoundObject = soundObject;
     }
 
     public static implicit operator CNWSSoundObject(NwSound sound)
@@ -45,12 +45,18 @@ namespace NWN.API
     /// <summary>
     /// Plays this sound object.
     /// </summary>
-    public void Play() => NWScript.SoundObjectPlay(this);
+    public void Play()
+    {
+      NWScript.SoundObjectPlay(this);
+    }
 
     /// <summary>
     /// Stops this sound object from playing.
     /// </summary>
-    public void Stop() => NWScript.SoundObjectStop(this);
+    public void Stop()
+    {
+      NWScript.SoundObjectStop(this);
+    }
 
     public override byte[] Serialize()
     {
@@ -73,7 +79,7 @@ namespace NWN.API
           return false;
         }
 
-        soundObject = new CNWSSoundObject(INVALID);
+        soundObject = new CNWSSoundObject(Invalid);
         if (soundObject.Load(resGff, resStruct).ToBool())
         {
           soundObject.LoadObjectState(resGff, resStruct);

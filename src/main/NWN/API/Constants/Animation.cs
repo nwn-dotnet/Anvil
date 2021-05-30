@@ -121,6 +121,6 @@ namespace NWN.API.Constants
     DoorClose = NWScript.ANIMATION_DOOR_CLOSE,
     DoorOpen1 = NWScript.ANIMATION_DOOR_OPEN1,
     DoorOpen2 = NWScript.ANIMATION_DOOR_OPEN2,
-    DoorDestroy = NWScript.ANIMATION_DOOR_DESTROY
+    DoorDestroy = NWScript.ANIMATION_DOOR_DESTROY,
   }
 }

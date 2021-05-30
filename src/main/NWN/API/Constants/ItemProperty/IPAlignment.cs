@@ -12,6 +12,6 @@ namespace NWN.API.Constants
     NeutralEvil = NWScript.IP_CONST_ALIGNMENT_NE,
     ChaoticGood = NWScript.IP_CONST_ALIGNMENT_CG,
     ChaoticNeutral = NWScript.IP_CONST_ALIGNMENT_CN,
-    ChaoticEvil = NWScript.IP_CONST_ALIGNMENT_CE
+    ChaoticEvil = NWScript.IP_CONST_ALIGNMENT_CE,
   }
 }

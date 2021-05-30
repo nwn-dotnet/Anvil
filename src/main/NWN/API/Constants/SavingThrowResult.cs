@@ -4,6 +4,6 @@ namespace NWN.API.Constants
   {
     Failure = 0,
     Success = 1,
-    Immune = 2
+    Immune = 2,
   }
 }

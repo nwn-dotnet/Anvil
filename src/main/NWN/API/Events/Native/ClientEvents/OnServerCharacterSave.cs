@@ -21,7 +21,10 @@ namespace NWN.API.Events
     /// </summary>
     public bool PreventSave { get; set; }
 
-    NwObject IEvent.Context => Player.ControlledCreature;
+    NwObject IEvent.Context
+    {
+      get => Player.ControlledCreature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SaveServerCharacterHook>
     {
@@ -38,7 +41,7 @@ namespace NWN.API.Events
       {
         OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave
         {
-          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
         });
 
         return !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;

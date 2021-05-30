@@ -7,6 +7,6 @@ namespace NWN.API.Constants
     None = NWScript.CREATURE_TAIL_TYPE_NONE,
     Lizard = NWScript.CREATURE_TAIL_TYPE_LIZARD,
     Bone = NWScript.CREATURE_TAIL_TYPE_BONE,
-    Devil = NWScript.CREATURE_TAIL_TYPE_DEVIL
+    Devil = NWScript.CREATURE_TAIL_TYPE_DEVIL,
   }
 }

@@ -13,7 +13,7 @@ namespace NWN.API
 
     internal NwStore(CNWSStore store) : base(store)
     {
-      this.Store = store;
+      Store = store;
     }
 
     public static implicit operator CNWSStore(NwStore store)
@@ -54,7 +54,7 @@ namespace NWN.API
 
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return NwObject.CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
+      return CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
     }
 
     public int StoreGold
@@ -88,7 +88,7 @@ namespace NWN.API
       NWScript.OpenStore(this, player.ControlledCreature, bonusMarkup, bonusMarkDown);
     }
 
-    public void AcquireItem(NwItem item, bool displayFeedback = true)
+    public void AcquireItem(NwItem item)
     {
       if (item == null)
       {
@@ -118,7 +118,7 @@ namespace NWN.API
           return false;
         }
 
-        store = new CNWSStore(INVALID);
+        store = new CNWSStore(Invalid);
         if (store.LoadStore(resGff, resStruct, null).ToBool())
         {
           store.LoadObjectState(resGff, resStruct);

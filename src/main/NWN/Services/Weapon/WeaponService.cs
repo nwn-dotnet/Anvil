@@ -307,23 +307,24 @@ namespace NWN.Services
       overrideData.MaxRangedPassiveAttackDistance = maxPassive;
 
       maxRangedAttackDistanceOverrideMap[(uint)baseItem] = overrideData;
+      maxAttackRangeHook ??= hookService.RequestHook<MaxAttackRangeHook>(OnMaxAttackRange, FunctionsLinux._ZN12CNWSCreature14MaxAttackRangeEjii, HookOrder.Final);
+    }
 
-      maxAttackRangeHook ??= hookService.RequestHook<MaxAttackRangeHook>((pCreature, oidTarget, bBaseValue, bPassiveRange) =>
+    private float OnMaxAttackRange(void* pCreature, uint oidTarget, int bBaseValue, int bPassiveRange)
+    {
+      CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
+      CNWSItem equippedItem = creature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.RightHand);
+      if (equippedItem != null)
       {
-        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
-        CNWSItem equippedItem = creature.m_pInventory.GetItemInSlot((uint)EquipmentSlot.RightHand);
-        if (equippedItem != null)
+        uint baseItemType = equippedItem.m_nBaseItem;
+        CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)baseItemType);
+        if (baseItem != null && baseItem.m_nWeaponRanged > 0 && maxRangedAttackDistanceOverrideMap.TryGetValue(baseItemType, out MaxRangedAttackDistanceOverride distanceOverride))
         {
-          uint baseItemType = equippedItem.m_nBaseItem;
-          CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)baseItemType);
-          if (baseItem != null && baseItem.m_nWeaponRanged > 0 && maxRangedAttackDistanceOverrideMap.TryGetValue(baseItemType, out MaxRangedAttackDistanceOverride distanceOverride))
-          {
-            return bPassiveRange.ToBool() ? distanceOverride.MaxRangedPassiveAttackDistance : distanceOverride.MaxRangedAttackDistance;
-          }
+          return bPassiveRange.ToBool() ? distanceOverride.MaxRangedPassiveAttackDistance : distanceOverride.MaxRangedAttackDistance;
         }
+      }
 
-        return creature.DesiredAttackRange(oidTarget, bBaseValue) + 1.5f;
-      }, FunctionsLinux._ZN12CNWSCreature14MaxAttackRangeEjii, HookOrder.Final);
+      return creature.DesiredAttackRange(oidTarget, bBaseValue) + 1.5f;
     }
 
     void IDisposable.Dispose()

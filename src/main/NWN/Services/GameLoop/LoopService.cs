@@ -24,9 +24,10 @@ namespace NWN.Services
     public void OnLoop()
     {
       loopTimeService.UpdateTime();
-      for (int i = 0; i < updateables.Length; i++)
+
+      foreach (IUpdateable updateable in updateables)
       {
-        updateables[i].Update();
+        updateable.Update();
       }
     }
   }

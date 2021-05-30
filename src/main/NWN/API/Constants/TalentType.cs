@@ -6,6 +6,6 @@ namespace NWN.API.Constants
   {
     Spell = NWScript.TALENT_TYPE_SPELL,
     Feat = NWScript.TALENT_TYPE_FEAT,
-    Skill = NWScript.TALENT_TYPE_SKILL
+    Skill = NWScript.TALENT_TYPE_SKILL,
   }
 }

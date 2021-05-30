@@ -16,7 +16,10 @@ namespace NWN.API.Events
 
     public EquipValidationResult Result { get; set; }
 
-    NwObject IEvent.Context => UsedBy;
+    NwObject IEvent.Context
+    {
+      get => UsedBy;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.CanEquipItemHook>
     {

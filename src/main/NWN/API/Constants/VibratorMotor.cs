@@ -6,6 +6,6 @@ namespace NWN.API.Constants
   {
     Any = NWScript.VIBRATOR_MOTOR_ANY,
     Left = NWScript.VIBRATOR_MOTOR_LEFT,
-    Right = NWScript.VIBRATOR_MOTOR_RIGHT
+    Right = NWScript.VIBRATOR_MOTOR_RIGHT,
   }
 }

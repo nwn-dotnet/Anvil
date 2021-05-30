@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NWN.Services
 {
-  internal class ScheduledItem : IDisposable
+  internal sealed class ScheduledItem : IDisposable
   {
     private readonly Action task;
 
@@ -17,21 +17,21 @@ namespace NWN.Services
     public ScheduledItem(Action task, double executionTime)
     {
       this.task = task;
-      this.ExecutionTime = executionTime;
+      ExecutionTime = executionTime;
       Repeating = false;
     }
 
     public ScheduledItem(Action task, double executionTime, double schedule)
     {
       this.task = task;
-      this.ExecutionTime = executionTime;
-      this.Schedule = schedule;
+      ExecutionTime = executionTime;
+      Schedule = schedule;
       Repeating = true;
     }
 
     public void Reschedule(double newTime)
     {
-      this.ExecutionTime = newTime;
+      ExecutionTime = newTime;
     }
 
     public void Execute()

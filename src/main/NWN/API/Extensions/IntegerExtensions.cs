@@ -50,7 +50,7 @@ namespace NWN.API
 
     public static T ToNwObject<T>(this uint objectId) where T : NwObject
     {
-      return (T) NwObject.CreateInternal(objectId);
+      return (T)NwObject.CreateInternal(objectId);
     }
 
     public static NwObject ToNwObject(this uint objectId)

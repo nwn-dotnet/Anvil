@@ -12,7 +12,10 @@ namespace NWN.API.Events
 
     public NwCreature Target { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.DoListenDetectionHook>
     {
@@ -38,7 +41,7 @@ namespace NWN.API.Events
         OnDoListenDetection eventData = ProcessEvent(new OnDoListenDetection
         {
           Creature = creature.ToNwObject<NwCreature>(),
-          Target = target.ToNwObject<NwCreature>()
+          Target = target.ToNwObject<NwCreature>(),
         });
 
         switch (eventData.VisibilityOverride)

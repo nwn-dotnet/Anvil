@@ -33,6 +33,6 @@ namespace NWN.API.Constants
     Plus2d6 = NWScript.DAMAGE_BONUS_2d6,
     Plus2d8 = NWScript.DAMAGE_BONUS_2d8,
     Plus2d10 = NWScript.DAMAGE_BONUS_2d10,
-    Plus2d12 = NWScript.DAMAGE_BONUS_2d12
+    Plus2d12 = NWScript.DAMAGE_BONUS_2d12,
   }
 }

@@ -12,6 +12,6 @@ namespace NWN.API.Constants
     IsAlive = NWScript.CREATURE_TYPE_IS_ALIVE,
     HasSpellEffect = NWScript.CREATURE_TYPE_HAS_SPELL_EFFECT,
     DoesNotHaveSpellEffect = NWScript.CREATURE_TYPE_DOES_NOT_HAVE_SPELL_EFFECT,
-    Perception = NWScript.CREATURE_TYPE_PERCEPTION
+    Perception = NWScript.CREATURE_TYPE_PERCEPTION,
   }
 }

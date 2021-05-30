@@ -14,7 +14,10 @@ namespace NWN.API.Events
 
     public NwItem Item { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.PayToIdentifyItemHook>
     {

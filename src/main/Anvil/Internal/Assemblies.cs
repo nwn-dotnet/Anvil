@@ -19,7 +19,7 @@ namespace Anvil.Internal
       Core,
       Native,
       typeof(NLog.Logger).Assembly,
-      typeof(LightInject.ServiceContainer).Assembly
+      typeof(LightInject.ServiceContainer).Assembly,
     };
 
     public static readonly List<string> ReservedNames = AllAssemblies

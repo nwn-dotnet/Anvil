@@ -5,6 +5,6 @@ namespace NWN.API.Constants
     Occupied = -2,
     IsSpawnArea = -1,
     InvalidArea = 0,
-    Success = 1
+    Success = 1,
   }
 }

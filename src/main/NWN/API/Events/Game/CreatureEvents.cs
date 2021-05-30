@@ -25,7 +25,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwDoor BlockingDoor { get; } = NWScript.GetBlockingDoor().ToNwObject<NwDoor>();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
     }
 
     /// <summary>
@@ -39,7 +42,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
     }
 
     /// <summary>
@@ -63,7 +69,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject LastSpeaker { get; } = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => CurrentSpeaker;
+      NwObject IEvent.Context
+      {
+        get => CurrentSpeaker;
+      }
 
       public static void Signal(NwCreature creature)
       {
@@ -72,10 +81,14 @@ namespace NWN.API.Events
       }
 
       public void PauseConversation()
-        => NWScript.ActionPauseConversation();
+      {
+        NWScript.ActionPauseConversation();
+      }
 
       public void ResumeConversation()
-        => NWScript.ActionResumeConversation();
+      {
+        NWScript.ActionResumeConversation();
+      }
     }
 
     /// <summary>
@@ -99,7 +112,10 @@ namespace NWN.API.Events
       /// </summary>
       public int DamageAmount { get; } = NWScript.GetTotalDamageDealt();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
     }
 
     /// <summary>
@@ -118,7 +134,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => KilledCreature;
+      NwObject IEvent.Context
+      {
+        get => KilledCreature;
+      }
     }
 
     /// <summary>
@@ -127,7 +146,7 @@ namespace NWN.API.Events
     [GameEvent(EventScriptType.CreatureOnDisturbed)]
     public sealed class OnDisturbed : IEvent
     {
-      public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType) NWScript.GetInventoryDisturbType();
+      public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType)NWScript.GetInventoryDisturbType();
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that had its inventory disturbed.
@@ -144,7 +163,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwItem DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
 
-      NwObject IEvent.Context => CreatureDisturbed;
+      NwObject IEvent.Context
+      {
+        get => CreatureDisturbed;
+      }
     }
 
     /// <summary>
@@ -158,7 +180,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
     }
 
     /// <summary>
@@ -182,7 +207,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature PerceivedCreature { get; } = NWScript.GetLastPerceived().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
 
       private static PerceptionEventType GetPerceptionEventType()
       {
@@ -226,7 +254,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
     }
 
     /// <summary>
@@ -240,7 +271,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
     }
 
     /// <summary>
@@ -254,7 +288,10 @@ namespace NWN.API.Events
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
     }
 
     /// <summary>
@@ -283,7 +320,10 @@ namespace NWN.API.Events
       /// </summary>
       public bool Harmful { get; } = NWScript.GetLastSpellHarmful().ToBool();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
 
       public static void Signal(NwObject caster, NwCreature target, Spell spell, bool harmful = true)
       {
@@ -299,7 +339,10 @@ namespace NWN.API.Events
 
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Creature;
+      NwObject IEvent.Context
+      {
+        get => Creature;
+      }
 
       public static void Signal(NwCreature creature, int eventId)
       {

@@ -5,7 +5,7 @@ using NWN.Core;
 
 namespace NWN.Services
 {
-  public class FunctionHook<T> : IDisposable where T : Delegate
+  public sealed class FunctionHook<T> : IDisposable where T : Delegate
   {
     private readonly HookService hookService;
     private readonly IntPtr nativeFuncPtr;

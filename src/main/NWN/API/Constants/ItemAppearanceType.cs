@@ -8,6 +8,6 @@ namespace NWN.API.Constants
     WeaponColor = NWScript.ITEM_APPR_TYPE_WEAPON_COLOR,
     WeaponModel = NWScript.ITEM_APPR_TYPE_WEAPON_MODEL,
     ArmorModel = NWScript.ITEM_APPR_TYPE_ARMOR_MODEL,
-    ArmorColor = NWScript.ITEM_APPR_TYPE_ARMOR_COLOR
+    ArmorColor = NWScript.ITEM_APPR_TYPE_ARMOR_COLOR,
   }
 }

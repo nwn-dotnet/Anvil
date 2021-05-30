@@ -13,6 +13,6 @@ namespace NWN.API.Constants
     Evocation = NWScript.SPELL_SCHOOL_EVOCATION,
     Illusion = NWScript.SPELL_SCHOOL_ILLUSION,
     Necromancy = NWScript.SPELL_SCHOOL_NECROMANCY,
-    Transmutation = NWScript.SPELL_SCHOOL_TRANSMUTATION
+    Transmutation = NWScript.SPELL_SCHOOL_TRANSMUTATION,
   }
 }

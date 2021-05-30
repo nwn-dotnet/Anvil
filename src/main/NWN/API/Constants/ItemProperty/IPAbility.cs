@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     Constitution = NWScript.IP_CONST_ABILITY_CON,
     Intelligence = NWScript.IP_CONST_ABILITY_INT,
     Wisdom = NWScript.IP_CONST_ABILITY_WIS,
-    Charisma = NWScript.IP_CONST_ABILITY_CHA
+    Charisma = NWScript.IP_CONST_ABILITY_CHA,
   }
 }

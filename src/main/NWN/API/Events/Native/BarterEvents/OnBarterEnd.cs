@@ -19,7 +19,10 @@ namespace NWN.API.Events
 
     public bool Complete { get; private init; }
 
-    NwObject IEvent.Context => Initiator.ControlledCreature;
+    NwObject IEvent.Context
+    {
+      get => Initiator.ControlledCreature;
+    }
 
     internal sealed unsafe class Factory : MultiHookEventFactory
     {
@@ -46,7 +49,7 @@ namespace NWN.API.Events
       {
         if (pBarter != null && bAccepted.ToBool())
         {
-          OnBarterEnd eventData = GetBarterEventData(CNWSBarter.FromPointer(pBarter),  bAccepted.ToBool());
+          OnBarterEnd eventData = GetBarterEventData(CNWSBarter.FromPointer(pBarter), bAccepted.ToBool());
 
           if (eventData != null)
           {
@@ -111,7 +114,7 @@ namespace NWN.API.Events
           Target = target.m_pOwner.m_idSelf.ToNwPlayer(),
           Complete = true,
           InitiatorItems = GetBarterItems(initiator),
-          TargetItems = GetBarterItems(target)
+          TargetItems = GetBarterItems(target),
         };
       }
 
@@ -127,7 +130,7 @@ namespace NWN.API.Events
         };
       }
 
-      private static unsafe IReadOnlyList<NwItem> GetBarterItems(CNWSBarter barter)
+      private static IReadOnlyList<NwItem> GetBarterItems(CNWSBarter barter)
       {
         List<NwItem> items = new List<NwItem>();
         if (barter.m_pBarterList == null)

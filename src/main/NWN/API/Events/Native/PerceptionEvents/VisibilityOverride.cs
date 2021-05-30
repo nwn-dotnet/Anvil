@@ -4,6 +4,6 @@ namespace NWN.API.Events
   {
     None,
     Visible,
-    NotVisible
+    NotVisible,
   }
 }

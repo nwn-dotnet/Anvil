@@ -78,6 +78,6 @@ namespace NWN.API.Constants
     HotuBattleLarge = NWScript.TRACK_HOTU_BATTLE_LARGE,
     HotuBattleHell = NWScript.TRACK_HOTU_BATTLE_HELL,
     HotuBattleBoss1 = NWScript.TRACK_HOTU_BATTLE_BOSS1,
-    HotuBattleBoss2 = NWScript.TRACK_HOTU_BATTLE_BOSS2
+    HotuBattleBoss2 = NWScript.TRACK_HOTU_BATTLE_BOSS2,
   }
 }

@@ -17,7 +17,7 @@ namespace NWN.API
 
     public static T ToNwObject<T>(this ICGameObject gameObject) where T : NwObject
     {
-      return (T) NwObject.CreateInternal(gameObject);
+      return (T)NwObject.CreateInternal(gameObject);
     }
 
     public static NwObject ToNwObject(this ICGameObject gameObject)

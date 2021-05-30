@@ -4,10 +4,10 @@ namespace NWN.API.Constants
 {
   public static class FadeSpeed
   {
-    public const float SLOWEST = NWScript.FADE_SPEED_SLOWEST;
-    public const float SLOW = NWScript.FADE_SPEED_SLOW;
-    public const float MEDIUM = NWScript.FADE_SPEED_MEDIUM;
-    public const float FAST = NWScript.FADE_SPEED_FAST;
-    public const float FASTEST = NWScript.FADE_SPEED_FASTEST;
+    public const float Slowest = NWScript.FADE_SPEED_SLOWEST;
+    public const float Slow = NWScript.FADE_SPEED_SLOW;
+    public const float Medium = NWScript.FADE_SPEED_MEDIUM;
+    public const float Fast = NWScript.FADE_SPEED_FAST;
+    public const float Fastest = NWScript.FADE_SPEED_FASTEST;
   }
 }

@@ -7,18 +7,18 @@ namespace NWN.API.Events
   {
     private readonly struct EventKey : IEquatable<EventKey>
     {
-      public readonly EventScriptType EventScriptType;
-      public readonly uint Object;
+      private readonly EventScriptType eventScriptType;
+      private readonly uint gameObject;
 
-      public EventKey(EventScriptType eventScriptType, uint nwObject)
+      public EventKey(EventScriptType eventScriptType, uint gameObject)
       {
-        EventScriptType = eventScriptType;
-        Object = nwObject;
+        this.eventScriptType = eventScriptType;
+        this.gameObject = gameObject;
       }
 
       public bool Equals(EventKey other)
       {
-        return EventScriptType == other.EventScriptType && Object == other.Object;
+        return eventScriptType == other.eventScriptType && gameObject == other.gameObject;
       }
 
       public override bool Equals(object obj)
@@ -28,7 +28,7 @@ namespace NWN.API.Events
 
       public override int GetHashCode()
       {
-        return HashCode.Combine((int)EventScriptType, Object);
+        return HashCode.Combine((int)eventScriptType, gameObject);
       }
 
       public static bool operator ==(EventKey left, EventKey right)

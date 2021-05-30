@@ -51,6 +51,6 @@ namespace NWN.API.Constants
     EpicElectrical = NWScript.TRAP_BASE_TYPE_EPIC_ELECTRICAL,
     EpicFire = NWScript.TRAP_BASE_TYPE_EPIC_FIRE,
     EpicFrost = NWScript.TRAP_BASE_TYPE_EPIC_FROST,
-    EpicSonic = NWScript.TRAP_BASE_TYPE_EPIC_SONIC
+    EpicSonic = NWScript.TRAP_BASE_TYPE_EPIC_SONIC,
   }
 }

@@ -17,7 +17,10 @@ namespace NWN.API.Events
 
     public bool PreventToggle { get; set; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetCombatModeHook>
     {

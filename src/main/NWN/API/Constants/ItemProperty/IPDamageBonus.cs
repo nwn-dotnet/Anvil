@@ -23,6 +23,6 @@ namespace NWN.API.Constants
     Plus7 = NWScript.IP_CONST_DAMAGEBONUS_7,
     Plus8 = NWScript.IP_CONST_DAMAGEBONUS_8,
     Plus9 = NWScript.IP_CONST_DAMAGEBONUS_9,
-    Plus10 = NWScript.IP_CONST_DAMAGEBONUS_10
+    Plus10 = NWScript.IP_CONST_DAMAGEBONUS_10,
   }
 }

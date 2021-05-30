@@ -27,6 +27,6 @@ namespace NWN.API.Constants
     Outsider = NWScript.IP_CONST_RACIALTYPE_OUTSIDER,
     ShapeChanger = NWScript.IP_CONST_RACIALTYPE_SHAPECHANGER,
     Undead = NWScript.IP_CONST_RACIALTYPE_UNDEAD,
-    Vermin = NWScript.IP_CONST_RACIALTYPE_VERMIN
+    Vermin = NWScript.IP_CONST_RACIALTYPE_VERMIN,
   }
 }

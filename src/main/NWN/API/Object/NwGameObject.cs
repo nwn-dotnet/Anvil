@@ -18,7 +18,7 @@ namespace NWN.API
 
     internal NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
-      this.GameObject = gameObject;
+      GameObject = gameObject;
     }
 
     internal override CNWSScriptVarTable ScriptVarTable
@@ -118,7 +118,7 @@ namespace NWN.API
       get => NWScript.GetFacing(this) % 360;
       set
       {
-        float radians = (value % 360) * NwMath.DegToRad;
+        float radians = value % 360 * NwMath.DegToRad;
         Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
         GameObject.SetOrientation(orientation.ToNativeVector());
       }
@@ -193,7 +193,7 @@ namespace NWN.API
     {
       get
       {
-        for (uint item = NWScript.GetFirstItemInInventory(this); item != INVALID; item = NWScript.GetNextItemInInventory(this))
+        for (uint item = NWScript.GetFirstItemInInventory(this); item != Invalid; item = NWScript.GetNextItemInInventory(this))
         {
           yield return item.ToNwObject<NwItem>();
         }
@@ -279,7 +279,9 @@ namespace NWN.API
     /// <param name="colorChannel">The color channel that you want to get the color value of.</param>
     /// <returns>The current color index value of the specified channel.</returns>
     public int GetColor(ColorChannel colorChannel)
-      => NWScript.GetColor(this, (int)colorChannel);
+    {
+      return NWScript.GetColor(this, (int)colorChannel);
+    }
 
     /// <summary>
     /// Sets the color for the specified color channel.
@@ -288,7 +290,9 @@ namespace NWN.API
     /// <param name="colorChannel">The color channel to modify.</param>
     /// <param name="newColor">The color channel's new color index.</param>
     public void SetColor(ColorChannel colorChannel, int newColor)
-      => NWScript.SetColor(this, (int)colorChannel, newColor);
+    {
+      NWScript.SetColor(this, (int)colorChannel, newColor);
+    }
 
     /// <summary>
     /// Sets whether this object is destroyable.
@@ -326,14 +330,18 @@ namespace NWN.API
     /// Returns the creatures closest to this object.
     /// </summary>
     public IEnumerable<NwCreature> GetNearestCreatures()
-      => GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    {
+      return GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    }
 
     /// <summary>
     /// Returns the creatures closest to this object, matching the specified criteria.
     /// </summary>
     /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.</param>
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1)
-      => GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    {
+      return GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
+    }
 
     /// <summary>
     /// Returns the creatures closest to this object, matching all of the specified criteria.
@@ -341,7 +349,9 @@ namespace NWN.API
     /// <param name="filter1">A filter created using <see cref="CreatureTypeFilter"/>.</param>
     /// <param name="filter2">A 2nd filter created using <see cref="CreatureTypeFilter"/>.</param>
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2)
-      => GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
+    {
+      return GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
+    }
 
     /// <summary>
     /// Returns the creatures closest to this object, matching all of the specified criteria.
@@ -363,7 +373,7 @@ namespace NWN.API
           filter2.Value,
           filter3.Key,
           filter3.Value);
-        current != INVALID;
+        current != Invalid;
         i++, current = NWScript.GetNearestCreature(
           filter1.Key,
           filter1.Value,
@@ -384,11 +394,11 @@ namespace NWN.API
     /// <typeparam name="T">The type of object to search.</typeparam>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int)NwObject.GetObjectType<T>();
+      int objType = (int)GetObjectType<T>();
       int i;
       uint current;
 
-      for (i = 1, current = NWScript.GetNearestObject(objType, this, i); current != INVALID; i++, current = NWScript.GetNearestObject(objType, this, i))
+      for (i = 1, current = NWScript.GetNearestObject(objType, this, i); current != Invalid; i++, current = NWScript.GetNearestObject(objType, this, i))
       {
         T obj = current.ToNwObjectSafe<T>();
         if (obj != null)
@@ -534,7 +544,9 @@ namespace NWN.API
     /// <param name="target">The target object to perform the line of sight check against.</param>
     /// <returns>true if this object has line of sight on the target, otherwise false.</returns>
     public bool HasLineOfSight(NwGameObject target)
-      => NWScript.LineOfSightObject(this, target).ToBool();
+    {
+      return NWScript.LineOfSightObject(this, target).ToBool();
+    }
 
     /// <summary>
     /// Applies the specified effect to this game object.
@@ -552,7 +564,9 @@ namespace NWN.API
     /// </summary>
     /// <param name="effect">The existing effect instance.</param>
     public void RemoveEffect(Effect effect)
-      => NWScript.RemoveEffect(this, effect);
+    {
+      NWScript.RemoveEffect(this, effect);
+    }
 
     /// <summary>
     /// Immediately ends this GameObject's current conversation.

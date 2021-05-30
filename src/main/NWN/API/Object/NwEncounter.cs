@@ -14,7 +14,7 @@ namespace NWN.API
 
     internal NwEncounter(CNWSEncounter encounter) : base(encounter)
     {
-      this.Encounter = encounter;
+      Encounter = encounter;
     }
 
     public static implicit operator CNWSEncounter(NwEncounter encounter)
@@ -88,8 +88,8 @@ namespace NWN.API
     /// </summary>
     public EncounterDifficulty Difficulty
     {
-      get => (EncounterDifficulty) NWScript.GetEncounterDifficulty(this);
-      set => NWScript.SetEncounterDifficulty((int) value, ObjectId);
+      get => (EncounterDifficulty)NWScript.GetEncounterDifficulty(this);
+      set => NWScript.SetEncounterDifficulty((int)value, ObjectId);
     }
 
     /// <summary>
@@ -117,8 +117,8 @@ namespace NWN.API
     /// <returns>An enumerable containing all objects currently in the effect area.</returns>
     public IEnumerable<T> GetObjectsInEncounterArea<T>() where T : NwGameObject
     {
-      int objType = (int) GetObjectType<T>();
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int objType = (int)GetObjectType<T>();
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
         yield return obj.ToNwObject<T>();
       }
@@ -131,8 +131,8 @@ namespace NWN.API
     /// <returns>An enumerable containing all objects currently in the effect area.</returns>
     public IEnumerable<NwGameObject> GetObjectsInEncounterArea(ObjectTypes objectTypes = ObjectTypes.All)
     {
-      int objType = (int) objectTypes;
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != INVALID; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int objType = (int)objectTypes;
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
         yield return obj.ToNwObject<NwGameObject>();
       }
@@ -158,7 +158,7 @@ namespace NWN.API
           return false;
         }
 
-        encounter = new CNWSEncounter(INVALID);
+        encounter = new CNWSEncounter(Invalid);
         if (encounter.LoadEncounter(resGff, resStruct).ToBool())
         {
           encounter.LoadObjectState(resGff, resStruct);

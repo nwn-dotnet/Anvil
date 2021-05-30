@@ -9,6 +9,6 @@ namespace NWN.API.Constants
     Constitution = NWScript.ABILITY_CONSTITUTION,
     Intelligence = NWScript.ABILITY_INTELLIGENCE,
     Wisdom = NWScript.ABILITY_WISDOM,
-    Charisma = NWScript.ABILITY_CHARISMA
+    Charisma = NWScript.ABILITY_CHARISMA,
   }
 }

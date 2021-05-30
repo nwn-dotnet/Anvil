@@ -11,7 +11,10 @@ namespace NWN.API.Events
 
     public NwGameObject ExaminedObject { get; private init; }
 
-    NwObject IEvent.Context => ExaminedBy.ControlledCreature;
+    NwObject IEvent.Context
+    {
+      get => ExaminedBy.ControlledCreature;
+    }
 
     internal sealed unsafe class Factory : MultiHookEventFactory
     {
@@ -51,7 +54,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnExamineObject
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidCreature.ToNwObject<NwCreature>()
+          ExaminedObject = oidCreature.ToNwObject<NwCreature>(),
         });
 
         creatureExamineHook.CallOriginal(pMessage, pPlayer, oidCreature);
@@ -63,7 +66,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnExamineObject
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidDoor.ToNwObject<NwDoor>()
+          ExaminedObject = oidDoor.ToNwObject<NwDoor>(),
         });
 
         doorExamineHook.CallOriginal(pMessage, pPlayer, oidDoor);
@@ -75,7 +78,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnExamineObject
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidItem.ToNwObject<NwItem>()
+          ExaminedObject = oidItem.ToNwObject<NwItem>(),
         });
 
         itemExamineHook.CallOriginal(pMessage, pPlayer, oidItem);
@@ -87,7 +90,7 @@ namespace NWN.API.Events
         ProcessEvent(new OnExamineObject
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>()
+          ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>(),
         });
 
         placeableExamineHook.CallOriginal(pMessage, pPlayer, oidPlaceable);

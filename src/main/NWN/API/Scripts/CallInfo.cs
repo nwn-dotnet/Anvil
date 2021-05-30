@@ -8,7 +8,7 @@ namespace NWN.API
   /// <summary>
   /// Meta information for script calls, consumed by ScriptHandler attributed methods in service classes.
   /// </summary>
-  public class CallInfo
+  public sealed class CallInfo
   {
     private static readonly ScriptParams CachedScriptParams = new ScriptParams();
 
@@ -38,9 +38,9 @@ namespace NWN.API
 
     public CallInfo(string scriptName, NwObject objSelf)
     {
-      this.ScriptName = scriptName;
-      this.ObjectSelf = objSelf;
-      this.ScriptType = (EventScriptType) NWScript.GetCurrentlyRunningEvent();
+      ScriptName = scriptName;
+      ObjectSelf = objSelf;
+      ScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent();
     }
 
     /// <summary>

@@ -89,6 +89,6 @@ namespace NWN.API.Constants
     EncounterOnEncounterExhausted = NWScript.EVENT_SCRIPT_ENCOUNTER_ON_ENCOUNTER_EXHAUSTED,
     EncounterOnUserDefinedEvent = NWScript.EVENT_SCRIPT_ENCOUNTER_ON_USER_DEFINED_EVENT,
     StoreOnOpen = NWScript.EVENT_SCRIPT_STORE_ON_OPEN,
-    StoreOnClose = NWScript.EVENT_SCRIPT_STORE_ON_CLOSE
+    StoreOnClose = NWScript.EVENT_SCRIPT_STORE_ON_CLOSE,
   }
 }

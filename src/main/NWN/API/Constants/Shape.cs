@@ -8,6 +8,6 @@ namespace NWN.API.Constants
     Cone = NWScript.SHAPE_CONE,
     Cube = NWScript.SHAPE_CUBE,
     SpellCone = NWScript.SHAPE_SPELLCONE,
-    Sphere = NWScript.SHAPE_SPHERE
+    Sphere = NWScript.SHAPE_SPHERE,
   }
 }

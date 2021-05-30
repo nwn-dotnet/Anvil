@@ -27,7 +27,7 @@ namespace NWN.Services
         }
       }
 
-      return (int) result;
+      return (int)result;
     }
   }
 }

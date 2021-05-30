@@ -2,7 +2,7 @@ using NWN.Native.API;
 
 namespace NWN.API
 {
-  public class JoiningRestrictions
+  public sealed class JoiningRestrictions
   {
     private readonly CJoiningRestrictions joiningRestrictions;
 

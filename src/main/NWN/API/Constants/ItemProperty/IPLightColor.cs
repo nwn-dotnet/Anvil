@@ -10,6 +10,6 @@ namespace NWN.API.Constants
     Red = NWScript.IP_CONST_LIGHTCOLOR_RED,
     Green = NWScript.IP_CONST_LIGHTCOLOR_GREEN,
     Orange = NWScript.IP_CONST_LIGHTCOLOR_ORANGE,
-    White = NWScript.IP_CONST_LIGHTCOLOR_WHITE
+    White = NWScript.IP_CONST_LIGHTCOLOR_WHITE,
   }
 }

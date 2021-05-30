@@ -22,7 +22,7 @@ namespace NWN.Services
     /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
     public void EnterTargetMode(NwPlayer player, Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
     {
-      NWScript.EnterTargetingMode(player.ControlledCreature, (int) validTargets, (int) cursorType, (int) badTargetCursor);
+      NWScript.EnterTargetingMode(player.ControlledCreature, (int)validTargets, (int)cursorType, (int)badTargetCursor);
       player.OnPlayerTarget -= handler;
       player.OnPlayerTarget += handler;
     }

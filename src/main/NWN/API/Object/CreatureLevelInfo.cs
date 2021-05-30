@@ -5,7 +5,7 @@ using Feat = NWN.API.Constants.Feat;
 
 namespace NWN.API
 {
-  public unsafe class CreatureLevelInfo
+  public sealed unsafe class CreatureLevelInfo
   {
     private readonly NwCreature creature;
     private readonly CNWLevelStats levelStats;

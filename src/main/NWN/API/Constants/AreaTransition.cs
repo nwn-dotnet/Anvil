@@ -113,6 +113,6 @@ namespace NWN.API.Constants
     City = NWScript.AREA_TRANSITION_CITY,
     Crypt = NWScript.AREA_TRANSITION_CRYPT,
     Forest = NWScript.AREA_TRANSITION_FOREST,
-    Rural = NWScript.AREA_TRANSITION_RURAL
+    Rural = NWScript.AREA_TRANSITION_RURAL,
   }
 }
