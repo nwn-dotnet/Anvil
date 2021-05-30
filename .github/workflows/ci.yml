@@ -36,9 +36,22 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release /warnaserror
+        
+      - name: Prepare Outputs
+        id: vars
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        
+      - name: Code Analysis Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/JetBrains
+          key: resharper-cache-${{ steps.vars.outputs.sha_short }}
+          restore-keys: |
+            resharper-cache-
 
-      - name: Check Code Format
-        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml
+      - name: Code Analysis
+        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml && cat results.xml
         
       - name: Parse Results
         uses: glassechidna/resharper-action@master
