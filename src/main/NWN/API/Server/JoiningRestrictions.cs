@@ -20,5 +20,10 @@ namespace NWN.API
     {
       get => joiningRestrictions.nMaxLevel;
     }
+
+    public bool AllowLocalVaultCharacters
+    {
+      get => joiningRestrictions.bAllowLocalVaultChars.ToBool();
+    }
   }
 }

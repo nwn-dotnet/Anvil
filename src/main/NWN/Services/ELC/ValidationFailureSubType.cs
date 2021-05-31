@@ -54,5 +54,6 @@ namespace NWN.Services
     FeatListComparison,
     MiscSavingThrow,
     NumFeatComparison,
+    InvalidClass,
   }
 }

@@ -2,7 +2,6 @@ using System;
 using Anvil.Internal;
 using NWN.API;
 using NWN.Native.API;
-using NWNX.API.Constants;
 
 namespace NWN.Services
 {
@@ -41,13 +40,16 @@ namespace NWN.Services
     private const int StrRefCustom = 164;
 
     // Magic Numbers
-    private const int NumCreatureItemSlots = 4;
+    private const int NumPlayerItemSlots = 14;
     private const int NumMulticlass = 3;
     private const int CharacterEpicLevel = 21;
     private const int NumSpellLevels = 10;
 
     private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
     private readonly FunctionHook<ValidateCharacterHook> validateCharacterHook;
+
+    public bool EnforceDefaultEventScripts { get; set; }
+    public bool EnforceEmptyDialog { get; set; }
 
     public EnforceLegalCharacterService(HookService hookService)
     {
@@ -98,8 +100,8 @@ namespace NWN.Services
       {
         OnELCLevelValidationFailure failure = new OnELCLevelValidationFailure
         {
-          Type = ElcFailureType.Character,
-          SubType = ElcFailureSubType.LevelRestriction,
+          Type = ValidationFailureType.Character,
+          SubType = ValidationFailureSubType.ServerLevelRestriction,
           Level = characterLevel,
         };
 
@@ -123,8 +125,8 @@ namespace NWN.Services
         {
           OnELCLevelValidationFailure failure = new OnELCLevelValidationFailure
           {
-            Type = ElcFailureType.Character,
-            SubType = ElcFailureSubType.LevelRestriction,
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.LevelHack,
             Level = totalLevels,
           };
 
@@ -136,6 +138,276 @@ namespace NWN.Services
         }
       }
       // **********************************************************************************************************************
+
+      // *** Colored Name Checking ********************************************************************************************
+      static bool CheckColoredName(CExoLocString lsName)
+      {
+        CExoString sName = new CExoString();
+        CExoString colorTag = "<c".ToExoString();
+
+        for (uint i = 0; i < lsName.GetStringCount(); i++)
+        {
+          int nID;
+          byte nGender;
+
+          if (lsName.GetString(i, &nID, sName, &nGender).ToBool())
+          {
+            if (sName.Find(colorTag, 0) >= 0)
+            {
+              return true;
+            }
+          }
+        }
+
+        return false;
+      }
+
+      if (CheckColoredName(creatureStats.m_lsFirstName) || CheckColoredName(creatureStats.m_lsLastName))
+      {
+        OnELCValidationFailure failure = new OnELCValidationFailure
+        {
+          Type = ValidationFailureType.Character,
+          SubType = ValidationFailureSubType.ColoredName,
+          StrRef = StrRefCharacterDoesNotExist,
+        };
+
+        if (HandleValidationFailure(failure))
+        {
+          *bFailedServerRestriction = true.ToInt();
+          return failure.StrRef;
+        }
+      }
+      // **********************************************************************************************************************
+
+      // *** ILR aka Inventory Checks *****************************************************************************************
+      if (NwServer.Instance.ServerInfo.PlayOptions.ItemLevelRestrictions)
+      {
+        for (uint slot = 0; slot < NumPlayerItemSlots; slot++)
+        {
+          CNWSItem item = inventory.GetItemInSlot(slot);
+          if (item == null)
+          {
+            continue;
+          }
+
+          OnELCValidationFailure failure = null;
+
+          // Check for unidentified equipped items
+          if (!item.m_bIdentified.ToBool())
+          {
+            failure = new OnELCItemValidationFailure
+            {
+              Item = item.ToNwObject<NwItem>(),
+              Type = ValidationFailureType.Item,
+              SubType = ValidationFailureSubType.UnidentifiedEquippedItem,
+              StrRef = StrRefItemLevelRestriction,
+            };
+          }
+
+          // Check the minimum equip level
+          if (item.GetMinEquipLevel() > characterLevel)
+          {
+            failure = new OnELCItemValidationFailure
+            {
+              Item = item.ToNwObject<NwItem>(),
+              Type = ValidationFailureType.Item,
+              SubType = ValidationFailureSubType.MinEquipLevel,
+              StrRef = StrRefItemLevelRestriction,
+            };
+          }
+
+          if (failure != null && HandleValidationFailure(failure))
+          {
+            *bFailedServerRestriction = true.ToInt();
+            return failure.StrRef;
+          }
+        }
+      }
+
+      // Strip invalid item properties for local vault servers
+      if (NwServer.Instance.ServerInfo.JoiningRestrictions.AllowLocalVaultCharacters)
+      {
+        player.StripAllInvalidItemPropertiesInInventory(creature);
+      }
+      // **********************************************************************************************************************
+
+      // *** Misc Checks ******************************************************************************************************
+      // Set Plot/Immortal to false
+      creature.m_bPlotObject = false.ToInt();
+      creature.m_bIsImmortal = false.ToInt();
+      // **********************************************************************************************************************
+
+      // *** Character Validation (ELC) ***************************************************************************************
+      // Return early if ELC is off.
+      if (!NwServer.Instance.ServerInfo.PlayOptions.EnforceLegalCharacters)
+      {
+        return 0;
+      }
+
+      // Enforce default event scripts: default.nss
+      if (EnforceDefaultEventScripts)
+      {
+        for (int i = 0; i < 13; i++)
+        {
+          creature.m_sScripts[i] = "default".ToExoString();
+        }
+      }
+
+      // Enforce empty dialog resref
+      if (EnforceEmptyDialog)
+      {
+        creatureStats.m_cDialog = new CResRef("");
+      }
+
+      // Check for non PC
+      if (!creatureStats.m_bIsPC.ToBool())
+      {
+        OnELCValidationFailure failure = new OnELCValidationFailure
+        {
+          Type = ValidationFailureType.Character,
+          SubType = ValidationFailureSubType.NonPCCharacter,
+          StrRef = StrRefCharacterNonPlayer,
+        };
+
+        if (HandleValidationFailure(failure))
+        {
+          return failure.StrRef;
+        }
+      }
+
+      // Check for DM character file
+      if (creatureStats.m_bIsDMCharacterFile.ToBool())
+      {
+        OnELCValidationFailure failure = new OnELCValidationFailure
+        {
+          Type = ValidationFailureType.Character,
+          SubType = ValidationFailureSubType.DMCharacter,
+          StrRef = StrRefCharacterDungeonMaster,
+        };
+
+        if (HandleValidationFailure(failure))
+        {
+          return failure.StrRef;
+        }
+      }
+
+      CNWRules rules = NWNXLib.Rules();
+
+      // Check for non player race
+      CNWRaceArray races = CNWRaceArray.FromPointer(rules.m_lstRaces);
+      CNWRace race = creatureStats.m_nRace < rules.m_nNumRaces ? races[creatureStats.m_nRace] : null;
+
+      if (race == null || !race.m_bIsPlayerRace.ToBool())
+      {
+        OnELCValidationFailure failure = new OnELCValidationFailure
+        {
+          Type = ValidationFailureType.Character,
+          SubType = ValidationFailureSubType.NonPlayerRace,
+          StrRef = StrRefCharacterNonPlayerRace,
+        };
+
+        if (HandleValidationFailure(failure))
+        {
+          return failure.StrRef;
+        }
+      }
+
+      // Check for non player classes, class level restrictions and prestige class requirements
+      // We also check class alignment restrictions for new characters only
+      CNWClassArray classes = CNWClassArray.FromPointer(rules.m_lstClasses);
+
+      for (byte multiClass = 0; multiClass < creatureStats.m_nNumMultiClasses; multiClass++)
+      {
+        byte classId = creatureStats.m_ClassInfo[multiClass].m_nClass;
+        CNWClass classInfo = classId < rules.m_nNumClasses ? classes[classId] : null;
+
+        if (classInfo == null)
+        {
+          OnELCValidationFailure failure = new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.InvalidClass,
+            StrRef = StrRefCharacterNonPlayerClass,
+          };
+
+          if (HandleValidationFailure(failure))
+          {
+            return failure.StrRef;
+          }
+
+          // Skip further class checks if the validation was skipped.
+          continue;
+        }
+
+        if (!classInfo.m_bIsPlayerClass.ToBool())
+        {
+          OnELCValidationFailure failure = new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.NonPlayerClass,
+            StrRef = StrRefCharacterNonPlayerClass,
+          };
+
+          if (HandleValidationFailure(failure))
+          {
+            return failure.StrRef;
+          }
+        }
+
+        if (classInfo.m_nMaxLevel > 0 && creatureStats.GetClassLevel(multiClass, false.ToInt()) > classInfo.m_nMaxLevel)
+        {
+          OnELCValidationFailure failure = new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.ClassLevelRestriction,
+            StrRef = StrRefCharacterNonPlayerClass,
+          };
+
+          if (HandleValidationFailure(failure))
+          {
+            return failure.StrRef;
+          }
+        }
+
+        if (!creatureStats.GetMeetsPrestigeClassRequirements(classInfo).ToBool())
+        {
+          OnELCValidationFailure failure = new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.PrestigeClassRequirements,
+            StrRef = StrRefCharacterNonPlayerClass,
+          };
+
+          if (HandleValidationFailure(failure))
+          {
+            return failure.StrRef;
+          }
+        }
+
+        if (multiClass == 0 && characterLevel == 1 && creatureStats.m_nExperience == 0)
+        {
+          if (!classInfo.GetIsAlignmentAllowed(creatureStats.GetSimpleAlignmentGoodEvil(), creatureStats.GetSimpleAlignmentLawChaos()).ToBool())
+          {
+            OnELCValidationFailure failure = new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Character,
+              SubType = ValidationFailureSubType.ClassAlignmentRestriction,
+              StrRef = StrRefCharacterNonPlayerClass,
+            };
+
+            if (HandleValidationFailure(failure))
+            {
+              return failure.StrRef;
+            }
+          }
+        }
+      }
+
+      // Check movement rate
+      if (creatureStats.m_nMovementRate != (int)MovementRate.PC)
+      {
+        creatureStats.SetMovementRate((int)MovementRate.PC);
+      }
 
       return 0;
     }

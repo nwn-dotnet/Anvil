@@ -1,14 +1,13 @@
 using NWN.API;
 using NWN.API.Constants;
-using NWNX.API.Constants;
 
 namespace NWN.Services
 {
   public class OnELCValidationFailure
   {
-    public ElcFailureType Type { get; init; }
+    public ValidationFailureType Type { get; init; }
 
-    public ElcFailureSubType SubType { get; init; }
+    public ValidationFailureSubType SubType { get; init; }
 
     public int StrRef { get; set; }
 
