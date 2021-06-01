@@ -317,6 +317,36 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the location that this player will spawn at when logging in to the server.
+    /// </summary>
+    public Location SpawnLocation
+    {
+      get
+      {
+        if (LoginCreature == null)
+        {
+          return null;
+        }
+
+        CNWSCreature creature = LoginCreature.Creature;
+        return Location.Create(creature.m_oidDesiredArea.ToNwObject<NwArea>(), creature.m_vDesiredAreaLocation.ToManagedVector(), LoginCreature.Rotation);
+      }
+      set
+      {
+        if (LoginCreature == null)
+        {
+          return;
+        }
+
+        CNWSCreature creature = LoginCreature.Creature;
+        creature.m_oidDesiredArea = value.Area;
+        creature.m_vDesiredAreaLocation = value.Position.ToNativeVector();
+        creature.m_bDesiredAreaUpdateComplete = false.ToInt();
+        LoginCreature.Rotation = value.Rotation;
+      }
+    }
+
+    /// <summary>
     /// Gets a value indicating whether ControlledCreature creature is currently in "Cutscene" mode.
     /// </summary>
     public bool IsInCutsceneMode
