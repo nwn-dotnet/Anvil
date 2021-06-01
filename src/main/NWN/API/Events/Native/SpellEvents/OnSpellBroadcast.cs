@@ -10,7 +10,7 @@ namespace NWN.API.Events
   {
     public bool PreventSpellCast { get; set; }
 
-    public NwGameObject Caster { get; private init; }
+    public NwCreature Caster { get; private init; }
 
     public Spell Spell { get; private init; }
 
