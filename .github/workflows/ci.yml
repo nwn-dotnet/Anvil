@@ -40,7 +40,7 @@ jobs:
       - name: Prepare Outputs
         id: vars
         run: |
-          echo "::set-output name=sha_short::$(echo git rev-parse --short HEAD)"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       - name: Code Analysis Cache
         uses: actions/cache@v2
@@ -101,7 +101,7 @@ jobs:
             COMMIT=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[4]}'`
             echo "::set-output name=version::$(echo ${VERSION}-${META}.${BUILD}.${COMMIT:1} | sed 's/^v//')"
           fi;
-          echo "::set-output name=sha_short::$(echo git rev-parse --short HEAD)"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
 
       - name: Build Release Binaries
