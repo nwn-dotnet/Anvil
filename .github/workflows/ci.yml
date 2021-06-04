@@ -40,7 +40,7 @@ jobs:
       - name: Prepare Outputs
         id: vars
         run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          echo "::set-output name=sha_short::$(echo git rev-parse --short HEAD)"
 
       - name: Code Analysis Cache
         uses: actions/cache@v2
@@ -92,18 +92,23 @@ jobs:
         id: vars
         run: |
           if "${{ github.ref }}" == "refs/heads/master"; then
-            echo "::set-output name=version::$(git describe --tags | sed 's/^v//')"
+            echo "::set-output name=version::$(echo git describe --tags | sed 's/^v//')"
           else
-            echo "::set-output name=version::$(git describe --tags --long | sed 's/^v//')"
+            DESCRIBE=`git describe --tags --long`
+            VERSION=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[1]}'`
+            META=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[2]}'`
+            BUILD=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[3]}'`
+            COMMIT=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[4]}'`
+            echo "::set-output name=version::$(echo ${VERSION}-${META}.${BUILD}+${COMMIT:1} | sed 's/^v//')"
           fi;
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          echo "::set-output name=sha_short::$(echo git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
 
       - name: Build Release Binaries
         id: build
         run: |
           dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
-          echo "::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          echo "::set-output name=created::$(echo date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
