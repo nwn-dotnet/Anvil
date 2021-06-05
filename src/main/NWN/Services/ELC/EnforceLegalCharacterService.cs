@@ -409,6 +409,52 @@ namespace NWN.Services
         creatureStats.SetMovementRate((int)MovementRate.PC);
       }
 
+      // Calculate Ability Scores;
+      byte[] abilityScores = new byte[6];
+      byte[] abilityMods = new byte[6];
+
+      // TODO: GetStatBonusesFromFeats
+
+      // Get our base ability stats
+      abilityScores[(int)Ability.Strength] = (byte)((creature.m_bIsPolymorphed.ToBool() ? creature.m_nPrePolymorphSTR : creatureStats.m_nStrengthBase) + abilityMods[(int)Ability.Strength]);
+      abilityScores[(int)Ability.Dexterity] = (byte)((creature.m_bIsPolymorphed.ToBool() ? creature.m_nPrePolymorphDEX : creatureStats.m_nDexterityBase) + abilityMods[(int)Ability.Dexterity]);
+      abilityScores[(int)Ability.Constitution] = (byte)((creature.m_bIsPolymorphed.ToBool() ? creature.m_nPrePolymorphCON : creatureStats.m_nConstitutionBase) + abilityMods[(int)Ability.Constitution]);
+      abilityScores[(int)Ability.Intelligence] = (byte)(creatureStats.m_nIntelligenceBase + abilityMods[(int)Ability.Intelligence]);
+      abilityScores[(int)Ability.Wisdom] = (byte)(creatureStats.m_nWisdomBase + abilityMods[(int)Ability.Wisdom]);
+      abilityScores[(int)Ability.Charisma] = (byte)(creatureStats.m_nCharismaBase + abilityMods[(int)Ability.Charisma]);
+
+      // Get the level 1 ability values
+      for (int level = 4; level < characterLevel; level += 4)
+      {
+        byte abilityGain = creatureStats.GetLevelStats((byte)(level - 1)).m_nAbilityGain;
+        if (abilityGain < abilityScores.Length)
+        {
+          abilityScores[abilityGain]--;
+        }
+      }
+
+      int charGenBaseAbilityMin = rules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MIN".ToExoString(), 8);
+      int charGenBaseAbilityMax = rules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MAX".ToExoString(), 18);
+
+      // Check if >18 in an ability
+      foreach (byte abilityScore in abilityScores)
+      {
+        if (abilityScore > charGenBaseAbilityMax)
+        {
+          OnELCValidationFailure failure = new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.StartingAbilityValueMax,
+            StrRef = StrRefCharacterInvalidAbilityScores,
+          };
+
+          if (HandleValidationFailure(failure))
+          {
+            return failure.StrRef;
+          }
+        }
+      }
+
       return 0;
     }
 
