@@ -54,7 +54,7 @@ namespace NWN.API.Events
 
         OnSpellCast eventData = ProcessEvent(new OnSpellCast
         {
-          Caster = gameObject.ToNwObject<NwCreature>(),
+          Caster = gameObject.ToNwObject<NwGameObject>(),
           Spell = (Spell)nSpellId,
           TargetPosition = targetPosition,
           TargetObject = oidTarget.ToNwObject<NwGameObject>(),

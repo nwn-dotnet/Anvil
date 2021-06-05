@@ -99,7 +99,7 @@ namespace NWN.Services
           case DialogState.SendEntry:
             return indexEntry;
           case DialogState.HandleReply:
-            return DialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
+            return indexReply == 0xFFFFFFFF ? null : DialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
           case DialogState.SendReplies:
             return DialogueEntries[(int)dialog.m_currentEntryIndex].GetReply(CurrentNodeIndex).m_nIndex;
           default:
