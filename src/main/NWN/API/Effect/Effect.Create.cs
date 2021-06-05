@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
 
@@ -590,7 +589,9 @@ namespace NWN.API
     /// <param name="effects">The effects to link.</param>
     /// <returns>The new composite effect linking both effects.</returns>
     public static Effect LinkEffects(Effect baseEffect, params Effect[] effects)
-      => LinkEffects(baseEffect, (IEnumerable<Effect>)effects);
+    {
+      return LinkEffects(baseEffect, (IEnumerable<Effect>)effects);
+    }
 
     /// <inheritdoc cref="LinkEffects(NWN.API.Effect,NWN.API.Effect[])"/>
     public static Effect LinkEffects(Effect baseEffect, IEnumerable<Effect> effects)
