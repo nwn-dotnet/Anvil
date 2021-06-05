@@ -1886,6 +1886,26 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets whether this creature can see the specified creature.
+    /// </summary>
+    /// <param name="creature">The creature to test visibility.</param>
+    /// <returns>True if the creature is visible by this creature, otherwise false.</returns>
+    public bool IsCreatureSeen(NwCreature creature)
+    {
+      return NWScript.GetObjectSeen(creature, this).ToBool();
+    }
+
+    /// <summary>
+    /// Gets whether this creature can hear the specified creature.
+    /// </summary>
+    /// <param name="creature">The creature that may be heard.</param>
+    /// <returns>True if the creature has been heard, otherwise false.</returns>
+    public bool IsCreatureHeard(NwCreature creature)
+    {
+      return NWScript.GetObjectHeard(creature, this).ToBool();
+    }
+
+    /// <summary>
     /// Gets whether this creature has a hostile reaction towards another given creature.
     /// </summary>
     /// <param name="creature">The target creature to test.</param>
