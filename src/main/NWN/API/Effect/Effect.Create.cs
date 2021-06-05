@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using NWN.API.Constants;
 using NWN.Core;
 
@@ -578,6 +580,28 @@ namespace NWN.API
     public static Effect VisualEffect(VfxType visualEffectId, bool missEffect = false, float fScale = 1.0f, System.Numerics.Vector3 vTranslate = default, System.Numerics.Vector3 vRotate = default)
     {
       return NWScript.EffectVisualEffect((int)visualEffectId, missEffect.ToInt(), fScale, vTranslate, vRotate);
+    }
+
+    /// <summary>
+    /// Creates a new linked effect from the specified effects.<br/>
+    /// If you remove/dispel one of the effects from a target which is linked to others, the other linked effects will be removed/dispelled too.
+    /// </summary>
+    /// <param name="baseEffect">The base effect.</param>
+    /// <param name="effects">The effects to link.</param>
+    /// <returns>The new composite effect linking both effects.</returns>
+    public static Effect LinkEffects(Effect baseEffect, params Effect[] effects)
+      => LinkEffects(baseEffect, (IEnumerable<Effect>)effects);
+
+    /// <inheritdoc cref="LinkEffects(NWN.API.Effect,NWN.API.Effect[])"/>
+    public static Effect LinkEffects(Effect baseEffect, IEnumerable<Effect> effects)
+    {
+      Effect current = baseEffect;
+      foreach (Effect effect in effects)
+      {
+        current = NWScript.EffectLinkEffects(effect, current);
+      }
+
+      return current;
     }
   }
 }
