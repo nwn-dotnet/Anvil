@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Anvil.Internal;
 using NWN.API;
 using NWN.Native.API;
@@ -48,12 +50,32 @@ namespace NWN.Services
     private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
     private readonly FunctionHook<ValidateCharacterHook> validateCharacterHook;
 
+    private readonly CNWRules rules;
+    private readonly CNWRaceArray races;
+    private readonly CNWClassArray classes;
+
+    private readonly int epicGreatStatBonus;
+    private readonly int charGenBaseAbilityMin;
+    private readonly int charGenBaseAbilityMax;
+    private readonly int abilityCostIncrement2;
+    private readonly int abilityCostIncrement3;
+
     public bool EnforceDefaultEventScripts { get; set; }
     public bool EnforceEmptyDialog { get; set; }
 
     public EnforceLegalCharacterService(HookService hookService)
     {
       validateCharacterHook = hookService.RequestHook<ValidateCharacterHook>(OnValidateCharacter, FunctionsLinux._ZN10CNWSPlayer17ValidateCharacterEPi, HookOrder.Final);
+
+      rules = NWNXLib.Rules();
+      races = CNWRaceArray.FromPointer(rules.m_lstRaces);
+      classes = CNWClassArray.FromPointer(rules.m_lstClasses);
+
+      epicGreatStatBonus = rules.GetRulesetIntEntry("CRULES_EPIC_GREAT_STAT_BONUS".ToExoString(), 1);
+      charGenBaseAbilityMin = rules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MIN".ToExoString(), 8);
+      charGenBaseAbilityMax = rules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MAX".ToExoString(), 18);
+      abilityCostIncrement2 = rules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT2".ToExoString(), 14);
+      abilityCostIncrement3 = rules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT3".ToExoString(), 16);
     }
 
     private int OnValidateCharacter(void* pPlayer, int* bFailedServerRestriction)
@@ -94,7 +116,7 @@ namespace NWN.Services
       // *** Server Restrictions **********************************************************************************************
       JoiningRestrictions joinRestrictions = NwServer.Instance.ServerInfo.JoiningRestrictions;
 
-      int characterLevel = creatureStats.GetLevel(false.ToInt());
+      byte characterLevel = creatureStats.GetLevel(false.ToInt());
 
       if (characterLevel > joinRestrictions.MaxLevel || characterLevel < joinRestrictions.MinLevel)
       {
@@ -291,10 +313,7 @@ namespace NWN.Services
         }
       }
 
-      CNWRules rules = NWNXLib.Rules();
-
       // Check for non player race
-      CNWRaceArray races = CNWRaceArray.FromPointer(rules.m_lstRaces);
       CNWRace race = creatureStats.m_nRace < rules.m_nNumRaces ? races[creatureStats.m_nRace] : null;
 
       if (race == null || !race.m_bIsPlayerRace.ToBool())
@@ -314,8 +333,6 @@ namespace NWN.Services
 
       // Check for non player classes, class level restrictions and prestige class requirements
       // We also check class alignment restrictions for new characters only
-      CNWClassArray classes = CNWClassArray.FromPointer(rules.m_lstClasses);
-
       for (byte multiClass = 0; multiClass < creatureStats.m_nNumMultiClasses; multiClass++)
       {
         byte classId = creatureStats.m_ClassInfo[multiClass].m_nClass;
@@ -411,9 +428,7 @@ namespace NWN.Services
 
       // Calculate Ability Scores;
       byte[] abilityScores = new byte[6];
-      byte[] abilityMods = new byte[6];
-
-      // TODO: GetStatBonusesFromFeats
+      int[] abilityMods = GetStatBonusesFromFeats(creatureStats.m_lstFeats, true);
 
       // Get our base ability stats
       abilityScores[(int)Ability.Strength] = (byte)((creature.m_bIsPolymorphed.ToBool() ? creature.m_nPrePolymorphSTR : creatureStats.m_nStrengthBase) + abilityMods[(int)Ability.Strength]);
@@ -432,9 +447,6 @@ namespace NWN.Services
           abilityScores[abilityGain]--;
         }
       }
-
-      int charGenBaseAbilityMin = rules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MIN".ToExoString(), 8);
-      int charGenBaseAbilityMax = rules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MAX".ToExoString(), 18);
 
       // Check if >18 in an ability
       foreach (byte abilityScore in abilityScores)
@@ -455,12 +467,205 @@ namespace NWN.Services
         }
       }
 
+      // Point Buy System calculation
+      if (race != null)
+      {
+        byte[] abilityAtLevel = new byte[6];
+        int pointBuy = race.m_nAbilitiesPointBuyNumber;
+
+        for (int abilityIndex = 0; abilityIndex < abilityAtLevel.Length; abilityIndex++)
+        {
+          abilityAtLevel[abilityIndex] = abilityScores[abilityIndex];
+
+          while (abilityScores[abilityIndex] > charGenBaseAbilityMin)
+          {
+            if (abilityScores[abilityIndex] > abilityCostIncrement3)
+            {
+              if (pointBuy < 3)
+              {
+                OnELCValidationFailure failure = new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Character,
+                  SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+                  StrRef = StrRefCharacterInvalidAbilityScores,
+                };
+
+                if (HandleValidationFailure(failure))
+                {
+                  return failure.StrRef;
+                }
+              }
+
+              abilityScores[abilityIndex]--;
+              pointBuy -= 3;
+            }
+            else if (abilityScores[abilityIndex] > abilityCostIncrement2)
+            {
+              if (pointBuy < 2)
+              {
+                OnELCValidationFailure failure = new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Character,
+                  SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+                  StrRef = StrRefCharacterInvalidAbilityScores,
+                };
+
+                if (HandleValidationFailure(failure))
+                {
+                  return failure.StrRef;
+                }
+              }
+
+              abilityScores[abilityIndex]--;
+              pointBuy -= 2;
+            }
+            else
+            {
+              if (pointBuy < 1)
+              {
+                OnELCValidationFailure failure = new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Character,
+                  SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+                  StrRef = StrRefCharacterInvalidAbilityScores,
+                };
+
+                if (HandleValidationFailure(failure))
+                {
+                  return failure.StrRef;
+                }
+              }
+
+              abilityScores[abilityIndex]--;
+              pointBuy--;
+            }
+          }
+        }
+      }
+
+      // Get Cleric Domain Feats
+      ushort? nDomainFeat1 = null;
+      ushort? nDomainFeat2 = null;
+
+      for (byte multiClass = 0; multiClass < creatureStats.m_nNumMultiClasses; multiClass++)
+      {
+        if (classes[creatureStats.GetClass(multiClass)].m_bHasDomains.ToBool())
+        {
+          CNWDomain domain = rules.GetDomain(creatureStats.GetDomain1(multiClass));
+          CNWDomain domain2 = rules.GetDomain(creatureStats.GetDomain2(multiClass));
+          nDomainFeat1 = domain?.m_nGrantedFeat;
+          nDomainFeat2 = domain2?.m_nGrantedFeat;
+        }
+      }
+
+      // *** Character Per-Level Checks********************************************************************************************
+
       return 0;
     }
 
     private bool HandleValidationFailure(OnELCValidationFailure eventData)
     {
       return true;
+    }
+
+    private int[] GetStatBonusesFromFeats(CExoArrayListUInt16 lstFeats, bool subtractBonuses)
+    {
+      int[] abilityMods = new int[6];
+
+      HashSet<Feat> feats = new HashSet<Feat>();
+      for (int i = 0; i < lstFeats.num; i++)
+      {
+        feats.Add((Feat)(*lstFeats._OpIndex(i)));
+      }
+
+      int GetFeatCount(params Feat[] epicFeats)
+      {
+        return epicFeats.Count(feat => feats.Contains(feat));
+      }
+
+      abilityMods[(int)Ability.Strength] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatStrength1,
+        Feat.EpicGreatStrength2,
+        Feat.EpicGreatStrength3,
+        Feat.EpicGreatStrength4,
+        Feat.EpicGreatStrength5,
+        Feat.EpicGreatStrength6,
+        Feat.EpicGreatStrength7,
+        Feat.EpicGreatStrength8,
+        Feat.EpicGreatStrength9,
+        Feat.EpicGreatStrength10);
+
+      abilityMods[(int)Ability.Dexterity] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatDexterity1,
+        Feat.EpicGreatDexterity2,
+        Feat.EpicGreatDexterity3,
+        Feat.EpicGreatDexterity4,
+        Feat.EpicGreatDexterity5,
+        Feat.EpicGreatDexterity6,
+        Feat.EpicGreatDexterity7,
+        Feat.EpicGreatDexterity8,
+        Feat.EpicGreatDexterity9,
+        Feat.EpicGreatDexterity10);
+
+      abilityMods[(int)Ability.Constitution] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatConstitution1,
+        Feat.EpicGreatConstitution2,
+        Feat.EpicGreatConstitution3,
+        Feat.EpicGreatConstitution4,
+        Feat.EpicGreatConstitution5,
+        Feat.EpicGreatConstitution6,
+        Feat.EpicGreatConstitution7,
+        Feat.EpicGreatConstitution8,
+        Feat.EpicGreatConstitution9,
+        Feat.EpicGreatConstitution10);
+
+      abilityMods[(int)Ability.Intelligence] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatIntelligence1,
+        Feat.EpicGreatIntelligence2,
+        Feat.EpicGreatIntelligence3,
+        Feat.EpicGreatIntelligence4,
+        Feat.EpicGreatIntelligence5,
+        Feat.EpicGreatIntelligence6,
+        Feat.EpicGreatIntelligence7,
+        Feat.EpicGreatIntelligence8,
+        Feat.EpicGreatIntelligence9,
+        Feat.EpicGreatIntelligence10);
+
+      abilityMods[(int)Ability.Wisdom] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatWisdom1,
+        Feat.EpicGreatWisdom2,
+        Feat.EpicGreatWisdom3,
+        Feat.EpicGreatWisdom4,
+        Feat.EpicGreatWisdom5,
+        Feat.EpicGreatWisdom6,
+        Feat.EpicGreatWisdom7,
+        Feat.EpicGreatWisdom8,
+        Feat.EpicGreatWisdom9,
+        Feat.EpicGreatWisdom10);
+
+      abilityMods[(int)Ability.Charisma] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatCharisma1,
+        Feat.EpicGreatCharisma2,
+        Feat.EpicGreatCharisma3,
+        Feat.EpicGreatCharisma4,
+        Feat.EpicGreatCharisma5,
+        Feat.EpicGreatCharisma6,
+        Feat.EpicGreatCharisma7,
+        Feat.EpicGreatCharisma8,
+        Feat.EpicGreatCharisma9,
+        Feat.EpicGreatCharisma10);
+
+      if (subtractBonuses)
+      {
+        abilityMods[(int)Ability.Strength] *= -1;
+        abilityMods[(int)Ability.Dexterity] *= -1;
+        abilityMods[(int)Ability.Constitution] *= -1;
+        abilityMods[(int)Ability.Intelligence] *= -1;
+        abilityMods[(int)Ability.Wisdom] *= -1;
+        abilityMods[(int)Ability.Charisma] *= -1;
+      }
+
+      return abilityMods;
     }
 
     public void Dispose()
