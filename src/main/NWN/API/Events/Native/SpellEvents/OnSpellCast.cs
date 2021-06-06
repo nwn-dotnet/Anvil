@@ -1,6 +1,7 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 using NWN.API.Constants;
+using NWN.Core;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -29,6 +30,8 @@ namespace NWN.API.Events
     public ProjectilePathType ProjectilePathType { get; private init; }
 
     public bool IsInstantSpell { get; private init; }
+
+    public MetaMagic MetaMagic { get; private init; }
 
     NwObject IEvent.Context
     {
@@ -64,6 +67,7 @@ namespace NWN.API.Events
           CounteringSpell = bCounteringSpell.ToBool(),
           ProjectilePathType = (ProjectilePathType)projectilePathType,
           IsInstantSpell = bInstantSpell.ToBool(),
+          MetaMagic = (MetaMagic)NWScript.GetMetaMagicFeat(),
         });
 
         if (!eventData.PreventSpellCast)
