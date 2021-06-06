@@ -295,7 +295,14 @@ namespace NWN.API
     /// <returns>The created item.</returns>
     public static NwItem Create(string template, NwGameObject target = null, int stackSize = 1, string newTag = "")
     {
-      return NWScript.CreateItemOnObject(template, target, stackSize, newTag).ToNwObject<NwItem>();
+      NwItem retVal = null;
+
+      VirtualMachine.Instance.ExecuteInScriptContext(() =>
+      {
+        retVal = NWScript.CreateItemOnObject(template, target, stackSize, newTag).ToNwObject<NwItem>();
+      }, NwModule.Instance);
+
+      return retVal;
     }
 
     /// <summary>
