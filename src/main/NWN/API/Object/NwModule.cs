@@ -203,8 +203,8 @@ namespace NWN.API
     /// <inheritdoc cref="NWN.API.Events.OnCreatureAttack"/>
     public event Action<OnCreatureAttack> OnCreatureAttack
     {
-      add => EventService.SubscribeAll<OnCreatureAttack, OnCreatureDamage.Factory>(value);
-      remove => EventService.UnsubscribeAll<OnCreatureAttack, OnCreatureDamage.Factory>(value);
+      add => EventService.SubscribeAll<OnCreatureAttack, OnCreatureAttack.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCreatureAttack, OnCreatureAttack.Factory>(value);
     }
 
     /// <inheritdoc cref="Events.OnCreatureDamage"/>
