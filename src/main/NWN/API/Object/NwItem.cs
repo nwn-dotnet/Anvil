@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;
@@ -293,16 +294,10 @@ namespace NWN.API
     /// <param name="stackSize">The stack size of the created item.</param>
     /// <param name="newTag">A new tag for the item, otherwise the value set in the blueprint.</param>
     /// <returns>The created item.</returns>
-    public static NwItem Create(string template, NwGameObject target = null, int stackSize = 1, string newTag = "")
+    public static async Task<NwItem> Create(string template, NwGameObject target = null, int stackSize = 1, string newTag = "")
     {
-      NwItem retVal = null;
-
-      VirtualMachine.Instance.ExecuteInScriptContext(() =>
-      {
-        retVal = NWScript.CreateItemOnObject(template, target, stackSize, newTag).ToNwObject<NwItem>();
-      }, NwModule.Instance);
-
-      return retVal;
+      await NwModule.Instance.WaitForObjectContext();
+      return NWScript.CreateItemOnObject(template, target, stackSize, newTag).ToNwObject<NwItem>();
     }
 
     /// <summary>
