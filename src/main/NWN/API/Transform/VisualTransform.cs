@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using NWN.Core;
 
@@ -5,72 +6,120 @@ namespace NWN.API
 {
   public sealed class VisualTransform
   {
-    public static readonly VisualTransform Default = new VisualTransform(Vector3.One, Vector3.One);
+    private readonly NwGameObject gameObject;
+    private VisualTransformLerpSettings activeLerpSettings;
 
-    public float Scale { get; set; }
-    public Vector3 Translation { get; set; }
-    public Vector3 Rotation { get; set; }
-    public float AnimSpeed { get; set; }
-
-    public VisualTransform() {}
-
-    public VisualTransform(Vector3 translation, Vector3 rotation, float scale = 1f, float animSpeed = 1f)
+    public float Scale
     {
-      Scale = scale;
-      Translation = translation;
-      Rotation = rotation;
-      AnimSpeed = animSpeed;
+      get => GetValue(VisualTransformProperty.ObjectVisualTransformScale);
+      set => SetValue(VisualTransformProperty.ObjectVisualTransformScale, value);
+    }
+
+    public float AnimSpeed
+    {
+      get => GetValue(VisualTransformProperty.ObjectVisualTransformAnimationSpeed);
+      set => SetValue(VisualTransformProperty.ObjectVisualTransformAnimationSpeed, value);
+    }
+
+    public Vector3 Translation
+    {
+      get
+      {
+        float x = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateX);
+        float y = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateY);
+        float z = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateZ);
+
+        return new Vector3(x, y, z);
+      }
+      set
+      {
+        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateX, value.X);
+        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateY, value.Y);
+        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateZ, value.Z);
+      }
+    }
+
+    public Vector3 Rotation
+    {
+      get
+      {
+        float x = GetValue(VisualTransformProperty.ObjectVisualTransformRotateX);
+        float y = GetValue(VisualTransformProperty.ObjectVisualTransformRotateY);
+        float z = GetValue(VisualTransformProperty.ObjectVisualTransformRotateZ);
+
+        return new Vector3(x, y, z);
+      }
+      set
+      {
+        SetValue(VisualTransformProperty.ObjectVisualTransformRotateX, value.X);
+        SetValue(VisualTransformProperty.ObjectVisualTransformRotateY, value.Y);
+        SetValue(VisualTransformProperty.ObjectVisualTransformRotateZ, value.Z);
+      }
     }
 
     internal VisualTransform(NwGameObject gameObject)
     {
-      Scale = GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformScale);
-      Translation = new Vector3(
-        GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateX),
-        GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateY),
-        GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateZ));
-      Rotation = new Vector3(
-        GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateX),
-        GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateY),
-        GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateZ));
-      AnimSpeed = GetValue(gameObject, VisualTransformProperty.ObjectVisualTransformAnimationSpeed);
+      this.gameObject = gameObject;
     }
 
-    internal void Apply(NwGameObject gameObject)
+    /// <summary>
+    /// Lerps the specified transform changes using the specified settings.
+    /// </summary>
+    /// <param name="settings">The lerp settings to use when changing this visual transform.</param>
+    /// <param name="transforms">An action containing the transform changes to be lerped.</param>
+    public void Lerp(VisualTransformLerpSettings settings, Action<VisualTransform> transforms)
     {
-      SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformScale, Scale);
+      activeLerpSettings = settings;
 
-      SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateX, Translation.X);
-      SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateY, Translation.Y);
-      SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformTranslateZ, Translation.Z);
-
-      SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateX, Rotation.X);
-      SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateY, Rotation.Y);
-      SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformRotateZ, Rotation.Z);
-
-      SetValue(gameObject, VisualTransformProperty.ObjectVisualTransformAnimationSpeed, AnimSpeed);
+      try
+      {
+        transforms?.Invoke(this);
+      }
+      finally
+      {
+        activeLerpSettings = null;
+      }
     }
 
-    private static float GetValue(NwGameObject obj, VisualTransformProperty prop)
+    /// <summary>
+    /// Updates the transform data of this visual transform by copying another.
+    /// </summary>
+    /// <param name="other">The visual transform to copy.</param>
+    public void Copy(VisualTransform other)
     {
-      return NWScript.GetObjectVisualTransform(obj, (int)prop);
+      Scale = other.Scale;
+      AnimSpeed = other.AnimSpeed;
+      Translation = other.Translation;
+      Rotation = other.Rotation;
     }
 
-    private static void SetValue(NwGameObject obj, VisualTransformProperty prop, float value)
+    private float GetValue(VisualTransformProperty property)
     {
-      NWScript.SetObjectVisualTransform(obj, (int)prop, value);
+      return NWScript.GetObjectVisualTransform(gameObject, (int)property, true.ToInt());
+    }
+
+    private void SetValue(VisualTransformProperty property, float value)
+    {
+      if (activeLerpSettings != null)
+      {
+        NWScript.SetObjectVisualTransform(gameObject, (int)property, value, (int)activeLerpSettings.LerpType, (float)activeLerpSettings.Duration.TotalSeconds, activeLerpSettings.PauseWithGame.ToInt());
+      }
+      else
+      {
+        NWScript.SetObjectVisualTransform(gameObject, (int)property, value);
+      }
     }
 
     private enum VisualTransformProperty
     {
-      ObjectVisualTransformScale = 10,
-      ObjectVisualTransformRotateX = 21,
-      ObjectVisualTransformRotateY = 22,
-      ObjectVisualTransformRotateZ = 23,
-      ObjectVisualTransformTranslateX = 31,
-      ObjectVisualTransformTranslateY = 32,
-      ObjectVisualTransformTranslateZ = 33,
-      ObjectVisualTransformAnimationSpeed = 40,
+      ObjectVisualTransformScale = NWScript.OBJECT_VISUAL_TRANSFORM_SCALE,
+      ObjectVisualTransformRotateX = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_X,
+      ObjectVisualTransformRotateY = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_Y,
+      ObjectVisualTransformRotateZ = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_Z,
+      ObjectVisualTransformTranslateX = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_X,
+      ObjectVisualTransformTranslateY = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_Y,
+      ObjectVisualTransformTranslateZ = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_Z,
+      ObjectVisualTransformAnimationSpeed = NWScript.OBJECT_VISUAL_TRANSFORM_ANIMATION_SPEED,
     }
   }
 }
