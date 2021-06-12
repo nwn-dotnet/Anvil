@@ -264,6 +264,46 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the script assigned to run for the specified object event.
+    /// </summary>
+    /// <param name="eventType">The event type to query.</param>
+    /// <returns>The script that has been assigned to the event, otherwise an <see cref="string.Empty"/> string.</returns>
+    public string GetEventScript(EventScriptType eventType)
+    {
+      return NWScript.GetEventScript(this, (int)eventType);
+    }
+
+    /// <summary>
+    /// Sets the script to be run on the specified object event.
+    /// </summary>
+    /// <param name="eventType">The event to be assigned.</param>
+    /// <param name="script">The new script to assign to this event.</param>
+    /// <exception cref="InvalidOperationException">Thrown if this event is locked as a service has subscribed to this event. See <see cref="IsEventLocked"/> to determine if an event script can be changed.</exception>
+    public void SetEventScript(EventScriptType eventType, string script)
+    {
+      if (IsEventLocked(eventType))
+      {
+        throw new InvalidOperationException("The specified event has already been subscribed by an event handler and cannot be modified.");
+      }
+
+      if (script.IsValidScriptName())
+      {
+        NWScript.SetEventScript(this, (int)eventType, script);
+      }
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether the event script can be modified for the specified event.
+    /// </summary>
+    /// <param name="eventType">The event type to query.</param>
+    /// <returns>True if the event is locked and the script cannot be modified, otherwise false.</returns>
+    public bool IsEventLocked(EventScriptType eventType)
+    {
+      string current = GetEventScript(eventType);
+      return current is ScriptConstants.GameEventScriptName or ScriptConstants.NWNXEventScriptName;
+    }
+
+    /// <summary>
     /// The ID of this object as a string. Can be used in <see cref="StringExtensions.ParseObject"/> while the object is alive.<br/>
     /// This cannot be used across server restarts. See <see cref="UUID"/> for a persistent unique identifier.
     /// </summary>

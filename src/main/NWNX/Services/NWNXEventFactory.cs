@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using NLog;
 using NWN.API;
+using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core.NWNX;
 using NWN.Services;
@@ -15,8 +16,6 @@ namespace NWNX.Services
   public class NWNXEventFactory : IEventFactory<NullRegistrationData>, IScriptDispatcher
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-    private const string InternalScriptName = "___anvilx_event";
 
     private readonly Lazy<EventService> eventService;
 
@@ -40,12 +39,12 @@ namespace NWNX.Services
     public void Unregister<TEvent>() where TEvent : IEvent, new()
     {
       string eventName = GetEventInfo(typeof(TEvent)).EventName;
-      EventsPlugin.UnsubscribeEvent(eventName, InternalScriptName);
+      EventsPlugin.UnsubscribeEvent(eventName, ScriptConstants.NWNXEventScriptName);
     }
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
-      if (eventService == null || scriptName != InternalScriptName)
+      if (eventService == null || scriptName != ScriptConstants.NWNXEventScriptName)
       {
         return ScriptHandleResult.NotHandled;
       }
@@ -83,7 +82,7 @@ namespace NWNX.Services
     private void UpdateEventScript(string eventName)
     {
       Log.Debug($"Hooking NWNX script event \"{eventName}\".");
-      EventsPlugin.SubscribeEvent(eventName, InternalScriptName);
+      EventsPlugin.SubscribeEvent(eventName, ScriptConstants.NWNXEventScriptName);
     }
 
     private NWNXEventAttribute GetEventInfo(Type type)
