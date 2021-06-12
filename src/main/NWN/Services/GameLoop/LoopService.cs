@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -27,7 +28,14 @@ namespace NWN.Services
 
       foreach (IUpdateable updateable in updateables)
       {
-        updateable.Update();
+        try
+        {
+          updateable.Update();
+        }
+        catch (Exception e)
+        {
+          Log.Error(e);
+        }
       }
     }
   }

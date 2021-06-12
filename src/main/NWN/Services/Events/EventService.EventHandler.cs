@@ -35,13 +35,24 @@ namespace NWN.Services
         filteredCallbacks.Remove(gameObject);
       }
 
-      private void ProcessEvent(T evt)
+      private void ProcessEvent(T eventData)
       {
-        globalCallback?.Invoke(evt);
-
-        if (evt.Context != null && filteredCallbacks.TryGetValue(evt.Context, out Action<T> callback))
+        TryInvoke(eventData, globalCallback);
+        if (eventData.Context != null && filteredCallbacks.TryGetValue(eventData.Context, out Action<T> callback))
         {
-          callback?.Invoke(evt);
+          TryInvoke(eventData, callback);
+        }
+      }
+
+      private static void TryInvoke(T eventData, Action<T> callback)
+      {
+        try
+        {
+          callback?.Invoke(eventData);
+        }
+        catch (Exception e)
+        {
+          Log.Error(e);
         }
       }
 
