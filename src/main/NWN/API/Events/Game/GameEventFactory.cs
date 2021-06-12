@@ -14,8 +14,6 @@ namespace NWN.API.Events
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private const string InternalScriptName = "____anvil_event";
-
     private readonly Lazy<EventService> eventService;
 
     // Caches
@@ -40,7 +38,7 @@ namespace NWN.API.Events
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
-      if (eventService == null || scriptName != InternalScriptName)
+      if (eventService == null || scriptName != ScriptConstants.GameEventScriptName)
       {
         return ScriptHandleResult.NotHandled;
       }
@@ -68,13 +66,13 @@ namespace NWN.API.Events
     private void UpdateEventScript(NwObject nwObject, EventScriptType eventType, bool callOriginal)
     {
       string existingScript = NWScript.GetEventScript(nwObject, (int)eventType);
-      if (existingScript == InternalScriptName)
+      if (existingScript == ScriptConstants.GameEventScriptName)
       {
         return;
       }
 
       Log.Debug($"Hooking native script event \"{eventType}\" on object \"{nwObject.Name}\". Previous script: \"{existingScript}\"");
-      NWScript.SetEventScript(nwObject, (int)eventType, InternalScriptName);
+      NWScript.SetEventScript(nwObject, (int)eventType, ScriptConstants.GameEventScriptName);
 
       if (callOriginal && !string.IsNullOrWhiteSpace(existingScript))
       {

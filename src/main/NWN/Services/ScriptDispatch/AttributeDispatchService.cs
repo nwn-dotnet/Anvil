@@ -45,7 +45,7 @@ namespace NWN.Services
 
     private void RegisterMethod(object service, MethodInfo method, string scriptName)
     {
-      if (scriptName.Length > ScriptConstants.MaxScriptNameSize)
+      if (scriptName.IsValidScriptName())
       {
         Log.Warn($"Script Handler {scriptName} - name exceeds character limit ({ScriptConstants.MaxScriptNameSize}) and will be ignored.\n" +
           $"Method: \"{method.GetFullName()}\"");

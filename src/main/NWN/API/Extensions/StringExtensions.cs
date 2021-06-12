@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using NWN.API.Constants;
 
 namespace NWN.API
 {
@@ -120,6 +121,11 @@ namespace NWN.API
     public static byte[] ToByteArray(this string base64String)
     {
       return Convert.FromBase64String(base64String);
+    }
+
+    public static bool IsValidScriptName(this string scriptName)
+    {
+      return scriptName != null && scriptName.Length <= ScriptConstants.MaxScriptNameSize;
     }
   }
 }
