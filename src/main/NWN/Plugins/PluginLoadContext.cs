@@ -22,7 +22,13 @@ namespace NWN.Plugins
 
     protected override Assembly Load(AssemblyName assemblyName)
     {
-      // Resolve from the plugin loader.
+      // Resolve this plugin's assembly locally.
+      if (assemblyName.Name == pluginName)
+      {
+        return ResolveLocal(assemblyName);
+      }
+
+      // Resolve the dependency with the bundled assemblies (NWN.Core/Anvil), then check if other plugins can provide the dependency.
       Assembly assembly = pluginLoader.ResolveDependency(pluginName, assemblyName);
 
       if (assembly != null)
@@ -30,14 +36,19 @@ namespace NWN.Plugins
         return assembly;
       }
 
-      // Try resolving locally from the plugin folder.
+      // The try resolving the dependency locally by checking the plugin folder.
+      return ResolveLocal(assemblyName);
+    }
+
+    private Assembly ResolveLocal(AssemblyName assemblyName)
+    {
       string assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);
       if (assemblyPath != null)
       {
-        assembly = LoadAssemblyAtPath(assemblyPath);
+        return LoadAssemblyAtPath(assemblyPath);
       }
 
-      return assembly;
+      return null;
     }
 
     private Assembly LoadAssemblyAtPath(string assemblyPath)

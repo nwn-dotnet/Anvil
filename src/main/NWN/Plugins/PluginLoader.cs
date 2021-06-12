@@ -131,18 +131,10 @@ namespace NWN.Plugins
     {
       foreach (Assembly assembly in Assemblies.AllAssemblies)
       {
-        AssemblyName assemblyName = assembly.GetName();
-        if (assemblyName.Name != dependencyName.Name)
+        if (IsValidDependency(pluginName, dependencyName, assembly.GetName()))
         {
-          continue;
+          return assembly;
         }
-
-        if (dependencyName.Version != assemblyName.Version)
-        {
-          Log.Warn($"DotNET Plugin {pluginName} references {dependencyName.Name}, v{dependencyName.Version} but the server is running v{assemblyName.Version}! You may encounter compatibility issues.");
-        }
-
-        return assembly;
       }
 
       return null;
@@ -152,7 +144,7 @@ namespace NWN.Plugins
     {
       foreach (Plugin plugin in plugins)
       {
-        if (!plugin.IsMatchingPlugin(dependencyName))
+        if (!IsValidDependency(pluginName, dependencyName, plugin.AssemblyName))
         {
           continue;
         }
@@ -172,6 +164,21 @@ namespace NWN.Plugins
       }
 
       return null;
+    }
+
+    private bool IsValidDependency(string plugin, AssemblyName requested, AssemblyName resolved)
+    {
+      if (requested.Name != resolved.Name)
+      {
+        return false;
+      }
+
+      if (requested.Version != resolved.Version)
+      {
+        Log.Warn($"DotNET Plugin {plugin} references {requested.Name}, v{requested.Version} but the server is running v{resolved.Version}! You may encounter compatibility issues.");
+      }
+
+      return true;
     }
 
     private IReadOnlyCollection<Type> GetLoadedTypes()
@@ -199,7 +206,7 @@ namespace NWN.Plugins
       return resourcePaths.AsReadOnly();
     }
 
-    public void Dispose()
+    void IDisposable.Dispose()
     {
       loadedAssemblies.Clear();
       LoadedTypes = null;
