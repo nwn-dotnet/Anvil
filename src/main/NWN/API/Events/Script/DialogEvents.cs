@@ -1,5 +1,4 @@
 using NWN.Core;
-using NWN.Services;
 
 namespace NWN.API.Events
 {
@@ -45,13 +44,8 @@ namespace NWN.API.Events
       }
     }
 
-    public class AppearsWhen : IEventScriptResult
+    public class AppearsWhen : IEvent
     {
-      /// <summary>
-      /// Gets or sets a value indicating whether this dialog option should be shown.
-      /// </summary>
-      public bool ShouldShow { get; set; }
-
       /// <summary>
       /// Gets the creature/object currently speaking.
       /// </summary>
@@ -70,11 +64,6 @@ namespace NWN.API.Events
       NwObject IEvent.Context
       {
         get => CurrentSpeaker;
-      }
-
-      ScriptHandleResult IEventScriptResult.Result
-      {
-        get => ShouldShow ? ScriptHandleResult.True : ScriptHandleResult.False;
       }
 
       public AppearsWhen()
