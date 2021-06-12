@@ -46,11 +46,6 @@ namespace NWN.Plugins
       }
     }
 
-    public bool IsMatchingPlugin(AssemblyName assemblyName)
-    {
-      return AssemblyName == assemblyName;
-    }
-
     public void Dispose()
     {
       Assembly = null;
