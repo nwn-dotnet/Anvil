@@ -29,10 +29,12 @@ namespace NWN.API
     }
 
     internal readonly CNWSPlayer Player;
+    internal readonly uint PlayerId;
 
     internal NwPlayer(CNWSPlayer player)
     {
       Player = player;
+      PlayerId = player.m_nPlayerID;
     }
 
     internal CNWSPlayerTURD Turd
@@ -232,6 +234,19 @@ namespace NWN.API
     {
       add => EventService.Subscribe<OnPartyEvent, OnPartyEvent.Factory>(ControlledCreature, value);
       remove => EventService.Unsubscribe<OnPartyEvent, OnPartyEvent.Factory>(ControlledCreature, value);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this <see cref="NwPlayer"/> object is valid.<br/>
+    /// Returns false after the player disconnects from the server.
+    /// </summary>
+    public bool IsValid
+    {
+      get
+      {
+        CNWSClient client = LowLevel.ServerExoApp.GetClientObjectByPlayerId(PlayerId);
+        return client != null && client.AsNWSPlayer() == Player;
+      }
     }
 
     /// <summary>

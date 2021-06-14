@@ -107,7 +107,14 @@ namespace NWN.Services
           continue;
         }
 
-        item.Execute();
+        try
+        {
+          item.Execute();
+        }
+        catch (Exception e)
+        {
+          Log.Error(e);
+        }
 
         if (!item.Repeating || item.Disposed)
         {

@@ -19,6 +19,7 @@ namespace NWN.API
     internal NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
       GameObject = gameObject;
+      VisualTransform = new VisualTransform(this);
     }
 
     internal override CNWSScriptVarTable ScriptVarTable
@@ -125,13 +126,9 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the visual transform for this object.
+    /// Gets the visual transform for this object.
     /// </summary>
-    public VisualTransform VisualTransform
-    {
-      get => new VisualTransform(this);
-      set => value?.Apply(this);
-    }
+    public VisualTransform VisualTransform { get; }
 
     /// <summary>
     /// Gets a value indicating whether this object is in a conversation.
