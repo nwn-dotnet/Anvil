@@ -42,12 +42,15 @@ namespace NWN.Services
     private const int StrRefCustom = 164;
 
     // Magic Numbers
-    private const int NumPlayerItemSlots = 14;
-    private const int NumMulticlass = 3;
-    private const int CharacterEpicLevel = 21;
-    private const int NumSpellLevels = 10;
+    private const int INVENTORY_SLOT_MAX = 17;
+    private const int NUM_CREATURE_ITEM_SLOTS = 4;
+    private const int NUM_MULTICLASS = 3;
+    private const int CHARACTER_EPIC_LEVEL = 21;
+    private const int NUM_SPELL_SLOTS = 10;
+    private const int ABILITY_MAX = 5;
 
     private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
+
     private readonly FunctionHook<ValidateCharacterHook> validateCharacterHook;
 
     private readonly CNWRules rules;
@@ -78,53 +81,56 @@ namespace NWN.Services
       abilityCostIncrement3 = rules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT3".ToExoString(), 16);
     }
 
-    private int OnValidateCharacter(void* pPlayer, int* bFailedServerRestriction)
+    private int OnValidateCharacter(void* player, int* bFailedServerRestriction)
     {
-      CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
+      CNWSPlayer pPlayer = CNWSPlayer.FromPointer(player);
 
       // *** Sanity Checks ****************************************************************************************************
-      if (player == null)
+      if (pPlayer == null)
       {
         return StrRefCharacterDoesNotExist;
       }
 
-      ICGameObject gameObject = LowLevel.ServerExoApp.GetGameObject(player.m_oidNWSObject);
-      if (gameObject == null)
+      ICGameObject pGameObject = LowLevel.ServerExoApp.GetGameObject(pPlayer.m_oidNWSObject);
+      if (pGameObject == null)
       {
         return StrRefCharacterDoesNotExist;
       }
 
-      CNWSCreature creature = gameObject.AsNWSCreature();
-      if (creature == null)
+      CNWSCreature pCreature = pGameObject.AsNWSCreature();
+      if (pCreature == null)
       {
         return StrRefCharacterDoesNotExist;
       }
 
-      CNWSCreatureStats creatureStats = creature.m_pStats;
-      if (creatureStats == null)
+      CNWSCreatureStats pCreatureStats = pCreature.m_pStats;
+      if (pCreatureStats == null)
       {
         return StrRefCharacterDoesNotExist;
       }
 
-      CNWSInventory inventory = creature.m_pInventory;
-      if (inventory == null)
+      CNWSInventory pInventory = pCreature.m_pInventory;
+      if (pInventory == null)
       {
         return StrRefCharacterDoesNotExist;
       }
       // **********************************************************************************************************************
 
       // *** Server Restrictions **********************************************************************************************
-      JoiningRestrictions joinRestrictions = NwServer.Instance.ServerInfo.JoiningRestrictions;
+      CServerInfo pServerInfo = NWNXLib.AppManager().m_pServerExoApp.GetServerInfo();
 
-      byte characterLevel = creatureStats.GetLevel(false.ToInt());
+      *bFailedServerRestriction = false.ToInt();
+      byte nCharacterLevel = pCreatureStats.GetLevel(false.ToInt());
 
-      if (characterLevel > joinRestrictions.MaxLevel || characterLevel < joinRestrictions.MinLevel)
+      // *** Level Restriction Check ******************************************************************************************
+      if (nCharacterLevel < pServerInfo.m_JoiningRestrictions.nMinLevel ||
+        nCharacterLevel > pServerInfo.m_JoiningRestrictions.nMaxLevel)
       {
         OnELCLevelValidationFailure failure = new OnELCLevelValidationFailure
         {
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.ServerLevelRestriction,
-          Level = characterLevel,
+          Level = nCharacterLevel,
         };
 
         if (HandleValidationFailure(failure))
@@ -138,18 +144,18 @@ namespace NWN.Services
       // *** Level Hack Check *************************************************************************************************
       // Character level is stored in an uint8_t which means if a character has say 80/80/120 as their levels it'll wrap around
       // to level 24 (280 - 256) thus not failing the above check
-      int totalLevels = 0;
-      for (byte i = 0; i < creatureStats.m_nNumMultiClasses; i++)
+      int nTotalLevels = 0;
+      for (byte i = 0; i < pCreatureStats.m_nNumMultiClasses; i++)
       {
-        totalLevels += creatureStats.GetClassLevel(i, false.ToInt());
+        nTotalLevels += pCreatureStats.GetClassLevel(i, false.ToInt());
 
-        if (totalLevels > joinRestrictions.MaxLevel)
+        if (nTotalLevels > pServerInfo.m_JoiningRestrictions.nMaxLevel)
         {
           OnELCLevelValidationFailure failure = new OnELCLevelValidationFailure
           {
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.LevelHack,
-            Level = totalLevels,
+            Level = nTotalLevels,
           };
 
           if (HandleValidationFailure(failure))
@@ -184,7 +190,7 @@ namespace NWN.Services
         return false;
       }
 
-      if (CheckColoredName(creatureStats.m_lsFirstName) || CheckColoredName(creatureStats.m_lsLastName))
+      if (CheckColoredName(pCreatureStats.m_lsFirstName) || CheckColoredName(pCreatureStats.m_lsLastName))
       {
         OnELCValidationFailure failure = new OnELCValidationFailure
         {
@@ -202,12 +208,14 @@ namespace NWN.Services
       // **********************************************************************************************************************
 
       // *** ILR aka Inventory Checks *****************************************************************************************
-      if (NwServer.Instance.ServerInfo.PlayOptions.ItemLevelRestrictions)
+
+      // Only check if ILR is enabled
+      if (pServerInfo.m_PlayOptions.bItemLevelRestrictions.ToBool())
       {
-        for (uint slot = 0; slot < NumPlayerItemSlots; slot++)
+        for (uint slot = 0; slot <= INVENTORY_SLOT_MAX - NUM_CREATURE_ITEM_SLOTS; slot++)
         {
-          CNWSItem item = inventory.GetItemInSlot(slot);
-          if (item == null)
+          CNWSItem pItem = pInventory.GetItemInSlot(slot);
+          if (pItem == null)
           {
             continue;
           }
@@ -215,11 +223,11 @@ namespace NWN.Services
           OnELCValidationFailure failure = null;
 
           // Check for unidentified equipped items
-          if (!item.m_bIdentified.ToBool())
+          if (!pItem.m_bIdentified.ToBool())
           {
             failure = new OnELCItemValidationFailure
             {
-              Item = item.ToNwObject<NwItem>(),
+              Item = pItem.ToNwObject<NwItem>(),
               Type = ValidationFailureType.Item,
               SubType = ValidationFailureSubType.UnidentifiedEquippedItem,
               StrRef = StrRefItemLevelRestriction,
@@ -227,11 +235,11 @@ namespace NWN.Services
           }
 
           // Check the minimum equip level
-          if (item.GetMinEquipLevel() > characterLevel)
+          if (pItem.GetMinEquipLevel() > nCharacterLevel)
           {
             failure = new OnELCItemValidationFailure
             {
-              Item = item.ToNwObject<NwItem>(),
+              Item = pItem.ToNwObject<NwItem>(),
               Type = ValidationFailureType.Item,
               SubType = ValidationFailureSubType.MinEquipLevel,
               StrRef = StrRefItemLevelRestriction,
@@ -247,21 +255,21 @@ namespace NWN.Services
       }
 
       // Strip invalid item properties for local vault servers
-      if (NwServer.Instance.ServerInfo.JoiningRestrictions.AllowLocalVaultCharacters)
+      if (pServerInfo.m_JoiningRestrictions.bAllowLocalVaultChars.ToBool())
       {
-        player.StripAllInvalidItemPropertiesInInventory(creature);
+        pPlayer.StripAllInvalidItemPropertiesInInventory(pCreature);
       }
       // **********************************************************************************************************************
 
       // *** Misc Checks ******************************************************************************************************
       // Set Plot/Immortal to false
-      creature.m_bPlotObject = false.ToInt();
-      creature.m_bIsImmortal = false.ToInt();
+      pCreature.m_bPlotObject = false.ToInt();
+      pCreature.m_bIsImmortal = false.ToInt();
       // **********************************************************************************************************************
 
       // *** Character Validation (ELC) ***************************************************************************************
       // Return early if ELC is off.
-      if (!NwServer.Instance.ServerInfo.PlayOptions.EnforceLegalCharacters)
+      if (!pServerInfo.m_PlayOptions.bEnforceLegalCharacters.ToBool())
       {
         return 0;
       }
@@ -271,18 +279,18 @@ namespace NWN.Services
       {
         for (int i = 0; i < 13; i++)
         {
-          creature.m_sScripts[i] = "default".ToExoString();
+          pCreature.m_sScripts[i] = "default".ToExoString();
         }
       }
 
       // Enforce empty dialog resref
       if (EnforceEmptyDialog)
       {
-        creatureStats.m_cDialog = new CResRef("");
+        pCreatureStats.m_cDialog = new CResRef("");
       }
 
       // Check for non PC
-      if (!creatureStats.m_bIsPC.ToBool())
+      if (!pCreatureStats.m_bIsPC.ToBool())
       {
         OnELCValidationFailure failure = new OnELCValidationFailure
         {
@@ -298,7 +306,7 @@ namespace NWN.Services
       }
 
       // Check for DM character file
-      if (creatureStats.m_bIsDMCharacterFile.ToBool())
+      if (pCreatureStats.m_bIsDMCharacterFile.ToBool())
       {
         OnELCValidationFailure failure = new OnELCValidationFailure
         {
@@ -314,9 +322,9 @@ namespace NWN.Services
       }
 
       // Check for non player race
-      CNWRace race = creatureStats.m_nRace < rules.m_nNumRaces ? races[creatureStats.m_nRace] : null;
+      CNWRace pRace = pCreatureStats.m_nRace < rules.m_nNumRaces ? races[pCreatureStats.m_nRace] : null;
 
-      if (race == null || !race.m_bIsPlayerRace.ToBool())
+      if (pRace == null || !pRace.m_bIsPlayerRace.ToBool())
       {
         OnELCValidationFailure failure = new OnELCValidationFailure
         {
@@ -333,12 +341,12 @@ namespace NWN.Services
 
       // Check for non player classes, class level restrictions and prestige class requirements
       // We also check class alignment restrictions for new characters only
-      for (byte multiClass = 0; multiClass < creatureStats.m_nNumMultiClasses; multiClass++)
+      for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
       {
-        byte classId = creatureStats.m_ClassInfo[multiClass].m_nClass;
-        CNWClass classInfo = classId < rules.m_nNumClasses ? classes[classId] : null;
+        byte classId = pCreatureStats.m_ClassInfo[nMultiClass].m_nClass;
+        CNWClass pClass = classId < rules.m_nNumClasses ? classes[classId] : null;
 
-        if (classInfo == null)
+        if (pClass == null)
         {
           OnELCValidationFailure failure = new OnELCValidationFailure
           {
@@ -356,7 +364,7 @@ namespace NWN.Services
           continue;
         }
 
-        if (!classInfo.m_bIsPlayerClass.ToBool())
+        if (!pClass.m_bIsPlayerClass.ToBool())
         {
           OnELCValidationFailure failure = new OnELCValidationFailure
           {
@@ -371,7 +379,7 @@ namespace NWN.Services
           }
         }
 
-        if (classInfo.m_nMaxLevel > 0 && creatureStats.GetClassLevel(multiClass, false.ToInt()) > classInfo.m_nMaxLevel)
+        if (pClass.m_nMaxLevel > 0 && pCreatureStats.GetClassLevel(nMultiClass, false.ToInt()) > pClass.m_nMaxLevel)
         {
           OnELCValidationFailure failure = new OnELCValidationFailure
           {
@@ -386,7 +394,7 @@ namespace NWN.Services
           }
         }
 
-        if (!creatureStats.GetMeetsPrestigeClassRequirements(classInfo).ToBool())
+        if (!pCreatureStats.GetMeetsPrestigeClassRequirements(pClass).ToBool())
         {
           OnELCValidationFailure failure = new OnELCValidationFailure
           {
@@ -401,9 +409,9 @@ namespace NWN.Services
           }
         }
 
-        if (multiClass == 0 && characterLevel == 1 && creatureStats.m_nExperience == 0)
+        if (nMultiClass == 0 && nCharacterLevel == 1 && pCreatureStats.m_nExperience == 0)
         {
-          if (!classInfo.GetIsAlignmentAllowed(creatureStats.GetSimpleAlignmentGoodEvil(), creatureStats.GetSimpleAlignmentLawChaos()).ToBool())
+          if (!pClass.GetIsAlignmentAllowed(pCreatureStats.GetSimpleAlignmentGoodEvil(), pCreatureStats.GetSimpleAlignmentLawChaos()).ToBool())
           {
             OnELCValidationFailure failure = new OnELCValidationFailure
             {
@@ -421,37 +429,40 @@ namespace NWN.Services
       }
 
       // Check movement rate
-      if (creatureStats.m_nMovementRate != (int)MovementRate.PC)
+      if (pCreatureStats.m_nMovementRate != (int)MovementRate.PC)
       {
-        creatureStats.SetMovementRate((int)MovementRate.PC);
+        pCreatureStats.SetMovementRate((int)MovementRate.PC);
       }
 
       // Calculate Ability Scores;
-      byte[] abilityScores = new byte[6];
-      int[] abilityMods = GetStatBonusesFromFeats(creatureStats.m_lstFeats, true);
+      byte[] nAbility = new byte[6];
+      int[] nMods = GetStatBonusesFromFeats(pCreatureStats.m_lstFeats, true);
 
       // Get our base ability stats
-      abilityScores[(int)Ability.Strength] = (byte)((creature.m_bIsPolymorphed.ToBool() ? creature.m_nPrePolymorphSTR : creatureStats.m_nStrengthBase) + abilityMods[(int)Ability.Strength]);
-      abilityScores[(int)Ability.Dexterity] = (byte)((creature.m_bIsPolymorphed.ToBool() ? creature.m_nPrePolymorphDEX : creatureStats.m_nDexterityBase) + abilityMods[(int)Ability.Dexterity]);
-      abilityScores[(int)Ability.Constitution] = (byte)((creature.m_bIsPolymorphed.ToBool() ? creature.m_nPrePolymorphCON : creatureStats.m_nConstitutionBase) + abilityMods[(int)Ability.Constitution]);
-      abilityScores[(int)Ability.Intelligence] = (byte)(creatureStats.m_nIntelligenceBase + abilityMods[(int)Ability.Intelligence]);
-      abilityScores[(int)Ability.Wisdom] = (byte)(creatureStats.m_nWisdomBase + abilityMods[(int)Ability.Wisdom]);
-      abilityScores[(int)Ability.Charisma] = (byte)(creatureStats.m_nCharismaBase + abilityMods[(int)Ability.Charisma]);
+      nAbility[(int)Ability.Strength] =
+        (byte)((pCreature.m_bIsPolymorphed.ToBool() ? pCreature.m_nPrePolymorphSTR : pCreatureStats.m_nStrengthBase) + nMods[(int)Ability.Strength]);
+      nAbility[(int)Ability.Dexterity] =
+        (byte)((pCreature.m_bIsPolymorphed.ToBool() ? pCreature.m_nPrePolymorphDEX : pCreatureStats.m_nDexterityBase) + nMods[(int)Ability.Dexterity]);
+      nAbility[(int)Ability.Constitution] =
+        (byte)((pCreature.m_bIsPolymorphed.ToBool() ? pCreature.m_nPrePolymorphCON : pCreatureStats.m_nConstitutionBase) + nMods[(int)Ability.Constitution]);
+      nAbility[(int)Ability.Intelligence] = (byte)(pCreatureStats.m_nIntelligenceBase + nMods[(int)Ability.Intelligence]);
+      nAbility[(int)Ability.Wisdom] = (byte)(pCreatureStats.m_nWisdomBase + nMods[(int)Ability.Wisdom]);
+      nAbility[(int)Ability.Charisma] = (byte)(pCreatureStats.m_nCharismaBase + nMods[(int)Ability.Charisma]);
 
       // Get the level 1 ability values
-      for (int level = 4; level < characterLevel; level += 4)
+      for (int nLevel = 4; nLevel <= nCharacterLevel; nLevel += 4)
       {
-        byte abilityGain = creatureStats.GetLevelStats((byte)(level - 1)).m_nAbilityGain;
-        if (abilityGain < abilityScores.Length)
+        byte nAbilityGain = pCreatureStats.GetLevelStats((byte)(nLevel - 1)).m_nAbilityGain;
+        if (nAbilityGain <= ABILITY_MAX)
         {
-          abilityScores[abilityGain]--;
+          nAbility[nAbilityGain]--;
         }
       }
 
       // Check if >18 in an ability
-      foreach (byte abilityScore in abilityScores)
+      for (int nAbilityIndex = 0; nAbilityIndex <= ABILITY_MAX; nAbilityIndex++)
       {
-        if (abilityScore > charGenBaseAbilityMax)
+        if (nAbility[nAbilityIndex] > charGenBaseAbilityMax)
         {
           OnELCValidationFailure failure = new OnELCValidationFailure
           {
@@ -468,77 +479,74 @@ namespace NWN.Services
       }
 
       // Point Buy System calculation
-      if (race != null)
+      int[] nAbilityAtLevel = new int[6];
+      int nPointBuy = pRace.m_nAbilitiesPointBuyNumber;
+
+      for (int nAbilityIndex = 0; nAbilityIndex <= ABILITY_MAX; nAbilityIndex++)
       {
-        byte[] abilityAtLevel = new byte[6];
-        int pointBuy = race.m_nAbilitiesPointBuyNumber;
+        nAbilityAtLevel[nAbilityIndex] = nAbility[nAbilityIndex];
 
-        for (int abilityIndex = 0; abilityIndex < abilityAtLevel.Length; abilityIndex++)
+        while (nAbility[nAbilityIndex] > charGenBaseAbilityMin)
         {
-          abilityAtLevel[abilityIndex] = abilityScores[abilityIndex];
-
-          while (abilityScores[abilityIndex] > charGenBaseAbilityMin)
+          if (nAbility[nAbilityIndex] > abilityCostIncrement3)
           {
-            if (abilityScores[abilityIndex] > abilityCostIncrement3)
+            if (nPointBuy < 3)
             {
-              if (pointBuy < 3)
+              OnELCValidationFailure failure = new OnELCValidationFailure
               {
-                OnELCValidationFailure failure = new OnELCValidationFailure
-                {
-                  Type = ValidationFailureType.Character,
-                  SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
-                  StrRef = StrRefCharacterInvalidAbilityScores,
-                };
+                Type = ValidationFailureType.Character,
+                SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+                StrRef = StrRefCharacterInvalidAbilityScores,
+              };
 
-                if (HandleValidationFailure(failure))
-                {
-                  return failure.StrRef;
-                }
+              if (HandleValidationFailure(failure))
+              {
+                return failure.StrRef;
               }
-
-              abilityScores[abilityIndex]--;
-              pointBuy -= 3;
             }
-            else if (abilityScores[abilityIndex] > abilityCostIncrement2)
+
+            nAbility[nAbilityIndex]--;
+            nPointBuy -= 3;
+          }
+          else if (nAbility[nAbilityIndex] > abilityCostIncrement2)
+          {
+            if (nPointBuy < 2)
             {
-              if (pointBuy < 2)
+              OnELCValidationFailure failure = new OnELCValidationFailure
               {
-                OnELCValidationFailure failure = new OnELCValidationFailure
-                {
-                  Type = ValidationFailureType.Character,
-                  SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
-                  StrRef = StrRefCharacterInvalidAbilityScores,
-                };
+                Type = ValidationFailureType.Character,
+                SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+                StrRef = StrRefCharacterInvalidAbilityScores,
+              };
 
-                if (HandleValidationFailure(failure))
-                {
-                  return failure.StrRef;
-                }
+              if (HandleValidationFailure(failure))
+              {
+                return failure.StrRef;
               }
-
-              abilityScores[abilityIndex]--;
-              pointBuy -= 2;
             }
-            else
+
+            nAbility[nAbilityIndex]--;
+            nPointBuy -= 2;
+          }
+          else
+          {
+            if (nPointBuy < 1)
             {
-              if (pointBuy < 1)
+              OnELCValidationFailure failure = new OnELCValidationFailure
               {
-                OnELCValidationFailure failure = new OnELCValidationFailure
-                {
-                  Type = ValidationFailureType.Character,
-                  SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
-                  StrRef = StrRefCharacterInvalidAbilityScores,
-                };
+                Type = ValidationFailureType.Character,
+                SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
+                StrRef = StrRefCharacterInvalidAbilityScores,
+              };
 
-                if (HandleValidationFailure(failure))
-                {
-                  return failure.StrRef;
-                }
+              if (HandleValidationFailure(failure))
+              {
+                return failure.StrRef;
               }
-
-              abilityScores[abilityIndex]--;
-              pointBuy--;
             }
+
+            nAbility[nAbilityIndex]--;
+            nPointBuy--;
           }
         }
       }
@@ -547,18 +555,158 @@ namespace NWN.Services
       ushort? nDomainFeat1 = null;
       ushort? nDomainFeat2 = null;
 
-      for (byte multiClass = 0; multiClass < creatureStats.m_nNumMultiClasses; multiClass++)
+      for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
       {
-        if (classes[creatureStats.GetClass(multiClass)].m_bHasDomains.ToBool())
+        if (classes[pCreatureStats.GetClass(nMultiClass)].m_bHasDomains.ToBool())
         {
-          CNWDomain domain = rules.GetDomain(creatureStats.GetDomain1(multiClass));
-          CNWDomain domain2 = rules.GetDomain(creatureStats.GetDomain2(multiClass));
-          nDomainFeat1 = domain?.m_nGrantedFeat;
-          nDomainFeat2 = domain2?.m_nGrantedFeat;
+          CNWDomain pDomain = rules.GetDomain(pCreatureStats.GetDomain1(nMultiClass));
+
+          if (pDomain != null)
+          {
+            nDomainFeat1 = pDomain.m_nGrantedFeat;
+          }
+
+          pDomain = rules.GetDomain(pCreatureStats.GetDomain2(nMultiClass));
+          if (pDomain != null)
+          {
+            nDomainFeat2 = pDomain.m_nGrantedFeat;
+          }
         }
       }
 
       // *** Character Per-Level Checks********************************************************************************************
+
+      // Init some vars
+      byte[] nMultiClassLevel = new byte[NUM_MULTICLASS];
+      ushort nSkillPointsRemaining = 0;
+      List<byte> listSkillRanks = new List<byte>(rules.m_nNumSkills);
+      HashSet<ushort> listFeats = new HashSet<ushort>();
+      HashSet<ushort> listChosenFeats = new HashSet<ushort>();
+      // [nMultiClass][nSpellLevel] -> {SpellIDs}
+      List<Dictionary<uint, HashSet<uint>>> listSpells = new List<Dictionary<uint, HashSet<uint>>>(NUM_MULTICLASS);
+
+      for (int nLevel = 1; nLevel <= nCharacterLevel; nLevel++)
+      {
+        // Grab our level stats and figure out which class was leveled
+        CNWLevelStats pLevelStats = pCreatureStats.GetLevelStats((byte)(nLevel - 1));
+        byte nClassLeveledUpIn = pLevelStats.m_nClass;
+        CNWClass pClassLeveledUpIn = classes[nClassLeveledUpIn];
+
+        // Keep track of multiclass levels
+        byte nMultiClassLeveledUpIn = 0;
+        for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
+        {
+          if (nClassLeveledUpIn == pCreatureStats.GetClass(nMultiClass))
+          {
+            nMultiClassLevel[nMultiClass]++;
+            nMultiClassLeveledUpIn = nMultiClass;
+            break;
+          }
+        }
+
+        // Check if our first level class is a spellcaster and if their primary casting stat is >= 11
+        if (nLevel == 1 && pClassLeveledUpIn.m_bIsSpellCasterClass.ToBool())
+        {
+          if (nAbilityAtLevel[pClassLeveledUpIn.m_nPrimaryAbility] < 11)
+          {
+            OnELCValidationFailure failure = new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Character,
+              SubType = ValidationFailureSubType.ClassSpellcasterInvalidPrimaryStat,
+              StrRef = StrRefCharacterInvalidAbilityScores,
+            };
+
+            if (HandleValidationFailure(failure))
+            {
+              return failure.StrRef;
+            }
+          }
+        }
+
+        // Check Epic Level Flag
+        if (nLevel < CHARACTER_EPIC_LEVEL)
+        {
+          if (pLevelStats.m_bEpic != 0)
+          {
+            OnELCValidationFailure failure = new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.EpicLevelFlag,
+              StrRef = StrRefFeatInvalid,
+            };
+
+            if (HandleValidationFailure(failure))
+            {
+              return failure.StrRef;
+            }
+          }
+        }
+        else
+        {
+          if (pLevelStats.m_bEpic == 0)
+          {
+            OnELCValidationFailure failure = new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.EpicLevelFlag,
+              StrRef = StrRefFeatInvalid,
+            };
+
+            if (HandleValidationFailure(failure))
+            {
+              return failure.StrRef;
+            }
+          }
+        }
+
+        // Keep track of our ability values
+        if (nLevel % 4 == 0)
+        {
+          nAbilityAtLevel[pLevelStats.m_nAbilityGain]++;
+        }
+
+        // Get the stat bonus from feats
+        int[] nStatMods = GetStatBonusesFromFeats(pLevelStats.m_lstFeats, false);
+
+        // Update our ability values
+        for (int nAbilityIndex = 0; nAbilityIndex <= ABILITY_MAX; nAbilityIndex++)
+        {
+          nAbilityAtLevel[nAbilityIndex] += nStatMods[nAbilityIndex];
+        }
+
+        for (byte nMultiClass = 0; nMultiClass < NUM_MULTICLASS; nMultiClass++)
+        {
+          byte nClassId = pCreatureStats.GetClass(nMultiClass);
+          CNWClass pClass = nClassId < rules.m_nNumClasses ? classes[nClassId] : null;
+
+          if (pClass != null)
+          {
+            for (int nAbilityIndex = 0; nAbilityIndex < ABILITY_MAX; nAbilityIndex++)
+            {
+              nAbilityAtLevel[nAbilityIndex] += pClass.GetAbilityGainForSingleLevel(nAbilityIndex, nMultiClassLevel[nMultiClassLeveledUpIn]);
+            }
+          }
+        }
+
+        // *** Check Hit Die ********************************************************************************************************
+        if (pLevelStats.m_nHitDie > pCreatureStats.GetHitDie(nMultiClassLeveledUpIn, nClassLeveledUpIn))
+        {
+          OnELCValidationFailure failure = new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Character,
+            SubType = ValidationFailureSubType.TooManyHitPoints,
+            StrRef = StrRefCharacterTooManyHitpoints,
+          };
+
+          if (HandleValidationFailure(failure))
+          {
+            return failure.StrRef;
+          }
+        }
+        // **************************************************************************************************************************
+
+        // *** Check Skills *********************************************************************************************************
+      }
 
       return 0;
     }
