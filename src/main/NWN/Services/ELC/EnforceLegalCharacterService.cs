@@ -53,15 +53,18 @@ namespace NWN.Services
 
     private readonly FunctionHook<ValidateCharacterHook> validateCharacterHook;
 
-    private readonly CNWRules rules;
+    private readonly CNWRules pRules;
     private readonly CNWRaceArray races;
     private readonly CNWClassArray classes;
+    private readonly CNWSkillArray skills;
+    private readonly CNWFeatArray feats;
 
     private readonly int epicGreatStatBonus;
     private readonly int charGenBaseAbilityMin;
     private readonly int charGenBaseAbilityMax;
     private readonly int abilityCostIncrement2;
     private readonly int abilityCostIncrement3;
+    private readonly int skillMaxLevel1Bonus;
 
     public bool EnforceDefaultEventScripts { get; set; }
     public bool EnforceEmptyDialog { get; set; }
@@ -70,15 +73,18 @@ namespace NWN.Services
     {
       validateCharacterHook = hookService.RequestHook<ValidateCharacterHook>(OnValidateCharacter, FunctionsLinux._ZN10CNWSPlayer17ValidateCharacterEPi, HookOrder.Final);
 
-      rules = NWNXLib.Rules();
-      races = CNWRaceArray.FromPointer(rules.m_lstRaces);
-      classes = CNWClassArray.FromPointer(rules.m_lstClasses);
+      pRules = NWNXLib.Rules();
+      races = CNWRaceArray.FromPointer(pRules.m_lstRaces);
+      classes = CNWClassArray.FromPointer(pRules.m_lstClasses);
+      skills = CNWSkillArray.FromPointer(pRules.m_lstSkills);
+      feats = CNWFeatArray.FromPointer(pRules.m_lstFeats);
 
-      epicGreatStatBonus = rules.GetRulesetIntEntry("CRULES_EPIC_GREAT_STAT_BONUS".ToExoString(), 1);
-      charGenBaseAbilityMin = rules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MIN".ToExoString(), 8);
-      charGenBaseAbilityMax = rules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MAX".ToExoString(), 18);
-      abilityCostIncrement2 = rules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT2".ToExoString(), 14);
-      abilityCostIncrement3 = rules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT3".ToExoString(), 16);
+      epicGreatStatBonus = pRules.GetRulesetIntEntry("CRULES_EPIC_GREAT_STAT_BONUS".ToExoString(), 1);
+      charGenBaseAbilityMin = pRules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MIN".ToExoString(), 8);
+      charGenBaseAbilityMax = pRules.GetRulesetIntEntry("CHARGEN_BASE_ABILITY_MAX".ToExoString(), 18);
+      abilityCostIncrement2 = pRules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT2".ToExoString(), 14);
+      abilityCostIncrement3 = pRules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT3".ToExoString(), 16);
+      skillMaxLevel1Bonus = pRules.GetRulesetIntEntry("CHARGEN_SKILL_MAX_LEVEL_1_BONUS".ToExoString(), 3);
     }
 
     private int OnValidateCharacter(void* player, int* bFailedServerRestriction)
@@ -322,7 +328,7 @@ namespace NWN.Services
       }
 
       // Check for non player race
-      CNWRace pRace = pCreatureStats.m_nRace < rules.m_nNumRaces ? races[pCreatureStats.m_nRace] : null;
+      CNWRace pRace = pCreatureStats.m_nRace < pRules.m_nNumRaces ? races[pCreatureStats.m_nRace] : null;
 
       if (pRace == null || !pRace.m_bIsPlayerRace.ToBool())
       {
@@ -344,7 +350,7 @@ namespace NWN.Services
       for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
       {
         byte classId = pCreatureStats.m_ClassInfo[nMultiClass].m_nClass;
-        CNWClass pClass = classId < rules.m_nNumClasses ? classes[classId] : null;
+        CNWClass pClass = classId < pRules.m_nNumClasses ? classes[classId] : null;
 
         if (pClass == null)
         {
@@ -559,14 +565,14 @@ namespace NWN.Services
       {
         if (classes[pCreatureStats.GetClass(nMultiClass)].m_bHasDomains.ToBool())
         {
-          CNWDomain pDomain = rules.GetDomain(pCreatureStats.GetDomain1(nMultiClass));
+          CNWDomain pDomain = pRules.GetDomain(pCreatureStats.GetDomain1(nMultiClass));
 
           if (pDomain != null)
           {
             nDomainFeat1 = pDomain.m_nGrantedFeat;
           }
 
-          pDomain = rules.GetDomain(pCreatureStats.GetDomain2(nMultiClass));
+          pDomain = pRules.GetDomain(pCreatureStats.GetDomain2(nMultiClass));
           if (pDomain != null)
           {
             nDomainFeat2 = pDomain.m_nGrantedFeat;
@@ -578,8 +584,8 @@ namespace NWN.Services
 
       // Init some vars
       byte[] nMultiClassLevel = new byte[NUM_MULTICLASS];
-      ushort nSkillPointsRemaining = 0;
-      List<byte> listSkillRanks = new List<byte>(rules.m_nNumSkills);
+      int nSkillPointsRemaining = 0;
+      byte[] listSkillRanks = new byte[pRules.m_nNumSkills];
       HashSet<ushort> listFeats = new HashSet<ushort>();
       HashSet<ushort> listChosenFeats = new HashSet<ushort>();
       // [nMultiClass][nSpellLevel] -> {SpellIDs}
@@ -677,7 +683,7 @@ namespace NWN.Services
         for (byte nMultiClass = 0; nMultiClass < NUM_MULTICLASS; nMultiClass++)
         {
           byte nClassId = pCreatureStats.GetClass(nMultiClass);
-          CNWClass pClass = nClassId < rules.m_nNumClasses ? classes[nClassId] : null;
+          CNWClass pClass = nClassId < pRules.m_nNumClasses ? classes[nClassId] : null;
 
           if (pClass != null)
           {
@@ -706,6 +712,281 @@ namespace NWN.Services
         // **************************************************************************************************************************
 
         // *** Check Skills *********************************************************************************************************
+        // Calculate the skillpoints we gained this level
+        int GetSkillPointAbilityAdjust()
+        {
+          switch ((Ability)pRace.m_nSkillPointModifierAbility)
+          {
+            case Ability.Strength:
+              return pRace.m_nSTRAdjust;
+            case Ability.Dexterity:
+              return pRace.m_nDEXAdjust;
+            case Ability.Constitution:
+              return pRace.m_nCONAdjust;
+            case Ability.Intelligence:
+              return pRace.m_nINTAdjust;
+            case Ability.Wisdom:
+              return pRace.m_nWISAdjust;
+            case Ability.Charisma:
+              return pRace.m_nCHAAdjust;
+            default:
+              return 0;
+          }
+        }
+
+        int numSkillPoints = pRace.m_nSkillPointModifierAbility >= 0 && pRace.m_nSkillPointModifierAbility <= ABILITY_MAX
+          ? pCreatureStats.CalcStatModifier((byte)(nAbilityAtLevel[pRace.m_nSkillPointModifierAbility] + GetSkillPointAbilityAdjust()))
+          : 0;
+
+        if (nLevel == 1)
+        {
+          nSkillPointsRemaining += pRace.m_nFirstLevelSkillPointsMultiplier * Math.Max(1, pClassLeveledUpIn.m_nSkillPointBase + numSkillPoints);
+          nSkillPointsRemaining += pRace.m_nFirstLevelSkillPointsMultiplier * pRace.m_nExtraSkillPointsPerLevel;
+        }
+        else
+        {
+          nSkillPointsRemaining += Math.Max(1, pClassLeveledUpIn.m_nSkillPointBase + numSkillPoints);
+          nSkillPointsRemaining += pRace.m_nExtraSkillPointsPerLevel;
+        }
+
+        // Loop all the skills and check our LevelStats to see what changed.
+        for (ushort nSkill = 0; nSkill < pRules.m_nNumSkills; nSkill++)
+        {
+          CNWSkill pSkill = skills[nSkill];
+          byte nRankChange = (byte)pLevelStats.m_lstSkillRanks[nSkill];
+
+          if (nRankChange != 0)
+          {
+            // Figure out if we can use the skill and if it's a class skill
+            bool bCanUse = false;
+            bool bClassSkill = false;
+
+            if (pSkill.m_bAllClassesCanUse.ToBool())
+            {
+              bCanUse = true;
+            }
+
+            if (pClassLeveledUpIn.IsSkillUseable(nSkill).ToBool())
+            {
+              bCanUse = true;
+
+              if (pClassLeveledUpIn.IsSkillClassSkill(nSkill).ToBool())
+              {
+                bClassSkill = true;
+              }
+            }
+
+            // We must be able to use the skill
+            if (!bCanUse)
+            {
+              OnELCValidationFailure failure = new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Skill,
+                SubType = ValidationFailureSubType.UnusableSkill,
+                StrRef = StrRefSkillUnuseable,
+              };
+
+              if (HandleValidationFailure(failure))
+              {
+                return failure.StrRef;
+              }
+            }
+
+            // Check if we have enough available points
+            if (bClassSkill)
+            {
+              if (nRankChange > nSkillPointsRemaining)
+              {
+                OnELCValidationFailure failure = new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Skill,
+                  SubType = ValidationFailureSubType.NotEnoughSkillPoints,
+                  StrRef = StrRefSkillInvalidNumSkillpoints,
+                };
+
+                if (HandleValidationFailure(failure))
+                {
+                  return failure.StrRef;
+                }
+              }
+
+              nSkillPointsRemaining -= nRankChange;
+            }
+            else
+            {
+              if (nRankChange * 2 > nSkillPointsRemaining)
+              {
+                OnELCValidationFailure failure = new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Skill,
+                  SubType = ValidationFailureSubType.NotEnoughSkillPoints,
+                  StrRef = StrRefSkillInvalidNumSkillpoints,
+                };
+
+                if (HandleValidationFailure(failure))
+                {
+                  return failure.StrRef;
+                }
+              }
+
+              nSkillPointsRemaining -= nRankChange * 2;
+            }
+
+            // Increase the rank for the skill
+            listSkillRanks[nSkill] += nRankChange;
+
+            // Can't have more than Level + 3 in a class skill, or (Level + 3) / 2 for a non class skill
+            if (bClassSkill)
+            {
+              if (listSkillRanks[nSkill] > nLevel + skillMaxLevel1Bonus)
+              {
+                OnELCValidationFailure failure = new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Skill,
+                  SubType = ValidationFailureSubType.InvalidNumRanksInClassSkill,
+                  StrRef = StrRefSkillInvalidRanks,
+                };
+
+                if (HandleValidationFailure(failure))
+                {
+                  return failure.StrRef;
+                }
+              }
+            }
+            else
+            {
+              if (listSkillRanks[nSkill] > (nLevel + skillMaxLevel1Bonus) / 2)
+              {
+                OnELCValidationFailure failure = new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Skill,
+                  SubType = ValidationFailureSubType.InvalidNumRanksInNonClassSkill,
+                  StrRef = StrRefSkillInvalidRanks,
+                };
+
+                if (HandleValidationFailure(failure))
+                {
+                  return failure.StrRef;
+                }
+              }
+            }
+          }
+        }
+
+        // Compare the remaining skillpoints in LevelStats with our own calculation
+        if (pLevelStats.m_nSkillPointsRemaining > nSkillPointsRemaining)
+        {
+          OnELCValidationFailure failure = new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Skill,
+            SubType = ValidationFailureSubType.InvalidNumRemainingSkillPoints,
+            StrRef = StrRefSkillInvalidNumSkillpoints,
+          };
+
+          if (HandleValidationFailure(failure))
+          {
+            return failure.StrRef;
+          }
+        }
+
+        // **************************************************************************************************************************
+
+        // *** Check Feats **********************************************************************************************************
+        // Calculate the number of normal and bonus feats for this level
+        int nNumberNormalFeats = 0;
+        int nNumberBonusFeats = 0;
+
+        // First and every nth level gets a normal feat
+        if ((nLevel == 1) ||
+          ((pRace.m_nNormalFeatEveryNthLevel != 0) && (nLevel % pRace.m_nNormalFeatEveryNthLevel == 0)))
+        {
+          nNumberNormalFeats = pRace.m_nNumberNormalFeatsEveryNthLevel;
+        }
+
+        // Add any extra first level feats
+        if (nLevel == 1)
+        {
+          nNumberNormalFeats += pRace.m_nExtraFeatsAtFirstLevel;
+        }
+
+        nNumberBonusFeats = pClassLeveledUpIn.GetBonusFeats(nMultiClassLevel[nMultiClassLeveledUpIn]);
+
+        // Add this level's gained feats to our own list
+        for (int nFeatIndex = 0; nFeatIndex < pLevelStats.m_lstFeats.num; nFeatIndex++)
+        {
+          ushort nFeat = *pLevelStats.m_lstFeats._OpIndex(nFeatIndex);
+          CNWFeat feat = nFeat < pRules.m_nNumFeats ? feats[nFeat] : null;
+
+          if (feat == null)
+          {
+            OnELCValidationFailure failure = new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.InvalidFeat,
+              StrRef = StrRefFeatInvalid,
+            };
+
+            if (HandleValidationFailure(failure))
+            {
+              return failure.StrRef;
+            }
+          }
+
+          bool bGranted = false;
+
+          // Check if this is a feat that's automatically granted at first level
+          if (nLevel == 1)
+          {
+            if (pRace.IsFirstLevelGrantedFeat(nFeat).ToBool())
+            {
+              listFeats.Add(nFeat);
+              bGranted = true;
+            }
+          }
+
+          // Check if this is a feat that's automatically granted for this level
+          if (!bGranted)
+          {
+            byte nLevelGranted;
+            if (pClassLeveledUpIn.IsGrantedFeat(nFeat, &nLevelGranted).ToBool())
+            {
+              if (nLevelGranted == nMultiClassLevel[nMultiClassLeveledUpIn])
+              {
+                listFeats.Add(nFeat);
+                bGranted = true;
+              }
+            }
+          }
+
+          // Check if it's one of our cleric domain feats
+          if (!bGranted)
+          {
+            if (pClassLeveledUpIn.m_bHasDomains.ToBool() && (nMultiClassLevel[nMultiClassLeveledUpIn] == 1))
+            {
+              if ((nFeat == nDomainFeat1) || (nFeat == nDomainFeat2))
+              {
+                listFeats.Add(nFeat);
+                bGranted = true;
+              }
+            }
+          }
+
+          // Check if it's the "EpicCharacter" feat and we're level 21
+          if (!bGranted)
+          {
+            if (nLevel == CHARACTER_EPIC_LEVEL && nFeat == (int)Feat.EpicCharacter)
+            {
+              listFeats.Add(nFeat);
+              bGranted = true;
+            }
+          }
+
+          // Not a granted feat, add it to listChosenFeats
+          if (!bGranted)
+          {
+            listChosenFeats.Add(nFeat);
+          }
+        }
       }
 
       return 0;
