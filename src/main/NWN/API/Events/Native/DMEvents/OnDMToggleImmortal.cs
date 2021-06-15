@@ -8,6 +8,9 @@ namespace NWN.API.Events
 
     public bool Skip { get; set; }
 
-    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject IEvent.Context
+    {
+      get => DungeonMaster?.LoginCreature;
+    }
   }
 }
