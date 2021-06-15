@@ -1,6 +1,6 @@
 namespace NWN.API.Events
 {
-  public class OnDMPossessFullPower : IEvent, IDMSingleTargetEvent
+  public sealed class OnDMPossessFullPower : IEvent, IDMSingleTargetEvent
   {
     public NwGameObject Target { get; init; }
 

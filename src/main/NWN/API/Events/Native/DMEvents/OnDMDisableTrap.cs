@@ -1,6 +1,6 @@
 namespace NWN.API.Events
 {
-  public class OnDMDisableTrap : IEvent, IDMSingleTargetEvent
+  public sealed class OnDMDisableTrap : IEvent, IDMSingleTargetEvent
   {
     public NwGameObject Target { get; init; }
 

@@ -1,6 +1,6 @@
 namespace NWN.API.Events
 {
-  public class OnDMToggleLock : IEvent, IDMSingleTargetEvent
+  public sealed class OnDMToggleLock : IEvent, IDMSingleTargetEvent
   {
     public NwGameObject Target { get; init; }
 

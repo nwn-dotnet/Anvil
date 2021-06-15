@@ -1,6 +1,6 @@
 namespace NWN.API.Events
 {
-  public class OnDMPossess : IEvent, IDMSingleTargetEvent
+  public sealed class OnDMPossess : IEvent, IDMSingleTargetEvent
   {
     public NwGameObject Target { get; init; }
 
