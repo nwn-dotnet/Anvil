@@ -12,7 +12,7 @@ using Vector3 = System.Numerics.Vector3;
 
 namespace NWN.API
 {
-  public abstract class NwGameObject : NwObject
+  public abstract partial class NwGameObject : NwObject
   {
     internal readonly CNWSObject GameObject;
 
@@ -25,20 +25,6 @@ namespace NWN.API
     internal override CNWSScriptVarTable ScriptVarTable
     {
       get => GameObject.m_ScriptVars;
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnAcquireItem"/>
-    public event Action<ModuleEvents.OnAcquireItem> OnAcquireItem
-    {
-      add => EventService.Subscribe<ModuleEvents.OnAcquireItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
-      remove => EventService.Unsubscribe<ModuleEvents.OnAcquireItem, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnUnacquireItem"/>
-    public event Action<ModuleEvents.OnUnacquireItem> OnUnacquireItem
-    {
-      add => EventService.Subscribe<ModuleEvents.OnUnacquireItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
-      remove => EventService.Unsubscribe<ModuleEvents.OnUnacquireItem, GameEventFactory>(this, value);
     }
 
     /// <inheritdoc cref="NWN.API.Events.OnDisarmWeapon"/>
