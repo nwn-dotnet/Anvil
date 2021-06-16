@@ -4,7 +4,7 @@ using NWN.API.Events;
 
 namespace NWN.API.Events
 {
-  public class OnDMJumpTargetToPoint : IEvent
+  public sealed class OnDMJumpTargetToPoint : IEvent
   {
     public NwArea NewArea { get; init; }
 
