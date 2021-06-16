@@ -87,6 +87,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="Events.OnSpellInterrupt"/>
+    public event Action<OnSpellInterrupt> OnSpellInterrupt
+    {
+      add => EventService.SubscribeAll<OnSpellInterrupt, OnSpellInterrupt.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellInterrupt, OnSpellInterrupt.Factory>(value);
+    }
   }
 }

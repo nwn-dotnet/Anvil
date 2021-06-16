@@ -114,6 +114,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnExamineObject"/>
+    public event Action<OnExamineObject> OnExamineObject
+    {
+      add => EventService.SubscribeAll<OnExamineObject, OnExamineObject.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnExamineObject, OnExamineObject.Factory>(value);
+    }
   }
 }

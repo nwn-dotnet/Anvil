@@ -63,6 +63,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryGoldAdd"/>
+    public event Action<OnInventoryGoldAdd> OnInventoryGoldAdd
+    {
+      add => EventService.SubscribeAll<OnInventoryGoldAdd, OnInventoryGoldAdd.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnInventoryGoldAdd, OnInventoryGoldAdd.Factory>(value);
+    }
   }
 }

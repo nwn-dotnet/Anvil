@@ -70,6 +70,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="Events.OnDisarmWeapon"/>
+    public event Action<OnDisarmWeapon> OnDisarmWeapon
+    {
+      add => EventService.SubscribeAll<OnDisarmWeapon, OnDisarmWeapon.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnDisarmWeapon, OnDisarmWeapon.Factory>(value);
+    }
   }
 }

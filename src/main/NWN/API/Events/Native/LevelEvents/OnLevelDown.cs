@@ -53,6 +53,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnLevelDown"/>
+    public event Action<OnLevelDown> OnLevelDown
+    {
+      add => EventService.SubscribeAll<OnLevelDown, OnLevelDown.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnLevelDown, OnLevelDown.Factory>(value);
+    }
   }
 }

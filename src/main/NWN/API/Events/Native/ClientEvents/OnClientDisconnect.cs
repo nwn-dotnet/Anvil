@@ -60,6 +60,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnClientDisconnect"/>
+    public event Action<OnClientDisconnect> OnClientDisconnect
+    {
+      add => EventService.SubscribeAll<OnClientDisconnect, OnClientDisconnect.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnClientDisconnect, OnClientDisconnect.Factory>(value);
+    }
   }
 }

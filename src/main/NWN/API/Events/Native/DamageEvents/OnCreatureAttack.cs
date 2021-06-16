@@ -136,6 +136,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnCreatureAttack"/>
+    public event Action<OnCreatureAttack> OnCreatureAttack
+    {
+      add => EventService.SubscribeAll<OnCreatureAttack, OnCreatureAttack.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCreatureAttack, OnCreatureAttack.Factory>(value);
+    }
   }
 }

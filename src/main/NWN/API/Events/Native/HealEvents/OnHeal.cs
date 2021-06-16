@@ -72,6 +72,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnHeal"/>
+    public event Action<OnHeal> OnHeal
+    {
+      add => EventService.SubscribeAll<OnHeal, OnHeal.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnHeal, OnHeal.Factory>(value);
+    }
   }
 }

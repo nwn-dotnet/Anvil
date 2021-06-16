@@ -63,6 +63,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnItemValidateEquip"/>
+    public event Action<OnItemValidateEquip> OnItemValidateEquip
+    {
+      add => EventService.SubscribeAll<OnItemValidateEquip, OnItemValidateEquip.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemValidateEquip, OnItemValidateEquip.Factory>(value);
+    }
   }
 }

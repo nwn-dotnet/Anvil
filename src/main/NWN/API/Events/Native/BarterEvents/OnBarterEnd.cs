@@ -169,6 +169,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnBarterEnd"/>
+    public event Action<OnBarterEnd> OnBarterEnd
+    {
+      add => EventService.SubscribeAll<OnBarterEnd, OnBarterEnd.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnBarterEnd, OnBarterEnd.Factory>(value);
+    }
   }
 }

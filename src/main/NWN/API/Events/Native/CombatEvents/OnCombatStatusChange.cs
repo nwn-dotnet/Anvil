@@ -62,6 +62,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
+    public event Action<OnCombatStatusChange> OnCombatStatusChange
+    {
+      add => EventService.SubscribeAll<OnCombatStatusChange, OnCombatStatusChange.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCombatStatusChange, OnCombatStatusChange.Factory>(value);
+    }
   }
 }

@@ -67,6 +67,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryClose"/>
+    public event Action<OnItemInventoryClose> OnItemInventoryClose
+    {
+      add => EventService.SubscribeAll<OnItemInventoryClose, OnItemInventoryClose.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemInventoryClose, OnItemInventoryClose.Factory>(value);
+    }
   }
 }

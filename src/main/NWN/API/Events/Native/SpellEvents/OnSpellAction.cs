@@ -112,6 +112,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnSpellAction"/>
+    public event Action<OnSpellAction> OnSpellAction
+    {
+      add => EventService.SubscribeAll<OnSpellAction, OnSpellAction.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellAction, OnSpellAction.Factory>(value);
+    }
   }
 }

@@ -85,6 +85,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnItemUse"/>
+    public event Action<OnItemUse> OnItemUse
+    {
+      add => EventService.SubscribeAll<OnItemUse, OnItemUse.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemUse, OnItemUse.Factory>(value);
+    }
   }
 }

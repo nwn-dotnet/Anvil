@@ -80,6 +80,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnStoreRequestBuy"/>
+    public event Action<OnStoreRequestBuy> OnStoreRequestBuy
+    {
+      add => EventService.SubscribeAll<OnStoreRequestBuy, OnStoreRequestBuy.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnStoreRequestBuy, OnStoreRequestBuy.Factory>(value);
+    }
   }
 }

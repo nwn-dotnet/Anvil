@@ -64,6 +64,11 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-
+    /// <inheritdoc cref="NWN.API.Events.OnItemPayToIdentify"/>
+    public event Action<OnItemPayToIdentify> OnItemPayToIdentify
+    {
+      add => EventService.SubscribeAll<OnItemPayToIdentify, OnItemPayToIdentify.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemPayToIdentify, OnItemPayToIdentify.Factory>(value);
+    }
   }
 }
