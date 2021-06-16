@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -51,5 +53,23 @@ namespace NWN.API.Events
         return objectType == ObjectType.Creature || objectType == ObjectType.Placeable;
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="Events.OnCreatureDamage"/>
+    public event Action<OnCreatureDamage> OnCreatureDamage
+    {
+      add => EventService.Subscribe<OnCreatureDamage, OnCreatureDamage.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnCreatureDamage, OnCreatureDamage.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }

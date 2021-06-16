@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -40,5 +42,23 @@ namespace NWN.API.Events
         return eventData.CanUse.ToInt();
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnItemValidateUse"/>
+    public event Action<OnItemValidateUse> OnItemValidateUse
+    {
+      add => EventService.Subscribe<OnItemValidateUse, OnItemValidateUse.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemValidateUse, OnItemValidateUse.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }

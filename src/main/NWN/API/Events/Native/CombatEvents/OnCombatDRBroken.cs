@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -59,5 +61,23 @@ namespace NWN.API.Events
         Hook.CallOriginal(pCreature, nFeedbackId, pMessageData, pFeedbackPlayer);
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnCombatDRBroken"/>
+    public event Action<OnCombatDRBroken> OnCombatDRBroken
+    {
+      add => EventService.Subscribe<OnCombatDRBroken, OnCombatDRBroken.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnCombatDRBroken, OnCombatDRBroken.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }

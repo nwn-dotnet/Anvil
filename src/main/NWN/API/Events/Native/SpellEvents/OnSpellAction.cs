@@ -2,6 +2,7 @@ using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 using Feat = NWN.API.Constants.Feat;
@@ -94,5 +95,23 @@ namespace NWN.API.Events
         return eventData.Result.Value.ToInt();
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnSpellAction"/>
+    public event Action<OnSpellAction> OnSpellAction
+    {
+      add => EventService.Subscribe<OnSpellAction, OnSpellAction.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellAction, OnSpellAction.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }

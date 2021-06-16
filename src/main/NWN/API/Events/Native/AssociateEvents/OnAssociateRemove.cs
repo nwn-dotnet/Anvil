@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -37,5 +39,23 @@ namespace NWN.API.Events
         Hook.CallOriginal(pCreature, oidAssociate);
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnAssociateRemove"/>
+    public event Action<OnAssociateRemove> OnAssociateRemove
+    {
+      add => EventService.Subscribe<OnAssociateRemove, OnAssociateRemove.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnAssociateRemove, OnAssociateRemove.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }
