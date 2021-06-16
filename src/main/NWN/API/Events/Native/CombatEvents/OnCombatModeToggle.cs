@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 using CombatMode = NWN.API.Constants.CombatMode;
@@ -61,6 +63,29 @@ namespace NWN.API.Events
           Hook.CallOriginal(pCreature, (byte)eventData.NewMode, bForceNewMode);
         }
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnCombatModeToggle"/>
+    public event Action<OnCombatModeToggle> OnCombatModeToggle
+    {
+      add => EventService.Subscribe<OnCombatModeToggle, OnCombatModeToggle.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnCombatModeToggle, OnCombatModeToggle.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnCombatModeToggle"/>
+    public event Action<OnCombatModeToggle> OnCombatModeToggle
+    {
+      add => EventService.SubscribeAll<OnCombatModeToggle, OnCombatModeToggle.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCombatModeToggle, OnCombatModeToggle.Factory>(value);
     }
   }
 }
