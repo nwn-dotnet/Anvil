@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 using Feat = NWN.API.Constants.Feat;
@@ -52,5 +53,23 @@ namespace NWN.API.Events
         return eventData.Result.Value.ToInt();
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public abstract partial class NwGameObject
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDisarmWeapon"/>
+    public event Action<OnDisarmWeapon> OnDisarmWeapon
+    {
+      add => EventService.Subscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }

@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -53,5 +55,23 @@ namespace NWN.API.Events
         return Hook.CallOriginal(pEffectListHandler, pObject, pGameEffect, bLoadingGame);
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public abstract partial class NwGameObject
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnHeal"/>
+    public event Action<OnHeal> OnHeal
+    {
+      add => EventService.Subscribe<OnHeal, OnHeal.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnHeal, OnHeal.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }

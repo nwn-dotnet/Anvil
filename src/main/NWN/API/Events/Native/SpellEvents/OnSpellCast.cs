@@ -1,6 +1,8 @@
+using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 using NWN.Services;
@@ -80,5 +82,23 @@ namespace NWN.API.Events
         }
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public abstract partial class NwGameObject
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
+    public event Action<OnSpellCast> OnSpellCast
+    {
+      add => EventService.Subscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }
