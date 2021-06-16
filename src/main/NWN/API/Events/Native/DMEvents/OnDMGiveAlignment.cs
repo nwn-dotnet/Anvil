@@ -1,4 +1,6 @@
+using System;
 using NWN.API.Constants;
+using NWN.API.Events;
 
 namespace NWN.API.Events
 {
@@ -17,6 +19,29 @@ namespace NWN.API.Events
     NwObject IEvent.Context
     {
       get => DungeonMaster?.LoginCreature;
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDMGiveAlignment"/>
+    public event Action<OnDMGiveAlignment> OnDMGiveAlignment
+    {
+      add => EventService.Subscribe<OnDMGiveAlignment, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMGiveAlignment, DMEventFactory>(LoginCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDMGiveAlignment"/>
+    public event Action<OnDMGiveAlignment> OnDMGiveAlignment
+    {
+      add => EventService.SubscribeAll<OnDMGiveAlignment, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMGiveAlignment, DMEventFactory>(value);
     }
   }
 }

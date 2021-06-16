@@ -9,7 +9,7 @@ using NWN.Native.API;
 namespace NWN.API
 {
   [NativeObjectInfo(0, ObjectType.Module)]
-  public sealed class NwModule : NwObject
+  public sealed partial class NwModule : NwObject
   {
     internal readonly CNWSModule Module;
 

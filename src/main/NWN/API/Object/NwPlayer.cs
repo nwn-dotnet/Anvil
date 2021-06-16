@@ -12,7 +12,7 @@ using NWN.Services;
 
 namespace NWN.API
 {
-  public sealed class NwPlayer : IEquatable<NwPlayer>
+  public sealed partial class NwPlayer : IEquatable<NwPlayer>
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 

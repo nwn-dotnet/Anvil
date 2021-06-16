@@ -1,3 +1,6 @@
+using System;
+using NWN.API.Events;
+
 namespace NWN.API.Events
 {
   public sealed class OnDMSpawnTrapOnObject : IEvent
@@ -11,6 +14,29 @@ namespace NWN.API.Events
     NwObject IEvent.Context
     {
       get => DungeonMaster?.LoginCreature;
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDMSpawnTrapOnObject"/>
+    public event Action<OnDMSpawnTrapOnObject> OnDMSpawnTrapOnObject
+    {
+      add => EventService.Subscribe<OnDMSpawnTrapOnObject, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMSpawnTrapOnObject, DMEventFactory>(LoginCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDMSpawnTrapOnObject"/>
+    public event Action<OnDMSpawnTrapOnObject> OnDMSpawnTrapOnObject
+    {
+      add => EventService.SubscribeAll<OnDMSpawnTrapOnObject, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMSpawnTrapOnObject, DMEventFactory>(value);
     }
   }
 }
