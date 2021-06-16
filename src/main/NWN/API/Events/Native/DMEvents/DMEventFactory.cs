@@ -1,8 +1,11 @@
+using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
 using NWN.API.Constants;
 using NWN.Native.API;
 using NWN.Services;
+using Alignment = NWN.API.Constants.Alignment;
 
 namespace NWN.API.Events
 {
@@ -62,95 +65,70 @@ namespace NWN.API.Events
           return HandleSingleTargetEvent<OnDMToggleLock>(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.DisableTrap:
           return HandleSingleTargetEvent<OnDMDisableTrap>(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
-        case MessageDungeonMasterMinor.RequestObjectList:
-          // TODO
-        case MessageDungeonMasterMinor.ObjectList:
-          // TODO
-        case MessageDungeonMasterMinor.SearchByTag:
-          // TODO
-        case MessageDungeonMasterMinor.SearchByTagResult:
-          // TODO
-        case MessageDungeonMasterMinor.SearchByTagResultNone:
-          // TODO
-        case MessageDungeonMasterMinor.CreatorList:
-          // TODO
-        case MessageDungeonMasterMinor.AreaList:
-          // TODO
-        case MessageDungeonMasterMinor.AreaListSorted:
-          // TODO
-        case MessageDungeonMasterMinor.PartyList:
-          // TODO
-        case MessageDungeonMasterMinor.Login:
-          // TODO
-        case MessageDungeonMasterMinor.Logout:
-          // TODO
-        case MessageDungeonMasterMinor.LoginState:
-          // TODO
-        case MessageDungeonMasterMinor.SearchNext:
-          // TODO
-        case MessageDungeonMasterMinor.SearchById:
-          // TODO
-        case MessageDungeonMasterMinor.Duplicate:
-          // TODO
-        case MessageDungeonMasterMinor.TriggerEntered:
-          // TODO
-        case MessageDungeonMasterMinor.TriggerExit:
-          // TODO
         case MessageDungeonMasterMinor.Manifest:
-          // TODO
+          return HandleStandardEvent<OnDMAppear>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.Unmanifest:
-          // TODO
-        case MessageDungeonMasterMinor.GotoPoint:
-          // TODO
-        case MessageDungeonMasterMinor.GiveXP:
-          // TODO
-        case MessageDungeonMasterMinor.GiveLevel:
-          // TODO
-        case MessageDungeonMasterMinor.GiveGold:
-          // TODO
+          return HandleStandardEvent<OnDMDisappear>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.SetFaction:
-          // TODO
         case MessageDungeonMasterMinor.SetFactionByName:
-          // TODO
-        case MessageDungeonMasterMinor.GiveItem:
-          // TODO
+          return HandleStandardEvent<OnDMSetFaction>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.TakeItem:
-          // TODO
-        case MessageDungeonMasterMinor.GotoPointTarget:
-          // TODO
-        case MessageDungeonMasterMinor.GotoPointAllPlayers:
-          // TODO
+          return HandleStandardEvent<OnDMTakeItem>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.SetStat:
-          // TODO
+          return HandleStandardEvent<OnDMSetStat>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.GetVar:
-          // TODO
+          return HandleStandardEvent<OnDMGetVariable>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.SetVar:
-          // TODO
+          return HandleStandardEvent<OnDMSetVariable>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.SetTime:
-          // TODO
+          return HandleStandardEvent<OnDMSetTime>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.SetDate:
-          // TODO
+          return HandleStandardEvent<OnDMSetDate>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.SetFactionReputation:
-          // TODO
+          return HandleStandardEvent<OnDMSetFactionReputation>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.GetFactionReputation:
-          // TODO
+          return HandleStandardEvent<OnDMGetFactionReputation>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.Logout:
+          return HandleStandardEvent<OnDMPlayerDMLogout>(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.GotoPoint:
+          return HandleTeleportEvent<OnDMJumpToPoint>(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.GotoPointAllPlayers:
+          return HandleTeleportEvent<OnDMJumpAllPlayersToPoint>(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.GotoPointTarget:
+          return HandleJumpTargetToPointEvent(dungeonMaster, message, bGroup.ToBool()) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.DumpLocals:
-          // TODO
+          return HandleDumpLocalsEvent(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.GiveGoodAlignment:
-          // TODO
         case MessageDungeonMasterMinor.GiveEvilAlignment:
-          // TODO
         case MessageDungeonMasterMinor.GiveLawfulAlignment:
-          // TODO
         case MessageDungeonMasterMinor.GiveChaoticAlignment:
-          // TODO
-          return Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup);
+          return HandleGiveAlignmentEvent(dungeonMaster, message, (MessageDungeonMasterMinor)nMinor) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.GiveXP:
+          return HandleGiveEvent<OnDMGiveXP>(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.GiveLevel:
+          return HandleGiveEvent<OnDMGiveLevel>(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.GiveGold:
+          return HandleGiveEvent<OnDMGiveGold>(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.GiveItem:
+          return HandleGiveItemEvent(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+        case MessageDungeonMasterMinor.Login:
+          return HandlePlayerDMLoginEvent(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         default:
           return Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup);
       }
     }
 
-    private static bool HandleSingleTargetEvent<TEvent>(NwPlayer dungeonMaster, CNWSMessage message) where TEvent : IEvent, IDMSingleTargetEvent, new()
+    private static bool HandleStandardEvent<TEvent>(NwPlayer dungeonMaster) where TEvent : DMStandardEvent, new()
+    {
+      TEvent eventData = ProcessEvent(new TEvent
+      {
+        DungeonMaster = dungeonMaster,
+      });
+
+      return !eventData.Skip;
+    }
+
+    private static bool HandleSingleTargetEvent<TEvent>(NwPlayer dungeonMaster, CNWSMessage message) where TEvent : DMSingleTargetEvent, new()
     {
       NwGameObject target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwObject<NwGameObject>();
       TEvent eventData = ProcessEvent(new TEvent
@@ -162,7 +140,7 @@ namespace NWN.API.Events
       return !eventData.Skip;
     }
 
-    private static bool HandleGroupTargetEvent<TEvent>(NwPlayer dungeonMaster, CNWSMessage message, bool isGroup) where TEvent : IEvent, IDMGroupTargetEvent, new()
+    private static bool HandleGroupTargetEvent<TEvent>(NwPlayer dungeonMaster, CNWSMessage message, bool isGroup) where TEvent : DMGroupTargetEvent, new()
     {
       int offset = 0;
       int groupSize = 1;
@@ -184,6 +162,43 @@ namespace NWN.API.Events
       {
         DungeonMaster = dungeonMaster,
         Targets = targets,
+      });
+
+      return !eventData.Skip;
+    }
+
+    private static bool HandleTeleportEvent<TEvent>(NwPlayer dungeonMaster, CNWSMessage message) where TEvent : DMTeleportEvent, new()
+    {
+      int offset = 0;
+
+      NwArea area = (message.PeekMessage<uint>(offset) & 0x7FFFFFFF).ToNwObject<NwArea>();
+      offset += sizeof(uint);
+      float x = message.PeekMessage<float>(offset);
+      offset += sizeof(float);
+      float y = message.PeekMessage<float>(offset);
+      offset += sizeof(float);
+      float z = message.PeekMessage<float>(offset);
+
+      TEvent eventData = ProcessEvent(new TEvent
+      {
+        DungeonMaster = dungeonMaster,
+        TargetArea = area,
+        TargetPosition = new Vector3(x, y, z),
+      });
+
+      return !eventData.Skip;
+    }
+
+    private static bool HandleGiveEvent<TEvent>(NwPlayer dungeonMaster, CNWSMessage message) where TEvent : DMGiveEvent, new()
+    {
+      int amount = message.PeekMessage<int>(0);
+      NwGameObject target = (message.PeekMessage<uint>(4) & 0x7FFFFFFF).ToNwObject<NwGameObject>();
+
+      TEvent eventData = ProcessEvent(new TEvent
+      {
+        DungeonMaster = dungeonMaster,
+        Amount = amount,
+        Target = target,
       });
 
       return !eventData.Skip;
@@ -235,6 +250,120 @@ namespace NWN.API.Events
       {
         DungeonMaster = dungeonMaster,
         Target = target,
+      });
+
+      return !eventData.Skip;
+    }
+
+    private static bool HandleJumpTargetToPointEvent(NwPlayer dungeonMaster, CNWSMessage message, bool isGroup)
+    {
+      int offset = 0;
+      int groupSize = 1;
+
+      NwArea area = (message.PeekMessage<uint>(offset) & 0x7FFFFFFF).ToNwObject<NwArea>();
+      offset += sizeof(uint);
+      float x = message.PeekMessage<float>(offset);
+      offset += sizeof(float);
+      float y = message.PeekMessage<float>(offset);
+      offset += sizeof(float);
+      float z = message.PeekMessage<float>(offset);
+      offset += sizeof(float);
+
+      Vector3 position = new Vector3(x, y, z);
+      if (isGroup)
+      {
+        groupSize = message.PeekMessage<int>(offset);
+        offset += sizeof(int);
+      }
+
+      NwGameObject[] targets = new NwGameObject[groupSize];
+      for (int i = 0; i < targets.Length; i++)
+      {
+        targets[i] = (message.PeekMessage<uint>(offset) & 0x7FFFFFFF).ToNwObject<NwGameObject>();
+        offset += sizeof(uint);
+      }
+
+      OnDMJumpTargetToPoint eventData = ProcessEvent(new OnDMJumpTargetToPoint
+      {
+        DungeonMaster = dungeonMaster,
+        Targets = targets,
+        NewArea = area,
+        NewPosition = position,
+      });
+
+      return !eventData.Skip;
+    }
+
+    private static bool HandleDumpLocalsEvent(NwPlayer dungeonMaster, CNWSMessage message)
+    {
+      DumpLocalsType type = (DumpLocalsType)message.PeekMessage<int>(0);
+
+      NwObject target = type switch
+      {
+        DumpLocalsType.DumpLocals => (message.PeekMessage<uint>(4) & 0x7FFFFFFF).ToNwObject(),
+        DumpLocalsType.DumpAreaLocals => dungeonMaster.ControlledCreature.Area,
+        DumpLocalsType.DumpModuleLocals => NwModule.Instance,
+        _ => throw new ArgumentOutOfRangeException(),
+      };
+
+      OnDMDumpLocals eventData = ProcessEvent(new OnDMDumpLocals
+      {
+        DungeonMaster = dungeonMaster,
+        Type = type,
+        Target = target,
+      });
+
+      return !eventData.Skip;
+    }
+
+    private static bool HandleGiveAlignmentEvent(NwPlayer dungeonMaster, CNWSMessage message, MessageDungeonMasterMinor alignmentType)
+    {
+      Alignment alignment = alignmentType switch
+      {
+        MessageDungeonMasterMinor.GiveGoodAlignment => Alignment.Good,
+        MessageDungeonMasterMinor.GiveEvilAlignment => Alignment.Evil,
+        MessageDungeonMasterMinor.GiveLawfulAlignment => Alignment.Lawful,
+        MessageDungeonMasterMinor.GiveChaoticAlignment => Alignment.Chaotic,
+        _ => throw new ArgumentOutOfRangeException(),
+      };
+
+      int amount = message.PeekMessage<int>(0);
+      NwGameObject target = (message.PeekMessage<uint>(4) & 0x7FFFFFFF).ToNwObject<NwGameObject>();
+
+      OnDMGiveAlignment eventData = ProcessEvent(new OnDMGiveAlignment
+      {
+        DungeonMaster = dungeonMaster,
+        Alignment = alignment,
+        Amount = amount,
+        Target = target,
+      });
+
+      return !eventData.Skip;
+    }
+
+    private static bool HandleGiveItemEvent(NwPlayer dungeonMaster, CNWSMessage message)
+    {
+      NwGameObject target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwObject<NwGameObject>();
+      NwItem item = LowLevel.ServerExoApp.GetObjectArray().m_nNextObjectArrayID[0].ToNwObject<NwItem>();
+
+      OnDMGiveItem eventData = ProcessEvent(new OnDMGiveItem
+      {
+        DungeonMaster = dungeonMaster,
+        Target = target,
+        Item = item,
+      });
+
+      return !eventData.Skip;
+    }
+
+    private static bool HandlePlayerDMLoginEvent(NwPlayer dungeonMaster, CNWSMessage message)
+    {
+      string password = message.PeekMessageString(0);
+
+      OnDMPlayerDMLogin eventData = ProcessEvent(new OnDMPlayerDMLogin
+      {
+        DungeonMaster = dungeonMaster,
+        Password = password,
       });
 
       return !eventData.Skip;

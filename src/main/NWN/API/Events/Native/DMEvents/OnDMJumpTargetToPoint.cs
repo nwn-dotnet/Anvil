@@ -1,7 +1,13 @@
+using System.Numerics;
+
 namespace NWN.API.Events
 {
-  public sealed class OnDMToggleImmortal : IEvent, IDMGroupTargetEvent
+  public class OnDMJumpTargetToPoint : IEvent
   {
+    public NwArea NewArea { get; init; }
+
+    public Vector3 NewPosition { get; init; }
+
     public NwGameObject[] Targets { get; init; }
 
     public NwPlayer DungeonMaster { get; init; }

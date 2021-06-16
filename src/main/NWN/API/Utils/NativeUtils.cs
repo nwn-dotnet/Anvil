@@ -83,6 +83,32 @@ namespace NWN.API
       return Marshal.PtrToStructure<T>((IntPtr)ptr);
     }
 
+    public static string PeekMessageString(this CNWSMessage message, int offset)
+    {
+      byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
+      return ReadNullTerminatedString(ptr);
+    }
+
+    public static string ReadNullTerminatedString(byte* ptr)
+    {
+      byte* walk = ptr;
+
+      // Find the end of the string
+      while (*walk != 0)
+      {
+        walk++;
+      }
+
+      int length = (int)(walk - ptr);
+
+      // Skip the trailing null
+      byte[] buffer = new byte[length];
+      Marshal.Copy((IntPtr)ptr, buffer, 0, length);
+
+      string data = StringEncoding.GetString(buffer);
+      return data;
+    }
+
     public static byte[] SerializeGff(string fileType, string version, Func<CResGFF, CResStruct, bool> serializeAction)
     {
       if (string.IsNullOrEmpty(fileType))
