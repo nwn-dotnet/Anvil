@@ -70,6 +70,16 @@ namespace NWN.API
     }
   }
 
+  public sealed partial class NwPlaceable
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemAdd"/>
+    public event Action<OnInventoryItemAdd> OnInventoryItemAdd
+    {
+      add => EventService.Subscribe<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(this, value);
+    }
+  }
+
   public sealed partial class NwModule
   {
 

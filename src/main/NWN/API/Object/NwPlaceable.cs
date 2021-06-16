@@ -2,7 +2,6 @@ using System;
 using System.Numerics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
-using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -22,20 +21,6 @@ namespace NWN.API
     public static implicit operator CNWSPlaceable(NwPlaceable placeable)
     {
       return placeable?.Placeable;
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemAdd"/>
-    public event Action<OnInventoryItemAdd> OnInventoryItemAdd
-    {
-      add => EventService.Subscribe<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemRemove"/>
-    public event Action<OnInventoryItemRemove> OnInventoryItemRemove
-    {
-      add => EventService.Subscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
     }
 
     public override Location Location
