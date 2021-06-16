@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Anvil.Internal;
 using NLog;
 using NWN.API.Constants;
-using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 using NWN.Services;
@@ -80,76 +79,6 @@ namespace NWN.API
     public static bool operator !=(NwPlayer left, NwPlayer right)
     {
       return !Equals(left, right);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnBarterEnd"/>
-    public event Action<OnBarterEnd> OnBarterEnd
-    {
-      add => EventService.Subscribe<OnBarterEnd, OnBarterEnd.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnBarterEnd, OnBarterEnd.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnBarterStart"/>
-    public event Action<OnBarterStart> OnBarterStart
-    {
-      add => EventService.Subscribe<OnBarterStart, OnBarterStart.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnBarterStart, OnBarterStart.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnClientDisconnect"/>
-    public event Action<OnClientDisconnect> OnServerDisconnect
-    {
-      add => EventService.Subscribe<OnClientDisconnect, OnClientDisconnect.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnClientDisconnect, OnClientDisconnect.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnServerCharacterSave"/>
-    public event Action<OnServerCharacterSave> OnServerCharacterSave
-    {
-      add => EventService.Subscribe<OnServerCharacterSave, OnServerCharacterSave.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnServerCharacterSave, OnServerCharacterSave.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnServerSendArea"/>
-    public event Action<OnServerSendArea> OnServerSendArea
-    {
-      add => EventService.Subscribe<OnServerSendArea, OnServerSendArea.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnServerSendArea, OnServerSendArea.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
-    public event Action<OnCombatStatusChange> OnCombatStatusChange
-    {
-      add => EventService.Subscribe<OnCombatStatusChange, OnCombatStatusChange.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnCombatStatusChange, OnCombatStatusChange.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnExamineObject"/>
-    public event Action<OnExamineObject> OnExamineObject
-    {
-      add => EventService.Subscribe<OnExamineObject, OnExamineObject.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnExamineObject, OnExamineObject.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnExamineTrap"/>
-    public event Action<OnExamineTrap> OnExamineTrap
-    {
-      add => EventService.Subscribe<OnExamineTrap, OnExamineTrap.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnExamineTrap, OnExamineTrap.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnClientLevelUpBegin"/>
-    public event Action<OnClientLevelUpBegin> OnClientLevelUpBegin
-    {
-      add => EventService.Subscribe<OnClientLevelUpBegin, OnClientLevelUpBegin.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnClientLevelUpBegin, OnClientLevelUpBegin.Factory>(ControlledCreature, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnPartyEvent"/>
-    public event Action<OnPartyEvent> OnPartyEvent
-    {
-      add => EventService.Subscribe<OnPartyEvent, OnPartyEvent.Factory>(ControlledCreature, value);
-      remove => EventService.Unsubscribe<OnPartyEvent, OnPartyEvent.Factory>(ControlledCreature, value);
     }
 
     /// <summary>

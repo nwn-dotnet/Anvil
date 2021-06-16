@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -47,5 +49,23 @@ namespace NWN.API.Events
         return !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;
       }
     }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnServerCharacterSave"/>
+    public event Action<OnServerCharacterSave> OnServerCharacterSave
+    {
+      add => EventService.Subscribe<OnServerCharacterSave, OnServerCharacterSave.Factory>(ControlledCreature, value);
+      remove => EventService.Unsubscribe<OnServerCharacterSave, OnServerCharacterSave.Factory>(ControlledCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+
   }
 }
