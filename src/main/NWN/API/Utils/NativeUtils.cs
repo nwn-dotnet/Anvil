@@ -89,6 +89,12 @@ namespace NWN.API
       return ReadNullTerminatedString(ptr);
     }
 
+    public static string PeekMessageResRef(this CNWSMessage message, int offset)
+    {
+      byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
+      return StringEncoding.GetString(ptr, 16);
+    }
+
     public static string ReadNullTerminatedString(byte* ptr)
     {
       byte* walk = ptr;

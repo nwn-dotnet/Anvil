@@ -477,6 +477,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the creature's current Combat Mode.<br/>
+    /// Can be used in the <see cref="OnCombatModeToggle"/> event to determine which combat mode is being toggled off.
+    /// </summary>
+    public CombatMode CombatMode
+    {
+      get => (CombatMode)Creature.m_nCombatMode;
+    }
+
+    /// <summary>
     /// Gets this creature's animal companion creature type.
     /// </summary>
     public AnimalCompanionCreatureType AnimalCompanionType
@@ -560,9 +569,9 @@ namespace NWN.API
     /// <summary>
     /// Gets the attack mode used during this creature's last attack.
     /// </summary>
-    public CombatMode LastAttackMode
+    public LastAttackMode LastAttackMode
     {
-      get => (CombatMode)NWScript.GetLastAttackMode(this);
+      get => (LastAttackMode)NWScript.GetLastAttackMode(this);
     }
 
     /// <summary>

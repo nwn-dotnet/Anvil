@@ -34,7 +34,7 @@ namespace NWN.API.Events
         case MessageDungeonMasterMinor.SpawnEncounter:
         case MessageDungeonMasterMinor.SpawnPortal:
         case MessageDungeonMasterMinor.SpawnPlaceable:
-          return HandleSpawnEvent(dungeonMaster) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+          return HandleSpawnEvent(pMessage, pPlayer, nMinor, bGroup, dungeonMaster, message, (MessageDungeonMasterMinor)nMinor).ToInt();
         case MessageDungeonMasterMinor.Difficulty:
           return HandleChangeDifficultyEvent(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.ViewInventory:
@@ -204,16 +204,61 @@ namespace NWN.API.Events
       return !eventData.Skip;
     }
 
-    private static bool HandleSpawnEvent(NwPlayer dungeonMaster)
+    private static bool HandleSpawnEvent(void* pMessage, void* pPlayer, byte nMinor, int bGroup, NwPlayer dungeonMaster, CNWSMessage message, MessageDungeonMasterMinor spawnType)
     {
-      NwGameObject gameObject = LowLevel.ServerExoApp.GetObjectArray().m_nNextObjectArrayID[0].ToNwObject<NwGameObject>();
-      OnDMSpawnObject eventData = ProcessEvent(new OnDMSpawnObject
+      ObjectTypes objectType = spawnType switch
+      {
+        MessageDungeonMasterMinor.SpawnCreature => ObjectTypes.Creature,
+        MessageDungeonMasterMinor.SpawnItem => ObjectTypes.Item,
+        MessageDungeonMasterMinor.SpawnPlaceable => ObjectTypes.Placeable,
+        MessageDungeonMasterMinor.SpawnWaypoint => ObjectTypes.Waypoint,
+        MessageDungeonMasterMinor.SpawnTrigger => ObjectTypes.Trigger,
+        MessageDungeonMasterMinor.SpawnEncounter => ObjectTypes.Encounter,
+        MessageDungeonMasterMinor.SpawnPortal => ObjectTypes.Invalid,
+        _ => throw new ArgumentOutOfRangeException(),
+      };
+
+      int offset = 0;
+
+      NwArea area = (message.PeekMessage<uint>(offset) & 0x7FFFFFFF).ToNwObject<NwArea>();
+      offset += sizeof(uint);
+
+      float x = message.PeekMessage<float>(offset);
+      offset += sizeof(float);
+      float y = message.PeekMessage<float>(offset);
+      offset += sizeof(float);
+      float z = message.PeekMessage<float>(offset);
+      offset += sizeof(float);
+
+      if (objectType == ObjectTypes.Placeable)
+      {
+        // Placeables have extra orientation data
+        offset += sizeof(float) + sizeof(float) + sizeof(float);
+      }
+
+      string resRef = message.PeekMessageResRef(offset);
+      uint gameObjectId = LowLevel.ServerExoApp.GetObjectArray().m_nNextObjectArrayID[0];
+
+      OnDMSpawnObjectBefore beforeEventData = ProcessEvent(new OnDMSpawnObjectBefore
       {
         DungeonMaster = dungeonMaster,
-        SpawnedObject = gameObject,
+        Area = area,
+        Position = new Vector3(x, y, z),
+        ResRef = resRef,
       });
 
-      return !eventData.Skip;
+      bool skipped = beforeEventData.Skip || !Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup).ToBool();
+
+      if (!skipped)
+      {
+        ProcessEvent(new OnDMSpawnObjectAfter
+        {
+          DungeonMaster = dungeonMaster,
+          SpawnedObject = gameObjectId.ToNwObject<NwGameObject>(),
+        });
+      }
+
+      return !skipped;
     }
 
     private static bool HandleChangeDifficultyEvent(NwPlayer dungeonMaster, CNWSMessage message)
