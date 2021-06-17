@@ -110,7 +110,7 @@ namespace NWN.API.Events
         case MessageDungeonMasterMinor.GiveGold:
           return HandleGiveEvent<OnDMGiveGold>(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         case MessageDungeonMasterMinor.GiveItem:
-          return HandleGiveItemEvent(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
+          return HandleGiveItemEvent(pMessage, pPlayer, nMinor, bGroup, dungeonMaster, message).ToInt();
         case MessageDungeonMasterMinor.Login:
           return HandlePlayerDMLoginEvent(dungeonMaster, message) ? Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup) : false.ToInt();
         default:
@@ -341,19 +341,30 @@ namespace NWN.API.Events
       return !eventData.Skip;
     }
 
-    private static bool HandleGiveItemEvent(NwPlayer dungeonMaster, CNWSMessage message)
+    private static bool HandleGiveItemEvent(void* pMessage, void* pPlayer, byte nMinor, int bGroup, NwPlayer dungeonMaster, CNWSMessage message)
     {
       NwGameObject target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwObject<NwGameObject>();
-      NwItem item = LowLevel.ServerExoApp.GetObjectArray().m_nNextObjectArrayID[0].ToNwObject<NwItem>();
+      uint itemId = LowLevel.ServerExoApp.GetObjectArray().m_nNextObjectArrayID[0];
 
-      OnDMGiveItem eventData = ProcessEvent(new OnDMGiveItem
+      OnDMGiveItemBefore beforeEventData = ProcessEvent(new OnDMGiveItemBefore
       {
         DungeonMaster = dungeonMaster,
         Target = target,
-        Item = item,
       });
 
-      return !eventData.Skip;
+      bool skipped = beforeEventData.Skip || !Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup).ToBool();
+
+      if (!skipped)
+      {
+        ProcessEvent(new OnDMGiveItemAfter
+        {
+          DungeonMaster = dungeonMaster,
+          Target = target,
+          Item = itemId.ToNwObject<NwItem>(),
+        });
+      }
+
+      return !skipped;
     }
 
     private static bool HandlePlayerDMLoginEvent(NwPlayer dungeonMaster, CNWSMessage message)
