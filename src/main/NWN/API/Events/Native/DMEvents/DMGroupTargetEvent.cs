@@ -5,7 +5,7 @@ namespace NWN.API.Events
 {
   public abstract class DMGroupTargetEvent : IEvent
   {
-    public NwGameObject[] Targets { get; internal init; }
+    public NwObject[] Targets { get; internal init; }
 
     public NwPlayer DungeonMaster { get; internal init; }
 

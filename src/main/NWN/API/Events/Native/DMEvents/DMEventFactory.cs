@@ -130,7 +130,7 @@ namespace NWN.API.Events
 
     private static bool HandleSingleTargetEvent<TEvent>(NwPlayer dungeonMaster, CNWSMessage message) where TEvent : DMSingleTargetEvent, new()
     {
-      NwGameObject target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwObject<NwGameObject>();
+      NwObject target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwObject();
       TEvent eventData = ProcessEvent(new TEvent
       {
         DungeonMaster = dungeonMaster,
@@ -151,10 +151,10 @@ namespace NWN.API.Events
         offset += sizeof(int);
       }
 
-      NwGameObject[] targets = new NwGameObject[groupSize];
+      NwObject[] targets = new NwObject[groupSize];
       for (int i = 0; i < groupSize; i++)
       {
-        targets[i] = (message.PeekMessage<uint>(offset) & 0x7FFFFFFF).ToNwObject<NwGameObject>();
+        targets[i] = (message.PeekMessage<uint>(offset) & 0x7FFFFFFF).ToNwObject();
         offset += sizeof(uint);
       }
 
