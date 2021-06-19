@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Anvil.Internal;
 using NWN.API;
@@ -34,7 +35,7 @@ namespace NWN.Services
 
     private bool customHearingDistances;
 
-    public ChatService(EventService eventService, HookService hookService)
+    public ChatService(Lazy<EventService> eventService, HookService hookService)
     {
       this.eventService = eventService;
       sendServerToPlayerChatMessageHook = hookService.RequestHook<SendServerToPlayerChatMessageHook>(OnSendServerToPlayerChatMessage, FunctionsLinux._ZN11CNWSMessage29SendServerToPlayerChatMessageEhj10CExoStringjRKS0_, HookOrder.Late);

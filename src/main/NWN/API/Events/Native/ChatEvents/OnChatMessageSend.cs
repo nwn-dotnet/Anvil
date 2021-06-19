@@ -53,4 +53,14 @@ namespace NWN.API
       remove => EventService.Unsubscribe<OnChatMessageSend, ChatService>(this, value);
     }
   }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnChatMessageSend"/>
+    public event Action<OnChatMessageSend> OnChatMessageSend
+    {
+      add => EventService.SubscribeAll<OnChatMessageSend, ChatService>(value);
+      remove => EventService.UnsubscribeAll<OnChatMessageSend, ChatService>(value);
+    }
+  }
 }

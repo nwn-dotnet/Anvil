@@ -6,13 +6,13 @@ namespace NWN.Services
 {
   public sealed partial class ChatService : IEventFactory<NullRegistrationData>
   {
-    private readonly EventService eventService;
+    private readonly Lazy<EventService> eventService;
 
     private bool isEventHooked;
 
     private bool ProcessEvent(ChatChannel chatChannel, string message, NwGameObject sender, NwPlayer target)
     {
-      OnChatMessageSend eventData = eventService.ProcessEvent(new OnChatMessageSend
+      OnChatMessageSend eventData = eventService.Value.ProcessEvent(new OnChatMessageSend
       {
         ChatChannel = chatChannel,
         Message = message,
