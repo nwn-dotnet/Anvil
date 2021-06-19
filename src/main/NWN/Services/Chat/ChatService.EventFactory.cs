@@ -12,12 +12,17 @@ namespace NWN.Services
 
     private bool ProcessEvent(ChatChannel chatChannel, string message, NwGameObject sender, NwPlayer target)
     {
-      OnChatMessageSend eventData = eventService.Value.ProcessEvent(new OnChatMessageSend
+      OnChatMessageSend eventData = null;
+
+      VirtualMachine.Instance.ExecuteInScriptContext(() =>
       {
-        ChatChannel = chatChannel,
-        Message = message,
-        Sender = sender,
-        Target = target,
+        eventData = eventService.Value.ProcessEvent(new OnChatMessageSend
+        {
+          ChatChannel = chatChannel,
+          Message = message,
+          Sender = sender,
+          Target = target,
+        });
       });
 
       return eventData.Skip;

@@ -19,9 +19,9 @@ namespace NWN.Services
     private const uint PlayerIdInvalidId = 0x0FFFFFFFE;
     private const uint PlayerIdAllClients = 0x0FFFFFFFF;
 
-    private FunctionHook<SendServerToPlayerChatMessageHook> sendServerToPlayerChatMessageHook;
+    private readonly FunctionHook<SendServerToPlayerChatMessageHook> sendServerToPlayerChatMessageHook;
 
-    private delegate int SendServerToPlayerChatMessageHook(void* pMessage, ChatChannel channel, uint oidSender, CExoStringStruct messageStruct, uint oidTarget, void* tellName);
+    private delegate int SendServerToPlayerChatMessageHook(void* pMessage, ChatChannel nChatMessageType, uint oidSpeaker, void* sSpeakerMessage, uint nTellPlayerId, void* tellName);
 
     private readonly Dictionary<NwPlayer, Dictionary<ChatChannel, float>> playerHearingDistances = new Dictionary<NwPlayer, Dictionary<ChatChannel, float>>();
 
@@ -138,17 +138,17 @@ namespace NWN.Services
       customHearingDistances = true;
     }
 
-    private int OnSendServerToPlayerChatMessage(void* pMessage, ChatChannel channel, uint oidSender, CExoStringStruct messageStruct, uint oidTarget, void* tellName)
+    private int OnSendServerToPlayerChatMessage(void* pMessage, ChatChannel nChatMessageType, uint oidSpeaker, void* sSpeakerMessage, uint nTellPlayerId, void* tellName)
     {
       if (!isEventHooked && !customHearingDistances)
       {
-        return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, channel, oidSender, messageStruct, oidTarget, tellName);
+        return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, nChatMessageType, oidSpeaker, sSpeakerMessage, nTellPlayerId, tellName);
       }
 
       CNWSMessage message = CNWSMessage.FromPointer(pMessage);
-      CExoString chatMessage = (CExoString)messageStruct;
+      CExoString speakerMessage = CExoString.FromPointer(sSpeakerMessage);
 
-      bool skipMessage = ProcessEvent(channel, chatMessage.ToString(), oidSender.ToNwObject<NwGameObject>(), oidTarget.ToNwPlayer());
+      bool skipMessage = ProcessEvent(nChatMessageType, speakerMessage.ToString(), oidSpeaker.ToNwObject<NwGameObject>(), nTellPlayerId.ToNwPlayer());
       if (skipMessage)
       {
         return false.ToInt();
@@ -156,7 +156,7 @@ namespace NWN.Services
 
       if (!customHearingDistances)
       {
-        return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, channel, oidSender, messageStruct, oidTarget, tellName);
+        return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, nChatMessageType, oidSpeaker, sSpeakerMessage, nTellPlayerId, tellName);
       }
 
       CExoLinkedListInternal playerList = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.m_pcExoLinkedListInternal;
@@ -165,20 +165,20 @@ namespace NWN.Services
         return false.ToInt();
       }
 
-      if (channel == ChatChannel.PlayerShout && NwServer.Instance.ServerInfo.PlayOptions.DisallowShouting)
+      if (nChatMessageType == ChatChannel.PlayerShout && NwServer.Instance.ServerInfo.PlayOptions.DisallowShouting)
       {
-        channel = ChatChannel.PlayerTalk;
+        nChatMessageType = ChatChannel.PlayerTalk;
       }
 
-      if (channel != ChatChannel.PlayerTalk &&
-        channel != ChatChannel.PlayerWhisper &&
-        channel != ChatChannel.DmTalk &&
-        channel != ChatChannel.DmWhisper)
+      if (nChatMessageType != ChatChannel.PlayerTalk &&
+        nChatMessageType != ChatChannel.PlayerWhisper &&
+        nChatMessageType != ChatChannel.DmTalk &&
+        nChatMessageType != ChatChannel.DmWhisper)
       {
-        return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, channel, oidSender, messageStruct, oidTarget, tellName);
+        return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, nChatMessageType, oidSpeaker, sSpeakerMessage, nTellPlayerId, tellName);
       }
 
-      NwGameObject speaker = oidSender.ToNwObject<NwGameObject>();
+      NwGameObject speaker = oidSpeaker.ToNwObject<NwGameObject>();
 
       foreach (NwPlayer player in NwModule.Instance.Players)
       {
@@ -188,25 +188,25 @@ namespace NWN.Services
           continue;
         }
 
-        float hearDistance = GetChatHearingDistance(player, channel);
+        float hearDistance = GetChatHearingDistance(player, nChatMessageType);
         if (controlledCreature.DistanceSquared(speaker) > hearDistance * hearDistance)
         {
           continue;
         }
 
-        switch (channel)
+        switch (nChatMessageType)
         {
           case ChatChannel.PlayerTalk:
-            message.SendServerToPlayerChat_Talk(player.Player.m_nPlayerID, speaker, chatMessage);
+            message.SendServerToPlayerChat_Talk(player.Player.m_nPlayerID, speaker, speakerMessage);
             break;
           case ChatChannel.DmTalk:
-            message.SendServerToPlayerChat_DM_Talk(player.Player.m_nPlayerID, speaker, chatMessage);
+            message.SendServerToPlayerChat_DM_Talk(player.Player.m_nPlayerID, speaker, speakerMessage);
             break;
           case ChatChannel.PlayerWhisper:
-            message.SendServerToPlayerChat_Whisper(player.Player.m_nPlayerID, speaker, chatMessage);
+            message.SendServerToPlayerChat_Whisper(player.Player.m_nPlayerID, speaker, speakerMessage);
             break;
           case ChatChannel.DmWhisper:
-            message.SendServerToPlayerChat_DM_Whisper(player.Player.m_nPlayerID, speaker, chatMessage);
+            message.SendServerToPlayerChat_DM_Whisper(player.Player.m_nPlayerID, speaker, speakerMessage);
             break;
         }
       }
