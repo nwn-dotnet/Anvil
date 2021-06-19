@@ -1,5 +1,4 @@
 using System;
-using NWN.API;
 using NWN.API.Events;
 using NWN.Services;
 
