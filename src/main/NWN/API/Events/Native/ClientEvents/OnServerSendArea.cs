@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -42,6 +44,29 @@ namespace NWN.API.Events
 
         return Hook.CallOriginal(pMessage, pPlayer, pArea, fX, fY, fZ, vNewOrientation, bPlayerIsNewToModule);
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnServerSendArea"/>
+    public event Action<OnServerSendArea> OnServerSendArea
+    {
+      add => EventService.Subscribe<OnServerSendArea, OnServerSendArea.Factory>(ControlledCreature, value);
+      remove => EventService.Unsubscribe<OnServerSendArea, OnServerSendArea.Factory>(ControlledCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnServerSendArea"/>
+    public event Action<OnServerSendArea> OnServerSendArea
+    {
+      add => EventService.SubscribeAll<OnServerSendArea, OnServerSendArea.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnServerSendArea, OnServerSendArea.Factory>(value);
     }
   }
 }

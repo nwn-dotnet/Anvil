@@ -1,5 +1,7 @@
+using System;
 using System.Runtime.InteropServices;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 using Feat = NWN.API.Constants.Feat;
@@ -67,6 +69,29 @@ namespace NWN.API.Events
 
         return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public abstract partial class NwGameObject
+  {
+    /// <inheritdoc cref="Events.OnSpellInterrupt"/>
+    public event Action<OnSpellInterrupt> OnSpellInterrupt
+    {
+      add => EventService.Subscribe<OnSpellInterrupt, OnSpellInterrupt.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellInterrupt, OnSpellInterrupt.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="Events.OnSpellInterrupt"/>
+    public event Action<OnSpellInterrupt> OnSpellInterrupt
+    {
+      add => EventService.SubscribeAll<OnSpellInterrupt, OnSpellInterrupt.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellInterrupt, OnSpellInterrupt.Factory>(value);
     }
   }
 }

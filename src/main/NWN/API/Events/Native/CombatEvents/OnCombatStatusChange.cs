@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -42,6 +44,29 @@ namespace NWN.API.Events
 
         return Hook.CallOriginal(pMessage, nPlayer, bPlay);
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
+    public event Action<OnCombatStatusChange> OnCombatStatusChange
+    {
+      add => EventService.Subscribe<OnCombatStatusChange, OnCombatStatusChange.Factory>(ControlledCreature, value);
+      remove => EventService.Unsubscribe<OnCombatStatusChange, OnCombatStatusChange.Factory>(ControlledCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
+    public event Action<OnCombatStatusChange> OnCombatStatusChange
+    {
+      add => EventService.SubscribeAll<OnCombatStatusChange, OnCombatStatusChange.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCombatStatusChange, OnCombatStatusChange.Factory>(value);
     }
   }
 }

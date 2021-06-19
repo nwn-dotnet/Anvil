@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -59,6 +61,29 @@ namespace NWN.API.Events
             return Hook.CallOriginal(pCreature, pTarget, bTargetInvisible);
         }
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDoSpotDetection"/>
+    public event Action<OnDoSpotDetection> OnDoSpotDetection
+    {
+      add => EventService.Subscribe<OnDoSpotDetection, OnDoSpotDetection.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnDoSpotDetection, OnDoSpotDetection.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDoSpotDetection"/>
+    public event Action<OnDoSpotDetection> OnDoSpotDetection
+    {
+      add => EventService.SubscribeAll<OnDoSpotDetection, OnDoSpotDetection.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnDoSpotDetection, OnDoSpotDetection.Factory>(value);
     }
   }
 }

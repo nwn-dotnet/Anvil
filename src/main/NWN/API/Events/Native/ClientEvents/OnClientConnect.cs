@@ -1,5 +1,7 @@
+using System;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -84,6 +86,19 @@ namespace NWN.API.Events
         NetLayer.DisconnectPlayer(playerId, 5838, true.ToInt(), kickMessage.ToExoString());
         return false.ToInt();
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnClientConnect"/>
+    public event Action<OnClientConnect> OnClientConnect
+    {
+      add => EventService.SubscribeAll<OnClientConnect, OnClientConnect.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnClientConnect, OnClientConnect.Factory>(value);
     }
   }
 }

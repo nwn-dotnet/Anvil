@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using NWN.API.Constants;
-using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 
 namespace NWN.API
 {
   [NativeObjectInfo(ObjectTypes.AreaOfEffect, ObjectType.AreaOfEffect)]
-  public sealed class NwAreaOfEffect : NwGameObject
+  public sealed partial class NwAreaOfEffect : NwGameObject
   {
     internal readonly CNWSAreaOfEffectObject AreaOfEffect;
 
@@ -20,34 +19,6 @@ namespace NWN.API
     public static implicit operator CNWSAreaOfEffectObject(NwAreaOfEffect areaOfEffect)
     {
       return areaOfEffect?.AreaOfEffect;
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnEnter"/>
-    public event Action<AreaOfEffectEvents.OnEnter> OnEnter
-    {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnExit"/>
-    public event Action<AreaOfEffectEvents.OnExit> OnExit
-    {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnHeartbeat"/>
-    public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
-    {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnUserDefined"/>
-    public event Action<AreaOfEffectEvents.OnUserDefined> OnUserDefined
-    {
-      add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     public override Location Location

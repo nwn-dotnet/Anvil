@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -87,6 +89,29 @@ namespace NWN.API.Events
           creature.SetActivity(0, true.ToInt());
         }
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDetectModeUpdate"/>
+    public event Action<OnDetectModeUpdate> OnDetectModeUpdate
+    {
+      add => EventService.Subscribe<OnDetectModeUpdate, OnDetectModeUpdate.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnDetectModeUpdate, OnDetectModeUpdate.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnDetectModeUpdate"/>
+    public event Action<OnDetectModeUpdate> OnDetectModeUpdate
+    {
+      add => EventService.SubscribeAll<OnDetectModeUpdate, OnDetectModeUpdate.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnDetectModeUpdate, OnDetectModeUpdate.Factory>(value);
     }
   }
 }

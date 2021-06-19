@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -47,6 +49,29 @@ namespace NWN.API.Events
           Hook.CallOriginal(pItem, oidOpener);
         }
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryOpen"/>
+    public event Action<OnItemInventoryOpen> OnItemInventoryOpen
+    {
+      add => EventService.Subscribe<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnItemInventoryOpen"/>
+    public event Action<OnItemInventoryOpen> OnItemInventoryOpen
+    {
+      add => EventService.SubscribeAll<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemInventoryOpen, OnItemInventoryOpen.Factory>(value);
     }
   }
 }

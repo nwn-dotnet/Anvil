@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -45,6 +47,39 @@ namespace NWN.API.Events
 
         return Hook.CallOriginal(pItemRepository, pItem);
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwItem
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemRemove"/>
+    public event Action<OnInventoryItemRemove> OnInventoryItemRemove
+    {
+      add => EventService.Subscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwPlaceable
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemRemove"/>
+    public event Action<OnInventoryItemRemove> OnInventoryItemRemove
+    {
+      add => EventService.Subscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemRemove"/>
+    public event Action<OnInventoryItemRemove> OnInventoryItemRemove
+    {
+      add => EventService.SubscribeAll<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(value);
     }
   }
 }

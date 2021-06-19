@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -150,6 +151,29 @@ namespace NWN.API.Events
 
         return items.AsReadOnly();
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnBarterEnd"/>
+    public event Action<OnBarterEnd> OnBarterEnd
+    {
+      add => EventService.Subscribe<OnBarterEnd, OnBarterEnd.Factory>(ControlledCreature, value);
+      remove => EventService.Unsubscribe<OnBarterEnd, OnBarterEnd.Factory>(ControlledCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnBarterEnd"/>
+    public event Action<OnBarterEnd> OnBarterEnd
+    {
+      add => EventService.SubscribeAll<OnBarterEnd, OnBarterEnd.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnBarterEnd, OnBarterEnd.Factory>(value);
     }
   }
 }

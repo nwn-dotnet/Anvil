@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -117,6 +118,29 @@ namespace NWN.API.Events
           DamageData = new DamageData<short>(combatAttackData.m_nDamage),
         };
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnCreatureAttack"/>
+    public event Action<OnCreatureAttack> OnCreatureAttack
+    {
+      add => EventService.Subscribe<OnCreatureAttack, OnCreatureAttack.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnCreatureAttack, OnCreatureAttack.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnCreatureAttack"/>
+    public event Action<OnCreatureAttack> OnCreatureAttack
+    {
+      add => EventService.SubscribeAll<OnCreatureAttack, OnCreatureAttack.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCreatureAttack, OnCreatureAttack.Factory>(value);
     }
   }
 }

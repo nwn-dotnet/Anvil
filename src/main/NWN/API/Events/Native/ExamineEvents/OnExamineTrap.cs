@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -39,6 +41,29 @@ namespace NWN.API.Events
 
         Hook.CallOriginal(pMessage, pPlayer, oidTrap, pCreature, bSuccess);
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnExamineTrap"/>
+    public event Action<OnExamineTrap> OnExamineTrap
+    {
+      add => EventService.Subscribe<OnExamineTrap, OnExamineTrap.Factory>(ControlledCreature, value);
+      remove => EventService.Unsubscribe<OnExamineTrap, OnExamineTrap.Factory>(ControlledCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnExamineTrap"/>
+    public event Action<OnExamineTrap> OnExamineTrap
+    {
+      add => EventService.SubscribeAll<OnExamineTrap, OnExamineTrap.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnExamineTrap, OnExamineTrap.Factory>(value);
     }
   }
 }
