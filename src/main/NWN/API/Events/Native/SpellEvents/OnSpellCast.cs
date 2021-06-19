@@ -57,19 +57,24 @@ namespace NWN.API.Events
       {
         CNWSObject gameObject = CNWSObject.FromPointer(pObject);
 
-        OnSpellCast eventData = ProcessEvent(new OnSpellCast
+        OnSpellCast eventData = null;
+
+        VirtualMachine.Instance.ExecuteInScriptContext(() =>
         {
-          Caster = gameObject.ToNwObject<NwGameObject>(),
-          Spell = (Spell)nSpellId,
-          TargetPosition = targetPosition,
-          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
-          ClassIndex = nMultiClass,
-          Item = itemObj.ToNwObject<NwItem>(),
-          SpellCountered = bSpellCountered.ToBool(),
-          CounteringSpell = bCounteringSpell.ToBool(),
-          ProjectilePathType = (ProjectilePathType)projectilePathType,
-          IsInstantSpell = bInstantSpell.ToBool(),
-          MetaMagic = (MetaMagic)NWScript.GetMetaMagicFeat(),
+          eventData = ProcessEvent(new OnSpellCast
+          {
+            Caster = gameObject.ToNwObject<NwGameObject>(),
+            Spell = (Spell)nSpellId,
+            TargetPosition = targetPosition,
+            TargetObject = oidTarget.ToNwObject<NwGameObject>(),
+            ClassIndex = nMultiClass,
+            Item = itemObj.ToNwObject<NwItem>(),
+            SpellCountered = bSpellCountered.ToBool(),
+            CounteringSpell = bCounteringSpell.ToBool(),
+            ProjectilePathType = (ProjectilePathType)projectilePathType,
+            IsInstantSpell = bInstantSpell.ToBool(),
+            MetaMagic = (MetaMagic)NWScript.GetMetaMagicFeat(),
+          }, false);
         });
 
         if (!eventData.PreventSpellCast)
