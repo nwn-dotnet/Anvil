@@ -4,6 +4,7 @@ using NWN.API.Events;
 
 namespace NWN.Services
 {
+  [ServiceBinding(typeof(IEventFactory))]
   public sealed partial class ChatService : IEventFactory<NullRegistrationData>
   {
     private readonly Lazy<EventService> eventService;

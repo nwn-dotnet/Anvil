@@ -2,14 +2,11 @@ using System;
 using System.Collections.Generic;
 using Anvil.Internal;
 using NWN.API;
-using NWN.API.Events;
-using NWN.Native;
 using NWN.Native.API;
 
 namespace NWN.Services
 {
   [ServiceBinding(typeof(ChatService))]
-  [ServiceBinding(typeof(IEventFactory))]
   public sealed unsafe partial class ChatService
   {
     private const uint PlayerIdAllServerAdmins = 0x0FFFFFFF5;
