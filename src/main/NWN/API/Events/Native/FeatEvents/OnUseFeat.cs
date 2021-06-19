@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 using Feat = NWN.API.Constants.Feat;
@@ -55,6 +56,29 @@ namespace NWN.API.Events
 
         return !eventData.PreventFeatUse ? Hook.CallOriginal(pCreature, nFeat, nSubFeat, oidTarget, oidArea, pTargetPos) : false.ToInt();
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnUseFeat"/>
+    public event Action<OnUseFeat> OnUseFeat
+    {
+      add => EventService.Subscribe<OnUseFeat, OnUseFeat.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnUseFeat, OnUseFeat.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnUseFeat"/>
+    public event Action<OnUseFeat> OnUseFeat
+    {
+      add => EventService.SubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnUseFeat, OnUseFeat.Factory>(value);
     }
   }
 }

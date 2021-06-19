@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NWN.API.Constants;
-using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 using Animation = NWN.API.Constants.Animation;
@@ -12,7 +11,7 @@ using Vector3 = System.Numerics.Vector3;
 
 namespace NWN.API
 {
-  public abstract class NwGameObject : NwObject
+  public abstract partial class NwGameObject : NwObject
   {
     internal readonly CNWSObject GameObject;
 
@@ -25,55 +24,6 @@ namespace NWN.API
     internal override CNWSScriptVarTable ScriptVarTable
     {
       get => GameObject.m_ScriptVars;
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnAcquireItem"/>
-    public event Action<ModuleEvents.OnAcquireItem> OnAcquireItem
-    {
-      add => EventService.Subscribe<ModuleEvents.OnAcquireItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
-      remove => EventService.Unsubscribe<ModuleEvents.OnAcquireItem, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.ModuleEvents.OnUnacquireItem"/>
-    public event Action<ModuleEvents.OnUnacquireItem> OnUnacquireItem
-    {
-      add => EventService.Subscribe<ModuleEvents.OnUnacquireItem, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(NwModule.Instance), value);
-      remove => EventService.Unsubscribe<ModuleEvents.OnUnacquireItem, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnDisarmWeapon"/>
-    public event Action<OnDisarmWeapon> OnDisarmWeapon
-    {
-      add => EventService.Subscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnDisarmWeapon, OnDisarmWeapon.Factory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnHeal"/>
-    public event Action<OnHeal> OnHeal
-    {
-      add => EventService.Subscribe<OnHeal, OnHeal.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnHeal, OnHeal.Factory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
-    public event Action<OnSpellBroadcast> OnSpellBroadcast
-    {
-      add => EventService.Subscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
-    public event Action<OnSpellCast> OnSpellCast
-    {
-      add => EventService.Subscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
-    }
-
-    /// <inheritdoc cref="Events.OnSpellInterrupt"/>
-    public event Action<OnSpellInterrupt> OnSpellInterrupt
-    {
-      add => EventService.Subscribe<OnSpellInterrupt, OnSpellInterrupt.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnSpellInterrupt, OnSpellInterrupt.Factory>(this, value);
     }
 
     /// <summary>

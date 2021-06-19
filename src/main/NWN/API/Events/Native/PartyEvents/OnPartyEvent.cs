@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -57,6 +58,29 @@ namespace NWN.API.Events
 
         return eventData.Result.Value.ToInt();
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnPartyEvent"/>
+    public event Action<OnPartyEvent> OnPartyEvent
+    {
+      add => EventService.Subscribe<OnPartyEvent, OnPartyEvent.Factory>(ControlledCreature, value);
+      remove => EventService.Unsubscribe<OnPartyEvent, OnPartyEvent.Factory>(ControlledCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnPartyEvent"/>
+    public event Action<OnPartyEvent> OnPartyEvent
+    {
+      add => EventService.SubscribeAll<OnPartyEvent, OnPartyEvent.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnPartyEvent, OnPartyEvent.Factory>(value);
     }
   }
 }

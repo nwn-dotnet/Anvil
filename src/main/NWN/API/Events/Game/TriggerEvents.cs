@@ -1,4 +1,6 @@
+using System;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 
 namespace NWN.API.Events
@@ -140,6 +142,61 @@ namespace NWN.API.Events
       {
         get => Trigger;
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwTrigger
+  {
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnHeartbeat"/>
+    public event Action<TriggerEvents.OnHeartbeat> OnHeartbeat
+    {
+      add => EventService.Subscribe<TriggerEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnHeartbeat, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnEnter"/>
+    public event Action<TriggerEvents.OnEnter> OnEnter
+    {
+      add => EventService.Subscribe<TriggerEvents.OnEnter, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnEnter, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnExit"/>
+    public event Action<TriggerEvents.OnExit> OnExit
+    {
+      add => EventService.Subscribe<TriggerEvents.OnExit, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnExit, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnUserDefined"/>
+    public event Action<TriggerEvents.OnUserDefined> OnUserDefined
+    {
+      add => EventService.Subscribe<TriggerEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnUserDefined, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnTrapTriggered"/>
+    public event Action<TriggerEvents.OnTrapTriggered> OnTrapTriggered
+    {
+      add => EventService.Subscribe<TriggerEvents.OnTrapTriggered, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnTrapTriggered, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnDisarmed"/>
+    public event Action<TriggerEvents.OnDisarmed> OnDisarmed
+    {
+      add => EventService.Subscribe<TriggerEvents.OnDisarmed, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnDisarmed, GameEventFactory>(this, value);
+    }
+
+    /// <inheritdoc cref="NWN.API.Events.TriggerEvents.OnClicked"/>
+    public event Action<TriggerEvents.OnClicked> OnClicked
+    {
+      add => EventService.Subscribe<TriggerEvents.OnClicked, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.Unsubscribe<TriggerEvents.OnClicked, GameEventFactory>(this, value);
     }
   }
 }

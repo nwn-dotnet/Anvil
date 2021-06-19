@@ -1,5 +1,7 @@
+using System;
 using System.Runtime.InteropServices;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -63,6 +65,29 @@ namespace NWN.API.Events
 
         return false.ToInt();
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnSpellSlotMemorize"/>
+    public event Action<OnSpellSlotMemorize> OnSpellSlotMemorize
+    {
+      add => EventService.Subscribe<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnSpellSlotMemorize"/>
+    public event Action<OnSpellSlotMemorize> OnSpellSlotMemorize
+    {
+      add => EventService.SubscribeAll<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellSlotMemorize, OnSpellSlotMemorize.Factory>(value);
     }
   }
 }

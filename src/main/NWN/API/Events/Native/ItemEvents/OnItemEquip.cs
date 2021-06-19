@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 using InventorySlot = NWN.API.Constants.InventorySlot;
@@ -56,6 +57,29 @@ namespace NWN.API.Events
 
         return eventData.Result.Value.ToInt();
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnItemEquip"/>
+    public event Action<OnItemEquip> OnItemEquip
+    {
+      add => EventService.Subscribe<OnItemEquip, OnItemEquip.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnItemEquip, OnItemEquip.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnItemEquip"/>
+    public event Action<OnItemEquip> OnItemEquip
+    {
+      add => EventService.SubscribeAll<OnItemEquip, OnItemEquip.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnItemEquip, OnItemEquip.Factory>(value);
     }
   }
 }

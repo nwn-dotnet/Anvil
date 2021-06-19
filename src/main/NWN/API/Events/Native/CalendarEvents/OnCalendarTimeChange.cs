@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -89,6 +91,19 @@ namespace NWN.API.Events
           });
         }
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnCalendarTimeChange"/>
+    public event Action<OnCalendarTimeChange> OnCalendarTimeChange
+    {
+      add => EventService.SubscribeAll<OnCalendarTimeChange, OnCalendarTimeChange.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnCalendarTimeChange, OnCalendarTimeChange.Factory>(value);
     }
   }
 }

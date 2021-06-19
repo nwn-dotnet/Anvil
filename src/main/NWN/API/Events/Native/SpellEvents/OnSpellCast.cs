@@ -1,6 +1,8 @@
+using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 using NWN.Services;
@@ -55,19 +57,24 @@ namespace NWN.API.Events
       {
         CNWSObject gameObject = CNWSObject.FromPointer(pObject);
 
-        OnSpellCast eventData = ProcessEvent(new OnSpellCast
+        OnSpellCast eventData = null;
+
+        VirtualMachine.Instance.ExecuteInScriptContext(() =>
         {
-          Caster = gameObject.ToNwObject<NwGameObject>(),
-          Spell = (Spell)nSpellId,
-          TargetPosition = targetPosition,
-          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
-          ClassIndex = nMultiClass,
-          Item = itemObj.ToNwObject<NwItem>(),
-          SpellCountered = bSpellCountered.ToBool(),
-          CounteringSpell = bCounteringSpell.ToBool(),
-          ProjectilePathType = (ProjectilePathType)projectilePathType,
-          IsInstantSpell = bInstantSpell.ToBool(),
-          MetaMagic = (MetaMagic)NWScript.GetMetaMagicFeat(),
+          eventData = ProcessEvent(new OnSpellCast
+          {
+            Caster = gameObject.ToNwObject<NwGameObject>(),
+            Spell = (Spell)nSpellId,
+            TargetPosition = targetPosition,
+            TargetObject = oidTarget.ToNwObject<NwGameObject>(),
+            ClassIndex = nMultiClass,
+            Item = itemObj.ToNwObject<NwItem>(),
+            SpellCountered = bSpellCountered.ToBool(),
+            CounteringSpell = bCounteringSpell.ToBool(),
+            ProjectilePathType = (ProjectilePathType)projectilePathType,
+            IsInstantSpell = bInstantSpell.ToBool(),
+            MetaMagic = (MetaMagic)NWScript.GetMetaMagicFeat(),
+          }, false);
         });
 
         if (!eventData.PreventSpellCast)
@@ -79,6 +86,29 @@ namespace NWN.API.Events
           gameObject.m_bLastSpellCast = true.ToInt();
         }
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public abstract partial class NwGameObject
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
+    public event Action<OnSpellCast> OnSpellCast
+    {
+      add => EventService.Subscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellCast, OnSpellCast.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnSpellCast"/>
+    public event Action<OnSpellCast> OnSpellCast
+    {
+      add => EventService.SubscribeAll<OnSpellCast, OnSpellCast.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellCast, OnSpellCast.Factory>(value);
     }
   }
 }

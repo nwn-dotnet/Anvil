@@ -1,5 +1,7 @@
+using System;
 using System.Runtime.InteropServices;
 using NWN.API.Constants;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 using Feat = NWN.API.Constants.Feat;
@@ -51,6 +53,29 @@ namespace NWN.API.Events
           Hook.CallOriginal(pCreature, nSpellId, nMultiClass, nFeat);
         }
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public abstract partial class NwGameObject
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
+    public event Action<OnSpellBroadcast> OnSpellBroadcast
+    {
+      add => EventService.Subscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
+    public event Action<OnSpellBroadcast> OnSpellBroadcast
+    {
+      add => EventService.SubscribeAll<OnSpellBroadcast, OnSpellBroadcast.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnSpellBroadcast, OnSpellBroadcast.Factory>(value);
     }
   }
 }

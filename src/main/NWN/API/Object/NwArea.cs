@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using NWN.API.Constants;
-using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 using NWN.Services;
@@ -10,7 +9,7 @@ using AssociateType = NWN.API.Constants.AssociateType;
 namespace NWN.API
 {
   [NativeObjectInfo(0, ObjectType.Area)]
-  public sealed class NwArea : NwObject
+  public sealed partial class NwArea : NwObject
   {
     internal readonly CNWSArea Area;
 
@@ -22,34 +21,6 @@ namespace NWN.API
     public static implicit operator CNWSArea(NwArea area)
     {
       return area?.Area;
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnEnter"/>
-    public event Action<AreaEvents.OnEnter> OnEnter
-    {
-      add => EventService.Subscribe<AreaEvents.OnEnter, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<AreaEvents.OnEnter, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnExit"/>
-    public event Action<AreaEvents.OnExit> OnExit
-    {
-      add => EventService.Subscribe<AreaEvents.OnExit, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<AreaEvents.OnExit, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnHeartbeat"/>
-    public event Action<AreaEvents.OnHeartbeat> OnHeartbeat
-    {
-      add => EventService.Subscribe<AreaEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<AreaEvents.OnHeartbeat, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.AreaEvents.OnUserDefined"/>
-    public event Action<AreaEvents.OnUserDefined> OnUserDefined
-    {
-      add => EventService.Subscribe<AreaEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<AreaEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
     internal override CNWSScriptVarTable ScriptVarTable

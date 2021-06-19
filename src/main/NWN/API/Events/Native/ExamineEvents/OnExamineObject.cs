@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -95,6 +96,29 @@ namespace NWN.API.Events
 
         placeableExamineHook.CallOriginal(pMessage, pPlayer, oidPlaceable);
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwPlayer
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnExamineObject"/>
+    public event Action<OnExamineObject> OnExamineObject
+    {
+      add => EventService.Subscribe<OnExamineObject, OnExamineObject.Factory>(ControlledCreature, value);
+      remove => EventService.Unsubscribe<OnExamineObject, OnExamineObject.Factory>(ControlledCreature, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnExamineObject"/>
+    public event Action<OnExamineObject> OnExamineObject
+    {
+      add => EventService.SubscribeAll<OnExamineObject, OnExamineObject.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnExamineObject, OnExamineObject.Factory>(value);
     }
   }
 }

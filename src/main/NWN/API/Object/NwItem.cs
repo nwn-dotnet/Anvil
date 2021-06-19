@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NWN.API.Constants;
-using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 
 namespace NWN.API
 {
   [NativeObjectInfo(ObjectTypes.Item, ObjectType.Item)]
-  public sealed class NwItem : NwGameObject
+  public sealed partial class NwItem : NwGameObject
   {
     internal readonly CNWSItem Item;
 
@@ -51,20 +50,6 @@ namespace NWN.API
 
         Rotation = value.Rotation;
       }
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemAdd"/>
-    public event Action<OnInventoryItemAdd> OnInventoryItemAdd
-    {
-      add => EventService.Subscribe<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnInventoryItemAdd, OnInventoryItemAdd.Factory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.OnInventoryItemRemove"/>
-    public event Action<OnInventoryItemRemove> OnInventoryItemRemove
-    {
-      add => EventService.Subscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
-      remove => EventService.Unsubscribe<OnInventoryItemRemove, OnInventoryItemRemove.Factory>(this, value);
     }
 
     /// <summary>

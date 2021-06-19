@@ -20,9 +20,17 @@ namespace NWN.API.Events
       }
     }
 
-    protected static TEvent ProcessEvent<TEvent>(TEvent eventData) where TEvent : IEvent
+    protected static TEvent ProcessEvent<TEvent>(TEvent eventData, bool executeInScriptContext = true) where TEvent : IEvent
     {
-      VirtualMachine.Instance.ExecuteInScriptContext(() => { eventData = EventService.Value.ProcessEvent(eventData); }, eventData.Context);
+      if (executeInScriptContext)
+      {
+        VirtualMachine.Instance.ExecuteInScriptContext(() => { eventData = EventService.Value.ProcessEvent(eventData); }, eventData.Context);
+      }
+      else
+      {
+        EventService.Value.ProcessEvent(eventData);
+      }
+
       return eventData;
     }
   }

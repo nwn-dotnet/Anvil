@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.InteropServices;
+using NWN.API.Events;
 using NWN.Native.API;
 using NWN.Services;
 
@@ -33,6 +35,29 @@ namespace NWN.API.Events
           Creature = CNWSCreatureStats.FromPointer(pCreatureStats)?.m_pBaseCreature.ToNwObject<NwCreature>(),
         });
       }
+    }
+  }
+}
+
+namespace NWN.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnLevelDown"/>
+    public event Action<OnLevelDown> OnLevelDown
+    {
+      add => EventService.Subscribe<OnLevelDown, OnLevelDown.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnLevelDown, OnLevelDown.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="NWN.API.Events.OnLevelDown"/>
+    public event Action<OnLevelDown> OnLevelDown
+    {
+      add => EventService.SubscribeAll<OnLevelDown, OnLevelDown.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnLevelDown, OnLevelDown.Factory>(value);
     }
   }
 }

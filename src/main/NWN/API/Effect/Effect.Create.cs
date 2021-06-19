@@ -55,7 +55,6 @@ namespace NWN.API
       return NWScript.EffectAppear();
     }
 
-    // TODO implement Action params
     public static Effect AreaOfEffect(int areaEffectId, string onEnterScript = "", string heartbeatScript = "", string onExitScript = "")
     {
       return NWScript.EffectAreaOfEffect(areaEffectId, onEnterScript, heartbeatScript, onExitScript);

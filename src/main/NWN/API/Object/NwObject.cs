@@ -60,7 +60,6 @@ namespace NWN.API
           return Guid.Empty;
         }
 
-        // TODO - Better Handle UUID conflicts.
         string uid = NWScript.GetObjectUUID(this);
         if (string.IsNullOrEmpty(uid))
         {

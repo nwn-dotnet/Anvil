@@ -1,13 +1,12 @@
 using System;
 using NWN.API.Constants;
-using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
 
 namespace NWN.API
 {
   [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
-  public sealed class NwStore : NwGameObject
+  public sealed partial class NwStore : NwGameObject
   {
     internal readonly CNWSStore Store;
 
@@ -19,20 +18,6 @@ namespace NWN.API
     public static implicit operator CNWSStore(NwStore store)
     {
       return store?.Store;
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.StoreEvents.OnOpen"/>
-    public event Action<StoreEvents.OnOpen> OnOpen
-    {
-      add => EventService.Subscribe<StoreEvents.OnOpen, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<StoreEvents.OnOpen, GameEventFactory>(this, value);
-    }
-
-    /// <inheritdoc cref="NWN.API.Events.StoreEvents.OnClose"/>
-    public event Action<StoreEvents.OnClose> OnClose
-    {
-      add => EventService.Subscribe<StoreEvents.OnClose, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
-      remove => EventService.Unsubscribe<StoreEvents.OnClose, GameEventFactory>(this, value);
     }
 
     public override Location Location
