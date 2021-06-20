@@ -204,6 +204,14 @@ namespace NWN.API.Events
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetTargetingModeSelectedPosition();
 
+      /// <summary>
+      /// Gets if the player cancelled target selection.
+      /// </summary>
+      public bool IsCancelled
+      {
+        get => TargetObject == null;
+      }
+
       NwObject IEvent.Context
       {
         get => Player.ControlledCreature;

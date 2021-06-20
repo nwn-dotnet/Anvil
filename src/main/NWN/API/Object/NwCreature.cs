@@ -1689,7 +1689,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="classType">Constant matching the class to level the creature in.</param>
     /// <param name="package"> Constant matching the package used to select skills and feats for the henchman.</param>
-    /// <param name="spellsReady">Determines if all memorizable spell slots will be filled without requiring rest.</param>
+    /// <param name="spellsReady">Determines if all memorable spell slots will be filled without requiring rest.</param>
     /// <returns>Returns the new level if successful, or 0 if the function fails.</returns>
     public int LevelUpHenchman(ClassType classType, PackageType package, bool spellsReady = false)
     {
