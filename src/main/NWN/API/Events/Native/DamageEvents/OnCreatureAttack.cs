@@ -30,6 +30,8 @@ namespace NWN.API.Events
 
     public DamageData<short> DamageData { get; private init; }
 
+    public int TotalDamage { get; private init; }
+
     private CNWSCombatAttackData CombatAttackData { get; init; }
 
     NwObject IEvent.Context
@@ -116,6 +118,7 @@ namespace NWN.API.Events
           KillingBlow = combatAttackData.m_bKillingBlow.ToBool(),
           AttackType = combatAttackData.m_nAttackType,
           DamageData = new DamageData<short>(combatAttackData.m_nDamage),
+          TotalDamage = combatAttackData.GetTotalDamage(),
         };
       }
     }
