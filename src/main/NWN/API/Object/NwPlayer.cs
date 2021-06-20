@@ -517,7 +517,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="area">The area to explore.</param>
     /// <param name="explored">true if ControlledCreature area has been explored, otherwise false to (re)hide the map.</param>
-    public void SetAreaExploreState(NwArea area, bool explored)
+    public void SetAreaExplorationState(NwArea area, bool explored)
     {
       NWScript.ExploreAreaForPlayer(area, ControlledCreature, explored.ToInt());
     }
