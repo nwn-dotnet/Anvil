@@ -19,22 +19,22 @@ namespace NWN.Services
     public NwItem Item { get; init; }
   }
 
-  public class OnELCLevelValidationFailure : OnELCValidationFailure
+  public sealed class OnELCLevelValidationFailure : OnELCValidationFailure
   {
     public int Level { get; init; }
   }
 
-  public class OnELCSkillValidationFailutre : OnELCValidationFailure
+  public sealed class OnELCSkillValidationFailure : OnELCValidationFailure
   {
     public Skill Skill { get; init; }
   }
 
-  public class OnELCFeatValidationFailutre : OnELCValidationFailure
+  public sealed class OnELCFeatValidationFailure : OnELCValidationFailure
   {
     public Feat Feat { get; init; }
   }
 
-  public class OnELCSpellValidationFailutre : OnELCValidationFailure
+  public sealed class OnELCSpellValidationFailure : OnELCValidationFailure
   {
     public Spell Spell { get; init; }
   }

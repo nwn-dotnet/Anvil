@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Anvil.Internal;
 using NWN.API;
+using NWN.API.Constants;
 using NWN.Native.API;
+using Ability = NWN.Native.API.Ability;
+using Feat = NWN.Native.API.Feat;
+using MovementRate = NWN.Native.API.MovementRate;
+using Skill = NWN.API.Constants.Skill;
 
 namespace NWN.Services
 {
@@ -42,12 +47,12 @@ namespace NWN.Services
     private const int StrRefCustom = 164;
 
     // Magic Numbers
-    private const int INVENTORY_SLOT_MAX = 17;
-    private const int NUM_CREATURE_ITEM_SLOTS = 4;
-    private const int NUM_MULTICLASS = 3;
-    private const int CHARACTER_EPIC_LEVEL = 21;
-    private const int NUM_SPELL_LEVELS = 10;
-    private const int ABILITY_MAX = 5;
+    private const int InventorySlotMax = 17;
+    private const int NumCreatureItemSlots = 4;
+    private const int NumMultiClass = 3;
+    private const int CharacterEpicLevel = 21;
+    private const int NumSpellLevels = 10;
+    private const int AbilityMax = 5;
 
     private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
 
@@ -68,6 +73,12 @@ namespace NWN.Services
 
     public bool EnforceDefaultEventScripts { get; set; }
     public bool EnforceEmptyDialog { get; set; }
+
+    public event Action<OnELCCustomCheck> OnCustomCheck;
+
+    public event Action<OnELCValidationFailure> OnValidationFailure;
+
+    public event Action<OnELCValidationSuccess> OnValidationSuccess;
 
     public EnforceLegalCharacterService(HookService hookService)
     {
@@ -137,6 +148,7 @@ namespace NWN.Services
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.ServerLevelRestriction,
           Level = nCharacterLevel,
+          StrRef = StrRefCharacterLevelRestriction,
         }))
         {
           *bFailedServerRestriction = true.ToInt();
@@ -160,6 +172,7 @@ namespace NWN.Services
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.LevelHack,
             Level = nTotalLevels,
+            StrRef = StrRefCharacterLevelRestriction,
           }))
           {
             *bFailedServerRestriction = true.ToInt();
@@ -212,7 +225,7 @@ namespace NWN.Services
       // Only check if ILR is enabled
       if (pServerInfo.m_PlayOptions.bItemLevelRestrictions.ToBool())
       {
-        for (uint slot = 0; slot <= INVENTORY_SLOT_MAX - NUM_CREATURE_ITEM_SLOTS; slot++)
+        for (uint slot = 0; slot <= InventorySlotMax - NumCreatureItemSlots; slot++)
         {
           CNWSItem pItem = pInventory.GetItemInSlot(slot);
           if (pItem == null)
@@ -437,14 +450,14 @@ namespace NWN.Services
       for (int nLevel = 4; nLevel <= nCharacterLevel; nLevel += 4)
       {
         byte nAbilityGain = pCreatureStats.GetLevelStats((byte)(nLevel - 1)).m_nAbilityGain;
-        if (nAbilityGain <= ABILITY_MAX)
+        if (nAbilityGain <= AbilityMax)
         {
           nAbility[nAbilityGain]--;
         }
       }
 
       // Check if >18 in an ability
-      for (int nAbilityIndex = 0; nAbilityIndex <= ABILITY_MAX; nAbilityIndex++)
+      for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
       {
         if (nAbility[nAbilityIndex] > charGenBaseAbilityMax)
         {
@@ -464,7 +477,7 @@ namespace NWN.Services
       int[] nAbilityAtLevel = new int[6];
       int nPointBuy = pRace.m_nAbilitiesPointBuyNumber;
 
-      for (int nAbilityIndex = 0; nAbilityIndex <= ABILITY_MAX; nAbilityIndex++)
+      for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
       {
         nAbilityAtLevel[nAbilityIndex] = nAbility[nAbilityIndex];
 
@@ -553,13 +566,17 @@ namespace NWN.Services
       // *** Character Per-Level Checks********************************************************************************************
 
       // Init some vars
-      byte[] nMultiClassLevel = new byte[NUM_MULTICLASS];
+      byte[] nMultiClassLevel = new byte[NumMultiClass];
       int nSkillPointsRemaining = 0;
       byte[] listSkillRanks = new byte[pRules.m_nNumSkills];
       HashSet<ushort> listFeats = new HashSet<ushort>();
       HashSet<ushort> listChosenFeats = new HashSet<ushort>();
       // [nMultiClass][nSpellLevel] . {SpellIDs}
-      List<Dictionary<uint, HashSet<uint>>> listSpells = new List<Dictionary<uint, HashSet<uint>>>(NUM_MULTICLASS);
+      List<Dictionary<uint, HashSet<uint>>> listSpells = new List<Dictionary<uint, HashSet<uint>>>();
+      for (int i = 0; i < NumMultiClass; i++)
+      {
+        listSpells.Add(new Dictionary<uint, HashSet<uint>>());
+      }
 
       for (int nLevel = 1; nLevel <= nCharacterLevel; nLevel++)
       {
@@ -598,7 +615,7 @@ namespace NWN.Services
         }
 
         // Check Epic Level Flag
-        if (nLevel < CHARACTER_EPIC_LEVEL)
+        if (nLevel < CharacterEpicLevel)
         {
           if (pLevelStats.m_bEpic != 0)
           {
@@ -639,19 +656,19 @@ namespace NWN.Services
         int[] nStatMods = GetStatBonusesFromFeats(pLevelStats.m_lstFeats, false);
 
         // Update our ability values
-        for (int nAbilityIndex = 0; nAbilityIndex <= ABILITY_MAX; nAbilityIndex++)
+        for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
         {
           nAbilityAtLevel[nAbilityIndex] += nStatMods[nAbilityIndex];
         }
 
-        for (byte nMultiClass = 0; nMultiClass < NUM_MULTICLASS; nMultiClass++)
+        for (byte nMultiClass = 0; nMultiClass < NumMultiClass; nMultiClass++)
         {
           byte nClassId = pCreatureStats.GetClass(nMultiClass);
           CNWClass pClass = nClassId < pRules.m_nNumClasses ? classes[nClassId] : null;
 
           if (pClass != null)
           {
-            for (int nAbilityIndex = 0; nAbilityIndex < ABILITY_MAX; nAbilityIndex++)
+            for (int nAbilityIndex = 0; nAbilityIndex < AbilityMax; nAbilityIndex++)
             {
               nAbilityAtLevel[nAbilityIndex] += pClass.GetAbilityGainForSingleLevel(nAbilityIndex, nMultiClassLevel[nMultiClassLeveledUpIn]);
             }
@@ -696,7 +713,7 @@ namespace NWN.Services
           }
         }
 
-        int numSkillPoints = pRace.m_nSkillPointModifierAbility >= 0 && pRace.m_nSkillPointModifierAbility <= ABILITY_MAX
+        int numSkillPoints = pRace.m_nSkillPointModifierAbility >= 0 && pRace.m_nSkillPointModifierAbility <= AbilityMax
           ? pCreatureStats.CalcStatModifier((byte)(nAbilityAtLevel[pRace.m_nSkillPointModifierAbility] + GetSkillPointAbilityAdjust()))
           : 0;
 
@@ -844,7 +861,6 @@ namespace NWN.Services
         // *** Check Feats **********************************************************************************************************
         // Calculate the number of normal and bonus feats for this level
         int nNumberNormalFeats = 0;
-        int nNumberBonusFeats = 0;
 
         // First and every nth level gets a normal feat
         if ((nLevel == 1) ||
@@ -859,7 +875,7 @@ namespace NWN.Services
           nNumberNormalFeats += pRace.m_nExtraFeatsAtFirstLevel;
         }
 
-        nNumberBonusFeats = pClassLeveledUpIn.GetBonusFeats(nMultiClassLevel[nMultiClassLeveledUpIn]);
+        int nNumberBonusFeats = pClassLeveledUpIn.GetBonusFeats(nMultiClassLevel[nMultiClassLeveledUpIn]);
 
         // Add this level's gained feats to our own list
         for (int nFeatIndex = 0; nFeatIndex < pLevelStats.m_lstFeats.num; nFeatIndex++)
@@ -922,7 +938,7 @@ namespace NWN.Services
           // Check if it's the "EpicCharacter" feat and we're level 21
           if (!bGranted)
           {
-            if (nLevel == CHARACTER_EPIC_LEVEL && nFeat == (int)Feat.EpicCharacter)
+            if (nLevel == CharacterEpicLevel && nFeat == (int)Feat.EpicCharacter)
             {
               listFeats.Add(nFeat);
               bGranted = true;
@@ -1251,7 +1267,7 @@ namespace NWN.Services
         }
 
         // Check if we can actually pick our chosen feats this level
-        if (!listChosenFeats.Any() && nNumberNormalFeats == 0 && nNumberBonusFeats == 0)
+        if (listChosenFeats.Any() && nNumberNormalFeats == 0 && nNumberBonusFeats == 0)
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
@@ -1401,7 +1417,7 @@ namespace NWN.Services
           }
         }
 
-        for (byte nSpellLevel = 0; nSpellLevel < NUM_SPELL_LEVELS; nSpellLevel++)
+        for (byte nSpellLevel = 0; nSpellLevel < NumSpellLevels; nSpellLevel++)
         {
           for (int nSpellIndex = 0; nSpellIndex < pLevelStats.m_pAddedKnownSpellList[nSpellLevel].num; nSpellIndex++)
           {
@@ -1528,7 +1544,7 @@ namespace NWN.Services
             }
 
             // Check if we already know the spell
-            if (listSpells[nMultiClassLeveledUpIn][nSpellLevel].Contains((uint)nSpellID))
+            if (listSpells[nMultiClassLeveledUpIn][nSpellLevel].Contains(nSpellID))
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
@@ -1572,7 +1588,8 @@ namespace NWN.Services
           {
             if (!pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() || pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool() ||
               (nMultiClassLevel[nMultiClassLeveledUpIn] == 1) ||
-              pClassLeveledUpIn.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClassLeveledUpIn], nSpellLevel, nClassLeveledUpIn, pCreatureStats.m_nRace, (byte)nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility]) == 0)
+              pClassLeveledUpIn.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClassLeveledUpIn], nSpellLevel, nClassLeveledUpIn, pCreatureStats.m_nRace,
+                (byte)nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility]) == 0)
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
@@ -1626,9 +1643,10 @@ namespace NWN.Services
         // Check if we have the valid number of spells
         if (pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() && !pClassLeveledUpIn.m_bCanLearnFromScrolls.ToBool())
         {
-          for (byte nSpellLevel = 0; nSpellLevel < NUM_SPELL_LEVELS; nSpellLevel++)
+          for (byte nSpellLevel = 0; nSpellLevel < NumSpellLevels; nSpellLevel++)
           {
-            if (listSpells[nMultiClassLeveledUpIn][nSpellLevel].Count > pClassLeveledUpIn.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClassLeveledUpIn], nSpellLevel, nClassLeveledUpIn, pCreatureStats.m_nRace, (byte)nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility]))
+            if (listSpells[nMultiClassLeveledUpIn][nSpellLevel].Count > pClassLeveledUpIn.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClassLeveledUpIn], nSpellLevel,
+              nClassLeveledUpIn, pCreatureStats.m_nRace, (byte)nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility]))
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
@@ -1646,28 +1664,236 @@ namespace NWN.Services
       }
       // All levels processed, hurray!
 
+      // Final Spells Check
+      // Check if our list of spells from LevelStats are the same as the spells the character knows
+      for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
+      {
+        CNWClass pClass = classes[pCreatureStats.GetClass(nMultiClass)];
+        // We skip wizard because they can learn spells from scrolls
+        if (!pClass.m_bCanLearnFromScrolls.ToBool())
+        {
+          for (byte nSpellLevel = 0; nSpellLevel < NumSpellLevels; nSpellLevel++)
+          {
+            //  NOTE: Not sure if this is still needed, removing it for now.
+            /*
+            if (nSpellLevel != 0 || !(pClass.m_bSpellbookRestricted && pClass.m_bCanLearnFromScrolls))
+            {
+            */
+            for (byte nSpellIndex = 0; nSpellIndex < pCreatureStats.GetNumberKnownSpells(nMultiClass, nSpellLevel); nSpellIndex++)
+            {
+              if (!listSpells[nMultiClass][nSpellLevel].Any())
+              {
+                if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Spell,
+                  SubType = ValidationFailureSubType.SpellListComparison,
+                  StrRef = StrRefSpellIllegalNumSpells,
+                }))
+                {
+                  return strRefFailure;
+                }
+              }
+
+              uint nSpellID = pCreatureStats.GetKnownSpell(nMultiClass, nSpellLevel, nSpellIndex);
+
+              if (!listSpells[nMultiClass][nSpellLevel].Contains(nSpellID))
+              {
+                if (HandleValidationFailure(out int strRefFailure, new OnELCSpellValidationFailure
+                {
+                  Type = ValidationFailureType.Spell,
+                  SubType = ValidationFailureSubType.SpellListComparison,
+                  Spell = (Spell)nSpellID,
+                  StrRef = StrRefSpellIllegalNumSpells,
+                }))
+                {
+                  return strRefFailure;
+                }
+              }
+
+              listSpells[nMultiClass][nSpellLevel].Remove(nSpellID);
+            }
+
+            if (listSpells[nMultiClass][nSpellLevel].Any())
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.SpellListComparison,
+                StrRef = StrRefSpellIllegalNumSpells,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+            //}
+          }
+        }
+      }
+
+      // Final Skills Check
+      // Compare our calculated rank with the saved rank
+      for (byte nSkill = 0; nSkill < pRules.m_nNumSkills; nSkill++)
+      {
+        if (listSkillRanks[nSkill] != pCreatureStats.GetSkillRank(nSkill, null, true.ToInt()))
+        {
+          if (HandleValidationFailure(out int strRefFailure, new OnELCSkillValidationFailure
+          {
+            Type = ValidationFailureType.Skill,
+            SubType = ValidationFailureSubType.SkillListComparison,
+            Skill = (Skill)nSkill,
+            StrRef = StrRefSkillInvalidRanks,
+          }))
+          {
+            return strRefFailure;
+          }
+        }
+      }
+
+      // Final Feats Check
+      // Check if our list of feats from LevelStats are the same as the feats the character has
+      for (int nFeatIndex = 0; nFeatIndex < pCreatureStats.m_lstFeats.num; nFeatIndex++)
+      {
+        if (!listFeats.Any())
+        {
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Feat,
+            SubType = ValidationFailureSubType.FeatListComparison,
+            StrRef = StrRefFeatTooMany,
+          }))
+          {
+            return strRefFailure;
+          }
+        }
+
+        ushort nFeat = pCreatureStats.m_lstFeats.element[nFeatIndex];
+
+        if (!listFeats.Contains(nFeat))
+        {
+          if (HandleValidationFailure(out int strRefFailure, new OnELCFeatValidationFailure
+          {
+            Type = ValidationFailureType.Feat,
+            SubType = ValidationFailureSubType.FeatListComparison,
+            Feat = (API.Constants.Feat)nFeat,
+            StrRef = StrRefFeatTooMany,
+          }))
+          {
+            return strRefFailure;
+          }
+        }
+
+        listFeats.Remove(nFeat);
+      }
+
+      // Check Misc Saving Throws
+      if (pCreatureStats.m_nFortSavingThrowMisc > 0 ||
+        pCreatureStats.m_nReflexSavingThrowMisc > 0 ||
+        pCreatureStats.m_nWillSavingThrowMisc > 0)
+      {
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+        {
+          Type = ValidationFailureType.Character,
+          SubType = ValidationFailureSubType.MiscSavingThrow,
+          StrRef = StrRefCharacterSavingThrow,
+        }))
+        {
+          return strRefFailure;
+        }
+      }
+
+      // Compare Feats Lists
+      int nNumberOfFeats = 0;
+      for (byte nLevel = 1; nLevel <= nCharacterLevel; nLevel++)
+      {
+        CNWLevelStats pLevelStats = pCreatureStats.GetLevelStats((byte)(nLevel - 1));
+        nNumberOfFeats += pLevelStats.m_lstFeats.num;
+      }
+
+      if (pCreatureStats.m_lstFeats.num > nNumberOfFeats)
+      {
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+        {
+          Type = ValidationFailureType.Feat,
+          SubType = ValidationFailureSubType.NumFeatComparison,
+          StrRef = StrRefFeatInvalid,
+        }))
+        {
+          return strRefFailure;
+        }
+      }
+
+      // Run a custom ELC check if enabled and there is an ELC script set
+      NwPlayer nwPlayer = pPlayer.ToNwPlayer();
+      if (!InvokeCustomCheck(nwPlayer))
+      {
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+        {
+          Type = ValidationFailureType.Custom,
+          SubType = ValidationFailureSubType.None,
+          StrRef = StrRefCustom,
+        }))
+        {
+          return strRefFailure;
+        }
+      }
+
+      InvokeSuccessEvent(nwPlayer);
       return 0;
     }
 
     private bool HandleValidationFailure(out int strRefFailure, OnELCValidationFailure eventData)
     {
+      VirtualMachine.Instance.ExecuteInScriptContext(() =>
+      {
+        OnValidationFailure?.Invoke(eventData);
+      });
+
       strRefFailure = eventData.StrRef;
-      return true;
+
+      return !eventData.IgnoreFailure;
+    }
+
+    private bool InvokeCustomCheck(NwPlayer player)
+    {
+      OnELCCustomCheck eventData = new OnELCCustomCheck
+      {
+        Player = player,
+      };
+
+      VirtualMachine.Instance.ExecuteInScriptContext(() =>
+      {
+        OnCustomCheck?.Invoke(eventData);
+      });
+
+      return !eventData.IsFailed;
+    }
+
+    private void InvokeSuccessEvent(NwPlayer player)
+    {
+      OnELCValidationSuccess eventData = new OnELCValidationSuccess
+      {
+        Player = player,
+      };
+
+      VirtualMachine.Instance.ExecuteInScriptContext(() =>
+      {
+        OnValidationSuccess?.Invoke(eventData);
+      });
     }
 
     private int[] GetStatBonusesFromFeats(CExoArrayListUInt16 lstFeats, bool subtractBonuses)
     {
       int[] abilityMods = new int[6];
 
-      HashSet<Feat> feats = new HashSet<Feat>();
+      HashSet<Feat> creatureFeats = new HashSet<Feat>();
       for (int i = 0; i < lstFeats.num; i++)
       {
-        feats.Add((Feat)(*lstFeats._OpIndex(i)));
+        creatureFeats.Add((Feat)(*lstFeats._OpIndex(i)));
       }
 
       int GetFeatCount(params Feat[] epicFeats)
       {
-        return epicFeats.Count(feat => feats.Contains(feat));
+        return epicFeats.Count(feat => creatureFeats.Contains(feat));
       }
 
       abilityMods[(int)Ability.Strength] += epicGreatStatBonus * GetFeatCount(
