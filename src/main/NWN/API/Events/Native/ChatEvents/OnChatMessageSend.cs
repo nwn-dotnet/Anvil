@@ -22,7 +22,7 @@ namespace NWN.API.Events
     /// <summary>
     /// Gets the sender of this message.
     /// </summary>
-    public NwGameObject Sender { get; internal init; }
+    public NwObject Sender { get; internal init; }
 
     /// <summary>
     /// Gets the target of this message.<br/>

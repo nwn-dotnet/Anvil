@@ -11,7 +11,7 @@ namespace NWN.Services
 
     private bool isEventHooked;
 
-    private bool ProcessEvent(ChatChannel chatChannel, string message, NwGameObject sender, NwPlayer target)
+    private bool ProcessEvent(ChatChannel chatChannel, string message, NwObject sender, NwPlayer target)
     {
       OnChatMessageSend eventData = null;
 
