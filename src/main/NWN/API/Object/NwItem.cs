@@ -235,7 +235,7 @@ namespace NWN.API
     /// Gets or sets the additional GP value of this item.<br/>
     /// Does not persist through saving.
     /// </summary>
-    public int AddGoldPieceValue
+    public int AddGoldValue
     {
       get => Item.m_nAdditionalCost;
       set => Item.m_nAdditionalCost = value;
