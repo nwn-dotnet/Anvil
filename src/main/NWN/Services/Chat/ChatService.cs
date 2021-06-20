@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Anvil.Internal;
 using NWN.API;
+using NWN.API.Constants;
 using NWN.Native.API;
 
 namespace NWN.Services
@@ -9,13 +10,6 @@ namespace NWN.Services
   [ServiceBinding(typeof(ChatService))]
   public sealed unsafe partial class ChatService
   {
-    private const uint PlayerIdAllServerAdmins = 0x0FFFFFFF5;
-    private const uint PlayerIdAllGameMasters = 0x0FFFFFFF6;
-    private const uint PlayerIdAllPlayers = 0x0FFFFFFF7;
-    private const uint PlayerIdServer = 0x0FFFFFFFD;
-    private const uint PlayerIdInvalidId = 0x0FFFFFFFE;
-    private const uint PlayerIdAllClients = 0x0FFFFFFFF;
-
     private readonly FunctionHook<SendServerToPlayerChatMessageHook> sendServerToPlayerChatMessageHook;
 
     private delegate int SendServerToPlayerChatMessageHook(void* pMessage, ChatChannel nChatMessageType, uint oidSpeaker, void* sSpeakerMessage, uint nTellPlayerId, void* tellName);
@@ -40,8 +34,8 @@ namespace NWN.Services
 
     public bool SendMessage(ChatChannel chatChannel, string message, NwGameObject speaker, NwPlayer target = null)
     {
-      uint playerId = target != null ? target.Player.m_nPlayerID : PlayerIdAllClients;
-      if (playerId == PlayerIdInvalidId)
+      uint playerId = target != null ? target.Player.m_nPlayerID : PlayerIdConstants.AllClients;
+      if (playerId == PlayerIdConstants.Invalid)
       {
         return false;
       }
