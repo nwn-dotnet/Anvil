@@ -1,3 +1,7 @@
+using System;
+using System.Globalization;
+using System.IO;
+using System.Text;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -211,6 +215,119 @@ namespace NWN.API
     public void ClearArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
     {
       SetArmorPieceColor(modelSlot, colorSlot, 255);
+    }
+
+    /// <summary>
+    /// Gets a string containing the entire appearance for this item.
+    /// </summary>
+    /// <returns>A string representing the item's appearance.</returns>
+    public string Serialize()
+    {
+      // Based on the serialization method used in NWNX to ensure cross-compatibility: https://github.com/nwnxee/unified/blob/master/Plugins/Item/Item.cpp#L120-L154
+      StringBuilder stringBuilder = new StringBuilder();
+
+      for (int idx = 0; idx < 6; idx++)
+      {
+        stringBuilder.Append(item.m_nLayeredTextureColors[idx].ToString("X2"));
+      }
+
+      for (int idx = 0; idx < 3; idx++)
+      {
+        stringBuilder.Append(item.m_nModelPart[idx].ToString("X2"));
+      }
+
+      for (int idx = 0; idx < 19; idx++)
+      {
+        stringBuilder.Append(item.m_nArmorModelPart[idx].ToString("X2"));
+      }
+
+      for (byte texture = 0; texture < 6; texture++)
+      {
+        for (byte part = 0; part < 19; part++)
+        {
+          stringBuilder.Append(item.GetLayeredTextureColorPerPart(texture, part).ToString("X2"));
+        }
+      }
+
+      return stringBuilder.ToString();
+    }
+
+    /// <summary>
+    /// Updates this item appearance using the value retrieved through <see cref="Serialize"/>.
+    /// </summary>
+    /// <param name="serialized">The serialized item appearance.</param>
+    /// <exception cref="ArgumentException">Thrown if an invalid serialized string is specified.</exception>
+    public void Deserialize(string serialized)
+    {
+      if (serialized == null || serialized.Length != 2 * 142 && serialized.Length != 2 * 28)
+      {
+        throw new ArgumentException("invalid string length, must be 284", serialized);
+      }
+
+      using StringReader stringReader = new StringReader(serialized);
+      Span<char> buffer = stackalloc char[2];
+
+      for (int idx = 0; idx < 6; idx++)
+      {
+        stringReader.ReadBlock(buffer);
+        item.m_nLayeredTextureColors[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+      }
+
+      for (int idx = 0; idx < 3; idx++)
+      {
+        stringReader.ReadBlock(buffer);
+        item.m_nModelPart[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+      }
+
+      for (int idx = 0; idx < 19; idx++)
+      {
+        stringReader.ReadBlock(buffer);
+        item.m_nArmorModelPart[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+      }
+
+      if (serialized.Length == 2 * 142)
+      {
+        for (byte texture = 0; texture < 6; texture++)
+        {
+          for (byte part = 0; part < 19; part++)
+          {
+            stringReader.ReadBlock(buffer);
+            item.SetLayeredTextureColorPerPart(texture, part, byte.Parse(buffer, NumberStyles.AllowHexSpecifier));
+          }
+        }
+      }
+    }
+
+    /// <summary>
+    /// Copies this item appearance to another item.
+    /// <param name="otherItem">The item to copy this appearance to.</param>
+    /// </summary>
+    public void CopyTo(NwItem otherItem)
+    {
+      ItemAppearance otherAppearance = otherItem.Appearance;
+
+      for (int idx = 0; idx < 6; idx++)
+      {
+        otherAppearance.item.m_nLayeredTextureColors[idx] = item.m_nLayeredTextureColors[idx];
+      }
+
+      for (int idx = 0; idx < 3; idx++)
+      {
+        otherAppearance.item.m_nModelPart[idx] = item.m_nModelPart[idx];
+      }
+
+      for (int idx = 0; idx < 19; idx++)
+      {
+        otherAppearance.item.m_nArmorModelPart[idx] = item.m_nArmorModelPart[idx];
+      }
+
+      for (byte texture = 0; texture < 6; texture++)
+      {
+        for (byte part = 0; part < 19; part++)
+        {
+          otherAppearance.item.SetLayeredTextureColorPerPart(texture, part, item.GetLayeredTextureColorPerPart(texture, part));
+        }
+      }
     }
   }
 }
