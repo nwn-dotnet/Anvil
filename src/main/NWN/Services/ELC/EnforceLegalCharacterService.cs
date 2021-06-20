@@ -46,7 +46,7 @@ namespace NWN.Services
     private const int NUM_CREATURE_ITEM_SLOTS = 4;
     private const int NUM_MULTICLASS = 3;
     private const int CHARACTER_EPIC_LEVEL = 21;
-    private const int NUM_SPELL_SLOTS = 10;
+    private const int NUM_SPELL_LEVELS = 10;
     private const int ABILITY_MAX = 5;
 
     private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
@@ -132,17 +132,15 @@ namespace NWN.Services
       if (nCharacterLevel < pServerInfo.m_JoiningRestrictions.nMinLevel ||
         nCharacterLevel > pServerInfo.m_JoiningRestrictions.nMaxLevel)
       {
-        OnELCLevelValidationFailure failure = new OnELCLevelValidationFailure
+        if (HandleValidationFailure(out int strRefFailure, new OnELCLevelValidationFailure
         {
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.ServerLevelRestriction,
           Level = nCharacterLevel,
-        };
-
-        if (HandleValidationFailure(failure))
+        }))
         {
           *bFailedServerRestriction = true.ToInt();
-          return failure.StrRef;
+          return strRefFailure;
         }
       }
       // **********************************************************************************************************************
@@ -157,17 +155,15 @@ namespace NWN.Services
 
         if (nTotalLevels > pServerInfo.m_JoiningRestrictions.nMaxLevel)
         {
-          OnELCLevelValidationFailure failure = new OnELCLevelValidationFailure
+          if (HandleValidationFailure(out int strRefFailure, new OnELCLevelValidationFailure
           {
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.LevelHack,
             Level = nTotalLevels,
-          };
-
-          if (HandleValidationFailure(failure))
+          }))
           {
             *bFailedServerRestriction = true.ToInt();
-            return failure.StrRef;
+            return strRefFailure;
           }
         }
       }
@@ -198,17 +194,15 @@ namespace NWN.Services
 
       if (CheckColoredName(pCreatureStats.m_lsFirstName) || CheckColoredName(pCreatureStats.m_lsLastName))
       {
-        OnELCValidationFailure failure = new OnELCValidationFailure
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.ColoredName,
           StrRef = StrRefCharacterDoesNotExist,
-        };
-
-        if (HandleValidationFailure(failure))
+        }))
         {
           *bFailedServerRestriction = true.ToInt();
-          return failure.StrRef;
+          return strRefFailure;
         }
       }
       // **********************************************************************************************************************
@@ -226,36 +220,36 @@ namespace NWN.Services
             continue;
           }
 
-          OnELCValidationFailure failure = null;
-
           // Check for unidentified equipped items
           if (!pItem.m_bIdentified.ToBool())
           {
-            failure = new OnELCItemValidationFailure
+            if (HandleValidationFailure(out int strRefFailure, new OnELCItemValidationFailure
             {
               Item = pItem.ToNwObject<NwItem>(),
               Type = ValidationFailureType.Item,
               SubType = ValidationFailureSubType.UnidentifiedEquippedItem,
               StrRef = StrRefItemLevelRestriction,
-            };
+            }))
+            {
+              *bFailedServerRestriction = true.ToInt();
+              return strRefFailure;
+            }
           }
 
           // Check the minimum equip level
           if (pItem.GetMinEquipLevel() > nCharacterLevel)
           {
-            failure = new OnELCItemValidationFailure
+            if (HandleValidationFailure(out int strRefFailure, new OnELCItemValidationFailure
             {
               Item = pItem.ToNwObject<NwItem>(),
               Type = ValidationFailureType.Item,
               SubType = ValidationFailureSubType.MinEquipLevel,
               StrRef = StrRefItemLevelRestriction,
-            };
-          }
-
-          if (failure != null && HandleValidationFailure(failure))
-          {
-            *bFailedServerRestriction = true.ToInt();
-            return failure.StrRef;
+            }))
+            {
+              *bFailedServerRestriction = true.ToInt();
+              return strRefFailure;
+            }
           }
         }
       }
@@ -298,32 +292,28 @@ namespace NWN.Services
       // Check for non PC
       if (!pCreatureStats.m_bIsPC.ToBool())
       {
-        OnELCValidationFailure failure = new OnELCValidationFailure
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.NonPCCharacter,
           StrRef = StrRefCharacterNonPlayer,
-        };
-
-        if (HandleValidationFailure(failure))
+        }))
         {
-          return failure.StrRef;
+          return strRefFailure;
         }
       }
 
       // Check for DM character file
       if (pCreatureStats.m_bIsDMCharacterFile.ToBool())
       {
-        OnELCValidationFailure failure = new OnELCValidationFailure
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.DMCharacter,
           StrRef = StrRefCharacterDungeonMaster,
-        };
-
-        if (HandleValidationFailure(failure))
+        }))
         {
-          return failure.StrRef;
+          return strRefFailure;
         }
       }
 
@@ -332,16 +322,14 @@ namespace NWN.Services
 
       if (pRace == null || !pRace.m_bIsPlayerRace.ToBool())
       {
-        OnELCValidationFailure failure = new OnELCValidationFailure
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.NonPlayerRace,
           StrRef = StrRefCharacterNonPlayerRace,
-        };
-
-        if (HandleValidationFailure(failure))
+        }))
         {
-          return failure.StrRef;
+          return strRefFailure;
         }
       }
 
@@ -354,16 +342,14 @@ namespace NWN.Services
 
         if (pClass == null)
         {
-          OnELCValidationFailure failure = new OnELCValidationFailure
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.InvalidClass,
             StrRef = StrRefCharacterNonPlayerClass,
-          };
-
-          if (HandleValidationFailure(failure))
+          }))
           {
-            return failure.StrRef;
+            return strRefFailure;
           }
 
           // Skip further class checks if the validation was skipped.
@@ -372,46 +358,40 @@ namespace NWN.Services
 
         if (!pClass.m_bIsPlayerClass.ToBool())
         {
-          OnELCValidationFailure failure = new OnELCValidationFailure
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.NonPlayerClass,
             StrRef = StrRefCharacterNonPlayerClass,
-          };
-
-          if (HandleValidationFailure(failure))
+          }))
           {
-            return failure.StrRef;
+            return strRefFailure;
           }
         }
 
         if (pClass.m_nMaxLevel > 0 && pCreatureStats.GetClassLevel(nMultiClass, false.ToInt()) > pClass.m_nMaxLevel)
         {
-          OnELCValidationFailure failure = new OnELCValidationFailure
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.ClassLevelRestriction,
             StrRef = StrRefCharacterNonPlayerClass,
-          };
-
-          if (HandleValidationFailure(failure))
+          }))
           {
-            return failure.StrRef;
+            return strRefFailure;
           }
         }
 
         if (!pCreatureStats.GetMeetsPrestigeClassRequirements(pClass).ToBool())
         {
-          OnELCValidationFailure failure = new OnELCValidationFailure
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.PrestigeClassRequirements,
             StrRef = StrRefCharacterNonPlayerClass,
-          };
-
-          if (HandleValidationFailure(failure))
+          }))
           {
-            return failure.StrRef;
+            return strRefFailure;
           }
         }
 
@@ -419,16 +399,14 @@ namespace NWN.Services
         {
           if (!pClass.GetIsAlignmentAllowed(pCreatureStats.GetSimpleAlignmentGoodEvil(), pCreatureStats.GetSimpleAlignmentLawChaos()).ToBool())
           {
-            OnELCValidationFailure failure = new OnELCValidationFailure
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Type = ValidationFailureType.Character,
               SubType = ValidationFailureSubType.ClassAlignmentRestriction,
               StrRef = StrRefCharacterNonPlayerClass,
-            };
-
-            if (HandleValidationFailure(failure))
+            }))
             {
-              return failure.StrRef;
+              return strRefFailure;
             }
           }
         }
@@ -470,16 +448,14 @@ namespace NWN.Services
       {
         if (nAbility[nAbilityIndex] > charGenBaseAbilityMax)
         {
-          OnELCValidationFailure failure = new OnELCValidationFailure
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.StartingAbilityValueMax,
             StrRef = StrRefCharacterInvalidAbilityScores,
-          };
-
-          if (HandleValidationFailure(failure))
+          }))
           {
-            return failure.StrRef;
+            return strRefFailure;
           }
         }
       }
@@ -498,16 +474,14 @@ namespace NWN.Services
           {
             if (nPointBuy < 3)
             {
-              OnELCValidationFailure failure = new OnELCValidationFailure
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
                 Type = ValidationFailureType.Character,
                 SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
                 StrRef = StrRefCharacterInvalidAbilityScores,
-              };
-
-              if (HandleValidationFailure(failure))
+              }))
               {
-                return failure.StrRef;
+                return strRefFailure;
               }
             }
 
@@ -518,16 +492,14 @@ namespace NWN.Services
           {
             if (nPointBuy < 2)
             {
-              OnELCValidationFailure failure = new OnELCValidationFailure
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
                 Type = ValidationFailureType.Character,
                 SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
                 StrRef = StrRefCharacterInvalidAbilityScores,
-              };
-
-              if (HandleValidationFailure(failure))
+              }))
               {
-                return failure.StrRef;
+                return strRefFailure;
               }
             }
 
@@ -538,16 +510,14 @@ namespace NWN.Services
           {
             if (nPointBuy < 1)
             {
-              OnELCValidationFailure failure = new OnELCValidationFailure
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
                 Type = ValidationFailureType.Character,
                 SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
                 StrRef = StrRefCharacterInvalidAbilityScores,
-              };
-
-              if (HandleValidationFailure(failure))
+              }))
               {
-                return failure.StrRef;
+                return strRefFailure;
               }
             }
 
@@ -588,7 +558,7 @@ namespace NWN.Services
       byte[] listSkillRanks = new byte[pRules.m_nNumSkills];
       HashSet<ushort> listFeats = new HashSet<ushort>();
       HashSet<ushort> listChosenFeats = new HashSet<ushort>();
-      // [nMultiClass][nSpellLevel] -> {SpellIDs}
+      // [nMultiClass][nSpellLevel] . {SpellIDs}
       List<Dictionary<uint, HashSet<uint>>> listSpells = new List<Dictionary<uint, HashSet<uint>>>(NUM_MULTICLASS);
 
       for (int nLevel = 1; nLevel <= nCharacterLevel; nLevel++)
@@ -615,16 +585,14 @@ namespace NWN.Services
         {
           if (nAbilityAtLevel[pClassLeveledUpIn.m_nPrimaryAbility] < 11)
           {
-            OnELCValidationFailure failure = new OnELCValidationFailure
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Type = ValidationFailureType.Character,
               SubType = ValidationFailureSubType.ClassSpellcasterInvalidPrimaryStat,
               StrRef = StrRefCharacterInvalidAbilityScores,
-            };
-
-            if (HandleValidationFailure(failure))
+            }))
             {
-              return failure.StrRef;
+              return strRefFailure;
             }
           }
         }
@@ -634,16 +602,14 @@ namespace NWN.Services
         {
           if (pLevelStats.m_bEpic != 0)
           {
-            OnELCValidationFailure failure = new OnELCValidationFailure
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.EpicLevelFlag,
               StrRef = StrRefFeatInvalid,
-            };
-
-            if (HandleValidationFailure(failure))
+            }))
             {
-              return failure.StrRef;
+              return strRefFailure;
             }
           }
         }
@@ -651,16 +617,14 @@ namespace NWN.Services
         {
           if (pLevelStats.m_bEpic == 0)
           {
-            OnELCValidationFailure failure = new OnELCValidationFailure
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.EpicLevelFlag,
               StrRef = StrRefFeatInvalid,
-            };
-
-            if (HandleValidationFailure(failure))
+            }))
             {
-              return failure.StrRef;
+              return strRefFailure;
             }
           }
         }
@@ -697,16 +661,14 @@ namespace NWN.Services
         // *** Check Hit Die ********************************************************************************************************
         if (pLevelStats.m_nHitDie > pCreatureStats.GetHitDie(nMultiClassLeveledUpIn, nClassLeveledUpIn))
         {
-          OnELCValidationFailure failure = new OnELCValidationFailure
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.TooManyHitPoints,
             StrRef = StrRefCharacterTooManyHitpoints,
-          };
-
-          if (HandleValidationFailure(failure))
+          }))
           {
-            return failure.StrRef;
+            return strRefFailure;
           }
         }
         // **************************************************************************************************************************
@@ -779,16 +741,14 @@ namespace NWN.Services
             // We must be able to use the skill
             if (!bCanUse)
             {
-              OnELCValidationFailure failure = new OnELCValidationFailure
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
                 Type = ValidationFailureType.Skill,
                 SubType = ValidationFailureSubType.UnusableSkill,
                 StrRef = StrRefSkillUnuseable,
-              };
-
-              if (HandleValidationFailure(failure))
+              }))
               {
-                return failure.StrRef;
+                return strRefFailure;
               }
             }
 
@@ -797,16 +757,14 @@ namespace NWN.Services
             {
               if (nRankChange > nSkillPointsRemaining)
               {
-                OnELCValidationFailure failure = new OnELCValidationFailure
+                if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
                   Type = ValidationFailureType.Skill,
                   SubType = ValidationFailureSubType.NotEnoughSkillPoints,
                   StrRef = StrRefSkillInvalidNumSkillpoints,
-                };
-
-                if (HandleValidationFailure(failure))
+                }))
                 {
-                  return failure.StrRef;
+                  return strRefFailure;
                 }
               }
 
@@ -816,16 +774,14 @@ namespace NWN.Services
             {
               if (nRankChange * 2 > nSkillPointsRemaining)
               {
-                OnELCValidationFailure failure = new OnELCValidationFailure
+                if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
                   Type = ValidationFailureType.Skill,
                   SubType = ValidationFailureSubType.NotEnoughSkillPoints,
                   StrRef = StrRefSkillInvalidNumSkillpoints,
-                };
-
-                if (HandleValidationFailure(failure))
+                }))
                 {
-                  return failure.StrRef;
+                  return strRefFailure;
                 }
               }
 
@@ -840,16 +796,14 @@ namespace NWN.Services
             {
               if (listSkillRanks[nSkill] > nLevel + skillMaxLevel1Bonus)
               {
-                OnELCValidationFailure failure = new OnELCValidationFailure
+                if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
                   Type = ValidationFailureType.Skill,
                   SubType = ValidationFailureSubType.InvalidNumRanksInClassSkill,
                   StrRef = StrRefSkillInvalidRanks,
-                };
-
-                if (HandleValidationFailure(failure))
+                }))
                 {
-                  return failure.StrRef;
+                  return strRefFailure;
                 }
               }
             }
@@ -857,16 +811,14 @@ namespace NWN.Services
             {
               if (listSkillRanks[nSkill] > (nLevel + skillMaxLevel1Bonus) / 2)
               {
-                OnELCValidationFailure failure = new OnELCValidationFailure
+                if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
                   Type = ValidationFailureType.Skill,
                   SubType = ValidationFailureSubType.InvalidNumRanksInNonClassSkill,
                   StrRef = StrRefSkillInvalidRanks,
-                };
-
-                if (HandleValidationFailure(failure))
+                }))
                 {
-                  return failure.StrRef;
+                  return strRefFailure;
                 }
               }
             }
@@ -876,16 +828,14 @@ namespace NWN.Services
         // Compare the remaining skillpoints in LevelStats with our own calculation
         if (pLevelStats.m_nSkillPointsRemaining > nSkillPointsRemaining)
         {
-          OnELCValidationFailure failure = new OnELCValidationFailure
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
             Type = ValidationFailureType.Skill,
             SubType = ValidationFailureSubType.InvalidNumRemainingSkillPoints,
             StrRef = StrRefSkillInvalidNumSkillpoints,
-          };
-
-          if (HandleValidationFailure(failure))
+          }))
           {
-            return failure.StrRef;
+            return strRefFailure;
           }
         }
 
@@ -919,16 +869,14 @@ namespace NWN.Services
 
           if (feat == null)
           {
-            OnELCValidationFailure failure = new OnELCValidationFailure
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.InvalidFeat,
               StrRef = StrRefFeatInvalid,
-            };
-
-            if (HandleValidationFailure(failure))
+            }))
             {
-              return failure.StrRef;
+              return strRefFailure;
             }
           }
 
@@ -987,13 +935,723 @@ namespace NWN.Services
             listChosenFeats.Add(nFeat);
           }
         }
+
+        // Check the requirements of the chosen feats
+        foreach (ushort nFeat in listChosenFeats)
+        {
+          CNWFeat pFeat = nFeat < pRules.m_nNumFeats ? feats[nFeat] : null;
+          if (pFeat == null)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.InvalidFeat,
+              StrRef = StrRefFeatInvalid,
+            }))
+            {
+              return strRefFailure;
+            }
+
+            continue;
+          }
+
+          // Spell Level Requirements
+          if (pFeat.m_nMinSpellLevel != 0)
+          {
+            bool bSpellLevelMet = false;
+
+            for (byte nMultiClass = 0; !bSpellLevelMet && (nMultiClass < pCreatureStats.m_nNumMultiClasses); nMultiClass++)
+            {
+              if (nMultiClassLevel[nMultiClass] != 0)
+              {
+                byte nClass = pCreatureStats.GetClass(nMultiClass);
+                CNWClass pClass = classes[nClass];
+
+                if (pClass.m_bIsSpellCasterClass.ToBool())
+                {
+                  if (!pClass.m_bNeedsToMemorizeSpells.ToBool())
+                  {
+                    if (pClass.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClass],
+                      pFeat.m_nMinSpellLevel,
+                      nClass, pCreatureStats.m_nRace,
+                      (byte)nAbilityAtLevel[pClass.m_nSpellcastingAbility]) != 0)
+                    {
+                      bSpellLevelMet = true;
+                    }
+                  }
+                  else
+                  {
+                    if (pCreatureStats.GetSpellGainWithBonus(nMultiClass, pFeat.m_nMinSpellLevel) != 0)
+                    {
+                      bSpellLevelMet = true;
+                    }
+                  }
+                }
+              }
+            }
+
+            if (!bSpellLevelMet)
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Feat,
+                SubType = ValidationFailureSubType.FeatRequiredSpellLevelNotMet,
+                StrRef = StrRefFeatReqSpellLevel,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+          }
+
+          byte nBaseAttackBonus = 0;
+
+          for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
+          {
+            if (nMultiClassLevel[nMultiClass] != 0)
+            {
+              CNWClass pClass = classes[pCreatureStats.GetClass(nMultiClass)];
+              nBaseAttackBonus += pClass.GetAttackBonus(nMultiClassLevel[nMultiClass]);
+            }
+          }
+
+          if (pFeat.m_nMinAttackBonus > nBaseAttackBonus)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
+              StrRef = StrRefFeatReqAbility,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          if (pFeat.m_nMinSTR > nAbilityAtLevel[(int)Ability.Strength] + pRace.m_nSTRAdjust)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
+              StrRef = StrRefFeatReqAbility,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          if (pFeat.m_nMinDEX > nAbilityAtLevel[(int)Ability.Dexterity] + pRace.m_nDEXAdjust)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
+              StrRef = StrRefFeatReqAbility,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          if (pFeat.m_nMinINT > nAbilityAtLevel[(int)Ability.Intelligence] + pRace.m_nINTAdjust)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
+              StrRef = StrRefFeatReqAbility,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          if (pFeat.m_nMinWIS > nAbilityAtLevel[(int)Ability.Wisdom] + pRace.m_nWISAdjust)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
+              StrRef = StrRefFeatReqAbility,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          if (pFeat.m_nMinCON > nAbilityAtLevel[(int)Ability.Constitution] + pRace.m_nCONAdjust)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
+              StrRef = StrRefFeatReqAbility,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          if (pFeat.m_nMinCHA > nAbilityAtLevel[(int)Ability.Charisma] + pRace.m_nCHAAdjust)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
+              StrRef = StrRefFeatReqAbility,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          // Skill Focus Feats
+          int SkillFocusFeatCheck(ushort nReqSkill)
+          {
+            if (nReqSkill != unchecked((ushort)-1))
+            {
+              bool bSkillRequirementMet = false;
+              CNWSkill pReqSkill = skills[nReqSkill];
+
+              if (pReqSkill.m_bUntrained.ToBool())
+              {
+                // Make sure we have a class that can use the skill
+                for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
+                {
+                  if (classes[pCreatureStats.GetClass(nMultiClass)].IsSkillUseable(nReqSkill).ToBool())
+                  {
+                    bSkillRequirementMet = true;
+                  }
+                }
+
+                if (!bSkillRequirementMet)
+                {
+                  return StrRefFeatReqSkill;
+                }
+              }
+
+              if (!bSkillRequirementMet)
+              {
+                if (listSkillRanks[nReqSkill] == 0)
+                {
+                  return StrRefFeatReqSkill;
+                }
+              }
+
+              ushort nSkillRanks = pFeat.m_nMinRequiredSkillRank2;
+
+              if (listSkillRanks[nReqSkill] < nSkillRanks)
+              {
+                return StrRefSkillUnuseable;
+              }
+            }
+
+            return 0;
+          }
+
+          int retVal = SkillFocusFeatCheck(pFeat.m_nRequiredSkill);
+          if (retVal != 0)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredSkillNotMet,
+              StrRef = retVal,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          retVal = SkillFocusFeatCheck(pFeat.m_nRequiredSkill2);
+          if (retVal != 0)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredSkillNotMet,
+              StrRef = retVal,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          // Check Feat Prereqs
+          int PrerequisitesFeatCheck(ushort nPrereqFeat)
+          {
+            if (nPrereqFeat != unchecked((ushort)-1))
+            {
+              if (!listFeats.Contains(nPrereqFeat) && !listChosenFeats.Contains(nPrereqFeat))
+              {
+                return StrRefFeatReqFeat;
+              }
+            }
+
+            return 0;
+          }
+
+          retVal = PrerequisitesFeatCheck(pFeat.m_lstPrereqFeats[0]);
+          if (retVal != 0)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredFeatNotMet,
+              StrRef = retVal,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          retVal = PrerequisitesFeatCheck(pFeat.m_lstPrereqFeats[1]);
+          if (retVal != 0)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredFeatNotMet,
+              StrRef = retVal,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          // The feat requires a "OrPrereq" feat
+          bool bHasOrPrereqFeat = false;
+          // The character has one of these feats
+          bool bOrPrereqFeatAcquired = false;
+
+          for (int nOrPrereqFeat = 0; !bOrPrereqFeatAcquired && nOrPrereqFeat < 5; nOrPrereqFeat++)
+          {
+            ushort nPrereqFeat = pFeat.m_lstOrPrereqFeats[nOrPrereqFeat];
+
+            if (nPrereqFeat != unchecked((ushort)-1))
+            {
+              bHasOrPrereqFeat = true;
+              bOrPrereqFeatAcquired = listFeats.Contains(nPrereqFeat) || listChosenFeats.Contains(nPrereqFeat);
+            }
+          }
+
+          if (bHasOrPrereqFeat && !bOrPrereqFeatAcquired)
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatRequiredFeatNotMet,
+              StrRef = StrRefFeatReqFeat,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+        }
+
+        // Check if we can actually pick our chosen feats this level
+        if (!listChosenFeats.Any() && nNumberNormalFeats == 0 && nNumberBonusFeats == 0)
+        {
+          if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+          {
+            Type = ValidationFailureType.Feat,
+            SubType = ValidationFailureSubType.TooManyFeatsThisLevel,
+            StrRef = StrRefFeatTooMany,
+          }))
+          {
+            return strRefFailure;
+          }
+        }
+
+        // List to hold moved chosen feats
+        List<ushort> listMovedFeats = new List<ushort>();
+
+        foreach (ushort nFeatIndex in listChosenFeats)
+        {
+          int bNormalListFeat;
+          int bBonusListFeat;
+
+          pPlayer.ValidateCharacter_SetNormalBonusFlags(nFeatIndex, &bNormalListFeat, &bBonusListFeat, nClassLeveledUpIn);
+
+          // Not available to class
+          if (!bNormalListFeat.ToBool() && !bBonusListFeat.ToBool())
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatNotAvailableToClass,
+              StrRef = StrRefFeatTooMany,
+            }))
+            {
+              return strRefFailure;
+            }
+          }
+
+          // Normal Feat Only
+          if (bNormalListFeat.ToBool() && !bBonusListFeat.ToBool())
+          {
+            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            {
+              Type = ValidationFailureType.Feat,
+              SubType = ValidationFailureSubType.FeatIsNormalFeatOnly,
+              StrRef = StrRefFeatTooMany,
+            }))
+            {
+              return strRefFailure;
+            }
+
+            // Move the feat from our level list to the main list
+            listFeats.Add(nFeatIndex);
+            // Add the feat that's being moved to a different list because removing stuff while iterating is bad
+            listMovedFeats.Add(nFeatIndex);
+            nNumberNormalFeats--;
+          }
+
+          // Bonus Feat Only
+          if (!bNormalListFeat.ToBool() && bBonusListFeat.ToBool())
+          {
+            if (!nNumberBonusFeats.ToBool())
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Feat,
+                SubType = ValidationFailureSubType.FeatIsBonusFeatOnly,
+                StrRef = StrRefFeatTooMany,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+
+            // Move the feat from our level list to the main list
+            listFeats.Add(nFeatIndex);
+            // Add the feat that's being moved to a different list because removing stuff while iterating is bad
+            listMovedFeats.Add(nFeatIndex);
+            nNumberBonusFeats--;
+          }
+        }
+
+        // Remove the moved feats from the chosen feat list
+        foreach (ushort remove in listMovedFeats)
+        {
+          listChosenFeats.Remove(remove);
+        }
+
+        listMovedFeats.Clear();
+
+        // The feats that are left can be normal or bonus
+        foreach (ushort nFeatIndex in listChosenFeats)
+        {
+          if (nNumberBonusFeats.ToBool())
+          {
+            // Move the feat from our level list to the main list
+            listFeats.Add(nFeatIndex);
+            // Add the feat that's being moved to a different list because removing stuff while iterating is bad
+            listMovedFeats.Add(nFeatIndex);
+            nNumberBonusFeats--;
+          }
+          else
+          {
+            if (nNumberNormalFeats.ToBool())
+            {
+              // Move the feat from our level list to the main list
+              listFeats.Add(nFeatIndex);
+              // Add the feat that's being moved to a different list because removing stuff while iterating is bad
+              listMovedFeats.Add(nFeatIndex);
+              nNumberNormalFeats--;
+            }
+            else
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Feat,
+                SubType = ValidationFailureSubType.TooManyFeatsThisLevel,
+                StrRef = StrRefFeatTooMany,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+          }
+        }
+
+        // Remove the moved feats from the chosen feat list
+        foreach (ushort remove in listMovedFeats)
+        {
+          listChosenFeats.Remove(remove);
+        }
+
+        listMovedFeats.Clear();
+        // **************************************************************************************************************************
+
+        // *** Check Known Spells ***************************************************************************************************
+        int nNumberWizardSpellsToAdd = 0;
+
+        // Calculate the num of spells a wizard can add
+        if (pClassLeveledUpIn.m_bCanLearnFromScrolls.ToBool())
+        {
+          if (nMultiClassLevel[nMultiClassLeveledUpIn] == 1)
+          {
+            nNumberWizardSpellsToAdd = 3 + Math.Max((byte)0, pCreatureStats.CalcStatModifier((byte)(nAbilityAtLevel[(int)Ability.Intelligence] + pRace.m_nINTAdjust)));
+          }
+          else
+          {
+            nNumberWizardSpellsToAdd = 2;
+          }
+        }
+
+        for (byte nSpellLevel = 0; nSpellLevel < NUM_SPELL_LEVELS; nSpellLevel++)
+        {
+          for (int nSpellIndex = 0; nSpellIndex < pLevelStats.m_pAddedKnownSpellList[nSpellLevel].num; nSpellIndex++)
+          {
+            // Can we add spells this level?
+            if (pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() && pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool())
+            {
+              if (pClassLeveledUpIn.GetSpellGain(nMultiClassLevel[nMultiClassLeveledUpIn], nSpellLevel) == 0)
+              {
+                if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Spell,
+                  SubType = ValidationFailureSubType.SpellInvalidSpellGainWizard,
+                  StrRef = StrRefSpellIllegalLevel,
+                }))
+                {
+                  return strRefFailure;
+                }
+              }
+            }
+            else if (pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() && !pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool())
+            {
+              if (pClassLeveledUpIn.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClassLeveledUpIn],
+                nSpellLevel,
+                nClassLeveledUpIn, pCreatureStats.m_nRace,
+                (byte)nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility]) == 0)
+              {
+                if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Spell,
+                  SubType = ValidationFailureSubType.SpellInvalidSpellGainBardSorcerer,
+                  StrRef = StrRefSpellIllegalLevel,
+                }))
+                {
+                  return strRefFailure;
+                }
+              }
+            }
+            else
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.SpellInvalidSpellGainOtherClasses,
+                StrRef = StrRefSpellIllegalLevel,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+
+            uint nSpellID = pLevelStats.m_pAddedKnownSpellList[nSpellLevel].element[nSpellIndex];
+            CNWSpell pSpell = pRules.m_pSpellArray.GetSpell((int)nSpellID);
+
+            if (pSpell == null)
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.InvalidSpell,
+                StrRef = StrRefSpellInvalidSpell,
+              }))
+              {
+                return strRefFailure;
+              }
+
+              continue;
+            }
+
+            // Check the spell level
+            if (pSpell.GetSpellLevel(nClassLeveledUpIn) != nSpellLevel)
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.SpellInvalidSpellLevel,
+                StrRef = StrRefSpellReqSpellLevel,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+
+            // Check for minimum ability
+            if (pClassLeveledUpIn.m_bSpellbookRestricted.ToBool())
+            {
+              if (nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility] < 10 + nSpellLevel)
+              {
+                if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+                {
+                  Type = ValidationFailureType.Spell,
+                  SubType = ValidationFailureSubType.SpellMinimumAbility,
+                  StrRef = StrRefSpellReqAbility,
+                }))
+                {
+                  return strRefFailure;
+                }
+              }
+            }
+
+            // Check Opposition School
+            if (pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() && pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool())
+            {
+              byte nSchool = pCreatureStats.GetSchool(nClassLeveledUpIn);
+
+              if (nSchool != 0)
+              {
+                int nOppositionSchool;
+                if (pRules.m_p2DArrays.m_pSpellSchoolTable.GetINTEntry(nSchool, "Opposition".ToExoString(), &nOppositionSchool).ToBool())
+                {
+                  if (pSpell.m_nSchool == nOppositionSchool)
+                  {
+                    if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+                    {
+                      Type = ValidationFailureType.Spell,
+                      SubType = ValidationFailureSubType.SpellRestrictedSpellSchool,
+                      StrRef = StrRefSpellOppositeSpellSchool,
+                    }))
+                    {
+                      return strRefFailure;
+                    }
+                  }
+                }
+              }
+            }
+
+            // Check if we already know the spell
+            if (listSpells[nMultiClassLeveledUpIn][nSpellLevel].Contains((uint)nSpellID))
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.SpellAlreadyKnown,
+                StrRef = StrRefSpellLearnedTwice,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+
+            // Check if we're a wizard and haven't exceeded the number of spells we can add
+            if (pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() && pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool())
+            {
+              if (nSpellLevel != 0)
+              {
+                if (nNumberWizardSpellsToAdd == 0)
+                {
+                  if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+                  {
+                    Type = ValidationFailureType.Spell,
+                    SubType = ValidationFailureSubType.SpellWizardExceedsNumSpellsToAdd,
+                    StrRef = StrRefSpellIllegalNumSpells,
+                  }))
+                  {
+                    return strRefFailure;
+                  }
+                }
+
+                nNumberWizardSpellsToAdd--;
+              }
+            }
+
+            // Add the spell to our list
+            listSpells[nMultiClassLeveledUpIn][nSpellLevel].Add(nSpellID);
+          }
+
+          // Check Bard/Sorc removed spells
+          for (int nSpellIndex = 0; nSpellIndex < pLevelStats.m_pRemovedKnownSpellList[nSpellLevel].num; nSpellIndex++)
+          {
+            if (!pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() || pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool() ||
+              (nMultiClassLevel[nMultiClassLeveledUpIn] == 1) ||
+              pClassLeveledUpIn.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClassLeveledUpIn], nSpellLevel, nClassLeveledUpIn, pCreatureStats.m_nRace, (byte)nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility]) == 0)
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.IllegalRemovedSpell,
+                StrRef = StrRefSpellIllegalRemovedSpells,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+
+            uint nSpellID = pLevelStats.m_pRemovedKnownSpellList[nSpellLevel].element[nSpellIndex];
+
+            CNWSpell pSpell = pRules.m_pSpellArray.GetSpell((int)nSpellID);
+
+            if (pSpell == null)
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.InvalidSpell,
+                StrRef = StrRefSpellInvalidSpell,
+              }))
+              {
+                return strRefFailure;
+              }
+
+              continue;
+            }
+
+            // Check if we actually know the spell
+            if (!listSpells[nMultiClassLeveledUpIn][nSpellLevel].Contains(nSpellID))
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.RemovedNotKnownSpell,
+                StrRef = StrRefSpellIllegalRemovedSpells,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+
+            // Remove the spell from our list
+            listSpells[nMultiClassLeveledUpIn][nSpellLevel].Remove(nSpellID);
+          }
+        }
+
+        // Check if we have the valid number of spells
+        if (pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() && !pClassLeveledUpIn.m_bCanLearnFromScrolls.ToBool())
+        {
+          for (byte nSpellLevel = 0; nSpellLevel < NUM_SPELL_LEVELS; nSpellLevel++)
+          {
+            if (listSpells[nMultiClassLeveledUpIn][nSpellLevel].Count > pClassLeveledUpIn.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClassLeveledUpIn], nSpellLevel, nClassLeveledUpIn, pCreatureStats.m_nRace, (byte)nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility]))
+            {
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Spell,
+                SubType = ValidationFailureSubType.InvalidNumSpells,
+                StrRef = StrRefSpellIllegalNumSpells,
+              }))
+              {
+                return strRefFailure;
+              }
+            }
+          }
+        }
+        // **************************************************************************************************************************
       }
+      // All levels processed, hurray!
 
       return 0;
     }
 
-    private bool HandleValidationFailure(OnELCValidationFailure eventData)
+    private bool HandleValidationFailure(out int strRefFailure, OnELCValidationFailure eventData)
     {
+      strRefFailure = eventData.StrRef;
       return true;
     }
 
