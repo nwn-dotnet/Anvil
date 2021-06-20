@@ -1901,7 +1901,7 @@ namespace NWN.API
       if (result && player != null)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
-        message.SendServerToPlayerGuiQuickbar_SetButton(player, 0, true.ToInt());
+        message?.SendServerToPlayerGuiQuickbar_SetButton(player, 0, true.ToInt());
       }
 
       return result;
@@ -2005,7 +2005,7 @@ namespace NWN.API
       if (player != null)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
-        message.SendServerToPlayerGuiQuickbar_SetButton(player, index, false.ToInt());
+        message?.SendServerToPlayerGuiQuickbar_SetButton(player, index, false.ToInt());
       }
     }
 
