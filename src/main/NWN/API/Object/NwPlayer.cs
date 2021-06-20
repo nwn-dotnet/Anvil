@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using NLog;
@@ -1065,6 +1066,72 @@ namespace NWN.API
       }
 
       return retVal;
+    }
+
+    /// <summary>
+    /// Gets this player's area exploration state for the specified area.
+    /// </summary>
+    /// <param name="area">The area to query.</param>
+    /// <returns>A byte array representing the tiles explored for the area.</returns>
+    public unsafe byte[] GetAreaExplorationState(NwArea area)
+    {
+      NwCreature creature = LoginCreature;
+      if (area == null || creature == null)
+      {
+        return null;
+      }
+
+      uint *oidArea = creature.Creature.m_oidAutoMapAreaList.element;
+      for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.num; i++, oidArea++)
+      {
+        if (*oidArea != area)
+        {
+          continue;
+        }
+
+        byte* tileData = *(creature.Creature.m_nAutoMapTileData + i);
+        if (tileData != null)
+        {
+          byte[] retVal = new byte[area.Area.m_nMapSize];
+          Marshal.Copy((IntPtr)tileData, retVal, 0, area.Area.m_nMapSize);
+          return retVal;
+        }
+
+        break;
+      }
+
+      return null;
+    }
+
+    /// <summary>
+    /// Sets this player's area exploration state for the specified area.
+    /// </summary>
+    /// <param name="area">The area to modify.</param>
+    /// <param name="newState">A byte array representing the tiles explored for the area, as returned by <see cref="GetAreaExplorationState"/>.</param>
+    public unsafe void SetAreaExplorationState(NwArea area, byte[] newState)
+    {
+      NwCreature creature = LoginCreature;
+      if (area == null || creature == null || newState == null)
+      {
+        return;
+      }
+
+      uint *oidArea = creature.Creature.m_oidAutoMapAreaList.element;
+      for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.num; i++, oidArea++)
+      {
+        if (*oidArea != area)
+        {
+          continue;
+        }
+
+        byte* tileData = *(creature.Creature.m_nAutoMapTileData + i);
+        if (tileData != null)
+        {
+          Marshal.Copy(newState, 0, (IntPtr)tileData, area.Area.m_nMapSize);
+        }
+
+        break;
+      }
     }
   }
 }
