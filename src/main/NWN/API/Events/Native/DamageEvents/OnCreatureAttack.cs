@@ -28,6 +28,10 @@ namespace NWN.API.Events
 
     public bool KillingBlow { get; private init; }
 
+    public byte AttackRoll { get; private init; }
+
+    public int AttackModifier { get; private init; }
+
     public DamageData<short> DamageData { get; private init; }
 
     private CNWSCombatAttackData CombatAttackData { get; init; }
@@ -115,6 +119,8 @@ namespace NWN.API.Events
           SneakAttack = (SneakAttack)(combatAttackData.m_bSneakAttack + (combatAttackData.m_bDeathAttack << 1)),
           KillingBlow = combatAttackData.m_bKillingBlow.ToBool(),
           AttackType = combatAttackData.m_nAttackType,
+          AttackRoll = combatAttackData.m_nToHitRoll,
+          AttackModifier = combatAttackData.m_nToHitMod,
           DamageData = new DamageData<short>(combatAttackData.m_nDamage),
         };
       }
