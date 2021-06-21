@@ -576,6 +576,10 @@ namespace NWN.Services
       for (int i = 0; i < NumMultiClass; i++)
       {
         listSpells.Add(new Dictionary<uint, HashSet<uint>>());
+        for (uint j = 0; j < NumSpellLevels; j++)
+        {
+          listSpells[i][j] = new HashSet<uint>();
+        }
       }
 
       for (int nLevel = 1; nLevel <= nCharacterLevel; nLevel++)
@@ -668,7 +672,7 @@ namespace NWN.Services
 
           if (pClass != null)
           {
-            for (int nAbilityIndex = 0; nAbilityIndex < AbilityMax; nAbilityIndex++)
+            for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
             {
               nAbilityAtLevel[nAbilityIndex] += pClass.GetAbilityGainForSingleLevel(nAbilityIndex, nMultiClassLevel[nMultiClassLeveledUpIn]);
             }
@@ -732,7 +736,8 @@ namespace NWN.Services
         for (ushort nSkill = 0; nSkill < pRules.m_nNumSkills; nSkill++)
         {
           CNWSkill pSkill = skills[nSkill];
-          byte nRankChange = (byte)pLevelStats.m_lstSkillRanks[nSkill];
+
+          byte nRankChange = pLevelStats.m_lstSkillRanks[nSkill];
 
           if (nRankChange != 0)
           {
@@ -1307,14 +1312,17 @@ namespace NWN.Services
           // Normal Feat Only
           if (bNormalListFeat.ToBool() && !bBonusListFeat.ToBool())
           {
-            if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+            if (!nNumberNormalFeats.ToBool())
             {
-              Type = ValidationFailureType.Feat,
-              SubType = ValidationFailureSubType.FeatIsNormalFeatOnly,
-              StrRef = StrRefFeatTooMany,
-            }))
-            {
-              return strRefFailure;
+              if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+              {
+                Type = ValidationFailureType.Feat,
+                SubType = ValidationFailureSubType.FeatIsNormalFeatOnly,
+                StrRef = StrRefFeatTooMany,
+              }))
+              {
+                return strRefFailure;
+              }
             }
 
             // Move the feat from our level list to the main list
