@@ -706,7 +706,7 @@ namespace NWN.API
     /// <summary>
     /// Gets an enumerable containing information about this creature's levels (feats, skills, class taken, etc).
     /// </summary>
-    public unsafe List<CreatureLevelInfo> LevelInfo
+    public unsafe IReadOnlyList<CreatureLevelInfo> LevelInfo
     {
       get
       {
@@ -721,6 +721,32 @@ namespace NWN.API
 
         return retVal;
       }
+    }
+
+    /// <summary>
+    /// Gets the feats known by this character.
+    /// </summary>
+    public unsafe IReadOnlyList<Feat> Feats
+    {
+      get
+      {
+        Feat[] feats = new Feat[FeatCount];
+
+        for (int i = 0; i < feats.Length; i++)
+        {
+          feats[i] = (Feat)Creature.m_pStats.m_lstFeats.element[i];
+        }
+
+        return feats;
+      }
+    }
+
+    /// <summary>
+    /// Gets the number of feats known by this creature.
+    /// </summary>
+    public int FeatCount
+    {
+      get => Creature.m_pStats.m_lstFeats.num;
     }
 
     /// <summary>
