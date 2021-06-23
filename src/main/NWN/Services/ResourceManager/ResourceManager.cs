@@ -101,7 +101,7 @@ namespace NWN.Services
       {
         case ResRefType.NSS:
           string source = GetNSSContents(name.ToExoString());
-          return source != null ? NativeUtils.StringEncoding.GetBytes(source) : null;
+          return source != null ? StringHelper.Cp1252Encoding.GetBytes(source) : null;
         case ResRefType.NCS:
           return null;
         default:
@@ -117,12 +117,12 @@ namespace NWN.Services
     public unsafe string GetNSSContents(CExoString scriptName)
     {
       CScriptSourceFile scriptSourceFile = new CScriptSourceFile();
-      char* data;
+      byte* data;
       uint size = 0;
 
       if (scriptSourceFile.LoadScript(scriptName, &data, &size) == 0)
       {
-        string retVal = new string((sbyte*)data, 0, (int)size, NativeUtils.StringEncoding);
+        string retVal = StringHelper.ReadFixedLengthString(data, (int)size);
         scriptSourceFile.UnloadScript();
         return retVal;
       }

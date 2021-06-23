@@ -299,7 +299,7 @@ namespace NWN.Services
       // Enforce empty dialog resref
       if (EnforceEmptyDialog)
       {
-        pCreatureStats.m_cDialog = new CResRef("");
+        pCreatureStats.m_cDialog = new CResRef();
       }
 
       // Check for non PC

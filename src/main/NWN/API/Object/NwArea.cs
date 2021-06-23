@@ -485,7 +485,7 @@ namespace NWN.API
       }
     }
 
-    public byte[] SerializeARE(string areaName = null, string resRef = null)
+    public unsafe byte[] SerializeARE(string areaName = null, string resRef = null)
     {
       areaName ??= Name;
       resRef ??= ResRef;
@@ -503,48 +503,48 @@ namespace NWN.API
       return NativeUtils.SerializeGff("ARE", "V3.2", (resGff, resStruct) =>
       {
         // Important Stuff
-        resGff.WriteFieldCExoLocString(resStruct, areaName.ToExoLocString(), "Name");
-        resGff.WriteFieldCExoString(resStruct, new CExoString(Tag), "Tag");
-        resGff.WriteFieldCExoString(resStruct, new CExoString(ResRef), "ResRef");
-        resGff.WriteFieldINT(resStruct, Size.X, "Width");
-        resGff.WriteFieldINT(resStruct, Size.Y, "Height");
-        resGff.WriteFieldCResRef(resStruct, Area.m_refTileSet, "Tileset");
+        resGff.WriteFieldCExoLocString(resStruct, areaName.ToExoLocString(), "Name".GetNullTerminatedString());
+        resGff.WriteFieldCExoString(resStruct, new CExoString(Tag), "Tag".GetNullTerminatedString());
+        resGff.WriteFieldCExoString(resStruct, new CExoString(ResRef), "ResRef".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Size.X, "Width".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Size.Y, "Height".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, Area.m_refTileSet, "Tileset".GetNullTerminatedString());
 
         // Less Important Stuff
-        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfLightning, "ChanceLightning");
-        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfRain, "ChanceRain");
-        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfSnow, "ChanceSnow");
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bUseDayNightCycle, "DayNightCycle");
-        resGff.WriteFieldDWORD(resStruct, Area.m_nFlags, "Flags");
-        resGff.WriteFieldFLOAT(resStruct, Area.m_fFogClipDistance, "FogClipDist");
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bIsNight, "IsNight");
-        resGff.WriteFieldBYTE(resStruct, Area.m_nLightingScheme, "LightingScheme");
-        resGff.WriteFieldWORD(resStruct, Area.m_nLoadScreenID, "LoadScreenID");
-        resGff.WriteFieldINT(resStruct, Area.m_nAreaListenModifier, "ModListenCheck");
-        resGff.WriteFieldINT(resStruct, Area.m_nAreaSpotModifier, "ModSpotCheck");
-        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonAmbientColor, "MoonAmbientColor");
-        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonDiffuseColor, "MoonDiffuseColor");
-        resGff.WriteFieldBYTE(resStruct, Area.m_nMoonFogAmount, "MoonFogAmount");
-        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonFogColor, "MoonFogColor");
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bMoonShadows, "MoonShadows");
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bNoRestingAllowed, "NoRest");
-        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[0]), "OnHeartbeat");
-        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[1]), "OnUserDefined");
-        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[2]), "OnEnter");
-        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[3]), "OnExit");
-        resGff.WriteFieldBYTE(resStruct, Area.m_nPVPSetting, "PlayerVsPlayer");
-        resGff.WriteFieldBYTE(resStruct, Area.m_nShadowOpacity, "ShadowOpacity");
-        resGff.WriteFieldBYTE(resStruct, Area.m_nSkyBox, "SkyBox");
-        resGff.WriteFieldDWORD(resStruct, Area.m_nSunAmbientColor, "SunAmbientColor");
-        resGff.WriteFieldDWORD(resStruct, Area.m_nSunDiffuseColor, "SunDiffuseColor");
-        resGff.WriteFieldBYTE(resStruct, Area.m_nSunFogAmount, "SunFogAmount");
-        resGff.WriteFieldDWORD(resStruct, Area.m_nSunFogColor, "SunFogColor");
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bSunShadows, "SunShadows");
-        resGff.WriteFieldINT(resStruct, Area.m_nWindAmount, "WindPower");
+        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfLightning, "ChanceLightning".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfRain, "ChanceRain".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfSnow, "ChanceSnow".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bUseDayNightCycle, "DayNightCycle".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nFlags, "Flags".GetNullTerminatedString());
+        resGff.WriteFieldFLOAT(resStruct, Area.m_fFogClipDistance, "FogClipDist".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bIsNight, "IsNight".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nLightingScheme, "LightingScheme".GetNullTerminatedString());
+        resGff.WriteFieldWORD(resStruct, Area.m_nLoadScreenID, "LoadScreenID".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nAreaListenModifier, "ModListenCheck".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nAreaSpotModifier, "ModSpotCheck".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonAmbientColor, "MoonAmbientColor".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonDiffuseColor, "MoonDiffuseColor".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nMoonFogAmount, "MoonFogAmount".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonFogColor, "MoonFogColor".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bMoonShadows, "MoonShadows".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bNoRestingAllowed, "NoRest".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[0]), "OnHeartbeat".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[1]), "OnUserDefined".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[2]), "OnEnter".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[3]), "OnExit".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nPVPSetting, "PlayerVsPlayer".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nShadowOpacity, "ShadowOpacity".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nSkyBox, "SkyBox".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nSunAmbientColor, "SunAmbientColor".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nSunDiffuseColor, "SunDiffuseColor".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nSunFogAmount, "SunFogAmount".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nSunFogColor, "SunFogColor".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bSunShadows, "SunShadows".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nWindAmount, "WindPower".GetNullTerminatedString());
 
         // Tile Stuff
         using CResList resList = new CResList();
-        resGff.AddList(resList, resStruct, "Tile_List");
+        resGff.AddList(resList, resStruct, "Tile_List".GetNullTerminatedString());
         int tileCount = Area.m_nWidth * Area.m_nHeight;
         CNWSTileArray tiles = CNWSTileArray.FromPointer(Area.m_pTile);
 
@@ -552,19 +552,19 @@ namespace NWN.API
         {
           CNWTile tile = tiles[i];
           resGff.AddListElement(resStruct, resList, 1);
-          resGff.WriteFieldINT(resStruct, tile.m_nID, "Tile_ID");
-          resGff.WriteFieldINT(resStruct, tile.m_nOrientation, "Tile_Orientation");
-          resGff.WriteFieldINT(resStruct, tile.m_nHeight, "Tile_Height");
+          resGff.WriteFieldINT(resStruct, tile.m_nID, "Tile_ID".GetNullTerminatedString());
+          resGff.WriteFieldINT(resStruct, tile.m_nOrientation, "Tile_Orientation".GetNullTerminatedString());
+          resGff.WriteFieldINT(resStruct, tile.m_nHeight, "Tile_Height".GetNullTerminatedString());
 
-          resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight1Color, "Tile_MainLight1");
-          resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight2Color, "Tile_MainLight2");
+          resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight1Color, "Tile_MainLight1".GetNullTerminatedString());
+          resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight2Color, "Tile_MainLight2".GetNullTerminatedString());
 
-          resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight1Color, "Tile_SrcLight1");
-          resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight2Color, "Tile_SrcLight2");
+          resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight1Color, "Tile_SrcLight1".GetNullTerminatedString());
+          resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight2Color, "Tile_SrcLight2".GetNullTerminatedString());
 
-          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop1, "Tile_AnimLoop1");
-          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop2, "Tile_AnimLoop2");
-          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop3, "Tile_AnimLoop3");
+          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop1, "Tile_AnimLoop1".GetNullTerminatedString());
+          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop2, "Tile_AnimLoop2".GetNullTerminatedString());
+          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop3, "Tile_AnimLoop3".GetNullTerminatedString());
         }
 
         return true;
