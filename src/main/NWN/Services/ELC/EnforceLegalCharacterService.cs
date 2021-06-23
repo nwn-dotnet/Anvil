@@ -868,8 +868,8 @@ namespace NWN.Services
         int nNumberNormalFeats = 0;
 
         // First and every nth level gets a normal feat
-        if ((nLevel == 1) ||
-          ((pRace.m_nNormalFeatEveryNthLevel != 0) && (nLevel % pRace.m_nNormalFeatEveryNthLevel == 0)))
+        if (nLevel == 1 ||
+          pRace.m_nNormalFeatEveryNthLevel != 0 && nLevel % pRace.m_nNormalFeatEveryNthLevel == 0)
         {
           nNumberNormalFeats = pRace.m_nNumberNormalFeatsEveryNthLevel;
         }
@@ -930,9 +930,9 @@ namespace NWN.Services
           // Check if it's one of our cleric domain feats
           if (!bGranted)
           {
-            if (pClassLeveledUpIn.m_bHasDomains.ToBool() && (nMultiClassLevel[nMultiClassLeveledUpIn] == 1))
+            if (pClassLeveledUpIn.m_bHasDomains.ToBool() && nMultiClassLevel[nMultiClassLeveledUpIn] == 1)
             {
-              if ((nFeat == nDomainFeat1) || (nFeat == nDomainFeat2))
+              if (nFeat == nDomainFeat1 || nFeat == nDomainFeat2)
               {
                 listFeats.Add(nFeat);
                 bGranted = true;
@@ -981,7 +981,7 @@ namespace NWN.Services
           {
             bool bSpellLevelMet = false;
 
-            for (byte nMultiClass = 0; !bSpellLevelMet && (nMultiClass < pCreatureStats.m_nNumMultiClasses); nMultiClass++)
+            for (byte nMultiClass = 0; !bSpellLevelMet && nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
             {
               if (nMultiClassLevel[nMultiClass] != 0)
               {
@@ -1595,7 +1595,7 @@ namespace NWN.Services
           for (int nSpellIndex = 0; nSpellIndex < pLevelStats.m_pRemovedKnownSpellList[nSpellLevel].num; nSpellIndex++)
           {
             if (!pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() || pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool() ||
-              (nMultiClassLevel[nMultiClassLeveledUpIn] == 1) ||
+              nMultiClassLevel[nMultiClassLeveledUpIn] == 1 ||
               pClassLeveledUpIn.GetSpellsKnownPerLevel(nMultiClassLevel[nMultiClassLeveledUpIn], nSpellLevel, nClassLeveledUpIn, pCreatureStats.m_nRace,
                 (byte)nAbilityAtLevel[pClassLeveledUpIn.m_nSpellcastingAbility]) == 0)
             {

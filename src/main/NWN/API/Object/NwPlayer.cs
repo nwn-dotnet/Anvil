@@ -217,7 +217,7 @@ namespace NWN.API
     /// <summary>
     /// Gets the name of the player's .bic file.
     /// </summary>
-    public unsafe string BicFileName
+    public string BicFileName
     {
       get => Player.m_resFileName.ToString();
     }
