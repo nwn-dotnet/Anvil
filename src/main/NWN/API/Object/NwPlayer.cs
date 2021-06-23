@@ -277,6 +277,8 @@ namespace NWN.API
           return;
         }
 
+        Player.m_bFromTURD = true.ToInt();
+
         CNWSCreature creature = LoginCreature.Creature;
         creature.m_oidDesiredArea = value.Area;
         creature.m_vDesiredAreaLocation = value.Position.ToNativeVector();
