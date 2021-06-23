@@ -9,6 +9,7 @@ using NWN.Native.API;
 using Ability = NWN.API.Constants.Ability;
 using Action = NWN.API.Constants.Action;
 using Alignment = NWN.API.Constants.Alignment;
+using Animation = NWN.Native.API.Animation;
 using AssociateType = NWN.API.Constants.AssociateType;
 using ClassType = NWN.API.Constants.ClassType;
 using CombatMode = NWN.API.Constants.CombatMode;
@@ -371,6 +372,39 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the creature's current movement rate factor.<br/>
+    /// Base movement rate factor is 1.0.
+    /// </summary>
+    public float MovementRateFactor
+    {
+      get => Creature.GetMovementRateFactor();
+      set => Creature.SetMovementRateFactor(value);
+    }
+
+    /// <summary>
+    /// Gets the creature's current movement type.
+    /// </summary>
+    public MovementType MovementType
+    {
+      get
+      {
+        return (Animation)Creature.m_nAnimation switch
+        {
+          Animation.Walking => MovementType.Walk,
+          Animation.WalkingForwardLeft => MovementType.Walk,
+          Animation.WalkingForwardRight => MovementType.Walk,
+          Animation.WalkingBackwards => MovementType.WalkBackwards,
+          Animation.Running => MovementType.Run,
+          Animation.RunningForwardLeft => MovementType.Run,
+          Animation.RunningForwardRight => MovementType.Run,
+          Animation.WalkingLeft => MovementType.Sidestep,
+          Animation.WalkingRight => MovementType.Sidestep,
+          _ => MovementType.Stationary,
+        };
+      }
+    }
+
+    /// <summary>
     /// Gets this creature's Law/Chaos Alignment.
     /// </summary>
     public Alignment LawChaosAlignment
@@ -620,6 +654,15 @@ namespace NWN.API
     {
       get => Creature.m_nGold;
       set => Creature.m_nGold = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the corpse decay time for this creature.
+    /// </summary>
+    public TimeSpan CorpseDecayTime
+    {
+      get => TimeSpan.FromMilliseconds(Creature.m_nDecayTime);
+      set => Creature.m_nDecayTime = (uint)value.TotalMilliseconds;
     }
 
     /// <summary>
@@ -911,7 +954,7 @@ namespace NWN.API
     /// Gets this creature's ability modifier for the specified ability.
     /// </summary>
     /// <param name="ability">The ability to resolve.</param>
-    /// <returns>An int representing the creature's ability modifier for the specified skill.</returns>
+    /// <returns>An int representing the creature's ability modifier.</returns>
     public int GetAbilityModifier(Ability ability)
     {
       return NWScript.GetAbilityModifier((int)ability, this);
@@ -1847,6 +1890,169 @@ namespace NWN.API
     public void RemoveFeat(Feat feat)
     {
       Creature.m_pStats.RemoveFeat((ushort)feat);
+    }
+
+    /// <summary>
+    /// Gets the level a feat was gained.
+    /// </summary>
+    /// <param name="feat">The feat to query.</param>
+    /// <returns>The character level a feat was gained, otherwise 0 if the character does not have the feat.</returns>
+    public int GetFeatGainLevel(Feat feat)
+    {
+      IReadOnlyList<CreatureLevelInfo> levelInfo = LevelInfo;
+      for (int i = 0; i < levelInfo.Count; i++)
+      {
+        if (levelInfo[i].Feats.Contains(feat))
+        {
+          return i + 1;
+        }
+      }
+
+      return 0;
+    }
+
+    public bool MeetsFeatRequirements(Feat feat)
+    {
+      using CExoArrayListUInt16 unused = new CExoArrayListUInt16();
+      return Creature.m_pStats.FeatRequirementsMet((ushort)feat, unused).ToBool();
+    }
+
+    /// <summary>
+    /// Gets the special abilities available to this creature.
+    /// </summary>
+    public IReadOnlyList<SpecialAbility> SpecialAbilities
+    {
+      get
+      {
+        List<SpecialAbility> retVal = new List<SpecialAbility>();
+        CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
+
+        for (int i = 0; i < specialAbilities.num; i++)
+        {
+          CNWSStats_SpellLikeAbility ability = specialAbilities._OpIndex(i);
+          if (ability.m_nSpellId != ~0u)
+          {
+            retVal.Add(new SpecialAbility((Spell)ability.m_nSpellId, ability.m_nCasterLevel, ability.m_bReadied.ToBool()));
+          }
+        }
+
+        return retVal;
+      }
+    }
+
+    /// <summary>
+    /// Adds the specified ability to this creature.
+    /// </summary>
+    /// <param name="ability">The ability to add.</param>
+    public void AddSpecialAbility(SpecialAbility ability)
+    {
+      CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
+      specialAbilities.Add(new CNWSStats_SpellLikeAbility
+      {
+        m_nSpellId = (uint)ability.Spell,
+        m_bReadied = ability.Ready.ToInt(),
+        m_nCasterLevel = ability.CasterLevel,
+      });
+    }
+
+    /// <summary>
+    /// Removes the specified ability at the given index.
+    /// </summary>
+    /// <param name="index">The ability index to remove.</param>
+    public void RemoveSpecialAbilityAt(int index)
+    {
+      CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
+      if (index < specialAbilities.num)
+      {
+        specialAbilities._OpIndex(index).m_nSpellId = ~0u;
+      }
+    }
+
+    /// <summary>
+    /// Updates the specified ability at the given index.
+    /// </summary>
+    /// <param name="index">The ability index to update.</param>
+    /// <param name="ability">The new state for the ability.</param>
+    public void SetSpecialAbilityAt(int index, SpecialAbility ability)
+    {
+      CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
+      if (index < specialAbilities.num)
+      {
+        CNWSStats_SpellLikeAbility specialAbility = specialAbilities._OpIndex(index);
+        specialAbility.m_nSpellId = (uint)ability.Spell;
+        specialAbility.m_bReadied = ability.Ready.ToInt();
+        specialAbility.m_nCasterLevel = ability.CasterLevel;
+      }
+    }
+
+    /// <summary>
+    /// Gets the base (raw) ability score for the specified ability, without racial modfiers.
+    /// </summary>
+    /// <param name="ability">The ability score type to query.</param>
+    /// <returns>An integer representing the creature's ability score without modifiers.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if an invalid ability is specified.</exception>
+    public byte GetRawAbilityScore(Ability ability)
+    {
+      return ability switch
+      {
+        Ability.Strength => Creature.m_pStats.m_nStrengthBase,
+        Ability.Dexterity => Creature.m_pStats.m_nDexterityBase,
+        Ability.Constitution => Creature.m_pStats.m_nConstitutionBase,
+        Ability.Intelligence => Creature.m_pStats.m_nIntelligenceBase,
+        Ability.Wisdom => Creature.m_pStats.m_nWisdomBase,
+        Ability.Charisma => Creature.m_pStats.m_nCharismaBase,
+        _ => throw new ArgumentOutOfRangeException(nameof(ability), ability, null),
+      };
+    }
+
+    /// <summary>
+    /// Sets the base (raw) ability score for the specified ability, without racial modifiers.
+    /// </summary>
+    /// <param name="ability">The ability score type to query.</param>
+    /// <param name="value">The new ability score to set.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if an invalid ability is specified.</exception>
+    public void SetsRawAbilityScore(Ability ability, byte value)
+    {
+      switch (ability)
+      {
+        case Ability.Strength:
+          Creature.m_pStats.SetSTRBase(value);
+          break;
+        case Ability.Dexterity:
+          Creature.m_pStats.SetDEXBase(value);
+          break;
+        case Ability.Constitution:
+          Creature.m_pStats.SetCONBase(value);
+          break;
+        case Ability.Intelligence:
+          Creature.m_pStats.SetINTBase(value);
+          break;
+        case Ability.Wisdom:
+          Creature.m_pStats.SetWISBase(value);
+          break;
+        case Ability.Charisma:
+          Creature.m_pStats.SetCHABase(value);
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(ability), ability, null);
+      }
+    }
+
+    /// <summary>
+    /// Gets the raw ability score a polymorphed creature had prior to polymorphing.
+    /// </summary>
+    /// <param name="ability">The ability score to query. Works for strength, dexterity and constitution only.</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public byte GetPrePolymorphAbilityScore(Ability ability)
+    {
+      return ability switch
+      {
+        Ability.Strength => Creature.m_nPrePolymorphSTR,
+        Ability.Dexterity => Creature.m_nPrePolymorphDEX,
+        Ability.Constitution => Creature.m_nPrePolymorphCON,
+        _ => throw new ArgumentOutOfRangeException(nameof(ability), ability, null),
+      };
     }
 
     /// <summary>

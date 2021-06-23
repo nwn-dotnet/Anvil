@@ -19,18 +19,27 @@ namespace NWN.API
     /// <summary>
     /// Gets the feats gained at this level.
     /// </summary>
-    public List<Feat> Feats
+    public IReadOnlyList<Feat> Feats
     {
       get
       {
-        List<Feat> feats = new List<Feat>(levelStats.m_lstFeats.num);
-        for (int i = 0; i < levelStats.m_lstFeats.num; i++)
+        Feat[] feats = new Feat[FeatCount];
+
+        for (int i = 0; i < feats.Length; i++)
         {
-          feats.Add((Feat)(*levelStats.m_lstFeats._OpIndex(i)));
+          feats[i] = (Feat)levelStats.m_lstFeats.element[i];
         }
 
         return feats;
       }
+    }
+
+    /// <summary>
+    /// Gets the number of feats gained at this level.
+    /// </summary>
+    public int FeatCount
+    {
+      get => levelStats.m_lstFeats.num;
     }
 
     /// <summary>
@@ -48,6 +57,15 @@ namespace NWN.API
     {
       get => levelStats.m_nSkillPointsRemaining;
       set => levelStats.m_nSkillPointsRemaining = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the hitpoints gained by this creature for this level.
+    /// </summary>
+    public byte HitDie
+    {
+      get => levelStats.m_nHitDie;
+      set => levelStats.m_nHitDie = value;
     }
   }
 }
