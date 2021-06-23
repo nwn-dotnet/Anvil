@@ -323,11 +323,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the Base Attack Bonus for this creature.
+    /// Gets or sets the Base Attack Bonus for this creature.
     /// </summary>
-    public int BaseAttackBonus
+    public byte BaseAttackBonus
     {
-      get => NWScript.GetBaseAttackBonus(this);
+      get => Creature.m_pStats.m_nBaseAttackBonus;
+      set => Creature.m_pStats.m_nBaseAttackBonus = value;
     }
 
     /// <summary>
@@ -352,6 +353,30 @@ namespace NWN.API
     public float ChallengeRating
     {
       get => NWScript.GetChallengeRating(this);
+    }
+
+    /// <summary>
+    /// Gets the original name of this creature.
+    /// </summary>
+    public string OriginalName
+    {
+      get => $"{OriginalFirstName} {OriginalLastName}";
+    }
+
+    /// <summary>
+    /// Gets the original first name of this creature.
+    /// </summary>
+    public string OriginalFirstName
+    {
+      get => Creature.m_pStats.m_lsFirstName.ExtractLocString();
+    }
+
+    /// <summary>
+    /// Gets the original last name of this creature.
+    /// </summary>
+    public string OriginalLastName
+    {
+      get => Creature.m_pStats.m_lsLastName.ExtractLocString();
     }
 
     /// <summary>
@@ -2239,6 +2264,49 @@ namespace NWN.API
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
         message?.SendServerToPlayerGuiQuickbar_SetButton(player, index, false.ToInt());
       }
+    }
+
+    /// <summary>
+    /// Instruct this creature to instantly equip the specified item.
+    /// </summary>
+    /// <param name="item">The item to equip.</param>
+    /// <param name="inventorySlot">The inventory slot to equip the item to.</param>
+    /// <returns>True if the item was successfully equipped, otherwise false.</returns>
+    /// <exception cref="ArgumentNullException">Item is null.</exception>
+    public bool RunEquip(NwItem item, InventorySlot inventorySlot)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item must not be null.");
+      }
+
+      uint targetSlot = (uint)Math.Pow(2, (uint)inventorySlot);
+      return Creature.RunEquip(item, targetSlot).ToBool();
+    }
+
+
+    /// <summary>
+    /// Instruct this creature to instantly unequip the specified item.
+    /// </summary>
+    /// <param name="item">The item to unequip.</param>
+    /// <returns>True if the item was successfully unequipped, otherwise false.</returns>
+    /// <exception cref="ArgumentNullException">Item is null.</exception>
+    public bool RunUnequip(NwItem item)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item must not be null.");
+      }
+
+      // The module unequip event runs instantly so we have to temporarily change the event script id of the calling script
+      // otherwise GetCurrentlyRunningEvent() doesn't return the right id
+      EventScriptType previousScriptEvent = VirtualMachine.Instance.CurrentRunningEvent;
+      VirtualMachine.Instance.CurrentRunningEvent = EventScriptType.ModuleOnUnequipItem;
+
+      bool retVal = Creature.RunUnequip(item, Invalid, unchecked((byte)-1), unchecked((byte)-1), false.ToInt()).ToBool();
+
+      VirtualMachine.Instance.CurrentRunningEvent = previousScriptEvent;
+      return retVal;
     }
 
     private PlayerQuickBarButton InternalGetQuickBarButton(byte index)

@@ -1,7 +1,8 @@
-using System;
 using NLog;
+using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
+using Action = System.Action;
 
 namespace NWN.API
 {
@@ -31,6 +32,15 @@ namespace NWN.API
     {
       get => virtualMachine.m_nInstructionLimit;
       set => virtualMachine.m_nInstructionLimit = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the current running script event.
+    /// </summary>
+    public EventScriptType CurrentRunningEvent
+    {
+      get => (EventScriptType)virtualMachine.m_pVirtualMachineScript[0].m_nScriptEventID;
+      set => virtualMachine.m_pVirtualMachineScript[0].m_nScriptEventID = (int)value;
     }
 
     public bool IsInScriptContext
