@@ -40,7 +40,7 @@ namespace NWN.API
     /// </summary>
     public NwArea Area
     {
-      get => NWScript.GetArea(this).ToNwObject<NwArea>();
+      get => GameObject.GetArea().ToNwObject<NwArea>();
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ namespace NWN.API
     /// </summary>
     public Vector3 Position
     {
-      get => NWScript.GetPosition(this);
+      get => GameObject.m_vPosition.ToManagedVector();
       set => GameObject.SetPosition(value.ToNativeVector(), false.ToInt());
     }
 
