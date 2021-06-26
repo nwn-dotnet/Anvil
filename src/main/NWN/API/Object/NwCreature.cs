@@ -275,11 +275,16 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the gender of this creature.
+    /// Gets or sets the gender of this creature.
     /// </summary>
     public Gender Gender
     {
-      get => (Gender)NWScript.GetGender(this);
+      get => (Gender)Creature.m_pStats.m_nGender;
+      set
+      {
+        Creature.m_pStats.m_nGender = (byte)value;
+        Creature.m_cAppearance.m_nGender = (byte)value;
+      }
     }
 
     /// <summary>
