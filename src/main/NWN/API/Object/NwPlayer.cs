@@ -918,7 +918,7 @@ namespace NWN.API
     /// Plays the specified "instant" VFX (Com*, FNF*, IMP*) on the target for this player only.
     /// </summary>
     /// <param name="visualEffect">The effect to play.</param>
-    /// <param name="target">	The target object to play the effect upon.</param>
+    /// <param name="target">The target object to play the effect upon.</param>
     public void ApplyInstantVisualEffectToObject(VfxType visualEffect, NwGameObject target)
     {
       CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
@@ -1083,7 +1083,7 @@ namespace NWN.API
         return null;
       }
 
-      uint *oidArea = creature.Creature.m_oidAutoMapAreaList.element;
+      uint* oidArea = creature.Creature.m_oidAutoMapAreaList.element;
       for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.num; i++, oidArea++)
       {
         if (*oidArea != area)
@@ -1118,7 +1118,7 @@ namespace NWN.API
         return;
       }
 
-      uint *oidArea = creature.Creature.m_oidAutoMapAreaList.element;
+      uint* oidArea = creature.Creature.m_oidAutoMapAreaList.element;
       for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.num; i++, oidArea++)
       {
         if (*oidArea != area)

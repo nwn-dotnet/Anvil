@@ -2284,7 +2284,6 @@ namespace NWN.API
       return Creature.RunEquip(item, targetSlot).ToBool();
     }
 
-
     /// <summary>
     /// Instruct this creature to instantly unequip the specified item.
     /// </summary>
