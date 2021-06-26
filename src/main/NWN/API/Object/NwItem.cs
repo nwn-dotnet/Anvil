@@ -170,11 +170,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the <see cref="NWN.API.Constants.BaseItemType"/> for this item.
+    /// Gets or sets the <see cref="NWN.API.Constants.BaseItemType"/> for this item.
     /// </summary>
     public BaseItemType BaseItemType
     {
-      get => (BaseItemType)NWScript.GetBaseItemType(this);
+      get => (BaseItemType)Item.m_nBaseItem;
+      set => Item.m_nBaseItem = (uint)value;
     }
 
     /// <summary>
@@ -218,6 +219,34 @@ namespace NWN.API
     public int BaseACValue
     {
       get => Item.m_nArmorValue;
+    }
+
+    /// <summary>
+    /// Gets or sets the base GP value of this item.<br/>
+    /// Does not persist through saving.
+    /// </summary>
+    public uint BaseGoldValue
+    {
+      get => Item.m_nBaseUnitCost;
+      set => Item.m_nBaseUnitCost = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the additional GP value of this item.<br/>
+    /// Does not persist through saving.
+    /// </summary>
+    public int AddGoldValue
+    {
+      get => Item.m_nAdditionalCost;
+      set => Item.m_nAdditionalCost = value;
+    }
+
+    /// <summary>
+    /// Gets the minimum level required to equip this item.
+    /// </summary>
+    public byte MinEquipLevel
+    {
+      get => Item.GetMinEquipLevel();
     }
 
     /// <summary>

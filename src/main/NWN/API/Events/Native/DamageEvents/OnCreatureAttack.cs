@@ -34,6 +34,8 @@ namespace NWN.API.Events
 
     public DamageData<short> DamageData { get; private init; }
 
+    public int TotalDamage { get; private init; }
+
     private CNWSCombatAttackData CombatAttackData { get; init; }
 
     NwObject IEvent.Context
@@ -122,6 +124,7 @@ namespace NWN.API.Events
           AttackRoll = combatAttackData.m_nToHitRoll,
           AttackModifier = combatAttackData.m_nToHitMod,
           DamageData = new DamageData<short>(combatAttackData.m_nDamage),
+          TotalDamage = combatAttackData.GetTotalDamage(),
         };
       }
     }

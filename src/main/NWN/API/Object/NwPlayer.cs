@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Numerics;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using NLog;
@@ -8,6 +10,8 @@ using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
 using NWN.Services;
+using AssociateType = NWN.Native.API.AssociateType;
+using Vector = NWN.Native.API.Vector;
 
 namespace NWN.API
 {
@@ -120,11 +124,86 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets a value indicating whether the player has DM privileges gained through a player login (as opposed to the DM client).
+    /// Gets or sets whether the player has DM privileges gained through a player login (as opposed to the DM client).
     /// </summary>
     public bool IsPlayerDM
     {
       get => NWScript.GetIsPlayerDM(ControlledCreature).ToBool();
+      set
+      {
+        if (IsPlayerDM == value)
+        {
+          return;
+        }
+
+        CNetLayerPlayerInfo playerInfo = LowLevel.ServerExoApp.GetNetLayer().GetPlayerInfo(PlayerId);
+        if (playerInfo == null)
+        {
+          return;
+        }
+
+        if (!playerInfo.SatisfiesBuild(8193, 14))
+        {
+          Log.Warn($"{PlayerName}: Cannot toggle DM mode as the player's client does not support PlayerDM functionality.");
+          return;
+        }
+
+        if (playerInfo.m_bGameMasterPrivileges.ToBool() && !playerInfo.m_bGameMasterIsPlayerLogin.ToBool())
+        {
+          Log.Warn($"{PlayerName}: Cannot toggle DM mode as this player is using the DMClient.");
+          return;
+        }
+
+        CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+        if (message == null)
+        {
+          return;
+        }
+
+        bool currentlyPlayerDM = playerInfo.m_bGameMasterPrivileges.ToBool() && playerInfo.m_bGameMasterIsPlayerLogin.ToBool();
+        if (value && !currentlyPlayerDM)
+        {
+          playerInfo.m_bGameMasterPrivileges = true.ToInt();
+          playerInfo.m_bGameMasterIsPlayerLogin = true.ToInt();
+          message.SendServerToPlayerDungeonMasterLoginState(Player, true.ToInt(), true.ToInt());
+
+          NwCreature creature = ControlledCreature;
+          if (creature != null)
+          {
+            creature.Creature.m_pStats.m_bDMManifested = true.ToInt();
+            creature.Creature.UpdateVisibleList();
+          }
+
+          LowLevel.ServerExoApp.AddToExclusionList(Player.m_oidNWSObject, 1); // Timestop
+          LowLevel.ServerExoApp.AddToExclusionList(Player.m_oidNWSObject, 2); // Pause
+          byte nActivePauseState = LowLevel.ServerExoApp.GetActivePauseState();
+          message.SendServerToPlayerModule_SetPauseState(nActivePauseState, (nActivePauseState > 0).ToInt());
+
+          message.SendServerToPlayerDungeonMasterAreaList(PlayerId);
+          message.SendServerToPlayerDungeonMasterCreatorLists(Player);
+        }
+        else if (!value && currentlyPlayerDM)
+        {
+          Player.PossessCreature(NwObject.Invalid, (byte)AssociateType.None);
+
+          playerInfo.m_bGameMasterPrivileges = false.ToInt();
+          playerInfo.m_bGameMasterIsPlayerLogin = false.ToInt();
+          message.SendServerToPlayerDungeonMasterLoginState(Player, false.ToInt(), true.ToInt());
+
+          NwCreature creature = ControlledCreature;
+          if (creature != null)
+          {
+            creature.Creature.m_pStats.m_bDMManifested = true.ToInt();
+            creature.Creature.UpdateVisibleList();
+          }
+
+          LowLevel.ServerExoApp.RemoveFromExclusionList(Player.m_oidNWSObject, 1); // Timestop
+          LowLevel.ServerExoApp.RemoveFromExclusionList(Player.m_oidNWSObject, 2); // Pause
+
+          byte nActivePauseState = LowLevel.ServerExoApp.GetActivePauseState();
+          message.SendServerToPlayerModule_SetPauseState(nActivePauseState, (nActivePauseState > 0).ToInt());
+        }
+      }
     }
 
     /// <summary>
@@ -197,6 +276,8 @@ namespace NWN.API
         {
           return;
         }
+
+        Player.m_bFromTURD = true.ToInt();
 
         CNWSCreature creature = LoginCreature.Creature;
         creature.m_oidDesiredArea = value.Area;
@@ -301,16 +382,6 @@ namespace NWN.API
     public void OpenInventory(NwCreature target)
     {
       NWScript.OpenInventory(target, ControlledCreature);
-    }
-
-    /// <summary>
-    /// Forces the player to open the inventory of the specified placeable.
-    /// </summary>
-    /// <param name="target">The placeable inventory to be viewed.</param>
-    [Obsolete("Use NwCreature.OpenInventory instead.")]
-    public void ForceOpenInventory(NwPlaceable target)
-    {
-      OpenInventory(target);
     }
 
     /// <summary>
@@ -448,7 +519,7 @@ namespace NWN.API
     /// </summary>
     /// <param name="area">The area to explore.</param>
     /// <param name="explored">true if ControlledCreature area has been explored, otherwise false to (re)hide the map.</param>
-    public void SetAreaExploreState(NwArea area, bool explored)
+    public void SetAreaExplorationState(NwArea area, bool explored)
     {
       NWScript.ExploreAreaForPlayer(area, ControlledCreature, explored.ToInt());
     }
@@ -677,7 +748,8 @@ namespace NWN.API
     /// <param name="target">The placeable to examine.</param>
     public void ForceExamine(NwPlaceable target)
     {
-      LowLevel.Message.SendServerToPlayerExamineGui_PlaceableData(Player, target);
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      message?.SendServerToPlayerExamineGui_PlaceableData(Player, target);
     }
 
     /// <summary>
@@ -753,10 +825,7 @@ namespace NWN.API
       }
 
       CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
-      if (message != null)
-      {
-        message.SendServerToPlayerSetTlkOverride(Player.m_nPlayerID, strRef, strOverride.ToExoString());
-      }
+      message?.SendServerToPlayerSetTlkOverride(Player.m_nPlayerID, strRef, strOverride.ToExoString());
     }
 
     /// <summary>
@@ -815,6 +884,10 @@ namespace NWN.API
       }
 
       CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      if (message == null)
+      {
+        return;
+      }
 
       CNWCCMessageData messageData = new CNWCCMessageData();
       messageData.SetObjectID(0, target);
@@ -822,6 +895,245 @@ namespace NWN.API
       messageData.SetString(0, text.ToExoString());
 
       message.SendServerToPlayerCCMessage(Player.m_nPlayerID, (byte)MessageClientSideMsgMinor.Feedback, messageData, null);
+    }
+
+    /// <summary>
+    /// Plays the specified VFX at the target position in the current area for this player only.
+    /// </summary>
+    /// <param name="effectType">The effect to play.</param>
+    /// <param name="position">Where to play the effect.</param>
+    public void ShowVisualEffect(VfxType effectType, Vector3 position)
+    {
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      if (message == null)
+      {
+        return;
+      }
+
+      ObjectVisualTransformData visualTransformData = new ObjectVisualTransformData();
+      message.SendServerToPlayerArea_VisualEffect(Player, (ushort)effectType, position.ToNativeVector(), visualTransformData);
+    }
+
+    /// <summary>
+    /// Plays the specified "instant" VFX (Com*, FNF*, IMP*) on the target for this player only.
+    /// </summary>
+    /// <param name="visualEffect">The effect to play.</param>
+    /// <param name="target">The target object to play the effect upon.</param>
+    public void ApplyInstantVisualEffectToObject(VfxType visualEffect, NwGameObject target)
+    {
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      if (message == null)
+      {
+        return;
+      }
+
+      Vector vTargetPosition = new Vector();
+      message.SendServerToPlayerGameObjUpdateVisEffect(Player, (ushort)visualEffect, target, NwModule.Instance,
+        0, 0, vTargetPosition, 0.0f);
+    }
+
+    /// <summary>
+    /// Plays the specified sound at the target in the current area for this player only.
+    /// </summary>
+    /// <param name="sound">The sound resref.</param>
+    /// <param name="target">The target object for the sound to originate. Defaults to the location of the player.</param>
+    public void PlaySound(string sound, NwGameObject target = null)
+    {
+      if (target == null)
+      {
+        target = ControlledCreature;
+      }
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      message?.SendServerToPlayerAIActionPlaySound(PlayerId, target, sound.ToExoString());
+    }
+
+    /// <summary>
+    /// Gets an existing journal entry with the specified quest tag.
+    /// </summary>
+    /// <param name="questTag">The quest tag you wish to get the journal entry for.</param>
+    /// <returns>A <see cref="JournalEntry"/> structure containing the journal entry data, null if an entry with the specified tag cannot be found.</returns>
+    public JournalEntry GetJournalEntry(string questTag)
+    {
+      NwCreature creature = ControlledCreature;
+      if (creature == null)
+      {
+        return null;
+      }
+
+      CNWSJournal journal = creature.Creature.GetJournal();
+      CExoArrayListSJournalEntry entries = journal.m_lstEntries;
+
+      for (int i = entries.num - 1; i >= 0; i--)
+      {
+        SJournalEntry entry = entries._OpIndex(i);
+        if (entry.szPlot_Id.ToString() == questTag)
+        {
+          return new JournalEntry
+          {
+            Name = entry.szName.ExtractLocString(),
+            Text = entry.szText.ExtractLocString(),
+            CalendarDay = entry.nCalendarDay,
+            TimeOfDay = entry.nTimeOfDay,
+            QuestTag = questTag,
+            State = entry.nState,
+            Priority = entry.nPriority,
+            QuestCompleted = entry.bQuestCompleted.ToBool(),
+            QuestDisplayed = entry.bQuestDisplayed.ToBool(),
+            Updated = entry.bUpdated.ToBool(),
+          };
+        }
+      }
+
+      return null;
+    }
+
+    /// <summary>
+    /// Adds/updates a journal entry.
+    /// </summary>
+    /// <param name="entryData">The new/updated journal entry.</param>
+    /// <param name="silentUpdate">false = Notify player via sound effects and feedback message, true = Suppress sound effects and feedback message</param>
+    /// <returns>A positive number to indicate the new amount of journal entries on the player, -1 on an error.</returns>
+    public int AddCustomJournalEntry(JournalEntry entryData, bool silentUpdate = false)
+    {
+      int retVal = -1;
+
+      NwCreature creature = ControlledCreature;
+      if (creature == null)
+      {
+        return retVal;
+      }
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      if (message == null)
+      {
+        return retVal;
+      }
+
+      CNWSJournal journal = creature.Creature.GetJournal();
+      CExoArrayListSJournalEntry entries = journal.m_lstEntries;
+
+      SJournalEntry newJournal = new SJournalEntry
+      {
+        szName = entryData.Name.ToExoLocString(),
+        szText = entryData.Text.ToExoLocString(),
+        nCalendarDay = entryData.CalendarDay,
+        nTimeOfDay = entryData.TimeOfDay,
+        szPlot_Id = entryData.QuestTag.ToExoString(),
+        nState = entryData.State,
+        nPriority = entryData.Priority,
+        nPictureIndex = 0,
+        bQuestCompleted = entryData.QuestCompleted.ToInt(),
+        bQuestDisplayed = entryData.QuestDisplayed.ToInt(),
+        bUpdated = entryData.Updated.ToInt(),
+      };
+
+      int overwrite = -1;
+      if (entries.num > 0)
+      {
+        for (int i = entries.num - 1; i >= 0; i--)
+        {
+          SJournalEntry entry = entries._OpIndex(i);
+          if (entry.szPlot_Id.ToString() == entryData.QuestTag)
+          {
+            entries.DelIndex(i);
+            entries.Insert(entry, i);
+            overwrite = i;
+            break;
+          }
+        }
+      }
+
+      if (overwrite == -1)
+      {
+        journal.m_lstEntries.Add(newJournal);
+      }
+
+      retVal = journal.m_lstEntries.num;
+
+      message.SendServerToPlayerJournalAddQuest(Player,
+        newJournal.szPlot_Id,
+        (int)newJournal.nState,
+        newJournal.nPriority,
+        newJournal.nPictureIndex,
+        newJournal.bQuestCompleted,
+        newJournal.nCalendarDay,
+        newJournal.nTimeOfDay,
+        newJournal.szName,
+        newJournal.szText);
+
+      if (!silentUpdate)
+      {
+        message.SendServerToPlayerJournalUpdated(Player, 1, newJournal.bQuestCompleted, newJournal.szName);
+      }
+
+      return retVal;
+    }
+
+    /// <summary>
+    /// Gets this player's area exploration state for the specified area.
+    /// </summary>
+    /// <param name="area">The area to query.</param>
+    /// <returns>A byte array representing the tiles explored for the area.</returns>
+    public unsafe byte[] GetAreaExplorationState(NwArea area)
+    {
+      NwCreature creature = LoginCreature;
+      if (area == null || creature == null)
+      {
+        return null;
+      }
+
+      uint* oidArea = creature.Creature.m_oidAutoMapAreaList.element;
+      for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.num; i++, oidArea++)
+      {
+        if (*oidArea != area)
+        {
+          continue;
+        }
+
+        byte* tileData = *(creature.Creature.m_nAutoMapTileData + i);
+        if (tileData != null)
+        {
+          byte[] retVal = new byte[area.Area.m_nMapSize];
+          Marshal.Copy((IntPtr)tileData, retVal, 0, area.Area.m_nMapSize);
+          return retVal;
+        }
+
+        break;
+      }
+
+      return null;
+    }
+
+    /// <summary>
+    /// Sets this player's area exploration state for the specified area.
+    /// </summary>
+    /// <param name="area">The area to modify.</param>
+    /// <param name="newState">A byte array representing the tiles explored for the area, as returned by <see cref="GetAreaExplorationState"/>.</param>
+    public unsafe void SetAreaExplorationState(NwArea area, byte[] newState)
+    {
+      NwCreature creature = LoginCreature;
+      if (area == null || creature == null || newState == null)
+      {
+        return;
+      }
+
+      uint* oidArea = creature.Creature.m_oidAutoMapAreaList.element;
+      for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.num; i++, oidArea++)
+      {
+        if (*oidArea != area)
+        {
+          continue;
+        }
+
+        byte* tileData = *(creature.Creature.m_nAutoMapTileData + i);
+        if (tileData != null)
+        {
+          Marshal.Copy(newState, 0, (IntPtr)tileData, area.Area.m_nMapSize);
+        }
+
+        break;
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 using System;
 using NWN.Native.API;
+using DamageType = NWN.API.Constants.DamageType;
 
 namespace NWN.API.Events
 {
@@ -95,6 +96,75 @@ namespace NWN.API.Events
     {
       get => source[12];
       set => source[12] = value;
+    }
+
+    public T GetDamageByType(DamageType damageType)
+    {
+      return damageType switch
+      {
+        DamageType.Bludgeoning => Bludgeoning,
+        DamageType.Piercing => Pierce,
+        DamageType.Slashing => Slash,
+        DamageType.Magical => Magical,
+        DamageType.Acid => Acid,
+        DamageType.Cold => Cold,
+        DamageType.Divine => Divine,
+        DamageType.Electrical => Electrical,
+        DamageType.Fire => Fire,
+        DamageType.Negative => Negative,
+        DamageType.Positive => Positive,
+        DamageType.Sonic => Sonic,
+        DamageType.BaseWeapon => Base,
+        _ => throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null),
+      };
+    }
+
+    public void SetDamageByType(DamageType damageType, T value)
+    {
+      switch (damageType)
+      {
+        case DamageType.Bludgeoning:
+          Bludgeoning = value;
+          break;
+        case DamageType.Piercing:
+          Pierce = value;
+          break;
+        case DamageType.Slashing:
+          Slash = value;
+          break;
+        case DamageType.Magical:
+          Magical = value;
+          break;
+        case DamageType.Acid:
+          Acid = value;
+          break;
+        case DamageType.Cold:
+          Cold = value;
+          break;
+        case DamageType.Divine:
+          Divine = value;
+          break;
+        case DamageType.Electrical:
+          Electrical = value;
+          break;
+        case DamageType.Fire:
+          Fire = value;
+          break;
+        case DamageType.Negative:
+          Negative = value;
+          break;
+        case DamageType.Positive:
+          Positive = value;
+          break;
+        case DamageType.Sonic:
+          Sonic = value;
+          break;
+        case DamageType.BaseWeapon:
+          Base = value;
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null);
+      }
     }
   }
 }

@@ -82,6 +82,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the number of players in this area.
+    /// </summary>
+    public int PlayerCount
+    {
+      get => Area.m_nPlayersInArea;
+    }
+
+    /// <summary>
     /// Gets or sets the current weather conditions for this area.
     /// </summary>
     public WeatherType Weather
@@ -185,6 +193,58 @@ namespace NWN.API
           yield return areaObj.ToNwObject<NwGameObject>();
         }
       }
+    }
+
+    /// <summary>
+    /// Gets the last object that entered this area.
+    /// </summary>
+    public NwGameObject LastEntered
+    {
+      get => Area.m_oidLastEntered.ToNwObject<NwGameObject>();
+    }
+
+    /// <summary>
+    /// Gets the last object that left this area.
+    /// </summary>
+    public NwGameObject LastLeft
+    {
+      get => Area.m_oidLastLeft.ToNwObject<NwGameObject>();
+    }
+
+    /// <summary>
+    /// Gets or sets the PvP setting for this area.
+    /// </summary>
+    public PVPSetting PVPSetting
+    {
+      get => (PVPSetting)Area.m_nPVPSetting;
+      set => Area.m_nPVPSetting = (byte)value;
+    }
+
+    /// <summary>
+    /// Gets or sets the spot modifier for this area.
+    /// </summary>
+    public int SpotModifier
+    {
+      get => Area.m_nAreaSpotModifier;
+      set => Area.m_nAreaSpotModifier = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the listen modifier for this area.
+    /// </summary>
+    public int ListenModifier
+    {
+      get => Area.m_nAreaListenModifier;
+      set => Area.m_nAreaListenModifier = value;
+    }
+
+    /// <summary>
+    /// Gets or sets whether resting is allowed in this area.
+    /// </summary>
+    public bool RestingAllowed
+    {
+      get => !Area.m_bNoRestingAllowed.ToBool();
+      set => Area.m_bNoRestingAllowed = (!value).ToInt();
     }
 
     /// <summary>
