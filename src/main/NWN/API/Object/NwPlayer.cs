@@ -936,7 +936,7 @@ namespace NWN.API
     /// Plays the specified sound at the target in the current area for this player only.
     /// </summary>
     /// <param name="sound">The sound resref.</param>
-    /// <param name="target">	The target object for the sound to originate. Defaults to the location of the player.</param>
+    /// <param name="target">The target object for the sound to originate. Defaults to the location of the player.</param>
     public void PlaySound(string sound, NwGameObject target = null)
     {
       if (target == null)
