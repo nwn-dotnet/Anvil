@@ -300,7 +300,7 @@ namespace NWN.API
     /// </summary>
     public string BicFileName
     {
-      get => Player.m_resFileName.GetResRefStr();
+      get => Player.m_resFileName.ToString();
     }
 
     /// <summary>
@@ -759,7 +759,7 @@ namespace NWN.API
     /// <param name="preserveBackup">If true, instead of being deleted it will be renamed to be hidden from the character list, but remain in the vault directory.</param>
     public void Delete(string kickMessage, bool preserveBackup = true)
     {
-      string bicName = Player.m_resFileName.GetResRefStr();
+      string bicName = BicFileName;
       string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
       string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
 

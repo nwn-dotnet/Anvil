@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using System.Text;
 using NWN.Native.API;
 using Vector = NWN.Native.API.Vector;
 
@@ -11,16 +10,8 @@ namespace NWN.API
 {
   public static unsafe class NativeUtils
   {
-    public static readonly Encoding StringEncoding;
-
     private const string DefaultGffVersion = "V3.2";
     private static readonly CExoString DefaultGffVersionExoString = "V3.2".ToExoString();
-
-    static NativeUtils()
-    {
-      Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-      StringEncoding = Encoding.GetEncoding("windows-1252");
-    }
 
     public static Vector ToNativeVector(this Vector3 vector)
     {
@@ -86,33 +77,13 @@ namespace NWN.API
     public static string PeekMessageString(this CNWSMessage message, int offset)
     {
       byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
-      return ReadNullTerminatedString(ptr);
+      return StringHelper.ReadNullTerminatedString(ptr);
     }
 
     public static string PeekMessageResRef(this CNWSMessage message, int offset)
     {
       byte* ptr = message.m_pnReadBuffer + message.m_nReadBufferPtr + offset;
-      return StringEncoding.GetString(ptr, 16);
-    }
-
-    public static string ReadNullTerminatedString(byte* ptr)
-    {
-      byte* walk = ptr;
-
-      // Find the end of the string
-      while (*walk != 0)
-      {
-        walk++;
-      }
-
-      int length = (int)(walk - ptr);
-
-      // Skip the trailing null
-      byte[] buffer = new byte[length];
-      Marshal.Copy((IntPtr)ptr, buffer, 0, length);
-
-      string data = StringEncoding.GetString(buffer);
-      return data;
+      return StringHelper.ReadFixedLengthString(ptr, 16);
     }
 
     public static byte[] SerializeGff(string fileType, string version, Func<CResGFF, CResStruct, bool> serializeAction)

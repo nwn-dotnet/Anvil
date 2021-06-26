@@ -1,4 +1,5 @@
 using System;
+using NWN.Native.API;
 
 namespace NWN.API
 {
@@ -98,7 +99,7 @@ namespace NWN.API
     {
       const byte tokenMinVal = 1;
       ReadOnlySpan<byte> tokenBytes = stackalloc[] { Math.Max(Red, tokenMinVal), Math.Max(Green, tokenMinVal), Math.Max(Blue, tokenMinVal) };
-      return NativeUtils.StringEncoding.GetString(tokenBytes);
+      return StringHelper.Cp1252Encoding.GetString(tokenBytes);
     }
 
     /// <summary>
