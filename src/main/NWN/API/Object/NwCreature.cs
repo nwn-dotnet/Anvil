@@ -345,11 +345,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the size of this creature.
+    /// Gets or sets the size of this creature.
     /// </summary>
     public CreatureSize Size
     {
-      get => (CreatureSize)NWScript.GetCreatureSize(this);
+      get => (CreatureSize)Creature.m_nCreatureSize;
+      set => Creature.m_nCreatureSize = (int)value;
     }
 
     /// <summary>
