@@ -369,19 +369,21 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the original first name of this creature.
+    /// Gets or sets the original first name of this creature.
     /// </summary>
     public string OriginalFirstName
     {
       get => Creature.m_pStats.m_lsFirstName.ExtractLocString();
+      set => Creature.m_pStats.m_lsFirstName = value.ToExoLocString();
     }
 
     /// <summary>
-    /// Gets the original last name of this creature.
+    /// Gets or sets the original last name of this creature.
     /// </summary>
     public string OriginalLastName
     {
       get => Creature.m_pStats.m_lsLastName.ExtractLocString();
+      set => Creature.m_pStats.m_lsLastName = value.ToExoLocString();
     }
 
     /// <summary>
