@@ -1,41 +1,32 @@
-namespace NWNX.API.Constants
+namespace NWN.Services
 {
-  public enum ElcFailureType
+  public enum ValidationFailureSubType
   {
-    None,
-    Character,
-    Item,
-    Skill,
-    Feat,
-    Spell,
-    Custom,
-  }
-
-  public enum ElcFailureSubType
-  {
-    None,
-    LevelRestriction,
+    None = 0,
+    ServerLevelRestriction,
     LevelHack,
     ColoredName,
     UnidentifiedEquippedItem,
     MinEquipLevel,
-    DmCharacter,
+    NonPCCharacter,
+    DMCharacter,
     NonPlayerRace,
     NonPlayerClass,
+    ClassLevelRestriction,
     PrestigeClassRequirements,
     ClassAlignmentRestriction,
     StartingAbilityValueMax,
     AbilityPointBuySystemCalculation,
     ClassSpellcasterInvalidPrimaryStat,
     EpicLevelFlag,
-    TooManyHitpoints,
+    TooManyHitPoints,
     UnusableSkill,
-    NotEnoughSkillpoints,
+    NotEnoughSkillPoints,
     InvalidNumRanksInClassSkill,
     InvalidNumRanksInNonClassSkill,
     InvalidNumRemainingSkillPoints,
     InvalidFeat,
-    RequiredSpellLevelNotMet,
+    FeatRequiredSpellLevelNotMet,
     FeatRequiredBaseAttackBonusNotMet,
     FeatRequiredAbilityValueNotMet,
     FeatRequiredSkillNotMet,
@@ -48,11 +39,13 @@ namespace NWNX.API.Constants
     SpellInvalidSpellGainBardSorcerer,
     SpellInvalidSpellGainOtherClasses,
     InvalidSpell,
-    InvalidSpellLevel,
+    SpellInvalidSpellLevel,
+    SpellMinimumAbilityBardSorcererUnused,
+    SpellMinimumAbilityWizardUnused,
     SpellMinimumAbility,
     SpellRestrictedSpellSchool,
     SpellAlreadyKnown,
-    SpellWizardExceedsNumspellsToAdd,
+    SpellWizardExceedsNumSpellsToAdd,
     IllegalRemovedSpell,
     RemovedNotKnownSpell,
     InvalidNumSpells,
@@ -61,5 +54,6 @@ namespace NWNX.API.Constants
     FeatListComparison,
     MiscSavingThrow,
     NumFeatComparison,
+    InvalidClass,
   }
 }

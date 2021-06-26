@@ -9,7 +9,7 @@ namespace NWN.API
   {
     public static bool ToBool(this int value)
     {
-      return value == NWScript.TRUE;
+      return value != NWScript.FALSE;
     }
 
     public static int ToInt(this bool value)
