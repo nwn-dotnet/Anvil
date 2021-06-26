@@ -2308,6 +2308,27 @@ namespace NWN.API
       return retVal;
     }
 
+    /// <summary>
+    /// Gets the creature's highest attack bonus based on its own stats.<br/>
+    /// AB vs. Type and +AB on Gauntlets are excluded.
+    /// </summary>
+    /// <param name="isMelee">TRUE: Get Melee/Unarmed Attack Bonus, FALSE: Get Ranged Attack Bonus</param>
+    /// <param name="isTouchAttack">If the attack was a touch attack.</param>
+    /// <param name="isOffHand">If the attack was a touch attack.</param>
+    /// <param name="includeBaseAttackBonus">If the attack was with the offhand.</param>
+    /// <returns>The highest attack bonus.</returns>
+    public int GetAttackBonus(bool isMelee = false, bool isTouchAttack = false, bool isOffHand = false, bool includeBaseAttackBonus = true)
+    {
+      if (isMelee)
+      {
+        return Creature.m_pStats.GetMeleeAttackBonus(isOffHand.ToInt(), includeBaseAttackBonus.ToInt(), isTouchAttack.ToInt());
+      }
+      else
+      {
+        return Creature.m_pStats.GetRangedAttackBonus(includeBaseAttackBonus.ToInt(), isTouchAttack.ToInt());
+      }
+    }
+
     private PlayerQuickBarButton InternalGetQuickBarButton(byte index)
     {
       CNWSQuickbarButtonArray quickBarButtons = CNWSQuickbarButtonArray.FromPointer(Creature.m_pQuickbarButton);
