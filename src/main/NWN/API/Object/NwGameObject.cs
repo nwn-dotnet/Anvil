@@ -34,15 +34,12 @@ namespace NWN.API
       get => NWScript.GetLocation(this);
       set
       {
-        if (value.Area != Area)
-        {
-          AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
-        }
-        else
+        if (value.Area == Area)
         {
           Position = value.Position;
         }
 
+        AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
         Rotation = value.Rotation;
       }
     }
@@ -58,7 +55,7 @@ namespace NWN.API
     /// <summary>
     /// Gets or sets the local area position of this GameObject.
     /// </summary>
-    public Vector3 Position
+    public virtual Vector3 Position
     {
       get => GameObject.m_vPosition.ToManagedVector();
       set => GameObject.SetPosition(value.ToNativeVector(), false.ToInt());

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using NWN.API.Constants;
@@ -102,6 +103,15 @@ namespace NWN.API
     public bool IsLoginPlayerCharacter
     {
       get => LoginPlayer != null;
+    }
+
+    public override Vector3 Position
+    {
+      set
+      {
+        base.Position = value;
+        Creature.UpdateSubareasOnJumpPosition(value.ToNativeVector(), Area);
+      }
     }
 
     /// <summary>
