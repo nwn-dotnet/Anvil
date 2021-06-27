@@ -20,6 +20,7 @@ using InventorySlot = NWN.API.Constants.InventorySlot;
 using MovementRate = NWN.API.Constants.MovementRate;
 using ObjectType = NWN.Native.API.ObjectType;
 using RacialType = NWN.API.Constants.RacialType;
+using SavingThrow = NWN.API.Constants.SavingThrow;
 using Skill = NWN.API.Constants.Skill;
 
 namespace NWN.API
@@ -218,8 +219,8 @@ namespace NWN.API
     /// </summary>
     public sbyte BaseAC
     {
-      get => (sbyte)Creature.m_pStats.m_nACNaturalBase;
-      set => Creature.m_pStats.m_nACNaturalBase = (char)value;
+      get => unchecked((sbyte)Creature.m_pStats.m_nACNaturalBase);
+      set => Creature.m_pStats.m_nACNaturalBase = unchecked((byte)value);
     }
 
     public sbyte ArmorCheckPenalty
@@ -271,7 +272,8 @@ namespace NWN.API
     /// </summary>
     public RacialType RacialType
     {
-      get => (RacialType)NWScript.GetRacialType(this);
+      get => (RacialType)Creature.m_pStats.m_nRace;
+      set => Creature.m_pStats.m_nRace = (ushort)value;
     }
 
     /// <summary>
@@ -2126,6 +2128,68 @@ namespace NWN.API
 
       CNWLevelStats levelStats = CNWLevelStats.FromPointer(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1));
       return new CreatureLevelInfo(this, levelStats);
+    }
+
+    /// <summary>
+    /// Gets the specified saving throw modifier for this creature.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns>The creature's base saving throw value.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public int GetSavingThrow(SavingThrow savingThrow)
+    {
+      return savingThrow switch
+      {
+        SavingThrow.Fortitude => NWScript.GetFortitudeSavingThrow(this),
+        SavingThrow.Reflex => NWScript.GetReflexSavingThrow(this),
+        SavingThrow.Will => NWScript.GetWillSavingThrow(this),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
+    }
+
+    /// <summary>
+    /// Gets this creature's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns>The creature's base saving throw value.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public int GetBaseSavingThrow(SavingThrow savingThrow)
+    {
+      return savingThrow switch
+      {
+        SavingThrow.Fortitude => unchecked((sbyte)Creature.m_pStats.GetBaseFortSavingThrow() + (sbyte)Creature.m_pStats.m_nFortSavingThrowMisc),
+        SavingThrow.Reflex => unchecked((sbyte)Creature.m_pStats.GetBaseReflexSavingThrow() + (sbyte)Creature.m_pStats.m_nReflexSavingThrowMisc),
+        SavingThrow.Will => unchecked((sbyte)Creature.m_pStats.GetBaseWillSavingThrow() + (sbyte)Creature.m_pStats.m_nWillSavingThrowMisc),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
+    }
+
+    /// <summary>
+    /// Sets this creatures's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <param name="newValue">The new base saving throw.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public void SetBaseSavingThrow(SavingThrow savingThrow, sbyte newValue)
+    {
+      sbyte baseSave;
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseFortSavingThrow());
+          Creature.m_pStats.m_nFortSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          break;
+        case SavingThrow.Reflex:
+          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseReflexSavingThrow());
+          Creature.m_pStats.m_nReflexSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          break;
+        case SavingThrow.Will:
+          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseWillSavingThrow());
+          Creature.m_pStats.m_nWillSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
     }
 
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
