@@ -20,23 +20,6 @@ namespace NWN.API
       return store?.Store;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Store.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
@@ -116,6 +99,11 @@ namespace NWN.API
       });
 
       return result && store != null ? store.ToNwObject<NwStore>() : null;
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Store.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

@@ -19,23 +19,6 @@ namespace NWN.API
       return waypoint?.Waypoint;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Waypoint.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     public override byte[] Serialize()
     {
       return NativeUtils.SerializeGff("UTW", (resGff, resStruct) =>
@@ -74,6 +57,11 @@ namespace NWN.API
     public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Waypoint.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

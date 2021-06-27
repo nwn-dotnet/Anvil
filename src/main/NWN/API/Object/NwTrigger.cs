@@ -21,29 +21,6 @@ namespace NWN.API
       return trigger?.Trigger;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Trigger.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-
-          // If the trigger is trapped it needs to be added to the area's trap list for it to be detectable by players.
-          if (IsTrapped)
-          {
-            value.Area.Area.m_pTrapList.Add(this);
-          }
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     /// <summary>
     /// Gets all objects of the given type that are currently in this trigger.
     /// </summary>
@@ -105,6 +82,17 @@ namespace NWN.API
       });
 
       return result && trigger != null ? trigger.ToNwObject<NwTrigger>() : null;
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Trigger.AddToArea(area, x, y, z, true.ToInt());
+
+      // If the trigger is trapped it needs to be added to the area's trap list for it to be detectable by players.
+      if (IsTrapped)
+      {
+        area.m_pTrapList.Add(this);
+      }
     }
   }
 }

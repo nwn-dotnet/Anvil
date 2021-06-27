@@ -21,23 +21,6 @@ namespace NWN.API
       return encounter?.Encounter;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Encounter.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     /// <summary>
     /// Gets or sets a value indicating whether this encounter is spawned and active.
     /// </summary>
@@ -135,6 +118,11 @@ namespace NWN.API
       });
 
       return result && encounter != null ? encounter.ToNwObject<NwEncounter>() : null;
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Encounter.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

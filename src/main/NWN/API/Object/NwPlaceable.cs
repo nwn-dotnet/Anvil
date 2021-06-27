@@ -24,29 +24,6 @@ namespace NWN.API
       return placeable?.Placeable;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Placeable.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-
-          // If the placeable is trapped it needs to be added to the area's trap list for it to be detectable by players.
-          if (IsTrapped)
-          {
-            value.Area.Area.m_pTrapList.Add(this);
-          }
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     public override float Rotation
     {
       get => (360 - NWScript.GetFacing(this)) % 360;
@@ -268,6 +245,17 @@ namespace NWN.API
       });
 
       return result && placeable != null ? placeable.ToNwObject<NwPlaceable>() : null;
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Placeable.AddToArea(area, x, y, z, true.ToInt());
+
+      // If the placeable is trapped it needs to be added to the area's trap list for it to be detectable by players.
+      if (IsTrapped)
+      {
+        area.m_pTrapList.Add(this);
+      }
     }
   }
 }

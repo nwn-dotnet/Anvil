@@ -35,23 +35,6 @@ namespace NWN.API
       return item?.Item;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Item.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     /// <summary>
     /// Gets the original unidentified description for this item.
     /// </summary>
@@ -423,6 +406,11 @@ namespace NWN.API
       });
 
       return result && item != null ? item.ToNwObject<NwItem>() : null;
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Item.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

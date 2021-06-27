@@ -20,20 +20,6 @@ namespace NWN.API
       return sound?.SoundObject;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          SoundObject.AddToArea(value.Area, true.ToInt());
-        }
-
-        Position = value.Position;
-        Rotation = value.Rotation;
-      }
-    }
-
     /// <summary>
     /// Sets the volume for this sound object (0-127).
     /// </summary>
@@ -92,6 +78,12 @@ namespace NWN.API
       });
 
       return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      SoundObject.AddToArea(area, true.ToInt());
+      SoundObject.ChangePosition(new Vector(x, y, z));
     }
   }
 }

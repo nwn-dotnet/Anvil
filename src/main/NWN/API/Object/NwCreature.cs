@@ -46,23 +46,6 @@ namespace NWN.API
       return creature?.Creature;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     /// <summary>
     /// Gets or sets the faction of this object.
     /// </summary>
@@ -2453,6 +2436,11 @@ namespace NWN.API
       CNWSQuickbarButton button = quickBarButtons[index];
 
       data.ApplyToNativeStructure(button);
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Creature.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

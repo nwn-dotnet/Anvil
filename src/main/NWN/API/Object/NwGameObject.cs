@@ -32,7 +32,19 @@ namespace NWN.API
     public virtual Location Location
     {
       get => NWScript.GetLocation(this);
-      set => throw new NotSupportedException();
+      set
+      {
+        if (value.Area != Area)
+        {
+          AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        }
+        else
+        {
+          Position = value.Position;
+        }
+
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>
@@ -508,5 +520,7 @@ namespace NWN.API
     }
 
     public abstract byte[] Serialize();
+
+    private protected abstract void AddToArea(CNWSArea area, float x, float y, float z);
   }
 }
