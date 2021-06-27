@@ -1446,6 +1446,24 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Instructs this creature to summon their familiar (wizard/sorcerer).<br/>
+    /// Does nothing if this creature has no familiar available.
+    /// </summary>
+    public void SummonFamiliar()
+    {
+      NWScript.SummonFamiliar(this);
+    }
+
+    /// <summary>
+    /// Instructs this creature to summon their animal companion.<br/>
+    /// Does nothing if this creature has no animal companion available.
+    /// </summary>
+    public void SummonAnimalCompanion()
+    {
+      NWScript.SummonAnimalCompanion(this);
+    }
+
+    /// <summary>
     /// Instructs this creature to approach and unlock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to unlock.</param>
@@ -1852,6 +1870,16 @@ namespace NWN.API
     public bool SetTileExplored(NwArea area, int x, int y, bool newState)
     {
       return NWScript.SetTileExplored(this, area, x, y, newState.ToInt()).ToBool();
+    }
+
+    /// <summary>
+    /// Performs a spell resistance check between this creature, and the specified target object.
+    /// </summary>
+    /// <param name="target">The target of the spell.</param>
+    /// <returns>A result indicating if the spell was resisted by the target.</returns>
+    public ResistSpellResult CheckResistSpell(NwGameObject target)
+    {
+      return (ResistSpellResult)NWScript.ResistSpell(this, target);
     }
 
     /// <summary>

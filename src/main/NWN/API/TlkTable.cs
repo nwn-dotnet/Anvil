@@ -1,3 +1,4 @@
+using NWN.Core;
 using NWN.Native.API;
 
 namespace NWN.API
@@ -14,7 +15,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the value of customTokenNumber.
+    /// Gets the value of the specified token.
     /// </summary>
     /// <param name="tokenNumber">The token number to query.</param>
     /// <returns>The string representation of the token value.</returns>
@@ -33,6 +34,27 @@ namespace NWN.API
 
       CExoString retVal = tokenArray[index].m_sValue;
       return retVal.ToString();
+    }
+
+    /// <summary>
+    /// Sets the value of the specified token.<br/>
+    /// </summary>
+    /// <remarks>
+    /// Custom tokens 0-9 are used by BioWare and should not be used.<br/>
+    /// There is a risk if you reuse components that they will have scripts that set the same custom tokens as you set.<br/>
+    /// To avoid this, set your custom tokens right before your conversations (do not create new tokens within a conversation, create them all at the beginning of the conversation).<br/>
+    /// To use a custom token, place &lt;CUSTOMxxxx&gt; somewhere in your conversation, where xxxx is the value supplied for nCustomTokenNumber. &lt;CUSTOM100&gt; for example.
+    /// </remarks>
+    /// <param name="tokenNumber">The token number to query.</param>
+    /// <param name="tokenValue">The new string representation of the token value.</param>
+    public void SetCustomToken(uint tokenNumber, string tokenValue)
+    {
+      NWScript.SetCustomToken((int)tokenNumber, tokenValue);
+    }
+
+    public string GetSimpleString(uint strRef)
+    {
+      return tlkTable.GetSimpleString(strRef).ToString();
     }
 
     private int BinarySearch(CTlkTableTokenCustomArray array, int index, int length, CTlkTableTokenCustom value)
@@ -61,11 +83,6 @@ namespace NWN.API
       }
 
       return ~low;
-    }
-
-    public string GetSimpleString(uint strRef)
-    {
-      return tlkTable.GetSimpleString(strRef).ToString();
     }
   }
 }
