@@ -380,30 +380,13 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets this creature's base save value for the specified saving throw.
-    /// </summary>
-    /// <param name="savingThrow">The type of saving throw.</param>
-    /// <returns>The creature's base saving throw value.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">If savingThrow is not Fortitude, Reflex, or Will.</exception>
-    public int GetBaseSavingThrow(SavingThrow savingThrow)
-    {
-      return savingThrow switch
-      {
-        SavingThrow.Fortitude => NWScript.GetFortitudeSavingThrow(this),
-        SavingThrow.Reflex => NWScript.GetReflexSavingThrow(this),
-        SavingThrow.Will => NWScript.GetWillSavingThrow(this),
-        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
-      };
-    }
-
-    /// <summary>
     /// Performs a saving throw against the given dc.
     /// </summary>
     /// <param name="savingThrow">The type of saving throw to make (Fortitude/Reflex/Will).</param>
     /// <param name="dc">Difficulty class.</param>
     /// <param name="saveType">The sub-type of this save (Mind effect, etc).</param>
     /// <param name="saveVs">The creature this object is making the save against.</param>
-    /// <exception cref="ArgumentOutOfRangeException">If savingThrow is not Fortitude, Reflex, or Will.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
     /// <returns>The result of the saving throw.</returns>
     public SavingThrowResult RollSavingThrow(SavingThrow savingThrow, int dc, SavingThrowType saveType, NwGameObject saveVs = null)
     {

@@ -25,13 +25,13 @@ namespace NWN.API
 
     public static CExoString ToExoString(this string str)
     {
-      return new CExoString(str);
+      return str != null ? new CExoString(str) : new CExoString();
     }
 
     public static CExoLocString ToExoLocString(this string str, int nId = 0, byte gender = 0)
     {
       CExoLocString locString = new CExoLocString();
-      locString.AddString(nId, new CExoString(str), gender);
+      locString.AddString(nId, str != null ? new CExoString(str) : new CExoString(), gender);
       return locString;
     }
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
+using SavingThrow = NWN.API.Constants.SavingThrow;
 
 namespace NWN.API
 {
@@ -112,6 +113,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the dialog ResRef for this placeable.
+    /// </summary>
+    public string DialogResRef
+    {
+      get => Placeable.GetDialogResref().ToString();
+      set => Placeable.m_cDialog = new CResRef(value);
+    }
+
+    /// <summary>
     /// Moves the specified item/item stack to this placeable's inventory.
     /// </summary>
     /// <param name="item">The item to add.</param>
@@ -182,6 +192,47 @@ namespace NWN.API
 
       void* pItem = item.Item;
       Placeable.AcquireItem(&pItem, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
+    }
+
+    /// <summary>
+    /// Gets this placeable's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns>The creature's base saving throw value.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public int GetBaseSavingThrow(SavingThrow savingThrow)
+    {
+      return savingThrow switch
+      {
+        SavingThrow.Fortitude => unchecked((sbyte)Placeable.m_nFortSave),
+        SavingThrow.Reflex => unchecked((sbyte)Placeable.m_nReflexSave),
+        SavingThrow.Will => unchecked((sbyte)Placeable.m_nWillSave),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
+    }
+
+    /// <summary>
+    /// Sets this placeable's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <param name="newValue">The new base saving throw.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public void SetBaseSavingThrow(SavingThrow savingThrow, sbyte newValue)
+    {
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          Placeable.m_nFortSave = unchecked((byte)newValue);
+          break;
+        case SavingThrow.Reflex:
+          Placeable.m_nReflexSave = unchecked((byte)newValue);
+          break;
+        case SavingThrow.Will:
+          Placeable.m_nWillSave = unchecked((byte)newValue);
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
     }
 
     public override byte[] Serialize()

@@ -115,10 +115,10 @@ namespace NWN.API
     /// Removes the known spell at the specified level with the specified index, as returned by <see cref="GetKnownSpells"/>.
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
-    /// <param name="index">The index of the spell to remove.</param>
-    public void RemoveKnownSpellAt(byte spellLevel, int index)
+    /// <param name="spell">The spell to remove.</param>
+    public void RemoveKnownSpell(byte spellLevel, Spell spell)
     {
-      classInfo.RemoveKnownSpell(spellLevel, (uint)index);
+      classInfo.RemoveKnownSpell(spellLevel, (uint)spell);
     }
 
     /// <summary>

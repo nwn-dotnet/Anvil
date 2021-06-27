@@ -301,6 +301,29 @@ namespace NWN.API.Events
       {
         get => Door;
       }
+
+      /// <summary>
+      /// Sets the graphic shown when a PC moves between two different areas in a module.
+      /// </summary>
+      /// <param name="transition">The transition to use.</param>
+      public void SetAreaTransitionBMP(AreaTransition transition)
+      {
+        if (transition == AreaTransition.UserDefined)
+        {
+          throw new ArgumentOutOfRangeException(nameof(transition), "Use the string overload instead if wanting to use a user defined transition.");
+        }
+
+        NWScript.SetAreaTransitionBMP((int)transition);
+      }
+
+      /// <summary>
+      /// Sets the graphic shown when a PC moves between two different areas in a module.
+      /// </summary>
+      /// <param name="transition">The file name (.bmp) to use for the area transition bitmap.</param>
+      public void SetAreaTransitionBMP(string transition)
+      {
+        NWScript.SetAreaTransitionBMP((int)AreaTransition.UserDefined, transition);
+      }
     }
 
     [GameEvent(EventScriptType.DoorOnDialogue)]

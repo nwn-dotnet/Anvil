@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
+using SavingThrow = NWN.API.Constants.SavingThrow;
 
 namespace NWN.API
 {
@@ -51,6 +52,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the dialog ResRef for this door.
+    /// </summary>
+    public string DialogResRef
+    {
+      get => Door.GetDialogResref().ToString();
+      set => Door.m_cDialog = new CResRef(value);
+    }
+
+    /// <summary>
     /// Opens this door.
     /// </summary>
     public async Task Open()
@@ -76,6 +86,47 @@ namespace NWN.API
     public bool IsDoorActionPossible(DoorAction action)
     {
       return NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
+    }
+
+    /// <summary>
+    /// Gets this door's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns>The creature's base saving throw value.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public int GetBaseSavingThrow(SavingThrow savingThrow)
+    {
+      return savingThrow switch
+      {
+        SavingThrow.Fortitude => unchecked((sbyte)Door.m_nFortitudeSave),
+        SavingThrow.Reflex => unchecked((sbyte)Door.m_nReflexSave),
+        SavingThrow.Will => unchecked((sbyte)Door.m_nWillSave),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
+    }
+
+    /// <summary>
+    /// Sets this door's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <param name="newValue">The new base saving throw.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public void SetBaseSavingThrow(SavingThrow savingThrow, sbyte newValue)
+    {
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          Door.m_nFortitudeSave = unchecked((byte)newValue);
+          break;
+        case SavingThrow.Reflex:
+          Door.m_nReflexSave = unchecked((byte)newValue);
+          break;
+        case SavingThrow.Will:
+          Door.m_nWillSave = unchecked((byte)newValue);
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
     }
 
     public override byte[] Serialize()

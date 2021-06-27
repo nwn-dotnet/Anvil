@@ -20,6 +20,7 @@ using InventorySlot = NWN.API.Constants.InventorySlot;
 using MovementRate = NWN.API.Constants.MovementRate;
 using ObjectType = NWN.Native.API.ObjectType;
 using RacialType = NWN.API.Constants.RacialType;
+using SavingThrow = NWN.API.Constants.SavingThrow;
 using Skill = NWN.API.Constants.Skill;
 
 namespace NWN.API
@@ -218,8 +219,17 @@ namespace NWN.API
     /// </summary>
     public sbyte BaseAC
     {
-      get => (sbyte)Creature.m_pStats.m_nACNaturalBase;
-      set => Creature.m_pStats.m_nACNaturalBase = (char)value;
+      get => unchecked((sbyte)Creature.m_pStats.m_nACNaturalBase);
+      set => Creature.m_pStats.m_nACNaturalBase = unchecked((byte)value);
+    }
+
+    /// <summary>
+    /// Gets or sets the dialog ResRef for this creature.
+    /// </summary>
+    public string DialogResRef
+    {
+      get => Creature.GetDialogResref().ToString();
+      set => Creature.m_pStats.m_cDialog = new CResRef(value);
     }
 
     public sbyte ArmorCheckPenalty
@@ -271,15 +281,21 @@ namespace NWN.API
     /// </summary>
     public RacialType RacialType
     {
-      get => (RacialType)NWScript.GetRacialType(this);
+      get => (RacialType)Creature.m_pStats.m_nRace;
+      set => Creature.m_pStats.m_nRace = (ushort)value;
     }
 
     /// <summary>
-    /// Gets the gender of this creature.
+    /// Gets or sets the gender of this creature.
     /// </summary>
     public Gender Gender
     {
-      get => (Gender)NWScript.GetGender(this);
+      get => (Gender)Creature.m_pStats.m_nGender;
+      set
+      {
+        Creature.m_pStats.m_nGender = (byte)value;
+        Creature.m_cAppearance.m_nGender = (byte)value;
+      }
     }
 
     /// <summary>
@@ -340,11 +356,12 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the size of this creature.
+    /// Gets or sets the size of this creature.
     /// </summary>
     public CreatureSize Size
     {
-      get => (CreatureSize)NWScript.GetCreatureSize(this);
+      get => (CreatureSize)Creature.m_nCreatureSize;
+      set => Creature.m_nCreatureSize = (int)value;
     }
 
     /// <summary>
@@ -364,19 +381,21 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the original first name of this creature.
+    /// Gets or sets the original first name of this creature.
     /// </summary>
     public string OriginalFirstName
     {
       get => Creature.m_pStats.m_lsFirstName.ExtractLocString();
+      set => Creature.m_pStats.m_lsFirstName = value.ToExoLocString();
     }
 
     /// <summary>
-    /// Gets the original last name of this creature.
+    /// Gets or sets the original last name of this creature.
     /// </summary>
     public string OriginalLastName
     {
       get => Creature.m_pStats.m_lsLastName.ExtractLocString();
+      set => Creature.m_pStats.m_lsLastName = value.ToExoLocString();
     }
 
     /// <summary>
@@ -642,12 +661,13 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the spell resistance of this creature.<br/>
+    /// Gets or sets the spell resistance of this creature.<br/>
     /// Returns 0 if this creature has no spell resistance.
     /// </summary>
-    public int SpellResistance
+    public sbyte SpellResistance
     {
-      get => NWScript.GetSpellResistance(this);
+      get => unchecked((sbyte)Creature.m_pStats.GetSpellResistance());
+      set => Creature.m_pStats.SetSpellResistance(unchecked((byte)value));
     }
 
     /// <summary>
@@ -1426,6 +1446,24 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Instructs this creature to summon their familiar (wizard/sorcerer).<br/>
+    /// Does nothing if this creature has no familiar available.
+    /// </summary>
+    public void SummonFamiliar()
+    {
+      NWScript.SummonFamiliar(this);
+    }
+
+    /// <summary>
+    /// Instructs this creature to summon their animal companion.<br/>
+    /// Does nothing if this creature has no animal companion available.
+    /// </summary>
+    public void SummonAnimalCompanion()
+    {
+      NWScript.SummonAnimalCompanion(this);
+    }
+
+    /// <summary>
     /// Instructs this creature to approach and unlock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to unlock.</param>
@@ -1835,6 +1873,16 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Performs a spell resistance check between this creature, and the specified target object.
+    /// </summary>
+    /// <param name="target">The target of the spell.</param>
+    /// <returns>A result indicating if the spell was resisted by the target.</returns>
+    public ResistSpellResult CheckResistSpell(NwGameObject target)
+    {
+      return (ResistSpellResult)NWScript.ResistSpell(this, target);
+    }
+
+    /// <summary>
     /// Check whether this creature can damage the specified object using their current weapon/s.
     /// </summary>
     /// <param name="target">The object to test this creature's weapon against.</param>
@@ -2120,6 +2168,68 @@ namespace NWN.API
       return new CreatureLevelInfo(this, levelStats);
     }
 
+    /// <summary>
+    /// Gets the specified saving throw modifier for this creature.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns>The creature's base saving throw value.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public int GetSavingThrow(SavingThrow savingThrow)
+    {
+      return savingThrow switch
+      {
+        SavingThrow.Fortitude => NWScript.GetFortitudeSavingThrow(this),
+        SavingThrow.Reflex => NWScript.GetReflexSavingThrow(this),
+        SavingThrow.Will => NWScript.GetWillSavingThrow(this),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
+    }
+
+    /// <summary>
+    /// Gets this creature's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns>The creature's base saving throw value.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public int GetBaseSavingThrow(SavingThrow savingThrow)
+    {
+      return savingThrow switch
+      {
+        SavingThrow.Fortitude => unchecked((sbyte)Creature.m_pStats.GetBaseFortSavingThrow() + (sbyte)Creature.m_pStats.m_nFortSavingThrowMisc),
+        SavingThrow.Reflex => unchecked((sbyte)Creature.m_pStats.GetBaseReflexSavingThrow() + (sbyte)Creature.m_pStats.m_nReflexSavingThrowMisc),
+        SavingThrow.Will => unchecked((sbyte)Creature.m_pStats.GetBaseWillSavingThrow() + (sbyte)Creature.m_pStats.m_nWillSavingThrowMisc),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
+    }
+
+    /// <summary>
+    /// Sets this creatures's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <param name="newValue">The new base saving throw.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public void SetBaseSavingThrow(SavingThrow savingThrow, sbyte newValue)
+    {
+      sbyte baseSave;
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseFortSavingThrow());
+          Creature.m_pStats.m_nFortSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          break;
+        case SavingThrow.Reflex:
+          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseReflexSavingThrow());
+          Creature.m_pStats.m_nReflexSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          break;
+        case SavingThrow.Will:
+          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseWillSavingThrow());
+          Creature.m_pStats.m_nWillSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
+    }
+
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
     {
       if (item == null)
@@ -2306,6 +2416,27 @@ namespace NWN.API
 
       VirtualMachine.Instance.CurrentRunningEvent = previousScriptEvent;
       return retVal;
+    }
+
+    /// <summary>
+    /// Gets the creature's highest attack bonus based on its own stats.<br/>
+    /// AB vs. Type and +AB on Gauntlets are excluded.
+    /// </summary>
+    /// <param name="isMelee">TRUE: Get Melee/Unarmed Attack Bonus, FALSE: Get Ranged Attack Bonus</param>
+    /// <param name="isTouchAttack">If the attack was a touch attack.</param>
+    /// <param name="isOffHand">If the attack was a touch attack.</param>
+    /// <param name="includeBaseAttackBonus">If the attack was with the offhand.</param>
+    /// <returns>The highest attack bonus.</returns>
+    public int GetAttackBonus(bool isMelee = false, bool isTouchAttack = false, bool isOffHand = false, bool includeBaseAttackBonus = true)
+    {
+      if (isMelee)
+      {
+        return Creature.m_pStats.GetMeleeAttackBonus(isOffHand.ToInt(), includeBaseAttackBonus.ToInt(), isTouchAttack.ToInt());
+      }
+      else
+      {
+        return Creature.m_pStats.GetRangedAttackBonus(includeBaseAttackBonus.ToInt(), isTouchAttack.ToInt());
+      }
     }
 
     private PlayerQuickBarButton InternalGetQuickBarButton(byte index)

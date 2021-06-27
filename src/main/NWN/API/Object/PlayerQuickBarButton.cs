@@ -39,7 +39,7 @@ namespace NWN.API
       SecondaryItem = button.m_oidSecondaryItem.ToNwObject();
       ObjectType = (QuickBarButtonType)button.m_nObjectType;
       MultiClass = button.m_nMultiClass;
-      ResRef = button.m_cResRef.ToString();
+      ResRef = button.m_cResRef?.ToString();
       CommandLabel = button.m_sCommandLabel.ToString();
       CommandLine = button.m_sCommandLine.ToString();
       ToolTip = button.m_sToolTip.ToString();
@@ -56,7 +56,7 @@ namespace NWN.API
       button.m_oidSecondaryItem = SecondaryItem;
       button.m_nObjectType = (byte)ObjectType;
       button.m_nMultiClass = button.m_nMultiClass;
-      button.m_cResRef = new CResRef(ResRef.GetFixedLengthString(16));
+      button.m_cResRef = ResRef != null ? new CResRef(ResRef.GetFixedLengthString(16)) : new CResRef();
       button.m_sCommandLabel = CommandLabel.ToExoString();
       button.m_sCommandLine = CommandLine.ToExoString();
       button.m_sToolTip = ToolTip.ToExoString();
