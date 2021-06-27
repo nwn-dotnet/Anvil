@@ -223,6 +223,15 @@ namespace NWN.API
       set => Creature.m_pStats.m_nACNaturalBase = unchecked((byte)value);
     }
 
+    /// <summary>
+    /// Gets or sets the dialog ResRef for this creature.
+    /// </summary>
+    public string DialogResRef
+    {
+      get => Creature.GetDialogResref().ToString();
+      set => Creature.m_pStats.m_cDialog = new CResRef(value);
+    }
+
     public sbyte ArmorCheckPenalty
     {
       get => (sbyte)Creature.m_pStats.m_nArmorCheckPenalty;

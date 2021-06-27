@@ -113,6 +113,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the dialog ResRef for this placeable.
+    /// </summary>
+    public string DialogResRef
+    {
+      get => Placeable.GetDialogResref().ToString();
+      set => Placeable.m_cDialog = new CResRef(value);
+    }
+
+    /// <summary>
     /// Moves the specified item/item stack to this placeable's inventory.
     /// </summary>
     /// <param name="item">The item to add.</param>

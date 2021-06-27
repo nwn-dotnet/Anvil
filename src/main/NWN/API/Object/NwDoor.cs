@@ -52,6 +52,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets or sets the dialog ResRef for this door.
+    /// </summary>
+    public string DialogResRef
+    {
+      get => Door.GetDialogResref().ToString();
+      set => Door.m_cDialog = new CResRef(value);
+    }
+
+    /// <summary>
     /// Opens this door.
     /// </summary>
     public async Task Open()
