@@ -10,9 +10,9 @@ namespace NWN.API
   {
     internal Effect(IntPtr handle, CGameEffect effect) : base(handle, effect) {}
 
-    public static implicit operator IntPtr(Effect effect)
+    protected override int StructureId
     {
-      return effect.Handle;
+      get => NWScript.ENGINE_STRUCTURE_EFFECT;
     }
 
     public static implicit operator Effect(IntPtr intPtr)
@@ -23,11 +23,6 @@ namespace NWN.API
     public static explicit operator Effect(ItemProperty itemProperty)
     {
       return new Effect(itemProperty, itemProperty);
-    }
-
-    private protected override void ReleaseUnmanagedResources()
-    {
-      VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_EFFECT, Handle);
     }
 
     /// <summary>
