@@ -661,12 +661,13 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the spell resistance of this creature.<br/>
+    /// Gets or sets the spell resistance of this creature.<br/>
     /// Returns 0 if this creature has no spell resistance.
     /// </summary>
-    public int SpellResistance
+    public sbyte SpellResistance
     {
-      get => NWScript.GetSpellResistance(this);
+      get => unchecked((sbyte)Creature.m_pStats.GetSpellResistance());
+      set => Creature.m_pStats.SetSpellResistance(unchecked((byte)value));
     }
 
     /// <summary>
