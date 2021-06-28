@@ -109,8 +109,26 @@ namespace NWN.API
     {
       set
       {
+        if (Position == value)
+        {
+          return;
+        }
+
         base.Position = value;
+        Creature.m_pcPathfindInformation.Initialize();
         Creature.UpdateSubareasOnJumpPosition(value.ToNativeVector(), Area);
+
+        if (Commandable)
+        {
+          BlockActionQueue();
+        }
+
+        async void BlockActionQueue()
+        {
+          Commandable = false;
+          await NwTask.Delay(TimeSpan.FromSeconds(0.5f));
+          Commandable = true;
+        }
       }
     }
 
