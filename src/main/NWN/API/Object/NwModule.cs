@@ -313,5 +313,30 @@ namespace NWN.API
         return retVal;
       }
     }
+
+    /// <summary>
+    /// Sets up a SQL Query for this module.<br/>
+    /// This will NOT run the query; only make it available for parameter binding.<br/>
+    /// To run the query, you need to call <see cref="SQLQuery.Execute"/> even if you do not expect result data.<br/>
+    /// </summary>
+    /// <param name="query">The query to be prepared.</param>
+    /// <returns>A <see cref="SQLQuery"/> object.</returns>
+    public SQLQuery PrepareSQLQuery(string query)
+    {
+      return NWScript.SqlPrepareQueryObject(this, query);
+    }
+
+    /// <summary>
+    /// Sets up a SQL Query for the specified campaign database.<br/>
+    /// This will NOT run the query; only make it available for parameter binding.<br/>
+    /// To run the query, you need to call <see cref="SQLQuery.Execute"/> even if you do not expect result data.<br/>
+    /// </summary>
+    /// <param name="database">The database to be queried.</param>
+    /// <param name="query">The query to be prepared.</param>
+    /// <returns>A <see cref="SQLQuery"/> object.</returns>
+    public SQLQuery PrepareCampaignSQLQuery(string database, string query)
+    {
+      return NWScript.SqlPrepareQueryCampaign(database, query);
+    }
   }
 }

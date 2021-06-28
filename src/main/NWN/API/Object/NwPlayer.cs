@@ -1135,5 +1135,27 @@ namespace NWN.API
         break;
       }
     }
+
+    /// <summary>
+    /// Sets up a SQL Query for this player.<br/>
+    /// This will NOT run the query; only make it available for parameter binding.<br/>
+    /// To run the query, you need to call <see cref="SQLQuery.Execute"/> even if you do not expect result data.<br/>
+    /// </summary>
+    /// <param name="query">The query to be prepared.</param>
+    /// <returns>A <see cref="SQLQuery"/> object.</returns>
+    public SQLQuery PrepareSQLQuery(string query)
+    {
+      return NWScript.SqlPrepareQueryObject(ControlledCreature, query);
+    }
+
+    /// <summary>
+    /// Immediately destroys the database attached to this player, clearing out all data and schema.<br/>
+    /// This operation is _immediate_ and _irreversible_, even when inside a transaction or running query.<br/>
+    /// Existing active/prepared sqlqueries will remain functional, but any references to stored data or schema members will be invalidated.
+    /// </summary>
+    public void DestroySQLDatabase()
+    {
+      NWScript.SqlDestroyDatabase(ControlledCreature);
+    }
   }
 }

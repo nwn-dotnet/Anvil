@@ -1,3 +1,4 @@
+using System;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -50,6 +51,29 @@ namespace NWN.API
     public void SetCustomToken(uint tokenNumber, string tokenValue)
     {
       NWScript.SetCustomToken((int)tokenNumber, tokenValue);
+    }
+
+    /// <summary>
+    /// Overrides the specified strref to return a dfferent value instead of what is in the TLK file.
+    /// </summary>
+    /// <param name="strRef">The strref to override.</param>
+    /// <param name="value">The override value.</param>
+    /// <exception cref="ArgumentException">Thrown if value is an empty string or null. Use <see cref="ClearTlkOverride"/> to clear overrides.</exception>
+    public void SetTlkOverride(uint strRef, string value)
+    {
+      if (string.IsNullOrEmpty(value))
+      {
+        throw new ArgumentException("New value must not be null or empty.", nameof(value));
+      }
+    }
+
+    /// <summary>
+    /// Clears the specified TLK override.
+    /// </summary>
+    /// <param name="strRef">The strref to restore to default.</param>
+    public void ClearTlkOverride(uint strRef)
+    {
+      NWScript.SetTlkOverride((int)strRef);
     }
 
     public string GetSimpleString(uint strRef)

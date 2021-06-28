@@ -18,6 +18,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets a printable debug state of this solver, which may help you debug complex systems.
+    /// </summary>
+    public string DebugState
+    {
+      get => NWScript.CassowaryDebug(this);
+    }
+
+    /// <summary>
     /// Adds a constraint to the system.<br/>
     /// You cannot multiply or divide variables and expressions with each other.<br/>
     /// Doing so will result in a error when attempting to add the constraint.<br/>
