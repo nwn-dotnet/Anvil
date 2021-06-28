@@ -1,7 +1,7 @@
 using System;
 using NWN.Core;
 
-namespace NWN.API.EngineStructures
+namespace NWN.API
 {
   /// <summary>
   /// Represents a pointer-type VM structure.

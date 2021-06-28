@@ -1,6 +1,5 @@
 using System;
 using NWN.API.Constants;
-using NWN.API.EngineStructures;
 using NWN.Native.API;
 
 namespace NWN.API

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using NWN.API.Constants;
-using NWN.API.EngineStructures;
 using NWN.Core;
 
 namespace NWN.API

@@ -1,5 +1,4 @@
 using System;
-using NWN.API.EngineStructures;
 using NWN.Core;
 
 namespace NWN.API.Events
