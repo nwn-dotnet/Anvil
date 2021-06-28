@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -41,6 +42,20 @@ namespace NWN.API
     {
       get => NWScript.GetStoreMaxBuyPrice(this);
       set => NWScript.SetStoreMaxBuyPrice(this, value);
+    }
+
+    /// <summary>
+    /// Gets all items belonging to this store's inventory.
+    /// </summary>
+    public IEnumerable<NwItem> Items
+    {
+      get
+      {
+        for (uint item = NWScript.GetFirstItemInInventory(this); item != Invalid; item = NWScript.GetNextItemInInventory(this))
+        {
+          yield return item.ToNwObject<NwItem>();
+        }
+      }
     }
 
     /// <summary>

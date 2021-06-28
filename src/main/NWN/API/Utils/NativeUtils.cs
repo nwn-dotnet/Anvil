@@ -18,9 +18,19 @@ namespace NWN.API
       return new Vector(vector.X, vector.Y, vector.Z);
     }
 
+    public static Vector ToNativeVector(this Color color)
+    {
+      return new Vector(color.Red, color.Green, color.Blue);
+    }
+
     public static Vector3 ToManagedVector(this Vector vector)
     {
       return Marshal.PtrToStructure<Vector3>(vector.Pointer);
+    }
+
+    public static Color ToColor(this Vector vector)
+    {
+      return new Color(vector.x, vector.y, vector.z);
     }
 
     public static CExoString ToExoString(this string str)

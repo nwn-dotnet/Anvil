@@ -134,26 +134,21 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Sets the highlight color of this object.
+    /// Gets or sets the highlight color of this object.
     /// </summary>
-    public Color HiliteColor
+    public Color HighlightColor
     {
+      get => GameObject.m_vHiliteColor.ToColor();
       set => NWScript.SetObjectHiliteColor(this, value.ToInt());
     }
 
     /// <summary>
-    /// Gets all items belonging to this object's inventory.
+    /// Gets or sets the mouse cursor for this object.
     /// </summary>
-    [Obsolete("Use Inventory.Items instead.")]
-    public IEnumerable<NwItem> Items
+    public MouseCursor MouseCursor
     {
-      get
-      {
-        for (uint item = NWScript.GetFirstItemInInventory(this); item != Invalid; item = NWScript.GetNextItemInInventory(this))
-        {
-          yield return item.ToNwObject<NwItem>();
-        }
-      }
+      get => (MouseCursor)GameObject.m_nMouseCursor;
+      set => NWScript.SetObjectMouseCursor(this, (int)value);
     }
 
     public override Guid? PeekUUID()
