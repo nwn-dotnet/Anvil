@@ -32,6 +32,11 @@ namespace NWN.API.Events
       /// </summary>
       public NwGameObject AcquiredFrom { get; } = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
 
+      /// <summary>
+      /// Gets the number of items in the item stack that were just acquired.
+      /// </summary>
+      public int AmountAcquired { get; } = NWScript.GetModuleItemAcquiredStackSize();
+
       NwObject IEvent.Context
       {
         get => AcquiredBy;

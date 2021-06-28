@@ -362,9 +362,19 @@ namespace NWN.API
     /// </summary>
     /// <param name="property">The item property to test for uses remaining.</param>
     /// <returns>The number of uses per day remaining for the specified item property, or 0 if this item property is not uses/day, or belongs to a different item.</returns>
-    public int UsesPerDayRemaining(ItemProperty property)
+    public int GetUsesPerDayRemaining(ItemProperty property)
     {
       return NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
+    }
+
+    /// <summary>
+    /// Sets the number of uses per day remaining for the specified item property on this item.
+    /// </summary>
+    /// <param name="property">The item property to be adjusted.</param>
+    /// <param name="numUses">The new number of uses per day remaining for the specified item property.</param>
+    public void SetUsesPerDayRemaining(ItemProperty property, int numUses)
+    {
+      NWScript.SetItemPropertyUsesPerDayRemaining(this, property, numUses);
     }
 
     public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -382,6 +383,24 @@ namespace NWN.API
           yield return obj;
         }
       }
+    }
+
+    /// <summary>
+    /// Sets the detailed wind data for this area.
+    /// </summary>
+    /// <remarks>
+    /// The predefined values in the toolset are:<br/>
+    /// NONE:  direction=(1.0, 1.0, 0.0), magnitude=0.0, yaw=0.0,   pitch=0.0<br/>
+    /// LIGHT: direction=(1.0, 1.0, 0.0), magnitude=1.0, yaw=100.0, pitch=3.0<br/>
+    /// HEAVY: direction=(1.0, 1.0, 0.0), magnitude=2.0, yaw=150.0, pitch=5.0
+    /// </remarks>
+    /// <param name="direction">The direction of the wind.</param>
+    /// <param name="magnitude">The magnitude/intensity of the wind.</param>
+    /// <param name="yaw">The yaw value of the wind.</param>
+    /// <param name="pitch">The pitch value of the wind.</param>
+    public void SetAreaWind(Vector3 direction, float magnitude, float yaw, float pitch)
+    {
+      NWScript.SetAreaWind(this, direction, magnitude, yaw, pitch);
     }
 
     public byte[] SerializeGIT(ObjectTypes objectFilter = ObjectTypes.All, ICollection<NwGameObject> exclusionList = null, bool exportVarTable = true, bool exportUUID = true, string resRef = null)

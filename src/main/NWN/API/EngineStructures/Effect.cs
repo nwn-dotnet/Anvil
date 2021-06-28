@@ -58,6 +58,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the caster level of this effect.
+    /// </summary>
+    public int CasterLevel
+    {
+      get => NWScript.GetEffectCasterLevel(this);
+    }
+
+    /// <summary>
     /// Gets or sets the tag for this effect.
     /// </summary>
     public string Tag

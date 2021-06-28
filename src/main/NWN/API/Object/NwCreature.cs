@@ -272,6 +272,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Gets the last trap detected by this creature.
+    /// </summary>
+    public NwTrappable LastTrapDetected
+    {
+      get => NWScript.GetLastTrapDetected(this).ToNwObject<NwTrappable>();
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
     public bool IsDead
@@ -1472,6 +1480,15 @@ namespace NWN.API
     public void SummonAnimalCompanion()
     {
       NWScript.SummonAnimalCompanion(this);
+    }
+
+    /// <summary>
+    /// Instructs this creature to unpossess their familiar.<br/>
+    /// This function can be run on the player creature, or the possessed familiar.
+    /// </summary>
+    public void UnpossessFamiliar()
+    {
+      NWScript.UnpossessFamiliar(this);
     }
 
     /// <summary>
