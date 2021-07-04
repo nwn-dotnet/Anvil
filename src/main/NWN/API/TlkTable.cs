@@ -61,6 +61,8 @@ namespace NWN.API
       {
         throw new ArgumentException("New value must not be null or empty.", nameof(value));
       }
+
+      tlkTable.SetOverride(strRef, value.ToExoString());
     }
 
     /// <summary>
