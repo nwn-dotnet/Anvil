@@ -256,6 +256,14 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Sets the camera height for this player.
+    /// </summary>
+    public float CameraHeight
+    {
+      set => NWScript.SetCameraHeight(ControlledCreature, value);
+    }
+
+    /// <summary>
     /// Gets or sets the location that this player will spawn at when logging in to the server.
     /// </summary>
     public Location SpawnLocation
