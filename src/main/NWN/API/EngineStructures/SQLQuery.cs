@@ -38,7 +38,8 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the result of this query.
+    /// Gets the result of this query.<br/>
+    /// NOTE: If <see cref="Results"/> have been enumerated, this will be the last enumerated value.
     /// </summary>
     public SQLResult Result
     {
@@ -50,7 +51,8 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the results of this query.
+    /// Gets the results of this query.<br/>
+    /// NOTE: Results can only be enumerated once. Be careful with usage of LINQ extensions and loops.
     /// </summary>
     public IEnumerable<SQLResult> Results
     {
