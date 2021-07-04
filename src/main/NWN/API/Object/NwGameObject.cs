@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
@@ -500,6 +501,76 @@ namespace NWN.API
     public void RemoveEffect(Effect effect)
     {
       NWScript.RemoveEffect(this, effect);
+    }
+
+    /// <summary>
+    /// Replaces the specified texture with a new texture on this object only.
+    /// </summary>
+    /// <param name="texture">The texture to be replaced.</param>
+    /// <param name="newTexture">The replacement texture.</param>
+    public void ReplaceObjectTexture(string texture, string newTexture)
+    {
+      NWScript.ReplaceObjectTexture(this, texture, newTexture);
+    }
+
+    /// <summary>
+    /// Sets a material shader uniform override.
+    /// </summary>
+    /// <param name="material">The material on the object to modify.</param>
+    /// <param name="param">The parameter to override.</param>
+    /// <param name="value">The new parameter value.</param>
+    public void SetMaterialShaderUniform(string material, string param, int value)
+    {
+      NWScript.SetMaterialShaderUniformInt(this, material, param, value);
+    }
+
+    /// <summary>
+    /// Sets a material shader uniform override.
+    /// </summary>
+    /// <param name="material">The material on the object to modify.</param>
+    /// <param name="param">The parameter to override.</param>
+    /// <param name="value">The new parameter value.</param>
+    public void SetMaterialShaderUniform(string material, string param, Vector4 value)
+    {
+      NWScript.SetMaterialShaderUniformVec4(this, material, param, value.X, value.Y, value.Z, value.W);
+    }
+
+    /// <summary>
+    /// Sets a material shader uniform override.
+    /// </summary>
+    /// <param name="material">The material on the object to modify.</param>
+    /// <param name="param">The parameter to override.</param>
+    /// <param name="value">The new parameter value.</param>
+    public void SetMaterialShaderUniform(string material, string param, float value)
+    {
+      NWScript.SetMaterialShaderUniformVec4(this, material, param, value);
+    }
+
+    /// <summary>
+    /// Resets all material shader parameter overrides on this object.
+    /// </summary>
+    public void ResetMaterialShaderUniforms()
+    {
+      NWScript.ResetMaterialShaderUniforms(this);
+    }
+
+    /// <summary>
+    /// Resets all material shader parameter overrides for the specified material on this object.
+    /// <param name="material">The material on the object to be reset.</param>
+    /// </summary>
+    public void ResetMaterialShaderUniforms(string material)
+    {
+      NWScript.ResetMaterialShaderUniforms(this, material);
+    }
+
+    /// <summary>
+    /// Resets the specified material shader parameter override for the specified material.
+    /// <param name="material">The material on the object to be reset.</param>
+    /// <param name="param">The parameter override to reset.</param>
+    /// </summary>
+    public void ResetMaterialShaderUniforms(string material, string param)
+    {
+      NWScript.ResetMaterialShaderUniforms(this, material, param);
     }
 
     /// <summary>
