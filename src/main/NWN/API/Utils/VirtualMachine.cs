@@ -1,4 +1,3 @@
-using Anvil.Internal;
 using NLog;
 using NWN.API.Constants;
 using NWN.Core;

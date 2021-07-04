@@ -11,9 +11,9 @@ namespace NWN.API
 
     internal EffectParams(int count, Func<int, T> get, Action<int, T> set)
     {
+      Count = count;
       this.get = get;
       this.set = set;
-      this.Count = count;
     }
 
     /// <summary>
