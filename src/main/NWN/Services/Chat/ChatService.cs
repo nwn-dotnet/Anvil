@@ -26,8 +26,9 @@ namespace NWN.Services
 
     private bool customHearingDistances;
 
-    public ChatService(Lazy<EventService> eventService, HookService hookService)
+    public ChatService(Lazy<EventService> eventService, HookService hookService, VirtualMachine virtualMachine)
     {
+      this.virtualMachine = virtualMachine;
       this.eventService = eventService;
       sendServerToPlayerChatMessageHook = hookService.RequestHook<SendServerToPlayerChatMessageHook>(OnSendServerToPlayerChatMessage, FunctionsLinux._ZN11CNWSMessage29SendServerToPlayerChatMessageEhj10CExoStringjRKS0_, HookOrder.Late);
     }

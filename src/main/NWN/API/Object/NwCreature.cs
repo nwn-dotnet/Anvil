@@ -2437,12 +2437,12 @@ namespace NWN.API
 
       // The module unequip event runs instantly so we have to temporarily change the event script id of the calling script
       // otherwise GetCurrentlyRunningEvent() doesn't return the right id
-      EventScriptType previousScriptEvent = VirtualMachine.Instance.CurrentRunningEvent;
-      VirtualMachine.Instance.CurrentRunningEvent = EventScriptType.ModuleOnUnequipItem;
+      EventScriptType previousScriptEvent = VirtualMachine.CurrentRunningEvent;
+      VirtualMachine.CurrentRunningEvent = EventScriptType.ModuleOnUnequipItem;
 
       bool retVal = Creature.RunUnequip(item, Invalid, unchecked((byte)-1), unchecked((byte)-1), false.ToInt()).ToBool();
 
-      VirtualMachine.Instance.CurrentRunningEvent = previousScriptEvent;
+      VirtualMachine.CurrentRunningEvent = previousScriptEvent;
       return retVal;
     }
 

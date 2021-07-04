@@ -1,18 +1,19 @@
 using System;
 using NWN.Core;
 using NWN.Native.API;
+using NWN.Services;
 
 namespace NWN.API
 {
+  [ServiceBinding(typeof(TlkTable))]
+  [ServiceBindingOptions(BindingOrder.API)]
   public sealed class TlkTable
   {
-    public static readonly TlkTable Instance = new TlkTable(NWNXLib.TlkTable());
-
     private readonly CTlkTable tlkTable;
 
-    internal TlkTable(CTlkTable tlkTable)
+    internal TlkTable()
     {
-      this.tlkTable = tlkTable;
+      tlkTable = NWNXLib.TlkTable();
     }
 
     /// <summary>

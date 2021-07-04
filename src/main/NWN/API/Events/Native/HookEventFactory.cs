@@ -9,14 +9,17 @@ namespace NWN.API.Events
 
     protected static HookService HookService { get; private set; }
 
+    protected static VirtualMachine VirtualMachine { get; private set; }
+
     [ServiceBinding(typeof(APIBindings))]
     [ServiceBindingOptions(BindingOrder.API)]
     internal sealed class APIBindings
     {
-      public APIBindings(Lazy<EventService> eventService, HookService hookService)
+      public APIBindings(Lazy<EventService> eventService, HookService hookService, VirtualMachine virtualMachine)
       {
         EventService = eventService;
         HookService = hookService;
+        VirtualMachine = virtualMachine;
       }
     }
 
@@ -24,7 +27,7 @@ namespace NWN.API.Events
     {
       if (executeInScriptContext)
       {
-        VirtualMachine.Instance.ExecuteInScriptContext(() => { eventData = EventService.Value.ProcessEvent(eventData); }, eventData.Context);
+        VirtualMachine.ExecuteInScriptContext(() => { eventData = EventService.Value.ProcessEvent(eventData); }, eventData.Context);
       }
       else
       {

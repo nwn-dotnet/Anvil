@@ -59,7 +59,7 @@ namespace NWN.API.Events
 
         OnSpellCast eventData = null;
 
-        VirtualMachine.Instance.ExecuteInScriptContext(() =>
+        VirtualMachine.ExecuteInScriptContext(() =>
         {
           eventData = ProcessEvent(new OnSpellCast
           {

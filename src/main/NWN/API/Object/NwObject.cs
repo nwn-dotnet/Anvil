@@ -17,14 +17,17 @@ namespace NWN.API
 
     private protected static ResourceManager ResourceManager { get; private set; }
 
+    private protected static VirtualMachine VirtualMachine { get; private set; }
+
     [ServiceBinding(typeof(APIBindings))]
     [ServiceBindingOptions(BindingOrder.API)]
     internal sealed class APIBindings
     {
-      public APIBindings(EventService eventService, ResourceManager resourceManager)
+      public APIBindings(EventService eventService, ResourceManager resourceManager, VirtualMachine virtualMachine)
       {
         EventService = eventService;
         ResourceManager = resourceManager;
+        VirtualMachine = virtualMachine;
       }
     }
 
