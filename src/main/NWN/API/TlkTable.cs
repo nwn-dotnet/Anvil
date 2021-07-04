@@ -9,12 +9,7 @@ namespace NWN.API
   [ServiceBindingOptions(BindingOrder.API)]
   public sealed class TlkTable
   {
-    private readonly CTlkTable tlkTable;
-
-    internal TlkTable()
-    {
-      tlkTable = NWNXLib.TlkTable();
-    }
+    private readonly CTlkTable tlkTable = NWNXLib.TlkTable();
 
     /// <summary>
     /// Gets the value of the specified token.

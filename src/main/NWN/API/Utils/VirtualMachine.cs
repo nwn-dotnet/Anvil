@@ -17,12 +17,7 @@ namespace NWN.API
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly CVirtualMachine virtualMachine;
-
-    internal VirtualMachine()
-    {
-      virtualMachine = NWNXLib.VirtualMachine();
-    }
+    private readonly CVirtualMachine virtualMachine = NWNXLib.VirtualMachine();
 
     public uint InstructionsExecuted
     {
