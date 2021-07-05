@@ -95,7 +95,12 @@ namespace NWN.API
 
     private float GetValue(VisualTransformProperty property)
     {
-      return NWScript.GetObjectVisualTransform(gameObject, (int)property, true.ToInt());
+      if (activeLerpSettings != null)
+      {
+        return NWScript.GetObjectVisualTransform(gameObject, (int)property, (!activeLerpSettings.ReturnDestinationTransform).ToInt());
+      }
+
+      return NWScript.GetObjectVisualTransform(gameObject, (int)property, false.ToInt());
     }
 
     private void SetValue(VisualTransformProperty property, float value)
