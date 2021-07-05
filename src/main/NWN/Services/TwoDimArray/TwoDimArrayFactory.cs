@@ -14,8 +14,15 @@ namespace NWN.Services
   [ServiceBinding(typeof(TwoDimArrayFactory))]
   public sealed class TwoDimArrayFactory
   {
+    private readonly InjectionService injectionService;
+
     private readonly CTwoDimArrays twoDimArrays = NWNXLib.Rules().m_p2DArrays;
     private readonly Dictionary<string, ITwoDimArray> cache = new Dictionary<string, ITwoDimArray>();
+
+    public TwoDimArrayFactory(InjectionService injectionService)
+    {
+      this.injectionService = injectionService;
+    }
 
     /// <summary>
     /// Deserializes the given 2da using the specified format.
@@ -38,7 +45,7 @@ namespace NWN.Services
 
     private T Load2DAToCache<T>(string name) where T : ITwoDimArray, new()
     {
-      T new2da = new T();
+      T new2da = injectionService.Inject(new T());
 
       C2DA twoDimArray = twoDimArrays.GetCached2DA(name.ToExoString(), true.ToInt());
       if (twoDimArray == null)

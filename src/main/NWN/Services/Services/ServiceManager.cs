@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using JetBrains.Annotations;
 using LightInject;
 using NLog;
@@ -15,30 +13,27 @@ namespace NWN.Services
     [UsedImplicitly]
     private readonly ITypeLoader typeLoader;
 
-    private readonly IContainerBuilder containerBuilder;
+    private readonly IContainerFactory containerFactory;
     private readonly ServiceContainer serviceContainer;
 
-    public List<object> RegisteredServices { get; private set; }
-
-    internal ServiceManager(ITypeLoader typeLoader, IContainerBuilder containerBuilder)
+    internal ServiceManager(ITypeLoader typeLoader, IContainerFactory containerFactory)
     {
-      Log.Info($"Using \"{containerBuilder.GetType().FullName}\" to install service bindings.");
+      Log.Info($"Using \"{containerFactory.GetType().FullName}\" to install service bindings.");
 
       this.typeLoader = typeLoader;
-      this.containerBuilder = containerBuilder;
+      this.containerFactory = containerFactory;
 
-      serviceContainer = containerBuilder.Setup(typeLoader);
+      serviceContainer = containerFactory.Setup(typeLoader);
     }
 
     internal void RegisterCoreService<T>(T instance)
     {
-      containerBuilder.RegisterCoreService(instance);
+      containerFactory.RegisterCoreService(instance);
     }
 
     internal void Init()
     {
-      containerBuilder.BuildContainer();
-      RegisteredServices = serviceContainer.GetAllInstances<object>().ToList();
+      containerFactory.BuildContainer();
       NotifyInitComplete();
     }
 

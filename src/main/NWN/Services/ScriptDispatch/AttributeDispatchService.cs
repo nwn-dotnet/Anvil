@@ -11,20 +11,18 @@ namespace NWN.Services
   [ServiceBinding(typeof(IInitializable))]
   internal sealed class AttributeDispatchService : IScriptDispatcher, IInitializable
   {
-    private const int StartCapacity = 2000;
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+    private const int StartCapacity = 2000;
+
+    // All Services
+    [Inject]
+    private Lazy<IEnumerable<object>> Services { get; init; }
 
     private readonly Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(StartCapacity);
-    private readonly ServiceManager serviceManager;
-
-    public AttributeDispatchService(ServiceManager serviceManager)
-    {
-      this.serviceManager = serviceManager;
-    }
 
     void IInitializable.Init()
     {
-      foreach (object service in serviceManager.RegisteredServices)
+      foreach (object service in Services.Value)
       {
         RegisterServiceListeners(service);
       }
