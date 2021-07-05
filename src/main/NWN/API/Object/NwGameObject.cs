@@ -152,6 +152,20 @@ namespace NWN.API
       set => NWScript.SetObjectMouseCursor(this, (int)value);
     }
 
+    /// <summary>
+    /// Gets all effects (permanent and temporary) that are active on this game object.
+    /// </summary>
+    public IEnumerable<Effect> ActiveEffects
+    {
+      get
+      {
+        for (Effect effect = NWScript.GetFirstEffect(this); NWScript.GetIsEffectValid(effect) == true.ToInt(); effect = NWScript.GetNextEffect(this))
+        {
+          yield return effect;
+        }
+      }
+    }
+
     public override Guid? PeekUUID()
     {
       CNWSUUID uid = GameObject.m_pUUID;

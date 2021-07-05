@@ -857,20 +857,6 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets all effects (permanent and temporary) that are active on this creature.
-    /// </summary>
-    public IEnumerable<Effect> ActiveEffects
-    {
-      get
-      {
-        for (Effect effect = NWScript.GetFirstEffect(this); NWScript.GetIsEffectValid(effect) == true.ToInt(); effect = NWScript.GetNextEffect(this))
-        {
-          yield return effect;
-        }
-      }
-    }
-
-    /// <summary>
     /// Gets or sets this creature's Chaos (0) - Lawful (100) alignment value.
     /// </summary>
     public int LawChaosValue
