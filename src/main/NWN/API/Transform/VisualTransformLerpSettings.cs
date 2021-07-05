@@ -10,5 +10,7 @@ namespace NWN.API
     public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(2);
 
     public bool PauseWithGame { get; set; } = true;
+
+    public bool ReturnDestinationTransform { get; set; } = false;
   }
 }
