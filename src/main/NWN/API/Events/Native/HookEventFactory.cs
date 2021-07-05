@@ -5,23 +5,14 @@ namespace NWN.API.Events
 {
   public abstract class HookEventFactory
   {
+    [Inject]
     protected static Lazy<EventService> EventService { get; private set; }
 
+    [Inject]
     protected static HookService HookService { get; private set; }
 
+    [Inject]
     protected static VirtualMachine VirtualMachine { get; private set; }
-
-    [ServiceBinding(typeof(APIBindings))]
-    [ServiceBindingOptions(BindingOrder.API)]
-    internal sealed class APIBindings
-    {
-      public APIBindings(Lazy<EventService> eventService, HookService hookService, VirtualMachine virtualMachine)
-      {
-        EventService = eventService;
-        HookService = hookService;
-        VirtualMachine = virtualMachine;
-      }
-    }
 
     protected static TEvent ProcessEvent<TEvent>(TEvent eventData, bool executeInScriptContext = true) where TEvent : IEvent
     {

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using System.Reflection;
 using LightInject;
+using NWN.Plugins;
 
 namespace NWN.Services
 {
@@ -8,8 +10,13 @@ namespace NWN.Services
   [ServiceBindingOptions(BindingOrder.API)]
   public sealed class InjectionService
   {
-    [Inject]
-    private IServiceContainer Container { get; init; }
+    private readonly IServiceContainer container;
+
+    public InjectionService(IServiceContainer container, ITypeLoader typeLoader)
+    {
+      this.container = container;
+      InjectStaticProperties(typeLoader.LoadedTypes);
+    }
 
     /// <summary>
     /// Injects all properties with <see cref="InjectAttribute"/> in the specified object.
@@ -17,7 +24,6 @@ namespace NWN.Services
     /// <param name="instance">The instance to inject.</param>
     /// <typeparam name="T">The instance type.</typeparam>
     /// <returns>The instance with injected dependencies.</returns>
-    [Pure]
     public T Inject<T>(T instance)
     {
       if (EqualityComparer<T>.Default.Equals(instance, default))
@@ -25,8 +31,24 @@ namespace NWN.Services
         return default;
       }
 
-      Container.InjectProperties(instance);
+      container.InjectProperties(instance);
       return instance;
+    }
+
+    private void InjectStaticProperties(IEnumerable<Type> types)
+    {
+      InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.StaticOnly);
+
+      foreach (Type type in types)
+      {
+        List<PropertyInfo> injectableTypes = (List<PropertyInfo>)propertySelector.Execute(type);
+
+        foreach (PropertyInfo propertyInfo in injectableTypes)
+        {
+          object value = container.TryGetInstance(propertyInfo.PropertyType);
+          propertyInfo.SetValue(null, value);
+        }
+      }
     }
   }
 }

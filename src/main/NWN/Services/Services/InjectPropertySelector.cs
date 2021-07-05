@@ -5,9 +5,15 @@ using NWN.API;
 
 namespace NWN.Services
 {
-  public class InjectPropertySelector : PropertySelector
+  public sealed class InjectPropertySelector : PropertySelector
   {
+    private readonly InjectPropertyTypes propertyTypes;
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    public InjectPropertySelector(InjectPropertyTypes propertyTypes)
+    {
+      this.propertyTypes = propertyTypes;
+    }
 
     /// <summary>
     /// Determines if the <paramref name="propertyInfo"/> represents an injectable property.
@@ -16,15 +22,21 @@ namespace NWN.Services
     /// <returns><b>true</b> if the property is injectable, otherwise <b>false</b>.</returns>
     protected override bool IsInjectable(PropertyInfo propertyInfo)
     {
-      bool retVal = propertyInfo.SetMethod != null && propertyInfo.GetIndexParameters().Length == 0;
+      MethodInfo setMethod = propertyInfo.SetMethod;
+      bool isValid = setMethod != null && propertyInfo.GetIndexParameters().Length == 0;
       bool hasAttribute = propertyInfo.IsDefined(typeof(InjectAttribute), true);
 
-      if (!retVal && hasAttribute)
+      if (!isValid && hasAttribute)
       {
         Log.Error($"Cannot inject property \"{propertyInfo.GetFullName()}\" as it does not have set/init defined, or is an unsupported property type.");
       }
 
-      return retVal && hasAttribute;
+      return isValid && hasAttribute && IsValidPropertyType(setMethod);
+    }
+
+    private bool IsValidPropertyType(MethodBase setMethod)
+    {
+      return propertyTypes == InjectPropertyTypes.InstanceOnly && !setMethod.IsStatic || propertyTypes == InjectPropertyTypes.StaticOnly && setMethod.IsStatic;
     }
   }
 }

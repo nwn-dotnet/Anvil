@@ -13,23 +13,14 @@ namespace NWN.API
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   public abstract partial class NwObject : IEquatable<NwObject>
   {
+    [Inject]
     private protected static EventService EventService { get; private set; }
 
+    [Inject]
     private protected static ResourceManager ResourceManager { get; private set; }
 
+    [Inject]
     private protected static VirtualMachine VirtualMachine { get; private set; }
-
-    [ServiceBinding(typeof(APIBindings))]
-    [ServiceBindingOptions(BindingOrder.API)]
-    internal sealed class APIBindings
-    {
-      public APIBindings(EventService eventService, ResourceManager resourceManager, VirtualMachine virtualMachine)
-      {
-        EventService = eventService;
-        ResourceManager = resourceManager;
-        VirtualMachine = virtualMachine;
-      }
-    }
 
     internal const uint Invalid = NWScript.OBJECT_INVALID;
 

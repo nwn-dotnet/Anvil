@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Reflection;
 using LightInject;
 using NLog;
@@ -45,7 +44,7 @@ namespace NWN.Services
 
     private void SetupInjectPropertySelector()
     {
-      InjectPropertySelector propertySelector = new InjectPropertySelector();
+      InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
       ServiceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
     }
 
