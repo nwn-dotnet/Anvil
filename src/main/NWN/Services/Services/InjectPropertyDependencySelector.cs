@@ -7,8 +7,7 @@ using LightInject;
 namespace NWN.Services
 {
   /// <summary>
-  /// An <see cref="IPropertyDependencySelector"/> that uses the <see cref="InjectAttribute"/>
-  /// to determine which properties to inject dependencies.
+  /// An <see cref="IPropertyDependencySelector"/> that uses the <see cref="InjectAttribute"/> to determine which properties to inject service dependencies.
   /// </summary>
   internal sealed class InjectPropertyDependencySelector : PropertyDependencySelector
   {

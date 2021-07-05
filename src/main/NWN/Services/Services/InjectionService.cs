@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using LightInject;
 
@@ -19,6 +20,11 @@ namespace NWN.Services
     [Pure]
     public T Inject<T>(T instance)
     {
+      if (EqualityComparer<T>.Default.Equals(instance, default))
+      {
+        return default;
+      }
+
       Container.InjectProperties(instance);
       return instance;
     }
