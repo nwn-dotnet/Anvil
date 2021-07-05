@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
@@ -18,23 +19,6 @@ namespace NWN.API
     public static implicit operator CNWSStore(NwStore store)
     {
       return store?.Store;
-    }
-
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Store.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
     }
 
     public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
@@ -58,6 +42,20 @@ namespace NWN.API
     {
       get => NWScript.GetStoreMaxBuyPrice(this);
       set => NWScript.SetStoreMaxBuyPrice(this, value);
+    }
+
+    /// <summary>
+    /// Gets all items belonging to this store's inventory.
+    /// </summary>
+    public IEnumerable<NwItem> Items
+    {
+      get
+      {
+        for (uint item = NWScript.GetFirstItemInInventory(this); item != Invalid; item = NWScript.GetNextItemInInventory(this))
+        {
+          yield return item.ToNwObject<NwItem>();
+        }
+      }
     }
 
     /// <summary>
@@ -116,6 +114,11 @@ namespace NWN.API
       });
 
       return result && store != null ? store.ToNwObject<NwStore>() : null;
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Store.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

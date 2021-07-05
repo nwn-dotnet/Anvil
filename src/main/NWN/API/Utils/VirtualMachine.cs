@@ -2,22 +2,21 @@ using NLog;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
+using NWN.Services;
 using Action = System.Action;
 
 namespace NWN.API
 {
+  /// <summary>
+  /// Standard and Low Level methods and properties for querying/interacting with the NwScript virtual machine.
+  /// </summary>
+  [ServiceBinding(typeof(VirtualMachine))]
+  [ServiceBindingOptions(BindingOrder.API)]
   public sealed class VirtualMachine
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    public static readonly VirtualMachine Instance = new VirtualMachine(NWNXLib.VirtualMachine());
-
-    private readonly CVirtualMachine virtualMachine;
-
-    internal VirtualMachine(CVirtualMachine virtualMachine)
-    {
-      this.virtualMachine = virtualMachine;
-    }
+    private readonly CVirtualMachine virtualMachine = NWNXLib.VirtualMachine();
 
     public uint InstructionsExecuted
     {

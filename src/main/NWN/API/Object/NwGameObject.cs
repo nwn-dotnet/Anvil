@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Threading.Tasks;
 using NWN.API.Constants;
 using NWN.Core;
@@ -32,7 +33,16 @@ namespace NWN.API
     public virtual Location Location
     {
       get => NWScript.GetLocation(this);
-      set => throw new NotSupportedException();
+      set
+      {
+        if (value.Area == Area)
+        {
+          Position = value.Position;
+        }
+
+        AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+        Rotation = value.Rotation;
+      }
     }
 
     /// <summary>
@@ -46,7 +56,7 @@ namespace NWN.API
     /// <summary>
     /// Gets or sets the local area position of this GameObject.
     /// </summary>
-    public Vector3 Position
+    public virtual Vector3 Position
     {
       get => GameObject.m_vPosition.ToManagedVector();
       set => GameObject.SetPosition(value.ToNativeVector(), false.ToInt());
@@ -125,26 +135,21 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Sets the highlight color of this object.
+    /// Gets or sets the highlight color of this object.
     /// </summary>
-    public Color HiliteColor
+    public Color HighlightColor
     {
+      get => GameObject.m_vHiliteColor.ToColor();
       set => NWScript.SetObjectHiliteColor(this, value.ToInt());
     }
 
     /// <summary>
-    /// Gets all items belonging to this object's inventory.
+    /// Gets or sets the mouse cursor for this object.
     /// </summary>
-    [Obsolete("Use Inventory.Items instead.")]
-    public IEnumerable<NwItem> Items
+    public MouseCursor MouseCursor
     {
-      get
-      {
-        for (uint item = NWScript.GetFirstItemInInventory(this); item != Invalid; item = NWScript.GetNextItemInInventory(this))
-        {
-          yield return item.ToNwObject<NwItem>();
-        }
-      }
+      get => (MouseCursor)GameObject.m_nMouseCursor;
+      set => NWScript.SetObjectMouseCursor(this, (int)value);
     }
 
     public override Guid? PeekUUID()
@@ -499,6 +504,76 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Replaces the specified texture with a new texture on this object only.
+    /// </summary>
+    /// <param name="texture">The texture to be replaced.</param>
+    /// <param name="newTexture">The replacement texture.</param>
+    public void ReplaceObjectTexture(string texture, string newTexture)
+    {
+      NWScript.ReplaceObjectTexture(this, texture, newTexture);
+    }
+
+    /// <summary>
+    /// Sets a material shader uniform override.
+    /// </summary>
+    /// <param name="material">The material on the object to modify.</param>
+    /// <param name="param">The parameter to override.</param>
+    /// <param name="value">The new parameter value.</param>
+    public void SetMaterialShaderUniform(string material, string param, int value)
+    {
+      NWScript.SetMaterialShaderUniformInt(this, material, param, value);
+    }
+
+    /// <summary>
+    /// Sets a material shader uniform override.
+    /// </summary>
+    /// <param name="material">The material on the object to modify.</param>
+    /// <param name="param">The parameter to override.</param>
+    /// <param name="value">The new parameter value.</param>
+    public void SetMaterialShaderUniform(string material, string param, Vector4 value)
+    {
+      NWScript.SetMaterialShaderUniformVec4(this, material, param, value.X, value.Y, value.Z, value.W);
+    }
+
+    /// <summary>
+    /// Sets a material shader uniform override.
+    /// </summary>
+    /// <param name="material">The material on the object to modify.</param>
+    /// <param name="param">The parameter to override.</param>
+    /// <param name="value">The new parameter value.</param>
+    public void SetMaterialShaderUniform(string material, string param, float value)
+    {
+      NWScript.SetMaterialShaderUniformVec4(this, material, param, value);
+    }
+
+    /// <summary>
+    /// Resets all material shader parameter overrides on this object.
+    /// </summary>
+    public void ResetMaterialShaderUniforms()
+    {
+      NWScript.ResetMaterialShaderUniforms(this);
+    }
+
+    /// <summary>
+    /// Resets all material shader parameter overrides for the specified material on this object.
+    /// <param name="material">The material on the object to be reset.</param>
+    /// </summary>
+    public void ResetMaterialShaderUniforms(string material)
+    {
+      NWScript.ResetMaterialShaderUniforms(this, material);
+    }
+
+    /// <summary>
+    /// Resets the specified material shader parameter override for the specified material.
+    /// <param name="material">The material on the object to be reset.</param>
+    /// <param name="param">The parameter override to reset.</param>
+    /// </summary>
+    public void ResetMaterialShaderUniforms(string material, string param)
+    {
+      NWScript.ResetMaterialShaderUniforms(this, material, param);
+    }
+
+    /// <summary>
     /// Immediately ends this GameObject's current conversation.
     /// </summary>
     public async void EndConversation()
@@ -508,5 +583,7 @@ namespace NWN.API
     }
 
     public abstract byte[] Serialize();
+
+    private protected abstract void AddToArea(CNWSArea area, float x, float y, float z);
   }
 }

@@ -21,23 +21,6 @@ namespace NWN.API
       return areaOfEffect?.AreaOfEffect;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          AreaOfEffect.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     /// <summary>
     /// Gets the creator of this Area of Effect.
     /// </summary>
@@ -81,6 +64,11 @@ namespace NWN.API
     public override byte[] Serialize()
     {
       throw new NotSupportedException();
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      AreaOfEffect.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using NWN.API.Constants;
@@ -44,23 +45,6 @@ namespace NWN.API
     public static implicit operator CNWSCreature(NwCreature creature)
     {
       return creature?.Creature;
-    }
-
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Creature.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
     }
 
     /// <summary>
@@ -119,6 +103,33 @@ namespace NWN.API
     public bool IsLoginPlayerCharacter
     {
       get => LoginPlayer != null;
+    }
+
+    public override Vector3 Position
+    {
+      set
+      {
+        if (Position == value)
+        {
+          return;
+        }
+
+        base.Position = value;
+        Creature.m_pcPathfindInformation.Initialize();
+        Creature.UpdateSubareasOnJumpPosition(value.ToNativeVector(), Area);
+
+        if (Commandable)
+        {
+          BlockActionQueue();
+        }
+
+        async void BlockActionQueue()
+        {
+          Commandable = false;
+          await NwTask.Delay(TimeSpan.FromSeconds(0.5f));
+          Commandable = true;
+        }
+      }
     }
 
     /// <summary>
@@ -258,6 +269,14 @@ namespace NWN.API
     public bool FlatFooted
     {
       get => Creature.GetFlatFooted().ToBool();
+    }
+
+    /// <summary>
+    /// Gets the last trap detected by this creature.
+    /// </summary>
+    public NwTrappable LastTrapDetected
+    {
+      get => NWScript.GetLastTrapDetected(this).ToNwObject<NwTrappable>();
     }
 
     /// <summary>
@@ -1464,6 +1483,15 @@ namespace NWN.API
     }
 
     /// <summary>
+    /// Instructs this creature to unpossess their familiar.<br/>
+    /// This function can be run on the player creature, or the possessed familiar.
+    /// </summary>
+    public void UnpossessFamiliar()
+    {
+      NWScript.UnpossessFamiliar(this);
+    }
+
+    /// <summary>
     /// Instructs this creature to approach and unlock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to unlock.</param>
@@ -1664,19 +1692,19 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns the model number being used for the body part and creature.
+    /// Gets the model number for the specified body part on the creature.
     /// </summary>
-    public CreatureModelType GetCreatureBodyPart(CreaturePart creaturePart)
+    public int GetCreatureBodyPart(CreaturePart creaturePart)
     {
-      return (CreatureModelType)NWScript.GetCreatureBodyPart((int)creaturePart, this);
+      return NWScript.GetCreatureBodyPart((int)creaturePart, this);
     }
 
     /// <summary>
-    /// Sets the body part model to be used on the creature.
+    /// Sets the model number to use for the specified body part on the creature.
     /// </summary>
-    public void SetCreatureBodyPart(CreaturePart creaturePart, CreatureModelType creatureModel)
+    public void SetCreatureBodyPart(CreaturePart creaturePart, int modelNumber)
     {
-      NWScript.SetCreatureBodyPart((int)creaturePart, (int)creatureModel, this);
+      NWScript.SetCreatureBodyPart((int)creaturePart, modelNumber, this);
     }
 
     /// <summary>
@@ -2409,12 +2437,12 @@ namespace NWN.API
 
       // The module unequip event runs instantly so we have to temporarily change the event script id of the calling script
       // otherwise GetCurrentlyRunningEvent() doesn't return the right id
-      EventScriptType previousScriptEvent = VirtualMachine.Instance.CurrentRunningEvent;
-      VirtualMachine.Instance.CurrentRunningEvent = EventScriptType.ModuleOnUnequipItem;
+      EventScriptType previousScriptEvent = VirtualMachine.CurrentRunningEvent;
+      VirtualMachine.CurrentRunningEvent = EventScriptType.ModuleOnUnequipItem;
 
       bool retVal = Creature.RunUnequip(item, Invalid, unchecked((byte)-1), unchecked((byte)-1), false.ToInt()).ToBool();
 
-      VirtualMachine.Instance.CurrentRunningEvent = previousScriptEvent;
+      VirtualMachine.CurrentRunningEvent = previousScriptEvent;
       return retVal;
     }
 
@@ -2453,6 +2481,11 @@ namespace NWN.API
       CNWSQuickbarButton button = quickBarButtons[index];
 
       data.ApplyToNativeStructure(button);
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Creature.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

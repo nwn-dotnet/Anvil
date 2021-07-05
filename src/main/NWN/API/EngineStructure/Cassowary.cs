@@ -3,28 +3,26 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public sealed class Cassowary
+  public sealed class Cassowary : EngineStructure
   {
-    private readonly IntPtr handle;
+    internal Cassowary(IntPtr handle) : base(handle) {}
 
-    private Cassowary(IntPtr handle)
+    protected override int StructureId
     {
-      this.handle = handle;
-    }
-
-    ~Cassowary()
-    {
-      VM.FreeGameDefinedStructure(NWScript.ENGINE_STRUCTURE_CASSOWARY, handle);
-    }
-
-    public static implicit operator IntPtr(Cassowary effect)
-    {
-      return effect.handle;
+      get => NWScript.ENGINE_STRUCTURE_CASSOWARY;
     }
 
     public static implicit operator Cassowary(IntPtr intPtr)
     {
       return new Cassowary(intPtr);
+    }
+
+    /// <summary>
+    /// Gets a printable debug state of this solver, which may help you debug complex systems.
+    /// </summary>
+    public string DebugState
+    {
+      get => NWScript.CassowaryDebug(this);
     }
 
     /// <summary>

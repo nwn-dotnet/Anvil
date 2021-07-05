@@ -4,8 +4,20 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public sealed partial class Talent
+  public sealed partial class Talent : EngineStructure
   {
+    internal Talent(IntPtr handle) : base(handle) {}
+
+    protected override int StructureId
+    {
+      get => NWScript.ENGINE_STRUCTURE_TALENT;
+    }
+
+    public static implicit operator Talent(IntPtr intPtr)
+    {
+      return new Talent(intPtr);
+    }
+
     /// <summary>
     /// Gets the associated spell, if this talent is a spell.
     /// </summary>

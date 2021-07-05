@@ -6,8 +6,20 @@ using NWN.Core;
 
 namespace NWN.API
 {
-  public sealed partial class Location
+  public sealed class Location : EngineStructure
   {
+    internal Location(IntPtr handle) : base(handle) {}
+
+    protected override int StructureId
+    {
+      get => NWScript.ENGINE_STRUCTURE_LOCATION;
+    }
+
+    public static implicit operator Location(IntPtr intPtr)
+    {
+      return new Location(intPtr);
+    }
+
     /// <summary>
     /// Gets the position Vector of this location.
     /// </summary>

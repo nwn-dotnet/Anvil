@@ -1,6 +1,6 @@
 using NWN.Core;
 
-namespace NWN.API
+namespace NWN.API.Constants
 {
   public enum EffectDuration
   {

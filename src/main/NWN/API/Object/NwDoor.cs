@@ -22,29 +22,6 @@ namespace NWN.API
       return door?.Door;
     }
 
-    public override Location Location
-    {
-      set
-      {
-        if (value.Area != Area)
-        {
-          Door.AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z, true.ToInt());
-
-          // If the door is trapped it needs to be added to the area's trap list for it to be detectable by players.
-          if (IsTrapped)
-          {
-            value.Area.Area.m_pTrapList.Add(this);
-          }
-        }
-        else
-        {
-          Position = value.Position;
-        }
-
-        Rotation = value.Rotation;
-      }
-    }
-
     public override bool KeyAutoRemoved
     {
       get => Door.m_bAutoRemoveKey.ToBool();
@@ -162,6 +139,17 @@ namespace NWN.API
       });
 
       return result && door != null ? door.ToNwObject<NwDoor>() : null;
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Door.AddToArea(area, x, y, z, true.ToInt());
+
+      // If the door is trapped it needs to be added to the area's trap list for it to be detectable by players.
+      if (IsTrapped)
+      {
+        area.m_pTrapList.Add(this);
+      }
     }
   }
 }

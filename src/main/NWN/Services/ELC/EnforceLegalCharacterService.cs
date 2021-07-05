@@ -16,6 +16,9 @@ namespace NWN.Services
   [ServiceBindingOptions(Lazy = true)]
   public sealed unsafe class EnforceLegalCharacterService : IDisposable
   {
+    // Dependencies
+    private readonly VirtualMachine virtualMachine;
+
     // Validation Failure STRREFs
     private const int StrRefCharacterDoesNotExist = 63767;
     private const int StrRefCharacterLevelRestriction = 57924;
@@ -80,8 +83,9 @@ namespace NWN.Services
 
     public event Action<OnELCValidationSuccess> OnValidationSuccess;
 
-    public EnforceLegalCharacterService(HookService hookService)
+    public EnforceLegalCharacterService(VirtualMachine virtualMachine, HookService hookService)
     {
+      this.virtualMachine = virtualMachine;
       validateCharacterHook = hookService.RequestHook<ValidateCharacterHook>(OnValidateCharacter, FunctionsLinux._ZN10CNWSPlayer17ValidateCharacterEPi, HookOrder.Final);
 
       pRules = NWNXLib.Rules();
@@ -1851,7 +1855,7 @@ namespace NWN.Services
 
     private bool HandleValidationFailure(out int strRefFailure, OnELCValidationFailure eventData)
     {
-      VirtualMachine.Instance.ExecuteInScriptContext(() =>
+      virtualMachine.ExecuteInScriptContext(() =>
       {
         OnValidationFailure?.Invoke(eventData);
       });
@@ -1868,7 +1872,7 @@ namespace NWN.Services
         Player = player,
       };
 
-      VirtualMachine.Instance.ExecuteInScriptContext(() =>
+      virtualMachine.ExecuteInScriptContext(() =>
       {
         OnCustomCheck?.Invoke(eventData);
       });
@@ -1883,7 +1887,7 @@ namespace NWN.Services
         Player = player,
       };
 
-      VirtualMachine.Instance.ExecuteInScriptContext(() =>
+      virtualMachine.ExecuteInScriptContext(() =>
       {
         OnValidationSuccess?.Invoke(eventData);
       });
