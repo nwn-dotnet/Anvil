@@ -8,9 +8,9 @@ using NWN.Plugins;
 namespace NWN.Services
 {
   /// <summary>
-  /// Wires up and prepares service classes for dependency injection.
+  /// Wires up and prepares service classes for dependency injection and initialization.
   /// </summary>
-  public class ServiceBindingContainerBuilder : IContainerBuilder
+  public class AnvilContainerFactory : IContainerFactory
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -20,8 +20,10 @@ namespace NWN.Services
     public ServiceContainer Setup(ITypeLoader typeLoader)
     {
       TypeLoader = typeLoader;
-      ServiceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = false, EnableVariance = false });
+      ServiceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = true, EnableVariance = false });
+      SetupInjectPropertySelector();
 
+      ServiceContainer.RegisterInstance((IServiceContainer)ServiceContainer);
       return ServiceContainer;
     }
 
@@ -38,6 +40,12 @@ namespace NWN.Services
     {
       SearchForBindings();
       RegisterOverrides();
+    }
+
+    private void SetupInjectPropertySelector()
+    {
+      InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
+      ServiceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
     }
 
     private void SearchForBindings()
@@ -70,6 +78,10 @@ namespace NWN.Services
       if (options is not { Lazy: true })
       {
         ServiceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
+        if (bindTo.IsAssignableTo(typeof(IInitializable)))
+        {
+          ServiceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
+        }
       }
 
       foreach (ServiceBindingAttribute bindingInfo in newBindings)

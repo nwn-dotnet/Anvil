@@ -5,17 +5,8 @@ namespace NWN.API
 {
   public abstract class CampaignVariable
   {
+    [Inject]
     private protected static VariableConverterService VariableConverterService { get; private set; }
-
-    [ServiceBinding(typeof(APIBindings))]
-    [ServiceBindingOptions(BindingOrder.API)]
-    internal sealed class APIBindings
-    {
-      public APIBindings(VariableConverterService variableConverterService)
-      {
-        VariableConverterService = variableConverterService;
-      }
-    }
 
     public string Campaign { get; protected set; }
 

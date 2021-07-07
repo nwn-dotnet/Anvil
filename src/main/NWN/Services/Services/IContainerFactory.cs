@@ -3,7 +3,7 @@ using NWN.Plugins;
 
 namespace NWN.Services
 {
-  public interface IContainerBuilder
+  public interface IContainerFactory
   {
     ServiceContainer Setup(ITypeLoader typeLoader);
 

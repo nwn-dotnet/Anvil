@@ -19,17 +19,8 @@ namespace NWN.API
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    [Inject]
     private static EventService EventService { get; set; }
-
-    [ServiceBinding(typeof(APIBindings))]
-    [ServiceBindingOptions(BindingOrder.API)]
-    internal sealed class APIBindings
-    {
-      public APIBindings(EventService eventService)
-      {
-        EventService = eventService;
-      }
-    }
 
     internal readonly CNWSPlayer Player;
     internal readonly uint PlayerId;

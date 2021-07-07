@@ -14,17 +14,14 @@ namespace NWN.API.Events
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly Lazy<EventService> eventService;
+    // Dependencies
+    [Inject]
+    private Lazy<EventService> EventService { get; init; }
 
     // Caches
     private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
     private readonly Dictionary<EventKey, string> originalCallLookup = new Dictionary<EventKey, string>();
-
-    public GameEventFactory(Lazy<EventService> eventService)
-    {
-      this.eventService = eventService;
-    }
 
     public void Register<TEvent>(RegistrationData data) where TEvent : IEvent, new()
     {
@@ -38,7 +35,7 @@ namespace NWN.API.Events
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
-      if (eventService == null || scriptName != ScriptConstants.GameEventScriptName)
+      if (EventService == null || scriptName != ScriptConstants.GameEventScriptName)
       {
         return ScriptHandleResult.NotHandled;
       }
@@ -56,7 +53,7 @@ namespace NWN.API.Events
           NWScript.ExecuteScript(scriptName, oidSelf);
         }
 
-        eventService.Value.ProcessEvent(value.Invoke());
+        EventService.Value.ProcessEvent(value.Invoke());
         return ScriptHandleResult.Handled;
       }
 

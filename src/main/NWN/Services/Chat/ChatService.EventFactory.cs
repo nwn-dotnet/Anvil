@@ -7,8 +7,12 @@ namespace NWN.Services
   [ServiceBinding(typeof(IEventFactory))]
   public sealed partial class ChatService : IEventFactory<NullRegistrationData>
   {
-    private readonly VirtualMachine virtualMachine;
-    private readonly Lazy<EventService> eventService;
+    // Dependencies
+    [Inject]
+    private Lazy<EventService> EventService { get; init; }
+
+    [Inject]
+    private VirtualMachine VirtualMachine { get; init; }
 
     private bool isEventHooked;
 
@@ -16,9 +20,9 @@ namespace NWN.Services
     {
       OnChatMessageSend eventData = null;
 
-      virtualMachine.ExecuteInScriptContext(() =>
+      VirtualMachine.ExecuteInScriptContext(() =>
       {
-        eventData = eventService.Value.ProcessEvent(new OnChatMessageSend
+        eventData = EventService.Value.ProcessEvent(new OnChatMessageSend
         {
           ChatChannel = chatChannel,
           Message = message,

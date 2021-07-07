@@ -17,16 +17,13 @@ namespace NWNX.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly Lazy<EventService> eventService;
+    // Dependencies
+    [Inject]
+    private Lazy<EventService> EventService { get; init; }
 
     // Caches
     private readonly Dictionary<Type, NWNXEventAttribute> eventInfoCache = new Dictionary<Type, NWNXEventAttribute>();
     private readonly Dictionary<string, Func<IEvent>> eventConstructorCache = new Dictionary<string, Func<IEvent>>();
-
-    public NWNXEventFactory(Lazy<EventService> eventService)
-    {
-      this.eventService = eventService;
-    }
 
     public void Register<TEvent>(NullRegistrationData data) where TEvent : IEvent, new()
     {
@@ -44,7 +41,7 @@ namespace NWNX.Services
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
-      if (eventService == null || scriptName != ScriptConstants.NWNXEventScriptName)
+      if (scriptName != ScriptConstants.NWNXEventScriptName)
       {
         return ScriptHandleResult.NotHandled;
       }
@@ -66,7 +63,7 @@ namespace NWNX.Services
 
     private void ProcessEvent(IEvent eventInstance)
     {
-      eventService.Value.ProcessEvent(eventInstance);
+      EventService.Value.ProcessEvent(eventInstance);
 
       if (eventInstance is IEventNWNXResult nwnxEvent && nwnxEvent.EventResult != null)
       {

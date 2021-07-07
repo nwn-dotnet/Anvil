@@ -13,7 +13,7 @@ namespace Anvil
 {
   /// <summary>
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
-  /// Until <see cref="Init(IntPtr, int, IContainerBuilder, ITypeLoader)"/> is called, all APIs are unavailable for usage.
+  /// Until <see cref="Init(IntPtr, int, IContainerFactory, ITypeLoader)"/> is called, all APIs are unavailable for usage.
   /// </summary>
   public sealed class AnvilCore : ICoreSignalHandler
   {
@@ -23,7 +23,7 @@ namespace Anvil
 
     // Core Services
     private CoreInteropHandler interopHandler;
-    private IContainerBuilder containerBuilder;
+    private IContainerFactory containerFactory;
     private ITypeLoader typeLoader;
     private LoggerManager loggerManager;
     private ServiceManager serviceManager;
@@ -33,18 +33,18 @@ namespace Anvil
     /// </summary>
     /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
     /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
-    /// <param name="containerBuilder">An optional custom binding installer to use instead of the default <see cref="ServiceBindingContainerBuilder"/>.</param>
+    /// <param name="containerFactory">An optional custom binding installer to use instead of the default <see cref="AnvilContainerFactory"/>.</param>
     /// <param name="typeLoader">An optional type loader to use instead of the default <see cref="PluginLoader"/>.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IContainerBuilder containerBuilder = default, ITypeLoader typeLoader = default)
+    public static int Init(IntPtr arg, int argLength, IContainerFactory containerFactory = default, ITypeLoader typeLoader = default)
     {
       typeLoader ??= new PluginLoader();
-      containerBuilder ??= new ServiceBindingContainerBuilder();
+      containerFactory ??= new AnvilContainerFactory();
 
       instance = new AnvilCore();
       instance.interopHandler = new CoreInteropHandler(instance);
-      instance.containerBuilder = containerBuilder;
+      instance.containerFactory = containerFactory;
       instance.typeLoader = typeLoader;
       instance.loggerManager = new LoggerManager();
 
@@ -108,7 +108,7 @@ namespace Anvil
 
     private void Start()
     {
-      serviceManager = new ServiceManager(typeLoader, containerBuilder);
+      serviceManager = new ServiceManager(typeLoader, containerFactory);
 
       serviceManager.RegisterCoreService(typeLoader);
       serviceManager.RegisterCoreService(serviceManager);
