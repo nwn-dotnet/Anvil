@@ -730,37 +730,30 @@ namespace Anvil.API
     /// </summary>
     public IEnumerable<NwCreature> Henchmen
     {
-      get
-      {
-        int i;
-        uint current;
-        const int henchmenType = (int)AssociateType.Henchman;
-
-        for (i = 1, current = NWScript.GetAssociate(henchmenType, this, i); current != Invalid; i++, current = NWScript.GetAssociate(henchmenType, this, i))
-        {
-          yield return current.ToNwObject<NwCreature>();
-        }
-      }
+      get => GetAssociates(AssociateType.Henchman);
     }
 
     /// <summary>
-    /// Gets all associates for this creature.
+    /// Gets all creatures associated with this creature.
     /// </summary>
     public IEnumerable<NwCreature> Associates
     {
       get
       {
-        int i;
-        uint current;
-        var associateTypes = Enum.GetValues(typeof(AssociateType));
+        AssociateType[] allAssociateTypes = Enum.GetValues<AssociateType>();
+        return allAssociateTypes.SelectMany(GetAssociates);
+      }
+    }
 
-        foreach (int type in associateTypes)
-        {
-          for (i = 1, current = NWScript.GetAssociate(type, this, i); current != Invalid; i++, current = NWScript.GetAssociate(type, this, i))
-          {
-            yield return current.ToNwObject<NwCreature>();
-          }
-        }
+    private IEnumerable<NwCreature> GetAssociates(AssociateType associateType)
+    {
+      int i;
+      uint current;
+      int type = (int)associateType;
+
+      for (i = 1, current = NWScript.GetAssociate(type, this, i); current != Invalid; i++, current = NWScript.GetAssociate(type, this, i))
+      {
+        yield return current.ToNwObject<NwCreature>();
       }
     }
 
@@ -1699,14 +1692,15 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the associate of this creature with the matching associate type.<br/>
+    /// Gets the first associate of this creature with the matching associate type.<br/>
     /// See <see cref="Henchmen"/> for getting a list of all henchmen associated with this creature.
+    /// See <see cref="Associates"/> for getting a list of all creatures associated with this creature.
     /// </summary>
     /// <param name="associateType">The type of associate to locate.</param>
     /// <returns>The associated creature, otherwise null if this creature does not have an associate of the specified type.</returns>
     public NwCreature GetAssociate(AssociateType associateType)
     {
-      return NWScript.GetAssociate((int)associateType, this).ToNwObject<NwCreature>();
+      return GetAssociates(associateType).FirstOrDefault();
     }
 
     /// <summary>
