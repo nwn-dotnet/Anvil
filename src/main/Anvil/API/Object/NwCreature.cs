@@ -744,6 +744,27 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets all associates for this creature.
+    /// </summary>
+    public IEnumerable<NwCreature> Associates
+    {
+      get
+      {
+        int i;
+        uint current;
+        var associateTypes = Enum.GetValues(typeof(AssociateType));
+
+        foreach (int type in associateTypes)
+        {
+          for (i = 1, current = NWScript.GetAssociate(type, this, i); current != Invalid; i++, current = NWScript.GetAssociate(type, this, i))
+          {
+            yield return current.ToNwObject<NwCreature>();
+          }
+        }
+      }
+    }
+
+    /// <summary>
     /// Gets this creature's classes.
     /// </summary>
     public IReadOnlyList<ClassType> Classes
