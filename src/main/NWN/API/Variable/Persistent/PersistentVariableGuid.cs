@@ -5,6 +5,9 @@ namespace NWN.API
 {
   public sealed class PersistentVariableGuid : PersistentVariable<Guid>
   {
+    [Inject]
+    private static ObjectStorageService ObjectStorageService { get; set; }
+
     public override bool HasValue
     {
       get => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsInt(Prefix, Name);
