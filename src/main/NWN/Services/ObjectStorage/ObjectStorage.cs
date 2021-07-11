@@ -147,32 +147,29 @@ namespace NWN.Services
 
       StringBuilder stringBuilder = new StringBuilder();
 
-      SerializeSimpleData(IntStorageKey, intData);
-      SerializeSimpleData(FloatStorageKey, floatData);
+      WriteStorage(intData, IntStorageKey, false);
+      WriteStorage(floatData, FloatStorageKey, false);
+      WriteStorage(stringData, StringStorageKey, true);
 
-      void SerializeSimpleData<T>(string storageKey, IReadOnlyCollection<KeyValuePair<string, ObjectStorageValue<T>>> data)
+      void WriteStorage<T>(IReadOnlyCollection<KeyValuePair<string, ObjectStorageValue<T>>> store, string storageKey, bool valueHasCount)
       {
-        if (data.Count != 0)
+        if (store.Count != 0)
         {
-          stringBuilder.Append($"[{storageKey}:{data.Count}]");
-          foreach ((string key, ObjectStorageValue<T> value) in data)
+          stringBuilder.Append($"[{storageKey}:{store.Count}]");
+          foreach ((string key, ObjectStorageValue<T> value) in store)
           {
             if (!persistOnly || value.Persist)
             {
-              stringBuilder.Append($"<{key.Length}>{key} = {value.Value};");
+              if (!valueHasCount)
+              {
+                stringBuilder.Append($"<{key.Length}>{key} = {value.Value};");
+              }
+              else
+              {
+                string valueAsString = value.Value.ToString();
+                stringBuilder.Append($"<{key.Length}>{key} = <{valueAsString?.Length ?? 0}>{valueAsString};");
+              }
             }
-          }
-        }
-      }
-
-      if (stringData.Count > 0)
-      {
-        stringBuilder.Append($"[{StringStorageKey}:{stringData.Count}]");
-        foreach ((string key, ObjectStorageValue<string> value) in stringData)
-        {
-          if (!persistOnly || value.Persist)
-          {
-            stringBuilder.Append($"<{key.Length}>{key} = <{value.Value.Length}>{value.Value};");
           }
         }
       }
