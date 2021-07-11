@@ -95,7 +95,7 @@ namespace NWN.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that is leaving.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(false);
+      public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(PlayerSearch.Login);
 
       NwObject IEvent.Context
       {

@@ -73,7 +73,7 @@ namespace NWN.API
     /// </summary>
     public NwPlayer ControllingPlayer
     {
-      get => ObjectId.ToNwPlayer();
+      get => ObjectId.ToNwPlayer(PlayerSearch.Controlled);
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ namespace NWN.API
     /// </summary>
     public NwPlayer LoginPlayer
     {
-      get => ObjectId.ToNwPlayer(false);
+      get => ObjectId.ToNwPlayer(PlayerSearch.Login);
     }
 
     /// <summary>
