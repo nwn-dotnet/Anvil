@@ -8,9 +8,6 @@ using System.Linq;
 using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API;
-using NWN.API.Events;
-using NWN.Services;
 
 // This is the deserialization class for this specific type of 2da.
 // We can implement our own helper functions here that operate on the 2da data, and cache it.
