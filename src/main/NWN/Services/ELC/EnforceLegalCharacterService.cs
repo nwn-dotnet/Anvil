@@ -77,6 +77,8 @@ namespace NWN.Services
     public bool EnforceDefaultEventScripts { get; set; }
     public bool EnforceEmptyDialog { get; set; }
 
+    public event Action<OnELCValidationBefore> OnValidationBefore;
+
     public event Action<OnELCCustomCheck> OnCustomCheck;
 
     public event Action<OnELCValidationFailure> OnValidationFailure;
@@ -137,8 +139,13 @@ namespace NWN.Services
       }
       // **********************************************************************************************************************
 
-      // *** Server Restrictions **********************************************************************************************
       NwPlayer nwPlayer = pPlayer.ToNwPlayer();
+      OnValidationBefore?.Invoke(new OnELCValidationBefore
+      {
+        Player = nwPlayer,
+      });
+
+      // *** Server Restrictions **********************************************************************************************
       CServerInfo pServerInfo = NWNXLib.AppManager().m_pServerExoApp.GetServerInfo();
 
       *bFailedServerRestriction = false.ToInt();
