@@ -127,7 +127,7 @@ namespace NWN.API
     /// <summary>
     /// Gets all local variables assigned on this object.
     /// </summary>
-    public IEnumerable<LocalVariable> LocalVariables
+    public IEnumerable<ObjectVariable> LocalVariables
     {
       get
       {
@@ -135,27 +135,27 @@ namespace NWN.API
         {
           if (value.HasFloat())
           {
-            yield return LocalVariable<float>.Create(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableFloat>(this, key.ToString());
           }
 
           if (value.HasInt())
           {
-            yield return LocalVariable<int>.Create(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableInt>(this, key.ToString());
           }
 
           if (value.HasLocation())
           {
-            yield return LocalVariable<Location>.Create(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableLocation>(this, key.ToString());
           }
 
           if (value.HasObject())
           {
-            yield return LocalVariable<NwObject>.Create(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableObject<NwObject>>(this, key.ToString());
           }
 
           if (value.HasString())
           {
-            yield return LocalVariable<string>.Create(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableString>(this, key.ToString());
           }
         }
       }
@@ -227,14 +227,14 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the specified local variable for this object.
+    /// Gets the specified object variable for this object.
     /// </summary>
     /// <param name="name">The variable name.</param>
     /// <typeparam name="T">The variable type.</typeparam>
     /// <returns>A LocalVariable instance for getting/setting the variable's value.</returns>
-    public LocalVariable<T> GetLocalVariable<T>(string name)
+    public T GetObjectVariable<T>(string name) where T : ObjectVariable, new()
     {
-      return LocalVariable<T>.Create(this, name);
+      return ObjectVariable.Create<T>(this, name);
     }
 
     /// <summary>

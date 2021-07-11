@@ -1,52 +1,40 @@
 using System;
-using NWN.Services;
+using NWN.Core;
 
 namespace NWN.API
 {
   public abstract class CampaignVariable
   {
-    [Inject]
-    private protected static VariableConverterService VariableConverterService { get; private set; }
+    public string Campaign { get; private init; }
 
-    public string Campaign { get; protected set; }
+    public string Name { get; private init; }
 
-    public string Name { get; protected set; }
-
-    public NwPlayer Player { get; protected set; }
+    public NwPlayer Player { get; private init; }
 
     /// <summary>
     /// Deletes the value of this variable.
     /// </summary>
     public abstract void Delete();
-  }
 
-  public sealed class CampaignVariable<T> : CampaignVariable, IEquatable<CampaignVariable<T>>
-  {
-    private ICampaignVariableConverter<T> converter;
-
-    private CampaignVariable() {}
-
-    internal static CampaignVariable<T> Create(string campaign, string name, NwPlayer player = null)
+    internal static T Create<T>(string campaign, string name, NwPlayer player = null) where T : CampaignVariable, new()
     {
-      CampaignVariable<T> variable = new CampaignVariable<T>
+      T variable = new T
       {
         Campaign = campaign,
         Name = name,
         Player = player,
-        converter = VariableConverterService.GetCampaignConverter<T>(),
       };
 
       return variable;
     }
+  }
 
+  public abstract class CampaignVariable<T> : CampaignVariable, IEquatable<CampaignVariable<T>>
+  {
     /// <summary>
     /// Gets or sets the current value of this variable. Returns the default value of T if unassigned (null or 0).
     /// </summary>
-    public T Value
-    {
-      get => converter.GetCampaign(Campaign, Name, Player);
-      set => converter.SetCampaign(Campaign, Name, value, Player);
-    }
+    public abstract T Value { get; set; }
 
     /// <summary>
     /// Implicit conversion of the value of this variable.
@@ -58,7 +46,7 @@ namespace NWN.API
 
     public override void Delete()
     {
-      converter.ClearCampaign(Campaign, Name, Player);
+      NWScript.DeleteCampaignVariable(Campaign, Name, Player?.ControlledCreature);
     }
 
     public bool Equals(CampaignVariable<T> other)

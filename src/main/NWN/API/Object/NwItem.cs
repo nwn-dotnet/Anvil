@@ -340,8 +340,8 @@ namespace NWN.API
         return;
       }
 
-      List<LocalVariable> localVariables = clone.LocalVariables.ToList();
-      foreach (LocalVariable localVariable in localVariables)
+      List<ObjectVariable> localVariables = clone.LocalVariables.ToList();
+      foreach (ObjectVariable localVariable in localVariables)
       {
         localVariable.Delete();
       }
