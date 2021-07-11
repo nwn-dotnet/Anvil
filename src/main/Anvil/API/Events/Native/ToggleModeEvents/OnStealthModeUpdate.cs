@@ -63,7 +63,7 @@ namespace Anvil.API.Events
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
-          Creature = NativeObjectExtensions.ToNwObject<NwCreature>(creature),
+          Creature = creature.ToNwObject<NwCreature>(),
           EventType = ToggleModeEventType.Enter,
         });
 
@@ -88,13 +88,13 @@ namespace Anvil.API.Events
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
-          Creature = NativeObjectExtensions.ToNwObject<NwCreature>(creature),
+          Creature = creature.ToNwObject<NwCreature>(),
           EventType = ToggleModeEventType.Exit,
         });
 
         if (eventData.PreventExit)
         {
-          creature.SetActivity(1, IntegerExtensions.ToInt(true));
+          creature.SetActivity(1, true.ToInt());
         }
         else
         {
@@ -105,7 +105,7 @@ namespace Anvil.API.Events
       private static void ForceEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
         bool noHIPS = false;
-        if (!IntegerExtensions.ToBool(creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight)))
+        if (!creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight).ToBool())
         {
           creature.m_pStats.AddFeat((ushort)Feat.HideInPlainSight);
           noHIPS = true;
@@ -122,7 +122,7 @@ namespace Anvil.API.Events
       private static void PreventHIPSEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
         bool bHadHIPS = false;
-        if (IntegerExtensions.ToBool(creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight)))
+        if (creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight).ToBool())
         {
           creature.m_pStats.RemoveFeat((ushort)Feat.HideInPlainSight);
           bHadHIPS = true;

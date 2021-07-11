@@ -34,8 +34,8 @@ namespace Anvil.API.Events
 
         ProcessEvent(new OnFamiliarPossess
         {
-          Owner = NativeObjectExtensions.ToNwObject<NwCreature>(creature),
-          Familiar = IntegerExtensions.ToNwObject<NwCreature>(creature.GetAssociateId((ushort)AssociateType.Familiar)),
+          Owner = creature.ToNwObject<NwCreature>(),
+          Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>(),
         });
 
         Hook.CallOriginal(pCreature);

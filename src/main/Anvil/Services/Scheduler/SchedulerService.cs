@@ -55,9 +55,9 @@ namespace Anvil.Services
         throw new ArgumentNullException(nameof(task));
       }
 
-      Log.Debug($"Scheduled Future Task: {ReflectionExtensions.GetFullName(task.Method)}");
+      Log.Debug($"Scheduled Future Task: {task.Method.GetFullName()}");
       ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds);
-      CollectionExtensions.InsertOrdered(scheduledItems, item, comparer);
+      scheduledItems.InsertOrdered(item, comparer);
       return item;
     }
 
@@ -82,9 +82,9 @@ namespace Anvil.Services
         throw new ArgumentNullException(nameof(task));
       }
 
-      Log.Debug($"Scheduled Repeating Task: {ReflectionExtensions.GetFullName(task.Method)}");
+      Log.Debug($"Scheduled Repeating Task: {task.Method.GetFullName()}");
       ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
-      CollectionExtensions.InsertOrdered(scheduledItems, item, comparer);
+      scheduledItems.InsertOrdered(item, comparer);
       return item;
     }
 
@@ -125,7 +125,7 @@ namespace Anvil.Services
 
         item.Reschedule(loopTimeService.Time + item.Schedule);
         scheduledItems.RemoveAt(i);
-        CollectionExtensions.InsertOrdered(scheduledItems, item, comparer);
+        scheduledItems.InsertOrdered(item, comparer);
         i--;
       }
 

@@ -34,8 +34,8 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnAssociateAdd
         {
-          Owner = NativeObjectExtensions.ToNwObject<NwCreature>(CNWSCreature.FromPointer(pCreature)),
-          Associate = IntegerExtensions.ToNwObject<NwCreature>(oidAssociate),
+          Owner = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
+          Associate = oidAssociate.ToNwObject<NwCreature>(),
           AssociateType = (AssociateType)associateType,
         });
 
