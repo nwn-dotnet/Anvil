@@ -5,6 +5,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Anvil.API;
+using Anvil.API.Events;
+using Anvil.Services;
 using NWN.API;
 using NWN.API.Events;
 using NWN.Services;
@@ -95,12 +98,12 @@ public class XPReportService
   private void OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)
   {
     NwPlayer player = onClientEnter.Player;
-    int nextLevel = expTable.GetLevelFromXp(player.Xp) + 1;
+    int nextLevel = expTable.GetLevelFromXp(player.ControlledCreature.Xp) + 1;
     if (nextLevel > expTable.MaxLevel)
     {
       return;
     }
 
-    player.SendServerMessage($"Next level up: {expTable.GetXpForLevel(nextLevel) - player.Xp}");
+    player.SendServerMessage($"Next level up: {expTable.GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}");
   }
 }

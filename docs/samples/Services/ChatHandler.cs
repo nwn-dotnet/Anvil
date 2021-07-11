@@ -4,9 +4,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using NWN.API;
-using NWN.API.Events;
-using NWN.Services;
+using Anvil.API;
+using Anvil.API.Events;
+using Anvil.Services;
 
 // Our base chat command interface...
 public interface IChatCommand
@@ -24,7 +24,7 @@ public class GpCommand : IChatCommand
 
   public void ExecuteCommand(NwPlayer caller)
   {
-    caller.GiveGold(AMOUNT);
+    caller.ControlledCreature.GiveGold(AMOUNT);
   }
 }
 

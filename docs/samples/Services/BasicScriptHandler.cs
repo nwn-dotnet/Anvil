@@ -2,9 +2,9 @@
  * Define a method (OnScriptCalled) to be called when the NwScript "test_nwscript" would be called by the game.
  */
 
+using Anvil.API;
+using Anvil.Services;
 using NLog;
-using NWN.API;
-using NWN.Services;
 
 // The "ServiceBinding" attribute indicates this class should be created on start, and available to other classes as a dependency "MyScriptHandler"
 // You can also bind yourself to an interface or base class. The system also supports multiple bindings.
