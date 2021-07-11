@@ -77,6 +77,8 @@ namespace NWN.Services
     public bool EnforceDefaultEventScripts { get; set; }
     public bool EnforceEmptyDialog { get; set; }
 
+    public event Action<OnELCValidationBefore> OnValidationBefore;
+
     public event Action<OnELCCustomCheck> OnCustomCheck;
 
     public event Action<OnELCValidationFailure> OnValidationFailure;
@@ -137,6 +139,12 @@ namespace NWN.Services
       }
       // **********************************************************************************************************************
 
+      NwPlayer nwPlayer = pPlayer.ToNwPlayer();
+      OnValidationBefore?.Invoke(new OnELCValidationBefore
+      {
+        Player = nwPlayer,
+      });
+
       // *** Server Restrictions **********************************************************************************************
       CServerInfo pServerInfo = NWNXLib.AppManager().m_pServerExoApp.GetServerInfo();
 
@@ -149,6 +157,7 @@ namespace NWN.Services
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCLevelValidationFailure
         {
+          Player = nwPlayer,
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.ServerLevelRestriction,
           Level = nCharacterLevel,
@@ -173,6 +182,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCLevelValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.LevelHack,
             Level = nTotalLevels,
@@ -213,6 +223,7 @@ namespace NWN.Services
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
+          Player = nwPlayer,
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.ColoredName,
           StrRef = StrRefCharacterDoesNotExist,
@@ -242,6 +253,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCItemValidationFailure
             {
+              Player = nwPlayer,
               Item = pItem.ToNwObject<NwItem>(),
               Type = ValidationFailureType.Item,
               SubType = ValidationFailureSubType.UnidentifiedEquippedItem,
@@ -258,6 +270,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCItemValidationFailure
             {
+              Player = nwPlayer,
               Item = pItem.ToNwObject<NwItem>(),
               Type = ValidationFailureType.Item,
               SubType = ValidationFailureSubType.MinEquipLevel,
@@ -311,6 +324,7 @@ namespace NWN.Services
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
+          Player = nwPlayer,
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.NonPCCharacter,
           StrRef = StrRefCharacterNonPlayer,
@@ -325,6 +339,7 @@ namespace NWN.Services
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
+          Player = nwPlayer,
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.DMCharacter,
           StrRef = StrRefCharacterDungeonMaster,
@@ -341,6 +356,7 @@ namespace NWN.Services
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
+          Player = nwPlayer,
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.NonPlayerRace,
           StrRef = StrRefCharacterNonPlayerRace,
@@ -361,6 +377,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.InvalidClass,
             StrRef = StrRefCharacterNonPlayerClass,
@@ -377,6 +394,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.NonPlayerClass,
             StrRef = StrRefCharacterNonPlayerClass,
@@ -390,6 +408,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.ClassLevelRestriction,
             StrRef = StrRefCharacterNonPlayerClass,
@@ -403,6 +422,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.PrestigeClassRequirements,
             StrRef = StrRefCharacterNonPlayerClass,
@@ -418,6 +438,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Character,
               SubType = ValidationFailureSubType.ClassAlignmentRestriction,
               StrRef = StrRefCharacterNonPlayerClass,
@@ -467,6 +488,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.StartingAbilityValueMax,
             StrRef = StrRefCharacterInvalidAbilityScores,
@@ -493,6 +515,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Character,
                 SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
                 StrRef = StrRefCharacterInvalidAbilityScores,
@@ -511,6 +534,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Character,
                 SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
                 StrRef = StrRefCharacterInvalidAbilityScores,
@@ -529,6 +553,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Character,
                 SubType = ValidationFailureSubType.AbilityPointBuySystemCalculation,
                 StrRef = StrRefCharacterInvalidAbilityScores,
@@ -612,6 +637,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Character,
               SubType = ValidationFailureSubType.ClassSpellcasterInvalidPrimaryStat,
               StrRef = StrRefCharacterInvalidAbilityScores,
@@ -629,6 +655,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.EpicLevelFlag,
               StrRef = StrRefFeatInvalid,
@@ -644,6 +671,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.EpicLevelFlag,
               StrRef = StrRefFeatInvalid,
@@ -688,6 +716,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Character,
             SubType = ValidationFailureSubType.TooManyHitPoints,
             StrRef = StrRefCharacterTooManyHitpoints,
@@ -769,6 +798,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Skill,
                 SubType = ValidationFailureSubType.UnusableSkill,
                 StrRef = StrRefSkillUnuseable,
@@ -785,6 +815,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Skill,
                   SubType = ValidationFailureSubType.NotEnoughSkillPoints,
                   StrRef = StrRefSkillInvalidNumSkillpoints,
@@ -802,6 +833,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Skill,
                   SubType = ValidationFailureSubType.NotEnoughSkillPoints,
                   StrRef = StrRefSkillInvalidNumSkillpoints,
@@ -824,6 +856,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Skill,
                   SubType = ValidationFailureSubType.InvalidNumRanksInClassSkill,
                   StrRef = StrRefSkillInvalidRanks,
@@ -839,6 +872,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Skill,
                   SubType = ValidationFailureSubType.InvalidNumRanksInNonClassSkill,
                   StrRef = StrRefSkillInvalidRanks,
@@ -856,6 +890,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Skill,
             SubType = ValidationFailureSubType.InvalidNumRemainingSkillPoints,
             StrRef = StrRefSkillInvalidNumSkillpoints,
@@ -896,6 +931,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.InvalidFeat,
               StrRef = StrRefFeatInvalid,
@@ -969,6 +1005,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.InvalidFeat,
               StrRef = StrRefFeatInvalid,
@@ -1019,6 +1056,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Feat,
                 SubType = ValidationFailureSubType.FeatRequiredSpellLevelNotMet,
                 StrRef = StrRefFeatReqSpellLevel,
@@ -1044,6 +1082,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
               StrRef = StrRefFeatReqAbility,
@@ -1057,6 +1096,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
               StrRef = StrRefFeatReqAbility,
@@ -1070,6 +1110,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
               StrRef = StrRefFeatReqAbility,
@@ -1083,6 +1124,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
               StrRef = StrRefFeatReqAbility,
@@ -1096,6 +1138,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
               StrRef = StrRefFeatReqAbility,
@@ -1109,6 +1152,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
               StrRef = StrRefFeatReqAbility,
@@ -1122,6 +1166,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredBaseAttackBonusNotMet,
               StrRef = StrRefFeatReqAbility,
@@ -1180,6 +1225,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredSkillNotMet,
               StrRef = retVal,
@@ -1194,6 +1240,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredSkillNotMet,
               StrRef = retVal,
@@ -1206,7 +1253,7 @@ namespace NWN.Services
           // Check Feat Prereqs
           int PrerequisitesFeatCheck(ushort nPrereqFeat)
           {
-            if (nPrereqFeat != unchecked((ushort)-1))
+            if (nPrereqFeat != IntegerExtensions.AsUShort(-1))
             {
               if (!listFeats.Contains(nPrereqFeat) && !listChosenFeats.Contains(nPrereqFeat))
               {
@@ -1222,6 +1269,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredFeatNotMet,
               StrRef = retVal,
@@ -1236,6 +1284,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredFeatNotMet,
               StrRef = retVal,
@@ -1254,7 +1303,7 @@ namespace NWN.Services
           {
             ushort nPrereqFeat = pFeat.m_lstOrPrereqFeats[nOrPrereqFeat];
 
-            if (nPrereqFeat != unchecked((ushort)-1))
+            if (nPrereqFeat != IntegerExtensions.AsUShort(-1))
             {
               bHasOrPrereqFeat = true;
               bOrPrereqFeatAcquired = listFeats.Contains(nPrereqFeat) || listChosenFeats.Contains(nPrereqFeat);
@@ -1265,6 +1314,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredFeatNotMet,
               StrRef = StrRefFeatReqFeat,
@@ -1280,6 +1330,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Feat,
             SubType = ValidationFailureSubType.TooManyFeatsThisLevel,
             StrRef = StrRefFeatTooMany,
@@ -1304,6 +1355,7 @@ namespace NWN.Services
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
+              Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatNotAvailableToClass,
               StrRef = StrRefFeatTooMany,
@@ -1320,6 +1372,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Feat,
                 SubType = ValidationFailureSubType.FeatIsNormalFeatOnly,
                 StrRef = StrRefFeatTooMany,
@@ -1343,6 +1396,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Feat,
                 SubType = ValidationFailureSubType.FeatIsBonusFeatOnly,
                 StrRef = StrRefFeatTooMany,
@@ -1393,6 +1447,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Feat,
                 SubType = ValidationFailureSubType.TooManyFeatsThisLevel,
                 StrRef = StrRefFeatTooMany,
@@ -1440,6 +1495,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Spell,
                   SubType = ValidationFailureSubType.SpellInvalidSpellGainWizard,
                   StrRef = StrRefSpellIllegalLevel,
@@ -1458,6 +1514,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Spell,
                   SubType = ValidationFailureSubType.SpellInvalidSpellGainBardSorcerer,
                   StrRef = StrRefSpellIllegalLevel,
@@ -1471,6 +1528,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.SpellInvalidSpellGainOtherClasses,
                 StrRef = StrRefSpellIllegalLevel,
@@ -1487,6 +1545,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.InvalidSpell,
                 StrRef = StrRefSpellInvalidSpell,
@@ -1503,6 +1562,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.SpellInvalidSpellLevel,
                 StrRef = StrRefSpellReqSpellLevel,
@@ -1519,6 +1579,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Spell,
                   SubType = ValidationFailureSubType.SpellMinimumAbility,
                   StrRef = StrRefSpellReqAbility,
@@ -1543,6 +1604,7 @@ namespace NWN.Services
                   {
                     if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                     {
+                      Player = nwPlayer,
                       Type = ValidationFailureType.Spell,
                       SubType = ValidationFailureSubType.SpellRestrictedSpellSchool,
                       StrRef = StrRefSpellOppositeSpellSchool,
@@ -1560,6 +1622,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.SpellAlreadyKnown,
                 StrRef = StrRefSpellLearnedTwice,
@@ -1578,6 +1641,7 @@ namespace NWN.Services
                 {
                   if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                   {
+                    Player = nwPlayer,
                     Type = ValidationFailureType.Spell,
                     SubType = ValidationFailureSubType.SpellWizardExceedsNumSpellsToAdd,
                     StrRef = StrRefSpellIllegalNumSpells,
@@ -1605,6 +1669,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.IllegalRemovedSpell,
                 StrRef = StrRefSpellIllegalRemovedSpells,
@@ -1622,6 +1687,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.InvalidSpell,
                 StrRef = StrRefSpellInvalidSpell,
@@ -1638,6 +1704,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.RemovedNotKnownSpell,
                 StrRef = StrRefSpellIllegalRemovedSpells,
@@ -1662,6 +1729,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.InvalidNumSpells,
                 StrRef = StrRefSpellIllegalNumSpells,
@@ -1697,6 +1765,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Spell,
                   SubType = ValidationFailureSubType.SpellListComparison,
                   StrRef = StrRefSpellIllegalNumSpells,
@@ -1712,6 +1781,7 @@ namespace NWN.Services
               {
                 if (HandleValidationFailure(out int strRefFailure, new OnELCSpellValidationFailure
                 {
+                  Player = nwPlayer,
                   Type = ValidationFailureType.Spell,
                   SubType = ValidationFailureSubType.SpellListComparison,
                   Spell = (Spell)nSpellID,
@@ -1729,6 +1799,7 @@ namespace NWN.Services
             {
               if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
               {
+                Player = nwPlayer,
                 Type = ValidationFailureType.Spell,
                 SubType = ValidationFailureSubType.SpellListComparison,
                 StrRef = StrRefSpellIllegalNumSpells,
@@ -1750,6 +1821,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCSkillValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Skill,
             SubType = ValidationFailureSubType.SkillListComparison,
             Skill = (Skill)nSkill,
@@ -1769,6 +1841,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Feat,
             SubType = ValidationFailureSubType.FeatListComparison,
             StrRef = StrRefFeatTooMany,
@@ -1784,6 +1857,7 @@ namespace NWN.Services
         {
           if (HandleValidationFailure(out int strRefFailure, new OnELCFeatValidationFailure
           {
+            Player = nwPlayer,
             Type = ValidationFailureType.Feat,
             SubType = ValidationFailureSubType.FeatListComparison,
             Feat = (API.Constants.Feat)nFeat,
@@ -1804,6 +1878,7 @@ namespace NWN.Services
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
+          Player = nwPlayer,
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.MiscSavingThrow,
           StrRef = StrRefCharacterSavingThrow,
@@ -1825,6 +1900,7 @@ namespace NWN.Services
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
+          Player = nwPlayer,
           Type = ValidationFailureType.Feat,
           SubType = ValidationFailureSubType.NumFeatComparison,
           StrRef = StrRefFeatInvalid,
@@ -1835,11 +1911,11 @@ namespace NWN.Services
       }
 
       // Run a custom ELC check if enabled and there is an ELC script set
-      NwPlayer nwPlayer = pPlayer.ToNwPlayer();
       if (!InvokeCustomCheck(nwPlayer))
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
+          Player = nwPlayer,
           Type = ValidationFailureType.Custom,
           SubType = ValidationFailureSubType.None,
           StrRef = StrRefCustom,

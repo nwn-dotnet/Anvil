@@ -230,8 +230,8 @@ namespace NWN.API
     /// </summary>
     public sbyte BaseAC
     {
-      get => unchecked((sbyte)Creature.m_pStats.m_nACNaturalBase);
-      set => Creature.m_pStats.m_nACNaturalBase = unchecked((byte)value);
+      get => Creature.m_pStats.m_nACNaturalBase.AsSByte();
+      set => Creature.m_pStats.m_nACNaturalBase = value.AsByte();
     }
 
     /// <summary>
@@ -685,8 +685,8 @@ namespace NWN.API
     /// </summary>
     public sbyte SpellResistance
     {
-      get => unchecked((sbyte)Creature.m_pStats.GetSpellResistance());
-      set => Creature.m_pStats.SetSpellResistance(unchecked((byte)value));
+      get => Creature.m_pStats.GetSpellResistance().AsSByte();
+      set => Creature.m_pStats.SetSpellResistance(value.AsByte());
     }
 
     /// <summary>
@@ -2228,16 +2228,16 @@ namespace NWN.API
       switch (savingThrow)
       {
         case SavingThrow.Fortitude:
-          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseFortSavingThrow());
-          Creature.m_pStats.m_nFortSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          baseSave = Creature.m_pStats.GetBaseFortSavingThrow().AsSByte();
+          Creature.m_pStats.m_nFortSavingThrowMisc = ((sbyte)(newValue - baseSave)).AsByte();
           break;
         case SavingThrow.Reflex:
-          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseReflexSavingThrow());
-          Creature.m_pStats.m_nReflexSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          baseSave = Creature.m_pStats.GetBaseReflexSavingThrow().AsSByte();
+          Creature.m_pStats.m_nReflexSavingThrowMisc = ((sbyte)(newValue - baseSave)).AsByte();
           break;
         case SavingThrow.Will:
-          baseSave = unchecked((sbyte)Creature.m_pStats.GetBaseWillSavingThrow());
-          Creature.m_pStats.m_nWillSavingThrowMisc = unchecked((byte)(newValue - baseSave));
+          baseSave = Creature.m_pStats.GetBaseWillSavingThrow().AsSByte();
+          Creature.m_pStats.m_nWillSavingThrowMisc = ((sbyte)(newValue - baseSave)).AsByte();
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
@@ -2426,7 +2426,7 @@ namespace NWN.API
       EventScriptType previousScriptEvent = VirtualMachine.CurrentRunningEvent;
       VirtualMachine.CurrentRunningEvent = EventScriptType.ModuleOnUnequipItem;
 
-      bool retVal = Creature.RunUnequip(item, Invalid, unchecked((byte)-1), unchecked((byte)-1), false.ToInt()).ToBool();
+      bool retVal = Creature.RunUnequip(item, Invalid, IntegerExtensions.AsByte(-1), IntegerExtensions.AsByte(-1), false.ToInt()).ToBool();
 
       VirtualMachine.CurrentRunningEvent = previousScriptEvent;
       return retVal;
