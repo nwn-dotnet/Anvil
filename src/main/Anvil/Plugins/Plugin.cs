@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Anvil.Internal;
 
-namespace NWN.Plugins
+namespace Anvil.Plugins
 {
   internal sealed class Plugin : IDisposable
   {

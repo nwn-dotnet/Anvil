@@ -4,7 +4,7 @@ using System.Linq;
 using Anvil.Internal;
 using NLog;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(DispatchServiceManager))]
   [ServiceBinding(typeof(ICoreRunScriptHandler))]

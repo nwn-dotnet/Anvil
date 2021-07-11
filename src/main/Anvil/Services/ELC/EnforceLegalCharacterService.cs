@@ -10,7 +10,7 @@ using Feat = NWN.Native.API.Feat;
 using MovementRate = NWN.Native.API.MovementRate;
 using Skill = NWN.API.Constants.Skill;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(EnforceLegalCharacterService))]
   [ServiceBindingOptions(Lazy = true)]
@@ -1860,7 +1860,7 @@ namespace NWN.Services
             Player = nwPlayer,
             Type = ValidationFailureType.Feat,
             SubType = ValidationFailureSubType.FeatListComparison,
-            Feat = (API.Constants.Feat)nFeat,
+            Feat = (NWN.API.Constants.Feat)nFeat,
             StrRef = StrRefFeatTooMany,
           }))
           {

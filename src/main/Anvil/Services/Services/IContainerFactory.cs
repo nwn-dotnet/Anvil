@@ -1,7 +1,7 @@
+using Anvil.Plugins;
 using LightInject;
-using NWN.Plugins;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   public interface IContainerFactory
   {

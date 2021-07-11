@@ -2,7 +2,7 @@ using System;
 using NLog;
 using NWN.Core;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   public readonly struct NwDateTime
   {

@@ -4,7 +4,7 @@ using NWN.API;
 using NWN.API.Constants;
 using NWN.Native.API;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(ChatService))]
   public sealed unsafe partial class ChatService

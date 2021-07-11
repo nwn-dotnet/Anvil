@@ -1,7 +1,7 @@
 using NWN.API;
 using NWN.API.Constants;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   public class OnELCValidationFailure
   {

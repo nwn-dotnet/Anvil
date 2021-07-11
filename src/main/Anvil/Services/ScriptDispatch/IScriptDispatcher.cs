@@ -1,4 +1,4 @@
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// Implement in a service to add a custom handler for event scripts.

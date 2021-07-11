@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// Tracks per-loop and total server run time.

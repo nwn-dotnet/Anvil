@@ -3,11 +3,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
+using Anvil.Plugins;
+using Anvil.Services;
 using NLog;
 using NWN.API;
 using NWN.Core;
-using NWN.Plugins;
-using NWN.Services;
 
 namespace Anvil
 {

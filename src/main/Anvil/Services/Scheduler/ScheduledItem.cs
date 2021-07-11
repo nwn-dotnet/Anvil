@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   internal sealed class ScheduledItem : IDisposable
   {

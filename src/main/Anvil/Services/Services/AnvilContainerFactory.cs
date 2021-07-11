@@ -1,11 +1,11 @@
 using System;
 using System.Reflection;
+using Anvil.Plugins;
 using LightInject;
 using NLog;
 using NWN.API;
-using NWN.Plugins;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// Wires up and prepares service classes for dependency injection and initialization.

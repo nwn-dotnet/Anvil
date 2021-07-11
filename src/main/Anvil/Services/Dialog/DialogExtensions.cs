@@ -1,6 +1,6 @@
 using NWN.Native.API;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   internal static class DialogExtensions
   {

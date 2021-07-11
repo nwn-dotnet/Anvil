@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using NWN.Core;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   public sealed class FunctionHook<T> : IDisposable where T : Delegate
   {

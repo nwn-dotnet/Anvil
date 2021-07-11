@@ -2,7 +2,7 @@ using System;
 using NWN.API;
 using NWN.API.Events;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(IEventFactory))]
   public sealed partial class ChatService : IEventFactory<NullRegistrationData>

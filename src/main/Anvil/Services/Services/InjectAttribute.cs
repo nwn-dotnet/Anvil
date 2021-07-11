@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// Indicates a property as a service dependency to be injected.

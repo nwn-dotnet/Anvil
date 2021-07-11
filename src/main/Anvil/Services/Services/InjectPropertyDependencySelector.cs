@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using LightInject;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// An <see cref="IPropertyDependencySelector"/> that uses the <see cref="InjectAttribute"/> to determine which properties to inject service dependencies.

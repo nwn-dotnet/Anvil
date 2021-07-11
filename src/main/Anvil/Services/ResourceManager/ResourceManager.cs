@@ -4,13 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
+using Anvil.Plugins;
 using NLog;
 using NWN.API;
 using NWN.Native.API;
-using NWN.Plugins;
 using ResRefType = NWN.API.Constants.ResRefType;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(ResourceManager))]
   public sealed class ResourceManager : IDisposable

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Anvil.Plugins;
 using LightInject;
-using NWN.Plugins;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(InjectionService))]
   [ServiceBindingOptions(BindingOrder.API)]

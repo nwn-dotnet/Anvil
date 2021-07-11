@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Anvil.Internal;
+using Anvil.Services;
 using NLog;
-using NWN.Services;
 
-namespace NWN.Plugins
+namespace Anvil.Plugins
 {
   /// <summary>
   /// Loads all available plugins and their types for service initialisation.

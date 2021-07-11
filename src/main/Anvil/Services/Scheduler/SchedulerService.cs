@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NLog;
 using NWN.API;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   //! ## Examples
   //! @include SchedulerServiceExample.cs

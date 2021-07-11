@@ -2,9 +2,9 @@ using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
+using Anvil.Services;
 using NWN.API.Constants;
 using NWN.Native.API;
-using NWN.Services;
 using Alignment = NWN.API.Constants.Alignment;
 
 namespace NWN.API.Events

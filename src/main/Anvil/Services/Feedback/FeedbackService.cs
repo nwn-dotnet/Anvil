@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Anvil.Native;
 using NWN.API;
-using NWN.Native;
 using NWN.Native.API;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// Allows combat log, feedback and journal update messages to be hidden globally or per player.

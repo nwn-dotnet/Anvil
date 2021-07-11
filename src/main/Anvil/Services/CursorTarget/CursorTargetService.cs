@@ -4,7 +4,7 @@ using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// A managed implementation of selection/target mode logic utilising C# style callbacks.

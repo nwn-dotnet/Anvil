@@ -5,11 +5,11 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Anvil.Internal;
+using Anvil.Services;
 using NLog;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
-using NWN.Services;
 using AssociateType = NWN.Native.API.AssociateType;
 using Vector = NWN.Native.API.Vector;
 

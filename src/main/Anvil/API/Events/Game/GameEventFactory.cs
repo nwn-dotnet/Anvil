@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Anvil.Services;
 using NLog;
 using NWN.API.Constants;
 using NWN.Core;
-using NWN.Services;
 
 namespace NWN.API.Events
 {

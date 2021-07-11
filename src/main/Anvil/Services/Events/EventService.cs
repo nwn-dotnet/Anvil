@@ -4,7 +4,7 @@ using NLog;
 using NWN.API;
 using NWN.API.Events;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(EventService))]
   [ServiceBindingOptions(BindingOrder.API)]

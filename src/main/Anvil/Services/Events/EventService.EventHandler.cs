@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NWN.API;
 using NWN.API.Events;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   public sealed partial class EventService
   {

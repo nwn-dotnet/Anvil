@@ -5,7 +5,7 @@ using NLog;
 using NWN.API;
 using NWN.API.Constants;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(IScriptDispatcher))]
   [ServiceBinding(typeof(IInitializable))]

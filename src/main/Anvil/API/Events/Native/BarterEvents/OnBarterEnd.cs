@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
+using Anvil.Services;
 using NWN.API.Events;
 using NWN.Native.API;
-using NWN.Services;
 
 namespace NWN.API.Events
 {

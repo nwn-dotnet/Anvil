@@ -1,9 +1,9 @@
+using Anvil.Plugins;
 using JetBrains.Annotations;
 using LightInject;
 using NLog;
-using NWN.Plugins;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBindingOptions(BindingOrder.Core)]
   public sealed class ServiceManager

@@ -3,7 +3,7 @@ using NWN.API;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   //! ## Examples
   //! @include XPReportService.cs

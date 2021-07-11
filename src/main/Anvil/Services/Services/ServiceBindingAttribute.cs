@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   //! ## Examples
   //! @include ServiceBindingBasics.cs

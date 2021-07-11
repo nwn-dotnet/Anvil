@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using Anvil.Internal;
 
-namespace NWN.Plugins
+namespace Anvil.Plugins
 {
   internal sealed class PluginLoadContext : AssemblyLoadContext
   {

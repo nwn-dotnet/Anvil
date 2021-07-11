@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NWN.Plugins
+namespace Anvil.Plugins
 {
   public interface ITypeLoader : IDisposable
   {

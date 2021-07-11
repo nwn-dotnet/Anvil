@@ -1,6 +1,6 @@
 using System;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// Additional service binding options.

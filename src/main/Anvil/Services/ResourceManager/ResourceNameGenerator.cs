@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using NWN.API.Constants;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   internal static class ResourceNameGenerator
   {

@@ -3,7 +3,7 @@ using LightInject;
 using NLog;
 using NWN.API;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   public sealed class InjectPropertySelector : PropertySelector
   {

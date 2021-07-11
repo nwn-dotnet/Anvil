@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using NLog;
 using NWN.Core;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   /// <summary>
   /// An advanced service for hooking native NWN functions.

@@ -5,7 +5,7 @@ using System;
 using System.Runtime.InteropServices;
 using NWN.Native.API;
 
-namespace NWN.Native
+namespace Anvil.Native
 {
   [StructLayout(LayoutKind.Sequential)]
   internal readonly struct CExoLocStringStruct

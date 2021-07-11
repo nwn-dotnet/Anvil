@@ -3,7 +3,7 @@ using System.Reflection;
 using NLog;
 using NWN.API;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   internal sealed class ScriptCallback
   {

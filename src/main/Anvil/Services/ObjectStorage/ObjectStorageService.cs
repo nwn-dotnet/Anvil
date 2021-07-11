@@ -4,7 +4,7 @@ using NLog;
 using NWN.API;
 using NWN.Native.API;
 
-namespace NWN.Services
+namespace Anvil.Services
 {
   [ServiceBinding(typeof(ObjectStorageService))]
   internal sealed unsafe class ObjectStorageService
