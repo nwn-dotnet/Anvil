@@ -1,0 +1,22 @@
+using NWN.Core;
+
+namespace Anvil.API
+{
+  public enum IPDamageType
+  {
+    Bludgeoning = NWScript.IP_CONST_DAMAGETYPE_BLUDGEONING,
+    Piercing = NWScript.IP_CONST_DAMAGETYPE_PIERCING,
+    Slashing = NWScript.IP_CONST_DAMAGETYPE_SLASHING,
+    Subdual = NWScript.IP_CONST_DAMAGETYPE_SUBDUAL,
+    Physical = NWScript.IP_CONST_DAMAGETYPE_PHYSICAL,
+    Magical = NWScript.IP_CONST_DAMAGETYPE_MAGICAL,
+    Acid = NWScript.IP_CONST_DAMAGETYPE_ACID,
+    Cold = NWScript.IP_CONST_DAMAGETYPE_COLD,
+    Divine = NWScript.IP_CONST_DAMAGETYPE_DIVINE,
+    Electrical = NWScript.IP_CONST_DAMAGETYPE_ELECTRICAL,
+    Fire = NWScript.IP_CONST_DAMAGETYPE_FIRE,
+    Negative = NWScript.IP_CONST_DAMAGETYPE_NEGATIVE,
+    Positive = NWScript.IP_CONST_DAMAGETYPE_POSITIVE,
+    Sonic = NWScript.IP_CONST_DAMAGETYPE_SONIC,
+  }
+}

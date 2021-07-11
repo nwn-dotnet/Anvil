@@ -3,25 +3,25 @@
  */
 
 using System.Linq;
+using Anvil.API;
+using Anvil.API.Events;
+using Anvil.Services;
 using NLog;
-using NWN.API;
-using NWN.API.Events;
-using NWN.Services;
 
 [ServiceBinding(typeof(TriggerHandlerService))]
 public class TriggerHandlerService
 {
   private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-  public TriggerHandlerService(NativeEventService eventService)
+  public TriggerHandlerService()
   {
     NwTrigger trigger = NwObject.FindObjectsWithTag<NwTrigger>("mytrigger").FirstOrDefault();
-    eventService.Subscribe<NwTrigger, TriggerEvents.OnEnter>(trigger, OnTriggerEnter);
+    trigger.OnEnter += OnTriggerEnter;
   }
 
   private void OnTriggerEnter(TriggerEvents.OnEnter obj)
   {
-    if (obj.EnteringObject is NwPlayer player)
+    if (obj.EnteringObject.IsPlayerControlled(out NwPlayer player))
     {
       Log.Info("Player entered trigger: " + player?.PlayerName);
     }

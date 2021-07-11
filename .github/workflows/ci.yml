@@ -13,6 +13,10 @@ on:
       - development
     paths-ignore:
       - '**.md'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Commit Tag'
 
 jobs:
   compile:
@@ -22,6 +26,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Check Line Endings
+        uses: erclu/check-crlf@v1
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
@@ -30,38 +37,71 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release /warnaserror
 
+      - name: Prepare Outputs
+        id: vars
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Code Analysis Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.local/share/JetBrains
+          key: resharper-cache-${{ steps.vars.outputs.sha_short }}
+          restore-keys: |
+            resharper-cache-
+
+      - name: Code Analysis
+        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml && cat results.xml
+
+      - name: Parse Analysis Results
+        uses: glassechidna/resharper-action@master
+        with:
+          report: results.xml
+
+      - name: Analysis Result
+        run: |
+          ! grep "<Issue TypeId=" results.xml
+
   build:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs: compile
     outputs:
       version: ${{ steps.vars.outputs.version }}
+      tag: ${{ steps.vars.outputs.tag }}
       sha_short: ${{ steps.vars.outputs.sha_short }}
       image_repository: ${{ steps.vars.outputs.image_repository }}
-      tag: ${{ steps.bump_version.outputs.tag }}
       created: ${{ steps.build.outputs.created }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.100
 
-      - name: Version and Tag
-        id: bump_version
-        uses: anothrNick/github-tag-action@1.22.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BUMP: patch
-          RELEASE_BRANCHES: master
-          WITH_V: true
+      - name: Tag Commit
+        if: github.event.inputs.tag != ''
+        run: |
+          git tag ${{ github.event.inputs.tag }} && git push origin ${{ github.event.inputs.tag }}
 
       - name: Prepare Outputs
         id: vars
         run: |
-          echo "::set-output name=version::$(echo ${{ steps.bump_version.outputs.tag }} | sed 's/[v]//g')"
+          if [[ "${{github.base_ref}}" == "master" || "${{github.ref}}" == "refs/heads/master" ]]; then
+            echo "::set-output name=tag::$(git describe --tags)"
+            echo "::set-output name=version::$(git describe --tags | sed 's/^v//')"
+          else
+            DESCRIBE=`git describe --tags --long`
+            VERSION=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[1]}'`
+            META=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[2]}'`
+            BUILD=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[3]}'`
+            COMMIT=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[4]}'`
+            echo "::set-output name=version::$(echo ${VERSION}-${META}.${BUILD}.${COMMIT:1} | sed 's/^v//')"
+          fi
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
 
@@ -69,20 +109,20 @@ jobs:
         id: build
         run: |
           dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
-          echo "::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-       
+          echo "::set-output name=created::$(echo date -u +'%Y-%m-%dT%H:%M:%SZ')"
+
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Binaries
           path: |
             output/
-            NWN.Managed.zip
+            NWN.Anvil.zip
           if-no-files-found: error
 
   release:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/master'
     needs: build
     steps:
       - name: Download Release Artifacts
@@ -96,10 +136,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.build.outputs.tag }}
           release_name: Release ${{ needs.build.outputs.version }}
           draft: false
           prerelease: false
+          tag_name: ${{ needs.build.outputs.tag }}
 
       - name: Upload Release Binaries
         id: upload-release-asset
@@ -108,13 +148,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./NWN.Managed.zip
-          asset_name: NWN.Managed.zip
+          asset_path: ./NWN.Anvil.zip
+          asset_name: NWN.Anvil.zip
           asset_content_type: application/zip
 
   nuget:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs: build
     steps:
       - name: Setup .NET Core
@@ -135,7 +175,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs: build
     steps:
       - name: Checkout
@@ -171,18 +211,18 @@ jobs:
           push: true
           build-args: BINARY_PATH=/output
           labels: |
-              org.opencontainers.image.title=NWN.Managed
-              org.opencontainers.image.description=NWN.Managed is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use NWN.Managed.
+              org.opencontainers.image.title=Anvil
+              org.opencontainers.image.description=Anvil is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use Anvil.
               org.opencontainers.image.author=NWN DotNET
               org.opencontainers.image.vendor=NWN DotNET
               org.opencontainers.image.source=https://github.com/${{ github.repository }}
               org.opencontainers.image.created=${{ needs.build.outputs.created }}
               org.opencontainers.image.revision=${{ github.sha }}
-              org.opencontainers.image.documentation=https://nwn-dotnet.github.io/NWN.Managed
+              org.opencontainers.image.documentation=https://nwn-dotnet.github.io/Anvil
           tags: |
-            nwndotnet/nwn.managed:latest
-            nwndotnet/nwn.managed:${{ needs.build.outputs.version }}
-            nwndotnet/nwn.managed:${{ needs.build.outputs.sha_short }}
+            nwndotnet/anvil:latest
+            nwndotnet/anvil:${{ needs.build.outputs.version }}
+            nwndotnet/anvil:${{ needs.build.outputs.sha_short }}
             ghcr.io/${{ needs.build.outputs.image_repository }}:latest
             ghcr.io/${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.version }}
             ghcr.io/${{ needs.build.outputs.image_repository }}:${{ needs.build.outputs.sha_short }}
