@@ -1,0 +1,18 @@
+using NWN.Core;
+
+namespace Anvil.API
+{
+  public sealed class LocalVariableFloat : LocalVariable<float>
+  {
+    public override float Value
+    {
+      get => NWScript.GetLocalFloat(Object, Name);
+      set => NWScript.SetLocalFloat(Object, Name, value);
+    }
+
+    public override void Delete()
+    {
+      NWScript.DeleteLocalFloat(Object, Name);
+    }
+  }
+}

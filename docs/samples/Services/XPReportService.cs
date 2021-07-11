@@ -5,9 +5,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using NWN.API;
-using NWN.API.Events;
-using NWN.Services;
+using Anvil.API;
+using Anvil.API.Events;
+using Anvil.Services;
 
 // This is the deserialization class for this specific type of 2da.
 // We can implement our own helper functions here that operate on the 2da data, and cache it.
@@ -95,12 +95,12 @@ public class XPReportService
   private void OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)
   {
     NwPlayer player = onClientEnter.Player;
-    int nextLevel = expTable.GetLevelFromXp(player.Xp) + 1;
+    int nextLevel = expTable.GetLevelFromXp(player.ControlledCreature.Xp) + 1;
     if (nextLevel > expTable.MaxLevel)
     {
       return;
     }
 
-    player.SendServerMessage($"Next level up: {expTable.GetXpForLevel(nextLevel) - player.Xp}");
+    player.SendServerMessage($"Next level up: {expTable.GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}");
   }
 }

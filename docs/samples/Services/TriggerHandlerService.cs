@@ -3,10 +3,10 @@
  */
 
 using System.Linq;
+using Anvil.API;
+using Anvil.API.Events;
+using Anvil.Services;
 using NLog;
-using NWN.API;
-using NWN.API.Events;
-using NWN.Services;
 
 [ServiceBinding(typeof(TriggerHandlerService))]
 public class TriggerHandlerService
@@ -21,7 +21,7 @@ public class TriggerHandlerService
 
   private void OnTriggerEnter(TriggerEvents.OnEnter obj)
   {
-    if (obj.EnteringObject is NwPlayer player)
+    if (obj.EnteringObject.IsPlayerControlled(out NwPlayer player))
     {
       Log.Info("Player entered trigger: " + player?.PlayerName);
     }

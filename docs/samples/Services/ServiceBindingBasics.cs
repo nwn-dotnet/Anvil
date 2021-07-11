@@ -2,8 +2,8 @@
  * Service binding basics - starts two services and logs a message for each.
  */
 
+using Anvil.Services;
 using NLog;
-using NWN.Services;
 
 // The "ServiceBinding" attribute indicates this class will be created on start, and available to other classes as "ServiceA".
 [ServiceBinding(typeof(ServiceA))]
