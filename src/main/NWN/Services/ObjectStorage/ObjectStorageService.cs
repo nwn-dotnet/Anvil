@@ -61,6 +61,16 @@ namespace NWN.Services
       return storage;
     }
 
+    public bool TryGetObjectStorage(NwObject gameObject, out ObjectStorage storage)
+    {
+      return TryGetObjectStorage(gameObject.Object, out storage);
+    }
+
+    public bool TryGetObjectStorage(ICGameObject gameObject, out ObjectStorage storage)
+    {
+      return objectStorage.TryGetValue(gameObject, out storage);
+    }
+
     public void DestroyObjectStorage(NwObject gameObject)
     {
       DestroyObjectStorage(gameObject.Object);

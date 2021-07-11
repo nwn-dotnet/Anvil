@@ -17,6 +17,123 @@ namespace NWN.Services
     private Dictionary<string, ObjectStorageValue<float>> floatMap = new Dictionary<string, ObjectStorageValue<float>>();
     private Dictionary<string, ObjectStorageValue<string>> stringMap = new Dictionary<string, ObjectStorageValue<string>>();
 
+    /// <summary>
+    /// Gets the stored integer with the specified key.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>The integer value stored with the specified key, otherwise null if the key has no value populated.</returns>
+    public int? GetInt(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return intMap.TryGetValue(fullKey, out ObjectStorageValue<int> value) ? value.Value : null;
+    }
+
+    /// <summary>
+    /// Gets the stored float with the specified key.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>The float value stored with the specified key, otherwise null if the key has no value populated.</returns>
+    public float? GetFloat(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return floatMap.TryGetValue(fullKey, out ObjectStorageValue<float> value) ? value.Value : null;
+    }
+
+    /// <summary>
+    /// Gets the stored string with the specified key.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>The string stored with the specified key, otherwise null if the key has no value populated.</returns>
+    public string GetString(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return stringMap.TryGetValue(fullKey, out ObjectStorageValue<string> value) ? value.Value : null;
+    }
+
+    /// <summary>
+    /// Gets if the specified prefix + key combination has an integer value assigned.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>True if a value exists, otherwise false.</returns>
+    public bool ContainsInt(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return intMap.ContainsKey(fullKey);
+    }
+
+    /// <summary>
+    /// Gets if the specified prefix + key combination has a float value assigned.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>True if a value exists, otherwise false.</returns>
+    public bool ContainsFloat(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return floatMap.ContainsKey(fullKey);
+    }
+
+    /// <summary>
+    /// Gets if the specified prefix + key combination has a string value assigned.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>True if a value exists, otherwise false.</returns>
+    public bool ContainsString(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return stringMap.ContainsKey(fullKey);
+    }
+
+    /// <summary>
+    /// Stores the specified value using the specified unique key.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <param name="value">The value to store.</param>
+    /// <param name="persist">Set to true to include this value when the object is serialized.</param>
+    public void Set(string prefix, string key, int value, bool persist = false)
+    {
+      string fullKey = prefix + "!" + key;
+      ObjectStorageValue<int> data = new ObjectStorageValue<int> { Value = value, Persist = persist };
+      intMap[fullKey] = data;
+    }
+
+    /// <inheritdoc cref="Set(string,string,int,bool)"/>
+    public void Set(string prefix, string key, float value, bool persist = false)
+    {
+      string fullKey = prefix + "!" + key;
+      ObjectStorageValue<float> data = new ObjectStorageValue<float> { Value = value, Persist = persist };
+      floatMap[fullKey] = data;
+    }
+
+    /// <inheritdoc cref="Set(string,string,int,bool)"/>
+    public void Set(string prefix, string key, string value, bool persist = false)
+    {
+      string fullKey = prefix + "!" + key;
+      ObjectStorageValue<string> data = new ObjectStorageValue<string> { Value = value, Persist = persist };
+      stringMap[fullKey] = data;
+    }
+
+    /// <summary>
+    /// Removes an
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group containing the key to be removed.</param>
+    /// <param name="key">The storage key to be removed.</param>
+    /// <returns>True if an entry was removed, otherwise false.</returns>
+    public bool Remove(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+
+      return intMap.Remove(fullKey) ||
+        floatMap.Remove(fullKey) ||
+        stringMap.Remove(fullKey);
+    }
+
     internal string Serialize(bool persistOnly = true)
     {
       List<KeyValuePair<string, ObjectStorageValue<int>>> intData = GetValuesToSerialize(intMap, persistOnly);
