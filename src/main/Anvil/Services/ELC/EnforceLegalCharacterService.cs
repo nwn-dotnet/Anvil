@@ -4,7 +4,6 @@ using System.Linq;
 using Anvil.API;
 using Anvil.Internal;
 using NWN.API;
-using NWN.API.Constants;
 using NWN.Native.API;
 using Ability = NWN.Native.API.Ability;
 using Feat = NWN.Native.API.Feat;

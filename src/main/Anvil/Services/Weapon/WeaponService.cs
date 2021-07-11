@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Anvil.API;
 using NWN.API;
-using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Native.API;
 using ClassType = NWN.Native.API.ClassType;

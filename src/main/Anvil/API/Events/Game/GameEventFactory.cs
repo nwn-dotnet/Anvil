@@ -4,7 +4,6 @@ using System.Reflection;
 using Anvil.API;
 using Anvil.Services;
 using NLog;
-using NWN.API.Constants;
 using NWN.Core;
 
 namespace NWN.API.Events

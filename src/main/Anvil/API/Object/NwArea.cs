@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Numerics;
 using Anvil.API;
 using Anvil.Services;
-using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
 using AssociateType = Anvil.API.AssociateType;

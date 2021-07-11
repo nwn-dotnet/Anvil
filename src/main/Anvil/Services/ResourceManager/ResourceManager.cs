@@ -9,7 +9,7 @@ using Anvil.Plugins;
 using NLog;
 using NWN.API;
 using NWN.Native.API;
-using ResRefType = NWN.API.Constants.ResRefType;
+using ResRefType = Anvil.API.ResRefType;
 
 namespace Anvil.Services
 {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Anvil.API;
-using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
 using ItemProperty = Anvil.API.ItemProperty;

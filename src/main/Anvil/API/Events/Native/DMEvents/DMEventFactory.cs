@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
-using NWN.API.Constants;
 using NWN.Native.API;
 using Alignment = Anvil.API.Alignment;
 

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Anvil.API;
 using Anvil.Internal;
-using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
 

@@ -5,7 +5,6 @@ using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.API;
 using Anvil.Internal;
-using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
 using Ability = Anvil.API.Ability;

@@ -8,7 +8,6 @@ using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
 using NLog;
-using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
 using AssociateType = NWN.Native.API.AssociateType;

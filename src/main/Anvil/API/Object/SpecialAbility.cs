@@ -1,5 +1,4 @@
 using Anvil.API;
-using NWN.API.Constants;
 
 namespace NWN.API
 {

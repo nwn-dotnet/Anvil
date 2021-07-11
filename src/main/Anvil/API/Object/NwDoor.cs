@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using Anvil.API;
-using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
 using SavingThrow = Anvil.API.SavingThrow;

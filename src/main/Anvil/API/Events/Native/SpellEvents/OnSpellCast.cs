@@ -3,7 +3,6 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using Anvil.API;
 using Anvil.Services;
-using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;
 using NWN.Native.API;
