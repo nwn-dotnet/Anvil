@@ -302,7 +302,7 @@ namespace NWN.Services
       int next = stringReader.Read();
       if (next == -1)
       {
-        throw new InvalidOperationException($"Unexpected end of data.");
+        throw new InvalidOperationException("Unexpected end of data.");
       }
 
       return (char)next;
