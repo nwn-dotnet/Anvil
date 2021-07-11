@@ -24,16 +24,20 @@ namespace NWN.Services
     /// <param name="handler">The handler to be invoked when this function is called. Once hooked, the original function will not be called, and must be invoked manually via the returned object.</param>
     /// <param name="address">The address of the native function. Use the constants available in <see cref="NWN.Native.API.FunctionsLinux"/>.</param>
     /// <param name="order">The execution order for this hook. See the constants in <see cref="HookOrder"/>.</param>
+    /// <param name="shutdownDispose">True if the hook should automatically be disposed during shutdown/reload.</param>
     /// <typeparam name="T">The delegate type that identically matches the native function signature.</typeparam>
     /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
-    public FunctionHook<T> RequestHook<T>(T handler, uint address, int order = HookOrder.Default) where T : Delegate
+    public FunctionHook<T> RequestHook<T>(T handler, uint address, int order = HookOrder.Default, bool shutdownDispose = true) where T : Delegate
     {
       Log.Debug($"Requesting function hook for {typeof(T).Name}, address 0x{address:X}");
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
       IntPtr nativeFuncPtr = VM.RequestHook(new IntPtr(address), managedFuncPtr, order);
 
       FunctionHook<T> hook = new FunctionHook<T>(this, nativeFuncPtr, handler);
-      hooks.Add(hook);
+      if (shutdownDispose)
+      {
+        hooks.Add(hook);
+      }
 
       return hook;
     }
@@ -44,15 +48,19 @@ namespace NWN.Services
     /// <param name="handler">A delegate pointer (delegate*) to be invoked when the original game function is called. Once hooked, the original function will not be called, and must be invoked manually via the returned object.</param>
     /// <param name="address">The address of the native function. Use the constants available in <see cref="NWN.Native.API.FunctionsLinux"/>.</param>
     /// <param name="order">The execution order for this hook. See the constants in <see cref="HookOrder"/>.</param>
+    /// <param name="shutdownDispose">True if the hook should automatically be disposed during shutdown/reload.</param>
     /// <typeparam name="T">The delegate type that identically matches the native function signature.</typeparam>
     /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
-    public FunctionHook<T> RequestHook<T>(void* handler, uint address, int order = HookOrder.Default) where T : Delegate
+    public FunctionHook<T> RequestHook<T>(void* handler, uint address, int order = HookOrder.Default, bool shutdownDispose = true) where T : Delegate
     {
       Log.Debug($"Requesting function hook for {typeof(T).Name}, address 0x{address:X}");
       IntPtr nativeFuncPtr = VM.RequestHook(new IntPtr(address), (IntPtr)handler, order);
 
       FunctionHook<T> retVal = new FunctionHook<T>(this, nativeFuncPtr);
-      hooks.Add(retVal);
+      if (shutdownDispose)
+      {
+        hooks.Add(retVal);
+      }
 
       return retVal;
     }

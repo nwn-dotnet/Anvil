@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using NWN.API.Constants;
@@ -126,6 +128,50 @@ namespace NWN.API
     public static bool IsValidScriptName(this string scriptName)
     {
       return scriptName != null && scriptName.Length <= ScriptConstants.MaxScriptNameSize;
+    }
+
+    public static string ReadUntilChar(this StringReader stringReader, char character)
+    {
+      List<char> retVal = new List<char>();
+
+      int next;
+      while ((next = stringReader.Peek()) >= 0)
+      {
+        char c = (char)next;
+        if (c == character)
+        {
+          break;
+        }
+
+        stringReader.Read();
+        retVal.Add(c);
+      }
+
+      return new string(retVal.ToArray());
+    }
+
+    public static string ReadBlock(this StringReader stringReader, int length)
+    {
+      char[] retVal = new char[length];
+
+      int next;
+      int i = 0;
+
+      while (i < length && (next = stringReader.Read()) >= 0)
+      {
+        retVal[i] = (char)next;
+        i++;
+      }
+
+      return new string(retVal, 0, i);
+    }
+
+    public static void Skip(this StringReader stringReader, int count)
+    {
+      for (int i = 0; i < count; i++)
+      {
+        stringReader.Read();
+      }
     }
   }
 }

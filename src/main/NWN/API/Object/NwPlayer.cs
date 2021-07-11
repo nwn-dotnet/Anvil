@@ -400,9 +400,9 @@ namespace NWN.API
     /// <param name="name">The variable name.</param>
     /// <typeparam name="T">The variable type.</typeparam>
     /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
-    public CampaignVariable<T> GetCampaignVariable<T>(string campaign, string name)
+    public T GetCampaignVariable<T>(string campaign, string name) where T : CampaignVariable, new()
     {
-      return CampaignVariable<T>.Create(campaign, name, this);
+      return CampaignVariable.Create<T>(campaign, name, this);
     }
 
     /// <summary>
