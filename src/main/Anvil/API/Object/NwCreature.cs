@@ -183,7 +183,7 @@ namespace Anvil.API
 
     /// <summary>
     /// Gets or sets the current AI level that this creature is running at.<br/>
-    /// <see cref="AiLevel.Default"/> is recommended for most creatures. Too many creatures at <see cref="AiLevel.Normal"/> or higher can cause performance degradation.
+    /// <see cref="Anvil.API.AiLevel.Default"/> is recommended for most creatures. Too many creatures at <see cref="Anvil.API.AiLevel.Normal"/> or higher can cause performance degradation.
     /// </summary>
     public AiLevel AiLevel
     {
@@ -302,7 +302,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the associate type of this creature, otherwise returns <see cref="AssociateType.None"/> if this creature is not an associate of anyone.
+    /// Gets the associate type of this creature, otherwise returns <see cref="Anvil.API.AssociateType.None"/> if this creature is not an associate of anyone.
     /// </summary>
     public AssociateType AssociateType
     {
