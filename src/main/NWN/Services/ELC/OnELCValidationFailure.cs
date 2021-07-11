@@ -5,6 +5,8 @@ namespace NWN.Services
 {
   public class OnELCValidationFailure
   {
+    public NwPlayer Player { get; init; }
+
     public ValidationFailureType Type { get; init; }
 
     public ValidationFailureSubType SubType { get; init; }
