@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace NWN.API
+namespace Anvil.API
 {
   internal static class ReflectionExtensions
   {

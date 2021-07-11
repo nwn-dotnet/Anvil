@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Anvil.API;
 using NWN.API.Constants;
 using NWN.Native.API;
-using ClassType = NWN.API.Constants.ClassType;
+using ClassType = Anvil.API.ClassType;
 
 namespace NWN.API
 {

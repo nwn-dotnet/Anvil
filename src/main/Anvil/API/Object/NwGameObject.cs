@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
+using Anvil.API;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
-using Animation = NWN.API.Constants.Animation;
-using SavingThrow = NWN.API.Constants.SavingThrow;
-using SavingThrowType = NWN.API.Constants.SavingThrowType;
+using Animation = Anvil.API.Animation;
+using SavingThrow = Anvil.API.SavingThrow;
+using SavingThrowType = Anvil.API.SavingThrowType;
 using Vector3 = System.Numerics.Vector3;
 
 namespace NWN.API

@@ -1,7 +1,6 @@
 using System;
-using NWN.API.Constants;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class VisualTransformLerpSettings
   {

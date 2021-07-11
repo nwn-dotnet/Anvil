@@ -1,7 +1,7 @@
 using System;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class LocalVariableGuid : LocalVariable<Guid>
   {

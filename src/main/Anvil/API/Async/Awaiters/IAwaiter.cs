@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public interface IAwaiter : INotifyCompletion
   {

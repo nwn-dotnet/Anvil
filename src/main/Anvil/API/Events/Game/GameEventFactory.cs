@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Anvil.API;
 using Anvil.Services;
 using NLog;
 using NWN.API.Constants;

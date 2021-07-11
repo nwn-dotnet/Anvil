@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
 using NWN.API.Events;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NWN.API
+namespace Anvil.API
 {
   internal static class CollectionExtensions
   {

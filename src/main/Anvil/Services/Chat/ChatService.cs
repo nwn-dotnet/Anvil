@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Anvil.API;
 using Anvil.Internal;
 using NWN.API;
 using NWN.API.Constants;

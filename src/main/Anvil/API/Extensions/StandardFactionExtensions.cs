@@ -1,7 +1,7 @@
-using NWN.API.Constants;
+using NWN.API;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Extension methods for getting and setting options of standard factions.

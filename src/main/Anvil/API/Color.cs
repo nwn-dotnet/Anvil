@@ -1,7 +1,7 @@
 using System;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Represents an 8 bit Color structure.

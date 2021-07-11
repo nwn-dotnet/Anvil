@@ -1,6 +1,6 @@
 using System;
 using NWN.Native.API;
-using DamageType = NWN.API.Constants.DamageType;
+using DamageType = Anvil.API.DamageType;
 
 namespace NWN.API.Events
 {

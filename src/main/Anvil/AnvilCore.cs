@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Anvil.API;
 using Anvil.Internal;
 using Anvil.Plugins;
 using Anvil.Services;

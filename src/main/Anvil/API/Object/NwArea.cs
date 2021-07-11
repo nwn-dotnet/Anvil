@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using Anvil.API;
 using Anvil.Services;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
-using AssociateType = NWN.API.Constants.AssociateType;
+using AssociateType = Anvil.API.AssociateType;
 
 namespace NWN.API
 {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Anvil.API;
 using Anvil.Internal;
 using NWN.API;
 using NWN.API.Constants;
@@ -8,7 +9,7 @@ using NWN.Native.API;
 using Ability = NWN.Native.API.Ability;
 using Feat = NWN.Native.API.Feat;
 using MovementRate = NWN.Native.API.MovementRate;
-using Skill = NWN.API.Constants.Skill;
+using Skill = Anvil.API.Skill;
 
 namespace Anvil.Services
 {
@@ -1860,7 +1861,7 @@ namespace Anvil.Services
             Player = nwPlayer,
             Type = ValidationFailureType.Feat,
             SubType = ValidationFailureSubType.FeatListComparison,
-            Feat = (NWN.API.Constants.Feat)nFeat,
+            Feat = (API.Feat)nFeat,
             StrRef = StrRefFeatTooMany,
           }))
           {

@@ -1,9 +1,10 @@
 using System;
 using Anvil.Internal;
+using NWN.API;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public static class IntegerExtensions
   {

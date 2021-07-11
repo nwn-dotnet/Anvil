@@ -1,6 +1,6 @@
 using System;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Represents a vector with two 32 bit integer values.

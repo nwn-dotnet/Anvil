@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
-using NWN.API.Constants;
+using NWN.API;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class Location : EngineStructure
   {

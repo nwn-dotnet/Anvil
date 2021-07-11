@@ -1,4 +1,4 @@
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract class PersistentVariable<T> : ObjectVariable<T>
   {

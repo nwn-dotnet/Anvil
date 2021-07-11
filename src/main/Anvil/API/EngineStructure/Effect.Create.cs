@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using NWN.API.Constants;
+using NWN.API;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class Effect
   {
@@ -592,7 +592,7 @@ namespace NWN.API
       return LinkEffects(baseEffect, (IEnumerable<Effect>)effects);
     }
 
-    /// <inheritdoc cref="LinkEffects(NWN.API.Effect,NWN.API.Effect[])"/>
+    /// <inheritdoc cref="LinkEffects(Anvil.API.Effect,Anvil.API.Effect[])"/>
     public static Effect LinkEffects(Effect baseEffect, IEnumerable<Effect> effects)
     {
       Effect current = baseEffect;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.API;
 using Anvil.Services;
 
 namespace NWN.API.Events

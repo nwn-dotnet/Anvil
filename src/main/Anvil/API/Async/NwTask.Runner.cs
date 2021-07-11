@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Anvil.Services;
 using NLog;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public static partial class NwTask
   {

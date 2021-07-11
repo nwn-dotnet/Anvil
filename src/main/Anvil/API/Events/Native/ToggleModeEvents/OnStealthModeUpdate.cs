@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using Anvil.Services;
 using NWN.API.Events;
 using NWN.Native.API;
+using IntegerExtensions = Anvil.API.IntegerExtensions;
+using NativeObjectExtensions = Anvil.API.NativeObjectExtensions;
 
 namespace NWN.API.Events
 {
@@ -63,7 +65,7 @@ namespace NWN.API.Events
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
-          Creature = creature.ToNwObject<NwCreature>(),
+          Creature = NativeObjectExtensions.ToNwObject<NwCreature>(creature),
           EventType = ToggleModeEventType.Enter,
         });
 
@@ -88,13 +90,13 @@ namespace NWN.API.Events
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
-          Creature = creature.ToNwObject<NwCreature>(),
+          Creature = NativeObjectExtensions.ToNwObject<NwCreature>(creature),
           EventType = ToggleModeEventType.Exit,
         });
 
         if (eventData.PreventExit)
         {
-          creature.SetActivity(1, true.ToInt());
+          creature.SetActivity(1, IntegerExtensions.ToInt(true));
         }
         else
         {
@@ -105,7 +107,7 @@ namespace NWN.API.Events
       private static void ForceEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
         bool noHIPS = false;
-        if (!creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight).ToBool())
+        if (!IntegerExtensions.ToBool(creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight)))
         {
           creature.m_pStats.AddFeat((ushort)Feat.HideInPlainSight);
           noHIPS = true;
@@ -122,7 +124,7 @@ namespace NWN.API.Events
       private static void PreventHIPSEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
         bool bHadHIPS = false;
-        if (creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight).ToBool())
+        if (IntegerExtensions.ToBool(creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight)))
         {
           creature.m_pStats.RemoveFeat((ushort)Feat.HideInPlainSight);
           bHadHIPS = true;

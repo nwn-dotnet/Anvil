@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Anvil.API;
 using Anvil.Services;
 using NWN.API.Events;
 using NWN.Native.API;
-using CombatMode = NWN.API.Constants.CombatMode;
+using CombatMode = Anvil.API.CombatMode;
 
 namespace NWN.API.Events
 {

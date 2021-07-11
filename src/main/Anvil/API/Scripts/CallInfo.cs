@@ -1,9 +1,9 @@
 using System.Reflection;
-using NWN.API.Constants;
+using NWN.API;
 using NWN.API.Events;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Meta information for script calls, consumed by ScriptHandler attributed methods in service classes.

@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using Anvil.Services;
 using NWN.API.Events;
 using NWN.Native.API;
+using IntegerExtensions = Anvil.API.IntegerExtensions;
+using NativeObjectExtensions = Anvil.API.NativeObjectExtensions;
 
 namespace NWN.API.Events
 {
@@ -34,8 +36,8 @@ namespace NWN.API.Events
 
         ProcessEvent(new OnFamiliarUnpossess
         {
-          Owner = creature.ToNwObject<NwCreature>(),
-          Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>(),
+          Owner = NativeObjectExtensions.ToNwObject<NwCreature>(creature),
+          Familiar = IntegerExtensions.ToNwObject<NwCreature>(creature.GetAssociateId((ushort)AssociateType.Familiar)),
         });
 
         Hook.CallOriginal(pCreature);

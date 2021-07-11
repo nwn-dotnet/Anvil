@@ -1,7 +1,8 @@
 using System;
+using NWN.API;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed unsafe class NwServer
   {

@@ -1,6 +1,7 @@
 using System;
+using NWN.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// GUID/UUID extension methods for resolving game objects, and GUID serialisation.

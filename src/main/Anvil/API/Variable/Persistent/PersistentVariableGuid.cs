@@ -1,7 +1,7 @@
 using System;
 using Anvil.Services;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class PersistentVariableGuid : PersistentVariable<Guid>
   {

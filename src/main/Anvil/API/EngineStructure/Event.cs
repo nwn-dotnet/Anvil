@@ -1,7 +1,7 @@
 using System;
 using NWN.Core;
 
-namespace NWN.API.Events
+namespace Anvil.API
 {
   internal sealed class Event : EngineStructure
   {

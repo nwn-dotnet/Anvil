@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class EffectParams<T> : IReadOnlyList<T>
   {

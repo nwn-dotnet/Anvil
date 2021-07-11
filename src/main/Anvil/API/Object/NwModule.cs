@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.API;
 using Anvil.Internal;
 using NWN.API.Constants;
 using NWN.Core;
@@ -224,7 +225,7 @@ namespace NWN.API
       NWScript.SendMessageToAllDMs(message.ColorString(color));
     }
 
-    /// <inheritdoc cref="SendMessageToAllDMs(string,NWN.API.Color)"/>
+    /// <inheritdoc cref="SendMessageToAllDMs(string,Color)"/>
     public void SendMessageToAllDMs(string message)
     {
       NWScript.SendMessageToAllDMs(message);

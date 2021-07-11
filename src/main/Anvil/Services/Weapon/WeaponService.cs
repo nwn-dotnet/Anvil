@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Anvil.API;
 using NWN.API;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Native.API;
 using ClassType = NWN.Native.API.ClassType;
-using CombatMode = NWN.API.Constants.CombatMode;
+using CombatMode = Anvil.API.CombatMode;
 using CreatureSize = NWN.Native.API.CreatureSize;
 using Feat = NWN.Native.API.Feat;
 using RacialType = NWN.Native.API.RacialType;
@@ -143,7 +144,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddWeaponFocusFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddWeaponFocusFeat(BaseItemType baseItem, API.Feat feat)
     {
       weaponFocusMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -153,7 +154,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddEpicWeaponFocusFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddEpicWeaponFocusFeat(BaseItemType baseItem, API.Feat feat)
     {
       epicWeaponFocusMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -163,7 +164,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddWeaponImprovedCriticalFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddWeaponImprovedCriticalFeat(BaseItemType baseItem, API.Feat feat)
     {
       weaponImprovedCriticalMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -173,7 +174,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddWeaponSpecializationFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddWeaponSpecializationFeat(BaseItemType baseItem, API.Feat feat)
     {
       weaponSpecializationMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -183,7 +184,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddEpicWeaponSpecializationFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddEpicWeaponSpecializationFeat(BaseItemType baseItem, API.Feat feat)
     {
       epicWeaponSpecializationMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -193,7 +194,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddEpicWeaponOverwhelmingCriticalFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddEpicWeaponOverwhelmingCriticalFeat(BaseItemType baseItem, API.Feat feat)
     {
       epicWeaponOverwhelmingCriticalMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -203,7 +204,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddEpicWeaponDevastatingCriticalFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddEpicWeaponDevastatingCriticalFeat(BaseItemType baseItem, API.Feat feat)
     {
       epicWeaponDevastatingCriticalMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -213,7 +214,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddWeaponOfChoiceFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddWeaponOfChoiceFeat(BaseItemType baseItem, API.Feat feat)
     {
       weaponOfChoiceMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -224,7 +225,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddGreaterWeaponFocusFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddGreaterWeaponFocusFeat(BaseItemType baseItem, API.Feat feat)
     {
       greaterWeaponFocusMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -235,7 +236,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddGreaterWeaponSpecializationFeat(BaseItemType baseItem, NWN.API.Constants.Feat feat)
+    public void AddGreaterWeaponSpecializationFeat(BaseItemType baseItem, API.Feat feat)
     {
       greaterWeaponSpecializationMap.AddElement((uint)baseItem, (ushort)feat);
     }
@@ -245,9 +246,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to query.</param>
     /// <returns>The size of the creature needed to consider this weapon finessable.</returns>
-    public NWN.API.Constants.CreatureSize GetWeaponFinesseSize(BaseItemType baseItem)
+    public API.CreatureSize GetWeaponFinesseSize(BaseItemType baseItem)
     {
-      return weaponFinesseSizeMap.TryGetValue((uint)baseItem, out byte size) ? (NWN.API.Constants.CreatureSize)size : NWN.API.Constants.CreatureSize.Invalid;
+      return weaponFinesseSizeMap.TryGetValue((uint)baseItem, out byte size) ? (API.CreatureSize)size : API.CreatureSize.Invalid;
     }
 
     /// <summary>
@@ -255,7 +256,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="size">The size of the creature needed to consider this weapon finessable.</param>
-    public void SetWeaponFinesseSize(BaseItemType baseItem, NWN.API.Constants.CreatureSize size)
+    public void SetWeaponFinesseSize(BaseItemType baseItem, API.CreatureSize size)
     {
       weaponFinesseSizeMap[(uint)baseItem] = (byte)size;
     }

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using NWN.Native.API;
 using Vector = NWN.Native.API.Vector;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public static unsafe class NativeUtils
   {

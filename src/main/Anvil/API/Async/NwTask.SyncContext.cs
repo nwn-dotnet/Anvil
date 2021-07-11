@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NLog;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public static partial class NwTask
   {

@@ -1,4 +1,4 @@
-namespace NWN.API.Constants
+namespace Anvil.API
 {
   public static class PlayerIdConstants
   {

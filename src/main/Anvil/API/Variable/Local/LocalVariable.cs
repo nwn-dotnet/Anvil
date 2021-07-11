@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract class LocalVariable<T> : ObjectVariable<T>
   {

@@ -1,10 +1,11 @@
 using System;
 using System.Runtime.InteropServices;
+using Anvil.API;
 using Anvil.Services;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Native.API;
-using Feat = NWN.API.Constants.Feat;
+using Feat = Anvil.API.Feat;
 
 namespace NWN.API.Events
 {

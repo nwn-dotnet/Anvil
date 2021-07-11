@@ -1,8 +1,7 @@
 using System;
-using NWN.API.Constants;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class Talent : EngineStructure
   {

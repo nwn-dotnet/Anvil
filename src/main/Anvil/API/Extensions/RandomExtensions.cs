@@ -1,6 +1,6 @@
 using System;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Extensions to the Random class for reimplementing native random functions (Dice and Ranges).

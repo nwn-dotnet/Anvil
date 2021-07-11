@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using Anvil.API;
 using Anvil.Internal;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
-using Ability = NWN.API.Constants.Ability;
-using Action = NWN.API.Constants.Action;
-using Alignment = NWN.API.Constants.Alignment;
+using Ability = Anvil.API.Ability;
+using Action = Anvil.API.Action;
+using Alignment = Anvil.API.Alignment;
 using Animation = NWN.Native.API.Animation;
-using AssociateType = NWN.API.Constants.AssociateType;
-using ClassType = NWN.API.Constants.ClassType;
-using CombatMode = NWN.API.Constants.CombatMode;
-using CreatureSize = NWN.API.Constants.CreatureSize;
-using Feat = NWN.API.Constants.Feat;
-using ImmunityType = NWN.API.Constants.ImmunityType;
-using InventorySlot = NWN.API.Constants.InventorySlot;
-using MovementRate = NWN.API.Constants.MovementRate;
+using AssociateType = Anvil.API.AssociateType;
+using ClassType = Anvil.API.ClassType;
+using CombatMode = Anvil.API.CombatMode;
+using CreatureSize = Anvil.API.CreatureSize;
+using Feat = Anvil.API.Feat;
+using ImmunityType = Anvil.API.ImmunityType;
+using InventorySlot = Anvil.API.InventorySlot;
+using ItemProperty = Anvil.API.ItemProperty;
+using MovementRate = Anvil.API.MovementRate;
 using ObjectType = NWN.Native.API.ObjectType;
-using RacialType = NWN.API.Constants.RacialType;
-using SavingThrow = NWN.API.Constants.SavingThrow;
-using Skill = NWN.API.Constants.Skill;
+using RacialType = Anvil.API.RacialType;
+using SavingThrow = Anvil.API.SavingThrow;
+using Skill = Anvil.API.Skill;
 
 namespace NWN.API
 {
@@ -199,7 +201,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gets or sets the current AI level that this creature is running at.<br/>
-    /// <see cref="Constants.AiLevel.Default"/> is recommended for most creatures. Too many creatures at <see cref="Constants.AiLevel.Normal"/> or higher can cause performance degradation.
+    /// <see cref="Anvil.API.AiLevel.Default"/> is recommended for most creatures. Too many creatures at <see cref="Anvil.API.AiLevel.Normal"/> or higher can cause performance degradation.
     /// </summary>
     public AiLevel AiLevel
     {
@@ -318,7 +320,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the associate type of this creature, otherwise returns <see cref="NWN.API.Constants.AssociateType.None"/> if this creature is not an associate of anyone.
+    /// Gets the associate type of this creature, otherwise returns <see cref="Anvil.API.AssociateType.None"/> if this creature is not an associate of anyone.
     /// </summary>
     public AssociateType AssociateType
     {
@@ -1078,8 +1080,8 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Returns true if this creature knows the specified <see cref="Constants.Feat"/>, and can use it.<br/>
-    /// Use <see cref="KnowsFeat"/> to simply check if a creature knows <see cref="Constants.Feat"/>, but may or may not have uses remaining.
+    /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
+    /// Use <see cref="KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
     /// </summary>
     public bool HasFeatPrepared(Feat feat)
     {
@@ -1845,7 +1847,7 @@ namespace NWN.API
     /// <summary>
     /// Instructs this creature to speak/play the specified voice chat.
     /// </summary>
-    /// <param name="voiceChatType">The <see cref="NWN.API.Constants.VoiceChatType"/> for this creature to speak.</param>
+    /// <param name="voiceChatType">The <see cref="VoiceChatType"/> for this creature to speak.</param>
     public void PlayVoiceChat(VoiceChatType voiceChatType)
     {
       NWScript.PlayVoiceChat((int)voiceChatType, this);
@@ -1933,7 +1935,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gives this creature the specified feat.<br/>
-    /// Consider using the <see cref="AddFeat(NWN.API.Constants.Feat, int)"/> overload to properly allocate the feat to a level.
+    /// Consider using the <see cref="AddFeat(Feat, int)"/> overload to properly allocate the feat to a level.
     /// </summary>
     /// <param name="feat">The feat to give.</param>
     public void AddFeat(Feat feat)
@@ -1943,7 +1945,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gives this creature the specified feat at a level.<br/>
-    /// Consider using the <see cref="AddFeat(NWN.API.Constants.Feat, int)"/> overload to properly allocate the feat to a level.
+    /// Consider using the <see cref="AddFeat(Feat, int)"/> overload to properly allocate the feat to a level.
     /// </summary>
     /// <param name="feat">The feat to give.</param>
     /// <param name="level">The level the feat was gained.</param>

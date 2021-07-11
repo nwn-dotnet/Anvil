@@ -1,10 +1,10 @@
-namespace NWN.API.Constants
+namespace Anvil.API
 {
   public enum PVPSetting : byte
   {
-    None = Native.API.PvPSetting.None,
-    Party = Native.API.PvPSetting.Party,
-    Full = Native.API.PvPSetting.Full,
-    Default = Native.API.PvPSetting.Default,
+    None = NWN.Native.API.PvPSetting.None,
+    Party = NWN.Native.API.PvPSetting.Party,
+    Full = NWN.Native.API.PvPSetting.Full,
+    Default = NWN.Native.API.PvPSetting.Default,
   }
 }

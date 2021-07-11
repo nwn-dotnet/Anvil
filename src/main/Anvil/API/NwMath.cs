@@ -1,7 +1,7 @@
 using System;
 using System.Numerics;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Common math functions and constants.

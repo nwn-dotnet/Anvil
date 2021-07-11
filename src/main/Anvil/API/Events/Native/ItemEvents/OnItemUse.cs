@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Anvil.API;
 using Anvil.Services;
 using NWN.API.Events;
 using NWN.Native.API;

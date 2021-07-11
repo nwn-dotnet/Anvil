@@ -1,6 +1,6 @@
 using System;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [Flags]
   public enum PlayerSearch

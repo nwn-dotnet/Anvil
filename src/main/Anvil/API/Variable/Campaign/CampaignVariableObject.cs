@@ -1,7 +1,8 @@
 using System;
+using NWN.API;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public class CampaignVariableObject<T> : CampaignVariable<T> where T : NwObject
   {

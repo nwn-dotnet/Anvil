@@ -1,7 +1,7 @@
 using System;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Helpers to convert game time units to a TimeSpan.

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using Anvil.API;
 using NWN.API.Constants;
 
 namespace Anvil.Services

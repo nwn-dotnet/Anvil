@@ -4,6 +4,7 @@ using System.IO;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
 using NLog;
@@ -415,7 +416,7 @@ namespace NWN.API
       NWScript.SendMessageToPC(ControlledCreature, message.ColorString(color));
     }
 
-    /// <inheritdoc cref="SendServerMessage(string,NWN.API.Color)"/>
+    /// <inheritdoc cref="SendServerMessage(string,Color)"/>
     public void SendServerMessage(string message)
     {
       NWScript.SendMessageToPC(ControlledCreature, message);

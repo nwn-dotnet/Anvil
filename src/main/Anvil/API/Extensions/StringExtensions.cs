@@ -4,9 +4,9 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using NWN.API.Constants;
+using NWN.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public static class StringExtensions
   {

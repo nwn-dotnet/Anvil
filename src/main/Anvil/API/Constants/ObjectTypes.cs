@@ -1,7 +1,7 @@
 using System;
 using NWN.Core;
 
-namespace NWN.API.Constants
+namespace Anvil.API
 {
   [Flags]
   public enum ObjectTypes

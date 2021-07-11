@@ -1,9 +1,8 @@
 using System;
-using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class ItemProperty : EffectBase
   {

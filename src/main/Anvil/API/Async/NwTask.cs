@@ -5,7 +5,7 @@ using System.Diagnostics.Contracts;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NWN.API
+namespace Anvil.API
 {
   //! ## Examples
   //! @import NwTaskExamples.cs

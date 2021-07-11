@@ -1,6 +1,6 @@
 using Anvil.Services;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class PersistentVariableFloat : PersistentVariable<float>
   {

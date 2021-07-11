@@ -1,9 +1,9 @@
 using System;
 using System.Numerics;
-using NWN.API.Constants;
+using NWN.API;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract class EffectBase : EngineStructure
   {

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Anvil.API;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
+using ItemProperty = Anvil.API.ItemProperty;
 
 namespace NWN.API
 {
@@ -153,7 +155,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the <see cref="NWN.API.Constants.BaseItemType"/> for this item.
+    /// Gets or sets the <see cref="Anvil.API.BaseItemType"/> for this item.
     /// </summary>
     public BaseItemType BaseItemType
     {

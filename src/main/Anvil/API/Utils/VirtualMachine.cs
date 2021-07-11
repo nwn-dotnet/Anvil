@@ -1,11 +1,10 @@
 using Anvil.Services;
 using NLog;
-using NWN.API.Constants;
+using NWN.API;
 using NWN.Core;
 using NWN.Native.API;
-using Action = System.Action;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Standard and Low Level methods and properties for querying/interacting with the NwScript virtual machine.
@@ -107,7 +106,7 @@ namespace NWN.API
       Execute(scriptName, null, scriptParams);
     }
 
-    public void ExecuteInScriptContext(Action action, uint objectId = NwObject.Invalid)
+    public void ExecuteInScriptContext(System.Action action, uint objectId = NwObject.Invalid)
     {
       int spBefore = PushScriptContext(objectId, 0, false);
       try

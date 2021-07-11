@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
+using NWN.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public static class ObjectExtensions
   {

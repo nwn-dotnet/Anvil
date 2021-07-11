@@ -1,6 +1,7 @@
 using System;
+using NWN.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// Represents a variable stored on an Object.

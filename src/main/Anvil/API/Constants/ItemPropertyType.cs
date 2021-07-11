@@ -1,6 +1,6 @@
 using NWN.Core;
 
-namespace NWN.API.Constants
+namespace Anvil.API
 {
   public enum ItemPropertyType
   {

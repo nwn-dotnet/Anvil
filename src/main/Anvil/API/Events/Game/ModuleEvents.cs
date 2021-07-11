@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Anvil.API;
 using NWN.API.Constants;
 using NWN.API.Events;
 using NWN.Core;

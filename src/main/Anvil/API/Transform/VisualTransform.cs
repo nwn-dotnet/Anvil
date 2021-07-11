@@ -1,8 +1,9 @@
 using System;
 using System.Numerics;
+using NWN.API;
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class VisualTransform
   {

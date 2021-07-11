@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using Anvil.Services;
 using NWN.API.Events;
 using NWN.Native.API;
+using IntegerExtensions = Anvil.API.IntegerExtensions;
+using NativeObjectExtensions = Anvil.API.NativeObjectExtensions;
 
 namespace NWN.API.Events
 {
@@ -34,8 +36,8 @@ namespace NWN.API.Events
       {
         ProcessEvent(new OnAssociateAdd
         {
-          Owner = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Associate = oidAssociate.ToNwObject<NwCreature>(),
+          Owner = NativeObjectExtensions.ToNwObject<NwCreature>(CNWSCreature.FromPointer(pCreature)),
+          Associate = IntegerExtensions.ToNwObject<NwCreature>(oidAssociate),
           AssociateType = (AssociateType)associateType,
         });
 

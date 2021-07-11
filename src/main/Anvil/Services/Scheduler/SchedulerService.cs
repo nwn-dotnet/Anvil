@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using NLog;
 using NWN.API;
+using CollectionExtensions = Anvil.API.CollectionExtensions;
+using ReflectionExtensions = Anvil.API.ReflectionExtensions;
 
 namespace Anvil.Services
 {
@@ -53,9 +55,9 @@ namespace Anvil.Services
         throw new ArgumentNullException(nameof(task));
       }
 
-      Log.Debug($"Scheduled Future Task: {task.Method.GetFullName()}");
+      Log.Debug($"Scheduled Future Task: {ReflectionExtensions.GetFullName(task.Method)}");
       ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds);
-      scheduledItems.InsertOrdered(item, comparer);
+      CollectionExtensions.InsertOrdered(scheduledItems, item, comparer);
       return item;
     }
 
@@ -80,9 +82,9 @@ namespace Anvil.Services
         throw new ArgumentNullException(nameof(task));
       }
 
-      Log.Debug($"Scheduled Repeating Task: {task.Method.GetFullName()}");
+      Log.Debug($"Scheduled Repeating Task: {ReflectionExtensions.GetFullName(task.Method)}");
       ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
-      scheduledItems.InsertOrdered(item, comparer);
+      CollectionExtensions.InsertOrdered(scheduledItems, item, comparer);
       return item;
     }
 
@@ -123,7 +125,7 @@ namespace Anvil.Services
 
         item.Reschedule(loopTimeService.Time + item.Schedule);
         scheduledItems.RemoveAt(i);
-        scheduledItems.InsertOrdered(item, comparer);
+        CollectionExtensions.InsertOrdered(scheduledItems, item, comparer);
         i--;
       }
 

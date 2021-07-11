@@ -1,6 +1,6 @@
 using NWN.Core;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class LocalVariableInt : LocalVariable<int>
   {

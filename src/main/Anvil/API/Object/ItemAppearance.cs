@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Anvil.API;
 using NWN.API.Constants;
 using NWN.Core;
 using NWN.Native.API;
