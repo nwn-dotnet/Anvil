@@ -177,13 +177,13 @@ namespace NWN.API
     /// <param name="savingThrow">The type of saving throw.</param>
     /// <returns>The creature's base saving throw value.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
-    public int GetBaseSavingThrow(SavingThrow savingThrow)
+    public sbyte GetBaseSavingThrow(SavingThrow savingThrow)
     {
       return savingThrow switch
       {
-        SavingThrow.Fortitude => unchecked((sbyte)Placeable.m_nFortSave),
-        SavingThrow.Reflex => unchecked((sbyte)Placeable.m_nReflexSave),
-        SavingThrow.Will => unchecked((sbyte)Placeable.m_nWillSave),
+        SavingThrow.Fortitude => Placeable.m_nFortSave.AsSByte(),
+        SavingThrow.Reflex => Placeable.m_nReflexSave.AsSByte(),
+        SavingThrow.Will => Placeable.m_nWillSave.AsSByte(),
         _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
       };
     }
@@ -199,13 +199,13 @@ namespace NWN.API
       switch (savingThrow)
       {
         case SavingThrow.Fortitude:
-          Placeable.m_nFortSave = unchecked((byte)newValue);
+          Placeable.m_nFortSave = newValue.AsByte();
           break;
         case SavingThrow.Reflex:
-          Placeable.m_nReflexSave = unchecked((byte)newValue);
+          Placeable.m_nReflexSave = newValue.AsByte();
           break;
         case SavingThrow.Will:
-          Placeable.m_nWillSave = unchecked((byte)newValue);
+          Placeable.m_nWillSave = newValue.AsByte();
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);

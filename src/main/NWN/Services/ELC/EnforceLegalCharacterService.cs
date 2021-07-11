@@ -1253,7 +1253,7 @@ namespace NWN.Services
           // Check Feat Prereqs
           int PrerequisitesFeatCheck(ushort nPrereqFeat)
           {
-            if (nPrereqFeat != unchecked((ushort)-1))
+            if (nPrereqFeat != IntegerExtensions.AsUShort(-1))
             {
               if (!listFeats.Contains(nPrereqFeat) && !listChosenFeats.Contains(nPrereqFeat))
               {
@@ -1303,7 +1303,7 @@ namespace NWN.Services
           {
             ushort nPrereqFeat = pFeat.m_lstOrPrereqFeats[nOrPrereqFeat];
 
-            if (nPrereqFeat != unchecked((ushort)-1))
+            if (nPrereqFeat != IntegerExtensions.AsUShort(-1))
             {
               bHasOrPrereqFeat = true;
               bOrPrereqFeatAcquired = listFeats.Contains(nPrereqFeat) || listChosenFeats.Contains(nPrereqFeat);

@@ -75,9 +75,9 @@ namespace NWN.API
     {
       return savingThrow switch
       {
-        SavingThrow.Fortitude => unchecked((sbyte)Door.m_nFortitudeSave),
-        SavingThrow.Reflex => unchecked((sbyte)Door.m_nReflexSave),
-        SavingThrow.Will => unchecked((sbyte)Door.m_nWillSave),
+        SavingThrow.Fortitude => Door.m_nFortitudeSave.AsSByte(),
+        SavingThrow.Reflex => Door.m_nReflexSave.AsSByte(),
+        SavingThrow.Will => Door.m_nWillSave.AsSByte(),
         _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
       };
     }
@@ -93,13 +93,13 @@ namespace NWN.API
       switch (savingThrow)
       {
         case SavingThrow.Fortitude:
-          Door.m_nFortitudeSave = unchecked((byte)newValue);
+          Door.m_nFortitudeSave = newValue.AsByte();
           break;
         case SavingThrow.Reflex:
-          Door.m_nReflexSave = unchecked((byte)newValue);
+          Door.m_nReflexSave = newValue.AsByte();
           break;
         case SavingThrow.Will:
-          Door.m_nWillSave = unchecked((byte)newValue);
+          Door.m_nWillSave = newValue.AsByte();
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);

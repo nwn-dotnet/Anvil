@@ -92,7 +92,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Reinterprets the specified byte value as a sbyte.
+    /// Reinterprets the specified value as a signed byte.
     /// </summary>
     /// <param name="value">The value to reinterpret.</param>
     /// <returns>The reinterpreted value.</returns>
@@ -102,13 +102,33 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Reinterprets the specified sbyte value as a byte.
+    /// Reinterprets the specified value as an unsigned byte.
     /// </summary>
     /// <param name="value">The value to reinterpret.</param>
     /// <returns>The reinterpreted value.</returns>
     public static byte AsByte(this sbyte value)
     {
       return unchecked((byte)value);
+    }
+
+    /// <summary>
+    /// Reinterprets the specified value as a signed short.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static short AsShort(this ushort value)
+    {
+      return unchecked((short)value);
+    }
+
+    /// <summary>
+    /// Reinterprets the specified value as an unsigned short.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static ushort AsUShort(this short value)
+    {
+      return unchecked((ushort)value);
     }
   }
 }
