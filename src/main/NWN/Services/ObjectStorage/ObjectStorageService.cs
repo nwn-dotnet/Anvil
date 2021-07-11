@@ -41,8 +41,12 @@ namespace NWN.Services
       eatTURDHook = hookService.RequestHook<EatTURDHook>(OnEatTURD, FunctionsLinux._ZN10CNWSPlayer7EatTURDEP14CNWSPlayerTURD, HookOrder.VeryEarly);
       dropTURDHook = hookService.RequestHook<DropTURDHook>(OnDropTURD, FunctionsLinux._ZN10CNWSPlayer8DropTURDEv, HookOrder.VeryEarly);
 
-      saveToGffHook = hookService.RequestHook<SaveToGffHook>(OnSaveToGff, FunctionsLinux._ZN8CNWSUUID9SaveToGffEP7CResGFFP10CResStruct, HookOrder.VeryEarly);
-      loadFromGffHook = hookService.RequestHook<LoadFromGffHook>(OnLoadFromGff, FunctionsLinux._ZN8CNWSUUID11LoadFromGffEP7CResGFFP10CResStruct, HookOrder.VeryEarly);
+      // We want to serialize after NWNX, and deserialize before, otherwise our storage will get overwritten.
+      const int OrderAfterNWNX = HookOrder.VeryEarly + 1;
+      const int OrderBeforeNWNX = HookOrder.VeryEarly - 1;
+
+      saveToGffHook = hookService.RequestHook<SaveToGffHook>(OnSaveToGff, FunctionsLinux._ZN8CNWSUUID9SaveToGffEP7CResGFFP10CResStruct, OrderAfterNWNX);
+      loadFromGffHook = hookService.RequestHook<LoadFromGffHook>(OnLoadFromGff, FunctionsLinux._ZN8CNWSUUID11LoadFromGffEP7CResGFFP10CResStruct, OrderBeforeNWNX);
     }
 
     public ObjectStorage GetObjectStorage(NwObject gameObject)
