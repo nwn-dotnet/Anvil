@@ -2,15 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
-using Animation = Anvil.API.Animation;
-using SavingThrow = Anvil.API.SavingThrow;
-using SavingThrowType = Anvil.API.SavingThrowType;
 using Vector3 = System.Numerics.Vector3;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract partial class NwGameObject : NwObject
   {

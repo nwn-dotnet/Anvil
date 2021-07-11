@@ -1,6 +1,4 @@
-using Anvil.API;
-
-namespace NWN.API
+namespace Anvil.API
 {
   public readonly struct CreatureTypeFilter
   {

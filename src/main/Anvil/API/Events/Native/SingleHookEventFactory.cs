@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Anvil.Services;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   [ServiceBinding(typeof(IEventFactory))]
   public abstract class SingleHookEventFactory<THook> : HookEventFactory, IEventFactory<NullRegistrationData>, IDisposable

@@ -1,8 +1,7 @@
 using System;
-using Anvil.API;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(ObjectTypes.Waypoint, ObjectType.Waypoint)]
   public sealed class NwWaypoint : NwGameObject

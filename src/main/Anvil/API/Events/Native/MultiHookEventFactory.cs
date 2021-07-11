@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Anvil.API;
 using Anvil.Services;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   [ServiceBinding(typeof(IEventFactory))]
   public abstract class MultiHookEventFactory : HookEventFactory, IEventFactory<NullRegistrationData>, IDisposable

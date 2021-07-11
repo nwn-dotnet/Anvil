@@ -1,7 +1,7 @@
 using System;
-using NWN.API.Events;
+using Anvil.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public abstract class DMGiveEvent : IEvent
   {
@@ -26,25 +26,25 @@ namespace NWN.API.Events
   public sealed class OnDMGiveGold : DMGiveEvent {}
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMGiveXP"/>
+    /// <inheritdoc cref="Events.OnDMGiveXP"/>
     public event Action<OnDMGiveXP> OnDMGiveXP
     {
       add => EventService.Subscribe<OnDMGiveXP, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMGiveXP, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMGiveLevel"/>
+    /// <inheritdoc cref="Events.OnDMGiveLevel"/>
     public event Action<OnDMGiveLevel> OnDMGiveLevel
     {
       add => EventService.Subscribe<OnDMGiveLevel, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMGiveLevel, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMGiveGold"/>
+    /// <inheritdoc cref="Events.OnDMGiveGold"/>
     public event Action<OnDMGiveGold> OnDMGiveGold
     {
       add => EventService.Subscribe<OnDMGiveGold, DMEventFactory>(LoginCreature, value);
@@ -54,21 +54,21 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMGiveXP"/>
+    /// <inheritdoc cref="Events.OnDMGiveXP"/>
     public event Action<OnDMGiveXP> OnDMGiveXP
     {
       add => EventService.SubscribeAll<OnDMGiveXP, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMGiveXP, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMGiveLevel"/>
+    /// <inheritdoc cref="Events.OnDMGiveLevel"/>
     public event Action<OnDMGiveLevel> OnDMGiveLevel
     {
       add => EventService.SubscribeAll<OnDMGiveLevel, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMGiveLevel, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMGiveGold"/>
+    /// <inheritdoc cref="Events.OnDMGiveGold"/>
     public event Action<OnDMGiveGold> OnDMGiveGold
     {
       add => EventService.SubscribeAll<OnDMGiveGold, DMEventFactory>(value);

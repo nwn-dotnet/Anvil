@@ -1,8 +1,8 @@
 using System;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   /// <summary>
   /// Called when a chat message is about to be sent by an object.
@@ -42,11 +42,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract partial class NwGameObject
   {
-    /// <inheritdoc cref="NWN.API.Events.OnChatMessageSend"/>
+    /// <inheritdoc cref="Events.OnChatMessageSend"/>
     public event Action<OnChatMessageSend> OnChatMessageSend
     {
       add => EventService.Subscribe<OnChatMessageSend, ChatService>(this, value);
@@ -56,7 +56,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnChatMessageSend"/>
+    /// <inheritdoc cref="Events.OnChatMessageSend"/>
     public event Action<OnChatMessageSend> OnChatMessageSend
     {
       add => EventService.SubscribeAll<OnChatMessageSend, ChatService>(value);

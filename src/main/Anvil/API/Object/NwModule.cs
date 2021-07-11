@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Anvil.API;
 using Anvil.Internal;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(0, ObjectType.Module)]
   public sealed partial class NwModule : NwObject

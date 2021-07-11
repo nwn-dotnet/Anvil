@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Anvil.API;
 using Anvil.Services;
 using NLog;
 using NWN.Core;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   [ServiceBinding(typeof(IEventFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]

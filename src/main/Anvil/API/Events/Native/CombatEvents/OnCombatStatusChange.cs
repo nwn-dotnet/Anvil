@@ -1,11 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnCombatStatusChange : IEvent
   {
@@ -49,11 +48,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
+    /// <inheritdoc cref="Events.OnCombatStatusChange"/>
     public event Action<OnCombatStatusChange> OnCombatStatusChange
     {
       add => EventService.Subscribe<OnCombatStatusChange, OnCombatStatusChange.Factory>(ControlledCreature, value);
@@ -63,7 +62,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnCombatStatusChange"/>
+    /// <inheritdoc cref="Events.OnCombatStatusChange"/>
     public event Action<OnCombatStatusChange> OnCombatStatusChange
     {
       add => EventService.SubscribeAll<OnCombatStatusChange, OnCombatStatusChange.Factory>(value);

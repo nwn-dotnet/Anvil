@@ -1,12 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
-using InventorySlot = Anvil.API.InventorySlot;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnItemEquip : IEvent
   {
@@ -62,11 +60,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwCreature
   {
-    /// <inheritdoc cref="NWN.API.Events.OnItemEquip"/>
+    /// <inheritdoc cref="Events.OnItemEquip"/>
     public event Action<OnItemEquip> OnItemEquip
     {
       add => EventService.Subscribe<OnItemEquip, OnItemEquip.Factory>(this, value);
@@ -76,7 +74,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnItemEquip"/>
+    /// <inheritdoc cref="Events.OnItemEquip"/>
     public event Action<OnItemEquip> OnItemEquip
     {
       add => EventService.SubscribeAll<OnItemEquip, OnItemEquip.Factory>(value);

@@ -1,13 +1,11 @@
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
-using Feat = Anvil.API.Feat;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnSpellAction : IEvent
   {
@@ -98,11 +96,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwCreature
   {
-    /// <inheritdoc cref="NWN.API.Events.OnSpellAction"/>
+    /// <inheritdoc cref="Events.OnSpellAction"/>
     public event Action<OnSpellAction> OnSpellAction
     {
       add => EventService.Subscribe<OnSpellAction, OnSpellAction.Factory>(this, value);
@@ -112,7 +110,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnSpellAction"/>
+    /// <inheritdoc cref="Events.OnSpellAction"/>
     public event Action<OnSpellAction> OnSpellAction
     {
       add => EventService.SubscribeAll<OnSpellAction, OnSpellAction.Factory>(value);

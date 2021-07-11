@@ -1,11 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnSpellSlotClear : IEvent
   {
@@ -56,11 +55,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwCreature
   {
-    /// <inheritdoc cref="NWN.API.Events.OnSpellSlotClear"/>
+    /// <inheritdoc cref="Events.OnSpellSlotClear"/>
     public event Action<OnSpellSlotClear> OnSpellSlotClear
     {
       add => EventService.Subscribe<OnSpellSlotClear, OnSpellSlotClear.Factory>(this, value);
@@ -70,7 +69,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnSpellSlotClear"/>
+    /// <inheritdoc cref="Events.OnSpellSlotClear"/>
     public event Action<OnSpellSlotClear> OnSpellSlotClear
     {
       add => EventService.SubscribeAll<OnSpellSlotClear, OnSpellSlotClear.Factory>(value);

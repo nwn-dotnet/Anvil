@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Anvil.API;
 using Anvil.Services;
 using JetBrains.Annotations;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   public abstract partial class NwObject : IEquatable<NwObject>

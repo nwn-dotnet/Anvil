@@ -1,9 +1,8 @@
 using System;
-using Anvil.API;
-using NWN.API.Events;
+using Anvil.API.Events;
 using NWN.Core;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   /// <summary>
   /// Events for <see cref="NwEncounter"/> triggers.
@@ -88,39 +87,39 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwEncounter
   {
-    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnEnter"/>
+    /// <inheritdoc cref="EncounterEvents.OnEnter"/>
     public event Action<EncounterEvents.OnEnter> OnEnter
     {
       add => EventService.Subscribe<EncounterEvents.OnEnter, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<EncounterEvents.OnEnter, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnExit"/>
+    /// <inheritdoc cref="EncounterEvents.OnExit"/>
     public event Action<EncounterEvents.OnExit> OnExit
     {
       add => EventService.Subscribe<EncounterEvents.OnExit, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<EncounterEvents.OnExit, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnHeartbeat"/>
+    /// <inheritdoc cref="EncounterEvents.OnHeartbeat"/>
     public event Action<EncounterEvents.OnHeartbeat> OnHeartbeat
     {
       add => EventService.Subscribe<EncounterEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<EncounterEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnExhausted"/>
+    /// <inheritdoc cref="EncounterEvents.OnExhausted"/>
     public event Action<EncounterEvents.OnExhausted> OnExhausted
     {
       add => EventService.Subscribe<EncounterEvents.OnExhausted, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<EncounterEvents.OnExhausted, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.EncounterEvents.OnUserDefined"/>
+    /// <inheritdoc cref="EncounterEvents.OnUserDefined"/>
     public event Action<EncounterEvents.OnUserDefined> OnUserDefined
     {
       add => EventService.Subscribe<EncounterEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);

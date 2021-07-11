@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Anvil.API;
 using NLog;
-using NWN.API;
+using Action = System.Action;
 using CollectionExtensions = Anvil.API.CollectionExtensions;
-using ReflectionExtensions = Anvil.API.ReflectionExtensions;
 
 namespace Anvil.Services
 {

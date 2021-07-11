@@ -1,8 +1,7 @@
 using System;
-using Anvil.API;
 using Anvil.Services;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public abstract class HookEventFactory
   {

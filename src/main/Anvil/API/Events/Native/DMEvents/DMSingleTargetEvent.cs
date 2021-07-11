@@ -1,7 +1,7 @@
 using System;
-using NWN.API.Events;
+using Anvil.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public abstract class DMSingleTargetEvent : IEvent
   {
@@ -28,39 +28,39 @@ namespace NWN.API.Events
   public sealed class OnDMDisableTrap : DMSingleTargetEvent {}
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMGoTo"/>
+    /// <inheritdoc cref="Events.OnDMGoTo"/>
     public event Action<OnDMGoTo> OnDMGoTo
     {
       add => EventService.Subscribe<OnDMGoTo, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMGoTo, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMPossess"/>
+    /// <inheritdoc cref="Events.OnDMPossess"/>
     public event Action<OnDMPossess> OnDMPossess
     {
       add => EventService.Subscribe<OnDMPossess, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMPossess, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMPossessFullPower"/>
+    /// <inheritdoc cref="Events.OnDMPossessFullPower"/>
     public event Action<OnDMPossessFullPower> OnDMPossessFullPower
     {
       add => EventService.Subscribe<OnDMPossessFullPower, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMPossessFullPower, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMToggleLock"/>
+    /// <inheritdoc cref="Events.OnDMToggleLock"/>
     public event Action<OnDMToggleLock> OnDMToggleLock
     {
       add => EventService.Subscribe<OnDMToggleLock, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMToggleLock, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMDisableTrap"/>
+    /// <inheritdoc cref="Events.OnDMDisableTrap"/>
     public event Action<OnDMDisableTrap> OnDMDisableTrap
     {
       add => EventService.Subscribe<OnDMDisableTrap, DMEventFactory>(LoginCreature, value);
@@ -70,35 +70,35 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMGoTo"/>
+    /// <inheritdoc cref="Events.OnDMGoTo"/>
     public event Action<OnDMGoTo> OnDMGoTo
     {
       add => EventService.SubscribeAll<OnDMGoTo, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMGoTo, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMPossess"/>
+    /// <inheritdoc cref="Events.OnDMPossess"/>
     public event Action<OnDMPossess> OnDMPossess
     {
       add => EventService.SubscribeAll<OnDMPossess, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMPossess, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMPossessFullPower"/>
+    /// <inheritdoc cref="Events.OnDMPossessFullPower"/>
     public event Action<OnDMPossessFullPower> OnDMPossessFullPower
     {
       add => EventService.SubscribeAll<OnDMPossessFullPower, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMPossessFullPower, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMToggleLock"/>
+    /// <inheritdoc cref="Events.OnDMToggleLock"/>
     public event Action<OnDMToggleLock> OnDMToggleLock
     {
       add => EventService.SubscribeAll<OnDMToggleLock, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMToggleLock, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMDisableTrap"/>
+    /// <inheritdoc cref="Events.OnDMDisableTrap"/>
     public event Action<OnDMDisableTrap> OnDMDisableTrap
     {
       add => EventService.SubscribeAll<OnDMDisableTrap, DMEventFactory>(value);

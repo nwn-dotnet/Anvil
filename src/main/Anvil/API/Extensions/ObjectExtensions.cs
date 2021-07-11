@@ -1,5 +1,4 @@
 using JetBrains.Annotations;
-using NWN.API;
 
 namespace Anvil.API
 {

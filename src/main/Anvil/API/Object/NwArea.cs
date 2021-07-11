@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
-using Anvil.API;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
-using AssociateType = Anvil.API.AssociateType;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(0, ObjectType.Area)]
   public sealed partial class NwArea : NwObject

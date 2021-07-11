@@ -5,7 +5,6 @@ using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
-using NWN.API;
 
 namespace Anvil.Internal
 {

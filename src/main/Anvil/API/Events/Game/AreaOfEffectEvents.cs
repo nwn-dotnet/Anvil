@@ -1,9 +1,8 @@
 using System;
-using Anvil.API;
-using NWN.API.Events;
+using Anvil.API.Events;
 using NWN.Core;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   /// <summary>
   /// Events for effects created with <see cref="Effect.AreaOfEffect"/>.
@@ -75,32 +74,32 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwAreaOfEffect
   {
-    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnEnter"/>
+    /// <inheritdoc cref="AreaOfEffectEvents.OnEnter"/>
     public event Action<AreaOfEffectEvents.OnEnter> OnEnter
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnEnter, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnEnter, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnExit"/>
+    /// <inheritdoc cref="AreaOfEffectEvents.OnExit"/>
     public event Action<AreaOfEffectEvents.OnExit> OnExit
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnExit, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnExit, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnHeartbeat"/>
+    /// <inheritdoc cref="AreaOfEffectEvents.OnHeartbeat"/>
     public event Action<AreaOfEffectEvents.OnHeartbeat> OnHeartbeat
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<AreaOfEffectEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.AreaOfEffectEvents.OnUserDefined"/>
+    /// <inheritdoc cref="AreaOfEffectEvents.OnUserDefined"/>
     public event Action<AreaOfEffectEvents.OnUserDefined> OnUserDefined
     {
       add => EventService.Subscribe<AreaOfEffectEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);

@@ -1,11 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnServerSendArea : IEvent
   {
@@ -49,11 +48,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnServerSendArea"/>
+    /// <inheritdoc cref="Events.OnServerSendArea"/>
     public event Action<OnServerSendArea> OnServerSendArea
     {
       add => EventService.Subscribe<OnServerSendArea, OnServerSendArea.Factory>(ControlledCreature, value);
@@ -63,7 +62,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnServerSendArea"/>
+    /// <inheritdoc cref="Events.OnServerSendArea"/>
     public event Action<OnServerSendArea> OnServerSendArea
     {
       add => EventService.SubscribeAll<OnServerSendArea, OnServerSendArea.Factory>(value);

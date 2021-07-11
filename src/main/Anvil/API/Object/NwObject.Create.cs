@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Anvil.API;
 using Anvil.Internal;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract partial class NwObject
   {

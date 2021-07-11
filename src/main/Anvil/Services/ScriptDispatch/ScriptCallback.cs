@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using Anvil.API;
 using NLog;
-using NWN.API;
 using Action = System.Action;
 
 namespace Anvil.Services

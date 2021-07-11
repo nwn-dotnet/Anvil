@@ -1,6 +1,6 @@
 using NWN.Native.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public enum PartyEventType
   {

@@ -1,12 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
-using Feat = Anvil.API.Feat;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnSpellInterrupt : IEvent
   {
@@ -73,7 +71,7 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract partial class NwGameObject
   {

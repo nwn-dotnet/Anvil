@@ -7,7 +7,6 @@ using Anvil.Internal;
 using Anvil.Plugins;
 using Anvil.Services;
 using NLog;
-using NWN.API;
 using NWN.Core;
 
 namespace Anvil

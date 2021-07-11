@@ -1,13 +1,11 @@
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
 using NWN.Native.API;
-using Alignment = Anvil.API.Alignment;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed unsafe class DMEventFactory : SingleHookEventFactory<DMEventFactory.HandleDMMessageHook>
   {

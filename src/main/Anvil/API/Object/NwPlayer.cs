@@ -4,16 +4,14 @@ using System.IO;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
-using AssociateType = NWN.Native.API.AssociateType;
 using Vector = NWN.Native.API.Vector;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer : IEquatable<NwPlayer>
   {
@@ -175,7 +173,7 @@ namespace NWN.API
         }
         else if (!value && currentlyPlayerDM)
         {
-          Player.PossessCreature(NwObject.Invalid, (byte)AssociateType.None);
+          Player.PossessCreature(NwObject.Invalid, (byte)NWN.Native.API.AssociateType.None);
 
           playerInfo.m_bGameMasterPrivileges = false.ToInt();
           playerInfo.m_bGameMasterIsPlayerLogin = false.ToInt();

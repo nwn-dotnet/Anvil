@@ -1,11 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnAssociateRemove : IEvent
   {
@@ -43,11 +42,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwCreature
   {
-    /// <inheritdoc cref="NWN.API.Events.OnAssociateRemove"/>
+    /// <inheritdoc cref="Events.OnAssociateRemove"/>
     public event Action<OnAssociateRemove> OnAssociateRemove
     {
       add => EventService.Subscribe<OnAssociateRemove, OnAssociateRemove.Factory>(this, value);

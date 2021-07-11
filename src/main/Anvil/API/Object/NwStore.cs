@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
   public sealed partial class NwStore : NwGameObject

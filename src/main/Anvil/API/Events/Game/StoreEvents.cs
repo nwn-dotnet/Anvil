@@ -1,9 +1,8 @@
 using System;
-using Anvil.API;
-using NWN.API.Events;
+using Anvil.API.Events;
 using NWN.Core;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   /// <summary>
   /// Events for Merchant/Store objects.
@@ -50,18 +49,18 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwStore
   {
-    /// <inheritdoc cref="NWN.API.Events.StoreEvents.OnOpen"/>
+    /// <inheritdoc cref="StoreEvents.OnOpen"/>
     public event Action<StoreEvents.OnOpen> OnOpen
     {
       add => EventService.Subscribe<StoreEvents.OnOpen, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<StoreEvents.OnOpen, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.StoreEvents.OnClose"/>
+    /// <inheritdoc cref="StoreEvents.OnClose"/>
     public event Action<StoreEvents.OnClose> OnClose
     {
       add => EventService.Subscribe<StoreEvents.OnClose, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);

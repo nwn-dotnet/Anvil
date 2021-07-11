@@ -1,8 +1,8 @@
 using System;
 using System.Numerics;
-using NWN.API.Events;
+using Anvil.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnDMJumpTargetToPoint : IEvent
   {
@@ -23,11 +23,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMJumpTargetToPoint"/>
+    /// <inheritdoc cref="Events.OnDMJumpTargetToPoint"/>
     public event Action<OnDMJumpTargetToPoint> OnDMJumpTargetToPoint
     {
       add => EventService.Subscribe<OnDMJumpTargetToPoint, DMEventFactory>(LoginCreature, value);
@@ -37,7 +37,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMJumpTargetToPoint"/>
+    /// <inheritdoc cref="Events.OnDMJumpTargetToPoint"/>
     public event Action<OnDMJumpTargetToPoint> OnDMJumpTargetToPoint
     {
       add => EventService.SubscribeAll<OnDMJumpTargetToPoint, DMEventFactory>(value);

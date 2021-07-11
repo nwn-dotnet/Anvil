@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(ObjectTypes.Trigger, ObjectType.Trigger)]
   public sealed partial class NwTrigger : NwTrappable

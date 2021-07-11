@@ -1,4 +1,4 @@
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public struct NullRegistrationData {}
 }

@@ -1,12 +1,11 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Internal;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   /// <summary>
   /// Triggered when a player attempts to connect to the server (before character select).<br/>
@@ -91,11 +90,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnClientConnect"/>
+    /// <inheritdoc cref="Events.OnClientConnect"/>
     public event Action<OnClientConnect> OnClientConnect
     {
       add => EventService.SubscribeAll<OnClientConnect, OnClientConnect.Factory>(value);

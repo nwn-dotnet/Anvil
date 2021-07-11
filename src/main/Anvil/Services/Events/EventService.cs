@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Anvil.API;
+using Anvil.API.Events;
 using NLog;
-using NWN.API;
-using NWN.API.Events;
 
 namespace Anvil.Services
 {

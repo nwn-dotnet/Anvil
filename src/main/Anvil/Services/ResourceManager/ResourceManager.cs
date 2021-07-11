@@ -7,7 +7,6 @@ using Anvil.API;
 using Anvil.Internal;
 using Anvil.Plugins;
 using NLog;
-using NWN.API;
 using NWN.Native.API;
 using ResRefType = Anvil.API.ResRefType;
 

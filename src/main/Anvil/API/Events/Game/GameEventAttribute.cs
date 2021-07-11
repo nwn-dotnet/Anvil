@@ -1,8 +1,7 @@
 using System;
-using Anvil.API;
 using JetBrains.Annotations;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   [AttributeUsage(AttributeTargets.Class)]
   [BaseTypeRequired(typeof(IEvent))]

@@ -4,7 +4,6 @@ using Anvil.API;
 using Anvil.Plugins;
 using LightInject;
 using NLog;
-using NWN.API;
 
 namespace Anvil.Services
 {

@@ -1,8 +1,8 @@
 using System;
 using System.Numerics;
-using NWN.API.Events;
+using Anvil.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public abstract class DMTeleportEvent : IEvent
   {
@@ -25,18 +25,18 @@ namespace NWN.API.Events
   public sealed class OnDMJumpAllPlayersToPoint : DMTeleportEvent {}
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMJumpToPoint"/>
+    /// <inheritdoc cref="Events.OnDMJumpToPoint"/>
     public event Action<OnDMJumpToPoint> OnDMJumpToPoint
     {
       add => EventService.Subscribe<OnDMJumpToPoint, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMJumpToPoint, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMJumpAllPlayersToPoint"/>
+    /// <inheritdoc cref="Events.OnDMJumpAllPlayersToPoint"/>
     public event Action<OnDMJumpAllPlayersToPoint> OnDMJumpAllPlayersToPoint
     {
       add => EventService.Subscribe<OnDMJumpAllPlayersToPoint, DMEventFactory>(LoginCreature, value);
@@ -46,14 +46,14 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMJumpToPoint"/>
+    /// <inheritdoc cref="Events.OnDMJumpToPoint"/>
     public event Action<OnDMJumpToPoint> OnDMJumpToPoint
     {
       add => EventService.SubscribeAll<OnDMJumpToPoint, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMJumpToPoint, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMJumpAllPlayersToPoint"/>
+    /// <inheritdoc cref="Events.OnDMJumpAllPlayersToPoint"/>
     public event Action<OnDMJumpAllPlayersToPoint> OnDMJumpAllPlayersToPoint
     {
       add => EventService.SubscribeAll<OnDMJumpAllPlayersToPoint, DMEventFactory>(value);

@@ -1,8 +1,8 @@
 using System;
 using System.Numerics;
-using NWN.API.Events;
+using Anvil.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public abstract class OnDMSpawnObject : IEvent
   {
@@ -31,18 +31,18 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMSpawnObjectBefore"/>
+    /// <inheritdoc cref="Events.OnDMSpawnObjectBefore"/>
     public event Action<OnDMSpawnObjectBefore> OnDMSpawnObjectBefore
     {
       add => EventService.Subscribe<OnDMSpawnObjectBefore, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMSpawnObjectBefore, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMSpawnObjectAfter"/>
+    /// <inheritdoc cref="Events.OnDMSpawnObjectAfter"/>
     public event Action<OnDMSpawnObjectAfter> OnDMSpawnObjectAfter
     {
       add => EventService.Subscribe<OnDMSpawnObjectAfter, DMEventFactory>(LoginCreature, value);
@@ -52,14 +52,14 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMSpawnObjectBefore"/>
+    /// <inheritdoc cref="Events.OnDMSpawnObjectBefore"/>
     public event Action<OnDMSpawnObjectBefore> OnDMSpawnObjectBefore
     {
       add => EventService.SubscribeAll<OnDMSpawnObjectBefore, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMSpawnObjectBefore, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMSpawnObjectAfter"/>
+    /// <inheritdoc cref="Events.OnDMSpawnObjectAfter"/>
     public event Action<OnDMSpawnObjectAfter> OnDMSpawnObjectAfter
     {
       add => EventService.SubscribeAll<OnDMSpawnObjectAfter, DMEventFactory>(value);

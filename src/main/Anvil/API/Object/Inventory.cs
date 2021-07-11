@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed class Inventory
   {

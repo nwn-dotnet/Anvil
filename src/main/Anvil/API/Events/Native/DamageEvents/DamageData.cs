@@ -1,8 +1,7 @@
 using System;
 using NWN.Native.API;
-using DamageType = Anvil.API.DamageType;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed unsafe class DamageData<T> where T : unmanaged
   {

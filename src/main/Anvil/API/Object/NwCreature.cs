@@ -3,29 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
-using Anvil.API;
 using Anvil.Internal;
 using NWN.Core;
 using NWN.Native.API;
-using Ability = Anvil.API.Ability;
-using Action = Anvil.API.Action;
-using Alignment = Anvil.API.Alignment;
-using Animation = NWN.Native.API.Animation;
-using AssociateType = Anvil.API.AssociateType;
-using ClassType = Anvil.API.ClassType;
-using CombatMode = Anvil.API.CombatMode;
-using CreatureSize = Anvil.API.CreatureSize;
-using Feat = Anvil.API.Feat;
-using ImmunityType = Anvil.API.ImmunityType;
-using InventorySlot = Anvil.API.InventorySlot;
-using ItemProperty = Anvil.API.ItemProperty;
-using MovementRate = Anvil.API.MovementRate;
 using ObjectType = NWN.Native.API.ObjectType;
-using RacialType = Anvil.API.RacialType;
-using SavingThrow = Anvil.API.SavingThrow;
-using Skill = Anvil.API.Skill;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public sealed partial class NwCreature : NwGameObject
@@ -200,7 +183,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gets or sets the current AI level that this creature is running at.<br/>
-    /// <see cref="Anvil.API.AiLevel.Default"/> is recommended for most creatures. Too many creatures at <see cref="Anvil.API.AiLevel.Normal"/> or higher can cause performance degradation.
+    /// <see cref="AiLevel.Default"/> is recommended for most creatures. Too many creatures at <see cref="AiLevel.Normal"/> or higher can cause performance degradation.
     /// </summary>
     public AiLevel AiLevel
     {
@@ -319,7 +302,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets the associate type of this creature, otherwise returns <see cref="Anvil.API.AssociateType.None"/> if this creature is not an associate of anyone.
+    /// Gets the associate type of this creature, otherwise returns <see cref="AssociateType.None"/> if this creature is not an associate of anyone.
     /// </summary>
     public AssociateType AssociateType
     {
@@ -452,17 +435,17 @@ namespace NWN.API
     {
       get
       {
-        return (Animation)Creature.m_nAnimation switch
+        return (NWN.Native.API.Animation)Creature.m_nAnimation switch
         {
-          Animation.Walking => MovementType.Walk,
-          Animation.WalkingForwardLeft => MovementType.Walk,
-          Animation.WalkingForwardRight => MovementType.Walk,
-          Animation.WalkingBackwards => MovementType.WalkBackwards,
-          Animation.Running => MovementType.Run,
-          Animation.RunningForwardLeft => MovementType.Run,
-          Animation.RunningForwardRight => MovementType.Run,
-          Animation.WalkingLeft => MovementType.Sidestep,
-          Animation.WalkingRight => MovementType.Sidestep,
+          NWN.Native.API.Animation.Walking => MovementType.Walk,
+          NWN.Native.API.Animation.WalkingForwardLeft => MovementType.Walk,
+          NWN.Native.API.Animation.WalkingForwardRight => MovementType.Walk,
+          NWN.Native.API.Animation.WalkingBackwards => MovementType.WalkBackwards,
+          NWN.Native.API.Animation.Running => MovementType.Run,
+          NWN.Native.API.Animation.RunningForwardLeft => MovementType.Run,
+          NWN.Native.API.Animation.RunningForwardRight => MovementType.Run,
+          NWN.Native.API.Animation.WalkingLeft => MovementType.Sidestep,
+          NWN.Native.API.Animation.WalkingRight => MovementType.Sidestep,
           _ => MovementType.Stationary,
         };
       }
@@ -576,7 +559,7 @@ namespace NWN.API
 
     /// <summary>
     /// Gets the creature's current Combat Mode.<br/>
-    /// Can be used in the <see cref="OnCombatModeToggle"/> event to determine which combat mode is being toggled off.
+    /// Can be used in the <see cref="Events.OnCombatModeToggle"/> event to determine which combat mode is being toggled off.
     /// </summary>
     public CombatMode CombatMode
     {

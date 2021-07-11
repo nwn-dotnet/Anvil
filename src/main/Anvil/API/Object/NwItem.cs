@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
-using ItemProperty = Anvil.API.ItemProperty;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(ObjectTypes.Item, ObjectType.Item)]
   public sealed partial class NwItem : NwGameObject
@@ -154,7 +152,7 @@ namespace NWN.API
     }
 
     /// <summary>
-    /// Gets or sets the <see cref="Anvil.API.BaseItemType"/> for this item.
+    /// Gets or sets the <see cref="BaseItemType"/> for this item.
     /// </summary>
     public BaseItemType BaseItemType
     {

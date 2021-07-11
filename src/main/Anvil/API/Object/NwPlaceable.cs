@@ -1,12 +1,10 @@
 using System;
 using System.Numerics;
 using System.Threading.Tasks;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
-using SavingThrow = Anvil.API.SavingThrow;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(ObjectTypes.Placeable, ObjectType.Placeable)]
   public sealed partial class NwPlaceable : NwStationary

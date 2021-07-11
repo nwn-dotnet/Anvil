@@ -1,12 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
-using IntegerExtensions = Anvil.API.IntegerExtensions;
-using NativeObjectExtensions = Anvil.API.NativeObjectExtensions;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnStealthModeUpdate : IEvent
   {
@@ -141,11 +139,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwCreature
   {
-    /// <inheritdoc cref="NWN.API.Events.OnStealthModeUpdate"/>
+    /// <inheritdoc cref="Events.OnStealthModeUpdate"/>
     public event Action<OnStealthModeUpdate> OnStealthModeUpdate
     {
       add => EventService.Subscribe<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(this, value);
@@ -155,7 +153,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnStealthModeUpdate"/>
+    /// <inheritdoc cref="Events.OnStealthModeUpdate"/>
     public event Action<OnStealthModeUpdate> OnStealthModeUpdate
     {
       add => EventService.SubscribeAll<OnStealthModeUpdate, OnStealthModeUpdate.Factory>(value);

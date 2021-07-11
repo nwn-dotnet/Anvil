@@ -1,11 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   /// <summary>
   /// Called when the player disconnects from the server.<br/>
@@ -47,11 +46,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnClientDisconnect"/>
+    /// <inheritdoc cref="Events.OnClientDisconnect"/>
     public event Action<OnClientDisconnect> OnClientDisconnect
     {
       add => EventService.Subscribe<OnClientDisconnect, OnClientDisconnect.Factory>(ControlledCreature, value);
@@ -61,7 +60,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnClientDisconnect"/>
+    /// <inheritdoc cref="Events.OnClientDisconnect"/>
     public event Action<OnClientDisconnect> OnClientDisconnect
     {
       add => EventService.SubscribeAll<OnClientDisconnect, OnClientDisconnect.Factory>(value);

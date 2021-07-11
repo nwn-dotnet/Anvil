@@ -1,12 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
-using Feat = Anvil.API.Feat;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnSpellBroadcast : IEvent
   {
@@ -57,11 +55,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract partial class NwGameObject
   {
-    /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
+    /// <inheritdoc cref="Events.OnSpellBroadcast"/>
     public event Action<OnSpellBroadcast> OnSpellBroadcast
     {
       add => EventService.Subscribe<OnSpellBroadcast, OnSpellBroadcast.Factory>(this, value);
@@ -71,7 +69,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnSpellBroadcast"/>
+    /// <inheritdoc cref="Events.OnSpellBroadcast"/>
     public event Action<OnSpellBroadcast> OnSpellBroadcast
     {
       add => EventService.SubscribeAll<OnSpellBroadcast, OnSpellBroadcast.Factory>(value);

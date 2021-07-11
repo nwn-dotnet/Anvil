@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public abstract class NwTrappable : NwGameObject
   {

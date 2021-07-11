@@ -1,7 +1,6 @@
 using System;
-using Anvil.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed partial class GameEventFactory
   {

@@ -1,7 +1,7 @@
 using System;
-using NWN.API.Events;
+using Anvil.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnDMSpawnTrapOnObject : IEvent
   {
@@ -18,11 +18,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMSpawnTrapOnObject"/>
+    /// <inheritdoc cref="Events.OnDMSpawnTrapOnObject"/>
     public event Action<OnDMSpawnTrapOnObject> OnDMSpawnTrapOnObject
     {
       add => EventService.Subscribe<OnDMSpawnTrapOnObject, DMEventFactory>(LoginCreature, value);
@@ -32,7 +32,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMSpawnTrapOnObject"/>
+    /// <inheritdoc cref="Events.OnDMSpawnTrapOnObject"/>
     public event Action<OnDMSpawnTrapOnObject> OnDMSpawnTrapOnObject
     {
       add => EventService.SubscribeAll<OnDMSpawnTrapOnObject, DMEventFactory>(value);

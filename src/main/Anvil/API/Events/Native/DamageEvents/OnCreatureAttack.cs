@@ -1,11 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnCreatureAttack : IEvent
   {
@@ -132,11 +131,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwCreature
   {
-    /// <inheritdoc cref="NWN.API.Events.OnCreatureAttack"/>
+    /// <inheritdoc cref="Events.OnCreatureAttack"/>
     public event Action<OnCreatureAttack> OnCreatureAttack
     {
       add => EventService.Subscribe<OnCreatureAttack, OnCreatureAttack.Factory>(this, value);
@@ -146,7 +145,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnCreatureAttack"/>
+    /// <inheritdoc cref="Events.OnCreatureAttack"/>
     public event Action<OnCreatureAttack> OnCreatureAttack
     {
       add => EventService.SubscribeAll<OnCreatureAttack, OnCreatureAttack.Factory>(value);

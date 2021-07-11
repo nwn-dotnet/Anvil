@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Anvil.API;
-using NWN.API;
-using NWN.API.Events;
+using Anvil.API.Events;
 using NWN.Native.API;
 using ClassType = NWN.Native.API.ClassType;
 using CombatMode = Anvil.API.CombatMode;
-using CreatureSize = NWN.Native.API.CreatureSize;
+using CreatureSize = Anvil.API.CreatureSize;
 using Feat = NWN.Native.API.Feat;
 using RacialType = NWN.Native.API.RacialType;
 
@@ -245,9 +244,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to query.</param>
     /// <returns>The size of the creature needed to consider this weapon finessable.</returns>
-    public API.CreatureSize GetWeaponFinesseSize(BaseItemType baseItem)
+    public CreatureSize GetWeaponFinesseSize(BaseItemType baseItem)
     {
-      return weaponFinesseSizeMap.TryGetValue((uint)baseItem, out byte size) ? (API.CreatureSize)size : API.CreatureSize.Invalid;
+      return weaponFinesseSizeMap.TryGetValue((uint)baseItem, out byte size) ? (CreatureSize)size : CreatureSize.Invalid;
     }
 
     /// <summary>
@@ -255,7 +254,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="size">The size of the creature needed to consider this weapon finessable.</param>
-    public void SetWeaponFinesseSize(BaseItemType baseItem, API.CreatureSize size)
+    public void SetWeaponFinesseSize(BaseItemType baseItem, CreatureSize size)
     {
       weaponFinesseSizeMap[(uint)baseItem] = (byte)size;
     }

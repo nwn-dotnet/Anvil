@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using NWN.Native.API;
-using ClassType = Anvil.API.ClassType;
-using Feat = Anvil.API.Feat;
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed unsafe class CreatureLevelInfo
   {

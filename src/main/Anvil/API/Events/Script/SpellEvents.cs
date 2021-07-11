@@ -1,7 +1,6 @@
-using Anvil.API;
 using NWN.Core;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public static class SpellEvents
   {

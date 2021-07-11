@@ -1,9 +1,8 @@
 using System;
-using Anvil.API;
-using NWN.API.Events;
+using Anvil.API.Events;
 using NWN.Core;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   /// <summary>
   /// Events for <see cref="NwPlaceable"/>.
@@ -407,116 +406,116 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlaceable
   {
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnClose"/>
+    /// <inheritdoc cref="PlaceableEvents.OnClose"/>
     public event Action<PlaceableEvents.OnClose> OnClose
     {
       add => EventService.Subscribe<PlaceableEvents.OnClose, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnClose, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnDamaged"/>
+    /// <inheritdoc cref="PlaceableEvents.OnDamaged"/>
     public event Action<PlaceableEvents.OnDamaged> OnDamaged
     {
       add => EventService.Subscribe<PlaceableEvents.OnDamaged, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnDamaged, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnDeath"/>
+    /// <inheritdoc cref="PlaceableEvents.OnDeath"/>
     public event Action<PlaceableEvents.OnDeath> OnDeath
     {
       add => EventService.Subscribe<PlaceableEvents.OnDeath, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnDeath, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnDisarm"/>
+    /// <inheritdoc cref="PlaceableEvents.OnDisarm"/>
     public event Action<PlaceableEvents.OnDisarm> OnDisarm
     {
       add => EventService.Subscribe<PlaceableEvents.OnDisarm, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnDisarm, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnHeartbeat"/>
+    /// <inheritdoc cref="PlaceableEvents.OnHeartbeat"/>
     public event Action<PlaceableEvents.OnHeartbeat> OnHeartbeat
     {
       add => EventService.Subscribe<PlaceableEvents.OnHeartbeat, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnHeartbeat, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnDisturbed"/>
+    /// <inheritdoc cref="PlaceableEvents.OnDisturbed"/>
     public event Action<PlaceableEvents.OnDisturbed> OnDisturbed
     {
       add => EventService.Subscribe<PlaceableEvents.OnDisturbed, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnDisturbed, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnLock"/>
+    /// <inheritdoc cref="PlaceableEvents.OnLock"/>
     public event Action<PlaceableEvents.OnLock> OnLock
     {
       add => EventService.Subscribe<PlaceableEvents.OnLock, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnLock, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnPhysicalAttacked"/>
+    /// <inheritdoc cref="PlaceableEvents.OnPhysicalAttacked"/>
     public event Action<PlaceableEvents.OnPhysicalAttacked> OnPhysicalAttacked
     {
       add => EventService.Subscribe<PlaceableEvents.OnPhysicalAttacked, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnPhysicalAttacked, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnOpen"/>
+    /// <inheritdoc cref="PlaceableEvents.OnOpen"/>
     public event Action<PlaceableEvents.OnOpen> OnOpen
     {
       add => EventService.Subscribe<PlaceableEvents.OnOpen, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnOpen, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnSpellCastAt"/>
+    /// <inheritdoc cref="PlaceableEvents.OnSpellCastAt"/>
     public event Action<PlaceableEvents.OnSpellCastAt> OnSpellCastAt
     {
       add => EventService.Subscribe<PlaceableEvents.OnSpellCastAt, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnSpellCastAt, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnTrapTriggered"/>
+    /// <inheritdoc cref="PlaceableEvents.OnTrapTriggered"/>
     public event Action<PlaceableEvents.OnTrapTriggered> OnTrapTriggered
     {
       add => EventService.Subscribe<PlaceableEvents.OnTrapTriggered, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnTrapTriggered, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnUnlock"/>
+    /// <inheritdoc cref="PlaceableEvents.OnUnlock"/>
     public event Action<PlaceableEvents.OnUnlock> OnUnlock
     {
       add => EventService.Subscribe<PlaceableEvents.OnUnlock, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnUnlock, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnUsed"/>
+    /// <inheritdoc cref="PlaceableEvents.OnUsed"/>
     public event Action<PlaceableEvents.OnUsed> OnUsed
     {
       add => EventService.Subscribe<PlaceableEvents.OnUsed, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnUsed, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnUserDefined"/>
+    /// <inheritdoc cref="PlaceableEvents.OnUserDefined"/>
     public event Action<PlaceableEvents.OnUserDefined> OnUserDefined
     {
       add => EventService.Subscribe<PlaceableEvents.OnUserDefined, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnUserDefined, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnDialogue"/>
+    /// <inheritdoc cref="PlaceableEvents.OnDialogue"/>
     public event Action<PlaceableEvents.OnDialogue> OnDialogue
     {
       add => EventService.Subscribe<PlaceableEvents.OnDialogue, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
       remove => EventService.Unsubscribe<PlaceableEvents.OnDialogue, GameEventFactory>(this, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.PlaceableEvents.OnLeftClick"/>
+    /// <inheritdoc cref="PlaceableEvents.OnLeftClick"/>
     public event Action<PlaceableEvents.OnLeftClick> OnLeftClick
     {
       add => EventService.Subscribe<PlaceableEvents.OnLeftClick, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);

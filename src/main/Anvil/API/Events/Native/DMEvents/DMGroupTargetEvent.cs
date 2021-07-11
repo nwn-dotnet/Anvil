@@ -1,7 +1,7 @@
 using System;
-using NWN.API.Events;
+using Anvil.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public abstract class DMGroupTargetEvent : IEvent
   {
@@ -32,53 +32,53 @@ namespace NWN.API.Events
   public sealed class OnDMToggleImmortal : DMGroupTargetEvent {}
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMHeal"/>
+    /// <inheritdoc cref="Events.OnDMHeal"/>
     public event Action<OnDMHeal> OnDMHeal
     {
       add => EventService.Subscribe<OnDMHeal, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMHeal, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMKill"/>
+    /// <inheritdoc cref="Events.OnDMKill"/>
     public event Action<OnDMKill> OnDMKill
     {
       add => EventService.Subscribe<OnDMKill, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMKill, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMForceRest"/>
+    /// <inheritdoc cref="Events.OnDMForceRest"/>
     public event Action<OnDMForceRest> OnDMForceRest
     {
       add => EventService.Subscribe<OnDMForceRest, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMForceRest, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMToggleInvulnerable"/>
+    /// <inheritdoc cref="Events.OnDMToggleInvulnerable"/>
     public event Action<OnDMToggleInvulnerable> OnDMToggleInvulnerable
     {
       add => EventService.Subscribe<OnDMToggleInvulnerable, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMToggleInvulnerable, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMLimbo"/>
+    /// <inheritdoc cref="Events.OnDMLimbo"/>
     public event Action<OnDMLimbo> OnDMLimbo
     {
       add => EventService.Subscribe<OnDMLimbo, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMLimbo, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMToggleAI"/>
+    /// <inheritdoc cref="Events.OnDMToggleAI"/>
     public event Action<OnDMToggleAI> OnDMToggleAI
     {
       add => EventService.Subscribe<OnDMToggleAI, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMToggleAI, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMToggleImmortal"/>
+    /// <inheritdoc cref="Events.OnDMToggleImmortal"/>
     public event Action<OnDMToggleImmortal> OnDMToggleImmortal
     {
       add => EventService.Subscribe<OnDMToggleImmortal, DMEventFactory>(LoginCreature, value);
@@ -88,49 +88,49 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMHeal"/>
+    /// <inheritdoc cref="Events.OnDMHeal"/>
     public event Action<OnDMHeal> OnDMHeal
     {
       add => EventService.SubscribeAll<OnDMHeal, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMHeal, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMKill"/>
+    /// <inheritdoc cref="Events.OnDMKill"/>
     public event Action<OnDMKill> OnDMKill
     {
       add => EventService.SubscribeAll<OnDMKill, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMKill, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMForceRest"/>
+    /// <inheritdoc cref="Events.OnDMForceRest"/>
     public event Action<OnDMForceRest> OnDMForceRest
     {
       add => EventService.SubscribeAll<OnDMForceRest, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMForceRest, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMToggleInvulnerable"/>
+    /// <inheritdoc cref="Events.OnDMToggleInvulnerable"/>
     public event Action<OnDMToggleInvulnerable> OnDMToggleInvulnerable
     {
       add => EventService.SubscribeAll<OnDMToggleInvulnerable, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMToggleInvulnerable, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMLimbo"/>
+    /// <inheritdoc cref="Events.OnDMLimbo"/>
     public event Action<OnDMLimbo> OnDMLimbo
     {
       add => EventService.SubscribeAll<OnDMLimbo, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMLimbo, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMToggleAI"/>
+    /// <inheritdoc cref="Events.OnDMToggleAI"/>
     public event Action<OnDMToggleAI> OnDMToggleAI
     {
       add => EventService.SubscribeAll<OnDMToggleAI, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMToggleAI, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="NWN.API.Events.OnDMToggleImmortal"/>
+    /// <inheritdoc cref="Events.OnDMToggleImmortal"/>
     public event Action<OnDMToggleImmortal> OnDMToggleImmortal
     {
       add => EventService.SubscribeAll<OnDMToggleImmortal, DMEventFactory>(value);

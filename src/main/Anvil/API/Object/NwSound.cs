@@ -1,9 +1,8 @@
 using System;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
   public sealed class NwSound : NwGameObject

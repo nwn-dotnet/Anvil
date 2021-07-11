@@ -1,11 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using Anvil.API;
 using NWN.Core;
 using NWN.Native.API;
-using SavingThrow = Anvil.API.SavingThrow;
 
-namespace NWN.API
+namespace Anvil.API
 {
   [NativeObjectInfo(ObjectTypes.Door, ObjectType.Door)]
   public sealed partial class NwDoor : NwStationary

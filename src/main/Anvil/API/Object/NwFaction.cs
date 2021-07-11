@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Anvil.API;
 using Anvil.Internal;
 using NWN.Native.API;
-using ClassType = Anvil.API.ClassType;
 
-namespace NWN.API
+namespace Anvil.API
 {
   /// <summary>
   /// The faction info of a Creature/Player/GameObject.

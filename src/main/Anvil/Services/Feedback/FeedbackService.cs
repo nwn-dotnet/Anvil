@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Anvil.API;
 using Anvil.Native;
-using NWN.API;
 using NWN.Native.API;
 
 namespace Anvil.Services

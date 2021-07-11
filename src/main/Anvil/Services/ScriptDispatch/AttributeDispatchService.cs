@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Anvil.API;
 using NLog;
-using NWN.API;
 
 namespace Anvil.Services
 {

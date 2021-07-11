@@ -1,6 +1,5 @@
 using System.Reflection;
-using NWN.API;
-using NWN.API.Events;
+using Anvil.API.Events;
 using NWN.Core;
 
 namespace Anvil.API

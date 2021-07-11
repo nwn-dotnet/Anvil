@@ -1,6 +1,5 @@
 using Anvil.Services;
 using NLog;
-using NWN.API;
 using NWN.Core;
 using NWN.Native.API;
 

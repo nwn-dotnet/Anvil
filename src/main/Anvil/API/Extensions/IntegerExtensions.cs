@@ -1,6 +1,5 @@
 using System;
 using Anvil.Internal;
-using NWN.API;
 using NWN.Core;
 using NWN.Native.API;
 

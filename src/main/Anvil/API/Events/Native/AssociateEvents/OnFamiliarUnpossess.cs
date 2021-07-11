@@ -1,12 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
-using IntegerExtensions = Anvil.API.IntegerExtensions;
-using NativeObjectExtensions = Anvil.API.NativeObjectExtensions;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnFamiliarUnpossess : IEvent
   {
@@ -46,11 +44,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwCreature
   {
-    /// <inheritdoc cref="NWN.API.Events.OnFamiliarUnpossess"/>
+    /// <inheritdoc cref="Events.OnFamiliarUnpossess"/>
     public event Action<OnFamiliarUnpossess> OnFamiliarUnpossess
     {
       add => EventService.Subscribe<OnFamiliarUnpossess, OnFamiliarUnpossess.Factory>(this, value);
@@ -60,7 +58,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnFamiliarUnpossess"/>
+    /// <inheritdoc cref="Events.OnFamiliarUnpossess"/>
     public event Action<OnFamiliarUnpossess> OnFamiliarUnpossess
     {
       add => EventService.SubscribeAll<OnFamiliarUnpossess, OnFamiliarUnpossess.Factory>(value);

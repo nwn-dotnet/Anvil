@@ -1,8 +1,7 @@
 using System;
-using Anvil.API;
-using NWN.API.Events;
+using Anvil.API.Events;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnDMGiveAlignment : IEvent
   {
@@ -23,11 +22,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMGiveAlignment"/>
+    /// <inheritdoc cref="Events.OnDMGiveAlignment"/>
     public event Action<OnDMGiveAlignment> OnDMGiveAlignment
     {
       add => EventService.Subscribe<OnDMGiveAlignment, DMEventFactory>(LoginCreature, value);
@@ -37,7 +36,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnDMGiveAlignment"/>
+    /// <inheritdoc cref="Events.OnDMGiveAlignment"/>
     public event Action<OnDMGiveAlignment> OnDMGiveAlignment
     {
       add => EventService.SubscribeAll<OnDMGiveAlignment, DMEventFactory>(value);

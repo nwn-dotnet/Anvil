@@ -1,12 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
-using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Services;
-using NWN.API.Events;
 using NWN.Native.API;
-using CombatMode = Anvil.API.CombatMode;
 
-namespace NWN.API.Events
+namespace Anvil.API.Events
 {
   public sealed class OnCombatModeToggle : IEvent
   {
@@ -68,11 +66,11 @@ namespace NWN.API.Events
   }
 }
 
-namespace NWN.API
+namespace Anvil.API
 {
   public sealed partial class NwCreature
   {
-    /// <inheritdoc cref="NWN.API.Events.OnCombatModeToggle"/>
+    /// <inheritdoc cref="Events.OnCombatModeToggle"/>
     public event Action<OnCombatModeToggle> OnCombatModeToggle
     {
       add => EventService.Subscribe<OnCombatModeToggle, OnCombatModeToggle.Factory>(this, value);
@@ -82,7 +80,7 @@ namespace NWN.API
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="NWN.API.Events.OnCombatModeToggle"/>
+    /// <inheritdoc cref="Events.OnCombatModeToggle"/>
     public event Action<OnCombatModeToggle> OnCombatModeToggle
     {
       add => EventService.SubscribeAll<OnCombatModeToggle, OnCombatModeToggle.Factory>(value);
