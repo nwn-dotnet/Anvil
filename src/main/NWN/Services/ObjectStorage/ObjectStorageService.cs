@@ -25,28 +25,36 @@ namespace NWN.Services
 
     private delegate int LoadFromGffHook(void* pUUID, void* pRes, void* pStruct);
 
-    private readonly FunctionHook<ObjectDestructorHook> objectDestructorHook;
-    private readonly FunctionHook<AreaDestructorHook> areaDestructorHook;
-    private readonly FunctionHook<EatTURDHook> eatTURDHook;
-    private readonly FunctionHook<DropTURDHook> dropTURDHook;
-    private readonly FunctionHook<SaveToGffHook> saveToGffHook;
-    private readonly FunctionHook<LoadFromGffHook> loadFromGffHook;
+    private static FunctionHook<ObjectDestructorHook> objectDestructorHook;
+    private static FunctionHook<AreaDestructorHook> areaDestructorHook;
+    private static FunctionHook<EatTURDHook> eatTURDHook;
+    private static FunctionHook<DropTURDHook> dropTURDHook;
 
-    private readonly Dictionary<ICGameObject, ObjectStorage> objectStorage = new Dictionary<ICGameObject, ObjectStorage>();
+    private static FunctionHook<SaveToGffHook> saveToGffHook;
+    private static FunctionHook<LoadFromGffHook> loadFromGffHook;
+
+    private readonly Dictionary<IntPtr, ObjectStorage> objectStorage = new Dictionary<IntPtr, ObjectStorage>();
 
     public ObjectStorageService(HookService hookService)
     {
-      objectDestructorHook = hookService.RequestHook<ObjectDestructorHook>(OnObjectDestructor, FunctionsLinux._ZN10CNWSObjectD1Ev, HookOrder.VeryEarly);
-      areaDestructorHook = hookService.RequestHook<AreaDestructorHook>(OnAreaDestructor, FunctionsLinux._ZN8CNWSAreaD1Ev, HookOrder.VeryEarly);
-      eatTURDHook = hookService.RequestHook<EatTURDHook>(OnEatTURD, FunctionsLinux._ZN10CNWSPlayer7EatTURDEP14CNWSPlayerTURD, HookOrder.VeryEarly);
-      dropTURDHook = hookService.RequestHook<DropTURDHook>(OnDropTURD, FunctionsLinux._ZN10CNWSPlayer8DropTURDEv, HookOrder.VeryEarly);
+      objectDestructorHook?.Dispose();
+      areaDestructorHook?.Dispose();
+      eatTURDHook?.Dispose();
+      dropTURDHook?.Dispose();
+      saveToGffHook?.Dispose();
+      loadFromGffHook?.Dispose();
 
-      // We want to serialize after NWNX, and deserialize before, otherwise our storage will get overwritten.
-      const int OrderAfterNWNX = HookOrder.VeryEarly + 1;
-      const int OrderBeforeNWNX = HookOrder.VeryEarly - 1;
+      objectDestructorHook = hookService.RequestHook<ObjectDestructorHook>(OnObjectDestructor, FunctionsLinux._ZN10CNWSObjectD1Ev, HookOrder.VeryEarly, false);
+      areaDestructorHook = hookService.RequestHook<AreaDestructorHook>(OnAreaDestructor, FunctionsLinux._ZN8CNWSAreaD1Ev, HookOrder.VeryEarly, false);
+      eatTURDHook = hookService.RequestHook<EatTURDHook>(OnEatTURD, FunctionsLinux._ZN10CNWSPlayer7EatTURDEP14CNWSPlayerTURD, HookOrder.VeryEarly, false);
+      dropTURDHook = hookService.RequestHook<DropTURDHook>(OnDropTURD, FunctionsLinux._ZN10CNWSPlayer8DropTURDEv, HookOrder.VeryEarly, false);
 
-      saveToGffHook = hookService.RequestHook<SaveToGffHook>(OnSaveToGff, FunctionsLinux._ZN8CNWSUUID9SaveToGffEP7CResGFFP10CResStruct, OrderAfterNWNX);
-      loadFromGffHook = hookService.RequestHook<LoadFromGffHook>(OnLoadFromGff, FunctionsLinux._ZN8CNWSUUID11LoadFromGffEP7CResGFFP10CResStruct, OrderBeforeNWNX);
+      // We want to prioritize our call first for serialization, so it gets called last in the CallOriginal call in NWNX.
+      const int orderBeforeNWNX = HookOrder.VeryEarly - 1;
+      const int orderAfterNWNX = HookOrder.VeryEarly + 1;
+
+      saveToGffHook = hookService.RequestHook<SaveToGffHook>(OnSaveToGff, FunctionsLinux._ZN8CNWSUUID9SaveToGffEP7CResGFFP10CResStruct, orderBeforeNWNX, false);
+      loadFromGffHook = hookService.RequestHook<LoadFromGffHook>(OnLoadFromGff, FunctionsLinux._ZN8CNWSUUID11LoadFromGffEP7CResGFFP10CResStruct, orderAfterNWNX, false);
     }
 
     public ObjectStorage GetObjectStorage(NwObject gameObject)
@@ -56,10 +64,10 @@ namespace NWN.Services
 
     public ObjectStorage GetObjectStorage(ICGameObject gameObject)
     {
-      if (!objectStorage.TryGetValue(gameObject, out ObjectStorage storage))
+      if (!objectStorage.TryGetValue(gameObject.Pointer, out ObjectStorage storage))
       {
         storage = new ObjectStorage();
-        objectStorage[gameObject] = storage;
+        objectStorage[gameObject.Pointer] = storage;
       }
 
       return storage;
@@ -72,7 +80,7 @@ namespace NWN.Services
 
     public bool TryGetObjectStorage(ICGameObject gameObject, out ObjectStorage storage)
     {
-      return objectStorage.TryGetValue(gameObject, out storage);
+      return objectStorage.TryGetValue(gameObject.Pointer, out storage);
     }
 
     public void DestroyObjectStorage(NwObject gameObject)
@@ -82,7 +90,7 @@ namespace NWN.Services
 
     public void DestroyObjectStorage(ICGameObject gameObject)
     {
-      objectStorage.Remove(gameObject);
+      objectStorage.Remove(gameObject.Pointer);
     }
 
     private void OnObjectDestructor(void* pObject)
@@ -106,7 +114,7 @@ namespace NWN.Services
 
       ICGameObject playerObj = player.m_oidNWSObject.ToNwObject().Object;
 
-      objectStorage[playerObj] = GetObjectStorage(turd).Clone();
+      objectStorage[playerObj.Pointer] = GetObjectStorage(turd).Clone();
       eatTURDHook.CallOriginal(pPlayer, pTURD);
     }
 
@@ -120,13 +128,13 @@ namespace NWN.Services
       CExoLinkedListInternal turdList = NwModule.Instance.Module.m_lstTURDList.m_pcExoLinkedListInternal;
       CExoLinkedListNode pHead;
 
-      if (turdList != null && (pHead = turdList.pHead) != null)
+      if (turdList != null && (pHead = turdList.pHead) != null && pHead.pObject != null)
       {
         CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
-        CNWSPlayerTURD turd = CNWSPlayerTURD.FromPointer(pHead);
+        CNWSPlayerTURD turd = CNWSPlayerTURD.FromPointer(pHead.pObject);
 
         ICGameObject playerObj = player.m_oidNWSObject.ToNwObject().Object;
-        objectStorage[turd] = GetObjectStorage(playerObj).Clone();
+        objectStorage[turd.Pointer] = GetObjectStorage(playerObj).Clone();
       }
     }
 
@@ -137,6 +145,7 @@ namespace NWN.Services
       CResStruct resStruct = CResStruct.FromPointer(pStruct);
 
       string serialized = GetObjectStorage(uuid.m_parent).Serialize();
+      Log.Info(serialized);
       resGff.WriteFieldCExoString(resStruct, serialized.ToExoString(), GffFieldNamePtr);
 
       saveToGffHook.CallOriginal(pUUID, pRes, pStruct);
