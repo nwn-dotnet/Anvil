@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['transient_1871',['Transient',['../namespaceNWN_1_1Services.html#ae749a56c1f41a4a6a435efaf6ec1afc8ab1f023eff9a6b5308d6024e4c6b3d475',1,'NWN::Services']]]
+  ['dispelmagic_2142',['DispelMagic',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182adaf4b5bf9c1ee58b8f13d3833f7bb605',1,'Anvil::Services']]]
 ];

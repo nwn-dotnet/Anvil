@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['vectortoangle_1841',['VectorToAngle',['../classNWN_1_1API_1_1NwMath.html#aae4b895f62e4dfcc86ca3854345a7f8c',1,'NWN.API.NwMath.VectorToAngle(Vector2 direction)'],['../classNWN_1_1API_1_1NwMath.html#a74c257027621c5af3db50b7d5d516c2c',1,'NWN.API.NwMath.VectorToAngle(Vector3 direction)']]],
-  ['vibrate_1842',['Vibrate',['../classNWN_1_1API_1_1NwPlayer.html#a22177cc9bca974e72269e0f870034c94',1,'NWN::API::NwPlayer']]],
-  ['visiblehighestacmember_1843',['VisibleHighestACMember',['../classNWN_1_1API_1_1NwFaction.html#a644da990195bbc719a39c518b433f0ba',1,'NWN::API::NwFaction']]],
-  ['visibleleastdamagedmember_1844',['VisibleLeastDamagedMember',['../classNWN_1_1API_1_1NwFaction.html#aa27408e70b32cdebab6bdb69317375ef',1,'NWN::API::NwFaction']]],
-  ['visiblelowestacmember_1845',['VisibleLowestACMember',['../classNWN_1_1API_1_1NwFaction.html#a9585c822889950aacf3bab666fe0ce78',1,'NWN::API::NwFaction']]],
-  ['visiblemostdamagedmember_1846',['VisibleMostDamagedMember',['../classNWN_1_1API_1_1NwFaction.html#a964ef50ee3a6772fd5aed6b59c5ceeb4',1,'NWN::API::NwFaction']]],
-  ['visiblestrongestmember_1847',['VisibleStrongestMember',['../classNWN_1_1API_1_1NwFaction.html#a7c6be454442a0a3420839adc8d369762',1,'NWN::API::NwFaction']]],
-  ['visibleweakestmember_1848',['VisibleWeakestMember',['../classNWN_1_1API_1_1NwFaction.html#ab877ba8cb9d1a322aa2a8934588057e2',1,'NWN::API::NwFaction']]]
+  ['unlockachievement_2111',['UnlockAchievement',['../classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e',1,'Anvil::API::NwPlayer']]],
+  ['unpossessfamiliar_2112',['UnpossessFamiliar',['../classAnvil_1_1API_1_1NwCreature.html#ac3c35fc175ae3cadf1f4a3e1b4829bb4',1,'Anvil::API::NwCreature']]],
+  ['update_2113',['Update',['../interfaceAnvil_1_1Services_1_1IUpdateable.html#a331b548c29b52cf54923c420cb6decd5',1,'Anvil::Services::IUpdateable']]]
 ];

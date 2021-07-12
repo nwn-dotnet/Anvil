@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['jumptoobject_416',['JumpToObject',['../classNWN_1_1API_1_1NwCreature.html#a19785bc5e953e5ffcf174edf15a641e2',1,'NWN::API::NwCreature']]]
+  ['joiningrestrictions_603',['JoiningRestrictions',['../classAnvil_1_1API_1_1JoiningRestrictions.html',1,'Anvil::API']]],
+  ['journalentry_604',['JournalEntry',['../classAnvil_1_1API_1_1JournalEntry.html',1,'Anvil::API']]],
+  ['jumptoobject_605',['JumpToObject',['../classAnvil_1_1API_1_1NwCreature.html#a559e5f191805e0c085566e12dc53df2b',1,'Anvil::API::NwCreature']]]
 ];

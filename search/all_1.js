@@ -1,14 +1,19 @@
 var searchData=
 [
-  ['barterevents_87',['BarterEvents',['../classNWNX_1_1API_1_1Events_1_1BarterEvents.html',1,'NWNX::API::Events']]],
-  ['baseattackbonus_88',['BaseAttackBonus',['../classNWN_1_1API_1_1NwCreature.html#a5c6f7d888001874810165663fa6cfbd1',1,'NWN::API::NwCreature']]],
-  ['baseattackcount_89',['BaseAttackCount',['../classNWN_1_1API_1_1NwCreature.html#a19732e076dad5325e217c801237e2106',1,'NWN::API::NwCreature']]],
-  ['baseitemtype_90',['BaseItemType',['../classNWN_1_1API_1_1NwItem.html#afb743db1a6b4c22c6d23d695ef3d49a8',1,'NWN::API::NwItem']]],
-  ['beam_91',['Beam',['../classNWN_1_1API_1_1Effect.html#a3ba2c57daee81726d7ce020f9f2d955c',1,'NWN::API::Effect']]],
-  ['bindingtype_92',['BindingType',['../namespaceNWN_1_1Services.html#ae749a56c1f41a4a6a435efaf6ec1afc8',1,'NWN::Services']]],
-  ['blindness_93',['Blindness',['../classNWN_1_1API_1_1Effect.html#a2d193f122cbbe7b77429f82207cb690f',1,'NWN::API::Effect']]],
-  ['blockingdoor_94',['BlockingDoor',['../classNWN_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked.html#a40fe7651345e3093ed14311bdb1fcca1',1,'NWN::API::Events::CreatureEvents::OnBlocked']]],
-  ['blue_95',['Blue',['../structNWN_1_1API_1_1Color.html#a19b7e471d3a7467ff49fb90f955c6662',1,'NWN::API::Color']]],
-  ['bluef_96',['BlueF',['../structNWN_1_1API_1_1Color.html#a1be9d4884b31b8f570ab5c6ff2add236',1,'NWN::API::Color']]],
-  ['bootplayer_97',['BootPlayer',['../classNWN_1_1API_1_1NwPlayer.html#a84463c4cbc13d16a74815fa277628d1e',1,'NWN::API::NwPlayer']]]
+  ['bannedlist_117',['BannedList',['../classAnvil_1_1API_1_1NwServer.html#aecf000abb551be734d04971f64a0c43c',1,'Anvil::API::NwServer']]],
+  ['baseac_118',['BaseAC',['../classAnvil_1_1API_1_1NwCreature.html#aaf9afb74dc5943388b63a4109bfe2997',1,'Anvil::API::NwCreature']]],
+  ['baseacvalue_119',['BaseACValue',['../classAnvil_1_1API_1_1NwItem.html#a8e504227a2c075142851eb11951b1431',1,'Anvil::API::NwItem']]],
+  ['baseattackbonus_120',['BaseAttackBonus',['../classAnvil_1_1API_1_1NwCreature.html#a338abe262fffc8e50cbf436f4a07b78a',1,'Anvil::API::NwCreature']]],
+  ['baseattackcount_121',['BaseAttackCount',['../classAnvil_1_1API_1_1NwCreature.html#a0b17c491405f55d6220d18bcf7f5e515',1,'Anvil::API::NwCreature']]],
+  ['basegoldvalue_122',['BaseGoldValue',['../classAnvil_1_1API_1_1NwItem.html#a9da37baed68661a1b9f18401bfaf2942',1,'Anvil::API::NwItem']]],
+  ['baseitemtype_123',['BaseItemType',['../classAnvil_1_1API_1_1NwItem.html#a3d3ecfe92404dd7d642794ba770e6522',1,'Anvil::API::NwItem']]],
+  ['beam_124',['Beam',['../classAnvil_1_1API_1_1Effect.html#abe14157796cd1913cf4c16aa7e40a39a',1,'Anvil::API::Effect']]],
+  ['bicfilename_125',['BicFileName',['../classAnvil_1_1API_1_1NwPlayer.html#a1173f6e794fadffce1cfdc01a92adaf1',1,'Anvil::API::NwPlayer']]],
+  ['bindparam_126',['BindParam',['../classAnvil_1_1API_1_1SQLQuery.html#ace8dfd3c9a762f1b391c32bba66d88f8',1,'Anvil.API.SQLQuery.BindParam(string param, float value)'],['../classAnvil_1_1API_1_1SQLQuery.html#a3b52a50b2a1bb43e024e7fd05302b4ca',1,'Anvil.API.SQLQuery.BindParam(string param, NwObject value)'],['../classAnvil_1_1API_1_1SQLQuery.html#a3e0324b810a5eec18c6963ed3bea16c2',1,'Anvil.API.SQLQuery.BindParam(string param, Vector3 value)'],['../classAnvil_1_1API_1_1SQLQuery.html#a22f058a44b55bccbda0535b055f4857e',1,'Anvil.API.SQLQuery.BindParam(string param, string value)'],['../classAnvil_1_1API_1_1SQLQuery.html#a960c746a97e2834ce75a84b84d0e294e',1,'Anvil.API.SQLQuery.BindParam(string param, int value)']]],
+  ['blindness_127',['Blindness',['../classAnvil_1_1API_1_1Effect.html#a090867253b953ff8505e018f4b6ca253',1,'Anvil::API::Effect']]],
+  ['blockconnection_128',['BlockConnection',['../classAnvil_1_1API_1_1Events_1_1OnClientConnect.html#ab68b999e184c2a35a94b912b60dc207f',1,'Anvil::API::Events::OnClientConnect']]],
+  ['blockingdoor_129',['BlockingDoor',['../classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnBlocked.html#a15b0d1319311c4aeef80acc17ad363f3',1,'Anvil::API::Events::CreatureEvents::OnBlocked']]],
+  ['blue_130',['Blue',['../structAnvil_1_1API_1_1Color.html#acbbe116037aa688d543764df82a994d6',1,'Anvil::API::Color']]],
+  ['bluef_131',['BlueF',['../structAnvil_1_1API_1_1Color.html#a107a46456cd2f493c9dffbbb96b0018c',1,'Anvil::API::Color']]],
+  ['bootplayer_132',['BootPlayer',['../classAnvil_1_1API_1_1NwPlayer.html#adfecd0ff995fbe1b040e3f0bae1eb3e5',1,'Anvil::API::NwPlayer']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bindingtype_1869',['BindingType',['../namespaceNWN_1_1Services.html#ae749a56c1f41a4a6a435efaf6ec1afc8',1,'NWN::Services']]]
+  ['combatlogmessage_2136',['CombatLogMessage',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182',1,'Anvil::Services']]]
 ];

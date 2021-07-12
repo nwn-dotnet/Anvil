@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['calendarevents_1081',['CalendarEvents',['../classNWNX_1_1API_1_1Events_1_1CalendarEvents.html',1,'NWNX::API::Events']]],
-  ['callinfo_1082',['CallInfo',['../classNWN_1_1API_1_1CallInfo.html',1,'NWN::API']]],
-  ['campaignvariable_1083',['CampaignVariable',['../classNWN_1_1API_1_1CampaignVariable.html',1,'NWN::API']]],
-  ['campaignvariableconverterattribute_1084',['CampaignVariableConverterAttribute',['../classNWN_1_1API_1_1CampaignVariableConverterAttribute.html',1,'NWN::API']]],
-  ['chat_1085',['Chat',['../classNWNX_1_1API_1_1Chat.html',1,'NWNX::API']]],
-  ['classinfo_1086',['ClassInfo',['../classNWN_1_1API_1_1ClassInfo.html',1,'NWN::API']]],
-  ['clientevents_1087',['ClientEvents',['../classNWNX_1_1API_1_1Events_1_1ClientEvents.html',1,'NWNX::API::Events']]],
-  ['color_1088',['Color',['../structNWN_1_1API_1_1Color.html',1,'NWN::API']]],
-  ['creature_1089',['Creature',['../classNWNX_1_1API_1_1Creature.html',1,'NWNX::API']]],
-  ['creatureevents_1090',['CreatureEvents',['../classNWN_1_1API_1_1Events_1_1CreatureEvents.html',1,'NWN::API::Events']]],
-  ['creaturetypefilter_1091',['CreatureTypeFilter',['../structNWN_1_1API_1_1CreatureTypeFilter.html',1,'NWN::API']]],
-  ['cursortargetdata_1092',['CursorTargetData',['../classNWN_1_1Services_1_1CursorTargetData.html',1,'NWN::Services']]],
-  ['cursortargetservice_1093',['CursorTargetService',['../classNWN_1_1Services_1_1CursorTargetService.html',1,'NWN::Services']]]
+  ['damagedata_1291',['DamageData',['../classAnvil_1_1API_1_1Events_1_1DamageData.html',1,'Anvil::API::Events']]],
+  ['debugoptions_1292',['DebugOptions',['../classAnvil_1_1API_1_1DebugOptions.html',1,'Anvil::API']]],
+  ['devastatingcriticaldata_1293',['DevastatingCriticalData',['../classAnvil_1_1Services_1_1DevastatingCriticalData.html',1,'Anvil::Services']]],
+  ['dialogevents_1294',['DialogEvents',['../classAnvil_1_1API_1_1Events_1_1DialogEvents.html',1,'Anvil::API::Events']]],
+  ['dialogservice_1295',['DialogService',['../classAnvil_1_1Services_1_1DialogService.html',1,'Anvil::Services']]],
+  ['direction_1296',['Direction',['../classAnvil_1_1API_1_1Direction.html',1,'Anvil::API']]],
+  ['dmeventfactory_1297',['DMEventFactory',['../classAnvil_1_1API_1_1Events_1_1DMEventFactory.html',1,'Anvil::API::Events']]],
+  ['dmgiveevent_1298',['DMGiveEvent',['../classAnvil_1_1API_1_1Events_1_1DMGiveEvent.html',1,'Anvil::API::Events']]],
+  ['dmgrouptargetevent_1299',['DMGroupTargetEvent',['../classAnvil_1_1API_1_1Events_1_1DMGroupTargetEvent.html',1,'Anvil::API::Events']]],
+  ['dmsingletargetevent_1300',['DMSingleTargetEvent',['../classAnvil_1_1API_1_1Events_1_1DMSingleTargetEvent.html',1,'Anvil::API::Events']]],
+  ['dmstandardevent_1301',['DMStandardEvent',['../classAnvil_1_1API_1_1Events_1_1DMStandardEvent.html',1,'Anvil::API::Events']]],
+  ['dmteleportevent_1302',['DMTeleportEvent',['../classAnvil_1_1API_1_1Events_1_1DMTeleportEvent.html',1,'Anvil::API::Events']]],
+  ['doorevents_1303',['DoorEvents',['../classAnvil_1_1API_1_1Events_1_1DoorEvents.html',1,'Anvil::API::Events']]]
 ];

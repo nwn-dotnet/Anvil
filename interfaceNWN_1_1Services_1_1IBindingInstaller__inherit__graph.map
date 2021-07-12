@@ -1,4 +1,0 @@
-<map id="NWN.Services.IBindingInstaller" name="NWN.Services.IBindingInstaller">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,209,32"/>
-<area shape="rect" id="node2" href="$classNWN_1_1Services_1_1ServiceInstaller.html" title="Wires up and prepares service classes for dependency injection." alt="" coords="7,80,208,107"/>
-</map>

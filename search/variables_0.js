@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['alpha_1856',['Alpha',['../structNWN_1_1API_1_1Color.html#a7027aa0b3cda9461f3c5c1e8bc72f310',1,'NWN::API::Color']]]
+  ['alpha_2124',['Alpha',['../structAnvil_1_1API_1_1Color.html#ace0e84b39bea81bcc583e8bb71501761',1,'Anvil::API::Color']]]
 ];

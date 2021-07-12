@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['nextdouble_1743',['NextDouble',['../classNWN_1_1API_1_1RandomExtensions.html#ad8dd4f09c4629e8a34ab4111052c2307',1,'NWN::API::RandomExtensions']]],
-  ['nextfloat_1744',['NextFloat',['../classNWN_1_1API_1_1RandomExtensions.html#ae56c7315f39fb225ab4c402c991a4c68',1,'NWN.API.RandomExtensions.NextFloat(this Random random)'],['../classNWN_1_1API_1_1RandomExtensions.html#a30a99195dac7180c94ae1edacdc36f4a',1,'NWN.API.RandomExtensions.NextFloat(this Random random, float minValue, float maxValue)']]],
-  ['nextframe_1745',['NextFrame',['../classNWN_1_1API_1_1NwTask.html#a9f4e6db66a44b051a6f98b76dbd88fb4',1,'NWN::API::NwTask']]],
-  ['nighttoday_1746',['NightToDay',['../classNWN_1_1API_1_1NwPlayer.html#a21fefcbd1d72624b17bb6ff526eb49f5',1,'NWN::API::NwPlayer']]]
+  ['lerp_1970',['Lerp',['../classAnvil_1_1API_1_1VisualTransform.html#a41326df06211c10810bd396b379587c3',1,'Anvil::API::VisualTransform']]],
+  ['leveluphenchman_1971',['LevelUpHenchman',['../classAnvil_1_1API_1_1NwCreature.html#a7abd667c6f1602c0697fff1eda05b396',1,'Anvil::API::NwCreature']]],
+  ['linkeffects_1972',['LinkEffects',['../classAnvil_1_1API_1_1Effect.html#a919674b6fccff5b7df67c3fcac61bb22',1,'Anvil.API.Effect.LinkEffects(Effect baseEffect, params Effect[] effects)'],['../classAnvil_1_1API_1_1Effect.html#a70af5f30be620af5f949c964d121ee62',1,'Anvil.API.Effect.LinkEffects(Effect baseEffect, IEnumerable&lt; Effect &gt; effects)']]],
+  ['lockcameradirection_1973',['LockCameraDirection',['../classAnvil_1_1API_1_1NwPlayer.html#aaf1f53c9b8caa4d3c202687fd31556ae',1,'Anvil::API::NwPlayer']]],
+  ['lockcameradistance_1974',['LockCameraDistance',['../classAnvil_1_1API_1_1NwPlayer.html#afb43e0c492606fd538955d8547e55055',1,'Anvil::API::NwPlayer']]],
+  ['lockcamerapitch_1975',['LockCameraPitch',['../classAnvil_1_1API_1_1NwPlayer.html#a6900fd106784f55a71625bd4eadf7d3d',1,'Anvil::API::NwPlayer']]]
 ];

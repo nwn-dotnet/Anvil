@@ -1,0 +1,4 @@
+<map id="Anvil.API.Events.ModuleEvents.OnPlayerChat" name="Anvil.API.Events.ModuleEvents.OnPlayerChat">
+<area shape="rect" id="node1" title="Triggered when any NwPlayer sends a chat message. Private channel not hooked." alt="" coords="5,80,212,121"/>
+<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="79,5,138,32"/>
+</map>

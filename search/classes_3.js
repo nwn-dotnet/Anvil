@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['damage_1094',['Damage',['../classNWNX_1_1API_1_1Damage.html',1,'NWNX::API']]],
-  ['damagedata_1095',['DamageData',['../structNWNX_1_1API_1_1Events_1_1DamageData.html',1,'NWNX::API::Events']]],
-  ['damageevent_1096',['DamageEvent',['../classNWNX_1_1API_1_1Events_1_1DamageEvent.html',1,'NWNX::API::Events']]],
-  ['debugoptions_1097',['DebugOptions',['../classNWNX_1_1API_1_1Administration_1_1DebugOptions.html',1,'NWNX::API::Administration']]],
-  ['dialog_1098',['Dialog',['../classNWNX_1_1API_1_1Dialog.html',1,'NWNX::API']]],
-  ['dialogevents_1099',['DialogEvents',['../classNWN_1_1API_1_1Events_1_1DialogEvents.html',1,'NWN::API::Events']]],
-  ['direction_1100',['Direction',['../classNWN_1_1API_1_1Constants_1_1Direction.html',1,'NWN::API::Constants']]],
-  ['dmevents_1101',['DMEvents',['../classNWNX_1_1API_1_1Events_1_1DMEvents.html',1,'NWNX::API::Events']]],
-  ['doorevents_1102',['DoorEvents',['../classNWN_1_1API_1_1Events_1_1DoorEvents.html',1,'NWN::API::Events']]]
+  ['effect_1304',['Effect',['../classAnvil_1_1API_1_1Effect.html',1,'Anvil::API']]],
+  ['effectbase_1305',['EffectBase',['../classAnvil_1_1API_1_1EffectBase.html',1,'Anvil::API']]],
+  ['effectparams_1306',['EffectParams',['../classAnvil_1_1API_1_1EffectParams.html',1,'Anvil::API']]],
+  ['encounterevents_1307',['EncounterEvents',['../classAnvil_1_1API_1_1Events_1_1EncounterEvents.html',1,'Anvil::API::Events']]],
+  ['enforcelegalcharacterservice_1308',['EnforceLegalCharacterService',['../classAnvil_1_1Services_1_1EnforceLegalCharacterService.html',1,'Anvil::Services']]],
+  ['enginestructure_1309',['EngineStructure',['../classAnvil_1_1API_1_1EngineStructure.html',1,'Anvil::API']]],
+  ['environmentconfig_1310',['EnvironmentConfig',['../classAnvil_1_1Internal_1_1EnvironmentConfig.html',1,'Anvil::Internal']]],
+  ['eventservice_1311',['EventService',['../classAnvil_1_1Services_1_1EventService.html',1,'Anvil::Services']]]
 ];

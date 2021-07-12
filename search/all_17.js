@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['xp_1067',['Xp',['../classNWN_1_1API_1_1NwCreature.html#a4821c39d3d5a4482dee0ee73ab1d868f',1,'NWN::API::NwCreature']]],
-  ['xpscale_1068',['XPScale',['../classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc',1,'NWN::API::NwModule']]]
+  ['yardstometers_1254',['YardsToMeters',['../classAnvil_1_1API_1_1NwMath.html#a3424ccd75a7a8c0ae5f453652693b800',1,'Anvil::API::NwMath']]]
 ];

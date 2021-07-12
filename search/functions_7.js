@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['hasfeateffect_1712',['HasFeatEffect',['../classNWN_1_1API_1_1NwCreature.html#af0f4685c2636a05de118f42849d0950b',1,'NWN::API::NwCreature']]],
-  ['hasfeatprepared_1713',['HasFeatPrepared',['../classNWN_1_1API_1_1NwCreature.html#a1c2146fdb99fe3563cf7c634f878335d',1,'NWN::API::NwCreature']]],
-  ['hash_1714',['Hash',['../classNWNX_1_1API_1_1Util.html#a02b1e3547b5644231099474587ca5ae7',1,'NWNX::API::Util']]],
-  ['haslineofsight_1715',['HasLineOfSight',['../classNWN_1_1API_1_1NwGameObject.html#ab7b549ad69e72a1863c7b87a6397a5bc',1,'NWN::API::NwGameObject']]],
-  ['hasskill_1716',['HasSkill',['../classNWN_1_1API_1_1NwCreature.html#a3a645e4416f6b1174de6a39e349888c5',1,'NWN::API::NwCreature']]],
-  ['hasspelleffect_1717',['HasSpellEffect',['../classNWN_1_1API_1_1NwCreature.html#aabaaabd68b459b347d643b4feae89fae',1,'NWN::API::NwCreature']]],
-  ['hasspelluse_1718',['HasSpellUse',['../classNWN_1_1API_1_1NwCreature.html#a8df1876af52bc86cb125838b565b5ffc',1,'NWN::API::NwCreature']]],
-  ['hastalent_1719',['HasTalent',['../classNWN_1_1API_1_1NwCreature.html#abad3c081d30c4944292f274defd18a76',1,'NWN::API::NwCreature']]]
+  ['hasfeateffect_1937',['HasFeatEffect',['../classAnvil_1_1API_1_1NwCreature.html#a20f76052667f2d57e878f7893a434599',1,'Anvil::API::NwCreature']]],
+  ['hasfeatprepared_1938',['HasFeatPrepared',['../classAnvil_1_1API_1_1NwCreature.html#af7e76ee55dc811d83c9dcccbb7bd9b71',1,'Anvil::API::NwCreature']]],
+  ['hasitemproperty_1939',['HasItemProperty',['../classAnvil_1_1API_1_1NwItem.html#a986135e4576a9bef66fa007f742a1277',1,'Anvil::API::NwItem']]],
+  ['haslineofsight_1940',['HasLineOfSight',['../classAnvil_1_1API_1_1NwGameObject.html#a64d8ad74d7e251e9c6958766424ca8b6',1,'Anvil::API::NwGameObject']]],
+  ['hasskill_1941',['HasSkill',['../classAnvil_1_1API_1_1NwCreature.html#ad727a009416282b3258a76e7a5a21b99',1,'Anvil::API::NwCreature']]],
+  ['hasspelleffect_1942',['HasSpellEffect',['../classAnvil_1_1API_1_1NwCreature.html#a9e7e4ffb850ab588138a243bc49c416f',1,'Anvil::API::NwCreature']]],
+  ['hasspelluse_1943',['HasSpellUse',['../classAnvil_1_1API_1_1NwCreature.html#a018219c15c31caf06e1c19f52cf9bf39',1,'Anvil::API::NwCreature']]],
+  ['hastalent_1944',['HasTalent',['../classAnvil_1_1API_1_1NwCreature.html#ae39685397152ab0297f4e218307c1bf7',1,'Anvil::API::NwCreature']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['xp_2149',['Xp',['../classNWN_1_1API_1_1NwCreature.html#a4821c39d3d5a4482dee0ee73ab1d868f',1,'NWN::API::NwCreature']]],
-  ['xpscale_2150',['XPScale',['../classNWN_1_1API_1_1NwModule.html#aefbd014de1e072c16aaa2c7721e7cbcc',1,'NWN::API::NwModule']]]
+  ['xp_2657',['Xp',['../classAnvil_1_1API_1_1NwCreature.html#a54095d1fd30770109dde23bfec451606',1,'Anvil::API::NwCreature']]],
+  ['xpscale_2658',['XPScale',['../classAnvil_1_1API_1_1NwModule.html#ad01ae6eda581c522f8f42a693c4df048',1,'Anvil::API::NwModule']]]
 ];

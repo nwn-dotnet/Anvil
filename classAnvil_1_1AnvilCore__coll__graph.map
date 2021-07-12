@@ -1,0 +1,4 @@
+<map id="Anvil.AnvilCore" name="Anvil.AnvilCore">
+<area shape="rect" id="node1" title="Handles bootstrap and interop between NWN, NWN.Core and the Anvil API. The entry point of the impleme..." alt="" coords="17,80,128,107"/>
+<area shape="rect" id="node2" href="$interfaceAnvil_1_1Internal_1_1ICoreSignalHandler.html" title=" " alt="" coords="5,5,140,32"/>
+</map>

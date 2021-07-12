@@ -1,4 +1,0 @@
-<map id="NWN.API.Events.AreaEvents.OnExit" name="NWN.API.Events.AreaEvents.OnExit">
-<area shape="rect" id="node1" title="Called when an object leaves the area." alt="" coords="5,95,200,136"/>
-<area shape="rect" id="node2" href="$classNWN_1_1API_1_1Events_1_1NativeEvent.html" title=" " alt="" coords="25,5,180,47"/>
-</map>

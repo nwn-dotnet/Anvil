@@ -1,4 +1,32 @@
 var searchData=
 [
-  ['barterevents_1080',['BarterEvents',['../classNWNX_1_1API_1_1Events_1_1BarterEvents.html',1,'NWNX::API::Events']]]
+  ['callinfo_1262',['CallInfo',['../classAnvil_1_1API_1_1CallInfo.html',1,'Anvil::API']]],
+  ['campaignvariable_1263',['CampaignVariable',['../classAnvil_1_1API_1_1CampaignVariable.html',1,'Anvil::API']]],
+  ['campaignvariable_3c_20bool_20_3e_1264',['CampaignVariable&lt; bool &gt;',['../classAnvil_1_1API_1_1CampaignVariable.html',1,'Anvil::API']]],
+  ['campaignvariable_3c_20float_20_3e_1265',['CampaignVariable&lt; float &gt;',['../classAnvil_1_1API_1_1CampaignVariable.html',1,'Anvil::API']]],
+  ['campaignvariable_3c_20guid_20_3e_1266',['CampaignVariable&lt; Guid &gt;',['../classAnvil_1_1API_1_1CampaignVariable.html',1,'Anvil::API']]],
+  ['campaignvariable_3c_20int_20_3e_1267',['CampaignVariable&lt; int &gt;',['../classAnvil_1_1API_1_1CampaignVariable.html',1,'Anvil::API']]],
+  ['campaignvariable_3c_20location_20_3e_1268',['CampaignVariable&lt; Location &gt;',['../classAnvil_1_1API_1_1CampaignVariable.html',1,'Anvil::API']]],
+  ['campaignvariable_3c_20string_20_3e_1269',['CampaignVariable&lt; string &gt;',['../classAnvil_1_1API_1_1CampaignVariable.html',1,'Anvil::API']]],
+  ['campaignvariable_3c_20vector3_20_3e_1270',['CampaignVariable&lt; Vector3 &gt;',['../classAnvil_1_1API_1_1CampaignVariable.html',1,'Anvil::API']]],
+  ['campaignvariablebool_1271',['CampaignVariableBool',['../classAnvil_1_1API_1_1CampaignVariableBool.html',1,'Anvil::API']]],
+  ['campaignvariablefloat_1272',['CampaignVariableFloat',['../classAnvil_1_1API_1_1CampaignVariableFloat.html',1,'Anvil::API']]],
+  ['campaignvariableguid_1273',['CampaignVariableGuid',['../classAnvil_1_1API_1_1CampaignVariableGuid.html',1,'Anvil::API']]],
+  ['campaignvariableint_1274',['CampaignVariableInt',['../classAnvil_1_1API_1_1CampaignVariableInt.html',1,'Anvil::API']]],
+  ['campaignvariablelocation_1275',['CampaignVariableLocation',['../classAnvil_1_1API_1_1CampaignVariableLocation.html',1,'Anvil::API']]],
+  ['campaignvariableobject_1276',['CampaignVariableObject',['../classAnvil_1_1API_1_1CampaignVariableObject.html',1,'Anvil::API']]],
+  ['campaignvariablestring_1277',['CampaignVariableString',['../classAnvil_1_1API_1_1CampaignVariableString.html',1,'Anvil::API']]],
+  ['campaignvariablevector_1278',['CampaignVariableVector',['../classAnvil_1_1API_1_1CampaignVariableVector.html',1,'Anvil::API']]],
+  ['cassowary_1279',['Cassowary',['../classAnvil_1_1API_1_1Cassowary.html',1,'Anvil::API']]],
+  ['cassowaryexception_1280',['CassowaryException',['../classAnvil_1_1API_1_1CassowaryException.html',1,'Anvil::API']]],
+  ['cassowarystrength_1281',['CassowaryStrength',['../classAnvil_1_1API_1_1CassowaryStrength.html',1,'Anvil::API']]],
+  ['chatservice_1282',['ChatService',['../classAnvil_1_1Services_1_1ChatService.html',1,'Anvil::Services']]],
+  ['color_1283',['Color',['../structAnvil_1_1API_1_1Color.html',1,'Anvil::API']]],
+  ['colorconstants_1284',['ColorConstants',['../classAnvil_1_1API_1_1ColorConstants.html',1,'Anvil::API']]],
+  ['creatureclassinfo_1285',['CreatureClassInfo',['../classAnvil_1_1API_1_1CreatureClassInfo.html',1,'Anvil::API']]],
+  ['creatureevents_1286',['CreatureEvents',['../classAnvil_1_1API_1_1Events_1_1CreatureEvents.html',1,'Anvil::API::Events']]],
+  ['creaturelevelinfo_1287',['CreatureLevelInfo',['../classAnvil_1_1API_1_1CreatureLevelInfo.html',1,'Anvil::API']]],
+  ['creaturemodelnumber_1288',['CreatureModelNumber',['../classAnvil_1_1API_1_1CreatureModelNumber.html',1,'Anvil::API']]],
+  ['creaturetypefilter_1289',['CreatureTypeFilter',['../structAnvil_1_1API_1_1CreatureTypeFilter.html',1,'Anvil::API']]],
+  ['cursortargetservice_1290',['CursorTargetService',['../classAnvil_1_1Services_1_1CursorTargetService.html',1,'Anvil::Services']]]
 ];

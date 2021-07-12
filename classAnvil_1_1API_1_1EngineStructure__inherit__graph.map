@@ -1,0 +1,11 @@
+<map id="Anvil.API.EngineStructure" name="Anvil.API.EngineStructure">
+<area shape="rect" id="node1" title="Represents a pointer&#45;type VM structure." alt="" coords="144,107,315,133"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Cassowary.html" title=" " alt="" coords="363,5,505,32"/>
+<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1EffectBase.html" title=" " alt="" coords="363,56,505,83"/>
+<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1Location.html" title=" " alt="" coords="369,107,499,133"/>
+<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1SQLQuery.html" title="Represents a SQL Query." alt="" coords="364,157,504,184"/>
+<area shape="rect" id="node9" href="$classAnvil_1_1API_1_1Talent.html" title=" " alt="" coords="377,208,491,235"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,107,96,133"/>
+<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Effect.html" title=" " alt="" coords="574,31,686,57"/>
+<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1ItemProperty.html" title=" " alt="" coords="553,81,707,108"/>
+</map>

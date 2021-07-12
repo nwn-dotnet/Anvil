@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['gameoptions_1114',['GameOptions',['../classNWNX_1_1API_1_1Administration_1_1GameOptions.html',1,'NWNX::API::Administration']]],
-  ['goldevents_1115',['GoldEvents',['../classNWNX_1_1API_1_1Events_1_1GoldEvents.html',1,'NWNX::API::Events']]],
-  ['guidextensions_1116',['GuidExtensions',['../classNWN_1_1API_1_1GuidExtensions.html',1,'NWN::API']]]
+  ['hiteffect_1360',['HitEffect',['../structAnvil_1_1API_1_1HitEffect.html',1,'Anvil::API']]],
+  ['hookeventfactory_1361',['HookEventFactory',['../classAnvil_1_1API_1_1Events_1_1HookEventFactory.html',1,'Anvil::API::Events']]],
+  ['hookorder_1362',['HookOrder',['../classAnvil_1_1Services_1_1HookOrder.html',1,'Anvil::Services']]],
+  ['hookservice_1363',['HookService',['../classAnvil_1_1Services_1_1HookService.html',1,'Anvil::Services']]]
 ];

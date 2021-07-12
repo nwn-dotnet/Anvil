@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "NWN.Managed", "index.html", [
+    [ "Anvil", "index.html", null ],
     [ "API", "annotated.html", "annotated" ]
   ] ]
 ];
@@ -32,13 +33,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classNWNX_1_1API_1_1Events_1_1ItemEvents_1_1OnInventoryOpenAfter.html#a3a0c5701835ef1c6e74687c6eabf6709",
-"classNWNX_1_1API_1_1Util.html#a139b7dffa0257f2fa4a3dd49af35c55a",
-"classNWN_1_1API_1_1Events_1_1DialogEvents.html",
-"classNWN_1_1API_1_1Events_1_1StoreEvents_1_1OnOpen.html#a7eb549b9007ebc486a4c07cf99b6d7cf",
-"classNWN_1_1API_1_1NwCreature.html#a32f57417ac5858b4e668927a3c772498",
-"classNWN_1_1API_1_1NwModule.html#a80051076d5995aded67f61c200ae1f1c",
-"classNWN_1_1Services_1_1LoopTimeService.html"
+"classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnExit.html",
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html#ab6ab6e06f73bd30de67805be35edd6d1",
+"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html#a743b23e87d73813328dba0a7d5375aa2",
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html",
+"classAnvil_1_1API_1_1JournalEntry.html#addb36d6a1f47cc75c7dd94b83bef8f64",
+"classAnvil_1_1API_1_1NwCreature.html#a76aba5e00598b1a8641583da0599c600",
+"classAnvil_1_1API_1_1NwGameObject.html#a7d5c963cf998bdb4c06a96eb6e5d5965",
+"classAnvil_1_1API_1_1NwObject.html#abef323f5f1eed8bf9581487eed5ef2d9",
+"classAnvil_1_1API_1_1NwStore.html#acd71fa20304c55bd4e5adadd099049f3",
+"classAnvil_1_1API_1_1Talent.html#a4093404980ecc0bf16ca52a29591efc8",
+"classAnvil_1_1Services_1_1WeaponService.html#a018497ef042b34960503c7727032629e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

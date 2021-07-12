@@ -1,15 +1,13 @@
 var searchData=
 [
-  ['unidentifieddescription_1029',['UnidentifiedDescription',['../classNWN_1_1API_1_1NwItem.html#a611e1b4a53c72d420ed04252936d3f5e',1,'NWN::API::NwItem']]],
-  ['unlockachievement_1030',['UnlockAchievement',['../classNWN_1_1API_1_1NwPlayer.html#ac1f69ec12641d650de9e00f0426549db',1,'NWN::API::NwPlayer']]],
-  ['unlockdc_1031',['UnlockDC',['../classNWN_1_1API_1_1NwStationary.html#a054d7ba64e3a5f41fe6b5ab9b2cd5e1e',1,'NWN::API::NwStationary']]],
-  ['unregisterserverconsolecommand_1032',['UnregisterServerConsoleCommand',['../classNWNX_1_1API_1_1Util.html#a0dd470aeb74ef110a809b4d604ae3a7d',1,'NWNX::API::Util']]],
-  ['unsubscribe_3c_20tevent_20_3e_1033',['Unsubscribe&lt; TEvent &gt;',['../classNWNX_1_1Services_1_1NWNXEventService.html#a1c26d19d0c3545962f9ec366aa6e93d0',1,'NWNX::Services::NWNXEventService']]],
-  ['unsubscribe_3c_20tobject_2c_20tevent_20_3e_1034',['Unsubscribe&lt; TObject, TEvent &gt;',['../classNWN_1_1Services_1_1NativeEventService.html#a1e89d6a176084cbf7931d20579ab9df4',1,'NWN::Services::NativeEventService']]],
-  ['update_1035',['Update',['../interfaceNWN_1_1Services_1_1IUpdateable.html#aedac417ae32de9acaf39fad1c10900f9',1,'NWN::Services::IUpdateable']]],
-  ['useable_1036',['Useable',['../classNWN_1_1API_1_1NwPlaceable.html#a3add46f94f7118ba20bbaa172ec43b9c',1,'NWN::API::NwPlaceable']]],
-  ['userdirectory_1037',['UserDirectory',['../classNWNX_1_1API_1_1Util.html#a9a2864ea0b2315b44f2bd7d5ddcebd82',1,'NWNX::API::Util']]],
-  ['usesperdayremaining_1038',['UsesPerDayRemaining',['../classNWN_1_1API_1_1NwItem.html#a5117c1d42c01becd99d65373f7627521',1,'NWN::API::NwItem']]],
-  ['util_1039',['Util',['../classNWNX_1_1API_1_1Util.html',1,'NWNX::API']]],
-  ['uuid_1040',['UUID',['../classNWN_1_1API_1_1NwObject.html#a9bc2179ca37cfd5a6ea4dd360429c662',1,'NWN::API::NwObject']]]
+  ['valid_1227',['Valid',['../classAnvil_1_1API_1_1ItemProperty.html#affd0f4ee0da5570457ae704955f50b53',1,'Anvil.API.ItemProperty.Valid()'],['../classAnvil_1_1API_1_1Talent.html#ac4f793db6c17e90fef247c187a420d27',1,'Anvil.API.Talent.Valid()']]],
+  ['value_1228',['Value',['../classAnvil_1_1API_1_1CampaignVariable.html#a3ccc5e0bf5dda5fbd54eba6baf79ac04',1,'Anvil.API.CampaignVariable.Value()'],['../classAnvil_1_1API_1_1ObjectVariable.html#ab0571066c7425e19d7a578bca45b98cc',1,'Anvil.API.ObjectVariable.Value()']]],
+  ['vector2int_1229',['Vector2Int',['../structAnvil_1_1API_1_1Vector2Int.html',1,'Anvil::API']]],
+  ['vectorparams_1230',['VectorParams',['../classAnvil_1_1API_1_1EffectBase.html#addce3f936b9fe283c96cfb68ad3a6b8b',1,'Anvil::API::EffectBase']]],
+  ['vectortoangle_1231',['VectorToAngle',['../classAnvil_1_1API_1_1NwMath.html#ad05bf228b5171ce7f5471e18d5f3b8d2',1,'Anvil.API.NwMath.VectorToAngle(Vector2 direction)'],['../classAnvil_1_1API_1_1NwMath.html#a3597716bab3d92771d3bd66e4dbc26d6',1,'Anvil.API.NwMath.VectorToAngle(Vector3 direction)']]],
+  ['vibrate_1232',['Vibrate',['../classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f',1,'Anvil.API.NwPlayer.Vibrate()'],['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182a57b576b33dcb9d2ac9486ba3a051b71b',1,'Anvil.Services.Vibrate()']]],
+  ['virtualmachine_1233',['VirtualMachine',['../classAnvil_1_1API_1_1VirtualMachine.html',1,'Anvil::API']]],
+  ['visualtransform_1234',['VisualTransform',['../classAnvil_1_1API_1_1VisualTransform.html',1,'Anvil.API.VisualTransform'],['../classAnvil_1_1API_1_1NwGameObject.html#ae326638a871dd397a526a9127ba9f76f',1,'Anvil.API.NwGameObject.VisualTransform()']]],
+  ['visualtransformlerpsettings_1235',['VisualTransformLerpSettings',['../classAnvil_1_1API_1_1VisualTransformLerpSettings.html',1,'Anvil::API']]],
+  ['volume_1236',['Volume',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a727254e285d09d375429cbbba49db3ac',1,'Anvil.API.Events.ModuleEvents.OnPlayerChat.Volume()'],['../classAnvil_1_1API_1_1NwSound.html#a3bc17dfd490ca3e2783b3cc77bb8e661',1,'Anvil.API.NwSound.Volume()']]]
 ];

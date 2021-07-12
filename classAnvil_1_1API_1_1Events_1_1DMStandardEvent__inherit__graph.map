@@ -1,0 +1,16 @@
+<map id="Anvil.API.Events.DMStandardEvent" name="Anvil.API.Events.DMStandardEvent">
+<area shape="rect" id="node1" title=" " alt="" coords="112,326,307,367"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Events_1_1OnDMAppear.html" title=" " alt="" coords="363,5,563,32"/>
+<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1Events_1_1OnDMDisappear.html" title=" " alt="" coords="355,56,572,83"/>
+<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Events_1_1OnDMGetFactionReputation.html" title=" " alt="" coords="373,107,553,149"/>
+<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1Events_1_1OnDMGetVariable.html" title=" " alt="" coords="373,173,553,214"/>
+<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1Events_1_1OnDMPlayerDMLogout.html" title=" " alt="" coords="366,238,561,279"/>
+<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1Events_1_1OnDMSetDate.html" title=" " alt="" coords="360,304,567,331"/>
+<area shape="rect" id="node9" href="$classAnvil_1_1API_1_1Events_1_1OnDMSetFaction.html" title=" " alt="" coords="374,355,553,397"/>
+<area shape="rect" id="node10" href="$classAnvil_1_1API_1_1Events_1_1OnDMSetFactionReputation.html" title=" " alt="" coords="374,421,553,462"/>
+<area shape="rect" id="node11" href="$classAnvil_1_1API_1_1Events_1_1OnDMSetStat.html" title=" " alt="" coords="362,487,565,513"/>
+<area shape="rect" id="node12" href="$classAnvil_1_1API_1_1Events_1_1OnDMSetTime.html" title=" " alt="" coords="359,537,567,564"/>
+<area shape="rect" id="node13" href="$classAnvil_1_1API_1_1Events_1_1OnDMSetVariable.html" title=" " alt="" coords="374,589,553,630"/>
+<area shape="rect" id="node14" href="$classAnvil_1_1API_1_1Events_1_1OnDMTakeItem.html" title=" " alt="" coords="356,655,571,681"/>
+<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="5,333,64,360"/>
+</map>

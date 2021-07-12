@@ -1,0 +1,4 @@
+<map id="Anvil.Services.AnvilContainerFactory" name="Anvil.Services.AnvilContainerFactory">
+<area shape="rect" id="node1" title="Wires up and prepares service classes for dependency injection and initialization." alt="" coords="5,80,197,121"/>
+<area shape="rect" id="node2" href="$interfaceAnvil_1_1Services_1_1IContainerFactory.html" title=" " alt="" coords="39,5,163,32"/>
+</map>

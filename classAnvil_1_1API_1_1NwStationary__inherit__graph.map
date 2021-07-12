@@ -1,0 +1,9 @@
+<map id="Anvil.API.NwStationary" name="Anvil.API.NwStationary">
+<area shape="rect" id="node1" title=" " alt="" coords="73,304,230,331"/>
+<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1NwDoor.html" title=" " alt="" coords="5,379,132,405"/>
+<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1NwPlaceable.html" title=" " alt="" coords="156,379,312,405"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NwTrappable.html" title=" " alt="" coords="102,229,201,256"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NwGameObject.html" title=" " alt="" coords="94,155,209,181"/>
+<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="111,80,191,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="70,5,233,32"/>
+</map>
