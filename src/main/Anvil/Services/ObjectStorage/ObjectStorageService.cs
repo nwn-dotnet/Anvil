@@ -145,7 +145,6 @@ namespace Anvil.Services
       CResStruct resStruct = CResStruct.FromPointer(pStruct);
 
       string serialized = GetObjectStorage(uuid.m_parent).Serialize();
-      Log.Info(serialized);
       resGff.WriteFieldCExoString(resStruct, serialized.ToExoString(), GffFieldNamePtr);
 
       saveToGffHook.CallOriginal(pUUID, pRes, pStruct);
