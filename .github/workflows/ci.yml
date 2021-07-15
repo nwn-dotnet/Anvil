@@ -64,11 +64,11 @@ jobs:
 
   build:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs: compile
     outputs:
-      tag: ${{ steps.bump_version.outputs.new_tag }}
       version: ${{ steps.vars.outputs.version }}
+      tag: ${{ steps.vars.outputs.tag }}
       sha_short: ${{ steps.vars.outputs.sha_short }}
       image_repository: ${{ steps.vars.outputs.image_repository }}
       created: ${{ steps.build.outputs.created }}
@@ -91,8 +91,9 @@ jobs:
       - name: Prepare Outputs
         id: vars
         run: |
-          if "${{ github.ref }}" == "refs/heads/master"; then
-            echo "::set-output name=version::$(echo git describe --tags | sed 's/^v//')"
+          if [[ "${{github.base_ref}}" == "master" || "${{github.ref}}" == "refs/heads/master" ]]; then
+            echo "::set-output name=tag::$(git describe --tags)"
+            echo "::set-output name=version::$(git describe --tags | sed 's/^v//')"
           else
             DESCRIBE=`git describe --tags --long`
             VERSION=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[1]}'`
@@ -100,7 +101,7 @@ jobs:
             BUILD=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[3]}'`
             COMMIT=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[4]}'`
             echo "::set-output name=version::$(echo ${VERSION}-${META}.${BUILD}.${COMMIT:1} | sed 's/^v//')"
-          fi;
+          fi
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
 
@@ -121,7 +122,7 @@ jobs:
 
   release:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/master'
     needs: build
     steps:
       - name: Download Release Artifacts
@@ -135,10 +136,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.build.outputs.tag }}
           release_name: Release ${{ needs.build.outputs.version }}
           draft: false
           prerelease: false
+          tag_name: ${{ needs.build.outputs.tag }}
 
       - name: Upload Release Binaries
         id: upload-release-asset
@@ -153,7 +154,7 @@ jobs:
 
   nuget:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs: build
     steps:
       - name: Setup .NET Core
@@ -174,7 +175,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs: build
     steps:
       - name: Checkout
