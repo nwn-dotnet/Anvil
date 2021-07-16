@@ -5,6 +5,6 @@ namespace Anvil.Services
     Unhandled = 0,
     ModuleLoad,
     DestroyServer,
-    DestroyServerAfter
+    DestroyServerAfter,
   }
 }
