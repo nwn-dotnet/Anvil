@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.Services;
 using NLog;
 using NWN.Core;
 
@@ -12,7 +13,7 @@ namespace Anvil.Internal
     private readonly Stack<uint> scriptContexts = new Stack<uint>();
     private readonly Dictionary<ulong, Action> closures = new Dictionary<ulong, Action>();
 
-    private readonly ICoreSignalHandler signalHandler;
+    private readonly IServerLifeCycleEventHandler signalHandler;
     private ICoreRunScriptHandler scriptHandler;
     private ICoreLoopHandler loopHandler;
 
@@ -24,7 +25,7 @@ namespace Anvil.Internal
       get => objectSelf;
     }
 
-    public CoreInteropHandler(ICoreSignalHandler signalHandler)
+    public CoreInteropHandler(IServerLifeCycleEventHandler signalHandler)
     {
       this.signalHandler = signalHandler;
     }
@@ -37,18 +38,20 @@ namespace Anvil.Internal
 
     void ICoreEventHandler.OnSignal(string signal)
     {
-      switch (signal)
+      LifeCycleEvent eventType = signal switch
       {
-        case "ON_MODULE_LOAD_FINISH":
-          signalHandler.OnStart();
-          break;
-        case "ON_DESTROY_SERVER":
-          signalHandler.OnShutdown();
-          break;
-        default:
-          Log.Debug($"Unhandled Signal: \"{signal}\"");
-          break;
+        "ON_MODULE_LOAD_FINISH" => LifeCycleEvent.ModuleLoad,
+        "ON_DESTROY_SERVER" => LifeCycleEvent.DestroyServer,
+        "ON_DESTROY_SERVER_AFTER" => LifeCycleEvent.DestroyServerAfter,
+        _ => LifeCycleEvent.Unhandled,
+      };
+
+      if (eventType == LifeCycleEvent.Unhandled)
+      {
+        Log.Debug($"Unhandled Signal: \"{signal}\"");
       }
+
+      signalHandler.HandleLifeCycleEvent(eventType);
     }
 
     void ICoreEventHandler.OnMainLoop(ulong frame)

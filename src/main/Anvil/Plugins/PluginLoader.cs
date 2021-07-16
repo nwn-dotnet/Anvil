@@ -206,12 +206,13 @@ namespace Anvil.Plugins
       return resourcePaths.AsReadOnly();
     }
 
-    void IDisposable.Dispose()
+    void ITypeLoader.Dispose()
     {
       loadedAssemblies.Clear();
       LoadedTypes = null;
       ResourcePaths = null;
 
+      Log.Info("Unloading plugins...");
       foreach (Plugin plugin in plugins)
       {
         plugin.Dispose();

@@ -1,20 +1,21 @@
+using System.Collections.Generic;
+using System.Linq;
 using Anvil.Plugins;
-using JetBrains.Annotations;
 using LightInject;
 using NLog;
 
 namespace Anvil.Services
 {
   [ServiceBindingOptions(BindingOrder.Core)]
-  public sealed class ServiceManager
+  internal sealed class ServiceManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    [UsedImplicitly]
     private readonly ITypeLoader typeLoader;
-
     private readonly IContainerFactory containerFactory;
-    private readonly ServiceContainer serviceContainer;
+
+    private ServiceContainer serviceContainer;
+    private List<ILateDisposable> lateDisposables;
 
     internal ServiceManager(ITypeLoader typeLoader, IContainerFactory containerFactory)
     {
@@ -26,25 +27,53 @@ namespace Anvil.Services
       serviceContainer = containerFactory.Setup(typeLoader);
     }
 
-    internal void RegisterCoreService<T>(T instance)
+    ~ServiceManager()
     {
-      containerFactory.RegisterCoreService(instance);
+      ShutdownServices();
+      ShutdownLateServices();
+    }
+
+    public T GetService<T>() where T : class
+    {
+      return serviceContainer.GetInstance<T>();
     }
 
     internal void Init()
     {
+      RegisterCoreService(typeLoader);
+      RegisterCoreService(this);
+
       containerFactory.BuildContainer();
       NotifyInitComplete();
     }
 
-    ~ServiceManager()
+    internal void ShutdownServices()
     {
-      Dispose();
+      if (serviceContainer == null)
+      {
+        return;
+      }
+
+      Log.Info("Unloading services...");
+      lateDisposables = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
+      serviceContainer.Dispose();
+
+      serviceContainer = null;
     }
 
-    internal T GetService<T>() where T : class
+    internal void ShutdownLateServices()
     {
-      return serviceContainer.GetInstance<T>();
+      foreach (ILateDisposable lateDisposable in lateDisposables)
+      {
+        lateDisposable.LateDispose();
+      }
+
+      lateDisposables = null;
+    }
+
+    private void RegisterCoreService<T>(T instance)
+    {
+      containerFactory.RegisterCoreService(instance);
     }
 
     private void NotifyInitComplete()
@@ -53,11 +82,6 @@ namespace Anvil.Services
       {
         initializable.Init();
       }
-    }
-
-    internal void Dispose()
-    {
-      serviceContainer?.Dispose();
     }
   }
 }
