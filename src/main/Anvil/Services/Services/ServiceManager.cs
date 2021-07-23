@@ -27,12 +27,6 @@ namespace Anvil.Services
       serviceContainer = containerFactory.Setup(typeLoader);
     }
 
-    ~ServiceManager()
-    {
-      ShutdownServices();
-      ShutdownLateServices();
-    }
-
     public T GetService<T>() where T : class
     {
       return serviceContainer.GetInstance<T>();
