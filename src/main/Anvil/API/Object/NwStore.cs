@@ -60,7 +60,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the current customers of this store.
     /// </summary>
-    public unsafe IEnumerable<NwCreature> CurrentCustomers
+    public unsafe IReadOnlyList<NwCreature> CurrentCustomers
     {
       get
       {
@@ -77,7 +77,7 @@ namespace Anvil.API
           }
         }
 
-        return customers;
+        return customers.AsReadOnly();
       }
     }
 
