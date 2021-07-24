@@ -58,6 +58,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the number of current customers using this store.
+    /// </summary>
+    public int CustomerCount
+    {
+      get => Store.m_aCurrentCustomers.num;
+    }
+
+    /// <summary>
     /// Gets the current customers of this store.
     /// </summary>
     public unsafe IReadOnlyList<NwCreature> CurrentCustomers
