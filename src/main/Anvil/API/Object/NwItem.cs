@@ -404,7 +404,7 @@ namespace Anvil.API
         }
 
         item = new CNWSItem(Invalid);
-        if (item.LoadItem(resGff, resStruct).ToBool())
+        if (item.LoadItem(resGff, resStruct, false.ToInt()).ToBool())
         {
           GC.SuppressFinalize(item);
           return true;

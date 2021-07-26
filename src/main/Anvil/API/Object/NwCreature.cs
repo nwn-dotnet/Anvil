@@ -815,12 +815,12 @@ namespace Anvil.API
     {
       get
       {
-        int statCount = Creature.m_pStats.m_lstLevelStats.num;
+        int statCount = Creature.m_pStats.m_lstLevelStats.Count;
         List<CreatureLevelInfo> retVal = new List<CreatureLevelInfo>(statCount);
 
         for (int i = 0; i < statCount; i++)
         {
-          CNWLevelStats levelStats = CNWLevelStats.FromPointer(*Creature.m_pStats.m_lstLevelStats._OpIndex(i));
+          CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats[i];
           retVal.Add(new CreatureLevelInfo(this, levelStats));
         }
 
@@ -839,7 +839,7 @@ namespace Anvil.API
 
         for (int i = 0; i < feats.Length; i++)
         {
-          feats[i] = (Feat)Creature.m_pStats.m_lstFeats.element[i];
+          feats[i] = (Feat)Creature.m_pStats.m_lstFeats[i];
         }
 
         return feats;
@@ -851,7 +851,7 @@ namespace Anvil.API
     /// </summary>
     public int FeatCount
     {
-      get => Creature.m_pStats.m_lstFeats.num;
+      get => Creature.m_pStats.m_lstFeats.Count;
     }
 
     /// <summary>
@@ -1948,12 +1948,12 @@ namespace Anvil.API
     /// <param name="level">The level the feat was gained.</param>
     public unsafe void AddFeat(Feat feat, int level)
     {
-      if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
+      if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.Count)
       {
         throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
       }
 
-      CNWLevelStats levelStats = CNWLevelStats.FromPointer(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1));
+      CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats[level - 1];
 
       levelStats.AddFeat((ushort)feat);
       Creature.m_pStats.AddFeat((ushort)feat);
@@ -2013,9 +2013,9 @@ namespace Anvil.API
         List<SpecialAbility> retVal = new List<SpecialAbility>();
         CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
 
-        for (int i = 0; i < specialAbilities.num; i++)
+        for (int i = 0; i < specialAbilities.Count; i++)
         {
-          CNWSStats_SpellLikeAbility ability = specialAbilities._OpIndex(i);
+          CNWSStats_SpellLikeAbility ability = specialAbilities[i];
           if (ability.m_nSpellId != ~0u)
           {
             retVal.Add(new SpecialAbility((Spell)ability.m_nSpellId, ability.m_nCasterLevel, ability.m_bReadied.ToBool()));
@@ -2048,9 +2048,9 @@ namespace Anvil.API
     public void RemoveSpecialAbilityAt(int index)
     {
       CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
-      if (index < specialAbilities.num)
+      if (index < specialAbilities.Count)
       {
-        specialAbilities._OpIndex(index).m_nSpellId = ~0u;
+        specialAbilities[index].m_nSpellId = ~0u;
       }
     }
 
@@ -2062,9 +2062,9 @@ namespace Anvil.API
     public void SetSpecialAbilityAt(int index, SpecialAbility ability)
     {
       CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
-      if (index < specialAbilities.num)
+      if (index < specialAbilities.Count)
       {
-        CNWSStats_SpellLikeAbility specialAbility = specialAbilities._OpIndex(index);
+        CNWSStats_SpellLikeAbility specialAbility = specialAbilities[index];
         specialAbility.m_nSpellId = (uint)ability.Spell;
         specialAbility.m_bReadied = ability.Ready.ToInt();
         specialAbility.m_nCasterLevel = ability.CasterLevel;
@@ -2172,12 +2172,12 @@ namespace Anvil.API
     /// <returns>A <see cref="LevelInfo"/> object containing level info.</returns>
     public unsafe CreatureLevelInfo GetLevelStats(int level)
     {
-      if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.num)
+      if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.Count)
       {
         throw new ArgumentOutOfRangeException(nameof(level), "Level must be from 1 to the creature's max level.");
       }
 
-      CNWLevelStats levelStats = CNWLevelStats.FromPointer(*Creature.m_pStats.m_lstLevelStats._OpIndex(level - 1));
+      CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats[level - 1];
       return new CreatureLevelInfo(this, levelStats);
     }
 

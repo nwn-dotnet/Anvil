@@ -961,9 +961,9 @@ namespace Anvil.API
       CNWSJournal journal = creature.Creature.GetJournal();
       CExoArrayListSJournalEntry entries = journal.m_lstEntries;
 
-      for (int i = entries.num - 1; i >= 0; i--)
+      for (int i = entries.Count - 1; i >= 0; i--)
       {
-        SJournalEntry entry = entries._OpIndex(i);
+        SJournalEntry entry = entries[i];
         if (entry.szPlot_Id.ToString() == questTag)
         {
           return new JournalEntry
@@ -1026,15 +1026,15 @@ namespace Anvil.API
       };
 
       int overwrite = -1;
-      if (entries.num > 0)
+      if (entries.Count > 0)
       {
-        for (int i = entries.num - 1; i >= 0; i--)
+        for (int i = entries.Count - 1; i >= 0; i--)
         {
-          SJournalEntry entry = entries._OpIndex(i);
+          SJournalEntry entry = entries[i];
           if (entry.szPlot_Id.ToString() == entryData.QuestTag)
           {
-            entries.DelIndex(i);
-            entries.Insert(entry, i);
+            entries.RemoveAt(i);
+            entries.Insert(i, entry);
             overwrite = i;
             break;
           }
@@ -1046,7 +1046,7 @@ namespace Anvil.API
         journal.m_lstEntries.Add(newJournal);
       }
 
-      retVal = journal.m_lstEntries.num;
+      retVal = journal.m_lstEntries.Count;
 
       message.SendServerToPlayerJournalAddQuest(Player,
         newJournal.szPlot_Id,
@@ -1080,10 +1080,10 @@ namespace Anvil.API
         return null;
       }
 
-      uint* oidArea = creature.Creature.m_oidAutoMapAreaList.element;
-      for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.num; i++, oidArea++)
+      for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.Count; i++)
       {
-        if (*oidArea != area)
+        uint oidArea = creature.Creature.m_oidAutoMapAreaList[i];
+        if (oidArea != area)
         {
           continue;
         }
@@ -1115,10 +1115,10 @@ namespace Anvil.API
         return;
       }
 
-      uint* oidArea = creature.Creature.m_oidAutoMapAreaList.element;
-      for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.num; i++, oidArea++)
+      for (int i = 0; i < creature.Creature.m_oidAutoMapAreaList.Count; i++)
       {
-        if (*oidArea != area)
+        uint oidArea = creature.Creature.m_oidAutoMapAreaList[i];
+        if (oidArea != area)
         {
           continue;
         }

@@ -101,7 +101,7 @@ namespace Anvil.API
         }
 
         store = new CNWSStore(Invalid);
-        if (store.LoadStore(resGff, resStruct, null).ToBool())
+        if (store.LoadStore(resGff, resStruct, false.ToInt(), null).ToBool())
         {
           store.LoadObjectState(resGff, resStruct);
           GC.SuppressFinalize(store);

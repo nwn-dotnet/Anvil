@@ -99,9 +99,9 @@ namespace Anvil.API
     {
       List<NwCreature> members = new List<NwCreature>();
 
-      for (int i = 0; i < faction.m_listFactionMembers.num; i++)
+      for (int i = 0; i < faction.m_listFactionMembers.Count; i++)
       {
-        NwCreature member = (*faction.m_listFactionMembers._OpIndex(i)).ToNwObjectSafe<NwCreature>();
+        NwCreature member = faction.m_listFactionMembers[i].ToNwObjectSafe<NwCreature>();
         if (member != null)
         {
           members.Add(member);

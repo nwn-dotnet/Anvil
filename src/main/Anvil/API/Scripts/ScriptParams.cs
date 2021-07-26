@@ -30,9 +30,9 @@ namespace Anvil.API
       }
 
       CExoArrayListScriptParam scriptParams = VirtualMachine.m_lScriptParams.GetItem(VirtualMachine.m_nRecursionLevel);
-      for (int i = 0; i < scriptParams.num; i++)
+      for (int i = 0; i < scriptParams.Count; i++)
       {
-        ScriptParam scriptParam = scriptParams._OpIndex(i);
+        ScriptParam scriptParam = scriptParams[i];
         if (scriptParam.key.ToString() == paramName)
         {
           return true;

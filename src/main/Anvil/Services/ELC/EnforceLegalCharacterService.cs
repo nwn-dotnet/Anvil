@@ -921,9 +921,9 @@ namespace Anvil.Services
         int nNumberBonusFeats = pClassLeveledUpIn.GetBonusFeats(nMultiClassLevel[nMultiClassLeveledUpIn]);
 
         // Add this level's gained feats to our own list
-        for (int nFeatIndex = 0; nFeatIndex < pLevelStats.m_lstFeats.num; nFeatIndex++)
+        for (int nFeatIndex = 0; nFeatIndex < pLevelStats.m_lstFeats.Count; nFeatIndex++)
         {
-          ushort nFeat = *pLevelStats.m_lstFeats._OpIndex(nFeatIndex);
+          ushort nFeat = pLevelStats.m_lstFeats[nFeatIndex];
           CNWFeat feat = nFeat < pRules.m_nNumFeats ? feats[nFeat] : null;
 
           if (feat == null)
@@ -1485,7 +1485,7 @@ namespace Anvil.Services
 
         for (byte nSpellLevel = 0; nSpellLevel < NumSpellLevels; nSpellLevel++)
         {
-          for (int nSpellIndex = 0; nSpellIndex < pLevelStats.m_pAddedKnownSpellList[nSpellLevel].num; nSpellIndex++)
+          for (int nSpellIndex = 0; nSpellIndex < pLevelStats.m_pAddedKnownSpellList[nSpellLevel].Count; nSpellIndex++)
           {
             // Can we add spells this level?
             if (pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() && pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool())
@@ -1537,7 +1537,7 @@ namespace Anvil.Services
               }
             }
 
-            uint nSpellID = pLevelStats.m_pAddedKnownSpellList[nSpellLevel].element[nSpellIndex];
+            uint nSpellID = pLevelStats.m_pAddedKnownSpellList[nSpellLevel][nSpellIndex];
             CNWSpell pSpell = pRules.m_pSpellArray.GetSpell((int)nSpellID);
 
             if (pSpell == null)
@@ -1659,7 +1659,7 @@ namespace Anvil.Services
           }
 
           // Check Bard/Sorc removed spells
-          for (int nSpellIndex = 0; nSpellIndex < pLevelStats.m_pRemovedKnownSpellList[nSpellLevel].num; nSpellIndex++)
+          for (int nSpellIndex = 0; nSpellIndex < pLevelStats.m_pRemovedKnownSpellList[nSpellLevel].Count; nSpellIndex++)
           {
             if (!pClassLeveledUpIn.m_bSpellbookRestricted.ToBool() || pClassLeveledUpIn.m_bNeedsToMemorizeSpells.ToBool() ||
               nMultiClassLevel[nMultiClassLeveledUpIn] == 1 ||
@@ -1678,7 +1678,7 @@ namespace Anvil.Services
               }
             }
 
-            uint nSpellID = pLevelStats.m_pRemovedKnownSpellList[nSpellLevel].element[nSpellIndex];
+            uint nSpellID = pLevelStats.m_pRemovedKnownSpellList[nSpellLevel][nSpellIndex];
 
             CNWSpell pSpell = pRules.m_pSpellArray.GetSpell((int)nSpellID);
 
@@ -1834,7 +1834,7 @@ namespace Anvil.Services
 
       // Final Feats Check
       // Check if our list of feats from LevelStats are the same as the feats the character has
-      for (int nFeatIndex = 0; nFeatIndex < pCreatureStats.m_lstFeats.num; nFeatIndex++)
+      for (int nFeatIndex = 0; nFeatIndex < pCreatureStats.m_lstFeats.Count; nFeatIndex++)
       {
         if (!listFeats.Any())
         {
@@ -1850,7 +1850,7 @@ namespace Anvil.Services
           }
         }
 
-        ushort nFeat = pCreatureStats.m_lstFeats.element[nFeatIndex];
+        ushort nFeat = pCreatureStats.m_lstFeats[nFeatIndex];
 
         if (!listFeats.Contains(nFeat))
         {
@@ -1892,10 +1892,10 @@ namespace Anvil.Services
       for (byte nLevel = 1; nLevel <= nCharacterLevel; nLevel++)
       {
         CNWLevelStats pLevelStats = pCreatureStats.GetLevelStats((byte)(nLevel - 1));
-        nNumberOfFeats += pLevelStats.m_lstFeats.num;
+        nNumberOfFeats += pLevelStats.m_lstFeats.Count;
       }
 
-      if (pCreatureStats.m_lstFeats.num > nNumberOfFeats)
+      if (pCreatureStats.m_lstFeats.Count > nNumberOfFeats)
       {
         if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
@@ -1973,9 +1973,9 @@ namespace Anvil.Services
       int[] abilityMods = new int[6];
 
       HashSet<Feat> creatureFeats = new HashSet<Feat>();
-      for (int i = 0; i < lstFeats.num; i++)
+      for (int i = 0; i < lstFeats.Count; i++)
       {
-        creatureFeats.Add((Feat)(*lstFeats._OpIndex(i)));
+        creatureFeats.Add((Feat)lstFeats[i]);
       }
 
       int GetFeatCount(params Feat[] epicFeats)
