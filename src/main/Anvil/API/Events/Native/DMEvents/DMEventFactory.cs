@@ -243,6 +243,7 @@ namespace Anvil.API.Events
         Area = area,
         Position = new Vector3(x, y, z),
         ResRef = resRef,
+        ObjectType = objectType,
       });
 
       bool skipped = beforeEventData.Skip || !Hook.CallOriginal(pMessage, pPlayer, nMinor, bGroup).ToBool();
