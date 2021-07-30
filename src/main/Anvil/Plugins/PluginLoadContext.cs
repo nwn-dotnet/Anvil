@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
 using Anvil.Internal;
@@ -45,16 +44,10 @@ namespace Anvil.Plugins
       string assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);
       if (assemblyPath != null)
       {
-        return LoadAssemblyAtPath(assemblyPath);
+        return LoadFromAssemblyPath(assemblyPath);
       }
 
       return null;
-    }
-
-    private Assembly LoadAssemblyAtPath(string assemblyPath)
-    {
-      using MemoryStream memoryStream = new MemoryStream(File.ReadAllBytes(assemblyPath));
-      return LoadFromStream(memoryStream);
     }
 
     protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)

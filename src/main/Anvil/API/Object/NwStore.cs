@@ -58,6 +58,38 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the number of current customers using this store.
+    /// </summary>
+    public int CustomerCount
+    {
+      get => Store.m_aCurrentCustomers.num;
+    }
+
+    /// <summary>
+    /// Gets the current customers of this store.
+    /// </summary>
+    public unsafe IReadOnlyList<NwCreature> CurrentCustomers
+    {
+      get
+      {
+        List<NwCreature> customers = new List<NwCreature>();
+        CExoArrayListCStoreCustomerPtr customersPtr = Store.m_aCurrentCustomers;
+
+        for (int i = 0; i < customersPtr.num; i++)
+        {
+          void** customerPtr = customersPtr._OpIndex(i);
+          NwCreature customer = CStoreCustomer.FromPointer(*customerPtr).m_oidObject.ToNwObjectSafe<NwCreature>();
+          if (customer != null)
+          {
+            customers.Add(customer);
+          }
+        }
+
+        return customers.AsReadOnly();
+      }
+    }
+
+    /// <summary>
     /// Open oStore for oPC.<br/>
     /// You can mark up or down the prices with the optional parameters.<br/>
     /// </summary>
