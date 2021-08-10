@@ -139,9 +139,12 @@ namespace Anvil.Services
       // **********************************************************************************************************************
 
       NwPlayer nwPlayer = pPlayer.ToNwPlayer();
-      OnValidationBefore?.Invoke(new OnELCValidationBefore
+      virtualMachine.ExecuteInScriptContext(() =>
       {
-        Player = nwPlayer,
+        OnValidationBefore?.Invoke(new OnELCValidationBefore
+        {
+          Player = nwPlayer,
+        });
       });
 
       // *** Server Restrictions **********************************************************************************************
