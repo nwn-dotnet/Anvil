@@ -139,13 +139,7 @@ namespace Anvil.Services
       // **********************************************************************************************************************
 
       NwPlayer nwPlayer = pPlayer.ToNwPlayer();
-      virtualMachine.ExecuteInScriptContext(() =>
-      {
-        OnValidationBefore?.Invoke(new OnELCValidationBefore
-        {
-          Player = nwPlayer,
-        });
-      });
+      InvokeValidationBeforeEvent(nwPlayer);
 
       // *** Server Restrictions **********************************************************************************************
       CServerInfo pServerInfo = NWNXLib.AppManager().m_pServerExoApp.GetServerInfo();
@@ -1941,6 +1935,19 @@ namespace Anvil.Services
       strRefFailure = eventData.StrRef;
 
       return !eventData.IgnoreFailure;
+    }
+
+    private void InvokeValidationBeforeEvent(NwPlayer player)
+    {
+      OnELCValidationBefore eventData = new OnELCValidationBefore
+      {
+        Player = player,
+      };
+
+      virtualMachine.ExecuteInScriptContext(() =>
+      {
+        OnValidationBefore?.Invoke(eventData);
+      });
     }
 
     private bool InvokeCustomCheck(NwPlayer player)
