@@ -62,7 +62,7 @@ namespace Anvil.API
     /// </summary>
     public int CustomerCount
     {
-      get => Store.m_aCurrentCustomers.num;
+      get => Store.m_aCurrentCustomers.Count;
     }
 
     /// <summary>
@@ -75,10 +75,9 @@ namespace Anvil.API
         List<NwCreature> customers = new List<NwCreature>();
         CExoArrayListCStoreCustomerPtr customersPtr = Store.m_aCurrentCustomers;
 
-        for (int i = 0; i < customersPtr.num; i++)
+        for (int i = 0; i < customersPtr.Count; i++)
         {
-          void** customerPtr = customersPtr._OpIndex(i);
-          NwCreature customer = CStoreCustomer.FromPointer(*customerPtr).m_oidObject.ToNwObjectSafe<NwCreature>();
+          NwCreature customer = customersPtr[i].m_oidObject.ToNwObjectSafe<NwCreature>();
           if (customer != null)
           {
             customers.Add(customer);
