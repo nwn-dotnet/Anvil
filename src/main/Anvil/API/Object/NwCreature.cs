@@ -41,7 +41,7 @@ namespace Anvil.API
       {
         if (value == null)
         {
-          throw new ArgumentNullException(nameof(Faction), "New faction must not be null.");
+          throw new ArgumentNullException(nameof(value), "New faction must not be null.");
         }
 
         faction = value;
