@@ -28,14 +28,19 @@ namespace Anvil.API.Events
     public SubSkill SubSkill { get; private init; }
 
     /// <summary>
-    /// Gets the item that is being used, if any.
-    /// </summary>
-    public NwItem UsedItem { get; private init; }
-
-    /// <summary>
     /// Gets the target object for this skill usage.
     /// </summary>
     public NwGameObject Target { get; private init; }
+
+    /// <summary>
+    /// Gets the area that the skill was used.
+    /// </summary>
+    public NwArea Area { get; private init; }
+
+    /// <summary>
+    /// Gets the item that is being used, if any.
+    /// </summary>
+    public NwItem UsedItem { get; private init; }
 
     /// <summary>
     /// Gets the target position for this skill usage.
@@ -67,10 +72,16 @@ namespace Anvil.API.Events
       {
         OnUseSkill eventData = ProcessEvent(new OnUseSkill
         {
-          // Event Data goes here.
+          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
+          Skill = (Skill)nSkill,
+          SubSkill = (SubSkill)nSubSkill,
+          Target = oidTarget.ToNwObject<NwGameObject>(),
+          Area = oidArea.ToNwObject<NwArea>(),
+          UsedItem = oidUsedItem.ToNwObject<NwItem>(),
+          TargetPosition = vTargetPosition,
         });
 
-        return Hook.CallOriginal(pCreature, nSkill, nSubSkill, oidTarget, vTargetPosition, oidArea, oidUsedItem, nActivePropertyIndex);
+        return !eventData.PreventSkillUse ? Hook.CallOriginal(pCreature, nSkill, nSubSkill, oidTarget, vTargetPosition, oidArea, oidUsedItem, nActivePropertyIndex) : false.ToInt();
       }
     }
   }
