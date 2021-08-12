@@ -41,7 +41,7 @@ namespace Anvil.API
       {
         if (value == null)
         {
-          throw new ArgumentNullException(nameof(Faction), "New faction must not be null.");
+          throw new ArgumentNullException(nameof(value), "New faction must not be null.");
         }
 
         faction = value;
@@ -2450,6 +2450,16 @@ namespace Anvil.API
       {
         return Creature.m_pStats.GetRangedAttackBonus(includeBaseAttackBonus.ToInt(), isTouchAttack.ToInt());
       }
+    }
+
+    /// <summary>
+    /// Sets the skill ranks for the specified skill on this creature.
+    /// </summary>
+    /// <param name="skill">The skill to modify.</param>
+    /// <param name="rank">The new number of skill ranks.</param>
+    public void SetSkillRank(Skill skill, sbyte rank)
+    {
+      Creature.m_pStats.SetSkillRank((byte)skill, rank.AsByte());
     }
 
     private PlayerQuickBarButton InternalGetQuickBarButton(byte index)

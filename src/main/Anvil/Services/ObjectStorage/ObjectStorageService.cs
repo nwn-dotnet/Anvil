@@ -7,7 +7,7 @@ using NWN.Native.API;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ObjectStorageService))]
-  internal sealed unsafe class ObjectStorageService
+  public sealed unsafe class ObjectStorageService
   {
     private static readonly byte* GffFieldNamePtr = "NWNX_POS".GetNullTerminatedString();
 
