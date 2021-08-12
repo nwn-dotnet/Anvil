@@ -65,5 +65,25 @@ namespace Anvil.API
       get => levelStats.m_nHitDie;
       set => levelStats.m_nHitDie = value;
     }
+
+    /// <summary>
+    /// Gets the skill ranks for the specified skill on this creature level.
+    /// </summary>
+    /// <param name="skill">The skill to query.</param>
+    /// <returns>The number of skill ranks.</returns>
+    public sbyte GetSkillRank(Skill skill)
+    {
+      return levelStats.m_lstSkillRanks[(int)skill].AsSByte();
+    }
+
+    /// <summary>
+    /// Sets the skill ranks for the specified skill on this creature level.
+    /// </summary>
+    /// <param name="skill">The skill to modify.</param>
+    /// <param name="rank">The new number of skill ranks.</param>
+    public void SetSkillRank(Skill skill, sbyte rank)
+    {
+      levelStats.m_lstSkillRanks[(int)skill] = rank.AsByte();
+    }
   }
 }

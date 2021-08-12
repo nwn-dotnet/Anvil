@@ -2452,6 +2452,16 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Sets the skill ranks for the specified skill on this creature.
+    /// </summary>
+    /// <param name="skill">The skill to modify.</param>
+    /// <param name="rank">The new number of skill ranks.</param>
+    public void SetSkillRank(Skill skill, sbyte rank)
+    {
+      Creature.m_pStats.SetSkillRank((byte)skill, rank.AsByte());
+    }
+
     private PlayerQuickBarButton InternalGetQuickBarButton(byte index)
     {
       CNWSQuickbarButtonArray quickBarButtons = CNWSQuickbarButtonArray.FromPointer(Creature.m_pQuickbarButton);
