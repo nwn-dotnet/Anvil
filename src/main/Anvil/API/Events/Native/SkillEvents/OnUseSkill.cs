@@ -1,5 +1,7 @@
+using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Anvil.API.Events;
 using NWN.Native.API;
 using Anvil.Services;
 
@@ -70,6 +72,29 @@ namespace Anvil.API.Events
 
         return Hook.CallOriginal(pCreature, nSkill, nSubSkill, oidTarget, vTargetPosition, oidArea, oidUsedItem, nActivePropertyIndex);
       }
+    }
+  }
+}
+
+namespace Anvil.API
+{
+  public sealed partial class NwCreature
+  {
+    /// <inheritdoc cref="Events.OnUseSkill"/>
+    public event Action<OnUseSkill> OnUseSkill
+    {
+      add => EventService.Subscribe<OnUseSkill, OnUseSkill.Factory>(this, value);
+      remove => EventService.Unsubscribe<OnUseSkill, OnUseSkill.Factory>(this, value);
+    }
+  }
+
+  public sealed partial class NwModule
+  {
+    /// <inheritdoc cref="Events.OnUseSkill"/>
+    public event Action<OnUseSkill> OnUseSkill
+    {
+      add => EventService.SubscribeAll<OnUseSkill, OnUseSkill.Factory>(value);
+      remove => EventService.UnsubscribeAll<OnUseSkill, OnUseSkill.Factory>(value);
     }
   }
 }
