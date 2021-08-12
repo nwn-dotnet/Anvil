@@ -28,7 +28,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context
     {
-      get => null;
+      get => Creature;
     }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.LearnScrollHook>
