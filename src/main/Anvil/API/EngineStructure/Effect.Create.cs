@@ -379,9 +379,19 @@ namespace Anvil.API
       return NWScript.EffectHeal(damageToHeal);
     }
 
+    public static Effect HideIcon(Effect eEffect)
+    {
+      return NWScript.HideEffectIcon(eEffect);
+    }
+
     public static Effect HitPointChangeWhenDying(float hpChangePerRound)
     {
       return NWScript.EffectHitPointChangeWhenDying(hpChangePerRound);
+    }
+
+    public static Effect Icon(int nIconID)
+    {
+      return NWScript.EffectIcon(nIconID);
     }
 
     public static Effect Immunity(ImmunityType immunityType)
@@ -452,6 +462,11 @@ namespace Anvil.API
     public static Effect Resurrection()
     {
       return NWScript.EffectResurrection();
+    }
+
+    public static Effect RunScript(string sOnAppliedScript = "", string sOnRemovedScript = "", string sOnIntervalScript = "", float fInterval = 0, string sData = "")
+    {
+      return NWScript.EffectRunScript(sOnAppliedScript, sOnRemovedScript, sOnIntervalScript, fInterval, sData);
     }
 
     public static Effect Sanctuary(int difficultyClass)
