@@ -67,7 +67,7 @@ namespace Anvil.API.Events
         return;
       }
 
-      Log.Debug($"Hooking native script event \"{eventType}\" on object \"{nwObject.Name}\". Previous script: \"{existingScript}\"");
+      Log.Debug("Hooking native script event {EventType} on object {Object}. Previous script: {ExistingScript}", eventType, nwObject.Name, existingScript);
       NWScript.SetEventScript(nwObject, (int)eventType, ScriptConstants.GameEventScriptName);
 
       if (callOriginal && !string.IsNullOrWhiteSpace(existingScript))

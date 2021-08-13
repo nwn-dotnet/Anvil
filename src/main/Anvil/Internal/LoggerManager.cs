@@ -25,7 +25,7 @@ namespace Anvil.Internal
       if (string.IsNullOrEmpty(EnvironmentConfig.NLogConfigPath))
       {
         LogManager.Configuration = GetDefaultConfig();
-        Log.Info("Using default configuration.");
+        Log.Info("Using default configuration");
         return;
       }
 
@@ -34,18 +34,18 @@ namespace Anvil.Internal
         try
         {
           LogManager.Configuration = GetConfigFromFile(EnvironmentConfig.NLogConfigPath);
-          Log.Info($"Using Logger config: \"{EnvironmentConfig.NLogConfigPath}\"");
+          Log.Info("Using Logger config: {Path}", EnvironmentConfig.NLogConfigPath);
         }
         catch (NLogConfigurationException e)
         {
           LogManager.Configuration = GetDefaultConfig();
-          Log.Warn(e, $"Using default configuration as the logger configuration at \"{EnvironmentConfig.NLogConfigPath}\" failed to load.");
+          Log.Warn(e, "Using default configuration as the logger configuration at {Path} failed to load", EnvironmentConfig.NLogConfigPath);
         }
       }
       else
       {
         LogManager.Configuration = GetDefaultConfig();
-        Log.Warn($"Using default configuration as the logger configuration at \"{EnvironmentConfig.NLogConfigPath}\" could not be found.");
+        Log.Warn("Using default configuration as the logger configuration at {Path} could not be found", EnvironmentConfig.NLogConfigPath);
       }
     }
 
