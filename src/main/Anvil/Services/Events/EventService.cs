@@ -159,7 +159,7 @@ namespace Anvil.Services
 
       if (!eventFactories.TryGetValue(factoryType, out IEventFactory factory))
       {
-        Log.Error($"Cannot find event factory of type {factoryType.GetFullName()}. Are you missing a ServiceBinding?");
+        Log.Error("Cannot find event factory of type {EventFactory}. Are you missing a ServiceBinding?", factoryType.GetFullName());
         return default;
       }
 

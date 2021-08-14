@@ -54,7 +54,7 @@ namespace Anvil.Services
         throw new ArgumentNullException(nameof(task));
       }
 
-      Log.Debug($"Scheduled Future Task: {task.Method.GetFullName()}");
+      Log.Debug("Scheduled Future Task {TaskName}", task.Method.GetFullName());
       ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;
@@ -81,7 +81,7 @@ namespace Anvil.Services
         throw new ArgumentNullException(nameof(task));
       }
 
-      Log.Debug($"Scheduled Repeating Task: {task.Method.GetFullName()}");
+      Log.Debug("Scheduled Repeating Task: {TaskName}", task.Method.GetFullName());
       ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
       scheduledItems.InsertOrdered(item, comparer);
       return item;

@@ -163,7 +163,7 @@ namespace Anvil.Services
       uint priority = BasePriority + currentIndex;
       CExoString exoAlias = alias.ToExoString();
 
-      Log.Info($"Setting up resource directory: {alias}:{path} (Priority: {priority})");
+      Log.Info("Setting up resource directory: {Alias}:{Path} (Priority: {Priority})", alias, path, priority);
 
       ExoBase.m_pcExoAliasList.Add(exoAlias, path.ToExoString());
       ResMan.CreateDirectory(exoAlias);

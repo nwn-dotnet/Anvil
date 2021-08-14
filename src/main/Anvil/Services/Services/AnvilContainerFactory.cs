@@ -81,7 +81,7 @@ namespace Anvil.Services
         RegisterImplicitBindings(bindTo, serviceName, lifeTime);
       }
 
-      Log.Info($"Registered service: {bindTo.FullName}");
+      Log.Info("Registered service {Service}", bindTo.FullName);
     }
 
     private string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
@@ -110,7 +110,7 @@ namespace Anvil.Services
       foreach (ServiceBindingAttribute bindingInfo in newBindings)
       {
         ServiceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
-        Log.Debug($"Bind: {bindingInfo.BindFrom.FullName} -> {bindTo.FullName}");
+        Log.Debug("Bind {BindFrom} -> {BindTo}", bindingInfo.BindFrom.FullName, bindTo.FullName);
       }
     }
 

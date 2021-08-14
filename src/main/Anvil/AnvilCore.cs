@@ -65,7 +65,7 @@ namespace Anvil
 
       await NwTask.NextFrame();
 
-      Log.Info("Reloading Anvil.");
+      Log.Info("Reloading Anvil");
 
       instance.serviceManager.ShutdownServices();
       instance.serviceManager.ShutdownLateServices();
@@ -114,9 +114,11 @@ namespace Anvil
 
       AssemblyName assemblyName = Assemblies.Anvil.GetName();
 
-      Log.Info($"Loading {assemblyName.Name} {Assemblies.Anvil.GetName().Version} (NWN.Core: {Assemblies.Core.GetName().Version}, NWN.Native: {Assemblies.Native.GetName().Version}).");
-      Log.Info($".NET runtime is \"{RuntimeInformation.FrameworkDescription}\", running on \"{RuntimeInformation.OSDescription}\", installed at \"{RuntimeEnvironment.GetRuntimeDirectory()}\"");
-      Log.Info($"Server is running Neverwinter Nights {NwServer.Instance.ServerVersion}.");
+      Log.Info("Loading {Name} {Version} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
+        assemblyName.Name,
+        Assemblies.Anvil.GetName().Version,
+        Assemblies.Core.GetName().Version,
+        Assemblies.Native.GetName().Version);
 
       CheckServerVersion();
     }
@@ -144,18 +146,21 @@ namespace Anvil
 
       if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
       {
-        Log.Warn($"The current version of {assemblyName.Name} targets version {assemblyName.Version}, but the server is running {serverVersion}! You may encounter compatibility issues.");
+        Log.Warn("The current version of {Name} targets version {TargetVersion}, but the server is running {ServerVersion}! You may encounter compatibility issues",
+          assemblyName.Name,
+          assemblyName.Version,
+          serverVersion);
       }
     }
 
     private void PrelinkNative()
     {
-      Log.Info("Prelinking native methods.");
+      Log.Info("Prelinking native methods");
 
       try
       {
         Marshal.PrelinkAll(typeof(NWN.Native.API.NWNXLibPINVOKE));
-        Log.Info("Prelinking complete.");
+        Log.Info("Prelinking complete");
       }
       catch (TypeInitializationException)
       {
@@ -164,7 +169,7 @@ namespace Anvil
       }
       catch (Exception)
       {
-        Log.Fatal("The NWNX_SWIG_DotNET plugin could not be loaded.");
+        Log.Fatal("The NWNX_SWIG_DotNET plugin could not be loaded");
         throw;
       }
     }

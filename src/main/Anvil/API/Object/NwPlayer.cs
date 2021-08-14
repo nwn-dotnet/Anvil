@@ -133,13 +133,13 @@ namespace Anvil.API
 
         if (!playerInfo.SatisfiesBuild(8193, 14))
         {
-          Log.Warn($"{PlayerName}: Cannot toggle DM mode as the player's client does not support PlayerDM functionality.");
+          Log.Warn("{PlayerName} cannot toggle DM mode as the player's client does not support PlayerDM functionality", PlayerName);
           return;
         }
 
         if (playerInfo.m_bGameMasterPrivileges.ToBool() && !playerInfo.m_bGameMasterIsPlayerLogin.ToBool())
         {
-          Log.Warn($"{PlayerName}: Cannot toggle DM mode as this player is using the DMClient.");
+          Log.Warn("{PlayerName} cannot toggle DM mode as this player is using the DMClient", PlayerName);
           return;
         }
 
@@ -763,7 +763,7 @@ namespace Anvil.API
       string fileName = $"{serverVault}{playerDir}/{bicName}.bic";
       if (!File.Exists(fileName))
       {
-        Log.Error($"Character file {fileName} not found.");
+        Log.Error("Character file {FileName} not found", fileName);
         return;
       }
 

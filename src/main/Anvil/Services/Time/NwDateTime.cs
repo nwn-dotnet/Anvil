@@ -99,7 +99,7 @@ namespace Anvil.Services
       {
         if (value < Now)
         {
-          Log.Warn("Tried to set date time to a past value! Time will not be modified.");
+          Log.Warn("Tried to set date time to a past value! Time will not be modified");
           return;
         }
 

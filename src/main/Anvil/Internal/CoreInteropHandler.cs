@@ -48,7 +48,7 @@ namespace Anvil.Internal
 
       if (eventType == LifeCycleEvent.Unhandled)
       {
-        Log.Debug($"Unhandled Signal: \"{signal}\"");
+        Log.Debug("Unhandled Signal: {Signal}", signal);
       }
 
       signalHandler.HandleLifeCycleEvent(eventType);

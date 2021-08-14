@@ -28,7 +28,7 @@ namespace Anvil.Services
     /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
     public FunctionHook<T> RequestHook<T>(T handler, uint address, int order = HookOrder.Default) where T : Delegate
     {
-      Log.Debug($"Requesting function hook for {typeof(T).Name}, address 0x{address:X}");
+      Log.Debug("Requesting function hook for {HookType}, address {Address}", typeof(T).Name, $"0x{address:X}");
       IntPtr managedFuncPtr = Marshal.GetFunctionPointerForDelegate(handler);
       IntPtr nativeFuncPtr = VM.RequestHook(new IntPtr(address), managedFuncPtr, order);
 
@@ -48,7 +48,7 @@ namespace Anvil.Services
     /// <returns>A wrapper object containing a delegate to the original function. The wrapped object can be disposed to release the hook.</returns>
     public FunctionHook<T> RequestHook<T>(void* handler, uint address, int order = HookOrder.Default) where T : Delegate
     {
-      Log.Debug($"Requesting function hook for {typeof(T).Name}, address 0x{address:X}");
+      Log.Debug("Requesting function hook for {HookType}, address {Address}", typeof(T).Name, $"0x{address:X}");
       IntPtr nativeFuncPtr = VM.RequestHook(new IntPtr(address), (IntPtr)handler, order);
 
       FunctionHook<T> retVal = new FunctionHook<T>(this, nativeFuncPtr);

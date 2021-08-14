@@ -19,7 +19,7 @@ namespace Anvil.Services
 
     internal ServiceManager(ITypeLoader typeLoader, IContainerFactory containerFactory)
     {
-      Log.Info($"Using \"{containerFactory.GetType().FullName}\" to install service bindings.");
+      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
 
       this.typeLoader = typeLoader;
       this.containerFactory = containerFactory;
