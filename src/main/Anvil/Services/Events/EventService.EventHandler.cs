@@ -55,7 +55,7 @@ namespace Anvil.Services
           if (eventData?.Context != null && eventData.Context.IsValid)
           {
             Log.Error(e, "An exception was thrown while trying to invoke event {Event}. Context Object {ObjectId} - {ObjectName}",
-              nameof(T),
+              typeof(T).Name,
               eventData.Context.ToString(),
               eventData.Context.Name);
           }
