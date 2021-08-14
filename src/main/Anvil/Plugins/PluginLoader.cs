@@ -65,7 +65,7 @@ namespace Anvil.Plugins
           continue;
         }
 
-        string pluginPath = Path.Combine(pluginRoot, string.Format("{0}.dll", pluginName));
+        string pluginPath = Path.Combine(pluginRoot, $"{pluginName}.dll");
         if (!File.Exists(pluginPath))
         {
           Log.Warn("Cannot find plugin assembly {Plugin}. Does your plugin assembly match the name of the directory?", pluginPath);
