@@ -7,6 +7,8 @@ var classAnvil_1_1API_1_1NwStore =
     [ "Open", "classAnvil_1_1API_1_1NwStore.html#ab9997ab8f4b6b63783b4fabf4c43fde6", null ],
     [ "operator CNWSStore", "classAnvil_1_1API_1_1NwStore.html#a6542b6667902a947781c9a065348ca2c", null ],
     [ "Serialize", "classAnvil_1_1API_1_1NwStore.html#acd71fa20304c55bd4e5adadd099049f3", null ],
+    [ "CurrentCustomers", "classAnvil_1_1API_1_1NwStore.html#a7352d354b5d839b8cf4fe6504ef6a6e4", null ],
+    [ "CustomerCount", "classAnvil_1_1API_1_1NwStore.html#a4cc1039aab00ee15121c5fd90bee8484", null ],
     [ "IdentifyCost", "classAnvil_1_1API_1_1NwStore.html#abe8bc53562a48e015469882435026c9d", null ],
     [ "Items", "classAnvil_1_1API_1_1NwStore.html#a749596b983a4eb5c27954930a92f62a1", null ],
     [ "MaxBuyPrice", "classAnvil_1_1API_1_1NwStore.html#ab3f69caad7bca34d8f3cd7c14fad5976", null ],

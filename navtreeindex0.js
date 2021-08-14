@@ -91,11 +91,13 @@ var NAVTREEINDEX0 =
 "classAnvil_1_1API_1_1CreatureClassInfo.html#af25b1cddbb923c685a5e4432a7405ea3":[1,0,0,52,4],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#af69218021666e608bd7dc42f35d5cd78":[1,0,0,52,6],
 "classAnvil_1_1API_1_1CreatureLevelInfo.html":[1,0,0,53],
-"classAnvil_1_1API_1_1CreatureLevelInfo.html#a26b14fb8c06fc9ea1313db4b1546812c":[1,0,0,53,3],
-"classAnvil_1_1API_1_1CreatureLevelInfo.html#a2c07e6d79c9ecd16d765be573619d059":[1,0,0,53,1],
-"classAnvil_1_1API_1_1CreatureLevelInfo.html#a688792aeee02a2e08f10ad7b5fc5e643":[1,0,0,53,2],
-"classAnvil_1_1API_1_1CreatureLevelInfo.html#a831138e9f41e092e55482cd803269c1e":[1,0,0,53,0],
-"classAnvil_1_1API_1_1CreatureLevelInfo.html#aa64d0b2e382c261379189e3f852af92e":[1,0,0,53,4],
+"classAnvil_1_1API_1_1CreatureLevelInfo.html#a26b14fb8c06fc9ea1313db4b1546812c":[1,0,0,53,5],
+"classAnvil_1_1API_1_1CreatureLevelInfo.html#a2c07e6d79c9ecd16d765be573619d059":[1,0,0,53,3],
+"classAnvil_1_1API_1_1CreatureLevelInfo.html#a4114aeb1380f5f5bddcdd3fdc84b37a8":[1,0,0,53,0],
+"classAnvil_1_1API_1_1CreatureLevelInfo.html#a688792aeee02a2e08f10ad7b5fc5e643":[1,0,0,53,4],
+"classAnvil_1_1API_1_1CreatureLevelInfo.html#a831138e9f41e092e55482cd803269c1e":[1,0,0,53,2],
+"classAnvil_1_1API_1_1CreatureLevelInfo.html#aa64d0b2e382c261379189e3f852af92e":[1,0,0,53,6],
+"classAnvil_1_1API_1_1CreatureLevelInfo.html#ad4f07cddba5c1262c2e2fbfaeb861c3f":[1,0,0,53,1],
 "classAnvil_1_1API_1_1CreatureModelNumber.html":[1,0,0,7],
 "classAnvil_1_1API_1_1CreatureModelNumber.html#a05717b5d4ff075e3837d0abb1c576f3f":[1,0,0,7,0],
 "classAnvil_1_1API_1_1CreatureModelNumber.html#a457e21ea00fee2f652e99a2fb170cae9":[1,0,0,7,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "classAnvil_1_1API_1_1Events_1_1AreaEvents_1_1OnUserDefined.html#ae30bd2af0f4c98d87d714a8217b8f095":[1,0,0,0,0,3,3],
 "classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents.html":[1,0,0,0,1],
 "classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html":[1,0,0,0,1,0],
-"classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html#a19a29d1af14ab61d191d034efb8ef43b":[1,0,0,0,1,0,2],
-"classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html#a3cb8f36af92e959d0078ef782a815de2":[1,0,0,0,1,0,1],
-"classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html#a55ac57085bc6a59451459918682ac031":[1,0,0,0,1,0,0]
+"classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html#a19a29d1af14ab61d191d034efb8ef43b":[1,0,0,0,1,0,2]
 };

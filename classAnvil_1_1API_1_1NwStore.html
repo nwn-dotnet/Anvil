@@ -356,6 +356,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>MaxBuyPrice</b><code> 
 <tr class="memitem:a749596b983a4eb5c27954930a92f62a1"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a749596b983a4eb5c27954930a92f62a1">Items</a><code> [get]</code></td></tr>
 <tr class="memdesc:a749596b983a4eb5c27954930a92f62a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all items belonging to this store's inventory.  <a href="classAnvil_1_1API_1_1NwStore.html#a749596b983a4eb5c27954930a92f62a1">More...</a><br /></td></tr>
 <tr class="separator:a749596b983a4eb5c27954930a92f62a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cc1039aab00ee15121c5fd90bee8484"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a4cc1039aab00ee15121c5fd90bee8484">CustomerCount</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4cc1039aab00ee15121c5fd90bee8484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of current customers using this store.  <a href="classAnvil_1_1API_1_1NwStore.html#a4cc1039aab00ee15121c5fd90bee8484">More...</a><br /></td></tr>
+<tr class="separator:a4cc1039aab00ee15121c5fd90bee8484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7352d354b5d839b8cf4fe6504ef6a6e4"><td class="memItemLeft" align="right" valign="top">unsafe IReadOnlyList&lt; <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a7352d354b5d839b8cf4fe6504ef6a6e4">CurrentCustomers</a><code> [get]</code></td></tr>
+<tr class="memdesc:a7352d354b5d839b8cf4fe6504ef6a6e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current customers of this store.  <a href="classAnvil_1_1API_1_1NwStore.html#a7352d354b5d839b8cf4fe6504ef6a6e4">More...</a><br /></td></tr>
+<tr class="separator:a7352d354b5d839b8cf4fe6504ef6a6e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classAnvil_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('properties_classAnvil_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">Anvil.API.NwGameObject</a></td></tr>
 <tr class="memitem:aa0e605177bb15f1197c9890eb3df55dc inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a id="aa0e605177bb15f1197c9890eb3df55dc"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html">ModuleEvents.OnAcquireItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#aa0e605177bb15f1197c9890eb3df55dc">OnAcquireItem</a></td></tr>
@@ -531,6 +537,54 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
+<a id="a7352d354b5d839b8cf4fe6504ef6a6e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7352d354b5d839b8cf4fe6504ef6a6e4">&#9670;&nbsp;</a></span>CurrentCustomers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsafe IReadOnlyList&lt;<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&gt; Anvil.API.NwStore.CurrentCustomers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current customers of this store. </p>
+
+</div>
+</div>
+<a id="a4cc1039aab00ee15121c5fd90bee8484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cc1039aab00ee15121c5fd90bee8484">&#9670;&nbsp;</a></span>CustomerCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwStore.CustomerCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the number of current customers using this store. </p>
+
+</div>
+</div>
 <a id="a749596b983a4eb5c27954930a92f62a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a749596b983a4eb5c27954930a92f62a1">&#9670;&nbsp;</a></span>Items</h2>
 

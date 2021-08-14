@@ -337,8 +337,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3caf0715f2d4e10ebb09ce41280811de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the model number to use for the specified body part on the creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a3caf0715f2d4e10ebb09ce41280811de">More...</a><br /></td></tr>
 <tr class="separator:a3caf0715f2d4e10ebb09ce41280811de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5babde5647565ce94830688f84040773"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a5babde5647565ce94830688f84040773">GetAssociate</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a98b26a333f49df48ef4eef4425b9aa28">AssociateType</a> associateType)</td></tr>
-<tr class="memdesc:a5babde5647565ce94830688f84040773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the associate of this creature with the matching associate type.<br  />
- See <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5" title="Gets all henchmen associated with this creature.">Henchmen</a> for getting a list of all henchmen associated with this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a5babde5647565ce94830688f84040773">More...</a><br /></td></tr>
+<tr class="memdesc:a5babde5647565ce94830688f84040773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first associate of this creature with the matching associate type.<br  />
+ See <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5" title="Gets all henchmen associated with this creature.">Henchmen</a> for getting a list of all henchmen associated with this creature. See <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0005cd5f66ca4093fd3989f8b647e45f" title="Gets all creatures associated with this creature.">Associates</a> for getting a list of all creatures associated with this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a5babde5647565ce94830688f84040773">More...</a><br /></td></tr>
 <tr class="separator:a5babde5647565ce94830688f84040773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20f76052667f2d57e878f7893a434599"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a20f76052667f2d57e878f7893a434599">HasFeatEffect</a> (Feat feat)</td></tr>
 <tr class="memdesc:a20f76052667f2d57e878f7893a434599"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this creature is under the effects of the specified feat.  <a href="classAnvil_1_1API_1_1NwCreature.html#a20f76052667f2d57e878f7893a434599">More...</a><br /></td></tr>
@@ -504,6 +504,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetQuickBarButton</b>
 <tr class="memdesc:a53c1437c48efe0b76deae7627a480cdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creature's highest attack bonus based on its own stats.<br  />
  AB vs. Type and +AB on Gauntlets are excluded.  <a href="classAnvil_1_1API_1_1NwCreature.html#a53c1437c48efe0b76deae7627a480cdb">More...</a><br /></td></tr>
 <tr class="separator:a53c1437c48efe0b76deae7627a480cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4261fff49f07fc64805145a8125189aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a4261fff49f07fc64805145a8125189aa">SetSkillRank</a> (Skill skill, sbyte rank)</td></tr>
+<tr class="memdesc:a4261fff49f07fc64805145a8125189aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the skill ranks for the specified skill on this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a4261fff49f07fc64805145a8125189aa">More...</a><br /></td></tr>
+<tr class="separator:a4261fff49f07fc64805145a8125189aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAnvil_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAnvil_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">Anvil.API.NwGameObject</a></td></tr>
 <tr class="memitem:a7d5c963cf998bdb4c06a96eb6e5d5965 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">override? Guid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a7d5c963cf998bdb4c06a96eb6e5d5965">PeekUUID</a> ()</td></tr>
 <tr class="memdesc:a7d5c963cf998bdb4c06a96eb6e5d5965 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get the UUID of this object, if assigned.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a7d5c963cf998bdb4c06a96eb6e5d5965">More...</a><br /></td></tr>
@@ -801,6 +804,12 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnItemInventoryOpe
 <tr class="memitem:a08897467ab142082845fb6fb1ac41032"><td class="memItemLeft" align="right" valign="top"><a id="a08897467ab142082845fb6fb1ac41032"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnItemPayToIdentify.html">OnItemPayToIdentify</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a08897467ab142082845fb6fb1ac41032">OnItemPayToIdentify</a></td></tr>
 <tr class="separator:a08897467ab142082845fb6fb1ac41032"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec45b175d523ee046bf9df89127b1fa"><td class="memItemLeft" align="right" valign="top"><a id="a1ec45b175d523ee046bf9df89127b1fa"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnItemScrollLearn.html">OnItemScrollLearn</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a1ec45b175d523ee046bf9df89127b1fa">OnItemScrollLearn</a></td></tr>
+<tr class="separator:a1ec45b175d523ee046bf9df89127b1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e7e4e073141c75d0fe35ca9830fd9c1"><td class="memItemLeft" align="right" valign="top"><a id="a0e7e4e073141c75d0fe35ca9830fd9c1"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnItemUnequip.html">OnItemUnequip</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0e7e4e073141c75d0fe35ca9830fd9c1">OnItemUnequip</a></td></tr>
+<tr class="separator:a0e7e4e073141c75d0fe35ca9830fd9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa975fe2bea76b40e206fdeccd2a8b32e"><td class="memItemLeft" align="right" valign="top"><a id="aa975fe2bea76b40e206fdeccd2a8b32e"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnItemUse.html">OnItemUse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#aa975fe2bea76b40e206fdeccd2a8b32e">OnItemUse</a></td></tr>
 <tr class="separator:aa975fe2bea76b40e206fdeccd2a8b32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -825,6 +834,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDoListenDetectio
 <tr class="memitem:acc03f00fa6a6c3fbeebd3a59616627fa"><td class="memItemLeft" align="right" valign="top"><a id="acc03f00fa6a6c3fbeebd3a59616627fa"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDoSpotDetection.html">OnDoSpotDetection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#acc03f00fa6a6c3fbeebd3a59616627fa">OnDoSpotDetection</a></td></tr>
 <tr class="separator:acc03f00fa6a6c3fbeebd3a59616627fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2bfff4446f277704075aa5eb2dfd116"><td class="memItemLeft" align="right" valign="top"><a id="ac2bfff4446f277704075aa5eb2dfd116"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnUseSkill.html">OnUseSkill</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ac2bfff4446f277704075aa5eb2dfd116">OnUseSkill</a></td></tr>
+<tr class="separator:ac2bfff4446f277704075aa5eb2dfd116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a249a53bc5663ba960f231a9fbde37f42"><td class="memItemLeft" align="right" valign="top"><a id="a249a53bc5663ba960f231a9fbde37f42"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnSpellAction.html">OnSpellAction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a249a53bc5663ba960f231a9fbde37f42">OnSpellAction</a></td></tr>
 <tr class="separator:a249a53bc5663ba960f231a9fbde37f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1094,6 +1106,9 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><b>BaseShieldArcaneSpell
 <tr class="memitem:a6c15f397bd20a319f30c8a43ea119cc5"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5">Henchmen</a><code> [get]</code></td></tr>
 <tr class="memdesc:a6c15f397bd20a319f30c8a43ea119cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all henchmen associated with this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5">More...</a><br /></td></tr>
 <tr class="separator:a6c15f397bd20a319f30c8a43ea119cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0005cd5f66ca4093fd3989f8b647e45f"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0005cd5f66ca4093fd3989f8b647e45f">Associates</a><code> [get]</code></td></tr>
+<tr class="memdesc:a0005cd5f66ca4093fd3989f8b647e45f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all creatures associated with this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a0005cd5f66ca4093fd3989f8b647e45f">More...</a><br /></td></tr>
+<tr class="separator:a0005cd5f66ca4093fd3989f8b647e45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcf3be5130c009912d39a2effca068e8"><td class="memItemLeft" align="right" valign="top">IReadOnlyList&lt; ClassType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#afcf3be5130c009912d39a2effca068e8">Classes</a><code> [get]</code></td></tr>
 <tr class="memdesc:afcf3be5130c009912d39a2effca068e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this creature's classes.  <a href="classAnvil_1_1API_1_1NwCreature.html#afcf3be5130c009912d39a2effca068e8">More...</a><br /></td></tr>
 <tr class="separator:afcf3be5130c009912d39a2effca068e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3345,8 +3360,8 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the associate of this creature with the matching associate type.<br  />
- See <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5" title="Gets all henchmen associated with this creature.">Henchmen</a> for getting a list of all henchmen associated with this creature. </p>
+<p>Gets the first associate of this creature with the matching associate type.<br  />
+ See <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5" title="Gets all henchmen associated with this creature.">Henchmen</a> for getting a list of all henchmen associated with this creature. See <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0005cd5f66ca4093fd3989f8b647e45f" title="Gets all creatures associated with this creature.">Associates</a> for getting a list of all creatures associated with this creature. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">associateType</td><td>The type of associate to locate.</td></tr>
@@ -5246,6 +5261,51 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
+<a id="a4261fff49f07fc64805145a8125189aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4261fff49f07fc64805145a8125189aa">&#9670;&nbsp;</a></span>SetSkillRank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwCreature.SetSkillRank </td>
+          <td>(</td>
+          <td class="paramtype">Skill&#160;</td>
+          <td class="paramname"><em>skill</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sbyte&#160;</td>
+          <td class="paramname"><em>rank</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the skill ranks for the specified skill on this creature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">skill</td><td>The skill to modify.</td></tr>
+    <tr><td class="paramname">rank</td><td>The new number of skill ranks.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a49372da9435398a7ea31deed9960a18d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a49372da9435398a7ea31deed9960a18d">&#9670;&nbsp;</a></span>SetSpecialAbilityAt()</h2>
 
@@ -5878,6 +5938,30 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div><div class="memdoc">
 
 <p>Gets the arcane spell failure factor for this creature. </p>
+
+</div>
+</div>
+<a id="a0005cd5f66ca4093fd3989f8b647e45f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0005cd5f66ca4093fd3989f8b647e45f">&#9670;&nbsp;</a></span>Associates</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerable&lt;<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&gt; Anvil.API.NwCreature.Associates</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all creatures associated with this creature. </p>
 
 </div>
 </div>
@@ -7743,6 +7827,8 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <li>src/main/Anvil/API/Events/Native/ItemEvents/OnItemInventoryClose.cs</li>
 <li>src/main/Anvil/API/Events/Native/ItemEvents/OnItemInventoryOpen.cs</li>
 <li>src/main/Anvil/API/Events/Native/ItemEvents/OnItemPayToIdentify.cs</li>
+<li>src/main/Anvil/API/Events/Native/ItemEvents/OnItemScrollLearn.cs</li>
+<li>src/main/Anvil/API/Events/Native/ItemEvents/OnItemUnequip.cs</li>
 <li>src/main/Anvil/API/Events/Native/ItemEvents/OnItemUse.cs</li>
 <li>src/main/Anvil/API/Events/Native/ItemEvents/OnItemValidateEquip.cs</li>
 <li>src/main/Anvil/API/Events/Native/ItemEvents/OnItemValidateUse.cs</li>
@@ -7751,6 +7837,7 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <li>src/main/Anvil/API/Events/Native/LevelEvents/OnLevelUpAutomatic.cs</li>
 <li>src/main/Anvil/API/Events/Native/PerceptionEvents/OnDoListenDetection.cs</li>
 <li>src/main/Anvil/API/Events/Native/PerceptionEvents/OnDoSpotDetection.cs</li>
+<li>src/main/Anvil/API/Events/Native/SkillEvents/OnUseSkill.cs</li>
 <li>src/main/Anvil/API/Events/Native/SpellEvents/OnSpellAction.cs</li>
 <li>src/main/Anvil/API/Events/Native/SpellEvents/OnSpellSlotClear.cs</li>
 <li>src/main/Anvil/API/Events/Native/SpellEvents/OnSpellSlotMemorize.cs</li>

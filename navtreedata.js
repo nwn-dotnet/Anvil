@@ -33,17 +33,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnExit.html",
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html#ab6ab6e06f73bd30de67805be35edd6d1",
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html#a743b23e87d73813328dba0a7d5375aa2",
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html",
-"classAnvil_1_1API_1_1JournalEntry.html#addb36d6a1f47cc75c7dd94b83bef8f64",
-"classAnvil_1_1API_1_1NwCreature.html#a76aba5e00598b1a8641583da0599c600",
-"classAnvil_1_1API_1_1NwGameObject.html#a7d5c963cf998bdb4c06a96eb6e5d5965",
-"classAnvil_1_1API_1_1NwObject.html#abef323f5f1eed8bf9581487eed5ef2d9",
-"classAnvil_1_1API_1_1NwStore.html#acd71fa20304c55bd4e5adadd099049f3",
-"classAnvil_1_1API_1_1Talent.html#a4093404980ecc0bf16ca52a29591efc8",
-"classAnvil_1_1Services_1_1WeaponService.html#a018497ef042b34960503c7727032629e"
+"classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html#a3cb8f36af92e959d0078ef782a815de2",
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html",
+"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html",
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html",
+"classAnvil_1_1API_1_1ItemProperty.html#af56db86945d6e495e7685ffed89fdbb5",
+"classAnvil_1_1API_1_1NwCreature.html#a5d2b49bb299d6cb9961df86d29972301",
+"classAnvil_1_1API_1_1NwGameObject.html#a14ce3ca8f63d806ba369e86bf63f410a",
+"classAnvil_1_1API_1_1NwModule.html#afd9c363474aad69cd910ed60a74766d2",
+"classAnvil_1_1API_1_1NwSound.html#a5cb8ca787593996346922c72ff7a05cc",
+"classAnvil_1_1API_1_1SpecialAbility.html#a857fa326e81f0459bc51e164fd89e64c",
+"classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html#a889b98592328fc02fc98a57828d8158f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
