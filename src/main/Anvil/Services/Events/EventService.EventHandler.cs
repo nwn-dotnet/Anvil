@@ -61,7 +61,7 @@ namespace Anvil.Services
           }
           else
           {
-            Log.Error(e, "An exception was thrown while trying to invoke event {Event}", nameof(T));
+            Log.Error(e, "An exception was thrown while trying to invoke event {Event}", typeof(T).Name);
           }
 
           Log.Error(e);
