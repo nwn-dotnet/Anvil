@@ -28,7 +28,7 @@ namespace Anvil.Services
 
       if (!isValid && hasAttribute)
       {
-        Log.Error($"Cannot inject property \"{propertyInfo.GetFullName()}\" as it does not have set/init defined, or is an unsupported property type.");
+        Log.Error("Cannot inject property {Property} as it does not have set/init defined, or is an unsupported property type", propertyInfo.GetFullName());
       }
 
       return isValid && hasAttribute && IsValidPropertyType(setMethod);

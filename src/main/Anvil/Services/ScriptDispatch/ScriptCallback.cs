@@ -61,7 +61,7 @@ namespace Anvil.Services
         case MethodType.Handler:
           if (scriptHandler != null || scriptHandlerWithMetaHandler != null)
           {
-            Log.Warn($"Script Handler {scriptName} is already registered by: \"{method.GetFullName()}\"");
+            Log.Warn("Script Handler {ScriptName} is already registered by {MethodName}", scriptName, method.GetFullName());
             return;
           }
 
@@ -70,7 +70,7 @@ namespace Anvil.Services
         case MethodType.HandlerWithMeta:
           if (scriptHandler != null || scriptHandlerWithMetaHandler != null)
           {
-            Log.Warn($"Script Handler {scriptName} is already registered by: \"{method.GetFullName()}\"");
+            Log.Warn("Script Handler {ScriptName} is already registered by {MethodName}", scriptName, method.GetFullName());
             return;
           }
 
@@ -79,7 +79,7 @@ namespace Anvil.Services
         case MethodType.Conditional:
           if (conditionalHandler != null || conditionalWithMetaHandler != null)
           {
-            Log.Warn($"Conditional Handler {scriptName} is already registered by: \"{method.GetFullName()}\"");
+            Log.Warn("Conditional Handler {ScriptName} is already registered by {MethodName}", scriptName, method.GetFullName());
             return;
           }
 
@@ -88,18 +88,18 @@ namespace Anvil.Services
         case MethodType.ConditionalWithMeta:
           if (conditionalHandler != null || conditionalWithMetaHandler != null)
           {
-            Log.Warn($"Conditional Handler {scriptName} is already registered by: \"{method.GetFullName()}\"");
+            Log.Warn("Conditional Handler {ScriptName} is already registered by {MethodName}", scriptName, method.GetFullName());
             return;
           }
 
           conditionalWithMetaHandler = (Func<CallInfo, bool>)Delegate.CreateDelegate(typeof(Func<CallInfo, bool>), service, method);
           break;
         case MethodType.Invalid:
-          Log.Error($"Script Handler has invalid parameters or return value: {scriptName} -> {method.GetFullName()}");
+          Log.Error("Script Handler has invalid parameters or return value: {ScriptName} -> {MethodName}", scriptName, method.GetFullName());
           return;
       }
 
-      Log.Info($"Registered Script Handler: {scriptName} -> {method.GetFullName()}");
+      Log.Info("Registered Script Handler: {ScriptName} -> {MethodName}", scriptName, method.GetFullName());
     }
 
     private MethodType GetMethodType(MethodInfo method)

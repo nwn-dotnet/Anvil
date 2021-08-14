@@ -166,7 +166,7 @@ namespace Anvil.Services
         }
         catch (Exception e)
         {
-          Log.Error(e, "Failed to load object storage.");
+          Log.Error(e, "Failed to load object storage");
         }
       }
 

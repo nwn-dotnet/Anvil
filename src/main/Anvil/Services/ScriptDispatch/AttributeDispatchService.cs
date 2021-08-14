@@ -44,8 +44,11 @@ namespace Anvil.Services
     {
       if (!scriptName.IsValidScriptName())
       {
-        Log.Warn($"Script Handler {scriptName} - name exceeds character limit ({ScriptConstants.MaxScriptNameSize}) and will be ignored.\n" +
-          $"Method: \"{method.GetFullName()}\"");
+        Log.Warn("Script Handler {ScriptName} - name exceeds character limit ({MaxScriptSize}) and will be ignored\n" +
+          "Method: {Method}",
+          scriptName,
+          ScriptConstants.MaxScriptNameSize,
+          method.GetFullName());
         return;
       }
 
