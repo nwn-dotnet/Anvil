@@ -46,7 +46,7 @@ namespace Anvil.Internal
           signalHandler.OnShutdown();
           break;
         default:
-          Log.Debug($"Unhandled Signal: \"{signal}\"");
+          Log.Debug("Unhandled Signal: {Signal}", signal);
           break;
       }
     }

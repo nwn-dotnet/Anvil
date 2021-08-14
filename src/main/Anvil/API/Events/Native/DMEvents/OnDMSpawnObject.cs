@@ -23,6 +23,8 @@ namespace Anvil.API.Events
     public Vector3 Position { get; internal init; }
 
     public string ResRef { get; internal init; }
+
+    public ObjectTypes ObjectType { get; internal init; }
   }
 
   public sealed class OnDMSpawnObjectAfter : OnDMSpawnObject

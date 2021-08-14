@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
 using Anvil.Internal;
@@ -126,8 +127,8 @@ namespace Anvil.API.Events
           Initiator = initiator.m_pOwner.m_idSelf.ToNwPlayer(),
           Target = target.m_pOwner.m_idSelf.ToNwPlayer(),
           Complete = false,
-          InitiatorItems = new NwItem[0],
-          TargetItems = new NwItem[0],
+          InitiatorItems = ImmutableArray<NwItem>.Empty,
+          TargetItems = ImmutableArray<NwItem>.Empty,
         };
       }
 

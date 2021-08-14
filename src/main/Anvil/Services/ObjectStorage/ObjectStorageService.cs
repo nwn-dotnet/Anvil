@@ -7,7 +7,7 @@ using NWN.Native.API;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ObjectStorageService))]
-  internal sealed unsafe class ObjectStorageService
+  public sealed unsafe class ObjectStorageService
   {
     private static readonly byte* GffFieldNamePtr = "NWNX_POS".GetNullTerminatedString();
 
@@ -145,7 +145,6 @@ namespace Anvil.Services
       CResStruct resStruct = CResStruct.FromPointer(pStruct);
 
       string serialized = GetObjectStorage(uuid.m_parent).Serialize();
-      Log.Info(serialized);
       resGff.WriteFieldCExoString(resStruct, serialized.ToExoString(), GffFieldNamePtr);
 
       saveToGffHook.CallOriginal(pUUID, pRes, pStruct);
@@ -167,7 +166,7 @@ namespace Anvil.Services
         }
         catch (Exception e)
         {
-          Log.Error(e, "Failed to load object storage.");
+          Log.Error(e, "Failed to load object storage");
         }
       }
 

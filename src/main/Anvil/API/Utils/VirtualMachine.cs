@@ -117,7 +117,7 @@ namespace Anvil.API
         int spAfter = PopScriptContext();
         if (spAfter != spBefore)
         {
-          Log.Error($"VM stack is invalid ({spBefore} != {spAfter}) after script context invocation: {action.Method.GetFullName()}");
+          Log.Error("VM stack is invalid ({SpBefore} != {SpAfter}) after script context invocation: {Method}", spBefore, spAfter, action.Method.GetFullName());
         }
       }
     }
