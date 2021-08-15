@@ -122,6 +122,6 @@ Checking in the console or server logs, you should get the following output:
 ## Core Services
 Anvil is bundled with a core set of services that you can depend on in your own plugins and systems.
 
-These services handle game events, task scheduling, and more! Examples of how to use these services can be found in the [Anvil docs](https://nwn-dotnet.github.io/Anvil/classNWN_1_1Services_1_1ServiceBindingAttribute.html#details).
+These services handle game events, task scheduling, and more! Examples of how to use these services can be found in the [Anvil docs](https://nwn-dotnet.github.io/Anvil/classAnvil_1_1Services_1_1ServiceBindingAttribute.html).
 
-You can also find a full list of the services bundled by Anvil [HERE](https://nwn-dotnet.github.io/Anvil/namespaceNWN_1_1Services.html).
+You can also find a full list of the services bundled by Anvil [HERE](https://nwn-dotnet.github.io/Anvil/namespaceAnvil_1_1Services.html).
