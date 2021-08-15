@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Threading;
 using System.Threading.Tasks;
+using Anvil.Services;
+using NLog;
 
 namespace Anvil.API
 {
@@ -13,8 +15,13 @@ namespace Anvil.API
   /// <summary>
   /// Awaiters for running NWN code in an async context.
   /// </summary>
-  public static partial class NwTask
+  public static class NwTask
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    [Inject]
+    public static MainThreadSynchronizationContext MainThreadSynchronizationContext { get; private set; }
+
     /// <summary>
     /// Waits until the specified amount of time has passed.
     /// </summary>
@@ -33,7 +40,7 @@ namespace Anvil.API
     [Pure]
     public static IAwaitable SwitchToMainThread()
     {
-      return MainThreadScriptContext;
+      return MainThreadSynchronizationContext;
     }
 
     /// <summary>
@@ -166,13 +173,18 @@ namespace Anvil.API
 
     private static async Task RunAndAwait(Func<bool> completionSource, CancellationToken? cancellationToken)
     {
-      if (completionSource())
+      try
       {
-        await Task.CompletedTask;
-        return;
+        do
+        {
+          await MainThreadSynchronizationContext;
+        }
+        while (!completionSource() && cancellationToken is not { IsCancellationRequested: true });
       }
-
-      await taskRunner.Schedule(completionSource, cancellationToken);
+      catch (Exception e)
+      {
+        Log.Error(e);
+      }
     }
   }
 }

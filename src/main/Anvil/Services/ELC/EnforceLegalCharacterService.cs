@@ -369,7 +369,7 @@ namespace Anvil.Services
       // We also check class alignment restrictions for new characters only
       for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
       {
-        byte classId = pCreatureStats.m_ClassInfo[nMultiClass].m_nClass;
+        byte classId = pCreatureStats.GetClassInfo(nMultiClass).m_nClass;
         CNWClass pClass = classId < pRules.m_nNumClasses ? classes[classId] : null;
 
         if (pClass == null)

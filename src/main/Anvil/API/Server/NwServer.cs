@@ -174,11 +174,20 @@ namespace Anvil.API
       for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
       {
         CNWSPlayerTURD turd = CNWSPlayerTURD.FromPointer(node.pObject);
-
-        string turdCharacterName = $"{turd.m_lsFirstName.ExtractLocString()} {turd.m_lsLastName.ExtractLocString()}";
-        if (playerName == turd.m_sCommunityName.ToString() || characterName == turdCharacterName)
+        if (turd != null)
         {
-          return node;
+          string turdCharacterName = turd.m_lsFirstName.ExtractLocString();
+          string turdLastName = turd.m_lsLastName.ExtractLocString();
+
+          if (!string.IsNullOrEmpty(turdLastName))
+          {
+            turdCharacterName = string.IsNullOrEmpty(turdCharacterName) ? turdLastName : turdCharacterName + " " + turdLastName;
+          }
+
+          if (turd.m_sCommunityName.ToString() == playerName && characterName == turdCharacterName)
+          {
+            return node;
+          }
         }
       }
 
