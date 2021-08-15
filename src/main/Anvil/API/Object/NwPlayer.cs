@@ -780,7 +780,15 @@ namespace Anvil.API
 
       if (preserveBackup)
       {
-        File.Move(fileName, $"{fileName}.deleted");
+        string backupName = $"{fileName}.deleted";
+        int i = 0;
+
+        while (File.Exists(backupName + i))
+        {
+          i++;
+        }
+
+        File.Move(fileName, backupName + i);
       }
       else
       {
