@@ -29,11 +29,6 @@ namespace Anvil.API
       PlayerId = player.m_nPlayerID;
     }
 
-    internal CNWSPlayerTURD Turd
-    {
-      get => LoginCreature?.Creature.AsNWSPlayerTURD();
-    }
-
     public static implicit operator CNWSPlayer(NwPlayer player)
     {
       return player?.Player;
@@ -754,11 +749,13 @@ namespace Anvil.API
     /// </summary>
     /// <param name="kickMessage">The kick message to show to the player.</param>
     /// <param name="preserveBackup">If true, instead of being deleted it will be renamed to be hidden from the character list, but remain in the vault directory.</param>
-    public void Delete(string kickMessage, bool preserveBackup = true)
+    public async Task Delete(string kickMessage, bool preserveBackup = true)
     {
       string bicName = BicFileName;
       string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
       string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
+      string characterName = LoginCreature.Name;
+      string playerName = PlayerName;
 
       string fileName = $"{serverVault}{playerDir}/{bicName}.bic";
       if (!File.Exists(fileName))
@@ -767,16 +764,18 @@ namespace Anvil.API
         return;
       }
 
-      BootPlayer(kickMessage);
+      await NwTask.NextFrame();
 
-      CExoLinkedListCNWSPlayerTURD turds = NwModule.Instance.Module.m_lstTURDList;
-      for (CExoLinkedListNode node = turds.GetHeadPos(); node != null; node = node.pNext)
+      // Boot the player
+      LowLevel.ServerExoApp.GetNetLayer().DisconnectPlayer(PlayerId, 10392, 1, kickMessage.ToExoString());
+
+      await NwTask.NextFrame();
+
+      // Delete their character's TURD
+      bool turdDeleted = NwServer.Instance.DeletePlayerTURD(playerName, characterName);
+      if (!turdDeleted)
       {
-        if (turds.GetAtPos(node).m_oidPlayer == Turd.m_oidPlayer)
-        {
-          turds.Remove(node);
-          break;
-        }
+        Log.Warn("Could not delete the TURD for deleted character {Character}", characterName);
       }
 
       if (preserveBackup)
@@ -786,24 +785,6 @@ namespace Anvil.API
       else
       {
         File.Delete(fileName);
-      }
-    }
-
-    /// <summary>
-    /// Delete the TURD of the player.
-    /// <para>At times a PC may get stuck in a permanent crash loop when attempting to login. This function allows administrators to delete their Temporary User
-    /// Resource Data where the PC's current location is stored allowing them to log into the starting area.</para>
-    /// </summary>
-    public unsafe void DeleteTURD()
-    {
-      CExoLinkedListInternal turds = NwModule.Instance.Module.m_lstTURDList.m_pcExoLinkedListInternal;
-      for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
-      {
-        if (node.pObject == (void*)Turd.Pointer)
-        {
-          turds.Remove(node);
-          break;
-        }
       }
     }
 
