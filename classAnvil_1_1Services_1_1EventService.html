@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NWN.Managed: Anvil.Services.EventService Class Reference</title>
+<title>Anvil: Anvil.Services.EventService Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">NWN.Managed
+   <div id="projectname">Anvil
    </div>
   </td>
  </tr>
@@ -95,6 +95,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aed02533ef808e885cb918b659cd1b944"><td class="memItemLeft" align="right" valign="top"><a id="aed02533ef808e885cb918b659cd1b944"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>EventService</b> (IEnumerable&lt; <a class="el" href="interfaceAnvil_1_1API_1_1Events_1_1IEventFactory.html">IEventFactory</a> &gt; eventFactories)</td></tr>
 <tr class="separator:aed02533ef808e885cb918b659cd1b944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab7bfeace7c7ece8e467050513e5739a"><td class="memItemLeft" align="right" valign="top"><a id="aab7bfeace7c7ece8e467050513e5739a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearObjectSubscriptions</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> nwObject)</td></tr>
+<tr class="separator:aab7bfeace7c7ece8e467050513e5739a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed3850de5d4778749d89915c6c76045f"><td class="memItemLeft" align="right" valign="top"><a id="aed3850de5d4778749d89915c6c76045f"></a>
+TEvent&#160;</td><td class="memItemRight" valign="bottom"><b>ProcessEvent&lt; TEvent &gt;</b> (TEvent eventData)</td></tr>
+<tr class="separator:aed3850de5d4778749d89915c6c76045f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21e0bfb9e8a7af77649d2a11a3094eed"><td class="memItemLeft" align="right" valign="top"><a id="a21e0bfb9e8a7af77649d2a11a3094eed"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Subscribe&lt; TEvent, TFactory &gt;</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> nwObject, Action&lt; TEvent &gt; handler)</td></tr>
 <tr class="separator:a21e0bfb9e8a7af77649d2a11a3094eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,12 +119,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Unsubscribe&lt; TEven
 <tr class="memitem:a1be2aac920d0bc149b268b03b120317e"><td class="memItemLeft" align="right" valign="top"><a id="a1be2aac920d0bc149b268b03b120317e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UnsubscribeAll&lt; TEvent, TFactory &gt;</b> (Action&lt; TEvent &gt; handler)</td></tr>
 <tr class="separator:a1be2aac920d0bc149b268b03b120317e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab7bfeace7c7ece8e467050513e5739a"><td class="memItemLeft" align="right" valign="top"><a id="aab7bfeace7c7ece8e467050513e5739a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearObjectSubscriptions</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> nwObject)</td></tr>
-<tr class="separator:aab7bfeace7c7ece8e467050513e5739a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed3850de5d4778749d89915c6c76045f"><td class="memItemLeft" align="right" valign="top"><a id="aed3850de5d4778749d89915c6c76045f"></a>
-TEvent&#160;</td><td class="memItemRight" valign="bottom"><b>ProcessEvent&lt; TEvent &gt;</b> (TEvent eventData)</td></tr>
-<tr class="separator:aed3850de5d4778749d89915c6c76045f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/main/Anvil/Services/Events/EventService.cs</li>

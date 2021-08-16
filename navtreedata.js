@@ -24,9 +24,8 @@
 */
 var NAVTREE =
 [
-  [ "NWN.Managed", "index.html", [
-    [ "Anvil", "index.html", null ],
-    [ "API", "annotated.html", "annotated" ]
+  [ "Anvil", "index.html", [
+    [ "API Reference", "annotated.html", "annotated" ]
   ] ]
 ];
 
@@ -38,12 +37,12 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html",
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html",
 "classAnvil_1_1API_1_1ItemProperty.html#af56db86945d6e495e7685ffed89fdbb5",
-"classAnvil_1_1API_1_1NwCreature.html#a5d2b49bb299d6cb9961df86d29972301",
-"classAnvil_1_1API_1_1NwGameObject.html#a14ce3ca8f63d806ba369e86bf63f410a",
-"classAnvil_1_1API_1_1NwModule.html#afd9c363474aad69cd910ed60a74766d2",
-"classAnvil_1_1API_1_1NwSound.html#a5cb8ca787593996346922c72ff7a05cc",
-"classAnvil_1_1API_1_1SpecialAbility.html#a857fa326e81f0459bc51e164fd89e64c",
-"classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html#a889b98592328fc02fc98a57828d8158f"
+"classAnvil_1_1API_1_1NwCreature.html#a55d7579dd9fadb0402c4e5ba2c45d23c",
+"classAnvil_1_1API_1_1NwGameObject.html#a06a3e8fd3b0f7e310bb94de8b7f1da5d",
+"classAnvil_1_1API_1_1NwModule.html#af8ed91a9b71d36b17fc24d379c5cebac",
+"classAnvil_1_1API_1_1NwSound.html#a31247371d703b62141176a2a7c57858a",
+"classAnvil_1_1API_1_1SpecialAbility.html#af26f49bc561df80d3743883b720d3269",
+"classAnvil_1_1Services_1_1OnELCSpellValidationFailure.html#a69bf78176ea17bf83c8e8ea1d883998b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

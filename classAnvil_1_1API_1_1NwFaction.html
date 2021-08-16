@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NWN.Managed: Anvil.API.NwFaction Class Reference</title>
+<title>Anvil: Anvil.API.NwFaction Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">NWN.Managed
+   <div id="projectname">Anvil
    </div>
   </td>
  </tr>
@@ -121,10 +121,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae2f775a9501d03284782448e3acb6c91"><td class="memItemLeft" align="right" valign="top"><a id="ae2f775a9501d03284782448e3acb6c91"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>NwFaction</b> (int factionId)</td></tr>
 <tr class="separator:ae2f775a9501d03284782448e3acb6c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51c451705a996a80455ab52a9066dfa0"><td class="memItemLeft" align="right" valign="top">unsafe List&lt; <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a51c451705a996a80455ab52a9066dfa0">GetMembers</a> ()</td></tr>
-<tr class="memdesc:a51c451705a996a80455ab52a9066dfa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all creatures that are members of this faction.<br  />
-  <a href="classAnvil_1_1API_1_1NwFaction.html#a51c451705a996a80455ab52a9066dfa0">More...</a><br /></td></tr>
-<tr class="separator:a51c451705a996a80455ab52a9066dfa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d39c3ce278c0b13f7171bed3de7e3ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a1d39c3ce278c0b13f7171bed3de7e3ec">AdjustReputation</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> creature, int adjustment)</td></tr>
+<tr class="memdesc:a1d39c3ce278c0b13f7171bed3de7e3ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjusts how this faction feels about the specified creature.  <a href="classAnvil_1_1API_1_1NwFaction.html#a1d39c3ce278c0b13f7171bed3de7e3ec">More...</a><br /></td></tr>
+<tr class="separator:a1d39c3ce278c0b13f7171bed3de7e3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d35a5c9297593334457a4c5b6fbc41"><td class="memItemLeft" align="right" valign="top"><a id="ad0d35a5c9297593334457a4c5b6fbc41"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (<a class="el" href="classAnvil_1_1API_1_1NwFaction.html">NwFaction</a> other)</td></tr>
+<tr class="separator:ad0d35a5c9297593334457a4c5b6fbc41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab886c794eac6f12a5636ec2442b29fa"><td class="memItemLeft" align="right" valign="top"><a id="aab886c794eac6f12a5636ec2442b29fa"></a>
+override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (object obj)</td></tr>
+<tr class="separator:aab886c794eac6f12a5636ec2442b29fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a925f5b211a6b138f7baedad000ee87d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a925f5b211a6b138f7baedad000ee87d0">GetAverageReputation</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:a925f5b211a6b138f7baedad000ee87d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an integer between 0 and 100 (inclusive) that represents how this faction feels about the specified target.<br  />
  -&gt; 0-10 means this faction is hostile to the target<br  />
@@ -135,49 +140,48 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6b16e3e56a44c126558be2afe45e8e12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a6b16e3e56a44c126558be2afe45e8e12">GetBestACMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
 <tr class="memdesc:a6b16e3e56a44c126558be2afe45e8e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the member with the highest AC in this faction.  <a href="classAnvil_1_1API_1_1NwFaction.html#a6b16e3e56a44c126558be2afe45e8e12">More...</a><br /></td></tr>
 <tr class="separator:a6b16e3e56a44c126558be2afe45e8e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab72a1e5b6c13c8ee4dccbfc9ce3d0eea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#ab72a1e5b6c13c8ee4dccbfc9ce3d0eea">GetWorstACMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
-<tr class="memdesc:ab72a1e5b6c13c8ee4dccbfc9ce3d0eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the member with the lowest AC in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#ab72a1e5b6c13c8ee4dccbfc9ce3d0eea">More...</a><br /></td></tr>
-<tr class="separator:ab72a1e5b6c13c8ee4dccbfc9ce3d0eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad761eebe9cffe43307f4635001d11d91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#ad761eebe9cffe43307f4635001d11d91">GetWeakestMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
-<tr class="memdesc:ad761eebe9cffe43307f4635001d11d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the weakest member in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#ad761eebe9cffe43307f4635001d11d91">More...</a><br /></td></tr>
-<tr class="separator:ad761eebe9cffe43307f4635001d11d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a094c55ef384bc9e67c5ad35ab17d47ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a094c55ef384bc9e67c5ad35ab17d47ad">GetStrongestMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
-<tr class="memdesc:a094c55ef384bc9e67c5ad35ab17d47ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the strongest member in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#a094c55ef384bc9e67c5ad35ab17d47ad">More...</a><br /></td></tr>
-<tr class="separator:a094c55ef384bc9e67c5ad35ab17d47ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c215583753b103c98cd4389a1c027ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a6c215583753b103c98cd4389a1c027ef">GetMostDamagedMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
-<tr class="memdesc:a6c215583753b103c98cd4389a1c027ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the most damaged member in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#a6c215583753b103c98cd4389a1c027ef">More...</a><br /></td></tr>
-<tr class="separator:a6c215583753b103c98cd4389a1c027ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b34008e6f1028e2b07f8a2abd5be425"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a5b34008e6f1028e2b07f8a2abd5be425">GetLeastDamagedMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
-<tr class="memdesc:a5b34008e6f1028e2b07f8a2abd5be425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the least damaged member in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#a5b34008e6f1028e2b07f8a2abd5be425">More...</a><br /></td></tr>
-<tr class="separator:a5b34008e6f1028e2b07f8a2abd5be425"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d39c3ce278c0b13f7171bed3de7e3ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a1d39c3ce278c0b13f7171bed3de7e3ec">AdjustReputation</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> creature, int adjustment)</td></tr>
-<tr class="memdesc:a1d39c3ce278c0b13f7171bed3de7e3ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjusts how this faction feels about the specified creature.  <a href="classAnvil_1_1API_1_1NwFaction.html#a1d39c3ce278c0b13f7171bed3de7e3ec">More...</a><br /></td></tr>
-<tr class="separator:a1d39c3ce278c0b13f7171bed3de7e3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0d35a5c9297593334457a4c5b6fbc41"><td class="memItemLeft" align="right" valign="top"><a id="ad0d35a5c9297593334457a4c5b6fbc41"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (<a class="el" href="classAnvil_1_1API_1_1NwFaction.html">NwFaction</a> other)</td></tr>
-<tr class="separator:ad0d35a5c9297593334457a4c5b6fbc41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab886c794eac6f12a5636ec2442b29fa"><td class="memItemLeft" align="right" valign="top"><a id="aab886c794eac6f12a5636ec2442b29fa"></a>
-override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (object obj)</td></tr>
-<tr class="separator:aab886c794eac6f12a5636ec2442b29fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c9514f54302e9cc4fd45e1700fef851"><td class="memItemLeft" align="right" valign="top"><a id="a5c9514f54302e9cc4fd45e1700fef851"></a>
 override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</b> ()</td></tr>
 <tr class="separator:a5c9514f54302e9cc4fd45e1700fef851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b34008e6f1028e2b07f8a2abd5be425"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a5b34008e6f1028e2b07f8a2abd5be425">GetLeastDamagedMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
+<tr class="memdesc:a5b34008e6f1028e2b07f8a2abd5be425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the least damaged member in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#a5b34008e6f1028e2b07f8a2abd5be425">More...</a><br /></td></tr>
+<tr class="separator:a5b34008e6f1028e2b07f8a2abd5be425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51c451705a996a80455ab52a9066dfa0"><td class="memItemLeft" align="right" valign="top">unsafe List&lt; <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a51c451705a996a80455ab52a9066dfa0">GetMembers</a> ()</td></tr>
+<tr class="memdesc:a51c451705a996a80455ab52a9066dfa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all creatures that are members of this faction.<br  />
+  <a href="classAnvil_1_1API_1_1NwFaction.html#a51c451705a996a80455ab52a9066dfa0">More...</a><br /></td></tr>
+<tr class="separator:a51c451705a996a80455ab52a9066dfa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c215583753b103c98cd4389a1c027ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a6c215583753b103c98cd4389a1c027ef">GetMostDamagedMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
+<tr class="memdesc:a6c215583753b103c98cd4389a1c027ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the most damaged member in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#a6c215583753b103c98cd4389a1c027ef">More...</a><br /></td></tr>
+<tr class="separator:a6c215583753b103c98cd4389a1c027ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a094c55ef384bc9e67c5ad35ab17d47ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a094c55ef384bc9e67c5ad35ab17d47ad">GetStrongestMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
+<tr class="memdesc:a094c55ef384bc9e67c5ad35ab17d47ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the strongest member in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#a094c55ef384bc9e67c5ad35ab17d47ad">More...</a><br /></td></tr>
+<tr class="separator:a094c55ef384bc9e67c5ad35ab17d47ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad761eebe9cffe43307f4635001d11d91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#ad761eebe9cffe43307f4635001d11d91">GetWeakestMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
+<tr class="memdesc:ad761eebe9cffe43307f4635001d11d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the weakest member in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#ad761eebe9cffe43307f4635001d11d91">More...</a><br /></td></tr>
+<tr class="separator:ad761eebe9cffe43307f4635001d11d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab72a1e5b6c13c8ee4dccbfc9ce3d0eea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#ab72a1e5b6c13c8ee4dccbfc9ce3d0eea">GetWorstACMember</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> referenceCreature=null, bool visible=false)</td></tr>
+<tr class="memdesc:ab72a1e5b6c13c8ee4dccbfc9ce3d0eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the member with the lowest AC in this faction that is visible from the specified object.  <a href="classAnvil_1_1API_1_1NwFaction.html#ab72a1e5b6c13c8ee4dccbfc9ce3d0eea">More...</a><br /></td></tr>
+<tr class="separator:ab72a1e5b6c13c8ee4dccbfc9ce3d0eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac58e0b9bba0ac7e1aab6e2c2aa43ea8b"><td class="memItemLeft" align="right" valign="top"><a id="ac58e0b9bba0ac7e1aab6e2c2aa43ea8b"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classAnvil_1_1API_1_1NwFaction.html">NwFaction</a> left, <a class="el" href="classAnvil_1_1API_1_1NwFaction.html">NwFaction</a> right)</td></tr>
-<tr class="separator:ac58e0b9bba0ac7e1aab6e2c2aa43ea8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab67b35d0f912ae826695d0c88308d872"><td class="memItemLeft" align="right" valign="top"><a id="ab67b35d0f912ae826695d0c88308d872"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (<a class="el" href="classAnvil_1_1API_1_1NwFaction.html">NwFaction</a> left, <a class="el" href="classAnvil_1_1API_1_1NwFaction.html">NwFaction</a> right)</td></tr>
 <tr class="separator:ab67b35d0f912ae826695d0c88308d872"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac58e0b9bba0ac7e1aab6e2c2aa43ea8b"><td class="memItemLeft" align="right" valign="top"><a id="ac58e0b9bba0ac7e1aab6e2c2aa43ea8b"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classAnvil_1_1API_1_1NwFaction.html">NwFaction</a> left, <a class="el" href="classAnvil_1_1API_1_1NwFaction.html">NwFaction</a> right)</td></tr>
+<tr class="separator:ac58e0b9bba0ac7e1aab6e2c2aa43ea8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a4c5b43468416d3e3b7437391798457e2"><td class="memItemLeft" align="right" valign="top">ClassType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a4c5b43468416d3e3b7437391798457e2">MostFrequentClass</a><code> [get]</code></td></tr>
-<tr class="memdesc:a4c5b43468416d3e3b7437391798457e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the most common type of class among the members of this faction/party.<br  />
-  <a href="classAnvil_1_1API_1_1NwFaction.html#a4c5b43468416d3e3b7437391798457e2">More...</a><br /></td></tr>
-<tr class="separator:a4c5b43468416d3e3b7437391798457e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe641ed2f99573cfd5bdf68899c39f8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#abe641ed2f99573cfd5bdf68899c39f8a">AverageGoodEvilAlignment</a><code> [get]</code></td></tr>
+<tr class="memdesc:abe641ed2f99573cfd5bdf68899c39f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the average Good/Evil alignment value of members in this faction.<br  />
+  <a href="classAnvil_1_1API_1_1NwFaction.html#abe641ed2f99573cfd5bdf68899c39f8a">More...</a><br /></td></tr>
+<tr class="separator:abe641ed2f99573cfd5bdf68899c39f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3678cd41ed3cc3fd1fd51116c20c745a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a3678cd41ed3cc3fd1fd51116c20c745a">AverageLawChaosAlignment</a><code> [get]</code></td></tr>
+<tr class="memdesc:a3678cd41ed3cc3fd1fd51116c20c745a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the average Law/Chaos alignment value of members in this faction.<br  />
+  <a href="classAnvil_1_1API_1_1NwFaction.html#a3678cd41ed3cc3fd1fd51116c20c745a">More...</a><br /></td></tr>
+<tr class="separator:a3678cd41ed3cc3fd1fd51116c20c745a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ad383d4e6a0918b042e5c8c6a6915c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a9ad383d4e6a0918b042e5c8c6a6915c5">AverageLevel</a><code> [get]</code></td></tr>
 <tr class="memdesc:a9ad383d4e6a0918b042e5c8c6a6915c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the average level of members in this faction.<br  />
   <a href="classAnvil_1_1API_1_1NwFaction.html#a9ad383d4e6a0918b042e5c8c6a6915c5">More...</a><br /></td></tr>
@@ -190,18 +194,14 @@ Properties</h2></td></tr>
 <tr class="memdesc:ae19e4855ef59abc663cc3918d5796367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total amount of gold held by all members of this party.<br  />
   <a href="classAnvil_1_1API_1_1NwFaction.html#ae19e4855ef59abc663cc3918d5796367">More...</a><br /></td></tr>
 <tr class="separator:ae19e4855ef59abc663cc3918d5796367"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe641ed2f99573cfd5bdf68899c39f8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#abe641ed2f99573cfd5bdf68899c39f8a">AverageGoodEvilAlignment</a><code> [get]</code></td></tr>
-<tr class="memdesc:abe641ed2f99573cfd5bdf68899c39f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the average Good/Evil alignment value of members in this faction.<br  />
-  <a href="classAnvil_1_1API_1_1NwFaction.html#abe641ed2f99573cfd5bdf68899c39f8a">More...</a><br /></td></tr>
-<tr class="separator:abe641ed2f99573cfd5bdf68899c39f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3678cd41ed3cc3fd1fd51116c20c745a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a3678cd41ed3cc3fd1fd51116c20c745a">AverageLawChaosAlignment</a><code> [get]</code></td></tr>
-<tr class="memdesc:a3678cd41ed3cc3fd1fd51116c20c745a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the average Law/Chaos alignment value of members in this faction.<br  />
-  <a href="classAnvil_1_1API_1_1NwFaction.html#a3678cd41ed3cc3fd1fd51116c20c745a">More...</a><br /></td></tr>
-<tr class="separator:a3678cd41ed3cc3fd1fd51116c20c745a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14009ae28b0861480b1cefa855e46679"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a14009ae28b0861480b1cefa855e46679">Leader</a><code> [get]</code></td></tr>
 <tr class="memdesc:a14009ae28b0861480b1cefa855e46679"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the leader of this player faction (party).<br  />
   <a href="classAnvil_1_1API_1_1NwFaction.html#a14009ae28b0861480b1cefa855e46679">More...</a><br /></td></tr>
 <tr class="separator:a14009ae28b0861480b1cefa855e46679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c5b43468416d3e3b7437391798457e2"><td class="memItemLeft" align="right" valign="top">ClassType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwFaction.html#a4c5b43468416d3e3b7437391798457e2">MostFrequentClass</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4c5b43468416d3e3b7437391798457e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the most common type of class among the members of this faction/party.<br  />
+  <a href="classAnvil_1_1API_1_1NwFaction.html#a4c5b43468416d3e3b7437391798457e2">More...</a><br /></td></tr>
+<tr class="separator:a4c5b43468416d3e3b7437391798457e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The faction info of a Creature/Player/GameObject. </p>

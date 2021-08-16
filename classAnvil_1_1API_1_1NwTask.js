@@ -1,6 +1,5 @@
 var classAnvil_1_1API_1_1NwTask =
 [
-    [ "SyncContext", "classAnvil_1_1API_1_1NwTask_1_1SyncContext.html", "classAnvil_1_1API_1_1NwTask_1_1SyncContext" ],
     [ "Delay", "classAnvil_1_1API_1_1NwTask.html#acd4136685843ef7babb804889a0b0078", null ],
     [ "DelayFrame", "classAnvil_1_1API_1_1NwTask.html#a66aaee968dcabd97171fdd69930c2e46", null ],
     [ "NextFrame", "classAnvil_1_1API_1_1NwTask.html#a1ec8beac2031f0c3aeaf7f1fb75a9fd2", null ],
@@ -17,5 +16,5 @@ var classAnvil_1_1API_1_1NwTask =
     [ "WhenAny", "classAnvil_1_1API_1_1NwTask.html#ae7bada259cef51d40b46ea22fb37e376", null ],
     [ "WhenAny< TResult >", "classAnvil_1_1API_1_1NwTask.html#a9de8b30b8af6dbd8d27721a5dd345e64", null ],
     [ "WhenAny< TResult >", "classAnvil_1_1API_1_1NwTask.html#a302200a9a77b7d7c88fe05804ca006f5", null ],
-    [ "MainThreadScriptContext", "classAnvil_1_1API_1_1NwTask.html#af43799ff0024f5982937e9899d5f3100", null ]
+    [ "MainThreadSynchronizationContext", "classAnvil_1_1API_1_1NwTask.html#a73ad40e567b42dea3deed73a12cf03f4", null ]
 ];

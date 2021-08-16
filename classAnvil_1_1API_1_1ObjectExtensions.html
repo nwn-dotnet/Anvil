@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NWN.Managed: Anvil.API.ObjectExtensions Class Reference</title>
+<title>Anvil: Anvil.API.ObjectExtensions Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">NWN.Managed
+   <div id="projectname">Anvil
    </div>
   </td>
  </tr>
@@ -91,6 +91,11 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1ObjectExtensions.
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ac8252d42bf419f85cdfc7497eb94aa01"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ObjectExtensions.html#ac8252d42bf419f85cdfc7497eb94aa01">IsLoginPlayerCharacter</a> ([CanBeNull] this <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> gameObject, out <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> player)</td></tr>
+<tr class="memdesc:ac8252d42bf419f85cdfc7497eb94aa01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this object is a player character/DM avatar.<br  />
+ If this object is not a <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>, this returns false.<br  />
+ If this creature is a NPC or familiar, regardless of possession, this will return false.  <a href="classAnvil_1_1API_1_1ObjectExtensions.html#ac8252d42bf419f85cdfc7497eb94aa01">More...</a><br /></td></tr>
+<tr class="separator:ac8252d42bf419f85cdfc7497eb94aa01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a689927c7bc9dbc26bea448a43b40b689"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ObjectExtensions.html#a689927c7bc9dbc26bea448a43b40b689">IsPlayerControlled</a> ([CanBeNull] this <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> gameObject, out <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> player)</td></tr>
 <tr class="memdesc:a689927c7bc9dbc26bea448a43b40b689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this object is a <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> currently being controlled by a player/DM.<br  />
  If this creature is a possessed familiar or is DM possessed, this returns true.<br  />
@@ -98,11 +103,6 @@ Static Public Member Functions</h2></td></tr>
  If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns false.<br  />
  If no player is controlling this creature, this returns false.  <a href="classAnvil_1_1API_1_1ObjectExtensions.html#a689927c7bc9dbc26bea448a43b40b689">More...</a><br /></td></tr>
 <tr class="separator:a689927c7bc9dbc26bea448a43b40b689"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8252d42bf419f85cdfc7497eb94aa01"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ObjectExtensions.html#ac8252d42bf419f85cdfc7497eb94aa01">IsLoginPlayerCharacter</a> ([CanBeNull] this <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> gameObject, out <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> player)</td></tr>
-<tr class="memdesc:ac8252d42bf419f85cdfc7497eb94aa01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this object is a player character/DM avatar.<br  />
- If this object is not a <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>, this returns false.<br  />
- If this creature is a NPC or familiar, regardless of possession, this will return false.  <a href="classAnvil_1_1API_1_1ObjectExtensions.html#ac8252d42bf419f85cdfc7497eb94aa01">More...</a><br /></td></tr>
-<tr class="separator:ac8252d42bf419f85cdfc7497eb94aa01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac8252d42bf419f85cdfc7497eb94aa01"></a>

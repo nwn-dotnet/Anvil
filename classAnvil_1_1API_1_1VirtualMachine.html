@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NWN.Managed: Anvil.API.VirtualMachine Class Reference</title>
+<title>Anvil: Anvil.API.VirtualMachine Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">NWN.Managed
+   <div id="projectname">Anvil
    </div>
   </td>
  </tr>
@@ -95,10 +95,6 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1VirtualMachine.ht
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7c4d54c92e644adca588d4d2a82ca0ec"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#a7c4d54c92e644adca588d4d2a82ca0ec">GetCurrentScriptName</a> (int depth=0)</td></tr>
-<tr class="memdesc:a7c4d54c92e644adca588d4d2a82ca0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the currently executing script.<br  />
- If depth is &gt; 0, it will return the name of the script that called this one via ExecuteScript().  <a href="classAnvil_1_1API_1_1VirtualMachine.html#a7c4d54c92e644adca588d4d2a82ca0ec">More...</a><br /></td></tr>
-<tr class="separator:a7c4d54c92e644adca588d4d2a82ca0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c51de5948e0998311cf079c6a3a6c2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#a7c51de5948e0998311cf079c6a3a6c2e">Execute</a> (string scriptName, <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> target, params(string ParamName, string ParamValue)[] scriptParams)</td></tr>
 <tr class="memdesc:a7c51de5948e0998311cf079c6a3a6c2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the specified <a class="el" href="namespaceNWN.html">NWN</a> script. If scriptName does not specify a compiled script, nothing happens.  <a href="classAnvil_1_1API_1_1VirtualMachine.html#a7c51de5948e0998311cf079c6a3a6c2e">More...</a><br /></td></tr>
 <tr class="separator:a7c51de5948e0998311cf079c6a3a6c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,18 +104,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac921bf48b5974a4dff4274760089d86d"><td class="memItemLeft" align="right" valign="top"><a id="ac921bf48b5974a4dff4274760089d86d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext</b> (System.Action action, uint objectId=NwObject.Invalid)</td></tr>
 <tr class="separator:ac921bf48b5974a4dff4274760089d86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c4d54c92e644adca588d4d2a82ca0ec"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#a7c4d54c92e644adca588d4d2a82ca0ec">GetCurrentScriptName</a> (int depth=0)</td></tr>
+<tr class="memdesc:a7c4d54c92e644adca588d4d2a82ca0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the currently executing script.<br  />
+ If depth is &gt; 0, it will return the name of the script that called this one via ExecuteScript().  <a href="classAnvil_1_1API_1_1VirtualMachine.html#a7c4d54c92e644adca588d4d2a82ca0ec">More...</a><br /></td></tr>
+<tr class="separator:a7c4d54c92e644adca588d4d2a82ca0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a08d4bbe159d4427793ca62be2d415285"><td class="memItemLeft" align="right" valign="top"><a id="a08d4bbe159d4427793ca62be2d415285"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>InstructionsExecuted</b><code> [get, set]</code></td></tr>
-<tr class="separator:a08d4bbe159d4427793ca62be2d415285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82f5bb9cf40cf1f2713f23944aa4b9d8"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#a82f5bb9cf40cf1f2713f23944aa4b9d8">InstructionLimit</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a82f5bb9cf40cf1f2713f23944aa4b9d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the instruction limit for the NWScript VM.  <a href="classAnvil_1_1API_1_1VirtualMachine.html#a82f5bb9cf40cf1f2713f23944aa4b9d8">More...</a><br /></td></tr>
-<tr class="separator:a82f5bb9cf40cf1f2713f23944aa4b9d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fe2f7a93ebac48b9a924155e16e3d35"><td class="memItemLeft" align="right" valign="top">EventScriptType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#a6fe2f7a93ebac48b9a924155e16e3d35">CurrentRunningEvent</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a6fe2f7a93ebac48b9a924155e16e3d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the current running script event.  <a href="classAnvil_1_1API_1_1VirtualMachine.html#a6fe2f7a93ebac48b9a924155e16e3d35">More...</a><br /></td></tr>
 <tr class="separator:a6fe2f7a93ebac48b9a924155e16e3d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82f5bb9cf40cf1f2713f23944aa4b9d8"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#a82f5bb9cf40cf1f2713f23944aa4b9d8">InstructionLimit</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a82f5bb9cf40cf1f2713f23944aa4b9d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the instruction limit for the NWScript VM.  <a href="classAnvil_1_1API_1_1VirtualMachine.html#a82f5bb9cf40cf1f2713f23944aa4b9d8">More...</a><br /></td></tr>
+<tr class="separator:a82f5bb9cf40cf1f2713f23944aa4b9d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d4bbe159d4427793ca62be2d415285"><td class="memItemLeft" align="right" valign="top"><a id="a08d4bbe159d4427793ca62be2d415285"></a>
+uint&#160;</td><td class="memItemRight" valign="bottom"><b>InstructionsExecuted</b><code> [get, set]</code></td></tr>
+<tr class="separator:a08d4bbe159d4427793ca62be2d415285"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1303fedee500bd08162154d482b54820"><td class="memItemLeft" align="right" valign="top"><a id="a1303fedee500bd08162154d482b54820"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInScriptContext</b><code> [get]</code></td></tr>
 <tr class="separator:a1303fedee500bd08162154d482b54820"><td class="memSeparator" colspan="2">&#160;</td></tr>

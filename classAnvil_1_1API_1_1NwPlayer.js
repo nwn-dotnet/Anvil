@@ -10,8 +10,7 @@ var classAnvil_1_1API_1_1NwPlayer =
     [ "BootPlayer", "classAnvil_1_1API_1_1NwPlayer.html#adfecd0ff995fbe1b040e3f0bae1eb3e5", null ],
     [ "ClearTextureOverride", "classAnvil_1_1API_1_1NwPlayer.html#a4216166616a7f794bd4950476ac2027a", null ],
     [ "ClearTlkOverride", "classAnvil_1_1API_1_1NwPlayer.html#a9661a262d6d36503e365e6a1483c7861", null ],
-    [ "Delete", "classAnvil_1_1API_1_1NwPlayer.html#acb8b7fceda8992f8b612497c2472156f", null ],
-    [ "DeleteTURD", "classAnvil_1_1API_1_1NwPlayer.html#a94c1e012c566e842db622bb8eca6240a", null ],
+    [ "Delete", "classAnvil_1_1API_1_1NwPlayer.html#a623e6ad1acb24b7b5afac64824892e18", null ],
     [ "DestroySQLDatabase", "classAnvil_1_1API_1_1NwPlayer.html#a3940b04199475418ba807e10955ed7ce", null ],
     [ "DisplayFloatingTextStringOnCreature", "classAnvil_1_1API_1_1NwPlayer.html#a5754ed242c8ebfd2d3b23fa73da9b9bb", null ],
     [ "EnterCutsceneMode", "classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8", null ],
@@ -140,6 +139,5 @@ var classAnvil_1_1API_1_1NwPlayer =
     [ "OnServerSendArea", "classAnvil_1_1API_1_1NwPlayer.html#a0f26747b789a98c0481696f736e8bed1", null ],
     [ "PartyMembers", "classAnvil_1_1API_1_1NwPlayer.html#ad86a51433be22500b193138c09133737", null ],
     [ "PlayerName", "classAnvil_1_1API_1_1NwPlayer.html#a93b93804b55586c0adf394e91f7e0a11", null ],
-    [ "SpawnLocation", "classAnvil_1_1API_1_1NwPlayer.html#a4f31d8c4a31eaa1e2837b45bddd9cc9c", null ],
-    [ "Turd", "classAnvil_1_1API_1_1NwPlayer.html#adff3565a5b4876c72cea3035b7ec8fc2", null ]
+    [ "SpawnLocation", "classAnvil_1_1API_1_1NwPlayer.html#a4f31d8c4a31eaa1e2837b45bddd9cc9c", null ]
 ];

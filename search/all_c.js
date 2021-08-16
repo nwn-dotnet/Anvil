@@ -1,12 +1,13 @@
 var searchData=
 [
+  ['mainthreadsynchronizationcontext_664',['MainThreadSynchronizationContext',['../classAnvil_1_1API_1_1MainThreadSynchronizationContext.html',1,'Anvil::API']]],
   ['master_665',['Master',['../classAnvil_1_1API_1_1NwCreature.html#a1bc32d806a4729c2c3a0760a7e6c4ad9',1,'Anvil::API::NwCreature']]],
   ['maxhenchmen_666',['MaxHenchmen',['../classAnvil_1_1API_1_1NwModule.html#a266fa325dec2f20fc24faa618e7629d8',1,'Anvil::API::NwModule']]],
   ['maxhp_667',['MaxHP',['../classAnvil_1_1API_1_1NwGameObject.html#a59956fc894fb082f038616beac3653ea',1,'Anvil::API::NwGameObject']]],
   ['maxrangedattackdistanceoverride_668',['MaxRangedAttackDistanceOverride',['../structAnvil_1_1Services_1_1MaxRangedAttackDistanceOverride.html',1,'Anvil::Services']]],
   ['maxspawns_669',['MaxSpawns',['../classAnvil_1_1API_1_1NwEncounter.html#a02087794f25219aaa05dd2569f34a023',1,'Anvil::API::NwEncounter']]],
   ['memorizedspellslot_670',['MemorizedSpellSlot',['../classAnvil_1_1API_1_1MemorizedSpellSlot.html',1,'Anvil::API']]],
-  ['message_671',['Message',['../classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#ad28917b0c2ac54ce82e34320cfef2c29',1,'Anvil.API.Events.OnChatMessageSend.Message()'],['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a77da2740f4e457423133e0a8b90205a7',1,'Anvil.API.Events.ModuleEvents.OnPlayerChat.Message()']]],
+  ['message_671',['Message',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a77da2740f4e457423133e0a8b90205a7',1,'Anvil.API.Events.ModuleEvents.OnPlayerChat.Message()'],['../classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#ad28917b0c2ac54ce82e34320cfef2c29',1,'Anvil.API.Events.OnChatMessageSend.Message()']]],
   ['metamagicfeat_672',['MetaMagicFeat',['../classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a79a7b0a1db9f61547fcbc1ff40d662e3',1,'Anvil::API::Events::SpellEvents::OnSpellCast']]],
   ['meterstofeet_673',['MetersToFeet',['../classAnvil_1_1API_1_1NwMath.html#a9d71b0ea8ed3fba3542cf098e9ea6f9d',1,'Anvil::API::NwMath']]],
   ['meterstoyards_674',['MetersToYards',['../classAnvil_1_1API_1_1NwMath.html#a99384e7bd4e63bd5e4a7950ec2b80e4a',1,'Anvil::API::NwMath']]],

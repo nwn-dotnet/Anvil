@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NWN.Managed: Anvil.API.NwPlayer Class Reference</title>
+<title>Anvil: Anvil.API.NwPlayer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">NWN.Managed
+   <div id="projectname">Anvil
    </div>
   </td>
  </tr>
@@ -115,30 +115,105 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NwPlayer.html',''
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a884e322cf86acd7c6239dd5474bef7d0"><td class="memItemLeft" align="right" valign="top"><a id="a884e322cf86acd7c6239dd5474bef7d0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> other)</td></tr>
-<tr class="separator:a884e322cf86acd7c6239dd5474bef7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e33540560fa7a15469cc8971e2b68ca"><td class="memItemLeft" align="right" valign="top"><a id="a0e33540560fa7a15469cc8971e2b68ca"></a>
-override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (object obj)</td></tr>
-<tr class="separator:a0e33540560fa7a15469cc8971e2b68ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7538a83d3b49e3edcc73d6734a2e190"><td class="memItemLeft" align="right" valign="top"><a id="ab7538a83d3b49e3edcc73d6734a2e190"></a>
-override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</b> ()</td></tr>
-<tr class="separator:ab7538a83d3b49e3edcc73d6734a2e190"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adfecd0ff995fbe1b040e3f0bae1eb3e5">BootPlayer</a> (string reason=&quot;&quot;)</td></tr>
-<tr class="memdesc:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boots the player from the server.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adfecd0ff995fbe1b040e3f0bae1eb3e5">More...</a><br /></td></tr>
-<tr class="separator:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e736941050ef579653e3c7fc568a2e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2e736941050ef579653e3c7fc568a2e5">AddToParty</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> partyLeader)</td></tr>
-<tr class="memdesc:a2e736941050ef579653e3c7fc568a2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the player to the specified party leader's party.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a2e736941050ef579653e3c7fc568a2e5">More...</a><br /></td></tr>
-<tr class="separator:a2e736941050ef579653e3c7fc568a2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e7d529888af403d615dc1a0a682f6f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5e7d529888af403d615dc1a0a682f6f2">RemoveFromCurrentParty</a> ()</td></tr>
-<tr class="memdesc:a5e7d529888af403d615dc1a0a682f6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the player from their current party.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5e7d529888af403d615dc1a0a682f6f2">More...</a><br /></td></tr>
-<tr class="separator:a5e7d529888af403d615dc1a0a682f6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfb69951245c64f419a91edc42963452"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adfb69951245c64f419a91edc42963452">ActionExamine</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
+<tr class="memdesc:adfb69951245c64f419a91edc42963452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows an examine dialog for the specified target.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adfb69951245c64f419a91edc42963452">More...</a><br /></td></tr>
+<tr class="separator:adfb69951245c64f419a91edc42963452"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e18d8640eb9fb119dc80e32638c8618"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6e18d8640eb9fb119dc80e32638c8618">ActionStartConversation</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> converseWith, string dialogResRef=&quot;&quot;, bool isPrivate=false, bool playHello=true)</td></tr>
+<tr class="memdesc:a6e18d8640eb9fb119dc80e32638c8618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a conversation with another object, typically a creature.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6e18d8640eb9fb119dc80e32638c8618">More...</a><br /></td></tr>
+<tr class="separator:a6e18d8640eb9fb119dc80e32638c8618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f234ef59ca78f96adab9328b752326"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab4f234ef59ca78f96adab9328b752326">AddCustomJournalEntry</a> (<a class="el" href="classAnvil_1_1API_1_1JournalEntry.html">JournalEntry</a> entryData, bool silentUpdate=false)</td></tr>
+<tr class="memdesc:ab4f234ef59ca78f96adab9328b752326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds/updates a journal entry.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab4f234ef59ca78f96adab9328b752326">More...</a><br /></td></tr>
+<tr class="separator:ab4f234ef59ca78f96adab9328b752326"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a878dc9d817e11c6ca2981652401e3e24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a878dc9d817e11c6ca2981652401e3e24">AddHenchmen</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> henchmen)</td></tr>
 <tr class="memdesc:a878dc9d817e11c6ca2981652401e3e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches the specified creature to the player as a henchmen.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a878dc9d817e11c6ca2981652401e3e24">More...</a><br /></td></tr>
 <tr class="separator:a878dc9d817e11c6ca2981652401e3e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3e987244d677443b30bf27d37c275c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aa3e987244d677443b30bf27d37c275c0">AddJournalQuestEntry</a> (string categoryTag, int entryId, bool allPartyMembers=true, bool allowOverrideHigher=false)</td></tr>
 <tr class="memdesc:aa3e987244d677443b30bf27d37c275c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an entry to the player's journal.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aa3e987244d677443b30bf27d37c275c0">More...</a><br /></td></tr>
 <tr class="separator:aa3e987244d677443b30bf27d37c275c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e736941050ef579653e3c7fc568a2e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2e736941050ef579653e3c7fc568a2e5">AddToParty</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> partyLeader)</td></tr>
+<tr class="memdesc:a2e736941050ef579653e3c7fc568a2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the player to the specified party leader's party.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a2e736941050ef579653e3c7fc568a2e5">More...</a><br /></td></tr>
+<tr class="separator:a2e736941050ef579653e3c7fc568a2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4de21772dd54dec2f745c729303864a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac4de21772dd54dec2f745c729303864a">ApplyInstantVisualEffectToObject</a> (VfxType visualEffect, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
+<tr class="memdesc:ac4de21772dd54dec2f745c729303864a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified "instant" VFX (Com*, FNF*, IMP*) on the target for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac4de21772dd54dec2f745c729303864a">More...</a><br /></td></tr>
+<tr class="separator:ac4de21772dd54dec2f745c729303864a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adfecd0ff995fbe1b040e3f0bae1eb3e5">BootPlayer</a> (string reason=&quot;&quot;)</td></tr>
+<tr class="memdesc:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boots the player from the server.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adfecd0ff995fbe1b040e3f0bae1eb3e5">More...</a><br /></td></tr>
+<tr class="separator:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4216166616a7f794bd4950476ac2027a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4216166616a7f794bd4950476ac2027a">ClearTextureOverride</a> (string texName)</td></tr>
+<tr class="memdesc:a4216166616a7f794bd4950476ac2027a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the override for the specified texture, reverting to the original texture.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a4216166616a7f794bd4950476ac2027a">More...</a><br /></td></tr>
+<tr class="separator:a4216166616a7f794bd4950476ac2027a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9661a262d6d36503e365e6a1483c7861"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9661a262d6d36503e365e6a1483c7861">ClearTlkOverride</a> (int strRef, bool restoreGlobal=true)</td></tr>
+<tr class="memdesc:a9661a262d6d36503e365e6a1483c7861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the specified <a class="el" href="classAnvil_1_1API_1_1TlkTable.html">TlkTable</a> override for the player, optionally restoring the global override.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a9661a262d6d36503e365e6a1483c7861">More...</a><br /></td></tr>
+<tr class="separator:a9661a262d6d36503e365e6a1483c7861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623e6ad1acb24b7b5afac64824892e18"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a623e6ad1acb24b7b5afac64824892e18">Delete</a> (string kickMessage, bool preserveBackup=true)</td></tr>
+<tr class="memdesc:a623e6ad1acb24b7b5afac64824892e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Immediately kicks the player and deletes their character file (.bic).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a623e6ad1acb24b7b5afac64824892e18">More...</a><br /></td></tr>
+<tr class="separator:a623e6ad1acb24b7b5afac64824892e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3940b04199475418ba807e10955ed7ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3940b04199475418ba807e10955ed7ce">DestroySQLDatabase</a> ()</td></tr>
+<tr class="memdesc:a3940b04199475418ba807e10955ed7ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Immediately destroys the database attached to this player, clearing out all data and schema.<br  />
+ This operation is <em>immediate</em> and <em>irreversible</em>, even when inside a transaction or running query.<br  />
+ Existing active/prepared sqlqueries will remain functional, but any references to stored data or schema members will be invalidated.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3940b04199475418ba807e10955ed7ce">More...</a><br /></td></tr>
+<tr class="separator:a3940b04199475418ba807e10955ed7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5754ed242c8ebfd2d3b23fa73da9b9bb"><td class="memItemLeft" align="right" valign="top"><a id="a5754ed242c8ebfd2d3b23fa73da9b9bb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayFloatingTextStringOnCreature</b> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> target, string text)</td></tr>
+<tr class="separator:a5754ed242c8ebfd2d3b23fa73da9b9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be81659c72fd8310b12916246da2cf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8">EnterCutsceneMode</a> (bool allowLeftClick=false)</td></tr>
+<tr class="memdesc:a6be81659c72fd8310b12916246da2cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br  />
+ See <a class="el" href="classAnvil_1_1API_1_1Effect.html#a704380652a799a2d295bb17b017b8d13" title="Creates an effect that allows creatures to pathfind through other creatures without bumping.">Effect.CutsceneGhost</a>, and other Cutscene* effects for hiding and controlling the player creature during cutscene mode.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8">More...</a><br /></td></tr>
+<tr class="separator:a6be81659c72fd8310b12916246da2cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884e322cf86acd7c6239dd5474bef7d0"><td class="memItemLeft" align="right" valign="top"><a id="a884e322cf86acd7c6239dd5474bef7d0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> other)</td></tr>
+<tr class="separator:a884e322cf86acd7c6239dd5474bef7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e33540560fa7a15469cc8971e2b68ca"><td class="memItemLeft" align="right" valign="top"><a id="a0e33540560fa7a15469cc8971e2b68ca"></a>
+override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (object obj)</td></tr>
+<tr class="separator:a0e33540560fa7a15469cc8971e2b68ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5cbac8ed60a2d63bfb4f949440d5c6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#af5cbac8ed60a2d63bfb4f949440d5c6b">ExitCutsceneMode</a> ()</td></tr>
+<tr class="memdesc:af5cbac8ed60a2d63bfb4f949440d5c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits "Cutscene" mode, restoring standard GUI and camera controls to the player, and restoring their plot flag.  <a href="classAnvil_1_1API_1_1NwPlayer.html#af5cbac8ed60a2d63bfb4f949440d5c6b">More...</a><br /></td></tr>
+<tr class="separator:af5cbac8ed60a2d63bfb4f949440d5c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e21cb4a44b9250ce1fe0e6f6c6dce7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae7e21cb4a44b9250ce1fe0e6f6c6dce7">ExportCharacter</a> ()</td></tr>
+<tr class="memdesc:ae7e21cb4a44b9250ce1fe0e6f6c6dce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc).  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae7e21cb4a44b9250ce1fe0e6f6c6dce7">More...</a><br /></td></tr>
+<tr class="separator:ae7e21cb4a44b9250ce1fe0e6f6c6dce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a418c31906c214067d68d0bbb0b6bbe6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a418c31906c214067d68d0bbb0b6bbe6b">FadeFromBlack</a> (float fadeSpeed)</td></tr>
+<tr class="memdesc:a418c31906c214067d68d0bbb0b6bbe6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fades the screen for a given player from black to regular screen.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a418c31906c214067d68d0bbb0b6bbe6b">More...</a><br /></td></tr>
+<tr class="separator:a418c31906c214067d68d0bbb0b6bbe6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b3588d97d548134eca7b3894f7b724e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9b3588d97d548134eca7b3894f7b724e">FadeToBlack</a> (float fadeSpeed)</td></tr>
+<tr class="memdesc:a9b3588d97d548134eca7b3894f7b724e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fades the screen for a given player from a regular screen to black.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a9b3588d97d548134eca7b3894f7b724e">More...</a><br /></td></tr>
+<tr class="separator:a9b3588d97d548134eca7b3894f7b724e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab82d6bc19467d7a9ec2ec7ede60fdcd6">FloatingTextString</a> (string message, bool broadcastToParty=true)</td></tr>
+<tr class="memdesc:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab82d6bc19467d7a9ec2ec7ede60fdcd6">More...</a><br /></td></tr>
+<tr class="separator:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb2026176f2a997894f47bc06dbee509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#abb2026176f2a997894f47bc06dbee509">FloatingTextStrRef</a> (int strRef, bool broadcastToParty=true)</td></tr>
+<tr class="memdesc:abb2026176f2a997894f47bc06dbee509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head using the specified string reference.  <a href="classAnvil_1_1API_1_1NwPlayer.html#abb2026176f2a997894f47bc06dbee509">More...</a><br /></td></tr>
+<tr class="separator:abb2026176f2a997894f47bc06dbee509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8faa350aa66b522a6da3b399d43ef26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab8faa350aa66b522a6da3b399d43ef26">ForceExamine</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlaceable.html">NwPlaceable</a> target)</td></tr>
+<tr class="memdesc:ab8faa350aa66b522a6da3b399d43ef26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the player to examine the specified placeable.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab8faa350aa66b522a6da3b399d43ef26">More...</a><br /></td></tr>
+<tr class="separator:ab8faa350aa66b522a6da3b399d43ef26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a458927a1bde6bdb714306154edb65"><td class="memItemLeft" align="right" valign="top">unsafe byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae3a458927a1bde6bdb714306154edb65">GetAreaExplorationState</a> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area)</td></tr>
+<tr class="memdesc:ae3a458927a1bde6bdb714306154edb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this player's area exploration state for the specified area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae3a458927a1bde6bdb714306154edb65">More...</a><br /></td></tr>
+<tr class="separator:ae3a458927a1bde6bdb714306154edb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ade7c40dbbbe58a0cf439c8b9a8d2be88">GetCampaignVariable&lt; T &gt;</a> (string campaign, string name)</td></tr>
+<tr class="memdesc:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified campaign variable for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ade7c40dbbbe58a0cf439c8b9a8d2be88">More...</a><br /></td></tr>
+<tr class="separator:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7538a83d3b49e3edcc73d6734a2e190"><td class="memItemLeft" align="right" valign="top"><a id="ab7538a83d3b49e3edcc73d6734a2e190"></a>
+override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</b> ()</td></tr>
+<tr class="separator:ab7538a83d3b49e3edcc73d6734a2e190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1JournalEntry.html">JournalEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acdbd1d4d0a044f7e722f1ed42936e36f">GetJournalEntry</a> (string questTag)</td></tr>
+<tr class="memdesc:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an existing journal entry with the specified quest tag.  <a href="classAnvil_1_1API_1_1NwPlayer.html#acdbd1d4d0a044f7e722f1ed42936e36f">More...</a><br /></td></tr>
+<tr class="separator:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeb2c99dae407b366ef8e1597c342038"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aeeb2c99dae407b366ef8e1597c342038">GiveXp</a> (int xPAmount)</td></tr>
+<tr class="memdesc:aeeb2c99dae407b366ef8e1597c342038"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives the specified XP to the player, adjusted by any multiclass penalty.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aeeb2c99dae407b366ef8e1597c342038">More...</a><br /></td></tr>
+<tr class="separator:aeeb2c99dae407b366ef8e1597c342038"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf1f53c9b8caa4d3c202687fd31556ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aaf1f53c9b8caa4d3c202687fd31556ae">LockCameraDirection</a> (bool isLocked=true)</td></tr>
+<tr class="memdesc:aaf1f53c9b8caa4d3c202687fd31556ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the player's camera direction to its current direction, or unlocks the player's camera direction to enable it to move freely again.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aaf1f53c9b8caa4d3c202687fd31556ae">More...</a><br /></td></tr>
+<tr class="separator:aaf1f53c9b8caa4d3c202687fd31556ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb43e0c492606fd538955d8547e55055"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afb43e0c492606fd538955d8547e55055">LockCameraDistance</a> (bool isLocked=true)</td></tr>
+<tr class="memdesc:afb43e0c492606fd538955d8547e55055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the player's camera distance to its current distance setting, or unlocks the player's camera distance.  <a href="classAnvil_1_1API_1_1NwPlayer.html#afb43e0c492606fd538955d8547e55055">More...</a><br /></td></tr>
+<tr class="separator:afb43e0c492606fd538955d8547e55055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6900fd106784f55a71625bd4eadf7d3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6900fd106784f55a71625bd4eadf7d3d">LockCameraPitch</a> (bool isLocked=true)</td></tr>
+<tr class="memdesc:a6900fd106784f55a71625bd4eadf7d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the player's camera pitch to its current pitch setting, or unlocks the player's camera pitch.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6900fd106784f55a71625bd4eadf7d3d">More...</a><br /></td></tr>
+<tr class="separator:a6900fd106784f55a71625bd4eadf7d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c6b6518b014b355a25f23af0d2d31fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd">NightToDay</a> (TimeSpan delayTransitionTime=default)</td></tr>
+<tr class="memdesc:a5c6b6518b014b355a25f23af0d2d31fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the current Day/Night cycle for the player to daylight.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd">More...</a><br /></td></tr>
+<tr class="separator:a5c6b6518b014b355a25f23af0d2d31fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2df962423380bf47fd03a73ecc6f88a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#af2df962423380bf47fd03a73ecc6f88a">OpenInventory</a> ()</td></tr>
 <tr class="memdesc:af2df962423380bf47fd03a73ecc6f88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs the player to open their inventory.  <a href="classAnvil_1_1API_1_1NwPlayer.html#af2df962423380bf47fd03a73ecc6f88a">More...</a><br /></td></tr>
 <tr class="separator:af2df962423380bf47fd03a73ecc6f88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,91 +224,9 @@ override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</
 <tr class="memitem:a5d5ec9512333506c34edbae263a68ad5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5d5ec9512333506c34edbae263a68ad5">OpenInventory</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlaceable.html">NwPlaceable</a> target)</td></tr>
 <tr class="memdesc:a5d5ec9512333506c34edbae263a68ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the player to open the inventory of the specified placeable.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5d5ec9512333506c34edbae263a68ad5">More...</a><br /></td></tr>
 <tr class="separator:a5d5ec9512333506c34edbae263a68ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ade7c40dbbbe58a0cf439c8b9a8d2be88">GetCampaignVariable&lt; T &gt;</a> (string campaign, string name)</td></tr>
-<tr class="memdesc:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified campaign variable for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ade7c40dbbbe58a0cf439c8b9a8d2be88">More...</a><br /></td></tr>
-<tr class="separator:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae14cb89e1a327b83e2bce6c964718096"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae14cb89e1a327b83e2bce6c964718096">SendServerMessage</a> (string message, <a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> color)</td></tr>
-<tr class="memdesc:ae14cb89e1a327b83e2bce6c964718096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a server message to the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae14cb89e1a327b83e2bce6c964718096">More...</a><br /></td></tr>
-<tr class="separator:ae14cb89e1a327b83e2bce6c964718096"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab18c8c362954967f16cde2fd6063cce1"><td class="memItemLeft" align="right" valign="top"><a id="ab18c8c362954967f16cde2fd6063cce1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab18c8c362954967f16cde2fd6063cce1">SendServerMessage</a> (string message)</td></tr>
-<tr class="separator:ab18c8c362954967f16cde2fd6063cce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3097068bed88aef4766eedff9a2245fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3097068bed88aef4766eedff9a2245fd">SetPCReputation</a> (bool like, <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> target)</td></tr>
-<tr class="memdesc:a3097068bed88aef4766eedff9a2245fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if the player should like, or unlike the specified player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3097068bed88aef4766eedff9a2245fd">More...</a><br /></td></tr>
-<tr class="separator:a3097068bed88aef4766eedff9a2245fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e18d8640eb9fb119dc80e32638c8618"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6e18d8640eb9fb119dc80e32638c8618">ActionStartConversation</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> converseWith, string dialogResRef=&quot;&quot;, bool isPrivate=false, bool playHello=true)</td></tr>
-<tr class="memdesc:a6e18d8640eb9fb119dc80e32638c8618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a conversation with another object, typically a creature.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6e18d8640eb9fb119dc80e32638c8618">More...</a><br /></td></tr>
-<tr class="separator:a6e18d8640eb9fb119dc80e32638c8618"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfb69951245c64f419a91edc42963452"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adfb69951245c64f419a91edc42963452">ActionExamine</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
-<tr class="memdesc:adfb69951245c64f419a91edc42963452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows an examine dialog for the specified target.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adfb69951245c64f419a91edc42963452">More...</a><br /></td></tr>
-<tr class="separator:adfb69951245c64f419a91edc42963452"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8768c15e87726f16ba4022f3f86b14c"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab8768c15e87726f16ba4022f3f86b14c">RestoreCameraFacing</a> ()</td></tr>
-<tr class="memdesc:ab8768c15e87726f16ba4022f3f86b14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the camera mode and facing to what they where when StoreCameraFacing was last called.<br  />
- RestoreCameraFacing can only be used once, and must correspond to a previous call to StoreCameraFacing.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab8768c15e87726f16ba4022f3f86b14c">More...</a><br /></td></tr>
-<tr class="separator:ab8768c15e87726f16ba4022f3f86b14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bc9c76edce52a72270972857a12cf65"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0bc9c76edce52a72270972857a12cf65">StoreCameraFacing</a> ()</td></tr>
-<tr class="memdesc:a0bc9c76edce52a72270972857a12cf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores (bookmarks) the camera's facing and position so it can be restored later with RestoreCameraFacing.<br  />
-  <a href="classAnvil_1_1API_1_1NwPlayer.html#a0bc9c76edce52a72270972857a12cf65">More...</a><br /></td></tr>
-<tr class="separator:a0bc9c76edce52a72270972857a12cf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3a5d2bb12acfeb08290e1fc26ce7f3a4">SetCameraFacing</a> (float direction, float pitch=-1.0f, float distance=-1.0f, CameraTransitionType transitionType=CameraTransitionType.Snap)</td></tr>
-<tr class="memdesc:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the direction the player's camera is facing.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3a5d2bb12acfeb08290e1fc26ce7f3a4">More...</a><br /></td></tr>
-<tr class="separator:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7e21cb4a44b9250ce1fe0e6f6c6dce7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae7e21cb4a44b9250ce1fe0e6f6c6dce7">ExportCharacter</a> ()</td></tr>
-<tr class="memdesc:ae7e21cb4a44b9250ce1fe0e6f6c6dce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the player's character to saved and exported to its respective directory (LocalVault, ServerVault, etc).  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae7e21cb4a44b9250ce1fe0e6f6c6dce7">More...</a><br /></td></tr>
-<tr class="separator:ae7e21cb4a44b9250ce1fe0e6f6c6dce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae44cbd3681e9f2d1d922aeb1106541a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae44cbd3681e9f2d1d922aeb1106541a2">SendToServer</a> (string ipAddress=&quot;&quot;, string password=&quot;&quot;, string waypointTag=&quot;&quot;, bool seamless=false)</td></tr>
-<tr class="memdesc:ae44cbd3681e9f2d1d922aeb1106541a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the player to a new server, where the player's character will connect and log in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae44cbd3681e9f2d1d922aeb1106541a2">More...</a><br /></td></tr>
-<tr class="separator:ae44cbd3681e9f2d1d922aeb1106541a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91f60999389aba5b45dc88e35800a407"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a91f60999389aba5b45dc88e35800a407">SetAreaExplorationState</a> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area, bool explored)</td></tr>
-<tr class="memdesc:a91f60999389aba5b45dc88e35800a407"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the player has explored an area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a91f60999389aba5b45dc88e35800a407">More...</a><br /></td></tr>
-<tr class="separator:a91f60999389aba5b45dc88e35800a407"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a177e0618112f153fe00e296718eeac5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f">Vibrate</a> (VibratorMotor motor, float strength, TimeSpan duration)</td></tr>
-<tr class="memdesc:a177e0618112f153fe00e296718eeac5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vibrates the player's device or controller. Does nothing if vibration is not supported.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f">More...</a><br /></td></tr>
-<tr class="separator:a177e0618112f153fe00e296718eeac5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">UnlockAchievement</a> (string achievementId, int lastValue=0, int currentValue=0, int maxValue=0)</td></tr>
-<tr class="memdesc:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock an achievement for the player who must be logged in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">More...</a><br /></td></tr>
-<tr class="separator:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a">SetTextureOverride</a> (string oldTexName, string newTexName)</td></tr>
-<tr class="memdesc:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes ControlledCreature PC load a new texture instead of another.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a">More...</a><br /></td></tr>
-<tr class="separator:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4216166616a7f794bd4950476ac2027a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4216166616a7f794bd4950476ac2027a">ClearTextureOverride</a> (string texName)</td></tr>
-<tr class="memdesc:a4216166616a7f794bd4950476ac2027a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the override for the specified texture, reverting to the original texture.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a4216166616a7f794bd4950476ac2027a">More...</a><br /></td></tr>
-<tr class="separator:a4216166616a7f794bd4950476ac2027a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17c170270577aa7d99d5020a2d1190be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a17c170270577aa7d99d5020a2d1190be">SetCutsceneMode</a> (bool inCutscene=true, bool leftClickEnabled=false)</td></tr>
-<tr class="memdesc:a17c170270577aa7d99d5020a2d1190be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles the CutsceneMode state for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a17c170270577aa7d99d5020a2d1190be">More...</a><br /></td></tr>
-<tr class="separator:a17c170270577aa7d99d5020a2d1190be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac89a3b5997d8809d11e4b4fd23d83a4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac89a3b5997d8809d11e4b4fd23d83a4e">PostString</a> (string message, int xPos, int yPos, ScreenAnchor anchor, float life, <a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>? start=null, <a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>? end=null, int id=0, string font=&quot;&quot;)</td></tr>
-<tr class="memdesc:ac89a3b5997d8809d11e4b4fd23d83a4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a message on the player's screen.<br  />
- The message is always displayed on top of whatever is on the screen, including UI elements.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac89a3b5997d8809d11e4b4fd23d83a4e">More...</a><br /></td></tr>
-<tr class="separator:ac89a3b5997d8809d11e4b4fd23d83a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb2026176f2a997894f47bc06dbee509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#abb2026176f2a997894f47bc06dbee509">FloatingTextStrRef</a> (int strRef, bool broadcastToParty=true)</td></tr>
-<tr class="memdesc:abb2026176f2a997894f47bc06dbee509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head using the specified string reference.  <a href="classAnvil_1_1API_1_1NwPlayer.html#abb2026176f2a997894f47bc06dbee509">More...</a><br /></td></tr>
-<tr class="separator:abb2026176f2a997894f47bc06dbee509"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab82d6bc19467d7a9ec2ec7ede60fdcd6">FloatingTextString</a> (string message, bool broadcastToParty=true)</td></tr>
-<tr class="memdesc:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab82d6bc19467d7a9ec2ec7ede60fdcd6">More...</a><br /></td></tr>
-<tr class="separator:ab82d6bc19467d7a9ec2ec7ede60fdcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6be81659c72fd8310b12916246da2cf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8">EnterCutsceneMode</a> (bool allowLeftClick=false)</td></tr>
-<tr class="memdesc:a6be81659c72fd8310b12916246da2cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br  />
- See <a class="el" href="classAnvil_1_1API_1_1Effect.html#a704380652a799a2d295bb17b017b8d13" title="Creates an effect that allows creatures to pathfind through other creatures without bumping.">Effect.CutsceneGhost</a>, and other Cutscene* effects for hiding and controlling the player creature during cutscene mode.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8">More...</a><br /></td></tr>
-<tr class="separator:a6be81659c72fd8310b12916246da2cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5cbac8ed60a2d63bfb4f949440d5c6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#af5cbac8ed60a2d63bfb4f949440d5c6b">ExitCutsceneMode</a> ()</td></tr>
-<tr class="memdesc:af5cbac8ed60a2d63bfb4f949440d5c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits "Cutscene" mode, restoring standard GUI and camera controls to the player, and restoring their plot flag.  <a href="classAnvil_1_1API_1_1NwPlayer.html#af5cbac8ed60a2d63bfb4f949440d5c6b">More...</a><br /></td></tr>
-<tr class="separator:af5cbac8ed60a2d63bfb4f949440d5c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeb2c99dae407b366ef8e1597c342038"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aeeb2c99dae407b366ef8e1597c342038">GiveXp</a> (int xPAmount)</td></tr>
-<tr class="memdesc:aeeb2c99dae407b366ef8e1597c342038"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives the specified XP to the player, adjusted by any multiclass penalty.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aeeb2c99dae407b366ef8e1597c342038">More...</a><br /></td></tr>
-<tr class="separator:aeeb2c99dae407b366ef8e1597c342038"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf1f53c9b8caa4d3c202687fd31556ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aaf1f53c9b8caa4d3c202687fd31556ae">LockCameraDirection</a> (bool isLocked=true)</td></tr>
-<tr class="memdesc:aaf1f53c9b8caa4d3c202687fd31556ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the player's camera direction to its current direction, or unlocks the player's camera direction to enable it to move freely again.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aaf1f53c9b8caa4d3c202687fd31556ae">More...</a><br /></td></tr>
-<tr class="separator:aaf1f53c9b8caa4d3c202687fd31556ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6900fd106784f55a71625bd4eadf7d3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6900fd106784f55a71625bd4eadf7d3d">LockCameraPitch</a> (bool isLocked=true)</td></tr>
-<tr class="memdesc:a6900fd106784f55a71625bd4eadf7d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the player's camera pitch to its current pitch setting, or unlocks the player's camera pitch.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6900fd106784f55a71625bd4eadf7d3d">More...</a><br /></td></tr>
-<tr class="separator:a6900fd106784f55a71625bd4eadf7d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb43e0c492606fd538955d8547e55055"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afb43e0c492606fd538955d8547e55055">LockCameraDistance</a> (bool isLocked=true)</td></tr>
-<tr class="memdesc:afb43e0c492606fd538955d8547e55055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the player's camera distance to its current distance setting, or unlocks the player's camera distance.  <a href="classAnvil_1_1API_1_1NwPlayer.html#afb43e0c492606fd538955d8547e55055">More...</a><br /></td></tr>
-<tr class="separator:afb43e0c492606fd538955d8547e55055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c6b6518b014b355a25f23af0d2d31fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd">NightToDay</a> (TimeSpan delayTransitionTime=default)</td></tr>
-<tr class="memdesc:a5c6b6518b014b355a25f23af0d2d31fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the current Day/Night cycle for the player to daylight.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd">More...</a><br /></td></tr>
-<tr class="separator:a5c6b6518b014b355a25f23af0d2d31fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a215cbadbc3a662e83bfd8daa743b8bbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a215cbadbc3a662e83bfd8daa743b8bbf">PlaySound</a> (string sound, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target=null)</td></tr>
+<tr class="memdesc:a215cbadbc3a662e83bfd8daa743b8bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified sound at the target in the current area for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a215cbadbc3a662e83bfd8daa743b8bbf">More...</a><br /></td></tr>
+<tr class="separator:a215cbadbc3a662e83bfd8daa743b8bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83a6fd356c7d73357e656a933a920bff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a83a6fd356c7d73357e656a933a920bff">PopUpDeathPanel</a> (bool respawnButton=true, bool waitForHelp=true, int helpStringRef=0, string helpString=&quot;&quot;)</td></tr>
 <tr class="memdesc:a83a6fd356c7d73357e656a933a920bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a death panel that can turn off the "Respawn" or "Wait for Help" buttons.<br  />
  The "Wait for Help" button is only enabled when the game is running in multiplayer mode.<br  />
@@ -245,99 +238,285 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 <tr class="memitem:a956bf0cf5d6c8aa7f0e34aaf60590ebd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a956bf0cf5d6c8aa7f0e34aaf60590ebd">PopUpGUIPanel</a> (GUIPanel panel=GUIPanel.Death)</td></tr>
 <tr class="memdesc:a956bf0cf5d6c8aa7f0e34aaf60590ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a GUI panel to a player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a956bf0cf5d6c8aa7f0e34aaf60590ebd">More...</a><br /></td></tr>
 <tr class="separator:a956bf0cf5d6c8aa7f0e34aaf60590ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a418c31906c214067d68d0bbb0b6bbe6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a418c31906c214067d68d0bbb0b6bbe6b">FadeFromBlack</a> (float fadeSpeed)</td></tr>
-<tr class="memdesc:a418c31906c214067d68d0bbb0b6bbe6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fades the screen for a given player from black to regular screen.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a418c31906c214067d68d0bbb0b6bbe6b">More...</a><br /></td></tr>
-<tr class="separator:a418c31906c214067d68d0bbb0b6bbe6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b3588d97d548134eca7b3894f7b724e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9b3588d97d548134eca7b3894f7b724e">FadeToBlack</a> (float fadeSpeed)</td></tr>
-<tr class="memdesc:a9b3588d97d548134eca7b3894f7b724e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fades the screen for a given player from a regular screen to black.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a9b3588d97d548134eca7b3894f7b724e">More...</a><br /></td></tr>
-<tr class="separator:a9b3588d97d548134eca7b3894f7b724e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afef613e21654d7bd4a06c340ec5904c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afef613e21654d7bd4a06c340ec5904c7">StopFade</a> ()</td></tr>
-<tr class="memdesc:afef613e21654d7bd4a06c340ec5904c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes any current fading effects or black screen from the monitor of the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#afef613e21654d7bd4a06c340ec5904c7">More...</a><br /></td></tr>
-<tr class="separator:afef613e21654d7bd4a06c340ec5904c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8faa350aa66b522a6da3b399d43ef26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab8faa350aa66b522a6da3b399d43ef26">ForceExamine</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlaceable.html">NwPlaceable</a> target)</td></tr>
-<tr class="memdesc:ab8faa350aa66b522a6da3b399d43ef26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the player to examine the specified placeable.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab8faa350aa66b522a6da3b399d43ef26">More...</a><br /></td></tr>
-<tr class="separator:ab8faa350aa66b522a6da3b399d43ef26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb8b7fceda8992f8b612497c2472156f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acb8b7fceda8992f8b612497c2472156f">Delete</a> (string kickMessage, bool preserveBackup=true)</td></tr>
-<tr class="memdesc:acb8b7fceda8992f8b612497c2472156f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Immediately kicks the player and deletes their character file (.bic).  <a href="classAnvil_1_1API_1_1NwPlayer.html#acb8b7fceda8992f8b612497c2472156f">More...</a><br /></td></tr>
-<tr class="separator:acb8b7fceda8992f8b612497c2472156f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94c1e012c566e842db622bb8eca6240a"><td class="memItemLeft" align="right" valign="top">unsafe void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a94c1e012c566e842db622bb8eca6240a">DeleteTURD</a> ()</td></tr>
-<tr class="memdesc:a94c1e012c566e842db622bb8eca6240a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the TURD of the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a94c1e012c566e842db622bb8eca6240a">More...</a><br /></td></tr>
-<tr class="separator:a94c1e012c566e842db622bb8eca6240a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d87d20a0cfa45aab0126f4e53783d39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6d87d20a0cfa45aab0126f4e53783d39">SetTlkOverride</a> (int strRef, string strOverride)</td></tr>
-<tr class="memdesc:a6d87d20a0cfa45aab0126f4e53783d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides the specified string from the <a class="el" href="classAnvil_1_1API_1_1TlkTable.html">TlkTable</a> using the specified override for the player only.<br  />
- Overrides will not persist through re-logging.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6d87d20a0cfa45aab0126f4e53783d39">More...</a><br /></td></tr>
-<tr class="separator:a6d87d20a0cfa45aab0126f4e53783d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9661a262d6d36503e365e6a1483c7861"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9661a262d6d36503e365e6a1483c7861">ClearTlkOverride</a> (int strRef, bool restoreGlobal=true)</td></tr>
-<tr class="memdesc:a9661a262d6d36503e365e6a1483c7861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the specified <a class="el" href="classAnvil_1_1API_1_1TlkTable.html">TlkTable</a> override for the player, optionally restoring the global override.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a9661a262d6d36503e365e6a1483c7861">More...</a><br /></td></tr>
-<tr class="separator:a9661a262d6d36503e365e6a1483c7861"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa05ad39dd02feb9358485793ce7af546"><td class="memItemLeft" align="right" valign="top"><a id="aa05ad39dd02feb9358485793ce7af546"></a>
-byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (bool stripPCFlags=false)</td></tr>
-<tr class="separator:aa05ad39dd02feb9358485793ce7af546"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5754ed242c8ebfd2d3b23fa73da9b9bb"><td class="memItemLeft" align="right" valign="top"><a id="a5754ed242c8ebfd2d3b23fa73da9b9bb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayFloatingTextStringOnCreature</b> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> target, string text)</td></tr>
-<tr class="separator:a5754ed242c8ebfd2d3b23fa73da9b9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98">ShowVisualEffect</a> (VfxType effectType, Vector3 position)</td></tr>
-<tr class="memdesc:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified VFX at the target position in the current area for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98">More...</a><br /></td></tr>
-<tr class="separator:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4de21772dd54dec2f745c729303864a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac4de21772dd54dec2f745c729303864a">ApplyInstantVisualEffectToObject</a> (VfxType visualEffect, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
-<tr class="memdesc:ac4de21772dd54dec2f745c729303864a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified "instant" VFX (Com*, FNF*, IMP*) on the target for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac4de21772dd54dec2f745c729303864a">More...</a><br /></td></tr>
-<tr class="separator:ac4de21772dd54dec2f745c729303864a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a215cbadbc3a662e83bfd8daa743b8bbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a215cbadbc3a662e83bfd8daa743b8bbf">PlaySound</a> (string sound, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target=null)</td></tr>
-<tr class="memdesc:a215cbadbc3a662e83bfd8daa743b8bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified sound at the target in the current area for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a215cbadbc3a662e83bfd8daa743b8bbf">More...</a><br /></td></tr>
-<tr class="separator:a215cbadbc3a662e83bfd8daa743b8bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1JournalEntry.html">JournalEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acdbd1d4d0a044f7e722f1ed42936e36f">GetJournalEntry</a> (string questTag)</td></tr>
-<tr class="memdesc:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an existing journal entry with the specified quest tag.  <a href="classAnvil_1_1API_1_1NwPlayer.html#acdbd1d4d0a044f7e722f1ed42936e36f">More...</a><br /></td></tr>
-<tr class="separator:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4f234ef59ca78f96adab9328b752326"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab4f234ef59ca78f96adab9328b752326">AddCustomJournalEntry</a> (<a class="el" href="classAnvil_1_1API_1_1JournalEntry.html">JournalEntry</a> entryData, bool silentUpdate=false)</td></tr>
-<tr class="memdesc:ab4f234ef59ca78f96adab9328b752326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds/updates a journal entry.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab4f234ef59ca78f96adab9328b752326">More...</a><br /></td></tr>
-<tr class="separator:ab4f234ef59ca78f96adab9328b752326"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3a458927a1bde6bdb714306154edb65"><td class="memItemLeft" align="right" valign="top">unsafe byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae3a458927a1bde6bdb714306154edb65">GetAreaExplorationState</a> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area)</td></tr>
-<tr class="memdesc:ae3a458927a1bde6bdb714306154edb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this player's area exploration state for the specified area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae3a458927a1bde6bdb714306154edb65">More...</a><br /></td></tr>
-<tr class="separator:ae3a458927a1bde6bdb714306154edb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa705667979e0e117305226a3b7a55798"><td class="memItemLeft" align="right" valign="top">unsafe void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aa705667979e0e117305226a3b7a55798">SetAreaExplorationState</a> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area, byte[] newState)</td></tr>
-<tr class="memdesc:aa705667979e0e117305226a3b7a55798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this player's area exploration state for the specified area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aa705667979e0e117305226a3b7a55798">More...</a><br /></td></tr>
-<tr class="separator:aa705667979e0e117305226a3b7a55798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac89a3b5997d8809d11e4b4fd23d83a4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac89a3b5997d8809d11e4b4fd23d83a4e">PostString</a> (string message, int xPos, int yPos, ScreenAnchor anchor, float life, <a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>? start=null, <a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>? end=null, int id=0, string font=&quot;&quot;)</td></tr>
+<tr class="memdesc:ac89a3b5997d8809d11e4b4fd23d83a4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a message on the player's screen.<br  />
+ The message is always displayed on top of whatever is on the screen, including UI elements.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac89a3b5997d8809d11e4b4fd23d83a4e">More...</a><br /></td></tr>
+<tr class="separator:ac89a3b5997d8809d11e4b4fd23d83a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ac63e3a75295287cb67f8eb1711134c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1SQLQuery.html">SQLQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5ac63e3a75295287cb67f8eb1711134c">PrepareSQLQuery</a> (string query)</td></tr>
 <tr class="memdesc:a5ac63e3a75295287cb67f8eb1711134c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up a SQL Query for this player.<br  />
  This will NOT run the query; only make it available for parameter binding.<br  />
  To run the query, you need to call <a class="el" href="classAnvil_1_1API_1_1SQLQuery.html#a86f0e6a340152c41a3f1c7fe8cb5c55e" title="Executes this query.">SQLQuery.Execute</a> even if you do not expect result data.<br  />
   <a href="classAnvil_1_1API_1_1NwPlayer.html#a5ac63e3a75295287cb67f8eb1711134c">More...</a><br /></td></tr>
 <tr class="separator:a5ac63e3a75295287cb67f8eb1711134c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3940b04199475418ba807e10955ed7ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3940b04199475418ba807e10955ed7ce">DestroySQLDatabase</a> ()</td></tr>
-<tr class="memdesc:a3940b04199475418ba807e10955ed7ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Immediately destroys the database attached to this player, clearing out all data and schema.<br  />
- This operation is <em>immediate</em> and <em>irreversible</em>, even when inside a transaction or running query.<br  />
- Existing active/prepared sqlqueries will remain functional, but any references to stored data or schema members will be invalidated.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3940b04199475418ba807e10955ed7ce">More...</a><br /></td></tr>
-<tr class="separator:a3940b04199475418ba807e10955ed7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e7d529888af403d615dc1a0a682f6f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5e7d529888af403d615dc1a0a682f6f2">RemoveFromCurrentParty</a> ()</td></tr>
+<tr class="memdesc:a5e7d529888af403d615dc1a0a682f6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the player from their current party.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5e7d529888af403d615dc1a0a682f6f2">More...</a><br /></td></tr>
+<tr class="separator:a5e7d529888af403d615dc1a0a682f6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8768c15e87726f16ba4022f3f86b14c"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab8768c15e87726f16ba4022f3f86b14c">RestoreCameraFacing</a> ()</td></tr>
+<tr class="memdesc:ab8768c15e87726f16ba4022f3f86b14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the camera mode and facing to what they where when StoreCameraFacing was last called.<br  />
+ RestoreCameraFacing can only be used once, and must correspond to a previous call to StoreCameraFacing.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab8768c15e87726f16ba4022f3f86b14c">More...</a><br /></td></tr>
+<tr class="separator:ab8768c15e87726f16ba4022f3f86b14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab18c8c362954967f16cde2fd6063cce1"><td class="memItemLeft" align="right" valign="top"><a id="ab18c8c362954967f16cde2fd6063cce1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab18c8c362954967f16cde2fd6063cce1">SendServerMessage</a> (string message)</td></tr>
+<tr class="separator:ab18c8c362954967f16cde2fd6063cce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae14cb89e1a327b83e2bce6c964718096"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae14cb89e1a327b83e2bce6c964718096">SendServerMessage</a> (string message, <a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> color)</td></tr>
+<tr class="memdesc:ae14cb89e1a327b83e2bce6c964718096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a server message to the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae14cb89e1a327b83e2bce6c964718096">More...</a><br /></td></tr>
+<tr class="separator:ae14cb89e1a327b83e2bce6c964718096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44cbd3681e9f2d1d922aeb1106541a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae44cbd3681e9f2d1d922aeb1106541a2">SendToServer</a> (string ipAddress=&quot;&quot;, string password=&quot;&quot;, string waypointTag=&quot;&quot;, bool seamless=false)</td></tr>
+<tr class="memdesc:ae44cbd3681e9f2d1d922aeb1106541a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the player to a new server, where the player's character will connect and log in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae44cbd3681e9f2d1d922aeb1106541a2">More...</a><br /></td></tr>
+<tr class="separator:ae44cbd3681e9f2d1d922aeb1106541a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa05ad39dd02feb9358485793ce7af546"><td class="memItemLeft" align="right" valign="top"><a id="aa05ad39dd02feb9358485793ce7af546"></a>
+byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (bool stripPCFlags=false)</td></tr>
+<tr class="separator:aa05ad39dd02feb9358485793ce7af546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f60999389aba5b45dc88e35800a407"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a91f60999389aba5b45dc88e35800a407">SetAreaExplorationState</a> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area, bool explored)</td></tr>
+<tr class="memdesc:a91f60999389aba5b45dc88e35800a407"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the player has explored an area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a91f60999389aba5b45dc88e35800a407">More...</a><br /></td></tr>
+<tr class="separator:a91f60999389aba5b45dc88e35800a407"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa705667979e0e117305226a3b7a55798"><td class="memItemLeft" align="right" valign="top">unsafe void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aa705667979e0e117305226a3b7a55798">SetAreaExplorationState</a> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area, byte[] newState)</td></tr>
+<tr class="memdesc:aa705667979e0e117305226a3b7a55798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this player's area exploration state for the specified area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aa705667979e0e117305226a3b7a55798">More...</a><br /></td></tr>
+<tr class="separator:aa705667979e0e117305226a3b7a55798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3a5d2bb12acfeb08290e1fc26ce7f3a4">SetCameraFacing</a> (float direction, float pitch=-1.0f, float distance=-1.0f, CameraTransitionType transitionType=CameraTransitionType.Snap)</td></tr>
+<tr class="memdesc:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the direction the player's camera is facing.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3a5d2bb12acfeb08290e1fc26ce7f3a4">More...</a><br /></td></tr>
+<tr class="separator:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17c170270577aa7d99d5020a2d1190be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a17c170270577aa7d99d5020a2d1190be">SetCutsceneMode</a> (bool inCutscene=true, bool leftClickEnabled=false)</td></tr>
+<tr class="memdesc:a17c170270577aa7d99d5020a2d1190be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles the CutsceneMode state for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a17c170270577aa7d99d5020a2d1190be">More...</a><br /></td></tr>
+<tr class="separator:a17c170270577aa7d99d5020a2d1190be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3097068bed88aef4766eedff9a2245fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3097068bed88aef4766eedff9a2245fd">SetPCReputation</a> (bool like, <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> target)</td></tr>
+<tr class="memdesc:a3097068bed88aef4766eedff9a2245fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if the player should like, or unlike the specified player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3097068bed88aef4766eedff9a2245fd">More...</a><br /></td></tr>
+<tr class="separator:a3097068bed88aef4766eedff9a2245fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a">SetTextureOverride</a> (string oldTexName, string newTexName)</td></tr>
+<tr class="memdesc:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes ControlledCreature PC load a new texture instead of another.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a">More...</a><br /></td></tr>
+<tr class="separator:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d87d20a0cfa45aab0126f4e53783d39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6d87d20a0cfa45aab0126f4e53783d39">SetTlkOverride</a> (int strRef, string strOverride)</td></tr>
+<tr class="memdesc:a6d87d20a0cfa45aab0126f4e53783d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides the specified string from the <a class="el" href="classAnvil_1_1API_1_1TlkTable.html">TlkTable</a> using the specified override for the player only.<br  />
+ Overrides will not persist through re-logging.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6d87d20a0cfa45aab0126f4e53783d39">More...</a><br /></td></tr>
+<tr class="separator:a6d87d20a0cfa45aab0126f4e53783d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98">ShowVisualEffect</a> (VfxType effectType, Vector3 position)</td></tr>
+<tr class="memdesc:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified VFX at the target position in the current area for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98">More...</a><br /></td></tr>
+<tr class="separator:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef613e21654d7bd4a06c340ec5904c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afef613e21654d7bd4a06c340ec5904c7">StopFade</a> ()</td></tr>
+<tr class="memdesc:afef613e21654d7bd4a06c340ec5904c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes any current fading effects or black screen from the monitor of the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#afef613e21654d7bd4a06c340ec5904c7">More...</a><br /></td></tr>
+<tr class="separator:afef613e21654d7bd4a06c340ec5904c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bc9c76edce52a72270972857a12cf65"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0bc9c76edce52a72270972857a12cf65">StoreCameraFacing</a> ()</td></tr>
+<tr class="memdesc:a0bc9c76edce52a72270972857a12cf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores (bookmarks) the camera's facing and position so it can be restored later with RestoreCameraFacing.<br  />
+  <a href="classAnvil_1_1API_1_1NwPlayer.html#a0bc9c76edce52a72270972857a12cf65">More...</a><br /></td></tr>
+<tr class="separator:a0bc9c76edce52a72270972857a12cf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">UnlockAchievement</a> (string achievementId, int lastValue=0, int currentValue=0, int maxValue=0)</td></tr>
+<tr class="memdesc:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock an achievement for the player who must be logged in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">More...</a><br /></td></tr>
+<tr class="separator:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177e0618112f153fe00e296718eeac5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f">Vibrate</a> (VibratorMotor motor, float strength, TimeSpan duration)</td></tr>
+<tr class="memdesc:a177e0618112f153fe00e296718eeac5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vibrates the player's device or controller. Does nothing if vibration is not supported.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f">More...</a><br /></td></tr>
+<tr class="separator:a177e0618112f153fe00e296718eeac5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a534508c135607eb737eb290e55debd2c"><td class="memItemLeft" align="right" valign="top"><a id="a534508c135607eb737eb290e55debd2c"></a>
 static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator CNWSPlayer</b> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> player)</td></tr>
 <tr class="separator:a534508c135607eb737eb290e55debd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a413bb94d001e886f632824997464ff6c"><td class="memItemLeft" align="right" valign="top"><a id="a413bb94d001e886f632824997464ff6c"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> left, <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> right)</td></tr>
-<tr class="separator:a413bb94d001e886f632824997464ff6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e48567f976d5d19fe0eb0b85236fbfd"><td class="memItemLeft" align="right" valign="top"><a id="a6e48567f976d5d19fe0eb0b85236fbfd"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> left, <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> right)</td></tr>
 <tr class="separator:a6e48567f976d5d19fe0eb0b85236fbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a413bb94d001e886f632824997464ff6c"><td class="memItemLeft" align="right" valign="top"><a id="a413bb94d001e886f632824997464ff6c"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> left, <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> right)</td></tr>
+<tr class="separator:a413bb94d001e886f632824997464ff6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a1173f6e794fadffce1cfdc01a92adaf1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1173f6e794fadffce1cfdc01a92adaf1">BicFileName</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1173f6e794fadffce1cfdc01a92adaf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the player's .bic file.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1173f6e794fadffce1cfdc01a92adaf1">More...</a><br /></td></tr>
+<tr class="separator:a1173f6e794fadffce1cfdc01a92adaf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3af8cf7c1c922ebcb26b3bd52c71435b">CameraHeight</a><code> [set]</code></td></tr>
+<tr class="memdesc:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the camera height for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3af8cf7c1c922ebcb26b3bd52c71435b">More...</a><br /></td></tr>
+<tr class="separator:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79b92bff4fe5f9da4ae104fa96db1b39"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a79b92bff4fe5f9da4ae104fa96db1b39">CDKey</a><code> [get]</code></td></tr>
+<tr class="memdesc:a79b92bff4fe5f9da4ae104fa96db1b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the public part of the CD key that the player used when logging in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a79b92bff4fe5f9da4ae104fa96db1b39">More...</a><br /></td></tr>
+<tr class="separator:a79b92bff4fe5f9da4ae104fa96db1b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="memItemLeft" align="right" valign="top">Version&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a022ee203ba1d0bb87a9ad3d634b9070d">ClientVersion</a><code> [get]</code></td></tr>
+<tr class="memdesc:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's client version (Major + Minor).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a022ee203ba1d0bb87a9ad3d634b9070d">More...</a><br /></td></tr>
+<tr class="separator:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ccf2b2d7c7fbab0ab2ad7b7eee60b09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1ccf2b2d7c7fbab0ab2ad7b7eee60b09">ControlledCreature</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1ccf2b2d7c7fbab0ab2ad7b7eee60b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creature this player is currently controlling.<br  />
+ This will return the player's current possessed creature (familiar, DM possession), otherwise their player character if they are currently not possessing a creature.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1ccf2b2d7c7fbab0ab2ad7b7eee60b09">More...</a><br /></td></tr>
+<tr class="separator:a1ccf2b2d7c7fbab0ab2ad7b7eee60b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a51fb5a6a152e81a286097a919299fc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3a51fb5a6a152e81a286097a919299fc">CutsceneCameraMoveRate</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3a51fb5a6a152e81a286097a919299fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the movement rate factor for the cutscene camera following ControlledCreature 'camera man'.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3a51fb5a6a152e81a286097a919299fc">More...</a><br /></td></tr>
+<tr class="separator:a3a51fb5a6a152e81a286097a919299fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a197b9eefcb69683d25775a4ee097885d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a197b9eefcb69683d25775a4ee097885d">IPAddress</a><code> [get]</code></td></tr>
+<tr class="memdesc:a197b9eefcb69683d25775a4ee097885d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the connecting IP address for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a197b9eefcb69683d25775a4ee097885d">More...</a><br /></td></tr>
+<tr class="separator:a197b9eefcb69683d25775a4ee097885d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abade420c3c1e86d852c60cc7d138feb6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#abade420c3c1e86d852c60cc7d138feb6">IsConnectionRelayed</a><code> [get]</code></td></tr>
+<tr class="memdesc:abade420c3c1e86d852c60cc7d138feb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether the player has connected to the server over a relay (instead of directly).  <a href="classAnvil_1_1API_1_1NwPlayer.html#abade420c3c1e86d852c60cc7d138feb6">More...</a><br /></td></tr>
+<tr class="separator:abade420c3c1e86d852c60cc7d138feb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd0cd46b2a3ae23868701fe00b079c35"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acd0cd46b2a3ae23868701fe00b079c35">IsDM</a><code> [get]</code></td></tr>
+<tr class="memdesc:acd0cd46b2a3ae23868701fe00b079c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether the player is a Dungeon Master.  <a href="classAnvil_1_1API_1_1NwPlayer.html#acd0cd46b2a3ae23868701fe00b079c35">More...</a><br /></td></tr>
+<tr class="separator:acd0cd46b2a3ae23868701fe00b079c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a791a7cf9b498bae61b86fe269659e28a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a791a7cf9b498bae61b86fe269659e28a">IsInCutsceneMode</a><code> [get]</code></td></tr>
+<tr class="memdesc:a791a7cf9b498bae61b86fe269659e28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether ControlledCreature creature is currently in "Cutscene" mode.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a791a7cf9b498bae61b86fe269659e28a">More...</a><br /></td></tr>
+<tr class="separator:a791a7cf9b498bae61b86fe269659e28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bed1aeccde3f03c6b4094c75aca2444"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4bed1aeccde3f03c6b4094c75aca2444">IsPlayerDM</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a4bed1aeccde3f03c6b4094c75aca2444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether the player has DM privileges gained through a player login (as opposed to the DM client).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a4bed1aeccde3f03c6b4094c75aca2444">More...</a><br /></td></tr>
+<tr class="separator:a4bed1aeccde3f03c6b4094c75aca2444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca343f91b10ce14b15b28a954a1d0cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a7ca343f91b10ce14b15b28a954a1d0cc">IsValid</a><code> [get]</code></td></tr>
+<tr class="memdesc:a7ca343f91b10ce14b15b28a954a1d0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> object is valid.<br  />
+ Returns false after the player disconnects from the server.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a7ca343f91b10ce14b15b28a954a1d0cc">More...</a><br /></td></tr>
+<tr class="separator:a7ca343f91b10ce14b15b28a954a1d0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e08abbfc7376c3749afe4dc476d684"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae7e08abbfc7376c3749afe4dc476d684">LoginCreature</a><code> [get]</code></td></tr>
+<tr class="memdesc:ae7e08abbfc7376c3749afe4dc476d684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the original creature that this player logged in with.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae7e08abbfc7376c3749afe4dc476d684">More...</a><br /></td></tr>
+<tr class="separator:ae7e08abbfc7376c3749afe4dc476d684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa093cb9ba3e7c170382709dd7b1d627"><td class="memItemLeft" align="right" valign="top"><a id="afa093cb9ba3e7c170382709dd7b1d627"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html">OnBarterEnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afa093cb9ba3e7c170382709dd7b1d627">OnBarterEnd</a></td></tr>
+<tr class="separator:afa093cb9ba3e7c170382709dd7b1d627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a8043ce1cef018978e98207149fd71"><td class="memItemLeft" align="right" valign="top"><a id="a81a8043ce1cef018978e98207149fd71"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnBarterStart.html">OnBarterStart</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a81a8043ce1cef018978e98207149fd71">OnBarterStart</a></td></tr>
+<tr class="separator:a81a8043ce1cef018978e98207149fd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad009a51bec922b021866d34e57d01560"><td class="memItemLeft" align="right" valign="top"><a id="ad009a51bec922b021866d34e57d01560"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnClientDisconnect.html">OnClientDisconnect</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad009a51bec922b021866d34e57d01560">OnClientDisconnect</a></td></tr>
+<tr class="separator:ad009a51bec922b021866d34e57d01560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31611f85a76315968e130ffd23f7ef80"><td class="memItemLeft" align="right" valign="top"><a id="a31611f85a76315968e130ffd23f7ef80"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html">ModuleEvents.OnClientEnter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a31611f85a76315968e130ffd23f7ef80">OnClientEnter</a></td></tr>
 <tr class="separator:a31611f85a76315968e130ffd23f7ef80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad56cc5793a489ca56d03958480e4d66f"><td class="memItemLeft" align="right" valign="top"><a id="ad56cc5793a489ca56d03958480e4d66f"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientLeave.html">ModuleEvents.OnClientLeave</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad56cc5793a489ca56d03958480e4d66f">OnClientLeave</a></td></tr>
 <tr class="separator:ad56cc5793a489ca56d03958480e4d66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e777e2b11571342587fe3251f5bcf47"><td class="memItemLeft" align="right" valign="top"><a id="a0e777e2b11571342587fe3251f5bcf47"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnClientLevelUpBegin.html">OnClientLevelUpBegin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0e777e2b11571342587fe3251f5bcf47">OnClientLevelUpBegin</a></td></tr>
+<tr class="separator:a0e777e2b11571342587fe3251f5bcf47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a387e4b06c2a8f4006ad5a536e5cc296d"><td class="memItemLeft" align="right" valign="top"><a id="a387e4b06c2a8f4006ad5a536e5cc296d"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCombatStatusChange.html">OnCombatStatusChange</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a387e4b06c2a8f4006ad5a536e5cc296d">OnCombatStatusChange</a></td></tr>
+<tr class="separator:a387e4b06c2a8f4006ad5a536e5cc296d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11a553a7f324e911ae25800922ccde2b"><td class="memItemLeft" align="right" valign="top"><a id="a11a553a7f324e911ae25800922ccde2b"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnCutsceneAbort.html">ModuleEvents.OnCutsceneAbort</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a11a553a7f324e911ae25800922ccde2b">OnCutsceneAbort</a></td></tr>
 <tr class="separator:a11a553a7f324e911ae25800922ccde2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46f62125573f210520cc99e4b19cca2a"><td class="memItemLeft" align="right" valign="top"><a id="a46f62125573f210520cc99e4b19cca2a"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMAppear.html">OnDMAppear</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a46f62125573f210520cc99e4b19cca2a">OnDMAppear</a></td></tr>
+<tr class="separator:a46f62125573f210520cc99e4b19cca2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab77b55e8e527110b45edb81cb8848ebd"><td class="memItemLeft" align="right" valign="top"><a id="ab77b55e8e527110b45edb81cb8848ebd"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMChangeDifficulty.html">OnDMChangeDifficulty</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab77b55e8e527110b45edb81cb8848ebd">OnDMChangeDifficulty</a></td></tr>
+<tr class="separator:ab77b55e8e527110b45edb81cb8848ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac78a8701b355a8b434bd1207281b8f5c"><td class="memItemLeft" align="right" valign="top"><a id="ac78a8701b355a8b434bd1207281b8f5c"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMDisableTrap.html">OnDMDisableTrap</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac78a8701b355a8b434bd1207281b8f5c">OnDMDisableTrap</a></td></tr>
+<tr class="separator:ac78a8701b355a8b434bd1207281b8f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6f9e270e0b4fd0e4c32a81f42021a40"><td class="memItemLeft" align="right" valign="top"><a id="aa6f9e270e0b4fd0e4c32a81f42021a40"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMDisappear.html">OnDMDisappear</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aa6f9e270e0b4fd0e4c32a81f42021a40">OnDMDisappear</a></td></tr>
+<tr class="separator:aa6f9e270e0b4fd0e4c32a81f42021a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a397059287ef7aaff93131202bb633e78"><td class="memItemLeft" align="right" valign="top"><a id="a397059287ef7aaff93131202bb633e78"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMDumpLocals.html">OnDMDumpLocals</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a397059287ef7aaff93131202bb633e78">OnDMDumpLocals</a></td></tr>
+<tr class="separator:a397059287ef7aaff93131202bb633e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0f8032b68b3bef92772be75cfe3e52c"><td class="memItemLeft" align="right" valign="top"><a id="ae0f8032b68b3bef92772be75cfe3e52c"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMForceRest.html">OnDMForceRest</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae0f8032b68b3bef92772be75cfe3e52c">OnDMForceRest</a></td></tr>
+<tr class="separator:ae0f8032b68b3bef92772be75cfe3e52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee18eb1d8210c324ef88ea9576a0b031"><td class="memItemLeft" align="right" valign="top"><a id="aee18eb1d8210c324ef88ea9576a0b031"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGetFactionReputation.html">OnDMGetFactionReputation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aee18eb1d8210c324ef88ea9576a0b031">OnDMGetFactionReputation</a></td></tr>
+<tr class="separator:aee18eb1d8210c324ef88ea9576a0b031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d955ae9627aea3646f9be099cd9c2eb"><td class="memItemLeft" align="right" valign="top"><a id="a5d955ae9627aea3646f9be099cd9c2eb"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGetVariable.html">OnDMGetVariable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5d955ae9627aea3646f9be099cd9c2eb">OnDMGetVariable</a></td></tr>
+<tr class="separator:a5d955ae9627aea3646f9be099cd9c2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a242795259426a27a1b1f73b2417a33da"><td class="memItemLeft" align="right" valign="top"><a id="a242795259426a27a1b1f73b2417a33da"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveAlignment.html">OnDMGiveAlignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a242795259426a27a1b1f73b2417a33da">OnDMGiveAlignment</a></td></tr>
+<tr class="separator:a242795259426a27a1b1f73b2417a33da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7585cd7e535624800ffc2d3eba8d699"><td class="memItemLeft" align="right" valign="top"><a id="ad7585cd7e535624800ffc2d3eba8d699"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveGold.html">OnDMGiveGold</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad7585cd7e535624800ffc2d3eba8d699">OnDMGiveGold</a></td></tr>
+<tr class="separator:ad7585cd7e535624800ffc2d3eba8d699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b0a017bc43211167872431ccd7a1b22"><td class="memItemLeft" align="right" valign="top"><a id="a6b0a017bc43211167872431ccd7a1b22"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveItemAfter.html">OnDMGiveItemAfter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6b0a017bc43211167872431ccd7a1b22">OnDMGiveItemAfter</a></td></tr>
+<tr class="separator:a6b0a017bc43211167872431ccd7a1b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7921dd4a3e2e991b01c610c6c375dd79"><td class="memItemLeft" align="right" valign="top"><a id="a7921dd4a3e2e991b01c610c6c375dd79"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveItemBefore.html">OnDMGiveItemBefore</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a7921dd4a3e2e991b01c610c6c375dd79">OnDMGiveItemBefore</a></td></tr>
+<tr class="separator:a7921dd4a3e2e991b01c610c6c375dd79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6e2e89adef27f949ae79ee36e5d55a4"><td class="memItemLeft" align="right" valign="top"><a id="ae6e2e89adef27f949ae79ee36e5d55a4"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveLevel.html">OnDMGiveLevel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae6e2e89adef27f949ae79ee36e5d55a4">OnDMGiveLevel</a></td></tr>
+<tr class="separator:ae6e2e89adef27f949ae79ee36e5d55a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b22f1c17532c557ea88c3cfd22cdb87"><td class="memItemLeft" align="right" valign="top"><a id="a7b22f1c17532c557ea88c3cfd22cdb87"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveXP.html">OnDMGiveXP</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a7b22f1c17532c557ea88c3cfd22cdb87">OnDMGiveXP</a></td></tr>
+<tr class="separator:a7b22f1c17532c557ea88c3cfd22cdb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a243955d688b79b712c0bdf10e6d227e5"><td class="memItemLeft" align="right" valign="top"><a id="a243955d688b79b712c0bdf10e6d227e5"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGoTo.html">OnDMGoTo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a243955d688b79b712c0bdf10e6d227e5">OnDMGoTo</a></td></tr>
+<tr class="separator:a243955d688b79b712c0bdf10e6d227e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c2ec14b7a1ebc7393668bb68c8ce97"><td class="memItemLeft" align="right" valign="top"><a id="a20c2ec14b7a1ebc7393668bb68c8ce97"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMHeal.html">OnDMHeal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a20c2ec14b7a1ebc7393668bb68c8ce97">OnDMHeal</a></td></tr>
+<tr class="separator:a20c2ec14b7a1ebc7393668bb68c8ce97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cc4783afbdf9ec71ad0aee3981d2803"><td class="memItemLeft" align="right" valign="top"><a id="a2cc4783afbdf9ec71ad0aee3981d2803"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMJumpAllPlayersToPoint.html">OnDMJumpAllPlayersToPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2cc4783afbdf9ec71ad0aee3981d2803">OnDMJumpAllPlayersToPoint</a></td></tr>
+<tr class="separator:a2cc4783afbdf9ec71ad0aee3981d2803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd3a6c82162dcfb52224f398d91ee804"><td class="memItemLeft" align="right" valign="top"><a id="acd3a6c82162dcfb52224f398d91ee804"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMJumpTargetToPoint.html">OnDMJumpTargetToPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acd3a6c82162dcfb52224f398d91ee804">OnDMJumpTargetToPoint</a><code> [get]</code></td></tr>
+<tr class="separator:acd3a6c82162dcfb52224f398d91ee804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed54e58b1ec760923be4798e707658b"><td class="memItemLeft" align="right" valign="top"><a id="afed54e58b1ec760923be4798e707658b"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMJumpToPoint.html">OnDMJumpToPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afed54e58b1ec760923be4798e707658b">OnDMJumpToPoint</a></td></tr>
+<tr class="separator:afed54e58b1ec760923be4798e707658b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71127259178369fc691ecbea9d8d3ea7"><td class="memItemLeft" align="right" valign="top"><a id="a71127259178369fc691ecbea9d8d3ea7"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMKill.html">OnDMKill</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a71127259178369fc691ecbea9d8d3ea7">OnDMKill</a></td></tr>
+<tr class="separator:a71127259178369fc691ecbea9d8d3ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1891942d38894dbba85c95efc63bafc"><td class="memItemLeft" align="right" valign="top"><a id="ad1891942d38894dbba85c95efc63bafc"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMLimbo.html">OnDMLimbo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad1891942d38894dbba85c95efc63bafc">OnDMLimbo</a></td></tr>
+<tr class="separator:ad1891942d38894dbba85c95efc63bafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39113f63afee4553a8fcb76088224819"><td class="memItemLeft" align="right" valign="top"><a id="a39113f63afee4553a8fcb76088224819"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMPlayerDMLogin.html">OnDMPlayerDMLogin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a39113f63afee4553a8fcb76088224819">OnDMPlayerDMLogin</a></td></tr>
+<tr class="separator:a39113f63afee4553a8fcb76088224819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8008ea83ba4082dfc17db3e442d6503"><td class="memItemLeft" align="right" valign="top"><a id="ae8008ea83ba4082dfc17db3e442d6503"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMPlayerDMLogout.html">OnDMPlayerDMLogout</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae8008ea83ba4082dfc17db3e442d6503">OnDMPlayerDMLogout</a></td></tr>
+<tr class="separator:ae8008ea83ba4082dfc17db3e442d6503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae40e8811ea19d6ad01482386ab01ef11"><td class="memItemLeft" align="right" valign="top"><a id="ae40e8811ea19d6ad01482386ab01ef11"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMPossess.html">OnDMPossess</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae40e8811ea19d6ad01482386ab01ef11">OnDMPossess</a></td></tr>
+<tr class="separator:ae40e8811ea19d6ad01482386ab01ef11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77fba41ce3b5353fbdeeed9732e051aa"><td class="memItemLeft" align="right" valign="top"><a id="a77fba41ce3b5353fbdeeed9732e051aa"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMPossessFullPower.html">OnDMPossessFullPower</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a77fba41ce3b5353fbdeeed9732e051aa">OnDMPossessFullPower</a></td></tr>
+<tr class="separator:a77fba41ce3b5353fbdeeed9732e051aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac85911352fce8572ce5bb15f016ceed4"><td class="memItemLeft" align="right" valign="top"><a id="ac85911352fce8572ce5bb15f016ceed4"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetDate.html">OnDMSetDate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac85911352fce8572ce5bb15f016ceed4">OnDMSetDate</a></td></tr>
+<tr class="separator:ac85911352fce8572ce5bb15f016ceed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a9435a115894510a40c6ae964406a3"><td class="memItemLeft" align="right" valign="top"><a id="ab1a9435a115894510a40c6ae964406a3"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetFaction.html">OnDMSetFaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab1a9435a115894510a40c6ae964406a3">OnDMSetFaction</a></td></tr>
+<tr class="separator:ab1a9435a115894510a40c6ae964406a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a326f37dffd95c5151bc21804b5bdff92"><td class="memItemLeft" align="right" valign="top"><a id="a326f37dffd95c5151bc21804b5bdff92"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetFactionReputation.html">OnDMSetFactionReputation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a326f37dffd95c5151bc21804b5bdff92">OnDMSetFactionReputation</a></td></tr>
+<tr class="separator:a326f37dffd95c5151bc21804b5bdff92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad548fdf4153700e79bf043617862606a"><td class="memItemLeft" align="right" valign="top"><a id="ad548fdf4153700e79bf043617862606a"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetStat.html">OnDMSetStat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad548fdf4153700e79bf043617862606a">OnDMSetStat</a></td></tr>
+<tr class="separator:ad548fdf4153700e79bf043617862606a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e62e1842ef44f322615b8befad9ebc2"><td class="memItemLeft" align="right" valign="top"><a id="a2e62e1842ef44f322615b8befad9ebc2"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetTime.html">OnDMSetTime</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2e62e1842ef44f322615b8befad9ebc2">OnDMSetTime</a></td></tr>
+<tr class="separator:a2e62e1842ef44f322615b8befad9ebc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68b117c28535cadbf0b76336d9917c9c"><td class="memItemLeft" align="right" valign="top"><a id="a68b117c28535cadbf0b76336d9917c9c"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetVariable.html">OnDMSetVariable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a68b117c28535cadbf0b76336d9917c9c">OnDMSetVariable</a></td></tr>
+<tr class="separator:a68b117c28535cadbf0b76336d9917c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0b7aaef6cc2070b66eadf08432dbf7c"><td class="memItemLeft" align="right" valign="top"><a id="aa0b7aaef6cc2070b66eadf08432dbf7c"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSpawnObjectAfter.html">OnDMSpawnObjectAfter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aa0b7aaef6cc2070b66eadf08432dbf7c">OnDMSpawnObjectAfter</a></td></tr>
+<tr class="separator:aa0b7aaef6cc2070b66eadf08432dbf7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b35171a83c2b13ea4db25aa1ee6a461"><td class="memItemLeft" align="right" valign="top"><a id="a4b35171a83c2b13ea4db25aa1ee6a461"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSpawnObjectBefore.html">OnDMSpawnObjectBefore</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4b35171a83c2b13ea4db25aa1ee6a461">OnDMSpawnObjectBefore</a></td></tr>
+<tr class="separator:a4b35171a83c2b13ea4db25aa1ee6a461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3471a8f23d0fb4a9ff184414fec169f4"><td class="memItemLeft" align="right" valign="top"><a id="a3471a8f23d0fb4a9ff184414fec169f4"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSpawnTrapOnObject.html">OnDMSpawnTrapOnObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3471a8f23d0fb4a9ff184414fec169f4">OnDMSpawnTrapOnObject</a></td></tr>
+<tr class="separator:a3471a8f23d0fb4a9ff184414fec169f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4388184ed167624cd5e0a4e179f96c69"><td class="memItemLeft" align="right" valign="top"><a id="a4388184ed167624cd5e0a4e179f96c69"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMTakeItem.html">OnDMTakeItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4388184ed167624cd5e0a4e179f96c69">OnDMTakeItem</a></td></tr>
+<tr class="separator:a4388184ed167624cd5e0a4e179f96c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9cb3093a7001e59baf7d8fa6a436ff"><td class="memItemLeft" align="right" valign="top"><a id="a6d9cb3093a7001e59baf7d8fa6a436ff"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMToggleAI.html">OnDMToggleAI</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6d9cb3093a7001e59baf7d8fa6a436ff">OnDMToggleAI</a></td></tr>
+<tr class="separator:a6d9cb3093a7001e59baf7d8fa6a436ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e59f0d74b02612e1b7b208dd2da2015"><td class="memItemLeft" align="right" valign="top"><a id="a9e59f0d74b02612e1b7b208dd2da2015"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMToggleImmortal.html">OnDMToggleImmortal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9e59f0d74b02612e1b7b208dd2da2015">OnDMToggleImmortal</a></td></tr>
+<tr class="separator:a9e59f0d74b02612e1b7b208dd2da2015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22a8dbffc108b696af6a8c38ce39d99d"><td class="memItemLeft" align="right" valign="top"><a id="a22a8dbffc108b696af6a8c38ce39d99d"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMToggleInvulnerable.html">OnDMToggleInvulnerable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a22a8dbffc108b696af6a8c38ce39d99d">OnDMToggleInvulnerable</a></td></tr>
+<tr class="separator:a22a8dbffc108b696af6a8c38ce39d99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6fa0e3eea36a51daff2cc0a8298722b"><td class="memItemLeft" align="right" valign="top"><a id="ae6fa0e3eea36a51daff2cc0a8298722b"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMToggleLock.html">OnDMToggleLock</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae6fa0e3eea36a51daff2cc0a8298722b">OnDMToggleLock</a></td></tr>
+<tr class="separator:ae6fa0e3eea36a51daff2cc0a8298722b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b8763db7126807a3248a49f8c418e4c"><td class="memItemLeft" align="right" valign="top"><a id="a2b8763db7126807a3248a49f8c418e4c"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMViewInventory.html">OnDMViewInventory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2b8763db7126807a3248a49f8c418e4c">OnDMViewInventory</a></td></tr>
+<tr class="separator:a2b8763db7126807a3248a49f8c418e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5f99c61811c09ecdbf4ea53768b68f0"><td class="memItemLeft" align="right" valign="top"><a id="ab5f99c61811c09ecdbf4ea53768b68f0"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnExamineObject.html">OnExamineObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab5f99c61811c09ecdbf4ea53768b68f0">OnExamineObject</a></td></tr>
+<tr class="separator:ab5f99c61811c09ecdbf4ea53768b68f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4420d2e2bc412a91e2c74bc0fbf8502d"><td class="memItemLeft" align="right" valign="top"><a id="a4420d2e2bc412a91e2c74bc0fbf8502d"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnExamineTrap.html">OnExamineTrap</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4420d2e2bc412a91e2c74bc0fbf8502d">OnExamineTrap</a></td></tr>
+<tr class="separator:a4420d2e2bc412a91e2c74bc0fbf8502d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2df9554e44ccbf459aed4e62e562cff"><td class="memItemLeft" align="right" valign="top"><a id="ab2df9554e44ccbf459aed4e62e562cff"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnPartyEvent.html">OnPartyEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab2df9554e44ccbf459aed4e62e562cff">OnPartyEvent</a></td></tr>
+<tr class="separator:ab2df9554e44ccbf459aed4e62e562cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a583376c6e5212f9dc7a9b8f43ac9d8a5"><td class="memItemLeft" align="right" valign="top"><a id="a583376c6e5212f9dc7a9b8f43ac9d8a5"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html">ModuleEvents.OnPlayerChat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a583376c6e5212f9dc7a9b8f43ac9d8a5">OnPlayerChat</a></td></tr>
 <tr class="separator:a583376c6e5212f9dc7a9b8f43ac9d8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e05c68f1527c3bdb322c19072e71a12"><td class="memItemLeft" align="right" valign="top"><a id="a9e05c68f1527c3bdb322c19072e71a12"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9e05c68f1527c3bdb322c19072e71a12">OnPlayerTarget</a><code> [get]</code></td></tr>
-<tr class="separator:a9e05c68f1527c3bdb322c19072e71a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49c42ac680f90b3e3d791fe6b05a8ca7"><td class="memItemLeft" align="right" valign="top"><a id="a49c42ac680f90b3e3d791fe6b05a8ca7"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDeath.html">ModuleEvents.OnPlayerDeath</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a49c42ac680f90b3e3d791fe6b05a8ca7">OnPlayerDeath</a></td></tr>
 <tr class="separator:a49c42ac680f90b3e3d791fe6b05a8ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -356,209 +535,27 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1On
 <tr class="memitem:ac12e4ad5cb0af09a8a7be18395105024"><td class="memItemLeft" align="right" valign="top"><a id="ac12e4ad5cb0af09a8a7be18395105024"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html">ModuleEvents.OnPlayerRest</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac12e4ad5cb0af09a8a7be18395105024">OnPlayerRest</a></td></tr>
 <tr class="separator:ac12e4ad5cb0af09a8a7be18395105024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e05c68f1527c3bdb322c19072e71a12"><td class="memItemLeft" align="right" valign="top"><a id="a9e05c68f1527c3bdb322c19072e71a12"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9e05c68f1527c3bdb322c19072e71a12">OnPlayerTarget</a><code> [get]</code></td></tr>
+<tr class="separator:a9e05c68f1527c3bdb322c19072e71a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace0a634cf7e76790885c708029520191"><td class="memItemLeft" align="right" valign="top"><a id="ace0a634cf7e76790885c708029520191"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html">ModuleEvents.OnPlayerUnequipItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ace0a634cf7e76790885c708029520191">OnPlayerUnequipItem</a></td></tr>
 <tr class="separator:ace0a634cf7e76790885c708029520191"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa093cb9ba3e7c170382709dd7b1d627"><td class="memItemLeft" align="right" valign="top"><a id="afa093cb9ba3e7c170382709dd7b1d627"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html">OnBarterEnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afa093cb9ba3e7c170382709dd7b1d627">OnBarterEnd</a></td></tr>
-<tr class="separator:afa093cb9ba3e7c170382709dd7b1d627"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81a8043ce1cef018978e98207149fd71"><td class="memItemLeft" align="right" valign="top"><a id="a81a8043ce1cef018978e98207149fd71"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnBarterStart.html">OnBarterStart</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a81a8043ce1cef018978e98207149fd71">OnBarterStart</a></td></tr>
-<tr class="separator:a81a8043ce1cef018978e98207149fd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad009a51bec922b021866d34e57d01560"><td class="memItemLeft" align="right" valign="top"><a id="ad009a51bec922b021866d34e57d01560"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnClientDisconnect.html">OnClientDisconnect</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad009a51bec922b021866d34e57d01560">OnClientDisconnect</a></td></tr>
-<tr class="separator:ad009a51bec922b021866d34e57d01560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab103fd4d99b23d9a311c4d439c1f9466"><td class="memItemLeft" align="right" valign="top"><a id="ab103fd4d99b23d9a311c4d439c1f9466"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerCharacterSave.html">OnServerCharacterSave</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab103fd4d99b23d9a311c4d439c1f9466">OnServerCharacterSave</a></td></tr>
 <tr class="separator:ab103fd4d99b23d9a311c4d439c1f9466"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f26747b789a98c0481696f736e8bed1"><td class="memItemLeft" align="right" valign="top"><a id="a0f26747b789a98c0481696f736e8bed1"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.html">OnServerSendArea</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0f26747b789a98c0481696f736e8bed1">OnServerSendArea</a></td></tr>
 <tr class="separator:a0f26747b789a98c0481696f736e8bed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a387e4b06c2a8f4006ad5a536e5cc296d"><td class="memItemLeft" align="right" valign="top"><a id="a387e4b06c2a8f4006ad5a536e5cc296d"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCombatStatusChange.html">OnCombatStatusChange</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a387e4b06c2a8f4006ad5a536e5cc296d">OnCombatStatusChange</a></td></tr>
-<tr class="separator:a387e4b06c2a8f4006ad5a536e5cc296d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b22f1c17532c557ea88c3cfd22cdb87"><td class="memItemLeft" align="right" valign="top"><a id="a7b22f1c17532c557ea88c3cfd22cdb87"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveXP.html">OnDMGiveXP</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a7b22f1c17532c557ea88c3cfd22cdb87">OnDMGiveXP</a></td></tr>
-<tr class="separator:a7b22f1c17532c557ea88c3cfd22cdb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6e2e89adef27f949ae79ee36e5d55a4"><td class="memItemLeft" align="right" valign="top"><a id="ae6e2e89adef27f949ae79ee36e5d55a4"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveLevel.html">OnDMGiveLevel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae6e2e89adef27f949ae79ee36e5d55a4">OnDMGiveLevel</a></td></tr>
-<tr class="separator:ae6e2e89adef27f949ae79ee36e5d55a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7585cd7e535624800ffc2d3eba8d699"><td class="memItemLeft" align="right" valign="top"><a id="ad7585cd7e535624800ffc2d3eba8d699"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveGold.html">OnDMGiveGold</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad7585cd7e535624800ffc2d3eba8d699">OnDMGiveGold</a></td></tr>
-<tr class="separator:ad7585cd7e535624800ffc2d3eba8d699"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20c2ec14b7a1ebc7393668bb68c8ce97"><td class="memItemLeft" align="right" valign="top"><a id="a20c2ec14b7a1ebc7393668bb68c8ce97"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMHeal.html">OnDMHeal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a20c2ec14b7a1ebc7393668bb68c8ce97">OnDMHeal</a></td></tr>
-<tr class="separator:a20c2ec14b7a1ebc7393668bb68c8ce97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71127259178369fc691ecbea9d8d3ea7"><td class="memItemLeft" align="right" valign="top"><a id="a71127259178369fc691ecbea9d8d3ea7"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMKill.html">OnDMKill</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a71127259178369fc691ecbea9d8d3ea7">OnDMKill</a></td></tr>
-<tr class="separator:a71127259178369fc691ecbea9d8d3ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0f8032b68b3bef92772be75cfe3e52c"><td class="memItemLeft" align="right" valign="top"><a id="ae0f8032b68b3bef92772be75cfe3e52c"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMForceRest.html">OnDMForceRest</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae0f8032b68b3bef92772be75cfe3e52c">OnDMForceRest</a></td></tr>
-<tr class="separator:ae0f8032b68b3bef92772be75cfe3e52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22a8dbffc108b696af6a8c38ce39d99d"><td class="memItemLeft" align="right" valign="top"><a id="a22a8dbffc108b696af6a8c38ce39d99d"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMToggleInvulnerable.html">OnDMToggleInvulnerable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a22a8dbffc108b696af6a8c38ce39d99d">OnDMToggleInvulnerable</a></td></tr>
-<tr class="separator:a22a8dbffc108b696af6a8c38ce39d99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1891942d38894dbba85c95efc63bafc"><td class="memItemLeft" align="right" valign="top"><a id="ad1891942d38894dbba85c95efc63bafc"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMLimbo.html">OnDMLimbo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad1891942d38894dbba85c95efc63bafc">OnDMLimbo</a></td></tr>
-<tr class="separator:ad1891942d38894dbba85c95efc63bafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d9cb3093a7001e59baf7d8fa6a436ff"><td class="memItemLeft" align="right" valign="top"><a id="a6d9cb3093a7001e59baf7d8fa6a436ff"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMToggleAI.html">OnDMToggleAI</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6d9cb3093a7001e59baf7d8fa6a436ff">OnDMToggleAI</a></td></tr>
-<tr class="separator:a6d9cb3093a7001e59baf7d8fa6a436ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e59f0d74b02612e1b7b208dd2da2015"><td class="memItemLeft" align="right" valign="top"><a id="a9e59f0d74b02612e1b7b208dd2da2015"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMToggleImmortal.html">OnDMToggleImmortal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9e59f0d74b02612e1b7b208dd2da2015">OnDMToggleImmortal</a></td></tr>
-<tr class="separator:a9e59f0d74b02612e1b7b208dd2da2015"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a243955d688b79b712c0bdf10e6d227e5"><td class="memItemLeft" align="right" valign="top"><a id="a243955d688b79b712c0bdf10e6d227e5"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGoTo.html">OnDMGoTo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a243955d688b79b712c0bdf10e6d227e5">OnDMGoTo</a></td></tr>
-<tr class="separator:a243955d688b79b712c0bdf10e6d227e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae40e8811ea19d6ad01482386ab01ef11"><td class="memItemLeft" align="right" valign="top"><a id="ae40e8811ea19d6ad01482386ab01ef11"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMPossess.html">OnDMPossess</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae40e8811ea19d6ad01482386ab01ef11">OnDMPossess</a></td></tr>
-<tr class="separator:ae40e8811ea19d6ad01482386ab01ef11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77fba41ce3b5353fbdeeed9732e051aa"><td class="memItemLeft" align="right" valign="top"><a id="a77fba41ce3b5353fbdeeed9732e051aa"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMPossessFullPower.html">OnDMPossessFullPower</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a77fba41ce3b5353fbdeeed9732e051aa">OnDMPossessFullPower</a></td></tr>
-<tr class="separator:a77fba41ce3b5353fbdeeed9732e051aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6fa0e3eea36a51daff2cc0a8298722b"><td class="memItemLeft" align="right" valign="top"><a id="ae6fa0e3eea36a51daff2cc0a8298722b"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMToggleLock.html">OnDMToggleLock</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae6fa0e3eea36a51daff2cc0a8298722b">OnDMToggleLock</a></td></tr>
-<tr class="separator:ae6fa0e3eea36a51daff2cc0a8298722b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac78a8701b355a8b434bd1207281b8f5c"><td class="memItemLeft" align="right" valign="top"><a id="ac78a8701b355a8b434bd1207281b8f5c"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMDisableTrap.html">OnDMDisableTrap</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac78a8701b355a8b434bd1207281b8f5c">OnDMDisableTrap</a></td></tr>
-<tr class="separator:ac78a8701b355a8b434bd1207281b8f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46f62125573f210520cc99e4b19cca2a"><td class="memItemLeft" align="right" valign="top"><a id="a46f62125573f210520cc99e4b19cca2a"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMAppear.html">OnDMAppear</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a46f62125573f210520cc99e4b19cca2a">OnDMAppear</a></td></tr>
-<tr class="separator:a46f62125573f210520cc99e4b19cca2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6f9e270e0b4fd0e4c32a81f42021a40"><td class="memItemLeft" align="right" valign="top"><a id="aa6f9e270e0b4fd0e4c32a81f42021a40"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMDisappear.html">OnDMDisappear</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aa6f9e270e0b4fd0e4c32a81f42021a40">OnDMDisappear</a></td></tr>
-<tr class="separator:aa6f9e270e0b4fd0e4c32a81f42021a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1a9435a115894510a40c6ae964406a3"><td class="memItemLeft" align="right" valign="top"><a id="ab1a9435a115894510a40c6ae964406a3"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetFaction.html">OnDMSetFaction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab1a9435a115894510a40c6ae964406a3">OnDMSetFaction</a></td></tr>
-<tr class="separator:ab1a9435a115894510a40c6ae964406a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4388184ed167624cd5e0a4e179f96c69"><td class="memItemLeft" align="right" valign="top"><a id="a4388184ed167624cd5e0a4e179f96c69"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMTakeItem.html">OnDMTakeItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4388184ed167624cd5e0a4e179f96c69">OnDMTakeItem</a></td></tr>
-<tr class="separator:a4388184ed167624cd5e0a4e179f96c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad548fdf4153700e79bf043617862606a"><td class="memItemLeft" align="right" valign="top"><a id="ad548fdf4153700e79bf043617862606a"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetStat.html">OnDMSetStat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad548fdf4153700e79bf043617862606a">OnDMSetStat</a></td></tr>
-<tr class="separator:ad548fdf4153700e79bf043617862606a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d955ae9627aea3646f9be099cd9c2eb"><td class="memItemLeft" align="right" valign="top"><a id="a5d955ae9627aea3646f9be099cd9c2eb"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGetVariable.html">OnDMGetVariable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5d955ae9627aea3646f9be099cd9c2eb">OnDMGetVariable</a></td></tr>
-<tr class="separator:a5d955ae9627aea3646f9be099cd9c2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68b117c28535cadbf0b76336d9917c9c"><td class="memItemLeft" align="right" valign="top"><a id="a68b117c28535cadbf0b76336d9917c9c"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetVariable.html">OnDMSetVariable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a68b117c28535cadbf0b76336d9917c9c">OnDMSetVariable</a></td></tr>
-<tr class="separator:a68b117c28535cadbf0b76336d9917c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e62e1842ef44f322615b8befad9ebc2"><td class="memItemLeft" align="right" valign="top"><a id="a2e62e1842ef44f322615b8befad9ebc2"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetTime.html">OnDMSetTime</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2e62e1842ef44f322615b8befad9ebc2">OnDMSetTime</a></td></tr>
-<tr class="separator:a2e62e1842ef44f322615b8befad9ebc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac85911352fce8572ce5bb15f016ceed4"><td class="memItemLeft" align="right" valign="top"><a id="ac85911352fce8572ce5bb15f016ceed4"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetDate.html">OnDMSetDate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac85911352fce8572ce5bb15f016ceed4">OnDMSetDate</a></td></tr>
-<tr class="separator:ac85911352fce8572ce5bb15f016ceed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a326f37dffd95c5151bc21804b5bdff92"><td class="memItemLeft" align="right" valign="top"><a id="a326f37dffd95c5151bc21804b5bdff92"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSetFactionReputation.html">OnDMSetFactionReputation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a326f37dffd95c5151bc21804b5bdff92">OnDMSetFactionReputation</a></td></tr>
-<tr class="separator:a326f37dffd95c5151bc21804b5bdff92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee18eb1d8210c324ef88ea9576a0b031"><td class="memItemLeft" align="right" valign="top"><a id="aee18eb1d8210c324ef88ea9576a0b031"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGetFactionReputation.html">OnDMGetFactionReputation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aee18eb1d8210c324ef88ea9576a0b031">OnDMGetFactionReputation</a></td></tr>
-<tr class="separator:aee18eb1d8210c324ef88ea9576a0b031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8008ea83ba4082dfc17db3e442d6503"><td class="memItemLeft" align="right" valign="top"><a id="ae8008ea83ba4082dfc17db3e442d6503"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMPlayerDMLogout.html">OnDMPlayerDMLogout</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae8008ea83ba4082dfc17db3e442d6503">OnDMPlayerDMLogout</a></td></tr>
-<tr class="separator:ae8008ea83ba4082dfc17db3e442d6503"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afed54e58b1ec760923be4798e707658b"><td class="memItemLeft" align="right" valign="top"><a id="afed54e58b1ec760923be4798e707658b"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMJumpToPoint.html">OnDMJumpToPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#afed54e58b1ec760923be4798e707658b">OnDMJumpToPoint</a></td></tr>
-<tr class="separator:afed54e58b1ec760923be4798e707658b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cc4783afbdf9ec71ad0aee3981d2803"><td class="memItemLeft" align="right" valign="top"><a id="a2cc4783afbdf9ec71ad0aee3981d2803"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMJumpAllPlayersToPoint.html">OnDMJumpAllPlayersToPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2cc4783afbdf9ec71ad0aee3981d2803">OnDMJumpAllPlayersToPoint</a></td></tr>
-<tr class="separator:a2cc4783afbdf9ec71ad0aee3981d2803"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab77b55e8e527110b45edb81cb8848ebd"><td class="memItemLeft" align="right" valign="top"><a id="ab77b55e8e527110b45edb81cb8848ebd"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMChangeDifficulty.html">OnDMChangeDifficulty</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab77b55e8e527110b45edb81cb8848ebd">OnDMChangeDifficulty</a></td></tr>
-<tr class="separator:ab77b55e8e527110b45edb81cb8848ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a397059287ef7aaff93131202bb633e78"><td class="memItemLeft" align="right" valign="top"><a id="a397059287ef7aaff93131202bb633e78"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMDumpLocals.html">OnDMDumpLocals</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a397059287ef7aaff93131202bb633e78">OnDMDumpLocals</a></td></tr>
-<tr class="separator:a397059287ef7aaff93131202bb633e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a242795259426a27a1b1f73b2417a33da"><td class="memItemLeft" align="right" valign="top"><a id="a242795259426a27a1b1f73b2417a33da"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveAlignment.html">OnDMGiveAlignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a242795259426a27a1b1f73b2417a33da">OnDMGiveAlignment</a></td></tr>
-<tr class="separator:a242795259426a27a1b1f73b2417a33da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7921dd4a3e2e991b01c610c6c375dd79"><td class="memItemLeft" align="right" valign="top"><a id="a7921dd4a3e2e991b01c610c6c375dd79"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveItemBefore.html">OnDMGiveItemBefore</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a7921dd4a3e2e991b01c610c6c375dd79">OnDMGiveItemBefore</a></td></tr>
-<tr class="separator:a7921dd4a3e2e991b01c610c6c375dd79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b0a017bc43211167872431ccd7a1b22"><td class="memItemLeft" align="right" valign="top"><a id="a6b0a017bc43211167872431ccd7a1b22"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMGiveItemAfter.html">OnDMGiveItemAfter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6b0a017bc43211167872431ccd7a1b22">OnDMGiveItemAfter</a></td></tr>
-<tr class="separator:a6b0a017bc43211167872431ccd7a1b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd3a6c82162dcfb52224f398d91ee804"><td class="memItemLeft" align="right" valign="top"><a id="acd3a6c82162dcfb52224f398d91ee804"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMJumpTargetToPoint.html">OnDMJumpTargetToPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acd3a6c82162dcfb52224f398d91ee804">OnDMJumpTargetToPoint</a><code> [get]</code></td></tr>
-<tr class="separator:acd3a6c82162dcfb52224f398d91ee804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39113f63afee4553a8fcb76088224819"><td class="memItemLeft" align="right" valign="top"><a id="a39113f63afee4553a8fcb76088224819"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMPlayerDMLogin.html">OnDMPlayerDMLogin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a39113f63afee4553a8fcb76088224819">OnDMPlayerDMLogin</a></td></tr>
-<tr class="separator:a39113f63afee4553a8fcb76088224819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b35171a83c2b13ea4db25aa1ee6a461"><td class="memItemLeft" align="right" valign="top"><a id="a4b35171a83c2b13ea4db25aa1ee6a461"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSpawnObjectBefore.html">OnDMSpawnObjectBefore</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4b35171a83c2b13ea4db25aa1ee6a461">OnDMSpawnObjectBefore</a></td></tr>
-<tr class="separator:a4b35171a83c2b13ea4db25aa1ee6a461"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0b7aaef6cc2070b66eadf08432dbf7c"><td class="memItemLeft" align="right" valign="top"><a id="aa0b7aaef6cc2070b66eadf08432dbf7c"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSpawnObjectAfter.html">OnDMSpawnObjectAfter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aa0b7aaef6cc2070b66eadf08432dbf7c">OnDMSpawnObjectAfter</a></td></tr>
-<tr class="separator:aa0b7aaef6cc2070b66eadf08432dbf7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3471a8f23d0fb4a9ff184414fec169f4"><td class="memItemLeft" align="right" valign="top"><a id="a3471a8f23d0fb4a9ff184414fec169f4"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMSpawnTrapOnObject.html">OnDMSpawnTrapOnObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3471a8f23d0fb4a9ff184414fec169f4">OnDMSpawnTrapOnObject</a></td></tr>
-<tr class="separator:a3471a8f23d0fb4a9ff184414fec169f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b8763db7126807a3248a49f8c418e4c"><td class="memItemLeft" align="right" valign="top"><a id="a2b8763db7126807a3248a49f8c418e4c"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDMViewInventory.html">OnDMViewInventory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2b8763db7126807a3248a49f8c418e4c">OnDMViewInventory</a></td></tr>
-<tr class="separator:a2b8763db7126807a3248a49f8c418e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5f99c61811c09ecdbf4ea53768b68f0"><td class="memItemLeft" align="right" valign="top"><a id="ab5f99c61811c09ecdbf4ea53768b68f0"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnExamineObject.html">OnExamineObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab5f99c61811c09ecdbf4ea53768b68f0">OnExamineObject</a></td></tr>
-<tr class="separator:ab5f99c61811c09ecdbf4ea53768b68f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4420d2e2bc412a91e2c74bc0fbf8502d"><td class="memItemLeft" align="right" valign="top"><a id="a4420d2e2bc412a91e2c74bc0fbf8502d"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnExamineTrap.html">OnExamineTrap</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4420d2e2bc412a91e2c74bc0fbf8502d">OnExamineTrap</a></td></tr>
-<tr class="separator:a4420d2e2bc412a91e2c74bc0fbf8502d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e777e2b11571342587fe3251f5bcf47"><td class="memItemLeft" align="right" valign="top"><a id="a0e777e2b11571342587fe3251f5bcf47"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnClientLevelUpBegin.html">OnClientLevelUpBegin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0e777e2b11571342587fe3251f5bcf47">OnClientLevelUpBegin</a></td></tr>
-<tr class="separator:a0e777e2b11571342587fe3251f5bcf47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2df9554e44ccbf459aed4e62e562cff"><td class="memItemLeft" align="right" valign="top"><a id="ab2df9554e44ccbf459aed4e62e562cff"></a>
-Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnPartyEvent.html">OnPartyEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab2df9554e44ccbf459aed4e62e562cff">OnPartyEvent</a></td></tr>
-<tr class="separator:ab2df9554e44ccbf459aed4e62e562cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ca343f91b10ce14b15b28a954a1d0cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a7ca343f91b10ce14b15b28a954a1d0cc">IsValid</a><code> [get]</code></td></tr>
-<tr class="memdesc:a7ca343f91b10ce14b15b28a954a1d0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> object is valid.<br  />
- Returns false after the player disconnects from the server.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a7ca343f91b10ce14b15b28a954a1d0cc">More...</a><br /></td></tr>
-<tr class="separator:a7ca343f91b10ce14b15b28a954a1d0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ccf2b2d7c7fbab0ab2ad7b7eee60b09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1ccf2b2d7c7fbab0ab2ad7b7eee60b09">ControlledCreature</a><code> [get]</code></td></tr>
-<tr class="memdesc:a1ccf2b2d7c7fbab0ab2ad7b7eee60b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creature this player is currently controlling.<br  />
- This will return the player's current possessed creature (familiar, DM possession), otherwise their player character if they are currently not possessing a creature.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1ccf2b2d7c7fbab0ab2ad7b7eee60b09">More...</a><br /></td></tr>
-<tr class="separator:a1ccf2b2d7c7fbab0ab2ad7b7eee60b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7e08abbfc7376c3749afe4dc476d684"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae7e08abbfc7376c3749afe4dc476d684">LoginCreature</a><code> [get]</code></td></tr>
-<tr class="memdesc:ae7e08abbfc7376c3749afe4dc476d684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the original creature that this player logged in with.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae7e08abbfc7376c3749afe4dc476d684">More...</a><br /></td></tr>
-<tr class="separator:ae7e08abbfc7376c3749afe4dc476d684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd0cd46b2a3ae23868701fe00b079c35"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acd0cd46b2a3ae23868701fe00b079c35">IsDM</a><code> [get]</code></td></tr>
-<tr class="memdesc:acd0cd46b2a3ae23868701fe00b079c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether the player is a Dungeon Master.  <a href="classAnvil_1_1API_1_1NwPlayer.html#acd0cd46b2a3ae23868701fe00b079c35">More...</a><br /></td></tr>
-<tr class="separator:acd0cd46b2a3ae23868701fe00b079c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bed1aeccde3f03c6b4094c75aca2444"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4bed1aeccde3f03c6b4094c75aca2444">IsPlayerDM</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a4bed1aeccde3f03c6b4094c75aca2444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether the player has DM privileges gained through a player login (as opposed to the DM client).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a4bed1aeccde3f03c6b4094c75aca2444">More...</a><br /></td></tr>
-<tr class="separator:a4bed1aeccde3f03c6b4094c75aca2444"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93b93804b55586c0adf394e91f7e0a11"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a93b93804b55586c0adf394e91f7e0a11">PlayerName</a><code> [get]</code></td></tr>
-<tr class="memdesc:a93b93804b55586c0adf394e91f7e0a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's login name.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a93b93804b55586c0adf394e91f7e0a11">More...</a><br /></td></tr>
-<tr class="separator:a93b93804b55586c0adf394e91f7e0a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="memItemLeft" align="right" valign="top">Version&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a022ee203ba1d0bb87a9ad3d634b9070d">ClientVersion</a><code> [get]</code></td></tr>
-<tr class="memdesc:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's client version (Major + Minor).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a022ee203ba1d0bb87a9ad3d634b9070d">More...</a><br /></td></tr>
-<tr class="separator:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79b92bff4fe5f9da4ae104fa96db1b39"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a79b92bff4fe5f9da4ae104fa96db1b39">CDKey</a><code> [get]</code></td></tr>
-<tr class="memdesc:a79b92bff4fe5f9da4ae104fa96db1b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the public part of the CD key that the player used when logging in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a79b92bff4fe5f9da4ae104fa96db1b39">More...</a><br /></td></tr>
-<tr class="separator:a79b92bff4fe5f9da4ae104fa96db1b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a197b9eefcb69683d25775a4ee097885d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a197b9eefcb69683d25775a4ee097885d">IPAddress</a><code> [get]</code></td></tr>
-<tr class="memdesc:a197b9eefcb69683d25775a4ee097885d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the connecting IP address for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a197b9eefcb69683d25775a4ee097885d">More...</a><br /></td></tr>
-<tr class="separator:a197b9eefcb69683d25775a4ee097885d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abade420c3c1e86d852c60cc7d138feb6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#abade420c3c1e86d852c60cc7d138feb6">IsConnectionRelayed</a><code> [get]</code></td></tr>
-<tr class="memdesc:abade420c3c1e86d852c60cc7d138feb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether the player has connected to the server over a relay (instead of directly).  <a href="classAnvil_1_1API_1_1NwPlayer.html#abade420c3c1e86d852c60cc7d138feb6">More...</a><br /></td></tr>
-<tr class="separator:abade420c3c1e86d852c60cc7d138feb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a51fb5a6a152e81a286097a919299fc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3a51fb5a6a152e81a286097a919299fc">CutsceneCameraMoveRate</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a3a51fb5a6a152e81a286097a919299fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the movement rate factor for the cutscene camera following ControlledCreature 'camera man'.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3a51fb5a6a152e81a286097a919299fc">More...</a><br /></td></tr>
-<tr class="separator:a3a51fb5a6a152e81a286097a919299fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3af8cf7c1c922ebcb26b3bd52c71435b">CameraHeight</a><code> [set]</code></td></tr>
-<tr class="memdesc:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the camera height for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3af8cf7c1c922ebcb26b3bd52c71435b">More...</a><br /></td></tr>
-<tr class="separator:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f31d8c4a31eaa1e2837b45bddd9cc9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4f31d8c4a31eaa1e2837b45bddd9cc9c">SpawnLocation</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a4f31d8c4a31eaa1e2837b45bddd9cc9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location that this player will spawn at when logging in to the server.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a4f31d8c4a31eaa1e2837b45bddd9cc9c">More...</a><br /></td></tr>
-<tr class="separator:a4f31d8c4a31eaa1e2837b45bddd9cc9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a791a7cf9b498bae61b86fe269659e28a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a791a7cf9b498bae61b86fe269659e28a">IsInCutsceneMode</a><code> [get]</code></td></tr>
-<tr class="memdesc:a791a7cf9b498bae61b86fe269659e28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether ControlledCreature creature is currently in "Cutscene" mode.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a791a7cf9b498bae61b86fe269659e28a">More...</a><br /></td></tr>
-<tr class="separator:a791a7cf9b498bae61b86fe269659e28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1173f6e794fadffce1cfdc01a92adaf1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1173f6e794fadffce1cfdc01a92adaf1">BicFileName</a><code> [get]</code></td></tr>
-<tr class="memdesc:a1173f6e794fadffce1cfdc01a92adaf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the player's .bic file.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1173f6e794fadffce1cfdc01a92adaf1">More...</a><br /></td></tr>
-<tr class="separator:a1173f6e794fadffce1cfdc01a92adaf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad86a51433be22500b193138c09133737"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad86a51433be22500b193138c09133737">PartyMembers</a><code> [get]</code></td></tr>
 <tr class="memdesc:ad86a51433be22500b193138c09133737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the members in the player's party.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ad86a51433be22500b193138c09133737">More...</a><br /></td></tr>
 <tr class="separator:ad86a51433be22500b193138c09133737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93b93804b55586c0adf394e91f7e0a11"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a93b93804b55586c0adf394e91f7e0a11">PlayerName</a><code> [get]</code></td></tr>
+<tr class="memdesc:a93b93804b55586c0adf394e91f7e0a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's login name.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a93b93804b55586c0adf394e91f7e0a11">More...</a><br /></td></tr>
+<tr class="separator:a93b93804b55586c0adf394e91f7e0a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f31d8c4a31eaa1e2837b45bddd9cc9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4f31d8c4a31eaa1e2837b45bddd9cc9c">SpawnLocation</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a4f31d8c4a31eaa1e2837b45bddd9cc9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location that this player will spawn at when logging in to the server.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a4f31d8c4a31eaa1e2837b45bddd9cc9c">More...</a><br /></td></tr>
+<tr class="separator:a4f31d8c4a31eaa1e2837b45bddd9cc9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="adfb69951245c64f419a91edc42963452"></a>
@@ -991,8 +988,8 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnPartyEvent.html"
 
 </div>
 </div>
-<a id="acb8b7fceda8992f8b612497c2472156f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb8b7fceda8992f8b612497c2472156f">&#9670;&nbsp;</a></span>Delete()</h2>
+<a id="a623e6ad1acb24b7b5afac64824892e18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a623e6ad1acb24b7b5afac64824892e18">&#9670;&nbsp;</a></span>Delete()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1001,7 +998,7 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnPartyEvent.html"
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Anvil.API.NwPlayer.Delete </td>
+          <td class="memname">async Task Anvil.API.NwPlayer.Delete </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>kickMessage</em>, </td>
@@ -1033,34 +1030,6 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnPartyEvent.html"
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a94c1e012c566e842db622bb8eca6240a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94c1e012c566e842db622bb8eca6240a">&#9670;&nbsp;</a></span>DeleteTURD()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsafe void Anvil.API.NwPlayer.DeleteTURD </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Delete the TURD of the player. </p>
-<p>At times a PC may get stuck in a permanent crash loop when attempting to login. This function allows administrators to delete their Temporary User Resource Data where the PC's current location is stored allowing them to log into the starting area.</p>
 
 </div>
 </div>

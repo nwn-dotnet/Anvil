@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NWN.Managed: Anvil.API.Effect Class Reference</title>
+<title>Anvil: Anvil.API.Effect Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">NWN.Managed
+   <div id="projectname">Anvil
    </div>
   </td>
  </tr>
@@ -271,6 +271,13 @@ static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</t
 <tr class="memitem:a44e5288ff16777f1f673d843389ed16d"><td class="memItemLeft" align="right" valign="top"><a id="a44e5288ff16777f1f673d843389ed16d"></a>
 static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Knockdown</b> ()</td></tr>
 <tr class="separator:a44e5288ff16777f1f673d843389ed16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70af5f30be620af5f949c964d121ee62"><td class="memItemLeft" align="right" valign="top"><a id="a70af5f30be620af5f949c964d121ee62"></a>
+static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a70af5f30be620af5f949c964d121ee62">LinkEffects</a> (<a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> baseEffect, IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> &gt; effects)</td></tr>
+<tr class="separator:a70af5f30be620af5f949c964d121ee62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919674b6fccff5b7df67c3fcac61bb22"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a919674b6fccff5b7df67c3fcac61bb22">LinkEffects</a> (<a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> baseEffect, params <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>[] effects)</td></tr>
+<tr class="memdesc:a919674b6fccff5b7df67c3fcac61bb22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new linked effect from the specified effects.<br  />
+ If you remove/dispel one of the effects from a target which is linked to others, the other linked effects will be removed/dispelled too.  <a href="classAnvil_1_1API_1_1Effect.html#a919674b6fccff5b7df67c3fcac61bb22">More...</a><br /></td></tr>
+<tr class="separator:a919674b6fccff5b7df67c3fcac61bb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab22949ab3526432431c8938ab4a75d7f"><td class="memItemLeft" align="right" valign="top"><a id="ab22949ab3526432431c8938ab4a75d7f"></a>
 static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MissChance</b> (int missPct, MissChanceType missChanceType=MissChanceType.Normal)</td></tr>
 <tr class="separator:ab22949ab3526432431c8938ab4a75d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -286,6 +293,12 @@ static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</t
 <tr class="memitem:a1d223aa08f1fd97a9d794376cfbd701e"><td class="memItemLeft" align="right" valign="top"><a id="a1d223aa08f1fd97a9d794376cfbd701e"></a>
 static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>NegativeLevel</b> (int numLevels)</td></tr>
 <tr class="separator:a1d223aa08f1fd97a9d794376cfbd701e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4aca67d21c58452560ad76644d88287"><td class="memItemLeft" align="right" valign="top"><a id="ab4aca67d21c58452560ad76644d88287"></a>
+static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator Effect</b> (IntPtr intPtr)</td></tr>
+<tr class="separator:ab4aca67d21c58452560ad76644d88287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92f3f3a8b9297a67dae93f7ec07fb8d9"><td class="memItemLeft" align="right" valign="top"><a id="a92f3f3a8b9297a67dae93f7ec07fb8d9"></a>
+static&#160;</td><td class="memItemRight" valign="bottom"><b>operator Effect</b> (<a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a> itemProperty)</td></tr>
+<tr class="separator:a92f3f3a8b9297a67dae93f7ec07fb8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad3af82fa07e5d4652c3fe73b4f4f5f7"><td class="memItemLeft" align="right" valign="top"><a id="aad3af82fa07e5d4652c3fe73b4f4f5f7"></a>
 static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Paralyze</b> ()</td></tr>
 <tr class="separator:aad3af82fa07e5d4652c3fe73b4f4f5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -379,19 +392,6 @@ static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</t
 <tr class="memitem:a82ce8998ee7c40a84e81cd2d590298d6"><td class="memItemLeft" align="right" valign="top"><a id="a82ce8998ee7c40a84e81cd2d590298d6"></a>
 static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>VisualEffect</b> (VfxType visualEffectId, bool missEffect=false, float fScale=1.0f, System.Numerics.Vector3 vTranslate=default, System.Numerics.Vector3 vRotate=default)</td></tr>
 <tr class="separator:a82ce8998ee7c40a84e81cd2d590298d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a919674b6fccff5b7df67c3fcac61bb22"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a919674b6fccff5b7df67c3fcac61bb22">LinkEffects</a> (<a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> baseEffect, params <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>[] effects)</td></tr>
-<tr class="memdesc:a919674b6fccff5b7df67c3fcac61bb22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new linked effect from the specified effects.<br  />
- If you remove/dispel one of the effects from a target which is linked to others, the other linked effects will be removed/dispelled too.  <a href="classAnvil_1_1API_1_1Effect.html#a919674b6fccff5b7df67c3fcac61bb22">More...</a><br /></td></tr>
-<tr class="separator:a919674b6fccff5b7df67c3fcac61bb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70af5f30be620af5f949c964d121ee62"><td class="memItemLeft" align="right" valign="top"><a id="a70af5f30be620af5f949c964d121ee62"></a>
-static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a70af5f30be620af5f949c964d121ee62">LinkEffects</a> (<a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> baseEffect, IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> &gt; effects)</td></tr>
-<tr class="separator:a70af5f30be620af5f949c964d121ee62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4aca67d21c58452560ad76644d88287"><td class="memItemLeft" align="right" valign="top"><a id="ab4aca67d21c58452560ad76644d88287"></a>
-static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator Effect</b> (IntPtr intPtr)</td></tr>
-<tr class="separator:ab4aca67d21c58452560ad76644d88287"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92f3f3a8b9297a67dae93f7ec07fb8d9"><td class="memItemLeft" align="right" valign="top"><a id="a92f3f3a8b9297a67dae93f7ec07fb8d9"></a>
-static&#160;</td><td class="memItemRight" valign="bottom"><b>operator Effect</b> (<a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a> itemProperty)</td></tr>
-<tr class="separator:a92f3f3a8b9297a67dae93f7ec07fb8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classAnvil_1_1API_1_1EffectBase"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classAnvil_1_1API_1_1EffectBase')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classAnvil_1_1API_1_1EffectBase.html">Anvil.API.EffectBase</a></td></tr>
 <tr class="memitem:a562bd71907494202843bbe7055cdecf3 inherit pub_static_methods_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a id="a562bd71907494202843bbe7055cdecf3"></a>
 static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator CGameEffect</b> (<a class="el" href="classAnvil_1_1API_1_1EffectBase.html">EffectBase</a> effect)</td></tr>
@@ -403,58 +403,58 @@ static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator I
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a6e7048d873d64d4ec43e9795e97dec41"><td class="memItemLeft" align="right" valign="top"><a id="a6e7048d873d64d4ec43e9795e97dec41"></a>
-override int&#160;</td><td class="memItemRight" valign="bottom"><b>StructureId</b><code> [get]</code></td></tr>
-<tr class="separator:a6e7048d873d64d4ec43e9795e97dec41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a982263f51ba5cb67fcd40ba5e2e17720"><td class="memItemLeft" align="right" valign="top">EffectType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a982263f51ba5cb67fcd40ba5e2e17720">EffectType</a><code> [get]</code></td></tr>
-<tr class="memdesc:a982263f51ba5cb67fcd40ba5e2e17720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of this effect.  <a href="classAnvil_1_1API_1_1Effect.html#a982263f51ba5cb67fcd40ba5e2e17720">More...</a><br /></td></tr>
-<tr class="separator:a982263f51ba5cb67fcd40ba5e2e17720"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b46e79fd198199fc0d11e37cfddd920"><td class="memItemLeft" align="right" valign="top">EffectDuration&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a2b46e79fd198199fc0d11e37cfddd920">DurationType</a><code> [get]</code></td></tr>
-<tr class="memdesc:a2b46e79fd198199fc0d11e37cfddd920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the duration type (Temporary, Instant, Permanent) of this effect.  <a href="classAnvil_1_1API_1_1Effect.html#a2b46e79fd198199fc0d11e37cfddd920">More...</a><br /></td></tr>
-<tr class="separator:a2b46e79fd198199fc0d11e37cfddd920"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1040e52fcbbb6c6cb352315263dcc6a8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a1040e52fcbbb6c6cb352315263dcc6a8">TotalDuration</a><code> [get]</code></td></tr>
-<tr class="memdesc:a1040e52fcbbb6c6cb352315263dcc6a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total duration of this effect in seconds. Returns 0 if the duration type is not EffectDuration.Temporary.  <a href="classAnvil_1_1API_1_1Effect.html#a1040e52fcbbb6c6cb352315263dcc6a8">More...</a><br /></td></tr>
-<tr class="separator:a1040e52fcbbb6c6cb352315263dcc6a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae26ed0277c809d94b51f1bd6e124a6f2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#ae26ed0277c809d94b51f1bd6e124a6f2">DurationRemaining</a><code> [get]</code></td></tr>
 <tr class="memdesc:ae26ed0277c809d94b51f1bd6e124a6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the remaining duration of this effect in seconds. Returns 0 if the duration type is not EffectDuration.Temporary.  <a href="classAnvil_1_1API_1_1Effect.html#ae26ed0277c809d94b51f1bd6e124a6f2">More...</a><br /></td></tr>
 <tr class="separator:ae26ed0277c809d94b51f1bd6e124a6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f739eb92ec062e833eb286e71a5f264"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a3f739eb92ec062e833eb286e71a5f264">Tag</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a3f739eb92ec062e833eb286e71a5f264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the tag for this effect.  <a href="classAnvil_1_1API_1_1Effect.html#a3f739eb92ec062e833eb286e71a5f264">More...</a><br /></td></tr>
-<tr class="separator:a3f739eb92ec062e833eb286e71a5f264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b46e79fd198199fc0d11e37cfddd920"><td class="memItemLeft" align="right" valign="top">EffectDuration&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a2b46e79fd198199fc0d11e37cfddd920">DurationType</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2b46e79fd198199fc0d11e37cfddd920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the duration type (Temporary, Instant, Permanent) of this effect.  <a href="classAnvil_1_1API_1_1Effect.html#a2b46e79fd198199fc0d11e37cfddd920">More...</a><br /></td></tr>
+<tr class="separator:a2b46e79fd198199fc0d11e37cfddd920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a982263f51ba5cb67fcd40ba5e2e17720"><td class="memItemLeft" align="right" valign="top">EffectType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a982263f51ba5cb67fcd40ba5e2e17720">EffectType</a><code> [get]</code></td></tr>
+<tr class="memdesc:a982263f51ba5cb67fcd40ba5e2e17720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of this effect.  <a href="classAnvil_1_1API_1_1Effect.html#a982263f51ba5cb67fcd40ba5e2e17720">More...</a><br /></td></tr>
+<tr class="separator:a982263f51ba5cb67fcd40ba5e2e17720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7048d873d64d4ec43e9795e97dec41"><td class="memItemLeft" align="right" valign="top"><a id="a6e7048d873d64d4ec43e9795e97dec41"></a>
+override int&#160;</td><td class="memItemRight" valign="bottom"><b>StructureId</b><code> [get]</code></td></tr>
+<tr class="separator:a6e7048d873d64d4ec43e9795e97dec41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad39076673e6f3b8861ac812b711f92d3"><td class="memItemLeft" align="right" valign="top">EffectSubType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#ad39076673e6f3b8861ac812b711f92d3">SubType</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ad39076673e6f3b8861ac812b711f92d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the subtype of this effect.  <a href="classAnvil_1_1API_1_1Effect.html#ad39076673e6f3b8861ac812b711f92d3">More...</a><br /></td></tr>
 <tr class="separator:ad39076673e6f3b8861ac812b711f92d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f739eb92ec062e833eb286e71a5f264"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a3f739eb92ec062e833eb286e71a5f264">Tag</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3f739eb92ec062e833eb286e71a5f264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the tag for this effect.  <a href="classAnvil_1_1API_1_1Effect.html#a3f739eb92ec062e833eb286e71a5f264">More...</a><br /></td></tr>
+<tr class="separator:a3f739eb92ec062e833eb286e71a5f264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1040e52fcbbb6c6cb352315263dcc6a8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#a1040e52fcbbb6c6cb352315263dcc6a8">TotalDuration</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1040e52fcbbb6c6cb352315263dcc6a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total duration of this effect in seconds. Returns 0 if the duration type is not EffectDuration.Temporary.  <a href="classAnvil_1_1API_1_1Effect.html#a1040e52fcbbb6c6cb352315263dcc6a8">More...</a><br /></td></tr>
+<tr class="separator:a1040e52fcbbb6c6cb352315263dcc6a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classAnvil_1_1API_1_1EffectBase"><td colspan="2" onclick="javascript:toggleInherit('properties_classAnvil_1_1API_1_1EffectBase')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classAnvil_1_1API_1_1EffectBase.html">Anvil.API.EffectBase</a></td></tr>
-<tr class="memitem:a014b5531001ff0e4d754693d5d903af1 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1EffectParams.html">EffectParams</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a014b5531001ff0e4d754693d5d903af1">IntParams</a><code> [get]</code></td></tr>
-<tr class="memdesc:a014b5531001ff0e4d754693d5d903af1 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the integer parameters of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a014b5531001ff0e4d754693d5d903af1">More...</a><br /></td></tr>
-<tr class="separator:a014b5531001ff0e4d754693d5d903af1 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a734262a8a2552af7b1d30d63069ab7a6 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a734262a8a2552af7b1d30d63069ab7a6">CasterLevel</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a734262a8a2552af7b1d30d63069ab7a6 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the caster level for this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a734262a8a2552af7b1d30d63069ab7a6">More...</a><br /></td></tr>
+<tr class="separator:a734262a8a2552af7b1d30d63069ab7a6 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af63b97a92f776079161b196b1b135f0d inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#af63b97a92f776079161b196b1b135f0d">Creator</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af63b97a92f776079161b196b1b135f0d inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the creator of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#af63b97a92f776079161b196b1b135f0d">More...</a><br /></td></tr>
+<tr class="separator:af63b97a92f776079161b196b1b135f0d inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac42610187f45f80b679daf388c0e0e4e inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a id="ac42610187f45f80b679daf388c0e0e4e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Expose</b><code> [get, set]</code></td></tr>
+<tr class="separator:ac42610187f45f80b679daf388c0e0e4e inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf4cd5081e0b203ab3143fba7502b1f5 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1EffectParams.html">EffectParams</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#adf4cd5081e0b203ab3143fba7502b1f5">FloatParams</a><code> [get]</code></td></tr>
 <tr class="memdesc:adf4cd5081e0b203ab3143fba7502b1f5 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the float parameters of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#adf4cd5081e0b203ab3143fba7502b1f5">More...</a><br /></td></tr>
 <tr class="separator:adf4cd5081e0b203ab3143fba7502b1f5 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a014b5531001ff0e4d754693d5d903af1 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1EffectParams.html">EffectParams</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a014b5531001ff0e4d754693d5d903af1">IntParams</a><code> [get]</code></td></tr>
+<tr class="memdesc:a014b5531001ff0e4d754693d5d903af1 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the integer parameters of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a014b5531001ff0e4d754693d5d903af1">More...</a><br /></td></tr>
+<tr class="separator:a014b5531001ff0e4d754693d5d903af1 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52e99d203ea0a4fb7b576468b79230d7 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1EffectParams.html">EffectParams</a>&lt; <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a52e99d203ea0a4fb7b576468b79230d7">ObjectParams</a><code> [get]</code></td></tr>
+<tr class="memdesc:a52e99d203ea0a4fb7b576468b79230d7 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the object parameters of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a52e99d203ea0a4fb7b576468b79230d7">More...</a><br /></td></tr>
+<tr class="separator:a52e99d203ea0a4fb7b576468b79230d7 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f70e432fab1f0338d951a47c5781a2 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a id="a20f70e432fab1f0338d951a47c5781a2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ShowIcon</b><code> [get, set]</code></td></tr>
+<tr class="separator:a20f70e432fab1f0338d951a47c5781a2 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ebe301778421927309ae4a1c7b0dd8 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top">Spell&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a75ebe301778421927309ae4a1c7b0dd8">Spell</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a75ebe301778421927309ae4a1c7b0dd8 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the associated spell for this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a75ebe301778421927309ae4a1c7b0dd8">More...</a><br /></td></tr>
+<tr class="separator:a75ebe301778421927309ae4a1c7b0dd8 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a324dda5c863e35b08811fd82aa5d1e94 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1EffectParams.html">EffectParams</a>&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a324dda5c863e35b08811fd82aa5d1e94">StringParams</a><code> [get]</code></td></tr>
 <tr class="memdesc:a324dda5c863e35b08811fd82aa5d1e94 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the string parameters of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a324dda5c863e35b08811fd82aa5d1e94">More...</a><br /></td></tr>
 <tr class="separator:a324dda5c863e35b08811fd82aa5d1e94 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addce3f936b9fe283c96cfb68ad3a6b8b inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1EffectParams.html">EffectParams</a>&lt; Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#addce3f936b9fe283c96cfb68ad3a6b8b">VectorParams</a><code> [get]</code></td></tr>
 <tr class="memdesc:addce3f936b9fe283c96cfb68ad3a6b8b inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the vector parameters of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#addce3f936b9fe283c96cfb68ad3a6b8b">More...</a><br /></td></tr>
 <tr class="separator:addce3f936b9fe283c96cfb68ad3a6b8b inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52e99d203ea0a4fb7b576468b79230d7 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1EffectParams.html">EffectParams</a>&lt; <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a52e99d203ea0a4fb7b576468b79230d7">ObjectParams</a><code> [get]</code></td></tr>
-<tr class="memdesc:a52e99d203ea0a4fb7b576468b79230d7 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the object parameters of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a52e99d203ea0a4fb7b576468b79230d7">More...</a><br /></td></tr>
-<tr class="separator:a52e99d203ea0a4fb7b576468b79230d7 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af63b97a92f776079161b196b1b135f0d inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#af63b97a92f776079161b196b1b135f0d">Creator</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:af63b97a92f776079161b196b1b135f0d inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the creator of this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#af63b97a92f776079161b196b1b135f0d">More...</a><br /></td></tr>
-<tr class="separator:af63b97a92f776079161b196b1b135f0d inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75ebe301778421927309ae4a1c7b0dd8 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top">Spell&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a75ebe301778421927309ae4a1c7b0dd8">Spell</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a75ebe301778421927309ae4a1c7b0dd8 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the associated spell for this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a75ebe301778421927309ae4a1c7b0dd8">More...</a><br /></td></tr>
-<tr class="separator:a75ebe301778421927309ae4a1c7b0dd8 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a734262a8a2552af7b1d30d63069ab7a6 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1EffectBase.html#a734262a8a2552af7b1d30d63069ab7a6">CasterLevel</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a734262a8a2552af7b1d30d63069ab7a6 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the caster level for this effect/item property.  <a href="classAnvil_1_1API_1_1EffectBase.html#a734262a8a2552af7b1d30d63069ab7a6">More...</a><br /></td></tr>
-<tr class="separator:a734262a8a2552af7b1d30d63069ab7a6 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac42610187f45f80b679daf388c0e0e4e inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a id="ac42610187f45f80b679daf388c0e0e4e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Expose</b><code> [get, set]</code></td></tr>
-<tr class="separator:ac42610187f45f80b679daf388c0e0e4e inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20f70e432fab1f0338d951a47c5781a2 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memItemLeft" align="right" valign="top"><a id="a20f70e432fab1f0338d951a47c5781a2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ShowIcon</b><code> [get, set]</code></td></tr>
-<tr class="separator:a20f70e432fab1f0338d951a47c5781a2 inherit properties_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classAnvil_1_1API_1_1EngineStructure"><td colspan="2" onclick="javascript:toggleInherit('properties_classAnvil_1_1API_1_1EngineStructure')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classAnvil_1_1API_1_1EngineStructure.html">Anvil.API.EngineStructure</a></td></tr>
 <tr class="memitem:a535cb01f474bfff66d6361509d363813 inherit properties_classAnvil_1_1API_1_1EngineStructure"><td class="memItemLeft" align="right" valign="top"><a id="a535cb01f474bfff66d6361509d363813"></a>
 abstract int&#160;</td><td class="memItemRight" valign="bottom"><b>StructureId</b><code> [get]</code></td></tr>

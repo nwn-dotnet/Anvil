@@ -68,6 +68,5 @@ var searchData=
   ['standardfactionextensions_1693',['StandardFactionExtensions',['../classAnvil_1_1API_1_1StandardFactionExtensions.html',1,'Anvil::API']]],
   ['storeevents_1694',['StoreEvents',['../classAnvil_1_1API_1_1Events_1_1StoreEvents.html',1,'Anvil::API::Events']]],
   ['stringextensions_1695',['StringExtensions',['../classAnvil_1_1API_1_1StringExtensions.html',1,'Anvil::API']]],
-  ['synccontext_1696',['SyncContext',['../classAnvil_1_1API_1_1NwTask_1_1SyncContext.html',1,'Anvil::API::NwTask']]],
-  ['synchronizationcontextawaiter_1697',['SynchronizationContextAwaiter',['../structAnvil_1_1API_1_1SynchronizationContextAwaiter.html',1,'Anvil::API']]]
+  ['synchronizationcontextawaiter_1696',['SynchronizationContextAwaiter',['../structAnvil_1_1API_1_1SynchronizationContextAwaiter.html',1,'Anvil::API']]]
 ];
