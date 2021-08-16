@@ -19,6 +19,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <IncludeSymbols>true</IncludeSymbols>
+        <DebugSymbols>true</DebugSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <RepositoryUrl>https://github.com/nwn-dotnet/Anvil</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
