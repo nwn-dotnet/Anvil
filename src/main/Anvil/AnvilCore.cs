@@ -136,6 +136,7 @@ namespace Anvil
 
       if (!keepLoggerAlive)
       {
+        unhandledExceptionLogger.Dispose();
         loggerManager.Dispose();
       }
     }
