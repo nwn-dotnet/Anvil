@@ -26,6 +26,7 @@ namespace Anvil
     private IContainerFactory containerFactory;
     private ITypeLoader typeLoader;
     private LoggerManager loggerManager;
+    private UnhandledExceptionLogger unhandledExceptionLogger;
     private ServiceManager serviceManager;
 
     /// <summary>
@@ -47,6 +48,7 @@ namespace Anvil
       instance.containerFactory = containerFactory;
       instance.typeLoader = typeLoader;
       instance.loggerManager = new LoggerManager();
+      instance.unhandledExceptionLogger = new UnhandledExceptionLogger();
 
       return NWNCore.Init(arg, argLength, instance.interopHandler, instance.interopHandler);
     }
@@ -94,6 +96,7 @@ namespace Anvil
       loggerManager.Init();
       PrelinkNative();
       loggerManager.InitVariables();
+      unhandledExceptionLogger.Init();
 
       AssemblyName assemblyName = Assemblies.Anvil.GetName();
 
