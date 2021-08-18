@@ -7,12 +7,14 @@ on:
       - development
     paths-ignore:
       - '**.md'
+      - 'docs/**'
   pull_request:
     branches:
       - master
       - development
     paths-ignore:
       - '**.md'
+      - 'docs/**'
   workflow_dispatch:
     inputs:
       tag:
