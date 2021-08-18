@@ -42,7 +42,7 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1NwModule.html#af8ed91a9b71d36b17fc24d379c5cebac",
 "classAnvil_1_1API_1_1NwSound.html#a31247371d703b62141176a2a7c57858a",
 "classAnvil_1_1API_1_1SpecialAbility.html#af26f49bc561df80d3743883b720d3269",
-"classAnvil_1_1Services_1_1OnELCSpellValidationFailure.html#a69bf78176ea17bf83c8e8ea1d883998b"
+"classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

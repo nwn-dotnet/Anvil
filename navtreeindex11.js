@@ -1,5 +1,8 @@
 var NAVTREEINDEX11 =
 {
+"classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html":[0,0,3,29],
+"classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html#a889b98592328fc02fc98a57828d8158f":[0,0,3,29,0],
+"classAnvil_1_1Services_1_1OnELCSpellValidationFailure.html":[0,0,3,30],
 "classAnvil_1_1Services_1_1OnELCSpellValidationFailure.html#a69bf78176ea17bf83c8e8ea1d883998b":[0,0,3,30,0],
 "classAnvil_1_1Services_1_1OnELCValidationBefore.html":[0,0,3,31],
 "classAnvil_1_1Services_1_1OnELCValidationBefore.html#a91135bb7b44ad6fee1fd490e508fb49b":[0,0,3,31,0],

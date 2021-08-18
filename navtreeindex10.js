@@ -118,6 +118,9 @@ var NAVTREEINDEX10 =
 "classAnvil_1_1Internal_1_1EnvironmentConfig.html#a866098e3386eff5dc694dbbdeca3d90f":[0,0,1,0,2],
 "classAnvil_1_1Internal_1_1EnvironmentConfig.html#a98cb4a05ddff6aee908e9933c0a0de1f":[0,0,1,0,4],
 "classAnvil_1_1Internal_1_1EnvironmentConfig.html#abf1434a069369d45b9fa8a71efdf2aa2":[0,0,1,0,1],
+"classAnvil_1_1Internal_1_1UnhandledExceptionLogger.html":[0,0,1,2],
+"classAnvil_1_1Internal_1_1UnhandledExceptionLogger.html#a8be8f601175d95779201218f12bfe459":[0,0,1,2,1],
+"classAnvil_1_1Internal_1_1UnhandledExceptionLogger.html#a8cea4ec03e44951358c9419e6e45f7f0":[0,0,1,2,0],
 "classAnvil_1_1Services_1_1AnvilContainerFactory.html":[0,0,3,0],
 "classAnvil_1_1Services_1_1AnvilContainerFactory.html#a5840d29a87e00936e913e641cbd87138":[0,0,3,0,1],
 "classAnvil_1_1Services_1_1AnvilContainerFactory.html#a7104dffcb6203f3f22206f8fb391629b":[0,0,3,0,2],
@@ -246,8 +249,5 @@ var NAVTREEINDEX10 =
 "classAnvil_1_1Services_1_1OnELCItemValidationFailure.html":[0,0,3,27],
 "classAnvil_1_1Services_1_1OnELCItemValidationFailure.html#a3ebd404eb702465f15e3e99bf4583bf3":[0,0,3,27,0],
 "classAnvil_1_1Services_1_1OnELCLevelValidationFailure.html":[0,0,3,28],
-"classAnvil_1_1Services_1_1OnELCLevelValidationFailure.html#a92ac082c370ff239fa4d8edc64168653":[0,0,3,28,0],
-"classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html":[0,0,3,29],
-"classAnvil_1_1Services_1_1OnELCSkillValidationFailure.html#a889b98592328fc02fc98a57828d8158f":[0,0,3,29,0],
-"classAnvil_1_1Services_1_1OnELCSpellValidationFailure.html":[0,0,3,30]
+"classAnvil_1_1Services_1_1OnELCLevelValidationFailure.html#a92ac082c370ff239fa4d8edc64168653":[0,0,3,28,0]
 };

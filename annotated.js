@@ -335,7 +335,8 @@ var annotated =
       ] ],
       [ "Internal", "namespaceAnvil_1_1Internal.html", [
         [ "EnvironmentConfig", "classAnvil_1_1Internal_1_1EnvironmentConfig.html", "classAnvil_1_1Internal_1_1EnvironmentConfig" ],
-        [ "ICoreSignalHandler", "interfaceAnvil_1_1Internal_1_1ICoreSignalHandler.html", "interfaceAnvil_1_1Internal_1_1ICoreSignalHandler" ]
+        [ "ICoreSignalHandler", "interfaceAnvil_1_1Internal_1_1ICoreSignalHandler.html", "interfaceAnvil_1_1Internal_1_1ICoreSignalHandler" ],
+        [ "UnhandledExceptionLogger", "classAnvil_1_1Internal_1_1UnhandledExceptionLogger.html", "classAnvil_1_1Internal_1_1UnhandledExceptionLogger" ]
       ] ],
       [ "Plugins", "namespaceAnvil_1_1Plugins.html", [
         [ "ITypeLoader", "interfaceAnvil_1_1Plugins_1_1ITypeLoader.html", "interfaceAnvil_1_1Plugins_1_1ITypeLoader" ]
