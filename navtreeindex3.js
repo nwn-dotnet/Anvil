@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a95a342c27d9db5d9c80f7e6f06d13111":[0,0,0,0,37,3],
+"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#adc9c8728252c5239e9ad3b8d3dc69155":[0,0,0,0,37,0],
 "classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html":[0,0,0,0,80],
 "classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html#a0bace4918a6d31bc618bddd3a8cdeb53":[0,0,0,0,80,3],
 "classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html#a3dc7d8b537894df2aab81093007f45d3":[0,0,0,0,80,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html":[0,0,0,0,117,1],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a02cd78708edd812ab1a200b9d73396d7":[0,0,0,0,117,1,1],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a1d8626898853a227399e2dfa451c06b5":[0,0,0,0,117,1,2],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a7fae58ca8ca8dfcbbe2e744139949adc":[0,0,0,0,117,1,3],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#ac178985136f868e890dd38587012dd90":[0,0,0,0,117,1,4],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#ada19799f277545a7f75055059c8b8fb4":[0,0,0,0,117,1,0]
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#a7fae58ca8ca8dfcbbe2e744139949adc":[0,0,0,0,117,1,3]
 };

@@ -235,11 +235,12 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1Events_1_1HookEventFactory.html#abfe5e90b11aacfd49d509364c3990144":[0,0,0,0,14,3],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents.html":[0,0,0,0,18],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html":[0,0,0,0,18,0],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a0b3c9f172167538c123518edae097884":[0,0,0,0,18,0,1],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a5af2b6f4cf22932d1cbd1f22c6d9c464":[0,0,0,0,18,0,4],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a6613269b3eeb5d191329888c201ebfdf":[0,0,0,0,18,0,2],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a672e5dd9ed8001a5aacddc04a14094ce":[0,0,0,0,18,0,3],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#afabaa3222cb7bdc1918231df3b40b681":[0,0,0,0,18,0,0],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a0b3c9f172167538c123518edae097884":[0,0,0,0,18,0,2],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a22cfe8e92b6ab3ed4a13df04b8ad5082":[0,0,0,0,18,0,0],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a5af2b6f4cf22932d1cbd1f22c6d9c464":[0,0,0,0,18,0,5],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a6613269b3eeb5d191329888c201ebfdf":[0,0,0,0,18,0,3],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a672e5dd9ed8001a5aacddc04a14094ce":[0,0,0,0,18,0,4],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#afabaa3222cb7bdc1918231df3b40b681":[0,0,0,0,18,0,1],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html":[0,0,0,0,18,1],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html#a2a697d5107a30b305dc7edb4651f5aec":[0,0,0,0,18,1,4],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html#a43edc0cce3a5e05386cf0b1bb08529b8":[0,0,0,0,18,1,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html#a9da44ba1b8e507913b67cd572b340fab":[0,0,0,0,18,1,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnActivateItem.html#af29a80ed2b40b8820f460f08edc85e6e":[0,0,0,0,18,1,1],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html":[0,0,0,0,18,2],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html#a921de2b36e8055aa8496b7fb93634264":[0,0,0,0,18,2,0],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html#aa4271baf6f309b7c6fd51bec8d49ce2e":[0,0,0,0,18,2,1]
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html#a921de2b36e8055aa8496b7fb93634264":[0,0,0,0,18,2,0]
 };

@@ -1,5 +1,7 @@
 var NAVTREEINDEX10 =
 {
+"classAnvil_1_1API_1_1SpecialAbility.html#a857fa326e81f0459bc51e164fd89e64c":[0,0,0,92,3],
+"classAnvil_1_1API_1_1SpecialAbility.html#a8ce94c642d35f54b713fffc43a947e86":[0,0,0,92,2],
 "classAnvil_1_1API_1_1SpecialAbility.html#af26f49bc561df80d3743883b720d3269":[0,0,0,92,0],
 "classAnvil_1_1API_1_1SpecialAbility.html#af2b084932b1be7d163b3496f30f0ec28":[0,0,0,92,1],
 "classAnvil_1_1API_1_1StandardFactionExtensions.html":[0,0,0,95],
@@ -247,7 +249,5 @@ var NAVTREEINDEX10 =
 "classAnvil_1_1Services_1_1OnELCFeatValidationFailure.html":[0,0,3,26],
 "classAnvil_1_1Services_1_1OnELCFeatValidationFailure.html#a83c1f6565bbb4dfcde36bbc814fdea20":[0,0,3,26,0],
 "classAnvil_1_1Services_1_1OnELCItemValidationFailure.html":[0,0,3,27],
-"classAnvil_1_1Services_1_1OnELCItemValidationFailure.html#a3ebd404eb702465f15e3e99bf4583bf3":[0,0,3,27,0],
-"classAnvil_1_1Services_1_1OnELCLevelValidationFailure.html":[0,0,3,28],
-"classAnvil_1_1Services_1_1OnELCLevelValidationFailure.html#a92ac082c370ff239fa4d8edc64168653":[0,0,3,28,0]
+"classAnvil_1_1Services_1_1OnELCItemValidationFailure.html#a3ebd404eb702465f15e3e99bf4583bf3":[0,0,3,27,0]
 };
