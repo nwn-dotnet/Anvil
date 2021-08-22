@@ -4,24 +4,24 @@ namespace Anvil.Services
 {
   internal static class DialogExtensions
   {
-    public static CNWSDialogLinkReply GetReply(this CNWSDialogEntry entry, uint index)
+    public static CNWSDialogEntryArray ToArray(this CNWSDialogEntry pointer)
     {
-      return CNWSDialogLinkReplyArray.FromPointer(entry.m_pReplies)[(int)index];
+      return CNWSDialogEntryArray.FromPointer(pointer);
     }
 
-    public static CNWSDialogLinkEntry GetEntry(this CNWSDialogReply reply, uint index)
+    public static CNWSDialogReplyArray ToArray(this CNWSDialogReply pointer)
     {
-      return CNWSDialogLinkEntryArray.FromPointer(reply.m_pEntries)[(int)index];
+      return CNWSDialogReplyArray.FromPointer(pointer);
     }
 
-    public static CNWSDialogLinkReply GetReply(this CNWSDialogEntry entry, int index)
+    public static CNWSDialogLinkEntryArray ToArray(this CNWSDialogLinkEntry pointer)
     {
-      return CNWSDialogLinkReplyArray.FromPointer(entry.m_pReplies)[index];
+      return CNWSDialogLinkEntryArray.FromPointer(pointer);
     }
 
-    public static CNWSDialogLinkEntry GetEntry(this CNWSDialogReply reply, int index)
+    public static CNWSDialogLinkReplyArray ToArray(this CNWSDialogLinkReply pointer)
     {
-      return CNWSDialogLinkEntryArray.FromPointer(reply.m_pEntries)[index];
+      return CNWSDialogLinkReplyArray.FromPointer(pointer);
     }
   }
 }

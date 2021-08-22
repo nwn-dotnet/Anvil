@@ -45,7 +45,7 @@ namespace Anvil.API.Events
       {
         // Patch player reference due to a reference bug during client enter context
         // See https://github.com/Beamdog/nwn-issues/issues/367
-        if (AcquiredBy is null && Item.Possessor is NwCreature creature)
+        if (AcquiredBy is null && Item?.Possessor is NwCreature creature)
         {
           AcquiredBy = creature;
         }
