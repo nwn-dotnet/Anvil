@@ -13,21 +13,6 @@ namespace Anvil.Services
 
     private CNWSDialog dialog;
 
-    private CNWSDialogEntryArray DialogueEntries
-    {
-      get => CNWSDialogEntryArray.FromPointer(dialog.m_pEntries);
-    }
-
-    private CNWSDialogReplyArray DialogueReplies
-    {
-      get => CNWSDialogReplyArray.FromPointer(dialog.m_pReplies);
-    }
-
-    private CNWSDialogLinkEntryArray StartingEntries
-    {
-      get => CNWSDialogLinkEntryArray.FromPointer(dialog.m_pStartingEntries);
-    }
-
     private uint indexEntry;
     private uint indexReply;
 
@@ -94,13 +79,13 @@ namespace Anvil.Services
         switch (stateStack.Peek())
         {
           case DialogState.Start:
-            return StartingEntries[CurrentNodeIndex].m_nIndex;
+            return dialog.m_pStartingEntries.ToArray()[CurrentNodeIndex].m_nIndex;
           case DialogState.SendEntry:
             return indexEntry;
           case DialogState.HandleReply:
-            return indexReply == 0xFFFFFFFF ? null : DialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
+            return indexReply == 0xFFFFFFFF ? null : dialog.m_pEntries.ToArray()[(int)indexEntry].m_pReplies.ToArray()[(int)indexReply].m_nIndex;
           case DialogState.SendReplies:
-            return DialogueEntries[(int)dialog.m_currentEntryIndex].GetReply(CurrentNodeIndex).m_nIndex;
+            return dialog.m_pEntries.ToArray()[(int)dialog.m_currentEntryIndex].m_pReplies.ToArray()[CurrentNodeIndex].m_nIndex;
           default:
             return null;
         }
@@ -236,18 +221,18 @@ namespace Anvil.Services
       switch (stateStack.Peek())
       {
         case DialogState.Start:
-          locString = DialogueEntries[(int)StartingEntries[CurrentNodeIndex].m_nIndex].m_sText;
+          locString = dialog.m_pEntries.ToArray()[(int)dialog.m_pStartingEntries.ToArray()[CurrentNodeIndex].m_nIndex].m_sText;
           break;
         case DialogState.SendEntry:
-          locString = DialogueEntries[(int)indexEntry].m_sText;
+          locString = dialog.m_pEntries.ToArray()[(int)indexEntry].m_sText;
           break;
         case DialogState.HandleReply:
-          int handleIndex = (int)DialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
-          locString = DialogueReplies[handleIndex].m_sText;
+          uint handleIndex = dialog.m_pEntries.ToArray()[(int)indexEntry].m_pReplies.ToArray()[(int)indexReply].m_nIndex;
+          locString = dialog.m_pReplies.ToArray()[(int)handleIndex].m_sText;
           break;
         case DialogState.SendReplies:
-          int sendIndex = (int)DialogueEntries[(int)indexEntry].GetReply(indexReply).m_nIndex;
-          locString = DialogueReplies[sendIndex].m_sText;
+          uint sendIndex = dialog.m_pEntries.ToArray()[(int)dialog.m_currentEntryIndex].m_pReplies.ToArray()[CurrentNodeIndex].m_nIndex;
+          locString = dialog.m_pReplies.ToArray()[(int)sendIndex].m_sText;
           break;
       }
 
