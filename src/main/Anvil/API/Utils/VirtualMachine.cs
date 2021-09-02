@@ -122,6 +122,24 @@ namespace Anvil.API
       }
     }
 
+    public T ExecuteInScriptContext<T>(System.Func<T> action, uint objectId = NwObject.Invalid)
+    {
+      int spBefore = PushScriptContext(objectId, 0, false);
+
+      try
+      {
+        return action();
+      }
+      finally
+      {
+        int spAfter = PopScriptContext();
+        if (spAfter != spBefore)
+        {
+          Log.Error("VM stack is invalid ({SpBefore} != {SpAfter}) after script context invocation: {Method}", spBefore, spAfter, action.Method.GetFullName());
+        }
+      }
+    }
+
     private int PushScriptContext(uint oid, int scriptEventId, bool valid)
     {
       CNWVirtualMachineCommands cmd = CNWVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
