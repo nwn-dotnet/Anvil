@@ -161,6 +161,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets if this item is considered a ranged weapon.
+    /// </summary>
+    public bool IsRangedWeapon
+    {
+      get => NWScript.GetWeaponRanged(this).ToBool();
+    }
+
+    /// <summary>
     /// Gets the gp value for this item.
     /// </summary>
     public int GoldValue
