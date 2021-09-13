@@ -21,6 +21,12 @@ namespace Anvil.Internal
     public static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
     public static readonly string CoreShutdownScript = Environment.GetEnvironmentVariable("NWNX_CORE_SHUTDOWN_SCRIPT");
 
+    private static T GetAnvilVariableEnum<T>(string key, T defaultValue = default) where T : struct, Enum
+    {
+      string value = GetAnvilVariableString(key, defaultValue.ToString());
+      return Enum.TryParse(value, out T result) ? result : defaultValue;
+    }
+
     private static bool GetAnvilVariableBool(string key, bool defaultValue = false)
     {
       string value = GetAnvilVariableString(key, defaultValue.ToString());
