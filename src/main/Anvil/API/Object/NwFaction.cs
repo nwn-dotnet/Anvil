@@ -95,13 +95,13 @@ namespace Anvil.API
     /// @note This can be a very costly operation when used on large NPC factions.
     /// </summary>
     /// <returns>All creatures in this faction.</returns>
-    public unsafe List<NwCreature> GetMembers()
+    public List<NwCreature> GetMembers()
     {
       List<NwCreature> members = new List<NwCreature>();
 
-      for (int i = 0; i < faction.m_listFactionMembers.num; i++)
+      for (int i = 0; i < faction.m_listFactionMembers.Count; i++)
       {
-        NwCreature member = (*faction.m_listFactionMembers._OpIndex(i)).ToNwObjectSafe<NwCreature>();
+        NwCreature member = faction.m_listFactionMembers[i].ToNwObjectSafe<NwCreature>();
         if (member != null)
         {
           members.Add(member);

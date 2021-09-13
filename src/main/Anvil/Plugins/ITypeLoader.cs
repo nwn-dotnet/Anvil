@@ -3,12 +3,14 @@ using System.Collections.Generic;
 
 namespace Anvil.Plugins
 {
-  public interface ITypeLoader : IDisposable
+  public interface ITypeLoader
   {
     void Init();
 
     IReadOnlyCollection<Type> LoadedTypes { get; }
 
     IReadOnlyCollection<string> ResourcePaths { get; }
+
+    void Dispose();
   }
 }

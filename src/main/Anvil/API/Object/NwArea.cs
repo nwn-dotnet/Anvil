@@ -421,16 +421,16 @@ namespace Anvil.API
       {
         return NativeUtils.SerializeGff("GIT", "V3.2", (resGff, resStruct) =>
         {
-          CExoArrayListObjectId creatures = new CExoArrayListObjectId();
-          CExoArrayListObjectId items = new CExoArrayListObjectId();
-          CExoArrayListObjectId doors = new CExoArrayListObjectId();
-          CExoArrayListObjectId triggers = new CExoArrayListObjectId();
-          CExoArrayListObjectId encounters = new CExoArrayListObjectId();
-          CExoArrayListObjectId waypoints = new CExoArrayListObjectId();
-          CExoArrayListObjectId sounds = new CExoArrayListObjectId();
-          CExoArrayListObjectId placeables = new CExoArrayListObjectId();
-          CExoArrayListObjectId stores = new CExoArrayListObjectId();
-          CExoArrayListObjectId aoes = new CExoArrayListObjectId();
+          CExoArrayListUInt32 creatures = new CExoArrayListUInt32();
+          CExoArrayListUInt32 items = new CExoArrayListUInt32();
+          CExoArrayListUInt32 doors = new CExoArrayListUInt32();
+          CExoArrayListUInt32 triggers = new CExoArrayListUInt32();
+          CExoArrayListUInt32 encounters = new CExoArrayListUInt32();
+          CExoArrayListUInt32 waypoints = new CExoArrayListUInt32();
+          CExoArrayListUInt32 sounds = new CExoArrayListUInt32();
+          CExoArrayListUInt32 placeables = new CExoArrayListUInt32();
+          CExoArrayListUInt32 stores = new CExoArrayListUInt32();
+          CExoArrayListUInt32 aoes = new CExoArrayListUInt32();
 
           foreach (NwGameObject gameObject in Objects)
           {

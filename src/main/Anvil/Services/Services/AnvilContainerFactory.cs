@@ -74,29 +74,44 @@ namespace Anvil.Services
       string serviceName = GetServiceName(bindTo, options);
 
       PerContainerLifetime lifeTime = new PerContainerLifetime();
+      RegisterExplicitBindings(bindTo, newBindings, serviceName, lifeTime);
 
       if (options is not { Lazy: true })
       {
-        ServiceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
-        if (bindTo.IsAssignableTo(typeof(IInitializable)))
-        {
-          ServiceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
-        }
+        RegisterImplicitBindings(bindTo, serviceName, lifeTime);
       }
 
-      foreach (ServiceBindingAttribute bindingInfo in newBindings)
-      {
-        ServiceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
-        Log.Debug("Bind: {BindFrom} -> {BindTo}", bindingInfo.BindFrom.FullName, bindTo.FullName);
-      }
-
-      Log.Info("Registered service: {Service}", bindTo.FullName);
+      Log.Info("Registered service {Service}", bindTo.FullName);
     }
 
     private string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
     {
       short bindingOrder = options?.Order ?? (short)BindingOrder.Default;
       return bindingOrder.ToString("D5") + implementation.FullName;
+    }
+
+    private void RegisterImplicitBindings(Type bindTo, string serviceName, ILifetime lifeTime)
+    {
+      ServiceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
+
+      if (bindTo.IsAssignableTo(typeof(IInitializable)))
+      {
+        ServiceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
+      }
+
+      if (bindTo.IsAssignableTo(typeof(ILateDisposable)))
+      {
+        ServiceContainer.Register(typeof(ILateDisposable), bindTo, serviceName, lifeTime);
+      }
+    }
+
+    private void RegisterExplicitBindings(Type bindTo, ServiceBindingAttribute[] newBindings, string serviceName, ILifetime lifeTime)
+    {
+      foreach (ServiceBindingAttribute bindingInfo in newBindings)
+      {
+        ServiceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
+        Log.Debug("Bind {BindFrom} -> {BindTo}", bindingInfo.BindFrom.FullName, bindTo.FullName);
+      }
     }
 
     /// <summary>

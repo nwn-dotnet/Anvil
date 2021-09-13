@@ -15,7 +15,7 @@ namespace Anvil
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
   /// Until <see cref="Init(IntPtr, int, IContainerFactory, ITypeLoader)"/> is called, all APIs are unavailable for usage.
   /// </summary>
-  public sealed class AnvilCore : ICoreSignalHandler
+  public sealed class AnvilCore : IServerLifeCycleEventHandler
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -69,29 +69,46 @@ namespace Anvil
 
       Log.Info("Reloading Anvil");
 
-      instance.Shutdown(true);
+      instance.serviceManager.ShutdownServices();
+      instance.serviceManager.ShutdownLateServices();
 
       GC.Collect();
       GC.WaitForPendingFinalizers();
 
-      instance.typeLoader.Init();
-      instance.Start();
+      instance.InitServices();
     }
 
     private AnvilCore() {}
 
-    void ICoreSignalHandler.OnStart()
+    void IServerLifeCycleEventHandler.HandleLifeCycleEvent(LifeCycleEvent eventType)
     {
-      Init();
-      Start();
+      HandleLifeCycleEvent(eventType);
     }
 
-    void ICoreSignalHandler.OnShutdown()
+    private void HandleLifeCycleEvent(LifeCycleEvent eventType)
     {
-      Shutdown();
+      switch (eventType)
+      {
+        case LifeCycleEvent.ModuleLoad:
+          InitCore();
+          InitServices();
+          break;
+        case LifeCycleEvent.DestroyServer:
+          Log.Info("Server is shutting down...");
+          serviceManager.ShutdownServices();
+          break;
+        case LifeCycleEvent.DestroyServerAfter:
+          serviceManager.ShutdownLateServices();
+          ShutdownCore();
+          break;
+        case LifeCycleEvent.Unhandled:
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
+      }
     }
 
-    private void Init()
+    private void InitCore()
     {
       loggerManager.Init();
       PrelinkNative();
@@ -106,39 +123,24 @@ namespace Anvil
         Assemblies.Core.GetName().Version,
         Assemblies.Native.GetName().Version);
 
-      Log.Info(".NET runtime is {NetVersion}, running on {OS}, installed at {NetInstallDir}",
-        RuntimeInformation.FrameworkDescription,
-        RuntimeInformation.OSDescription,
-        RuntimeEnvironment.GetRuntimeDirectory());
-
-      Log.Info("Server is running Neverwinter Nights {Version}", NwServer.Instance.ServerVersion);
-
       CheckServerVersion();
-      typeLoader.Init();
     }
 
-    private void Start()
+    private void InitServices()
     {
+      typeLoader.Init();
       serviceManager = new ServiceManager(typeLoader, containerFactory);
-
-      serviceManager.RegisterCoreService(typeLoader);
-      serviceManager.RegisterCoreService(serviceManager);
-
       serviceManager.Init();
       interopHandler.Init(serviceManager.GetService<ICoreRunScriptHandler>(), serviceManager.GetService<ICoreLoopHandler>());
     }
 
-    private void Shutdown(bool keepLoggerAlive = false)
+    private void ShutdownCore()
     {
-      serviceManager?.Dispose();
       serviceManager = null;
-      typeLoader.Dispose();
 
-      if (!keepLoggerAlive)
-      {
-        unhandledExceptionLogger.Dispose();
-        loggerManager.Dispose();
-      }
+      typeLoader.Dispose();
+      unhandledExceptionLogger.Dispose();
+      loggerManager.Dispose();
     }
 
     private void CheckServerVersion()

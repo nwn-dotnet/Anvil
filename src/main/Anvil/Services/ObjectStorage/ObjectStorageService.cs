@@ -25,36 +25,29 @@ namespace Anvil.Services
 
     private delegate int LoadFromGffHook(void* pUUID, void* pRes, void* pStruct);
 
-    private static FunctionHook<ObjectDestructorHook> objectDestructorHook;
-    private static FunctionHook<AreaDestructorHook> areaDestructorHook;
-    private static FunctionHook<EatTURDHook> eatTURDHook;
-    private static FunctionHook<DropTURDHook> dropTURDHook;
+    private readonly FunctionHook<ObjectDestructorHook> objectDestructorHook;
+    private readonly FunctionHook<AreaDestructorHook> areaDestructorHook;
+    private readonly FunctionHook<EatTURDHook> eatTURDHook;
+    private readonly FunctionHook<DropTURDHook> dropTURDHook;
 
-    private static FunctionHook<SaveToGffHook> saveToGffHook;
-    private static FunctionHook<LoadFromGffHook> loadFromGffHook;
+    private readonly FunctionHook<SaveToGffHook> saveToGffHook;
+    private readonly FunctionHook<LoadFromGffHook> loadFromGffHook;
 
     private readonly Dictionary<IntPtr, ObjectStorage> objectStorage = new Dictionary<IntPtr, ObjectStorage>();
 
     public ObjectStorageService(HookService hookService)
     {
-      objectDestructorHook?.Dispose();
-      areaDestructorHook?.Dispose();
-      eatTURDHook?.Dispose();
-      dropTURDHook?.Dispose();
-      saveToGffHook?.Dispose();
-      loadFromGffHook?.Dispose();
-
-      objectDestructorHook = hookService.RequestHook<ObjectDestructorHook>(OnObjectDestructor, FunctionsLinux._ZN10CNWSObjectD1Ev, HookOrder.VeryEarly, false);
-      areaDestructorHook = hookService.RequestHook<AreaDestructorHook>(OnAreaDestructor, FunctionsLinux._ZN8CNWSAreaD1Ev, HookOrder.VeryEarly, false);
-      eatTURDHook = hookService.RequestHook<EatTURDHook>(OnEatTURD, FunctionsLinux._ZN10CNWSPlayer7EatTURDEP14CNWSPlayerTURD, HookOrder.VeryEarly, false);
-      dropTURDHook = hookService.RequestHook<DropTURDHook>(OnDropTURD, FunctionsLinux._ZN10CNWSPlayer8DropTURDEv, HookOrder.VeryEarly, false);
+      objectDestructorHook = hookService.RequestHook<ObjectDestructorHook>(OnObjectDestructor, FunctionsLinux._ZN10CNWSObjectD1Ev, HookOrder.VeryEarly);
+      areaDestructorHook = hookService.RequestHook<AreaDestructorHook>(OnAreaDestructor, FunctionsLinux._ZN8CNWSAreaD1Ev, HookOrder.VeryEarly);
+      eatTURDHook = hookService.RequestHook<EatTURDHook>(OnEatTURD, FunctionsLinux._ZN10CNWSPlayer7EatTURDEP14CNWSPlayerTURD, HookOrder.VeryEarly);
+      dropTURDHook = hookService.RequestHook<DropTURDHook>(OnDropTURD, FunctionsLinux._ZN10CNWSPlayer8DropTURDEv, HookOrder.VeryEarly);
 
       // We want to prioritize our call first for serialization, so it gets called last in the CallOriginal call in NWNX.
       const int orderBeforeNWNX = HookOrder.VeryEarly - 1;
       const int orderAfterNWNX = HookOrder.VeryEarly + 1;
 
-      saveToGffHook = hookService.RequestHook<SaveToGffHook>(OnSaveToGff, FunctionsLinux._ZN8CNWSUUID9SaveToGffEP7CResGFFP10CResStruct, orderBeforeNWNX, false);
-      loadFromGffHook = hookService.RequestHook<LoadFromGffHook>(OnLoadFromGff, FunctionsLinux._ZN8CNWSUUID11LoadFromGffEP7CResGFFP10CResStruct, orderAfterNWNX, false);
+      saveToGffHook = hookService.RequestHook<SaveToGffHook>(OnSaveToGff, FunctionsLinux._ZN8CNWSUUID9SaveToGffEP7CResGFFP10CResStruct, orderBeforeNWNX);
+      loadFromGffHook = hookService.RequestHook<LoadFromGffHook>(OnLoadFromGff, FunctionsLinux._ZN8CNWSUUID11LoadFromGffEP7CResGFFP10CResStruct, orderAfterNWNX);
     }
 
     public ObjectStorage GetObjectStorage(NwObject gameObject)
