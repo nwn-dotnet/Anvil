@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Anvil.Services;
 
 namespace Anvil.Internal
 {
@@ -16,6 +17,7 @@ namespace Anvil.Internal
     public static readonly string NLogConfigPath = GetAnvilVariableString("NLOG_CONFIG");
     public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
     public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
+    public static readonly LogMode LogMode = GetAnvilVariableEnum("LOG_MODE", LogMode.Default);
 
     // NWNX
     public static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
