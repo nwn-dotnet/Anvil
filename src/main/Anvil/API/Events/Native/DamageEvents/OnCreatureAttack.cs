@@ -32,6 +32,14 @@ namespace Anvil.API.Events
 
     public int AttackModifier { get; private init; }
 
+    public bool IsRangedAttack { get; private init; }
+
+    public bool IsCoupDeGrace { get; private init; }
+
+    public bool IsAttackDeflected { get; private init; }
+
+    public bool IsCriticalThreat { get; private init; }
+
     public DamageData<short> DamageData { get; private init; }
 
     public int TotalDamage { get; private init; }
@@ -123,6 +131,10 @@ namespace Anvil.API.Events
           AttackType = combatAttackData.m_nAttackType,
           AttackRoll = combatAttackData.m_nToHitRoll,
           AttackModifier = combatAttackData.m_nToHitMod,
+          IsRangedAttack = combatAttackData.m_bRangedAttack.ToBool(),
+          IsCoupDeGrace = combatAttackData.m_bCoupDeGrace.ToBool(),
+          IsAttackDeflected = combatAttackData.m_bAttackDeflected.ToBool(),
+          IsCriticalThreat = combatAttackData.m_bCriticalThreat.ToBool(),
           DamageData = new DamageData<short>(combatAttackData.m_nDamage),
           TotalDamage = combatAttackData.GetTotalDamage(),
         };

@@ -508,6 +508,23 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets if this creature is currently holding a ranged weapon.
+    /// </summary>
+    public bool IsRangedWeaponEquipped
+    {
+      get
+      {
+        NwItem weapon = GetItemInSlot(InventorySlot.RightHand);
+        if (weapon != null && weapon.IsValid)
+        {
+          return weapon.IsRangedWeapon;
+        }
+
+        return false;
+      }
+    }
+
+    /// <summary>
     /// Gets the current action that this creature is executing.
     /// </summary>
     public Action CurrentAction

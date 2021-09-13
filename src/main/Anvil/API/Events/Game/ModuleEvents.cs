@@ -40,6 +40,16 @@ namespace Anvil.API.Events
       {
         get => AcquiredBy;
       }
+
+      public OnAcquireItem()
+      {
+        // Patch player reference due to a reference bug during client enter context
+        // See https://github.com/Beamdog/nwn-issues/issues/367
+        if (AcquiredBy is null && Item?.Possessor is NwCreature creature)
+        {
+          AcquiredBy = creature;
+        }
+      }
     }
 
     /// <summary>
@@ -285,6 +295,16 @@ namespace Anvil.API.Events
       NwObject IEvent.Context
       {
         get => Player;
+      }
+
+      public OnPlayerEquipItem()
+      {
+        // Patch player reference due to a reference bug during client enter context
+        // See https://github.com/Beamdog/nwn-issues/issues/367
+        if (Player is null && Item.Possessor is NwCreature creature)
+        {
+          Player = creature;
+        }
       }
     }
 

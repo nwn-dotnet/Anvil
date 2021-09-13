@@ -130,5 +130,25 @@ namespace Anvil.API
     {
       return unchecked((ushort)value);
     }
+
+    /// <summary>
+    /// Reinterprets the specified value as an unsigned long.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static ulong AsULong(this long value)
+    {
+      return unchecked((ulong)value);
+    }
+
+    /// <summary>
+    /// Reinterprets the specified value as a long.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static long AsLong(this ulong value)
+    {
+      return unchecked((long)value);
+    }
   }
 }

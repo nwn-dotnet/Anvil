@@ -63,11 +63,13 @@ For a step by step guide how to set up a local developement environment using yo
 ### Configuration Options
 The following options can be configured via environment variables:
 
-|Variable|Default|Description|
-|-|-|-|
-|`ANVIL_PLUGIN_PATH`|`/path/to/NWN.Anvil/Plugins`|The root plugin path that Anvil will search for plugins.|
-|`ANVIL_NLOG_CONFIG`||Custom path to a NLog XML config file. See the [NLog Wiki](https://github.com/nlog/NLog/wiki/Configuration-file) for configuration options.|
-|`ANVIL_RELOAD_ENABLED`|`false`|Enables support for plugin hot-reloading via `AnvilCore.Reload()`. Recommended for advanced users.|
+|Variable|Default|Options|Description|
+|-|-|-|-|
+|`ANVIL_PLUGIN_PATH`|`/path/to/NWN.Anvil/Plugins`|A valid directory.|The root plugin path that Anvil will search for plugins.|
+|`ANVIL_NLOG_CONFIG`||A valid path to a NLog XML config file.|See the [NLog Wiki](https://github.com/nlog/NLog/wiki/Configuration-file) for configuration options.|
+|`ANVIL_RELOAD_ENABLED`|`false`|`true/false`|Enables support for plugin hot-reloading via `AnvilCore.Reload()`. Recommended for advanced users.|
+|`ANVIL_PREVENT_START_NO_PLUGIN`|`false`|`true/false`|Prevents the server from starting if no plugins are detected/loaded.|
+|`ANVIL_LOG_MODE`|`Off`|`Off/Duplicate/Redirect`|Configures redirection of the NWN server log. `Off` disables redirection, `Duplicate` creates a copy of the log entries in Anvil/NLog, `Redirect` redirects the log entries to Anvil/NLog, and skips the original log entry.|
 
 # Builder/Developer's Guide
 
