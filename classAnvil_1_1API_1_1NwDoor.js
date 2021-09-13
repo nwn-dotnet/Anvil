@@ -1,16 +1,11 @@
 var classAnvil_1_1API_1_1NwDoor =
 [
-    [ "AddToArea", "classAnvil_1_1API_1_1NwDoor.html#a98f12777e29372a749ae2ccc36a71eab", null ],
     [ "Close", "classAnvil_1_1API_1_1NwDoor.html#aaacd6f7e797ff38769e6ba7ffd0c3faa", null ],
-    [ "Deserialize", "classAnvil_1_1API_1_1NwDoor.html#a320c4e3e224e39552cc057936b90551b", null ],
     [ "GetBaseSavingThrow", "classAnvil_1_1API_1_1NwDoor.html#aee094c7c665da4c508919bd65dfd0ab7", null ],
     [ "IsDoorActionPossible", "classAnvil_1_1API_1_1NwDoor.html#a6d33bd5d1314f762c9bb27eed7f05493", null ],
     [ "Open", "classAnvil_1_1API_1_1NwDoor.html#ada100e1114531b708fda6b3b47a250fc", null ],
-    [ "operator CNWSDoor", "classAnvil_1_1API_1_1NwDoor.html#a74c1b4025a56e9400ea7a6ac0a6fd948", null ],
-    [ "Serialize", "classAnvil_1_1API_1_1NwDoor.html#a1b8b07f930cac7c2dd193806bc552a02", null ],
     [ "SetBaseSavingThrow", "classAnvil_1_1API_1_1NwDoor.html#a7afa63008b131dcfc127f5c8bff81a96", null ],
     [ "DialogResRef", "classAnvil_1_1API_1_1NwDoor.html#a69488fdc808c170a024dad8e5981304d", null ],
-    [ "KeyAutoRemoved", "classAnvil_1_1API_1_1NwDoor.html#a53c62807ea7af22b0f43e38a06b9fdf9", null ],
     [ "OnAreaTransitionClick", "classAnvil_1_1API_1_1NwDoor.html#a4b87b5226f3fff02fe02fdbd3a78b2da", null ],
     [ "OnClose", "classAnvil_1_1API_1_1NwDoor.html#a38bcfc82c3cbb0ecc30b4442bc04cabe", null ],
     [ "OnDamaged", "classAnvil_1_1API_1_1NwDoor.html#ab63b6389bc0a01185d2d7b3a5f3d0191", null ],

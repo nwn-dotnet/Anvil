@@ -1,11 +1,7 @@
 var classAnvil_1_1API_1_1NwEncounter =
 [
-    [ "AddToArea", "classAnvil_1_1API_1_1NwEncounter.html#abbc3cdd59a4a53804e54bbb474cf17ad", null ],
-    [ "Deserialize", "classAnvil_1_1API_1_1NwEncounter.html#add5cb3261002f6820e1d3a35bc3eecaf", null ],
-    [ "GetObjectsInEncounterArea", "classAnvil_1_1API_1_1NwEncounter.html#aac6101d639e1f4b787382a920bc8f42e", null ],
-    [ "GetObjectsInEncounterArea< T >", "classAnvil_1_1API_1_1NwEncounter.html#ad2fd38769f6840349a6a041bcb8d3162", null ],
-    [ "operator CNWSEncounter", "classAnvil_1_1API_1_1NwEncounter.html#a3f19f14c0087c5b474fb7e4f8ca5b172", null ],
-    [ "Serialize", "classAnvil_1_1API_1_1NwEncounter.html#af67e42d7bb167d4ea5ee8eb1ca49c41b", null ],
+    [ "GetObjectsInEncounterArea", "classAnvil_1_1API_1_1NwEncounter.html#a3ef4c744fd6b93d057a1c998307c2b3b", null ],
+    [ "GetObjectsInEncounterArea< T >", "classAnvil_1_1API_1_1NwEncounter.html#a17cb84e1ae06fa12a2fbb1382178d155", null ],
     [ "Active", "classAnvil_1_1API_1_1NwEncounter.html#aaeab8b19ddd694cedc6ff9af54b9a58c", null ],
     [ "Difficulty", "classAnvil_1_1API_1_1NwEncounter.html#aa4f88ddf8ce26f66d54da3c462f2322a", null ],
     [ "MaxSpawns", "classAnvil_1_1API_1_1NwEncounter.html#a02087794f25219aaa05dd2569f34a023", null ],

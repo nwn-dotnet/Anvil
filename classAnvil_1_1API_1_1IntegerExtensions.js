@@ -1,8 +1,10 @@
 var classAnvil_1_1API_1_1IntegerExtensions =
 [
     [ "AsByte", "classAnvil_1_1API_1_1IntegerExtensions.html#a76706638dd0711815b0a2a404b6a9dea", null ],
+    [ "AsLong", "classAnvil_1_1API_1_1IntegerExtensions.html#a24ac8d0035df2d1b5d4ce87a0f091640", null ],
     [ "AsSByte", "classAnvil_1_1API_1_1IntegerExtensions.html#a8669a88288aea40b0b667aea8fa41e1c", null ],
     [ "AsShort", "classAnvil_1_1API_1_1IntegerExtensions.html#a50709a6d065750883a4c25361de051ac", null ],
+    [ "AsULong", "classAnvil_1_1API_1_1IntegerExtensions.html#a5252d7a4153f4c6f5eda00b1770a3108", null ],
     [ "AsUShort", "classAnvil_1_1API_1_1IntegerExtensions.html#a4afd55cdc250361ebf427498e11c06c1", null ],
     [ "ToBool", "classAnvil_1_1API_1_1IntegerExtensions.html#a8ad459b9de1d99c93d26522d55facf67", null ],
     [ "ToInt", "classAnvil_1_1API_1_1IntegerExtensions.html#a8391c3e4e45c0b44735cad931eccedd0", null ],

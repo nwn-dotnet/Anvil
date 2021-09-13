@@ -32,17 +32,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html#a3cb8f36af92e959d0078ef782a815de2",
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnClientEnter.html#aa4271baf6f309b7c6fd51bec8d49ce2e",
-"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a95a342c27d9db5d9c80f7e6f06d13111",
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html#ac178985136f868e890dd38587012dd90",
-"classAnvil_1_1API_1_1ItemProperty.html#aed20f0e852f57636876a5f871b9dc5ad",
-"classAnvil_1_1API_1_1NwCreature.html#a54cc0d4c86ab11c2d4bb3a685efe177a",
-"classAnvil_1_1API_1_1NwGameObject.html#a01b08a96ec3218849d22feadc68fe129",
-"classAnvil_1_1API_1_1NwModule.html#af24f2d1c4ce99110d39c63c750866475",
-"classAnvil_1_1API_1_1NwSound.html#a298bf5fee36385907e0195a5487edb73",
-"classAnvil_1_1API_1_1SpecialAbility.html#a857fa326e81f0459bc51e164fd89e64c",
-"classAnvil_1_1Services_1_1OnELCLevelValidationFailure.html"
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html",
+"classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a79a7b0a1db9f61547fcbc1ff40d662e3",
+"classAnvil_1_1API_1_1NwCreature.html#a55d7579dd9fadb0402c4e5ba2c45d23c",
+"classAnvil_1_1API_1_1NwGameObject.html#a7e4a55793e5edfb87d01773dd5b69b51",
+"classAnvil_1_1API_1_1NwPlaceable.html#a1c9ec356ddd1ca95427b531d066096a2",
+"classAnvil_1_1API_1_1NwTrigger.html#aff7fde66a4df947b3267f6a5da8fc5c3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

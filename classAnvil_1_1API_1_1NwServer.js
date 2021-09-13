@@ -10,7 +10,6 @@ var classAnvil_1_1API_1_1NwServer =
     [ "RemoveBannedIP", "classAnvil_1_1API_1_1NwServer.html#a0cdb1b695caab2970ade21c021d8b858", null ],
     [ "RemoveBannedPlayer", "classAnvil_1_1API_1_1NwServer.html#aec68be465927ac01eb4be27b06d8e3f7", null ],
     [ "ShutdownServer", "classAnvil_1_1API_1_1NwServer.html#aebbbd6b0963cb0c6484e6c5baea03846", null ],
-    [ "Instance", "classAnvil_1_1API_1_1NwServer.html#aa3896aa623a7d3280ef88fbb35b67d95", null ],
     [ "BannedList", "classAnvil_1_1API_1_1NwServer.html#aecf000abb551be734d04971f64a0c43c", null ],
     [ "DMPassword", "classAnvil_1_1API_1_1NwServer.html#ad44259566abe38515009366edca368a0", null ],
     [ "PlayerPassword", "classAnvil_1_1API_1_1NwServer.html#a49e03f447d5e84515c40edd5443a551e", null ],

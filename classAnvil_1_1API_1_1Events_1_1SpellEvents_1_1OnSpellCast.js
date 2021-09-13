@@ -1,8 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast =
 [
-    [ "OnSpellCast", "classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#aeabd492fa7f7b9c8d71b3ed02ea0d6fb", null ],
     [ "Caster", "classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#abef46456dbd2702412811606eb1ccf3a", null ],
-    [ "Context", "classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a45ce4ae994beabddc397a3339ca7c69c", null ],
     [ "Harmful", "classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a232192d78d79a904631be71f8bfc05f1", null ],
     [ "Item", "classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a4d736e0cb31a3977534a1f7be0bacaf9", null ],
     [ "MetaMagicFeat", "classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a79a7b0a1db9f61547fcbc1ff40d662e3", null ],
