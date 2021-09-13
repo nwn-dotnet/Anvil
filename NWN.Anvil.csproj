@@ -10,7 +10,8 @@
           GitHub, Issues and Discussions - https://github.com/nwn-dotnet/Anvil
           Discord, Latest News, Help and Support - https://discord.gg/gKt495UBgS
         </Description>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <!-- https://github.com/NuGet/Home/issues/10791 -->
+        <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
         <PackageTags>Neverwinter Nights;NWN;</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
