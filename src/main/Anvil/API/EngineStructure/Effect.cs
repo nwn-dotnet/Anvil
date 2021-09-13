@@ -24,15 +24,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets whether the icon associated with this effect should be visible.
-    /// </summary>
-    public bool ShowIcon
-    {
-      get => Effect.m_bShowIcon.ToBool();
-      set => Effect.m_bShowIcon = value.ToInt();
-    }
-
-    /// <summary>
     /// Gets the type of this effect.
     /// </summary>
     public EffectType EffectType
