@@ -674,7 +674,7 @@ namespace Anvil.API
     /// <param name="disabled">True to disable the panel, false to re-enable the panel.</param>
     public void SetGuiPanelDisabled(GUIPanel panel, bool disabled)
     {
-      NWScript.SetGuiPanelDisabled(this.ControlledCreature, (int)panel, disabled.ToInt());
+      NWScript.SetGuiPanelDisabled(ControlledCreature, (int)panel, disabled.ToInt());
     }
 
     /// <summary>
