@@ -384,6 +384,11 @@ namespace Anvil.API
       return NWScript.EffectHitPointChangeWhenDying(hpChangePerRound);
     }
 
+    public static Effect Icon(int iconId)
+    {
+      return NWScript.EffectIcon(iconId);
+    }
+
     public static Effect Immunity(ImmunityType immunityType)
     {
       return NWScript.EffectImmunity((int)immunityType);
