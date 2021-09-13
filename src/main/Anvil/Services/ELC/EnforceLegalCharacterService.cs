@@ -918,9 +918,8 @@ namespace Anvil.Services
         int nNumberBonusFeats = pClassLeveledUpIn.GetBonusFeats(nMultiClassLevel[nMultiClassLeveledUpIn]);
 
         // Add this level's gained feats to our own list
-        for (int nFeatIndex = 0; nFeatIndex < pLevelStats.m_lstFeats.Count; nFeatIndex++)
+        foreach (ushort nFeat in pLevelStats.m_lstFeats)
         {
-          ushort nFeat = pLevelStats.m_lstFeats[nFeatIndex];
           CNWFeat feat = nFeat < pRules.m_nNumFeats ? feats[nFeat] : null;
 
           if (feat == null)
@@ -1831,7 +1830,7 @@ namespace Anvil.Services
 
       // Final Feats Check
       // Check if our list of feats from LevelStats are the same as the feats the character has
-      for (int nFeatIndex = 0; nFeatIndex < pCreatureStats.m_lstFeats.Count; nFeatIndex++)
+      foreach (ushort nFeat in pCreatureStats.m_lstFeats)
       {
         if (!listFeats.Any())
         {
@@ -1846,8 +1845,6 @@ namespace Anvil.Services
             return strRefFailure;
           }
         }
-
-        ushort nFeat = pCreatureStats.m_lstFeats[nFeatIndex];
 
         if (!listFeats.Contains(nFeat))
         {
@@ -1983,9 +1980,9 @@ namespace Anvil.Services
       int[] abilityMods = new int[6];
 
       HashSet<Feat> creatureFeats = new HashSet<Feat>();
-      for (int i = 0; i < lstFeats.Count; i++)
+      foreach (ushort nFeat in lstFeats)
       {
-        creatureFeats.Add((Feat)lstFeats[i]);
+        creatureFeats.Add((Feat)nFeat);
       }
 
       int GetFeatCount(params Feat[] epicFeats)

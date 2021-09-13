@@ -68,16 +68,16 @@ namespace Anvil.API
     /// <summary>
     /// Gets the current customers of this store.
     /// </summary>
-    public unsafe IReadOnlyList<NwCreature> CurrentCustomers
+    public IReadOnlyList<NwCreature> CurrentCustomers
     {
       get
       {
         List<NwCreature> customers = new List<NwCreature>();
         CExoArrayListCStoreCustomerPtr customersPtr = Store.m_aCurrentCustomers;
 
-        for (int i = 0; i < customersPtr.Count; i++)
+        foreach (CStoreCustomer storeCustomer in customersPtr)
         {
-          NwCreature customer = customersPtr[i].m_oidObject.ToNwObjectSafe<NwCreature>();
+          NwCreature customer = storeCustomer.m_oidObject.ToNwObjectSafe<NwCreature>();
           if (customer != null)
           {
             customers.Add(customer);

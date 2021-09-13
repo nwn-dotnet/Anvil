@@ -95,7 +95,7 @@ namespace Anvil.API
     /// @note This can be a very costly operation when used on large NPC factions.
     /// </summary>
     /// <returns>All creatures in this faction.</returns>
-    public unsafe List<NwCreature> GetMembers()
+    public List<NwCreature> GetMembers()
     {
       List<NwCreature> members = new List<NwCreature>();
 

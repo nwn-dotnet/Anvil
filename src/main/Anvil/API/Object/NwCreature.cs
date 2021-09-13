@@ -828,7 +828,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets an enumerable containing information about this creature's levels (feats, skills, class taken, etc).
     /// </summary>
-    public unsafe IReadOnlyList<CreatureLevelInfo> LevelInfo
+    public IReadOnlyList<CreatureLevelInfo> LevelInfo
     {
       get
       {
@@ -848,7 +848,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the feats known by this character.
     /// </summary>
-    public unsafe IReadOnlyList<Feat> Feats
+    public IReadOnlyList<Feat> Feats
     {
       get
       {
@@ -1963,7 +1963,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The feat to give.</param>
     /// <param name="level">The level the feat was gained.</param>
-    public unsafe void AddFeat(Feat feat, int level)
+    public void AddFeat(Feat feat, int level)
     {
       if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.Count)
       {
@@ -2030,9 +2030,8 @@ namespace Anvil.API
         List<SpecialAbility> retVal = new List<SpecialAbility>();
         CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
 
-        for (int i = 0; i < specialAbilities.Count; i++)
+        foreach (CNWSStats_SpellLikeAbility ability in specialAbilities)
         {
-          CNWSStats_SpellLikeAbility ability = specialAbilities[i];
           if (ability.m_nSpellId != ~0u)
           {
             retVal.Add(new SpecialAbility((Spell)ability.m_nSpellId, ability.m_nCasterLevel, ability.m_bReadied.ToBool()));
@@ -2187,7 +2186,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="level">The level to lookup.</param>
     /// <returns>A <see cref="LevelInfo"/> object containing level info.</returns>
-    public unsafe CreatureLevelInfo GetLevelStats(int level)
+    public CreatureLevelInfo GetLevelStats(int level)
     {
       if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.Count)
       {

@@ -1,3 +1,4 @@
+using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -5,7 +6,8 @@ namespace Anvil.API
 {
   public sealed class ScriptParams
   {
-    private static readonly CVirtualMachine VirtualMachine = NWNXLib.VirtualMachine();
+    [Inject]
+    private static VirtualMachine VirtualMachine { get; set; }
 
     /// <summary>
     /// Gets the specified parameter value.
@@ -24,15 +26,13 @@ namespace Anvil.API
     /// <returns>true if the specified parameter is set, otherwise false.</returns>
     public bool IsSet(string paramName)
     {
-      if (VirtualMachine.m_nRecursionLevel < 0)
+      if (VirtualMachine.RecursionLevel < 0)
       {
         return false;
       }
 
-      CExoArrayListScriptParam scriptParams = VirtualMachine.m_lScriptParams.GetItem(VirtualMachine.m_nRecursionLevel);
-      for (int i = 0; i < scriptParams.Count; i++)
+      foreach (ScriptParam scriptParam in VirtualMachine.GetCurrentContextScriptParams())
       {
-        ScriptParam scriptParam = scriptParams[i];
         if (scriptParam.key.ToString() == paramName)
         {
           return true;
