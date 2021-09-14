@@ -666,6 +666,18 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Disable a specific gui panel for this player.<br/>
+    /// Will close the GUI panel if it is currently open.<br/>
+    /// Will fire a <see cref="GuiEventType.DisabledPanelAttemptOpen"/> event for some panels if a player attempts to open them while disabled.
+    /// </summary>
+    /// <param name="panel">The panel type to disable.</param>
+    /// <param name="disabled">True to disable the panel, false to re-enable the panel.</param>
+    public void SetGuiPanelDisabled(GUIPanel panel, bool disabled)
+    {
+      NWScript.SetGuiPanelDisabled(ControlledCreature, (int)panel, disabled.ToInt());
+    }
+
+    /// <summary>
     /// Locks the player's camera distance to its current distance setting,
     /// or unlocks the player's camera distance.
     /// </summary>

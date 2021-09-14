@@ -80,5 +80,7 @@ namespace Anvil.API
     SpellFailure = NWScript.EFFECT_TYPE_SPELL_FAILURE,
     CutsceneGhost = NWScript.EFFECT_TYPE_CUTSCENEGHOST,
     CutsceneImmobilize = NWScript.EFFECT_TYPE_CUTSCENEIMMOBILIZE,
+    RunScript = NWScript.EFFECT_TYPE_RUNSCRIPT,
+    Icon = NWScript.EFFECT_TYPE_ICON,
   }
 }

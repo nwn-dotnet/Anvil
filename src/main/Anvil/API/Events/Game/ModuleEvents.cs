@@ -233,6 +233,106 @@ namespace Anvil.API.Events
     }
 
     /// <summary>
+    /// Triggered when a player clicks on a particular GUI interface.
+    /// </summary>
+    [GameEvent(EventScriptType.ModuleOnPlayerGuiEvent)]
+    public sealed class OnPlayerGuiEvent : IEvent
+    {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that triggered this event.
+      /// </summary>
+      public NwPlayer Player { get; } = NWScript.GetLastGuiEventPlayer().ToNwPlayer();
+
+      /// <summary>
+      /// Gets the <see cref="GuiEventType"/> that was triggered.
+      /// </summary>
+      public GuiEventType EventType { get; } = (GuiEventType)NWScript.GetLastGuiEventType();
+
+      /// <summary>
+      /// Gets the object data associated with this GUI event.
+      /// </summary>
+      /// <remarks>
+      /// <see cref="GuiEventType.ChatBarFocus"/>: The selected chat channel. Does not indicate the actual used channel. 0 = Shout, 1 = Whisper, 2 = Talk, 3 = Party, 4 = DM
+      /// <see cref="GuiEventType.CharacterSheetSkillClick"/>: The <see cref="Skill"/>
+      /// </remarks>
+      public NwObject EventObject { get; } = NWScript.GetLastGuiEventObject().ToNwObject();
+
+      /// <summary>
+      /// Gets the chat bar channel that is selected. Only valid in <see cref="GuiEventType.ChatBarFocus"/> and <see cref="GuiEventType.ChatBarUnFocus"/> type events.
+      /// </summary>
+      public ChatBarChannel ChatBarChannel
+      {
+        get => (ChatBarChannel)integerEventData;
+      }
+
+      /// <summary>
+      /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.
+      /// </summary>
+      public Skill SkillSelection
+      {
+        get => (Skill)integerEventData;
+      }
+
+      /// <summary>
+      /// Gets the feat that was selected. Only valid in <see cref="GuiEventType.CharacterSheetFeatClick"/> events.
+      /// </summary>
+      public Feat FeatSelection
+      {
+        get => (Feat)integerEventData;
+      }
+
+      /// <summary>
+      /// Gets the effect icon that was selected. Only valid in <see cref="GuiEventType.EffectIconClick"/> events.
+      /// </summary>
+      public EffectIcon EffectIcon
+      {
+        get => (EffectIcon)integerEventData;
+      }
+
+      /// <summary>
+      /// Gets the GUI panel that attempted to be opened. Only valid in <see cref="GuiEventType.DisabledPanelAttemptOpen"/> events.
+      /// </summary>
+      public GUIPanel OpenedPanel
+      {
+        get => (GUIPanel)integerEventData;
+      }
+
+      private readonly int integerEventData = NWScript.GetLastGuiEventInteger();
+
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
+    }
+
+    /// <summary>
+    /// Triggered when a player performs an action on an area tile.
+    /// </summary>
+    [GameEvent(EventScriptType.ModuleOnPlayerTileAction)]
+    public sealed class OnPlayerTileAction : IEvent
+    {
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that performed a tile action.
+      /// </summary>
+      public NwPlayer Player { get; } = NWScript.GetLastPlayerToDoTileAction().ToNwPlayer();
+
+      /// <summary>
+      /// Gets the position that was clicked.
+      /// </summary>
+      public Vector3 TargetPosition { get; } = NWScript.GetLastTileActionPosition();
+
+      /// <summary>
+      /// Gets the action ID (surfacemat.2da) that was selected by the player.
+      /// </summary>
+      public int ActionId { get; } = NWScript.GetLastTileActionId();
+
+      NwObject IEvent.Context
+      {
+        get => Player.ControlledCreature;
+      }
+    }
+
+    /// <summary>
     /// Triggered when a <see cref="NwPlayer"/> dies.
     /// </summary>
     [GameEvent(EventScriptType.ModuleOnPlayerDeath)]
@@ -494,6 +594,27 @@ namespace Anvil.API
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerChat, GameEventFactory>(value);
     }
 
+    /// <inheritdoc cref="ModuleEvents.OnPlayerTarget"/>
+    public event Action<ModuleEvents.OnPlayerTarget> OnPlayerTarget
+    {
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerTarget, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerTarget, GameEventFactory>(value);
+    }
+
+    /// <inheritdoc cref="ModuleEvents.OnPlayerGuiEvent"/>
+    public event Action<ModuleEvents.OnPlayerGuiEvent> OnPlayerGuiEvent
+    {
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerGuiEvent, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerGuiEvent, GameEventFactory>(value);
+    }
+
+    /// <inheritdoc cref="ModuleEvents.OnPlayerTileAction"/>
+    public event Action<ModuleEvents.OnPlayerTileAction> OnPlayerTileAction
+    {
+      add => EventService.SubscribeAll<ModuleEvents.OnPlayerTileAction, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerTileAction, GameEventFactory>(value);
+    }
+
     /// <inheritdoc cref="ModuleEvents.OnPlayerDeath"/>
     public event Action<ModuleEvents.OnPlayerDeath> OnPlayerDeath
     {
@@ -593,6 +714,20 @@ namespace Anvil.API
     {
       add => EventService.Subscribe<ModuleEvents.OnPlayerTarget, GameEventFactory, GameEventFactory.RegistrationData>(ControlledCreature, new GameEventFactory.RegistrationData(NwModule.Instance), value);
       remove => EventService.Unsubscribe<ModuleEvents.OnPlayerTarget, GameEventFactory>(ControlledCreature, value);
+    }
+
+    /// <inheritdoc cref="ModuleEvents.OnPlayerGuiEvent"/>
+    public event Action<ModuleEvents.OnPlayerGuiEvent> OnPlayerGuiEvent
+    {
+      add => EventService.Subscribe<ModuleEvents.OnPlayerGuiEvent, GameEventFactory, GameEventFactory.RegistrationData>(ControlledCreature, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnPlayerGuiEvent, GameEventFactory>(ControlledCreature, value);
+    }
+
+    /// <inheritdoc cref="ModuleEvents.OnPlayerTileAction"/>
+    public event Action<ModuleEvents.OnPlayerTileAction> OnPlayerTileAction
+    {
+      add => EventService.Subscribe<ModuleEvents.OnPlayerTileAction, GameEventFactory, GameEventFactory.RegistrationData>(ControlledCreature, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnPlayerTileAction, GameEventFactory>(ControlledCreature, value);
     }
 
     /// <inheritdoc cref="ModuleEvents.OnPlayerDeath"/>
