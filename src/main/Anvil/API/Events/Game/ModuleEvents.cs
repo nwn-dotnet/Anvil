@@ -257,6 +257,48 @@ namespace Anvil.API.Events
       /// </remarks>
       public NwObject EventObject { get; } = NWScript.GetLastGuiEventObject().ToNwObject();
 
+      /// <summary>
+      /// Gets the chat bar channel that is selected. Only valid in <see cref="GuiEventType.ChatBarFocus"/> and <see cref="GuiEventType.ChatBarUnFocus"/> type events.
+      /// </summary>
+      public ChatBarChannel ChatBarChannel
+      {
+        get => (ChatBarChannel)integerEventData;
+      }
+
+      /// <summary>
+      /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.
+      /// </summary>
+      public Skill SkillSelection
+      {
+        get => (Skill)integerEventData;
+      }
+
+      /// <summary>
+      /// Gets the feat that was selected. Only valid in <see cref="GuiEventType.CharacterSheetFeatClick"/> events.
+      /// </summary>
+      public Feat FeatSelection
+      {
+        get => (Feat)integerEventData;
+      }
+
+      /// <summary>
+      /// Gets the effect icon that was selected. Only valid in <see cref="GuiEventType.EffectIconClick"/> events.
+      /// </summary>
+      public EffectIcon EffectIcon
+      {
+        get => (EffectIcon)integerEventData;
+      }
+
+      /// <summary>
+      /// Gets the GUI panel that attempted to be opened. Only valid in <see cref="GuiEventType.DisabledPanelAttemptOpen"/> events.
+      /// </summary>
+      public GUIPanel OpenedPanel
+      {
+        get => (GUIPanel)integerEventData;
+      }
+
+      private readonly int integerEventData = NWScript.GetLastGuiEventInteger();
+
       NwObject IEvent.Context
       {
         get => Player.ControlledCreature;
