@@ -8,7 +8,7 @@ namespace Anvil.Services
 {
   [ServiceBinding(typeof(IScriptDispatcher))]
   [ServiceBinding(typeof(IInitializable))]
-  internal sealed class AttributeDispatchService : IScriptDispatcher, IInitializable
+  internal sealed class AttributeScriptDispatchService : IScriptDispatcher, IInitializable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private const int StartCapacity = 2000;
@@ -16,6 +16,8 @@ namespace Anvil.Services
     // All Services
     [Inject]
     private Lazy<IEnumerable<object>> Services { get; init; }
+
+    public int ExecutionOrder { get; } = 10000;
 
     private readonly Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(StartCapacity);
 
