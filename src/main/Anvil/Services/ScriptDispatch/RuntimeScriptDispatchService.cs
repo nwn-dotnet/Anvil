@@ -25,7 +25,7 @@ namespace Anvil.Services
     /// <exception cref="InvalidOperationException">Thrown if the specified script already has a handler defined.</exception>
     public IDisposable RegisterScriptHandler(string scriptName, Func<CallInfo, ScriptHandleResult> handler)
     {
-      if (ScriptConstants.IsReservedScriptName(scriptName) || !scriptName.IsValidScriptName())
+      if (!scriptName.IsValidScriptName())
       {
         throw new ArgumentException("The specified script name is not valid.", scriptName);
       }
