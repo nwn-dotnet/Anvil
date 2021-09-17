@@ -38,8 +38,8 @@
     <ItemGroup>
         <PackageReference Include="LightInject" Version="6.4.0" />
         <PackageReference Include="NLog" Version="4.7.11" />
-        <PackageReference Include="NWN.Core" Version="8193.30.7" PrivateAssets="compile" />
-        <PackageReference Include="NWN.Native" Version="8193.30.1" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Core" Version="8193.31.0" PrivateAssets="compile" />
+        <PackageReference Include="NWN.Native" Version="8193.31.0" PrivateAssets="compile" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     </ItemGroup>
 
