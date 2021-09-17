@@ -9,7 +9,7 @@ namespace Anvil.Services
   public sealed class ScriptCallbackHandle : IDisposable
   {
     [Inject]
-    private static RuntimeScriptDispatchService RuntimeScriptDispatchService { get; set; }
+    private static ScriptHandleFactory ScriptHandleFactory { get; set; }
 
     public readonly string ScriptName;
     public bool IsValid { get; internal set; }
@@ -37,7 +37,7 @@ namespace Anvil.Services
 
     public void Dispose()
     {
-      RuntimeScriptDispatchService.UnregisterScriptHandler(ScriptName);
+      ScriptHandleFactory.UnregisterScriptHandler(ScriptName);
     }
   }
 }

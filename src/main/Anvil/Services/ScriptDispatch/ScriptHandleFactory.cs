@@ -7,9 +7,9 @@ namespace Anvil.Services
   /// <summary>
   /// A service for registering C# functions as script handlers dynamically.
   /// </summary>
-  [ServiceBinding(typeof(RuntimeScriptDispatchService))]
+  [ServiceBinding(typeof(ScriptHandleFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public sealed class RuntimeScriptDispatchService : IScriptDispatcher
+  public sealed class ScriptHandleFactory : IScriptDispatcher
   {
     public int ExecutionOrder { get; } = 0;
 
