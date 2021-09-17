@@ -8,7 +8,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnCreatureDamage : IEvent
   {
-    public NwGameObject DamagedBy { get; private init; }
+    public NwObject DamagedBy { get; private init; }
 
     public NwGameObject Target { get; private init; }
 
@@ -39,7 +39,7 @@ namespace Anvil.API.Events
 
           ProcessEvent(new OnCreatureDamage
           {
-            DamagedBy = effect.m_oidCreator.ToNwObject<NwGameObject>(),
+            DamagedBy = effect.m_oidCreator.ToNwObject<NwObject>(),
             Target = gameObject.ToNwObject<NwGameObject>(),
             DamageData = new DamageData<int>(effect.m_nParamInteger),
           });
