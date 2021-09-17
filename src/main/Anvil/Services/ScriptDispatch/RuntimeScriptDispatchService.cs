@@ -13,17 +13,17 @@ namespace Anvil.Services
   {
     public int ExecutionOrder { get; } = 0;
 
-    private readonly Dictionary<string, Func<CallInfo, ScriptHandleResult>> activeHandlers = new Dictionary<string, Func<CallInfo, ScriptHandleResult>>();
+    private readonly Dictionary<string, ScriptCallbackHandle> activeHandlers = new Dictionary<string, ScriptCallbackHandle>();
 
     /// <summary>
     /// Registers the specified action as a callback for the specified script name.
     /// </summary>
     /// <param name="scriptName">The script name to be handled.</param>
-    /// <param name="handler">The function invoked when this script is called by the Virtual Machine.</param>
+    /// <param name="callback">The function invoked when this script is called by the Virtual Machine.</param>
     /// <returns>A handle that can be disposed to remove the handler.</returns>
     /// <exception cref="ArgumentException">Thrown if the specified script name is internally used by Anvil.</exception>
     /// <exception cref="InvalidOperationException">Thrown if the specified script already has a handler defined.</exception>
-    public IDisposable RegisterScriptHandler(string scriptName, Func<CallInfo, ScriptHandleResult> handler)
+    public ScriptCallbackHandle RegisterScriptHandler(string scriptName, Func<CallInfo, ScriptHandleResult> callback)
     {
       if (!scriptName.IsValidScriptName())
       {
@@ -35,11 +35,20 @@ namespace Anvil.Services
         throw new InvalidOperationException($"A handler is already registered for script name {scriptName}");
       }
 
-      activeHandlers.Add(scriptName, handler);
-      return new ScriptCallbackHandle(scriptName);
+      ScriptCallbackHandle handle = new ScriptCallbackHandle(scriptName, callback);
+      activeHandlers.Add(scriptName, handle);
+      handle.IsValid = true;
+
+      return handle;
     }
 
-    public (string scriptName, IDisposable handle) CreateUniqueHandler(Func<CallInfo, ScriptHandleResult> handler)
+    /// <summary>
+    /// Creates a unique script callback handle for the specified callback method.<br/>
+    /// The returned handle can be used for certain API functions that take a script name as a parameter.
+    /// </summary>
+    /// <param name="handler">The callback function.</param>
+    /// <returns>The callback handle.</returns>
+    public ScriptCallbackHandle CreateUniqueHandler(Func<CallInfo, ScriptHandleResult> handler)
     {
       string scriptName;
 
@@ -49,8 +58,8 @@ namespace Anvil.Services
       }
       while (IsScriptRegistered(scriptName));
 
-      IDisposable handle = RegisterScriptHandler(scriptName, handler);
-      return (scriptName, handle);
+      ScriptCallbackHandle handle = RegisterScriptHandler(scriptName, handler);
+      return handle;
     }
 
     /// <summary>
@@ -60,6 +69,11 @@ namespace Anvil.Services
     /// <returns>True if a handler was removed, false if nothing was removed.</returns>
     public bool UnregisterScriptHandler(string scriptName)
     {
+      if (activeHandlers.TryGetValue(scriptName, out ScriptCallbackHandle handle))
+      {
+        handle.IsValid = false;
+      }
+
       return activeHandlers.Remove(scriptName);
     }
 
@@ -75,7 +89,7 @@ namespace Anvil.Services
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
-      if (activeHandlers.TryGetValue(scriptName, out Func<CallInfo, ScriptHandleResult> handler))
+      if (activeHandlers.TryGetValue(scriptName, out ScriptCallbackHandle handler))
       {
         if (handler != null)
         {
@@ -89,24 +103,6 @@ namespace Anvil.Services
       }
 
       return ScriptHandleResult.NotHandled;
-    }
-
-    private sealed class ScriptCallbackHandle : IDisposable
-    {
-      private readonly string scriptName;
-
-      [Inject]
-      private static RuntimeScriptDispatchService RuntimeScriptDispatchService { get; set; }
-
-      public ScriptCallbackHandle(string scriptName)
-      {
-        this.scriptName = scriptName;
-      }
-
-      public void Dispose()
-      {
-        RuntimeScriptDispatchService.UnregisterScriptHandler(scriptName);
-      }
     }
   }
 }
