@@ -137,7 +137,7 @@ namespace Anvil.API
 
       void* data = (void*)dataPtr;
 
-      if (!resGff.GetDataFromPointer(data, serialized.Length).ToBool())
+      if (!resGff.GetDataFromPointer(data, serialized.Length, true).ToBool())
       {
         Marshal.FreeHGlobal(dataPtr);
         return false;
