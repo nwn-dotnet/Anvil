@@ -37,7 +37,7 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1NwCreature.html#a55d7579dd9fadb0402c4e5ba2c45d23c",
 "classAnvil_1_1API_1_1NwGameObject.html#a7e4a55793e5edfb87d01773dd5b69b51",
 "classAnvil_1_1API_1_1NwPlaceable.html#a1c9ec356ddd1ca95427b531d066096a2",
-"classAnvil_1_1API_1_1NwTrigger.html#aff7fde66a4df947b3267f6a5da8fc5c3"
+"classAnvil_1_1API_1_1NwTrigger.html#afd2410058b4691fc290cf34a0368a406"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

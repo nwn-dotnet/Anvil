@@ -129,6 +129,7 @@ var classAnvil_1_1API_1_1NwPlayer =
     [ "OnServerCharacterSave", "classAnvil_1_1API_1_1NwPlayer.html#ab103fd4d99b23d9a311c4d439c1f9466", null ],
     [ "OnServerSendArea", "classAnvil_1_1API_1_1NwPlayer.html#a0f26747b789a98c0481696f736e8bed1", null ],
     [ "PartyMembers", "classAnvil_1_1API_1_1NwPlayer.html#ad86a51433be22500b193138c09133737", null ],
+    [ "PlayerId", "classAnvil_1_1API_1_1NwPlayer.html#a7c6e4661a3f250ea294332fe3b460ec4", null ],
     [ "PlayerName", "classAnvil_1_1API_1_1NwPlayer.html#a93b93804b55586c0adf394e91f7e0a11", null ],
     [ "SpawnLocation", "classAnvil_1_1API_1_1NwPlayer.html#a4f31d8c4a31eaa1e2837b45bddd9cc9c", null ]
 ];

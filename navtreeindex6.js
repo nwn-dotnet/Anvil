@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"classAnvil_1_1API_1_1NwTrigger.html#afd2410058b4691fc290cf34a0368a406":[0,0,0,73,3],
 "classAnvil_1_1API_1_1NwTrigger.html#aff7fde66a4df947b3267f6a5da8fc5c3":[0,0,0,73,6],
 "classAnvil_1_1API_1_1NwWaypoint.html":[0,0,0,74],
 "classAnvil_1_1API_1_1ObjectExtensions.html":[0,0,0,75],
