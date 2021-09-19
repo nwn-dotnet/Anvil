@@ -21,7 +21,6 @@ namespace Anvil.API
     private static EventService EventService { get; set; }
 
     internal readonly CNWSPlayer Player;
-    internal readonly uint PlayerId;
 
     internal NwPlayer(CNWSPlayer player)
     {
@@ -68,6 +67,11 @@ namespace Anvil.API
     {
       return !Equals(left, right);
     }
+
+    /// <summary>
+    /// Gets the unique numeric ID of this player.
+    /// </summary>
+    public uint PlayerId { get; }
 
     /// <summary>
     /// Gets a value indicating whether this <see cref="NwPlayer"/> object is valid.<br/>
