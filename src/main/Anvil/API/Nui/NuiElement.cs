@@ -11,6 +11,6 @@ namespace Anvil.API
     public NuiBind<string> Label { get; set; } = null;
 
     [JsonProperty("value")]
-    public NuiBind<string> Value { get; set; } = null;
+    public NuiBind Value { get; set; } = null;
   }
 }
