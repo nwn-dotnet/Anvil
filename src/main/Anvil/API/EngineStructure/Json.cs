@@ -16,5 +16,15 @@ namespace Anvil.API
     {
       return new Json(intPtr);
     }
+
+    public static Json Parse(string jsonString)
+    {
+      return NWScript.JsonParse(jsonString);
+    }
+
+    public string Dump()
+    {
+      return NWScript.JsonDump(this);
+    }
   }
 }
