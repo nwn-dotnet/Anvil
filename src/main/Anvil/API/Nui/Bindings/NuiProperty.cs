@@ -8,7 +8,7 @@ namespace Anvil.API
   {
     public static implicit operator NuiProperty<T>(T value)
     {
-      return FromValue(value);
+      return CreateValue(value);
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static NuiValue<T> FromValue(T value)
+    public static NuiValue<T> CreateValue(T value)
     {
       return new NuiValue<T>(value);
     }
