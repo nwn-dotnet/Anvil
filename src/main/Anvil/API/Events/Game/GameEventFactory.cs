@@ -17,6 +17,8 @@ namespace Anvil.API.Events
     [Inject]
     private Lazy<EventService> EventService { get; init; }
 
+    public int ExecutionOrder { get; } = -10000;
+
     // Caches
     private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
