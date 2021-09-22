@@ -127,3 +127,6 @@ Anvil is bundled with a core set of services that you can depend on in your own 
 These services handle game events, task scheduling, and more! Examples of how to use these services can be found in the [Anvil docs](https://nwn-dotnet.github.io/Anvil/classAnvil_1_1Services_1_1ServiceBindingAttribute.html).
 
 You can also find a full list of the services bundled by Anvil [HERE](https://nwn-dotnet.github.io/Anvil/namespaceAnvil_1_1Services.html).
+
+## Credits
+The Anvil Framework builds heavily on the foundations of the [NWNX:EE DotNET plugin](https://github.com/nwnxee/unified/tree/master/Plugins/DotNET) that was written by [Milos Tijanic](https://github.com/mtijanic "Milos Tijanic"), and derives several service implementations from plugins developed by the NWNX:EE team and its contributors.
