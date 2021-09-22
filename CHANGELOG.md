@@ -8,6 +8,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 
 ### Added
 - Effect: Added `Effect.Icon()` factory method for creating Icon effects.
+- Effect: Added `Effect.RunAction()` factory methods for creating effects that invoke C# actions.
+- ScriptHandleFactory: New service for dynamically creating function callbacks at runtime that are bound to script names. The returned handle is currently used for script parameters in effects.
 - ModuleEvents: Added `OnPlayerGuiEvent` and `OnPlayerTarget` events.
 - GUIPanel: Added new constants published with NWN 8193.31
 - NwPlayer: Added `SetGuiPanelDisabled` for disabling built-in GUI elements.
@@ -19,9 +21,10 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - Refactored various internal usages of NWN.Native to use collection/list accessors for native types.
 - VirtualMachine: `IsInScriptContext` now checks the current executing thread, and now only returns true while on the main thread and inside of a VM script context.
 - HookService: Hooks are now returned/disposed after the server has been destroyed.
+- IScriptDispatcher: Custom Script Dispatchers must now define an execution order. This order is used when a script call is triggered from the VM, and determines which service/s implementing this interface get executed first.
 
 ### Deprecated
-- N/A
+- Effect: Deprecated `Effect.AreaOfEffect` that uses strings for the script handlers. Use the overload that uses `ScriptCallbackHandle` parameters instead.
 
 ### Removed
 - HookService: Removed the optional `shutdownDispose` parameter.
