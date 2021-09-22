@@ -33,14 +33,26 @@ namespace Anvil.API
     /// Assigns a value to the binding for the specified player.
     /// </summary>
     /// <param name="player">The player whose binding will be updated.</param>
-    /// <param name="nUiToken">The unique UI token to be updated.</param>
+    /// <param name="uiToken">The unique UI token to be updated.</param>
     /// <param name="value">The new value to assign.</param>
-    public void SetBindValue(NwPlayer player, int nUiToken, T value)
+    public void SetBindValue(NwPlayer player, int uiToken, T value)
     {
       string jsonString = JsonConvert.SerializeObject(value);
       Json json = Json.Parse(jsonString);
 
-      NWScript.NuiSetBind(player.ControlledCreature, nUiToken, Key, json);
+      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, json);
+    }
+
+    /// <summary>
+    /// Marks this property as watched/un-watched.<br/>
+    /// A watched bind will invoke the NUI script event every time its value changes.
+    /// </summary>
+    /// <param name="player">The player whose binding will be updated.</param>
+    /// <param name="uiToken">The unique UI token to be updated.</param>
+    /// <param name="watch">True if the value should be watched, false if it should not be watched.</param>
+    public void SetBindWatch(NwPlayer player, int uiToken, bool watch)
+    {
+      NWScript.NuiSetBindWatch(player.ControlledCreature, uiToken, Key, watch.ToInt());
     }
   }
 }
