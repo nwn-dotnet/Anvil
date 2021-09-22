@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
-  public class NuiButtonImage : NuiElement
+  public sealed class NuiButtonImage : NuiElement
   {
     public override string Type
     {

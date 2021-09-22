@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
-  public class NuiValueConverter : JsonConverter
+  public sealed class NuiValueConverter : JsonConverter
   {
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {

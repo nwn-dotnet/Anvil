@@ -19,6 +19,6 @@ namespace Anvil.API
     public NuiProperty<NuiVAlign> VerticalAlign { get; set; }
 
     [JsonProperty("image_aspect")]
-    public NuiProperty<NuiAspect> Aspect { get; set; }
+    public NuiProperty<NuiAspect> ImageAspect { get; set; }
   }
 }
