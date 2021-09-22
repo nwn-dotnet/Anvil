@@ -8,7 +8,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnCreatureDamage : IEvent
   {
-    public NwGameObject DamagedBy { get; private init; }
+    public NwObject DamagedBy { get; private init; }
 
     public NwGameObject Target { get; private init; }
 
@@ -21,16 +21,16 @@ namespace Anvil.API.Events
 
     internal unsafe class Factory : SingleHookEventFactory<Factory.OnApplyDamageHook>
     {
-      internal delegate void OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
+      internal delegate int OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
       protected override FunctionHook<OnApplyDamageHook> RequestHook()
       {
-        delegate* unmanaged<void*, void*, void*, int, void> pHook = &OnApplyDamage;
+        delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyDamage;
         return HookService.RequestHook<OnApplyDamageHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDamageEP10CNWSObjectP11CGameEffecti, HookOrder.Late);
       }
 
       [UnmanagedCallersOnly]
-      private static void OnApplyDamage(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame)
+      private static int OnApplyDamage(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame)
       {
         CNWSObject gameObject = CNWSObject.FromPointer(pObject);
         if (IsValidObjectTarget((ObjectType)gameObject.m_nObjectType))
@@ -39,13 +39,13 @@ namespace Anvil.API.Events
 
           ProcessEvent(new OnCreatureDamage
           {
-            DamagedBy = effect.m_oidCreator.ToNwObject<NwGameObject>(),
+            DamagedBy = effect.m_oidCreator.ToNwObject<NwObject>(),
             Target = gameObject.ToNwObject<NwGameObject>(),
             DamageData = new DamageData<int>(effect.m_nParamInteger),
           });
         }
 
-        Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
+        return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
       }
 
       private static bool IsValidObjectTarget(ObjectType objectType)
