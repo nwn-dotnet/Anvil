@@ -291,8 +291,7 @@ namespace Anvil.API
     /// <returns>True if the event is locked and the script cannot be modified, otherwise false.</returns>
     public bool IsEventLocked(EventScriptType eventType)
     {
-      string current = GetEventScript(eventType);
-      return current is ScriptConstants.GameEventScriptName or ScriptConstants.NWNXEventScriptName;
+      return GetEventScript(eventType).IsReservedScriptName();
     }
 
     /// <summary>

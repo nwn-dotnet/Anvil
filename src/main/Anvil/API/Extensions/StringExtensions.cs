@@ -126,7 +126,24 @@ namespace Anvil.API
 
     public static bool IsValidScriptName(this string scriptName)
     {
-      return scriptName != null && scriptName.Length <= ScriptConstants.MaxScriptNameSize;
+      if (string.IsNullOrEmpty(scriptName))
+      {
+        return false;
+      }
+
+      string lowerName = scriptName.ToLower();
+      return lowerName != ScriptConstants.GameEventScriptName && lowerName != ScriptConstants.NWNXEventScriptName;
+    }
+
+    public static bool IsReservedScriptName(this string scriptName)
+    {
+      if (string.IsNullOrEmpty(scriptName))
+      {
+        return false;
+      }
+
+      string lowerName = scriptName.ToLower();
+      return lowerName is ScriptConstants.GameEventScriptName or ScriptConstants.NWNXEventScriptName;
     }
 
     public static string ReadUntilChar(this StringReader stringReader, char character)

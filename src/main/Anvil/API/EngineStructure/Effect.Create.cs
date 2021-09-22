@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.Services;
 using NWN.Core;
 
 namespace Anvil.API
@@ -54,9 +55,27 @@ namespace Anvil.API
       return NWScript.EffectAppear();
     }
 
+    [Obsolete("Use the overload with ScriptCallBackHandles instead.")]
     public static Effect AreaOfEffect(int areaEffectId, string onEnterScript = "", string heartbeatScript = "", string onExitScript = "")
     {
       return NWScript.EffectAreaOfEffect(areaEffectId, onEnterScript, heartbeatScript, onExitScript);
+    }
+
+    /// <summary>
+    /// Creates an area of effect (AOE) effect.
+    /// </summary>
+    /// <param name="vfxType">The persistent area visual effect to use for this effect.</param>
+    /// <param name="onEnterHandle">The callback to invoke when something enters this area of effect.</param>
+    /// <param name="heartbeatHandle">The callback to invoke when something is inside the area of effect during a heartbeat (~6 seconds)</param>
+    /// <param name="onExitHandle">The callback to invoke when something leaves this area of effect.</param>
+    /// <returns>The created effect.</returns>
+    public static Effect AreaOfEffect(PersistentVfxType vfxType, ScriptCallbackHandle onEnterHandle = null, ScriptCallbackHandle heartbeatHandle = null, ScriptCallbackHandle onExitHandle = null)
+    {
+      onEnterHandle?.AssertValid();
+      heartbeatHandle?.AssertValid();
+      onExitHandle?.AssertValid();
+
+      return NWScript.EffectAreaOfEffect((int)vfxType, onEnterHandle?.ScriptName ?? string.Empty, heartbeatHandle?.ScriptName ?? string.Empty, onExitHandle?.ScriptName ?? string.Empty);
     }
 
     /// <summary>
@@ -457,6 +476,24 @@ namespace Anvil.API
     public static Effect Resurrection()
     {
       return NWScript.EffectResurrection();
+    }
+
+    /// <summary>
+    /// Creates a custom scripted effect.
+    /// </summary>
+    /// <param name="onAppliedHandle">The callback to invoke when this effect is applied.</param>
+    /// <param name="onRemovedHandle">The callback to invoke when this effect is removed (via script, death, resting, or dispelling).</param>
+    /// <param name="onIntervalHandle">The callback to invoke per interval.</param>
+    /// <param name="interval">The interval in which to call onIntervalHandle.</param>
+    /// <param name="data">Optional string of data saved with the effect, retrievable with Effect.StringParams[0].</param>
+    /// <returns>The created effect.</returns>
+    public static Effect RunAction(ScriptCallbackHandle onAppliedHandle = null, ScriptCallbackHandle onRemovedHandle = null, ScriptCallbackHandle onIntervalHandle = null, TimeSpan interval = default, string data = "")
+    {
+      onAppliedHandle?.AssertValid();
+      onRemovedHandle?.AssertValid();
+      onIntervalHandle?.AssertValid();
+
+      return NWScript.EffectRunScript(onAppliedHandle?.ScriptName ?? string.Empty, onRemovedHandle?.ScriptName ?? string.Empty, onIntervalHandle?.ScriptName ?? string.Empty, (float)interval.TotalSeconds, data);
     }
 
     public static Effect Sanctuary(int difficultyClass)
