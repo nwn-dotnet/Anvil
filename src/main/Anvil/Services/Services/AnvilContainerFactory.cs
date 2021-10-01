@@ -91,7 +91,7 @@ namespace Anvil.Services
 
     private bool IsServiceRequirementsMet(ServiceBindingOptionsAttribute options)
     {
-      if (options == null || (options.PluginDependencies == null && options.MissingPluginDependencies == null))
+      if (options == null || options.PluginDependencies == null && options.MissingPluginDependencies == null)
       {
         return true;
       }

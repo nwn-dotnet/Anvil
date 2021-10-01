@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Anvil.API;
 using Anvil.Internal;
-using Anvil.Plugins;
 using NLog;
 using NWN.Native.API;
 using ResRefType = Anvil.API.ResRefType;
