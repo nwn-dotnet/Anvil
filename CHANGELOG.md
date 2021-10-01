@@ -16,6 +16,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - VirtualMachine: Added `RecursionLevel` property.
 - LocalVariableCassowary: Added to support cassowary local variables.
 - ILateDisposable: Added a new service event interface that is invoked after the server is destroyed.
+- ServiceBindingOptions: Added `PluginDependencies` and `MissingPluginDependencies` properties for setting up services with optional plugin dependencies.
 
 ### Changed
 - Refactored various internal usages of NWN.Native to use collection/list accessors for native types.
@@ -28,6 +29,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 
 ### Removed
 - HookService: Removed the optional `shutdownDispose` parameter.
+- AnvilCore: Removed custom `ITypeLoader` support, and hardcoded references to the updated PluginManager.
 
 ### Fixed
 - Fixed an issue where the `ObjectStorageService` would cause errors when performing hot reloads with `AnvilCore.Reload()`
