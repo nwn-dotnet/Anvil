@@ -13,7 +13,7 @@ namespace Anvil
 {
   /// <summary>
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
-  /// Until <see cref="Init(IntPtr, int, IContainerFactory, ITypeLoader)"/> is called, all APIs are unavailable for usage.
+  /// Until <see cref="Init(IntPtr, int, IContainerFactory)"/> is called, all APIs are unavailable for usage.
   /// </summary>
   public sealed class AnvilCore : IServerLifeCycleEventHandler
   {
@@ -24,7 +24,7 @@ namespace Anvil
     // Core Services
     private CoreInteropHandler interopHandler;
     private IContainerFactory containerFactory;
-    private ITypeLoader typeLoader;
+    private PluginManager pluginManager;
     private LoggerManager loggerManager;
     private UnhandledExceptionLogger unhandledExceptionLogger;
     private ServiceManager serviceManager;
@@ -35,18 +35,16 @@ namespace Anvil
     /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
     /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
     /// <param name="containerFactory">An optional custom binding installer to use instead of the default <see cref="AnvilContainerFactory"/>.</param>
-    /// <param name="typeLoader">An optional type loader to use instead of the default <see cref="PluginLoader"/>.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IContainerFactory containerFactory = default, ITypeLoader typeLoader = default)
+    public static int Init(IntPtr arg, int argLength, IContainerFactory containerFactory = default)
     {
-      typeLoader ??= new PluginLoader();
       containerFactory ??= new AnvilContainerFactory();
 
       instance = new AnvilCore();
       instance.interopHandler = new CoreInteropHandler(instance);
       instance.containerFactory = containerFactory;
-      instance.typeLoader = typeLoader;
+      instance.pluginManager = new PluginManager();
       instance.loggerManager = new LoggerManager();
       instance.unhandledExceptionLogger = new UnhandledExceptionLogger();
 
@@ -71,10 +69,12 @@ namespace Anvil
 
       instance.serviceManager.ShutdownServices();
       instance.serviceManager.ShutdownLateServices();
+      instance.pluginManager.Unload();
 
       GC.Collect();
       GC.WaitForPendingFinalizers();
 
+      instance.pluginManager.Load();
       instance.InitServices();
     }
 
@@ -128,8 +128,8 @@ namespace Anvil
 
     private void InitServices()
     {
-      typeLoader.Init();
-      serviceManager = new ServiceManager(typeLoader, containerFactory);
+      pluginManager.Load();
+      serviceManager = new ServiceManager(pluginManager, containerFactory);
       serviceManager.Init();
       interopHandler.Init(serviceManager.GetService<ICoreRunScriptHandler>(), serviceManager.GetService<ICoreLoopHandler>());
     }
@@ -138,7 +138,7 @@ namespace Anvil
     {
       serviceManager = null;
 
-      typeLoader.Dispose();
+      pluginManager.Unload();
       unhandledExceptionLogger.Dispose();
       loggerManager.Dispose();
     }

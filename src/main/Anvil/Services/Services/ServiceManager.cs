@@ -11,20 +11,20 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly ITypeLoader typeLoader;
+    private readonly PluginManager pluginManager;
     private readonly IContainerFactory containerFactory;
 
     private ServiceContainer serviceContainer;
     private List<ILateDisposable> lateDisposables;
 
-    internal ServiceManager(ITypeLoader typeLoader, IContainerFactory containerFactory)
+    internal ServiceManager(PluginManager pluginManager, IContainerFactory containerFactory)
     {
       Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
 
-      this.typeLoader = typeLoader;
+      this.pluginManager = pluginManager;
       this.containerFactory = containerFactory;
 
-      serviceContainer = containerFactory.Setup(typeLoader);
+      serviceContainer = containerFactory.Setup(pluginManager);
     }
 
     public T GetService<T>() where T : class
@@ -34,7 +34,7 @@ namespace Anvil.Services
 
     internal void Init()
     {
-      RegisterCoreService(typeLoader);
+      RegisterCoreService(pluginManager);
       RegisterCoreService(this);
 
       containerFactory.BuildContainer();
