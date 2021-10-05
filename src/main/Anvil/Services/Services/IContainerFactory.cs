@@ -5,7 +5,7 @@ namespace Anvil.Services
 {
   public interface IContainerFactory
   {
-    ServiceContainer Setup(ITypeLoader typeLoader);
+    ServiceContainer Setup(PluginManager pluginManager);
 
     void RegisterCoreService<T>(T instance);
 

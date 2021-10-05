@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using Anvil.API;
 using Anvil.Plugins;
@@ -14,12 +15,12 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    protected ITypeLoader TypeLoader;
+    protected PluginManager PluginManager;
     protected ServiceContainer ServiceContainer;
 
-    public ServiceContainer Setup(ITypeLoader typeLoader)
+    public ServiceContainer Setup(PluginManager pluginManager)
     {
-      TypeLoader = typeLoader;
+      PluginManager = pluginManager;
       ServiceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = true, EnableVariance = false });
       SetupInjectPropertySelector();
 
@@ -38,43 +39,47 @@ namespace Anvil.Services
 
     public void BuildContainer()
     {
-      SearchForBindings();
+      Log.Info("Loading services...");
+      foreach (Type type in PluginManager.LoadedTypes)
+      {
+        TryRegisterType(type);
+      }
+
       RegisterOverrides();
     }
 
-    private void SetupInjectPropertySelector()
+    /// <summary>
+    /// Override in a child class to specify additional bindings/overrides.<br/>
+    /// See https://www.lightinject.net/ for documentation.
+    /// </summary>
+    protected virtual void RegisterOverrides() {}
+
+    private void TryRegisterType(Type type)
     {
-      InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
-      ServiceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
-    }
-
-    private void SearchForBindings()
-    {
-      Log.Info("Loading services...");
-
-      foreach (Type type in TypeLoader.LoadedTypes)
-      {
-        if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
-        {
-          continue;
-        }
-
-        RegisterBindings(type, type.GetCustomAttributes<ServiceBindingAttribute>());
-      }
-    }
-
-    private void RegisterBindings(Type bindTo, ServiceBindingAttribute[] newBindings)
-    {
-      if (newBindings.Length == 0)
+      if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
       {
         return;
       }
 
-      ServiceBindingOptionsAttribute options = bindTo.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      ServiceBindingAttribute[] bindings = type.GetCustomAttributes<ServiceBindingAttribute>();
+      if (bindings.Length == 0)
+      {
+        return;
+      }
+
+      ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      if (IsServiceRequirementsMet(options))
+      {
+        RegisterBindings(type, bindings, options);
+      }
+    }
+
+    private void RegisterBindings(Type bindTo, ServiceBindingAttribute[] bindings, ServiceBindingOptionsAttribute options)
+    {
       string serviceName = GetServiceName(bindTo, options);
 
       PerContainerLifetime lifeTime = new PerContainerLifetime();
-      RegisterExplicitBindings(bindTo, newBindings, serviceName, lifeTime);
+      RegisterExplicitBindings(bindTo, bindings, serviceName, lifeTime);
 
       if (options is not { Lazy: true })
       {
@@ -84,10 +89,24 @@ namespace Anvil.Services
       Log.Info("Registered service {Service}", bindTo.FullName);
     }
 
-    private string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
+    private bool IsServiceRequirementsMet(ServiceBindingOptionsAttribute options)
     {
-      short bindingOrder = options?.Order ?? (short)BindingOrder.Default;
-      return bindingOrder.ToString("D5") + implementation.FullName;
+      if (options == null || options.PluginDependencies == null && options.MissingPluginDependencies == null)
+      {
+        return true;
+      }
+
+      if (options.PluginDependencies != null && options.PluginDependencies.Any(dependency => !PluginManager.IsPluginLoaded(dependency)))
+      {
+        return false;
+      }
+
+      if (options.MissingPluginDependencies != null && options.MissingPluginDependencies.Any(dependency => PluginManager.IsPluginLoaded(dependency)))
+      {
+        return false;
+      }
+
+      return true;
     }
 
     private void RegisterImplicitBindings(Type bindTo, string serviceName, ILifetime lifeTime)
@@ -114,10 +133,16 @@ namespace Anvil.Services
       }
     }
 
-    /// <summary>
-    /// Override in a child class to specify additional bindings/overrides.<br/>
-    /// See https://www.lightinject.net/ for documentation.
-    /// </summary>
-    protected virtual void RegisterOverrides() {}
+    private void SetupInjectPropertySelector()
+    {
+      InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
+      ServiceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
+    }
+
+    private string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
+    {
+      short bindingOrder = options?.Order ?? (short)BindingOrder.Default;
+      return bindingOrder.ToString("D5") + implementation.FullName;
+    }
   }
 }

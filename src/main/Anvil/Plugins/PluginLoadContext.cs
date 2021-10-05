@@ -7,14 +7,14 @@ namespace Anvil.Plugins
 {
   internal sealed class PluginLoadContext : AssemblyLoadContext
   {
-    private readonly PluginLoader pluginLoader;
+    private readonly PluginManager pluginManager;
     private readonly string pluginName;
 
     private readonly AssemblyDependencyResolver resolver;
 
-    public PluginLoadContext(PluginLoader pluginLoader, string pluginPath, string pluginName) : base(EnvironmentConfig.ReloadEnabled)
+    public PluginLoadContext(PluginManager pluginManager, string pluginPath, string pluginName) : base(EnvironmentConfig.ReloadEnabled)
     {
-      this.pluginLoader = pluginLoader;
+      this.pluginManager = pluginManager;
       this.pluginName = pluginName;
       resolver = new AssemblyDependencyResolver(pluginPath);
     }
@@ -28,7 +28,7 @@ namespace Anvil.Plugins
       }
 
       // Resolve the dependency with the bundled assemblies (NWN.Core/Anvil), then check if other plugins can provide the dependency.
-      Assembly assembly = pluginLoader.ResolveDependency(pluginName, assemblyName);
+      Assembly assembly = pluginManager.ResolveDependency(pluginName, assemblyName);
 
       if (assembly != null)
       {

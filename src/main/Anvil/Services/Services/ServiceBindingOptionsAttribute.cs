@@ -32,6 +32,16 @@ namespace Anvil.Services
     /// </summary>
     public bool Lazy { get; init; }
 
+    /// <summary>
+    /// An optional list of plugin names that must exist for this service to be loaded.
+    /// </summary>
+    public string[] PluginDependencies { get; init; }
+
+    /// <summary>
+    /// An optional list of plugin names that must be missing for this service to be loaded.
+    /// </summary>
+    public string[] MissingPluginDependencies { get; init; }
+
     internal ServiceBindingOptionsAttribute(BindingOrder order)
     {
       this.order = (short)order;
