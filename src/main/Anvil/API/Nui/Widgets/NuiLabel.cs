@@ -17,8 +17,5 @@ namespace Anvil.API
 
     [JsonProperty("text_valign")]
     public NuiProperty<NuiVAlign> VerticalAlign { get; set; }
-
-    [JsonProperty("text_color")]
-    public NuiProperty<NuiColor> TextColor { get; set; }
   }
 }

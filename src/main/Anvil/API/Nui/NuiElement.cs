@@ -4,7 +4,7 @@ namespace Anvil.API
 {
   public abstract class NuiElement
   {
-    [JsonProperty("type")]
+    [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
     public abstract string Type { get; }
 
     [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
@@ -33,5 +33,8 @@ namespace Anvil.API
 
     [JsonProperty("tooltip", NullValueHandling = NullValueHandling.Ignore)]
     public NuiProperty<string> Tooltip { get; set; }
+
+    [JsonProperty("foreground_color", NullValueHandling = NullValueHandling.Ignore)]
+    public NuiProperty<NuiColor> ForegroundColor { get; set; }
   }
 }
