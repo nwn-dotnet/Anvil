@@ -10,6 +10,14 @@ Builders can add functionality like opening a store from a dialogue with a few l
 
 # Getting Started
 
+### I use NWNX/NWScript code extensively. How hard is it to move to Anvil?
+
+Anvil uses NWNX's DotNET plugin and is 100% compatible with existing NWNX/NWN servers.
+
+If you are using docker, you can simply swap the NWN/NWNX image with Anvil's image.
+
+All of your existing code will work of out the box, while offering the C# framework for you to begin developing plugins.
+
 ### Running Anvil - Docker
 Anvil has its own docker images that are automatically configured to start and run Anvil and NWNXEE. Similar to the parent images, Anvil is configured by environment variables passed during `docker run`.
 
