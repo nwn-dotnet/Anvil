@@ -10,6 +10,6 @@ namespace Anvil.API
     }
 
     [JsonProperty("value")]
-    public NuiProperty<int> Value { get; set; }
+    public NuiProperty<float> Value { get; set; }
   }
 }
