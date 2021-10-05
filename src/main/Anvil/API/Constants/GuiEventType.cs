@@ -18,5 +18,16 @@ namespace Anvil.API
     PlayerListPlayerClick = NWScript.GUIEVENT_PLAYERLIST_PLAYER_CLICK,
     PartyBarPortraitClick = NWScript.GUIEVENT_PARTYBAR_PORTRAIT_CLICK,
     DisabledPanelAttemptOpen = NWScript.GUIEVENT_DISABLED_PANEL_ATTEMPT_OPEN,
+    CompassClick = NWScript.GUIEVENT_COMPASS_CLICK,
+    LevelUpCancelled = NWScript.GUIEVENT_LEVELUP_CANCELLED,
+    AreaLoadScreenFinished = NWScript.GUIEVENT_AREA_LOADSCREEN_FINISHED,
+    QuickChatActivate = NWScript.GUIEVENT_QUICKCHAT_ACTIVATE,
+    QuickChatSelect = NWScript.GUIEVENT_QUICKCHAT_SELECT,
+    QuickChatClose = NWScript.GUIEVENT_QUICKCHAT_CLOSE,
+    SelectCreature = NWScript.GUIEVENT_SELECT_CREATURE,
+    UnselectCreature = NWScript.GUIEVENT_UNSELECT_CREATURE,
+    ExamineObject = NWScript.GUIEVENT_EXAMINE_OBJECT,
+    OptionsOpen = NWScript.GUIEVENT_OPTIONS_OPEN,
+    OptionsClose = NWScript.GUIEVENT_OPTIONS_CLOSE,
   }
 }

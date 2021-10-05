@@ -118,6 +118,22 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the language configured by this player.
+    /// </summary>
+    public PlayerLanguage Language
+    {
+      get => (PlayerLanguage)NWScript.GetPlayerLanguage(ControlledCreature);
+    }
+
+    /// <summary>
+    /// Gets the platform this player is currently playing from.
+    /// </summary>
+    public PlayerPlatform Platform
+    {
+      get => (PlayerPlatform)NWScript.GetPlayerDevicePlatform(ControlledCreature);
+    }
+
+    /// <summary>
     /// Gets or sets whether the player has DM privileges gained through a player login (as opposed to the DM client).
     /// </summary>
     public bool IsPlayerDM
@@ -1177,6 +1193,20 @@ namespace Anvil.API
       string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(window);
       Json json = Json.Parse(jsonString);
       return NWScript.NuiCreate(ControlledCreature, json, windowId);
+    }
+
+    /// <summary>
+    /// Gets the specified device property/capability as advertised by the client.
+    /// </summary>
+    /// <param name="property">The property to query.</param>
+    ///  <returns>The queried property value, or -1 if:<br/>
+    ///  - the property was never set by the client,<br/>
+    ///  - the actual value is -1,<br/>
+    ///  - the player is running a older build that does not advertise device properties,<br/>
+    ///  - the player has disabled sending device properties (Options/Game/Privacy).</returns>
+    public int GetDeviceProperty(PlayerDeviceProperty property)
+    {
+      return NWScript.GetPlayerDeviceProperty(ControlledCreature, property.PropertyName);
     }
   }
 }
