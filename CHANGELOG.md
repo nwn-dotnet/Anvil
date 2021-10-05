@@ -35,6 +35,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - Fixed an issue where the `ObjectStorageService` would cause errors when performing hot reloads with `AnvilCore.Reload()`
 - Fixed an issue where the PluginLoader would attempt to unload plugins too early during server shutdown/hot reload.
 - Fixed an issue where the `EnforceLegalCharacterService` would call the `ELCValidationBefore` event outside of a script context.
+- Fixed `OnChatMessageSend.Target` always being null.
 
 ## 8193.26.3
 https://github.com/nwn-dotnet/Anvil/compare/v8193.26.2...v8193.26.3

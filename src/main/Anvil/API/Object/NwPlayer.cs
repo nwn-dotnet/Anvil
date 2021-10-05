@@ -28,6 +28,12 @@ namespace Anvil.API
       PlayerId = player.m_nPlayerID;
     }
 
+    internal static NwPlayer FromPlayerId(uint playerId)
+    {
+      CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByObjectId(playerId);
+      return player != null ? new NwPlayer(player) : null;
+    }
+
     public static implicit operator CNWSPlayer(NwPlayer player)
     {
       return player?.Player;
