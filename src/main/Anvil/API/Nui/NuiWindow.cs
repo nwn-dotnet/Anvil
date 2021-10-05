@@ -23,8 +23,8 @@ namespace Anvil.API
     public NuiLayout Root { get; set; }
 
     /// <summary>
-    /// Gets or sets the geometry & bounds of this window.<br/>
-    /// Set x & y to -1.0 to center the window.
+    /// Gets or sets the geometry and bounds of this window.<br/>
+    /// Set x and y to -1.0 to center the window.
     /// </summary>
     [JsonProperty("geometry")]
     public NuiProperty<NuiRect> Geometry { get; set; }

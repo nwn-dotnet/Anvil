@@ -7,7 +7,7 @@ using Newtonsoft.Json.Serialization;
 namespace Anvil.API
 {
   // https://stackoverflow.com/questions/39461518/how-to-deserialize-an-array-of-values-with-a-fixed-schema-to-a-strongly-typed-da/39462464#39462464
-  internal class ObjectToArrayConverter<T> : JsonConverter
+  internal sealed class ObjectToArrayConverter<T> : JsonConverter
   {
     public override bool CanConvert(Type objectType)
     {
@@ -20,14 +20,14 @@ namespace Anvil.API
       JsonObjectContract contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
       if (contract == null)
       {
-        throw new JsonSerializationException(string.Format("invalid type {0}.", objectType.FullName));
+        throw new JsonSerializationException($"invalid type {objectType.FullName}.");
       }
 
       writer.WriteStartArray();
       foreach (JsonProperty property in SerializableProperties(contract))
       {
-        object? propertyValue = property.ValueProvider.GetValue(value);
-        if (property.Converter != null && property.Converter.CanWrite)
+        object propertyValue = property?.ValueProvider?.GetValue(value);
+        if (property?.Converter != null && property.Converter.CanWrite)
         {
           property.Converter.WriteJson(writer, propertyValue, serializer);
         }
@@ -45,7 +45,7 @@ namespace Anvil.API
       JsonObjectContract contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
       if (contract == null)
       {
-        throw new JsonSerializationException(string.Format("invalid type {0}.", objectType.FullName));
+        throw new JsonSerializationException($"invalid type {objectType.FullName}.");
       }
 
       if (reader.MoveToContentAndAssert().TokenType == JsonToken.Null)
@@ -55,11 +55,16 @@ namespace Anvil.API
 
       if (reader.TokenType != JsonToken.StartArray)
       {
-        throw new JsonSerializationException(string.Format("token {0} was not JsonToken.StartArray", reader.TokenType));
+        throw new JsonSerializationException($"token {reader.TokenType} was not JsonToken.StartArray");
+      }
+
+      if (existingValue == null && contract.DefaultCreator == null)
+      {
+        return null;
       }
 
       // Not implemented: JsonObjectContract.CreatorParameters, serialization callbacks,
-      existingValue = existingValue ?? contract.DefaultCreator();
+      existingValue ??= contract.DefaultCreator();
 
       using IEnumerator<JsonProperty> enumerator = SerializableProperties(contract).GetEnumerator();
 
@@ -82,6 +87,12 @@ namespace Anvil.API
             // TODO:
             // https://www.newtonsoft.com/json/help/html/Properties_T_Newtonsoft_Json_Serialization_JsonProperty.htm
             // JsonProperty.ItemConverter, ItemIsReference, ItemReferenceLoopHandling, ItemTypeNameHandling, DefaultValue, DefaultValueHandling, ReferenceLoopHandling, Required, TypeNameHandling, ...
+
+            if (property?.PropertyType == null || property.ValueProvider == null)
+            {
+              continue;
+            }
+
             if (property.Converter != null && property.Converter.CanRead)
             {
               propertyValue = property.Converter.ReadJson(reader, property.PropertyType, property.ValueProvider.GetValue(existingValue), serializer);
@@ -103,7 +114,7 @@ namespace Anvil.API
     }
   }
 
-  internal static partial class JsonExtensions
+  internal static class JsonExtensions
   {
     public static JsonReader ReadToContentAndAssert(this JsonReader reader)
     {
