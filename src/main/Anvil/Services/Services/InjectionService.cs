@@ -12,10 +12,10 @@ namespace Anvil.Services
   {
     private readonly IServiceContainer container;
 
-    public InjectionService(IServiceContainer container, ITypeLoader typeLoader)
+    public InjectionService(IServiceContainer container, PluginManager pluginManager)
     {
       this.container = container;
-      InjectStaticProperties(typeLoader.LoadedTypes);
+      InjectStaticProperties(pluginManager.LoadedTypes);
     }
 
     /// <summary>
