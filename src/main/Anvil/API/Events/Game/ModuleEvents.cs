@@ -217,6 +217,12 @@ namespace Anvil.API.Events
         {
           "click" => NuiEventType.Click,
           "watch" => NuiEventType.Watch,
+          "open" => NuiEventType.Open,
+          "close" => NuiEventType.Close,
+          "focus" => NuiEventType.Focus,
+          "blur" => NuiEventType.Blur,
+          "mousedown" => NuiEventType.MouseDown,
+          "mouseup" => NuiEventType.MouseUp,
           _ => NuiEventType.Unknown,
         };
       }

@@ -4,6 +4,12 @@ namespace Anvil.API
   {
     Unknown,
     Click,
-    Watch
+    Watch,
+    Open,
+    Close,
+    Focus,
+    Blur,
+    MouseDown,
+    MouseUp,
   }
 }
