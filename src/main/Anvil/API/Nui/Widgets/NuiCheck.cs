@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A checkbox with a label to the right of it.
+  /// </summary>
   public sealed class NuiCheck : NuiElement
   {
     public override string Type

@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A chart element/data set for use in <see cref="NuiChart"/>.
+  /// </summary>
   public sealed class NuiChartSlot
   {
     public NuiChartSlot(NuiChartType chartType, NuiProperty<string> legend, NuiProperty<NuiColor> color, NuiProperty<List<float>> data)

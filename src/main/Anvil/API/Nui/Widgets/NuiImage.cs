@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// An image, with no border or padding.
+  /// </summary>
   public sealed class NuiImage : NuiElement
   {
     public override string Type

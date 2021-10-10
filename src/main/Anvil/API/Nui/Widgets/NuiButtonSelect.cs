@@ -2,6 +2,10 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A clickable button with text as the label.<br/>
+  /// Same as <see cref="NuiButton"/>, but this one is a toggle.
+  /// </summary>
   public sealed class NuiButtonSelect : NuiElement
   {
     public override string Type

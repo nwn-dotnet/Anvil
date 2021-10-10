@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A slider bar with floating-point values.
+  /// </summary>
   public sealed class NuiSliderFloat : NuiElement
   {
     public override string Type

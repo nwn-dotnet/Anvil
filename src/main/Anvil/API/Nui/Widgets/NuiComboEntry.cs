@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A combo/list element for use in <see cref="NuiCombo"/>.
+  /// </summary>
   [JsonConverter(typeof(ObjectToArrayConverter<NuiComboEntry>))]
   public sealed class NuiComboEntry
   {

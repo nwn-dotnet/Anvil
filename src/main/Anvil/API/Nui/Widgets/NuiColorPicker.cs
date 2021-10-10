@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A simple color picker, with no borders or spacing.
+  /// </summary>
   public sealed class NuiColorPicker : NuiElement
   {
     public override string Type

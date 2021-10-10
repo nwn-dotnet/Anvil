@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A single-line, styleable, non-editable text field.
+  /// </summary>
   public sealed class NuiLabel : NuiElement
   {
     public override string Type

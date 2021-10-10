@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A dropdown menu/combobox.
+  /// </summary>
   public sealed class NuiCombo : NuiElement
   {
     public override string Type

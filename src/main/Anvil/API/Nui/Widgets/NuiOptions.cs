@@ -3,6 +3,10 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A list of options (radio buttons).<br/>
+  /// Only one can be selected at a time.
+  /// </summary>
   public sealed class NuiOptions : NuiElement
   {
     public override string Type

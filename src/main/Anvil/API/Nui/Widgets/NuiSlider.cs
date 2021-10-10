@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A slider bar with integer values.
+  /// </summary>
   public sealed class NuiSlider : NuiElement
   {
     public override string Type
