@@ -1260,13 +1260,19 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Swaps out the element specified by ID with the given nui layout (partial).<br/>
-    /// This is only supported on the "group" element type, and the root "window" group.
+    /// Swaps out the element specified by ID with the given nui layout (partial).
     /// </summary>
     /// <param name="uiToken">The ui token to update.</param>
     /// <param name="elementId">The ID of the element to update.</param>
     /// <param name="updatedLayout">The updated element to publish.</param>
-    public void NuiSetGroupLayout(int uiToken, string elementId, NuiElement updatedLayout)
+    public void NuiSetGroupLayout(int uiToken, string elementId, NuiGroup updatedLayout)
+    {
+      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
+      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
+    }
+
+    /// <inheritdoc cref="NuiSetGroupLayout(int,string,Anvil.API.NuiGroup)"/>
+    public void NuiSetGroupLayout(int uiToken, string elementId, NuiWindow updatedLayout)
     {
       Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
       NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
