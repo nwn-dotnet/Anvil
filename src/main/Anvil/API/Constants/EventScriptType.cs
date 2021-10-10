@@ -26,6 +26,7 @@ namespace Anvil.API
     ModuleOnPlayerTarget = NWScript.EVENT_SCRIPT_MODULE_ON_PLAYER_TARGET,
     ModuleOnPlayerGuiEvent = NWScript.EVENT_SCRIPT_MODULE_ON_PLAYER_GUIEVENT,
     ModuleOnPlayerTileAction = NWScript.EVENT_SCRIPT_MODULE_ON_PLAYER_TILE_ACTION,
+    ModuleOnNuiEvent = NWScript.EVENT_SCRIPT_MODULE_ON_NUI_EVENT,
     AreaOnHeartbeat = NWScript.EVENT_SCRIPT_AREA_ON_HEARTBEAT,
     AreaOnUserDefinedEvent = NWScript.EVENT_SCRIPT_AREA_ON_USER_DEFINED_EVENT,
     AreaOnEnter = NWScript.EVENT_SCRIPT_AREA_ON_ENTER,

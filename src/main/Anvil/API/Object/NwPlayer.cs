@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using Anvil.Services;
+using Newtonsoft.Json;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
@@ -115,6 +116,22 @@ namespace Anvil.API
     public bool IsDM
     {
       get => NWScript.GetIsDM(ControlledCreature).ToBool();
+    }
+
+    /// <summary>
+    /// Gets the language configured by this player.
+    /// </summary>
+    public PlayerLanguage Language
+    {
+      get => (PlayerLanguage)NWScript.GetPlayerLanguage(ControlledCreature);
+    }
+
+    /// <summary>
+    /// Gets the platform this player is currently playing from.
+    /// </summary>
+    public PlayerPlatform Platform
+    {
+      get => (PlayerPlatform)NWScript.GetPlayerDevicePlatform(ControlledCreature);
     }
 
     /// <summary>
@@ -1164,6 +1181,101 @@ namespace Anvil.API
     public void DestroySQLDatabase()
     {
       NWScript.SqlDestroyDatabase(ControlledCreature);
+    }
+
+    /// <summary>
+    /// Gets the specified device property/capability as advertised by the client.
+    /// </summary>
+    /// <param name="property">The property to query.</param>
+    ///  <returns>The queried property value, or -1 if:<br/>
+    ///  - the property was never set by the client,<br/>
+    ///  - the actual value is -1,<br/>
+    ///  - the player is running a older build that does not advertise device properties,<br/>
+    ///  - the player has disabled sending device properties (Options/Game/Privacy).</returns>
+    public int GetDeviceProperty(PlayerDeviceProperty property)
+    {
+      return NWScript.GetPlayerDeviceProperty(ControlledCreature, property.PropertyName);
+    }
+
+    /// <summary>
+    /// Create a NUI window inline for this player.
+    /// </summary>
+    /// <param name="window">The window to create.</param>
+    /// <param name="windowId">A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</param>
+    /// <returns>The window token on success (!= 0), or 0 on error.</returns>
+    public int CreateNuiWindow(NuiWindow window, string windowId = "")
+    {
+      string jsonString = JsonConvert.SerializeObject(window);
+      Json json = Json.Parse(jsonString);
+      return NWScript.NuiCreate(ControlledCreature, json, windowId);
+    }
+
+    /// <summary>
+    /// Get the userdata of the given window token.
+    /// </summary>
+    /// <param name="uiToken">The token for the window to query.</param>
+    /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
+    /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
+    public T NuiGetUserData<T>(int uiToken)
+    {
+      Json json = NWScript.NuiGetUserData(ControlledCreature, uiToken);
+      return JsonConvert.DeserializeObject<T>(json.Dump());
+    }
+
+    /// <summary>
+    /// Sets an arbitrary json value as userdata on the given window token.<br/>
+    /// This userdata is not read or handled by the game engine and not sent to clients.<br/>
+    /// This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.<br/>
+    /// Will do nothing if the window does not exist.
+    /// </summary>
+    /// <param name="uiToken">The token to associate the data with.</param>
+    /// <param name="userData">The data to store.</param>
+    /// <typeparam name="T">The type of data to store. Must be serializable to JSON.</typeparam>
+    public void NuiSetUserData<T>(int uiToken, T userData)
+    {
+      Json json = Json.Parse(JsonConvert.SerializeObject(userData));
+      NWScript.NuiSetUserData(ControlledCreature, uiToken, json);
+    }
+
+    /// <summary>
+    /// Gets the root window ID associated with the specified token.
+    /// </summary>
+    /// <param name="uiToken">The token to query.</param>
+    /// <returns>The ID of the window if assigned, otherwise an empty string.</returns>
+    public string NuiGetWindowId(int uiToken)
+    {
+      return NWScript.NuiGetWindowId(ControlledCreature, uiToken);
+    }
+
+    /// <summary>
+    ///  Destroys the given window, by token, immediately closing it on the client.<br/>
+    ///  Does nothing if nUiToken does not exist on the client.<br/>
+    ///  Does not send a close event - this immediately destroys all serverside state.<br/>
+    ///  The client will close the window asynchronously.
+    /// </summary>
+    /// <param name="uiToken">The token of the window to destroy.</param>
+    public void NuiDestroy(int uiToken)
+    {
+      NWScript.NuiDestroy(ControlledCreature, uiToken);
+    }
+
+    /// <summary>
+    /// Swaps out the element specified by ID with the given nui layout (partial).
+    /// </summary>
+    /// <param name="uiToken">The ui token to update.</param>
+    /// <param name="elementId">The ID of the element to update.</param>
+    /// <param name="updatedLayout">The updated element to publish.</param>
+    public void NuiSetGroupLayout(int uiToken, string elementId, NuiGroup updatedLayout)
+    {
+      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
+      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
+    }
+
+    /// <inheritdoc cref="NuiSetGroupLayout(int,string,Anvil.API.NuiGroup)"/>
+    public void NuiSetGroupLayout(int uiToken, string elementId, NuiWindow updatedLayout)
+    {
+      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
+      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
     }
   }
 }

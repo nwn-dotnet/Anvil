@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using Anvil.API.Events;
+using Newtonsoft.Json;
 using NWN.Core;
 
 namespace Anvil.API.Events
@@ -159,6 +160,76 @@ namespace Anvil.API.Events
       NwObject IEvent.Context
       {
         get => null;
+      }
+    }
+
+    /// <summary>
+    /// Called when a player triggers an event in the NUI system.
+    /// </summary>
+    [GameEvent(EventScriptType.ModuleOnNuiEvent)]
+    public sealed class OnNuiEvent : IEvent
+    {
+      /// <summary>
+      /// Gets the player that triggered this event.
+      /// </summary>
+      public NwPlayer Player { get; } = NWScript.NuiGetEventPlayer().ToNwPlayer();
+
+      /// <summary>
+      /// Gets the window token associated with this event.
+      /// </summary>
+      public int WindowToken { get; } = NWScript.NuiGetEventWindow();
+
+      /// <summary>
+      /// Gets the ID of the <see cref="NuiElement"/> that triggered the event.
+      /// </summary>
+      public string ElementId { get; } = NWScript.NuiGetEventElement();
+
+      /// <summary>
+      /// Get the array index of the current event.<br/>
+      /// This can be used to get the index into an array, for example when rendering lists of buttons.<br/>
+      /// Returns -1 if the event is not originating from within an array.
+      /// </summary>
+      public int ArrayIndex { get; } = NWScript.NuiGetEventArrayIndex();
+
+      private readonly string eventPayload;
+
+      /// <summary>
+      /// Gets the payload data associated with this event.
+      /// </summary>
+      /// <typeparam name="T"></typeparam>
+      /// <returns>The payload data, or null if the event has no payload.</returns>
+      public T GetEventPayload<T>()
+      {
+        return JsonConvert.DeserializeObject<T>(eventPayload);
+      }
+
+      /// <summary>
+      /// Gets the type of Nui event that occurred.
+      /// </summary>
+      public NuiEventType EventType { get; }
+
+      public OnNuiEvent()
+      {
+        Json payload = NWScript.NuiGetEventPayload();
+        eventPayload = payload.Dump();
+
+        EventType = NWScript.NuiGetEventType() switch
+        {
+          "click" => NuiEventType.Click,
+          "watch" => NuiEventType.Watch,
+          "open" => NuiEventType.Open,
+          "close" => NuiEventType.Close,
+          "focus" => NuiEventType.Focus,
+          "blur" => NuiEventType.Blur,
+          "mousedown" => NuiEventType.MouseDown,
+          "mouseup" => NuiEventType.MouseUp,
+          _ => NuiEventType.Unknown,
+        };
+      }
+
+      public NwObject Context
+      {
+        get => Player?.ControlledCreature;
       }
     }
 
@@ -594,6 +665,13 @@ namespace Anvil.API
       remove => EventService.UnsubscribeAll<ModuleEvents.OnPlayerChat, GameEventFactory>(value);
     }
 
+    /// <inheritdoc cref="ModuleEvents.OnNuiEvent"/>
+    public event Action<ModuleEvents.OnNuiEvent> OnNuiEvent
+    {
+      add => EventService.SubscribeAll<ModuleEvents.OnNuiEvent, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(this), value);
+      remove => EventService.UnsubscribeAll<ModuleEvents.OnNuiEvent, GameEventFactory>(value);
+    }
+
     /// <inheritdoc cref="ModuleEvents.OnPlayerTarget"/>
     public event Action<ModuleEvents.OnPlayerTarget> OnPlayerTarget
     {
@@ -700,6 +778,13 @@ namespace Anvil.API
     {
       add => EventService.Subscribe<ModuleEvents.OnCutsceneAbort, GameEventFactory, GameEventFactory.RegistrationData>(ControlledCreature, new GameEventFactory.RegistrationData(NwModule.Instance), value);
       remove => EventService.Unsubscribe<ModuleEvents.OnCutsceneAbort, GameEventFactory>(ControlledCreature, value);
+    }
+
+    /// <inheritdoc cref="ModuleEvents.OnNuiEvent"/>
+    public event Action<ModuleEvents.OnNuiEvent> OnNuiEvent
+    {
+      add => EventService.Subscribe<ModuleEvents.OnNuiEvent, GameEventFactory, GameEventFactory.RegistrationData>(ControlledCreature, new GameEventFactory.RegistrationData(NwModule.Instance), value);
+      remove => EventService.Unsubscribe<ModuleEvents.OnNuiEvent, GameEventFactory>(ControlledCreature, value);
     }
 
     /// <inheritdoc cref="ModuleEvents.OnPlayerChat"/>
