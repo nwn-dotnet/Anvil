@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 
 ### Added
+- NUI: Implement API with classes, added methods to NwPlayer.
 - Effect: Added `Effect.Icon()` factory method for creating Icon effects.
 - Effect: Added `Effect.RunAction()` factory methods for creating effects that invoke C# actions.
 - ScriptHandleFactory: New service for dynamically creating function callbacks at runtime that are bound to script names. The returned handle is currently used for script parameters in effects.
