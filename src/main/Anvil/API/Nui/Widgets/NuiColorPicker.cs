@@ -9,7 +9,12 @@ namespace Anvil.API
       get => "color_picker";
     }
 
+    public NuiColorPicker(NuiProperty<NuiColor> color)
+    {
+      Color = color;
+    }
+
     [JsonProperty("value")]
-    public NuiProperty<NuiColor> Value { get; set; }
+    public NuiProperty<NuiColor> Color { get; set; }
   }
 }

@@ -9,6 +9,11 @@ namespace Anvil.API
   [JsonConverter(typeof(NuiValueConverter))]
   public sealed class NuiValue<T> : NuiProperty<T>
   {
+    public static implicit operator T(NuiValue<T> value)
+    {
+      return value != null ? value.Value : default;
+    }
+
     /// <summary>
     /// Gets the value of this property.
     /// </summary>

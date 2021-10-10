@@ -9,6 +9,13 @@ namespace Anvil.API
       get => "sliderf";
     }
 
+    public NuiSliderFloat(NuiProperty<float> value, NuiProperty<float> min, NuiProperty<float> max)
+    {
+      Value = value;
+      Min = min;
+      Max = max;
+    }
+
     [JsonProperty("value")]
     public NuiProperty<float> Value { get; set; }
 
@@ -19,6 +26,6 @@ namespace Anvil.API
     public NuiProperty<float> Max { get; set; }
 
     [JsonProperty("step")]
-    public NuiProperty<float> Step { get; set; }
+    public NuiProperty<float> StepSize { get; set; } = 0.01f;
   }
 }

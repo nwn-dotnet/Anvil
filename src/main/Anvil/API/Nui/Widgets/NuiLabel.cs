@@ -9,13 +9,18 @@ namespace Anvil.API
       get => "label";
     }
 
+    public NuiLabel(NuiProperty<string> label)
+    {
+      Label = label;
+    }
+
     [JsonProperty("value")]
-    public NuiProperty<string> Value { get; set; }
+    public NuiProperty<string> Label { get; set; }
 
     [JsonProperty("text_halign")]
-    public NuiProperty<NuiHAlign> HorizontalAlign { get; set; }
+    public NuiProperty<NuiHAlign> HorizontalAlign { get; set; } = NuiHAlign.Left;
 
     [JsonProperty("text_valign")]
-    public NuiProperty<NuiVAlign> VerticalAlign { get; set; }
+    public NuiProperty<NuiVAlign> VerticalAlign { get; set; } = NuiVAlign.Top;
   }
 }

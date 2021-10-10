@@ -5,6 +5,14 @@ namespace Anvil.API
 {
   public sealed class NuiChartSlot
   {
+    public NuiChartSlot(NuiChartType chartType, NuiProperty<string> legend, NuiProperty<NuiColor> color, NuiProperty<List<float>> data)
+    {
+      ChartType = chartType;
+      Legend = legend;
+      Color = color;
+      Data = data;
+    }
+
     [JsonProperty("type")]
     public NuiChartType ChartType { get; set; }
 

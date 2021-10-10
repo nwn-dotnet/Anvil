@@ -9,7 +9,12 @@ namespace Anvil.API
       get => "text";
     }
 
+    public NuiText(NuiProperty<string> text)
+    {
+      Text = text;
+    }
+
     [JsonProperty("value")]
-    public NuiProperty<string> Value { get; set; }
+    public NuiProperty<string> Text { get; set; }
   }
 }

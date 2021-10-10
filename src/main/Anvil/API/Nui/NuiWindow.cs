@@ -2,8 +2,17 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Represents a NUI scriptable window container.
+  /// </summary>
   public sealed class NuiWindow
   {
+    public NuiWindow(NuiLayout root, NuiProperty<string> title)
+    {
+      Title = title;
+      Root = root;
+    }
+
     /// <summary>
     /// Gets the current serialized version of this window.
     /// </summary>
@@ -27,13 +36,13 @@ namespace Anvil.API
     /// Set x and y to -1.0 to center the window.
     /// </summary>
     [JsonProperty("geometry")]
-    public NuiProperty<NuiRect> Geometry { get; set; }
+    public NuiProperty<NuiRect> Geometry { get; set; } = new NuiRect(-1, -1, 0, 0);
 
     /// <summary>
     /// Gets or sets whether this window can be resized.
     /// </summary>
     [JsonProperty("resizable")]
-    public NuiProperty<bool> Resizable { get; set; }
+    public NuiProperty<bool> Resizable { get; set; } = true;
 
     /// <summary>
     /// Gets or sets whether this window is collapsed.<br/>
@@ -60,5 +69,11 @@ namespace Anvil.API
     /// </summary>
     [JsonProperty("border")]
     public NuiProperty<bool> Border { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the element ID for this window.
+    /// </summary>
+    [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
+    public string Id { get; set; }
   }
 }

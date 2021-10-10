@@ -11,9 +11,9 @@ namespace Anvil.API
     }
 
     [JsonProperty("elements")]
-    public NuiProperty<List<NuiComboEntry>> Entries { get; set; }
+    public NuiProperty<List<NuiComboEntry>> Entries { get; set; } = new List<NuiComboEntry>();
 
     [JsonProperty("value")]
-    public NuiProperty<int> Selected { get; set; }
+    public NuiProperty<int> Selected { get; set; } = 0;
   }
 }

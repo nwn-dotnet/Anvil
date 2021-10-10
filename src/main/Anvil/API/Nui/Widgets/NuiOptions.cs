@@ -11,12 +11,12 @@ namespace Anvil.API
     }
 
     [JsonProperty("value")]
-    public NuiProperty<int> Selection { get; set; }
+    public NuiProperty<int> Selection { get; set; } = -1;
 
     [JsonProperty("direction")]
-    public NuiDirection Direction { get; set; }
+    public NuiDirection Direction { get; set; } = NuiDirection.Horizontal;
 
     [JsonProperty("elements")]
-    public List<string> Elements { get; set; }
+    public List<string> Options { get; set; } = new List<string>();
   }
 }
