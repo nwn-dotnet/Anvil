@@ -30,7 +30,7 @@ namespace Anvil.API
 
     internal static NwPlayer FromPlayerId(uint playerId)
     {
-      CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByObjectId(playerId);
+      CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId, 0)?.AsNWSPlayer();
       return player != null ? new NwPlayer(player) : null;
     }
 
