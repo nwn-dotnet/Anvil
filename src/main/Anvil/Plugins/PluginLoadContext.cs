@@ -1,16 +1,18 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Loader;
 using Anvil.Internal;
 
 namespace Anvil.Plugins
 {
-  internal sealed class PluginLoadContext : AssemblyLoadContext
+  internal sealed class PluginLoadContext : AssemblyLoadContext, IDisposable
   {
     private readonly PluginManager pluginManager;
     private readonly string pluginName;
 
     private readonly AssemblyDependencyResolver resolver;
+    private readonly Dictionary<string, Assembly> assemblyCache = new Dictionary<string, Assembly>();
 
     public PluginLoadContext(PluginManager pluginManager, string pluginPath, string pluginName) : base(EnvironmentConfig.ReloadEnabled)
     {
@@ -20,6 +22,17 @@ namespace Anvil.Plugins
     }
 
     protected override Assembly Load(AssemblyName assemblyName)
+    {
+      if (!assemblyCache.TryGetValue(assemblyName.FullName, out Assembly assembly))
+      {
+        assembly = GetAssembly(assemblyName);
+        assemblyCache[assemblyName.FullName] = assembly;
+      }
+
+      return assembly;
+    }
+
+    private Assembly GetAssembly(AssemblyName assemblyName)
     {
       // Resolve this plugin's assembly locally.
       if (assemblyName.Name == pluginName)
@@ -59,6 +72,15 @@ namespace Anvil.Plugins
       }
 
       return IntPtr.Zero;
+    }
+
+    public void Dispose()
+    {
+      assemblyCache.Clear();
+      if (EnvironmentConfig.ReloadEnabled)
+      {
+        Unload();
+      }
     }
   }
 }

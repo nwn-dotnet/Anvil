@@ -21,20 +21,21 @@ namespace Anvil
 
     private static AnvilCore instance;
 
-    // Core Services
-    private CoreInteropHandler interopHandler;
-    private IContainerFactory containerFactory;
+    // Public Core Services
     private PluginManager pluginManager;
+    private ServiceManager serviceManager;
+
+    // Internal Core Services
+    private CoreInteropHandler interopHandler;
     private LoggerManager loggerManager;
     private UnhandledExceptionLogger unhandledExceptionLogger;
-    private ServiceManager serviceManager;
 
     /// <summary>
     /// Entrypoint to start Anvil.
     /// </summary>
     /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
     /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
-    /// <param name="containerFactory">An optional custom binding installer to use instead of the default <see cref="AnvilContainerFactory"/>.</param>
+    /// <param name="containerFactory">An optional container factory to use instead of the default <see cref="AnvilContainerFactory"/>.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int Init(IntPtr arg, int argLength, IContainerFactory containerFactory = default)
@@ -43,10 +44,10 @@ namespace Anvil
 
       instance = new AnvilCore();
       instance.interopHandler = new CoreInteropHandler(instance);
-      instance.containerFactory = containerFactory;
-      instance.pluginManager = new PluginManager();
       instance.loggerManager = new LoggerManager();
       instance.unhandledExceptionLogger = new UnhandledExceptionLogger();
+      instance.pluginManager = new PluginManager();
+      instance.serviceManager = new ServiceManager(instance.pluginManager, instance.interopHandler, containerFactory);
 
       return NWNCore.Init(arg, argLength, instance.interopHandler, instance.interopHandler);
     }
@@ -67,12 +68,9 @@ namespace Anvil
 
       Log.Info("Reloading Anvil");
 
-      instance.serviceManager.ShutdownServices();
+      instance.ShutdownServices();
       instance.serviceManager.ShutdownLateServices();
       instance.pluginManager.Unload();
-
-      GC.Collect();
-      GC.WaitForPendingFinalizers();
 
       instance.pluginManager.Load();
       instance.InitServices();
@@ -82,11 +80,6 @@ namespace Anvil
 
     void IServerLifeCycleEventHandler.HandleLifeCycleEvent(LifeCycleEvent eventType)
     {
-      HandleLifeCycleEvent(eventType);
-    }
-
-    private void HandleLifeCycleEvent(LifeCycleEvent eventType)
-    {
       switch (eventType)
       {
         case LifeCycleEvent.ModuleLoad:
@@ -95,10 +88,9 @@ namespace Anvil
           break;
         case LifeCycleEvent.DestroyServer:
           Log.Info("Server is shutting down...");
-          serviceManager.ShutdownServices();
+          ShutdownServices();
           break;
         case LifeCycleEvent.DestroyServerAfter:
-          serviceManager.ShutdownLateServices();
           ShutdownCore();
           break;
         case LifeCycleEvent.Unhandled:
@@ -115,32 +107,34 @@ namespace Anvil
       loggerManager.InitVariables();
       unhandledExceptionLogger.Init();
 
-      AssemblyName assemblyName = Assemblies.Anvil.GetName();
+      AssemblyName anvilAssemblyName = Assemblies.Anvil.GetName();
 
       Log.Info("Loading {Name} {Version} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
-        assemblyName.Name,
-        Assemblies.Anvil.GetName().Version,
+        anvilAssemblyName.Name,
+        anvilAssemblyName.Version,
         Assemblies.Core.GetName().Version,
         Assemblies.Native.GetName().Version);
 
       CheckServerVersion();
-    }
-
-    private void InitServices()
-    {
       pluginManager.Load();
-      serviceManager = new ServiceManager(pluginManager, containerFactory);
-      serviceManager.Init();
-      interopHandler.Init(serviceManager.GetService<ICoreRunScriptHandler>(), serviceManager.GetService<ICoreLoopHandler>());
     }
 
     private void ShutdownCore()
     {
-      serviceManager = null;
-
+      serviceManager.ShutdownLateServices();
       pluginManager.Unload();
       unhandledExceptionLogger.Dispose();
       loggerManager.Dispose();
+    }
+
+    private void InitServices()
+    {
+      serviceManager.Init(instance.pluginManager, instance.serviceManager);
+    }
+
+    private void ShutdownServices()
+    {
+      serviceManager.ShutdownServices();
     }
 
     private void CheckServerVersion()
@@ -159,6 +153,12 @@ namespace Anvil
 
     private void PrelinkNative()
     {
+      if (!EnvironmentConfig.NativePrelinkEnabled)
+      {
+        Log.Warn("Marshaller prelinking is disabled (ANVIL_PRELINK_ENABLED=false). You may encounter random crashes or issues");
+        return;
+      }
+
       Log.Info("Prelinking native methods");
 
       try

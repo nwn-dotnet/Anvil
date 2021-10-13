@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Anvil.Internal;
 using Anvil.Plugins;
 using LightInject;
 using NLog;
@@ -7,24 +8,24 @@ using NLog;
 namespace Anvil.Services
 {
   [ServiceBindingOptions(BindingOrder.Core)]
-  internal sealed class ServiceManager
+  public sealed class ServiceManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly PluginManager pluginManager;
+    private readonly CoreInteropHandler interopHandler;
     private readonly IContainerFactory containerFactory;
 
     private ServiceContainer serviceContainer;
     private List<ILateDisposable> lateDisposables;
 
-    internal ServiceManager(PluginManager pluginManager, IContainerFactory containerFactory)
+    internal ServiceManager(PluginManager pluginManager, CoreInteropHandler interopHandler, IContainerFactory containerFactory)
     {
-      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
-
       this.pluginManager = pluginManager;
+      this.interopHandler = interopHandler;
       this.containerFactory = containerFactory;
 
-      serviceContainer = containerFactory.Setup(pluginManager);
+      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
     }
 
     public T GetService<T>() where T : class
@@ -32,13 +33,11 @@ namespace Anvil.Services
       return serviceContainer.GetInstance<T>();
     }
 
-    internal void Init()
+    internal void Init(params object[] coreServices)
     {
-      RegisterCoreService(pluginManager);
-      RegisterCoreService(this);
-
-      containerFactory.BuildContainer();
-      NotifyInitComplete();
+      serviceContainer = containerFactory.CreateContainer(pluginManager, coreServices);
+      interopHandler.Init(GetService<ICoreRunScriptHandler>(), GetService<ICoreLoopHandler>());
+      InitServices();
     }
 
     internal void ShutdownServices()
@@ -50,13 +49,19 @@ namespace Anvil.Services
 
       Log.Info("Unloading services...");
       lateDisposables = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
-      serviceContainer.Dispose();
 
+      interopHandler.Dispose();
+      serviceContainer.Dispose();
       serviceContainer = null;
     }
 
     internal void ShutdownLateServices()
     {
+      if (lateDisposables == null)
+      {
+        return;
+      }
+
       foreach (ILateDisposable lateDisposable in lateDisposables)
       {
         lateDisposable.LateDispose();
@@ -65,12 +70,7 @@ namespace Anvil.Services
       lateDisposables = null;
     }
 
-    private void RegisterCoreService<T>(T instance)
-    {
-      containerFactory.RegisterCoreService(instance);
-    }
-
-    private void NotifyInitComplete()
+    private void InitServices()
     {
       foreach (IInitializable initializable in serviceContainer.GetAllInstances<IInitializable>())
       {

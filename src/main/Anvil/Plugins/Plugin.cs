@@ -50,12 +50,18 @@ namespace Anvil.Plugins
     {
       Assembly = null;
 
+      pluginLoadContext.Dispose();
+      WeakReference unloadHandle = new WeakReference(pluginLoadContext);
+      pluginLoadContext = null;
+
       if (EnvironmentConfig.ReloadEnabled)
       {
-        pluginLoadContext.Unload();
+        while (unloadHandle.IsAlive)
+        {
+          GC.Collect();
+          GC.WaitForPendingFinalizers();
+        }
       }
-
-      pluginLoadContext = null;
     }
   }
 }
