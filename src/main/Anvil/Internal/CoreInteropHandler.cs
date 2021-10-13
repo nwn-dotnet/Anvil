@@ -38,8 +38,8 @@ namespace Anvil.Internal
 
     public void Dispose()
     {
-      this.scriptHandler = null;
-      this.loopHandler = null;
+      scriptHandler = null;
+      loopHandler = null;
     }
 
     void ICoreEventHandler.OnSignal(string signal)

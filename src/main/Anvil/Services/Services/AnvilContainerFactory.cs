@@ -56,7 +56,9 @@ namespace Anvil.Services
     /// Override in a child class to specify additional bindings/overrides.<br/>
     /// See https://www.lightinject.net/ for documentation.
     /// </summary>
+    // ReSharper disable UnusedParameter.Global
     protected virtual void RegisterOverrides(PluginManager pluginManager, ServiceContainer serviceContainer) {}
+    // ReSharper restore UnusedParameter.Global
 
     private static void TryRegisterType(PluginManager pluginManager, ServiceContainer serviceContainer, Type type)
     {
@@ -105,7 +107,7 @@ namespace Anvil.Services
         return false;
       }
 
-      if (options.MissingPluginDependencies != null && options.MissingPluginDependencies.Any(dependency => pluginManager.IsPluginLoaded(dependency)))
+      if (options.MissingPluginDependencies != null && options.MissingPluginDependencies.Any(pluginManager.IsPluginLoaded))
       {
         return false;
       }
