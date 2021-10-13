@@ -78,6 +78,7 @@ The following options can be configured via environment variables:
 |`ANVIL_NLOG_CONFIG`||A valid path to a NLog XML config file.|See the [NLog Wiki](https://github.com/nlog/NLog/wiki/Configuration-file) for configuration options.|
 |`ANVIL_RELOAD_ENABLED`|`false`|`true/false`|Enables support for plugin hot-reloading via `AnvilCore.Reload()`. Recommended for advanced users.|
 |`ANVIL_PREVENT_START_NO_PLUGIN`|`false`|`true/false`|Prevents the server from starting if no plugins are detected/loaded.|
+|`ANVIL_PRELINK_ENABLED`|`true`|`true/false`|Disables some initial startup checks when linking to the native NWN server binary. This is an advanced setting that should almost always be unset/set to true.
 |`ANVIL_LOG_MODE`|`Off`|`Off/Duplicate/Redirect`|Configures redirection of the NWN server log. `Off` disables redirection, `Duplicate` creates a copy of the log entries in Anvil/NLog, `Redirect` redirects the log entries to Anvil/NLog, and skips the original log entry.|
 
 # Builder/Developer's Guide

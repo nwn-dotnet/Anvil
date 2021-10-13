@@ -18,6 +18,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - LocalVariableCassowary: Added to support cassowary local variables.
 - ILateDisposable: Added a new service event interface that is invoked after the server is destroyed.
 - ServiceBindingOptions: Added `PluginDependencies` and `MissingPluginDependencies` properties for setting up services with optional plugin dependencies.
+- Added `PRELINK_ENABLED` setting for disabling native prelink checks.
 
 ### Changed
 - Refactored various internal usages of NWN.Native to use collection/list accessors for native types.
@@ -37,6 +38,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - Fixed an issue where the PluginLoader would attempt to unload plugins too early during server shutdown/hot reload.
 - Fixed an issue where the `EnforceLegalCharacterService` would call the `ELCValidationBefore` event outside of a script context.
 - Fixed `OnChatMessageSend.Target` always being null.
+- Fixed Plugin Unloadability & Hot Reload.
 
 ## 8193.26.3
 https://github.com/nwn-dotnet/Anvil/compare/v8193.26.2...v8193.26.3
