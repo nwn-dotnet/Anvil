@@ -153,6 +153,12 @@ namespace Anvil
 
     private void PrelinkNative()
     {
+      if (!EnvironmentConfig.NativePrelinkEnabled)
+      {
+        Log.Warn("Marshaller prelinking is disabled (ANVIL_PRELINK_ENABLED=false). You may encounter random crashes or issues");
+        return;
+      }
+
       Log.Info("Prelinking native methods");
 
       try

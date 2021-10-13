@@ -17,6 +17,7 @@ namespace Anvil.Internal
     public static readonly string NLogConfigPath = GetAnvilVariableString("NLOG_CONFIG");
     public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
     public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
+    public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
     public static readonly LogMode LogMode = GetAnvilVariableEnum("LOG_MODE", LogMode.Default);
 
     // NWNX
