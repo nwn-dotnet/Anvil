@@ -49,7 +49,7 @@ namespace Anvil.API
     /// Use a static value to force the popup into a collapsed/unfolded state.
     /// </summary>
     [JsonProperty("collapsed")]
-    public NuiProperty<bool> Collapsed { get; set; } = true;
+    public NuiProperty<bool> Collapsed { get; set; }
 
     /// <summary>
     /// Gets or sets whether this window can be closed.<br/>
@@ -62,7 +62,7 @@ namespace Anvil.API
     /// Gets or sets whether the background should be rendered.
     /// </summary>
     [JsonProperty("transparent")]
-    public NuiProperty<bool> Transparent { get; set; } = true;
+    public NuiProperty<bool> Transparent { get; set; } = false;
 
     /// <summary>
     /// Gets or sets whether the window border should be rendered.
