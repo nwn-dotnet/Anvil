@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Anvil.API;
@@ -15,46 +16,49 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    protected PluginManager PluginManager;
-    protected ServiceContainer ServiceContainer;
-
-    public ServiceContainer Setup(PluginManager pluginManager)
+    public ServiceContainer CreateContainer(PluginManager pluginManager, IEnumerable<object> coreServices)
     {
-      PluginManager = pluginManager;
-      ServiceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = true, EnableVariance = false });
-      SetupInjectPropertySelector();
+      ServiceContainer serviceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = true, EnableVariance = false });
 
-      ServiceContainer.RegisterInstance((IServiceContainer)ServiceContainer);
-      return ServiceContainer;
+      SetupInjectPropertySelector(serviceContainer);
+      serviceContainer.RegisterInstance((IServiceContainer)serviceContainer);
+
+      foreach (object coreService in coreServices)
+      {
+        RegisterCoreService(serviceContainer, coreService);
+      }
+
+      BuildContainer(pluginManager, serviceContainer);
+      return serviceContainer;
     }
 
-    public void RegisterCoreService<T>(T instance)
+    private static void RegisterCoreService(ServiceContainer serviceContainer, object instance)
     {
       Type instanceType = instance.GetType();
       ServiceBindingOptionsAttribute options = instanceType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
 
       string serviceName = GetServiceName(instanceType, options);
-      ServiceContainer.RegisterInstance(instance, serviceName);
+      serviceContainer.RegisterInstance(instanceType, instance, serviceName);
     }
 
-    public void BuildContainer()
+    private void BuildContainer(PluginManager pluginManager, ServiceContainer serviceContainer)
     {
       Log.Info("Loading services...");
-      foreach (Type type in PluginManager.LoadedTypes)
+      foreach (Type type in pluginManager.LoadedTypes)
       {
-        TryRegisterType(type);
+        TryRegisterType(pluginManager, serviceContainer, type);
       }
 
-      RegisterOverrides();
+      RegisterOverrides(pluginManager, serviceContainer);
     }
 
     /// <summary>
     /// Override in a child class to specify additional bindings/overrides.<br/>
     /// See https://www.lightinject.net/ for documentation.
     /// </summary>
-    protected virtual void RegisterOverrides() {}
+    protected virtual void RegisterOverrides(PluginManager pluginManager, ServiceContainer serviceContainer) {}
 
-    private void TryRegisterType(Type type)
+    private static void TryRegisterType(PluginManager pluginManager, ServiceContainer serviceContainer, Type type)
     {
       if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
       {
@@ -68,40 +72,40 @@ namespace Anvil.Services
       }
 
       ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-      if (IsServiceRequirementsMet(options))
+      if (IsServiceRequirementsMet(pluginManager, options))
       {
-        RegisterBindings(type, bindings, options);
+        RegisterBindings(serviceContainer, type, bindings, options);
       }
     }
 
-    private void RegisterBindings(Type bindTo, ServiceBindingAttribute[] bindings, ServiceBindingOptionsAttribute options)
+    private static void RegisterBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] bindings, ServiceBindingOptionsAttribute options)
     {
       string serviceName = GetServiceName(bindTo, options);
 
       PerContainerLifetime lifeTime = new PerContainerLifetime();
-      RegisterExplicitBindings(bindTo, bindings, serviceName, lifeTime);
+      RegisterExplicitBindings(serviceContainer, bindTo, bindings, serviceName, lifeTime);
 
       if (options is not { Lazy: true })
       {
-        RegisterImplicitBindings(bindTo, serviceName, lifeTime);
+        RegisterImplicitBindings(serviceContainer, bindTo, serviceName, lifeTime);
       }
 
       Log.Info("Registered service {Service}", bindTo.FullName);
     }
 
-    private bool IsServiceRequirementsMet(ServiceBindingOptionsAttribute options)
+    private static bool IsServiceRequirementsMet(PluginManager pluginManager, ServiceBindingOptionsAttribute options)
     {
       if (options == null || options.PluginDependencies == null && options.MissingPluginDependencies == null)
       {
         return true;
       }
 
-      if (options.PluginDependencies != null && options.PluginDependencies.Any(dependency => !PluginManager.IsPluginLoaded(dependency)))
+      if (options.PluginDependencies != null && options.PluginDependencies.Any(dependency => !pluginManager.IsPluginLoaded(dependency)))
       {
         return false;
       }
 
-      if (options.MissingPluginDependencies != null && options.MissingPluginDependencies.Any(dependency => PluginManager.IsPluginLoaded(dependency)))
+      if (options.MissingPluginDependencies != null && options.MissingPluginDependencies.Any(dependency => pluginManager.IsPluginLoaded(dependency)))
       {
         return false;
       }
@@ -109,37 +113,37 @@ namespace Anvil.Services
       return true;
     }
 
-    private void RegisterImplicitBindings(Type bindTo, string serviceName, ILifetime lifeTime)
+    private static void RegisterImplicitBindings(ServiceContainer serviceContainer, Type bindTo, string serviceName, ILifetime lifeTime)
     {
-      ServiceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
+      serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
 
       if (bindTo.IsAssignableTo(typeof(IInitializable)))
       {
-        ServiceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
+        serviceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
       }
 
       if (bindTo.IsAssignableTo(typeof(ILateDisposable)))
       {
-        ServiceContainer.Register(typeof(ILateDisposable), bindTo, serviceName, lifeTime);
+        serviceContainer.Register(typeof(ILateDisposable), bindTo, serviceName, lifeTime);
       }
     }
 
-    private void RegisterExplicitBindings(Type bindTo, ServiceBindingAttribute[] newBindings, string serviceName, ILifetime lifeTime)
+    private static void RegisterExplicitBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] newBindings, string serviceName, ILifetime lifeTime)
     {
       foreach (ServiceBindingAttribute bindingInfo in newBindings)
       {
-        ServiceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
+        serviceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
         Log.Debug("Bind {BindFrom} -> {BindTo}", bindingInfo.BindFrom.FullName, bindTo.FullName);
       }
     }
 
-    private void SetupInjectPropertySelector()
+    private static void SetupInjectPropertySelector(ServiceContainer serviceContainer)
     {
       InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
-      ServiceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
+      serviceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
     }
 
-    private string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
+    private static string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
     {
       short bindingOrder = options?.Order ?? (short)BindingOrder.Default;
       return bindingOrder.ToString("D5") + implementation.FullName;

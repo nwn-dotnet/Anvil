@@ -3,7 +3,7 @@ using NLog;
 
 namespace Anvil.Internal
 {
-  public sealed class UnhandledExceptionLogger : IDisposable
+  internal sealed class UnhandledExceptionLogger : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 

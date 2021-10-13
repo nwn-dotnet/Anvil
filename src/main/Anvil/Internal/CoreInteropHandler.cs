@@ -6,7 +6,7 @@ using NWN.Core;
 
 namespace Anvil.Internal
 {
-  internal sealed class CoreInteropHandler : ICoreFunctionHandler, ICoreEventHandler
+  internal sealed class CoreInteropHandler : ICoreFunctionHandler, ICoreEventHandler, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -34,6 +34,12 @@ namespace Anvil.Internal
     {
       this.scriptHandler = scriptHandler;
       this.loopHandler = loopHandler;
+    }
+
+    public void Dispose()
+    {
+      this.scriptHandler = null;
+      this.loopHandler = null;
     }
 
     void ICoreEventHandler.OnSignal(string signal)

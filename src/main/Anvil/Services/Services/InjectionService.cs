@@ -8,9 +8,10 @@ namespace Anvil.Services
 {
   [ServiceBinding(typeof(InjectionService))]
   [ServiceBindingOptions(BindingOrder.API)]
-  public sealed class InjectionService
+  public sealed class InjectionService : IDisposable
   {
     private readonly IServiceContainer container;
+    private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
 
     public InjectionService(IServiceContainer container, PluginManager pluginManager)
     {
@@ -47,7 +48,17 @@ namespace Anvil.Services
         {
           object value = container.TryGetInstance(propertyInfo.PropertyType);
           propertyInfo.SetValue(null, value);
+          injectedStaticProperties.Add(propertyInfo);
         }
+      }
+    }
+
+    // We clear injected properties as they can hold invalid references when reloading Anvil.
+    void IDisposable.Dispose()
+    {
+      foreach (PropertyInfo propertyInfo in injectedStaticProperties)
+      {
+        propertyInfo.SetValue(null, default);
       }
     }
   }
