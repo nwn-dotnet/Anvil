@@ -12,7 +12,7 @@ namespace Anvil.Plugins
     private readonly string pluginName;
 
     private readonly AssemblyDependencyResolver resolver;
-    private readonly Dictionary<string, Assembly> assemblyCache = new Dictionary<string, Assembly>();
+    private readonly Dictionary<string, WeakReference<Assembly>> assemblyCache = new Dictionary<string, WeakReference<Assembly>>();
 
     public PluginLoadContext(PluginManager pluginManager, string pluginPath, string pluginName) : base(EnvironmentConfig.ReloadEnabled)
     {
@@ -23,10 +23,11 @@ namespace Anvil.Plugins
 
     protected override Assembly Load(AssemblyName assemblyName)
     {
-      if (!assemblyCache.TryGetValue(assemblyName.FullName, out Assembly assembly))
+      if (!assemblyCache.TryGetValue(assemblyName.FullName, out WeakReference<Assembly> assemblyRef) || !assemblyRef.TryGetTarget(out Assembly assembly))
       {
         assembly = GetAssembly(assemblyName);
-        assemblyCache[assemblyName.FullName] = assembly;
+        assemblyRef = new WeakReference<Assembly>(assembly);
+        assemblyCache[assemblyName.FullName] = assemblyRef;
       }
 
       return assembly;
@@ -76,7 +77,6 @@ namespace Anvil.Plugins
 
     public void Dispose()
     {
-      assemblyCache.Clear();
       if (EnvironmentConfig.ReloadEnabled)
       {
         Unload();

@@ -50,6 +50,7 @@ namespace Anvil.Plugins
       Log.Info("Unloading plugins...");
       foreach (Plugin plugin in plugins)
       {
+        Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
         plugin.Dispose();
         Log.Info("Unloaded DotNET plugin {PluginName} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
       }
