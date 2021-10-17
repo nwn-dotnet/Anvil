@@ -4,7 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.0...HEAD
+
+### Added
+- N/A
+
+### Changed
+- Update to NWN.Core 8193.33.1
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.33.0
+https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...v8193.33.0
 
 ### Added
 - NUI: Implement API with classes, added methods to NwPlayer.
