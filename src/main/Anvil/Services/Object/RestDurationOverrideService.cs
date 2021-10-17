@@ -47,10 +47,12 @@ namespace Anvil.Services
         int originalValue;
 
         C2DA durationTable = NWNXLib.Rules().m_p2DArrays.m_pRestDurationTable;
+
         durationTable.GetINTEntry(creatureLevel, DurationTableKey, &originalValue);
         durationTable.SetINTEntry(creatureLevel, DurationTableKey, durationOverride);
         uint retVal = aiActionRestHook.CallOriginal(pCreature, pNode);
         durationTable.SetINTEntry(creatureLevel, DurationTableKey, originalValue);
+
         return retVal;
       }
 
