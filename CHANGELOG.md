@@ -11,7 +11,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - Effect: Added `Effect.Icon()` factory method for creating Icon effects.
 - Effect: Added `Effect.RunAction()` factory methods for creating effects that invoke C# actions.
 - ScriptHandleFactory: New service for dynamically creating function callbacks at runtime that are bound to script names. The returned handle is currently used for script parameters in effects.
-- ModuleEvents: Added `OnPlayerGuiEvent` and `OnPlayerTarget` events.
+- ModuleEvents: Added `OnPlayerGuiEvent`, `OnNuiEvent` and `OnPlayerTarget` events.
 - GUIPanel: Added new constants published with NWN 8193.31
 - NwPlayer: Added `SetGuiPanelDisabled` for disabling built-in GUI elements.
 - VirtualMachine: Added `RecursionLevel` property.
@@ -25,13 +25,15 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - VirtualMachine: `IsInScriptContext` now checks the current executing thread, and now only returns true while on the main thread and inside of a VM script context.
 - HookService: Hooks are now returned/disposed after the server has been destroyed.
 - IScriptDispatcher: Custom Script Dispatchers must now define an execution order. This order is used when a script call is triggered from the VM, and determines which service/s implementing this interface get executed first.
+- ObjectStorageService (**Breaking**): Persistent data written in Anvil can no-longer be accessed by NWNX. Anvil can still import NWNX persistent data.
+- ObjectStorageSerive: Anvil no-longer writes a duplicate `NWNX_POS` serialized field and instead writes its own `ANVIL_POS` field for persistent object data.
 
 ### Deprecated
 - Effect: Deprecated `Effect.AreaOfEffect` that uses strings for the script handlers. Use the overload that uses `ScriptCallbackHandle` parameters instead.
 
 ### Removed
-- HookService: Removed the optional `shutdownDispose` parameter.
-- AnvilCore: Removed custom `ITypeLoader` support, and hardcoded references to the updated PluginManager.
+- HookService: Removed the optional `shutdownDispose` parameter (superseded by `ILateDisposable`).
+- AnvilCore: Removed custom `ITypeLoader` support, and hardcoded references to the updated `PluginManager`.
 
 ### Fixed
 - Fixed an issue where the `ObjectStorageService` would cause errors when performing hot reloads with `AnvilCore.Reload()`
@@ -39,6 +41,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - Fixed an issue where the `EnforceLegalCharacterService` would call the `ELCValidationBefore` event outside of a script context.
 - Fixed `OnChatMessageSend.Target` always being null.
 - Fixed Plugin Unloadability & Hot Reload.
+- Fixed a native crash caused by a conflict with Anvil's `ObjectStorageService` and NWNX's Object Storage (POS).
 
 ## 8193.26.3
 https://github.com/nwn-dotnet/Anvil/compare/v8193.26.2...v8193.26.3
