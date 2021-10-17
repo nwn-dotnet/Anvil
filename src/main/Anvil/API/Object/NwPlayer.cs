@@ -21,6 +21,9 @@ namespace Anvil.API
     [Inject]
     private static EventService EventService { get; set; }
 
+    [Inject]
+    private static RestDurationOverrideService RestDurationOverrideService { get; set; }
+
     internal readonly CNWSPlayer Player;
 
     internal NwPlayer(CNWSPlayer player)
@@ -264,6 +267,26 @@ namespace Anvil.API
     {
       get => NWScript.GetCutsceneCameraMoveRate(ControlledCreature);
       set => NWScript.SetCutsceneCameraMoveRate(ControlledCreature, value);
+    }
+
+    /// <summary>
+    /// Gets or sets a custom rest duration for this player.<br/>
+    /// Null indicates that no override is set. Assign null to use the default rest duration.
+    /// </summary>
+    public TimeSpan? RestDurationOverride
+    {
+      get => RestDurationOverrideService.GetDurationOverride(LoginCreature);
+      set
+      {
+        if (value.HasValue)
+        {
+          RestDurationOverrideService.SetDurationOverride(LoginCreature, value.Value);
+        }
+        else
+        {
+          RestDurationOverrideService.ClearDurationOverride(LoginCreature);
+        }
+      }
     }
 
     /// <summary>
