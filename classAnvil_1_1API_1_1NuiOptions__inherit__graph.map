@@ -1,0 +1,4 @@
+<map id="Anvil.API.NuiOptions" name="Anvil.API.NuiOptions">
+<area shape="rect" id="node1" title="A list of options (radio buttons). &#160;Only one can be selected at a time." alt="" coords="5,80,149,107"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="33,5,122,32"/>
+</map>

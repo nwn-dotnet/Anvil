@@ -1,0 +1,4 @@
+<map id="Anvil.Services.ScriptHandleFactory" name="Anvil.Services.ScriptHandleFactory">
+<area shape="rect" id="node1" title="A service for registering C# functions as script handlers dynamically." alt="" coords="5,80,188,121"/>
+<area shape="rect" id="node2" href="$interfaceAnvil_1_1Services_1_1IScriptDispatcher.html" title="Implement in a service to add a custom handler for event scripts." alt="" coords="35,5,158,32"/>
+</map>

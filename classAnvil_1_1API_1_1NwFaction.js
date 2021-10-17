@@ -4,7 +4,7 @@ var classAnvil_1_1API_1_1NwFaction =
     [ "GetAverageReputation", "classAnvil_1_1API_1_1NwFaction.html#a925f5b211a6b138f7baedad000ee87d0", null ],
     [ "GetBestACMember", "classAnvil_1_1API_1_1NwFaction.html#a6b16e3e56a44c126558be2afe45e8e12", null ],
     [ "GetLeastDamagedMember", "classAnvil_1_1API_1_1NwFaction.html#a5b34008e6f1028e2b07f8a2abd5be425", null ],
-    [ "GetMembers", "classAnvil_1_1API_1_1NwFaction.html#a5163e8c577084f73f12dd4cab882d2e9", null ],
+    [ "GetMembers", "classAnvil_1_1API_1_1NwFaction.html#a50378151484832b79109117198ac221f", null ],
     [ "GetMostDamagedMember", "classAnvil_1_1API_1_1NwFaction.html#a6c215583753b103c98cd4389a1c027ef", null ],
     [ "GetStrongestMember", "classAnvil_1_1API_1_1NwFaction.html#a094c55ef384bc9e67c5ad35ab17d47ad", null ],
     [ "GetWeakestMember", "classAnvil_1_1API_1_1NwFaction.html#ad761eebe9cffe43307f4635001d11d91", null ],

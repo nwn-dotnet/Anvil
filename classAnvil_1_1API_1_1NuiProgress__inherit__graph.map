@@ -1,0 +1,4 @@
+<map id="Anvil.API.NuiProgress" name="Anvil.API.NuiProgress">
+<area shape="rect" id="node1" title="A generic progress bar." alt="" coords="5,80,156,107"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="36,5,125,32"/>
+</map>

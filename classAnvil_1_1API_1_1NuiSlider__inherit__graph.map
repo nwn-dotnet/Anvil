@@ -1,0 +1,4 @@
+<map id="Anvil.API.NuiSlider" name="Anvil.API.NuiSlider">
+<area shape="rect" id="node1" title="A slider bar with integer values." alt="" coords="5,80,137,107"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="27,5,116,32"/>
+</map>

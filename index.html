@@ -89,10 +89,15 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <p >Builders can add functionality like opening a store from a dialogue with a few lines of code, while plugin developers can leverage <a href="https://www.nuget.org/packages">NuGet</a> to add new functionality with external packages and the <a href="https://github.com/nwn-dotnet/NWN.Native">NWN.Native</a> library to completely rewrite existing game systems and mechanics.</p>
 <ul>
 <li>Latest <a href="https://github.com/nwn-dotnet/Anvil/releases/latest">Release</a></li>
+<li><a href="https://github.com/nwn-dotnet/Anvil/blob/master/CHANGELOG.md">Changelog</a> (<a href="https://github.com/nwn-dotnet/Anvil/blob/development/CHANGELOG.md">Development</a>)</li>
 <li>View <a href="https://github.com/nwn-dotnet/Anvil/discussions/categories/plugins">Community Submitted Plugins</a></li>
 <li>Join the community: <a href="https://discord.gg/gKt495UBgS"><img src="https://img.shields.io/discord/714927668826472600?color=7289DA&amp;label=Discord&amp;logo=discord&amp;logoColor=7289DA" alt="Discord" class="inline"/></a></li>
 </ul>
 <h1>Getting Started</h1>
+<h3>I use NWNX/NWScript code extensively. How hard is it to move to <a class="el" href="namespaceAnvil.html">Anvil</a>?</h3>
+<p ><a class="el" href="namespaceAnvil.html">Anvil</a> uses NWNX's DotNET plugin and is 100% compatible with existing NWNX/NWN servers.</p>
+<p >If you are using docker, you can simply swap the NWN/NWNX image with <a class="el" href="namespaceAnvil.html">Anvil</a>'s image.</p>
+<p >All of your existing code will work of out the box, while offering the C# framework for you to begin developing plugins.</p>
 <h3>Running <a class="el" href="namespaceAnvil.html">Anvil</a> - Docker</h3>
 <p ><a class="el" href="namespaceAnvil.html">Anvil</a> has its own docker images that are automatically configured to start and run <a class="el" href="namespaceAnvil.html">Anvil</a> and NWNXEE. Similar to the parent images, <a class="el" href="namespaceAnvil.html">Anvil</a> is configured by environment variables passed during <code>docker run</code>.</p>
 <p >By default, <a class="el" href="namespaceAnvil.html">Anvil</a> will look in the <code>/nwn/anvil/Plugins</code> directory in the container for <a href="#plugins--services">managed plugins</a>. A volume containing your plugins can be mounted here to automatically run on startup.</p>
@@ -153,6 +158,8 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>ANVIL_PREVENT_START_NO_PLUGIN</code>   </td><td class="markdownTableBodyNone"><code>false</code>   </td><td class="markdownTableBodyNone"><code>true/false</code>   </td><td class="markdownTableBodyNone">Prevents the server from starting if no plugins are detected/loaded.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>ANVIL_PRELINK_ENABLED</code>   </td><td class="markdownTableBodyNone"><code>true</code>   </td><td class="markdownTableBodyNone"><code>true/false</code>   </td><td class="markdownTableBodyNone">Disables some initial startup checks when linking to the native <a class="el" href="namespaceNWN.html">NWN</a> server binary. This is an advanced setting that should almost always be unset/set to true.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>ANVIL_LOG_MODE</code>   </td><td class="markdownTableBodyNone"><code>Off</code>   </td><td class="markdownTableBodyNone"><code>Off/Duplicate/Redirect</code>   </td><td class="markdownTableBodyNone">Configures redirection of the <a class="el" href="namespaceNWN.html">NWN</a> server log. <code>Off</code> disables redirection, <code>Duplicate</code> creates a copy of the log entries in Anvil/NLog, <code>Redirect</code> redirects the log entries to Anvil/NLog, and skips the original log entry.   </td></tr>
 </table>
 <h1>Builder/Developer's Guide</h1>
@@ -196,7 +203,9 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div><!-- fragment --><h2>Core Services</h2>
 <p ><a class="el" href="namespaceAnvil.html">Anvil</a> is bundled with a core set of services that you can depend on in your own plugins and systems.</p>
 <p >These services handle game events, task scheduling, and more! Examples of how to use these services can be found in the <a href="https://nwn-dotnet.github.io/Anvil/classAnvil_1_1Services_1_1ServiceBindingAttribute.html">Anvil docs</a>.</p>
-<p >You can also find a full list of the services bundled by <a class="el" href="namespaceAnvil.html">Anvil</a> <a href="https://nwn-dotnet.github.io/Anvil/namespaceAnvil_1_1Services.html">HERE</a>. </p>
+<p >You can also find a full list of the services bundled by <a class="el" href="namespaceAnvil.html">Anvil</a> <a href="https://nwn-dotnet.github.io/Anvil/namespaceAnvil_1_1Services.html">HERE</a>.</p>
+<h2>Credits</h2>
+<p >The <a class="el" href="namespaceAnvil.html">Anvil</a> Framework builds heavily on the foundations of the <a href="https://github.com/nwnxee/unified/tree/master/Plugins/DotNET">NWNX:EE DotNET plugin</a> that was written by <a href="https://github.com/mtijanic" title="Milos Tijanic">Milos Tijanic</a>, and derives several service implementations from plugins developed by the NWNX:EE team and its contributors. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

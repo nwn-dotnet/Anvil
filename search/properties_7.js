@@ -8,9 +8,10 @@ var searchData=
   ['hasvalue_5',['HasValue',['../classAnvil_1_1API_1_1ObjectVariable.html#a9f28b31634ce043fae90c4486a8ddf7d',1,'Anvil::API::ObjectVariable']]],
   ['healamount_6',['HealAmount',['../classAnvil_1_1API_1_1Events_1_1OnHeal.html#ae5d417100ffa5243f71356874ce54b94',1,'Anvil::API::Events::OnHeal']]],
   ['healer_7',['Healer',['../classAnvil_1_1API_1_1Events_1_1OnHeal.html#a3df0d84258d85f5cc68829b2b64458c5',1,'Anvil::API::Events::OnHeal']]],
-  ['henchmen_8',['Henchmen',['../classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5',1,'Anvil::API::NwCreature']]],
-  ['hiddenwhenequipped_9',['HiddenWhenEquipped',['../classAnvil_1_1API_1_1NwItem.html#af7a26c4f1c0b1c0fbb671780c7b1ee76',1,'Anvil::API::NwItem']]],
-  ['highlightcolor_10',['HighlightColor',['../classAnvil_1_1API_1_1NwGameObject.html#a0b80ffa72cb2f757f20af71e2def03ab',1,'Anvil::API::NwGameObject']]],
-  ['hitdie_11',['HitDie',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a26b14fb8c06fc9ea1313db4b1546812c',1,'Anvil::API::CreatureLevelInfo']]],
-  ['hp_12',['HP',['../classAnvil_1_1API_1_1NwGameObject.html#a17365e46cca5b03c807ad48e7c1975da',1,'Anvil::API::NwGameObject']]]
+  ['height_8',['Height',['../classAnvil_1_1API_1_1NuiElement.html#a1557cadef18b2e145d0e5628e3bb72b9',1,'Anvil::API::NuiElement']]],
+  ['henchmen_9',['Henchmen',['../classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5',1,'Anvil::API::NwCreature']]],
+  ['hiddenwhenequipped_10',['HiddenWhenEquipped',['../classAnvil_1_1API_1_1NwItem.html#af7a26c4f1c0b1c0fbb671780c7b1ee76',1,'Anvil::API::NwItem']]],
+  ['highlightcolor_11',['HighlightColor',['../classAnvil_1_1API_1_1NwGameObject.html#a0b80ffa72cb2f757f20af71e2def03ab',1,'Anvil::API::NwGameObject']]],
+  ['hitdie_12',['HitDie',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a26b14fb8c06fc9ea1313db4b1546812c',1,'Anvil::API::CreatureLevelInfo']]],
+  ['hp_13',['HP',['../classAnvil_1_1API_1_1NwGameObject.html#a17365e46cca5b03c807ad48e7c1975da',1,'Anvil::API::NwGameObject']]]
 ];

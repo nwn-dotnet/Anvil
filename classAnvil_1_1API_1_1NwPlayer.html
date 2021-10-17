@@ -145,6 +145,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9661a262d6d36503e365e6a1483c7861"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9661a262d6d36503e365e6a1483c7861">ClearTlkOverride</a> (int strRef, bool restoreGlobal=true)</td></tr>
 <tr class="memdesc:a9661a262d6d36503e365e6a1483c7861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the specified <a class="el" href="classAnvil_1_1API_1_1TlkTable.html">TlkTable</a> override for the player, optionally restoring the global override.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a9661a262d6d36503e365e6a1483c7861">More...</a><br /></td></tr>
 <tr class="separator:a9661a262d6d36503e365e6a1483c7861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acef7e5fb92867c2900120be30eea684c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acef7e5fb92867c2900120be30eea684c">CreateNuiWindow</a> (<a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a> window, string windowId=&quot;&quot;)</td></tr>
+<tr class="memdesc:acef7e5fb92867c2900120be30eea684c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NUI window inline for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#acef7e5fb92867c2900120be30eea684c">More...</a><br /></td></tr>
+<tr class="separator:acef7e5fb92867c2900120be30eea684c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a623e6ad1acb24b7b5afac64824892e18"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a623e6ad1acb24b7b5afac64824892e18">Delete</a> (string kickMessage, bool preserveBackup=true)</td></tr>
 <tr class="memdesc:a623e6ad1acb24b7b5afac64824892e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Immediately kicks the player and deletes their character file (.bic).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a623e6ad1acb24b7b5afac64824892e18">More...</a><br /></td></tr>
 <tr class="separator:a623e6ad1acb24b7b5afac64824892e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,6 +199,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ExportCharacter</b> (
 <tr class="memitem:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ade7c40dbbbe58a0cf439c8b9a8d2be88">GetCampaignVariable&lt; T &gt;</a> (string campaign, string name)</td></tr>
 <tr class="memdesc:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified campaign variable for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ade7c40dbbbe58a0cf439c8b9a8d2be88">More...</a><br /></td></tr>
 <tr class="separator:ade7c40dbbbe58a0cf439c8b9a8d2be88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8efd762cad9b5c20909c47a74d9a38c7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8efd762cad9b5c20909c47a74d9a38c7">GetDeviceProperty</a> (<a class="el" href="classAnvil_1_1API_1_1PlayerDeviceProperty.html">PlayerDeviceProperty</a> property)</td></tr>
+<tr class="memdesc:a8efd762cad9b5c20909c47a74d9a38c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified device property/capability as advertised by the client.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8efd762cad9b5c20909c47a74d9a38c7">More...</a><br /></td></tr>
+<tr class="separator:a8efd762cad9b5c20909c47a74d9a38c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7538a83d3b49e3edcc73d6734a2e190"><td class="memItemLeft" align="right" valign="top"><a id="ab7538a83d3b49e3edcc73d6734a2e190" name="ab7538a83d3b49e3edcc73d6734a2e190"></a>
 override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</b> ()</td></tr>
 <tr class="separator:ab7538a83d3b49e3edcc73d6734a2e190"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,6 +226,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>LockCameraPitch</b> (
 <tr class="memitem:a5c6b6518b014b355a25f23af0d2d31fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd">NightToDay</a> (TimeSpan delayTransitionTime=default)</td></tr>
 <tr class="memdesc:a5c6b6518b014b355a25f23af0d2d31fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the current Day/Night cycle for the player to daylight.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd">More...</a><br /></td></tr>
 <tr class="separator:a5c6b6518b014b355a25f23af0d2d31fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9266745f1f4c9fc6e9493523d67b3994"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9266745f1f4c9fc6e9493523d67b3994">NuiDestroy</a> (int uiToken)</td></tr>
+<tr class="memdesc:a9266745f1f4c9fc6e9493523d67b3994"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the given window, by token, immediately closing it on the client.<br  />
+ Does nothing if nUiToken does not exist on the client.<br  />
+ Does not send a close event - this immediately destroys all serverside state.<br  />
+ The client will close the window asynchronously.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a9266745f1f4c9fc6e9493523d67b3994">More...</a><br /></td></tr>
+<tr class="separator:a9266745f1f4c9fc6e9493523d67b3994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48ba4caf13d45ebef3dd26d1dcca3fb4"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a48ba4caf13d45ebef3dd26d1dcca3fb4">NuiGetUserData&lt; T &gt;</a> (int uiToken)</td></tr>
+<tr class="memdesc:a48ba4caf13d45ebef3dd26d1dcca3fb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the userdata of the given window token.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a48ba4caf13d45ebef3dd26d1dcca3fb4">More...</a><br /></td></tr>
+<tr class="separator:a48ba4caf13d45ebef3dd26d1dcca3fb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f675a88a459e6b22ed0681b6565ee57"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3f675a88a459e6b22ed0681b6565ee57">NuiGetWindowId</a> (int uiToken)</td></tr>
+<tr class="memdesc:a3f675a88a459e6b22ed0681b6565ee57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the root window ID associated with the specified token.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3f675a88a459e6b22ed0681b6565ee57">More...</a><br /></td></tr>
+<tr class="separator:a3f675a88a459e6b22ed0681b6565ee57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d291d03f8b610d1c347d159de1c0a06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5d291d03f8b610d1c347d159de1c0a06">NuiSetGroupLayout</a> (int uiToken, string elementId, <a class="el" href="classAnvil_1_1API_1_1NuiGroup.html">NuiGroup</a> updatedLayout)</td></tr>
+<tr class="memdesc:a5d291d03f8b610d1c347d159de1c0a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps out the element specified by ID with the given nui layout (partial).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5d291d03f8b610d1c347d159de1c0a06">More...</a><br /></td></tr>
+<tr class="separator:a5d291d03f8b610d1c347d159de1c0a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1cfa7f0beb43bf88875be84fed41143"><td class="memItemLeft" align="right" valign="top"><a id="aa1cfa7f0beb43bf88875be84fed41143" name="aa1cfa7f0beb43bf88875be84fed41143"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>NuiSetGroupLayout</b> (int uiToken, string elementId, <a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a> updatedLayout)</td></tr>
+<tr class="separator:aa1cfa7f0beb43bf88875be84fed41143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2252ae7f71d52bd2edd1b6cab526e74d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2252ae7f71d52bd2edd1b6cab526e74d">NuiSetUserData&lt; T &gt;</a> (int uiToken, T userData)</td></tr>
+<tr class="memdesc:a2252ae7f71d52bd2edd1b6cab526e74d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an arbitrary json value as userdata on the given window token.<br  />
+ This userdata is not read or handled by the game engine and not sent to clients.<br  />
+ This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.<br  />
+ Will do nothing if the window does not exist.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a2252ae7f71d52bd2edd1b6cab526e74d">More...</a><br /></td></tr>
+<tr class="separator:a2252ae7f71d52bd2edd1b6cab526e74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2df962423380bf47fd03a73ecc6f88a"><td class="memItemLeft" align="right" valign="top"><a id="af2df962423380bf47fd03a73ecc6f88a" name="af2df962423380bf47fd03a73ecc6f88a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OpenInventory</b> ()</td></tr>
 <tr class="memdesc:af2df962423380bf47fd03a73ecc6f88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs the player to open their inventory. <br /></td></tr>
@@ -288,6 +318,11 @@ byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (bool
 <tr class="memitem:a17c170270577aa7d99d5020a2d1190be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a17c170270577aa7d99d5020a2d1190be">SetCutsceneMode</a> (bool inCutscene=true, bool leftClickEnabled=false)</td></tr>
 <tr class="memdesc:a17c170270577aa7d99d5020a2d1190be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles the CutsceneMode state for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a17c170270577aa7d99d5020a2d1190be">More...</a><br /></td></tr>
 <tr class="separator:a17c170270577aa7d99d5020a2d1190be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fdd717e8d3c5d484def4186de39524d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8fdd717e8d3c5d484def4186de39524d">SetGuiPanelDisabled</a> (GUIPanel panel, bool disabled)</td></tr>
+<tr class="memdesc:a8fdd717e8d3c5d484def4186de39524d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable a specific gui panel for this player.<br  />
+ Will close the GUI panel if it is currently open.<br  />
+ Will fire a GuiEventType.DisabledPanelAttemptOpen event for some panels if a player attempts to open them while disabled.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8fdd717e8d3c5d484def4186de39524d">More...</a><br /></td></tr>
+<tr class="separator:a8fdd717e8d3c5d484def4186de39524d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3097068bed88aef4766eedff9a2245fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3097068bed88aef4766eedff9a2245fd">SetPCReputation</a> (bool like, <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> target)</td></tr>
 <tr class="memdesc:a3097068bed88aef4766eedff9a2245fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if the player should like, or unlike the specified player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3097068bed88aef4766eedff9a2245fd">More...</a><br /></td></tr>
 <tr class="separator:a3097068bed88aef4766eedff9a2245fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -381,6 +416,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsValid</b><code> [ge
 <tr class="memdesc:a7ca343f91b10ce14b15b28a954a1d0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> object is valid.<br  />
  Returns false after the player disconnects from the server. <br /></td></tr>
 <tr class="separator:a7ca343f91b10ce14b15b28a954a1d0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a989e48d1ddcd8ad6bdc9b69879950b62"><td class="memItemLeft" align="right" valign="top"><a id="a989e48d1ddcd8ad6bdc9b69879950b62" name="a989e48d1ddcd8ad6bdc9b69879950b62"></a>
+PlayerLanguage&#160;</td><td class="memItemRight" valign="bottom"><b>Language</b><code> [get]</code></td></tr>
+<tr class="memdesc:a989e48d1ddcd8ad6bdc9b69879950b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the language configured by this player. <br /></td></tr>
+<tr class="separator:a989e48d1ddcd8ad6bdc9b69879950b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7e08abbfc7376c3749afe4dc476d684"><td class="memItemLeft" align="right" valign="top"><a id="ae7e08abbfc7376c3749afe4dc476d684" name="ae7e08abbfc7376c3749afe4dc476d684"></a>
 <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><b>LoginCreature</b><code> [get]</code></td></tr>
 <tr class="memdesc:ae7e08abbfc7376c3749afe4dc476d684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the original creature that this player logged in with. <br /></td></tr>
@@ -535,6 +574,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnExamineObject.ht
 <tr class="memitem:a4420d2e2bc412a91e2c74bc0fbf8502d"><td class="memItemLeft" align="right" valign="top"><a id="a4420d2e2bc412a91e2c74bc0fbf8502d" name="a4420d2e2bc412a91e2c74bc0fbf8502d"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnExamineTrap.html">OnExamineTrap</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnExamineTrap</b></td></tr>
 <tr class="separator:a4420d2e2bc412a91e2c74bc0fbf8502d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf9a0b1e213eb79948b5a68d9bd35b3d"><td class="memItemLeft" align="right" valign="top"><a id="aaf9a0b1e213eb79948b5a68d9bd35b3d" name="aaf9a0b1e213eb79948b5a68d9bd35b3d"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html">ModuleEvents.OnNuiEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnNuiEvent</b></td></tr>
+<tr class="separator:aaf9a0b1e213eb79948b5a68d9bd35b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2df9554e44ccbf459aed4e62e562cff"><td class="memItemLeft" align="right" valign="top"><a id="ab2df9554e44ccbf459aed4e62e562cff" name="ab2df9554e44ccbf459aed4e62e562cff"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnPartyEvent.html">OnPartyEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnPartyEvent</b></td></tr>
 <tr class="separator:ab2df9554e44ccbf459aed4e62e562cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -550,6 +592,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1On
 <tr class="memitem:afc5f9a5fcabe7d9781e83bbe27696e07"><td class="memItemLeft" align="right" valign="top"><a id="afc5f9a5fcabe7d9781e83bbe27696e07" name="afc5f9a5fcabe7d9781e83bbe27696e07"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html">ModuleEvents.OnPlayerEquipItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlayerEquipItem</b></td></tr>
 <tr class="separator:afc5f9a5fcabe7d9781e83bbe27696e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2359b8741cbcb7e4837b193240f4528"><td class="memItemLeft" align="right" valign="top"><a id="ac2359b8741cbcb7e4837b193240f4528" name="ac2359b8741cbcb7e4837b193240f4528"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html">ModuleEvents.OnPlayerGuiEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlayerGuiEvent</b></td></tr>
+<tr class="separator:ac2359b8741cbcb7e4837b193240f4528"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9b78875782d7b8c93e9cde78b6c83e1"><td class="memItemLeft" align="right" valign="top"><a id="aa9b78875782d7b8c93e9cde78b6c83e1" name="aa9b78875782d7b8c93e9cde78b6c83e1"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerLevelUp.html">ModuleEvents.OnPlayerLevelUp</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlayerLevelUp</b></td></tr>
 <tr class="separator:aa9b78875782d7b8c93e9cde78b6c83e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -562,6 +607,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1On
 <tr class="memitem:a9e05c68f1527c3bdb322c19072e71a12"><td class="memItemLeft" align="right" valign="top"><a id="a9e05c68f1527c3bdb322c19072e71a12" name="a9e05c68f1527c3bdb322c19072e71a12"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlayerTarget</b><code> [get]</code></td></tr>
 <tr class="separator:a9e05c68f1527c3bdb322c19072e71a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0a9ec1c0ec0fa3abdf9ed4a9c7e2208"><td class="memItemLeft" align="right" valign="top"><a id="ad0a9ec1c0ec0fa3abdf9ed4a9c7e2208" name="ad0a9ec1c0ec0fa3abdf9ed4a9c7e2208"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTileAction.html">ModuleEvents.OnPlayerTileAction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlayerTileAction</b></td></tr>
+<tr class="separator:ad0a9ec1c0ec0fa3abdf9ed4a9c7e2208"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace0a634cf7e76790885c708029520191"><td class="memItemLeft" align="right" valign="top"><a id="ace0a634cf7e76790885c708029520191" name="ace0a634cf7e76790885c708029520191"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerUnequipItem.html">ModuleEvents.OnPlayerUnequipItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnPlayerUnequipItem</b></td></tr>
 <tr class="separator:ace0a634cf7e76790885c708029520191"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -575,6 +623,10 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>PartyMembers</b><code> [get]</code></td></tr>
 <tr class="memdesc:ad86a51433be22500b193138c09133737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the members in the player's party. <br /></td></tr>
 <tr class="separator:ad86a51433be22500b193138c09133737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7e01598fc2bb95c12b5d7c0abdb3240"><td class="memItemLeft" align="right" valign="top"><a id="ad7e01598fc2bb95c12b5d7c0abdb3240" name="ad7e01598fc2bb95c12b5d7c0abdb3240"></a>
+PlayerPlatform&#160;</td><td class="memItemRight" valign="bottom"><b>Platform</b><code> [get]</code></td></tr>
+<tr class="memdesc:ad7e01598fc2bb95c12b5d7c0abdb3240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the platform this player is currently playing from. <br /></td></tr>
+<tr class="separator:ad7e01598fc2bb95c12b5d7c0abdb3240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c6e4661a3f250ea294332fe3b460ec4"><td class="memItemLeft" align="right" valign="top"><a id="a7c6e4661a3f250ea294332fe3b460ec4" name="a7c6e4661a3f250ea294332fe3b460ec4"></a>
 uint&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerId</b><code> [get]</code></td></tr>
 <tr class="memdesc:a7c6e4661a3f250ea294332fe3b460ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique numeric ID of this player. <br /></td></tr>
@@ -583,6 +635,11 @@ uint&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerId</b><code> [g
 string&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerName</b><code> [get]</code></td></tr>
 <tr class="memdesc:a93b93804b55586c0adf394e91f7e0a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's login name. <br /></td></tr>
 <tr class="separator:a93b93804b55586c0adf394e91f7e0a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46dedbe708c62c5680943460b260c22"><td class="memItemLeft" align="right" valign="top"><a id="aa46dedbe708c62c5680943460b260c22" name="aa46dedbe708c62c5680943460b260c22"></a>
+TimeSpan?&#160;</td><td class="memItemRight" valign="bottom"><b>RestDurationOverride</b><code> [getset]</code></td></tr>
+<tr class="memdesc:aa46dedbe708c62c5680943460b260c22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a custom rest duration for this player.<br  />
+ Null indicates that no override is set. Assign null to use the default rest duration. <br /></td></tr>
+<tr class="separator:aa46dedbe708c62c5680943460b260c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f31d8c4a31eaa1e2837b45bddd9cc9c"><td class="memItemLeft" align="right" valign="top"><a id="a4f31d8c4a31eaa1e2837b45bddd9cc9c" name="a4f31d8c4a31eaa1e2837b45bddd9cc9c"></a>
 <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SpawnLocation</b><code> [getset]</code></td></tr>
 <tr class="memdesc:a4f31d8c4a31eaa1e2837b45bddd9cc9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location that this player will spawn at when logging in to the server. <br /></td></tr>
@@ -1019,6 +1076,52 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerName</b><code
 
 </div>
 </div>
+<a id="acef7e5fb92867c2900120be30eea684c" name="acef7e5fb92867c2900120be30eea684c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acef7e5fb92867c2900120be30eea684c">&#9670;&nbsp;</a></span>CreateNuiWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwPlayer.CreateNuiWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a>&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>windowId</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a NUI window inline for this player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The window to create.</td></tr>
+    <tr><td class="paramname">windowId</td><td>A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The window token on success (!= 0), or 0 on error.</dd></dl>
+
+</div>
+</div>
 <a id="a623e6ad1acb24b7b5afac64824892e18" name="a623e6ad1acb24b7b5afac64824892e18"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a623e6ad1acb24b7b5afac64824892e18">&#9670;&nbsp;</a></span>Delete()</h2>
 
@@ -1387,6 +1490,51 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerName</b><code
 
 </div>
 </div>
+<a id="a8efd762cad9b5c20909c47a74d9a38c7" name="a8efd762cad9b5c20909c47a74d9a38c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8efd762cad9b5c20909c47a74d9a38c7">&#9670;&nbsp;</a></span>GetDeviceProperty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwPlayer.GetDeviceProperty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1PlayerDeviceProperty.html">PlayerDeviceProperty</a>&#160;</td>
+          <td class="paramname"><em>property</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the specified device property/capability as advertised by the client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">property</td><td>The property to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The queried property value, or -1 if:<br  />
+<ul>
+<li>the property was never set by the client,<br  />
+</li>
+<li>the actual value is -1,<br  />
+</li>
+<li>the player is running a older build that does not advertise device properties,<br  />
+</li>
+<li>the player has disabled sending device properties (Options/Game/Privacy).</li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="acdbd1d4d0a044f7e722f1ed42936e36f" name="acdbd1d4d0a044f7e722f1ed42936e36f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acdbd1d4d0a044f7e722f1ed42936e36f">&#9670;&nbsp;</a></span>GetJournalEntry()</h2>
 
@@ -1484,6 +1632,225 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>PlayerName</b><code
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">delayTransitionTime</td><td>Time it takes for the daylight to fade in.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9266745f1f4c9fc6e9493523d67b3994" name="a9266745f1f4c9fc6e9493523d67b3994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9266745f1f4c9fc6e9493523d67b3994">&#9670;&nbsp;</a></span>NuiDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.NuiDestroy </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>uiToken</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destroys the given window, by token, immediately closing it on the client.<br  />
+ Does nothing if nUiToken does not exist on the client.<br  />
+ Does not send a close event - this immediately destroys all serverside state.<br  />
+ The client will close the window asynchronously. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uiToken</td><td>The token of the window to destroy.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a48ba4caf13d45ebef3dd26d1dcca3fb4" name="a48ba4caf13d45ebef3dd26d1dcca3fb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48ba4caf13d45ebef3dd26d1dcca3fb4">&#9670;&nbsp;</a></span>NuiGetUserData&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T Anvil.API.NwPlayer.NuiGetUserData&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>uiToken</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the userdata of the given window token. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uiToken</td><td>The token for the window to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>A serializable class structure matching the data to fetch.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</dd></dl>
+
+</div>
+</div>
+<a id="a3f675a88a459e6b22ed0681b6565ee57" name="a3f675a88a459e6b22ed0681b6565ee57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f675a88a459e6b22ed0681b6565ee57">&#9670;&nbsp;</a></span>NuiGetWindowId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Anvil.API.NwPlayer.NuiGetWindowId </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>uiToken</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the root window ID associated with the specified token. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uiToken</td><td>The token to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ID of the window if assigned, otherwise an empty string.</dd></dl>
+
+</div>
+</div>
+<a id="a5d291d03f8b610d1c347d159de1c0a06" name="a5d291d03f8b610d1c347d159de1c0a06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d291d03f8b610d1c347d159de1c0a06">&#9670;&nbsp;</a></span>NuiSetGroupLayout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.NuiSetGroupLayout </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>uiToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>elementId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NuiGroup.html">NuiGroup</a>&#160;</td>
+          <td class="paramname"><em>updatedLayout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Swaps out the element specified by ID with the given nui layout (partial). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uiToken</td><td>The ui token to update.</td></tr>
+    <tr><td class="paramname">elementId</td><td>The ID of the element to update.</td></tr>
+    <tr><td class="paramname">updatedLayout</td><td>The updated element to publish.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2252ae7f71d52bd2edd1b6cab526e74d" name="a2252ae7f71d52bd2edd1b6cab526e74d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2252ae7f71d52bd2edd1b6cab526e74d">&#9670;&nbsp;</a></span>NuiSetUserData&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.NuiSetUserData&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>uiToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>userData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets an arbitrary json value as userdata on the given window token.<br  />
+ This userdata is not read or handled by the game engine and not sent to clients.<br  />
+ This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.<br  />
+ Will do nothing if the window does not exist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uiToken</td><td>The token to associate the data with.</td></tr>
+    <tr><td class="paramname">userData</td><td>The data to store.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of data to store. Must be serializable to JSON.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2128,6 +2495,53 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
   <table class="params">
     <tr><td class="paramname">inCutscene</td><td>True if cutscene mode should be enabled, otherwise false.</td></tr>
     <tr><td class="paramname">leftClickEnabled</td><td>True if ControlledCreature user should be allowed to interact with the game with the left mouse button. False to prevent interaction.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8fdd717e8d3c5d484def4186de39524d" name="a8fdd717e8d3c5d484def4186de39524d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fdd717e8d3c5d484def4186de39524d">&#9670;&nbsp;</a></span>SetGuiPanelDisabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetGuiPanelDisabled </td>
+          <td>(</td>
+          <td class="paramtype">GUIPanel&#160;</td>
+          <td class="paramname"><em>panel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>disabled</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Disable a specific gui panel for this player.<br  />
+ Will close the GUI panel if it is currently open.<br  />
+ Will fire a GuiEventType.DisabledPanelAttemptOpen event for some panels if a player attempts to open them while disabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">panel</td><td>The panel type to disable.</td></tr>
+    <tr><td class="paramname">disabled</td><td>True to disable the panel, false to re-enable the panel.</td></tr>
   </table>
   </dd>
 </dl>

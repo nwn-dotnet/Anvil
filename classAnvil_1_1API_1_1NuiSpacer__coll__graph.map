@@ -1,0 +1,4 @@
+<map id="Anvil.API.NuiSpacer" name="Anvil.API.NuiSpacer">
+<area shape="rect" id="node1" title="A special widget that just takes up layout space. &#160;Configure the space used with the Width and Height..." alt="" coords="5,80,145,107"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="31,5,120,32"/>
+</map>

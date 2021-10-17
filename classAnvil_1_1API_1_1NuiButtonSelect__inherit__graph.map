@@ -1,0 +1,4 @@
+<map id="Anvil.API.NuiButtonSelect" name="Anvil.API.NuiButtonSelect">
+<area shape="rect" id="node1" title="A clickable button with text as the label. &#160;Same as NuiButton, but this one is a toggle." alt="" coords="5,80,180,107"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="48,5,137,32"/>
+</map>

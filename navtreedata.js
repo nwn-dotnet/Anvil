@@ -32,12 +32,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html",
-"classAnvil_1_1API_1_1Events_1_1SpellEvents_1_1OnSpellCast.html#a79a7b0a1db9f61547fcbc1ff40d662e3",
-"classAnvil_1_1API_1_1NwCreature.html#a55d7579dd9fadb0402c4e5ba2c45d23c",
-"classAnvil_1_1API_1_1NwGameObject.html#a7e4a55793e5edfb87d01773dd5b69b51",
-"classAnvil_1_1API_1_1NwPlaceable.html#a1c9ec356ddd1ca95427b531d066096a2",
-"classAnvil_1_1API_1_1NwTrigger.html#afd2410058b4691fc290cf34a0368a406"
+"classAnvil_1_1API_1_1Events_1_1GameEventFactory_1_1RegistrationData.html",
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#afa25cca35afca1302deb99efa5635efa",
+"classAnvil_1_1API_1_1NwArea.html#ade93d520e9612f979d3ddc3fd8420604",
+"classAnvil_1_1API_1_1NwCreature.html#af3fce6670ae3fc42a04467211b5ee204",
+"classAnvil_1_1API_1_1NwModule.html#a8a3934bec0b55d49b27b780ea7112122",
+"classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a",
+"classAnvil_1_1Services_1_1ObjectStorage.html#a059926f0f1580ed93df0d8e3d3f8d63f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

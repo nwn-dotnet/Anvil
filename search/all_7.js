@@ -16,13 +16,14 @@ var searchData=
   ['hasvalue_13',['HasValue',['../classAnvil_1_1API_1_1ObjectVariable.html#a9f28b31634ce043fae90c4486a8ddf7d',1,'Anvil::API::ObjectVariable']]],
   ['healamount_14',['HealAmount',['../classAnvil_1_1API_1_1Events_1_1OnHeal.html#ae5d417100ffa5243f71356874ce54b94',1,'Anvil::API::Events::OnHeal']]],
   ['healer_15',['Healer',['../classAnvil_1_1API_1_1Events_1_1OnHeal.html#a3df0d84258d85f5cc68829b2b64458c5',1,'Anvil::API::Events::OnHeal']]],
-  ['henchmen_16',['Henchmen',['../classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5',1,'Anvil::API::NwCreature']]],
-  ['hiddenwhenequipped_17',['HiddenWhenEquipped',['../classAnvil_1_1API_1_1NwItem.html#af7a26c4f1c0b1c0fbb671780c7b1ee76',1,'Anvil::API::NwItem']]],
-  ['highlightcolor_18',['HighlightColor',['../classAnvil_1_1API_1_1NwGameObject.html#a0b80ffa72cb2f757f20af71e2def03ab',1,'Anvil::API::NwGameObject']]],
-  ['hitdie_19',['HitDie',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a26b14fb8c06fc9ea1313db4b1546812c',1,'Anvil::API::CreatureLevelInfo']]],
-  ['hiteffect_20',['HitEffect',['../structAnvil_1_1API_1_1HitEffect.html',1,'Anvil::API']]],
-  ['hookeventfactory_21',['HookEventFactory',['../classAnvil_1_1API_1_1Events_1_1HookEventFactory.html',1,'Anvil::API::Events']]],
-  ['hookorder_22',['HookOrder',['../classAnvil_1_1Services_1_1HookOrder.html',1,'Anvil::Services']]],
-  ['hookservice_23',['HookService',['../classAnvil_1_1Services_1_1HookService.html',1,'Anvil::Services']]],
-  ['hp_24',['HP',['../classAnvil_1_1API_1_1NwGameObject.html#a17365e46cca5b03c807ad48e7c1975da',1,'Anvil::API::NwGameObject']]]
+  ['height_16',['Height',['../classAnvil_1_1API_1_1NuiElement.html#a1557cadef18b2e145d0e5628e3bb72b9',1,'Anvil::API::NuiElement']]],
+  ['henchmen_17',['Henchmen',['../classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5',1,'Anvil::API::NwCreature']]],
+  ['hiddenwhenequipped_18',['HiddenWhenEquipped',['../classAnvil_1_1API_1_1NwItem.html#af7a26c4f1c0b1c0fbb671780c7b1ee76',1,'Anvil::API::NwItem']]],
+  ['highlightcolor_19',['HighlightColor',['../classAnvil_1_1API_1_1NwGameObject.html#a0b80ffa72cb2f757f20af71e2def03ab',1,'Anvil::API::NwGameObject']]],
+  ['hitdie_20',['HitDie',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a26b14fb8c06fc9ea1313db4b1546812c',1,'Anvil::API::CreatureLevelInfo']]],
+  ['hiteffect_21',['HitEffect',['../structAnvil_1_1API_1_1HitEffect.html',1,'Anvil::API']]],
+  ['hookeventfactory_22',['HookEventFactory',['../classAnvil_1_1API_1_1Events_1_1HookEventFactory.html',1,'Anvil::API::Events']]],
+  ['hookorder_23',['HookOrder',['../classAnvil_1_1Services_1_1HookOrder.html',1,'Anvil::Services']]],
+  ['hookservice_24',['HookService',['../classAnvil_1_1Services_1_1HookService.html',1,'Anvil::Services']]],
+  ['hp_25',['HP',['../classAnvil_1_1API_1_1NwGameObject.html#a17365e46cca5b03c807ad48e7c1975da',1,'Anvil::API::NwGameObject']]]
 ];

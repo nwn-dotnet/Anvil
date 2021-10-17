@@ -1,0 +1,5 @@
+<map id="Anvil.API.NuiGroup" name="Anvil.API.NuiGroup">
+<area shape="rect" id="node1" title="A group, usually with a border and some padding, holding a single element. Can scroll...." alt="" coords="5,155,140,181"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiLayout.html" title=" " alt="" coords="32,80,113,107"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="28,5,117,32"/>
+</map>

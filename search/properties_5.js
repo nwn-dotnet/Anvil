@@ -5,9 +5,11 @@ var searchData=
   ['familiartype_2',['FamiliarType',['../classAnvil_1_1API_1_1NwCreature.html#a32477d7a3c2e9bbca5e1fe0b81a6b990',1,'Anvil::API::NwCreature']]],
   ['feat_3',['Feat',['../classAnvil_1_1API_1_1Talent.html#a4093404980ecc0bf16ca52a29591efc8',1,'Anvil::API::Talent']]],
   ['featcount_4',['FeatCount',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a2c07e6d79c9ecd16d765be573619d059',1,'Anvil.API.CreatureLevelInfo.FeatCount()'],['../classAnvil_1_1API_1_1NwCreature.html#a17dac2ca09612025c5c4982963029ce2',1,'Anvil.API.NwCreature.FeatCount()']]],
-  ['feats_5',['Feats',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a688792aeee02a2e08f10ad7b5fc5e643',1,'Anvil.API.CreatureLevelInfo.Feats()'],['../classAnvil_1_1API_1_1NwCreature.html#a345d898321de84544ffa2f2834f86e09',1,'Anvil.API.NwCreature.Feats()']]],
-  ['flatfooted_6',['FlatFooted',['../classAnvil_1_1API_1_1NwCreature.html#aa1374cfeb3a05446c2ad63b1a46725a4',1,'Anvil::API::NwCreature']]],
-  ['flippedrotation_7',['FlippedRotation',['../classAnvil_1_1API_1_1Location.html#ad826aa63fee4d6aba035fbc01a213fd7',1,'Anvil::API::Location']]],
-  ['floatparams_8',['FloatParams',['../classAnvil_1_1API_1_1EffectBase.html#adf4cd5081e0b203ab3143fba7502b1f5',1,'Anvil::API::EffectBase']]],
-  ['footsteptype_9',['FootstepType',['../classAnvil_1_1API_1_1NwCreature.html#a63c84031a10afd21b50eac378073b4a8',1,'Anvil::API::NwCreature']]]
+  ['feats_5',['Feats',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a688792aeee02a2e08f10ad7b5fc5e643',1,'Anvil.API.CreatureLevelInfo.Feats()'],['../classAnvil_1_1API_1_1NwCreature.html#a91678ce7f89b94799688c4f644a12fed',1,'Anvil.API.NwCreature.Feats()']]],
+  ['featselection_6',['FeatSelection',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html#af42b3ecf9ab6db154cb409d0e154d5c0',1,'Anvil::API::Events::ModuleEvents::OnPlayerGuiEvent']]],
+  ['flatfooted_7',['FlatFooted',['../classAnvil_1_1API_1_1NwCreature.html#aa1374cfeb3a05446c2ad63b1a46725a4',1,'Anvil::API::NwCreature']]],
+  ['flippedrotation_8',['FlippedRotation',['../classAnvil_1_1API_1_1Location.html#ad826aa63fee4d6aba035fbc01a213fd7',1,'Anvil::API::Location']]],
+  ['floatparams_9',['FloatParams',['../classAnvil_1_1API_1_1EffectBase.html#adf4cd5081e0b203ab3143fba7502b1f5',1,'Anvil::API::EffectBase']]],
+  ['footsteptype_10',['FootstepType',['../classAnvil_1_1API_1_1NwCreature.html#a63c84031a10afd21b50eac378073b4a8',1,'Anvil::API::NwCreature']]],
+  ['foregroundcolor_11',['ForegroundColor',['../classAnvil_1_1API_1_1NuiElement.html#a2b6c5189fe121cef7db33b6b37deee14',1,'Anvil::API::NuiElement']]]
 ];
