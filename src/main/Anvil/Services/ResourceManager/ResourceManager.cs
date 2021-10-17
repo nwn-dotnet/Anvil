@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Anvil.API;
 using Anvil.Internal;
-using Anvil.Plugins;
 using NLog;
 using NWN.Native.API;
 using ResRefType = Anvil.API.ResRefType;
@@ -13,6 +12,7 @@ using ResRefType = Anvil.API.ResRefType;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ResourceManager))]
+  [ServiceBindingOptions(BindingOrder.API)]
   public sealed class ResourceManager : IDisposable
   {
     public const int MaxNameLength = 16;
@@ -30,7 +30,7 @@ namespace Anvil.Services
 
     private uint currentIndex;
 
-    public ResourceManager(ITypeLoader typeLoader)
+    public ResourceManager()
     {
       if (Directory.Exists(EnvironmentConfig.ResourcePath))
       {
@@ -38,11 +38,6 @@ namespace Anvil.Services
       }
 
       tempAlias = CreateResourceDirectory(EnvironmentConfig.ResourcePath).ToExoString();
-
-      foreach (string resourcePath in typeLoader.ResourcePaths)
-      {
-        CreateResourceDirectory(resourcePath);
-      }
     }
 
     public void WriteTempResource(string resourceName, byte[] data)
@@ -130,29 +125,7 @@ namespace Anvil.Services
       return null;
     }
 
-    private unsafe byte[] GetStandardResourceData(string name, ushort type)
-    {
-      CResRef resRef = new CResRef(name);
-      if (!ResMan.Exists(resRef, type).ToBool())
-      {
-        return null;
-      }
-
-      CRes res = ResMan.GetResObject(resRef, type);
-      if (res == null)
-      {
-        return null;
-      }
-
-      void* data = res.GetData();
-      int size = res.GetSize();
-
-      byte[] retVal = new byte[res.m_nSize];
-      Marshal.Copy((IntPtr)data, retVal, 0, size);
-      return retVal;
-    }
-
-    private string CreateResourceDirectory(string path)
+    internal string CreateResourceDirectory(string path)
     {
       if (string.IsNullOrEmpty(path))
       {
@@ -173,6 +146,28 @@ namespace Anvil.Services
       currentIndex++;
 
       return alias;
+    }
+
+    private unsafe byte[] GetStandardResourceData(string name, ushort type)
+    {
+      CResRef resRef = new CResRef(name);
+      if (!ResMan.Exists(resRef, type).ToBool())
+      {
+        return null;
+      }
+
+      CRes res = ResMan.GetResObject(resRef, type);
+      if (res == null)
+      {
+        return null;
+      }
+
+      void* data = res.GetData();
+      int size = res.GetSize();
+
+      byte[] retVal = new byte[res.m_nSize];
+      Marshal.Copy((IntPtr)data, retVal, 0, size);
+      return retVal;
     }
 
     void IDisposable.Dispose()

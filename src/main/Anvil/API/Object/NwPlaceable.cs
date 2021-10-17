@@ -231,7 +231,7 @@ namespace Anvil.API
         }
 
         placeable = new CNWSPlaceable(Invalid);
-        if (placeable.LoadPlaceable(resGff, resStruct, null).ToBool())
+        if (placeable.LoadPlaceable(resGff, resStruct, false.ToInt(), null).ToBool())
         {
           placeable.LoadObjectState(resGff, resStruct);
           GC.SuppressFinalize(placeable);

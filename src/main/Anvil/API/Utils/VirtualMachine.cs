@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using Anvil.Services;
 using NLog;
 using NWN.Core;
@@ -14,6 +17,7 @@ namespace Anvil.API
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    private readonly int mainThreadId = Thread.CurrentThread.ManagedThreadId;
     private readonly CVirtualMachine virtualMachine = NWNXLib.VirtualMachine();
 
     public uint InstructionsExecuted
@@ -40,9 +44,17 @@ namespace Anvil.API
       set => virtualMachine.m_pVirtualMachineScript[0].m_nScriptEventID = (int)value;
     }
 
+    public int RecursionLevel
+    {
+      get => virtualMachine.m_nRecursionLevel;
+    }
+
+    /// <summary>
+    /// Returns true if the current executing code is being executed on the main thread, and in a Virtual Machine script context.
+    /// </summary>
     public bool IsInScriptContext
     {
-      get => virtualMachine.m_nRecursionLevel >= 0;
+      get => Thread.CurrentThread.ManagedThreadId == mainThreadId && RecursionLevel >= 0;
     }
 
     public unsafe bool ScriptReturnValue
@@ -138,6 +150,16 @@ namespace Anvil.API
           Log.Error("VM stack is invalid ({SpBefore} != {SpAfter}) after script context invocation: {Method}", spBefore, spAfter, action.Method.GetFullName());
         }
       }
+    }
+
+    internal IEnumerable<ScriptParam> GetCurrentContextScriptParams()
+    {
+      if (IsInScriptContext)
+      {
+        return virtualMachine.m_lScriptParams.GetItem(RecursionLevel);
+      }
+
+      return Enumerable.Empty<ScriptParam>();
     }
 
     private int PushScriptContext(uint oid, int scriptEventId, bool valid)

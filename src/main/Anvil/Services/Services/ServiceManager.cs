@@ -1,5 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
+using Anvil.Internal;
 using Anvil.Plugins;
-using JetBrains.Annotations;
 using LightInject;
 using NLog;
 
@@ -10,54 +12,70 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    [UsedImplicitly]
-    private readonly ITypeLoader typeLoader;
-
+    private readonly PluginManager pluginManager;
+    private readonly CoreInteropHandler interopHandler;
     private readonly IContainerFactory containerFactory;
-    private readonly ServiceContainer serviceContainer;
 
-    internal ServiceManager(ITypeLoader typeLoader, IContainerFactory containerFactory)
+    private ServiceContainer serviceContainer;
+    private List<ILateDisposable> lateDisposables;
+
+    internal ServiceManager(PluginManager pluginManager, CoreInteropHandler interopHandler, IContainerFactory containerFactory)
     {
-      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
-
-      this.typeLoader = typeLoader;
+      this.pluginManager = pluginManager;
+      this.interopHandler = interopHandler;
       this.containerFactory = containerFactory;
 
-      serviceContainer = containerFactory.Setup(typeLoader);
+      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
     }
 
-    internal void RegisterCoreService<T>(T instance)
-    {
-      containerFactory.RegisterCoreService(instance);
-    }
-
-    internal void Init()
-    {
-      containerFactory.BuildContainer();
-      NotifyInitComplete();
-    }
-
-    ~ServiceManager()
-    {
-      Dispose();
-    }
-
-    internal T GetService<T>() where T : class
+    public T GetService<T>() where T : class
     {
       return serviceContainer.GetInstance<T>();
     }
 
-    private void NotifyInitComplete()
+    internal void Init(params object[] coreServices)
+    {
+      serviceContainer = containerFactory.CreateContainer(pluginManager, coreServices);
+      interopHandler.Init(GetService<ICoreRunScriptHandler>(), GetService<ICoreLoopHandler>());
+      InitServices();
+    }
+
+    internal void ShutdownServices()
+    {
+      if (serviceContainer == null)
+      {
+        return;
+      }
+
+      Log.Info("Unloading services...");
+      lateDisposables = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
+
+      interopHandler.Dispose();
+      serviceContainer.Dispose();
+      serviceContainer = null;
+    }
+
+    internal void ShutdownLateServices()
+    {
+      if (lateDisposables == null)
+      {
+        return;
+      }
+
+      foreach (ILateDisposable lateDisposable in lateDisposables)
+      {
+        lateDisposable.LateDispose();
+      }
+
+      lateDisposables = null;
+    }
+
+    private void InitServices()
     {
       foreach (IInitializable initializable in serviceContainer.GetAllInstances<IInitializable>())
       {
         initializable.Init();
       }
-    }
-
-    internal void Dispose()
-    {
-      serviceContainer?.Dispose();
     }
   }
 }

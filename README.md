@@ -4,10 +4,19 @@ Anvil is a C# framework for building behaviours and adding new functionalty to N
 Builders can add functionality like opening a store from a dialogue with a few lines of code, while plugin developers can leverage [NuGet](https://www.nuget.org/packages) to add new functionality with external packages and the [NWN.Native](https://github.com/nwn-dotnet/NWN.Native) library to completely rewrite existing game systems and mechanics.
 
 - Latest [Release](https://github.com/nwn-dotnet/Anvil/releases/latest)
+- [Changelog](https://github.com/nwn-dotnet/Anvil/blob/master/CHANGELOG.md) ([Development](https://github.com/nwn-dotnet/Anvil/blob/development/CHANGELOG.md))
 - View [Community Submitted Plugins](https://github.com/nwn-dotnet/Anvil/discussions/categories/plugins)
 - Join the community: [![Discord](https://img.shields.io/discord/714927668826472600?color=7289DA&label=Discord&logo=discord&logoColor=7289DA)](https://discord.gg/gKt495UBgS)
 
 # Getting Started
+
+### I use NWNX/NWScript code extensively. How hard is it to move to Anvil?
+
+Anvil uses NWNX's DotNET plugin and is 100% compatible with existing NWNX/NWN servers.
+
+If you are using docker, you can simply swap the NWN/NWNX image with Anvil's image.
+
+All of your existing code will work of out the box, while offering the C# framework for you to begin developing plugins.
 
 ### Running Anvil - Docker
 Anvil has its own docker images that are automatically configured to start and run Anvil and NWNXEE. Similar to the parent images, Anvil is configured by environment variables passed during `docker run`.
@@ -69,6 +78,7 @@ The following options can be configured via environment variables:
 |`ANVIL_NLOG_CONFIG`||A valid path to a NLog XML config file.|See the [NLog Wiki](https://github.com/nlog/NLog/wiki/Configuration-file) for configuration options.|
 |`ANVIL_RELOAD_ENABLED`|`false`|`true/false`|Enables support for plugin hot-reloading via `AnvilCore.Reload()`. Recommended for advanced users.|
 |`ANVIL_PREVENT_START_NO_PLUGIN`|`false`|`true/false`|Prevents the server from starting if no plugins are detected/loaded.|
+|`ANVIL_PRELINK_ENABLED`|`true`|`true/false`|Disables some initial startup checks when linking to the native NWN server binary. This is an advanced setting that should almost always be unset/set to true.
 |`ANVIL_LOG_MODE`|`Off`|`Off/Duplicate/Redirect`|Configures redirection of the NWN server log. `Off` disables redirection, `Duplicate` creates a copy of the log entries in Anvil/NLog, `Redirect` redirects the log entries to Anvil/NLog, and skips the original log entry.|
 
 # Builder/Developer's Guide
@@ -127,3 +137,6 @@ Anvil is bundled with a core set of services that you can depend on in your own 
 These services handle game events, task scheduling, and more! Examples of how to use these services can be found in the [Anvil docs](https://nwn-dotnet.github.io/Anvil/classAnvil_1_1Services_1_1ServiceBindingAttribute.html).
 
 You can also find a full list of the services bundled by Anvil [HERE](https://nwn-dotnet.github.io/Anvil/namespaceAnvil_1_1Services.html).
+
+## Credits
+The Anvil Framework builds heavily on the foundations of the [NWNX:EE DotNET plugin](https://github.com/nwnxee/unified/tree/master/Plugins/DotNET) that was written by [Milos Tijanic](https://github.com/mtijanic "Milos Tijanic"), and derives several service implementations from plugins developed by the NWNX:EE team and its contributors.

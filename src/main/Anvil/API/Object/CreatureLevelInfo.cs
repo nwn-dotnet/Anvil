@@ -25,7 +25,7 @@ namespace Anvil.API
 
         for (int i = 0; i < feats.Length; i++)
         {
-          feats[i] = (Feat)levelStats.m_lstFeats.element[i];
+          feats[i] = (Feat)levelStats.m_lstFeats[i];
         }
 
         return feats;
@@ -37,7 +37,7 @@ namespace Anvil.API
     /// </summary>
     public int FeatCount
     {
-      get => levelStats.m_lstFeats.num;
+      get => levelStats.m_lstFeats.Count;
     }
 
     /// <summary>

@@ -187,7 +187,7 @@ namespace Anvil.Services
       CExoString speakerMessage = CExoString.FromPointer(sSpeakerMessage);
       NwObject speaker = oidSpeaker.ToNwObject();
 
-      bool skipMessage = ProcessEvent(nChatMessageType, speakerMessage.ToString(), speaker, nTellPlayerId.ToNwPlayer());
+      bool skipMessage = ProcessEvent(nChatMessageType, speakerMessage.ToString(), speaker, NwPlayer.FromPlayerId(nTellPlayerId));
       if (skipMessage)
       {
         return false.ToInt();

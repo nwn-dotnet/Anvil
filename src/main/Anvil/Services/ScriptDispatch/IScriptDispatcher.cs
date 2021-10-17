@@ -5,6 +5,8 @@ namespace Anvil.Services
   /// </summary>
   public interface IScriptDispatcher
   {
+    public int ExecutionOrder { get; }
+
     /// <summary>
     /// Called when the game would execute the specified script name.
     /// </summary>

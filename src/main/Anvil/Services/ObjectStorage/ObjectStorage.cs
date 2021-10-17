@@ -134,11 +134,11 @@ namespace Anvil.Services
         stringMap.Remove(fullKey);
     }
 
-    internal string Serialize(bool persistOnly = true)
+    internal string Serialize(bool persistentDataOnly = true)
     {
-      List<KeyValuePair<string, ObjectStorageValue<int>>> intData = GetValuesToSerialize(intMap, persistOnly);
-      List<KeyValuePair<string, ObjectStorageValue<float>>> floatData = GetValuesToSerialize(floatMap, persistOnly);
-      List<KeyValuePair<string, ObjectStorageValue<string>>> stringData = GetValuesToSerialize(stringMap, persistOnly);
+      List<KeyValuePair<string, ObjectStorageValue<int>>> intData = GetValuesToSerialize(intMap, persistentDataOnly);
+      List<KeyValuePair<string, ObjectStorageValue<float>>> floatData = GetValuesToSerialize(floatMap, persistentDataOnly);
+      List<KeyValuePair<string, ObjectStorageValue<string>>> stringData = GetValuesToSerialize(stringMap, persistentDataOnly);
 
       if (intData.Count == 0 && floatData.Count == 0 && stringData.Count == 0)
       {
@@ -158,7 +158,7 @@ namespace Anvil.Services
           stringBuilder.Append($"[{storageKey}:{store.Count}]");
           foreach ((string key, ObjectStorageValue<T> value) in store)
           {
-            if (!persistOnly || value.Persist)
+            if (!persistentDataOnly || value.Persist)
             {
               if (!valueHasCount)
               {
@@ -177,12 +177,8 @@ namespace Anvil.Services
       return stringBuilder.ToString();
     }
 
-    internal void Deserialize(string serialized, bool persist = true)
+    internal void Deserialize(string serialized, bool isPersistentData = true)
     {
-      intMap.Clear();
-      floatMap.Clear();
-      stringMap.Clear();
-
       if (string.IsNullOrEmpty(serialized))
       {
         return;
@@ -256,7 +252,7 @@ namespace Anvil.Services
 
           store[key] = new ObjectStorageValue<T>
           {
-            Persist = persist,
+            Persist = isPersistentData,
             Value = parseValue(value),
           };
         }
@@ -273,6 +269,13 @@ namespace Anvil.Services
       };
 
       return clone;
+    }
+
+    internal void Clear()
+    {
+      intMap.Clear();
+      floatMap.Clear();
+      stringMap.Clear();
     }
 
     private int ReadLength(StringReader stringReader)

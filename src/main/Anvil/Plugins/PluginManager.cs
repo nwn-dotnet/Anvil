@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Anvil.Internal;
 using Anvil.Services;
@@ -12,20 +13,25 @@ namespace Anvil.Plugins
   /// Loads all available plugins and their types for service initialisation.
   /// </summary>
   [ServiceBindingOptions(BindingOrder.Core)]
-  internal sealed class PluginLoader : ITypeLoader
+  public sealed class PluginManager
   {
     private const string PluginResourceDir = "resources";
 
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    public IReadOnlyCollection<Type> LoadedTypes { get; private set; }
+    internal IReadOnlyCollection<Type> LoadedTypes { get; private set; }
 
-    public IReadOnlyCollection<string> ResourcePaths { get; private set; }
+    internal IReadOnlyCollection<string> ResourcePaths { get; private set; }
 
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
     private readonly List<Plugin> plugins = new List<Plugin>();
 
-    public void Init()
+    public bool IsPluginLoaded(string pluginName)
+    {
+      return plugins.Any(plugin => plugin.AssemblyName.Name == pluginName);
+    }
+
+    internal void Load()
     {
       LoadCore();
       BootstrapPlugins();
@@ -33,6 +39,23 @@ namespace Anvil.Plugins
 
       LoadedTypes = GetLoadedTypes();
       ResourcePaths = GetResourcePaths();
+    }
+
+    internal void Unload()
+    {
+      loadedAssemblies.Clear();
+      LoadedTypes = null;
+      ResourcePaths = null;
+
+      Log.Info("Unloading plugins...");
+      foreach (Plugin plugin in plugins)
+      {
+        Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
+        plugin.Dispose();
+        Log.Info("Unloaded DotNET plugin {PluginName} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
+      }
+
+      plugins.Clear();
     }
 
     private void LoadCore()
@@ -208,21 +231,6 @@ namespace Anvil.Plugins
       }
 
       return resourcePaths.AsReadOnly();
-    }
-
-    void IDisposable.Dispose()
-    {
-      loadedAssemblies.Clear();
-      LoadedTypes = null;
-      ResourcePaths = null;
-
-      foreach (Plugin plugin in plugins)
-      {
-        plugin.Dispose();
-        Log.Info("Unloaded DotNET plugin {PluginName} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
-      }
-
-      plugins.Clear();
     }
   }
 }

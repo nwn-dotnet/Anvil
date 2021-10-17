@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Anvil.API;
 using Anvil.Plugins;
@@ -14,95 +16,139 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    protected ITypeLoader TypeLoader;
-    protected ServiceContainer ServiceContainer;
-
-    public ServiceContainer Setup(ITypeLoader typeLoader)
+    public ServiceContainer CreateContainer(PluginManager pluginManager, IEnumerable<object> coreServices)
     {
-      TypeLoader = typeLoader;
-      ServiceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = true, EnableVariance = false });
-      SetupInjectPropertySelector();
+      ServiceContainer serviceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = true, EnableVariance = false });
 
-      ServiceContainer.RegisterInstance((IServiceContainer)ServiceContainer);
-      return ServiceContainer;
+      SetupInjectPropertySelector(serviceContainer);
+      serviceContainer.RegisterInstance((IServiceContainer)serviceContainer);
+
+      foreach (object coreService in coreServices)
+      {
+        RegisterCoreService(serviceContainer, coreService);
+      }
+
+      BuildContainer(pluginManager, serviceContainer);
+      return serviceContainer;
     }
 
-    public void RegisterCoreService<T>(T instance)
+    private static void RegisterCoreService(ServiceContainer serviceContainer, object instance)
     {
       Type instanceType = instance.GetType();
       ServiceBindingOptionsAttribute options = instanceType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
 
       string serviceName = GetServiceName(instanceType, options);
-      ServiceContainer.RegisterInstance(instance, serviceName);
+      serviceContainer.RegisterInstance(instanceType, instance, serviceName);
     }
 
-    public void BuildContainer()
-    {
-      SearchForBindings();
-      RegisterOverrides();
-    }
-
-    private void SetupInjectPropertySelector()
-    {
-      InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
-      ServiceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
-    }
-
-    private void SearchForBindings()
+    private void BuildContainer(PluginManager pluginManager, ServiceContainer serviceContainer)
     {
       Log.Info("Loading services...");
-
-      foreach (Type type in TypeLoader.LoadedTypes)
+      foreach (Type type in pluginManager.LoadedTypes)
       {
-        if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
-        {
-          continue;
-        }
-
-        RegisterBindings(type, type.GetCustomAttributes<ServiceBindingAttribute>());
-      }
-    }
-
-    private void RegisterBindings(Type bindTo, ServiceBindingAttribute[] newBindings)
-    {
-      if (newBindings.Length == 0)
-      {
-        return;
+        TryRegisterType(pluginManager, serviceContainer, type);
       }
 
-      ServiceBindingOptionsAttribute options = bindTo.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-      string serviceName = GetServiceName(bindTo, options);
-
-      PerContainerLifetime lifeTime = new PerContainerLifetime();
-
-      if (options is not { Lazy: true })
-      {
-        ServiceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
-        if (bindTo.IsAssignableTo(typeof(IInitializable)))
-        {
-          ServiceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
-        }
-      }
-
-      foreach (ServiceBindingAttribute bindingInfo in newBindings)
-      {
-        ServiceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
-        Log.Debug("Bind: {BindFrom} -> {BindTo}", bindingInfo.BindFrom.FullName, bindTo.FullName);
-      }
-
-      Log.Info("Registered service: {Service}", bindTo.FullName);
-    }
-
-    private string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
-    {
-      short bindingOrder = options?.Order ?? (short)BindingOrder.Default;
-      return bindingOrder.ToString("D5") + implementation.FullName;
+      RegisterOverrides(pluginManager, serviceContainer);
     }
 
     /// <summary>
     /// Override in a child class to specify additional bindings/overrides.<br/>
     /// See https://www.lightinject.net/ for documentation.
     /// </summary>
-    protected virtual void RegisterOverrides() {}
+    // ReSharper disable UnusedParameter.Global
+    protected virtual void RegisterOverrides(PluginManager pluginManager, ServiceContainer serviceContainer) {}
+    // ReSharper restore UnusedParameter.Global
+
+    private static void TryRegisterType(PluginManager pluginManager, ServiceContainer serviceContainer, Type type)
+    {
+      if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
+      {
+        return;
+      }
+
+      ServiceBindingAttribute[] bindings = type.GetCustomAttributes<ServiceBindingAttribute>();
+      if (bindings.Length == 0)
+      {
+        return;
+      }
+
+      ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      if (IsServiceRequirementsMet(pluginManager, options))
+      {
+        RegisterBindings(serviceContainer, type, bindings, options);
+      }
+    }
+
+    private static void RegisterBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] bindings, ServiceBindingOptionsAttribute options)
+    {
+      string serviceName = GetServiceName(bindTo, options);
+
+      PerContainerLifetime lifeTime = new PerContainerLifetime();
+      RegisterExplicitBindings(serviceContainer, bindTo, bindings, serviceName, lifeTime);
+
+      if (options is not { Lazy: true })
+      {
+        RegisterImplicitBindings(serviceContainer, bindTo, serviceName, lifeTime);
+      }
+
+      Log.Info("Registered service {Service}", bindTo.FullName);
+    }
+
+    private static bool IsServiceRequirementsMet(PluginManager pluginManager, ServiceBindingOptionsAttribute options)
+    {
+      if (options == null || options.PluginDependencies == null && options.MissingPluginDependencies == null)
+      {
+        return true;
+      }
+
+      if (options.PluginDependencies != null && options.PluginDependencies.Any(dependency => !pluginManager.IsPluginLoaded(dependency)))
+      {
+        return false;
+      }
+
+      if (options.MissingPluginDependencies != null && options.MissingPluginDependencies.Any(pluginManager.IsPluginLoaded))
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    private static void RegisterImplicitBindings(ServiceContainer serviceContainer, Type bindTo, string serviceName, ILifetime lifeTime)
+    {
+      serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
+
+      if (bindTo.IsAssignableTo(typeof(IInitializable)))
+      {
+        serviceContainer.Register(typeof(IInitializable), bindTo, serviceName, lifeTime);
+      }
+
+      if (bindTo.IsAssignableTo(typeof(ILateDisposable)))
+      {
+        serviceContainer.Register(typeof(ILateDisposable), bindTo, serviceName, lifeTime);
+      }
+    }
+
+    private static void RegisterExplicitBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] newBindings, string serviceName, ILifetime lifeTime)
+    {
+      foreach (ServiceBindingAttribute bindingInfo in newBindings)
+      {
+        serviceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
+        Log.Debug("Bind {BindFrom} -> {BindTo}", bindingInfo.BindFrom.FullName, bindTo.FullName);
+      }
+    }
+
+    private static void SetupInjectPropertySelector(ServiceContainer serviceContainer)
+    {
+      InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
+      serviceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
+    }
+
+    private static string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
+    {
+      short bindingOrder = options?.Order ?? (short)BindingOrder.Default;
+      return bindingOrder.ToString("D5") + implementation.FullName;
+    }
   }
 }

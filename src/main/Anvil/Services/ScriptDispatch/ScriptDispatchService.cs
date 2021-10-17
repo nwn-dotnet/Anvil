@@ -6,17 +6,18 @@ using NLog;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(DispatchServiceManager))]
+  [ServiceBinding(typeof(ScriptDispatchService))]
   [ServiceBinding(typeof(ICoreRunScriptHandler))]
-  internal class DispatchServiceManager : ICoreRunScriptHandler
+  internal class ScriptDispatchService : ICoreRunScriptHandler
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly List<IScriptDispatcher> dispatchers;
 
-    public DispatchServiceManager(IEnumerable<IScriptDispatcher> dispatchers)
+    public ScriptDispatchService(IEnumerable<IScriptDispatcher> dispatchers)
     {
       this.dispatchers = dispatchers.ToList();
+      this.dispatchers.Sort((dispatcherA, dispatcherB) => dispatcherA.ExecutionOrder.CompareTo(dispatcherB.ExecutionOrder));
     }
 
     public int OnRunScript(string script, uint oidSelf)

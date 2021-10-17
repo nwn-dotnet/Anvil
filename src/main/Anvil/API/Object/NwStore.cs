@@ -62,23 +62,22 @@ namespace Anvil.API
     /// </summary>
     public int CustomerCount
     {
-      get => Store.m_aCurrentCustomers.num;
+      get => Store.m_aCurrentCustomers.Count;
     }
 
     /// <summary>
     /// Gets the current customers of this store.
     /// </summary>
-    public unsafe IReadOnlyList<NwCreature> CurrentCustomers
+    public IReadOnlyList<NwCreature> CurrentCustomers
     {
       get
       {
         List<NwCreature> customers = new List<NwCreature>();
         CExoArrayListCStoreCustomerPtr customersPtr = Store.m_aCurrentCustomers;
 
-        for (int i = 0; i < customersPtr.num; i++)
+        foreach (CStoreCustomer storeCustomer in customersPtr)
         {
-          void** customerPtr = customersPtr._OpIndex(i);
-          NwCreature customer = CStoreCustomer.FromPointer(*customerPtr).m_oidObject.ToNwObjectSafe<NwCreature>();
+          NwCreature customer = storeCustomer.m_oidObject.ToNwObjectSafe<NwCreature>();
           if (customer != null)
           {
             customers.Add(customer);
@@ -133,7 +132,7 @@ namespace Anvil.API
         }
 
         store = new CNWSStore(Invalid);
-        if (store.LoadStore(resGff, resStruct, null).ToBool())
+        if (store.LoadStore(resGff, resStruct, false.ToInt(), null).ToBool())
         {
           store.LoadObjectState(resGff, resStruct);
           GC.SuppressFinalize(store);
