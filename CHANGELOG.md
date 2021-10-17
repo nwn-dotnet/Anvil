@@ -14,6 +14,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...HEAD
 - ModuleEvents: Added `OnPlayerGuiEvent`, `OnNuiEvent` and `OnPlayerTarget` events.
 - GUIPanel: Added new constants published with NWN 8193.31
 - NwPlayer: Added `SetGuiPanelDisabled` for disabling built-in GUI elements.
+- NwPlayer: Added `RestDurationOverride` property.
 - VirtualMachine: Added `RecursionLevel` property.
 - LocalVariableCassowary: Added to support cassowary local variables.
 - ILateDisposable: Added a new service event interface that is invoked after the server is destroyed.
