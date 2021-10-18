@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace Anvil.API
@@ -23,5 +24,8 @@ namespace Anvil.API
     {
       Value = value;
     }
+
+    [UsedImplicitly]
+    internal NuiValue() {}
   }
 }

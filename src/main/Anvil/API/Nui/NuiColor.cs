@@ -35,6 +35,7 @@ namespace Anvil.API
     /// <param name="green">The green value.</param>
     /// <param name="blue">The blue value.</param>
     /// <param name="alpha">The alpha value.</param>
+    [JsonConstructor]
     public NuiColor(byte red, byte green, byte blue, byte alpha = 255)
     {
       Red = red;

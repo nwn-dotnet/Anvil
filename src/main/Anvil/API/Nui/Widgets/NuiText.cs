@@ -12,6 +12,7 @@ namespace Anvil.API
       get => "text";
     }
 
+    [JsonConstructor]
     public NuiText(NuiProperty<string> text)
     {
       Text = text;

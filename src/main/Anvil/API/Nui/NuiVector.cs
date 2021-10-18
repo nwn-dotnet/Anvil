@@ -12,6 +12,7 @@ namespace Anvil.API
     [JsonProperty("y")]
     public readonly float Y;
 
+    [JsonConstructor]
     public NuiVector(float x, float y)
     {
       X = x;
