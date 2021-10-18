@@ -12,6 +12,7 @@ namespace Anvil.API
       get => "check";
     }
 
+    [JsonConstructor]
     public NuiCheck(NuiProperty<string> label, NuiProperty<bool> selected)
     {
       Label = label;

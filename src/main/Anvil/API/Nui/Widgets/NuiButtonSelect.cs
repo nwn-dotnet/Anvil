@@ -13,6 +13,7 @@ namespace Anvil.API
       get => "button_select";
     }
 
+    [JsonConstructor]
     public NuiButtonSelect(NuiProperty<string> label, NuiProperty<bool> selected)
     {
       Label = label;

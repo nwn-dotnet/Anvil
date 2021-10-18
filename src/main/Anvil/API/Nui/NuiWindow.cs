@@ -7,6 +7,7 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiWindow
   {
+    [JsonConstructor]
     public NuiWindow(NuiLayout root, NuiProperty<string> title)
     {
       Title = title;

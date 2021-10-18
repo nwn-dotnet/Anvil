@@ -12,6 +12,7 @@ namespace Anvil.API
       get => "sliderf";
     }
 
+    [JsonConstructor]
     public NuiSliderFloat(NuiProperty<float> value, NuiProperty<float> min, NuiProperty<float> max)
     {
       Value = value;

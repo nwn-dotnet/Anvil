@@ -12,6 +12,7 @@ namespace Anvil.API
       get => "image";
     }
 
+    [JsonConstructor]
     public NuiImage(NuiProperty<string> resRef)
     {
       ResRef = resRef;

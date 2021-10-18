@@ -12,6 +12,7 @@ namespace Anvil.API
       get => "progress";
     }
 
+    [JsonConstructor]
     public NuiProgress(NuiProperty<float> value)
     {
       Value = value;

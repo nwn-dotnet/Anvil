@@ -12,6 +12,7 @@ namespace Anvil.API
       get => "textedit";
     }
 
+    [JsonConstructor]
     public NuiTextEdit(NuiProperty<string> label, NuiProperty<string> value, ushort maxLength, bool multiLine)
     {
       Label = label;

@@ -14,6 +14,7 @@ namespace Anvil.API
     [JsonProperty(Order = 2)]
     public int Value { get; set; }
 
+    [JsonConstructor]
     public NuiComboEntry(string label, int value)
     {
       Label = label;

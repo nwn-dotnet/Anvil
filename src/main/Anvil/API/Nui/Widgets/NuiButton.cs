@@ -12,6 +12,7 @@ namespace Anvil.API
       get => "button";
     }
 
+    [JsonConstructor]
     public NuiButton(NuiProperty<string> label)
     {
       Label = label;

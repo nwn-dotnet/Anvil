@@ -16,6 +16,7 @@ namespace Anvil.API
     [JsonProperty("h")]
     public float Height { get; }
 
+    [JsonConstructor]
     public NuiRect(float x, float y, float width, float height)
     {
       X = x;
