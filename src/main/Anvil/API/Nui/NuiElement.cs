@@ -71,5 +71,8 @@ namespace Anvil.API
     /// </summary>
     [JsonProperty("foreground_color", NullValueHandling = NullValueHandling.Ignore)]
     public NuiProperty<NuiColor> ForegroundColor { get; set; }
+
+    [JsonProperty("draw_list", NullValueHandling = NullValueHandling.Ignore)]
+    public NuiDrawList DrawList { get; set; }
   }
 }

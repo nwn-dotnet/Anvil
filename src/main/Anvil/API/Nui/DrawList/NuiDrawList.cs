@@ -3,13 +3,8 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
-  public sealed class NuiDrawList : NuiElement
+  public sealed class NuiDrawList
   {
-    public override string Type
-    {
-      get => null;
-    }
-
     [JsonProperty("draw_list_scissor")]
     public NuiProperty<bool> Scissor { get; set; }
 
