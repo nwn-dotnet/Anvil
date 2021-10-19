@@ -9,16 +9,13 @@ namespace Anvil.API
       get => NuiDrawListItemType.Circle;
     }
 
-    [JsonProperty("color")]
-    public NuiProperty<NuiColor> Color { get; set; }
-
-    [JsonProperty("fill")]
-    public NuiProperty<bool> Fill { get; set; }
-
-    [JsonProperty("line_thickness")]
-    public NuiProperty<float> LineThickness { get; set; }
-
     [JsonProperty("rect")]
-    public NuiBind<NuiRect> Rect { get; set; }
+    public NuiProperty<NuiRect> Rect { get; set; }
+
+    [JsonConstructor]
+    public NuiDrawListCircle(NuiProperty<NuiColor> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, NuiProperty<NuiRect> rect) : base(color, fill, lineThickness)
+    {
+      Rect = rect;
+    }
   }
 }
