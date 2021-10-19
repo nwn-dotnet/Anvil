@@ -4,7 +4,7 @@ using NWN.Core;
 namespace Anvil.API
 {
   /// <summary>
-  /// Represents a pointer-type VM structure.
+  /// A pointer-type VM structure.
   /// </summary>
   public abstract class EngineStructure : IDisposable
   {

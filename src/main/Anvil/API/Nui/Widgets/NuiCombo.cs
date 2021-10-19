@@ -6,7 +6,7 @@ namespace Anvil.API
   /// <summary>
   /// A dropdown menu/combobox.
   /// </summary>
-  public sealed class NuiCombo : NuiElement
+  public sealed class NuiCombo : NuiWidget
   {
     public override string Type
     {

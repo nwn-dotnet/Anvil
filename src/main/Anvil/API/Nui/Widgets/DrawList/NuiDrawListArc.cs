@@ -9,15 +9,6 @@ namespace Anvil.API
       get => NuiDrawListItemType.Arc;
     }
 
-    [JsonProperty("color")]
-    public NuiProperty<NuiColor> Color { get; set; }
-
-    [JsonProperty("fill")]
-    public NuiProperty<bool> Fill { get; set; }
-
-    [JsonProperty("line_thickness")]
-    public NuiProperty<float> LineThickness { get; set; }
-
     [JsonProperty("c")]
     public NuiProperty<NuiVector> Center { get; set; }
 
@@ -29,5 +20,15 @@ namespace Anvil.API
 
     [JsonProperty("amax")]
     public NuiProperty<float> AngleMax { get; set; }
+
+    [JsonConstructor]
+    public NuiDrawListArc(NuiProperty<NuiColor> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, NuiProperty<NuiVector> center, NuiProperty<float> radius,
+      NuiProperty<float> angleMin, NuiProperty<float> angleMax) : base(color, fill, lineThickness)
+    {
+      Center = center;
+      Radius = radius;
+      AngleMin = angleMin;
+      AngleMax = angleMax;
+    }
   }
 }

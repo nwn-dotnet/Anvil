@@ -9,12 +9,6 @@ namespace Anvil.API
       get => NuiDrawListItemType.Curve;
     }
 
-    [JsonProperty("color")]
-    public NuiProperty<NuiColor> Color { get; set; }
-
-    [JsonProperty("line_thickness")]
-    public NuiProperty<float> LineThickness { get; set; }
-
     [JsonProperty("a")]
     public NuiProperty<NuiVector> PointA { get; set; }
 
@@ -26,5 +20,14 @@ namespace Anvil.API
 
     [JsonProperty("ctrl1")]
     public NuiProperty<NuiVector> Control1 { get; set; }
+
+    [JsonConstructor]
+    public NuiDrawListCurve(NuiProperty<NuiColor> color, NuiProperty<float> lineThickness, NuiProperty<NuiVector> pointA, NuiProperty<NuiVector> pointB, NuiProperty<NuiVector> control0, NuiProperty<NuiVector> control1) : base(color, false, lineThickness)
+    {
+      PointA = pointA;
+      PointB = pointB;
+      Control0 = control0;
+      Control1 = control1;
+    }
   }
 }

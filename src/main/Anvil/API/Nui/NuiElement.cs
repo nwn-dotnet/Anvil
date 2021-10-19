@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace Anvil.API
 {
   /// <summary>
-  /// A NUI widget/element.
+  /// A dynamic NUI element with style support.
   /// </summary>
   public abstract class NuiElement
   {

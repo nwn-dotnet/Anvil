@@ -10,14 +10,11 @@ namespace Anvil.API
       get => NuiDrawListItemType.PolyLine;
     }
 
-    [JsonProperty("color")]
-    public NuiProperty<NuiColor> Color { get; set; }
-
-    [JsonProperty("fill")]
-    public NuiProperty<bool> Fill { get; set; }
-
-    [JsonProperty("line_thickness")]
-    public NuiProperty<float> LineThickness { get; set; }
+    [JsonConstructor]
+    public NuiDrawListPolyLine(NuiProperty<NuiColor> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, List<float> points) : base(color, fill, lineThickness)
+    {
+      Points = points;
+    }
 
     [JsonProperty("points")]
     public List<float> Points { get; set; }
