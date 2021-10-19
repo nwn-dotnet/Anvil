@@ -19,7 +19,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.0...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed an issue when retrieving bind values for certain class/structures (NuiRect, NuiVector, etc.) would return the default value.
+- Fixed an incorrect API/object mapping for NuiDrawList.
 
 ## 8193.33.0
 https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...v8193.33.0
