@@ -5,7 +5,7 @@ namespace Anvil.API
   /// <summary>
   /// A clickable button with text as the label.
   /// </summary>
-  public sealed class NuiButton : NuiElement
+  public sealed class NuiButton : NuiWidget
   {
     public override string Type
     {

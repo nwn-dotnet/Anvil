@@ -4,7 +4,7 @@ using Anvil.API;
 namespace Anvil.Services
 {
   /// <summary>
-  /// Represents a handle for a script callback handle.
+  /// A handle for a native NSS script callback.
   /// </summary>
   public sealed class ScriptCallbackHandle : IDisposable
   {

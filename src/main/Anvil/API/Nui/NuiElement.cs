@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Anvil.API
 {
   /// <summary>
-  /// A NUI widget/element.
+  /// A dynamic NUI element with style support.
   /// </summary>
   public abstract class NuiElement
   {
@@ -72,11 +71,5 @@ namespace Anvil.API
     /// </summary>
     [JsonProperty("foreground_color", NullValueHandling = NullValueHandling.Ignore)]
     public NuiProperty<NuiColor> ForegroundColor { get; set; }
-
-    [JsonProperty("draw_list_scissor", NullValueHandling = NullValueHandling.Ignore)]
-    public NuiProperty<bool> Scissor { get; set; }
-
-    [JsonProperty("draw_list", NullValueHandling = NullValueHandling.Ignore)]
-    public List<NuiDrawListItem> DrawList { get; set; }
   }
 }

@@ -4,7 +4,7 @@ using NWN.Native.API;
 namespace Anvil.API
 {
   /// <summary>
-  /// Represents an 8 bit Color structure.
+  /// A 8 bit Color structure.
   /// </summary>
   public readonly struct Color
   {
