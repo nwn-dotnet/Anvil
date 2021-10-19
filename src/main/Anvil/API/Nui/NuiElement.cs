@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Anvil.API
@@ -72,7 +73,10 @@ namespace Anvil.API
     [JsonProperty("foreground_color", NullValueHandling = NullValueHandling.Ignore)]
     public NuiProperty<NuiColor> ForegroundColor { get; set; }
 
+    [JsonProperty("draw_list_scissor", NullValueHandling = NullValueHandling.Ignore)]
+    public NuiProperty<bool> Scissor { get; set; }
+
     [JsonProperty("draw_list", NullValueHandling = NullValueHandling.Ignore)]
-    public NuiDrawList DrawList { get; set; }
+    public List<NuiDrawListItem> DrawList { get; set; }
   }
 }
