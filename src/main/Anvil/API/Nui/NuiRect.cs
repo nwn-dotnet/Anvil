@@ -2,19 +2,19 @@ using Newtonsoft.Json;
 
 namespace Anvil.API
 {
-  public readonly struct NuiRect
+  public class NuiRect
   {
     [JsonProperty("x")]
-    public float X { get; }
+    public float X { get; set; }
 
     [JsonProperty("y")]
-    public float Y { get; }
+    public float Y { get; set; }
 
     [JsonProperty("w")]
-    public float Width { get; }
+    public float Width { get; set; }
 
     [JsonProperty("h")]
-    public float Height { get; }
+    public float Height { get; set; }
 
     [JsonConstructor]
     public NuiRect(float x, float y, float width, float height)
@@ -23,6 +23,10 @@ namespace Anvil.API
       Y = y;
       Width = width;
       Height = height;
+    }
+    public NuiRect()
+    {
+
     }
   }
 }
