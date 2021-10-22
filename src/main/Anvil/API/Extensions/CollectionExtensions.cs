@@ -4,8 +4,18 @@ using System.Linq;
 
 namespace Anvil.API
 {
-  internal static class CollectionExtensions
+  /// <summary>
+  /// Various class extensions for generic collections.
+  /// </summary>
+  public static class CollectionExtensions
   {
+    /// <summary>
+    /// Inserts an item into an already sorted list.
+    /// </summary>
+    /// <param name="sortedList">The sorted list.</param>
+    /// <param name="item">The item to insert.</param>
+    /// <param name="comparer">A custom comparer to use when comparing the item against elements in the collection.</param>
+    /// <typeparam name="T">The type of item to insert.</typeparam>
     public static void InsertOrdered<T>(this List<T> sortedList, T item, IComparer<T> comparer = null)
     {
       int binaryIndex = sortedList.BinarySearch(item, comparer);
@@ -13,6 +23,13 @@ namespace Anvil.API
       sortedList.Insert(index, item);
     }
 
+    /// <summary>
+    /// Adds an element to a mutable lookup table<br/>
+    /// (E.g. Dictionary&lt;Key,List&lt;Value&gt;&gt;)
+    /// </summary>
+    /// <param name="mutableLookup">The lookup to modify.</param>
+    /// <param name="key">The key that the element should be added to.</param>
+    /// <param name="value">The value that should be added.</param>
     public static void AddElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>, new()
     {
       if (!mutableLookup.TryGetValue(key, out TCollection values))
@@ -24,6 +41,13 @@ namespace Anvil.API
       values.Add(value);
     }
 
+    /// <summary>
+    /// Removes an element from a mutable lookup table<br/>
+    /// (E.g. Dictionary&lt;Key,List&lt;Value&gt;&gt;)
+    /// </summary>
+    /// <param name="mutableLookup">The lookup to modify.</param>
+    /// <param name="key">The key that the element should be removed from.</param>
+    /// <param name="value">The value that should be removed.</param>
     public static bool RemoveElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>, new()
     {
       bool retVal = false;
@@ -40,6 +64,13 @@ namespace Anvil.API
       return retVal;
     }
 
+    /// <summary>
+    /// Queries if a certain value exists in a mutable lookup table<br/>
+    /// (E.g. Dictionary&lt;Key,List&lt;Value&gt;&gt;)
+    /// </summary>
+    /// <param name="mutableLookup">The lookup to query.</param>
+    /// <param name="key">The key to lookup.</param>
+    /// <param name="value">The value to be searched.</param>
     public static bool ContainsElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>
     {
       return mutableLookup.TryGetValue(key, out TCollection values) && values.Contains(value);
