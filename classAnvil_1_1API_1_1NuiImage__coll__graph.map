@@ -1,4 +1,5 @@
 <map id="Anvil.API.NuiImage" name="Anvil.API.NuiImage">
-<area shape="rect" id="node1" title="An image, with no border or padding." alt="" coords="5,80,140,107"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="28,5,117,32"/>
+<area shape="rect" id="node1" title="An image, with no border or padding." alt="" coords="5,155,140,181"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="31,80,114,107"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="28,5,117,32"/>
 </map>

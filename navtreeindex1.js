@@ -1,5 +1,11 @@
 var NAVTREEINDEX1 =
 {
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExit.html#abc79a6dbcd6354bd26acc2ca8890c0ff":[0,0,0,0,13,2,0],
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html":[0,0,0,0,13,3],
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html#aad12d93fc15390c2fa42ee2e569b2345":[0,0,0,0,13,3,0],
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html":[0,0,0,0,13,4],
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnUserDefined.html#a848ab1841ba7d4e0ddb2b0f80f9e00cf":[0,0,0,0,13,4,0],
+"classAnvil_1_1API_1_1Events_1_1GameEventFactory.html":[0,0,0,0,14],
 "classAnvil_1_1API_1_1Events_1_1GameEventFactory_1_1RegistrationData.html":[0,0,0,0,14,0],
 "classAnvil_1_1API_1_1Events_1_1HookEventFactory.html":[0,0,0,0,15],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents.html":[0,0,0,0,19],
@@ -243,11 +249,5 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a88e213ae46590759ef0484cf0ed46a9a":[0,0,0,0,119,8,1],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a8e5b0e5cf4a60da3824dd9257aedcc42":[0,0,0,0,119,8,0],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html":[0,0,0,0,119,9],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html#a2f57531fe7541209294a737f4bb68e6d":[0,0,0,0,119,9,0],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html#a4141a92369eef9040054d91cf9a90fdc":[0,0,0,0,119,9,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html":[0,0,0,0,119,10],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a3478d16c44ba6a94f3cecfe42fa51dfa":[0,0,0,0,119,10,3],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a4f4ce2f8982827db60b8473b5fed21d0":[0,0,0,0,119,10,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#aac784d89f65a2852b58b8da9f38b774d":[0,0,0,0,119,10,4],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#ad7e58c68aad26058368599a9fbf0a67c":[0,0,0,0,119,10,0]
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html#a2f57531fe7541209294a737f4bb68e6d":[0,0,0,0,119,9,0]
 };

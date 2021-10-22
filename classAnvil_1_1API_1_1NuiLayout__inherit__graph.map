@@ -3,5 +3,5 @@
 <area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiColumn.html" title="A layout element that will auto&#45;space all elements inside of it and advise the parent about its desir..." alt="" coords="5,155,148,181"/>
 <area shape="rect" id="node4" href="$classAnvil_1_1API_1_1NuiGroup.html" title="A group, usually with a border and some padding, holding a single element. Can scroll...." alt="" coords="172,155,307,181"/>
 <area shape="rect" id="node5" href="$classAnvil_1_1API_1_1NuiRow.html" title="A layout element that will auto&#45;space all elements inside of it and advise the parent about its desir..." alt="" coords="331,155,457,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="195,5,284,32"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="195,5,284,32"/>
 </map>

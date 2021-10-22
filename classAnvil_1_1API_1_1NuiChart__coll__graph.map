@@ -1,4 +1,5 @@
 <map id="Anvil.API.NuiChart" name="Anvil.API.NuiChart">
-<area shape="rect" id="node1" title="A line/column chart element." alt="" coords="5,80,136,107"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="26,5,115,32"/>
+<area shape="rect" id="node1" title="A line/column chart element." alt="" coords="5,155,136,181"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="29,80,112,107"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="26,5,115,32"/>
 </map>

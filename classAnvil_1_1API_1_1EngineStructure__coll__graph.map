@@ -1,4 +1,4 @@
 <map id="Anvil.API.EngineStructure" name="Anvil.API.EngineStructure">
-<area shape="rect" id="node1" title="Represents a pointer&#45;type VM structure." alt="" coords="5,80,176,107"/>
+<area shape="rect" id="node1" title="A pointer&#45;type VM structure." alt="" coords="5,80,176,107"/>
 <area shape="rect" id="node2" title=" " alt="" coords="45,5,136,32"/>
 </map>

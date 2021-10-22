@@ -1,5 +1,5 @@
 <map id="Anvil.API.ObjectVariable&lt; T &gt;" name="Anvil.API.ObjectVariable&lt; T &gt;">
-<area shape="rect" id="node1" title="Represents a variable stored on an Object." alt="" coords="133,95,328,121"/>
+<area shape="rect" id="node1" title="A key/value pair/variable stored on an Object." alt="" coords="133,95,328,121"/>
 <area shape="rect" id="node4" href="$classAnvil_1_1API_1_1LocalVariable.html" title=" " alt="" coords="25,169,213,196"/>
 <area shape="rect" id="node6" href="$classAnvil_1_1API_1_1PersistentVariable.html" title=" " alt="" coords="237,169,451,196"/>
 <area shape="rect" id="node2" title=" " alt="" coords="95,13,201,39"/>

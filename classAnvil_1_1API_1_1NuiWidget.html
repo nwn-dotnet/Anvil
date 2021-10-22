@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Anvil: Anvil.API.NuiDrawList Class Reference</title>
+<title>Anvil: Anvil.API.NuiWidget Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NuiDrawList.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NuiWidget.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -84,44 +84,60 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NuiDrawList.html'
 <div class="header">
   <div class="summary">
 <a href="#properties">Properties</a> &#124;
-<a href="classAnvil_1_1API_1_1NuiDrawList-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Anvil.API.NuiDrawList Class Reference</div></div>
+<a href="classAnvil_1_1API_1_1NuiWidget-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Anvil.API.NuiWidget Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The abstract base for all NUI widgets - the building blocks for creating NUI windows.  
+ <a href="classAnvil_1_1API_1_1NuiWidget.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.NuiDrawList:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.NuiWidget:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classAnvil_1_1API_1_1NuiDrawList__inherit__graph.png" border="0" usemap="#aAnvil_8API_8NuiDrawList_inherit__map" alt="Inheritance graph"/></div>
-<map name="aAnvil_8API_8NuiDrawList_inherit__map" id="aAnvil_8API_8NuiDrawList_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,156,107"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="36,5,125,32"/>
+<div class="center"><img src="classAnvil_1_1API_1_1NuiWidget__inherit__graph.png" border="0" usemap="#aAnvil_8API_8NuiWidget_inherit__map" alt="Inheritance graph"/></div>
+<map name="aAnvil_8API_8NuiWidget_inherit__map" id="aAnvil_8API_8NuiWidget_inherit__map">
+<area shape="rect" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="143,385,281,412"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiButton.html" title="A clickable button with text as the label." alt="" coords="348,5,485,32"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiButtonImage.html" title="A clickable button with an image as the label." alt="" coords="330,56,503,83"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiButtonSelect.html" title="A clickable button with text as the label. &#160;Same as NuiButton, but this one is a toggle." alt="" coords="329,107,504,133"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiChart.html" title="A line/column chart element." alt="" coords="351,157,482,184"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiCheck.html" title="A checkbox with a label to the right of it." alt="" coords="349,208,485,235"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiColorPicker.html" title="A simple color picker, with no borders or spacing." alt="" coords="333,259,500,285"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiCombo.html" title="A dropdown menu/combobox." alt="" coords="347,309,487,336"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiImage.html" title="An image, with no border or padding." alt="" coords="349,360,484,387"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiLabel.html" title="A single&#45;line, styleable, non&#45;editable text field." alt="" coords="351,411,482,437"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiOptions.html" title="A list of options (radio buttons). &#160;Only one can be selected at a time." alt="" coords="345,461,489,488"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiProgress.html" title="A generic progress bar." alt="" coords="341,512,492,539"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiSlider.html" title="A slider bar with integer values." alt="" coords="351,563,483,589"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiSliderFloat.html" title="A slider bar with floating&#45;point values." alt="" coords="336,613,497,640"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiSpacer.html" title="A special widget that just takes up layout space. &#160;Configure the space used with the Width and Height..." alt="" coords="347,664,487,691"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiText.html" title="A non&#45;editable text field. Supports multiple lines and has a skinned border and a scrollbar if needed..." alt="" coords="355,715,479,741"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiTextEdit.html" title="An editable text field. Can be optionally configured as multi&#45;line." alt="" coords="343,765,490,792"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="5,385,95,412"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Anvil.API.NuiDrawList:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Anvil.API.NuiWidget:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classAnvil_1_1API_1_1NuiDrawList__coll__graph.png" border="0" usemap="#aAnvil_8API_8NuiDrawList_coll__map" alt="Collaboration graph"/></div>
-<map name="aAnvil_8API_8NuiDrawList_coll__map" id="aAnvil_8API_8NuiDrawList_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,156,107"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="36,5,125,32"/>
+<div class="center"><img src="classAnvil_1_1API_1_1NuiWidget__coll__graph.png" border="0" usemap="#aAnvil_8API_8NuiWidget_coll__map" alt="Collaboration graph"/></div>
+<map name="aAnvil_8API_8NuiWidget_coll__map" id="aAnvil_8API_8NuiWidget_coll__map">
+<area shape="rect" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="5,80,144,107"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="30,5,119,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a466b41edd81f729baf1d2e551b4bf6e0"><td class="memItemLeft" align="right" valign="top"><a id="a466b41edd81f729baf1d2e551b4bf6e0" name="a466b41edd81f729baf1d2e551b4bf6e0"></a>
+<tr class="memitem:a670960fb51fec995b66f3c30bad186eb"><td class="memItemLeft" align="right" valign="top"><a id="a670960fb51fec995b66f3c30bad186eb" name="a670960fb51fec995b66f3c30bad186eb"></a>
 List&lt; <a class="el" href="classAnvil_1_1API_1_1NuiDrawListItem.html">NuiDrawListItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DrawList</b><code> [getset]</code></td></tr>
-<tr class="separator:a466b41edd81f729baf1d2e551b4bf6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa45a77a3763ae4e78e39140e0108745c"><td class="memItemLeft" align="right" valign="top"><a id="aa45a77a3763ae4e78e39140e0108745c" name="aa45a77a3763ae4e78e39140e0108745c"></a>
+<tr class="separator:a670960fb51fec995b66f3c30bad186eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a937c6183d1a7b60826ad7b240a3b5afa"><td class="memItemLeft" align="right" valign="top"><a id="a937c6183d1a7b60826ad7b240a3b5afa" name="a937c6183d1a7b60826ad7b240a3b5afa"></a>
 <a class="el" href="classAnvil_1_1API_1_1NuiProperty.html">NuiProperty</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Scissor</b><code> [getset]</code></td></tr>
-<tr class="separator:aa45a77a3763ae4e78e39140e0108745c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fadffa5613025d5dd913b565d50f79c"><td class="memItemLeft" align="right" valign="top"><a id="a7fadffa5613025d5dd913b565d50f79c" name="a7fadffa5613025d5dd913b565d50f79c"></a>
-override string&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b><code> [get]</code></td></tr>
-<tr class="separator:a7fadffa5613025d5dd913b565d50f79c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a937c6183d1a7b60826ad7b240a3b5afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classAnvil_1_1API_1_1NuiElement"><td colspan="2" onclick="javascript:toggleInherit('properties_classAnvil_1_1API_1_1NuiElement')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classAnvil_1_1API_1_1NuiElement.html">Anvil.API.NuiElement</a></td></tr>
 <tr class="memitem:a20cc45ec9ff5c3fe6c7be64f61cb426d inherit properties_classAnvil_1_1API_1_1NuiElement"><td class="memItemLeft" align="right" valign="top"><a id="a20cc45ec9ff5c3fe6c7be64f61cb426d" name="a20cc45ec9ff5c3fe6c7be64f61cb426d"></a>
 float?&#160;</td><td class="memItemRight" valign="bottom"><b>Aspect</b><code> [getset]</code></td></tr>
@@ -169,15 +185,17 @@ float?&#160;</td><td class="memItemRight" valign="bottom"><b>Width</b><code> [ge
 <tr class="memdesc:ab60ef7d3ff161c5cf1c102c5e87480f3 inherit properties_classAnvil_1_1API_1_1NuiElement"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of this element, in pixels. <br /></td></tr>
 <tr class="separator:ab60ef7d3ff161c5cf1c102c5e87480f3 inherit properties_classAnvil_1_1API_1_1NuiElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/main/Anvil/API/Nui/DrawList/NuiDrawList.cs</li>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >The abstract base for all NUI widgets - the building blocks for creating NUI windows. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/main/Anvil/API/Nui/Widgets/NuiWidget.cs</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespaceAnvil.html">Anvil</a></li><li class="navelem"><a class="el" href="namespaceAnvil_1_1API.html">API</a></li><li class="navelem"><a class="el" href="classAnvil_1_1API_1_1NuiDrawList.html">NuiDrawList</a></li>
+    <li class="navelem"><a class="el" href="namespaceAnvil.html">Anvil</a></li><li class="navelem"><a class="el" href="namespaceAnvil_1_1API.html">API</a></li><li class="navelem"><a class="el" href="classAnvil_1_1API_1_1NuiWidget.html">NuiWidget</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

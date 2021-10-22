@@ -1,4 +1,5 @@
 <map id="Anvil.API.NuiCheck" name="Anvil.API.NuiCheck">
-<area shape="rect" id="node1" title="A checkbox with a label to the right of it." alt="" coords="5,80,141,107"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="29,5,118,32"/>
+<area shape="rect" id="node1" title="A checkbox with a label to the right of it." alt="" coords="5,155,141,181"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="32,80,115,107"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="29,5,118,32"/>
 </map>

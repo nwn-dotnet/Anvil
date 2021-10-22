@@ -1,4 +1,5 @@
 <map id="Anvil.API.NuiColorPicker" name="Anvil.API.NuiColorPicker">
-<area shape="rect" id="node1" title="A simple color picker, with no borders or spacing." alt="" coords="5,80,172,107"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="44,5,133,32"/>
+<area shape="rect" id="node1" title="A simple color picker, with no borders or spacing." alt="" coords="5,155,172,181"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="47,80,130,107"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="44,5,133,32"/>
 </map>

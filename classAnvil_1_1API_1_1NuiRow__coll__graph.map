@@ -1,5 +1,5 @@
 <map id="Anvil.API.NuiRow" name="Anvil.API.NuiRow">
 <area shape="rect" id="node1" title="A layout element that will auto&#45;space all elements inside of it and advise the parent about its desir..." alt="" coords="5,155,131,181"/>
 <area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiLayout.html" title=" " alt="" coords="27,80,109,107"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="23,5,113,32"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="23,5,113,32"/>
 </map>

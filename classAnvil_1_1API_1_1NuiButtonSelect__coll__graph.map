@@ -1,4 +1,5 @@
 <map id="Anvil.API.NuiButtonSelect" name="Anvil.API.NuiButtonSelect">
-<area shape="rect" id="node1" title="A clickable button with text as the label. &#160;Same as NuiButton, but this one is a toggle." alt="" coords="5,80,180,107"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="48,5,137,32"/>
+<area shape="rect" id="node1" title="A clickable button with text as the label. &#160;Same as NuiButton, but this one is a toggle." alt="" coords="5,155,180,181"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="51,80,134,107"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="48,5,137,32"/>
 </map>

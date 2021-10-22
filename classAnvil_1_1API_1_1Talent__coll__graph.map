@@ -1,5 +1,5 @@
 <map id="Anvil.API.Talent" name="Anvil.API.Talent">
 <area shape="rect" id="node1" title=" " alt="" coords="5,155,120,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1EngineStructure.html" title="Represents a pointer&#45;type VM structure." alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1EngineStructure.html" title="A pointer&#45;type VM structure." alt="" coords="5,80,120,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="17,5,108,32"/>
 </map>

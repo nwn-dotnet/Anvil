@@ -1,4 +1,5 @@
 <map id="Anvil.API.NuiSliderFloat" name="Anvil.API.NuiSliderFloat">
-<area shape="rect" id="node1" title="A slider bar with floating&#45;point values." alt="" coords="5,80,167,107"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="41,5,131,32"/>
+<area shape="rect" id="node1" title="A slider bar with floating&#45;point values." alt="" coords="5,155,167,181"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="45,80,127,107"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="41,5,131,32"/>
 </map>

@@ -21,12 +21,13 @@ var searchData=
   ['cassowaryexception_18',['CassowaryException',['../classAnvil_1_1API_1_1CassowaryException.html',1,'Anvil::API']]],
   ['cassowarystrength_19',['CassowaryStrength',['../classAnvil_1_1API_1_1CassowaryStrength.html',1,'Anvil::API']]],
   ['chatservice_20',['ChatService',['../classAnvil_1_1Services_1_1ChatService.html',1,'Anvil::Services']]],
-  ['color_21',['Color',['../structAnvil_1_1API_1_1Color.html',1,'Anvil::API']]],
-  ['colorconstants_22',['ColorConstants',['../classAnvil_1_1API_1_1ColorConstants.html',1,'Anvil::API']]],
-  ['creatureclassinfo_23',['CreatureClassInfo',['../classAnvil_1_1API_1_1CreatureClassInfo.html',1,'Anvil::API']]],
-  ['creatureevents_24',['CreatureEvents',['../classAnvil_1_1API_1_1Events_1_1CreatureEvents.html',1,'Anvil::API::Events']]],
-  ['creaturelevelinfo_25',['CreatureLevelInfo',['../classAnvil_1_1API_1_1CreatureLevelInfo.html',1,'Anvil::API']]],
-  ['creaturemodelnumber_26',['CreatureModelNumber',['../classAnvil_1_1API_1_1CreatureModelNumber.html',1,'Anvil::API']]],
-  ['creaturetypefilter_27',['CreatureTypeFilter',['../structAnvil_1_1API_1_1CreatureTypeFilter.html',1,'Anvil::API']]],
-  ['cursortargetservice_28',['CursorTargetService',['../classAnvil_1_1Services_1_1CursorTargetService.html',1,'Anvil::Services']]]
+  ['collectionextensions_21',['CollectionExtensions',['../classAnvil_1_1API_1_1CollectionExtensions.html',1,'Anvil::API']]],
+  ['color_22',['Color',['../structAnvil_1_1API_1_1Color.html',1,'Anvil::API']]],
+  ['colorconstants_23',['ColorConstants',['../classAnvil_1_1API_1_1ColorConstants.html',1,'Anvil::API']]],
+  ['creatureclassinfo_24',['CreatureClassInfo',['../classAnvil_1_1API_1_1CreatureClassInfo.html',1,'Anvil::API']]],
+  ['creatureevents_25',['CreatureEvents',['../classAnvil_1_1API_1_1Events_1_1CreatureEvents.html',1,'Anvil::API::Events']]],
+  ['creaturelevelinfo_26',['CreatureLevelInfo',['../classAnvil_1_1API_1_1CreatureLevelInfo.html',1,'Anvil::API']]],
+  ['creaturemodelnumber_27',['CreatureModelNumber',['../classAnvil_1_1API_1_1CreatureModelNumber.html',1,'Anvil::API']]],
+  ['creaturetypefilter_28',['CreatureTypeFilter',['../structAnvil_1_1API_1_1CreatureTypeFilter.html',1,'Anvil::API']]],
+  ['cursortargetservice_29',['CursorTargetService',['../classAnvil_1_1Services_1_1CursorTargetService.html',1,'Anvil::Services']]]
 ];

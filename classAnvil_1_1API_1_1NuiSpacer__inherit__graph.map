@@ -1,4 +1,5 @@
 <map id="Anvil.API.NuiSpacer" name="Anvil.API.NuiSpacer">
-<area shape="rect" id="node1" title="A special widget that just takes up layout space. &#160;Configure the space used with the Width and Height..." alt="" coords="5,80,145,107"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiElement.html" title="A NUI widget/element." alt="" coords="31,5,120,32"/>
+<area shape="rect" id="node1" title="A special widget that just takes up layout space. &#160;Configure the space used with the Width and Height..." alt="" coords="5,155,145,181"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NuiWidget.html" title="The abstract base for all NUI widgets &#45; the building blocks for creating NUI windows." alt="" coords="34,80,117,107"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NuiElement.html" title="A dynamic NUI element with style support." alt="" coords="31,5,120,32"/>
 </map>
