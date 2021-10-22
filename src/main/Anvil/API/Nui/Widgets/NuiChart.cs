@@ -6,7 +6,7 @@ namespace Anvil.API
   /// <summary>
   /// A line/column chart element.
   /// </summary>
-  public sealed class NuiChart : NuiElement
+  public sealed class NuiChart : NuiWidget
   {
     public override string Type
     {

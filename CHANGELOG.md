@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.33.1
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.0...v8193.33.1
+
+### Changed
+- Update to NWN.Core 8193.33.1
+
+### Fixed
+- Fixed an issue when retrieving bind values for certain class/structures (NuiRect, NuiVector, etc.) would return the default value.
+- Fixed an incorrect API/object mapping for NuiDrawList.
+
 ## 8193.33.0
 https://github.com/nwn-dotnet/Anvil/compare/v8193.26.3...v8193.33.0
 

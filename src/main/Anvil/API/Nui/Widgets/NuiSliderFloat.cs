@@ -5,13 +5,14 @@ namespace Anvil.API
   /// <summary>
   /// A slider bar with floating-point values.
   /// </summary>
-  public sealed class NuiSliderFloat : NuiElement
+  public sealed class NuiSliderFloat : NuiWidget
   {
     public override string Type
     {
       get => "sliderf";
     }
 
+    [JsonConstructor]
     public NuiSliderFloat(NuiProperty<float> value, NuiProperty<float> min, NuiProperty<float> max)
     {
       Value = value;

@@ -5,13 +5,14 @@ namespace Anvil.API
   /// <summary>
   /// A non-editable text field. Supports multiple lines and has a skinned border and a scrollbar if needed.
   /// </summary>
-  public sealed class NuiText : NuiElement
+  public sealed class NuiText : NuiWidget
   {
     public override string Type
     {
       get => "text";
     }
 
+    [JsonConstructor]
     public NuiText(NuiProperty<string> text)
     {
       Text = text;

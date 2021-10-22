@@ -7,7 +7,7 @@ namespace Anvil.API
   /// A list of options (radio buttons).<br/>
   /// Only one can be selected at a time.
   /// </summary>
-  public sealed class NuiOptions : NuiElement
+  public sealed class NuiOptions : NuiWidget
   {
     public override string Type
     {

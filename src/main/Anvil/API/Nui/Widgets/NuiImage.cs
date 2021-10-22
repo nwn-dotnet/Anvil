@@ -5,13 +5,14 @@ namespace Anvil.API
   /// <summary>
   /// An image, with no border or padding.
   /// </summary>
-  public sealed class NuiImage : NuiElement
+  public sealed class NuiImage : NuiWidget
   {
     public override string Type
     {
       get => "image";
     }
 
+    [JsonConstructor]
     public NuiImage(NuiProperty<string> resRef)
     {
       ResRef = resRef;

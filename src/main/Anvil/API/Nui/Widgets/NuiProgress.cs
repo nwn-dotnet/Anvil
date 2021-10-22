@@ -5,13 +5,14 @@ namespace Anvil.API
   /// <summary>
   /// A generic progress bar.
   /// </summary>
-  public sealed class NuiProgress : NuiElement
+  public sealed class NuiProgress : NuiWidget
   {
     public override string Type
     {
       get => "progress";
     }
 
+    [JsonConstructor]
     public NuiProgress(NuiProperty<float> value)
     {
       Value = value;

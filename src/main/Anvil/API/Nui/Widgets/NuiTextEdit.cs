@@ -5,13 +5,14 @@ namespace Anvil.API
   /// <summary>
   /// An editable text field. Can be optionally configured as multi-line.
   /// </summary>
-  public sealed class NuiTextEdit : NuiElement
+  public sealed class NuiTextEdit : NuiWidget
   {
     public override string Type
     {
       get => "textedit";
     }
 
+    [JsonConstructor]
     public NuiTextEdit(NuiProperty<string> label, NuiProperty<string> value, ushort maxLength, bool multiLine)
     {
       Label = label;

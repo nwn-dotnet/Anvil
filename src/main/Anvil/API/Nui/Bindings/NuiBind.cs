@@ -12,6 +12,7 @@ namespace Anvil.API
     [JsonProperty("bind")]
     public string Key { get; init; }
 
+    [JsonConstructor]
     public NuiBind(string key)
     {
       Key = key;

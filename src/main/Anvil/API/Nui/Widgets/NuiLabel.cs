@@ -5,13 +5,14 @@ namespace Anvil.API
   /// <summary>
   /// A single-line, styleable, non-editable text field.
   /// </summary>
-  public sealed class NuiLabel : NuiElement
+  public sealed class NuiLabel : NuiWidget
   {
     public override string Type
     {
       get => "label";
     }
 
+    [JsonConstructor]
     public NuiLabel(NuiProperty<string> label)
     {
       Label = label;

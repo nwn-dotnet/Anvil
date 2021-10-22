@@ -5,13 +5,14 @@ namespace Anvil.API
   /// <summary>
   /// A slider bar with integer values.
   /// </summary>
-  public sealed class NuiSlider : NuiElement
+  public sealed class NuiSlider : NuiWidget
   {
     public override string Type
     {
       get => "slider";
     }
 
+    [JsonConstructor]
     public NuiSlider(NuiProperty<int> value, NuiProperty<int> min, NuiProperty<int> max)
     {
       Value = value;

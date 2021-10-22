@@ -3,7 +3,7 @@ using System;
 namespace Anvil.API
 {
   /// <summary>
-  /// Represents a vector with two 32 bit integer values.
+  /// A vector with two 32 bit integer values.
   /// </summary>
   public readonly struct Vector2Int : IEquatable<Vector2Int>
   {

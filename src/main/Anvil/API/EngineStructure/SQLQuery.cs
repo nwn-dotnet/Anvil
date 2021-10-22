@@ -6,7 +6,7 @@ using NWN.Core;
 namespace Anvil.API
 {
   /// <summary>
-  /// Represents a SQL Query.
+  /// A SQL Query.
   /// </summary>
   public sealed class SQLQuery : EngineStructure
   {

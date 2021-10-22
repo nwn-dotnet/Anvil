@@ -9,8 +9,12 @@ namespace Anvil.API
       get => NuiDrawListItemType.Text;
     }
 
-    [JsonProperty("color")]
-    public NuiProperty<NuiColor> Color { get; set; }
+    [JsonConstructor]
+    public NuiDrawListText(NuiProperty<NuiColor> color, NuiProperty<NuiRect> rect, NuiProperty<string> text) : base(color, null, null)
+    {
+      Rect = rect;
+      Text = text;
+    }
 
     [JsonProperty("rect")]
     public NuiProperty<NuiRect> Rect { get; set; }

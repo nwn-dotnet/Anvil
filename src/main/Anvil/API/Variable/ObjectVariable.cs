@@ -3,7 +3,7 @@ using System;
 namespace Anvil.API
 {
   /// <summary>
-  /// Represents a variable stored on an Object.
+  /// A key/value pair/variable stored on an Object.
   /// </summary>
   public abstract class ObjectVariable
   {
