@@ -355,7 +355,8 @@ namespace Anvil.API
     /// </summary>
     public int Age
     {
-      get => NWScript.GetAge(this);
+      get => Creature.m_pStats.m_nAge;
+      set => Creature.m_pStats.m_nAge = value;
     }
 
     /// <summary>
