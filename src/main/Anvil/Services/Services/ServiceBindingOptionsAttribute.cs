@@ -14,6 +14,7 @@ namespace Anvil.Services
     [Obsolete("Use the BindingPriority property instead. This property will be removed in a future release.")]
     public short Order
     {
+      get => (short)Priority;
       init => Priority = value;
     }
 
