@@ -47,7 +47,7 @@ namespace Anvil.Services
 
     internal ServiceBindingOptionsAttribute(InternalBindingPriority priority)
     {
-      this.Priority = (int)priority;
+      Priority = (int)priority;
     }
 
     public ServiceBindingOptionsAttribute()
