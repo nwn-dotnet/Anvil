@@ -11,7 +11,7 @@ namespace Anvil.Services
   /// An advanced service for hooking native NWN functions.
   /// </summary>
   [ServiceBinding(typeof(HookService))]
-  [ServiceBindingOptions(BindingOrder.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed unsafe class HookService : ILateDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

@@ -7,7 +7,7 @@ using NLog;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(EventService))]
-  [ServiceBindingOptions(BindingOrder.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed partial class EventService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
