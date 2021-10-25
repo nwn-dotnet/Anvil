@@ -24,6 +24,7 @@ namespace Anvil.Services
         EnablePropertyInjection = true,
         EnableVariance = false,
         DefaultServiceSelector = SelectHighestPriorityService,
+        LogFactory = CreateLogHandler,
       };
 
       ServiceContainer serviceContainer = new ServiceContainer(containerOptions);
@@ -44,6 +45,25 @@ namespace Anvil.Services
       // Services are sorted in priority order.
       // So we just return the first service.
       return services[0];
+    }
+
+    private static Action<LogEntry> CreateLogHandler(Type type)
+    {
+      Logger logger = LogManager.GetLogger(type.FullName);
+      return entry =>
+      {
+        switch (entry.Level)
+        {
+          case LogLevel.Info:
+            logger.Debug(entry.Message);
+            break;
+          case LogLevel.Warning:
+            logger.Warn(entry.Message);
+            break;
+          default:
+            throw new ArgumentOutOfRangeException();
+        }
+      };
     }
 
     private static void RegisterCoreService(ServiceContainer serviceContainer, object instance)
