@@ -6,6 +6,7 @@ using Anvil.API;
 using Anvil.Plugins;
 using LightInject;
 using NLog;
+using LogLevel = LightInject.LogLevel;
 
 namespace Anvil.Services
 {
@@ -18,8 +19,15 @@ namespace Anvil.Services
 
     public ServiceContainer CreateContainer(PluginManager pluginManager, IEnumerable<object> coreServices)
     {
-      ServiceContainer serviceContainer = new ServiceContainer(new ContainerOptions { EnablePropertyInjection = true, EnableVariance = false });
+      ContainerOptions containerOptions = new ContainerOptions
+      {
+        EnablePropertyInjection = true,
+        EnableVariance = false,
+        DefaultServiceSelector = SelectHighestPriorityService,
+        LogFactory = CreateLogHandler,
+      };
 
+      ServiceContainer serviceContainer = new ServiceContainer(containerOptions);
       SetupInjectPropertySelector(serviceContainer);
       serviceContainer.RegisterInstance((IServiceContainer)serviceContainer);
 
@@ -30,6 +38,32 @@ namespace Anvil.Services
 
       BuildContainer(pluginManager, serviceContainer);
       return serviceContainer;
+    }
+
+    private static string SelectHighestPriorityService(string[] services)
+    {
+      // Services are sorted in priority order.
+      // So we just return the first service.
+      return services[0];
+    }
+
+    private static Action<LogEntry> CreateLogHandler(Type type)
+    {
+      Logger logger = LogManager.GetLogger(type.FullName);
+      return entry =>
+      {
+        switch (entry.Level)
+        {
+          case LogLevel.Info:
+            logger.Debug(entry.Message);
+            break;
+          case LogLevel.Warning:
+            logger.Warn(entry.Message);
+            break;
+          default:
+            throw new ArgumentOutOfRangeException();
+        }
+      };
     }
 
     private static void RegisterCoreService(ServiceContainer serviceContainer, object instance)
@@ -95,6 +129,7 @@ namespace Anvil.Services
       Log.Info("Registered service {Service}", bindTo.FullName);
     }
 
+#pragma warning disable 618
     private static bool IsServiceRequirementsMet(PluginManager pluginManager, ServiceBindingOptionsAttribute options)
     {
       if (options == null || options.PluginDependencies == null && options.MissingPluginDependencies == null)
@@ -114,6 +149,7 @@ namespace Anvil.Services
 
       return true;
     }
+#pragma warning restore 618
 
     private static void RegisterImplicitBindings(ServiceContainer serviceContainer, Type bindTo, string serviceName, ILifetime lifeTime)
     {
@@ -147,8 +183,10 @@ namespace Anvil.Services
 
     private static string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
     {
-      short bindingOrder = options?.Order ?? (short)BindingOrder.Default;
-      return bindingOrder.ToString("D5") + implementation.FullName;
+      int bindingPriority = options?.Priority ?? (int)InternalBindingPriority.Normal;
+      bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);
+
+      return bindingPriority.ToString("D5") + implementation.FullName;
     }
   }
 }

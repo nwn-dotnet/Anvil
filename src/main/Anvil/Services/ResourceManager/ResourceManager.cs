@@ -12,7 +12,7 @@ using ResRefType = Anvil.API.ResRefType;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ResourceManager))]
-  [ServiceBindingOptions(BindingOrder.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed class ResourceManager : IDisposable
   {
     public const int MaxNameLength = 16;

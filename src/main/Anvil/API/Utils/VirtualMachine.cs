@@ -12,7 +12,7 @@ namespace Anvil.API
   /// Standard and Low Level methods and properties for querying/interacting with the NwScript virtual machine.
   /// </summary>
   [ServiceBinding(typeof(VirtualMachine))]
-  [ServiceBindingOptions(BindingOrder.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed class VirtualMachine
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

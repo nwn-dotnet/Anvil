@@ -6,7 +6,7 @@ using NWN.Native.API;
 namespace Anvil.API
 {
   [ServiceBinding(typeof(TlkTable))]
-  [ServiceBindingOptions(BindingOrder.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed class TlkTable
   {
     private readonly CTlkTable tlkTable = NWNXLib.TlkTable();

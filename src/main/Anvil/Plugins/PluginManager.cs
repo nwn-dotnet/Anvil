@@ -12,7 +12,7 @@ namespace Anvil.Plugins
   /// <summary>
   /// Loads all available plugins and their types for service initialisation.
   /// </summary>
-  [ServiceBindingOptions(BindingOrder.Core)]
+  [ServiceBindingOptions(InternalBindingPriority.Core)]
   public sealed class PluginManager
   {
     private const string PluginResourceDir = "resources";

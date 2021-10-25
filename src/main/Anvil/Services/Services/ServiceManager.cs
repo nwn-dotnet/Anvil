@@ -7,7 +7,7 @@ using NLog;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(BindingOrder.Core)]
+  [ServiceBindingOptions(InternalBindingPriority.Core)]
   public sealed class ServiceManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
