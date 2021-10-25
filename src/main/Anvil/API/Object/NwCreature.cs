@@ -351,11 +351,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's age, in years.
+    /// Gets or sets this creature's age, in years.
     /// </summary>
     public int Age
     {
-      get => NWScript.GetAge(this);
+      get => Creature.m_pStats.m_nAge;
+      set => Creature.m_pStats.m_nAge = value;
     }
 
     /// <summary>

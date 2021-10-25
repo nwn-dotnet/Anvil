@@ -12,6 +12,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...HEAD
 ### Changed
 - `[ServiceBindingOptions]` - The `BindingPriority` property defines the initialization order of a service. (Higher priority = initialized first).
 - When injecting a dependency of an interface/base class and multiple candidates are available, the service with the highest `BindingPriority` will be injected.
+- `NwCreature.Age` can now be set.
 
 ### Deprecated
 - `[ServiceBindingOptions]` - `Order` has been deprecated and replaced with the `BindingPriority` property.
