@@ -1,64 +1,83 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
-        <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-        <PackageId>NWN.Anvil</PackageId>
-        <Authors>NWN.NET</Authors>
-        <Description>
-          Anvil is a C# framework for building behaviours and adding new functionalty to Neverwinter Nights: Enhanced Edition. The library allows server owners and builders to create simple behaviours, while giving plugin developers the option to implement complex systems or modify existing hardcoded rules.
-          API Reference/Documentation - https://nwn-dotnet.github.io/Anvil/
-          GitHub, Issues and Discussions - https://github.com/nwn-dotnet/Anvil
-          Discord, Latest News, Help and Support - https://discord.gg/gKt495UBgS
-        </Description>
-        <!-- https://github.com/NuGet/Home/issues/10791 -->
-        <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
-        <PackageTags>Neverwinter Nights;NWN;</PackageTags>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <EnableDynamicLoading>true</EnableDynamicLoading>
-        <IncludeSymbols>true</IncludeSymbols>
-        <DebugSymbols>true</DebugSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <RepositoryUrl>https://github.com/nwn-dotnet/Anvil</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <NoWarn>1591</NoWarn>
-        <RootNamespace />
-        <LangVersion>9.0</LangVersion>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <Configurations>Debug;Release;Samples</Configurations>
-        <Platforms>AnyCPU</Platforms>
-    </PropertyGroup>
+  <!--Build-->
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
 
-    <ItemGroup>
-        <PackageReference Include="LightInject" Version="6.4.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="NLog" Version="4.7.11" />
-        <PackageReference Include="NWN.Core" Version="8193.33.1" PrivateAssets="compile" />
-        <PackageReference Include="NWN.Native" Version="8193.33.0" PrivateAssets="compile" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-    </ItemGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 
-    <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath="/" />
-    </ItemGroup>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
 
-    <ItemGroup Condition=" '$(Configuration)' != 'Samples'">
-        <None Remove="docs\**" />
-        <EmbeddedResource Remove="docs\**" />
-        <Compile Remove="docs\**" />
-    </ItemGroup>
+    <NoWarn>1591</NoWarn>
 
-    <Target Name="CreatePluginsFolder" AfterTargets="Build">
-        <MakeDir Directories="$(OutputPath)\Plugins" Condition="!Exists('$(OutputPath)\Plugins')" />
-    </Target>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Configurations>Debug;Release;Samples</Configurations>
+    <Platforms>AnyCPU</Platforms>
 
-    <Target Name="ZipOutputPath" AfterTargets="CreatePluginsFolder">
-        <ZipDirectory Overwrite="true" SourceDirectory="$(OutputPath)" DestinationFile="$(OutputPath)\..\$(MSBuildProjectName).zip" />
-    </Target>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <!--Package-->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <PackageId>$(AssemblyName)</PackageId>
+    <Authors>NWN.NET</Authors>
+
+    <RepositoryUrl>https://github.com/nwn-dotnet/Anvil</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <Description>
+      Anvil is a C# framework for building behaviours and adding new functionalty to Neverwinter Nights: Enhanced Edition. The library allows server owners and builders to create simple behaviours, while giving plugin developers the option to implement complex systems or modify existing hardcoded rules.
+      API Reference/Documentation - https://nwn-dotnet.github.io/Anvil/
+      GitHub, Issues and Discussions - https://github.com/nwn-dotnet/Anvil
+      Discord, Latest News, Help and Support - https://discord.gg/gKt495UBgS
+    </Description>
+
+    <!-- https://github.com/NuGet/Home/issues/10791 -->
+    <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
+    <PackageTags>Neverwinter Nights;NWN;</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <!--Debug/Source Link-->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <DebugSymbols>true</DebugSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LightInject" Version="6.4.0"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="NLog" Version="4.7.11"/>
+    <PackageReference Include="NWN.Core" Version="8193.33.1" PrivateAssets="compile"/>
+    <PackageReference Include="NWN.Native" Version="8193.33.0" PrivateAssets="compile"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="/"/>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(Configuration)' != 'Samples'">
+    <None Remove="docs\**"/>
+    <EmbeddedResource Remove="docs\**"/>
+    <Compile Remove="docs\**"/>
+  </ItemGroup>
+
+  <Target Name="CreatePluginsFolder" AfterTargets="Build">
+    <MakeDir Directories="$(OutputPath)\Plugins" Condition="!Exists('$(OutputPath)\Plugins')"/>
+  </Target>
+
+  <Target Name="ZipOutputPath" AfterTargets="CreatePluginsFolder">
+    <ZipDirectory Overwrite="true" SourceDirectory="$(OutputPath)" DestinationFile="$(OutputPath)\..\$(MSBuildProjectName).zip"/>
+  </Target>
 </Project>
