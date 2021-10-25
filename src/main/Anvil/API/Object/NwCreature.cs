@@ -351,7 +351,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's age, in years.
+    /// Gets or sets this creature's age, in years.
     /// </summary>
     public int Age
     {
