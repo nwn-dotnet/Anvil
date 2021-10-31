@@ -100,7 +100,7 @@ namespace Anvil.Services
         case ResRefType.NCS:
           return null;
         default:
-          return GetStandardResourceData(name, (ushort)type);
+          return GetStandardResourceData(name, type);
       }
     }
 
@@ -148,26 +148,32 @@ namespace Anvil.Services
       return alias;
     }
 
-    private unsafe byte[] GetStandardResourceData(string name, ushort type)
+    private unsafe byte[] GetStandardResourceData(string name, ResRefType type)
     {
+      if (TryGetNativeResource(name, type, out CRes res))
+      {
+        void* data = res.GetData();
+        int size = res.GetSize();
+
+        byte[] retVal = new byte[res.m_nSize];
+        Marshal.Copy((IntPtr)data, retVal, 0, size);
+        return retVal;
+      }
+
+      return null;
+    }
+
+    private bool TryGetNativeResource<T>(string name, ResRefType type, out T res) where T : CRes
+    {
+      res = default;
       CResRef resRef = new CResRef(name);
-      if (!ResMan.Exists(resRef, type).ToBool())
+      if (!ResMan.Exists(resRef, (ushort)type).ToBool())
       {
-        return null;
+        return false;
       }
 
-      CRes res = ResMan.GetResObject(resRef, type);
-      if (res == null)
-      {
-        return null;
-      }
-
-      void* data = res.GetData();
-      int size = res.GetSize();
-
-      byte[] retVal = new byte[res.m_nSize];
-      Marshal.Copy((IntPtr)data, retVal, 0, size);
-      return retVal;
+      res = ResMan.GetResObject(resRef, (ushort)type) as T;
+      return res != null;
     }
 
     void IDisposable.Dispose()
