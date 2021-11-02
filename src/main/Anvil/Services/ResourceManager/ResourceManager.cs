@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using Anvil.API;
 using Anvil.Internal;
 using NLog;
@@ -13,7 +14,7 @@ namespace Anvil.Services
 {
   [ServiceBinding(typeof(ResourceManager))]
   [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed class ResourceManager : IDisposable
+  public sealed unsafe class ResourceManager : IDisposable
   {
     public const int MaxNameLength = 16;
 
@@ -104,6 +105,18 @@ namespace Anvil.Services
       }
     }
 
+    public GffResource GetGenericFile(string name, ResRefType type)
+    {
+      CResRef resRef = new CResRef(name);
+      if (!ResMan.Exists(resRef, (ushort)type).ToBool())
+      {
+        return null;
+      }
+
+      CResGFF gff = new CResGFF((ushort)type, $"{type.ToString()} ".GetNullTerminatedString(), resRef);
+      return new GffResource(name, gff);
+    }
+
     /// <summary>
     /// Gets the contents of a .nss script file as a string.
     /// </summary>
@@ -163,7 +176,7 @@ namespace Anvil.Services
       return null;
     }
 
-    private bool TryGetNativeResource<T>(string name, ResRefType type, out T res) where T : CRes
+    private bool TryGetNativeResource(string name, ResRefType type, out CRes res)
     {
       res = default;
       CResRef resRef = new CResRef(name);
@@ -172,7 +185,7 @@ namespace Anvil.Services
         return false;
       }
 
-      res = ResMan.GetResObject(resRef, (ushort)type) as T;
+      res = ResMan.GetResObject(resRef, (ushort)type);
       return res != null;
     }
 
