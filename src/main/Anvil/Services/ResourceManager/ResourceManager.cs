@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using Anvil.API;
 using Anvil.Internal;
 using NLog;
@@ -80,7 +79,7 @@ namespace Anvil.Services
     /// <param name="name">The resource name to check.</param>
     /// <param name="type">The type of this resource.</param>
     /// <returns>true if the supplied resource exists and is of the specified type, otherwise false.</returns>
-    public unsafe bool IsValidResource(string name, ResRefType type = ResRefType.UTC)
+    public bool IsValidResource(string name, ResRefType type = ResRefType.UTC)
     {
       return ResMan.Exists(new CResRef(name), (ushort)type, null).ToBool();
     }
@@ -122,7 +121,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="scriptName">The name of the script to get the contents of.</param>
     /// <returns>The script file contents or "" on error.</returns>
-    public unsafe string GetNSSContents(CExoString scriptName)
+    public string GetNSSContents(CExoString scriptName)
     {
       CScriptSourceFile scriptSourceFile = new CScriptSourceFile();
       byte* data;
@@ -161,7 +160,7 @@ namespace Anvil.Services
       return alias;
     }
 
-    private unsafe byte[] GetStandardResourceData(string name, ResRefType type)
+    private byte[] GetStandardResourceData(string name, ResRefType type)
     {
       if (TryGetNativeResource(name, type, out CRes res))
       {
