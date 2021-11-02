@@ -3,7 +3,7 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public sealed class GffResource
+  public sealed class GffResource : IDisposable
   {
     private readonly CResGFF resGff;
     private readonly CResStruct rootStruct;
@@ -21,16 +21,37 @@ namespace Anvil.API
       }
     }
 
+    ~GffResource()
+    {
+      Dispose(false);
+    }
+
     public string FileType { get; }
 
-    public GffResourceField this[uint index]
+    public GffResourceField this[int index]
     {
-      get => GffResourceField.Create(resGff, rootStruct, index);
+      get => GffResourceField.Create(resGff, rootStruct, (uint)index);
     }
 
     public GffResourceField this[string index]
     {
       get => GffResourceField.Create(resGff, rootStruct, index);
+    }
+
+    public void Dispose()
+    {
+      Dispose(true);
+    }
+
+    private void Dispose(bool disposing)
+    {
+      resGff?.Dispose();
+      rootStruct?.Dispose();
+
+      if (disposing)
+      {
+        GC.SuppressFinalize(this);
+      }
     }
   }
 }

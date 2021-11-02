@@ -4,6 +4,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A <see cref="GffResourceField"/> containing a structure of key/value pairs.
+  /// </summary>
   public sealed unsafe class GffResourceFieldStruct : GffResourceField, IReadOnlyDictionary<string, GffResourceField>
   {
     private readonly List<string> keys = new List<string>();
@@ -11,11 +14,17 @@ namespace Anvil.API
 
     private readonly Dictionary<string, GffResourceField> fieldLookup = new Dictionary<string, GffResourceField>();
 
-    public GffResourceFieldStruct(CResGFF resGff, CResStruct resStruct) : base(resGff)
+    public override GffResourceFieldType FieldType
     {
-      Count = (int)resGff.GetFieldCount(resStruct);
+      get => GffResourceFieldType.Struct;
+    }
 
-      for (uint i = 0; i < Count; i++)
+    internal GffResourceFieldStruct(CResGFF resGff, CResStruct resStruct) : base(resGff)
+    {
+      int fieldCount = (int)resGff.GetFieldCount(resStruct);
+      List<KeyValuePair<string, GffResourceField>> entrySet = new List<KeyValuePair<string, GffResourceField>>();
+
+      for (uint i = 0; i < fieldCount; i++)
       {
         byte* fieldIdPtr = ResGff.GetFieldLabel(resStruct, i);
         string key = StringHelper.ReadNullTerminatedString(fieldIdPtr);
@@ -24,34 +33,32 @@ namespace Anvil.API
         keys.Add(key);
         values.Add(value);
         fieldLookup.Add(key, value);
+        entrySet.Add(new KeyValuePair<string, GffResourceField>(key, value));
       }
+
+      EntrySet = entrySet;
     }
 
-    public override GffResourceFieldType FieldType
+    public override IEnumerable<KeyValuePair<string, GffResourceField>> EntrySet { get; }
+
+    public override int Count
     {
-      get => GffResourceFieldType.Struct;
+      get => keys.Count;
     }
 
-    public int Count { get; }
-
-    IEnumerable<string> IReadOnlyDictionary<string, GffResourceField>.Keys
+    public override IEnumerable<string> Keys
     {
       get => keys;
     }
 
-    IEnumerable<GffResourceField> IReadOnlyDictionary<string, GffResourceField>.Values
+    public override IEnumerable<GffResourceField> Values
     {
       get => values;
     }
 
-    public bool ContainsKey(string key)
+    public override GffResourceField this[int index]
     {
-      return fieldLookup.ContainsKey(key);
-    }
-
-    public bool TryGetValue(string key, out GffResourceField value)
-    {
-      return fieldLookup.TryGetValue(key, out value);
+      get => fieldLookup[keys[index]];
     }
 
     public override GffResourceField this[string key]
@@ -59,17 +66,19 @@ namespace Anvil.API
       get => fieldLookup[key];
     }
 
-    public override GffResourceField this[uint index]
+    public override bool ContainsKey(string key)
     {
-      get => fieldLookup[keys[(int)index]];
+      return fieldLookup.ContainsKey(key);
+    }
+
+    public override bool TryGetValue(string key, out GffResourceField value)
+    {
+      return fieldLookup.TryGetValue(key, out value);
     }
 
     public IEnumerator<KeyValuePair<string, GffResourceField>> GetEnumerator()
     {
-      for (int i = 0; i < keys.Count; i++)
-      {
-        yield return new KeyValuePair<string, GffResourceField>(keys[i], values[i]);
-      }
+      return EntrySet.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
