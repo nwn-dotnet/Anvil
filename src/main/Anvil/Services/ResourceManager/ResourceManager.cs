@@ -13,7 +13,7 @@ namespace Anvil.Services
 {
   [ServiceBinding(typeof(ResourceManager))]
   [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed class ResourceManager : IDisposable
+  public sealed unsafe class ResourceManager : IDisposable
   {
     public const int MaxNameLength = 16;
 
@@ -79,7 +79,7 @@ namespace Anvil.Services
     /// <param name="name">The resource name to check.</param>
     /// <param name="type">The type of this resource.</param>
     /// <returns>true if the supplied resource exists and is of the specified type, otherwise false.</returns>
-    public unsafe bool IsValidResource(string name, ResRefType type = ResRefType.UTC)
+    public bool IsValidResource(string name, ResRefType type = ResRefType.UTC)
     {
       return ResMan.Exists(new CResRef(name), (ushort)type, null).ToBool();
     }
@@ -100,8 +100,26 @@ namespace Anvil.Services
         case ResRefType.NCS:
           return null;
         default:
-          return GetStandardResourceData(name, (ushort)type);
+          return GetStandardResourceData(name, type);
       }
+    }
+
+    /// <summary>
+    /// Gets the specified Gff resource.
+    /// </summary>
+    /// <param name="name">The resource name to fetch, without any filetype extensions.</param>
+    /// <param name="type">The type of the file/resource.</param>
+    /// <returns>A <see cref="GffResource"/> representation of the specified resource if it exists, otherwise null.</returns>
+    public GffResource GetGenericFile(string name, ResRefType type)
+    {
+      CResRef resRef = new CResRef(name);
+      if (!ResMan.Exists(resRef, (ushort)type).ToBool())
+      {
+        return null;
+      }
+
+      CResGFF gff = new CResGFF((ushort)type, $"{type.ToString()} ".GetNullTerminatedString(), resRef);
+      return new GffResource(name, gff);
     }
 
     /// <summary>
@@ -109,7 +127,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="scriptName">The name of the script to get the contents of.</param>
     /// <returns>The script file contents or "" on error.</returns>
-    public unsafe string GetNSSContents(CExoString scriptName)
+    public string GetNSSContents(CExoString scriptName)
     {
       CScriptSourceFile scriptSourceFile = new CScriptSourceFile();
       byte* data;
@@ -148,26 +166,32 @@ namespace Anvil.Services
       return alias;
     }
 
-    private unsafe byte[] GetStandardResourceData(string name, ushort type)
+    private byte[] GetStandardResourceData(string name, ResRefType type)
     {
+      if (TryGetNativeResource(name, type, out CRes res))
+      {
+        void* data = res.GetData();
+        int size = res.GetSize();
+
+        byte[] retVal = new byte[res.m_nSize];
+        Marshal.Copy((IntPtr)data, retVal, 0, size);
+        return retVal;
+      }
+
+      return null;
+    }
+
+    private bool TryGetNativeResource(string name, ResRefType type, out CRes res)
+    {
+      res = default;
       CResRef resRef = new CResRef(name);
-      if (!ResMan.Exists(resRef, type).ToBool())
+      if (!ResMan.Exists(resRef, (ushort)type).ToBool())
       {
-        return null;
+        return false;
       }
 
-      CRes res = ResMan.GetResObject(resRef, type);
-      if (res == null)
-      {
-        return null;
-      }
-
-      void* data = res.GetData();
-      int size = res.GetSize();
-
-      byte[] retVal = new byte[res.m_nSize];
-      Marshal.Copy((IntPtr)data, retVal, 0, size);
-      return retVal;
+      res = ResMan.GetResObject(resRef, (ushort)type);
+      return res != null;
     }
 
     void IDisposable.Dispose()
