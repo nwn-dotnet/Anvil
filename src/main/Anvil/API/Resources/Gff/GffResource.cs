@@ -12,7 +12,7 @@ namespace Anvil.API
     {
       this.resGff = resGff;
 
-      FileType = resGff.m_pFileType.ReadFixedLengthString();
+      FileType = resGff.m_pFileType.ReadFixedLengthString().Trim();
 
       rootStruct = new CResStruct();
       if (!resGff.GetTopLevelStruct(rootStruct).ToBool())
@@ -26,13 +26,22 @@ namespace Anvil.API
       Dispose(false);
     }
 
+    /// <summary>
+    /// Gets the file type/extension of this <see cref="GffResource"/>.
+    /// </summary>
     public string FileType { get; }
 
+    /// <summary>
+    /// Gets the child <see cref="GffResourceField"/> at the specified index.
+    /// </summary>
     public GffResourceField this[int index]
     {
       get => GffResourceField.Create(resGff, rootStruct, (uint)index);
     }
 
+    /// <summary>
+    /// Gets the child <see cref="GffResourceField"/> with the specified key.
+    /// </summary>
     public GffResourceField this[string index]
     {
       get => GffResourceField.Create(resGff, rootStruct, index);

@@ -104,6 +104,12 @@ namespace Anvil.Services
       }
     }
 
+    /// <summary>
+    /// Gets the specified Gff resource.
+    /// </summary>
+    /// <param name="name">The resource name to fetch, without any filetype extensions.</param>
+    /// <param name="type">The type of the file/resource.</param>
+    /// <returns>A <see cref="GffResource"/> representation of the specified resource if it exists, otherwise null.</returns>
     public GffResource GetGenericFile(string name, ResRefType type)
     {
       CResRef resRef = new CResRef(name);
