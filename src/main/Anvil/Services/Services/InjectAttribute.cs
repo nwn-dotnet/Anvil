@@ -28,5 +28,10 @@ namespace Anvil.Services
     /// Gets the name of the service to be injected.
     /// </summary>
     public string ServiceName { get; }
+
+    /// <summary>
+    /// Marks this dependency as optional. Optional dependencies do not throw exceptions if the service is not available.
+    /// </summary>
+    public bool Optional { get; init; }
   }
 }

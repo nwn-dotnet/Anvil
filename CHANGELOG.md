@@ -8,6 +8,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...HEAD
 
 ### Added
 - ResourceManager: Implemented GffResource API.
+- [Inject]: Property-based dependencies can now be flagged as "Optional". Optional dependencies do not throw exceptions if the service could not be loaded from a missing plugin assembly.
 
 ### Changed
 - `[ServiceBindingOptions]` - The `BindingPriority` property defines the initialization order of a service. (Higher priority = initialized first).
@@ -17,12 +18,13 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...HEAD
 ### Deprecated
 - `[ServiceBindingOptions]` - `Order` has been deprecated and replaced with the `BindingPriority` property.
 - `[ServiceBindingOptions]` - `MissingPluginDependencies` has been deprecated as functionality is covered by the `BindingPriority` dependency resolve behaviour.
+- `AttributeExtensions` - moved to `ReflectionExtensions`.
 
 ### Removed
 - N/A
 
 ### Fixed
-- N/A
+- Properties injected into service classes with plugin dependency requirements will no-longer throw an exception when the assembly is missing.
 
 ## 8193.33.1
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.0...v8193.33.1
