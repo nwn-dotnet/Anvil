@@ -19,12 +19,14 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...HEAD
 - `[ServiceBindingOptions]` - `Order` has been deprecated and replaced with the `BindingPriority` property.
 - `[ServiceBindingOptions]` - `MissingPluginDependencies` has been deprecated as functionality is covered by the `BindingPriority` dependency resolve behaviour.
 - `AttributeExtensions` - moved to `ReflectionExtensions`.
+- `NwPlayer.NuiSetGroupLayout` - moved to `NuiGroup.SetLayout`.
 
 ### Removed
 - N/A
 
 ### Fixed
 - Properties injected into service classes with plugin dependency requirements will no-longer throw an exception when the assembly is missing.
+- Fixed NuiGroup.SetLayout creating nested layout elements instead of updating the existing element (`NwPlayer.NuiSetGroupLayout` still has the old behaviour.)
 
 ## 8193.33.1
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.0...v8193.33.1
