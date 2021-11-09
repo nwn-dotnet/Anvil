@@ -13,6 +13,9 @@ namespace Anvil.API
     [JsonIgnore]
     public List<NuiElement> Children { get; set; } = new List<NuiElement>();
 
-    protected override IEnumerable<NuiElement> SerializedChildren => Children;
+    protected override IEnumerable<NuiElement> SerializedChildren
+    {
+      get => Children;
+    }
   }
 }
