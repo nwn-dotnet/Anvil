@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 namespace Anvil.API
 {
   /// <summary>
@@ -6,5 +9,13 @@ namespace Anvil.API
   public sealed class NuiRow : NuiLayout
   {
     public override string Type { get; } = "row";
+
+    [JsonIgnore]
+    public List<NuiElement> Children { get; set; } = new List<NuiElement>();
+
+    protected override IEnumerable<NuiElement> SerializedChildren
+    {
+      get => Children;
+    }
   }
 }

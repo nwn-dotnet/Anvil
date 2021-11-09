@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using NWN.Core;
 
 namespace Anvil.API
 {
@@ -15,5 +18,31 @@ namespace Anvil.API
 
     [JsonProperty("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
+
+    [JsonIgnore]
+    public NuiLayout Layout { get; set; }
+
+    protected override IEnumerable<NuiElement> SerializedChildren
+    {
+      get => Layout.SafeYield();
+    }
+
+    /// <summary>
+    /// Sets the group layout for a specific player + window token (override/partial update).<br/>
+    /// </summary>
+    /// <param name="player">The player with the window containing this group.</param>
+    /// <param name="token">The token of the window to update.</param>
+    /// <param name="newLayout">The new layout to apply to this group.</param>
+    /// <exception cref="InvalidOperationException">Thrown if this group does not have an Id assigned.</exception>
+    public void SetLayout(NwPlayer player, int token, NuiLayout newLayout)
+    {
+      if (string.IsNullOrEmpty(Id))
+      {
+        throw new InvalidOperationException("Layout cannot be updated as the NuiGroup does not have an ID.");
+      }
+
+      Json json = Json.Parse(JsonConvert.SerializeObject(newLayout));
+      NWScript.NuiSetGroupLayout(player.ControlledCreature, token, Id, json);
+    }
   }
 }

@@ -1288,13 +1288,14 @@ namespace Anvil.API
     /// <param name="uiToken">The ui token to update.</param>
     /// <param name="elementId">The ID of the element to update.</param>
     /// <param name="updatedLayout">The updated element to publish.</param>
+    [Obsolete("This method causes a nested group bug and will be removed in a future release. Use NuiGroup.UpdateLayout instead.")]
     public void NuiSetGroupLayout(int uiToken, string elementId, NuiGroup updatedLayout)
     {
       Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
       NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
     }
 
-    /// <inheritdoc cref="NuiSetGroupLayout(int,string,Anvil.API.NuiGroup)"/>
+    [Obsolete("This method causes a nested group bug and will be removed in a future release. Use NuiGroup.UpdateLayout instead.")]
     public void NuiSetGroupLayout(int uiToken, string elementId, NuiWindow updatedLayout)
     {
       Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));

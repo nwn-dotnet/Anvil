@@ -6,6 +6,6 @@ namespace Anvil.API
   public abstract class NuiLayout : NuiElement
   {
     [JsonProperty("children")]
-    public List<NuiElement> Children { get; set; } = new List<NuiElement>();
+    protected abstract IEnumerable<NuiElement> SerializedChildren { get; }
   }
 }
