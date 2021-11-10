@@ -3,6 +3,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.33.2
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...v8193.33.2
+
+### Added
+- ResourceManager: Implemented GffResource API.
+- [Inject]: Property-based dependencies can now be flagged as "Optional". Optional dependencies do not throw exceptions if the service could not be loaded from a missing plugin assembly.
+
+### Changed
+- `[ServiceBindingOptions]` - The `BindingPriority` property defines the initialization order of a service. (Higher priority = initialized first).
+- When injecting a dependency of an interface/base class and multiple candidates are available, the service with the highest `BindingPriority` will be injected.
+- `NwCreature.Age` can now be set.
+
+### Deprecated
+- `[ServiceBindingOptions]` - `Order` has been deprecated and replaced with the `BindingPriority` property.
+- `[ServiceBindingOptions]` - `MissingPluginDependencies` has been deprecated as functionality is covered by the `BindingPriority` dependency resolve behaviour.
+- `AttributeExtensions` - moved to `ReflectionExtensions`.
+- `NwPlayer.NuiSetGroupLayout` - moved to `NuiGroup.SetLayout`.
+
+### Fixed
+- Properties injected into service classes with plugin dependency requirements will no-longer throw an exception when the assembly is missing.
+- Fixed NuiGroup.SetLayout creating nested layout elements instead of updating the existing element (`NwPlayer.NuiSetGroupLayout` still has the old behaviour.)
+
 ## 8193.33.1
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.0...v8193.33.1
 

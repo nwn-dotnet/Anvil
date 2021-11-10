@@ -7,7 +7,7 @@ using LightInject;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(InjectionService))]
-  [ServiceBindingOptions(BindingOrder.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed class InjectionService : IDisposable
   {
     private readonly IServiceContainer container;

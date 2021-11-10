@@ -6,7 +6,7 @@ using NWN.Native.API;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(RestDurationOverrideService))]
-  [ServiceBindingOptions(BindingOrder.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API)]
   internal sealed unsafe class RestDurationOverrideService
   {
     private static readonly CExoString DurationTableKey = "Duration".ToExoString();

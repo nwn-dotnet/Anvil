@@ -8,7 +8,7 @@ namespace Anvil.API
 {
   [ServiceBinding(typeof(MainThreadSynchronizationContext))]
   [ServiceBinding(typeof(IUpdateable))]
-  [ServiceBindingOptions(BindingOrder.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed class MainThreadSynchronizationContext : SynchronizationContext, IUpdateable, IAwaitable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

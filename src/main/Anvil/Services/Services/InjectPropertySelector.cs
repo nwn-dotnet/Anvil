@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using Anvil.API;
 using LightInject;
@@ -5,7 +8,7 @@ using NLog;
 
 namespace Anvil.Services
 {
-  public sealed class InjectPropertySelector : PropertySelector
+  internal sealed class InjectPropertySelector : PropertySelector
   {
     private readonly InjectPropertyTypes propertyTypes;
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
@@ -22,16 +25,37 @@ namespace Anvil.Services
     /// <returns><b>true</b> if the property is injectable, otherwise <b>false</b>.</returns>
     protected override bool IsInjectable(PropertyInfo propertyInfo)
     {
-      MethodInfo setMethod = propertyInfo.SetMethod;
-      bool isValid = setMethod != null && propertyInfo.GetIndexParameters().Length == 0;
-      bool hasAttribute = propertyInfo.IsDefined(typeof(InjectAttribute), true);
-
-      if (!isValid && hasAttribute)
+      InjectAttribute injectAttribute = propertyInfo.SafeGetCustomAttribute<InjectAttribute>();
+      if (injectAttribute == null)
       {
-        Log.Error("Cannot inject property {Property} as it does not have set/init defined, or is an unsupported property type", propertyInfo.GetFullName());
+        return false;
       }
 
-      return isValid && hasAttribute && IsValidPropertyType(setMethod);
+      try
+      {
+        MethodInfo setMethod = propertyInfo.SetMethod;
+        bool isValid = setMethod != null && propertyInfo.GetIndexParameters().Length == 0;
+
+        if (!isValid)
+        {
+          throw new ArgumentException("Cannot inject property as it does not have set/init accessor defined, or is an unsupported property type", propertyInfo.GetFullName());
+        }
+
+        return IsValidPropertyType(setMethod);
+      }
+      catch (FileNotFoundException e)
+      {
+        AssemblyName assemblyName = e.FileName != null ? new AssemblyName(e.FileName) : null;
+        bool optional = injectAttribute.Optional || assemblyName != null && propertyInfo.ReflectedType?.GetCustomAttribute<ServiceBindingOptionsAttribute>()?.PluginDependencies?.Contains(assemblyName.Name) == true;
+
+        if (optional)
+        {
+          Log.Debug(e, "Cannot inject optional property {Property} as the referenced assembly could not be loaded", propertyInfo.GetFullName());
+          return false;
+        }
+
+        throw new FileNotFoundException("Cannot inject property as the referenced assembly could not be loaded", e);
+      }
     }
 
     private bool IsValidPropertyType(MethodBase setMethod)

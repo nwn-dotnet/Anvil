@@ -8,23 +8,26 @@ namespace Anvil.Services
   [AttributeUsage(AttributeTargets.Class)]
   public sealed class ServiceBindingOptionsAttribute : Attribute
   {
-    private readonly short order;
-
     /// <summary>
     /// The order that this service should be loaded in, after dependency constraints have been resolved. Values less than 0 are reserved by anvil.
     /// </summary>
+    [Obsolete("Use the BindingPriority property instead. This property will be removed in a future release.")]
     public short Order
     {
-      get => order;
-      init
-      {
-        if (value < 0)
-        {
-          throw new ArgumentOutOfRangeException(nameof(Order), "Order must not be less than 0.");
-        }
+      get => (short)Priority;
+      init => Priority = value;
+    }
 
-        order = value;
-      }
+    internal int Priority { get; private init; }
+
+    /// <summary>
+    /// The priority of the service.<br/>
+    /// Services with a higher priority are loaded first, and are chosen first to resolve dependency constraints when multiple candidates for a dependency are available.
+    /// </summary>
+    public BindingPriority BindingPriority
+    {
+      get => (BindingPriority)Priority;
+      init => Priority = (int)value;
     }
 
     /// <summary>
@@ -40,16 +43,17 @@ namespace Anvil.Services
     /// <summary>
     /// An optional list of plugin names that must be missing for this service to be loaded.
     /// </summary>
+    [Obsolete("This property will be removed in a future release. BindingPriority now determines which service gets injected for multiple dependency candidates, making this property obsolete.")]
     public string[] MissingPluginDependencies { get; init; }
 
-    internal ServiceBindingOptionsAttribute(BindingOrder order)
+    internal ServiceBindingOptionsAttribute(InternalBindingPriority priority)
     {
-      this.order = (short)order;
+      Priority = (int)priority;
     }
 
     public ServiceBindingOptionsAttribute()
     {
-      order = (short)BindingOrder.Default;
+      BindingPriority = BindingPriority.Normal;
     }
   }
 }

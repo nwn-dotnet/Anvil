@@ -1,12 +1,49 @@
+using System;
+using System.Linq;
 using System.Reflection;
 
 namespace Anvil.API
 {
-  internal static class ReflectionExtensions
+  public static class ReflectionExtensions
   {
+    /// <summary>
+    /// Gets all attributes of a specific type on the specified type.
+    /// </summary>
+    /// <param name="type">The type to get attributes from</param>
+    /// <param name="inherit">true if attributes should be inherited from base types</param>
+    /// <typeparam name="T">The type of attribute to get</typeparam>
+    /// <returns>An array of attributes applied to this type, or an empty array if no attributes are found.</returns>
+    public static T[] GetCustomAttributes<T>(this Type type, bool inherit = true) where T : Attribute
+    {
+      return (T[])type.GetCustomAttributes(typeof(T), inherit);
+    }
+
+    /// <summary>
+    /// Gets all attributes of a specific type on the specified member.
+    /// </summary>
+    /// <param name="member">The member to get attributes from</param>
+    /// <param name="inherit">true if attributes should be inherited from base types</param>
+    /// <typeparam name="T">The type of attribute to get</typeparam>
+    /// <returns>An array of attributes applied to this member, or an empty array if no attributes are found.</returns>
+    public static T[] GetCustomAttributes<T>(this MemberInfo member, bool inherit = true) where T : Attribute
+    {
+      return (T[])member.GetCustomAttributes(typeof(T), inherit);
+    }
+
+    /// <summary>
+    /// Gets the full name of the specified type member.
+    /// </summary>
+    /// <param name="member">The member to get the name of.</param>
+    /// <returns>The full name of the member, prefixed with the namespace and enclosing type (if valid). If the member is not declared in a type, returns the member name.</returns>
     public static string GetFullName(this MemberInfo member)
     {
       return member.DeclaringType != null ? $"{member.DeclaringType.FullName}.{member.Name}" : member.Name;
+    }
+
+    public static T SafeGetCustomAttribute<T>(this MemberInfo memberInfo, bool inherit = true)
+    {
+      // GetCustomAttribute(Type) or GetCustomAttribute<T>() will throw an exception on types with missing assembly references, as they navigate into the type.
+      return memberInfo.GetCustomAttributes(inherit).OfType<T>().FirstOrDefault();
     }
   }
 }
