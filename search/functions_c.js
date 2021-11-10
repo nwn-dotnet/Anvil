@@ -8,6 +8,6 @@ var searchData=
   ['nuidestroy_5',['NuiDestroy',['../classAnvil_1_1API_1_1NwPlayer.html#a9266745f1f4c9fc6e9493523d67b3994',1,'Anvil::API::NwPlayer']]],
   ['nuigetuserdata_3c_20t_20_3e_6',['NuiGetUserData&lt; T &gt;',['../classAnvil_1_1API_1_1NwPlayer.html#a48ba4caf13d45ebef3dd26d1dcca3fb4',1,'Anvil::API::NwPlayer']]],
   ['nuigetwindowid_7',['NuiGetWindowId',['../classAnvil_1_1API_1_1NwPlayer.html#a3f675a88a459e6b22ed0681b6565ee57',1,'Anvil::API::NwPlayer']]],
-  ['nuisetgrouplayout_8',['NuiSetGroupLayout',['../classAnvil_1_1API_1_1NwPlayer.html#a5d291d03f8b610d1c347d159de1c0a06',1,'Anvil.API.NwPlayer.NuiSetGroupLayout(int uiToken, string elementId, NuiGroup updatedLayout)'],['../classAnvil_1_1API_1_1NwPlayer.html#aa1cfa7f0beb43bf88875be84fed41143',1,'Anvil.API.NwPlayer.NuiSetGroupLayout(int uiToken, string elementId, NuiWindow updatedLayout)']]],
+  ['nuisetgrouplayout_8',['NuiSetGroupLayout',['../classAnvil_1_1API_1_1NwPlayer.html#a5d291d03f8b610d1c347d159de1c0a06',1,'Anvil::API::NwPlayer']]],
   ['nuisetuserdata_3c_20t_20_3e_9',['NuiSetUserData&lt; T &gt;',['../classAnvil_1_1API_1_1NwPlayer.html#a2252ae7f71d52bd2edd1b6cab526e74d',1,'Anvil::API::NwPlayer']]]
 ];

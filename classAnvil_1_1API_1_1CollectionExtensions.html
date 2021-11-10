@@ -115,6 +115,10 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>DisposeAll</b>
 <tr class="memitem:afe8c202b01b0e88f783568cb567d43de"><td class="memItemLeft" align="right" valign="top"><a id="afe8c202b01b0e88f783568cb567d43de" name="afe8c202b01b0e88f783568cb567d43de"></a>
 static TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt; TKey, TValue &gt;</b> (this IDictionary&lt; TKey, TValue &gt; dictionary, TKey key)</td></tr>
 <tr class="separator:afe8c202b01b0e88f783568cb567d43de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace7731afd71e784c5231029d26650144"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#ace7731afd71e784c5231029d26650144">SafeYield&lt; T &gt;</a> (this T item)</td></tr>
+<tr class="memdesc:ace7731afd71e784c5231029d26650144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps this object instance into an IEnumerable&lt;T&gt; consisting of a single item.<br  />
+ If the item is null, returns an empty enumerable instead.  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#ace7731afd71e784c5231029d26650144">More...</a><br /></td></tr>
+<tr class="separator:ace7731afd71e784c5231029d26650144"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9e46a42df6d66fee23c4ed306a16dc4"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#ae9e46a42df6d66fee23c4ed306a16dc4">Yield&lt; T &gt;</a> (this T item)</td></tr>
 <tr class="memdesc:ae9e46a42df6d66fee23c4ed306a16dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps this object instance into an IEnumerable&lt;T&gt; consisting of a single item.  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#ae9e46a42df6d66fee23c4ed306a16dc4">More...</a><br /></td></tr>
 <tr class="separator:ae9e46a42df6d66fee23c4ed306a16dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -362,6 +366,48 @@ static TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt; 
 </dd>
 </dl>
 </div>
+
+</div>
+</div>
+<a id="ace7731afd71e784c5231029d26650144" name="ace7731afd71e784c5231029d26650144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace7731afd71e784c5231029d26650144">&#9670;&nbsp;</a></span>SafeYield&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt; T &gt; Anvil.API.CollectionExtensions.SafeYield&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this T&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps this object instance into an IEnumerable&lt;T&gt; consisting of a single item.<br  />
+ If the item is null, returns an empty enumerable instead. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>The instance that will be wrapped.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An IEnumerable&lt;T&gt; consisting of a single item. </dd></dl>
 
 </div>
 </div>

@@ -33,8 +33,9 @@ var NAVTREEINDEX0 =
 "classAnvil_1_1API_1_1CollectionExtensions.html":[0,0,0,15],
 "classAnvil_1_1API_1_1CollectionExtensions.html#a29cd0ac2d05dc187cb616a141919aedd":[0,0,0,15,3],
 "classAnvil_1_1API_1_1CollectionExtensions.html#a6761eb545597f8e867b13cb0b919da5d":[0,0,0,15,1],
+"classAnvil_1_1API_1_1CollectionExtensions.html#ace7731afd71e784c5231029d26650144":[0,0,0,15,4],
 "classAnvil_1_1API_1_1CollectionExtensions.html#ad7717ab1c06bf70da6f110a49c4551d5":[0,0,0,15,0],
-"classAnvil_1_1API_1_1CollectionExtensions.html#ae9e46a42df6d66fee23c4ed306a16dc4":[0,0,0,15,4],
+"classAnvil_1_1API_1_1CollectionExtensions.html#ae9e46a42df6d66fee23c4ed306a16dc4":[0,0,0,15,5],
 "classAnvil_1_1API_1_1CollectionExtensions.html#afc2ddef22cf0f18e40e5243c67b70de0":[0,0,0,15,2],
 "classAnvil_1_1API_1_1ColorConstants.html":[0,0,0,17],
 "classAnvil_1_1API_1_1CreatureClassInfo.html":[0,0,0,18],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnEnter.html":[0,0,0,0,13,0],
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnEnter.html#a82e0fd1fbc5321b5aa39220d5d93319b":[0,0,0,0,13,0,0],
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html":[0,0,0,0,13,1],
-"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html#a91161c8233e6df0b29b91ba84c68a1ff":[0,0,0,0,13,1,0],
-"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExit.html":[0,0,0,0,13,2]
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html#a91161c8233e6df0b29b91ba84c68a1ff":[0,0,0,0,13,1,0]
 };

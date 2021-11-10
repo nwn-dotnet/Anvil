@@ -34,7 +34,6 @@ var classAnvil_1_1API_1_1NwPlayer =
     [ "NuiGetUserData< T >", "classAnvil_1_1API_1_1NwPlayer.html#a48ba4caf13d45ebef3dd26d1dcca3fb4", null ],
     [ "NuiGetWindowId", "classAnvil_1_1API_1_1NwPlayer.html#a3f675a88a459e6b22ed0681b6565ee57", null ],
     [ "NuiSetGroupLayout", "classAnvil_1_1API_1_1NwPlayer.html#a5d291d03f8b610d1c347d159de1c0a06", null ],
-    [ "NuiSetGroupLayout", "classAnvil_1_1API_1_1NwPlayer.html#aa1cfa7f0beb43bf88875be84fed41143", null ],
     [ "NuiSetUserData< T >", "classAnvil_1_1API_1_1NwPlayer.html#a2252ae7f71d52bd2edd1b6cab526e74d", null ],
     [ "OpenInventory", "classAnvil_1_1API_1_1NwPlayer.html#af2df962423380bf47fd03a73ecc6f88a", null ],
     [ "OpenInventory", "classAnvil_1_1API_1_1NwPlayer.html#ac91f29e51f7e63e965c39993e644dd17", null ],

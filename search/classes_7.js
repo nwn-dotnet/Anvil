@@ -12,12 +12,11 @@ var searchData=
   ['ilatedisposable_9',['ILateDisposable',['../interfaceAnvil_1_1Services_1_1ILateDisposable.html',1,'Anvil::Services']]],
   ['injectattribute_10',['InjectAttribute',['../classAnvil_1_1Services_1_1InjectAttribute.html',1,'Anvil::Services']]],
   ['injectionservice_11',['InjectionService',['../classAnvil_1_1Services_1_1InjectionService.html',1,'Anvil::Services']]],
-  ['injectpropertyselector_12',['InjectPropertySelector',['../classAnvil_1_1Services_1_1InjectPropertySelector.html',1,'Anvil::Services']]],
-  ['integerextensions_13',['IntegerExtensions',['../classAnvil_1_1API_1_1IntegerExtensions.html',1,'Anvil::API']]],
-  ['inventory_14',['Inventory',['../classAnvil_1_1API_1_1Inventory.html',1,'Anvil::API']]],
-  ['iscriptdispatcher_15',['IScriptDispatcher',['../interfaceAnvil_1_1Services_1_1IScriptDispatcher.html',1,'Anvil::Services']]],
-  ['itemappearance_16',['ItemAppearance',['../classAnvil_1_1API_1_1ItemAppearance.html',1,'Anvil::API']]],
-  ['itemproperty_17',['ItemProperty',['../classAnvil_1_1API_1_1ItemProperty.html',1,'Anvil::API']]],
-  ['itwodimarray_18',['ITwoDimArray',['../interfaceAnvil_1_1Services_1_1ITwoDimArray.html',1,'Anvil::Services']]],
-  ['iupdateable_19',['IUpdateable',['../interfaceAnvil_1_1Services_1_1IUpdateable.html',1,'Anvil::Services']]]
+  ['integerextensions_12',['IntegerExtensions',['../classAnvil_1_1API_1_1IntegerExtensions.html',1,'Anvil::API']]],
+  ['inventory_13',['Inventory',['../classAnvil_1_1API_1_1Inventory.html',1,'Anvil::API']]],
+  ['iscriptdispatcher_14',['IScriptDispatcher',['../interfaceAnvil_1_1Services_1_1IScriptDispatcher.html',1,'Anvil::Services']]],
+  ['itemappearance_15',['ItemAppearance',['../classAnvil_1_1API_1_1ItemAppearance.html',1,'Anvil::API']]],
+  ['itemproperty_16',['ItemProperty',['../classAnvil_1_1API_1_1ItemProperty.html',1,'Anvil::API']]],
+  ['itwodimarray_17',['ITwoDimArray',['../interfaceAnvil_1_1Services_1_1ITwoDimArray.html',1,'Anvil::Services']]],
+  ['iupdateable_18',['IUpdateable',['../interfaceAnvil_1_1Services_1_1IUpdateable.html',1,'Anvil::Services']]]
 ];
