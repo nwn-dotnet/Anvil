@@ -4,7 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...HEAD
+
+### Added
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.33.2
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...v8193.33.2
 
 ### Added
 - ResourceManager: Implemented GffResource API.
@@ -20,9 +38,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...HEAD
 - `[ServiceBindingOptions]` - `MissingPluginDependencies` has been deprecated as functionality is covered by the `BindingPriority` dependency resolve behaviour.
 - `AttributeExtensions` - moved to `ReflectionExtensions`.
 - `NwPlayer.NuiSetGroupLayout` - moved to `NuiGroup.SetLayout`.
-
-### Removed
-- N/A
 
 ### Fixed
 - Properties injected into service classes with plugin dependency requirements will no-longer throw an exception when the assembly is missing.
