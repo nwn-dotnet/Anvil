@@ -13,6 +13,7 @@ namespace Anvil.Internal
 
     // Anvil
     public static readonly string PluginsPath = GetAnvilVariableString("PLUGIN_PATH", Path.Combine(Assemblies.AssemblyDir, "Plugins"));
+    public static readonly string PluginStoragePath = GetAnvilVariableString("PLUGIN_STORAGE_PATH", "./anvil/Plugins/");
     public static readonly string ResourcePath = GetAnvilVariableString("RESOURCE_TEMP_DIR", Path.Combine(Assemblies.AssemblyDir, "res_temp"));
     public static readonly string NLogConfigPath = GetAnvilVariableString("NLOG_CONFIG");
     public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");

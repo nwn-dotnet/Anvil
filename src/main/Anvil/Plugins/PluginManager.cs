@@ -31,6 +31,32 @@ namespace Anvil.Plugins
       return plugins.Any(plugin => plugin.AssemblyName.Name == pluginName);
     }
 
+    /// <summary>
+    /// Gets the install directory of the specified plugin.
+    /// </summary>
+    /// <param name="pluginAssembly">The assembly of the plugin, e.g. typeof(MyService).Assembly</param>
+    /// <returns>The install directory for the specified plugin.</returns>
+    /// <exception cref="ArgumentException">Thrown if the specified assembly is not a plugin.</exception>
+    public string GetPluginDirectory(Assembly pluginAssembly)
+    {
+      if (IsPluginAssembly(pluginAssembly))
+      {
+        return Path.GetDirectoryName(pluginAssembly.Location);
+      }
+
+      throw new ArgumentException("Specified assembly is not a loaded plugin assembly.", nameof(pluginAssembly));
+    }
+
+    /// <summary>
+    /// Gets if the specified assembly is the primary assembly for a plugin.
+    /// </summary>
+    /// <param name="assembly">The assembly to query.</param>
+    /// <returns>True if the assembly is a plugin, otherwise false.</returns>
+    public bool IsPluginAssembly(Assembly assembly)
+    {
+      return plugins.Any(plugin => plugin.Assembly == assembly);
+    }
+
     internal void Load()
     {
       LoadCore();
