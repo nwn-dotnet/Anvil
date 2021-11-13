@@ -3,24 +3,30 @@ using System.IO;
 using System.Reflection;
 using Anvil.API;
 using Anvil.Internal;
-using Anvil.Services;
+using Anvil.Plugins;
 
-namespace Anvil.Plugins
+namespace Anvil.Services
 {
   /// <summary>
-  /// Manages user generated/configured content from plugins.<br/>
+  /// Manages content stored in the Anvil home directory.<br/>
   /// Use this service to get a path for reading and writing configs or data for your plugin.
   /// </summary>
-  [ServiceBinding(typeof(PluginStorageService))]
-  public sealed class PluginStorageService
+  [ServiceBinding(typeof(HomeStorageService))]
+  public sealed class HomeStorageService
   {
-    private readonly string storageBasePath;
-    private readonly PluginManager pluginManager;
+    private readonly Lazy<PluginManager> pluginManager;
 
-    public PluginStorageService(PluginManager pluginManager)
+    private readonly string anvilHome = Path.GetFullPath(EnvironmentConfig.AnvilHome, NwServer.Instance.UserDirectory);
+
+    internal string PluginStorage
+    {
+      get => ResolvePath("Plugins");
+    }
+
+
+    public HomeStorageService(Lazy<PluginManager> pluginManager)
     {
       this.pluginManager = pluginManager;
-      storageBasePath = Path.GetFullPath(EnvironmentConfig.PluginStoragePath, NwServer.Instance.UserDirectory);
     }
 
     /// <summary>
@@ -31,12 +37,19 @@ namespace Anvil.Plugins
     /// <exception cref="ArgumentException">Thrown if the specified assembly is not a plugin.</exception>
     public string GetPluginStoragePath(Assembly pluginAssembly)
     {
-      if (pluginManager.IsPluginAssembly(pluginAssembly))
+      if (pluginManager.Value.IsPluginAssembly(pluginAssembly))
       {
-        return Path.Combine(storageBasePath, pluginAssembly.GetName().Name!);
+        return Path.Combine(PluginStorage, pluginAssembly.GetName().Name!);
       }
 
       throw new ArgumentException("Specified assembly is not a loaded plugin assembly.", nameof(pluginAssembly));
+    }
+
+    private string ResolvePath(string subPath)
+    {
+      string path = Path.Combine(anvilHome, subPath);
+      Directory.CreateDirectory(path);
+      return path;
     }
   }
 }
