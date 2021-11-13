@@ -23,6 +23,10 @@ namespace Anvil.Services
       get => ResolvePath("Plugins");
     }
 
+    internal string Paket
+    {
+      get => ResolvePath("Paket");
+    }
 
     public HomeStorageService(Lazy<PluginManager> pluginManager)
     {

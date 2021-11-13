@@ -7,6 +7,8 @@ namespace Anvil.Internal
 {
   internal static class Assemblies
   {
+    internal const string TargetFramework = "net5.0";
+
     internal static readonly Assembly Anvil = typeof(Assemblies).Assembly;
     internal static readonly Assembly Core = typeof(NWN.Core.NWNCore).Assembly;
     internal static readonly Assembly Native = typeof(NWN.Native.API.NWNXLib).Assembly;
@@ -21,6 +23,7 @@ namespace Anvil.Internal
       typeof(NLog.Logger).Assembly,
       typeof(LightInject.ServiceContainer).Assembly,
       typeof(Newtonsoft.Json.JsonConvert).Assembly,
+      typeof(Paket.Dependencies).Assembly,
     };
 
     public static readonly List<string> ReservedNames = AllAssemblies
