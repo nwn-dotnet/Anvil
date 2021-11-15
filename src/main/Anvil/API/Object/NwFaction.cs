@@ -28,6 +28,11 @@ namespace Anvil.API
       this.faction = faction;
     }
 
+    internal int FactionId
+    {
+      get => faction.m_nFactionId;
+    }
+
     /// <summary>
     /// Gets the most common type of class among the members of this faction/party.<br/>
     /// @note This can be a costly operation when used on large NPC factions.

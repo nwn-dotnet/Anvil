@@ -56,11 +56,50 @@ namespace Anvil.API
       set => NWScript.SetEncounterSpawnsMax(value, this);
     }
 
+    public NwFaction Faction
+    {
+      get => new NwFaction(Encounter.m_nFactionId);
+      set => Encounter.m_nFactionId = value.FactionId;
+    }
+
+    public bool PlayerTriggeredOnly
+    {
+      get => Encounter.m_bPlayerTriggeredOnly.ToBool();
+      set => Encounter.m_bPlayerTriggeredOnly = value.ToInt();
+    }
+
+    public bool CanReset
+    {
+      get => Encounter.m_bReset.ToBool();
+      set => Encounter.m_bReset = value.ToInt();
+    }
+
+    public TimeSpan ResetTime
+    {
+      get => TimeSpan.FromSeconds(Encounter.m_nResetTime);
+      set => Encounter.m_nResetTime = (int)Math.Round(value.TotalSeconds, MidpointRounding.ToZero);
+    }
+
+    public int MinSpawnedCreatures
+    {
+      get => Encounter.m_nMinNumSpawnedCreatures;
+    }
+
+    public int MaxSpawnedCreatures
+    {
+      get => Encounter.m_nMaxSpawnedCreatures;
+    }
+
+    public int NumSpawnedCreatures
+    {
+      get => Encounter.m_nNumSpawnedCreatures;
+    }
+
     /// <summary>
     /// Gets all objects of the given type that are currently in this encounter trigger.
     /// </summary>
     /// <typeparam name="T">The type of objects to return.</typeparam>
-    /// <returns>An enumerable containing all objects currently in the effect area.</returns>
+    /// <returns>An enumerable containing all objects currently in the encounter area.</returns>
     public IEnumerable<T> GetObjectsInEncounterArea<T>() where T : NwGameObject
     {
       int objType = (int)GetObjectType<T>();
@@ -71,10 +110,10 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets all objects of the given types that are currently in this area of effect.
+    /// Gets all objects of the given types that are currently in this encounter trigger.
     /// </summary>
     /// <param name="objectTypes">The types of object to return.</param>
-    /// <returns>An enumerable containing all objects currently in the effect area.</returns>
+    /// <returns>An enumerable containing all objects currently in the encounter area.</returns>
     public IEnumerable<NwGameObject> GetObjectsInEncounterArea(ObjectTypes objectTypes = ObjectTypes.All)
     {
       int objType = (int)objectTypes;
