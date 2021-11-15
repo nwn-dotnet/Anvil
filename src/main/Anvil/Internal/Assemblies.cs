@@ -29,5 +29,10 @@ namespace Anvil.Internal
     public static readonly List<string> ReservedNames = AllAssemblies
       .Select(assembly => assembly.GetName().Name)
       .ToList();
+
+    public static bool IsReservedName(string name)
+    {
+      return ReservedNames.Contains(name);
+    }
   }
 }

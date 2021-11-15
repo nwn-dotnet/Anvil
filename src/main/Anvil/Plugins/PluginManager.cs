@@ -15,8 +15,6 @@ namespace Anvil.Plugins
   [ServiceBindingOptions(InternalBindingPriority.Core)]
   public sealed class PluginManager
   {
-    private const string PluginResourceDir = "resources";
-
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     internal IReadOnlyCollection<Type> LoadedTypes { get; private set; }
@@ -28,7 +26,7 @@ namespace Anvil.Plugins
 
     public bool IsPluginLoaded(string pluginName)
     {
-      return plugins.Any(plugin => plugin.AssemblyName.Name == pluginName);
+      return plugins.Any(plugin => plugin.Name.Name == pluginName);
     }
 
     /// <summary>
@@ -76,9 +74,9 @@ namespace Anvil.Plugins
       Log.Info("Unloading plugins...");
       foreach (Plugin plugin in plugins)
       {
-        Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
+        Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
         plugin.Dispose();
-        Log.Info("Unloaded DotNET plugin {PluginName} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
+        Log.Info("Unloaded DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
       }
 
       plugins.Clear();
@@ -94,47 +92,22 @@ namespace Anvil.Plugins
 
     private void BootstrapPlugins()
     {
-      string[] pluginPaths = Directory.GetDirectories(EnvironmentConfig.PluginsPath);
+      IPluginSource[] pluginSources =
+      {
+        new PaketPluginSource(this),
+        new LocalPluginSource(this),
+      };
 
-      Log.Info("Loading {PluginCount} DotNET plugin/s from: {PluginPath}", pluginPaths.Length, EnvironmentConfig.PluginsPath);
+      foreach (IPluginSource pluginSource in pluginSources)
+      {
+        plugins.AddRange(pluginSource.Bootstrap());
+      }
 
-      if (EnvironmentConfig.PreventStartNoPlugin && pluginPaths.Length == 0)
+      if (EnvironmentConfig.PreventStartNoPlugin && plugins.Count == 0)
       {
         throw new Exception("No plugins are available to load, and NWM_PREVENT_START_NO_PLUGIN is enabled.\n" +
           $"Check your plugins are available at {EnvironmentConfig.PluginsPath}, or update NWM_PLUGIN_PATH to the correct location.");
       }
-
-      foreach (string pluginRoot in pluginPaths)
-      {
-        string pluginName = new DirectoryInfo(pluginRoot).Name;
-
-        if (PluginNameIsReserved(pluginName))
-        {
-          Log.Warn("Skipping plugin {Plugin} as it uses a reserved name", pluginName);
-          continue;
-        }
-
-        string pluginPath = Path.Combine(pluginRoot, $"{pluginName}.dll");
-        if (!File.Exists(pluginPath))
-        {
-          Log.Warn("Cannot find plugin assembly {Plugin}. Does your plugin assembly match the name of the directory?", pluginPath);
-          continue;
-        }
-
-        Plugin plugin = CreatePlugin(pluginPath, Path.Combine(pluginRoot, PluginResourceDir), pluginName);
-        plugins.Add(plugin);
-      }
-    }
-
-    private Plugin CreatePlugin(string pluginPath, string resourcePath, string pluginName)
-    {
-      PluginLoadContext pluginLoadContext = new PluginLoadContext(this, pluginPath, pluginName);
-      return new Plugin(pluginPath, resourcePath, pluginLoadContext);
-    }
-
-    private static bool PluginNameIsReserved(string pluginName)
-    {
-      return Assemblies.ReservedNames.Contains(pluginName);
     }
 
     private void LoadPlugins()
@@ -152,17 +125,17 @@ namespace Anvil.Plugins
 
     private void LoadPlugin(Plugin plugin)
     {
-      Log.Info("Loading DotNET plugin {Plugin} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
+      Log.Info("Loading DotNET plugin {Plugin} - {PluginPath}", plugin.Name.Name, plugin.Path);
       plugin.Load();
 
       if (plugin.Assembly == null)
       {
-        Log.Error("Failed to load DotNET plugin {Plugin} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
+        Log.Error("Failed to load DotNET plugin {Plugin} - {PluginPath}", plugin.Name.Name, plugin.Path);
         return;
       }
 
       loadedAssemblies.Add(plugin.Assembly);
-      Log.Info("Loaded DotNET plugin {Plugin} - {PluginPath}", plugin.AssemblyName.Name, plugin.PluginPath);
+      Log.Info("Loaded DotNET plugin {Plugin} - {PluginPath}", plugin.Name.Name, plugin.Path);
     }
 
     public Assembly ResolveDependency(string pluginName, AssemblyName dependencyName)
@@ -193,14 +166,14 @@ namespace Anvil.Plugins
     {
       foreach (Plugin plugin in plugins)
       {
-        if (!IsValidDependency(pluginName, dependencyName, plugin.AssemblyName))
+        if (!IsValidDependency(pluginName, dependencyName, plugin.Name))
         {
           continue;
         }
 
         if (plugin.Loading)
         {
-          Log.Error("DotNET plugins {PluginA} <--> {PluginB} cannot be loaded as they have circular dependencies", pluginName, plugin.AssemblyName.Name);
+          Log.Error("DotNET plugins {PluginA} <--> {PluginB} cannot be loaded as they have circular dependencies", pluginName, plugin.Name.Name);
           return null;
         }
 

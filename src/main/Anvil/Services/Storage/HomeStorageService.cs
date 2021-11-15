@@ -1,8 +1,6 @@
 using System;
 using System.IO;
 using System.Reflection;
-using Anvil.API;
-using Anvil.Internal;
 using Anvil.Plugins;
 
 namespace Anvil.Services
@@ -15,18 +13,6 @@ namespace Anvil.Services
   public sealed class HomeStorageService
   {
     private readonly Lazy<PluginManager> pluginManager;
-
-    private readonly string anvilHome = Path.GetFullPath(EnvironmentConfig.AnvilHome, NwServer.Instance.UserDirectory);
-
-    internal string PluginStorage
-    {
-      get => ResolvePath("Plugins");
-    }
-
-    internal string Paket
-    {
-      get => ResolvePath("Paket");
-    }
 
     public HomeStorageService(Lazy<PluginManager> pluginManager)
     {
@@ -43,17 +29,10 @@ namespace Anvil.Services
     {
       if (pluginManager.Value.IsPluginAssembly(pluginAssembly))
       {
-        return Path.Combine(PluginStorage, pluginAssembly.GetName().Name!);
+        return Path.Combine(HomeStorage.PluginStorage, pluginAssembly.GetName().Name!);
       }
 
       throw new ArgumentException("Specified assembly is not a loaded plugin assembly.", nameof(pluginAssembly));
-    }
-
-    private string ResolvePath(string subPath)
-    {
-      string path = Path.Combine(anvilHome, subPath);
-      Directory.CreateDirectory(path);
-      return path;
     }
   }
 }
