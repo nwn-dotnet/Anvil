@@ -4,10 +4,12 @@ namespace Anvil.API
 {
   public sealed class EncounterListEntry
   {
+    private readonly CNWSEncounter encounter;
     private readonly CEncounterListEntry encounterListEntry;
 
-    public EncounterListEntry(CEncounterListEntry encounterListEntry)
+    public EncounterListEntry(CNWSEncounter encounter, CEncounterListEntry encounterListEntry)
     {
+      this.encounter = encounter;
       this.encounterListEntry = encounterListEntry;
     }
 
@@ -20,25 +22,17 @@ namespace Anvil.API
     public float ChallengeRating
     {
       get => encounterListEntry.m_fCR;
-      set => encounterListEntry.m_fCR = value;
-    }
-
-    public float CreaturePoints
-    {
-      get => encounterListEntry.m_fCreaturePoints;
-      set => encounterListEntry.m_fCreaturePoints = value;
+      set
+      {
+        encounterListEntry.m_fCR = value;
+        encounterListEntry.m_fCreaturePoints = encounter.CalculatePointsFromCR(value);
+      }
     }
 
     public bool AlreadyUsed
     {
       get => encounterListEntry.m_bAlreadyUsed.ToBool();
       set => encounterListEntry.m_bAlreadyUsed = value.ToInt();
-    }
-
-    public bool AlreadyChecked
-    {
-      get => encounterListEntry.m_bAlreadyChecked.ToBool();
-      set => encounterListEntry.m_bAlreadyChecked = value.ToInt();
     }
 
     public bool Unique

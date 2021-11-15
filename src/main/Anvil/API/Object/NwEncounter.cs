@@ -95,6 +95,38 @@ namespace Anvil.API
       get => Encounter.m_nNumSpawnedCreatures;
     }
 
+    public EncounterListEntry[] CreatureList
+    {
+      get
+      {
+        CEncounterListEntryArray cEncounterList = CEncounterListEntryArray.FromPointer(Encounter.m_pEncounterList);
+        EncounterListEntry[] retVal = new EncounterListEntry[Encounter.m_nNumEncounterListEntries];
+
+        for (int i = 0; i < retVal.Length; i++)
+        {
+          retVal[i] = new EncounterListEntry(this, cEncounterList.GetItem(i));
+        }
+
+        return retVal;
+      }
+    }
+
+    public EncounterSpawnPoint[] SpawnPointList
+    {
+      get
+      {
+        CEncounterSpawnPointArray cSpawnPointList = CEncounterSpawnPointArray.FromPointer(Encounter.m_pSpawnPointList);
+        EncounterSpawnPoint[] retVal = new EncounterSpawnPoint[Encounter.m_nNumSpawnPoints];
+
+        for (int i = 0; i < retVal.Length; i++)
+        {
+          retVal[i] = new EncounterSpawnPoint(cSpawnPointList.GetItem(i));
+        }
+
+        return retVal;
+      }
+    }
+
     /// <summary>
     /// Gets all objects of the given type that are currently in this encounter trigger.
     /// </summary>
