@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Anvil.Internal;
+using Anvil.Services;
 using NLog;
 
 namespace Anvil.Plugins
@@ -19,9 +20,9 @@ namespace Anvil.Plugins
 
     public IEnumerable<Plugin> Bootstrap()
     {
-      string[] pluginPaths = Directory.GetDirectories(EnvironmentConfig.PluginsPath);
+      string[] pluginPaths = Directory.GetDirectories(HomeStorage.Plugins);
 
-      Log.Info("Loading {PluginCount} DotNET plugin/s from: {PluginPath}", pluginPaths.Length, EnvironmentConfig.PluginsPath);
+      Log.Info("Loading {PluginCount} DotNET plugin/s from: {PluginPath}", pluginPaths.Length, HomeStorage.Plugins);
       return CreatePluginsFromPaths(pluginPaths);
     }
 

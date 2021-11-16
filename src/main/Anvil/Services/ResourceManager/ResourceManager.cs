@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Anvil.API;
-using Anvil.Internal;
 using NLog;
 using NWN.Native.API;
 using ResRefType = Anvil.API.ResRefType;
@@ -32,12 +31,12 @@ namespace Anvil.Services
 
     public ResourceManager()
     {
-      if (Directory.Exists(EnvironmentConfig.ResourcePath))
+      if (Directory.Exists(HomeStorage.ResourceTemp))
       {
-        Directory.Delete(EnvironmentConfig.ResourcePath, true);
+        Directory.Delete(HomeStorage.ResourceTemp, true);
       }
 
-      tempAlias = CreateResourceDirectory(EnvironmentConfig.ResourcePath).ToExoString();
+      tempAlias = CreateResourceDirectory(HomeStorage.ResourceTemp).ToExoString();
     }
 
     public void WriteTempResource(string resourceName, byte[] data)
@@ -54,7 +53,7 @@ namespace Anvil.Services
         throw new ArgumentOutOfRangeException(nameof(resourceName), "Resource name must only contain alphanumeric characters, or underscores.");
       }
 
-      File.WriteAllBytes(Path.Combine(EnvironmentConfig.ResourcePath, resourceName), data);
+      File.WriteAllBytes(Path.Combine(HomeStorage.ResourceTemp, resourceName), data);
       ResMan.UpdateResourceDirectory(tempAlias);
     }
 
@@ -196,9 +195,9 @@ namespace Anvil.Services
 
     void IDisposable.Dispose()
     {
-      if (Directory.Exists(EnvironmentConfig.ResourcePath))
+      if (Directory.Exists(HomeStorage.ResourceTemp))
       {
-        Directory.Delete(EnvironmentConfig.ResourcePath, true);
+        Directory.Delete(HomeStorage.ResourceTemp, true);
       }
     }
   }

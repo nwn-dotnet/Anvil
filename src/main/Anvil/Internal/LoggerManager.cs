@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Anvil.API;
+using Anvil.Services;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
@@ -22,30 +23,23 @@ namespace Anvil.Internal
 
     public void Init()
     {
-      if (string.IsNullOrEmpty(EnvironmentConfig.NLogConfigPath))
-      {
-        LogManager.Configuration = GetDefaultConfig();
-        Log.Info("Using default configuration");
-        return;
-      }
-
-      if (File.Exists(EnvironmentConfig.NLogConfigPath))
+      if (File.Exists(HomeStorage.NLogConfig))
       {
         try
         {
-          LogManager.Configuration = GetConfigFromFile(EnvironmentConfig.NLogConfigPath);
-          Log.Info("Using Logger config: {Path}", EnvironmentConfig.NLogConfigPath);
+          LogManager.Configuration = GetConfigFromFile(HomeStorage.NLogConfig);
+          Log.Info("Using Logger config: {Path}", HomeStorage.NLogConfig);
         }
         catch (NLogConfigurationException e)
         {
           LogManager.Configuration = GetDefaultConfig();
-          Log.Warn(e, "Using default configuration as the logger configuration at {Path} failed to load", EnvironmentConfig.NLogConfigPath);
+          Log.Warn(e, "Using default configuration as the logger configuration at {Path} failed to load", HomeStorage.NLogConfig);
         }
       }
       else
       {
         LogManager.Configuration = GetDefaultConfig();
-        Log.Warn("Using default configuration as the logger configuration at {Path} could not be found", EnvironmentConfig.NLogConfigPath);
+        Log.Info("Using default configuration");
       }
     }
 

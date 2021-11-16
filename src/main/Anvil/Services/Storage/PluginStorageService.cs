@@ -6,15 +6,15 @@ using Anvil.Plugins;
 namespace Anvil.Services
 {
   /// <summary>
-  /// Manages content stored in the Anvil home directory.<br/>
+  /// Manages plugin data stored in the Anvil home directory.<br/>
   /// Use this service to get a path for reading and writing configs or data for your plugin.
   /// </summary>
-  [ServiceBinding(typeof(HomeStorageService))]
-  public sealed class HomeStorageService
+  [ServiceBinding(typeof(PluginStorageService))]
+  public sealed class PluginStorageService
   {
-    private readonly Lazy<PluginManager> pluginManager;
+    private readonly PluginManager pluginManager;
 
-    public HomeStorageService(Lazy<PluginManager> pluginManager)
+    public PluginStorageService(PluginManager pluginManager)
     {
       this.pluginManager = pluginManager;
     }
@@ -27,9 +27,9 @@ namespace Anvil.Services
     /// <exception cref="ArgumentException">Thrown if the specified assembly is not a plugin.</exception>
     public string GetPluginStoragePath(Assembly pluginAssembly)
     {
-      if (pluginManager.Value.IsPluginAssembly(pluginAssembly))
+      if (pluginManager.IsPluginAssembly(pluginAssembly))
       {
-        return Path.Combine(HomeStorage.PluginStorage, pluginAssembly.GetName().Name!);
+        return Path.Combine(HomeStorage.PluginData, pluginAssembly.GetName().Name!);
       }
 
       throw new ArgumentException("Specified assembly is not a loaded plugin assembly.", nameof(pluginAssembly));

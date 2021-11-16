@@ -106,7 +106,7 @@ namespace Anvil.Plugins
       if (EnvironmentConfig.PreventStartNoPlugin && plugins.Count == 0)
       {
         throw new Exception("No plugins are available to load, and NWM_PREVENT_START_NO_PLUGIN is enabled.\n" +
-          $"Check your plugins are available at {EnvironmentConfig.PluginsPath}, or update NWM_PLUGIN_PATH to the correct location.");
+          $"Check your plugins are available at {HomeStorage.Plugins}, or update NWM_PLUGIN_PATH to the correct location.");
       }
     }
 
