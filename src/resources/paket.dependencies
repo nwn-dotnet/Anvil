@@ -1,0 +1,8 @@
+// Rename this file to "paket.dependencies" to enable support for loading plugins from NuGet.
+// See https://fsprojects.github.io/Paket/dependencies-file.html for more information.
+
+framework: net5.0
+strategy: min
+
+source https://api.nuget.org/v3/index.json
+nuget NWN.ExamplePlugin 8193.33.0

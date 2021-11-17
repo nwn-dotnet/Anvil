@@ -32,7 +32,7 @@ namespace Anvil.Services
         return Path.Combine(HomeStorage.PluginData, pluginAssembly.GetName().Name!);
       }
 
-      throw new ArgumentException("Specified assembly is not a loaded plugin assembly.", nameof(pluginAssembly));
+      throw new ArgumentException("Specified assembly is not a loaded plugin assembly", nameof(pluginAssembly));
     }
   }
 }

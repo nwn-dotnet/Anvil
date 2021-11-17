@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <!--Build-->
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -18,7 +18,7 @@
     <Configurations>Debug;Release;Samples</Configurations>
     <Platforms>AnyCPU</Platforms>
 
-    <RootNamespace/>
+    <RootNamespace />
   </PropertyGroup>
 
   <!--Package-->
@@ -55,30 +55,35 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LightInject" Version="6.4.0"/>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-    <PackageReference Include="NLog" Version="4.7.12"/>
-    <PackageReference Include="Paket.Core" Version="6.2.1" PrivateAssets="all"/>
-    <PackageReference Include="NWN.Core" Version="8193.33.3" PrivateAssets="compile"/>
-    <PackageReference Include="NWN.Native" Version="8193.33.2" PrivateAssets="compile"/>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all"/>
+    <PackageReference Include="LightInject" Version="6.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NLog" Version="4.7.12" />
+    <PackageReference Include="Paket.Core" Version="6.2.1" PrivateAssets="all" />
+    <PackageReference Include="NWN.Core" Version="8193.33.3" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.33.2" PrivateAssets="compile" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="/"/>
+    <None Include="README.md" Pack="true" PackagePath="/" />
+    <EmbeddedResource Update="Properties\HomeResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Update="Properties\HomeResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HomeResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(Configuration)' != 'Samples'">
-    <None Remove="docs\**"/>
-    <EmbeddedResource Remove="docs\**"/>
-    <Compile Remove="docs\**"/>
+    <None Remove="docs\**" />
+    <EmbeddedResource Remove="docs\**" />
+    <Compile Remove="docs\**" />
   </ItemGroup>
 
-  <Target Name="CreatePluginsFolder" AfterTargets="Build">
-    <MakeDir Directories="$(OutputPath)\Plugins" Condition="!Exists('$(OutputPath)\Plugins')"/>
-  </Target>
-
-  <Target Name="ZipOutputPath" AfterTargets="CreatePluginsFolder">
-    <ZipDirectory Overwrite="true" SourceDirectory="$(OutputPath)" DestinationFile="$(OutputPath)\..\$(MSBuildProjectName).zip"/>
+  <Target Name="ZipOutputPath">
+    <ZipDirectory Overwrite="true" SourceDirectory="$(OutputPath)" DestinationFile="$(OutputPath)\..\$(MSBuildProjectName).zip" />
   </Target>
 </Project>

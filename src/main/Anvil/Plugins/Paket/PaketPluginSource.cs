@@ -16,9 +16,11 @@ namespace Anvil.Plugins
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private static readonly string PaketFile = "paket.dependencies";
-    private static readonly string PackagesFolder = "packages";
-    private static readonly string LinkFile = $".paket/load/{Assemblies.TargetFramework}/main.group.csx";
+    private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
+    private readonly string packagesFolderPath = Path.Combine(HomeStorage.Paket, "packages");
+    private readonly string linkFilePath = Path.Combine(HomeStorage.Paket, $".paket/load/{Assemblies.TargetFramework}/main.group.csx");
+
+    // https://docs.microsoft.com/en-us/nuget/create-packages/supporting-multiple-target-frameworks#architecture-specific-folders
     private static readonly string[] NativeDllPackagePaths = { "runtimes/linux-x64/native" };
 
     private readonly PluginManager pluginManager;
@@ -47,14 +49,13 @@ namespace Anvil.Plugins
 
     private Dependencies GetDependencies()
     {
-      string paketFile = Path.Combine(HomeStorage.Paket, PaketFile);
-      if (!File.Exists(paketFile))
+      if (!File.Exists(paketFilePath))
       {
-        Log.Info("Skipping initialization of Paket as {PaketFile} does not exist", paketFile);
+        Log.Info("Skipping initialization of Paket as {PaketFile} does not exist", paketFilePath);
         return null;
       }
 
-      return Dependencies.Locate(paketFile);
+      return Dependencies.Locate(paketFilePath);
     }
 
     private void OnLogEvent(object sender, Logging.Trace args)
@@ -80,7 +81,7 @@ namespace Anvil.Plugins
 
     private IEnumerable<Plugin> CreatePlugins(Dependencies dependencies)
     {
-      PaketAssemblyLoadFile loadFile = new PaketAssemblyLoadFile(Path.Combine(HomeStorage.Paket, LinkFile));
+      PaketAssemblyLoadFile loadFile = new PaketAssemblyLoadFile(linkFilePath);
       Dictionary<string, string> nativeAssemblyPaths = GetNativeAssemblyPaths();
 
       List<Plugin> plugins = new List<Plugin>();
@@ -123,7 +124,7 @@ namespace Anvil.Plugins
     {
       Dictionary<string, string> nativeAssemblyPaths = new Dictionary<string, string>();
 
-      string[] packageFolders = Directory.GetDirectories(Path.Combine(HomeStorage.Paket, PackagesFolder));
+      string[] packageFolders = Directory.GetDirectories(packagesFolderPath);
       foreach (string nativeSubDir in NativeDllPackagePaths)
       {
         foreach (string packageFolder in packageFolders)
