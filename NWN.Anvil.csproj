@@ -39,8 +39,7 @@
       Discord, Latest News, Help and Support - https://discord.gg/gKt495UBgS
     </Description>
 
-    <!-- https://github.com/NuGet/Home/issues/10791 -->
-    <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Neverwinter Nights;NWN;</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
