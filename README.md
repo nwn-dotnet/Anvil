@@ -45,18 +45,12 @@ The following tags are supported:
          |----NWNX_DotNET.so
          |----NWNX_SWIG_DotNET.so
     modbin/
-    |----NLog.dll
-    |----NWN.Core.dll
     |----NWN.Anvil.deps.json
     |----NWN.Anvil.dll
     |----NWN.Anvil.runtimeconfig.dev.json
     |----NWN.Anvil.runtimeconfig.json
     |----NWN.Anvil.xml
-    |----NWN.Native.dll
-    |----LightInject.dll
-    |----Plugins/
-         |----YourPlugin/
-              |----YourPlugin.dll
+    |----(Other dlls)
  ```
 5. Configure NWNX options to the following:
 ```sh
@@ -67,19 +61,89 @@ NWNX_DOTNET_ASSEMBLY=/your/path/to/NWN.Anvil # Where "NWN.Anvil.dll" was extract
 ```
 The DotNET and SWIG_DotNET plugins are required for the library to work. Make sure they are enabled!
 
-For a step by step guide how to set up a local developement environment using your IDE of choice and windows. see [Development with Docker on Windows](Development_with_Docker_on_Windows.md).
-
 ### Configuration Options
 The following options can be configured via environment variables:
 
 |Variable|Default|Options|Description|
 |-|-|-|-|
-|`ANVIL_PLUGIN_PATH`|`/path/to/NWN.Anvil/Plugins`|A valid directory.|The root plugin path that Anvil will search for plugins.|
-|`ANVIL_NLOG_CONFIG`||A valid path to a NLog XML config file.|See the [NLog Wiki](https://github.com/nlog/NLog/wiki/Configuration-file) for configuration options.|
+|`ANVIL_HOME`|`<nwn_home>/anvil`|`An absolute path, or relative path to <nwn_home>`|The main directory for Anvil's storage. Anvil will search for plugins in `ANVIL_HOME/Plugins` and store plugin data in `ANVIL_HOME/PluginData`, as well as search this directory for various configurations.|
 |`ANVIL_RELOAD_ENABLED`|`false`|`true/false`|Enables support for plugin hot-reloading via `AnvilCore.Reload()`. Recommended for advanced users.|
 |`ANVIL_PREVENT_START_NO_PLUGIN`|`false`|`true/false`|Prevents the server from starting if no plugins are detected/loaded.|
 |`ANVIL_PRELINK_ENABLED`|`true`|`true/false`|Disables some initial startup checks when linking to the native NWN server binary. This is an advanced setting that should almost always be unset/set to true.
 |`ANVIL_LOG_MODE`|`Off`|`Off/Duplicate/Redirect`|Configures redirection of the NWN server log. `Off` disables redirection, `Duplicate` creates a copy of the log entries in Anvil/NLog, `Redirect` redirects the log entries to Anvil/NLog, and skips the original log entry.|
+
+### Installing Plugins - Local
+
+The recommended way to install plugins is to copy plugin binaries manually to your server's `Plugins` folder.
+
+This folder is located in your server's home directory. This is the directory containing the `modules` folder, `servervault`, etc.
+
+After running anvil for the first time, you will see a new folder here called `anvil`. You will want to copy the plugin to the `anvil/Plugins` folder.
+
+Once copied, your server home directory should look like the following:
+```
+    anvil/
+    |----Plugins/
+         |----YourPlugin/
+              |----YourPlugin.dll
+    database/
+    development/
+    hak/
+    modules/
+    override/
+    portraits/
+    saves/
+    serverdata/
+    servervault/
+    tlk/
+ ```
+
+### Installing Plugins - Paket
+
+Anvil includes a plugin/package manager based on [Paket](https://fsprojects.github.io/Paket/index.html) that can automatically update plugins from authors who publish their work on [NuGet](https://www.nuget.org/).
+
+To get started, first navigate to your server's home directory and find the `anvil/Paket/paket.dependencies.orig` file.
+
+Rename this file from `paket.dependencies.orig` to `paket.dependencies`, then open the file in your favourite text editor.
+
+By default, the file should look like this:
+
+```
+// Rename this file to "paket.dependencies" to enable support for loading plugins from NuGet.
+// See https://fsprojects.github.io/Paket/dependencies-file.html for more information.
+
+framework: net5.0
+strategy: min
+
+source https://api.nuget.org/v3/index.json
+
+// ---- Add plugins below this line ----
+```
+
+To install a plugin, first search and find the [NuGet](https://www.nuget.org/) package page for the plugin.
+
+Once you are on the package page, you will want to copy the install command listed at the top of the page. It should look something like:
+
+```
+Install-Package NWN.ExamplePlugin -Version 8193.33.0
+```
+
+Copy the name and version parts of the command into the `paket.dependencies` file:
+
+```
+// Rename this file to "paket.dependencies" to enable support for loading plugins from NuGet.
+// See https://fsprojects.github.io/Paket/dependencies-file.html for more information.
+
+framework: net5.0
+strategy: min
+
+source https://api.nuget.org/v3/index.json
+
+// ---- Add plugins below this line ----
+nuget NWN.ExamplePlugin 8193.33.0
+```
+
+Save and close the file. The plugin should now download and run the next time you launch the server!
 
 # Builder/Developer's Guide
 
