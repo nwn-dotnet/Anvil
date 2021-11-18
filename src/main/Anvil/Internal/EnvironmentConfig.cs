@@ -21,6 +21,12 @@ namespace Anvil.Internal
     public static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
     public static readonly string CoreShutdownScript = Environment.GetEnvironmentVariable("NWNX_CORE_SHUTDOWN_SCRIPT");
 
+    static EnvironmentConfig()
+    {
+      ValidateUnset("NLOG_CONFIG");
+      ValidateUnset("PLUGIN_PATH");
+    }
+
     private static T GetAnvilVariableEnum<T>(string key, T defaultValue = default) where T : struct, Enum
     {
       string value = GetAnvilVariableString(key, defaultValue.ToString());
@@ -31,6 +37,14 @@ namespace Anvil.Internal
     {
       string value = GetAnvilVariableString(key, defaultValue.ToString());
       return value.Equals("true", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static void ValidateUnset(string key)
+    {
+      if (Environment.GetEnvironmentVariable(key) != null)
+      {
+        throw new Exception($"Unsupported environment variable {key}. Please see the changelog for more information.");
+      }
     }
 
     private static string GetAnvilVariableString(string key, string defaultValue = null)
