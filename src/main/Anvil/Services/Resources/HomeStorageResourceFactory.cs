@@ -29,15 +29,5 @@ namespace Anvil.Services
         File.WriteAllText(path, contents);
       }
     }
-
-    private void WriteIfNotExists(string path, byte[] contents)
-    {
-      if (!File.Exists(path))
-      {
-        File.WriteAllBytes(path, contents);
-      }
-    }
-
-
   }
 }
