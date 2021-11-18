@@ -10,8 +10,8 @@
 
 namespace Anvil.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace Anvil.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class HomeResources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal HomeResources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Anvil.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,40 +59,13 @@ namespace Anvil.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;!-- Rename this file to &quot;nlog.config&quot; to customize logging for Anvil. --&gt;
-        ///&lt;!-- See https://github.com/NLog/NLog/wiki/Configuration-file#nlog-config-xml for more information. --&gt;
-        ///&lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;
-        ///      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
-        ///
-        ///  &lt;!-- The targets to write to --&gt;
-        ///  &lt;targets&gt;
-        ///    &lt;!-- Write logs to console --&gt;
-        ///    &lt;target xsi:type=&quot;ColoredConsole&quot;
-        ///            name=&quot;console&quot;
-        ///            la [rest of string was truncated]&quot;;.
-        /// </summary>
+
         internal static string NLogDefaultConfig {
             get {
                 return ResourceManager.GetString("NLogDefaultConfig", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to // Rename this file to &quot;paket.dependencies&quot; to enable support for loading plugins from NuGet.
-        ///// See https://fsprojects.github.io/Paket/dependencies-file.html for more information.
-        ///
-        ///framework: net5.0
-        ///strategy: min
-        ///
-        ///source https://api.nuget.org/v3/index.json
-        ///
-        ///// ---- Add plugins below this line ----
-        ///// nuget NWN.ExamplePlugin 8193.33.0
-        ///.
-        /// </summary>
+
         internal static string PaketDefaultConfig {
             get {
                 return ResourceManager.GetString("PaketDefaultConfig", resourceCulture);
