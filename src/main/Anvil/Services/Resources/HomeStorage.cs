@@ -38,7 +38,7 @@ namespace Anvil.Services
       string path = Path.Combine(AnvilHome, subPath);
       if (createIfMissing)
       {
-        Directory.CreateDirectory(path);
+        CreateDirectory(path);
       }
 
       return path;
@@ -49,10 +49,21 @@ namespace Anvil.Services
       string path = Path.Combine(AnvilHome, subPath);
       if (createParentsIfMissing)
       {
-        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        CreateDirectory(Path.GetDirectoryName(path)!);
       }
 
       return path;
+    }
+
+    private static void CreateDirectory(string folderPath)
+    {
+      // If a file exists at the folder path, check it is a symlink.
+      // Running CreateDirectory on the symlink will cause an IOException.
+      // If a normal file exists on the path, we should still throw the exception.
+      if (!File.Exists(folderPath) || (File.GetAttributes(folderPath) & FileAttributes.ReparsePoint) == 0)
+      {
+        Directory.CreateDirectory(folderPath);
+      }
     }
   }
 }

@@ -29,7 +29,9 @@ namespace Anvil.Services
     {
       if (pluginManager.IsPluginAssembly(pluginAssembly))
       {
-        return Path.Combine(HomeStorage.PluginData, pluginAssembly.GetName().Name!);
+        string path = Path.Combine(HomeStorage.PluginData, pluginAssembly.GetName().Name!);
+        Directory.CreateDirectory(path);
+        return path;
       }
 
       throw new ArgumentException("Specified assembly is not a loaded plugin assembly", nameof(pluginAssembly));
