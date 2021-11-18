@@ -57,14 +57,13 @@ namespace Anvil.Services
 
     private static void CreateDirectory(string folderPath)
     {
-      // If a file exists at the folder path, return if it is a symlink...
-      if (File.Exists(folderPath) && (File.GetAttributes(folderPath) & FileAttributes.ReparsePoint) != 0)
+      // If a file exists at the folder path, check it is a symlink.
+      // Running CreateDirectory on the symlink will cause an IOException.
+      // If a normal file exists on the path, we should still throw the exception.
+      if (!File.Exists(folderPath) || (File.GetAttributes(folderPath) & FileAttributes.ReparsePoint) == 0)
       {
-        return;
+        Directory.CreateDirectory(folderPath);
       }
-
-      // ...Otherwise attempt to create the directory normally. If a file is at the path, Directory.CreateDirectory will throw an exception.
-      Directory.CreateDirectory(folderPath);
     }
   }
 }
