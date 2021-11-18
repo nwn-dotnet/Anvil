@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Anvil.Internal;
@@ -7,12 +8,19 @@ namespace Anvil.Plugins
 {
   internal sealed class Plugin : IDisposable
   {
-    public readonly string PluginPath;
-    public readonly string ResourcePath;
-    public readonly bool HasResourceDirectory;
-    public readonly AssemblyName AssemblyName;
+    private readonly PluginManager pluginManager;
 
     private PluginLoadContext pluginLoadContext;
+
+    public AssemblyName Name { get; }
+
+    public string Path { get; }
+
+    public string ResourcePath { get; init; }
+
+    public Dictionary<string, string> AdditionalAssemblyPaths { get; init; }
+
+    public Dictionary<string, string> UnmanagedAssemblyPaths { get; init; }
 
     public bool Loading { get; private set; }
 
@@ -21,24 +29,28 @@ namespace Anvil.Plugins
       get => Assembly != null;
     }
 
-    public Assembly Assembly;
-
-    public Plugin(string pluginPath, string resourcePath, PluginLoadContext pluginLoadContext)
+    public bool HasResourceDirectory
     {
-      PluginPath = pluginPath;
-      ResourcePath = resourcePath;
-      AssemblyName = AssemblyName.GetAssemblyName(pluginPath);
-      HasResourceDirectory = Directory.Exists(resourcePath);
-      this.pluginLoadContext = pluginLoadContext;
+      get => ResourcePath != null && Directory.Exists(ResourcePath);
+    }
+
+    public Assembly Assembly { get; private set; }
+
+    public Plugin(PluginManager pluginManager, string path)
+    {
+      this.pluginManager = pluginManager;
+      Path = path;
+      Name = AssemblyName.GetAssemblyName(path);
     }
 
     public void Load()
     {
+      pluginLoadContext = new PluginLoadContext(pluginManager, this);
       Loading = true;
 
       try
       {
-        Assembly = pluginLoadContext.LoadFromAssemblyName(AssemblyName);
+        Assembly = pluginLoadContext.LoadFromAssemblyName(Name);
       }
       finally
       {
@@ -50,7 +62,7 @@ namespace Anvil.Plugins
     {
       Assembly = null;
 
-      pluginLoadContext.Dispose();
+      pluginLoadContext?.Dispose();
       WeakReference unloadHandle = new WeakReference(pluginLoadContext);
       pluginLoadContext = null;
 

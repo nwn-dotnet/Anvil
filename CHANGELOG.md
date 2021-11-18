@@ -7,7 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...HEAD
 
 ### Added
-- N/A
+- Implemented `PaketPluginSource` for installing and running NuGet-based plugins.
+- Implemented support for custom plugin sources with the `IPluginSource` interface.
+- Implemented `PluginStorageService` - a unified API for storing plugin data and configurations.
+- Added `ANVIL_HOME` environment variable. This variable defines the root path where Anvil config files, plugins and plugin data are read from.
 
 ### Changed
 - N/A
@@ -16,7 +19,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...HEAD
 - N/A
 
 ### Removed
-- N/A
+- <u>**BREAKING CHANGE**</u> - Removed `ANVIL_NLOG_CONFIG` environment variable. The config path is now fixed to `{ANVIL_HOME}/nlog.config`
+- <u>**BREAKING CHANGE**</u> - Removed `ANVIL_PLUGIN_PATH` environment variable. The plugin load path is now fixed to `{ANVIL_HOME}/Plugins`
 
 ### Fixed
 - N/A

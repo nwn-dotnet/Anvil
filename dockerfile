@@ -3,6 +3,9 @@ FROM nwnxee/unified:843fad9
 ARG BINARY_PATH
 COPY ${BINARY_PATH} /nwn/anvil/
 
+# Set up symlinks
+RUN ln -s /nwn/home/anvil /nwn/run/anvil
+
 # Define we are an Anvil based container
 ENV ANVIL_IMAGE=1
 

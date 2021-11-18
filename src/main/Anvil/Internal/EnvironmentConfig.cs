@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Anvil.Services;
 
 namespace Anvil.Internal
@@ -12,9 +11,7 @@ namespace Anvil.Internal
     private static readonly string[] VariablePrefixes = { "ANVIL_", "NWM_" };
 
     // Anvil
-    public static readonly string PluginsPath = GetAnvilVariableString("PLUGIN_PATH", Path.Combine(Assemblies.AssemblyDir, "Plugins"));
-    public static readonly string ResourcePath = GetAnvilVariableString("RESOURCE_TEMP_DIR", Path.Combine(Assemblies.AssemblyDir, "res_temp"));
-    public static readonly string NLogConfigPath = GetAnvilVariableString("NLOG_CONFIG");
+    public static readonly string AnvilHome = GetAnvilVariableString("HOME", "./anvil");
     public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
     public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
     public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
@@ -23,6 +20,12 @@ namespace Anvil.Internal
     // NWNX
     public static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
     public static readonly string CoreShutdownScript = Environment.GetEnvironmentVariable("NWNX_CORE_SHUTDOWN_SCRIPT");
+
+    static EnvironmentConfig()
+    {
+      ValidateUnset("NLOG_CONFIG");
+      ValidateUnset("PLUGIN_PATH");
+    }
 
     private static T GetAnvilVariableEnum<T>(string key, T defaultValue = default) where T : struct, Enum
     {
@@ -34,6 +37,14 @@ namespace Anvil.Internal
     {
       string value = GetAnvilVariableString(key, defaultValue.ToString());
       return value.Equals("true", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static void ValidateUnset(string key)
+    {
+      if (Environment.GetEnvironmentVariable(key) != null)
+      {
+        throw new Exception($"Unsupported environment variable {key}. Please see the changelog for more information.");
+      }
     }
 
     private static string GetAnvilVariableString(string key, string defaultValue = null)
