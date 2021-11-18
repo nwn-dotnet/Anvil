@@ -6,6 +6,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A static world object that is optionally interactable or destroyable.
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.Placeable, ObjectType.Placeable)]
   public sealed partial class NwPlaceable : NwStationary
   {

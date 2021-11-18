@@ -4,6 +4,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A trappable game object/entity.
+  /// </summary>
   public abstract class NwTrappable : NwGameObject
   {
     internal NwTrappable(CNWSObject gameObject) : base(gameObject) {}

@@ -5,6 +5,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// An encounter trigger that spawns creatures.
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.Encounter, ObjectType.Encounter)]
   public sealed partial class NwEncounter : NwGameObject
   {

@@ -7,6 +7,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// An item object that can be carried by creatures, stored in placeable containers, or dropped in an anrea.
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.Item, ObjectType.Item)]
   public sealed partial class NwItem : NwGameObject
   {

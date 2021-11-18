@@ -6,6 +6,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// The root container object for all areas and module entities.
+  /// </summary>
   [NativeObjectInfo(0, ObjectType.Module)]
   public sealed partial class NwModule : NwObject
   {

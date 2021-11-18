@@ -9,6 +9,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Base class for all world entities (game objects) and containers (modules, areas).
+  /// </summary>
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   public abstract partial class NwObject : IEquatable<NwObject>
   {

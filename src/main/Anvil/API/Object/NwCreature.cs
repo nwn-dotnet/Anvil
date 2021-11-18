@@ -10,6 +10,9 @@ using ObjectType = NWN.Native.API.ObjectType;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A monster, NPC, player character or DM avatar
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public sealed partial class NwCreature : NwGameObject
   {

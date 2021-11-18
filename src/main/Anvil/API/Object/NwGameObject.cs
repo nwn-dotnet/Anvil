@@ -8,6 +8,9 @@ using Vector3 = System.Numerics.Vector3;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Base class for all entities in areas.
+  /// </summary>
   public abstract partial class NwGameObject : NwObject
   {
     internal readonly CNWSObject GameObject;

@@ -5,6 +5,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A trigger volume entity.
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.Trigger, ObjectType.Trigger)]
   public sealed partial class NwTrigger : NwTrappable
   {
