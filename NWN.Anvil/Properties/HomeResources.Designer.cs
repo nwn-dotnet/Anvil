@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Properties {
+namespace Anvil.Properties {
     using System;
 
 
@@ -39,7 +39,7 @@ namespace Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Properties.HomeResources", typeof(HomeResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Anvil.Properties.HomeResources", typeof(HomeResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

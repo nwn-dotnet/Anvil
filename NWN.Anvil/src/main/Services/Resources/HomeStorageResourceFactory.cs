@@ -1,5 +1,5 @@
 using System.IO;
-using Properties;
+using Anvil.Properties;
 
 namespace Anvil.Services
 {
