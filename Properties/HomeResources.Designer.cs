@@ -60,35 +60,12 @@ namespace Properties {
             }
         }
 
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;!-- Rename this file to &quot;nlog.config&quot; to customize logging for Anvil. --&gt;
-        ///&lt;!-- See https://github.com/NLog/NLog/wiki/Configuration-file#nlog-config-xml for more information. --&gt;
-        ///&lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;
-        ///      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
-        ///
-        ///    &lt;!-- The targets to write to --&gt;
-        ///    &lt;targets&gt;
-        ///        &lt;!-- Write logs to console --&gt;
-        ///        &lt;target xsi:type=&quot;ColoredConsole&quot;
-        ///                name=&quot;console&quot; [rest of string was truncated]&quot;;.
-        /// </summary>
         internal static string NLogDefaultConfig {
             get {
                 return ResourceManager.GetString("NLogDefaultConfig", resourceCulture);
             }
         }
 
-        /// <summary>
-        ///   Looks up a localized string similar to // Rename this file to &quot;paket.dependencies&quot; to enable support for loading plugins from NuGet.
-        ///// See https://fsprojects.github.io/Paket/dependencies-file.html for more information.
-        ///
-        ///framework: net5.0
-        ///strategy: min
-        ///
-        ///source https://api.nuget.org/v3/index.json
-        ///nuget NWN.ExamplePlugin 8193.33.0.
-        /// </summary>
         internal static string PaketDefaultConfig {
             get {
                 return ResourceManager.GetString("PaketDefaultConfig", resourceCulture);
