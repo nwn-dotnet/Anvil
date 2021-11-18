@@ -18,7 +18,7 @@
     <Configurations>Debug;Release;Samples</Configurations>
     <Platforms>AnyCPU</Platforms>
 
-    <RootNamespace />
+    <RootNamespace>Anvil</RootNamespace>
   </PropertyGroup>
 
   <!--Package-->
