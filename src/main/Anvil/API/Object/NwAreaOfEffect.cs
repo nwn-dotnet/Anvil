@@ -5,6 +5,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// The area/region of an ongoing spell effect or ability.
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.AreaOfEffect, ObjectType.AreaOfEffect)]
   public sealed partial class NwAreaOfEffect : NwGameObject
   {

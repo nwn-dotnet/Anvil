@@ -7,6 +7,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// An environment/game level.
+  /// </summary>
   [NativeObjectInfo(0, ObjectType.Area)]
   public sealed partial class NwArea : NwObject
   {

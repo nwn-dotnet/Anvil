@@ -3,6 +3,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A waypoint entity that uniquely identifies a location in the module.
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.Waypoint, ObjectType.Waypoint)]
   public sealed class NwWaypoint : NwGameObject
   {

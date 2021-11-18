@@ -4,6 +4,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A configurable sound object in an area.
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
   public sealed class NwSound : NwGameObject
   {

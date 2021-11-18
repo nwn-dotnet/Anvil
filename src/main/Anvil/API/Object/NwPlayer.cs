@@ -14,6 +14,9 @@ using Vector = NWN.Native.API.Vector;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A player client connected to the server.
+  /// </summary>
   public sealed partial class NwPlayer : IEquatable<NwPlayer>
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

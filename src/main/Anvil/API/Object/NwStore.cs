@@ -5,6 +5,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A store object for bartering, and items to purchase.
+  /// </summary>
   [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
   public sealed partial class NwStore : NwGameObject
   {

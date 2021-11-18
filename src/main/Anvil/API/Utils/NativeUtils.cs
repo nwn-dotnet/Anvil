@@ -38,6 +38,11 @@ namespace Anvil.API
       return str != null ? new CExoString(str) : new CExoString();
     }
 
+    public static CResRef ToResRef(this string str)
+    {
+      return str != null ? new CResRef(str) : new CResRef();
+    }
+
     public static CExoLocString ToExoLocString(this string str, int nId = 0, byte gender = 0)
     {
       CExoLocString locString = new CExoLocString();
