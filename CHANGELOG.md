@@ -11,6 +11,11 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...HEAD
 - Implemented support for custom plugin sources with the `IPluginSource` interface.
 - Implemented `PluginStorageService` - a unified API for storing plugin data and configurations.
 - Added `ANVIL_HOME` environment variable. This variable defines the root path where Anvil config files, plugins and plugin data are read from.
+- Added additional properties to `NwEncounter`.
+
+### Package Updates
+- NWN.Core -> 8193.33.4
+- NWN.Native -> 8193.33.4
 
 ### Changed
 - N/A
