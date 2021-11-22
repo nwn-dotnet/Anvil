@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,7 +59,7 @@ namespace Anvil.API
     /// </summary>
     public bool CanStack
     {
-      get => int.Parse(NWScript.Get2DAString("baseitems", "Stacking", ((int)BaseItemType))) > 1;
+      get => int.Parse(NWScript.Get2DAString("baseitems", "Stacking", (int)BaseItemType)) > 1;
     }
 
     /// <summary>
