@@ -15,6 +15,7 @@ var classAnvil_1_1API_1_1NwItem =
     [ "BaseACValue", "classAnvil_1_1API_1_1NwItem.html#a8e504227a2c075142851eb11951b1431", null ],
     [ "BaseGoldValue", "classAnvil_1_1API_1_1NwItem.html#a9da37baed68661a1b9f18401bfaf2942", null ],
     [ "BaseItemType", "classAnvil_1_1API_1_1NwItem.html#a3d3ecfe92404dd7d642794ba770e6522", null ],
+    [ "CanStack", "classAnvil_1_1API_1_1NwItem.html#a64b99e24969f421980a47dff409db62e", null ],
     [ "CursedFlag", "classAnvil_1_1API_1_1NwItem.html#aa725a44a86fd94800c3606eb9a423a12", null ],
     [ "Droppable", "classAnvil_1_1API_1_1NwItem.html#a4e60152c716a7525f61becd6de51bfdd", null ],
     [ "GoldValue", "classAnvil_1_1API_1_1NwItem.html#ab798cb3778c8fdb0e578dace2848c126", null ],

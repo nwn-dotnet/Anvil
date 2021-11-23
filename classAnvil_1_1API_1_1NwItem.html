@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NwItem.html','');
   <div class="headertitle"><div class="title">Anvil.API.NwItem Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>An item object that can be carried by creatures, stored in placeable containers, or dropped in an anrea.  
+ <a href="classAnvil_1_1API_1_1NwItem.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.NwItem:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -98,9 +101,9 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NwItem.html','');
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classAnvil_1_1API_1_1NwItem__inherit__graph.png" border="0" usemap="#aAnvil_8API_8NwItem_inherit__map" alt="Inheritance graph"/></div>
 <map name="aAnvil_8API_8NwItem_inherit__map" id="aAnvil_8API_8NwItem_inherit__map">
-<area shape="rect" title=" " alt="" coords="24,229,149,256"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NwGameObject.html" title=" " alt="" coords="29,155,144,181"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="47,80,127,107"/>
+<area shape="rect" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr..." alt="" coords="24,229,149,256"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="29,155,144,181"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="47,80,127,107"/>
 <area shape="rect" title=" " alt="" coords="5,5,168,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -111,9 +114,9 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NwItem.html','');
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classAnvil_1_1API_1_1NwItem__coll__graph.png" border="0" usemap="#aAnvil_8API_8NwItem_coll__map" alt="Collaboration graph"/></div>
 <map name="aAnvil_8API_8NwItem_coll__map" id="aAnvil_8API_8NwItem_coll__map">
-<area shape="rect" title=" " alt="" coords="24,229,149,256"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NwGameObject.html" title=" " alt="" coords="29,155,144,181"/>
-<area shape="rect" href="classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="47,80,127,107"/>
+<area shape="rect" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr..." alt="" coords="24,229,149,256"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="29,155,144,181"/>
+<area shape="rect" href="classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="47,80,127,107"/>
 <area shape="rect" title=" " alt="" coords="5,5,168,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -390,6 +393,10 @@ uint&#160;</td><td class="memItemRight" valign="bottom"><b>BaseGoldValue</b><cod
 BaseItemType&#160;</td><td class="memItemRight" valign="bottom"><b>BaseItemType</b><code> [getset]</code></td></tr>
 <tr class="memdesc:a3d3ecfe92404dd7d642794ba770e6522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the <a class="el" href="classAnvil_1_1API_1_1NwItem.html#a3d3ecfe92404dd7d642794ba770e6522" title="Gets or sets the BaseItemType for this item.">BaseItemType</a> for this item. <br /></td></tr>
 <tr class="separator:a3d3ecfe92404dd7d642794ba770e6522"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b99e24969f421980a47dff409db62e"><td class="memItemLeft" align="right" valign="top"><a id="a64b99e24969f421980a47dff409db62e" name="a64b99e24969f421980a47dff409db62e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanStack</b><code> [get]</code></td></tr>
+<tr class="memdesc:a64b99e24969f421980a47dff409db62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this item can stack. <br /></td></tr>
+<tr class="separator:a64b99e24969f421980a47dff409db62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa725a44a86fd94800c3606eb9a423a12"><td class="memItemLeft" align="right" valign="top"><a id="aa725a44a86fd94800c3606eb9a423a12" name="aa725a44a86fd94800c3606eb9a423a12"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>CursedFlag</b><code> [getset]</code></td></tr>
 <tr class="memdesc:aa725a44a86fd94800c3606eb9a423a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether this item is considered cursed. Cursed items cannot be dropped. <br /></td></tr>
@@ -614,7 +621,9 @@ Additional Inherited Members</h2></td></tr>
 readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b></td></tr>
 <tr class="separator:a5945eebf67518e945b212596768ab7ba inherit pro_attribs_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >An item object that can be carried by creatures, stored in placeable containers, or dropped in an anrea. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8b33d97b880aad90682eb4a4254b57d3" name="a8b33d97b880aad90682eb4a4254b57d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b33d97b880aad90682eb4a4254b57d3">&#9670;&nbsp;</a></span>AddItemProperty()</h2>
 
@@ -1207,9 +1216,9 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/main/Anvil/API/Events/Native/InventoryEvents/OnInventoryItemAdd.cs</li>
-<li>src/main/Anvil/API/Events/Native/InventoryEvents/OnInventoryItemRemove.cs</li>
-<li>src/main/Anvil/API/Object/NwItem.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/InventoryEvents/OnInventoryItemAdd.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/InventoryEvents/OnInventoryItemRemove.cs</li>
+<li>NWN.Anvil/src/main/API/Object/NwItem.cs</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

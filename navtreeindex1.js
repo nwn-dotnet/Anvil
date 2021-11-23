@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html":[0,0,0,0,13,1],
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html#a91161c8233e6df0b29b91ba84c68a1ff":[0,0,0,0,13,1,0],
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExit.html":[0,0,0,0,13,2],
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExit.html#abc79a6dbcd6354bd26acc2ca8890c0ff":[0,0,0,0,13,2,0],
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnHeartbeat.html":[0,0,0,0,13,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLeftClick.html#a3311cf22c4d272060bf7bc9d06430ce1":[0,0,0,0,119,7,0],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLeftClick.html#ab0b26a7df964c4d18e533d03bf303659":[0,0,0,0,119,7,1],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html":[0,0,0,0,119,8],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a88e213ae46590759ef0484cf0ed46a9a":[0,0,0,0,119,8,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a8e5b0e5cf4a60da3824dd9257aedcc42":[0,0,0,0,119,8,0],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html":[0,0,0,0,119,9]
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a88e213ae46590759ef0484cf0ed46a9a":[0,0,0,0,119,8,1]
 };

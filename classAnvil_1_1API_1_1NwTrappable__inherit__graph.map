@@ -1,10 +1,10 @@
 <map id="Anvil.API.NwTrappable" name="Anvil.API.NwTrappable">
-<area shape="rect" id="node1" title=" " alt="" coords="159,229,315,256"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1NwStationary.html" title=" " alt="" coords="73,304,230,331"/>
-<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1NwTrigger.html" title=" " alt="" coords="254,304,393,331"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NwGameObject.html" title=" " alt="" coords="179,155,294,181"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="197,80,277,107"/>
+<area shape="rect" id="node1" title="A trappable game object/entity." alt="" coords="159,229,315,256"/>
+<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1NwStationary.html" title="A stationary game object entity." alt="" coords="73,304,230,331"/>
+<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1NwTrigger.html" title="A trigger volume entity." alt="" coords="254,304,393,331"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="179,155,294,181"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="197,80,277,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="155,5,318,32"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1NwDoor.html" title=" " alt="" coords="5,379,132,405"/>
-<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1NwPlaceable.html" title=" " alt="" coords="156,379,312,405"/>
+<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1NwDoor.html" title="A tile&#45;based door." alt="" coords="5,379,132,405"/>
+<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1NwPlaceable.html" title="A static world object that is optionally interactable or destroyable." alt="" coords="156,379,312,405"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="Anvil.API.NwWaypoint" name="Anvil.API.NwWaypoint">
-<area shape="rect" id="node1" title=" " alt="" coords="11,229,163,256"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NwGameObject.html" title=" " alt="" coords="29,155,144,181"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NwObject.html" title=" " alt="" coords="47,80,127,107"/>
+<area shape="rect" id="node1" title="A waypoint entity that uniquely identifies a location in the module." alt="" coords="11,229,163,256"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas." alt="" coords="29,155,144,181"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1NwObject.html" title="Base class for all world entities (game objects) and containers (modules, areas)." alt="" coords="47,80,127,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,5,168,32"/>
 </map>

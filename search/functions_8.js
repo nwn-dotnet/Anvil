@@ -16,12 +16,13 @@ var searchData=
   ['isneutral_13',['IsNeutral',['../classAnvil_1_1API_1_1NwCreature.html#ae7bbe838a0ae3df42cbc7ef964c99800',1,'Anvil::API::NwCreature']]],
   ['isplaceableactionpossible_14',['IsPlaceableActionPossible',['../classAnvil_1_1API_1_1NwPlaceable.html#afc679be05f145c308f9b4ea925c6a617',1,'Anvil::API::NwPlaceable']]],
   ['isplayercontrolled_15',['IsPlayerControlled',['../classAnvil_1_1API_1_1ObjectExtensions.html#a689927c7bc9dbc26bea448a43b40b689',1,'Anvil::API::ObjectExtensions']]],
-  ['isreactiontypefriendly_16',['IsReactionTypeFriendly',['../classAnvil_1_1API_1_1NwCreature.html#a7ab9d9cdee0c3bebefe9e8859b2df32b',1,'Anvil::API::NwCreature']]],
-  ['isreactiontypehostile_17',['IsReactionTypeHostile',['../classAnvil_1_1API_1_1NwCreature.html#a62da483be906943ea43a61dff60e4571',1,'Anvil::API::NwCreature']]],
-  ['isreactiontypeneutral_18',['IsReactionTypeNeutral',['../classAnvil_1_1API_1_1NwCreature.html#abff80a306d43e5c84f61aa3afbfcdf3f',1,'Anvil::API::NwCreature']]],
-  ['isscriptregistered_19',['IsScriptRegistered',['../classAnvil_1_1Services_1_1ScriptHandleFactory.html#a191483fc75d595ec787560c4c7970dd2',1,'Anvil::Services::ScriptHandleFactory']]],
-  ['isset_20',['IsSet',['../classAnvil_1_1API_1_1ScriptParams.html#a1468290fbfd5669b97c060cc512b00e6',1,'Anvil::API::ScriptParams']]],
-  ['istrapdetectedby_21',['IsTrapDetectedBy',['../classAnvil_1_1API_1_1NwTrappable.html#ac355984d40ce92329634c93e4bac63bd',1,'Anvil::API::NwTrappable']]],
-  ['isvalidresource_22',['IsValidResource',['../classAnvil_1_1Services_1_1ResourceManager.html#aaac3dfe48a51ab2d1f2ac209d77d9485',1,'Anvil::Services::ResourceManager']]],
-  ['isweaponeffective_23',['IsWeaponEffective',['../classAnvil_1_1API_1_1NwCreature.html#a918dd0581efe225d56876194c2476220',1,'Anvil::API::NwCreature']]]
+  ['ispluginassembly_16',['IsPluginAssembly',['../classAnvil_1_1Plugins_1_1PluginManager.html#ac7e505c203083b13aec33503430dd647',1,'Anvil::Plugins::PluginManager']]],
+  ['isreactiontypefriendly_17',['IsReactionTypeFriendly',['../classAnvil_1_1API_1_1NwCreature.html#a7ab9d9cdee0c3bebefe9e8859b2df32b',1,'Anvil::API::NwCreature']]],
+  ['isreactiontypehostile_18',['IsReactionTypeHostile',['../classAnvil_1_1API_1_1NwCreature.html#a62da483be906943ea43a61dff60e4571',1,'Anvil::API::NwCreature']]],
+  ['isreactiontypeneutral_19',['IsReactionTypeNeutral',['../classAnvil_1_1API_1_1NwCreature.html#abff80a306d43e5c84f61aa3afbfcdf3f',1,'Anvil::API::NwCreature']]],
+  ['isscriptregistered_20',['IsScriptRegistered',['../classAnvil_1_1Services_1_1ScriptHandleFactory.html#a191483fc75d595ec787560c4c7970dd2',1,'Anvil::Services::ScriptHandleFactory']]],
+  ['isset_21',['IsSet',['../classAnvil_1_1API_1_1ScriptParams.html#a1468290fbfd5669b97c060cc512b00e6',1,'Anvil::API::ScriptParams']]],
+  ['istrapdetectedby_22',['IsTrapDetectedBy',['../classAnvil_1_1API_1_1NwTrappable.html#ac355984d40ce92329634c93e4bac63bd',1,'Anvil::API::NwTrappable']]],
+  ['isvalidresource_23',['IsValidResource',['../classAnvil_1_1Services_1_1ResourceManager.html#aaac3dfe48a51ab2d1f2ac209d77d9485',1,'Anvil::Services::ResourceManager']]],
+  ['isweaponeffective_24',['IsWeaponEffective',['../classAnvil_1_1API_1_1NwCreature.html#a918dd0581efe225d56876194c2476220',1,'Anvil::API::NwCreature']]]
 ];

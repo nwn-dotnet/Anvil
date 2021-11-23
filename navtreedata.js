@@ -32,13 +32,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExit.html",
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html#a2f57531fe7541209294a737f4bb68e6d",
-"classAnvil_1_1API_1_1NwArea.html#a189cab9a7688840c802f3ba9ea947125",
-"classAnvil_1_1API_1_1NwCreature.html#ad01dd75fa66ad34c2e8790d41828b1b9",
-"classAnvil_1_1API_1_1NwModule.html#a529dcd2380e35dd724d857d5fc196796",
-"classAnvil_1_1API_1_1NwPlayer.html#ab2df9554e44ccbf459aed4e62e562cff",
-"classAnvil_1_1Services_1_1AnvilContainerFactory.html#a7a078c013b791fd1833a061dcb5c12e3"
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html",
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a8e5b0e5cf4a60da3824dd9257aedcc42",
+"classAnvil_1_1API_1_1NwArea.html#a111e325ad9e32787a82189e0f72fc62c",
+"classAnvil_1_1API_1_1NwCreature.html#acd96b82341a720a023eb18c39e17e23b",
+"classAnvil_1_1API_1_1NwModule.html#a3f43a0b8fe0f2858c0f179121edd8833",
+"classAnvil_1_1API_1_1NwPlayer.html#a9e59f0d74b02612e1b7b208dd2da2015",
+"classAnvil_1_1API_1_1VisualTransform.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

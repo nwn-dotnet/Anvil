@@ -257,6 +257,8 @@ var annotated =
         [ "Effect", "classAnvil_1_1API_1_1Effect.html", "classAnvil_1_1API_1_1Effect" ],
         [ "EffectBase", "classAnvil_1_1API_1_1EffectBase.html", "classAnvil_1_1API_1_1EffectBase" ],
         [ "EffectParams", "classAnvil_1_1API_1_1EffectParams.html", "classAnvil_1_1API_1_1EffectParams" ],
+        [ "EncounterListEntry", "classAnvil_1_1API_1_1EncounterListEntry.html", null ],
+        [ "EncounterSpawnPoint", "classAnvil_1_1API_1_1EncounterSpawnPoint.html", null ],
         [ "EngineStructure", "classAnvil_1_1API_1_1EngineStructure.html", null ],
         [ "FadeSpeed", "classAnvil_1_1API_1_1FadeSpeed.html", null ],
         [ "GffResource", "classAnvil_1_1API_1_1GffResource.html", "classAnvil_1_1API_1_1GffResource" ],
@@ -392,7 +394,7 @@ var annotated =
         [ "EnvironmentConfig", "classAnvil_1_1Internal_1_1EnvironmentConfig.html", null ]
       ] ],
       [ "Plugins", "namespaceAnvil_1_1Plugins.html", [
-        [ "PluginManager", "classAnvil_1_1Plugins_1_1PluginManager.html", null ]
+        [ "PluginManager", "classAnvil_1_1Plugins_1_1PluginManager.html", "classAnvil_1_1Plugins_1_1PluginManager" ]
       ] ],
       [ "Services", "namespaceAnvil_1_1Services.html", [
         [ "AnvilContainerFactory", "classAnvil_1_1Services_1_1AnvilContainerFactory.html", "classAnvil_1_1Services_1_1AnvilContainerFactory" ],
@@ -429,6 +431,7 @@ var annotated =
         [ "OnELCValidationBefore", "classAnvil_1_1Services_1_1OnELCValidationBefore.html", null ],
         [ "OnELCValidationFailure", "classAnvil_1_1Services_1_1OnELCValidationFailure.html", null ],
         [ "OnELCValidationSuccess", "classAnvil_1_1Services_1_1OnELCValidationSuccess.html", null ],
+        [ "PluginStorageService", "classAnvil_1_1Services_1_1PluginStorageService.html", "classAnvil_1_1Services_1_1PluginStorageService" ],
         [ "ResourceManager", "classAnvil_1_1Services_1_1ResourceManager.html", "classAnvil_1_1Services_1_1ResourceManager" ],
         [ "SchedulerService", "classAnvil_1_1Services_1_1SchedulerService.html", "classAnvil_1_1Services_1_1SchedulerService" ],
         [ "ScriptCallbackHandle", "classAnvil_1_1Services_1_1ScriptCallbackHandle.html", null ],

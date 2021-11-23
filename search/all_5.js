@@ -2,7 +2,7 @@ var searchData=
 [
   ['facetoobject_0',['FaceToObject',['../classAnvil_1_1API_1_1NwGameObject.html#a01b08a96ec3218849d22feadc68fe129',1,'Anvil::API::NwGameObject']]],
   ['facetopoint_1',['FaceToPoint',['../classAnvil_1_1API_1_1NwGameObject.html#a6916e64ed079ffca3132d8708e40d002',1,'Anvil.API.NwGameObject.FaceToPoint()'],['../classAnvil_1_1API_1_1NwStationary.html#ac0b5a455075042878d01d73ae045570c',1,'Anvil.API.NwStationary.FaceToPoint()']]],
-  ['faction_2',['Faction',['../classAnvil_1_1API_1_1NwCreature.html#aad610a4dc7b58e8d6481c66e77f3ddd2',1,'Anvil::API::NwCreature']]],
+  ['faction_2',['Faction',['../classAnvil_1_1API_1_1NwCreature.html#aad610a4dc7b58e8d6481c66e77f3ddd2',1,'Anvil.API.NwCreature.Faction()'],['../classAnvil_1_1API_1_1NwEncounter.html#a474aef0fa9391f29d138d13842fc4287',1,'Anvil.API.NwEncounter.Faction()']]],
   ['fadefromblack_3',['FadeFromBlack',['../classAnvil_1_1API_1_1NwPlayer.html#a418c31906c214067d68d0bbb0b6bbe6b',1,'Anvil::API::NwPlayer']]],
   ['fadespeed_4',['FadeSpeed',['../classAnvil_1_1API_1_1FadeSpeed.html',1,'Anvil::API']]],
   ['fadetoblack_5',['FadeToBlack',['../classAnvil_1_1API_1_1NwPlayer.html#a9b3588d97d548134eca7b3894f7b724e',1,'Anvil::API::NwPlayer']]],
@@ -10,7 +10,7 @@ var searchData=
   ['familiartype_7',['FamiliarType',['../classAnvil_1_1API_1_1NwCreature.html#a32477d7a3c2e9bbca5e1fe0b81a6b990',1,'Anvil::API::NwCreature']]],
   ['feat_8',['Feat',['../classAnvil_1_1API_1_1Talent.html#a4093404980ecc0bf16ca52a29591efc8',1,'Anvil::API::Talent']]],
   ['featcount_9',['FeatCount',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a2c07e6d79c9ecd16d765be573619d059',1,'Anvil.API.CreatureLevelInfo.FeatCount()'],['../classAnvil_1_1API_1_1NwCreature.html#a17dac2ca09612025c5c4982963029ce2',1,'Anvil.API.NwCreature.FeatCount()']]],
-  ['feats_10',['Feats',['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a688792aeee02a2e08f10ad7b5fc5e643',1,'Anvil.API.CreatureLevelInfo.Feats()'],['../classAnvil_1_1API_1_1NwCreature.html#a91678ce7f89b94799688c4f644a12fed',1,'Anvil.API.NwCreature.Feats()']]],
+  ['feats_10',['Feats',['../classAnvil_1_1API_1_1NwCreature.html#a91678ce7f89b94799688c4f644a12fed',1,'Anvil.API.NwCreature.Feats()'],['../classAnvil_1_1API_1_1CreatureLevelInfo.html#a688792aeee02a2e08f10ad7b5fc5e643',1,'Anvil.API.CreatureLevelInfo.Feats()']]],
   ['featselection_11',['FeatSelection',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html#af42b3ecf9ab6db154cb409d0e154d5c0',1,'Anvil::API::Events::ModuleEvents::OnPlayerGuiEvent']]],
   ['feedback_12',['Feedback',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182abea4c2c8eb82d05891ddd71584881b56',1,'Anvil::Services']]],
   ['feedbackservice_13',['FeedbackService',['../classAnvil_1_1Services_1_1FeedbackService.html',1,'Anvil::Services']]],

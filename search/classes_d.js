@@ -17,5 +17,6 @@ var searchData=
   ['playeridconstants_14',['PlayerIdConstants',['../classAnvil_1_1API_1_1PlayerIdConstants.html',1,'Anvil::API']]],
   ['playerquickbarbutton_15',['PlayerQuickBarButton',['../classAnvil_1_1API_1_1PlayerQuickBarButton.html',1,'Anvil::API']]],
   ['playoptions_16',['PlayOptions',['../classAnvil_1_1API_1_1PlayOptions.html',1,'Anvil::API']]],
-  ['pluginmanager_17',['PluginManager',['../classAnvil_1_1Plugins_1_1PluginManager.html',1,'Anvil::Plugins']]]
+  ['pluginmanager_17',['PluginManager',['../classAnvil_1_1Plugins_1_1PluginManager.html',1,'Anvil::Plugins']]],
+  ['pluginstorageservice_18',['PluginStorageService',['../classAnvil_1_1Services_1_1PluginStorageService.html',1,'Anvil::Services']]]
 ];

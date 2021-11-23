@@ -121,7 +121,9 @@ var NAVTREEINDEX0 =
 "classAnvil_1_1API_1_1EffectBase.html#af63b97a92f776079161b196b1b135f0d":[0,0,0,25,1],
 "classAnvil_1_1API_1_1EffectParams.html":[0,0,0,26],
 "classAnvil_1_1API_1_1EffectParams.html#a598a0d5d3b9a3928515e72c9d4a5199b":[0,0,0,26,0],
-"classAnvil_1_1API_1_1EngineStructure.html":[0,0,0,27],
+"classAnvil_1_1API_1_1EncounterListEntry.html":[0,0,0,27],
+"classAnvil_1_1API_1_1EncounterSpawnPoint.html":[0,0,0,28],
+"classAnvil_1_1API_1_1EngineStructure.html":[0,0,0,29],
 "classAnvil_1_1API_1_1Events_1_1AreaEvents.html":[0,0,0,0,0],
 "classAnvil_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html":[0,0,0,0,0,0],
 "classAnvil_1_1API_1_1Events_1_1AreaEvents_1_1OnEnter.html#a09d5a65020934557031d716177f58dd2":[0,0,0,0,0,0,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html":[0,0,0,0,12],
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents.html":[0,0,0,0,13],
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnEnter.html":[0,0,0,0,13,0],
-"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnEnter.html#a82e0fd1fbc5321b5aa39220d5d93319b":[0,0,0,0,13,0,0],
-"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html":[0,0,0,0,13,1],
-"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html#a91161c8233e6df0b29b91ba84c68a1ff":[0,0,0,0,13,1,0]
+"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnEnter.html#a82e0fd1fbc5321b5aa39220d5d93319b":[0,0,0,0,13,0,0]
 };

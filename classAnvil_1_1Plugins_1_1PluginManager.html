@@ -94,6 +94,12 @@ $(document).ready(function(){initNavTree('classAnvil_1_1Plugins_1_1PluginManager
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a622f7ec07bb1692ae3eb903ea0dea498"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Plugins_1_1PluginManager.html#a622f7ec07bb1692ae3eb903ea0dea498">GetPluginDirectory</a> (Assembly pluginAssembly)</td></tr>
+<tr class="memdesc:a622f7ec07bb1692ae3eb903ea0dea498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the install directory of the specified plugin.  <a href="classAnvil_1_1Plugins_1_1PluginManager.html#a622f7ec07bb1692ae3eb903ea0dea498">More...</a><br /></td></tr>
+<tr class="separator:a622f7ec07bb1692ae3eb903ea0dea498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e505c203083b13aec33503430dd647"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Plugins_1_1PluginManager.html#ac7e505c203083b13aec33503430dd647">IsPluginAssembly</a> (Assembly assembly)</td></tr>
+<tr class="memdesc:ac7e505c203083b13aec33503430dd647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if the specified assembly is the primary assembly for a plugin.  <a href="classAnvil_1_1Plugins_1_1PluginManager.html#ac7e505c203083b13aec33503430dd647">More...</a><br /></td></tr>
+<tr class="separator:ac7e505c203083b13aec33503430dd647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12d88e80745e143fd6185f94be282786"><td class="memItemLeft" align="right" valign="top"><a id="a12d88e80745e143fd6185f94be282786" name="a12d88e80745e143fd6185f94be282786"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsPluginLoaded</b> (string pluginName)</td></tr>
 <tr class="separator:a12d88e80745e143fd6185f94be282786"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,8 +109,85 @@ Assembly&#160;</td><td class="memItemRight" valign="bottom"><b>ResolveDependency
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Loads all available plugins and their types for service initialisation. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/main/Anvil/Plugins/PluginManager.cs</li>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a622f7ec07bb1692ae3eb903ea0dea498" name="a622f7ec07bb1692ae3eb903ea0dea498"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a622f7ec07bb1692ae3eb903ea0dea498">&#9670;&nbsp;</a></span>GetPluginDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Anvil.Plugins.PluginManager.GetPluginDirectory </td>
+          <td>(</td>
+          <td class="paramtype">Assembly&#160;</td>
+          <td class="paramname"><em>pluginAssembly</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the install directory of the specified plugin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pluginAssembly</td><td>The assembly of the plugin, e.g. typeof(MyService).Assembly</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The install directory for the specified plugin.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentException</td><td>Thrown if the specified assembly is not a plugin.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac7e505c203083b13aec33503430dd647" name="ac7e505c203083b13aec33503430dd647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e505c203083b13aec33503430dd647">&#9670;&nbsp;</a></span>IsPluginAssembly()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.Plugins.PluginManager.IsPluginAssembly </td>
+          <td>(</td>
+          <td class="paramtype">Assembly&#160;</td>
+          <td class="paramname"><em>assembly</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets if the specified assembly is the primary assembly for a plugin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assembly</td><td>The assembly to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the assembly is a plugin, otherwise false.</dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>NWN.Anvil/src/main/Plugins/PluginManager.cs</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

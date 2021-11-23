@@ -124,18 +124,12 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">     |----NWNX_DotNET.so</div>
 <div class="line">     |----NWNX_SWIG_DotNET.so</div>
 <div class="line">modbin/</div>
-<div class="line">|----NLog.dll</div>
-<div class="line">|----NWN.Core.dll</div>
 <div class="line">|----NWN.Anvil.deps.json</div>
 <div class="line">|----NWN.Anvil.dll</div>
 <div class="line">|----NWN.Anvil.runtimeconfig.dev.json</div>
 <div class="line">|----NWN.Anvil.runtimeconfig.json</div>
 <div class="line">|----NWN.Anvil.xml</div>
-<div class="line">|----NWN.Native.dll</div>
-<div class="line">|----LightInject.dll</div>
-<div class="line">|----Plugins/</div>
-<div class="line">     |----YourPlugin/</div>
-<div class="line">          |----YourPlugin.dll</div>
+<div class="line">|----(Other dlls)</div>
 </div><!-- fragment --></li>
 <li>Configure NWNX options to the following: <div class="fragment"><div class="line">NWNX_DOTNET_SKIP=n</div>
 <div class="line">NWNX_SWIG_DOTNET_SKIP=n</div>
@@ -143,25 +137,69 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line"># NWNX_DOTNET_ENTRYPOINT= # Make sure this option does not exist in your config</div>
 </div><!-- fragment --> The DotNET and SWIG_DotNET plugins are required for the library to work. Make sure they are enabled!</li>
 </ol>
-<p >For a step by step guide how to set up a local developement environment using your IDE of choice and windows. see Development with Docker on Windows.</p>
 <h3>Configuration Options</h3>
 <p >The following options can be configured via environment variables:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Variable   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">Options   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>ANVIL_PLUGIN_PATH</code>   </td><td class="markdownTableBodyNone"><code>/path/to/NWN.Anvil/Plugins</code>   </td><td class="markdownTableBodyNone">A valid directory.   </td><td class="markdownTableBodyNone">The root plugin path that <a class="el" href="namespaceAnvil.html">Anvil</a> will search for plugins.    </td></tr>
+<td class="markdownTableBodyNone"><code>ANVIL_HOME</code>   </td><td class="markdownTableBodyNone"><code>&lt;nwn_home&gt;/anvil</code>   </td><td class="markdownTableBodyNone"><code>An absolute path, or relative path to &lt;nwn_home&gt;</code>   </td><td class="markdownTableBodyNone">The main directory for <a class="el" href="namespaceAnvil.html">Anvil</a>'s storage. <a class="el" href="namespaceAnvil.html">Anvil</a> will search for plugins in <code>ANVIL_HOME/Plugins</code> and store plugin data in <code>ANVIL_HOME/PluginData</code>, as well as search this directory for various configurations.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone" colspan="2"><code>ANVIL_NLOG_CONFIG</code>   </td><td class="markdownTableBodyNone">A valid path to a NLog XML config file.   </td><td class="markdownTableBodyNone">See the <a href="https://github.com/nlog/NLog/wiki/Configuration-file">NLog Wiki</a> for configuration options.    </td></tr>
-<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>ANVIL_RELOAD_ENABLED</code>   </td><td class="markdownTableBodyNone"><code>false</code>   </td><td class="markdownTableBodyNone"><code>true/false</code>   </td><td class="markdownTableBodyNone">Enables support for plugin hot-reloading via <code>AnvilCore.Reload()</code>. Recommended for advanced users.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>ANVIL_PREVENT_START_NO_PLUGIN</code>   </td><td class="markdownTableBodyNone"><code>false</code>   </td><td class="markdownTableBodyNone"><code>true/false</code>   </td><td class="markdownTableBodyNone">Prevents the server from starting if no plugins are detected/loaded.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>ANVIL_PRELINK_ENABLED</code>   </td><td class="markdownTableBodyNone"><code>true</code>   </td><td class="markdownTableBodyNone"><code>true/false</code>   </td><td class="markdownTableBodyNone">Disables some initial startup checks when linking to the native <a class="el" href="namespaceNWN.html">NWN</a> server binary. This is an advanced setting that should almost always be unset/set to true.    </td></tr>
+<td class="markdownTableBodyNone"><code>ANVIL_PREVENT_START_NO_PLUGIN</code>   </td><td class="markdownTableBodyNone"><code>false</code>   </td><td class="markdownTableBodyNone"><code>true/false</code>   </td><td class="markdownTableBodyNone">Prevents the server from starting if no plugins are detected/loaded.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>ANVIL_PRELINK_ENABLED</code>   </td><td class="markdownTableBodyNone"><code>true</code>   </td><td class="markdownTableBodyNone"><code>true/false</code>   </td><td class="markdownTableBodyNone">Disables some initial startup checks when linking to the native <a class="el" href="namespaceNWN.html">NWN</a> server binary. This is an advanced setting that should almost always be unset/set to true.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>ANVIL_LOG_MODE</code>   </td><td class="markdownTableBodyNone"><code>Off</code>   </td><td class="markdownTableBodyNone"><code>Off/Duplicate/Redirect</code>   </td><td class="markdownTableBodyNone">Configures redirection of the <a class="el" href="namespaceNWN.html">NWN</a> server log. <code>Off</code> disables redirection, <code>Duplicate</code> creates a copy of the log entries in Anvil/NLog, <code>Redirect</code> redirects the log entries to Anvil/NLog, and skips the original log entry.   </td></tr>
 </table>
+<h3>Installing Plugins - Local</h3>
+<p >The recommended way to install plugins is to copy plugin binaries manually to your server's <code>Plugins</code> folder.</p>
+<p >This folder is located in your server's home directory. This is the directory containing the <code>modules</code> folder, <code>servervault</code>, etc.</p>
+<p >After running anvil for the first time, you will see a new folder here called <code>anvil</code>. You will want to copy the plugin to the <code>anvil/Plugins</code> folder.</p>
+<p >Once copied, your server home directory should look like the following: </p><div class="fragment"><div class="line">anvil/</div>
+<div class="line">|----Plugins/</div>
+<div class="line">     |----YourPlugin/</div>
+<div class="line">          |----YourPlugin.dll</div>
+<div class="line">database/</div>
+<div class="line">development/</div>
+<div class="line">hak/</div>
+<div class="line">modules/</div>
+<div class="line">override/</div>
+<div class="line">portraits/</div>
+<div class="line">saves/</div>
+<div class="line">serverdata/</div>
+<div class="line">servervault/</div>
+<div class="line">tlk/</div>
+</div><!-- fragment --><h3>Installing Plugins - Paket</h3>
+<p ><a class="el" href="namespaceAnvil.html">Anvil</a> includes a plugin/package manager based on <a href="https://fsprojects.github.io/Paket/index.html">Paket</a> that can automatically update plugins from authors who publish their work on <a href="https://www.nuget.org/">NuGet</a>.</p>
+<p >To get started, first navigate to your server's home directory and find the <code>anvil/Paket/paket.dependencies.orig</code> file.</p>
+<p >Rename this file from <code>paket.dependencies.orig</code> to <code>paket.dependencies</code>, then open the file in your favourite text editor.</p>
+<p >By default, the file should look like this:</p>
+<div class="fragment"><div class="line">// Rename this file to &quot;paket.dependencies&quot; to enable support for loading plugins from NuGet.</div>
+<div class="line">// See https://fsprojects.github.io/Paket/dependencies-file.html for more information.</div>
+<div class="line"> </div>
+<div class="line">framework: net5.0</div>
+<div class="line">strategy: min</div>
+<div class="line"> </div>
+<div class="line">source https://api.nuget.org/v3/index.json</div>
+<div class="line"> </div>
+<div class="line">// ---- Add plugins below this line ----</div>
+</div><!-- fragment --><p >To install a plugin, first search and find the <a href="https://www.nuget.org/">NuGet</a> package page for the plugin.</p>
+<p >Once you are on the package page, you will want to copy the install command listed at the top of the page. It should look something like:</p>
+<div class="fragment"><div class="line">Install-Package NWN.ExamplePlugin -Version 8193.33.0</div>
+</div><!-- fragment --><p >Copy the name and version parts of the command into the <code>paket.dependencies</code> file:</p>
+<div class="fragment"><div class="line">// Rename this file to &quot;paket.dependencies&quot; to enable support for loading plugins from NuGet.</div>
+<div class="line">// See https://fsprojects.github.io/Paket/dependencies-file.html for more information.</div>
+<div class="line"> </div>
+<div class="line">framework: net5.0</div>
+<div class="line">strategy: min</div>
+<div class="line"> </div>
+<div class="line">source https://api.nuget.org/v3/index.json</div>
+<div class="line"> </div>
+<div class="line">// ---- Add plugins below this line ----</div>
+<div class="line">nuget NWN.ExamplePlugin 8193.33.0</div>
+</div><!-- fragment --><p >Save and close the file. The plugin should now download and run the next time you launch the server!</p>
 <h1>Builder/Developer's Guide</h1>
 <h2>Plugins &amp; Services</h2>
 <p >Adding module behaviours starts by creating your own plugin assembly (.dll).</p>
