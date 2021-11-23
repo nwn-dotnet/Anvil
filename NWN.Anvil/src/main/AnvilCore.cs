@@ -109,9 +109,9 @@ namespace Anvil
 
       AssemblyName anvilAssemblyName = Assemblies.Anvil.GetName();
 
-      Log.Info("Loading {Name} {Version} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
+      Log.Info("Loading {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
         anvilAssemblyName.Name,
-        anvilAssemblyName.Version,
+        AssemblyInfo.VersionInfo.InformationalVersion,
         Assemblies.Core.GetName().Version,
         Assemblies.Native.GetName().Version);
 
