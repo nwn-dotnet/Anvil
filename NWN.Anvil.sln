@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWN.Anvil", "NWN.Anvil.csproj", "{E52A41DA-2151-447A-B821-4F86B7E95CAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWN.Anvil", "NWN.Anvil\NWN.Anvil.csproj", "{E52A41DA-2151-447A-B821-4F86B7E95CAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

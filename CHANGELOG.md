@@ -3,6 +3,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.33.3
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...v8193.33.3
+
+### Added
+- Implemented `PaketPluginSource` for installing and running NuGet-based plugins.
+- Implemented support for custom plugin sources with the `IPluginSource` interface.
+- Implemented `PluginStorageService` - a unified API for storing plugin data and configurations.
+- Added `ANVIL_HOME` environment variable. This variable defines the root path where Anvil config files, plugins and plugin data are read from.
+- Added additional properties to `NwEncounter`.
+- Added IsStackable to 'NwItem'
+
+### Package Updates
+- NWN.Core -> 8193.33.4
+- NWN.Native -> 8193.33.4
+
+### Removed
+- <u>**BREAKING CHANGE**</u> - Removed `ANVIL_NLOG_CONFIG` environment variable. The config path is now fixed to `{ANVIL_HOME}/nlog.config`
+- <u>**BREAKING CHANGE**</u> - Removed `ANVIL_PLUGIN_PATH` environment variable. The plugin load path is now fixed to `{ANVIL_HOME}/Plugins`
+
+### Fixed
+- Fixed a server crash when preventing player connections in the `OnClientConnect` event.
+- Fixed `OnClientConnect.CDKey` returning a type name instead of the client's public CD key.
+
 ## 8193.33.2
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...v8193.33.2
 
