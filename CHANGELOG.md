@@ -10,10 +10,11 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.3...HEAD
 - N/A
 
 ### Package Updates
-- N/A
+- (Docker) Update NWNX to [16b2c88](https://github.com/nwnxee/unified/commit/16b2c88b1f3e0ff929a8cad759090ce98d7d0b3c).
 
 ### Changed
-- N/A
+- Startup log now includes the git revision of the current running server binary.
+- Server revision is now printed to stdout if startup fails.
 
 ### Deprecated
 - N/A
