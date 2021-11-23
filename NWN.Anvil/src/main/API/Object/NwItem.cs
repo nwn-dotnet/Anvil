@@ -59,7 +59,7 @@ namespace Anvil.API
     /// </summary>
     public bool CanStack
     {
-      get => int.Parse(NWScript.Get2DAString("baseitems", "Stacking", (int)BaseItemType)) > 1;
+      get => NWScript.Get2DAString("baseitems", "Stacking", (int)BaseItemType).ParseInt() > 1;
     }
 
     /// <summary>
