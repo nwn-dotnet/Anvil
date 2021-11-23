@@ -103,15 +103,27 @@ namespace Anvil
     private void InitCore()
     {
       loggerManager.Init();
-      PrelinkNative();
+
+      try
+      {
+        PrelinkNative();
+      }
+      catch (Exception e)
+      {
+        Log.Fatal(e, "Failed to load {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
+          Assemblies.Anvil.GetName().Name,
+          AssemblyInfo.VersionInfo.InformationalVersion,
+          Assemblies.Core.GetName().Version,
+          Assemblies.Native.GetName().Version);
+        throw;
+      }
+
       loggerManager.InitVariables();
       unhandledExceptionLogger.Init();
 
-      AssemblyName anvilAssemblyName = Assemblies.Anvil.GetName();
-
-      Log.Info("Loading {Name} {Version} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
-        anvilAssemblyName.Name,
-        anvilAssemblyName.Version,
+      Log.Info("Loading {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
+        Assemblies.Anvil.GetName().Name,
+        AssemblyInfo.VersionInfo.InformationalVersion,
         Assemblies.Core.GetName().Version,
         Assemblies.Native.GetName().Version);
 

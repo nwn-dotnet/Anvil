@@ -173,10 +173,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: nuget-binaries
+          path: output
 
       - name: NuGet Publish
         run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
-        
+
       - name: GitHub Publish
         run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
 
@@ -192,7 +193,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: nuget-binaries
-          
+          path: output
+
       - name: Remove NuGet packages
         run: rm output/*nupkg
 
