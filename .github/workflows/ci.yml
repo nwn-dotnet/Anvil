@@ -113,13 +113,18 @@ jobs:
           dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
           echo "::set-output name=created::$(echo date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
+      - name: Upload NuGet Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuget-binaries
+          path: output/
+          if-no-files-found: error
+
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Binaries
-          path: |
-            output/
-            NWN.Anvil.zip
+          name: binaries
+          path: NWN.Anvil.zip
           if-no-files-found: error
 
   release:
@@ -130,7 +135,7 @@ jobs:
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: Binaries
+          name: binaries
 
       - name: Create Release
         id: create_release
@@ -167,7 +172,7 @@ jobs:
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: Binaries
+          name: nuget-binaries
 
       - name: NuGet Publish
         run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
@@ -186,7 +191,7 @@ jobs:
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: Binaries
+          name: nuget-binaries
           
       - name: Remove NuGet packages
         run: rm output/*nupkg
