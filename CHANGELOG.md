@@ -28,7 +28,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...HEAD
 - <u>**BREAKING CHANGE**</u> - Removed `ANVIL_PLUGIN_PATH` environment variable. The plugin load path is now fixed to `{ANVIL_HOME}/Plugins`
 
 ### Fixed
-- N/A
+- Fixed a server crash when preventing player connections in the `OnClientConnect` event.
+- Fixed `OnClientConnect.CDKey` returning a type name instead of the client's public CD key.
 
 ## 8193.33.2
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.1...v8193.33.2
