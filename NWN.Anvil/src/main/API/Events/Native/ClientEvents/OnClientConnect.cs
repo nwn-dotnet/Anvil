@@ -72,7 +72,7 @@ namespace Anvil.API.Events
         OnClientConnect eventData = ProcessEvent(new OnClientConnect
         {
           PlayerName = playerInfo.m_sPlayerName.ToString(),
-          CDKey = playerInfo.m_lstKeys[0].ToString(),
+          CDKey = playerInfo.m_lstKeys[0].sPublic.ToString(),
           DM = playerInfo.m_bGameMasterPrivileges.ToBool(),
           IP = ipAddress,
         });
