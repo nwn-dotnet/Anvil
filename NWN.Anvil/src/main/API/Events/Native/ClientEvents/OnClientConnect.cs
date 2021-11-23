@@ -48,22 +48,27 @@ namespace Anvil.API.Events
       get => null;
     }
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendServerToPlayerCharListHook>
+    internal sealed class Factory : SingleHookEventFactory<Factory.SendServerToPlayerCharListHook>
     {
-      internal delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
+      internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
 
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
-      protected override FunctionHook<SendServerToPlayerCharListHook> RequestHook()
+      protected override unsafe FunctionHook<SendServerToPlayerCharListHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
         return HookService.RequestHook<SendServerToPlayerCharListHook>(pHook, FunctionsLinux._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer, HookOrder.Early);
       }
 
       [UnmanagedCallersOnly]
-      private static int OnSendServerToPlayerCharList(void* pMessage, void* pPlayer)
+      private static unsafe int OnSendServerToPlayerCharList(void* pMessage, void* pPlayer)
       {
         CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
+        if (player == null)
+        {
+          return Hook.CallOriginal(pMessage, pPlayer);
+        }
+
         uint playerId = player.m_nPlayerID;
 
         CNetLayerPlayerInfo playerInfo = NetLayer.GetPlayerInfo(playerId);
@@ -72,7 +77,7 @@ namespace Anvil.API.Events
         OnClientConnect eventData = ProcessEvent(new OnClientConnect
         {
           PlayerName = playerInfo.m_sPlayerName.ToString(),
-          CDKey = playerInfo.m_lstKeys[0].ToString(),
+          CDKey = playerInfo.m_lstKeys[0].sPublic.ToString(),
           DM = playerInfo.m_bGameMasterPrivileges.ToBool(),
           IP = ipAddress,
         });
@@ -83,8 +88,19 @@ namespace Anvil.API.Events
         }
 
         string kickMessage = eventData.KickMessage ?? string.Empty;
-        NetLayer.DisconnectPlayer(playerId, 5838, true.ToInt(), kickMessage.ToExoString());
-        return false.ToInt();
+        DelayDisconnectPlayer(playerId, kickMessage);
+        return Hook.CallOriginal(pMessage, pPlayer);
+      }
+
+      private static async void DelayDisconnectPlayer(uint playerId, string kickMessage)
+      {
+        await NwTask.NextFrame();
+
+        CNetLayerPlayerInfo playerInfo = NetLayer.GetPlayerInfo(playerId);
+        if (playerInfo != null)
+        {
+          NetLayer.DisconnectPlayer(playerId, 5838, true.ToInt(), kickMessage.ToExoString());
+        }
       }
     }
   }
