@@ -12,6 +12,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...HEAD
 - Implemented `PluginStorageService` - a unified API for storing plugin data and configurations.
 - Added `ANVIL_HOME` environment variable. This variable defines the root path where Anvil config files, plugins and plugin data are read from.
 - Added additional properties to `NwEncounter`.
+- Added IsStackable to 'NwItem'
 
 ### Package Updates
 - NWN.Core -> 8193.33.4
