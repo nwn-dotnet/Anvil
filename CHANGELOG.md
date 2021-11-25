@@ -4,7 +4,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.33.4
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.3...v8193.33.4
+
+### Package Updates
+- (Docker) Update NWNX to [16b2c88](https://github.com/nwnxee/unified/commit/16b2c88b1f3e0ff929a8cad759090ce98d7d0b3c).
+
+### Changed
+- Startup log now includes the git revision of the current running server binary.
+- Server revision is now printed to stdout if startup fails.
+
+## 8193.33.3
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...v8193.33.3
 
 ### Added
 - Implemented `PaketPluginSource` for installing and running NuGet-based plugins.
@@ -17,12 +48,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.2...HEAD
 ### Package Updates
 - NWN.Core -> 8193.33.4
 - NWN.Native -> 8193.33.4
-
-### Changed
-- N/A
-
-### Deprecated
-- N/A
 
 ### Removed
 - <u>**BREAKING CHANGE**</u> - Removed `ANVIL_NLOG_CONFIG` environment variable. The config path is now fixed to `{ANVIL_HOME}/nlog.config`
