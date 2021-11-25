@@ -57,9 +57,13 @@ namespace Anvil.API
     /// <summary>
     /// Gets if this item can stack.
     /// </summary>
-    public bool CanStack
+    public bool IsStackable
     {
-      get => NWScript.Get2DAString("baseitems", "Stacking", (int)BaseItemType).ParseInt() > 1;
+      get
+      {
+        CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)Item.m_nBaseItem);
+        return baseItem != null && baseItem.m_nStackSize > 1;
+      }
     }
 
     /// <summary>
