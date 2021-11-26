@@ -4,6 +4,7 @@ using System.IO;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Anvil.API.Events;
 using Anvil.Internal;
 using Anvil.Services;
 using Newtonsoft.Json;
@@ -26,6 +27,9 @@ namespace Anvil.API
 
     [Inject]
     private static RestDurationOverrideService RestDurationOverrideService { get; set; }
+
+    [Inject]
+    private static CursorTargetService CursorTargetService { get; set; }
 
     internal readonly CNWSPlayer Player;
 
@@ -338,6 +342,16 @@ namespace Anvil.API
     public bool IsInCutsceneMode
     {
       get => NWScript.GetCutsceneMode(ControlledCreature).ToBool();
+    }
+
+    /// <summary>
+    /// Gets if this player is in cursor targeting mode.<br/>
+    /// NOTE! Only works if the player entered target mode using <see cref="TryEnterTargetMode"/>.
+    /// </summary>
+    /// <returns>True if this player is attempting to target something.</returns>
+    public bool IsInCursorTargetMode
+    {
+      get => CursorTargetService.IsInTargetMode(this);
     }
 
     /// <summary>
@@ -1221,6 +1235,29 @@ namespace Anvil.API
     public int GetDeviceProperty(PlayerDeviceProperty property)
     {
       return NWScript.GetPlayerDeviceProperty(ControlledCreature, property.PropertyName);
+    }
+
+    /// <summary>
+    /// Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br/>
+    /// If the player is already in targeting mode, the existing handler will not be cleared.
+    /// </summary>
+    /// <param name="player">The player who should enter selection mode.</param>
+    /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
+    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
+    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
+    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
+    /// <returns>True if the player successfully entered target mode, otherwise false.</returns>
+    public bool TryEnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    {
+      if (IsInCursorTargetMode)
+      {
+        return false;
+      }
+
+#pragma warning disable 618
+      CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
+#pragma warning restore 618
+      return true;
     }
 
     /// <summary>
