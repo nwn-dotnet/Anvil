@@ -1274,6 +1274,22 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Create a NUI window inline for this player.
+    /// </summary>
+    /// <param name="window">The window to create.</param>
+    /// <param name="token">The player-unique token for this window instance.</param>
+    /// <param name="windowId">A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</param>
+    /// <returns>True if the window was successfully created, otherwise false.</returns>
+    public bool TryCreateNuiWindow(NuiWindow window, out int token, string windowId = "")
+    {
+      string jsonString = JsonConvert.SerializeObject(window);
+      Json json = Json.Parse(jsonString);
+      token = NWScript.NuiCreate(ControlledCreature, json, windowId);
+
+      return token != 0;
+    }
+
+    /// <summary>
     /// Get the userdata of the given window token.
     /// </summary>
     /// <param name="uiToken">The token for the window to query.</param>
