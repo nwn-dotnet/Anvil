@@ -96,5 +96,15 @@ namespace Anvil.API
         area.m_pTrapList.Add(this);
       }
     }
+
+    internal override void RemoveFromArea()
+    {
+      if (IsTrapped)
+      {
+        Area.Area.m_pTrapList.Remove(this);
+      }
+
+      Trigger.RemoveFromArea();
+    }
   }
 }

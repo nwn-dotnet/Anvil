@@ -598,5 +598,7 @@ namespace Anvil.API
     public abstract byte[] Serialize();
 
     private protected abstract void AddToArea(CNWSArea area, float x, float y, float z);
+
+    internal abstract void RemoveFromArea();
   }
 }

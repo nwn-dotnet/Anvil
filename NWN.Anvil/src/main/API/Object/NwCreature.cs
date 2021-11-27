@@ -2502,5 +2502,10 @@ namespace Anvil.API
     {
       Creature.AddToArea(area, x, y, z, true.ToInt());
     }
+
+    internal override void RemoveFromArea()
+    {
+      Creature.RemoveFromArea();
+    }
   }
 }
