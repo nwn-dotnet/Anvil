@@ -445,7 +445,7 @@ namespace Anvil.API
     {
       if (Possessor is NwCreature creature)
       {
-        creature.Creature.RemoveItem(this, true.ToInt(), true.ToInt(), false.ToInt(), true.ToInt());
+        creature.Creature.RemoveItem(this, true.ToInt(), true.ToInt(), true.ToInt(), true.ToInt());
       }
       else if (Possessor is NwPlaceable placeable)
       {
