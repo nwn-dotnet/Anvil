@@ -15,9 +15,9 @@ namespace Anvil.Services
   {
     private readonly Dictionary<NwPlayer, Action<ModuleEvents.OnPlayerTarget>> activeHandlers = new Dictionary<NwPlayer, Action<ModuleEvents.OnPlayerTarget>>();
 
-    public CursorTargetService()
+    public CursorTargetService(EventService eventService)
     {
-      NwModule.Instance.OnClientLeave += OnClientLeave;
+      eventService.SubscribeAll<ModuleEvents.OnClientLeave, GameEventFactory, GameEventFactory.RegistrationData>(new GameEventFactory.RegistrationData(NwModule.Instance), OnClientLeave);
     }
 
     /// <summary>
