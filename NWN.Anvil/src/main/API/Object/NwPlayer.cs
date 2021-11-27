@@ -1241,7 +1241,6 @@ namespace Anvil.API
     /// Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br/>
     /// If the player is already in targeting mode, the existing handler will not be cleared.
     /// </summary>
-    /// <param name="player">The player who should enter selection mode.</param>
     /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
     /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
     /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
