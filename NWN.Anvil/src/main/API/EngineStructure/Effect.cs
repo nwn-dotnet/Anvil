@@ -39,7 +39,7 @@ namespace Anvil.API
     /// </summary>
     public EffectDuration DurationType
     {
-      get => (EffectDuration)NWScript.GetEffectDurationType(this);
+      get => (EffectDuration)(Effect.m_nSubType & DurationMask);
     }
 
     /// <summary>
@@ -72,8 +72,8 @@ namespace Anvil.API
     /// </summary>
     public EffectSubType SubType
     {
-      get => (EffectSubType)Effect.m_nSubType;
-      set => Effect.m_nSubType = (ushort)value;
+      get => (EffectSubType)(Effect.m_nSubType & SubTypeMask);
+      set => Effect.m_nSubType = (ushort)(value | (EffectSubType)DurationType);
     }
 
     /// <summary>
