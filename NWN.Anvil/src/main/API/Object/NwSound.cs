@@ -87,5 +87,10 @@ namespace Anvil.API
       SoundObject.AddToArea(area, true.ToInt());
       SoundObject.ChangePosition(new Vector(x, y, z));
     }
+
+    internal override void RemoveFromArea()
+    {
+      SoundObject.RemoveFromArea();
+    }
   }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Anvil.Internal;
 using NWN.Core;
 using NWN.Native.API;
@@ -183,6 +184,17 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets all objects currently stored in limbo.
+    /// </summary>
+    public IEnumerable<NwGameObject> LimboGameObjects
+    {
+      get
+      {
+        return Module.m_aGameObjectsLimbo.Select(objectId => objectId.ToNwObject<NwGameObject>());
+      }
+    }
+
+    /// <summary>
     /// Gets the current player count.
     /// </summary>
     public uint PlayerCount
@@ -339,6 +351,19 @@ namespace Anvil.API
     public SQLQuery PrepareCampaignSQLQuery(string database, string query)
     {
       return NWScript.SqlPrepareQueryCampaign(database, query);
+    }
+
+    /// <summary>
+    /// Moves the specified <see cref="NwGameObject"/> from its current location/owner to limbo.
+    /// </summary>
+    /// <param name="gameObject">The game object to move to limbo.</param>
+    public void MoveObjectToLimbo(NwGameObject gameObject)
+    {
+      if (!gameObject.IsPlayerControlled(out _) && !gameObject.IsLoginPlayerCharacter(out _))
+      {
+        gameObject.RemoveFromArea();
+        Module.AddObjectToLimbo(gameObject);
+      }
     }
   }
 }
