@@ -6,7 +6,7 @@ namespace Anvil.API
 {
   public sealed partial class ItemProperty : EffectBase
   {
-    private ItemProperty(IntPtr handle, CGameEffect effect) : base(handle, effect) {}
+    internal ItemProperty(CGameEffect effect) : base(effect) {}
 
     protected override int StructureId
     {
@@ -15,12 +15,12 @@ namespace Anvil.API
 
     public static implicit operator ItemProperty(IntPtr intPtr)
     {
-      return new ItemProperty(intPtr, CGameEffect.FromPointer(intPtr));
+      return new ItemProperty(CGameEffect.FromPointer(intPtr));
     }
 
     public static explicit operator ItemProperty(Effect effect)
     {
-      return new ItemProperty(effect, effect);
+      return new ItemProperty(effect);
     }
 
     /// <summary>

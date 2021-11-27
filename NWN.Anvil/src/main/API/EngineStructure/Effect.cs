@@ -6,7 +6,10 @@ namespace Anvil.API
 {
   public sealed partial class Effect : EffectBase
   {
-    internal Effect(IntPtr handle, CGameEffect effect) : base(handle, effect) {}
+    internal const int DurationMask = 0x7;
+    internal const int SubTypeMask = 0x18;
+
+    internal Effect(CGameEffect effect) : base(effect) {}
 
     protected override int StructureId
     {
@@ -15,12 +18,12 @@ namespace Anvil.API
 
     public static implicit operator Effect(IntPtr intPtr)
     {
-      return new Effect(intPtr, CGameEffect.FromPointer(intPtr));
+      return new Effect(CGameEffect.FromPointer(intPtr));
     }
 
     public static explicit operator Effect(ItemProperty itemProperty)
     {
-      return new Effect(itemProperty, itemProperty);
+      return new Effect(itemProperty);
     }
 
     /// <summary>
@@ -81,7 +84,7 @@ namespace Anvil.API
       CGameEffect clone = new CGameEffect(true.ToInt());
       clone.CopyEffect(this, false.ToInt());
 
-      return new Effect(clone.Pointer, clone);
+      return new Effect(clone);
     }
   }
 }
