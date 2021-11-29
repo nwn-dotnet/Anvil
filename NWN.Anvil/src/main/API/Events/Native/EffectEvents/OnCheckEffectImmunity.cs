@@ -27,7 +27,10 @@ namespace Anvil.API.Events
     /// </summary>
     public bool Bypass { get; set; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject IEvent.Context
+    {
+      get => Creature;
+    }
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.GetEffectImmunityHook>
     {
