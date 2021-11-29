@@ -65,5 +65,10 @@ namespace Anvil.API
     {
       Waypoint.AddToArea(area, x, y, z, true.ToInt());
     }
+
+    internal override void RemoveFromArea()
+    {
+      Waypoint.RemoveFromArea();
+    }
   }
 }

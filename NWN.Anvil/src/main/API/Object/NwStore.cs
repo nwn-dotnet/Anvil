@@ -153,5 +153,10 @@ namespace Anvil.API
     {
       Store.AddToArea(area, x, y, z, true.ToInt());
     }
+
+    internal override void RemoveFromArea()
+    {
+      Store.RemoveFromArea();
+    }
   }
 }

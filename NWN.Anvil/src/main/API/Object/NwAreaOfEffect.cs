@@ -72,5 +72,10 @@ namespace Anvil.API
     {
       AreaOfEffect.AddToArea(area, x, y, z, true.ToInt());
     }
+
+    internal override void RemoveFromArea()
+    {
+      AreaOfEffect.RemoveFromArea();
+    }
   }
 }

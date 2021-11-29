@@ -224,5 +224,10 @@ namespace Anvil.API
     {
       Encounter.AddToArea(area, x, y, z, true.ToInt());
     }
+
+    internal override void RemoveFromArea()
+    {
+      Encounter.RemoveFromArea();
+    }
   }
 }

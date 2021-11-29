@@ -440,5 +440,25 @@ namespace Anvil.API
     {
       Item.AddToArea(area, x, y, z, true.ToInt());
     }
+
+    internal override void RemoveFromArea()
+    {
+      if (Possessor is NwCreature creature)
+      {
+        creature.Creature.RemoveItem(this, true.ToInt(), true.ToInt(), true.ToInt(), true.ToInt());
+      }
+      else if (Possessor is NwPlaceable placeable)
+      {
+        placeable.Placeable.RemoveItem(this, true.ToInt());
+      }
+      else if (Possessor is NwStore store)
+      {
+        store.Store.RemoveItem(this);
+      }
+      else
+      {
+        Item.RemoveFromArea();
+      }
+    }
   }
 }
