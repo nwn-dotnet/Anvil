@@ -13,27 +13,24 @@ namespace Anvil.API.Events
     public sealed class OnPhysicalAttacked : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwDoor"/> that was physically attacked.
-      /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
-
-      /// <summary>
       /// Gets the <see cref="NwCreature"/> that attacked the <see cref="NwDoor"/>.
       /// </summary>
       public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the <see cref="NwItem"/> used to damage <see cref="NwDoor"/>.
-      /// </summary>
-      public NwItem WeaponUsed(NwCreature attacker)
-      {
-        return NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
-      }
-
-      /// <summary>
       /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwDoor"/>.
       /// </summary>
       public SpecialAttack AttackType { get; } = (SpecialAttack)NWScript.GetLastAttackType();
+
+      /// <summary>
+      /// Gets the <see cref="NwDoor"/> that was physically attacked.
+      /// </summary>
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+
+      NwObject IEvent.Context
+      {
+        get => Door;
+      }
 
       /// <summary>
       /// Gets the <see cref="ActionMode"/> used to damage <see cref="NwDoor"/>.
@@ -43,9 +40,12 @@ namespace Anvil.API.Events
         return (ActionMode)NWScript.GetLastAttackMode(attacker);
       }
 
-      NwObject IEvent.Context
+      /// <summary>
+      /// Gets the <see cref="NwItem"/> used to damage <see cref="NwDoor"/>.
+      /// </summary>
+      public NwItem WeaponUsed(NwCreature attacker)
       {
-        get => Door;
+        return NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
       }
     }
   }

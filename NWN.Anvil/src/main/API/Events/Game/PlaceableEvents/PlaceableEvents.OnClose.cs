@@ -16,14 +16,14 @@ namespace Anvil.API.Events
     public sealed class OnClose : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwPlaceable"/> that was closed.
-      /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-
-      /// <summary>
       /// Gets the <see cref="NwCreature"/> that closed the <see cref="NwPlaceable"/>.
       /// </summary>
       public NwCreature ClosedBy { get; } = NWScript.GetLastClosedBy().ToNwObject<NwCreature>();
+
+      /// <summary>
+      /// Gets the <see cref="NwPlaceable"/> that was closed.
+      /// </summary>
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
       NwObject IEvent.Context
       {

@@ -18,17 +18,6 @@ namespace Anvil.API
       Door = door;
     }
 
-    public static implicit operator CNWSDoor(NwDoor door)
-    {
-      return door?.Door;
-    }
-
-    public override bool KeyAutoRemoved
-    {
-      get => Door.m_bAutoRemoveKey.ToBool();
-      set => Door.m_bAutoRemoveKey = value.ToInt();
-    }
-
     /// <summary>
     /// Gets or sets the dialog ResRef for this door.
     /// </summary>
@@ -38,82 +27,10 @@ namespace Anvil.API
       set => Door.m_cDialog = new CResRef(value);
     }
 
-    /// <summary>
-    /// Opens this door.
-    /// </summary>
-    public async Task Open()
+    public override bool KeyAutoRemoved
     {
-      await WaitForObjectContext();
-      NWScript.ActionOpenDoor(this);
-    }
-
-    /// <summary>
-    /// Closes this door.
-    /// </summary>
-    public async Task Close()
-    {
-      await WaitForObjectContext();
-      NWScript.ActionCloseDoor(this);
-    }
-
-    /// <summary>
-    /// Determines whether the specified action can be performed on this door.
-    /// </summary>
-    /// <param name="action">The action to check.</param>
-    /// <returns>true if the specified action can be performed, otherwise false.</returns>
-    public bool IsDoorActionPossible(DoorAction action)
-    {
-      return NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
-    }
-
-    /// <summary>
-    /// Gets this door's base save value for the specified saving throw.
-    /// </summary>
-    /// <param name="savingThrow">The type of saving throw.</param>
-    /// <returns>The creature's base saving throw value.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
-    public int GetBaseSavingThrow(SavingThrow savingThrow)
-    {
-      return savingThrow switch
-      {
-        SavingThrow.Fortitude => Door.m_nFortitudeSave.AsSByte(),
-        SavingThrow.Reflex => Door.m_nReflexSave.AsSByte(),
-        SavingThrow.Will => Door.m_nWillSave.AsSByte(),
-        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
-      };
-    }
-
-    /// <summary>
-    /// Sets this door's base save value for the specified saving throw.
-    /// </summary>
-    /// <param name="savingThrow">The type of saving throw.</param>
-    /// <param name="newValue">The new base saving throw.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
-    public void SetBaseSavingThrow(SavingThrow savingThrow, sbyte newValue)
-    {
-      switch (savingThrow)
-      {
-        case SavingThrow.Fortitude:
-          Door.m_nFortitudeSave = newValue.AsByte();
-          break;
-        case SavingThrow.Reflex:
-          Door.m_nReflexSave = newValue.AsByte();
-          break;
-        case SavingThrow.Will:
-          Door.m_nWillSave = newValue.AsByte();
-          break;
-        default:
-          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
-      }
-    }
-
-    public override byte[] Serialize()
-    {
-      return NativeUtils.SerializeGff("UTD", (resGff, resStruct) =>
-      {
-        Door.SaveObjectState(resGff, resStruct);
-        return Door.SaveDoor(resGff, resStruct).ToBool();
-      });
+      get => Door.m_bAutoRemoveKey.ToBool();
+      set => Door.m_bAutoRemoveKey = value.ToInt();
     }
 
     public static NwDoor Deserialize(byte[] serialized)
@@ -142,6 +59,94 @@ namespace Anvil.API
       return result && door != null ? door.ToNwObject<NwDoor>() : null;
     }
 
+    public static implicit operator CNWSDoor(NwDoor door)
+    {
+      return door?.Door;
+    }
+
+    /// <summary>
+    /// Closes this door.
+    /// </summary>
+    public async Task Close()
+    {
+      await WaitForObjectContext();
+      NWScript.ActionCloseDoor(this);
+    }
+
+    /// <summary>
+    /// Gets this door's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns>The creature's base saving throw value.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public int GetBaseSavingThrow(SavingThrow savingThrow)
+    {
+      return savingThrow switch
+      {
+        SavingThrow.Fortitude => Door.m_nFortitudeSave.AsSByte(),
+        SavingThrow.Reflex => Door.m_nReflexSave.AsSByte(),
+        SavingThrow.Will => Door.m_nWillSave.AsSByte(),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
+    }
+
+    /// <summary>
+    /// Determines whether the specified action can be performed on this door.
+    /// </summary>
+    /// <param name="action">The action to check.</param>
+    /// <returns>true if the specified action can be performed, otherwise false.</returns>
+    public bool IsDoorActionPossible(DoorAction action)
+    {
+      return NWScript.GetIsDoorActionPossible(this, (int)action).ToBool();
+    }
+
+    /// <summary>
+    /// Opens this door.
+    /// </summary>
+    public async Task Open()
+    {
+      await WaitForObjectContext();
+      NWScript.ActionOpenDoor(this);
+    }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTD", (resGff, resStruct) =>
+      {
+        Door.SaveObjectState(resGff, resStruct);
+        return Door.SaveDoor(resGff, resStruct).ToBool();
+      });
+    }
+
+    /// <summary>
+    /// Sets this door's base save value for the specified saving throw.
+    /// </summary>
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <param name="newValue">The new base saving throw.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public void SetBaseSavingThrow(SavingThrow savingThrow, sbyte newValue)
+    {
+      switch (savingThrow)
+      {
+        case SavingThrow.Fortitude:
+          Door.m_nFortitudeSave = newValue.AsByte();
+          break;
+        case SavingThrow.Reflex:
+          Door.m_nReflexSave = newValue.AsByte();
+          break;
+        case SavingThrow.Will:
+          Door.m_nWillSave = newValue.AsByte();
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
+      }
+    }
+
+    internal override void RemoveFromArea()
+    {
+      Door.RemoveFromArea();
+    }
+
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)
     {
       Door.AddToArea(area, x, y, z, true.ToInt());
@@ -151,11 +156,6 @@ namespace Anvil.API
       {
         area.m_pTrapList.Add(this);
       }
-    }
-
-    internal override void RemoveFromArea()
-    {
-      Door.RemoveFromArea();
     }
   }
 }

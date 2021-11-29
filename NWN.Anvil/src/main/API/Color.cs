@@ -9,14 +9,9 @@ namespace Anvil.API
   public readonly struct Color
   {
     /// <summary>
-    /// Gets the red value of this color as a byte (0-255).
+    /// Gets the alpha value of this color as a byte (0-255).
     /// </summary>
-    public readonly byte Red;
-
-    /// <summary>
-    /// Gets the green value of this color as a byte (0-255).
-    /// </summary>
-    public readonly byte Green;
+    public readonly byte Alpha;
 
     /// <summary>
     /// Gets the blue value of this color as a byte (0-255).
@@ -24,9 +19,14 @@ namespace Anvil.API
     public readonly byte Blue;
 
     /// <summary>
-    /// Gets the alpha value of this color as a byte (0-255).
+    /// Gets the green value of this color as a byte (0-255).
     /// </summary>
-    public readonly byte Alpha;
+    public readonly byte Green;
+
+    /// <summary>
+    /// Gets the red value of this color as a byte (0-255).
+    /// </summary>
+    public readonly byte Red;
 
     /// <summary>
     /// Constructs a new Color from the given rgba values.
@@ -59,19 +59,11 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the red value of this color as a float (0-1).
+    /// Gets the alpha value of this color as a float (0-1).
     /// </summary>
-    public float RedF
+    public float AlphaF
     {
-      get => Red / 255f;
-    }
-
-    /// <summary>
-    /// Gets the green value of this color as a float (0-1).
-    /// </summary>
-    public float GreenF
-    {
-      get => Green / 255f;
+      get => Alpha / 255f;
     }
 
     /// <summary>
@@ -83,11 +75,19 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the alpha value of this color as a float (0-1).
+    /// Gets the green value of this color as a float (0-1).
     /// </summary>
-    public float AlphaF
+    public float GreenF
     {
-      get => Alpha / 255f;
+      get => Green / 255f;
+    }
+
+    /// <summary>
+    /// Gets the red value of this color as a float (0-1).
+    /// </summary>
+    public float RedF
+    {
+      get => Red / 255f;
     }
 
     /// <summary>

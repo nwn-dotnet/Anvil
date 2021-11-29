@@ -16,18 +16,9 @@ namespace Anvil.API
       Waypoint = waypoint;
     }
 
-    public static implicit operator CNWSWaypoint(NwWaypoint waypoint)
+    public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      return waypoint?.Waypoint;
-    }
-
-    public override byte[] Serialize()
-    {
-      return NativeUtils.SerializeGff("UTW", (resGff, resStruct) =>
-      {
-        Waypoint.SaveObjectState(resGff, resStruct);
-        return Waypoint.SaveWaypoint(resGff, resStruct).ToBool();
-      });
+      return CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
     }
 
     public static NwWaypoint Deserialize(byte[] serialized)
@@ -56,19 +47,28 @@ namespace Anvil.API
       return result && waypoint != null ? waypoint.ToNwObject<NwWaypoint>() : null;
     }
 
-    public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    public static implicit operator CNWSWaypoint(NwWaypoint waypoint)
     {
-      return CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
+      return waypoint?.Waypoint;
     }
 
-    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    public override byte[] Serialize()
     {
-      Waypoint.AddToArea(area, x, y, z, true.ToInt());
+      return NativeUtils.SerializeGff("UTW", (resGff, resStruct) =>
+      {
+        Waypoint.SaveObjectState(resGff, resStruct);
+        return Waypoint.SaveWaypoint(resGff, resStruct).ToBool();
+      });
     }
 
     internal override void RemoveFromArea()
     {
       Waypoint.RemoveFromArea();
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      Waypoint.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

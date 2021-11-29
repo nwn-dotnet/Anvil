@@ -21,14 +21,14 @@ namespace Anvil.API.Events
       public NwCreature CurrentSpeaker { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the <see cref="NwPlayer"/> speaker in this conversation.
-      /// </summary>
-      public NwPlayer PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
-
-      /// <summary>
       /// Gets the last <see cref="NwGameObject"/> that spoke in this conversation.
       /// </summary>
       public NwGameObject LastSpeaker { get; } = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
+
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> speaker in this conversation.
+      /// </summary>
+      public NwPlayer PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
 
       NwObject IEvent.Context
       {

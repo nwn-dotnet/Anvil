@@ -11,24 +11,6 @@ namespace Anvil.API
     public readonly byte Red;
 
     /// <summary>
-    /// Gets or sets the green value of this color as a byte (0-255).
-    /// </summary>
-    [JsonProperty("g")]
-    public byte Green { get; set; }
-
-    /// <summary>
-    /// Gets or sets the blue value of this color as a byte (0-255).
-    /// </summary>
-    [JsonProperty("b")]
-    public byte Blue { get; set; }
-
-    /// <summary>
-    /// Gets the alpha value of this color as a byte (0-255).
-    /// </summary>
-    [JsonProperty("a")]
-    public byte Alpha { get; set; }
-
-    /// <summary>
     /// Constructs a new Color from the given rgba values.
     /// </summary>
     /// <param name="red">The red value.</param>
@@ -43,6 +25,24 @@ namespace Anvil.API
       Blue = blue;
       Alpha = alpha;
     }
+
+    /// <summary>
+    /// Gets the alpha value of this color as a byte (0-255).
+    /// </summary>
+    [JsonProperty("a")]
+    public byte Alpha { get; set; }
+
+    /// <summary>
+    /// Gets or sets the blue value of this color as a byte (0-255).
+    /// </summary>
+    [JsonProperty("b")]
+    public byte Blue { get; set; }
+
+    /// <summary>
+    /// Gets or sets the green value of this color as a byte (0-255).
+    /// </summary>
+    [JsonProperty("g")]
+    public byte Green { get; set; }
 
     public static implicit operator Color(NuiColor nuiColor)
     {

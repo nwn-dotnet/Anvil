@@ -13,14 +13,14 @@ namespace Anvil.API.Events
     public sealed class OnAreaTransitionClick : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwDoor"/> that has the transition.
-      /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
-
-      /// <summary>
       /// Gets the <see cref="NwCreature"/> that clicked the transition.
       /// </summary>
       public NwPlayer ClickedBy { get; } = NWScript.GetClickingObject().ToNwPlayer();
+
+      /// <summary>
+      /// Gets the <see cref="NwDoor"/> that has the transition.
+      /// </summary>
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
       /// <summary>
       /// Gets the transition target for this <see cref="NwDoor"/>.

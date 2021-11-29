@@ -10,16 +10,16 @@ namespace Anvil.Services
   [ServiceBinding(typeof(IInitializable))]
   internal sealed class AttributeScriptDispatchService : IScriptDispatcher, IInitializable
   {
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private const int StartCapacity = 2000;
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     // All Services
     [Inject]
     private Lazy<IEnumerable<object>> Services { get; init; }
 
-    public int ExecutionOrder { get; } = 10000;
-
     private readonly Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(StartCapacity);
+
+    public int ExecutionOrder { get; } = 10000;
 
     void IInitializable.Init()
     {
@@ -29,17 +29,14 @@ namespace Anvil.Services
       }
     }
 
-    private void RegisterServiceListeners(object service)
+    ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint oidSelf)
     {
-      Type serviceType = service.GetType();
-
-      foreach (MethodInfo method in serviceType.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+      if (scriptHandlers.TryGetValue(script, out ScriptCallback handler))
       {
-        foreach (ScriptHandlerAttribute handler in method.GetCustomAttributes<ScriptHandlerAttribute>())
-        {
-          RegisterMethod(service, method, handler.ScriptName);
-        }
+        return handler.ProcessCallbacks(oidSelf);
       }
+
+      return ScriptHandleResult.NotHandled;
     }
 
     private void RegisterMethod(object service, MethodInfo method, string scriptName)
@@ -63,14 +60,17 @@ namespace Anvil.Services
       callback.AddCallback(service, method);
     }
 
-    ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint oidSelf)
+    private void RegisterServiceListeners(object service)
     {
-      if (scriptHandlers.TryGetValue(script, out ScriptCallback handler))
-      {
-        return handler.ProcessCallbacks(oidSelf);
-      }
+      Type serviceType = service.GetType();
 
-      return ScriptHandleResult.NotHandled;
+      foreach (MethodInfo method in serviceType.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+      {
+        foreach (ScriptHandlerAttribute handler in method.GetCustomAttributes<ScriptHandlerAttribute>())
+        {
+          RegisterMethod(service, method, handler.ScriptName);
+        }
+      }
     }
   }
 }

@@ -19,9 +19,9 @@ namespace Anvil.API.Events
 
       public NwCreature ItemActivator { get; } = NWScript.GetItemActivator().ToNwObject<NwCreature>();
 
-      public NwGameObject TargetObject { get; } = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
-
       public Location TargetLocation { get; } = NWScript.GetItemActivatedTargetLocation();
+
+      public NwGameObject TargetObject { get; } = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context
       {

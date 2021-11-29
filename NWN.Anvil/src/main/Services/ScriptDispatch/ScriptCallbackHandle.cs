@@ -12,7 +12,6 @@ namespace Anvil.Services
     private static ScriptHandleFactory ScriptHandleFactory { get; set; }
 
     public readonly string ScriptName;
-    public bool IsValid { get; internal set; }
 
     private readonly Func<CallInfo, ScriptHandleResult> callback;
 
@@ -20,6 +19,13 @@ namespace Anvil.Services
     {
       ScriptName = scriptName;
       this.callback = callback;
+    }
+
+    public bool IsValid { get; internal set; }
+
+    public void Dispose()
+    {
+      ScriptHandleFactory.UnregisterScriptHandler(ScriptName);
     }
 
     internal void AssertValid()
@@ -33,11 +39,6 @@ namespace Anvil.Services
     internal ScriptHandleResult Invoke(CallInfo callInfo)
     {
       return callback(callInfo);
-    }
-
-    public void Dispose()
-    {
-      ScriptHandleFactory.UnregisterScriptHandler(ScriptName);
     }
   }
 }

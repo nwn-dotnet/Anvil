@@ -21,14 +21,14 @@ namespace Anvil.API.Events
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
-      /// Gets the <see cref="NwGameObject"/> that damaged <see cref="NwCreature"/>.
-      /// </summary>
-      public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
-
-      /// <summary>
       /// Gets the amount of damage done by <see cref="NwGameObject"/> to <see cref="NwCreature"/>.
       /// </summary>
       public int DamageAmount { get; } = NWScript.GetTotalDamageDealt();
+
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that damaged <see cref="NwCreature"/>.
+      /// </summary>
+      public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
 
       NwObject IEvent.Context
       {

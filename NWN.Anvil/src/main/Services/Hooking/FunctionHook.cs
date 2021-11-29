@@ -7,17 +7,17 @@ namespace Anvil.Services
 {
   public sealed class FunctionHook<T> : IDisposable where T : Delegate
   {
-    private readonly HookService hookService;
-    private readonly IntPtr nativeFuncPtr;
+    /// <summary>
+    /// The original function call - invoke this to run the standard game behaviour.
+    /// </summary>
+    public readonly T CallOriginal;
 
     // We hold a reference to the delegate to prevent clean up from the garbage collector.
     [UsedImplicitly]
     private readonly T handler;
 
-    /// <summary>
-    /// The original function call - invoke this to run the standard game behaviour.
-    /// </summary>
-    public readonly T CallOriginal;
+    private readonly HookService hookService;
+    private readonly IntPtr nativeFuncPtr;
 
     internal FunctionHook(HookService hookService, IntPtr nativeFuncPtr, T handler = null)
     {

@@ -8,19 +8,18 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellInterrupt : IEvent
   {
-    public NwGameObject InterruptedCaster { get; private init; }
-
-    public Spell Spell { get; private init; }
-
     public int ClassIndex { get; private init; }
-
-    public Feat Feat { get; private init; }
 
     public Domain Domain { get; private init; }
 
-    public bool Spontaneous { get; private init; }
+    public Feat Feat { get; private init; }
+    public NwGameObject InterruptedCaster { get; private init; }
 
     public MetaMagic MetaMagic { get; private init; }
+
+    public Spell Spell { get; private init; }
+
+    public bool Spontaneous { get; private init; }
 
     NwObject IEvent.Context
     {

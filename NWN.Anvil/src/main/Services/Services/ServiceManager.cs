@@ -11,13 +11,13 @@ namespace Anvil.Services
   public sealed class ServiceManager
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+    private readonly IContainerFactory containerFactory;
+    private readonly CoreInteropHandler interopHandler;
 
     private readonly PluginManager pluginManager;
-    private readonly CoreInteropHandler interopHandler;
-    private readonly IContainerFactory containerFactory;
+    private List<ILateDisposable> lateDisposables;
 
     private ServiceContainer serviceContainer;
-    private List<ILateDisposable> lateDisposables;
 
     internal ServiceManager(PluginManager pluginManager, CoreInteropHandler interopHandler, IContainerFactory containerFactory)
     {
@@ -40,21 +40,6 @@ namespace Anvil.Services
       InitServices();
     }
 
-    internal void ShutdownServices()
-    {
-      if (serviceContainer == null)
-      {
-        return;
-      }
-
-      Log.Info("Unloading services...");
-      lateDisposables = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
-
-      interopHandler.Dispose();
-      serviceContainer.Dispose();
-      serviceContainer = null;
-    }
-
     internal void ShutdownLateServices()
     {
       if (lateDisposables == null)
@@ -68,6 +53,21 @@ namespace Anvil.Services
       }
 
       lateDisposables = null;
+    }
+
+    internal void ShutdownServices()
+    {
+      if (serviceContainer == null)
+      {
+        return;
+      }
+
+      Log.Info("Unloading services...");
+      lateDisposables = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
+
+      interopHandler.Dispose();
+      serviceContainer.Dispose();
+      serviceContainer = null;
     }
 
     private void InitServices()

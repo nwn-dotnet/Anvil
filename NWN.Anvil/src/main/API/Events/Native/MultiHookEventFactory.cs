@@ -10,6 +10,12 @@ namespace Anvil.API.Events
     private readonly HashSet<Type> activeEvents = new HashSet<Type>();
     private IDisposable[] hooks;
 
+    public void Dispose()
+    {
+      hooks.DisposeAll();
+      hooks = null;
+    }
+
     public void Register<TEvent>(NullRegistrationData data) where TEvent : IEvent, new()
     {
       hooks ??= RequestHooks();
@@ -23,12 +29,6 @@ namespace Anvil.API.Events
       {
         Dispose();
       }
-    }
-
-    public void Dispose()
-    {
-      hooks.DisposeAll();
-      hooks = null;
     }
 
     protected abstract IDisposable[] RequestHooks();

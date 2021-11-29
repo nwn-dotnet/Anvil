@@ -30,17 +30,17 @@ namespace Anvil.API.Events
       /// </summary>
       public int TotalDamageDealt { get; } = NWScript.GetTotalDamageDealt();
 
+      NwObject IEvent.Context
+      {
+        get => DamagedObject;
+      }
+
       /// <summary>
       /// Gets <see cref="DamageType"/> dealt to <see cref="NwPlaceable"/>.
       /// </summary>
       public int GetDamageDealtByType(DamageType damageType)
       {
         return NWScript.GetDamageDealtByType((int)damageType);
-      }
-
-      NwObject IEvent.Context
-      {
-        get => DamagedObject;
       }
     }
   }

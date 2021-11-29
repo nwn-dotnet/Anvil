@@ -34,24 +34,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Safely returns to a NWScript context from another thread.<br/>
-    /// This must ALWAYS be called after an external callback, or thread switch before using any NWN APIs.
-    /// </summary>
-    [Pure]
-    public static IAwaitable SwitchToMainThread()
-    {
-      return MainThreadSynchronizationContext;
-    }
-
-    /// <summary>
-    /// Waits until the next server frame/loop.
-    /// </summary>
-    public static async Task NextFrame()
-    {
-      await DelayFrame(1);
-    }
-
-    /// <summary>
     /// Waits until the specified amount of frames have passed.
     /// </summary>
     /// <param name="frames">The number of frames to wait.</param>
@@ -64,6 +46,14 @@ namespace Anvil.API
         frames--;
         return retVal;
       }, cancellationToken);
+    }
+
+    /// <summary>
+    /// Waits until the next server frame/loop.
+    /// </summary>
+    public static async Task NextFrame()
+    {
+      await DelayFrame(1);
     }
 
     /// <summary>
@@ -81,6 +71,16 @@ namespace Anvil.API
     {
       await SwitchToMainThread();
       return await function();
+    }
+
+    /// <summary>
+    /// Safely returns to a NWScript context from another thread.<br/>
+    /// This must ALWAYS be called after an external callback, or thread switch before using any NWN APIs.
+    /// </summary>
+    [Pure]
+    public static IAwaitable SwitchToMainThread()
+    {
+      return MainThreadSynchronizationContext;
     }
 
     /// <summary>

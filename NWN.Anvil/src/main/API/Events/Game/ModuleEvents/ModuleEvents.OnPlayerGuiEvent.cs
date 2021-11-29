@@ -15,24 +15,7 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.ModuleOnPlayerGuiEvent)]
     public sealed class OnPlayerGuiEvent : IEvent
     {
-      /// <summary>
-      /// Gets the <see cref="NwPlayer"/> that triggered this event.
-      /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastGuiEventPlayer().ToNwPlayer();
-
-      /// <summary>
-      /// Gets the <see cref="GuiEventType"/> that was triggered.
-      /// </summary>
-      public GuiEventType EventType { get; } = (GuiEventType)NWScript.GetLastGuiEventType();
-
-      /// <summary>
-      /// Gets the object data associated with this GUI event.
-      /// </summary>
-      /// <remarks>
-      /// <see cref="GuiEventType.ChatBarFocus"/>: The selected chat channel. Does not indicate the actual used channel. 0 = Shout, 1 = Whisper, 2 = Talk, 3 = Party, 4 = DM
-      /// <see cref="GuiEventType.CharacterSheetSkillClick"/>: The <see cref="Skill"/>
-      /// </remarks>
-      public NwObject EventObject { get; } = NWScript.GetLastGuiEventObject().ToNwObject();
+      private readonly int integerEventData = NWScript.GetLastGuiEventInteger();
 
       /// <summary>
       /// Gets the chat bar channel that is selected. Only valid in <see cref="GuiEventType.ChatBarFocus"/> and <see cref="GuiEventType.ChatBarUnFocus"/> type events.
@@ -40,22 +23,6 @@ namespace Anvil.API.Events
       public ChatBarChannel ChatBarChannel
       {
         get => (ChatBarChannel)integerEventData;
-      }
-
-      /// <summary>
-      /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.
-      /// </summary>
-      public Skill SkillSelection
-      {
-        get => (Skill)integerEventData;
-      }
-
-      /// <summary>
-      /// Gets the feat that was selected. Only valid in <see cref="GuiEventType.CharacterSheetFeatClick"/> events.
-      /// </summary>
-      public Feat FeatSelection
-      {
-        get => (Feat)integerEventData;
       }
 
       /// <summary>
@@ -67,6 +34,28 @@ namespace Anvil.API.Events
       }
 
       /// <summary>
+      /// Gets the object data associated with this GUI event.
+      /// </summary>
+      /// <remarks>
+      /// <see cref="GuiEventType.ChatBarFocus"/>: The selected chat channel. Does not indicate the actual used channel. 0 = Shout, 1 = Whisper, 2 = Talk, 3 = Party, 4 = DM
+      /// <see cref="GuiEventType.CharacterSheetSkillClick"/>: The <see cref="Skill"/>
+      /// </remarks>
+      public NwObject EventObject { get; } = NWScript.GetLastGuiEventObject().ToNwObject();
+
+      /// <summary>
+      /// Gets the <see cref="GuiEventType"/> that was triggered.
+      /// </summary>
+      public GuiEventType EventType { get; } = (GuiEventType)NWScript.GetLastGuiEventType();
+
+      /// <summary>
+      /// Gets the feat that was selected. Only valid in <see cref="GuiEventType.CharacterSheetFeatClick"/> events.
+      /// </summary>
+      public Feat FeatSelection
+      {
+        get => (Feat)integerEventData;
+      }
+
+      /// <summary>
       /// Gets the GUI panel that attempted to be opened. Only valid in <see cref="GuiEventType.DisabledPanelAttemptOpen"/> events.
       /// </summary>
       public GUIPanel OpenedPanel
@@ -74,7 +63,18 @@ namespace Anvil.API.Events
         get => (GUIPanel)integerEventData;
       }
 
-      private readonly int integerEventData = NWScript.GetLastGuiEventInteger();
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that triggered this event.
+      /// </summary>
+      public NwPlayer Player { get; } = NWScript.GetLastGuiEventPlayer().ToNwPlayer();
+
+      /// <summary>
+      /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.
+      /// </summary>
+      public Skill SkillSelection
+      {
+        get => (Skill)integerEventData;
+      }
 
       NwObject IEvent.Context
       {

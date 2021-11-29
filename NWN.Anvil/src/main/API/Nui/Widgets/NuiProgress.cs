@@ -7,15 +7,15 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiProgress : NuiWidget
   {
-    public override string Type
-    {
-      get => "progress";
-    }
-
     [JsonConstructor]
     public NuiProgress(NuiProperty<float> value)
     {
       Value = value;
+    }
+
+    public override string Type
+    {
+      get => "progress";
     }
 
     /// <summary>

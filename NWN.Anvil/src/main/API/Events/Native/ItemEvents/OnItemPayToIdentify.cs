@@ -8,13 +8,12 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemPayToIdentify : IEvent
   {
-    public bool PreventPayToIdentify { get; set; }
-
     public NwCreature Creature { get; private init; }
 
-    public NwStore Store { get; private init; }
-
     public NwItem Item { get; private init; }
+    public bool PreventPayToIdentify { get; set; }
+
+    public NwStore Store { get; private init; }
 
     NwObject IEvent.Context
     {

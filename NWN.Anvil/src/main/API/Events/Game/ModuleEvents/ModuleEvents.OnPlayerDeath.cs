@@ -15,6 +15,11 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.ModuleOnPlayerDeath)]
     public sealed class OnPlayerDeath : IEvent
     {
+      public OnPlayerDeath()
+      {
+        Killer = NWScript.GetLastHostileActor(DeadPlayer.ControlledCreature).ToNwObject<NwGameObject>();
+      }
+
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has triggered the event.
       /// </summary>
@@ -28,11 +33,6 @@ namespace Anvil.API.Events
       NwObject IEvent.Context
       {
         get => DeadPlayer.ControlledCreature;
-      }
-
-      public OnPlayerDeath()
-      {
-        Killer = NWScript.GetLastHostileActor(DeadPlayer.ControlledCreature).ToNwObject<NwGameObject>();
       }
     }
   }

@@ -7,15 +7,6 @@ namespace Anvil.API
   /// </summary>
   public abstract class ObjectVariable
   {
-    public string Name { get; private init; }
-
-    public NwObject Object { get; private init; }
-
-    /// <summary>
-    /// Gets a value indicating whether this variable has a value.
-    /// </summary>
-    public abstract bool HasValue { get; }
-
     /// <summary>
     /// Gets a value indicating whether this variable has no value.
     /// </summary>
@@ -23,6 +14,20 @@ namespace Anvil.API
     {
       get => !HasValue;
     }
+
+    /// <summary>
+    /// Gets a value indicating whether this variable has a value.
+    /// </summary>
+    public abstract bool HasValue { get; }
+
+    public string Name { get; private init; }
+
+    public NwObject Object { get; private init; }
+
+    /// <summary>
+    /// Deletes the value of this variable.
+    /// </summary>
+    public abstract void Delete();
 
     internal static T Create<T>(NwObject gameObject, string name) where T : ObjectVariable, new()
     {
@@ -32,11 +37,6 @@ namespace Anvil.API
         Object = gameObject,
       };
     }
-
-    /// <summary>
-    /// Deletes the value of this variable.
-    /// </summary>
-    public abstract void Delete();
   }
 
   public abstract class ObjectVariable<T> : ObjectVariable, IEquatable<ObjectVariable<T>>
@@ -46,12 +46,22 @@ namespace Anvil.API
     /// </summary>
     public abstract T Value { get; set; }
 
+    public static bool operator ==(ObjectVariable<T> left, ObjectVariable<T> right)
+    {
+      return Equals(left, right);
+    }
+
     /// <summary>
     /// Implicit conversion of the value of this variable.
     /// </summary>
     public static implicit operator T(ObjectVariable<T> value)
     {
       return value.Value;
+    }
+
+    public static bool operator !=(ObjectVariable<T> left, ObjectVariable<T> right)
+    {
+      return !Equals(left, right);
     }
 
     public bool Equals(ObjectVariable<T> other)
@@ -92,16 +102,6 @@ namespace Anvil.API
     public override int GetHashCode()
     {
       return Value != null ? Value.GetHashCode() : 0;
-    }
-
-    public static bool operator ==(ObjectVariable<T> left, ObjectVariable<T> right)
-    {
-      return Equals(left, right);
-    }
-
-    public static bool operator !=(ObjectVariable<T> left, ObjectVariable<T> right)
-    {
-      return !Equals(left, right);
     }
   }
 }

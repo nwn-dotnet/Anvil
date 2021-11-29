@@ -8,11 +8,10 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemValidateUse : IEvent
   {
-    public NwCreature UsedBy { get; private init; }
+    public bool CanUse { get; set; }
 
     public NwItem Item { get; private init; }
-
-    public bool CanUse { get; set; }
+    public NwCreature UsedBy { get; private init; }
 
     NwObject IEvent.Context
     {

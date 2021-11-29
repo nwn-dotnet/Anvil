@@ -13,6 +13,11 @@ namespace Anvil.API.Events
   public sealed class OnCheckEffectImmunity : IEvent
   {
     /// <summary>
+    /// Gets or sets whether the specified immunity should be ignored, and the effect applied regardless.
+    /// </summary>
+    public bool Bypass { get; set; }
+
+    /// <summary>
     /// The creature that the effect is being applied to.
     /// </summary>
     public NwCreature Creature { get; private init; }
@@ -21,11 +26,6 @@ namespace Anvil.API.Events
     /// The type of immunity being checked.
     /// </summary>
     public ImmunityType ImmunityType { get; private init; }
-
-    /// <summary>
-    /// Gets or sets whether the specified immunity should be ignored, and the effect applied regardless.
-    /// </summary>
-    public bool Bypass { get; set; }
 
     NwObject IEvent.Context
     {
@@ -80,5 +80,3 @@ namespace Anvil.API
     }
   }
 }
-
-

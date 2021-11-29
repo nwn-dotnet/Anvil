@@ -16,14 +16,14 @@ namespace Anvil.API.Events
     public sealed class OnUnacquireItem : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> that lost the <see cref="NwItem"/>.
-      /// </summary>
-      public NwCreature LostBy { get; } = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>();
-
-      /// <summary>
       /// Gets the <see cref="NwItem"/> that was lost by <see cref="NwCreature"/>.
       /// </summary>
       public NwItem Item { get; } = NWScript.GetModuleItemLost().ToNwObject<NwItem>();
+
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that lost the <see cref="NwItem"/>.
+      /// </summary>
+      public NwCreature LostBy { get; } = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>();
 
       NwObject IEvent.Context
       {

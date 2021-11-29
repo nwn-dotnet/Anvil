@@ -10,20 +10,9 @@ namespace Anvil.API
   /// </summary>
   public sealed class SQLQuery : EngineStructure
   {
-    internal SQLQuery(IntPtr handle) : base(handle) {}
-
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_SQLQUERY;
-    }
-
     private bool executed;
     private bool hasResult;
-
-    public static implicit operator SQLQuery(IntPtr intPtr)
-    {
-      return new SQLQuery(intPtr);
-    }
+    internal SQLQuery(IntPtr handle) : base(handle) {}
 
     /// <summary>
     /// Returns "" if the last Sql command succeeded; or a human-readable error otherwise.
@@ -72,6 +61,16 @@ namespace Anvil.API
         }
         while (NWScript.SqlStep(this).ToBool());
       }
+    }
+
+    protected override int StructureId
+    {
+      get => NWScript.ENGINE_STRUCTURE_SQLQUERY;
+    }
+
+    public static implicit operator SQLQuery(IntPtr intPtr)
+    {
+      return new SQLQuery(intPtr);
     }
 
     /// <summary>

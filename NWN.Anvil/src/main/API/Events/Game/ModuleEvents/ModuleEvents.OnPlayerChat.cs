@@ -16,11 +16,6 @@ namespace Anvil.API.Events
     public sealed class OnPlayerChat : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwPlayer"/> that sent this message.
-      /// </summary>
-      public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwPlayer();
-
-      /// <summary>
       /// Gets or sets the message that is to be sent.
       /// </summary>
       public string Message
@@ -28,6 +23,11 @@ namespace Anvil.API.Events
         get => NWScript.GetPCChatMessage();
         set => NWScript.SetPCChatMessage(value);
       }
+
+      /// <summary>
+      /// Gets the <see cref="NwPlayer"/> that sent this message.
+      /// </summary>
+      public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwPlayer();
 
       /// <summary>
       /// Gets or sets the volume of this message.

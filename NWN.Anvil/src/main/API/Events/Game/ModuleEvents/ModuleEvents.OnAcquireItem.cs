@@ -15,10 +15,15 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.ModuleOnAcquireItem)]
     public sealed class OnAcquireItem : IEvent
     {
-      /// <summary>
-      /// Gets the <see cref="NwItem"/> that triggered the event.
-      /// </summary>
-      public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
+      public OnAcquireItem()
+      {
+        // Patch player reference due to a reference bug during client enter context
+        // See https://github.com/Beamdog/nwn-issues/issues/367
+        if (AcquiredBy is null && Item?.Possessor is NwCreature creature)
+        {
+          AcquiredBy = creature;
+        }
+      }
 
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that acquired the <see cref="NwItem"/>.
@@ -35,19 +40,14 @@ namespace Anvil.API.Events
       /// </summary>
       public int AmountAcquired { get; } = NWScript.GetModuleItemAcquiredStackSize();
 
+      /// <summary>
+      /// Gets the <see cref="NwItem"/> that triggered the event.
+      /// </summary>
+      public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
+
       NwObject IEvent.Context
       {
         get => AcquiredBy;
-      }
-
-      public OnAcquireItem()
-      {
-        // Patch player reference due to a reference bug during client enter context
-        // See https://github.com/Beamdog/nwn-issues/issues/367
-        if (AcquiredBy is null && Item?.Possessor is NwCreature creature)
-        {
-          AcquiredBy = creature;
-        }
       }
     }
   }

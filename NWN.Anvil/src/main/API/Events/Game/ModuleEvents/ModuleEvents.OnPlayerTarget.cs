@@ -17,6 +17,14 @@ namespace Anvil.API.Events
     public sealed class OnPlayerTarget : IEvent
     {
       /// <summary>
+      /// Gets if the player cancelled target selection.
+      /// </summary>
+      public bool IsCancelled
+      {
+        get => TargetObject == null;
+      }
+
+      /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has targeted something.
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPlayerToSelectTarget().ToNwPlayer();
@@ -30,14 +38,6 @@ namespace Anvil.API.Events
       /// Gets the position targeted by the <see cref="NwPlayer"/>.
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetTargetingModeSelectedPosition();
-
-      /// <summary>
-      /// Gets if the player cancelled target selection.
-      /// </summary>
-      public bool IsCancelled
-      {
-        get => TargetObject == null;
-      }
 
       NwObject IEvent.Context
       {

@@ -12,6 +12,15 @@ namespace Anvil.API
     private readonly CTlkTable tlkTable = NWNXLib.TlkTable();
 
     /// <summary>
+    /// Clears the specified TLK override.
+    /// </summary>
+    /// <param name="strRef">The strref to restore to default.</param>
+    public void ClearTlkOverride(uint strRef)
+    {
+      NWScript.SetTlkOverride((int)strRef);
+    }
+
+    /// <summary>
     /// Gets the value of the specified token.
     /// </summary>
     /// <param name="tokenNumber">The token number to query.</param>
@@ -31,6 +40,11 @@ namespace Anvil.API
 
       CExoString retVal = tokenArray[index].m_sValue;
       return retVal.ToString();
+    }
+
+    public string GetSimpleString(uint strRef)
+    {
+      return tlkTable.GetSimpleString(strRef).ToString();
     }
 
     /// <summary>
@@ -63,20 +77,6 @@ namespace Anvil.API
       }
 
       tlkTable.SetOverride(strRef, value.ToExoString());
-    }
-
-    /// <summary>
-    /// Clears the specified TLK override.
-    /// </summary>
-    /// <param name="strRef">The strref to restore to default.</param>
-    public void ClearTlkOverride(uint strRef)
-    {
-      NWScript.SetTlkOverride((int)strRef);
-    }
-
-    public string GetSimpleString(uint strRef)
-    {
-      return tlkTable.GetSimpleString(strRef).ToString();
     }
 
     private int BinarySearch(CTlkTableTokenCustomArray array, int index, int length, CTlkTableTokenCustom value)

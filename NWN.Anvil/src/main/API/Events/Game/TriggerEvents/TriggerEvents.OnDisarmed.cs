@@ -13,14 +13,14 @@ namespace Anvil.API.Events
     public sealed class OnDisarmed : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwTrigger"/> that was disarmed.
-      /// </summary>
-      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
-
-      /// <summary>
       /// Gets the <see cref="NwCreature"/> who disarmed this trigger.
       /// </summary>
       public NwCreature DisarmedBy { get; } = NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
+
+      /// <summary>
+      /// Gets the <see cref="NwTrigger"/> that was disarmed.
+      /// </summary>
+      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       NwObject IEvent.Context
       {

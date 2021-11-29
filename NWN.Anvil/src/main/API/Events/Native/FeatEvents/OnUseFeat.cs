@@ -9,17 +9,16 @@ namespace Anvil.API.Events
 {
   public sealed class OnUseFeat : IEvent
   {
-    public bool PreventFeatUse { get; set; }
-
     public NwCreature Creature { get; private init; }
 
     public Feat Feat { get; private init; }
+    public bool PreventFeatUse { get; set; }
 
     public int SubFeatId { get; private init; }
 
-    public NwGameObject TargetObject { get; private init; }
-
     public NwArea TargetArea { get; private init; }
+
+    public NwGameObject TargetObject { get; private init; }
 
     public Vector3 TargetPosition { get; private init; }
 

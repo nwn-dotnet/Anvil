@@ -15,21 +15,6 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.ModuleOnEquipItem)]
     public sealed class OnPlayerEquipItem : IEvent
     {
-      /// <summary>
-      /// Gets the <see cref="NwCreature"/> that last equipped <see cref="NwItem"/>.
-      /// </summary>
-      public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
-
-      /// <summary>
-      /// Gets the last equipped <see cref="NwItem"/> that triggered the event.
-      /// </summary>
-      public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
-
-      NwObject IEvent.Context
-      {
-        get => Player;
-      }
-
       public OnPlayerEquipItem()
       {
         // Patch player reference due to a reference bug during client enter context
@@ -38,6 +23,21 @@ namespace Anvil.API.Events
         {
           Player = creature;
         }
+      }
+
+      /// <summary>
+      /// Gets the last equipped <see cref="NwItem"/> that triggered the event.
+      /// </summary>
+      public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
+
+      /// <summary>
+      /// Gets the <see cref="NwCreature"/> that last equipped <see cref="NwItem"/>.
+      /// </summary>
+      public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
+
+      NwObject IEvent.Context
+      {
+        get => Player;
       }
     }
   }

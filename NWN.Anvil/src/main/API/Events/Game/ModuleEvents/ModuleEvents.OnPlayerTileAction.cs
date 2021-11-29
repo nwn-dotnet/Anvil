@@ -17,6 +17,11 @@ namespace Anvil.API.Events
     public sealed class OnPlayerTileAction : IEvent
     {
       /// <summary>
+      /// Gets the action ID (surfacemat.2da) that was selected by the player.
+      /// </summary>
+      public int ActionId { get; } = NWScript.GetLastTileActionId();
+
+      /// <summary>
       /// Gets the <see cref="NwPlayer"/> that performed a tile action.
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastPlayerToDoTileAction().ToNwPlayer();
@@ -25,11 +30,6 @@ namespace Anvil.API.Events
       /// Gets the position that was clicked.
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetLastTileActionPosition();
-
-      /// <summary>
-      /// Gets the action ID (surfacemat.2da) that was selected by the player.
-      /// </summary>
-      public int ActionId { get; } = NWScript.GetLastTileActionId();
 
       NwObject IEvent.Context
       {

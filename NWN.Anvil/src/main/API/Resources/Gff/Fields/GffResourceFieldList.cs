@@ -11,11 +11,6 @@ namespace Anvil.API
   {
     private readonly List<GffResourceFieldStruct> children = new List<GffResourceFieldStruct>();
 
-    public override GffResourceFieldType FieldType
-    {
-      get => GffResourceFieldType.List;
-    }
-
     internal GffResourceFieldList(CResGFF resGff, CResList list, uint count) : base(resGff)
     {
       for (uint i = 0; i < count; i++)
@@ -31,14 +26,19 @@ namespace Anvil.API
       get => children.Count;
     }
 
-    public override GffResourceFieldStruct this[int index]
+    public override GffResourceFieldType FieldType
     {
-      get => children[index];
+      get => GffResourceFieldType.List;
     }
 
     public override IEnumerable<GffResourceFieldStruct> Values
     {
       get => children;
+    }
+
+    public override GffResourceFieldStruct this[int index]
+    {
+      get => children[index];
     }
 
     public IEnumerator<GffResourceFieldStruct> GetEnumerator()

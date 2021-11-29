@@ -9,11 +9,11 @@ namespace Anvil.API.Events
 
     public int Amount { get; internal init; }
 
-    public NwObject Target { get; internal init; }
-
     public NwPlayer DungeonMaster { get; internal init; }
 
     public bool Skip { get; set; }
+
+    public NwObject Target { get; internal init; }
 
     NwObject IEvent.Context
     {

@@ -9,25 +9,24 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemUse : IEvent
   {
-    public NwCreature UsedBy { get; private init; }
-
     public NwItem Item { get; private init; }
-
-    public NwGameObject TargetObject { get; private init; }
 
     public int ItemPropertyIndex { get; private init; }
 
     public int ItemSubPropertyIndex { get; private init; }
 
-    public Vector3 TargetPosition { get; private init; }
-
-    public NwArea TargetArea { get; private init; }
-
-    public bool UseCharges { get; set; }
-
     public bool PreventUseItem { get; set; }
 
     public bool SuppressCannotUseFeedback { get; set; }
+
+    public NwArea TargetArea { get; private init; }
+
+    public NwGameObject TargetObject { get; private init; }
+
+    public Vector3 TargetPosition { get; private init; }
+
+    public bool UseCharges { get; set; }
+    public NwCreature UsedBy { get; private init; }
 
     NwObject IEvent.Context
     {

@@ -21,6 +21,11 @@ namespace Anvil.Internal
       LogManager.ThrowConfigExceptions = true;
     }
 
+    public void Dispose()
+    {
+      LogManager.Shutdown();
+    }
+
     public void Init()
     {
       if (File.Exists(HomeStorage.NLogConfig))
@@ -46,14 +51,6 @@ namespace Anvil.Internal
     public void InitVariables()
     {
       LogManager.Configuration.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
-    }
-
-    private LoggingConfiguration GetConfigFromFile(string path)
-    {
-      LoggingConfiguration config = new XmlLoggingConfiguration(path);
-      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
-
-      return config;
     }
 
     private static LoggingConfiguration GetDefaultConfig()
@@ -83,9 +80,12 @@ namespace Anvil.Internal
       return config;
     }
 
-    public void Dispose()
+    private LoggingConfiguration GetConfigFromFile(string path)
     {
-      LogManager.Shutdown();
+      LoggingConfiguration config = new XmlLoggingConfiguration(path);
+      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
+
+      return config;
     }
   }
 }

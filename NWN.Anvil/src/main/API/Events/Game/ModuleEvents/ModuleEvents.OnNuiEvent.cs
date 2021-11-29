@@ -16,44 +16,7 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.ModuleOnNuiEvent)]
     public sealed class OnNuiEvent : IEvent
     {
-      /// <summary>
-      /// Gets the player that triggered this event.
-      /// </summary>
-      public NwPlayer Player { get; } = NWScript.NuiGetEventPlayer().ToNwPlayer();
-
-      /// <summary>
-      /// Gets the window token associated with this event.
-      /// </summary>
-      public int WindowToken { get; } = NWScript.NuiGetEventWindow();
-
-      /// <summary>
-      /// Gets the ID of the <see cref="NuiElement"/> that triggered the event.
-      /// </summary>
-      public string ElementId { get; } = NWScript.NuiGetEventElement();
-
-      /// <summary>
-      /// Get the array index of the current event.<br/>
-      /// This can be used to get the index into an array, for example when rendering lists of buttons.<br/>
-      /// Returns -1 if the event is not originating from within an array.
-      /// </summary>
-      public int ArrayIndex { get; } = NWScript.NuiGetEventArrayIndex();
-
       private readonly string eventPayload;
-
-      /// <summary>
-      /// Gets the payload data associated with this event.
-      /// </summary>
-      /// <typeparam name="T"></typeparam>
-      /// <returns>The payload data, or null if the event has no payload.</returns>
-      public T GetEventPayload<T>()
-      {
-        return JsonConvert.DeserializeObject<T>(eventPayload);
-      }
-
-      /// <summary>
-      /// Gets the type of Nui event that occurred.
-      /// </summary>
-      public NuiEventType EventType { get; }
 
       public OnNuiEvent()
       {
@@ -74,9 +37,46 @@ namespace Anvil.API.Events
         };
       }
 
+      /// <summary>
+      /// Get the array index of the current event.<br/>
+      /// This can be used to get the index into an array, for example when rendering lists of buttons.<br/>
+      /// Returns -1 if the event is not originating from within an array.
+      /// </summary>
+      public int ArrayIndex { get; } = NWScript.NuiGetEventArrayIndex();
+
       public NwObject Context
       {
         get => Player?.ControlledCreature;
+      }
+
+      /// <summary>
+      /// Gets the ID of the <see cref="NuiElement"/> that triggered the event.
+      /// </summary>
+      public string ElementId { get; } = NWScript.NuiGetEventElement();
+
+      /// <summary>
+      /// Gets the type of Nui event that occurred.
+      /// </summary>
+      public NuiEventType EventType { get; }
+
+      /// <summary>
+      /// Gets the player that triggered this event.
+      /// </summary>
+      public NwPlayer Player { get; } = NWScript.NuiGetEventPlayer().ToNwPlayer();
+
+      /// <summary>
+      /// Gets the window token associated with this event.
+      /// </summary>
+      public int WindowToken { get; } = NWScript.NuiGetEventWindow();
+
+      /// <summary>
+      /// Gets the payload data associated with this event.
+      /// </summary>
+      /// <typeparam name="T"></typeparam>
+      /// <returns>The payload data, or null if the event has no payload.</returns>
+      public T GetEventPayload<T>()
+      {
+        return JsonConvert.DeserializeObject<T>(eventPayload);
       }
     }
   }

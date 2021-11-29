@@ -13,14 +13,14 @@ namespace Anvil.API.Events
     public sealed class OnOpen : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwStore"/> being open.
-      /// </summary>
-      public NwStore Store { get; } = NWScript.OBJECT_SELF.ToNwObject<NwStore>();
-
-      /// <summary>
       /// Gets the <see cref="NwPlayer"/> that last opened this store.
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetLastOpenedBy().ToNwPlayer();
+
+      /// <summary>
+      /// Gets the <see cref="NwStore"/> being open.
+      /// </summary>
+      public NwStore Store { get; } = NWScript.OBJECT_SELF.ToNwObject<NwStore>();
 
       NwObject IEvent.Context
       {

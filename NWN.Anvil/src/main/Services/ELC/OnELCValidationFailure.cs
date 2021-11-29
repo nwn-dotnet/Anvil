@@ -4,15 +4,14 @@ namespace Anvil.Services
 {
   public class OnELCValidationFailure
   {
+    public bool IgnoreFailure { get; set; }
     public NwPlayer Player { get; init; }
-
-    public ValidationFailureType Type { get; init; }
-
-    public ValidationFailureSubType SubType { get; init; }
 
     public int StrRef { get; set; }
 
-    public bool IgnoreFailure { get; set; }
+    public ValidationFailureSubType SubType { get; init; }
+
+    public ValidationFailureType Type { get; init; }
   }
 
   public sealed class OnELCItemValidationFailure : OnELCValidationFailure

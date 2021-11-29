@@ -16,24 +16,24 @@ namespace Anvil.API.Events
     public sealed class OnSpellCastAt : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> targeted by this spell.
-      /// </summary>
-      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
-
-      /// <summary>
       /// Gets the <see cref="NwGameObject"/> of this spell. Returns null from an area of effect.
       /// </summary>
       public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the <see cref="Spell"/>  that was cast.
+      /// Gets the <see cref="NwCreature"/> targeted by this spell.
       /// </summary>
-      public Spell Spell { get; } = (Spell)NWScript.GetLastSpell();
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
       /// Gets a value indicating whether this spell is considered harmful.
       /// </summary>
       public bool Harmful { get; } = NWScript.GetLastSpellHarmful().ToBool();
+
+      /// <summary>
+      /// Gets the <see cref="Spell"/>  that was cast.
+      /// </summary>
+      public Spell Spell { get; } = (Spell)NWScript.GetLastSpell();
 
       NwObject IEvent.Context
       {

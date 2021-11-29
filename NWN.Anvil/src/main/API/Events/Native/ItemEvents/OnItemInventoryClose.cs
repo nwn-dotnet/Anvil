@@ -8,8 +8,6 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemInventoryClose : IEvent
   {
-    public bool PreventClose { get; set; }
-
     /// <summary>
     /// Gets the creature that is closing the container.
     /// </summary>
@@ -19,6 +17,8 @@ namespace Anvil.API.Events
     /// Gets the container being opened.
     /// </summary>
     public NwItem Container { get; private init; }
+
+    public bool PreventClose { get; set; }
 
     NwObject IEvent.Context
     {

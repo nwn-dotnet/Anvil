@@ -12,14 +12,14 @@ namespace Anvil.API.Events
   public sealed class OnEffectApply : IEvent
   {
     /// <summary>
-    /// Gets the object that the effect is being applied to.
-    /// </summary>
-    public NwObject Object { get; private init; }
-
-    /// <summary>
     /// Gets the effect being applied.
     /// </summary>
     public Effect Effect { get; init; }
+
+    /// <summary>
+    /// Gets the object that the effect is being applied to.
+    /// </summary>
+    public NwObject Object { get; private init; }
 
     /// <summary>
     /// Gets or sets whether this effect should be prevented from being applied.

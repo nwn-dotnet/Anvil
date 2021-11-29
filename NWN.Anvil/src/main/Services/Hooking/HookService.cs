@@ -57,17 +57,17 @@ namespace Anvil.Services
       return retVal;
     }
 
-    internal void RemoveHook<T>(FunctionHook<T> hook) where T : Delegate
-    {
-      hooks.Remove(hook);
-    }
-
     void ILateDisposable.LateDispose()
     {
       foreach (IDisposable hook in hooks.ToList())
       {
         hook.Dispose();
       }
+    }
+
+    internal void RemoveHook<T>(FunctionHook<T> hook) where T : Delegate
+    {
+      hooks.Remove(hook);
     }
   }
 }

@@ -13,14 +13,14 @@ namespace Anvil.API.Events
     public sealed class OnExit : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwTrigger"/> that was left.
-      /// </summary>
-      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
-
-      /// <summary>
       /// Gets the <see cref="NwGameObject"/> that left this <see cref="NwTrigger"/>.
       /// </summary>
       public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
+
+      /// <summary>
+      /// Gets the <see cref="NwTrigger"/> that was left.
+      /// </summary>
+      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       NwObject IEvent.Context
       {

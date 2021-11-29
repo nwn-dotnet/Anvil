@@ -13,6 +13,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the float result for the specified column.
+    /// </summary>
+    /// <param name="columnIndex">The 0-based index of the column to query.</param>
+    /// <returns>The float result. Returns 0.0f on an error.</returns>
+    public float GetFloat(int columnIndex)
+    {
+      return NWScript.SqlGetFloat(query, columnIndex);
+    }
+
+    /// <summary>
     /// Gets the int result for the specified column.
     /// </summary>
     /// <param name="columnIndex">The 0-based index of the column to query.</param>
@@ -23,13 +33,15 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the float result for the specified column.
+    /// Gets the serialized object result for the specified column, and spawns the object at the specified location and inventory.
     /// </summary>
     /// <param name="columnIndex">The 0-based index of the column to query.</param>
-    /// <returns>The float result. Returns 0.0f on an error.</returns>
-    public float GetFloat(int columnIndex)
+    /// <param name="spawnLocation">The location to spawn the object.</param>
+    /// <param name="targetInventory">(Items only) The target inventory for the item.</param>
+    /// <returns>The deserialized object. Returns null on an error.</returns>
+    public T GetObject<T>(int columnIndex, Location spawnLocation, NwGameObject targetInventory = null) where T : NwObject
     {
-      return NWScript.SqlGetFloat(query, columnIndex);
+      return NWScript.SqlGetObject(query, columnIndex, spawnLocation, targetInventory).ToNwObject<T>();
     }
 
     /// <summary>
@@ -50,18 +62,6 @@ namespace Anvil.API
     public Vector3 GetVector3(int columnIndex)
     {
       return NWScript.SqlGetVector(query, columnIndex);
-    }
-
-    /// <summary>
-    /// Gets the serialized object result for the specified column, and spawns the object at the specified location and inventory.
-    /// </summary>
-    /// <param name="columnIndex">The 0-based index of the column to query.</param>
-    /// <param name="spawnLocation">The location to spawn the object.</param>
-    /// <param name="targetInventory">(Items only) The target inventory for the item.</param>
-    /// <returns>The deserialized object. Returns null on an error.</returns>
-    public T GetObject<T>(int columnIndex, Location spawnLocation, NwGameObject targetInventory = null) where T : NwObject
-    {
-      return NWScript.SqlGetObject(query, columnIndex, spawnLocation, targetInventory).ToNwObject<T>();
     }
   }
 }

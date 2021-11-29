@@ -15,6 +15,22 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the class chosen at this level.
+    /// </summary>
+    public ClassType Class
+    {
+      get => creature.Classes[levelStats.m_nClass - 1];
+    }
+
+    /// <summary>
+    /// Gets the number of feats gained at this level.
+    /// </summary>
+    public int FeatCount
+    {
+      get => levelStats.m_lstFeats.Count;
+    }
+
+    /// <summary>
     /// Gets the feats gained at this level.
     /// </summary>
     public IReadOnlyList<Feat> Feats
@@ -33,19 +49,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the number of feats gained at this level.
+    /// Gets or sets the hitpoints gained by this creature for this level.
     /// </summary>
-    public int FeatCount
+    public byte HitDie
     {
-      get => levelStats.m_lstFeats.Count;
-    }
-
-    /// <summary>
-    /// Gets the class chosen at this level.
-    /// </summary>
-    public ClassType Class
-    {
-      get => creature.Classes[levelStats.m_nClass - 1];
+      get => levelStats.m_nHitDie;
+      set => levelStats.m_nHitDie = value;
     }
 
     /// <summary>
@@ -55,15 +64,6 @@ namespace Anvil.API
     {
       get => levelStats.m_nSkillPointsRemaining;
       set => levelStats.m_nSkillPointsRemaining = value;
-    }
-
-    /// <summary>
-    /// Gets or sets the hitpoints gained by this creature for this level.
-    /// </summary>
-    public byte HitDie
-    {
-      get => levelStats.m_nHitDie;
-      set => levelStats.m_nHitDie = value;
     }
 
     /// <summary>

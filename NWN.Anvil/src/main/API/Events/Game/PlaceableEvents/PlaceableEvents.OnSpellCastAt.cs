@@ -16,24 +16,24 @@ namespace Anvil.API.Events
     public sealed class OnSpellCastAt : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwPlaceable"/> targeted by this spell.
-      /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
-
-      /// <summary>
       /// Gets the <see cref="NwGameObject"/> who cast <see cref="Spell"/> (<see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwDoor"/>). Returns null from an <see cref="NwAreaOfEffect"/>.
       /// </summary>
       public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
 
       /// <summary>
-      /// Gets the <see cref="Spell"/> that was cast.
-      /// </summary>
-      public Spell Spell { get; } = (Spell)NWScript.GetLastSpell();
-
-      /// <summary>
       /// Gets a value indicating whether this spell is considered harmful.
       /// </summary>
       public bool Harmful { get; } = NWScript.GetLastSpellHarmful().ToBool();
+
+      /// <summary>
+      /// Gets the <see cref="NwPlaceable"/> targeted by this spell.
+      /// </summary>
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+
+      /// <summary>
+      /// Gets the <see cref="Spell"/> that was cast.
+      /// </summary>
+      public Spell Spell { get; } = (Spell)NWScript.GetLastSpell();
 
       NwObject IEvent.Context
       {

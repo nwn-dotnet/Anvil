@@ -13,14 +13,14 @@ namespace Anvil.API.Events
     public sealed class OnClicked : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwTrigger"/> that was clicked.
-      /// </summary>
-      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
-
-      /// <summary>
       /// Gets the <see cref="NwCreature"/> that clicked this <see cref="NwTrigger"/>.
       /// </summary>
       public NwCreature ClickedBy { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>();
+
+      /// <summary>
+      /// Gets the <see cref="NwTrigger"/> that was clicked.
+      /// </summary>
+      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       NwObject IEvent.Context
       {

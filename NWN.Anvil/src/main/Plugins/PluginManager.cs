@@ -17,17 +17,12 @@ namespace Anvil.Plugins
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    internal IReadOnlyCollection<Type> LoadedTypes { get; private set; }
-
-    internal IReadOnlyCollection<string> ResourcePaths { get; private set; }
-
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
     private readonly List<Plugin> plugins = new List<Plugin>();
 
-    public bool IsPluginLoaded(string pluginName)
-    {
-      return plugins.Any(plugin => plugin.Name.Name == pluginName);
-    }
+    internal IReadOnlyCollection<Type> LoadedTypes { get; private set; }
+
+    internal IReadOnlyCollection<string> ResourcePaths { get; private set; }
 
     /// <summary>
     /// Gets the install directory of the specified plugin.
@@ -53,6 +48,22 @@ namespace Anvil.Plugins
     public bool IsPluginAssembly(Assembly assembly)
     {
       return plugins.Any(plugin => plugin.Assembly == assembly);
+    }
+
+    public bool IsPluginLoaded(string pluginName)
+    {
+      return plugins.Any(plugin => plugin.Name.Name == pluginName);
+    }
+
+    public Assembly ResolveDependency(string pluginName, AssemblyName dependencyName)
+    {
+      Assembly assembly = ResolveDependencyFromAnvil(pluginName, dependencyName);
+      if (assembly == null)
+      {
+        assembly = ResolveDependencyFromPlugins(pluginName, dependencyName);
+      }
+
+      return assembly;
     }
 
     internal void Load()
@@ -82,14 +93,6 @@ namespace Anvil.Plugins
       plugins.Clear();
     }
 
-    private void LoadCore()
-    {
-      foreach (Assembly assembly in Assemblies.AllAssemblies)
-      {
-        loadedAssemblies.Add(assembly);
-      }
-    }
-
     private void BootstrapPlugins()
     {
       IPluginSource[] pluginSources =
@@ -110,16 +113,55 @@ namespace Anvil.Plugins
       }
     }
 
-    private void LoadPlugins()
+    private IReadOnlyCollection<Type> GetLoadedTypes()
     {
+      List<Type> loadedTypes = new List<Type>();
+      foreach (Assembly assembly in loadedAssemblies)
+      {
+        loadedTypes.AddRange(assembly.GetTypes());
+      }
+
+      return loadedTypes.AsReadOnly();
+    }
+
+    private IReadOnlyCollection<string> GetResourcePaths()
+    {
+      List<string> resourcePaths = new List<string>();
       foreach (Plugin plugin in plugins)
       {
-        if (plugin.IsLoaded)
+        if (plugin.HasResourceDirectory)
         {
-          continue;
+          resourcePaths.Add(plugin.ResourcePath);
         }
+      }
 
-        LoadPlugin(plugin);
+      return resourcePaths.AsReadOnly();
+    }
+
+    private bool IsValidDependency(string plugin, AssemblyName requested, AssemblyName resolved)
+    {
+      if (requested.Name != resolved.Name)
+      {
+        return false;
+      }
+
+      if (requested.Version != resolved.Version)
+      {
+        Log.Warn("DotNET Plugin {Plugin} references {ReferenceName}, v{ReferenceVersion} but the server is running v{ServerVersion}! You may encounter compatibility issues",
+          plugin,
+          requested.Name,
+          requested.Version,
+          resolved.Version);
+      }
+
+      return true;
+    }
+
+    private void LoadCore()
+    {
+      foreach (Assembly assembly in Assemblies.AllAssemblies)
+      {
+        loadedAssemblies.Add(assembly);
       }
     }
 
@@ -138,15 +180,17 @@ namespace Anvil.Plugins
       Log.Info("Loaded DotNET plugin {Plugin} - {PluginPath}", plugin.Name.Name, plugin.Path);
     }
 
-    public Assembly ResolveDependency(string pluginName, AssemblyName dependencyName)
+    private void LoadPlugins()
     {
-      Assembly assembly = ResolveDependencyFromAnvil(pluginName, dependencyName);
-      if (assembly == null)
+      foreach (Plugin plugin in plugins)
       {
-        assembly = ResolveDependencyFromPlugins(pluginName, dependencyName);
-      }
+        if (plugin.IsLoaded)
+        {
+          continue;
+        }
 
-      return assembly;
+        LoadPlugin(plugin);
+      }
     }
 
     private Assembly ResolveDependencyFromAnvil(string pluginName, AssemblyName dependencyName)
@@ -186,50 +230,6 @@ namespace Anvil.Plugins
       }
 
       return null;
-    }
-
-    private bool IsValidDependency(string plugin, AssemblyName requested, AssemblyName resolved)
-    {
-      if (requested.Name != resolved.Name)
-      {
-        return false;
-      }
-
-      if (requested.Version != resolved.Version)
-      {
-        Log.Warn("DotNET Plugin {Plugin} references {ReferenceName}, v{ReferenceVersion} but the server is running v{ServerVersion}! You may encounter compatibility issues",
-          plugin,
-          requested.Name,
-          requested.Version,
-          resolved.Version);
-      }
-
-      return true;
-    }
-
-    private IReadOnlyCollection<Type> GetLoadedTypes()
-    {
-      List<Type> loadedTypes = new List<Type>();
-      foreach (Assembly assembly in loadedAssemblies)
-      {
-        loadedTypes.AddRange(assembly.GetTypes());
-      }
-
-      return loadedTypes.AsReadOnly();
-    }
-
-    private IReadOnlyCollection<string> GetResourcePaths()
-    {
-      List<string> resourcePaths = new List<string>();
-      foreach (Plugin plugin in plugins)
-      {
-        if (plugin.HasResourceDirectory)
-        {
-          resourcePaths.Add(plugin.ResourcePath);
-        }
-      }
-
-      return resourcePaths.AsReadOnly();
     }
   }
 }

@@ -8,15 +8,14 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellBroadcast : IEvent
   {
-    public bool PreventSpellCast { get; set; }
-
     public NwCreature Caster { get; private init; }
-
-    public Spell Spell { get; private init; }
 
     public int ClassIndex { get; private init; }
 
     public Feat Feat { get; private init; }
+    public bool PreventSpellCast { get; set; }
+
+    public Spell Spell { get; private init; }
 
     NwObject IEvent.Context
     {

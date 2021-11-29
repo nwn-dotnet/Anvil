@@ -13,14 +13,14 @@ namespace Anvil.API.Events
     public sealed class OnEnter : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwTrigger"/> that was entered.
-      /// </summary>
-      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
-
-      /// <summary>
       /// Gets the <see cref="NwGameObject"/> that entered this <see cref="NwTrigger"/>.
       /// </summary>
       public NwGameObject EnteringObject { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
+
+      /// <summary>
+      /// Gets the <see cref="NwTrigger"/> that was entered.
+      /// </summary>
+      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       NwObject IEvent.Context
       {

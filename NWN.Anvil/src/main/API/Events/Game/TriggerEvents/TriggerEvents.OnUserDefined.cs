@@ -13,14 +13,14 @@ namespace Anvil.API.Events
     public sealed class OnUserDefined : IEvent
     {
       /// <summary>
-      /// Gets the <see cref="NwTrigger"/> that is running a user defined event.
-      /// </summary>
-      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
-
-      /// <summary>
       /// Gets the specific event number used to trigger this user-defined event.
       /// </summary>
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
+
+      /// <summary>
+      /// Gets the <see cref="NwTrigger"/> that is running a user defined event.
+      /// </summary>
+      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
       NwObject IEvent.Context
       {
