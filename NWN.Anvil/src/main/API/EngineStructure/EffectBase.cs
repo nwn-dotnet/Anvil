@@ -1,4 +1,3 @@
-using System;
 using System.Numerics;
 using NWN.Native.API;
 
@@ -38,7 +37,7 @@ namespace Anvil.API
       return effect.Effect;
     }
 
-    private protected unsafe EffectBase(IntPtr handle, CGameEffect effect) : base(handle)
+    private protected unsafe EffectBase(CGameEffect effect) : base(effect.Pointer)
     {
       Effect = effect;
 

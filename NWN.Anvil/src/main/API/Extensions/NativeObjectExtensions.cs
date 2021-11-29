@@ -29,5 +29,15 @@ namespace Anvil.API
     {
       return player != null && player.Pointer != IntPtr.Zero ? new NwPlayer(player) : null;
     }
+
+    public static Effect ToEffect(this CGameEffect effect)
+    {
+      return effect != null && effect.Pointer != IntPtr.Zero ? new Effect(effect) : null;
+    }
+
+    public static ItemProperty ToItemProperty(this CGameEffect ipEffect)
+    {
+      return ipEffect != null && ipEffect.Pointer != IntPtr.Zero ? new ItemProperty(ipEffect) : null;
+    }
   }
 }
