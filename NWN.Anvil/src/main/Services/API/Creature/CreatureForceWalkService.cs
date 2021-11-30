@@ -29,7 +29,7 @@ namespace Anvil.Services
       CNWSCreature nativeCreature = creature.Creature;
       PersistentVariableBool.Internal alwaysWalk = creature.GetObjectVariable<PersistentVariableBool.Internal>(AlwaysWalkVariable);
 
-      if (!forceWalk)
+      if (forceWalk)
       {
         nativeCreature.m_bForcedWalk = true.ToInt();
         alwaysWalk.Value = true;
