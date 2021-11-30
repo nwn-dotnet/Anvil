@@ -923,7 +923,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the walk rate cap on this creature.<br/>
+    /// Gets or sets the walk rate cap for this creature (persistent).<br/>
     /// Set to null to clear existing walk rate caps. Returns null if no walk rate cap is set.
     /// </summary>
     public float? WalkRateCap
