@@ -16,12 +16,13 @@ namespace Anvil.Services
   [ServiceBinding(typeof(SchedulerService))]
   public class SchedulerService : IUpdateable
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     /// <summary>
     /// The next server loop after the current.
     /// </summary>
     public static readonly TimeSpan NextUpdate = TimeSpan.Zero;
 
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private readonly IComparer<ScheduledItem> comparer = new ScheduledItem.SortedByExecutionTime();
 
     // Dependencies

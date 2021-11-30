@@ -8,16 +8,15 @@ namespace Anvil.Internal
   /// </summary>
   public static class EnvironmentConfig
   {
-    private static readonly string[] VariablePrefixes = { "ANVIL_", "NWM_" };
-
     public static readonly string AnvilHome = GetAnvilVariableString("HOME", "./anvil");
-    public static readonly LogMode LogMode = GetAnvilVariableEnum("LOG_MODE", LogMode.Default);
-    public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
-    public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
-    public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
-
     public static readonly string CoreShutdownScript = Environment.GetEnvironmentVariable("NWNX_CORE_SHUTDOWN_SCRIPT");
+    public static readonly LogMode LogMode = GetAnvilVariableEnum("LOG_MODE", LogMode.Default);
     public static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
+    public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
+    public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
+    public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
+
+    private static readonly string[] VariablePrefixes = { "ANVIL_", "NWM_" };
 
     static EnvironmentConfig()
     {

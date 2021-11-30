@@ -10,8 +10,9 @@ namespace Anvil.Services
   [ServiceBinding(typeof(IInitializable))]
   internal sealed class AttributeScriptDispatchService : IScriptDispatcher, IInitializable
   {
-    private const int StartCapacity = 2000;
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private const int StartCapacity = 2000;
 
     // All Services
     [Inject]

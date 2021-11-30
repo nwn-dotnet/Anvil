@@ -11,8 +11,9 @@ namespace Anvil.Internal
 {
   internal sealed class LoggerManager : IDisposable
   {
-    private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message}${onexception:${newline}${exception:format=ToString}}");
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message}${onexception:${newline}${exception:format=ToString}}");
 
     public LoggerManager()
     {

@@ -9,19 +9,17 @@ namespace Anvil.Services
   [ServiceBinding(typeof(ObjectStorageService))]
   public sealed unsafe class ObjectStorageService
   {
-    private static readonly byte* AnvilGffFieldNamePtr = "ANVIL_POS".GetNullTerminatedString();
-
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private static readonly byte* AnvilGffFieldNamePtr = "ANVIL_POS".GetNullTerminatedString();
     private static readonly byte* NWNXGffFieldNamePtr = "NWNX_POS".GetNullTerminatedString();
+
     private readonly FunctionHook<AreaDestructorHook> areaDestructorHook;
     private readonly FunctionHook<DropTURDHook> dropTURDHook;
     private readonly FunctionHook<EatTURDHook> eatTURDHook;
     private readonly FunctionHook<LoadFromGffHook> loadFromGffHook;
-
     private readonly FunctionHook<ObjectDestructorHook> objectDestructorHook;
-
     private readonly Dictionary<IntPtr, ObjectStorage> objectStorage = new Dictionary<IntPtr, ObjectStorage>();
-
     private readonly FunctionHook<SaveToGffHook> saveToGffHook;
 
     public ObjectStorageService(HookService hookService)

@@ -6,18 +6,20 @@ namespace Anvil.Services
 {
   public readonly struct NwDateTime
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     public const int DaysInMonth = 28;
+
     public const long TicksPerDay = TicksPerHour * 24;
     public const long TicksPerHour = TicksPerMinute * 60;
-
     public const long TicksPerMillisecond = 1;
     public const long TicksPerMinute = TicksPerSecond * 60;
     public const long TicksPerMonth = TicksPerDay * 28;
     public const long TicksPerSecond = TicksPerMillisecond * 1000;
     public const long TicksPerYear = TicksPerMonth * 12;
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-    public static readonly NwDateTime MinDate = new NwDateTime(GetTicks());
+
     public static readonly NwDateTime MaxDate = new NwDateTime(GetTicks(30001)).AddMilliseconds(-1);
+    public static readonly NwDateTime MinDate = new NwDateTime(GetTicks());
 
     /// <summary>
     ///  Gets or sets the current module date and time.

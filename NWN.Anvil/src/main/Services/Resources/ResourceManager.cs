@@ -14,6 +14,8 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.API)]
   public sealed unsafe class ResourceManager : IDisposable
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     public const int MaxNameLength = 16;
 
     private const string AliasBaseName = "ANVILRES";
@@ -21,8 +23,6 @@ namespace Anvil.Services
     private const uint BasePriority = 70500000;
 
     private static readonly CExoBase ExoBase = NWNXLib.ExoBase();
-
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private static readonly CExoResMan ResMan = NWNXLib.ExoResMan();
 
     private readonly CExoString tempAlias;
