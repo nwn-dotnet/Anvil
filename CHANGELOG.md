@@ -7,7 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
 
 ### Added
-- N/A
+- NwModule: Added `LimboGameObjects` property to list all GameObjects currently stored in limbo.
+- NwModule: Added `MoveObjectToLimbo` method to remove a GameObject from an area and store it in limbo.
+- NwCreature: Added `AlwaysWalk` and `WalkRateCap` for restricting creature & player movement.
+- Added `OnCheckEffectImmunity` event for bypassing effect immunity checks.
+- Added `OnEffectApply` and `OnEffectRemove` events.
 
 ### Package Updates
 - N/A
