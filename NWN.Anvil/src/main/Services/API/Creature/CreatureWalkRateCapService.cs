@@ -45,7 +45,7 @@ namespace Anvil.Services
         return walkRateHook.CallOriginal(pCreature);
       }
 
-      PersistentVariableFloat rateCap = creature.GetObjectVariable<PersistentVariableFloat>(WalkCapVariable);
+      PersistentVariableFloat.Internal rateCap = creature.GetObjectVariable<PersistentVariableFloat.Internal>(WalkCapVariable);
       return rateCap.HasValue ? rateCap.Value : walkRateHook.CallOriginal(pCreature);
     }
   }

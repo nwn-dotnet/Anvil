@@ -35,7 +35,7 @@ namespace Anvil.API
 
     internal sealed class Internal : PersistentVariableGuid
     {
-      protected override string Prefix => "ANVIL_Internal";
+      protected override string Prefix => "ANVIL_API";
     }
   }
 }

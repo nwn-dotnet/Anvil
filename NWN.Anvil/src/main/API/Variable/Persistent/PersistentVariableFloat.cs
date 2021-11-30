@@ -30,7 +30,7 @@ namespace Anvil.API
 
     internal sealed class Internal : PersistentVariableFloat
     {
-      protected override string Prefix => "ANVIL_Internal";
+      protected override string Prefix => "ANVIL_API";
     }
   }
 }

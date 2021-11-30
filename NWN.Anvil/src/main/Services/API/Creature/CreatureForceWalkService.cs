@@ -21,13 +21,13 @@ namespace Anvil.Services
 
     public bool GetAlwaysWalk(NwCreature creature)
     {
-      return creature.GetObjectVariable<PersistentVariableBool>(AlwaysWalkVariable);
+      return creature.GetObjectVariable<PersistentVariableBool.Internal>(AlwaysWalkVariable);
     }
 
     public void SetAlwaysWalk(NwCreature creature, bool forceWalk)
     {
       CNWSCreature nativeCreature = creature.Creature;
-      PersistentVariableBool alwaysWalk = creature.GetObjectVariable<PersistentVariableBool>(AlwaysWalkVariable);
+      PersistentVariableBool.Internal alwaysWalk = creature.GetObjectVariable<PersistentVariableBool.Internal>(AlwaysWalkVariable);
 
       if (!forceWalk)
       {
@@ -56,7 +56,7 @@ namespace Anvil.Services
     private int OnRemoveLimitMovementSpeed(void* pEffectListHandler, void* pObject, void* pEffect)
     {
       NwObject nwObject = CNWSObject.FromPointer(pObject).ToNwObject();
-      if (nwObject != null && nwObject.GetObjectVariable<PersistentVariableBool>(AlwaysWalkVariable))
+      if (nwObject != null && nwObject.GetObjectVariable<PersistentVariableBool.Internal>(AlwaysWalkVariable))
       {
         return 1;
       }
