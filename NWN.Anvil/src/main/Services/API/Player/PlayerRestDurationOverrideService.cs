@@ -5,16 +5,16 @@ using NWN.Native.API;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(RestDurationOverrideService))]
+  [ServiceBinding(typeof(PlayerRestDurationOverrideService))]
   [ServiceBindingOptions(InternalBindingPriority.API)]
-  internal sealed unsafe class RestDurationOverrideService
+  internal sealed unsafe class PlayerRestDurationOverrideService
   {
     private static readonly CExoString DurationTableKey = "Duration".ToExoString();
 
     private readonly FunctionHook<AIActionRestHook> aiActionRestHook;
     private readonly Dictionary<NwCreature, int> restDurationOverrides = new Dictionary<NwCreature, int>();
 
-    public RestDurationOverrideService(HookService hookService)
+    public PlayerRestDurationOverrideService(HookService hookService)
     {
       aiActionRestHook = hookService.RequestHook<AIActionRestHook>(OnAIActionRest, FunctionsLinux._ZN12CNWSCreature12AIActionRestEP20CNWSObjectActionNode, HookOrder.Late);
     }

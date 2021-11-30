@@ -20,7 +20,10 @@ namespace Anvil.API
     private const byte QuickBarButtonCount = 36;
 
     [Inject]
-    private static WalkRateCapService WalkRateCapService { get; set; }
+    private static CreatureForceWalkService CreatureForceWalkService { get; set; }
+
+    [Inject]
+    private static CreatureWalkRateCapService CreatureWalkRateCapService { get; set; }
 
     internal readonly CNWSCreature Creature;
 
@@ -58,6 +61,15 @@ namespace Anvil.API
     {
       get => (AiLevel)NWScript.GetAILevel(this);
       set => NWScript.SetAILevel(this, (int)value);
+    }
+
+    /// <summary>
+    /// Gets or sets whether this creature is forced to walk (persistent).
+    /// </summary>
+    public bool AlwaysWalk
+    {
+      get => CreatureForceWalkService.GetAlwaysWalk(this);
+      set => CreatureForceWalkService.SetAlwaysWalk(this, value);
     }
 
     /// <summary>
@@ -928,8 +940,8 @@ namespace Anvil.API
     /// </summary>
     public float? WalkRateCap
     {
-      get => WalkRateCapService.GetWalkRateCap(this);
-      set => WalkRateCapService.SetWalkRateCap(this, value);
+      get => CreatureWalkRateCapService.GetWalkRateCap(this);
+      set => CreatureWalkRateCapService.SetWalkRateCap(this, value);
     }
 
     /// <summary>

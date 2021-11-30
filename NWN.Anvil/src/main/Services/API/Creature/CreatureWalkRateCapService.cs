@@ -3,20 +3,20 @@ using NWN.Native.API;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(WalkRateCapService))]
+  [ServiceBinding(typeof(CreatureWalkRateCapService))]
   [ServiceBindingOptions(InternalBindingPriority.API)]
-  internal sealed unsafe class WalkRateCapService
+  internal sealed unsafe class CreatureWalkRateCapService
   {
     private const string WalkCapVariable = "WALK_RATE_CAP";
 
-    private delegate float GetWalkRateHook(void* pCreature);
-
     private readonly FunctionHook<GetWalkRateHook> walkRateHook;
 
-    public WalkRateCapService(HookService hookService)
+    public CreatureWalkRateCapService(HookService hookService)
     {
       walkRateHook = hookService.RequestHook<GetWalkRateHook>(OnGetWalkRate, FunctionsLinux._ZN12CNWSCreature11GetWalkRateEv, HookOrder.Late);
     }
+
+    private delegate float GetWalkRateHook(void* pCreature);
 
     public float? GetWalkRateCap(NwCreature creature)
     {
