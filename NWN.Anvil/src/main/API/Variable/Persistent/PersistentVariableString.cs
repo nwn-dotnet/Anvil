@@ -2,30 +2,38 @@ using Anvil.Services;
 
 namespace Anvil.API
 {
-  public sealed class PersistentVariableString : PersistentVariable<string>
+  public class PersistentVariableString : PersistentVariable<string>
   {
     [Inject]
     private static ObjectStorageService ObjectStorageService { get; set; }
 
-    public override bool HasValue
+    public sealed override bool HasValue
     {
       get => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsString(Prefix, Key);
     }
 
-    public override string Value
+    public sealed override string Value
     {
       get => ObjectStorageService.GetObjectStorage(Object).GetString(Prefix, Key);
       set => ObjectStorageService.GetObjectStorage(Object).Set(Prefix, Key, value, true);
     }
 
-    protected override string KeyPrefix
+    protected sealed override string KeyPrefix
     {
       get => "PERSTR!";
     }
 
-    public override void Delete()
+    public sealed override void Delete()
     {
       ObjectStorageService.GetObjectStorage(Object).Remove(Prefix, Key);
+    }
+
+    internal sealed class Internal : PersistentVariableString
+    {
+      protected override string Prefix
+      {
+        get => "ANVIL_API";
+      }
     }
   }
 }

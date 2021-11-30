@@ -29,7 +29,7 @@ namespace Anvil.API
     private static EventService EventService { get; set; }
 
     [Inject]
-    private static RestDurationOverrideService RestDurationOverrideService { get; set; }
+    private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; }
 
     internal readonly CNWSPlayer Player;
 
@@ -284,16 +284,16 @@ namespace Anvil.API
     /// </summary>
     public TimeSpan? RestDurationOverride
     {
-      get => RestDurationOverrideService.GetDurationOverride(LoginCreature);
+      get => PlayerRestDurationOverrideService.GetDurationOverride(LoginCreature);
       set
       {
         if (value.HasValue)
         {
-          RestDurationOverrideService.SetDurationOverride(LoginCreature, value.Value);
+          PlayerRestDurationOverrideService.SetDurationOverride(LoginCreature, value.Value);
         }
         else
         {
-          RestDurationOverrideService.ClearDurationOverride(LoginCreature);
+          PlayerRestDurationOverrideService.ClearDurationOverride(LoginCreature);
         }
       }
     }

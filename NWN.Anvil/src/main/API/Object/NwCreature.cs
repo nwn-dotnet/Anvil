@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Internal;
+using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
 using ObjectType = NWN.Native.API.ObjectType;
@@ -17,6 +18,12 @@ namespace Anvil.API
   public sealed partial class NwCreature : NwGameObject
   {
     private const byte QuickBarButtonCount = 36;
+
+    [Inject]
+    private static CreatureForceWalkService CreatureForceWalkService { get; set; }
+
+    [Inject]
+    private static CreatureWalkRateCapService CreatureWalkRateCapService { get; set; }
 
     internal readonly CNWSCreature Creature;
 
@@ -54,6 +61,15 @@ namespace Anvil.API
     {
       get => (AiLevel)NWScript.GetAILevel(this);
       set => NWScript.SetAILevel(this, (int)value);
+    }
+
+    /// <summary>
+    /// Gets or sets whether this creature is forced to walk (persistent).
+    /// </summary>
+    public bool AlwaysWalk
+    {
+      get => CreatureForceWalkService.GetAlwaysWalk(this);
+      set => CreatureForceWalkService.SetAlwaysWalk(this, value);
     }
 
     /// <summary>
@@ -916,6 +932,16 @@ namespace Anvil.API
     public int TurnResistanceHitDice
     {
       get => NWScript.GetTurnResistanceHD(this);
+    }
+
+    /// <summary>
+    /// Gets or sets the walk rate cap for this creature (persistent).<br/>
+    /// Set to null to clear existing walk rate caps. Returns null if no walk rate cap is set.
+    /// </summary>
+    public float? WalkRateCap
+    {
+      get => CreatureWalkRateCapService.GetWalkRateCap(this);
+      set => CreatureWalkRateCapService.SetWalkRateCap(this, value);
     }
 
     /// <summary>
