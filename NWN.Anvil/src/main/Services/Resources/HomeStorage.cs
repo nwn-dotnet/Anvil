@@ -8,14 +8,9 @@ namespace Anvil.Services
   {
     private static readonly string AnvilHome = Path.GetFullPath(EnvironmentConfig.AnvilHome, NwServer.Instance.UserDirectory);
 
-    public static string Plugins
+    public static string NLogConfig
     {
-      get => ResolveDirectoryPath("Plugins");
-    }
-
-    public static string PluginData
-    {
-      get => ResolveDirectoryPath("PluginData");
+      get => ResolveFilePath("nlog.config");
     }
 
     public static string Paket
@@ -23,14 +18,30 @@ namespace Anvil.Services
       get => ResolveDirectoryPath("Paket");
     }
 
+    public static string PluginData
+    {
+      get => ResolveDirectoryPath("PluginData");
+    }
+
+    public static string Plugins
+    {
+      get => ResolveDirectoryPath("Plugins");
+    }
+
     public static string ResourceTemp
     {
       get => ResolveDirectoryPath("ResourceTemp", false);
     }
 
-    public static string NLogConfig
+    private static void CreateDirectory(string folderPath)
     {
-      get => ResolveFilePath("nlog.config");
+      // If a file exists at the folder path, check it is a symlink.
+      // Running CreateDirectory on the symlink will cause an IOException.
+      // If a normal file exists on the path, we should still throw the exception.
+      if (!File.Exists(folderPath) || (File.GetAttributes(folderPath) & FileAttributes.ReparsePoint) == 0)
+      {
+        Directory.CreateDirectory(folderPath);
+      }
     }
 
     private static string ResolveDirectoryPath(string subPath, bool createIfMissing = true)
@@ -53,17 +64,6 @@ namespace Anvil.Services
       }
 
       return path;
-    }
-
-    private static void CreateDirectory(string folderPath)
-    {
-      // If a file exists at the folder path, check it is a symlink.
-      // Running CreateDirectory on the symlink will cause an IOException.
-      // If a normal file exists on the path, we should still throw the exception.
-      if (!File.Exists(folderPath) || (File.GetAttributes(folderPath) & FileAttributes.ReparsePoint) == 0)
-      {
-        Directory.CreateDirectory(folderPath);
-      }
     }
   }
 }

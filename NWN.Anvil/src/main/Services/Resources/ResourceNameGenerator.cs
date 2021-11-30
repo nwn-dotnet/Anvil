@@ -6,10 +6,9 @@ namespace Anvil.Services
 {
   internal static class ResourceNameGenerator
   {
-    private static readonly char[] ValidChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".ToCharArray();
-
     private static readonly Random Random = new Random();
     private static readonly StringBuilder StringBuilder = new StringBuilder(ScriptConstants.MaxScriptNameSize);
+    private static readonly char[] ValidChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".ToCharArray();
 
     public static string Create()
     {

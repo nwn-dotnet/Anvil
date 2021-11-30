@@ -12,6 +12,26 @@ namespace Anvil.API
     private static readonly Dictionary<Type, NativeObjectInfoAttribute> CachedTypeInfo = new Dictionary<Type, NativeObjectInfoAttribute>();
 
     /// <summary>
+    /// Locates all objects of the specified type.
+    /// </summary>
+    /// <typeparam name="T">The type of objects to search.</typeparam>
+    /// <returns>An enumeration containing all objects of the specified type.</returns>
+    public static IEnumerable<T> FindObjectsOfType<T>() where T : NwObject
+    {
+      for (uint currentArea = NWScript.GetFirstArea(); currentArea != Invalid; currentArea = NWScript.GetNextArea())
+      {
+        for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(currentArea))
+        {
+          T obj = currentObj.ToNwObjectSafe<T>();
+          if (obj != null)
+          {
+            yield return obj;
+          }
+        }
+      }
+    }
+
+    /// <summary>
     /// Locates all objects of that have the specified tag.
     /// </summary>
     /// <param name="tags">The tag/s of the objects to locate.</param>
@@ -37,26 +57,6 @@ namespace Anvil.API
         for (i = 0, current = NWScript.GetObjectByTag(tag, i); current != Invalid; i++, current = NWScript.GetObjectByTag(tag, i))
         {
           T obj = current.ToNwObjectSafe<T>();
-          if (obj != null)
-          {
-            yield return obj;
-          }
-        }
-      }
-    }
-
-    /// <summary>
-    /// Locates all objects of the specified type.
-    /// </summary>
-    /// <typeparam name="T">The type of objects to search.</typeparam>
-    /// <returns>An enumeration containing all objects of the specified type.</returns>
-    public static IEnumerable<T> FindObjectsOfType<T>() where T : NwObject
-    {
-      for (uint currentArea = NWScript.GetFirstArea(); currentArea != Invalid; currentArea = NWScript.GetNextArea())
-      {
-        for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(currentArea))
-        {
-          T obj = currentObj.ToNwObjectSafe<T>();
           if (obj != null)
           {
             yield return obj;
@@ -120,6 +120,16 @@ namespace Anvil.API
       };
     }
 
+    internal static ObjectType GetNativeObjectType<T>() where T : NwObject
+    {
+      return GetNativeObjectInfo(typeof(T)).NativeObjectType;
+    }
+
+    internal static ObjectTypes GetObjectType<T>() where T : NwObject
+    {
+      return GetNativeObjectInfo(typeof(T)).ObjectType;
+    }
+
     private static NwObject CreateFromVirtualType(ICGameObject gameObject)
     {
       return (ObjectType)gameObject.m_nObjectType switch
@@ -138,16 +148,6 @@ namespace Anvil.API
         ObjectType.AreaOfEffect => new NwAreaOfEffect(gameObject.AsNWSAreaOfEffectObject()),
         _ => null,
       };
-    }
-
-    internal static ObjectTypes GetObjectType<T>() where T : NwObject
-    {
-      return GetNativeObjectInfo(typeof(T)).ObjectType;
-    }
-
-    internal static ObjectType GetNativeObjectType<T>() where T : NwObject
-    {
-      return GetNativeObjectInfo(typeof(T)).NativeObjectType;
     }
 
     private static NativeObjectInfoAttribute GetNativeObjectInfo(Type type)

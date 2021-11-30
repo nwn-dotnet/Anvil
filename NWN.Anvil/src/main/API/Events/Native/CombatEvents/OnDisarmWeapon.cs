@@ -8,15 +8,14 @@ namespace Anvil.API.Events
 {
   public sealed class OnDisarmWeapon : IEvent
   {
-    public bool PreventDisarm { get; set; }
-
-    public Lazy<bool> Result { get; private set; }
+    public NwGameObject DisarmedBy { get; private init; }
 
     public NwGameObject DisarmedObject { get; private init; }
 
-    public NwGameObject DisarmedBy { get; private init; }
-
     public Feat Feat { get; private init; }
+    public bool PreventDisarm { get; set; }
+
+    public Lazy<bool> Result { get; private set; }
 
     NwObject IEvent.Context
     {

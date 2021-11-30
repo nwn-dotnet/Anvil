@@ -8,8 +8,9 @@ namespace Anvil.Plugins
 {
   internal sealed class LocalPluginSource : IPluginSource
   {
-    private const string PluginResourceDir = "resources";
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private const string PluginResourceDir = "resources";
 
     private readonly PluginManager pluginManager;
 

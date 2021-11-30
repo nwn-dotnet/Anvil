@@ -11,47 +11,24 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly string scriptName;
+    private Func<bool> conditionalHandler;
+    private Func<CallInfo, bool> conditionalWithMetaHandler;
 
     private Action scriptHandler;
-    private Func<bool> conditionalHandler;
     private Action<CallInfo> scriptHandlerWithMetaHandler;
-    private Func<CallInfo, bool> conditionalWithMetaHandler;
 
     public ScriptCallback(string scriptName)
     {
       this.scriptName = scriptName;
     }
 
-    public ScriptHandleResult ProcessCallbacks(uint objSelfId)
+    private enum MethodType
     {
-      ScriptHandleResult result = ScriptHandleResult.NotHandled;
-      NwObject objSelf = null;
-
-      if (scriptHandler != null)
-      {
-        scriptHandler();
-        result = ScriptHandleResult.Handled;
-      }
-      else if (scriptHandlerWithMetaHandler != null)
-      {
-        objSelf = objSelfId.ToNwObject();
-        CallInfo meta = new CallInfo(scriptName, objSelf);
-        scriptHandlerWithMetaHandler(meta);
-        result = ScriptHandleResult.Handled;
-      }
-
-      if (conditionalHandler != null)
-      {
-        result = conditionalHandler() ? ScriptHandleResult.True : ScriptHandleResult.False;
-      }
-      else if (conditionalWithMetaHandler != null)
-      {
-        objSelf ??= objSelfId.ToNwObject();
-        CallInfo meta = new CallInfo(scriptName, objSelf);
-        result = conditionalWithMetaHandler(meta) ? ScriptHandleResult.True : ScriptHandleResult.False;
-      }
-
-      return result;
+      Invalid = 0,
+      Handler,
+      HandlerWithMeta,
+      Conditional,
+      ConditionalWithMeta,
     }
 
     public void AddCallback(object service, MethodInfo method)
@@ -102,6 +79,38 @@ namespace Anvil.Services
       Log.Info("Registered Script Handler: {ScriptName} -> {MethodName}", scriptName, method.GetFullName());
     }
 
+    public ScriptHandleResult ProcessCallbacks(uint objSelfId)
+    {
+      ScriptHandleResult result = ScriptHandleResult.NotHandled;
+      NwObject objSelf = null;
+
+      if (scriptHandler != null)
+      {
+        scriptHandler();
+        result = ScriptHandleResult.Handled;
+      }
+      else if (scriptHandlerWithMetaHandler != null)
+      {
+        objSelf = objSelfId.ToNwObject();
+        CallInfo meta = new CallInfo(scriptName, objSelf);
+        scriptHandlerWithMetaHandler(meta);
+        result = ScriptHandleResult.Handled;
+      }
+
+      if (conditionalHandler != null)
+      {
+        result = conditionalHandler() ? ScriptHandleResult.True : ScriptHandleResult.False;
+      }
+      else if (conditionalWithMetaHandler != null)
+      {
+        objSelf ??= objSelfId.ToNwObject();
+        CallInfo meta = new CallInfo(scriptName, objSelf);
+        result = conditionalWithMetaHandler(meta) ? ScriptHandleResult.True : ScriptHandleResult.False;
+      }
+
+      return result;
+    }
+
     private MethodType GetMethodType(MethodInfo method)
     {
       ParameterInfo[] parameters = method.GetParameters();
@@ -116,15 +125,6 @@ namespace Anvil.Services
       }
 
       return MethodType.Invalid;
-    }
-
-    private enum MethodType
-    {
-      Invalid = 0,
-      Handler,
-      HandlerWithMeta,
-      Conditional,
-      ConditionalWithMeta,
     }
   }
 }

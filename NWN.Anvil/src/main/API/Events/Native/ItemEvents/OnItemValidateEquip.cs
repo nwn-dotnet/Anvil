@@ -8,13 +8,12 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemValidateEquip : IEvent
   {
-    public NwCreature UsedBy { get; private init; }
-
     public NwItem Item { get; private init; }
 
-    public InventorySlot Slot { get; private init; }
-
     public EquipValidationResult Result { get; set; }
+
+    public InventorySlot Slot { get; private init; }
+    public NwCreature UsedBy { get; private init; }
 
     NwObject IEvent.Context
     {

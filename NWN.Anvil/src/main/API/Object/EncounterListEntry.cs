@@ -13,10 +13,10 @@ namespace Anvil.API
       this.encounterListEntry = encounterListEntry;
     }
 
-    public string CreatureResRef
+    public bool AlreadyUsed
     {
-      get => encounterListEntry.m_cCreatureResRef.ToString();
-      set => encounterListEntry.m_cCreatureResRef = value.ToResRef();
+      get => encounterListEntry.m_bAlreadyUsed.ToBool();
+      set => encounterListEntry.m_bAlreadyUsed = value.ToInt();
     }
 
     public float ChallengeRating
@@ -29,10 +29,10 @@ namespace Anvil.API
       }
     }
 
-    public bool AlreadyUsed
+    public string CreatureResRef
     {
-      get => encounterListEntry.m_bAlreadyUsed.ToBool();
-      set => encounterListEntry.m_bAlreadyUsed = value.ToInt();
+      get => encounterListEntry.m_cCreatureResRef.ToString();
+      set => encounterListEntry.m_cCreatureResRef = value.ToResRef();
     }
 
     public bool Unique

@@ -11,14 +11,19 @@ namespace Anvil.Services
   {
     private static readonly CExoString DurationTableKey = "Duration".ToExoString();
 
-    private delegate uint AIActionRestHook(void* pCreature, void* pNode);
-
     private readonly FunctionHook<AIActionRestHook> aiActionRestHook;
     private readonly Dictionary<NwCreature, int> restDurationOverrides = new Dictionary<NwCreature, int>();
 
     public RestDurationOverrideService(HookService hookService)
     {
       aiActionRestHook = hookService.RequestHook<AIActionRestHook>(OnAIActionRest, FunctionsLinux._ZN12CNWSCreature12AIActionRestEP20CNWSObjectActionNode, HookOrder.Late);
+    }
+
+    private delegate uint AIActionRestHook(void* pCreature, void* pNode);
+
+    public void ClearDurationOverride(NwCreature creature)
+    {
+      restDurationOverrides.Remove(creature);
     }
 
     public TimeSpan? GetDurationOverride(NwCreature creature)
@@ -29,11 +34,6 @@ namespace Anvil.Services
     public void SetDurationOverride(NwCreature creature, TimeSpan duration)
     {
       restDurationOverrides[creature] = (int)Math.Round(duration.TotalMilliseconds);
-    }
-
-    public void ClearDurationOverride(NwCreature creature)
-    {
-      restDurationOverrides.Remove(creature);
     }
 
     private uint OnAIActionRest(void* pCreature, void* pNode)

@@ -10,8 +10,8 @@ namespace Anvil.Services
 {
   internal sealed class InjectPropertySelector : PropertySelector
   {
-    private readonly InjectPropertyTypes propertyTypes;
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+    private readonly InjectPropertyTypes propertyTypes;
 
     public InjectPropertySelector(InjectPropertyTypes propertyTypes)
     {

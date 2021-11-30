@@ -18,11 +18,11 @@ namespace Anvil.API
       get => context == SynchronizationContext.Current;
     }
 
+    public void GetResult() {}
+
     public void OnCompleted(System.Action continuation)
     {
       context.Post(PostCallback, continuation);
     }
-
-    public void GetResult() {}
   }
 }

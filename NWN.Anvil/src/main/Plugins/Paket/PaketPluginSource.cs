@@ -16,16 +16,16 @@ namespace Anvil.Plugins
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
-    private readonly string packagesFolderPath = Path.Combine(HomeStorage.Paket, "packages");
-    private readonly string linkFilePath = Path.Combine(HomeStorage.Paket, $".paket/load/{Assemblies.TargetFramework}/main.group.csx");
-
     // https://docs.microsoft.com/en-us/nuget/create-packages/supporting-multiple-target-frameworks#architecture-specific-folders
     private static readonly string[] NativeDllPackagePaths = { "runtimes/linux-x64/native" };
 
-    private readonly PluginManager pluginManager;
-
     private readonly FSharpList<string> frameworks = ListModule.OfArray(new[] { Assemblies.TargetFramework });
+    private readonly string linkFilePath = Path.Combine(HomeStorage.Paket, $".paket/load/{Assemblies.TargetFramework}/main.group.csx");
+    private readonly string packagesFolderPath = Path.Combine(HomeStorage.Paket, "packages");
+
+    private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
+
+    private readonly PluginManager pluginManager;
     private readonly FSharpList<string> scriptTypes = ListModule.OfArray(new[] { "csx" });
 
     public PaketPluginSource(PluginManager pluginManager)
@@ -45,38 +45,6 @@ namespace Anvil.Plugins
 
       InstallPackages(dependencies);
       return CreatePlugins(dependencies);
-    }
-
-    private Dependencies GetDependencies()
-    {
-      if (!File.Exists(paketFilePath))
-      {
-        Log.Info("Skipping initialization of Paket as {PaketFile} does not exist", paketFilePath);
-        return null;
-      }
-
-      return Dependencies.Locate(paketFilePath);
-    }
-
-    private void OnLogEvent(object sender, Logging.Trace args)
-    {
-      switch (args.Level)
-      {
-        case TraceLevel.Error:
-          Log.Error(args.Text);
-          break;
-        case TraceLevel.Warning:
-          Log.Warn(args.Text);
-          break;
-        default:
-          Log.Info(args.Text);
-          break;
-      }
-    }
-
-    private void InstallPackages(Dependencies dependencies)
-    {
-      dependencies.Install(false, true, false, false, false, SemVerUpdateMode.NoRestriction, false, true, frameworks, scriptTypes, FSharpOption<string>.None);
     }
 
     private IEnumerable<Plugin> CreatePlugins(Dependencies dependencies)
@@ -120,6 +88,17 @@ namespace Anvil.Plugins
       return plugins;
     }
 
+    private Dependencies GetDependencies()
+    {
+      if (!File.Exists(paketFilePath))
+      {
+        Log.Info("Skipping initialization of Paket as {PaketFile} does not exist", paketFilePath);
+        return null;
+      }
+
+      return Dependencies.Locate(paketFilePath);
+    }
+
     private Dictionary<string, string> GetNativeAssemblyPaths()
     {
       Dictionary<string, string> nativeAssemblyPaths = new Dictionary<string, string>();
@@ -141,6 +120,27 @@ namespace Anvil.Plugins
       }
 
       return nativeAssemblyPaths;
+    }
+
+    private void InstallPackages(Dependencies dependencies)
+    {
+      dependencies.Install(false, true, false, false, false, SemVerUpdateMode.NoRestriction, false, true, frameworks, scriptTypes, FSharpOption<string>.None);
+    }
+
+    private void OnLogEvent(object sender, Logging.Trace args)
+    {
+      switch (args.Level)
+      {
+        case TraceLevel.Error:
+          Log.Error(args.Text);
+          break;
+        case TraceLevel.Warning:
+          Log.Warn(args.Text);
+          break;
+        default:
+          Log.Info(args.Text);
+          break;
+      }
     }
   }
 }

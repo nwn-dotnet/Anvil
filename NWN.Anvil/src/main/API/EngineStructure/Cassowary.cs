@@ -7,6 +7,14 @@ namespace Anvil.API
   {
     internal Cassowary(IntPtr handle) : base(handle) {}
 
+    /// <summary>
+    /// Gets a printable debug state of this solver, which may help you debug complex systems.
+    /// </summary>
+    public string DebugState
+    {
+      get => NWScript.CassowaryDebug(this);
+    }
+
     protected override int StructureId
     {
       get => NWScript.ENGINE_STRUCTURE_CASSOWARY;
@@ -15,14 +23,6 @@ namespace Anvil.API
     public static implicit operator Cassowary(IntPtr intPtr)
     {
       return new Cassowary(intPtr);
-    }
-
-    /// <summary>
-    /// Gets a printable debug state of this solver, which may help you debug complex systems.
-    /// </summary>
-    public string DebugState
-    {
-      get => NWScript.CassowaryDebug(this);
     }
 
     /// <summary>
@@ -44,17 +44,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Suggests a value to the solver.
-    /// </summary>
-    /// <param name="varName">The variable to suggest a value.</param>
-    /// <param name="value">The suggested value.</param>
-    /// <param name="strength">A value >= CASSOWARY_STRENGTH_WEAK &amp;&amp; &lt;= CASSOWARY_STRENGTH_REQUIRED.</param>
-    public void SuggestValue(string varName, float value, float strength = CassowaryStrength.Strong)
-    {
-      NWScript.CassowarySuggestValue(this, varName, value, strength);
-    }
-
-    /// <summary>
     /// Gets the value for the specified variable.
     /// </summary>
     /// <param name="varName">The variable to query.</param>
@@ -70,6 +59,17 @@ namespace Anvil.API
     public void Reset()
     {
       NWScript.CassowaryReset(this);
+    }
+
+    /// <summary>
+    /// Suggests a value to the solver.
+    /// </summary>
+    /// <param name="varName">The variable to suggest a value.</param>
+    /// <param name="value">The suggested value.</param>
+    /// <param name="strength">A value >= CASSOWARY_STRENGTH_WEAK &amp;&amp; &lt;= CASSOWARY_STRENGTH_REQUIRED.</param>
+    public void SuggestValue(string varName, float value, float strength = CassowaryStrength.Strong)
+    {
+      NWScript.CassowarySuggestValue(this, varName, value, strength);
     }
   }
 }

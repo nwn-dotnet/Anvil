@@ -17,43 +17,12 @@ namespace Anvil.API
       SoundObject = soundObject;
     }
 
-    public static implicit operator CNWSSoundObject(NwSound sound)
-    {
-      return sound?.SoundObject;
-    }
-
     /// <summary>
     /// Sets the volume for this sound object (0-127).
     /// </summary>
     public sbyte Volume
     {
       set => NWScript.SoundObjectSetVolume(this, value);
-    }
-
-    /// <summary>
-    /// Plays this sound object.
-    /// </summary>
-    public void Play()
-    {
-      NWScript.SoundObjectPlay(this);
-    }
-
-    /// <summary>
-    /// Stops this sound object from playing.
-    /// </summary>
-    public void Stop()
-    {
-      NWScript.SoundObjectStop(this);
-    }
-
-    public override byte[] Serialize()
-    {
-      return NativeUtils.SerializeGff("UTS", (resGff, resStruct) =>
-      {
-        SoundObject.SaveObjectState(resGff, resStruct);
-        SoundObject.Save(resGff, resStruct);
-        return true;
-      });
     }
 
     public static NwSound Deserialize(byte[] serialized)
@@ -82,15 +51,46 @@ namespace Anvil.API
       return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
     }
 
-    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    public static implicit operator CNWSSoundObject(NwSound sound)
     {
-      SoundObject.AddToArea(area, true.ToInt());
-      SoundObject.ChangePosition(new Vector(x, y, z));
+      return sound?.SoundObject;
+    }
+
+    /// <summary>
+    /// Plays this sound object.
+    /// </summary>
+    public void Play()
+    {
+      NWScript.SoundObjectPlay(this);
+    }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTS", (resGff, resStruct) =>
+      {
+        SoundObject.SaveObjectState(resGff, resStruct);
+        SoundObject.Save(resGff, resStruct);
+        return true;
+      });
+    }
+
+    /// <summary>
+    /// Stops this sound object from playing.
+    /// </summary>
+    public void Stop()
+    {
+      NWScript.SoundObjectStop(this);
     }
 
     internal override void RemoveFromArea()
     {
       SoundObject.RemoveFromArea();
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      SoundObject.AddToArea(area, true.ToInt());
+      SoundObject.ChangePosition(new Vector(x, y, z));
     }
   }
 }

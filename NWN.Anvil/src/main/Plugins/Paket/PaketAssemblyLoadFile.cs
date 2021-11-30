@@ -9,8 +9,6 @@ namespace Anvil.Plugins
 
     private readonly string rootPath;
 
-    internal Dictionary<string, string> AssemblyPaths { get; } = new Dictionary<string, string>();
-
     public PaketAssemblyLoadFile(string path)
     {
       rootPath = Path.GetFullPath(Path.GetDirectoryName(path)!);
@@ -25,6 +23,8 @@ namespace Anvil.Plugins
         }
       }
     }
+
+    internal Dictionary<string, string> AssemblyPaths { get; } = new Dictionary<string, string>();
 
     private void ProcessLine(string line)
     {

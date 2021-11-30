@@ -9,6 +9,14 @@ namespace Anvil.API
   public static class NwRandom
   {
     /// <summary>
+    /// Generates a random name using the specified name table.
+    /// </summary>
+    public static string RandomName(NameTable name = NameTable.FirstGenericMale)
+    {
+      return NWScript.RandomName((int)name);
+    }
+
+    /// <summary>
     /// Returns the result of rolling an amount of n-sided dice.
     /// </summary>
     /// <param name="random">The random instance.</param>
@@ -25,14 +33,6 @@ namespace Anvil.API
       }
 
       return total;
-    }
-
-    /// <summary>
-    /// Generates a random name using the specified name table.
-    /// </summary>
-    public static string RandomName(NameTable name = NameTable.FirstGenericMale)
-    {
-      return NWScript.RandomName((int)name);
     }
   }
 }

@@ -13,9 +13,19 @@ namespace Anvil.API.Events
   public sealed class OnUseSkill : IEvent
   {
     /// <summary>
+    /// Gets the area that the skill was used.
+    /// </summary>
+    public NwArea Area { get; private init; }
+
+    /// <summary>
     /// Gets the creature using the skill.
     /// </summary>
     public NwCreature Creature { get; private init; }
+
+    /// <summary>
+    /// Gets or sets whether usage of this skill should be prevented.
+    /// </summary>
+    public bool PreventSkillUse { get; set; }
 
     /// <summary>
     /// Gets the skill that is being used.
@@ -33,24 +43,14 @@ namespace Anvil.API.Events
     public NwGameObject Target { get; private init; }
 
     /// <summary>
-    /// Gets the area that the skill was used.
-    /// </summary>
-    public NwArea Area { get; private init; }
-
-    /// <summary>
-    /// Gets the item that is being used, if any.
-    /// </summary>
-    public NwItem UsedItem { get; private init; }
-
-    /// <summary>
     /// Gets the target position for this skill usage.
     /// </summary>
     public Vector3 TargetPosition { get; private init; }
 
     /// <summary>
-    /// Gets or sets whether usage of this skill should be prevented.
+    /// Gets the item that is being used, if any.
     /// </summary>
-    public bool PreventSkillUse { get; set; }
+    public NwItem UsedItem { get; private init; }
 
     NwObject IEvent.Context
     {

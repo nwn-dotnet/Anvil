@@ -5,14 +5,9 @@ namespace Anvil.Services
 {
   internal sealed class ScheduledItem : IDisposable
   {
-    private readonly Action task;
-
-    public double ExecutionTime { get; private set; }
-
-    public bool Disposed { get; private set; }
-
     public readonly bool Repeating;
     public readonly double Schedule;
+    private readonly Action task;
 
     public ScheduledItem(Action task, double executionTime)
     {
@@ -29,9 +24,13 @@ namespace Anvil.Services
       Repeating = true;
     }
 
-    public void Reschedule(double newTime)
+    public bool Disposed { get; private set; }
+
+    public double ExecutionTime { get; private set; }
+
+    public void Dispose()
     {
-      ExecutionTime = newTime;
+      Disposed = true;
     }
 
     public void Execute()
@@ -39,9 +38,9 @@ namespace Anvil.Services
       task();
     }
 
-    public void Dispose()
+    public void Reschedule(double newTime)
     {
-      Disposed = true;
+      ExecutionTime = newTime;
     }
 
     public sealed class SortedByExecutionTime : IComparer<ScheduledItem>

@@ -9,48 +9,24 @@ namespace Anvil.Services
 {
   public sealed class ObjectStorage
   {
-    private const string IntStorageKey = "INTMAP";
     private const string FloatStorageKey = "FLTMAP";
+    private const string IntStorageKey = "INTMAP";
     private const string StringStorageKey = "STRMAP";
+    private Dictionary<string, ObjectStorageValue<float>> floatMap = new Dictionary<string, ObjectStorageValue<float>>();
 
     private Dictionary<string, ObjectStorageValue<int>> intMap = new Dictionary<string, ObjectStorageValue<int>>();
-    private Dictionary<string, ObjectStorageValue<float>> floatMap = new Dictionary<string, ObjectStorageValue<float>>();
     private Dictionary<string, ObjectStorageValue<string>> stringMap = new Dictionary<string, ObjectStorageValue<string>>();
 
     /// <summary>
-    /// Gets the stored integer with the specified key.
+    /// Gets if the specified prefix + key combination has a float value assigned.
     /// </summary>
     /// <param name="prefix">The storage prefix/group.</param>
     /// <param name="key">The storage key.</param>
-    /// <returns>The integer value stored with the specified key, otherwise null if the key has no value populated.</returns>
-    public int? GetInt(string prefix, string key)
+    /// <returns>True if a value exists, otherwise false.</returns>
+    public bool ContainsFloat(string prefix, string key)
     {
       string fullKey = prefix + "!" + key;
-      return intMap.TryGetValue(fullKey, out ObjectStorageValue<int> value) ? value.Value : null;
-    }
-
-    /// <summary>
-    /// Gets the stored float with the specified key.
-    /// </summary>
-    /// <param name="prefix">The storage prefix/group.</param>
-    /// <param name="key">The storage key.</param>
-    /// <returns>The float value stored with the specified key, otherwise null if the key has no value populated.</returns>
-    public float? GetFloat(string prefix, string key)
-    {
-      string fullKey = prefix + "!" + key;
-      return floatMap.TryGetValue(fullKey, out ObjectStorageValue<float> value) ? value.Value : null;
-    }
-
-    /// <summary>
-    /// Gets the stored string with the specified key.
-    /// </summary>
-    /// <param name="prefix">The storage prefix/group.</param>
-    /// <param name="key">The storage key.</param>
-    /// <returns>The string stored with the specified key, otherwise null if the key has no value populated.</returns>
-    public string GetString(string prefix, string key)
-    {
-      string fullKey = prefix + "!" + key;
-      return stringMap.TryGetValue(fullKey, out ObjectStorageValue<string> value) ? value.Value : null;
+      return floatMap.ContainsKey(fullKey);
     }
 
     /// <summary>
@@ -66,18 +42,6 @@ namespace Anvil.Services
     }
 
     /// <summary>
-    /// Gets if the specified prefix + key combination has a float value assigned.
-    /// </summary>
-    /// <param name="prefix">The storage prefix/group.</param>
-    /// <param name="key">The storage key.</param>
-    /// <returns>True if a value exists, otherwise false.</returns>
-    public bool ContainsFloat(string prefix, string key)
-    {
-      string fullKey = prefix + "!" + key;
-      return floatMap.ContainsKey(fullKey);
-    }
-
-    /// <summary>
     /// Gets if the specified prefix + key combination has a string value assigned.
     /// </summary>
     /// <param name="prefix">The storage prefix/group.</param>
@@ -87,6 +51,57 @@ namespace Anvil.Services
     {
       string fullKey = prefix + "!" + key;
       return stringMap.ContainsKey(fullKey);
+    }
+
+    /// <summary>
+    /// Gets the stored float with the specified key.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>The float value stored with the specified key, otherwise null if the key has no value populated.</returns>
+    public float? GetFloat(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return floatMap.TryGetValue(fullKey, out ObjectStorageValue<float> value) ? value.Value : null;
+    }
+
+    /// <summary>
+    /// Gets the stored integer with the specified key.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>The integer value stored with the specified key, otherwise null if the key has no value populated.</returns>
+    public int? GetInt(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return intMap.TryGetValue(fullKey, out ObjectStorageValue<int> value) ? value.Value : null;
+    }
+
+    /// <summary>
+    /// Gets the stored string with the specified key.
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group.</param>
+    /// <param name="key">The storage key.</param>
+    /// <returns>The string stored with the specified key, otherwise null if the key has no value populated.</returns>
+    public string GetString(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+      return stringMap.TryGetValue(fullKey, out ObjectStorageValue<string> value) ? value.Value : null;
+    }
+
+    /// <summary>
+    /// Removes an
+    /// </summary>
+    /// <param name="prefix">The storage prefix/group containing the key to be removed.</param>
+    /// <param name="key">The storage key to be removed.</param>
+    /// <returns>True if an entry was removed, otherwise false.</returns>
+    public bool Remove(string prefix, string key)
+    {
+      string fullKey = prefix + "!" + key;
+
+      return intMap.Remove(fullKey) ||
+        floatMap.Remove(fullKey) ||
+        stringMap.Remove(fullKey);
     }
 
     /// <summary>
@@ -119,62 +134,23 @@ namespace Anvil.Services
       stringMap[fullKey] = data;
     }
 
-    /// <summary>
-    /// Removes an
-    /// </summary>
-    /// <param name="prefix">The storage prefix/group containing the key to be removed.</param>
-    /// <param name="key">The storage key to be removed.</param>
-    /// <returns>True if an entry was removed, otherwise false.</returns>
-    public bool Remove(string prefix, string key)
+    internal void Clear()
     {
-      string fullKey = prefix + "!" + key;
-
-      return intMap.Remove(fullKey) ||
-        floatMap.Remove(fullKey) ||
-        stringMap.Remove(fullKey);
+      intMap.Clear();
+      floatMap.Clear();
+      stringMap.Clear();
     }
 
-    internal string Serialize(bool persistentDataOnly = true)
+    internal ObjectStorage Clone()
     {
-      List<KeyValuePair<string, ObjectStorageValue<int>>> intData = GetValuesToSerialize(intMap, persistentDataOnly);
-      List<KeyValuePair<string, ObjectStorageValue<float>>> floatData = GetValuesToSerialize(floatMap, persistentDataOnly);
-      List<KeyValuePair<string, ObjectStorageValue<string>>> stringData = GetValuesToSerialize(stringMap, persistentDataOnly);
-
-      if (intData.Count == 0 && floatData.Count == 0 && stringData.Count == 0)
+      ObjectStorage clone = new ObjectStorage
       {
-        return null;
-      }
+        intMap = new Dictionary<string, ObjectStorageValue<int>>(intMap),
+        floatMap = new Dictionary<string, ObjectStorageValue<float>>(floatMap),
+        stringMap = new Dictionary<string, ObjectStorageValue<string>>(stringMap),
+      };
 
-      StringBuilder stringBuilder = new StringBuilder();
-
-      WriteStorage(intData, IntStorageKey, false);
-      WriteStorage(floatData, FloatStorageKey, false);
-      WriteStorage(stringData, StringStorageKey, true);
-
-      void WriteStorage<T>(IReadOnlyCollection<KeyValuePair<string, ObjectStorageValue<T>>> store, string storageKey, bool valueHasCount)
-      {
-        if (store.Count != 0)
-        {
-          stringBuilder.Append($"[{storageKey}:{store.Count}]");
-          foreach ((string key, ObjectStorageValue<T> value) in store)
-          {
-            if (!persistentDataOnly || value.Persist)
-            {
-              if (!valueHasCount)
-              {
-                stringBuilder.Append($"<{key.Length}>{key} = {value.Value};");
-              }
-              else
-              {
-                string valueAsString = value.Value.ToString();
-                stringBuilder.Append($"<{key.Length}>{key} = <{valueAsString?.Length ?? 0}>{valueAsString};");
-              }
-            }
-          }
-        }
-      }
-
-      return stringBuilder.ToString();
+      return clone;
     }
 
     internal void Deserialize(string serialized, bool isPersistentData = true)
@@ -259,23 +235,63 @@ namespace Anvil.Services
       }
     }
 
-    internal ObjectStorage Clone()
+    internal string Serialize(bool persistentDataOnly = true)
     {
-      ObjectStorage clone = new ObjectStorage
-      {
-        intMap = new Dictionary<string, ObjectStorageValue<int>>(intMap),
-        floatMap = new Dictionary<string, ObjectStorageValue<float>>(floatMap),
-        stringMap = new Dictionary<string, ObjectStorageValue<string>>(stringMap),
-      };
+      List<KeyValuePair<string, ObjectStorageValue<int>>> intData = GetValuesToSerialize(intMap, persistentDataOnly);
+      List<KeyValuePair<string, ObjectStorageValue<float>>> floatData = GetValuesToSerialize(floatMap, persistentDataOnly);
+      List<KeyValuePair<string, ObjectStorageValue<string>>> stringData = GetValuesToSerialize(stringMap, persistentDataOnly);
 
-      return clone;
+      if (intData.Count == 0 && floatData.Count == 0 && stringData.Count == 0)
+      {
+        return null;
+      }
+
+      StringBuilder stringBuilder = new StringBuilder();
+
+      WriteStorage(intData, IntStorageKey, false);
+      WriteStorage(floatData, FloatStorageKey, false);
+      WriteStorage(stringData, StringStorageKey, true);
+
+      void WriteStorage<T>(IReadOnlyCollection<KeyValuePair<string, ObjectStorageValue<T>>> store, string storageKey, bool valueHasCount)
+      {
+        if (store.Count != 0)
+        {
+          stringBuilder.Append($"[{storageKey}:{store.Count}]");
+          foreach ((string key, ObjectStorageValue<T> value) in store)
+          {
+            if (!persistentDataOnly || value.Persist)
+            {
+              if (!valueHasCount)
+              {
+                stringBuilder.Append($"<{key.Length}>{key} = {value.Value};");
+              }
+              else
+              {
+                string valueAsString = value.Value.ToString();
+                stringBuilder.Append($"<{key.Length}>{key} = <{valueAsString?.Length ?? 0}>{valueAsString};");
+              }
+            }
+          }
+        }
+      }
+
+      return stringBuilder.ToString();
     }
 
-    internal void Clear()
+    private List<KeyValuePair<string, ObjectStorageValue<T>>> GetValuesToSerialize<T>(Dictionary<string, ObjectStorageValue<T>> source, bool persistOnly)
     {
-      intMap.Clear();
-      floatMap.Clear();
-      stringMap.Clear();
+      return persistOnly ? source.Where(pair => pair.Value.Persist).ToList() : source.ToList();
+    }
+
+    private char ReadAndAssertEndOfData(StringReader stringReader)
+    {
+      int next = stringReader.Read();
+      if (next == -1)
+      {
+        throw new InvalidOperationException("Unexpected end of data.");
+      }
+
+      return (char)next;
     }
 
     private int ReadLength(StringReader stringReader)
@@ -295,22 +311,6 @@ namespace Anvil.Services
       }
 
       return int.Parse(length);
-    }
-
-    private char ReadAndAssertEndOfData(StringReader stringReader)
-    {
-      int next = stringReader.Read();
-      if (next == -1)
-      {
-        throw new InvalidOperationException("Unexpected end of data.");
-      }
-
-      return (char)next;
-    }
-
-    private List<KeyValuePair<string, ObjectStorageValue<T>>> GetValuesToSerialize<T>(Dictionary<string, ObjectStorageValue<T>> source, bool persistOnly)
-    {
-      return persistOnly ? source.Where(pair => pair.Value.Persist).ToList() : source.ToList();
     }
   }
 }

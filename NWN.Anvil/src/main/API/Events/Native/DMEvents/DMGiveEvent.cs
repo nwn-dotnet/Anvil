@@ -5,13 +5,12 @@ namespace Anvil.API.Events
 {
   public abstract class DMGiveEvent : IEvent
   {
-    public NwGameObject Target { get; internal init; }
-
     public int Amount { get; internal init; }
 
     public NwPlayer DungeonMaster { get; internal init; }
 
     public bool Skip { get; set; }
+    public NwGameObject Target { get; internal init; }
 
     NwObject IEvent.Context
     {
@@ -30,11 +29,11 @@ namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="Events.OnDMGiveXP"/>
-    public event Action<OnDMGiveXP> OnDMGiveXP
+    /// <inheritdoc cref="Events.OnDMGiveGold"/>
+    public event Action<OnDMGiveGold> OnDMGiveGold
     {
-      add => EventService.Subscribe<OnDMGiveXP, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMGiveXP, DMEventFactory>(LoginCreature, value);
+      add => EventService.Subscribe<OnDMGiveGold, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMGiveGold, DMEventFactory>(LoginCreature, value);
     }
 
     /// <inheritdoc cref="Events.OnDMGiveLevel"/>
@@ -44,21 +43,21 @@ namespace Anvil.API
       remove => EventService.Unsubscribe<OnDMGiveLevel, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="Events.OnDMGiveGold"/>
-    public event Action<OnDMGiveGold> OnDMGiveGold
+    /// <inheritdoc cref="Events.OnDMGiveXP"/>
+    public event Action<OnDMGiveXP> OnDMGiveXP
     {
-      add => EventService.Subscribe<OnDMGiveGold, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMGiveGold, DMEventFactory>(LoginCreature, value);
+      add => EventService.Subscribe<OnDMGiveXP, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMGiveXP, DMEventFactory>(LoginCreature, value);
     }
   }
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="Events.OnDMGiveXP"/>
-    public event Action<OnDMGiveXP> OnDMGiveXP
+    /// <inheritdoc cref="Events.OnDMGiveGold"/>
+    public event Action<OnDMGiveGold> OnDMGiveGold
     {
-      add => EventService.SubscribeAll<OnDMGiveXP, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMGiveXP, DMEventFactory>(value);
+      add => EventService.SubscribeAll<OnDMGiveGold, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMGiveGold, DMEventFactory>(value);
     }
 
     /// <inheritdoc cref="Events.OnDMGiveLevel"/>
@@ -68,11 +67,11 @@ namespace Anvil.API
       remove => EventService.UnsubscribeAll<OnDMGiveLevel, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="Events.OnDMGiveGold"/>
-    public event Action<OnDMGiveGold> OnDMGiveGold
+    /// <inheritdoc cref="Events.OnDMGiveXP"/>
+    public event Action<OnDMGiveXP> OnDMGiveXP
     {
-      add => EventService.SubscribeAll<OnDMGiveGold, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMGiveGold, DMEventFactory>(value);
+      add => EventService.SubscribeAll<OnDMGiveXP, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMGiveXP, DMEventFactory>(value);
     }
   }
 }

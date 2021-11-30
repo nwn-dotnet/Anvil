@@ -10,16 +10,21 @@ namespace Anvil.API
   {
     private readonly IntPtr handle;
 
-    protected abstract int StructureId { get; }
-
     private protected EngineStructure(IntPtr handle)
     {
       this.handle = handle;
     }
 
-    private void ReleaseUnmanagedResources()
+    ~EngineStructure()
     {
-      VM.FreeGameDefinedStructure(StructureId, handle);
+      ReleaseUnmanagedResources();
+    }
+
+    protected abstract int StructureId { get; }
+
+    public static implicit operator IntPtr(EngineStructure engineStructure)
+    {
+      return engineStructure.handle;
     }
 
     public void Dispose()
@@ -28,14 +33,9 @@ namespace Anvil.API
       GC.SuppressFinalize(this);
     }
 
-    ~EngineStructure()
+    private void ReleaseUnmanagedResources()
     {
-      ReleaseUnmanagedResources();
-    }
-
-    public static implicit operator IntPtr(EngineStructure engineStructure)
-    {
-      return engineStructure.handle;
+      VM.FreeGameDefinedStructure(StructureId, handle);
     }
   }
 }

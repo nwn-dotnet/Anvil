@@ -10,9 +10,9 @@ namespace Anvil.API.Events
   {
     private static readonly CServerExoApp ServerExoApp = NWNXLib.AppManager().m_pServerExoApp;
 
-    public NwPlayer Player { get; private init; }
-
     public CombatStatus CombatStatus { get; private init; }
+
+    public NwPlayer Player { get; private init; }
 
     NwObject IEvent.Context
     {

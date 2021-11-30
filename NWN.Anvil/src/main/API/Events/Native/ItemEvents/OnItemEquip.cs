@@ -12,11 +12,11 @@ namespace Anvil.API.Events
 
     public NwItem Item { get; private init; }
 
-    public InventorySlot Slot { get; private init; }
-
     public bool PreventEquip { get; set; }
 
     public Lazy<bool> Result { get; private set; }
+
+    public InventorySlot Slot { get; private init; }
 
     NwObject IEvent.Context
     {

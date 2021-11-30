@@ -9,6 +9,14 @@ namespace Anvil.API
   public static class NwMath
   {
     /// <summary>
+    /// Constant value for converting degrees to radians.
+    /// </summary>
+    /// <example>
+    /// <c>float radians = 180f * DegToRad;</c>.
+    /// </example>
+    public const float DegToRad = (float)(Math.PI * 2f / 360f);
+
+    /// <summary>
     /// Constant value for converting feet to meters.
     /// </summary>
     /// <example>
@@ -25,14 +33,6 @@ namespace Anvil.API
     public const float MetersToFeet = 1f / FeetToMeters;
 
     /// <summary>
-    /// Constant value for converting yards to meters.
-    /// </summary>
-    /// <example>
-    /// <c>float meters = 100f * YardsToMeters;</c>.
-    /// </example>
-    public const float YardsToMeters = 0.9144f;
-
-    /// <summary>
     /// Constant value for converting meters to yards.
     /// </summary>
     /// <example>
@@ -41,20 +41,20 @@ namespace Anvil.API
     public const float MetersToYards = 1f / YardsToMeters;
 
     /// <summary>
-    /// Constant value for converting degrees to radians.
-    /// </summary>
-    /// <example>
-    /// <c>float radians = 180f * DegToRad;</c>.
-    /// </example>
-    public const float DegToRad = (float)(Math.PI * 2f / 360f);
-
-    /// <summary>
     /// Constant value for converting radians to degrees.
     /// </summary>
     /// <example>
     /// <c>float degrees = 1.5708f * RadToDeg;</c>.
     /// </example>
     public const float RadToDeg = 1f / DegToRad;
+
+    /// <summary>
+    /// Constant value for converting yards to meters.
+    /// </summary>
+    /// <example>
+    /// <c>float meters = 100f * YardsToMeters;</c>.
+    /// </example>
+    public const float YardsToMeters = 0.9144f;
 
     /// <inheritdoc cref="AngleToVector3"/>
     public static Vector2 AngleToVector2(float angle)

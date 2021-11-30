@@ -13,17 +13,11 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private delegate void WriteToLogFileHook(void* pExoDebugInternal, void* pMessage);
-
-    private delegate void WriteToErrorFileHook(void* pExoDebugInternal, void* pMessage);
-
-    private delegate int ExecuteCommandPrintStringHook(void* pVirtualMachineCommands, int nCommandId, int nParameters);
+    private readonly bool callOriginal;
+    private readonly FunctionHook<ExecuteCommandPrintStringHook> executeCommandPrintStringHook;
+    private readonly FunctionHook<WriteToErrorFileHook> writeToErrorFileHook;
 
     private readonly FunctionHook<WriteToLogFileHook> writeToLogFileHook;
-    private readonly FunctionHook<WriteToErrorFileHook> writeToErrorFileHook;
-    private readonly FunctionHook<ExecuteCommandPrintStringHook> executeCommandPrintStringHook;
-
-    private readonly bool callOriginal;
     private bool printString;
 
     public ServerLogRedirectorService(HookService hookService)
@@ -45,23 +39,25 @@ namespace Anvil.Services
       executeCommandPrintStringHook = hookService.RequestHook<ExecuteCommandPrintStringHook>(OnExecuteCommandPrintString, FunctionsLinux._ZN25CNWVirtualMachineCommands25ExecuteCommandPrintStringEii, HookOrder.VeryEarly);
     }
 
+    private delegate int ExecuteCommandPrintStringHook(void* pVirtualMachineCommands, int nCommandId, int nParameters);
+
+    private delegate void WriteToErrorFileHook(void* pExoDebugInternal, void* pMessage);
+
+    private delegate void WriteToLogFileHook(void* pExoDebugInternal, void* pMessage);
+
+    public void Dispose()
+    {
+      writeToLogFileHook?.Dispose();
+      writeToErrorFileHook?.Dispose();
+      executeCommandPrintStringHook?.Dispose();
+    }
+
     private int OnExecuteCommandPrintString(void* pVirtualMachineCommands, int nCommandId, int nParameters)
     {
       printString = true;
       int retVal = executeCommandPrintStringHook.CallOriginal(pVirtualMachineCommands, nCommandId, nParameters);
       printString = false;
       return retVal;
-    }
-
-    private void OnWriteToLogFile(void* pExoDebugInternal, void* pMessage)
-    {
-      CExoString message = CExoString.FromPointer(pMessage);
-      Log.Info(TrimMessage(message));
-
-      if (callOriginal)
-      {
-        writeToLogFileHook.CallOriginal(pExoDebugInternal, pMessage);
-      }
     }
 
     private void OnWriteToErrorFile(void* pExoDebugInternal, void* pMessage)
@@ -72,6 +68,17 @@ namespace Anvil.Services
       if (callOriginal)
       {
         writeToErrorFileHook.CallOriginal(pExoDebugInternal, pMessage);
+      }
+    }
+
+    private void OnWriteToLogFile(void* pExoDebugInternal, void* pMessage)
+    {
+      CExoString message = CExoString.FromPointer(pMessage);
+      Log.Info(TrimMessage(message));
+
+      if (callOriginal)
+      {
+        writeToLogFileHook.CallOriginal(pExoDebugInternal, pMessage);
       }
     }
 
@@ -86,13 +93,6 @@ namespace Anvil.Services
       }
 
       return retVal.Trim();
-    }
-
-    public void Dispose()
-    {
-      writeToLogFileHook?.Dispose();
-      writeToErrorFileHook?.Dispose();
-      executeCommandPrintStringHook?.Dispose();
     }
   }
 }

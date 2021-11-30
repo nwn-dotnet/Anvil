@@ -8,9 +8,8 @@ namespace Anvil.API.Events
 {
   public sealed class OnAssociateRemove : IEvent
   {
-    public NwCreature Owner { get; private init; }
-
     public NwCreature Associate { get; private init; }
+    public NwCreature Owner { get; private init; }
 
     NwObject IEvent.Context
     {

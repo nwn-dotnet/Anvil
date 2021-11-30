@@ -25,15 +25,15 @@ namespace Anvil.API.Events
     public NwObject Sender { get; internal init; }
 
     /// <summary>
+    /// Skips this chat message.
+    /// </summary>
+    public bool Skip { get; set; }
+
+    /// <summary>
     /// Gets the target of this message.<br/>
     /// Returns null if there is no target.
     /// </summary>
     public NwPlayer Target { get; internal init; }
-
-    /// <summary>
-    /// Skips this chat message.
-    /// </summary>
-    public bool Skip { get; set; }
 
     NwObject IEvent.Context
     {

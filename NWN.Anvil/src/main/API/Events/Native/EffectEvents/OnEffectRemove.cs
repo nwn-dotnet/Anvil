@@ -12,14 +12,14 @@ namespace Anvil.API.Events
   public sealed class OnEffectRemove : IEvent
   {
     /// <summary>
-    /// Gets the object that the effect was removed from.
-    /// </summary>
-    public NwObject Object { get; private init; }
-
-    /// <summary>
     /// Gets the effect being removed.
     /// </summary>
     public Effect Effect { get; init; }
+
+    /// <summary>
+    /// Gets the object that the effect was removed from.
+    /// </summary>
+    public NwObject Object { get; private init; }
 
     /// <summary>
     /// Gets or sets whether this effect should be prevented from being removed.
