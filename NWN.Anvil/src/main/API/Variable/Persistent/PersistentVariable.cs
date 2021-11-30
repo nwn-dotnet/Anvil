@@ -8,6 +8,7 @@ namespace Anvil.API
     }
 
     protected abstract string KeyPrefix { get; }
+
     protected virtual string Prefix
     {
       get => "NWNX_Object"; // For NWNX Compatibility
