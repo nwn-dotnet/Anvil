@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Internal;
+using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
 using ObjectType = NWN.Native.API.ObjectType;
@@ -17,6 +18,9 @@ namespace Anvil.API
   public sealed partial class NwCreature : NwGameObject
   {
     private const byte QuickBarButtonCount = 36;
+
+    [Inject]
+    private static WalkRateCapService WalkRateCapService { get; set; }
 
     internal readonly CNWSCreature Creature;
 
@@ -916,6 +920,16 @@ namespace Anvil.API
     public int TurnResistanceHitDice
     {
       get => NWScript.GetTurnResistanceHD(this);
+    }
+
+    /// <summary>
+    /// Gets or sets the walk rate cap on this creature.<br/>
+    /// Set to null to clear existing walk rate caps. Returns null if no walk rate cap is set.
+    /// </summary>
+    public float? WalkRateCap
+    {
+      get => WalkRateCapService.GetWalkRateCap(this);
+      set => WalkRateCapService.SetWalkRateCap(this, value);
     }
 
     /// <summary>

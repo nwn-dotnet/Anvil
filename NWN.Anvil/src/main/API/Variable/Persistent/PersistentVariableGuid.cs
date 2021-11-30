@@ -3,17 +3,17 @@ using Anvil.Services;
 
 namespace Anvil.API
 {
-  public sealed class PersistentVariableGuid : PersistentVariable<Guid>
+  public class PersistentVariableGuid : PersistentVariable<Guid>
   {
     [Inject]
     private static ObjectStorageService ObjectStorageService { get; set; }
 
-    public override bool HasValue
+    public sealed override bool HasValue
     {
       get => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsString(Prefix, Key);
     }
 
-    public override Guid Value
+    public sealed override Guid Value
     {
       get
       {
@@ -23,14 +23,19 @@ namespace Anvil.API
       set => ObjectStorageService.GetObjectStorage(Object).Set(Prefix, Key, value.ToUUIDString(), true);
     }
 
-    protected override string KeyPrefix
+    protected sealed override string KeyPrefix
     {
       get => "PERSTR!";
     }
 
-    public override void Delete()
+    public sealed override void Delete()
     {
       ObjectStorageService.GetObjectStorage(Object).Remove(Prefix, Key);
+    }
+
+    internal sealed class Internal : PersistentVariableGuid
+    {
+      protected override string Prefix => "ANVIL_Internal";
     }
   }
 }
