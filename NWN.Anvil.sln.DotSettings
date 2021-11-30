@@ -280,6 +280,18 @@
         &lt;Kind Is="Interface" /&gt;
       &lt;/Or&gt;
     &lt;/TypePattern.Match&gt;
+    &lt;Entry DisplayName="Logger"&gt;
+      &lt;Entry.Match&gt;
+        &lt;And&gt;
+          &lt;Type Is="NLog.Logger" /&gt;
+          &lt;Or&gt;
+            &lt;Kind Is="Field" /&gt;
+            &lt;Kind Is="Property" /&gt;
+          &lt;/Or&gt;
+          &lt;Static /&gt;
+        &lt;/And&gt;
+      &lt;/Entry.Match&gt;
+    &lt;/Entry&gt;
     &lt;Entry DisplayName="Constants"&gt;
       &lt;Entry.Match&gt;
         &lt;Kind Is="Constant" /&gt;
