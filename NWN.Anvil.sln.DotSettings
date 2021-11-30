@@ -196,8 +196,8 @@
 	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/XmlFormatter/INDENT_SIZE/@EntryValue">2</s:Int64>
 	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/XmlFormatter/TAB_WIDTH/@EntryValue">2</s:Int64>
 	<s:String x:Key="/Default/CodeStyle/CSharpFileLayoutPatterns/Pattern/@EntryValue">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;Patterns xmlns="urn:schemas-jetbrains-com:member-reordering-patterns"&gt;
-  &lt;TypePattern Priority="2000" DisplayName="COM interfaces"&gt;
+&lt;Patterns StaticFieldReorderingPolicy="Relaxed" xmlns="urn:schemas-jetbrains-com:member-reordering-patterns"&gt;
+  &lt;TypePattern DisplayName="COM interfaces"&gt;
     &lt;TypePattern.Match&gt;
       &lt;And&gt;
         &lt;Kind Is="Interface" /&gt;
@@ -208,7 +208,7 @@
       &lt;/And&gt;
     &lt;/TypePattern.Match&gt;
   &lt;/TypePattern&gt;
-  &lt;TypePattern Priority="2000" DisplayName="P/Invoke structs"&gt;
+  &lt;TypePattern DisplayName="P/Invoke structs"&gt;
     &lt;TypePattern.Match&gt;
       &lt;And&gt;
         &lt;Or&gt;
@@ -219,7 +219,7 @@
       &lt;/And&gt;
     &lt;/TypePattern.Match&gt;
   &lt;/TypePattern&gt;
-  &lt;TypePattern Priority="2000" DisplayName="P/Invoke classes (xxxNativeMethods)"&gt;
+  &lt;TypePattern DisplayName="P/Invoke classes (xxxNativeMethods)"&gt;
     &lt;TypePattern.Match&gt;
       &lt;And&gt;
         &lt;Kind Is="Class" /&gt;
@@ -227,7 +227,7 @@
       &lt;/And&gt;
     &lt;/TypePattern.Match&gt;
   &lt;/TypePattern&gt;
-  &lt;TypePattern Priority="2000" DisplayName="DataMembers"&gt;
+  &lt;TypePattern DisplayName="DataMembers"&gt;
     &lt;TypePattern.Match&gt;
       &lt;And&gt;
         &lt;Or&gt;
@@ -238,7 +238,7 @@
       &lt;/And&gt;
     &lt;/TypePattern.Match&gt;
   &lt;/TypePattern&gt;
-  &lt;TypePattern Priority="2000" DisplayName="NUnit Test Fixtures"&gt;
+  &lt;TypePattern DisplayName="NUnit Test Fixtures"&gt;
     &lt;TypePattern.Match&gt;
       &lt;And&gt;
         &lt;Kind Is="Class" /&gt;
@@ -272,7 +272,7 @@
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
   &lt;/TypePattern&gt;
-  &lt;TypePattern Priority="1000" DisplayName="StyleCop Layout" RemoveRegions="All"&gt;
+  &lt;TypePattern DisplayName="StyleCop Layout" RemoveRegions="All"&gt;
     &lt;TypePattern.Match&gt;
       &lt;Or&gt;
         &lt;Kind Is="Class" /&gt;
@@ -339,7 +339,7 @@
         &lt;Name /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
-    &lt;Entry Priority="200" DisplayName="Constructors and destructors"&gt;
+    &lt;Entry DisplayName="Constructors and destructors"&gt;
       &lt;Entry.Match&gt;
         &lt;Or&gt;
           &lt;Kind Is="Constructor" /&gt;
@@ -450,7 +450,7 @@
         &lt;Name /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
-    &lt;Entry Priority="1000" DisplayName="Public indexers"&gt;
+    &lt;Entry DisplayName="Public indexers"&gt;
       &lt;Entry.Match&gt;
         &lt;And&gt;
           &lt;Kind Is="Indexer" /&gt;
@@ -463,7 +463,7 @@
         &lt;Name /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
-    &lt;Entry Priority="1000" DisplayName="Interface indexers"&gt;
+    &lt;Entry DisplayName="Interface indexers"&gt;
       &lt;Entry.Match&gt;
         &lt;And&gt;
           &lt;Kind Is="Indexer" /&gt;
@@ -475,7 +475,7 @@
         &lt;Name /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
-    &lt;Entry Priority="1000" DisplayName="Other indexers"&gt;
+    &lt;Entry DisplayName="Other indexers"&gt;
       &lt;Entry.Match&gt;
         &lt;Kind Is="Indexer" /&gt;
       &lt;/Entry.Match&gt;
@@ -530,7 +530,7 @@
         &lt;Name /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
-    &lt;Entry Priority="600" DisplayName="Nested structs"&gt;
+    &lt;Entry DisplayName="Nested structs"&gt;
       &lt;Entry.Match&gt;
         &lt;Kind Is="Struct" /&gt;
       &lt;/Entry.Match&gt;
@@ -540,7 +540,7 @@
         &lt;Name /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
-    &lt;Entry Priority="700" DisplayName="Nested classes"&gt;
+    &lt;Entry DisplayName="Nested classes"&gt;
       &lt;Entry.Match&gt;
         &lt;Kind Is="Class" /&gt;
       &lt;/Entry.Match&gt;
