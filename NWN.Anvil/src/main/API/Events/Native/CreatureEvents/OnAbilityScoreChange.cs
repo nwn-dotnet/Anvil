@@ -39,24 +39,24 @@ namespace Anvil.API.Events
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte> pHook = &OnSetSTRBaseHook;
-        setSTRBaseHook = HookService.RequestHook<SetSTRBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetCHABaseEh, HookOrder.Early);
+        setSTRBaseHook = HookService.RequestHook<SetSTRBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetSTRBaseEh, HookOrder.Early);
 
         delegate* unmanaged<void*, byte> pDEXBaseHook = &OnSetDEXBaseHook;
-        setDEXBaseHook = HookService.RequestHook<SetDEXBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetCHABaseEh, HookOrder.Early);
+        setDEXBaseHook = HookService.RequestHook<SetDEXBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetDEXBaseEh, HookOrder.Early);
 
         delegate* unmanaged<void*, byte> pCONBaseHook = &OnSetCONBaseHook;
-        setCONBaseHook = HookService.RequestHook<SetCONBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetCHABaseEh, HookOrder.Early);
+        setCONBaseHook = HookService.RequestHook<SetCONBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetCONBaseEhi, HookOrder.Early);
 
         delegate* unmanaged<void*, byte> pSTRBaseHook = &OnSetINTBaseHook;
-        setINTBaseHook = HookService.RequestHook<SetINTBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetCHABaseEh, HookOrder.Early);
+        setINTBaseHook = HookService.RequestHook<SetINTBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetINTBaseEh, HookOrder.Early);
 
         delegate* unmanaged<void*, byte> pWISBaseHook = &OnSetWISBaseHook;
-        setWISBaseHook = HookService.RequestHook<SetWISBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetCHABaseEh, HookOrder.Early);
+        setWISBaseHook = HookService.RequestHook<SetWISBaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetWISBaseEh, HookOrder.Early);
 
         delegate* unmanaged<void*, byte> pCHABaseHook = &OnSetCHABaseHook;
         setCHABaseHook = HookService.RequestHook<SetCHABaseHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats10SetCHABaseEh, HookOrder.Early);
 
-        return new IDisposable[] { setSTRBaseHook, setDEXBaseHook, setCONBaseHook, setINTBaseHook, setWISBaseHook, setCHABaseHook};
+        return new IDisposable[] { setSTRBaseHook, setDEXBaseHook, setCONBaseHook, setINTBaseHook, setWISBaseHook, setCHABaseHook };
       }
 
       [UnmanagedCallersOnly]
