@@ -78,6 +78,7 @@ namespace Anvil.API.Events
       private static byte OnSetCHABaseHook(void* pCreatureStats) { if (pCreatureStats != null) { } }
     }
   }
+}
 
 
 namespace Anvil.API
