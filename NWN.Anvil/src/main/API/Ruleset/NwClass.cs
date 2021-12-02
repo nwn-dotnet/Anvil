@@ -21,11 +21,6 @@ namespace Anvil.API
 
     public ClassType ClassType { get; }
 
-    public static NwClass FromClassType(ClassType classType)
-    {
-      return RulesetService.Classes[(int)classType];
-    }
-
     public static NwClass FromClassId(byte classId)
     {
       return classId != IntegerExtensions.AsByte(-1) ? FromClassId((int)classId) : null;
@@ -39,6 +34,11 @@ namespace Anvil.API
     public static NwClass FromClassId(int classId)
     {
       return classId >= 0 && classId < RulesetService.Classes.Count ? RulesetService.Classes[classId] : null;
+    }
+
+    public static NwClass FromClassType(ClassType classType)
+    {
+      return RulesetService.Classes[(int)classType];
     }
   }
 }

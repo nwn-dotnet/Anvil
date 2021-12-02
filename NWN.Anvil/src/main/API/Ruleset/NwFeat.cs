@@ -25,14 +25,12 @@ namespace Anvil.API
       FeatType = featType;
     }
 
-    public Feat FeatType { get; }
-
     /// <summary>
-    /// Gets the name of this feat, as shown in the in-game skill window.
+    /// Gets whether all classes can use this feat or not.
     /// </summary>
-    public string Name
+    public bool AllClassesCanUse
     {
-      get => TlkTable.GetSimpleString((uint)featInfo.m_nNameStrref);
+      get => featInfo.m_bAllClassesCanUse.ToBool();
     }
 
     /// <summary>
@@ -43,6 +41,8 @@ namespace Anvil.API
       get => TlkTable.GetSimpleString((uint)featInfo.m_nDescriptionStrref);
     }
 
+    public Feat FeatType { get; }
+
     /// <summary>
     /// Gets the ResRef for the icon representing this skill.
     /// </summary>
@@ -52,11 +52,59 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets whether the use of this feat is considered as a hostile act.
+    /// </summary>
+    public bool IsHostileFeat
+    {
+      get => featInfo.m_bHostileFeat.ToBool();
+    }
+
+    /// <summary>
+    /// This number references masterfeats.2da. The master feat is used when a feat falls into a subcategory, such as the way "improved critical (longsword)" is a subcategory of improved critical.
+    /// </summary>
+    public byte MasterFeat
+    {
+      get => featInfo.m_nMasterFeat;
+    }
+
+    /// <summary>
+    /// Gets the maximum character level allowed a character to be able to select this feat.
+    /// </summary>
+    public byte MaxLevel
+    {
+      get => featInfo.m_nMaxLevel;
+    }
+
+    /// <summary>
     /// Gets the minimum attack bonus a character must have to select this feat.
     /// </summary>
     public byte MinAttackBonus
     {
       get => featInfo.m_nMinAttackBonus;
+    }
+
+    /// <summary>
+    /// Gets the minimum fortitude saving throw bonus a character must have to be able to select this feat.
+    /// </summary>
+    public byte MinFortSave
+    {
+      get => featInfo.m_nMinFortSave;
+    }
+
+    /// <summary>
+    /// Gets the minimum level a character must have to be able to take this feat.
+    /// </summary>
+    public byte MinLevel
+    {
+      get => featInfo.m_nMinLevel;
+    }
+
+    /// <summary>
+    /// Gets the corresponding class the character must have <see cref="MinLevel"/> levels in.
+    /// </summary>
+    public NwClass MinLevelClass
+    {
+      get => NwClass.FromClassId(featInfo.m_nMinLevelClass);
     }
 
     /// <summary>
@@ -69,6 +117,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the name of this feat, as shown in the in-game skill window.
+    /// </summary>
+    public string Name
+    {
+      get => TlkTable.GetSimpleString((uint)featInfo.m_nNameStrref);
+    }
+
+    /// <summary>
     /// Gets all feats that need to be selected before this one may be chosen.
     /// </summary>
     public IEnumerable<NwFeat> RequiredFeatsAll
@@ -77,91 +133,6 @@ namespace Anvil.API
       {
         return featInfo.m_lstPrereqFeats.Select(FromFeatId).Where(feat => feat != null);
       }
-    }
-
-    /// <summary>
-    /// Gets the minimum ability score a character must have to select this feat.
-    /// </summary>
-    /// <param name="ability">The ability to query.</param>
-    /// <returns>The ability score requirement.</returns>
-    public byte GetRequiredAbilityScore(Ability ability)
-    {
-      return ability switch
-      {
-        Ability.Strength => featInfo.m_nMinSTR,
-        Ability.Dexterity => featInfo.m_nMinDEX,
-        Ability.Constitution => featInfo.m_nMinCON,
-        Ability.Intelligence => featInfo.m_nMinINT,
-        Ability.Wisdom => featInfo.m_nMinWIS,
-        Ability.Charisma => featInfo.m_nMinCHA,
-        _ => 0,
-      };
-    }
-
-    /// <summary>
-    /// Gets whether all classes can use this feat or not.
-    /// </summary>
-    public bool AllClassesCanUse
-    {
-      get => featInfo.m_bAllClassesCanUse.ToBool();
-    }
-
-    /// <summary>
-    /// This determines how the AI treats this feat. It is an ID value in categories.2da.
-    /// </summary>
-    public TalentCategory TalentCategory
-    {
-      get => (TalentCategory)featInfo.m_nTalentCategory;
-    }
-
-    /// <summary>
-    /// To do with the functions around Talents. The "Level" of the feat when we are searching for feats we want to not use if the enemy is of a certain CR.<br/>
-    /// Just as a reference spells.2da entries just double the spell level (so enemy is CR5, we cast level 1 or 2 spells, but not level 3 which doubles to 6).
-    /// </summary>
-    public int TalentMaxCR
-    {
-      get => featInfo.m_nTalentMaxCR;
-    }
-
-    /// <summary>
-    /// The Spell associated with this feat.
-    /// </summary>
-    public Spell Spell
-    {
-      get => (Spell)featInfo.m_nSpellId;
-    }
-
-    /// <summary>
-    /// Gets the feat which follows this feat. For example, the Disarm feat has Improved Disarm as a successor.
-    /// </summary>
-    public NwFeat SuccessorFeat
-    {
-      get => FromFeatId(featInfo.m_nSuccessor);
-    }
-
-    /// <summary>
-    /// Gets the number of uses per day that this feat can be used.
-    /// </summary>
-    public byte UsesPerDay
-    {
-      get => featInfo.m_nUsesPerDay;
-    }
-
-    /// <summary>
-    /// This number references masterfeats.2da. The master feat is used when a feat falls into a subcategory, such as the way "improved critical (longsword)" is a subcategory of improved critical.
-    /// </summary>
-    public byte MasterFeat
-    {
-      get => featInfo.m_nMasterFeat;
-    }
-
-    /// <summary>
-    /// Gets whether this feat targets the character using the feat (so when using it, it doesn't pop up a selection for who to target).<br/>
-    /// Overrides spells.2da targeting options for PCs.
-    /// </summary>
-    public bool TargetSelf
-    {
-      get => featInfo.m_bTargetSelf.ToBool();
     }
 
     /// <summary>
@@ -209,43 +180,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets whether the use of this feat is considered as a hostile act.
+    /// Gets if this feat requires a character action.<br/>
+    /// If this is true and the character uses this feat, it is added to the character's action queue, instead of running instantly.
     /// </summary>
-    public bool IsHostileFeat
+    public bool RequiresAction
     {
-      get => featInfo.m_bHostileFeat.ToBool();
-    }
-
-    /// <summary>
-    /// Gets the minimum level a character must have to be able to take this feat.
-    /// </summary>
-    public byte MinLevel
-    {
-      get => featInfo.m_nMinLevel;
-    }
-
-    /// <summary>
-    /// Gets the corresponding class the character must have <see cref="MinLevel"/> levels in.
-    /// </summary>
-    public NwClass MinLevelClass
-    {
-      get => NwClass.FromClassId(featInfo.m_nMinLevelClass);
-    }
-
-    /// <summary>
-    /// Gets the maximum character level allowed a character to be able to select this feat.
-    /// </summary>
-    public byte MaxLevel
-    {
-      get => featInfo.m_nMaxLevel;
-    }
-
-    /// <summary>
-    /// Gets the minimum fortitude saving throw bonus a character must have to be able to select this feat.
-    /// </summary>
-    public byte MinFortSave
-    {
-      get => featInfo.m_nMinFortSave;
+      get => featInfo.m_bRequiresAction.ToBool();
     }
 
     /// <summary>
@@ -257,22 +197,53 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets if this feat requires a character action.<br/>
-    /// If this is true and the character uses this feat, it is added to the character's action queue, instead of running instantly.
+    /// The Spell associated with this feat.
     /// </summary>
-    public bool RequiresAction
+    public Spell Spell
     {
-      get => featInfo.m_bRequiresAction.ToBool();
+      get => (Spell)featInfo.m_nSpellId;
     }
 
     /// <summary>
-    /// Creates a feat from the specified <see cref="Feat"/>.
+    /// Gets the feat which follows this feat. For example, the Disarm feat has Improved Disarm as a successor.
     /// </summary>
-    /// <param name="featType">The associated feat type.</param>
-    /// <returns>The associated <see cref="NwFeat"/> structure, or null if the feat has no matching entry.</returns>
-    public static NwFeat FromFeatType(Feat featType)
+    public NwFeat SuccessorFeat
     {
-      return FromFeatId((int)featType);
+      get => FromFeatId(featInfo.m_nSuccessor);
+    }
+
+    /// <summary>
+    /// This determines how the AI treats this feat. It is an ID value in categories.2da.
+    /// </summary>
+    public TalentCategory TalentCategory
+    {
+      get => (TalentCategory)featInfo.m_nTalentCategory;
+    }
+
+    /// <summary>
+    /// To do with the functions around Talents. The "Level" of the feat when we are searching for feats we want to not use if the enemy is of a certain CR.<br/>
+    /// Just as a reference spells.2da entries just double the spell level (so enemy is CR5, we cast level 1 or 2 spells, but not level 3 which doubles to 6).
+    /// </summary>
+    public int TalentMaxCR
+    {
+      get => featInfo.m_nTalentMaxCR;
+    }
+
+    /// <summary>
+    /// Gets whether this feat targets the character using the feat (so when using it, it doesn't pop up a selection for who to target).<br/>
+    /// Overrides spells.2da targeting options for PCs.
+    /// </summary>
+    public bool TargetSelf
+    {
+      get => featInfo.m_bTargetSelf.ToBool();
+    }
+
+    /// <summary>
+    /// Gets the number of uses per day that this feat can be used.
+    /// </summary>
+    public byte UsesPerDay
+    {
+      get => featInfo.m_nUsesPerDay;
     }
 
     /// <summary>
@@ -293,6 +264,35 @@ namespace Anvil.API
     public static NwFeat FromFeatId(int featId)
     {
       return featId >= 0 && featId < RulesetService.Feats.Count ? RulesetService.Feats[featId] : null;
+    }
+
+    /// <summary>
+    /// Creates a feat from the specified <see cref="Feat"/>.
+    /// </summary>
+    /// <param name="featType">The associated feat type.</param>
+    /// <returns>The associated <see cref="NwFeat"/> structure, or null if the feat has no matching entry.</returns>
+    public static NwFeat FromFeatType(Feat featType)
+    {
+      return FromFeatId((int)featType);
+    }
+
+    /// <summary>
+    /// Gets the minimum ability score a character must have to select this feat.
+    /// </summary>
+    /// <param name="ability">The ability to query.</param>
+    /// <returns>The ability score requirement.</returns>
+    public byte GetRequiredAbilityScore(Ability ability)
+    {
+      return ability switch
+      {
+        Ability.Strength => featInfo.m_nMinSTR,
+        Ability.Dexterity => featInfo.m_nMinDEX,
+        Ability.Constitution => featInfo.m_nMinCON,
+        Ability.Intelligence => featInfo.m_nMinINT,
+        Ability.Wisdom => featInfo.m_nMinWIS,
+        Ability.Charisma => featInfo.m_nMinCHA,
+        _ => 0,
+      };
     }
   }
 }

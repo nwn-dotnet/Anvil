@@ -22,30 +22,20 @@ namespace Anvil.API
       SkillType = skillType;
     }
 
-    public Skill SkillType { get; }
-
     /// <summary>
-    /// Gets if this skill is untrained. Trained skills require at least a single rank before they can be used.
+    /// Gets if this skill can be used by all classes.
     /// </summary>
-    public bool IsUntrained
+    public bool AllClassesCanUse
     {
-      get => skillInfo.m_bUntrained.ToBool();
+      get => skillInfo.m_bAllClassesCanUse.ToBool();
     }
 
     /// <summary>
-    /// Gets if this skill is considered a hostile action.
+    /// Gets if this skill is subject to the armor check penalty.
     /// </summary>
-    public bool IsHostileSkill
+    public bool ArmorCheckPenalty
     {
-      get => skillInfo.m_bHostileSkill.ToBool();
-    }
-
-    /// <summary>
-    /// Gets the name of this skill.
-    /// </summary>
-    public string Name
-    {
-      get => TlkTable.GetSimpleString((uint)skillInfo.m_nNameStrref);
+      get => skillInfo.m_bArmorCheckPenalty.ToBool();
     }
 
     /// <summary>
@@ -65,19 +55,19 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets if this skill is subject to the armor check penalty.
+    /// Gets if this skill is considered a hostile action.
     /// </summary>
-    public bool ArmorCheckPenalty
+    public bool IsHostileSkill
     {
-      get => skillInfo.m_bArmorCheckPenalty.ToBool();
+      get => skillInfo.m_bHostileSkill.ToBool();
     }
 
     /// <summary>
-    /// Gets if this skill can be used by all classes.
+    /// Gets if this skill is untrained. Trained skills require at least a single rank before they can be used.
     /// </summary>
-    public bool AllClassesCanUse
+    public bool IsUntrained
     {
-      get => skillInfo.m_bAllClassesCanUse.ToBool();
+      get => skillInfo.m_bUntrained.ToBool();
     }
 
     /// <summary>
@@ -88,14 +78,24 @@ namespace Anvil.API
       get => (Ability)skillInfo.m_nKeyAbility;
     }
 
-    public static NwSkill FromSkillType(Skill skillType)
+    /// <summary>
+    /// Gets the name of this skill.
+    /// </summary>
+    public string Name
     {
-      return RulesetService.Skills[(int)skillType];
+      get => TlkTable.GetSimpleString((uint)skillInfo.m_nNameStrref);
     }
+
+    public Skill SkillType { get; }
 
     public static NwSkill FromSkillId(int skillId)
     {
       return RulesetService.Skills[skillId];
+    }
+
+    public static NwSkill FromSkillType(Skill skillType)
+    {
+      return RulesetService.Skills[(int)skillType];
     }
   }
 }
