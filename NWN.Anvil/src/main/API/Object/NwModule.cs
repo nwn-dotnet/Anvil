@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Anvil.Internal;
 using NWN.Core;
 using NWN.Native.API;
@@ -12,6 +13,8 @@ namespace Anvil.API
   [NativeObjectInfo(0, ObjectType.Module)]
   public sealed partial class NwModule : NwObject
   {
+    public static readonly NwModule Instance = new NwModule(LowLevel.ServerExoApp.GetModule());
+
     internal readonly CNWSModule Module;
 
     internal NwModule(CNWSModule module) : base(module)
@@ -19,25 +22,27 @@ namespace Anvil.API
       Module = module;
     }
 
-    public static implicit operator CNWSModule(NwModule module)
+    /// <summary>
+    /// Gets or sets the max possible ability score penalty from temporary effects/items (Default: 30).
+    /// </summary>
+    public int AbilityPenaltyLimit
     {
-      return module?.Module;
-    }
-
-    public static readonly NwModule Instance = new NwModule(LowLevel.ServerExoApp.GetModule());
-
-    internal override CNWSScriptVarTable ScriptVarTable
-    {
-      get => Module.m_ScriptVars;
+      get => NWScript.GetAbilityPenaltyLimit();
+      set => NWScript.SetAbilityPenaltyLimit(value);
     }
 
     /// <summary>
-    /// Gets or sets the XP scale for this module. Must be a value between 0-200.
+    /// Gets all active areas in the module.
     /// </summary>
-    public int XPScale
+    public IEnumerable<NwArea> Areas
     {
-      get => NWScript.GetModuleXPScale();
-      set => NWScript.SetModuleXPScale(value);
+      get
+      {
+        for (uint area = NWScript.GetFirstArea(); area != Invalid; area = NWScript.GetNextArea())
+        {
+          yield return area.ToNwObject<NwArea>();
+        }
+      }
     }
 
     /// <summary>
@@ -59,12 +64,11 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the max possible saving throw bonus from temporary effects/items (Default: 20).
+    /// Gets the current server difficulty setting.
     /// </summary>
-    public int SavingThrowBonusLimit
+    public GameDifficulty GameDifficulty
     {
-      get => NWScript.GetSavingThrowBonusLimit();
-      set => NWScript.SetSavingThrowBonusLimit(value);
+      get => (GameDifficulty)NWScript.GetGameDifficulty();
     }
 
     /// <summary>
@@ -74,41 +78,6 @@ namespace Anvil.API
     {
       get => NWScript.GetAbilityBonusLimit();
       set => NWScript.SetAbilityBonusLimit(value);
-    }
-
-    /// <summary>
-    /// Gets or sets the max possible ability score penalty from temporary effects/items (Default: 30).
-    /// </summary>
-    public int AbilityPenaltyLimit
-    {
-      get => NWScript.GetAbilityPenaltyLimit();
-      set => NWScript.SetAbilityPenaltyLimit(value);
-    }
-
-    /// <summary>
-    /// Gets or sets the max possible skill bonus from temporary effects/items (Default: 50).
-    /// </summary>
-    public int SkillBonusLimit
-    {
-      get => NWScript.GetSkillBonusLimit();
-      set => NWScript.SetSkillBonusLimit(value);
-    }
-
-    /// <summary>
-    /// Gets or sets the maximum number of henchmen.
-    /// </summary>
-    public int MaxHenchmen
-    {
-      get => NWScript.GetMaxHenchmen();
-      set => NWScript.SetMaxHenchmen(value);
-    }
-
-    /// <summary>
-    /// Gets the current server difficulty setting.
-    /// </summary>
-    public GameDifficulty GameDifficulty
-    {
-      get => (GameDifficulty)NWScript.GetGameDifficulty();
     }
 
     /// <summary>
@@ -144,25 +113,31 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the starting location for new players.
+    /// Gets all objects currently stored in limbo.
     /// </summary>
-    public Location StartingLocation
-    {
-      get => NWScript.GetStartingLocation();
-    }
-
-    /// <summary>
-    /// Gets all active areas in the module.
-    /// </summary>
-    public IEnumerable<NwArea> Areas
+    public IEnumerable<NwGameObject> LimboGameObjects
     {
       get
       {
-        for (uint area = NWScript.GetFirstArea(); area != Invalid; area = NWScript.GetNextArea())
-        {
-          yield return area.ToNwObject<NwArea>();
-        }
+        return Module.m_aGameObjectsLimbo.Select(objectId => objectId.ToNwObject<NwGameObject>());
       }
+    }
+
+    /// <summary>
+    /// Gets or sets the maximum number of henchmen.
+    /// </summary>
+    public int MaxHenchmen
+    {
+      get => NWScript.GetMaxHenchmen();
+      set => NWScript.SetMaxHenchmen(value);
+    }
+
+    /// <summary>
+    /// Gets the current player count.
+    /// </summary>
+    public uint PlayerCount
+    {
+      get => LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.Count();
     }
 
     /// <summary>
@@ -183,28 +158,69 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the current player count.
+    /// Gets or sets the max possible saving throw bonus from temporary effects/items (Default: 20).
     /// </summary>
-    public uint PlayerCount
+    public int SavingThrowBonusLimit
     {
-      get => LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.Count();
-    }
-
-    public override Guid? PeekUUID()
-    {
-      return null;
+      get => NWScript.GetSavingThrowBonusLimit();
+      set => NWScript.SetSavingThrowBonusLimit(value);
     }
 
     /// <summary>
-    /// Gets the specified global campaign variable.
+    /// Gets or sets the max possible skill bonus from temporary effects/items (Default: 50).
     /// </summary>
-    /// <param name="campaign">The name of the campaign.</param>
-    /// <param name="name">The variable name.</param>
-    /// <typeparam name="T">The variable type.</typeparam>
-    /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
-    public T GetCampaignVariable<T>(string campaign, string name) where T : CampaignVariable, new()
+    public int SkillBonusLimit
     {
-      return CampaignVariable.Create<T>(campaign, name);
+      get => NWScript.GetSkillBonusLimit();
+      set => NWScript.SetSkillBonusLimit(value);
+    }
+
+    /// <summary>
+    /// Gets the starting location for new players.
+    /// </summary>
+    public Location StartingLocation
+    {
+      get => NWScript.GetStartingLocation();
+    }
+
+    /// <summary>
+    /// Gets or sets the XP scale for this module. Must be a value between 0-200.
+    /// </summary>
+    public int XPScale
+    {
+      get => NWScript.GetModuleXPScale();
+      set => NWScript.SetModuleXPScale(value);
+    }
+
+    internal override CNWSScriptVarTable ScriptVarTable
+    {
+      get => Module.m_ScriptVars;
+    }
+
+    public static implicit operator CNWSModule(NwModule module)
+    {
+      return module?.Module;
+    }
+
+    /// <summary>
+    /// Adds an entry to the journal of all players in the module.<br/>
+    /// See <see cref="NwPlayer.AddJournalQuestEntry"/> to add a journal entry to a specific player/party.
+    /// </summary>
+    /// <param name="categoryTag">The tag of the Journal category (case-sensitive).</param>
+    /// <param name="entryId">The ID of the Journal entry.</param>
+    /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
+    public void AddJournalQuestEntry(string categoryTag, int entryId, bool allowOverrideHigher = false)
+    {
+      NWScript.AddJournalQuestEntry(categoryTag, entryId, Invalid, true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
+    }
+
+    /// <summary>
+    /// Removes the override for the specified texture, reverting to the original texture.
+    /// </summary>
+    /// <param name="texName">The name of the original texture.</param>
+    public void ClearTextureOverride(string texName)
+    {
+      NWScript.SetTextureOverride(texName, string.Empty);
     }
 
     /// <summary>
@@ -214,22 +230,6 @@ namespace Anvil.API
     public void DestroyCampaignDatabase(string campaign)
     {
       NWScript.DestroyCampaignDatabase(campaign);
-    }
-
-    /// <summary>
-    /// Broadcasts a message to the DM channel, sending a message to all DMs on the server.
-    /// </summary>
-    /// <param name="message">The message to send.</param>
-    /// <param name="color">A color to apply to the message.</param>
-    public void SendMessageToAllDMs(string message, Color color)
-    {
-      NWScript.SendMessageToAllDMs(message.ColorString(color));
-    }
-
-    /// <inheritdoc cref="SendMessageToAllDMs(string,Color)"/>
-    public void SendMessageToAllDMs(string message)
-    {
-      NWScript.SendMessageToAllDMs(message);
     }
 
     /// <summary>
@@ -251,42 +251,15 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Makes all online PCs load a new texture instead of another.
+    /// Gets the specified global campaign variable.
     /// </summary>
-    /// <param name="oldTexName">The existing texture to replace.</param>
-    /// <param name="newName">The new override texture.</param>
-    public void SetTextureOverride(string oldTexName, string newName)
+    /// <param name="campaign">The name of the campaign.</param>
+    /// <param name="name">The variable name.</param>
+    /// <typeparam name="T">The variable type.</typeparam>
+    /// <returns>A CampaignVariable instance for getting/setting the variable's value.</returns>
+    public T GetCampaignVariable<T>(string campaign, string name) where T : CampaignVariable, new()
     {
-      NWScript.SetTextureOverride(oldTexName, newName);
-    }
-
-    /// <summary>
-    /// Removes the override for the specified texture, reverting to the original texture.
-    /// </summary>
-    /// <param name="texName">The name of the original texture.</param>
-    public void ClearTextureOverride(string texName)
-    {
-      NWScript.SetTextureOverride(texName, string.Empty);
-    }
-
-    /// <summary>
-    /// Finds the specified waypoint with the given tag.
-    /// </summary>
-    public NwWaypoint GetWaypointByTag(string tag)
-    {
-      return NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
-    }
-
-    /// <summary>
-    /// Adds an entry to the journal of all players in the module.<br/>
-    /// See <see cref="NwPlayer.AddJournalQuestEntry"/> to add a journal entry to a specific player/party.
-    /// </summary>
-    /// <param name="categoryTag">The tag of the Journal category (case-sensitive).</param>
-    /// <param name="entryId">The ID of the Journal entry.</param>
-    /// <param name="allowOverrideHigher">If true, disables the default restriction that requires journal entry numbers to increase.</param>
-    public void AddJournalQuestEntry(string categoryTag, int entryId, bool allowOverrideHigher = false)
-    {
-      NWScript.AddJournalQuestEntry(categoryTag, entryId, Invalid, true.ToInt(), true.ToInt(), allowOverrideHigher.ToInt());
+      return CampaignVariable.Create<T>(campaign, name);
     }
 
     /// <summary>
@@ -317,15 +290,29 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Sets up a SQL Query for this module.<br/>
-    /// This will NOT run the query; only make it available for parameter binding.<br/>
-    /// To run the query, you need to call <see cref="SQLQuery.Execute"/> even if you do not expect result data.<br/>
+    /// Finds the specified waypoint with the given tag.
     /// </summary>
-    /// <param name="query">The query to be prepared.</param>
-    /// <returns>A <see cref="SQLQuery"/> object.</returns>
-    public SQLQuery PrepareSQLQuery(string query)
+    public NwWaypoint GetWaypointByTag(string tag)
     {
-      return NWScript.SqlPrepareQueryObject(this, query);
+      return NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
+    }
+
+    /// <summary>
+    /// Moves the specified <see cref="NwGameObject"/> from its current location/owner to limbo.
+    /// </summary>
+    /// <param name="gameObject">The game object to move to limbo.</param>
+    public void MoveObjectToLimbo(NwGameObject gameObject)
+    {
+      if (!gameObject.IsPlayerControlled(out _) && !gameObject.IsLoginPlayerCharacter(out _))
+      {
+        gameObject.RemoveFromArea();
+        Module.AddObjectToLimbo(gameObject);
+      }
+    }
+
+    public override Guid? PeekUUID()
+    {
+      return null;
     }
 
     /// <summary>
@@ -339,6 +326,44 @@ namespace Anvil.API
     public SQLQuery PrepareCampaignSQLQuery(string database, string query)
     {
       return NWScript.SqlPrepareQueryCampaign(database, query);
+    }
+
+    /// <summary>
+    /// Sets up a SQL Query for this module.<br/>
+    /// This will NOT run the query; only make it available for parameter binding.<br/>
+    /// To run the query, you need to call <see cref="SQLQuery.Execute"/> even if you do not expect result data.<br/>
+    /// </summary>
+    /// <param name="query">The query to be prepared.</param>
+    /// <returns>A <see cref="SQLQuery"/> object.</returns>
+    public SQLQuery PrepareSQLQuery(string query)
+    {
+      return NWScript.SqlPrepareQueryObject(this, query);
+    }
+
+    /// <summary>
+    /// Broadcasts a message to the DM channel, sending a message to all DMs on the server.
+    /// </summary>
+    /// <param name="message">The message to send.</param>
+    /// <param name="color">A color to apply to the message.</param>
+    public void SendMessageToAllDMs(string message, Color color)
+    {
+      NWScript.SendMessageToAllDMs(message.ColorString(color));
+    }
+
+    /// <inheritdoc cref="SendMessageToAllDMs(string,Color)"/>
+    public void SendMessageToAllDMs(string message)
+    {
+      NWScript.SendMessageToAllDMs(message);
+    }
+
+    /// <summary>
+    /// Makes all online PCs load a new texture instead of another.
+    /// </summary>
+    /// <param name="oldTexName">The existing texture to replace.</param>
+    /// <param name="newName">The new override texture.</param>
+    public void SetTextureOverride(string oldTexName, string newName)
+    {
+      NWScript.SetTextureOverride(oldTexName, newName);
     }
   }
 }

@@ -9,31 +9,25 @@ namespace Anvil.Internal
   internal sealed class CoreInteropHandler : ICoreFunctionHandler, ICoreEventHandler, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-    private readonly Stack<uint> scriptContexts = new Stack<uint>();
     private readonly Dictionary<ulong, Action> closures = new Dictionary<ulong, Action>();
 
-    private readonly IServerLifeCycleEventHandler signalHandler;
-    private ICoreRunScriptHandler scriptHandler;
-    private ICoreLoopHandler loopHandler;
+    private readonly Stack<uint> scriptContexts = new Stack<uint>();
 
-    private uint objectSelf;
+    private readonly IServerLifeCycleEventHandler signalHandler;
+    private ICoreLoopHandler loopHandler;
     private ulong nextEventId;
 
-    uint ICoreFunctionHandler.ObjectSelf
-    {
-      get => objectSelf;
-    }
+    private uint objectSelf;
+    private ICoreRunScriptHandler scriptHandler;
 
     public CoreInteropHandler(IServerLifeCycleEventHandler signalHandler)
     {
       this.signalHandler = signalHandler;
     }
 
-    public void Init(ICoreRunScriptHandler scriptHandler, ICoreLoopHandler loopHandler)
+    uint ICoreFunctionHandler.ObjectSelf
     {
-      this.scriptHandler = scriptHandler;
-      this.loopHandler = loopHandler;
+      get => objectSelf;
     }
 
     public void Dispose()
@@ -42,22 +36,28 @@ namespace Anvil.Internal
       loopHandler = null;
     }
 
-    void ICoreEventHandler.OnSignal(string signal)
+    public void Init(ICoreRunScriptHandler scriptHandler, ICoreLoopHandler loopHandler)
     {
-      LifeCycleEvent eventType = signal switch
-      {
-        "ON_MODULE_LOAD_FINISH" => LifeCycleEvent.ModuleLoad,
-        "ON_DESTROY_SERVER" => LifeCycleEvent.DestroyServer,
-        "ON_DESTROY_SERVER_AFTER" => LifeCycleEvent.DestroyServerAfter,
-        _ => LifeCycleEvent.Unhandled,
-      };
+      this.scriptHandler = scriptHandler;
+      this.loopHandler = loopHandler;
+    }
 
-      if (eventType == LifeCycleEvent.Unhandled)
+    void ICoreEventHandler.OnClosure(ulong eid, uint oidSelf)
+    {
+      uint old = objectSelf;
+      objectSelf = oidSelf;
+
+      try
       {
-        Log.Debug("Unhandled Signal: {Signal}", signal);
+        closures[eid].Invoke();
+      }
+      catch (Exception e)
+      {
+        Log.Error(e);
       }
 
-      signalHandler.HandleLifeCycleEvent(eventType);
+      closures.Remove(eid);
+      objectSelf = old;
     }
 
     void ICoreEventHandler.OnMainLoop(ulong frame)
@@ -98,22 +98,30 @@ namespace Anvil.Internal
       return retVal;
     }
 
-    void ICoreEventHandler.OnClosure(ulong eid, uint oidSelf)
+    void ICoreEventHandler.OnSignal(string signal)
     {
-      uint old = objectSelf;
-      objectSelf = oidSelf;
-
-      try
+      LifeCycleEvent eventType = signal switch
       {
-        closures[eid].Invoke();
-      }
-      catch (Exception e)
+        "ON_MODULE_LOAD_FINISH" => LifeCycleEvent.ModuleLoad,
+        "ON_DESTROY_SERVER" => LifeCycleEvent.DestroyServer,
+        "ON_DESTROY_SERVER_AFTER" => LifeCycleEvent.DestroyServerAfter,
+        _ => LifeCycleEvent.Unhandled,
+      };
+
+      if (eventType == LifeCycleEvent.Unhandled)
       {
-        Log.Error(e);
+        Log.Debug("Unhandled Signal: {Signal}", signal);
       }
 
-      closures.Remove(eid);
-      objectSelf = old;
+      signalHandler.HandleLifeCycleEvent(eventType);
+    }
+
+    void ICoreFunctionHandler.ClosureActionDoCommand(uint obj, Action func)
+    {
+      if (VM.ClosureActionDoCommand(obj, nextEventId) != 0)
+      {
+        closures.Add(nextEventId++, func);
+      }
     }
 
     void ICoreFunctionHandler.ClosureAssignCommand(uint obj, Action func)
@@ -127,14 +135,6 @@ namespace Anvil.Internal
     void ICoreFunctionHandler.ClosureDelayCommand(uint obj, float duration, Action func)
     {
       if (VM.ClosureDelayCommand(obj, duration, nextEventId) != 0)
-      {
-        closures.Add(nextEventId++, func);
-      }
-    }
-
-    void ICoreFunctionHandler.ClosureActionDoCommand(uint obj, Action func)
-    {
-      if (VM.ClosureActionDoCommand(obj, nextEventId) != 0)
       {
         closures.Add(nextEventId++, func);
       }

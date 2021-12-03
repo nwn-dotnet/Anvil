@@ -18,6 +18,32 @@ namespace Anvil.API
       Trigger = trigger;
     }
 
+    public static NwTrigger Deserialize(byte[] serialized)
+    {
+      CNWSTrigger trigger = null;
+
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTT"))
+        {
+          return false;
+        }
+
+        trigger = new CNWSTrigger(Invalid);
+        if (trigger.LoadTrigger(resGff, resStruct).ToBool())
+        {
+          trigger.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(trigger);
+          return true;
+        }
+
+        trigger.Dispose();
+        return false;
+      });
+
+      return result && trigger != null ? trigger.ToNwObject<NwTrigger>() : null;
+    }
+
     public static implicit operator CNWSTrigger(NwTrigger trigger)
     {
       return trigger?.Trigger;
@@ -60,30 +86,14 @@ namespace Anvil.API
       });
     }
 
-    public static NwTrigger Deserialize(byte[] serialized)
+    internal override void RemoveFromArea()
     {
-      CNWSTrigger trigger = null;
-
-      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      if (IsTrapped)
       {
-        if (!resGff.IsValidGff("UTT"))
-        {
-          return false;
-        }
+        Area.Area.m_pTrapList.Remove(this);
+      }
 
-        trigger = new CNWSTrigger(Invalid);
-        if (trigger.LoadTrigger(resGff, resStruct).ToBool())
-        {
-          trigger.LoadObjectState(resGff, resStruct);
-          GC.SuppressFinalize(trigger);
-          return true;
-        }
-
-        trigger.Dispose();
-        return false;
-      });
-
-      return result && trigger != null ? trigger.ToNwObject<NwTrigger>() : null;
+      Trigger.RemoveFromArea();
     }
 
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)

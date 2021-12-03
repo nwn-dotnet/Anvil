@@ -8,17 +8,17 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemInventoryOpen : IEvent
   {
-    public bool PreventOpen { get; set; }
+    /// <summary>
+    /// Gets the container being opened.
+    /// </summary>
+    public NwItem Container { get; private init; }
 
     /// <summary>
     /// Gets the creature that is opening the container.
     /// </summary>
     public NwCreature OpenedBy { get; private init; }
 
-    /// <summary>
-    /// Gets the container being opened.
-    /// </summary>
-    public NwItem Container { get; private init; }
+    public bool PreventOpen { get; set; }
 
     NwObject IEvent.Context
     {

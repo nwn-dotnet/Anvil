@@ -4,16 +4,8 @@ namespace Anvil.API
 {
   public sealed class ServerInfo
   {
-    private readonly CServerInfo serverInfo;
     private readonly CNetLayer netLayer;
-
-    public PlayOptions PlayOptions { get; }
-
-    public PersistentWorldOptions PersistentWorldOptions { get; }
-
-    public JoiningRestrictions JoiningRestrictions { get; }
-
-    public DebugOptions DebugOptions { get; }
+    private readonly CServerInfo serverInfo;
 
     internal ServerInfo(CServerInfo serverInfo, CNetLayer netLayer)
     {
@@ -26,14 +18,9 @@ namespace Anvil.API
       DebugOptions = new DebugOptions();
     }
 
-    /// <summary>
-    /// Gets or sets the name of the server, as shown in the server browser.
-    /// </summary>
-    public string ServerName
-    {
-      get => netLayer.GetSessionName().ToString();
-      set => netLayer.SetSessionName(new CExoString(value));
-    }
+    public DebugOptions DebugOptions { get; }
+
+    public JoiningRestrictions JoiningRestrictions { get; }
 
     /// <summary>
     /// Gets or sets the name of the module, as shown in the server browser.
@@ -42,6 +29,19 @@ namespace Anvil.API
     {
       get => serverInfo.m_sModuleName.ToString();
       set => serverInfo.m_sModuleName = new CExoString(value);
+    }
+
+    public PersistentWorldOptions PersistentWorldOptions { get; }
+
+    public PlayOptions PlayOptions { get; }
+
+    /// <summary>
+    /// Gets or sets the name of the server, as shown in the server browser.
+    /// </summary>
+    public string ServerName
+    {
+      get => netLayer.GetSessionName().ToString();
+      set => netLayer.SetSessionName(new CExoString(value));
     }
   }
 }

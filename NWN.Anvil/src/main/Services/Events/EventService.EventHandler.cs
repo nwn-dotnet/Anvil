@@ -9,9 +9,8 @@ namespace Anvil.Services
   {
     private abstract class EventHandler
     {
-      public abstract void ProcessEvent(IEvent eventData);
-
       public abstract void ClearObjectSubscriptions(NwObject gameObject);
+      public abstract void ProcessEvent(IEvent eventData);
     }
 
     private sealed class EventHandler<T> : EventHandler where T : IEvent
@@ -25,47 +24,14 @@ namespace Anvil.Services
         get => globalCallback != null || filteredCallbacks.Count > 0;
       }
 
-      public override void ProcessEvent(IEvent eventData)
-      {
-        ProcessEvent((T)eventData);
-      }
-
       public override void ClearObjectSubscriptions(NwObject gameObject)
       {
         filteredCallbacks.Remove(gameObject);
       }
 
-      private void ProcessEvent(T eventData)
+      public override void ProcessEvent(IEvent eventData)
       {
-        TryInvoke(eventData, globalCallback);
-        if (eventData.Context != null && filteredCallbacks.TryGetValue(eventData.Context, out Action<T> callback))
-        {
-          TryInvoke(eventData, callback);
-        }
-      }
-
-      private static void TryInvoke(T eventData, Action<T> callback)
-      {
-        try
-        {
-          callback?.Invoke(eventData);
-        }
-        catch (Exception e)
-        {
-          if (eventData?.Context != null && eventData.Context.IsValid)
-          {
-            Log.Error(e, "An exception was thrown while trying to invoke event {Event}. Context Object {ObjectId} - {ObjectName}",
-              typeof(T).Name,
-              eventData.Context.ToString(),
-              eventData.Context.Name);
-          }
-          else
-          {
-            Log.Error(e, "An exception was thrown while trying to invoke event {Event}", typeof(T).Name);
-          }
-
-          Log.Error(e);
-        }
+        ProcessEvent((T)eventData);
       }
 
       public void Subscribe(NwObject obj, Action<T> newHandler)
@@ -101,6 +67,39 @@ namespace Anvil.Services
       public void UnsubscribeAll(Action<T> handlerToRemove)
       {
         globalCallback -= handlerToRemove;
+      }
+
+      private static void TryInvoke(T eventData, Action<T> callback)
+      {
+        try
+        {
+          callback?.Invoke(eventData);
+        }
+        catch (Exception e)
+        {
+          if (eventData?.Context != null && eventData.Context.IsValid)
+          {
+            Log.Error(e, "An exception was thrown while trying to invoke event {Event}. Context Object {ObjectId} - {ObjectName}",
+              typeof(T).Name,
+              eventData.Context.ToString(),
+              eventData.Context.Name);
+          }
+          else
+          {
+            Log.Error(e, "An exception was thrown while trying to invoke event {Event}", typeof(T).Name);
+          }
+
+          Log.Error(e);
+        }
+      }
+
+      private void ProcessEvent(T eventData)
+      {
+        TryInvoke(eventData, globalCallback);
+        if (eventData.Context != null && filteredCallbacks.TryGetValue(eventData.Context, out Action<T> callback))
+        {
+          TryInvoke(eventData, callback);
+        }
       }
     }
   }

@@ -17,12 +17,12 @@ namespace Anvil.API.Events
     [Inject]
     private Lazy<EventService> EventService { get; init; }
 
-    public int ExecutionOrder { get; } = -10000;
-
     // Caches
-    private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
+    private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
     private readonly Dictionary<EventKey, string> originalCallLookup = new Dictionary<EventKey, string>();
+
+    public int ExecutionOrder { get; } = -10000;
 
     public void Register<TEvent>(RegistrationData data) where TEvent : IEvent, new()
     {
@@ -61,21 +61,19 @@ namespace Anvil.API.Events
       return ScriptHandleResult.NotHandled;
     }
 
-    private void UpdateEventScript(NwObject nwObject, EventScriptType eventType, bool callOriginal)
+    private void CheckConstructorRegistered<TEvent>(EventScriptType eventScriptType) where TEvent : IEvent, new()
     {
-      string existingScript = NWScript.GetEventScript(nwObject, (int)eventType);
-      if (existingScript == ScriptConstants.GameEventScriptName)
+      if (eventConstructorCache.ContainsKey(eventScriptType))
       {
         return;
       }
 
-      Log.Debug("Hooking native script event {EventType} on object {Object}. Previous script: {ExistingScript}", eventType, nwObject.Name, existingScript);
-      NWScript.SetEventScript(nwObject, (int)eventType, ScriptConstants.GameEventScriptName);
-
-      if (callOriginal && !string.IsNullOrWhiteSpace(existingScript))
+      static IEvent Constructor()
       {
-        originalCallLookup[new EventKey(eventType, nwObject)] = existingScript;
+        return new TEvent();
       }
+
+      eventConstructorCache[eventScriptType] = Constructor;
     }
 
     private GameEventAttribute GetEventInfo(Type type)
@@ -102,19 +100,21 @@ namespace Anvil.API.Events
       throw new InvalidOperationException($"Event Type {type.GetFullName()} does not define an event info attribute!");
     }
 
-    private void CheckConstructorRegistered<TEvent>(EventScriptType eventScriptType) where TEvent : IEvent, new()
+    private void UpdateEventScript(NwObject nwObject, EventScriptType eventType, bool callOriginal)
     {
-      if (eventConstructorCache.ContainsKey(eventScriptType))
+      string existingScript = NWScript.GetEventScript(nwObject, (int)eventType);
+      if (existingScript == ScriptConstants.GameEventScriptName)
       {
         return;
       }
 
-      static IEvent Constructor()
-      {
-        return new TEvent();
-      }
+      Log.Debug("Hooking native script event {EventType} on object {Object}. Previous script: {ExistingScript}", eventType, nwObject.Name, existingScript);
+      NWScript.SetEventScript(nwObject, (int)eventType, ScriptConstants.GameEventScriptName);
 
-      eventConstructorCache[eventScriptType] = Constructor;
+      if (callOriginal && !string.IsNullOrWhiteSpace(existingScript))
+      {
+        originalCallLookup[new EventKey(eventType, nwObject)] = existingScript;
+      }
     }
   }
 }

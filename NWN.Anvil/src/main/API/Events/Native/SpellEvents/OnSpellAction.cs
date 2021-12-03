@@ -9,37 +9,36 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellAction : IEvent
   {
-    public bool PreventSpellCast { get; set; }
-
-    public Lazy<bool> Result { get; private set; }
-
     public NwCreature Caster { get; private init; }
 
-    public Spell Spell { get; private init; }
+    public int CasterLevel { get; private init; }
 
     public int ClassIndex { get; private init; }
 
     public Domain Domain { get; private init; }
 
-    public bool IsSpontaneous { get; private init; }
-
-    public Vector3 TargetPosition { get; private init; }
-
-    public NwGameObject TargetObject { get; private init; }
+    public Feat Feat { get; private init; }
 
     public bool IsAreaTarget { get; private init; }
 
     public bool IsFake { get; private init; }
 
-    public ProjectilePathType ProjectilePath { get; private init; }
-
     public bool IsInstant { get; private init; }
 
-    public Feat Feat { get; private init; }
+    public bool IsSpontaneous { get; private init; }
 
     public MetaMagic MetaMagic { get; private init; }
+    public bool PreventSpellCast { get; set; }
 
-    public int CasterLevel { get; private init; }
+    public ProjectilePathType ProjectilePath { get; private init; }
+
+    public Lazy<bool> Result { get; private set; }
+
+    public Spell Spell { get; private init; }
+
+    public NwGameObject TargetObject { get; private init; }
+
+    public Vector3 TargetPosition { get; private init; }
 
     NwObject IEvent.Context
     {

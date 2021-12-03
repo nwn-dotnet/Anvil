@@ -23,11 +23,12 @@ namespace Anvil.Services
     /// </summary>
     public static readonly TimeSpan NextUpdate = TimeSpan.Zero;
 
+    private readonly IComparer<ScheduledItem> comparer = new ScheduledItem.SortedByExecutionTime();
+
     // Dependencies
     private readonly LoopTimeService loopTimeService;
 
     private readonly List<ScheduledItem> scheduledItems = new List<ScheduledItem>(1024);
-    private readonly IComparer<ScheduledItem> comparer = new ScheduledItem.SortedByExecutionTime();
 
     public SchedulerService(LoopTimeService loopTimeService)
     {
@@ -87,11 +88,6 @@ namespace Anvil.Services
       return item;
     }
 
-    internal void Unschedule(ScheduledItem scheduledItem)
-    {
-      scheduledItems.Remove(scheduledItem);
-    }
-
     void IUpdateable.Update()
     {
       int i;
@@ -132,6 +128,11 @@ namespace Anvil.Services
       {
         scheduledItems.RemoveRange(0, i);
       }
+    }
+
+    internal void Unschedule(ScheduledItem scheduledItem)
+    {
+      scheduledItems.Remove(scheduledItem);
     }
   }
 }

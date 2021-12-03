@@ -8,13 +8,12 @@ namespace Anvil.API.Events
 {
   public sealed class OnPartyEvent : IEvent
   {
-    public bool PreventEvent { get; set; }
-
-    public Lazy<bool> Result { get; private set; }
-
     public PartyEventType EventType { get; private init; }
 
     public NwPlayer Player { get; private init; }
+    public bool PreventEvent { get; set; }
+
+    public Lazy<bool> Result { get; private set; }
 
     public NwCreature Target { get; private init; }
 

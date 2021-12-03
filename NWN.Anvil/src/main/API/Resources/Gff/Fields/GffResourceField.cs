@@ -18,56 +18,16 @@ namespace Anvil.API
       ResGff = resGff;
     }
 
-    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, string fieldId)
-    {
-      byte* fieldIdPtr = fieldId.GetNullTerminatedString();
-      uint index = resGff.GetFieldByLabel(resStruct, fieldIdPtr);
-      return Create(resGff, resStruct, index, fieldIdPtr);
-    }
+    /// <summary>
+    /// Gets the number of child fields.
+    /// </summary>
+    public virtual int Count { get => 0; }
 
-    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, uint fieldIndex)
-    {
-      byte* fieldId = resGff.GetFieldStringID(resStruct, fieldIndex);
-      if (fieldId == null)
-      {
-        return null;
-      }
-
-      return Create(resGff, resStruct, fieldIndex, fieldId);
-    }
-
-    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, uint fieldIndex, byte* fieldId)
-    {
-      GffResourceFieldType fieldType = (GffResourceFieldType)resGff.GetFieldType(resStruct, fieldId, fieldIndex);
-      if (!Enum.IsDefined(fieldType)) // User specified struct type.
-      {
-        fieldType = GffResourceFieldType.Struct;
-      }
-
-      switch (fieldType)
-      {
-        case GffResourceFieldType.Struct:
-          CResStruct structField = new CResStruct();
-          if (resGff.GetStructFromStruct(structField, resStruct, fieldId).ToBool())
-          {
-            return new GffResourceFieldStruct(resGff, resStruct);
-          }
-
-          break;
-        case GffResourceFieldType.List:
-          CResList listField = new CResList();
-          if (resGff.GetList(listField, resStruct, fieldId).ToBool())
-          {
-            return new GffResourceFieldList(resGff, listField, resGff.GetListCount(listField));
-          }
-
-          break;
-        default:
-          return new GffResourceFieldValue(resGff, resStruct, fieldId);
-      }
-
-      return null;
-    }
+    /// <summary>
+    /// If this field is a struct, gets an enumerable of the key/values pairs.<br/>
+    /// Otherwise, returns an empty enumerable.
+    /// </summary>
+    public virtual IEnumerable<KeyValuePair<string, GffResourceField>> EntrySet { get; } = Enumerable.Empty<KeyValuePair<string, GffResourceField>>();
 
     /// <summary>
     /// Gets the GFF field type.
@@ -83,9 +43,17 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the number of child fields.
+    /// If this field is a struct, gets an enumerable of the struct's keys.<br/>
+    /// Otherwise, returns an empty enumerable.
     /// </summary>
-    public virtual int Count { get => 0; }
+    public virtual IEnumerable<string> Keys { get; } = Enumerable.Empty<string>();
+
+    /// <summary>
+    /// If this field is an array, gets an enumerable of the array's values.<br/>
+    /// If this field is a struct, gets an enumerable of the struct's values.<br/>
+    /// Otherwise, returns an empty enumerable.
+    /// </summary>
+    public virtual IEnumerable<GffResourceField> Values { get; } = Enumerable.Empty<GffResourceField>();
 
     /// <summary>
     /// Gets the child <see cref="GffResourceField"/> at the specified index.
@@ -103,24 +71,55 @@ namespace Anvil.API
       get => throw new InvalidOperationException($"Cannot get child value of {FieldType} with field key.");
     }
 
-    /// <summary>
-    /// If this field is a struct, gets an enumerable of the struct's keys.<br/>
-    /// Otherwise, returns an empty enumerable.
-    /// </summary>
-    public virtual IEnumerable<string> Keys { get; } = Enumerable.Empty<string>();
+    public static explicit operator byte(GffResourceField field)
+    {
+      return field.Value<byte>();
+    }
 
-    /// <summary>
-    /// If this field is an array, gets an enumerable of the array's values.<br/>
-    /// If this field is a struct, gets an enumerable of the struct's values.<br/>
-    /// Otherwise, returns an empty enumerable.
-    /// </summary>
-    public virtual IEnumerable<GffResourceField> Values { get; } = Enumerable.Empty<GffResourceField>();
+    public static explicit operator ushort(GffResourceField field)
+    {
+      return field.Value<ushort>();
+    }
 
-    /// <summary>
-    /// If this field is a struct, gets an enumerable of the key/values pairs.<br/>
-    /// Otherwise, returns an empty enumerable.
-    /// </summary>
-    public virtual IEnumerable<KeyValuePair<string, GffResourceField>> EntrySet { get; } = Enumerable.Empty<KeyValuePair<string, GffResourceField>>();
+    public static explicit operator short(GffResourceField field)
+    {
+      return field.Value<short>();
+    }
+
+    public static explicit operator uint(GffResourceField field)
+    {
+      return field.Value<uint>();
+    }
+
+    public static explicit operator int(GffResourceField field)
+    {
+      return field.Value<int>();
+    }
+
+    public static explicit operator ulong(GffResourceField field)
+    {
+      return field.Value<ulong>();
+    }
+
+    public static explicit operator long(GffResourceField field)
+    {
+      return field.Value<long>();
+    }
+
+    public static explicit operator float(GffResourceField field)
+    {
+      return field.Value<float>();
+    }
+
+    public static explicit operator double(GffResourceField field)
+    {
+      return field.Value<double>();
+    }
+
+    public static explicit operator string(GffResourceField field)
+    {
+      return field.Value<string>();
+    }
 
     /// <summary>
     /// If this field is a <see cref="GffResourceFieldStruct"/>, determines if the specified key exists in the structure.
@@ -130,6 +129,11 @@ namespace Anvil.API
     public virtual bool ContainsKey(string key)
     {
       return false;
+    }
+
+    public sealed override string ToString()
+    {
+      return Value().ToString();
     }
 
     /// <summary>
@@ -195,65 +199,61 @@ namespace Anvil.API
       return GetValueInternal(out object value, typeof(T)) ? (T)value : default;
     }
 
-    public sealed override string ToString()
+    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, string fieldId)
     {
-      return Value().ToString();
+      byte* fieldIdPtr = fieldId.GetNullTerminatedString();
+      uint index = resGff.GetFieldByLabel(resStruct, fieldIdPtr);
+      return Create(resGff, resStruct, index, fieldIdPtr);
+    }
+
+    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, uint fieldIndex)
+    {
+      byte* fieldId = resGff.GetFieldStringID(resStruct, fieldIndex);
+      if (fieldId == null)
+      {
+        return null;
+      }
+
+      return Create(resGff, resStruct, fieldIndex, fieldId);
+    }
+
+    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, uint fieldIndex, byte* fieldId)
+    {
+      GffResourceFieldType fieldType = (GffResourceFieldType)resGff.GetFieldType(resStruct, fieldId, fieldIndex);
+      if (!Enum.IsDefined(fieldType)) // User specified struct type.
+      {
+        fieldType = GffResourceFieldType.Struct;
+      }
+
+      switch (fieldType)
+      {
+        case GffResourceFieldType.Struct:
+          CResStruct structField = new CResStruct();
+          if (resGff.GetStructFromStruct(structField, resStruct, fieldId).ToBool())
+          {
+            return new GffResourceFieldStruct(resGff, resStruct);
+          }
+
+          break;
+        case GffResourceFieldType.List:
+          CResList listField = new CResList();
+          if (resGff.GetList(listField, resStruct, fieldId).ToBool())
+          {
+            return new GffResourceFieldList(resGff, listField, resGff.GetListCount(listField));
+          }
+
+          break;
+        default:
+          return new GffResourceFieldValue(resGff, resStruct, fieldId);
+      }
+
+      return null;
     }
 
     protected virtual bool GetValueInternal(out object value, Type requestedType = null)
     {
       value = null;
       return false;
-    }
-
-    public static explicit operator byte(GffResourceField field)
-    {
-      return field.Value<byte>();
-    }
-
-    public static explicit operator ushort(GffResourceField field)
-    {
-      return field.Value<ushort>();
-    }
-
-    public static explicit operator short(GffResourceField field)
-    {
-      return field.Value<short>();
-    }
-
-    public static explicit operator uint(GffResourceField field)
-    {
-      return field.Value<uint>();
-    }
-
-    public static explicit operator int(GffResourceField field)
-    {
-      return field.Value<int>();
-    }
-
-    public static explicit operator ulong(GffResourceField field)
-    {
-      return field.Value<ulong>();
-    }
-
-    public static explicit operator long(GffResourceField field)
-    {
-      return field.Value<long>();
-    }
-
-    public static explicit operator float(GffResourceField field)
-    {
-      return field.Value<float>();
-    }
-
-    public static explicit operator double(GffResourceField field)
-    {
-      return field.Value<double>();
-    }
-
-    public static explicit operator string(GffResourceField field)
-    {
-      return field.Value<string>();
     }
   }
 }

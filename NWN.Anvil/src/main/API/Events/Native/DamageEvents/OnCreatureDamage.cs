@@ -8,11 +8,10 @@ namespace Anvil.API.Events
 {
   public sealed class OnCreatureDamage : IEvent
   {
+    public DamageData<int> DamageData { get; private init; }
     public NwObject DamagedBy { get; private init; }
 
     public NwGameObject Target { get; private init; }
-
-    public DamageData<int> DamageData { get; private init; }
 
     NwObject IEvent.Context
     {
@@ -27,6 +26,11 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyDamage;
         return HookService.RequestHook<OnApplyDamageHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDamageEP10CNWSObjectP11CGameEffecti, HookOrder.Late);
+      }
+
+      private static bool IsValidObjectTarget(ObjectType objectType)
+      {
+        return objectType == ObjectType.Creature || objectType == ObjectType.Placeable;
       }
 
       [UnmanagedCallersOnly]
@@ -46,11 +50,6 @@ namespace Anvil.API.Events
         }
 
         return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
-      }
-
-      private static bool IsValidObjectTarget(ObjectType objectType)
-      {
-        return objectType == ObjectType.Creature || objectType == ObjectType.Placeable;
       }
     }
   }

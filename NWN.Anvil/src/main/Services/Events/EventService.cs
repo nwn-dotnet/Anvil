@@ -23,6 +23,31 @@ namespace Anvil.Services
       }
     }
 
+    public void ClearObjectSubscriptions(NwObject nwObject)
+    {
+      if (ReferenceEquals(nwObject, null))
+      {
+        return;
+      }
+
+      foreach (EventHandler eventHandler in eventHandlers.Values)
+      {
+        eventHandler.ClearObjectSubscriptions(nwObject);
+      }
+    }
+
+    public TEvent ProcessEvent<TEvent>(TEvent eventData)
+      where TEvent : IEvent
+    {
+      if (!eventHandlers.TryGetValue(eventData.GetType(), out EventHandler handler))
+      {
+        return eventData;
+      }
+
+      handler.ProcessEvent(eventData);
+      return eventData;
+    }
+
     public void Subscribe<TEvent, TFactory>(NwObject nwObject, Action<TEvent> handler)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory<NullRegistrationData>
@@ -81,38 +106,6 @@ namespace Anvil.Services
       TryCleanupHandler<TEvent, TFactory>();
     }
 
-    public void ClearObjectSubscriptions(NwObject nwObject)
-    {
-      if (ReferenceEquals(nwObject, null))
-      {
-        return;
-      }
-
-      foreach (EventHandler eventHandler in eventHandlers.Values)
-      {
-        eventHandler.ClearObjectSubscriptions(nwObject);
-      }
-    }
-
-    public TEvent ProcessEvent<TEvent>(TEvent eventData)
-      where TEvent : IEvent
-    {
-      if (!eventHandlers.TryGetValue(eventData.GetType(), out EventHandler handler))
-      {
-        return eventData;
-      }
-
-      handler.ProcessEvent(eventData);
-      return eventData;
-    }
-
-    private void AddObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler)
-      where TEvent : IEvent
-    {
-      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
-      eventHandler.Subscribe(nwObject, handler);
-    }
-
     private void AddGlobalHandler<TEvent>(Action<TEvent> handler)
       where TEvent : IEvent
     {
@@ -120,37 +113,11 @@ namespace Anvil.Services
       eventHandler.SubscribeAll(handler);
     }
 
-    private void RemoveObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler)
+    private void AddObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler)
       where TEvent : IEvent
     {
-      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
-      eventHandler?.Unsubscribe(nwObject, handler);
-    }
-
-    private void RemoveGlobalHandler<TEvent>(Action<TEvent> handler)
-      where TEvent : IEvent
-    {
-      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
-      eventHandler?.UnsubscribeAll(handler);
-    }
-
-    private void TryCleanupHandler<TEvent, TFactory>()
-      where TEvent : IEvent, new()
-      where TFactory : IEventFactory
-    {
-      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
-      if (eventHandler != null)
-      {
-        if (eventHandler.HasSubscribers)
-        {
-          return;
-        }
-
-        eventHandlers.Remove(typeof(TEvent));
-      }
-
-      TFactory factory = GetEventFactory<TFactory>();
-      factory.Unregister<TEvent>();
+      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
+      eventHandler.Subscribe(nwObject, handler);
     }
 
     private TFactory GetEventFactory<TFactory>() where TFactory : IEventFactory
@@ -175,6 +142,39 @@ namespace Anvil.Services
       }
 
       return (EventHandler<TEvent>)handler;
+    }
+
+    private void RemoveGlobalHandler<TEvent>(Action<TEvent> handler)
+      where TEvent : IEvent
+    {
+      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
+      eventHandler?.UnsubscribeAll(handler);
+    }
+
+    private void RemoveObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler)
+      where TEvent : IEvent
+    {
+      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
+      eventHandler?.Unsubscribe(nwObject, handler);
+    }
+
+    private void TryCleanupHandler<TEvent, TFactory>()
+      where TEvent : IEvent, new()
+      where TFactory : IEventFactory
+    {
+      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
+      if (eventHandler != null)
+      {
+        if (eventHandler.HasSubscribers)
+        {
+          return;
+        }
+
+        eventHandlers.Remove(typeof(TEvent));
+      }
+
+      TFactory factory = GetEventFactory<TFactory>();
+      factory.Unregister<TEvent>();
     }
   }
 }

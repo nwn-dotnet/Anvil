@@ -6,24 +6,9 @@ namespace Anvil.API
 {
   public sealed class NuiValueConverter : JsonConverter
   {
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override bool CanConvert(Type objectType)
     {
-      if (value == null)
-      {
-        writer.WriteNull();
-        return;
-      }
-
-      Type type = value.GetType();
-      PropertyInfo propertyInfo = type.GetProperty(nameof(NuiValue<object>.Value));
-
-      if (propertyInfo == null)
-      {
-        writer.WriteNull();
-        return;
-      }
-
-      serializer.Serialize(writer, propertyInfo.GetValue(value));
+      return objectType.GetGenericTypeDefinition() == typeof(NuiValue<>);
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -44,9 +29,24 @@ namespace Anvil.API
       return retVal;
     }
 
-    public override bool CanConvert(Type objectType)
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-      return objectType.GetGenericTypeDefinition() == typeof(NuiValue<>);
+      if (value == null)
+      {
+        writer.WriteNull();
+        return;
+      }
+
+      Type type = value.GetType();
+      PropertyInfo propertyInfo = type.GetProperty(nameof(NuiValue<object>.Value));
+
+      if (propertyInfo == null)
+      {
+        writer.WriteNull();
+        return;
+      }
+
+      serializer.Serialize(writer, propertyInfo.GetValue(value));
     }
   }
 }

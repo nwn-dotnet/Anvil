@@ -12,11 +12,28 @@ namespace Anvil.API
     internal NwTrappable(CNWSObject gameObject) : base(gameObject) {}
 
     /// <summary>
+    /// Gets a value indicating whether this trap has been flagged as visible to all creatures in the game.
+    /// </summary>
+    public bool IsTrapFlagged
+    {
+      get => NWScript.GetTrapFlagged(this).ToBool();
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this object is trapped.
     /// </summary>
     public bool IsTrapped
     {
       get => NWScript.GetIsTrapped(this).ToBool();
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this trap should not reset after firing (true = don't reset).
+    /// </summary>
+    public bool OneShotTrap
+    {
+      get => NWScript.GetTrapOneShot(this).ToBool();
+      set => NWScript.SetTrapOneShot(this, value.ToInt());
     }
 
     /// <summary>
@@ -30,48 +47,28 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the base type of this trap.
+    /// </summary>
+    public TrapBaseType TrapBaseType
+    {
+      get => (TrapBaseType)NWScript.GetTrapBaseType(this);
+    }
+
+    /// <summary>
+    /// Gets the player that created this trap. If the trap was placed in the toolset, this returns null.
+    /// </summary>
+    public NwPlayer TrapCreator
+    {
+      get => NWScript.GetTrapCreator(this).ToNwPlayer();
+    }
+
+    /// <summary>
     /// Gets or sets a value indicating whether this trap can be detected.
     /// </summary>
     public bool TrapDetectable
     {
       get => NWScript.GetTrapDetectable(this).ToBool();
       set => NWScript.SetTrapDetectable(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this trap can be disarmed.
-    /// </summary>
-    public bool TrapDisarmable
-    {
-      get => NWScript.GetTrapDisarmable(this).ToBool();
-      set => NWScript.SetTrapDisarmable(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this trap can be recovered.
-    /// </summary>
-    public bool TrapRecoverable
-    {
-      get => NWScript.GetTrapRecoverable(this).ToBool();
-      set => NWScript.SetTrapRecoverable(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this trap should not reset after firing (true = don't reset).
-    /// </summary>
-    public bool OneShotTrap
-    {
-      get => NWScript.GetTrapOneShot(this).ToBool();
-      set => NWScript.SetTrapOneShot(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets the skill DC required to disarm this trap.
-    /// </summary>
-    public int TrapDisarmDC
-    {
-      get => NWScript.GetTrapDisarmDC(this);
-      set => NWScript.SetTrapDisarmDC(this, value);
     }
 
     /// <summary>
@@ -84,6 +81,24 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether this trap can be disarmed.
+    /// </summary>
+    public bool TrapDisarmable
+    {
+      get => NWScript.GetTrapDisarmable(this).ToBool();
+      set => NWScript.SetTrapDisarmable(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets the skill DC required to disarm this trap.
+    /// </summary>
+    public int TrapDisarmDC
+    {
+      get => NWScript.GetTrapDisarmDC(this);
+      set => NWScript.SetTrapDisarmDC(this, value);
+    }
+
+    /// <summary>
     /// Gets or sets the tag of the key that will disarm this trap.
     /// </summary>
     public string TrapKeyTag
@@ -93,27 +108,29 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the player that created this trap. If the trap was placed in the toolset, this returns null.
+    /// Gets or sets a value indicating whether this trap can be recovered.
     /// </summary>
-    public NwPlayer TrapCreator
+    public bool TrapRecoverable
     {
-      get => NWScript.GetTrapCreator(this).ToNwPlayer();
+      get => NWScript.GetTrapRecoverable(this).ToBool();
+      set => NWScript.SetTrapRecoverable(this, value.ToInt());
     }
 
     /// <summary>
-    /// Gets a value indicating whether this trap has been flagged as visible to all creatures in the game.
+    /// Disables this trap as if a creature disarmed it (calling the OnDisarm event respectively).
     /// </summary>
-    public bool IsTrapFlagged
+    public void DisableTrap()
     {
-      get => NWScript.GetTrapFlagged(this).ToBool();
+      NWScript.SetTrapDisabled(this);
     }
 
     /// <summary>
-    /// Gets the base type of this trap.
+    /// Gets the creature who last disarmed the trap on this object.
     /// </summary>
-    public TrapBaseType TrapBaseType
+    public async Task<NwCreature> GetLastDisarmedBy()
     {
-      get => (TrapBaseType)NWScript.GetTrapBaseType(this);
+      await WaitForObjectContext();
+      return NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
     }
 
     /// <summary>
@@ -139,23 +156,6 @@ namespace Anvil.API
       {
         NWScript.SetTrapDetectedBy(this, creature, iDetected);
       }
-    }
-
-    /// <summary>
-    /// Disables this trap as if a creature disarmed it (calling the OnDisarm event respectively).
-    /// </summary>
-    public void DisableTrap()
-    {
-      NWScript.SetTrapDisabled(this);
-    }
-
-    /// <summary>
-    /// Gets the creature who last disarmed the trap on this object.
-    /// </summary>
-    public async Task<NwCreature> GetLastDisarmedBy()
-    {
-      await WaitForObjectContext();
-      return NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
     }
   }
 }

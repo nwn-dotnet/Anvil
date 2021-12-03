@@ -20,115 +20,6 @@ namespace Anvil.API
       Area = area;
     }
 
-    public static implicit operator CNWSArea(NwArea area)
-    {
-      return area?.Area;
-    }
-
-    internal override CNWSScriptVarTable ScriptVarTable
-    {
-      get => Area.m_ScriptVars;
-    }
-
-    public override Guid? PeekUUID()
-    {
-      CNWSUUID uid = Area.m_pUUID;
-      if (!uid.CanCarryUUID())
-      {
-        return null;
-      }
-
-      CExoString uidString = uid.m_uuid;
-      return uidString != null ? Guid.Parse(uidString.ToString()) : null;
-    }
-
-    /// <summary>
-    /// Gets the size of this area.
-    /// <returns>The number of tiles that the area is wide/high.</returns>
-    /// </summary>
-    public Vector2Int Size
-    {
-      get => new Vector2Int(NWScript.GetAreaSize((int)AreaSizeDimension.Width, this), NWScript.GetAreaSize((int)AreaSizeDimension.Height, this));
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
-    /// </summary>
-    public bool IsInterior
-    {
-      get => NWScript.GetIsAreaInterior(this).ToBool();
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether this area is above ground (true), or underground (false).
-    /// </summary>
-    public bool IsAboveGround
-    {
-      get => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether this area is natural (true), or artificial (false).
-    /// </summary>
-    public bool IsNatural
-    {
-      get => (AreaInfo)NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
-    }
-
-    /// <summary>
-    /// Gets the tileset (.set) resource name used for this area.
-    /// </summary>
-    public string Tileset
-    {
-      get => NWScript.GetTilesetResRef(this);
-    }
-
-    /// <summary>
-    /// Gets the number of players in this area.
-    /// </summary>
-    public int PlayerCount
-    {
-      get => Area.m_nPlayersInArea;
-    }
-
-    /// <summary>
-    /// Gets or sets the current weather conditions for this area.
-    /// </summary>
-    public WeatherType Weather
-    {
-      get => (WeatherType)NWScript.GetWeather(this);
-      set => NWScript.SetWeather(this, (int)value);
-    }
-
-    /// <summary>
-    /// Gets or sets the current skybox for this area.
-    /// </summary>
-    public Skybox SkyBox
-    {
-      get => (Skybox)NWScript.GetSkyBox(this);
-      set => NWScript.SetSkyBox((int)value, this);
-    }
-
-    /// <summary>
-    /// Gets or sets the daytime background track index for this area.<br/>
-    /// See "Resources > Sounds and Music > Music" in the toolset for track numbers.
-    /// </summary>
-    public int MusicBackgroundDayTrack
-    {
-      get => NWScript.MusicBackgroundGetDayTrack(this);
-      set => NWScript.MusicBackgroundChangeDay(this, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the nighttime background track index for this area.<br/>
-    /// Refer to Resources > Sounds and Music > Music in the toolset for track numbers.
-    /// </summary>
-    public int MusicBackgroundNightTrack
-    {
-      get => NWScript.MusicBackgroundGetNightTrack(this);
-      set => NWScript.MusicBackgroundChangeNight(this, value);
-    }
-
     /// <summary>
     /// Sets the daytime ambient track for this area.<br/>
     /// See "ambientsound.2da" for track numbers.
@@ -164,37 +55,27 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the combat track index for this area.<br/>
-    /// Refer to Resources > Sounds and Music > Music in the toolset for track numbers.
+    /// Gets a value indicating whether this area is above ground (true), or underground (false).
     /// </summary>
-    public int MusicBattleTrack
+    public bool IsAboveGround
     {
-      get => NWScript.MusicBackgroundGetBattleTrack(this);
-      set => NWScript.MusicBattleChange(this, value);
+      get => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
     }
 
     /// <summary>
-    /// Gets or sets the wind power for this area.<br/>
-    /// Set to 0, 1 or 2.
+    /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
     /// </summary>
-    public byte WindPower
+    public bool IsInterior
     {
-      get => Area.m_nWindAmount;
-      set => Area.m_nWindAmount = value;
+      get => NWScript.GetIsAreaInterior(this).ToBool();
     }
 
     /// <summary>
-    /// Gets all Objects currently in this area.
+    /// Gets a value indicating whether this area is natural (true), or artificial (false).
     /// </summary>
-    public IEnumerable<NwGameObject> Objects
+    public bool IsNatural
     {
-      get
-      {
-        for (uint areaObj = NWScript.GetFirstObjectInArea(this); areaObj != Invalid; areaObj = NWScript.GetNextObjectInArea(this))
-        {
-          yield return areaObj.ToNwObject<NwGameObject>();
-        }
-      }
+      get => (AreaInfo)NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
     }
 
     /// <summary>
@@ -214,30 +95,73 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the PvP setting for this area.
-    /// </summary>
-    public PVPSetting PVPSetting
-    {
-      get => (PVPSetting)Area.m_nPVPSetting;
-      set => Area.m_nPVPSetting = (byte)value;
-    }
-
-    /// <summary>
-    /// Gets or sets the spot modifier for this area.
-    /// </summary>
-    public int SpotModifier
-    {
-      get => Area.m_nAreaSpotModifier;
-      set => Area.m_nAreaSpotModifier = value;
-    }
-
-    /// <summary>
     /// Gets or sets the listen modifier for this area.
     /// </summary>
     public int ListenModifier
     {
       get => Area.m_nAreaListenModifier;
       set => Area.m_nAreaListenModifier = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the daytime background track index for this area.<br/>
+    /// See "Resources > Sounds and Music > Music" in the toolset for track numbers.
+    /// </summary>
+    public int MusicBackgroundDayTrack
+    {
+      get => NWScript.MusicBackgroundGetDayTrack(this);
+      set => NWScript.MusicBackgroundChangeDay(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the nighttime background track index for this area.<br/>
+    /// Refer to Resources > Sounds and Music > Music in the toolset for track numbers.
+    /// </summary>
+    public int MusicBackgroundNightTrack
+    {
+      get => NWScript.MusicBackgroundGetNightTrack(this);
+      set => NWScript.MusicBackgroundChangeNight(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the combat track index for this area.<br/>
+    /// Refer to Resources > Sounds and Music > Music in the toolset for track numbers.
+    /// </summary>
+    public int MusicBattleTrack
+    {
+      get => NWScript.MusicBackgroundGetBattleTrack(this);
+      set => NWScript.MusicBattleChange(this, value);
+    }
+
+    /// <summary>
+    /// Gets all Objects currently in this area.
+    /// </summary>
+    public IEnumerable<NwGameObject> Objects
+    {
+      get
+      {
+        for (uint areaObj = NWScript.GetFirstObjectInArea(this); areaObj != Invalid; areaObj = NWScript.GetNextObjectInArea(this))
+        {
+          yield return areaObj.ToNwObject<NwGameObject>();
+        }
+      }
+    }
+
+    /// <summary>
+    /// Gets the number of players in this area.
+    /// </summary>
+    public int PlayerCount
+    {
+      get => Area.m_nPlayersInArea;
+    }
+
+    /// <summary>
+    /// Gets or sets the PvP setting for this area.
+    /// </summary>
+    public PVPSetting PVPSetting
+    {
+      get => (PVPSetting)Area.m_nPVPSetting;
+      set => Area.m_nPVPSetting = (byte)value;
     }
 
     /// <summary>
@@ -250,102 +174,62 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the fog color for this area, at the specified time of day.
+    /// Gets the size of this area.
+    /// <returns>The number of tiles that the area is wide/high.</returns>
     /// </summary>
-    public FogColor GetFogColor(FogType fogType)
+    public Vector2Int Size
     {
-      return (FogColor)NWScript.GetFogColor((int)fogType, this);
+      get => new Vector2Int(NWScript.GetAreaSize((int)AreaSizeDimension.Width, this), NWScript.GetAreaSize((int)AreaSizeDimension.Height, this));
     }
 
     /// <summary>
-    /// Sets the fog color for this area, at the specified time of day.
+    /// Gets or sets the current skybox for this area.
     /// </summary>
-    public void SetFogColor(FogType fogType, FogColor fogColor)
+    public Skybox SkyBox
     {
-      NWScript.SetFogColor((int)fogType, (int)fogColor, this);
+      get => (Skybox)NWScript.GetSkyBox(this);
+      set => NWScript.SetSkyBox((int)value, this);
     }
 
     /// <summary>
-    /// Gets the fog amount for this area, at the specified time of day.
+    /// Gets or sets the spot modifier for this area.
     /// </summary>
-    public int GetFogAmount(FogType fogType)
+    public int SpotModifier
     {
-      return NWScript.GetFogAmount((int)fogType, this);
+      get => Area.m_nAreaSpotModifier;
+      set => Area.m_nAreaSpotModifier = value;
     }
 
     /// <summary>
-    /// Sets the fog amount for this area, at the specified time of day.
+    /// Gets the tileset (.set) resource name used for this area.
     /// </summary>
-    public void SetFogAmount(FogType fogType, int fogAmount)
+    public string Tileset
     {
-      NWScript.SetFogAmount((int)fogType, fogAmount, this);
+      get => NWScript.GetTilesetResRef(this);
     }
 
     /// <summary>
-    /// Notifies all clients in this area to recompute static lighting.
-    /// This can be used to update the lighting after changing any tile lights
-    /// or if placeables with lights have been added/deleted.
+    /// Gets or sets the current weather conditions for this area.
     /// </summary>
-    public void RecomputeStaticLighting()
+    public WeatherType Weather
     {
-      NWScript.RecomputeStaticLighting(this);
+      get => (WeatherType)NWScript.GetWeather(this);
+      set => NWScript.SetWeather(this, (int)value);
     }
 
     /// <summary>
-    /// Begins playback of background music in this area.
+    /// Gets or sets the wind power for this area.<br/>
+    /// Set to 0, 1 or 2.
     /// </summary>
-    public void PlayBackgroundMusic()
+    public byte WindPower
     {
-      NWScript.MusicBackgroundPlay(this);
+      get => Area.m_nWindAmount;
+      set => Area.m_nWindAmount = value;
     }
 
-    /// <summary>
-    /// Stops playback of any running background music in this area.
-    /// </summary>
-    public void StopBackgroundMusic()
+    internal override CNWSScriptVarTable ScriptVarTable
     {
-      NWScript.MusicBackgroundStop(this);
-    }
-
-    /// <summary>
-    /// Begins playback of battle music for this area.
-    /// </summary>
-    public void PlayBattleMusic()
-    {
-      NWScript.MusicBattlePlay(this);
-    }
-
-    /// <summary>
-    /// Stops playback of any running battle music in this area.
-    /// </summary>
-    public void StopBattleMusic()
-    {
-      NWScript.MusicBattleStop(this);
-    }
-
-    /// <summary>
-    /// Begins playback of ambient sounds in this area.
-    /// </summary>
-    public void PlayAmbient()
-    {
-      NWScript.AmbientSoundPlay(this);
-    }
-
-    /// <summary>
-    /// Stops playback of any ambient sounds in this area.
-    /// </summary>
-    public void StopAmbient()
-    {
-      NWScript.AmbientSoundStop(this);
-    }
-
-    /// <summary>
-    /// Creates a copy of this area, including everything inside of it (except players).
-    /// </summary>
-    /// <returns>The new cloned area instance.</returns>
-    public NwArea Clone()
-    {
-      return NWScript.CopyArea(this).ToNwObject<NwArea>();
+      get => Area.m_ScriptVars;
     }
 
     /// <summary>
@@ -358,6 +242,44 @@ namespace Anvil.API
     public static NwArea Create(string resRef, string newTag = "", string newName = "")
     {
       return NWScript.CreateArea(resRef, newTag, newName).ToNwObject<NwArea>();
+    }
+
+    /// <inheritdoc cref="Deserialize(string,byte[],byte[],string,string)"/>
+    public static NwArea Deserialize(byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
+    {
+      string resourceName = ResourceNameGenerator.Create();
+      return Deserialize(resourceName, serializedARE, serializedGIT, newTag, newName);
+    }
+
+    /// <summary>
+    /// Creates an area from the specified serialized area data.
+    /// </summary>
+    /// <param name="resRef">The base resref name to use (e.g. area001). Overrides previous areas with the same resref (excl. development folder areas).</param>
+    /// <param name="serializedARE">The serialized static area information (.are).</param>
+    /// <param name="serializedGIT">The serialized dynamic area information (.git).</param>
+    /// <param name="newTag">A new tag for this area. Defaults to the tag set in the toolset.</param>
+    /// <param name="newName">A new name for this area. Defaults to the name set in the toolset.</param>
+    /// <returns>The created area.</returns>
+    public static NwArea Deserialize(string resRef, byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
+    {
+      ResourceManager.WriteTempResource(resRef + ".git", serializedGIT);
+      ResourceManager.WriteTempResource(resRef + ".are", serializedARE);
+
+      return Create(resRef, newTag, newName);
+    }
+
+    public static implicit operator CNWSArea(NwArea area)
+    {
+      return area?.Area;
+    }
+
+    /// <summary>
+    /// Creates a copy of this area, including everything inside of it (except players).
+    /// </summary>
+    /// <returns>The new cloned area instance.</returns>
+    public NwArea Clone()
+    {
+      return NWScript.CopyArea(this).ToNwObject<NwArea>();
     }
 
     /// <summary>
@@ -387,21 +309,151 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Sets the detailed wind data for this area.
+    /// Gets the fog amount for this area, at the specified time of day.
     /// </summary>
-    /// <remarks>
-    /// The predefined values in the toolset are:<br/>
-    /// NONE:  direction=(1.0, 1.0, 0.0), magnitude=0.0, yaw=0.0,   pitch=0.0<br/>
-    /// LIGHT: direction=(1.0, 1.0, 0.0), magnitude=1.0, yaw=100.0, pitch=3.0<br/>
-    /// HEAVY: direction=(1.0, 1.0, 0.0), magnitude=2.0, yaw=150.0, pitch=5.0
-    /// </remarks>
-    /// <param name="direction">The direction of the wind.</param>
-    /// <param name="magnitude">The magnitude/intensity of the wind.</param>
-    /// <param name="yaw">The yaw value of the wind.</param>
-    /// <param name="pitch">The pitch value of the wind.</param>
-    public void SetAreaWind(Vector3 direction, float magnitude, float yaw, float pitch)
+    public int GetFogAmount(FogType fogType)
     {
-      NWScript.SetAreaWind(this, direction, magnitude, yaw, pitch);
+      return NWScript.GetFogAmount((int)fogType, this);
+    }
+
+    /// <summary>
+    /// Gets the fog color for this area, at the specified time of day.
+    /// </summary>
+    public FogColor GetFogColor(FogType fogType)
+    {
+      return (FogColor)NWScript.GetFogColor((int)fogType, this);
+    }
+
+    public override Guid? PeekUUID()
+    {
+      CNWSUUID uid = Area.m_pUUID;
+      if (!uid.CanCarryUUID())
+      {
+        return null;
+      }
+
+      CExoString uidString = uid.m_uuid;
+      return uidString != null ? Guid.Parse(uidString.ToString()) : null;
+    }
+
+    /// <summary>
+    /// Begins playback of ambient sounds in this area.
+    /// </summary>
+    public void PlayAmbient()
+    {
+      NWScript.AmbientSoundPlay(this);
+    }
+
+    /// <summary>
+    /// Begins playback of background music in this area.
+    /// </summary>
+    public void PlayBackgroundMusic()
+    {
+      NWScript.MusicBackgroundPlay(this);
+    }
+
+    /// <summary>
+    /// Begins playback of battle music for this area.
+    /// </summary>
+    public void PlayBattleMusic()
+    {
+      NWScript.MusicBattlePlay(this);
+    }
+
+    /// <summary>
+    /// Notifies all clients in this area to recompute static lighting.
+    /// This can be used to update the lighting after changing any tile lights
+    /// or if placeables with lights have been added/deleted.
+    /// </summary>
+    public void RecomputeStaticLighting()
+    {
+      NWScript.RecomputeStaticLighting(this);
+    }
+
+    public unsafe byte[] SerializeARE(string areaName = null, string resRef = null)
+    {
+      areaName ??= Name;
+      resRef ??= ResRef;
+
+      if (string.IsNullOrEmpty(resRef))
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must not be empty.");
+      }
+
+      if (resRef.Length > 16)
+      {
+        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must smaller than 17 characters.");
+      }
+
+      return NativeUtils.SerializeGff("ARE", "V3.2", (resGff, resStruct) =>
+      {
+        // Important Stuff
+        resGff.WriteFieldCExoLocString(resStruct, areaName.ToExoLocString(), "Name".GetNullTerminatedString());
+        resGff.WriteFieldCExoString(resStruct, new CExoString(Tag), "Tag".GetNullTerminatedString());
+        resGff.WriteFieldCExoString(resStruct, new CExoString(ResRef), "ResRef".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Size.X, "Width".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Size.Y, "Height".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, Area.m_refTileSet, "Tileset".GetNullTerminatedString());
+
+        // Less Important Stuff
+        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfLightning, "ChanceLightning".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfRain, "ChanceRain".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfSnow, "ChanceSnow".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bUseDayNightCycle, "DayNightCycle".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nFlags, "Flags".GetNullTerminatedString());
+        resGff.WriteFieldFLOAT(resStruct, Area.m_fFogClipDistance, "FogClipDist".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bIsNight, "IsNight".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nLightingScheme, "LightingScheme".GetNullTerminatedString());
+        resGff.WriteFieldWORD(resStruct, Area.m_nLoadScreenID, "LoadScreenID".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nAreaListenModifier, "ModListenCheck".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nAreaSpotModifier, "ModSpotCheck".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonAmbientColor, "MoonAmbientColor".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonDiffuseColor, "MoonDiffuseColor".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nMoonFogAmount, "MoonFogAmount".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonFogColor, "MoonFogColor".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bMoonShadows, "MoonShadows".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bNoRestingAllowed, "NoRest".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[0]), "OnHeartbeat".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[1]), "OnUserDefined".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[2]), "OnEnter".GetNullTerminatedString());
+        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[3]), "OnExit".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nPVPSetting, "PlayerVsPlayer".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nShadowOpacity, "ShadowOpacity".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nSkyBox, "SkyBox".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nSunAmbientColor, "SunAmbientColor".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nSunDiffuseColor, "SunDiffuseColor".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, Area.m_nSunFogAmount, "SunFogAmount".GetNullTerminatedString());
+        resGff.WriteFieldDWORD(resStruct, Area.m_nSunFogColor, "SunFogColor".GetNullTerminatedString());
+        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bSunShadows, "SunShadows".GetNullTerminatedString());
+        resGff.WriteFieldINT(resStruct, Area.m_nWindAmount, "WindPower".GetNullTerminatedString());
+
+        // Tile Stuff
+        using CResList resList = new CResList();
+        resGff.AddList(resList, resStruct, "Tile_List".GetNullTerminatedString());
+        int tileCount = Area.m_nWidth * Area.m_nHeight;
+        CNWSTileArray tiles = CNWSTileArray.FromPointer(Area.m_pTile);
+
+        for (int i = 0; i < tileCount; i++)
+        {
+          CNWTile tile = tiles[i];
+          resGff.AddListElement(resStruct, resList, 1);
+          resGff.WriteFieldINT(resStruct, tile.m_nID, "Tile_ID".GetNullTerminatedString());
+          resGff.WriteFieldINT(resStruct, tile.m_nOrientation, "Tile_Orientation".GetNullTerminatedString());
+          resGff.WriteFieldINT(resStruct, tile.m_nHeight, "Tile_Height".GetNullTerminatedString());
+
+          resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight1Color, "Tile_MainLight1".GetNullTerminatedString());
+          resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight2Color, "Tile_MainLight2".GetNullTerminatedString());
+
+          resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight1Color, "Tile_SrcLight1".GetNullTerminatedString());
+          resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight2Color, "Tile_SrcLight2".GetNullTerminatedString());
+
+          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop1, "Tile_AnimLoop1".GetNullTerminatedString());
+          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop2, "Tile_AnimLoop2".GetNullTerminatedString());
+          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop3, "Tile_AnimLoop3".GetNullTerminatedString());
+        }
+
+        return true;
+      });
     }
 
     public byte[] SerializeGIT(ObjectTypes objectFilter = ObjectTypes.All, ICollection<NwGameObject> exclusionList = null, bool exportVarTable = true, bool exportUUID = true, string resRef = null)
@@ -565,114 +617,62 @@ namespace Anvil.API
       }
     }
 
-    public unsafe byte[] SerializeARE(string areaName = null, string resRef = null)
+    /// <summary>
+    /// Sets the detailed wind data for this area.
+    /// </summary>
+    /// <remarks>
+    /// The predefined values in the toolset are:<br/>
+    /// NONE:  direction=(1.0, 1.0, 0.0), magnitude=0.0, yaw=0.0,   pitch=0.0<br/>
+    /// LIGHT: direction=(1.0, 1.0, 0.0), magnitude=1.0, yaw=100.0, pitch=3.0<br/>
+    /// HEAVY: direction=(1.0, 1.0, 0.0), magnitude=2.0, yaw=150.0, pitch=5.0
+    /// </remarks>
+    /// <param name="direction">The direction of the wind.</param>
+    /// <param name="magnitude">The magnitude/intensity of the wind.</param>
+    /// <param name="yaw">The yaw value of the wind.</param>
+    /// <param name="pitch">The pitch value of the wind.</param>
+    public void SetAreaWind(Vector3 direction, float magnitude, float yaw, float pitch)
     {
-      areaName ??= Name;
-      resRef ??= ResRef;
-
-      if (string.IsNullOrEmpty(resRef))
-      {
-        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must not be empty.");
-      }
-
-      if (resRef.Length > 16)
-      {
-        throw new ArgumentOutOfRangeException(nameof(resRef), "The new ResRef must smaller than 17 characters.");
-      }
-
-      return NativeUtils.SerializeGff("ARE", "V3.2", (resGff, resStruct) =>
-      {
-        // Important Stuff
-        resGff.WriteFieldCExoLocString(resStruct, areaName.ToExoLocString(), "Name".GetNullTerminatedString());
-        resGff.WriteFieldCExoString(resStruct, new CExoString(Tag), "Tag".GetNullTerminatedString());
-        resGff.WriteFieldCExoString(resStruct, new CExoString(ResRef), "ResRef".GetNullTerminatedString());
-        resGff.WriteFieldINT(resStruct, Size.X, "Width".GetNullTerminatedString());
-        resGff.WriteFieldINT(resStruct, Size.Y, "Height".GetNullTerminatedString());
-        resGff.WriteFieldCResRef(resStruct, Area.m_refTileSet, "Tileset".GetNullTerminatedString());
-
-        // Less Important Stuff
-        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfLightning, "ChanceLightning".GetNullTerminatedString());
-        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfRain, "ChanceRain".GetNullTerminatedString());
-        resGff.WriteFieldINT(resStruct, Area.m_nChanceOfSnow, "ChanceSnow".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bUseDayNightCycle, "DayNightCycle".GetNullTerminatedString());
-        resGff.WriteFieldDWORD(resStruct, Area.m_nFlags, "Flags".GetNullTerminatedString());
-        resGff.WriteFieldFLOAT(resStruct, Area.m_fFogClipDistance, "FogClipDist".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bIsNight, "IsNight".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, Area.m_nLightingScheme, "LightingScheme".GetNullTerminatedString());
-        resGff.WriteFieldWORD(resStruct, Area.m_nLoadScreenID, "LoadScreenID".GetNullTerminatedString());
-        resGff.WriteFieldINT(resStruct, Area.m_nAreaListenModifier, "ModListenCheck".GetNullTerminatedString());
-        resGff.WriteFieldINT(resStruct, Area.m_nAreaSpotModifier, "ModSpotCheck".GetNullTerminatedString());
-        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonAmbientColor, "MoonAmbientColor".GetNullTerminatedString());
-        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonDiffuseColor, "MoonDiffuseColor".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, Area.m_nMoonFogAmount, "MoonFogAmount".GetNullTerminatedString());
-        resGff.WriteFieldDWORD(resStruct, Area.m_nMoonFogColor, "MoonFogColor".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bMoonShadows, "MoonShadows".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bNoRestingAllowed, "NoRest".GetNullTerminatedString());
-        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[0]), "OnHeartbeat".GetNullTerminatedString());
-        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[1]), "OnUserDefined".GetNullTerminatedString());
-        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[2]), "OnEnter".GetNullTerminatedString());
-        resGff.WriteFieldCResRef(resStruct, new CResRef(Area.m_sScripts[3]), "OnExit".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, Area.m_nPVPSetting, "PlayerVsPlayer".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, Area.m_nShadowOpacity, "ShadowOpacity".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, Area.m_nSkyBox, "SkyBox".GetNullTerminatedString());
-        resGff.WriteFieldDWORD(resStruct, Area.m_nSunAmbientColor, "SunAmbientColor".GetNullTerminatedString());
-        resGff.WriteFieldDWORD(resStruct, Area.m_nSunDiffuseColor, "SunDiffuseColor".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, Area.m_nSunFogAmount, "SunFogAmount".GetNullTerminatedString());
-        resGff.WriteFieldDWORD(resStruct, Area.m_nSunFogColor, "SunFogColor".GetNullTerminatedString());
-        resGff.WriteFieldBYTE(resStruct, (byte)Area.m_bSunShadows, "SunShadows".GetNullTerminatedString());
-        resGff.WriteFieldINT(resStruct, Area.m_nWindAmount, "WindPower".GetNullTerminatedString());
-
-        // Tile Stuff
-        using CResList resList = new CResList();
-        resGff.AddList(resList, resStruct, "Tile_List".GetNullTerminatedString());
-        int tileCount = Area.m_nWidth * Area.m_nHeight;
-        CNWSTileArray tiles = CNWSTileArray.FromPointer(Area.m_pTile);
-
-        for (int i = 0; i < tileCount; i++)
-        {
-          CNWTile tile = tiles[i];
-          resGff.AddListElement(resStruct, resList, 1);
-          resGff.WriteFieldINT(resStruct, tile.m_nID, "Tile_ID".GetNullTerminatedString());
-          resGff.WriteFieldINT(resStruct, tile.m_nOrientation, "Tile_Orientation".GetNullTerminatedString());
-          resGff.WriteFieldINT(resStruct, tile.m_nHeight, "Tile_Height".GetNullTerminatedString());
-
-          resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight1Color, "Tile_MainLight1".GetNullTerminatedString());
-          resGff.WriteFieldBYTE(resStruct, tile.m_nMainLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nMainLight2Color, "Tile_MainLight2".GetNullTerminatedString());
-
-          resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight1Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight1Color, "Tile_SrcLight1".GetNullTerminatedString());
-          resGff.WriteFieldBYTE(resStruct, tile.m_nSourceLight2Color == byte.MaxValue ? byte.MinValue : tile.m_nSourceLight2Color, "Tile_SrcLight2".GetNullTerminatedString());
-
-          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop1, "Tile_AnimLoop1".GetNullTerminatedString());
-          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop2, "Tile_AnimLoop2".GetNullTerminatedString());
-          resGff.WriteFieldBYTE(resStruct, tile.m_nAnimLoop3, "Tile_AnimLoop3".GetNullTerminatedString());
-        }
-
-        return true;
-      });
-    }
-
-    /// <inheritdoc cref="Deserialize(string,byte[],byte[],string,string)"/>
-    public static NwArea Deserialize(byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
-    {
-      string resourceName = ResourceNameGenerator.Create();
-      return Deserialize(resourceName, serializedARE, serializedGIT, newTag, newName);
+      NWScript.SetAreaWind(this, direction, magnitude, yaw, pitch);
     }
 
     /// <summary>
-    /// Creates an area from the specified serialized area data.
+    /// Sets the fog amount for this area, at the specified time of day.
     /// </summary>
-    /// <param name="resRef">The base resref name to use (e.g. area001). Overrides previous areas with the same resref (excl. development folder areas).</param>
-    /// <param name="serializedARE">The serialized static area information (.are).</param>
-    /// <param name="serializedGIT">The serialized dynamic area information (.git).</param>
-    /// <param name="newTag">A new tag for this area. Defaults to the tag set in the toolset.</param>
-    /// <param name="newName">A new name for this area. Defaults to the name set in the toolset.</param>
-    /// <returns>The created area.</returns>
-    public static NwArea Deserialize(string resRef, byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
+    public void SetFogAmount(FogType fogType, int fogAmount)
     {
-      ResourceManager.WriteTempResource(resRef + ".git", serializedGIT);
-      ResourceManager.WriteTempResource(resRef + ".are", serializedARE);
+      NWScript.SetFogAmount((int)fogType, fogAmount, this);
+    }
 
-      return Create(resRef, newTag, newName);
+    /// <summary>
+    /// Sets the fog color for this area, at the specified time of day.
+    /// </summary>
+    public void SetFogColor(FogType fogType, FogColor fogColor)
+    {
+      NWScript.SetFogColor((int)fogType, (int)fogColor, this);
+    }
+
+    /// <summary>
+    /// Stops playback of any ambient sounds in this area.
+    /// </summary>
+    public void StopAmbient()
+    {
+      NWScript.AmbientSoundStop(this);
+    }
+
+    /// <summary>
+    /// Stops playback of any running background music in this area.
+    /// </summary>
+    public void StopBackgroundMusic()
+    {
+      NWScript.MusicBackgroundStop(this);
+    }
+
+    /// <summary>
+    /// Stops playback of any running battle music in this area.
+    /// </summary>
+    public void StopBattleMusic()
+    {
+      NWScript.MusicBattleStop(this);
     }
   }
 }

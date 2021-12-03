@@ -1,7 +1,10 @@
+using System;
+
 namespace Anvil.API
 {
   public readonly struct CreatureTypeFilter
   {
+    public static readonly CreatureTypeFilter None = new CreatureTypeFilter(CreatureType.None, -1);
     internal readonly int Key;
     internal readonly int Value;
 
@@ -11,16 +14,9 @@ namespace Anvil.API
       Value = value;
     }
 
-    public static readonly CreatureTypeFilter None = new CreatureTypeFilter(CreatureType.None, -1);
-
-    public static CreatureTypeFilter RacialType(RacialType racialType)
+    public static CreatureTypeFilter Alive(bool alive)
     {
-      return new CreatureTypeFilter(CreatureType.RacialType, (int)racialType);
-    }
-
-    public static CreatureTypeFilter PlayerChar(bool isPc)
-    {
-      return new CreatureTypeFilter(CreatureType.PlayerChar, isPc.ToInt());
+      return new CreatureTypeFilter(CreatureType.IsAlive, alive.ToInt());
     }
 
     public static CreatureTypeFilter Class(ClassType classType)
@@ -28,14 +24,9 @@ namespace Anvil.API
       return new CreatureTypeFilter(CreatureType.Class, (int)classType);
     }
 
-    public static CreatureTypeFilter Reputation(ReputationType reputationType)
+    public static CreatureTypeFilter DoesNotHaveSpellEffect(Spell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.Reputation, (int)reputationType);
-    }
-
-    public static CreatureTypeFilter Alive(bool alive)
-    {
-      return new CreatureTypeFilter(CreatureType.IsAlive, alive.ToInt());
+      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect);
     }
 
     public static CreatureTypeFilter HasSpellEffect(Spell spellEffect)
@@ -43,14 +34,30 @@ namespace Anvil.API
       return new CreatureTypeFilter(CreatureType.HasSpellEffect, (int)spellEffect);
     }
 
-    public static CreatureTypeFilter DoesNotHaveSpellEffect(Spell spellEffect)
-    {
-      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect);
-    }
-
     public static CreatureTypeFilter Perception(PerceptionType perceptionType)
     {
       return new CreatureTypeFilter(CreatureType.Perception, (int)perceptionType);
+    }
+
+    public static CreatureTypeFilter PlayerChar(bool isPc)
+    {
+      return new CreatureTypeFilter(CreatureType.PlayerChar, isPc.ToInt());
+    }
+
+    [Obsolete("Use CreatureTypeFilter.Race(NwRace) instead.")]
+    public static CreatureTypeFilter RacialType(RacialType racialType)
+    {
+      return new CreatureTypeFilter(CreatureType.RacialType, (int)racialType);
+    }
+
+    public static CreatureTypeFilter Race(NwRace race)
+    {
+      return new CreatureTypeFilter(CreatureType.RacialType, (int)race.RacialType);
+    }
+
+    public static CreatureTypeFilter Reputation(ReputationType reputationType)
+    {
+      return new CreatureTypeFilter(CreatureType.Reputation, (int)reputationType);
     }
   }
 }

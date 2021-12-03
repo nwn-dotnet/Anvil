@@ -12,14 +12,14 @@ namespace Anvil.Services
       WriteDefaultNLogResources();
     }
 
-    private void WriteDefaultPaketResources()
-    {
-      WriteIfNotExists(Path.Combine(HomeStorage.Paket, "paket.dependencies.orig"), HomeResources.PaketDefaultConfig);
-    }
-
     private void WriteDefaultNLogResources()
     {
       WriteIfNotExists(HomeStorage.NLogConfig + ".orig", HomeResources.NLogDefaultConfig);
+    }
+
+    private void WriteDefaultPaketResources()
+    {
+      WriteIfNotExists(Path.Combine(HomeStorage.Paket, "paket.dependencies.orig"), HomeResources.PaketDefaultConfig);
     }
 
     private void WriteIfNotExists(string path, string contents)

@@ -11,14 +11,20 @@ namespace Anvil.Internal
 {
   internal sealed class LoggerManager : IDisposable
   {
-    private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message}${onexception:${newline}${exception:format=ToString}}");
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message}${onexception:${newline}${exception:format=ToString}}");
 
     public LoggerManager()
     {
       LogManager.AutoShutdown = false;
       LogManager.Configuration = null;
       LogManager.ThrowConfigExceptions = true;
+    }
+
+    public void Dispose()
+    {
+      LogManager.Shutdown();
     }
 
     public void Init()
@@ -48,14 +54,6 @@ namespace Anvil.Internal
       LogManager.Configuration.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
     }
 
-    private LoggingConfiguration GetConfigFromFile(string path)
-    {
-      LoggingConfiguration config = new XmlLoggingConfiguration(path);
-      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
-
-      return config;
-    }
-
     private static LoggingConfiguration GetDefaultConfig()
     {
       LoggingConfiguration config = new LoggingConfiguration();
@@ -83,9 +81,12 @@ namespace Anvil.Internal
       return config;
     }
 
-    public void Dispose()
+    private LoggingConfiguration GetConfigFromFile(string path)
     {
-      LogManager.Shutdown();
+      LoggingConfiguration config = new XmlLoggingConfiguration(path);
+      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
+
+      return config;
     }
   }
 }

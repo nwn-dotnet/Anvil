@@ -18,56 +18,6 @@ namespace Anvil.API
       Store = store;
     }
 
-    public static implicit operator CNWSStore(NwStore store)
-    {
-      return store?.Store;
-    }
-
-    public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
-    {
-      return CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
-    }
-
-    public int StoreGold
-    {
-      get => NWScript.GetStoreGold(this);
-      set => NWScript.SetStoreGold(this, value);
-    }
-
-    public int IdentifyCost
-    {
-      get => NWScript.GetStoreIdentifyCost(this);
-      set => NWScript.SetStoreIdentifyCost(this, value);
-    }
-
-    public int MaxBuyPrice
-    {
-      get => NWScript.GetStoreMaxBuyPrice(this);
-      set => NWScript.SetStoreMaxBuyPrice(this, value);
-    }
-
-    /// <summary>
-    /// Gets all items belonging to this store's inventory.
-    /// </summary>
-    public IEnumerable<NwItem> Items
-    {
-      get
-      {
-        for (uint item = NWScript.GetFirstItemInInventory(this); item != Invalid; item = NWScript.GetNextItemInInventory(this))
-        {
-          yield return item.ToNwObject<NwItem>();
-        }
-      }
-    }
-
-    /// <summary>
-    /// Gets the number of current customers using this store.
-    /// </summary>
-    public int CustomerCount
-    {
-      get => Store.m_aCurrentCustomers.Count;
-    }
-
     /// <summary>
     /// Gets the current customers of this store.
     /// </summary>
@@ -92,35 +42,48 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Open oStore for oPC.<br/>
-    /// You can mark up or down the prices with the optional parameters.<br/>
+    /// Gets the number of current customers using this store.
     /// </summary>
-    /// <param name="player">The player to present the store.</param>
-    /// <param name="bonusMarkup">A number in percent to mark up prices. (Default: 0).</param>
-    /// <param name="bonusMarkDown">A number in percent to mark down prices. (Default: 0).</param>
-    /// <remarks>If bonusMarkup is given a value of 10, prices will be 110% of the normal prices.</remarks>
-    public void Open(NwPlayer player, int bonusMarkup = 0, int bonusMarkDown = 0)
+    public int CustomerCount
     {
-      NWScript.OpenStore(this, player.ControlledCreature, bonusMarkup, bonusMarkDown);
+      get => Store.m_aCurrentCustomers.Count;
     }
 
-    public void AcquireItem(NwItem item)
+    public int IdentifyCost
     {
-      if (item == null)
+      get => NWScript.GetStoreIdentifyCost(this);
+      set => NWScript.SetStoreIdentifyCost(this, value);
+    }
+
+    /// <summary>
+    /// Gets all items belonging to this store's inventory.
+    /// </summary>
+    public IEnumerable<NwItem> Items
+    {
+      get
       {
-        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+        for (uint item = NWScript.GetFirstItemInInventory(this); item != Invalid; item = NWScript.GetNextItemInInventory(this))
+        {
+          yield return item.ToNwObject<NwItem>();
+        }
       }
-
-      Store.AcquireItem(item.Item, true.ToInt(), 0xFF, 0xFF);
     }
 
-    public override byte[] Serialize()
+    public int MaxBuyPrice
     {
-      return NativeUtils.SerializeGff("UTM", (resGff, resStruct) =>
-      {
-        Store.SaveObjectState(resGff, resStruct);
-        return Store.SaveStore(resGff, resStruct, 0).ToBool();
-      });
+      get => NWScript.GetStoreMaxBuyPrice(this);
+      set => NWScript.SetStoreMaxBuyPrice(this, value);
+    }
+
+    public int StoreGold
+    {
+      get => NWScript.GetStoreGold(this);
+      set => NWScript.SetStoreGold(this, value);
+    }
+
+    public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    {
+      return CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
     }
 
     public static NwStore Deserialize(byte[] serialized)
@@ -147,6 +110,48 @@ namespace Anvil.API
       });
 
       return result && store != null ? store.ToNwObject<NwStore>() : null;
+    }
+
+    public static implicit operator CNWSStore(NwStore store)
+    {
+      return store?.Store;
+    }
+
+    public void AcquireItem(NwItem item)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      Store.AcquireItem(item.Item, true.ToInt(), 0xFF, 0xFF);
+    }
+
+    /// <summary>
+    /// Open oStore for oPC.<br/>
+    /// You can mark up or down the prices with the optional parameters.<br/>
+    /// </summary>
+    /// <param name="player">The player to present the store.</param>
+    /// <param name="bonusMarkup">A number in percent to mark up prices. (Default: 0).</param>
+    /// <param name="bonusMarkDown">A number in percent to mark down prices. (Default: 0).</param>
+    /// <remarks>If bonusMarkup is given a value of 10, prices will be 110% of the normal prices.</remarks>
+    public void Open(NwPlayer player, int bonusMarkup = 0, int bonusMarkDown = 0)
+    {
+      NWScript.OpenStore(this, player.ControlledCreature, bonusMarkup, bonusMarkDown);
+    }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTM", (resGff, resStruct) =>
+      {
+        Store.SaveObjectState(resGff, resStruct);
+        return Store.SaveStore(resGff, resStruct, 0).ToBool();
+      });
+    }
+
+    internal override void RemoveFromArea()
+    {
+      Store.RemoveFromArea();
     }
 
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)

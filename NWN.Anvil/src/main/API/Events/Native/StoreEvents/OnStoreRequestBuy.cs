@@ -8,17 +8,16 @@ namespace Anvil.API.Events
 {
   public sealed class OnStoreRequestBuy : IEvent
   {
-    public bool PreventBuy { get; set; }
-
-    public Lazy<bool> Result { get; private set; }
-
     public NwCreature Creature { get; private init; }
 
     public NwItem Item { get; private init; }
-
-    public NwStore Store { get; private init; }
+    public bool PreventBuy { get; set; }
 
     public int Price { get; private init; }
+
+    public Lazy<bool> Result { get; private set; }
+
+    public NwStore Store { get; private init; }
 
     NwObject IEvent.Context
     {

@@ -36,6 +36,11 @@ namespace Anvil.API
       return new MonsterHitEffect(IPOnMonsterHit.Fear, (int)duration);
     }
 
+    public static MonsterHitEffect LevelDrain(int levelDrain = 1)
+    {
+      return new MonsterHitEffect(IPOnMonsterHit.LevelDrain, levelDrain);
+    }
+
     public static MonsterHitEffect Poison(PoisonType poisonType)
     {
       return new MonsterHitEffect(IPOnMonsterHit.Poison, (int)poisonType);
@@ -49,11 +54,6 @@ namespace Anvil.API
     public static MonsterHitEffect Stun(IPOnHitDuration duration)
     {
       return new MonsterHitEffect(IPOnMonsterHit.Stun, (int)duration);
-    }
-
-    public static MonsterHitEffect LevelDrain(int levelDrain = 1)
-    {
-      return new MonsterHitEffect(IPOnMonsterHit.LevelDrain, levelDrain);
     }
 
     public static MonsterHitEffect Wounding(int bleedDamage)

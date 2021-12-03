@@ -20,20 +20,42 @@ namespace Anvil.API
       Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 
-    public static implicit operator CNWSPlaceable(NwPlaceable placeable)
+    /// <summary>
+    /// Gets or sets the dialog ResRef for this placeable.
+    /// </summary>
+    public string DialogResRef
     {
-      return placeable?.Placeable;
+      get => Placeable.GetDialogResref().ToString();
+      set => Placeable.m_cDialog = new CResRef(value);
     }
 
-    public override float Rotation
+    /// <summary>
+    /// Gets or sets a value indicating whether this placeable has an inventory.
+    /// </summary>
+    public bool HasInventory
     {
-      get => (360 - NWScript.GetFacing(this)) % 360;
-      set
-      {
-        float radians = (360 - value % 360) * NwMath.DegToRad;
-        Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
-        Placeable.SetOrientation(orientation.ToNativeVector());
-      }
+      get => NWScript.GetHasInventory(this).ToBool();
+      set => Placeable.m_bHasInventory = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this placeable should illuminate.
+    /// </summary>
+    public bool Illumination
+    {
+      get => NWScript.GetPlaceableIllumination(this).ToBool();
+      set => NWScript.SetPlaceableIllumination(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets the inventory of this placeable.
+    /// </summary>
+    public Inventory Inventory { get; }
+
+    public bool IsStatic
+    {
+      get => Placeable.m_bStaticObject.ToBool();
+      set => Placeable.m_bStaticObject = value.ToInt();
     }
 
     public override bool KeyAutoRemoved
@@ -47,23 +69,20 @@ namespace Anvil.API
       get => NWScript.GetSittingCreature(this) != Invalid;
     }
 
+    public override float Rotation
+    {
+      get => (360 - NWScript.GetFacing(this)) % 360;
+      set
+      {
+        float radians = (360 - value % 360) * NwMath.DegToRad;
+        Vector3 orientation = new Vector3(MathF.Cos(radians), MathF.Sin(radians), 0.0f);
+        Placeable.SetOrientation(orientation.ToNativeVector());
+      }
+    }
+
     public NwCreature SittingCreature
     {
       get => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
-    }
-
-    /// <summary>
-    /// Gets the inventory of this placeable.
-    /// </summary>
-    public Inventory Inventory { get; }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this placeable should illuminate.
-    /// </summary>
-    public bool Illumination
-    {
-      get => NWScript.GetPlaceableIllumination(this).ToBool();
-      set => NWScript.SetPlaceableIllumination(this, value.ToInt());
     }
 
     /// <summary>
@@ -75,28 +94,69 @@ namespace Anvil.API
       set => NWScript.SetUseableFlag(this, value.ToInt());
     }
 
-    public bool IsStatic
+    public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      get => Placeable.m_bStaticObject.ToBool();
-      set => Placeable.m_bStaticObject = value.ToInt();
+      location = Location.Create(location.Area, location.Position, location.FlippedRotation);
+      return CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
+    }
+
+    public static NwPlaceable Deserialize(byte[] serialized)
+    {
+      CNWSPlaceable placeable = null;
+
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTP"))
+        {
+          return false;
+        }
+
+        placeable = new CNWSPlaceable(Invalid);
+        if (placeable.LoadPlaceable(resGff, resStruct, false.ToInt(), null).ToBool())
+        {
+          placeable.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(placeable);
+          return true;
+        }
+
+        placeable.Dispose();
+        return false;
+      });
+
+      return result && placeable != null ? placeable.ToNwObject<NwPlaceable>() : null;
+    }
+
+    public static implicit operator CNWSPlaceable(NwPlaceable placeable)
+    {
+      return placeable?.Placeable;
+    }
+
+    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      void* pItem = item.Item;
+      Placeable.AcquireItem(&pItem, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
     }
 
     /// <summary>
-    /// Gets or sets a value indicating whether this placeable has an inventory.
+    /// Gets this placeable's base save value for the specified saving throw.
     /// </summary>
-    public bool HasInventory
+    /// <param name="savingThrow">The type of saving throw.</param>
+    /// <returns>The creature's base saving throw value.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
+    public sbyte GetBaseSavingThrow(SavingThrow savingThrow)
     {
-      get => NWScript.GetHasInventory(this).ToBool();
-      set => Placeable.m_bHasInventory = value.ToInt();
-    }
-
-    /// <summary>
-    /// Gets or sets the dialog ResRef for this placeable.
-    /// </summary>
-    public string DialogResRef
-    {
-      get => Placeable.GetDialogResref().ToString();
-      set => Placeable.m_cDialog = new CResRef(value);
+      return savingThrow switch
+      {
+        SavingThrow.Fortitude => Placeable.m_nFortSave.AsSByte(),
+        SavingThrow.Reflex => Placeable.m_nReflexSave.AsSByte(),
+        SavingThrow.Will => Placeable.m_nWillSave.AsSByte(),
+        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
+      };
     }
 
     /// <summary>
@@ -145,12 +205,6 @@ namespace Anvil.API
       item.StackSize -= amount;
     }
 
-    public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
-    {
-      location = Location.Create(location.Area, location.Position, location.FlippedRotation);
-      return CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
-    }
-
     /// <summary>
     /// Determines whether the specified action can be performed on this placeable.
     /// </summary>
@@ -161,32 +215,13 @@ namespace Anvil.API
       return NWScript.GetIsPlaceableObjectActionPossible(this, (int)action).ToBool();
     }
 
-    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    public override byte[] Serialize()
     {
-      if (item == null)
+      return NativeUtils.SerializeGff("UTP", (resGff, resStruct) =>
       {
-        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
-      }
-
-      void* pItem = item.Item;
-      Placeable.AcquireItem(&pItem, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
-    }
-
-    /// <summary>
-    /// Gets this placeable's base save value for the specified saving throw.
-    /// </summary>
-    /// <param name="savingThrow">The type of saving throw.</param>
-    /// <returns>The creature's base saving throw value.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
-    public sbyte GetBaseSavingThrow(SavingThrow savingThrow)
-    {
-      return savingThrow switch
-      {
-        SavingThrow.Fortitude => Placeable.m_nFortSave.AsSByte(),
-        SavingThrow.Reflex => Placeable.m_nReflexSave.AsSByte(),
-        SavingThrow.Will => Placeable.m_nWillSave.AsSByte(),
-        _ => throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null),
-      };
+        Placeable.SaveObjectState(resGff, resStruct);
+        return Placeable.SavePlaceable(resGff, resStruct, 0).ToBool();
+      });
     }
 
     /// <summary>
@@ -213,39 +248,14 @@ namespace Anvil.API
       }
     }
 
-    public override byte[] Serialize()
+    internal override void RemoveFromArea()
     {
-      return NativeUtils.SerializeGff("UTP", (resGff, resStruct) =>
+      if (IsTrapped)
       {
-        Placeable.SaveObjectState(resGff, resStruct);
-        return Placeable.SavePlaceable(resGff, resStruct, 0).ToBool();
-      });
-    }
+        Area.Area.m_pTrapList.Remove(this);
+      }
 
-    public static NwPlaceable Deserialize(byte[] serialized)
-    {
-      CNWSPlaceable placeable = null;
-
-      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
-      {
-        if (!resGff.IsValidGff("UTP"))
-        {
-          return false;
-        }
-
-        placeable = new CNWSPlaceable(Invalid);
-        if (placeable.LoadPlaceable(resGff, resStruct, false.ToInt(), null).ToBool())
-        {
-          placeable.LoadObjectState(resGff, resStruct);
-          GC.SuppressFinalize(placeable);
-          return true;
-        }
-
-        placeable.Dispose();
-        return false;
-      });
-
-      return result && placeable != null ? placeable.ToNwObject<NwPlaceable>() : null;
+      Placeable.RemoveFromArea();
     }
 
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)

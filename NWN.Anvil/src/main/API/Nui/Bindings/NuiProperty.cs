@@ -6,11 +6,6 @@ namespace Anvil.API
   /// <typeparam name="T">The underlying type of the property.</typeparam>
   public abstract class NuiProperty<T>
   {
-    public static implicit operator NuiProperty<T>(T value)
-    {
-      return CreateValue(value);
-    }
-
     /// <summary>
     /// Creates a Nui variable binding that can be changed at runtime.
     /// </summary>
@@ -29,6 +24,11 @@ namespace Anvil.API
     public static NuiValue<T> CreateValue(T value)
     {
       return new NuiValue<T>(value);
+    }
+
+    public static implicit operator NuiProperty<T>(T value)
+    {
+      return CreateValue(value);
     }
   }
 }

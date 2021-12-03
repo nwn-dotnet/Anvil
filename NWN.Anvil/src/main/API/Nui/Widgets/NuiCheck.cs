@@ -7,11 +7,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiCheck : NuiWidget
   {
-    public override string Type
-    {
-      get => "check";
-    }
-
     [JsonConstructor]
     public NuiCheck(NuiProperty<string> label, NuiProperty<bool> selected)
     {
@@ -24,5 +19,10 @@ namespace Anvil.API
 
     [JsonProperty("value")]
     public NuiProperty<bool> Selected { get; set; }
+
+    public override string Type
+    {
+      get => "check";
+    }
   }
 }

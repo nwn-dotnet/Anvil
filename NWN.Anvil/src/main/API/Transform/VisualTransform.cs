@@ -9,34 +9,27 @@ namespace Anvil.API
     private readonly NwGameObject gameObject;
     private VisualTransformLerpSettings activeLerpSettings;
 
-    public float Scale
+    internal VisualTransform(NwGameObject gameObject)
     {
-      get => GetValue(VisualTransformProperty.ObjectVisualTransformScale);
-      set => SetValue(VisualTransformProperty.ObjectVisualTransformScale, value);
+      this.gameObject = gameObject;
+    }
+
+    private enum VisualTransformProperty
+    {
+      ObjectVisualTransformScale = NWScript.OBJECT_VISUAL_TRANSFORM_SCALE,
+      ObjectVisualTransformRotateX = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_X,
+      ObjectVisualTransformRotateY = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_Y,
+      ObjectVisualTransformRotateZ = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_Z,
+      ObjectVisualTransformTranslateX = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_X,
+      ObjectVisualTransformTranslateY = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_Y,
+      ObjectVisualTransformTranslateZ = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_Z,
+      ObjectVisualTransformAnimationSpeed = NWScript.OBJECT_VISUAL_TRANSFORM_ANIMATION_SPEED,
     }
 
     public float AnimSpeed
     {
       get => GetValue(VisualTransformProperty.ObjectVisualTransformAnimationSpeed);
       set => SetValue(VisualTransformProperty.ObjectVisualTransformAnimationSpeed, value);
-    }
-
-    public Vector3 Translation
-    {
-      get
-      {
-        float x = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateX);
-        float y = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateY);
-        float z = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateZ);
-
-        return new Vector3(x, y, z);
-      }
-      set
-      {
-        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateX, value.X);
-        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateY, value.Y);
-        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateZ, value.Z);
-      }
     }
 
     public Vector3 Rotation
@@ -57,9 +50,40 @@ namespace Anvil.API
       }
     }
 
-    internal VisualTransform(NwGameObject gameObject)
+    public float Scale
     {
-      this.gameObject = gameObject;
+      get => GetValue(VisualTransformProperty.ObjectVisualTransformScale);
+      set => SetValue(VisualTransformProperty.ObjectVisualTransformScale, value);
+    }
+
+    public Vector3 Translation
+    {
+      get
+      {
+        float x = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateX);
+        float y = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateY);
+        float z = GetValue(VisualTransformProperty.ObjectVisualTransformTranslateZ);
+
+        return new Vector3(x, y, z);
+      }
+      set
+      {
+        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateX, value.X);
+        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateY, value.Y);
+        SetValue(VisualTransformProperty.ObjectVisualTransformTranslateZ, value.Z);
+      }
+    }
+
+    /// <summary>
+    /// Updates the transform data of this visual transform by copying another.
+    /// </summary>
+    /// <param name="other">The visual transform to copy.</param>
+    public void Copy(VisualTransform other)
+    {
+      Scale = other.Scale;
+      AnimSpeed = other.AnimSpeed;
+      Translation = other.Translation;
+      Rotation = other.Rotation;
     }
 
     /// <summary>
@@ -79,18 +103,6 @@ namespace Anvil.API
       {
         activeLerpSettings = null;
       }
-    }
-
-    /// <summary>
-    /// Updates the transform data of this visual transform by copying another.
-    /// </summary>
-    /// <param name="other">The visual transform to copy.</param>
-    public void Copy(VisualTransform other)
-    {
-      Scale = other.Scale;
-      AnimSpeed = other.AnimSpeed;
-      Translation = other.Translation;
-      Rotation = other.Rotation;
     }
 
     private float GetValue(VisualTransformProperty property)
@@ -113,18 +125,6 @@ namespace Anvil.API
       {
         NWScript.SetObjectVisualTransform(gameObject, (int)property, value);
       }
-    }
-
-    private enum VisualTransformProperty
-    {
-      ObjectVisualTransformScale = NWScript.OBJECT_VISUAL_TRANSFORM_SCALE,
-      ObjectVisualTransformRotateX = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_X,
-      ObjectVisualTransformRotateY = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_Y,
-      ObjectVisualTransformRotateZ = NWScript.OBJECT_VISUAL_TRANSFORM_ROTATE_Z,
-      ObjectVisualTransformTranslateX = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_X,
-      ObjectVisualTransformTranslateY = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_Y,
-      ObjectVisualTransformTranslateZ = NWScript.OBJECT_VISUAL_TRANSFORM_TRANSLATE_Z,
-      ObjectVisualTransformAnimationSpeed = NWScript.OBJECT_VISUAL_TRANSFORM_ANIMATION_SPEED,
     }
   }
 }
