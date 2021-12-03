@@ -6,13 +6,12 @@ namespace Anvil.API.Events
 {
   public abstract class DMTeleportEvent : IEvent
   {
-    public NwArea TargetArea { get; internal init; }
-
-    public Vector3 TargetPosition { get; internal init; }
-
     public NwPlayer DungeonMaster { get; internal init; }
 
     public bool Skip { get; set; }
+    public NwArea TargetArea { get; internal init; }
+
+    public Vector3 TargetPosition { get; internal init; }
 
     NwObject IEvent.Context
     {
@@ -29,35 +28,35 @@ namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="Events.OnDMJumpToPoint"/>
-    public event Action<OnDMJumpToPoint> OnDMJumpToPoint
-    {
-      add => EventService.Subscribe<OnDMJumpToPoint, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMJumpToPoint, DMEventFactory>(LoginCreature, value);
-    }
-
     /// <inheritdoc cref="Events.OnDMJumpAllPlayersToPoint"/>
     public event Action<OnDMJumpAllPlayersToPoint> OnDMJumpAllPlayersToPoint
     {
       add => EventService.Subscribe<OnDMJumpAllPlayersToPoint, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMJumpAllPlayersToPoint, DMEventFactory>(LoginCreature, value);
     }
+
+    /// <inheritdoc cref="Events.OnDMJumpToPoint"/>
+    public event Action<OnDMJumpToPoint> OnDMJumpToPoint
+    {
+      add => EventService.Subscribe<OnDMJumpToPoint, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMJumpToPoint, DMEventFactory>(LoginCreature, value);
+    }
   }
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="Events.OnDMJumpToPoint"/>
-    public event Action<OnDMJumpToPoint> OnDMJumpToPoint
-    {
-      add => EventService.SubscribeAll<OnDMJumpToPoint, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMJumpToPoint, DMEventFactory>(value);
-    }
-
     /// <inheritdoc cref="Events.OnDMJumpAllPlayersToPoint"/>
     public event Action<OnDMJumpAllPlayersToPoint> OnDMJumpAllPlayersToPoint
     {
       add => EventService.SubscribeAll<OnDMJumpAllPlayersToPoint, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMJumpAllPlayersToPoint, DMEventFactory>(value);
+    }
+
+    /// <inheritdoc cref="Events.OnDMJumpToPoint"/>
+    public event Action<OnDMJumpToPoint> OnDMJumpToPoint
+    {
+      add => EventService.SubscribeAll<OnDMJumpToPoint, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMJumpToPoint, DMEventFactory>(value);
     }
   }
 }

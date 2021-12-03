@@ -4,18 +4,18 @@ namespace Anvil.API
 {
   public sealed class NuiDrawListCircle : NuiDrawListItem
   {
-    public override NuiDrawListItemType Type
+    [JsonConstructor]
+    public NuiDrawListCircle(NuiProperty<NuiColor> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, NuiProperty<NuiRect> rect) : base(color, fill, lineThickness)
     {
-      get => NuiDrawListItemType.Circle;
+      Rect = rect;
     }
 
     [JsonProperty("rect")]
     public NuiProperty<NuiRect> Rect { get; set; }
 
-    [JsonConstructor]
-    public NuiDrawListCircle(NuiProperty<NuiColor> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, NuiProperty<NuiRect> rect) : base(color, fill, lineThickness)
+    public override NuiDrawListItemType Type
     {
-      Rect = rect;
+      get => NuiDrawListItemType.Circle;
     }
   }
 }

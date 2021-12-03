@@ -14,9 +14,9 @@ namespace Anvil.API.Events
   public sealed class OnClientConnect : IEvent
   {
     /// <summary>
-    /// Gets the player name of the connecting client.
+    /// Gets or sets a value indicating whether this client connection should be prevented.
     /// </summary>
-    public string PlayerName { get; private init; }
+    public bool BlockConnection { get; set; }
 
     /// <summary>
     /// Gets the public CD Key of the connecting client.
@@ -34,14 +34,14 @@ namespace Anvil.API.Events
     public string IP { get; private init; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether this client connection should be prevented.
-    /// </summary>
-    public bool BlockConnection { get; set; }
-
-    /// <summary>
     /// Gets or sets the kick message to send to the client if BlockConnection is set to true.
     /// </summary>
     public string KickMessage { get; set; }
+
+    /// <summary>
+    /// Gets the player name of the connecting client.
+    /// </summary>
+    public string PlayerName { get; private init; }
 
     NwObject IEvent.Context
     {
@@ -50,14 +50,25 @@ namespace Anvil.API.Events
 
     internal sealed class Factory : SingleHookEventFactory<Factory.SendServerToPlayerCharListHook>
     {
-      internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
-
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
+
+      internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
 
       protected override unsafe FunctionHook<SendServerToPlayerCharListHook> RequestHook()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
         return HookService.RequestHook<SendServerToPlayerCharListHook>(pHook, FunctionsLinux._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer, HookOrder.Early);
+      }
+
+      private static async void DelayDisconnectPlayer(uint playerId, string kickMessage)
+      {
+        await NwTask.NextFrame();
+
+        CNetLayerPlayerInfo playerInfo = NetLayer.GetPlayerInfo(playerId);
+        if (playerInfo != null)
+        {
+          NetLayer.DisconnectPlayer(playerId, 5838, true.ToInt(), kickMessage.ToExoString());
+        }
       }
 
       [UnmanagedCallersOnly]
@@ -90,17 +101,6 @@ namespace Anvil.API.Events
         string kickMessage = eventData.KickMessage ?? string.Empty;
         DelayDisconnectPlayer(playerId, kickMessage);
         return Hook.CallOriginal(pMessage, pPlayer);
-      }
-
-      private static async void DelayDisconnectPlayer(uint playerId, string kickMessage)
-      {
-        await NwTask.NextFrame();
-
-        CNetLayerPlayerInfo playerInfo = NetLayer.GetPlayerInfo(playerId);
-        if (playerInfo != null)
-        {
-          NetLayer.DisconnectPlayer(playerId, 5838, true.ToInt(), kickMessage.ToExoString());
-        }
       }
     }
   }

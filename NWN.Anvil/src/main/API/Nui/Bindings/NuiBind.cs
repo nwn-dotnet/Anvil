@@ -9,14 +9,14 @@ namespace Anvil.API
   /// <typeparam name="T">The type of value being bound.</typeparam>
   public sealed class NuiBind<T> : NuiProperty<T>
   {
-    [JsonProperty("bind")]
-    public string Key { get; init; }
-
     [JsonConstructor]
     public NuiBind(string key)
     {
       Key = key;
     }
+
+    [JsonProperty("bind")]
+    public string Key { get; init; }
 
     /// <summary>
     /// Queries the specified player for the value of this binding.

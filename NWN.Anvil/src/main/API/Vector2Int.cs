@@ -16,14 +16,24 @@ namespace Anvil.API
       Y = y;
     }
 
-    public static Vector2Int operator -(Vector2Int a, Vector2Int b)
-    {
-      return new Vector2Int(a.X - b.X, a.Y - b.Y);
-    }
-
     public static Vector2Int operator +(Vector2Int a, Vector2Int b)
     {
       return new Vector2Int(a.X + b.X, a.Y + b.Y);
+    }
+
+    public static bool operator ==(Vector2Int left, Vector2Int right)
+    {
+      return left.Equals(right);
+    }
+
+    public static bool operator !=(Vector2Int left, Vector2Int right)
+    {
+      return !left.Equals(right);
+    }
+
+    public static Vector2Int operator -(Vector2Int a, Vector2Int b)
+    {
+      return new Vector2Int(a.X - b.X, a.Y - b.Y);
     }
 
     public bool Equals(Vector2Int other)
@@ -39,16 +49,6 @@ namespace Anvil.API
     public override int GetHashCode()
     {
       return HashCode.Combine(X, Y);
-    }
-
-    public static bool operator ==(Vector2Int left, Vector2Int right)
-    {
-      return left.Equals(right);
-    }
-
-    public static bool operator !=(Vector2Int left, Vector2Int right)
-    {
-      return !left.Equals(right);
     }
   }
 }

@@ -15,6 +15,8 @@ namespace Anvil.API
   [DebuggerDisplay("{" + nameof(Name) + "}")]
   public abstract partial class NwObject : IEquatable<NwObject>
   {
+    internal const uint Invalid = NWScript.OBJECT_INVALID;
+
     [Inject]
     private protected static EventService EventService { get; private set; }
 
@@ -23,8 +25,6 @@ namespace Anvil.API
 
     [Inject]
     private protected static VirtualMachine VirtualMachine { get; private set; }
-
-    internal const uint Invalid = NWScript.OBJECT_INVALID;
 
     [UsedImplicitly]
     internal readonly ICGameObject Object;
@@ -37,34 +37,13 @@ namespace Anvil.API
       ObjectId = gameObject.m_idSelf;
     }
 
-    public static implicit operator uint(NwObject gameObject)
-    {
-      return gameObject == null ? Invalid : gameObject.ObjectId;
-    }
-
-    internal abstract CNWSScriptVarTable ScriptVarTable { get; }
-
     /// <summary>
-    /// Gets the globally unique identifier for this object.
+    /// Gets or sets the description for this object.
     /// </summary>
-    public Guid UUID
+    public string Description
     {
-      get
-      {
-        if (this == Invalid)
-        {
-          return Guid.Empty;
-        }
-
-        string uid = NWScript.GetObjectUUID(this);
-        if (string.IsNullOrEmpty(uid))
-        {
-          ForceRefreshUUID();
-          uid = NWScript.GetObjectUUID(this);
-        }
-
-        return Guid.TryParse(uid, out Guid guid) ? guid : Guid.Empty;
-      }
+      get => NWScript.GetDescription(this);
+      set => NWScript.SetDescription(this, value);
     }
 
     /// <summary>
@@ -76,54 +55,11 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the resource reference used to create this object.
-    /// </summary>
-    public string ResRef
-    {
-      get => NWScript.GetResRef(this);
-    }
-
-    /// <summary>
     /// Gets a value indicating whether this is a valid object.
     /// </summary>
     public bool IsValid
     {
       get => NWScript.GetIsObjectValid(this).ToBool();
-    }
-
-    /// <summary>
-    /// Gets or sets the name of this object.
-    /// </summary>
-    public string Name
-    {
-      get => NWScript.GetName(this);
-      set => NWScript.SetName(this, value);
-    }
-
-    /// <summary>
-    /// Gets the original description for this object as defined in the toolset.
-    /// </summary>
-    public string OriginalDescription
-    {
-      get => NWScript.GetDescription(this, true.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets the description for this object.
-    /// </summary>
-    public string Description
-    {
-      get => NWScript.GetDescription(this);
-      set => NWScript.SetDescription(this, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the tag for this object.
-    /// </summary>
-    public string Tag
-    {
-      get => NWScript.GetTag(this);
-      set => NWScript.SetTag(this, value);
     }
 
     /// <summary>
@@ -164,26 +100,77 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators).<br/>
-    /// If the current active object is already this object, then the code runs immediately. Otherwise, it will be run with all other closures.<br/>
-    /// This is the async equivalent of AssignCommand in NWScript.
+    /// Gets or sets the name of this object.
     /// </summary>
-    public async Task WaitForObjectContext()
+    public string Name
     {
-      if (NWScript.OBJECT_SELF == this)
+      get => NWScript.GetName(this);
+      set => NWScript.SetName(this, value);
+    }
+
+    /// <summary>
+    /// Gets the original description for this object as defined in the toolset.
+    /// </summary>
+    public string OriginalDescription
+    {
+      get => NWScript.GetDescription(this, true.ToInt());
+    }
+
+    /// <summary>
+    /// Gets the resource reference used to create this object.
+    /// </summary>
+    public string ResRef
+    {
+      get => NWScript.GetResRef(this);
+    }
+
+    /// <summary>
+    /// Gets or sets the tag for this object.
+    /// </summary>
+    public string Tag
+    {
+      get => NWScript.GetTag(this);
+      set => NWScript.SetTag(this, value);
+    }
+
+    /// <summary>
+    /// Gets the globally unique identifier for this object.
+    /// </summary>
+    public Guid UUID
+    {
+      get
       {
-        return;
+        if (this == Invalid)
+        {
+          return Guid.Empty;
+        }
+
+        string uid = NWScript.GetObjectUUID(this);
+        if (string.IsNullOrEmpty(uid))
+        {
+          ForceRefreshUUID();
+          uid = NWScript.GetObjectUUID(this);
+        }
+
+        return Guid.TryParse(uid, out Guid guid) ? guid : Guid.Empty;
       }
+    }
 
-      if (!IsValid)
-      {
-        throw new InvalidOperationException("Cannot wait for the context of an invalid object.");
-      }
+    internal abstract CNWSScriptVarTable ScriptVarTable { get; }
 
-      TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-      NWScript.AssignCommand(this, () => { tcs.SetResult(true); });
+    public static bool operator ==(NwObject left, NwObject right)
+    {
+      return Equals(left, right);
+    }
 
-      await tcs.Task;
+    public static implicit operator uint(NwObject gameObject)
+    {
+      return gameObject == null ? Invalid : gameObject.ObjectId;
+    }
+
+    public static bool operator !=(NwObject left, NwObject right)
+    {
+      return !Equals(left, right);
     }
 
     /// <summary>
@@ -210,100 +197,11 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Instructs this object to speak.
-    /// </summary>
-    /// <param name="message">The message the object should speak.</param>
-    /// <param name="talkVolume">The channel/volume of this message.</param>
-    /// <param name="queueAsAction">Whether the object should speak immediately (false), or be queued in the object's action queue (true).</param>
-    public async Task SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)
-    {
-      await WaitForObjectContext();
-      if (!queueAsAction)
-      {
-        NWScript.SpeakString(message, (int)talkVolume);
-      }
-      else
-      {
-        NWScript.ActionSpeakString(message, (int)talkVolume);
-      }
-    }
-
-    /// <summary>
-    /// Gets the specified object variable for this object.
-    /// </summary>
-    /// <param name="name">The variable name.</param>
-    /// <typeparam name="T">The variable type.</typeparam>
-    /// <returns>A LocalVariable instance for getting/setting the variable's value.</returns>
-    public T GetObjectVariable<T>(string name) where T : ObjectVariable, new()
-    {
-      return ObjectVariable.Create<T>(this, name);
-    }
-
-    /// <summary>
-    /// Attempts to get the UUID of this object, if assigned.
-    /// </summary>
-    /// <returns>The UUID if assigned, otherwise no value.</returns>
-    public abstract Guid? PeekUUID();
-
-    public void ForceRefreshUUID()
-    {
-      NWScript.ForceRefreshObjectUUID(this);
-    }
-
-    /// <summary>
     /// Clears any event subscriptions associated with this object.
     /// </summary>
     public void ClearEventSubscriptions()
     {
       EventService.ClearObjectSubscriptions(this);
-    }
-
-    /// <summary>
-    /// Gets the script assigned to run for the specified object event.
-    /// </summary>
-    /// <param name="eventType">The event type to query.</param>
-    /// <returns>The script that has been assigned to the event, otherwise an <see cref="string.Empty"/> string.</returns>
-    public string GetEventScript(EventScriptType eventType)
-    {
-      return NWScript.GetEventScript(this, (int)eventType);
-    }
-
-    /// <summary>
-    /// Sets the script to be run on the specified object event.
-    /// </summary>
-    /// <param name="eventType">The event to be assigned.</param>
-    /// <param name="script">The new script to assign to this event.</param>
-    /// <exception cref="InvalidOperationException">Thrown if this event is locked as a service has subscribed to this event. See <see cref="IsEventLocked"/> to determine if an event script can be changed.</exception>
-    public void SetEventScript(EventScriptType eventType, string script)
-    {
-      if (IsEventLocked(eventType))
-      {
-        throw new InvalidOperationException("The specified event has already been subscribed by an event handler and cannot be modified.");
-      }
-
-      if (script.IsValidScriptName())
-      {
-        NWScript.SetEventScript(this, (int)eventType, script);
-      }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether the event script can be modified for the specified event.
-    /// </summary>
-    /// <param name="eventType">The event type to query.</param>
-    /// <returns>True if the event is locked and the script cannot be modified, otherwise false.</returns>
-    public bool IsEventLocked(EventScriptType eventType)
-    {
-      return GetEventScript(eventType).IsReservedScriptName();
-    }
-
-    /// <summary>
-    /// The ID of this object as a string. Can be used in <see cref="StringExtensions.ParseObject"/> while the object is alive.<br/>
-    /// This cannot be used across server restarts. See <see cref="UUID"/> for a persistent unique identifier.
-    /// </summary>
-    public override string ToString()
-    {
-      return ObjectId.ToString("x");
     }
 
     public bool Equals(NwObject other)
@@ -336,19 +234,121 @@ namespace Anvil.API
       return Equals((NwObject)obj);
     }
 
+    public void ForceRefreshUUID()
+    {
+      NWScript.ForceRefreshObjectUUID(this);
+    }
+
+    /// <summary>
+    /// Gets the script assigned to run for the specified object event.
+    /// </summary>
+    /// <param name="eventType">The event type to query.</param>
+    /// <returns>The script that has been assigned to the event, otherwise an <see cref="string.Empty"/> string.</returns>
+    public string GetEventScript(EventScriptType eventType)
+    {
+      return NWScript.GetEventScript(this, (int)eventType);
+    }
+
     public override int GetHashCode()
     {
       return (int)ObjectId;
     }
 
-    public static bool operator ==(NwObject left, NwObject right)
+    /// <summary>
+    /// Gets the specified object variable for this object.
+    /// </summary>
+    /// <param name="name">The variable name.</param>
+    /// <typeparam name="T">The variable type.</typeparam>
+    /// <returns>A LocalVariable instance for getting/setting the variable's value.</returns>
+    public T GetObjectVariable<T>(string name) where T : ObjectVariable, new()
     {
-      return Equals(left, right);
+      return ObjectVariable.Create<T>(this, name);
     }
 
-    public static bool operator !=(NwObject left, NwObject right)
+    /// <summary>
+    /// Gets a value indicating whether the event script can be modified for the specified event.
+    /// </summary>
+    /// <param name="eventType">The event type to query.</param>
+    /// <returns>True if the event is locked and the script cannot be modified, otherwise false.</returns>
+    public bool IsEventLocked(EventScriptType eventType)
     {
-      return !Equals(left, right);
+      return GetEventScript(eventType).IsReservedScriptName();
+    }
+
+    /// <summary>
+    /// Attempts to get the UUID of this object, if assigned.
+    /// </summary>
+    /// <returns>The UUID if assigned, otherwise no value.</returns>
+    public abstract Guid? PeekUUID();
+
+    /// <summary>
+    /// Sets the script to be run on the specified object event.
+    /// </summary>
+    /// <param name="eventType">The event to be assigned.</param>
+    /// <param name="script">The new script to assign to this event.</param>
+    /// <exception cref="InvalidOperationException">Thrown if this event is locked as a service has subscribed to this event. See <see cref="IsEventLocked"/> to determine if an event script can be changed.</exception>
+    public void SetEventScript(EventScriptType eventType, string script)
+    {
+      if (IsEventLocked(eventType))
+      {
+        throw new InvalidOperationException("The specified event has already been subscribed by an event handler and cannot be modified.");
+      }
+
+      if (script.IsValidScriptName())
+      {
+        NWScript.SetEventScript(this, (int)eventType, script);
+      }
+    }
+
+    /// <summary>
+    /// Instructs this object to speak.
+    /// </summary>
+    /// <param name="message">The message the object should speak.</param>
+    /// <param name="talkVolume">The channel/volume of this message.</param>
+    /// <param name="queueAsAction">Whether the object should speak immediately (false), or be queued in the object's action queue (true).</param>
+    public async Task SpeakString(string message, TalkVolume talkVolume = TalkVolume.Talk, bool queueAsAction = false)
+    {
+      await WaitForObjectContext();
+      if (!queueAsAction)
+      {
+        NWScript.SpeakString(message, (int)talkVolume);
+      }
+      else
+      {
+        NWScript.ActionSpeakString(message, (int)talkVolume);
+      }
+    }
+
+    /// <summary>
+    /// The ID of this object as a string. Can be used in <see cref="StringExtensions.ParseObject"/> while the object is alive.<br/>
+    /// This cannot be used across server restarts. See <see cref="UUID"/> for a persistent unique identifier.
+    /// </summary>
+    public override string ToString()
+    {
+      return ObjectId.ToString("x");
+    }
+
+    /// <summary>
+    /// Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators).<br/>
+    /// If the current active object is already this object, then the code runs immediately. Otherwise, it will be run with all other closures.<br/>
+    /// This is the async equivalent of AssignCommand in NWScript.
+    /// </summary>
+    public async Task WaitForObjectContext()
+    {
+      if (NWScript.OBJECT_SELF == this)
+      {
+        return;
+      }
+
+      if (!IsValid)
+      {
+        throw new InvalidOperationException("Cannot wait for the context of an invalid object.");
+      }
+
+      TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+      NWScript.AssignCommand(this, () => { tcs.SetResult(true); });
+
+      await tcs.Task;
     }
   }
 }

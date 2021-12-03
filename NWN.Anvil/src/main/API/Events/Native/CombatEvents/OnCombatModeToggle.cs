@@ -10,11 +10,11 @@ namespace Anvil.API.Events
   {
     public NwCreature Creature { get; private init; }
 
-    public CombatMode NewMode { get; set; }
-
     public bool ForceNewMode { get; private init; }
 
     public ForceNewModeOverride ForceNewModeOverride { get; set; }
+
+    public CombatMode NewMode { get; set; }
 
     public bool PreventToggle { get; set; }
 

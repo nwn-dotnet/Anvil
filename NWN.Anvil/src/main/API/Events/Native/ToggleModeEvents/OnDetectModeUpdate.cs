@@ -8,14 +8,14 @@ namespace Anvil.API.Events
 {
   public sealed class OnDetectModeUpdate : IEvent
   {
+    public NwCreature Creature { get; private init; }
+
+    public ToggleModeEventType EventType { get; private init; }
+
     /// <summary>
     /// Gets or sets a value indicating whether this creature should be prevented from entering/exiting detect mode.
     /// </summary>
     public bool Prevent { get; set; }
-
-    public ToggleModeEventType EventType { get; private init; }
-
-    public NwCreature Creature { get; private init; }
 
     NwObject IEvent.Context
     {
@@ -30,28 +30,6 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetDetectMode;
         return HookService.RequestHook<SetDetectModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature13SetDetectModeEh, HookOrder.Early);
-      }
-
-      [UnmanagedCallersOnly]
-      private static void OnSetDetectMode(void* pCreature, byte nDetectMode)
-      {
-        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
-
-        bool willBeDetecting = nDetectMode != 0;
-        bool currentlyDetecting = creature.m_nDetectMode != 0;
-
-        if (!currentlyDetecting && willBeDetecting)
-        {
-          HandleEnter(creature, nDetectMode);
-        }
-        else if (currentlyDetecting && !willBeDetecting)
-        {
-          HandleExit(creature, nDetectMode);
-        }
-        else
-        {
-          Hook.CallOriginal(pCreature, nDetectMode);
-        }
       }
 
       private static void HandleEnter(CNWSCreature creature, byte nDetectMode)
@@ -87,6 +65,28 @@ namespace Anvil.API.Events
         else
         {
           creature.SetActivity(0, true.ToInt());
+        }
+      }
+
+      [UnmanagedCallersOnly]
+      private static void OnSetDetectMode(void* pCreature, byte nDetectMode)
+      {
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
+
+        bool willBeDetecting = nDetectMode != 0;
+        bool currentlyDetecting = creature.m_nDetectMode != 0;
+
+        if (!currentlyDetecting && willBeDetecting)
+        {
+          HandleEnter(creature, nDetectMode);
+        }
+        else if (currentlyDetecting && !willBeDetecting)
+        {
+          HandleExit(creature, nDetectMode);
+        }
+        else
+        {
+          Hook.CallOriginal(pCreature, nDetectMode);
         }
       }
     }

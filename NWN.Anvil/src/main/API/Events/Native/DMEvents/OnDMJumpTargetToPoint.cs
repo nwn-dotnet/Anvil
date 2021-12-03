@@ -6,15 +6,14 @@ namespace Anvil.API.Events
 {
   public sealed class OnDMJumpTargetToPoint : IEvent
   {
+    public NwPlayer DungeonMaster { get; init; }
     public NwArea NewArea { get; init; }
 
     public Vector3 NewPosition { get; init; }
 
-    public NwGameObject[] Targets { get; init; }
-
-    public NwPlayer DungeonMaster { get; init; }
-
     public bool Skip { get; set; }
+
+    public NwGameObject[] Targets { get; init; }
 
     NwObject IEvent.Context
     {

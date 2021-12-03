@@ -4,15 +4,14 @@ namespace Anvil.API.Events
   {
     public sealed class RegistrationData
     {
-      public NwObject NwObject { get; }
-
-      public bool CallOriginal { get; }
-
       public RegistrationData(NwObject nwObject, bool callOriginal = true)
       {
         NwObject = nwObject;
         CallOriginal = callOriginal;
       }
+
+      public bool CallOriginal { get; }
+      public NwObject NwObject { get; }
     }
   }
 }

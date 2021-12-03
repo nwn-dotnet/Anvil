@@ -8,74 +8,18 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    public const long TicksPerMillisecond = 1;
-    public const long TicksPerSecond = TicksPerMillisecond * 1000;
-    public const long TicksPerMinute = TicksPerSecond * 60;
-    public const long TicksPerHour = TicksPerMinute * 60;
-    public const long TicksPerDay = TicksPerHour * 24;
-    public const long TicksPerMonth = TicksPerDay * 28;
-    public const long TicksPerYear = TicksPerMonth * 12;
-
     public const int DaysInMonth = 28;
 
-    public static readonly NwDateTime MinDate = new NwDateTime(GetTicks());
+    public const long TicksPerDay = TicksPerHour * 24;
+    public const long TicksPerHour = TicksPerMinute * 60;
+    public const long TicksPerMillisecond = 1;
+    public const long TicksPerMinute = TicksPerSecond * 60;
+    public const long TicksPerMonth = TicksPerDay * 28;
+    public const long TicksPerSecond = TicksPerMillisecond * 1000;
+    public const long TicksPerYear = TicksPerMonth * 12;
+
     public static readonly NwDateTime MaxDate = new NwDateTime(GetTicks(30001)).AddMilliseconds(-1);
-
-    public readonly long Ticks;
-
-    public int Millisecond
-    {
-      get => (int)(Ticks % 1000);
-    }
-
-    public int Second
-    {
-      get => (int)(Ticks / TicksPerSecond % 60);
-    }
-
-    public int Minute
-    {
-      get => (int)(Ticks / TicksPerMinute % 60);
-    }
-
-    public int Hour
-    {
-      get => (int)(Ticks / TicksPerHour % 24);
-    }
-
-    public int DayInTenday
-    {
-      get
-      {
-        int dayOfTenday = DayInMonth % 10;
-        return dayOfTenday != 0 ? dayOfTenday : 10;
-      }
-    }
-
-    public int DayInMonth
-    {
-      get => (int)(Ticks / TicksPerDay % 28) + 1;
-    }
-
-    public int DayInYear
-    {
-      get => Month * DaysInMonth + DayInMonth;
-    }
-
-    public int Month
-    {
-      get => (int)(Ticks / TicksPerMonth % 12) + 1;
-    }
-
-    public int Year
-    {
-      get => (int)(Ticks / TicksPerYear);
-    }
-
-    public NwDateTime Date
-    {
-      get => new NwDateTime(Ticks - Ticks % TicksPerDay);
-    }
+    public static readonly NwDateTime MinDate = new NwDateTime(GetTicks());
 
     /// <summary>
     ///  Gets or sets the current module date and time.
@@ -118,14 +62,71 @@ namespace Anvil.Services
       set => NWScript.SetCalendar(value.Year, value.Month, value.DayInMonth);
     }
 
-    public static implicit operator long(NwDateTime dateTime)
+    public readonly long Ticks;
+
+    public NwDateTime(int year = 0, int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0, int milliSecond = 0)
     {
-      return dateTime.Ticks;
+      Ticks = GetTicks(year, month, day, hour, minute, second, milliSecond);
+      ValidateInternal();
     }
 
     private NwDateTime(long ticks)
     {
       Ticks = ticks;
+    }
+
+    public NwDateTime Date
+    {
+      get => new NwDateTime(Ticks - Ticks % TicksPerDay);
+    }
+
+    public int DayInMonth
+    {
+      get => (int)(Ticks / TicksPerDay % 28) + 1;
+    }
+
+    public int DayInTenday
+    {
+      get
+      {
+        int dayOfTenday = DayInMonth % 10;
+        return dayOfTenday != 0 ? dayOfTenday : 10;
+      }
+    }
+
+    public int DayInYear
+    {
+      get => Month * DaysInMonth + DayInMonth;
+    }
+
+    public int Hour
+    {
+      get => (int)(Ticks / TicksPerHour % 24);
+    }
+
+    public int Millisecond
+    {
+      get => (int)(Ticks % 1000);
+    }
+
+    public int Minute
+    {
+      get => (int)(Ticks / TicksPerMinute % 60);
+    }
+
+    public int Month
+    {
+      get => (int)(Ticks / TicksPerMonth % 12) + 1;
+    }
+
+    public int Second
+    {
+      get => (int)(Ticks / TicksPerSecond % 60);
+    }
+
+    public int Year
+    {
+      get => (int)(Ticks / TicksPerYear);
     }
 
     public static NwDateTime FromTicks(long ticks)
@@ -136,10 +137,54 @@ namespace Anvil.Services
       return retVal;
     }
 
-    public NwDateTime(int year = 0, int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0, int milliSecond = 0)
+    public static implicit operator long(NwDateTime dateTime)
     {
-      Ticks = GetTicks(year, month, day, hour, minute, second, milliSecond);
-      ValidateInternal();
+      return dateTime.Ticks;
+    }
+
+    public NwDateTime Add(int value, long scale)
+    {
+      return new NwDateTime(Ticks + value * scale);
+    }
+
+    public NwDateTime AddDays(int days)
+    {
+      return Add(days, TicksPerDay);
+    }
+
+    public NwDateTime AddHours(int hours)
+    {
+      return Add(hours, TicksPerHour);
+    }
+
+    public NwDateTime AddMilliseconds(int milliseconds)
+    {
+      return Add(milliseconds, 1);
+    }
+
+    public NwDateTime AddMinutes(int minutes)
+    {
+      return Add(minutes, TicksPerMinute);
+    }
+
+    public NwDateTime AddMonths(int months)
+    {
+      return Add(months, TicksPerMonth);
+    }
+
+    public NwDateTime AddSeconds(int seconds)
+    {
+      return Add(seconds, TicksPerSecond);
+    }
+
+    public NwDateTime AddYears(int years)
+    {
+      return Add(years, TicksPerYear);
+    }
+
+    public override string ToString()
+    {
+      return $"{Year}-{Month}-{DayInMonth}T{Hour}:{Minute}:{Second}:{Millisecond}";
     }
 
     private static long GetTicks(int year = 0, int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0, int milliSecond = 0)
@@ -159,51 +204,6 @@ namespace Anvil.Services
       {
         throw new ArgumentOutOfRangeException(nameof(Ticks), $"Value must be between {nameof(MinDate)} and {nameof(MaxDate)}");
       }
-    }
-
-    public NwDateTime Add(int value, long scale)
-    {
-      return new NwDateTime(Ticks + value * scale);
-    }
-
-    public NwDateTime AddMilliseconds(int milliseconds)
-    {
-      return Add(milliseconds, 1);
-    }
-
-    public NwDateTime AddSeconds(int seconds)
-    {
-      return Add(seconds, TicksPerSecond);
-    }
-
-    public NwDateTime AddMinutes(int minutes)
-    {
-      return Add(minutes, TicksPerMinute);
-    }
-
-    public NwDateTime AddHours(int hours)
-    {
-      return Add(hours, TicksPerHour);
-    }
-
-    public NwDateTime AddDays(int days)
-    {
-      return Add(days, TicksPerDay);
-    }
-
-    public NwDateTime AddMonths(int months)
-    {
-      return Add(months, TicksPerMonth);
-    }
-
-    public NwDateTime AddYears(int years)
-    {
-      return Add(years, TicksPerYear);
-    }
-
-    public override string ToString()
-    {
-      return $"{Year}-{Month}-{DayInMonth}T{Hour}:{Minute}:{Second}:{Millisecond}";
     }
   }
 }

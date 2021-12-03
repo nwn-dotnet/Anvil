@@ -8,16 +8,6 @@ namespace Anvil.API
   public static class StandardFactionExtensions
   {
     /// <summary>
-    /// Gets the faction object representing the specified standard faction.
-    /// </summary>
-    /// <param name="faction">The standard faction.</param>
-    /// <returns>A NwFaction representing the specified standard faction.</returns>
-    public static NwFaction ToFaction(this StandardFaction faction)
-    {
-      return new NwFaction((int)faction);
-    }
-
-    /// <summary>
     /// Gets an integer between 0 and 100 (inclusive) that represents how this faction feels about the specified target.<br/>
     ///  -> 0-10 means this faction is hostile to the target<br/>
     ///  -> 11-89 means this faction is neutral to the target<br/>
@@ -43,6 +33,16 @@ namespace Anvil.API
     public static void SetReputation(this StandardFaction faction, NwGameObject target, int newReputation)
     {
       NWScript.SetStandardFactionReputation((int)faction, newReputation, target);
+    }
+
+    /// <summary>
+    /// Gets the faction object representing the specified standard faction.
+    /// </summary>
+    /// <param name="faction">The standard faction.</param>
+    /// <returns>A NwFaction representing the specified standard faction.</returns>
+    public static NwFaction ToFaction(this StandardFaction faction)
+    {
+      return new NwFaction((int)faction);
     }
   }
 }

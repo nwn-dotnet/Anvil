@@ -5,11 +5,6 @@ namespace Anvil.API
 {
   public sealed class NuiDrawListPolyLine : NuiDrawListItem
   {
-    public override NuiDrawListItemType Type
-    {
-      get => NuiDrawListItemType.PolyLine;
-    }
-
     [JsonConstructor]
     public NuiDrawListPolyLine(NuiProperty<NuiColor> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, List<float> points) : base(color, fill, lineThickness)
     {
@@ -18,5 +13,10 @@ namespace Anvil.API
 
     [JsonProperty("points")]
     public List<float> Points { get; set; }
+
+    public override NuiDrawListItemType Type
+    {
+      get => NuiDrawListItemType.PolyLine;
+    }
   }
 }

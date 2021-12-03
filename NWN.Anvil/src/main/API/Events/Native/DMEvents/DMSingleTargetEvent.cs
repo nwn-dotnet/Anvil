@@ -5,11 +5,10 @@ namespace Anvil.API.Events
 {
   public abstract class DMSingleTargetEvent : IEvent
   {
-    public NwObject Target { get; internal init; }
-
     public NwPlayer DungeonMaster { get; internal init; }
 
     public bool Skip { get; set; }
+    public NwObject Target { get; internal init; }
 
     NwObject IEvent.Context
     {
@@ -32,6 +31,13 @@ namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
+    /// <inheritdoc cref="Events.OnDMDisableTrap"/>
+    public event Action<OnDMDisableTrap> OnDMDisableTrap
+    {
+      add => EventService.Subscribe<OnDMDisableTrap, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMDisableTrap, DMEventFactory>(LoginCreature, value);
+    }
+
     /// <inheritdoc cref="Events.OnDMGoTo"/>
     public event Action<OnDMGoTo> OnDMGoTo
     {
@@ -59,17 +65,17 @@ namespace Anvil.API
       add => EventService.Subscribe<OnDMToggleLock, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMToggleLock, DMEventFactory>(LoginCreature, value);
     }
-
-    /// <inheritdoc cref="Events.OnDMDisableTrap"/>
-    public event Action<OnDMDisableTrap> OnDMDisableTrap
-    {
-      add => EventService.Subscribe<OnDMDisableTrap, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMDisableTrap, DMEventFactory>(LoginCreature, value);
-    }
   }
 
   public sealed partial class NwModule
   {
+    /// <inheritdoc cref="Events.OnDMDisableTrap"/>
+    public event Action<OnDMDisableTrap> OnDMDisableTrap
+    {
+      add => EventService.SubscribeAll<OnDMDisableTrap, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMDisableTrap, DMEventFactory>(value);
+    }
+
     /// <inheritdoc cref="Events.OnDMGoTo"/>
     public event Action<OnDMGoTo> OnDMGoTo
     {
@@ -96,13 +102,6 @@ namespace Anvil.API
     {
       add => EventService.SubscribeAll<OnDMToggleLock, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMToggleLock, DMEventFactory>(value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMDisableTrap"/>
-    public event Action<OnDMDisableTrap> OnDMDisableTrap
-    {
-      add => EventService.SubscribeAll<OnDMDisableTrap, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMDisableTrap, DMEventFactory>(value);
     }
   }
 }

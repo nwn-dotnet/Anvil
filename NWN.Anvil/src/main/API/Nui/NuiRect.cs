@@ -4,18 +4,6 @@ namespace Anvil.API
 {
   public readonly struct NuiRect
   {
-    [JsonProperty("x")]
-    public float X { get; }
-
-    [JsonProperty("y")]
-    public float Y { get; }
-
-    [JsonProperty("w")]
-    public float Width { get; }
-
-    [JsonProperty("h")]
-    public float Height { get; }
-
     [JsonConstructor]
     public NuiRect(float x, float y, float width, float height)
     {
@@ -24,5 +12,17 @@ namespace Anvil.API
       Width = width;
       Height = height;
     }
+
+    [JsonProperty("h")]
+    public float Height { get; }
+
+    [JsonProperty("w")]
+    public float Width { get; }
+
+    [JsonProperty("x")]
+    public float X { get; }
+
+    [JsonProperty("y")]
+    public float Y { get; }
   }
 }

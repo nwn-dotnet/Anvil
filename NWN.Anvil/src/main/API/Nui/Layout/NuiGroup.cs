@@ -11,16 +11,16 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiGroup : NuiLayout
   {
-    public override string Type { get; } = "group";
-
     [JsonProperty("border")]
     public bool Border { get; set; } = true;
+
+    [JsonIgnore]
+    public NuiLayout Layout { get; set; }
 
     [JsonProperty("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
 
-    [JsonIgnore]
-    public NuiLayout Layout { get; set; }
+    public override string Type { get; } = "group";
 
     protected override IEnumerable<NuiElement> SerializedChildren
     {

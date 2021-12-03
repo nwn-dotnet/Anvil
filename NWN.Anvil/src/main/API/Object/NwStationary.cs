@@ -14,12 +14,39 @@ namespace Anvil.API
     internal NwStationary(CNWSObject gameObject) : base(gameObject) {}
 
     /// <summary>
-    /// Gets or sets a value indicating whether this stationary object is locked.
+    /// Gets or sets the hardness of this stationary object. This is the amount of damage deducted from each hit.
     /// </summary>
-    public bool Locked
+    public int Hardness
     {
-      get => NWScript.GetLocked(this).ToBool();
-      set => NWScript.SetLocked(this, value.ToInt());
+      get => NWScript.GetHardness(this);
+      set => NWScript.SetHardness(value, this);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this stationary object is currently open.
+    /// </summary>
+    public bool IsOpen
+    {
+      get => NWScript.GetIsOpen(this).ToBool();
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the key for this lock should "break"/be removed from the creature's inventory when used on this lock.
+    /// </summary>
+    public abstract bool KeyAutoRemoved { get; set; }
+
+    /// <summary>
+    /// Gets or sets the feedback message that will be displayed when trying to unlock this stationary object.
+    /// </summary>
+    public string KeyRequiredFeedback
+    {
+      get => NWScript.GetKeyRequiredFeedback(this);
+      set => NWScript.SetKeyRequiredFeedback(this, value);
+    }
+
+    public override Location Location
+    {
+      get => Location.Create(Area, Position, Rotation);
     }
 
     /// <summary>
@@ -29,6 +56,24 @@ namespace Anvil.API
     {
       get => NWScript.GetLockLockable(this).ToBool();
       set => NWScript.SetLockLockable(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets the skill DC required to lock this stationary object.
+    /// </summary>
+    public int LockDC
+    {
+      get => NWScript.GetLockLockDC(this);
+      set => NWScript.SetLockLockDC(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this stationary object is locked.
+    /// </summary>
+    public bool Locked
+    {
+      get => NWScript.GetLocked(this).ToBool();
+      set => NWScript.SetLocked(this, value.ToInt());
     }
 
     /// <summary>
@@ -50,20 +95,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets a value indicating whether the key for this lock should "break"/be removed from the creature's inventory when used on this lock.
-    /// </summary>
-    public abstract bool KeyAutoRemoved { get; set; }
-
-    /// <summary>
-    /// Gets or sets the skill DC required to lock this stationary object.
-    /// </summary>
-    public int LockDC
-    {
-      get => NWScript.GetLockLockDC(this);
-      set => NWScript.SetLockLockDC(this, value);
-    }
-
-    /// <summary>
     /// Gets or sets the skill DC required to unlock this stationary object.
     /// </summary>
     public int UnlockDC
@@ -73,40 +104,20 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the hardness of this stationary object. This is the amount of damage deducted from each hit.
+    /// Creates the specified trap.
     /// </summary>
-    public int Hardness
+    /// <param name="trap">The base type of trap.</param>
+    /// <param name="disarm">The script that will fire when the trap is disarmed. If no value set, defaults to an empty string and no script will fire.</param>
+    /// <param name="triggered">The script that will fire when the trap is triggered. If no value set, defaults to an empty string and the default OnTrapTriggered script for the trap type specified will fire instead (as specified in the traps.2da).</param>
+    public void CreateTrap(TrapBaseType trap, string disarm = "", string triggered = "")
     {
-      get => NWScript.GetHardness(this);
-      set => NWScript.SetHardness(value, this);
-    }
-
-    /// <summary>
-    /// Gets or sets the feedback message that will be displayed when trying to unlock this stationary object.
-    /// </summary>
-    public string KeyRequiredFeedback
-    {
-      get => NWScript.GetKeyRequiredFeedback(this);
-      set => NWScript.SetKeyRequiredFeedback(this, value);
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether this stationary object is currently open.
-    /// </summary>
-    public bool IsOpen
-    {
-      get => NWScript.GetIsOpen(this).ToBool();
+      NWScript.CreateTrapOnObject((int)trap, this, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
     }
 
     public override async Task FaceToPoint(Vector3 point)
     {
       Vector3 direction = Vector3.Normalize(point - Position);
       await base.FaceToPoint(Position - direction);
-    }
-
-    public override Location Location
-    {
-      get => Location.Create(Area, Position, Rotation);
     }
 
     /// <summary>
@@ -144,17 +155,6 @@ namespace Anvil.API
         default:
           throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
       }
-    }
-
-    /// <summary>
-    /// Creates the specified trap.
-    /// </summary>
-    /// <param name="trap">The base type of trap.</param>
-    /// <param name="disarm">The script that will fire when the trap is disarmed. If no value set, defaults to an empty string and no script will fire.</param>
-    /// <param name="triggered">The script that will fire when the trap is triggered. If no value set, defaults to an empty string and the default OnTrapTriggered script for the trap type specified will fire instead (as specified in the traps.2da).</param>
-    public void CreateTrap(TrapBaseType trap, string disarm = "", string triggered = "")
-    {
-      NWScript.CreateTrapOnObject((int)trap, this, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
     }
   }
 }

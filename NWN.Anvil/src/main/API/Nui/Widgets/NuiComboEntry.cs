@@ -8,17 +8,17 @@ namespace Anvil.API
   [JsonConverter(typeof(ObjectToArrayConverter<NuiComboEntry>))]
   public sealed class NuiComboEntry
   {
-    [JsonProperty(Order = 1)]
-    public string Label { get; set; }
-
-    [JsonProperty(Order = 2)]
-    public int Value { get; set; }
-
     [JsonConstructor]
     public NuiComboEntry(string label, int value)
     {
       Label = label;
       Value = value;
     }
+
+    [JsonProperty(Order = 1)]
+    public string Label { get; set; }
+
+    [JsonProperty(Order = 2)]
+    public int Value { get; set; }
   }
 }

@@ -8,10 +8,10 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiRow : NuiLayout
   {
-    public override string Type { get; } = "row";
-
     [JsonIgnore]
     public List<NuiElement> Children { get; set; } = new List<NuiElement>();
+
+    public override string Type { get; } = "row";
 
     protected override IEnumerable<NuiElement> SerializedChildren
     {

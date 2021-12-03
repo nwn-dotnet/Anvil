@@ -58,25 +58,11 @@ namespace Anvil.API
       remove => EventService.Unsubscribe<OnDMDisappear, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="Events.OnDMSetFaction"/>
-    public event Action<OnDMSetFaction> OnDMSetFaction
+    /// <inheritdoc cref="Events.OnDMGetFactionReputation"/>
+    public event Action<OnDMGetFactionReputation> OnDMGetFactionReputation
     {
-      add => EventService.Subscribe<OnDMSetFaction, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMSetFaction, DMEventFactory>(LoginCreature, value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMTakeItem"/>
-    public event Action<OnDMTakeItem> OnDMTakeItem
-    {
-      add => EventService.Subscribe<OnDMTakeItem, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMTakeItem, DMEventFactory>(LoginCreature, value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMSetStat"/>
-    public event Action<OnDMSetStat> OnDMSetStat
-    {
-      add => EventService.Subscribe<OnDMSetStat, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMSetStat, DMEventFactory>(LoginCreature, value);
+      add => EventService.Subscribe<OnDMGetFactionReputation, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMGetFactionReputation, DMEventFactory>(LoginCreature, value);
     }
 
     /// <inheritdoc cref="Events.OnDMGetVariable"/>
@@ -86,18 +72,11 @@ namespace Anvil.API
       remove => EventService.Unsubscribe<OnDMGetVariable, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="Events.OnDMSetVariable"/>
-    public event Action<OnDMSetVariable> OnDMSetVariable
+    /// <inheritdoc cref="Events.OnDMPlayerDMLogout"/>
+    public event Action<OnDMPlayerDMLogout> OnDMPlayerDMLogout
     {
-      add => EventService.Subscribe<OnDMSetVariable, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMSetVariable, DMEventFactory>(LoginCreature, value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMSetTime"/>
-    public event Action<OnDMSetTime> OnDMSetTime
-    {
-      add => EventService.Subscribe<OnDMSetTime, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMSetTime, DMEventFactory>(LoginCreature, value);
+      add => EventService.Subscribe<OnDMPlayerDMLogout, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMPlayerDMLogout, DMEventFactory>(LoginCreature, value);
     }
 
     /// <inheritdoc cref="Events.OnDMSetDate"/>
@@ -107,6 +86,13 @@ namespace Anvil.API
       remove => EventService.Unsubscribe<OnDMSetDate, DMEventFactory>(LoginCreature, value);
     }
 
+    /// <inheritdoc cref="Events.OnDMSetFaction"/>
+    public event Action<OnDMSetFaction> OnDMSetFaction
+    {
+      add => EventService.Subscribe<OnDMSetFaction, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMSetFaction, DMEventFactory>(LoginCreature, value);
+    }
+
     /// <inheritdoc cref="Events.OnDMSetFactionReputation"/>
     public event Action<OnDMSetFactionReputation> OnDMSetFactionReputation
     {
@@ -114,18 +100,32 @@ namespace Anvil.API
       remove => EventService.Unsubscribe<OnDMSetFactionReputation, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="Events.OnDMGetFactionReputation"/>
-    public event Action<OnDMGetFactionReputation> OnDMGetFactionReputation
+    /// <inheritdoc cref="Events.OnDMSetStat"/>
+    public event Action<OnDMSetStat> OnDMSetStat
     {
-      add => EventService.Subscribe<OnDMGetFactionReputation, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMGetFactionReputation, DMEventFactory>(LoginCreature, value);
+      add => EventService.Subscribe<OnDMSetStat, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMSetStat, DMEventFactory>(LoginCreature, value);
     }
 
-    /// <inheritdoc cref="Events.OnDMPlayerDMLogout"/>
-    public event Action<OnDMPlayerDMLogout> OnDMPlayerDMLogout
+    /// <inheritdoc cref="Events.OnDMSetTime"/>
+    public event Action<OnDMSetTime> OnDMSetTime
     {
-      add => EventService.Subscribe<OnDMPlayerDMLogout, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMPlayerDMLogout, DMEventFactory>(LoginCreature, value);
+      add => EventService.Subscribe<OnDMSetTime, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMSetTime, DMEventFactory>(LoginCreature, value);
+    }
+
+    /// <inheritdoc cref="Events.OnDMSetVariable"/>
+    public event Action<OnDMSetVariable> OnDMSetVariable
+    {
+      add => EventService.Subscribe<OnDMSetVariable, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMSetVariable, DMEventFactory>(LoginCreature, value);
+    }
+
+    /// <inheritdoc cref="Events.OnDMTakeItem"/>
+    public event Action<OnDMTakeItem> OnDMTakeItem
+    {
+      add => EventService.Subscribe<OnDMTakeItem, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMTakeItem, DMEventFactory>(LoginCreature, value);
     }
   }
 
@@ -145,25 +145,11 @@ namespace Anvil.API
       remove => EventService.UnsubscribeAll<OnDMDisappear, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="Events.OnDMSetFaction"/>
-    public event Action<OnDMSetFaction> OnDMSetFaction
+    /// <inheritdoc cref="Events.OnDMGetFactionReputation"/>
+    public event Action<OnDMGetFactionReputation> OnDMGetFactionReputation
     {
-      add => EventService.SubscribeAll<OnDMSetFaction, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMSetFaction, DMEventFactory>(value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMTakeItem"/>
-    public event Action<OnDMTakeItem> OnDMTakeItem
-    {
-      add => EventService.SubscribeAll<OnDMTakeItem, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMTakeItem, DMEventFactory>(value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMSetStat"/>
-    public event Action<OnDMSetStat> OnDMSetStat
-    {
-      add => EventService.SubscribeAll<OnDMSetStat, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMSetStat, DMEventFactory>(value);
+      add => EventService.SubscribeAll<OnDMGetFactionReputation, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMGetFactionReputation, DMEventFactory>(value);
     }
 
     /// <inheritdoc cref="Events.OnDMGetVariable"/>
@@ -173,18 +159,11 @@ namespace Anvil.API
       remove => EventService.UnsubscribeAll<OnDMGetVariable, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="Events.OnDMSetVariable"/>
-    public event Action<OnDMSetVariable> OnDMSetVariable
+    /// <inheritdoc cref="Events.OnDMPlayerDMLogout"/>
+    public event Action<OnDMPlayerDMLogout> OnDMPlayerDMLogout
     {
-      add => EventService.SubscribeAll<OnDMSetVariable, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMSetVariable, DMEventFactory>(value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMSetTime"/>
-    public event Action<OnDMSetTime> OnDMSetTime
-    {
-      add => EventService.SubscribeAll<OnDMSetTime, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMSetTime, DMEventFactory>(value);
+      add => EventService.SubscribeAll<OnDMPlayerDMLogout, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMPlayerDMLogout, DMEventFactory>(value);
     }
 
     /// <inheritdoc cref="Events.OnDMSetDate"/>
@@ -194,6 +173,13 @@ namespace Anvil.API
       remove => EventService.UnsubscribeAll<OnDMSetDate, DMEventFactory>(value);
     }
 
+    /// <inheritdoc cref="Events.OnDMSetFaction"/>
+    public event Action<OnDMSetFaction> OnDMSetFaction
+    {
+      add => EventService.SubscribeAll<OnDMSetFaction, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMSetFaction, DMEventFactory>(value);
+    }
+
     /// <inheritdoc cref="Events.OnDMSetFactionReputation"/>
     public event Action<OnDMSetFactionReputation> OnDMSetFactionReputation
     {
@@ -201,18 +187,32 @@ namespace Anvil.API
       remove => EventService.UnsubscribeAll<OnDMSetFactionReputation, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="Events.OnDMGetFactionReputation"/>
-    public event Action<OnDMGetFactionReputation> OnDMGetFactionReputation
+    /// <inheritdoc cref="Events.OnDMSetStat"/>
+    public event Action<OnDMSetStat> OnDMSetStat
     {
-      add => EventService.SubscribeAll<OnDMGetFactionReputation, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMGetFactionReputation, DMEventFactory>(value);
+      add => EventService.SubscribeAll<OnDMSetStat, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMSetStat, DMEventFactory>(value);
     }
 
-    /// <inheritdoc cref="Events.OnDMPlayerDMLogout"/>
-    public event Action<OnDMPlayerDMLogout> OnDMPlayerDMLogout
+    /// <inheritdoc cref="Events.OnDMSetTime"/>
+    public event Action<OnDMSetTime> OnDMSetTime
     {
-      add => EventService.SubscribeAll<OnDMPlayerDMLogout, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMPlayerDMLogout, DMEventFactory>(value);
+      add => EventService.SubscribeAll<OnDMSetTime, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMSetTime, DMEventFactory>(value);
+    }
+
+    /// <inheritdoc cref="Events.OnDMSetVariable"/>
+    public event Action<OnDMSetVariable> OnDMSetVariable
+    {
+      add => EventService.SubscribeAll<OnDMSetVariable, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMSetVariable, DMEventFactory>(value);
+    }
+
+    /// <inheritdoc cref="Events.OnDMTakeItem"/>
+    public event Action<OnDMTakeItem> OnDMTakeItem
+    {
+      add => EventService.SubscribeAll<OnDMTakeItem, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMTakeItem, DMEventFactory>(value);
     }
   }
 }

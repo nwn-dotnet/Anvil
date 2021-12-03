@@ -8,9 +8,14 @@ namespace Anvil.API.Events
   public abstract class SingleHookEventFactory<THook> : HookEventFactory, IEventFactory<NullRegistrationData>, IDisposable
     where THook : Delegate
   {
+    protected static FunctionHook<THook> Hook { get; set; }
     private readonly HashSet<Type> activeEvents = new HashSet<Type>();
 
-    protected static FunctionHook<THook> Hook { get; set; }
+    public void Dispose()
+    {
+      Hook?.Dispose();
+      Hook = null;
+    }
 
     public void Register<TEvent>(NullRegistrationData data) where TEvent : IEvent, new()
     {
@@ -25,12 +30,6 @@ namespace Anvil.API.Events
       {
         Dispose();
       }
-    }
-
-    public void Dispose()
-    {
-      Hook?.Dispose();
-      Hook = null;
     }
 
     protected abstract FunctionHook<THook> RequestHook();

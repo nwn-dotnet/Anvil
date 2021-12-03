@@ -28,18 +28,22 @@ namespace Anvil.API
       this.faction = faction;
     }
 
-    internal int FactionId
+    /// <summary>
+    /// Gets the average Good/Evil alignment value of members in this faction.<br/>
+    /// @note This can be a costly operation when used on large NPC factions.
+    /// </summary>
+    public int AverageGoodEvilAlignment
     {
-      get => faction.m_nFactionId;
+      get => faction.GetAverageGoodEvilAlignment();
     }
 
     /// <summary>
-    /// Gets the most common type of class among the members of this faction/party.<br/>
+    /// Gets the average Law/Chaos alignment value of members in this faction.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public ClassType MostFrequentClass
+    public int AverageLawChaosAlignment
     {
-      get => (ClassType)faction.GetMostFrequentClass();
+      get => faction.GetAverageLawChaosAlignment();
     }
 
     /// <summary>
@@ -70,24 +74,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the average Good/Evil alignment value of members in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions.
-    /// </summary>
-    public int AverageGoodEvilAlignment
-    {
-      get => faction.GetAverageGoodEvilAlignment();
-    }
-
-    /// <summary>
-    /// Gets the average Law/Chaos alignment value of members in this faction.<br/>
-    /// @note This can be a costly operation when used on large NPC factions.
-    /// </summary>
-    public int AverageLawChaosAlignment
-    {
-      get => faction.GetAverageLawChaosAlignment();
-    }
-
-    /// <summary>
     /// Gets the leader of this player faction (party).<br/>
     /// </summary>
     public NwPlayer Leader
@@ -96,24 +82,57 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets all creatures that are members of this faction.<br/>
-    /// @note This can be a very costly operation when used on large NPC factions.
+    /// Gets the most common type of class among the members of this faction/party.<br/>
+    /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    /// <returns>All creatures in this faction.</returns>
-    public List<NwCreature> GetMembers()
+    public ClassType MostFrequentClass
     {
-      List<NwCreature> members = new List<NwCreature>();
+      get => (ClassType)faction.GetMostFrequentClass();
+    }
 
-      for (int i = 0; i < faction.m_listFactionMembers.Count; i++)
+    internal int FactionId
+    {
+      get => faction.m_nFactionId;
+    }
+
+    public static bool operator ==(NwFaction left, NwFaction right)
+    {
+      return Equals(left, right);
+    }
+
+    public static bool operator !=(NwFaction left, NwFaction right)
+    {
+      return !Equals(left, right);
+    }
+
+    /// <summary>
+    /// Adjusts how this faction feels about the specified creature.
+    /// </summary>
+    /// <param name="creature">The target creature for the reputation change.</param>
+    /// <param name="adjustment">The adjustment in reputation to make.</param>
+    public void AdjustReputation(NwCreature creature, int adjustment)
+    {
+      creature.Creature.AdjustReputation(faction.m_nFactionId, adjustment);
+    }
+
+    public bool Equals(NwFaction other)
+    {
+      if (ReferenceEquals(null, other))
       {
-        NwCreature member = faction.m_listFactionMembers[i].ToNwObjectSafe<NwCreature>();
-        if (member != null)
-        {
-          members.Add(member);
-        }
+        return false;
       }
 
-      return members;
+      if (ReferenceEquals(this, other))
+      {
+        return true;
+      }
+
+      return faction.Equals(other.faction);
+    }
+
+    public override bool Equals(object obj)
+    {
+      return ReferenceEquals(this, obj) || obj is NwFaction other && Equals(other);
     }
 
     /// <summary>
@@ -138,44 +157,9 @@ namespace Anvil.API
       return faction.GetBestAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
     }
 
-    /// <summary>
-    /// Gets the member with the lowest AC in this faction that is visible from the specified object.
-    /// </summary>
-    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the worst AC member.</param>
-    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetWorstACMember(NwCreature referenceCreature = null, bool visible = false)
+    public override int GetHashCode()
     {
-      return faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
-    }
-
-    /// <summary>
-    /// Gets the weakest member in this faction that is visible from the specified object.
-    /// </summary>
-    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the weakest member.</param>
-    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetWeakestMember(NwCreature referenceCreature = null, bool visible = false)
-    {
-      return faction.GetWeakestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
-    }
-
-    /// <summary>
-    /// Gets the strongest member in this faction that is visible from the specified object.
-    /// </summary>
-    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the strongest member.</param>
-    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetStrongestMember(NwCreature referenceCreature = null, bool visible = false)
-    {
-      return faction.GetStrongestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
-    }
-
-    /// <summary>
-    /// Gets the most damaged member in this faction that is visible from the specified object.
-    /// </summary>
-    /// <param name="referenceCreature">The reference creature, used to determine visibility.</param>
-    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetMostDamagedMember(NwCreature referenceCreature = null, bool visible = false)
-    {
-      return faction.GetMostDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      return faction.GetHashCode();
     }
 
     /// <summary>
@@ -189,53 +173,69 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Adjusts how this faction feels about the specified creature.
+    /// Gets all creatures that are members of this faction.<br/>
+    /// @note This can be a very costly operation when used on large NPC factions.
     /// </summary>
-    /// <param name="creature">The target creature for the reputation change.</param>
-    /// <param name="adjustment">The adjustment in reputation to make.</param>
-    public void AdjustReputation(NwCreature creature, int adjustment)
+    /// <returns>All creatures in this faction.</returns>
+    public List<NwCreature> GetMembers()
     {
-      creature.Creature.AdjustReputation(faction.m_nFactionId, adjustment);
+      List<NwCreature> members = new List<NwCreature>();
+
+      for (int i = 0; i < faction.m_listFactionMembers.Count; i++)
+      {
+        NwCreature member = faction.m_listFactionMembers[i].ToNwObjectSafe<NwCreature>();
+        if (member != null)
+        {
+          members.Add(member);
+        }
+      }
+
+      return members;
+    }
+
+    /// <summary>
+    /// Gets the most damaged member in this faction that is visible from the specified object.
+    /// </summary>
+    /// <param name="referenceCreature">The reference creature, used to determine visibility.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetMostDamagedMember(NwCreature referenceCreature = null, bool visible = false)
+    {
+      return faction.GetMostDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+    }
+
+    /// <summary>
+    /// Gets the strongest member in this faction that is visible from the specified object.
+    /// </summary>
+    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the strongest member.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetStrongestMember(NwCreature referenceCreature = null, bool visible = false)
+    {
+      return faction.GetStrongestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+    }
+
+    /// <summary>
+    /// Gets the weakest member in this faction that is visible from the specified object.
+    /// </summary>
+    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the weakest member.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetWeakestMember(NwCreature referenceCreature = null, bool visible = false)
+    {
+      return faction.GetWeakestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+    }
+
+    /// <summary>
+    /// Gets the member with the lowest AC in this faction that is visible from the specified object.
+    /// </summary>
+    /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the worst AC member.</param>
+    /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
+    public NwCreature GetWorstACMember(NwCreature referenceCreature = null, bool visible = false)
+    {
+      return faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
     }
 
     internal void AddMember(NwCreature creature)
     {
       faction.AddMember(creature);
-    }
-
-    public bool Equals(NwFaction other)
-    {
-      if (ReferenceEquals(null, other))
-      {
-        return false;
-      }
-
-      if (ReferenceEquals(this, other))
-      {
-        return true;
-      }
-
-      return faction.Equals(other.faction);
-    }
-
-    public override bool Equals(object obj)
-    {
-      return ReferenceEquals(this, obj) || obj is NwFaction other && Equals(other);
-    }
-
-    public override int GetHashCode()
-    {
-      return faction.GetHashCode();
-    }
-
-    public static bool operator ==(NwFaction left, NwFaction right)
-    {
-      return Equals(left, right);
-    }
-
-    public static bool operator !=(NwFaction left, NwFaction right)
-    {
-      return !Equals(left, right);
     }
   }
 }

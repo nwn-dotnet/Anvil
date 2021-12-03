@@ -8,17 +8,15 @@ namespace Anvil.Services
   [AttributeUsage(AttributeTargets.Class)]
   public sealed class ServiceBindingOptionsAttribute : Attribute
   {
-    /// <summary>
-    /// The order that this service should be loaded in, after dependency constraints have been resolved. Values less than 0 are reserved by anvil.
-    /// </summary>
-    [Obsolete("Use the BindingPriority property instead. This property will be removed in a future release.")]
-    public short Order
+    public ServiceBindingOptionsAttribute()
     {
-      get => (short)Priority;
-      init => Priority = value;
+      BindingPriority = BindingPriority.Normal;
     }
 
-    internal int Priority { get; private init; }
+    internal ServiceBindingOptionsAttribute(InternalBindingPriority priority)
+    {
+      Priority = (int)priority;
+    }
 
     /// <summary>
     /// The priority of the service.<br/>
@@ -36,24 +34,26 @@ namespace Anvil.Services
     public bool Lazy { get; init; }
 
     /// <summary>
-    /// An optional list of plugin names that must exist for this service to be loaded.
-    /// </summary>
-    public string[] PluginDependencies { get; init; }
-
-    /// <summary>
     /// An optional list of plugin names that must be missing for this service to be loaded.
     /// </summary>
     [Obsolete("This property will be removed in a future release. BindingPriority now determines which service gets injected for multiple dependency candidates, making this property obsolete.")]
     public string[] MissingPluginDependencies { get; init; }
 
-    internal ServiceBindingOptionsAttribute(InternalBindingPriority priority)
+    /// <summary>
+    /// The order that this service should be loaded in, after dependency constraints have been resolved. Values less than 0 are reserved by anvil.
+    /// </summary>
+    [Obsolete("Use the BindingPriority property instead. This property will be removed in a future release.")]
+    public short Order
     {
-      Priority = (int)priority;
+      get => (short)Priority;
+      init => Priority = value;
     }
 
-    public ServiceBindingOptionsAttribute()
-    {
-      BindingPriority = BindingPriority.Normal;
-    }
+    /// <summary>
+    /// An optional list of plugin names that must exist for this service to be loaded.
+    /// </summary>
+    public string[] PluginDependencies { get; init; }
+
+    internal int Priority { get; private init; }
   }
 }
