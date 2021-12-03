@@ -163,6 +163,18 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the base armor class of this item.
+    /// </summary>
+    public bool IsStackable
+    {
+      get
+      {
+        CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)Item.m_nBaseItem);
+        return baseItem != null && baseItem.m_nStackSize > 1;
+      }
+    }
+
+    /// <summary>
     /// Gets or sets the number of charges left on this item.
     /// </summary>
     public int ItemCharges
