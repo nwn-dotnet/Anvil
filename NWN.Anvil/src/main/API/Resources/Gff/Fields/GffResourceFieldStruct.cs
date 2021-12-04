@@ -9,15 +9,9 @@ namespace Anvil.API
   /// </summary>
   public sealed unsafe class GffResourceFieldStruct : GffResourceField, IReadOnlyDictionary<string, GffResourceField>
   {
+    private readonly Dictionary<string, GffResourceField> fieldLookup = new Dictionary<string, GffResourceField>();
     private readonly List<string> keys = new List<string>();
     private readonly List<GffResourceField> values = new List<GffResourceField>();
-
-    private readonly Dictionary<string, GffResourceField> fieldLookup = new Dictionary<string, GffResourceField>();
-
-    public override GffResourceFieldType FieldType
-    {
-      get => GffResourceFieldType.Struct;
-    }
 
     internal GffResourceFieldStruct(CResGFF resGff, CResStruct resStruct) : base(resGff)
     {
@@ -39,11 +33,16 @@ namespace Anvil.API
       EntrySet = entrySet;
     }
 
-    public override IEnumerable<KeyValuePair<string, GffResourceField>> EntrySet { get; }
-
     public override int Count
     {
       get => keys.Count;
+    }
+
+    public override IEnumerable<KeyValuePair<string, GffResourceField>> EntrySet { get; }
+
+    public override GffResourceFieldType FieldType
+    {
+      get => GffResourceFieldType.Struct;
     }
 
     public override IEnumerable<string> Keys
@@ -71,14 +70,14 @@ namespace Anvil.API
       return fieldLookup.ContainsKey(key);
     }
 
-    public override bool TryGetValue(string key, out GffResourceField value)
-    {
-      return fieldLookup.TryGetValue(key, out value);
-    }
-
     public IEnumerator<KeyValuePair<string, GffResourceField>> GetEnumerator()
     {
       return EntrySet.GetEnumerator();
+    }
+
+    public override bool TryGetValue(string key, out GffResourceField value)
+    {
+      return fieldLookup.TryGetValue(key, out value);
     }
 
     IEnumerator IEnumerable.GetEnumerator()

@@ -8,6 +8,66 @@ namespace Anvil.API
   public static class IntegerExtensions
   {
     /// <summary>
+    /// Reinterprets the specified value as an unsigned byte.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static byte AsByte(this sbyte value)
+    {
+      return unchecked((byte)value);
+    }
+
+    /// <summary>
+    /// Reinterprets the specified value as a long.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static long AsLong(this ulong value)
+    {
+      return unchecked((long)value);
+    }
+
+    /// <summary>
+    /// Reinterprets the specified value as a signed byte.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static sbyte AsSByte(this byte value)
+    {
+      return unchecked((sbyte)value);
+    }
+
+    /// <summary>
+    /// Reinterprets the specified value as a signed short.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static short AsShort(this ushort value)
+    {
+      return unchecked((short)value);
+    }
+
+    /// <summary>
+    /// Reinterprets the specified value as an unsigned long.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static ulong AsULong(this long value)
+    {
+      return unchecked((ulong)value);
+    }
+
+    /// <summary>
+    /// Reinterprets the specified value as an unsigned short.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static ushort AsUShort(this short value)
+    {
+      return unchecked((ushort)value);
+    }
+
+    /// <summary>
     /// Reinterprets the specified value as a boolean.
     /// </summary>
     /// <param name="value">The value to reinterpret.</param>
@@ -25,6 +85,28 @@ namespace Anvil.API
     public static int ToInt(this bool value)
     {
       return value ? NWScript.TRUE : NWScript.FALSE;
+    }
+
+    /// <summary>
+    /// Converts the specified object ID value into a managed game object.
+    /// </summary>
+    /// <param name="objectId">The object ID to convert.</param>
+    /// <typeparam name="T">The expected object type.</typeparam>
+    /// <returns>The associated object if it exists, otherwise null.</returns>
+    /// <exception cref="InvalidCastException">Thrown if the object associated with the object ID is not of type T.</exception>
+    public static T ToNwObject<T>(this uint objectId) where T : NwObject
+    {
+      return (T)NwObject.CreateInternal(objectId);
+    }
+
+    /// <summary>
+    /// Converts the specified object ID value into a managed game object.
+    /// </summary>
+    /// <param name="objectId">The object ID to convert.</param>
+    /// <returns>The associated object if it exists, otherwise null.</returns>
+    public static NwObject ToNwObject(this uint objectId)
+    {
+      return NwObject.CreateInternal(objectId);
     }
 
     /// <summary>
@@ -67,88 +149,6 @@ namespace Anvil.API
       }
 
       return player != null && player.Pointer != IntPtr.Zero ? new NwPlayer(player) : null;
-    }
-
-    /// <summary>
-    /// Converts the specified object ID value into a managed game object.
-    /// </summary>
-    /// <param name="objectId">The object ID to convert.</param>
-    /// <typeparam name="T">The expected object type.</typeparam>
-    /// <returns>The associated object if it exists, otherwise null.</returns>
-    /// <exception cref="InvalidCastException">Thrown if the object associated with the object ID is not of type T.</exception>
-    public static T ToNwObject<T>(this uint objectId) where T : NwObject
-    {
-      return (T)NwObject.CreateInternal(objectId);
-    }
-
-    /// <summary>
-    /// Converts the specified object ID value into a managed game object.
-    /// </summary>
-    /// <param name="objectId">The object ID to convert.</param>
-    /// <returns>The associated object if it exists, otherwise null.</returns>
-    public static NwObject ToNwObject(this uint objectId)
-    {
-      return NwObject.CreateInternal(objectId);
-    }
-
-    /// <summary>
-    /// Reinterprets the specified value as a signed byte.
-    /// </summary>
-    /// <param name="value">The value to reinterpret.</param>
-    /// <returns>The reinterpreted value.</returns>
-    public static sbyte AsSByte(this byte value)
-    {
-      return unchecked((sbyte)value);
-    }
-
-    /// <summary>
-    /// Reinterprets the specified value as an unsigned byte.
-    /// </summary>
-    /// <param name="value">The value to reinterpret.</param>
-    /// <returns>The reinterpreted value.</returns>
-    public static byte AsByte(this sbyte value)
-    {
-      return unchecked((byte)value);
-    }
-
-    /// <summary>
-    /// Reinterprets the specified value as a signed short.
-    /// </summary>
-    /// <param name="value">The value to reinterpret.</param>
-    /// <returns>The reinterpreted value.</returns>
-    public static short AsShort(this ushort value)
-    {
-      return unchecked((short)value);
-    }
-
-    /// <summary>
-    /// Reinterprets the specified value as an unsigned short.
-    /// </summary>
-    /// <param name="value">The value to reinterpret.</param>
-    /// <returns>The reinterpreted value.</returns>
-    public static ushort AsUShort(this short value)
-    {
-      return unchecked((ushort)value);
-    }
-
-    /// <summary>
-    /// Reinterprets the specified value as an unsigned long.
-    /// </summary>
-    /// <param name="value">The value to reinterpret.</param>
-    /// <returns>The reinterpreted value.</returns>
-    public static ulong AsULong(this long value)
-    {
-      return unchecked((ulong)value);
-    }
-
-    /// <summary>
-    /// Reinterprets the specified value as a long.
-    /// </summary>
-    /// <param name="value">The value to reinterpret.</param>
-    /// <returns>The reinterpreted value.</returns>
-    public static long AsLong(this ulong value)
-    {
-      return unchecked((long)value);
     }
   }
 }

@@ -4,22 +4,21 @@ namespace Anvil.API.Events
 {
   public sealed class EffectRunScriptEvent : IEvent
   {
-    public NwObject EffectTarget { get; }
+    public EffectRunScriptEvent()
+    {
+      EffectTarget = NWScript.OBJECT_SELF.ToNwObject();
+      Effect = NWScript.GetLastRunScriptEffect();
+      EventType = (EffectRunScriptType)NWScript.GetLastRunScriptEffectScriptType();
+    }
 
     public Effect Effect { get; }
+    public NwObject EffectTarget { get; }
 
     public EffectRunScriptType EventType { get; }
 
     NwObject IEvent.Context
     {
       get => EffectTarget;
-    }
-
-    public EffectRunScriptEvent()
-    {
-      EffectTarget = NWScript.OBJECT_SELF.ToNwObject();
-      Effect = NWScript.GetLastRunScriptEffect();
-      EventType = (EffectRunScriptType)NWScript.GetLastRunScriptEffectScriptType();
     }
   }
 }

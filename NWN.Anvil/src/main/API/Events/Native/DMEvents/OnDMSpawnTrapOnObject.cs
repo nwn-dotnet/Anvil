@@ -7,9 +7,9 @@ namespace Anvil.API.Events
   {
     public NwPlayer DungeonMaster { get; internal init; }
 
-    public NwStationary Target { get; internal init; }
-
     public bool Skip { get; set; }
+
+    public NwStationary Target { get; internal init; }
 
     NwObject IEvent.Context
     {

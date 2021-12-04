@@ -4,11 +4,6 @@ namespace Anvil.API
 {
   public sealed class NuiDrawListText : NuiDrawListItem
   {
-    public override NuiDrawListItemType Type
-    {
-      get => NuiDrawListItemType.Text;
-    }
-
     [JsonConstructor]
     public NuiDrawListText(NuiProperty<NuiColor> color, NuiProperty<NuiRect> rect, NuiProperty<string> text) : base(color, null, null)
     {
@@ -21,5 +16,10 @@ namespace Anvil.API
 
     [JsonProperty("text")]
     public NuiProperty<string> Text { get; set; }
+
+    public override NuiDrawListItemType Type
+    {
+      get => NuiDrawListItemType.Text;
+    }
   }
 }

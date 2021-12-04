@@ -6,50 +6,7 @@ namespace Anvil.API
 {
   public sealed partial class ItemProperty : EffectBase
   {
-    private ItemProperty(IntPtr handle, CGameEffect effect) : base(handle, effect) {}
-
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_ITEMPROPERTY;
-    }
-
-    public static implicit operator ItemProperty(IntPtr intPtr)
-    {
-      return new ItemProperty(intPtr, CGameEffect.FromPointer(intPtr));
-    }
-
-    public static explicit operator ItemProperty(Effect effect)
-    {
-      return new ItemProperty(effect, effect);
-    }
-
-    /// <summary>
-    /// Gets or sets the tag for this item property.
-    /// </summary>
-    public string Tag
-    {
-      get => Effect.GetString(0).ToString();
-      set => Effect.SetString(0, value.ToExoString());
-    }
-
-    /// <summary>
-    /// Gets or sets the type of this item property (as defined in itempropdef.2da).
-    /// </summary>
-    public ItemPropertyType PropertyType
-    {
-      get => (ItemPropertyType)Effect.GetInteger(0);
-      set => Effect.SetInteger(0, (int)value);
-    }
-
-    /// <summary>
-    /// Gets or sets the SubType index for this item property.<br/>
-    /// The mapping of this value can be found by first finding the 2da name in itempropdef.2da under the "SubTypeResRef" column, then locating the index of the subtype in the specified 2da.
-    /// </summary>
-    public int SubType
-    {
-      get => Effect.GetInteger(1);
-      set => Effect.SetInteger(1, value);
-    }
+    internal ItemProperty(CGameEffect effect) : base(effect) {}
 
     /// <summary>
     /// Gets or sets the cost table to use for this item property.<br/>
@@ -72,6 +29,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets whether this item property is a permanent or temporary effect.
+    /// </summary>
+    public EffectDuration DurationType
+    {
+      get => (EffectDuration)Effect.m_nSubType;
+      set => Effect.m_nSubType = (ushort)value;
+    }
+
+    /// <summary>
     /// Gets or sets the "param1" table to use for this item property.<br/>
     /// See "iprp_paramtable.2da" for a list of available tables.
     /// </summary>
@@ -91,25 +57,13 @@ namespace Anvil.API
       set => Effect.SetInteger(5, value);
     }
 
-    public int UsesPerDay
-    {
-      get => Effect.GetInteger(6);
-      set => Effect.SetInteger(6, value);
-    }
-
-    public bool Usable
-    {
-      get => Effect.GetInteger(8).ToBool();
-      set => Effect.SetInteger(8, value.ToInt());
-    }
-
     /// <summary>
-    /// Gets or sets whether this item property is a permanent or temporary effect.
+    /// Gets or sets the type of this item property (as defined in itempropdef.2da).
     /// </summary>
-    public EffectDuration DurationType
+    public ItemPropertyType PropertyType
     {
-      get => (EffectDuration)Effect.m_nSubType;
-      set => Effect.m_nSubType = (ushort)value;
+      get => (ItemPropertyType)Effect.GetInteger(0);
+      set => Effect.SetInteger(0, (int)value);
     }
 
     /// <summary>
@@ -121,11 +75,42 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the SubType index for this item property.<br/>
+    /// The mapping of this value can be found by first finding the 2da name in itempropdef.2da under the "SubTypeResRef" column, then locating the index of the subtype in the specified 2da.
+    /// </summary>
+    public int SubType
+    {
+      get => Effect.GetInteger(1);
+      set => Effect.SetInteger(1, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the tag for this item property.
+    /// </summary>
+    public string Tag
+    {
+      get => Effect.GetString(0).ToString();
+      set => Effect.SetString(0, value.ToExoString());
+    }
+
+    /// <summary>
     /// Gets the total duration of the item property effect (if this item property is temporary). Otherwise, returns <see cref="TimeSpan.Zero"/>.
     /// </summary>
     public TimeSpan TotalDuration
     {
       get => TimeSpan.FromSeconds(NWScript.GetItemPropertyDuration(this));
+    }
+
+    public bool Usable
+    {
+      get => Effect.GetInteger(8).ToBool();
+      set => Effect.SetInteger(8, value.ToInt());
+    }
+
+    public int UsesPerDay
+    {
+      get => Effect.GetInteger(6);
+      set => Effect.SetInteger(6, value);
     }
 
     /// <summary>
@@ -134,6 +119,21 @@ namespace Anvil.API
     public bool Valid
     {
       get => NWScript.GetIsItemPropertyValid(this).ToBool();
+    }
+
+    protected override int StructureId
+    {
+      get => NWScript.ENGINE_STRUCTURE_ITEMPROPERTY;
+    }
+
+    public static explicit operator ItemProperty(Effect effect)
+    {
+      return new ItemProperty(effect);
+    }
+
+    public static implicit operator ItemProperty(IntPtr intPtr)
+    {
+      return new ItemProperty(CGameEffect.FromPointer(intPtr));
     }
   }
 }

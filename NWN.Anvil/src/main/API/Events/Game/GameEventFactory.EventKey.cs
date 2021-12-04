@@ -15,6 +15,16 @@ namespace Anvil.API.Events
         this.gameObject = gameObject;
       }
 
+      public static bool operator ==(EventKey left, EventKey right)
+      {
+        return left.Equals(right);
+      }
+
+      public static bool operator !=(EventKey left, EventKey right)
+      {
+        return !left.Equals(right);
+      }
+
       public bool Equals(EventKey other)
       {
         return eventScriptType == other.eventScriptType && gameObject == other.gameObject;
@@ -28,16 +38,6 @@ namespace Anvil.API.Events
       public override int GetHashCode()
       {
         return HashCode.Combine((int)eventScriptType, gameObject);
-      }
-
-      public static bool operator ==(EventKey left, EventKey right)
-      {
-        return left.Equals(right);
-      }
-
-      public static bool operator !=(EventKey left, EventKey right)
-      {
-        return !left.Equals(right);
       }
     }
   }

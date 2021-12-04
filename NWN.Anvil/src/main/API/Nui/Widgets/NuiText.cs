@@ -7,11 +7,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiText : NuiWidget
   {
-    public override string Type
-    {
-      get => "text";
-    }
-
     [JsonConstructor]
     public NuiText(NuiProperty<string> text)
     {
@@ -20,5 +15,10 @@ namespace Anvil.API
 
     [JsonProperty("value")]
     public NuiProperty<string> Text { get; set; }
+
+    public override string Type
+    {
+      get => "text";
+    }
   }
 }

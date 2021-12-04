@@ -12,19 +12,9 @@ namespace Anvil.API.Events
   public sealed class OnHealKitUse : IEvent
   {
     /// <summary>
-    /// Gets or sets whether the heal kit should be prevented from being used.
+    /// Gets the item property index on the heal item that was used.
     /// </summary>
-    public bool PreventUse { get; set; }
-
-    /// <summary>
-    /// Gets the creature that used the heal item.
-    /// </summary>
-    public NwCreature UsedBy { get; private init; }
-
-    /// <summary>
-    /// Gets the object that was targetted with this healing item.
-    /// </summary>
-    public NwGameObject Target { get; private init; }
+    public int ItemPropertyIndex { get; private init; }
 
     /// <summary>
     /// Gets the heal item that was used.
@@ -32,19 +22,29 @@ namespace Anvil.API.Events
     public NwItem ItemUsed { get; private init; }
 
     /// <summary>
-    /// Gets the item property index on the heal item that was used.
-    /// </summary>
-    public int ItemPropertyIndex { get; private init; }
-
-    /// <summary>
     /// Gets if the creature had to move to the target to use the heal item.
     /// </summary>
     public bool MoveToTarget { get; private init; }
 
     /// <summary>
+    /// Gets or sets whether the heal kit should be prevented from being used.
+    /// </summary>
+    public bool PreventUse { get; set; }
+
+    /// <summary>
     /// Gets if the creature successfully used this healing kit.
     /// </summary>
     public Lazy<ActionState> Result { get; private set; }
+
+    /// <summary>
+    /// Gets the object that was targetted with this healing item.
+    /// </summary>
+    public NwGameObject Target { get; private init; }
+
+    /// <summary>
+    /// Gets the creature that used the heal item.
+    /// </summary>
+    public NwCreature UsedBy { get; private init; }
 
     NwObject IEvent.Context
     {

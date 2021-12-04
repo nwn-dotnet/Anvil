@@ -11,13 +11,11 @@ namespace Anvil.API
   {
     private static readonly ScriptParams CachedScriptParams = new ScriptParams();
 
-    /// <summary>
-    /// Gets the parameters set for this script call.<br/>
-    /// NOTE: variable values are NOT guaranteed outside of this script context, and must be read before any async method/lambda is invoked.
-    /// </summary>
-    public ScriptParams ScriptParams
+    public CallInfo(string scriptName, NwObject objSelf)
     {
-      get => CachedScriptParams;
+      ScriptName = scriptName;
+      ObjectSelf = objSelf;
+      ScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent();
     }
 
     /// <summary>
@@ -31,16 +29,18 @@ namespace Anvil.API
     public string ScriptName { get; }
 
     /// <summary>
+    /// Gets the parameters set for this script call.<br/>
+    /// NOTE: variable values are NOT guaranteed outside of this script context, and must be read before any async method/lambda is invoked.
+    /// </summary>
+    public ScriptParams ScriptParams
+    {
+      get => CachedScriptParams;
+    }
+
+    /// <summary>
     /// Gets the event that triggered the execution of this script.
     /// </summary>
     public EventScriptType ScriptType { get; }
-
-    public CallInfo(string scriptName, NwObject objSelf)
-    {
-      ScriptName = scriptName;
-      ObjectSelf = objSelf;
-      ScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent();
-    }
 
     /// <summary>
     /// Attempts to get the current running event.

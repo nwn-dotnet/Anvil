@@ -8,9 +8,8 @@ namespace Anvil.API.Events
 {
   public sealed class OnInventoryItemRemove : IEvent
   {
-    public NwGameObject RemovedFrom { get; private init; }
-
     public NwItem Item { get; private init; }
+    public NwGameObject RemovedFrom { get; private init; }
 
     NwObject IEvent.Context
     {

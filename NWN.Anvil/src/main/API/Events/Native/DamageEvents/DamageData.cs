@@ -19,34 +19,22 @@ namespace Anvil.API.Events
       this.source = source;
     }
 
-    public T Bludgeoning
-    {
-      get => source[0];
-      set => source[0] = value;
-    }
-
-    public T Pierce
-    {
-      get => source[1];
-      set => source[1] = value;
-    }
-
-    public T Slash
-    {
-      get => source[2];
-      set => source[2] = value;
-    }
-
-    public T Magical
-    {
-      get => source[3];
-      set => source[3] = value;
-    }
-
     public T Acid
     {
       get => source[4];
       set => source[4] = value;
+    }
+
+    public T Base
+    {
+      get => source[12];
+      set => source[12] = value;
+    }
+
+    public T Bludgeoning
+    {
+      get => source[0];
+      set => source[0] = value;
     }
 
     public T Cold
@@ -73,10 +61,22 @@ namespace Anvil.API.Events
       set => source[8] = value;
     }
 
+    public T Magical
+    {
+      get => source[3];
+      set => source[3] = value;
+    }
+
     public T Negative
     {
       get => source[9];
       set => source[9] = value;
+    }
+
+    public T Pierce
+    {
+      get => source[1];
+      set => source[1] = value;
     }
 
     public T Positive
@@ -85,16 +85,16 @@ namespace Anvil.API.Events
       set => source[10] = value;
     }
 
+    public T Slash
+    {
+      get => source[2];
+      set => source[2] = value;
+    }
+
     public T Sonic
     {
       get => source[11];
       set => source[11] = value;
-    }
-
-    public T Base
-    {
-      get => source[12];
-      set => source[12] = value;
     }
 
     public T GetDamageByType(DamageType damageType)

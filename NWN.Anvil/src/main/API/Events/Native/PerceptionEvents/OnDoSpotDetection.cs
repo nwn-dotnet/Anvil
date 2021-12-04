@@ -8,11 +8,10 @@ namespace Anvil.API.Events
 {
   public sealed class OnDoSpotDetection : IEvent
   {
-    public VisibilityOverride VisibilityOverride { get; set; }
-
     public NwCreature Creature { get; private init; }
 
     public NwCreature Target { get; private init; }
+    public VisibilityOverride VisibilityOverride { get; set; }
 
     NwObject IEvent.Context
     {

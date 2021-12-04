@@ -36,6 +36,15 @@ namespace Anvil.Services
       return instance;
     }
 
+    // We clear injected properties as they can hold invalid references when reloading Anvil.
+    void IDisposable.Dispose()
+    {
+      foreach (PropertyInfo propertyInfo in injectedStaticProperties)
+      {
+        propertyInfo.SetValue(null, default);
+      }
+    }
+
     private void InjectStaticProperties(IEnumerable<Type> types)
     {
       InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.StaticOnly);
@@ -50,15 +59,6 @@ namespace Anvil.Services
           propertyInfo.SetValue(null, value);
           injectedStaticProperties.Add(propertyInfo);
         }
-      }
-    }
-
-    // We clear injected properties as they can hold invalid references when reloading Anvil.
-    void IDisposable.Dispose()
-    {
-      foreach (PropertyInfo propertyInfo in injectedStaticProperties)
-      {
-        propertyInfo.SetValue(null, default);
       }
     }
   }

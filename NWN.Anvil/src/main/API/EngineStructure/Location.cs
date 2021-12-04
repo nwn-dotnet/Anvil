@@ -9,38 +9,12 @@ namespace Anvil.API
   {
     internal Location(IntPtr handle) : base(handle) {}
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_LOCATION;
-    }
-
-    public static implicit operator Location(IntPtr intPtr)
-    {
-      return new Location(intPtr);
-    }
-
-    /// <summary>
-    /// Gets the position Vector of this location.
-    /// </summary>
-    public Vector3 Position
-    {
-      get => NWScript.GetPositionFromLocation(this);
-    }
-
     /// <summary>
     /// Gets the associated Area of this location.
     /// </summary>
     public NwArea Area
     {
       get => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
-    }
-
-    /// <summary>
-    /// Gets the rotation value of this location.
-    /// </summary>
-    public float Rotation
-    {
-      get => NWScript.GetFacingFromLocation(this);
     }
 
     /// <summary>
@@ -57,6 +31,30 @@ namespace Anvil.API
     public float GroundHeight
     {
       get => NWScript.GetGroundHeight(this);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether the location is walkable.
+    /// </summary>
+    public bool IsWalkable
+    {
+      get => NWScript.Get2DAString("surfacemat", "Walk", SurfaceMaterial).ParseIntBool();
+    }
+
+    /// <summary>
+    /// Gets the position Vector of this location.
+    /// </summary>
+    public Vector3 Position
+    {
+      get => NWScript.GetPositionFromLocation(this);
+    }
+
+    /// <summary>
+    /// Gets the rotation value of this location.
+    /// </summary>
+    public float Rotation
+    {
+      get => NWScript.GetFacingFromLocation(this);
     }
 
     /// <summary>
@@ -104,12 +102,43 @@ namespace Anvil.API
       get => (TileSourceLightColor)NWScript.GetTileSourceLight2Color(this);
     }
 
-    /// <summary>
-    /// Gets a value indicating whether the location is walkable.
-    /// </summary>
-    public bool IsWalkable
+    protected override int StructureId
     {
-      get => NWScript.Get2DAString("surfacemat", "Walk", SurfaceMaterial).ParseIntBool();
+      get => NWScript.ENGINE_STRUCTURE_LOCATION;
+    }
+
+    public static Location Create(NwArea area, Vector3 position, float orientation)
+    {
+      return NWScript.Location(area, position, orientation);
+    }
+
+    public static implicit operator Location(IntPtr intPtr)
+    {
+      return new Location(intPtr);
+    }
+
+    /// <summary>
+    /// Applies the specified effect at this location.
+    /// </summary>
+    /// <param name="durationType">The duration type to apply with this effect.</param>
+    /// <param name="effect">The effect to apply.</param>
+    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
+    public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
+    {
+      NWScript.ApplyEffectAtLocation((int)durationType, effect, this, (float)duration.TotalSeconds);
+    }
+
+    /// <summary>
+    /// Creates the specified trap.
+    /// </summary>
+    /// <param name="trap">The base type of trap.</param>
+    /// <param name="size">The size of the trap. Minimum size allowed is 1.0f. If no value set, defaults to 2.0f.</param>
+    /// <param name="tag">The tag of the trap being created. If no value set, defaults to an empty string.</param>
+    /// <param name="disarm">The script that will fire when the trap is disarmed. If no value set, defaults to an empty string and no script will fire.</param>
+    /// <param name="triggered">The script that will fire when the trap is triggered. If no value set, defaults to an empty string and the default OnTrapTriggered script for the trap type specified will fire instead (as specified in the traps.2da).</param>
+    public void CreateTrap(TrapBaseType trap, float size = 2.0f, string tag = "", string disarm = "", string triggered = "")
+    {
+      NWScript.CreateTrapAtLocation((int)trap, this, size, tag, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
     }
 
     /// <summary>
@@ -141,47 +170,6 @@ namespace Anvil.API
       }
 
       return Vector3.DistanceSquared(target.Position, Position);
-    }
-
-    public IEnumerable<NwGameObject> GetObjectsInShape(Shape shape, float size, bool losCheck, ObjectTypes objTypes = ObjectTypes.Creature, Vector3 origin = default)
-    {
-      int typeFilter = (int)objTypes;
-      int nShape = (int)shape;
-
-      for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
-        obj != NWScript.OBJECT_INVALID;
-        obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin))
-      {
-        yield return obj.ToNwObject<NwGameObject>();
-      }
-    }
-
-    public IEnumerable<T> GetObjectsInShapeByType<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
-    {
-      int typeFilter = (int)NwObject.GetObjectType<T>();
-      int nShape = (int)shape;
-
-      for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
-        obj != NWScript.OBJECT_INVALID;
-        obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin))
-      {
-        yield return obj.ToNwObject<T>();
-      }
-    }
-
-    public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
-    {
-      int objType = (int)NwObject.GetObjectType<T>();
-      int i;
-      uint next;
-      for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.Invalid; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
-      {
-        T obj = next.ToNwObjectSafe<T>();
-        if (obj != null)
-        {
-          yield return obj;
-        }
-      }
     }
 
     public IEnumerable<NwCreature> GetNearestCreatures()
@@ -228,33 +216,45 @@ namespace Anvil.API
       }
     }
 
-    public static Location Create(NwArea area, Vector3 position, float orientation)
+    public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      return NWScript.Location(area, position, orientation);
+      int objType = (int)NwObject.GetObjectType<T>();
+      int i;
+      uint next;
+      for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.Invalid; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
+      {
+        T obj = next.ToNwObjectSafe<T>();
+        if (obj != null)
+        {
+          yield return obj;
+        }
+      }
     }
 
-    /// <summary>
-    /// Applies the specified effect at this location.
-    /// </summary>
-    /// <param name="durationType">The duration type to apply with this effect.</param>
-    /// <param name="effect">The effect to apply.</param>
-    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
-    public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
+    public IEnumerable<NwGameObject> GetObjectsInShape(Shape shape, float size, bool losCheck, ObjectTypes objTypes = ObjectTypes.Creature, Vector3 origin = default)
     {
-      NWScript.ApplyEffectAtLocation((int)durationType, effect, this, (float)duration.TotalSeconds);
+      int typeFilter = (int)objTypes;
+      int nShape = (int)shape;
+
+      for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
+        obj != NWScript.OBJECT_INVALID;
+        obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin))
+      {
+        yield return obj.ToNwObject<NwGameObject>();
+      }
     }
 
-    /// <summary>
-    /// Creates the specified trap.
-    /// </summary>
-    /// <param name="trap">The base type of trap.</param>
-    /// <param name="size">The size of the trap. Minimum size allowed is 1.0f. If no value set, defaults to 2.0f.</param>
-    /// <param name="tag">The tag of the trap being created. If no value set, defaults to an empty string.</param>
-    /// <param name="disarm">The script that will fire when the trap is disarmed. If no value set, defaults to an empty string and no script will fire.</param>
-    /// <param name="triggered">The script that will fire when the trap is triggered. If no value set, defaults to an empty string and the default OnTrapTriggered script for the trap type specified will fire instead (as specified in the traps.2da).</param>
-    public void CreateTrap(TrapBaseType trap, float size = 2.0f, string tag = "", string disarm = "", string triggered = "")
+    public IEnumerable<T> GetObjectsInShapeByType<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
-      NWScript.CreateTrapAtLocation((int)trap, this, size, tag, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
+      int typeFilter = (int)NwObject.GetObjectType<T>();
+      int nShape = (int)shape;
+
+      for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
+        obj != NWScript.OBJECT_INVALID;
+        obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin))
+      {
+        yield return obj.ToNwObject<T>();
+      }
     }
   }
 }

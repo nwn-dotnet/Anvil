@@ -12,11 +12,6 @@ namespace Anvil.API
       this.classInfo = classInfo;
     }
 
-    public ClassType Type
-    {
-      get => (ClassType)classInfo.m_nClass;
-    }
-
     /// <summary>
     /// Gets the amount of levels in this class.
     /// </summary>
@@ -31,6 +26,58 @@ namespace Anvil.API
     public byte NegativeLevels
     {
       get => classInfo.m_nNegativeLevels;
+    }
+
+    public ClassType Type
+    {
+      get => (ClassType)classInfo.m_nClass;
+    }
+
+    /// <summary>
+    /// Adds the specified spell as a known spell at the specified spell level.
+    /// </summary>
+    /// <param name="spell">The spell to be added.</param>
+    /// <param name="spellLevel">The spell level for the spell to be added.</param>
+    public void AddKnownSpell(Spell spell, byte spellLevel)
+    {
+      classInfo.AddKnownSpell(spellLevel, (uint)spell);
+    }
+
+    /// <summary>
+    /// Clears the specified spell from the creature's spellbook.
+    /// </summary>
+    /// <param name="spell">The spell to clear.</param>
+    public void ClearMemorizedKnownSpells(Spell spell)
+    {
+      classInfo.ClearMemorizedKnownSpells((uint)spell);
+    }
+
+    /// <summary>
+    /// Gets the number of spells known by this creature at the specified level.
+    /// </summary>
+    /// <param name="spellLevel">The spell level to query.</param>
+    /// <returns>An integer representing the number of spells known.</returns>
+    public ushort GetKnownSpellCountByLevel(byte spellLevel)
+    {
+      return classInfo.GetNumberKnownSpells(spellLevel);
+    }
+
+    /// <summary>
+    /// Gets this creature's known spells for the specified spell level.
+    /// </summary>
+    /// <param name="spellLevel">The spell level to query.</param>
+    /// <returns>A list containing the creatures known spells.</returns>
+    public IReadOnlyList<Spell> GetKnownSpells(byte spellLevel)
+    {
+      int spellCount = GetKnownSpellCountByLevel(spellLevel);
+      Spell[] retVal = new Spell[spellCount];
+
+      for (byte i = 0; i < spellCount; i++)
+      {
+        retVal[i] = (Spell)classInfo.GetKnownSpell(spellLevel, i);
+      }
+
+      return retVal;
     }
 
     /// <summary>
@@ -72,44 +119,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Sets the number of unspent spell slots for the given spell level.
-    /// </summary>
-    /// <param name="spellLevel">The spell level to modify.</param>
-    /// <param name="slotsRemaining">The new amount of spell slot remaining.</param>
-    public void SetRemainingSpellSlots(byte spellLevel, byte slotsRemaining)
-    {
-      classInfo.SetSpellsPerDayLeft(spellLevel, slotsRemaining);
-    }
-
-    /// <summary>
-    /// Gets the number of spells known by this creature at the specified level.
-    /// </summary>
-    /// <param name="spellLevel">The spell level to query.</param>
-    /// <returns>An integer representing the number of spells known.</returns>
-    public ushort GetKnownSpellCountByLevel(byte spellLevel)
-    {
-      return classInfo.GetNumberKnownSpells(spellLevel);
-    }
-
-    /// <summary>
-    /// Gets this creature's known spells for the specified spell level.
-    /// </summary>
-    /// <param name="spellLevel">The spell level to query.</param>
-    /// <returns>A list containing the creatures known spells.</returns>
-    public IReadOnlyList<Spell> GetKnownSpells(byte spellLevel)
-    {
-      int spellCount = GetKnownSpellCountByLevel(spellLevel);
-      Spell[] retVal = new Spell[spellCount];
-
-      for (byte i = 0; i < spellCount; i++)
-      {
-        retVal[i] = (Spell)classInfo.GetKnownSpell(spellLevel, i);
-      }
-
-      return retVal;
-    }
-
-    /// <summary>
     /// Removes the known spell at the specified level with the specified index, as returned by <see cref="GetKnownSpells"/>.
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
@@ -120,22 +129,13 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Adds the specified spell as a known spell at the specified spell level.
+    /// Sets the number of unspent spell slots for the given spell level.
     /// </summary>
-    /// <param name="spell">The spell to be added.</param>
-    /// <param name="spellLevel">The spell level for the spell to be added.</param>
-    public void AddKnownSpell(Spell spell, byte spellLevel)
+    /// <param name="spellLevel">The spell level to modify.</param>
+    /// <param name="slotsRemaining">The new amount of spell slot remaining.</param>
+    public void SetRemainingSpellSlots(byte spellLevel, byte slotsRemaining)
     {
-      classInfo.AddKnownSpell(spellLevel, (uint)spell);
-    }
-
-    /// <summary>
-    /// Clears the specified spell from the creature's spellbook.
-    /// </summary>
-    /// <param name="spell">The spell to clear.</param>
-    public void ClearMemorizedKnownSpells(Spell spell)
-    {
-      classInfo.ClearMemorizedKnownSpells((uint)spell);
+      classInfo.SetSpellsPerDayLeft(spellLevel, slotsRemaining);
     }
   }
 }

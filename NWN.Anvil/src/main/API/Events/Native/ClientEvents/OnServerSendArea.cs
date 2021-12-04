@@ -8,14 +8,14 @@ namespace Anvil.API.Events
 {
   public sealed class OnServerSendArea : IEvent
   {
-    public NwPlayer Player { get; private init; }
-
     public NwArea Area { get; private init; }
 
     /// <summary>
     /// Gets a value indicating whether this is the player's first time logging in to the server since a restart.
     /// </summary>
     public bool IsPlayerNewToModule { get; private init; }
+
+    public NwPlayer Player { get; private init; }
 
     NwObject IEvent.Context
     {

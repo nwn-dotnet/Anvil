@@ -20,10 +20,13 @@ namespace Anvil.API
     private readonly int mainThreadId = Thread.CurrentThread.ManagedThreadId;
     private readonly CVirtualMachine virtualMachine = NWNXLib.VirtualMachine();
 
-    public uint InstructionsExecuted
+    /// <summary>
+    /// Gets or sets the current running script event.
+    /// </summary>
+    public EventScriptType CurrentRunningEvent
     {
-      get => virtualMachine.m_nInstructionsExecuted;
-      set => virtualMachine.m_nInstructionsExecuted = value;
+      get => (EventScriptType)virtualMachine.m_pVirtualMachineScript[0].m_nScriptEventID;
+      set => virtualMachine.m_pVirtualMachineScript[0].m_nScriptEventID = (int)value;
     }
 
     /// <summary>
@@ -35,18 +38,10 @@ namespace Anvil.API
       set => virtualMachine.m_nInstructionLimit = value;
     }
 
-    /// <summary>
-    /// Gets or sets the current running script event.
-    /// </summary>
-    public EventScriptType CurrentRunningEvent
+    public uint InstructionsExecuted
     {
-      get => (EventScriptType)virtualMachine.m_pVirtualMachineScript[0].m_nScriptEventID;
-      set => virtualMachine.m_pVirtualMachineScript[0].m_nScriptEventID = (int)value;
-    }
-
-    public int RecursionLevel
-    {
-      get => virtualMachine.m_nRecursionLevel;
+      get => virtualMachine.m_nInstructionsExecuted;
+      set => virtualMachine.m_nInstructionsExecuted = value;
     }
 
     /// <summary>
@@ -55,6 +50,11 @@ namespace Anvil.API
     public bool IsInScriptContext
     {
       get => Thread.CurrentThread.ManagedThreadId == mainThreadId && RecursionLevel >= 0;
+    }
+
+    public int RecursionLevel
+    {
+      get => virtualMachine.m_nRecursionLevel;
     }
 
     public unsafe bool ScriptReturnValue
@@ -71,27 +71,6 @@ namespace Anvil.API
 
         return false;
       }
-    }
-
-    /// <summary>
-    /// Gets the name of the currently executing script.<br/>
-    /// If depth is > 0, it will return the name of the script that called this one via ExecuteScript().
-    /// </summary>
-    /// <param name="depth">depth to seek the executing script.</param>
-    /// <returns>The name of the currently executing script.</returns>
-    public string GetCurrentScriptName(int depth = 0)
-    {
-      if (virtualMachine.m_nRecursionLevel >= 0 && virtualMachine.m_nRecursionLevel >= depth)
-      {
-        CVirtualMachineScript script = virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel - depth];
-
-        if (!script.m_sScriptName.IsEmpty().ToBool())
-        {
-          return script.m_sScriptName.ToString();
-        }
-      }
-
-      return null;
     }
 
     /// <summary>
@@ -152,6 +131,27 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Gets the name of the currently executing script.<br/>
+    /// If depth is > 0, it will return the name of the script that called this one via ExecuteScript().
+    /// </summary>
+    /// <param name="depth">depth to seek the executing script.</param>
+    /// <returns>The name of the currently executing script.</returns>
+    public string GetCurrentScriptName(int depth = 0)
+    {
+      if (virtualMachine.m_nRecursionLevel >= 0 && virtualMachine.m_nRecursionLevel >= depth)
+      {
+        CVirtualMachineScript script = virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel - depth];
+
+        if (!script.m_sScriptName.IsEmpty().ToBool())
+        {
+          return script.m_sScriptName.ToString();
+        }
+      }
+
+      return null;
+    }
+
     internal IEnumerable<ScriptParam> GetCurrentContextScriptParams()
     {
       if (IsInScriptContext)
@@ -160,6 +160,19 @@ namespace Anvil.API
       }
 
       return Enumerable.Empty<ScriptParam>();
+    }
+
+    private int PopScriptContext()
+    {
+      CNWVirtualMachineCommands cmd = CNWVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
+
+      if (--virtualMachine.m_nRecursionLevel != -1)
+      {
+        cmd.m_oidObjectRunScript = virtualMachine.m_oidObjectRunScript[virtualMachine.m_nRecursionLevel];
+        cmd.m_bValidObjectRunScript = virtualMachine.m_bValidObjectRunScript[virtualMachine.m_nRecursionLevel];
+      }
+
+      return virtualMachine.m_cRunTimeStack.GetStackPointer();
     }
 
     private int PushScriptContext(uint oid, int scriptEventId, bool valid)
@@ -180,19 +193,6 @@ namespace Anvil.API
       virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel].m_nScriptEventID = scriptEventId;
       cmd.m_oidObjectRunScript = virtualMachine.m_oidObjectRunScript[virtualMachine.m_nRecursionLevel];
       cmd.m_bValidObjectRunScript = virtualMachine.m_bValidObjectRunScript[virtualMachine.m_nRecursionLevel];
-
-      return virtualMachine.m_cRunTimeStack.GetStackPointer();
-    }
-
-    private int PopScriptContext()
-    {
-      CNWVirtualMachineCommands cmd = CNWVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
-
-      if (--virtualMachine.m_nRecursionLevel != -1)
-      {
-        cmd.m_oidObjectRunScript = virtualMachine.m_oidObjectRunScript[virtualMachine.m_nRecursionLevel];
-        cmd.m_bValidObjectRunScript = virtualMachine.m_bValidObjectRunScript[virtualMachine.m_nRecursionLevel];
-      }
 
       return virtualMachine.m_cRunTimeStack.GetStackPointer();
     }

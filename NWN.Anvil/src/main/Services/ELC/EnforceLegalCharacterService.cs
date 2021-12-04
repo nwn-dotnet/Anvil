@@ -15,74 +15,62 @@ namespace Anvil.Services
   [ServiceBindingOptions(Lazy = true)]
   public sealed unsafe class EnforceLegalCharacterService : IDisposable
   {
-    // Dependencies
-    private readonly VirtualMachine virtualMachine;
-
-    // Validation Failure STRREFs
-    private const int StrRefCharacterDoesNotExist = 63767;
-    private const int StrRefCharacterLevelRestriction = 57924;
-    private const int StrRefCharacterNonPlayer = 63760;
-    private const int StrRefCharacterDungeonMaster = 67641;
-    private const int StrRefCharacterNonPlayerRace = 66166;
-    private const int StrRefCharacterNonPlayerClass = 66167;
-    private const int StrRefCharacterTooManyHitpoints = 3109;
-    private const int StrRefCharacterSavingThrow = 8066;
-    private const int StrRefCharacterInvalidAbilityScores = 63761;
-    private const int StrRefItemLevelRestriction = 68521;
-    private const int StrRefSkillUnuseable = 63815;
-    private const int StrRefSkillInvalidRanks = 66165;
-    private const int StrRefSkillInvalidNumSkillpoints = 66155;
-    private const int StrRefFeatInvalid = 76383;
-    private const int StrRefFeatTooMany = 66222;
-    private const int StrRefFeatReqAbility = 66175;
-    private const int StrRefFeatReqSpellLevel = 66176;
-    private const int StrRefFeatReqFeat = 66182;
-    private const int StrRefFeatReqSkill = 66183;
-    private const int StrRefSpellReqSpellLevel = 66498;
-    private const int StrRefSpellInvalidSpell = 66499;
-    private const int StrRefSpellIllegalLevel = 68627;
-    private const int StrRefSpellReqAbility = 68628;
-    private const int StrRefSpellLearnedTwice = 68629;
-    private const int StrRefSpellIllegalNumSpells = 68630;
-    private const int StrRefSpellIllegalRemovedSpells = 68631;
-    private const int StrRefSpellOppositeSpellSchool = 66500;
-    private const int StrRefCustom = 164;
+    private const int AbilityMax = 5;
+    private const int CharacterEpicLevel = 21;
 
     // Magic Numbers
     private const int InventorySlotMax = 17;
     private const int NumCreatureItemSlots = 4;
     private const int NumMultiClass = 3;
-    private const int CharacterEpicLevel = 21;
     private const int NumSpellLevels = 10;
-    private const int AbilityMax = 5;
 
-    private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
+    // Validation Failure STRREFs
+    private const int StrRefCharacterDoesNotExist = 63767;
+    private const int StrRefCharacterDungeonMaster = 67641;
+    private const int StrRefCharacterInvalidAbilityScores = 63761;
+    private const int StrRefCharacterLevelRestriction = 57924;
+    private const int StrRefCharacterNonPlayer = 63760;
+    private const int StrRefCharacterNonPlayerClass = 66167;
+    private const int StrRefCharacterNonPlayerRace = 66166;
+    private const int StrRefCharacterSavingThrow = 8066;
+    private const int StrRefCharacterTooManyHitpoints = 3109;
+    private const int StrRefCustom = 164;
+    private const int StrRefFeatInvalid = 76383;
+    private const int StrRefFeatReqAbility = 66175;
+    private const int StrRefFeatReqFeat = 66182;
+    private const int StrRefFeatReqSkill = 66183;
+    private const int StrRefFeatReqSpellLevel = 66176;
+    private const int StrRefFeatTooMany = 66222;
+    private const int StrRefItemLevelRestriction = 68521;
+    private const int StrRefSkillInvalidNumSkillpoints = 66155;
+    private const int StrRefSkillInvalidRanks = 66165;
+    private const int StrRefSkillUnuseable = 63815;
+    private const int StrRefSpellIllegalLevel = 68627;
+    private const int StrRefSpellIllegalNumSpells = 68630;
+    private const int StrRefSpellIllegalRemovedSpells = 68631;
+    private const int StrRefSpellInvalidSpell = 66499;
+    private const int StrRefSpellLearnedTwice = 68629;
+    private const int StrRefSpellOppositeSpellSchool = 66500;
+    private const int StrRefSpellReqAbility = 68628;
+    private const int StrRefSpellReqSpellLevel = 66498;
+    private readonly int abilityCostIncrement2;
+    private readonly int abilityCostIncrement3;
+    private readonly int charGenBaseAbilityMax;
+    private readonly int charGenBaseAbilityMin;
+    private readonly CNWClassArray classes;
 
-    private readonly FunctionHook<ValidateCharacterHook> validateCharacterHook;
+    private readonly int epicGreatStatBonus;
+    private readonly CNWFeatArray feats;
 
     private readonly CNWRules pRules;
     private readonly CNWRaceArray races;
-    private readonly CNWClassArray classes;
-    private readonly CNWSkillArray skills;
-    private readonly CNWFeatArray feats;
-
-    private readonly int epicGreatStatBonus;
-    private readonly int charGenBaseAbilityMin;
-    private readonly int charGenBaseAbilityMax;
-    private readonly int abilityCostIncrement2;
-    private readonly int abilityCostIncrement3;
     private readonly int skillMaxLevel1Bonus;
+    private readonly CNWSkillArray skills;
 
-    public bool EnforceDefaultEventScripts { get; set; }
-    public bool EnforceEmptyDialog { get; set; }
+    private readonly FunctionHook<ValidateCharacterHook> validateCharacterHook;
 
-    public event Action<OnELCValidationBefore> OnValidationBefore;
-
-    public event Action<OnELCCustomCheck> OnCustomCheck;
-
-    public event Action<OnELCValidationFailure> OnValidationFailure;
-
-    public event Action<OnELCValidationSuccess> OnValidationSuccess;
+    // Dependencies
+    private readonly VirtualMachine virtualMachine;
 
     public EnforceLegalCharacterService(VirtualMachine virtualMachine, HookService hookService)
     {
@@ -101,6 +89,177 @@ namespace Anvil.Services
       abilityCostIncrement2 = pRules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT2".ToExoString(), 14);
       abilityCostIncrement3 = pRules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT3".ToExoString(), 16);
       skillMaxLevel1Bonus = pRules.GetRulesetIntEntry("CHARGEN_SKILL_MAX_LEVEL_1_BONUS".ToExoString(), 3);
+    }
+
+    private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
+
+    public event Action<OnELCCustomCheck> OnCustomCheck;
+
+    public event Action<OnELCValidationBefore> OnValidationBefore;
+
+    public event Action<OnELCValidationFailure> OnValidationFailure;
+
+    public event Action<OnELCValidationSuccess> OnValidationSuccess;
+
+    public bool EnforceDefaultEventScripts { get; set; }
+    public bool EnforceEmptyDialog { get; set; }
+
+    public void Dispose()
+    {
+      validateCharacterHook.Dispose();
+    }
+
+    private int[] GetStatBonusesFromFeats(CExoArrayListUInt16 lstFeats, bool subtractBonuses)
+    {
+      int[] abilityMods = new int[6];
+
+      HashSet<Feat> creatureFeats = new HashSet<Feat>();
+      foreach (ushort nFeat in lstFeats)
+      {
+        creatureFeats.Add((Feat)nFeat);
+      }
+
+      int GetFeatCount(params Feat[] epicFeats)
+      {
+        return epicFeats.Count(feat => creatureFeats.Contains(feat));
+      }
+
+      abilityMods[(int)Ability.Strength] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatStrength1,
+        Feat.EpicGreatStrength2,
+        Feat.EpicGreatStrength3,
+        Feat.EpicGreatStrength4,
+        Feat.EpicGreatStrength5,
+        Feat.EpicGreatStrength6,
+        Feat.EpicGreatStrength7,
+        Feat.EpicGreatStrength8,
+        Feat.EpicGreatStrength9,
+        Feat.EpicGreatStrength10);
+
+      abilityMods[(int)Ability.Dexterity] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatDexterity1,
+        Feat.EpicGreatDexterity2,
+        Feat.EpicGreatDexterity3,
+        Feat.EpicGreatDexterity4,
+        Feat.EpicGreatDexterity5,
+        Feat.EpicGreatDexterity6,
+        Feat.EpicGreatDexterity7,
+        Feat.EpicGreatDexterity8,
+        Feat.EpicGreatDexterity9,
+        Feat.EpicGreatDexterity10);
+
+      abilityMods[(int)Ability.Constitution] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatConstitution1,
+        Feat.EpicGreatConstitution2,
+        Feat.EpicGreatConstitution3,
+        Feat.EpicGreatConstitution4,
+        Feat.EpicGreatConstitution5,
+        Feat.EpicGreatConstitution6,
+        Feat.EpicGreatConstitution7,
+        Feat.EpicGreatConstitution8,
+        Feat.EpicGreatConstitution9,
+        Feat.EpicGreatConstitution10);
+
+      abilityMods[(int)Ability.Intelligence] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatIntelligence1,
+        Feat.EpicGreatIntelligence2,
+        Feat.EpicGreatIntelligence3,
+        Feat.EpicGreatIntelligence4,
+        Feat.EpicGreatIntelligence5,
+        Feat.EpicGreatIntelligence6,
+        Feat.EpicGreatIntelligence7,
+        Feat.EpicGreatIntelligence8,
+        Feat.EpicGreatIntelligence9,
+        Feat.EpicGreatIntelligence10);
+
+      abilityMods[(int)Ability.Wisdom] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatWisdom1,
+        Feat.EpicGreatWisdom2,
+        Feat.EpicGreatWisdom3,
+        Feat.EpicGreatWisdom4,
+        Feat.EpicGreatWisdom5,
+        Feat.EpicGreatWisdom6,
+        Feat.EpicGreatWisdom7,
+        Feat.EpicGreatWisdom8,
+        Feat.EpicGreatWisdom9,
+        Feat.EpicGreatWisdom10);
+
+      abilityMods[(int)Ability.Charisma] += epicGreatStatBonus * GetFeatCount(
+        Feat.EpicGreatCharisma1,
+        Feat.EpicGreatCharisma2,
+        Feat.EpicGreatCharisma3,
+        Feat.EpicGreatCharisma4,
+        Feat.EpicGreatCharisma5,
+        Feat.EpicGreatCharisma6,
+        Feat.EpicGreatCharisma7,
+        Feat.EpicGreatCharisma8,
+        Feat.EpicGreatCharisma9,
+        Feat.EpicGreatCharisma10);
+
+      if (subtractBonuses)
+      {
+        abilityMods[(int)Ability.Strength] *= -1;
+        abilityMods[(int)Ability.Dexterity] *= -1;
+        abilityMods[(int)Ability.Constitution] *= -1;
+        abilityMods[(int)Ability.Intelligence] *= -1;
+        abilityMods[(int)Ability.Wisdom] *= -1;
+        abilityMods[(int)Ability.Charisma] *= -1;
+      }
+
+      return abilityMods;
+    }
+
+    private bool HandleValidationFailure(out int strRefFailure, OnELCValidationFailure eventData)
+    {
+      virtualMachine.ExecuteInScriptContext(() =>
+      {
+        OnValidationFailure?.Invoke(eventData);
+      });
+
+      strRefFailure = eventData.StrRef;
+
+      return !eventData.IgnoreFailure;
+    }
+
+    private bool InvokeCustomCheck(NwPlayer player)
+    {
+      OnELCCustomCheck eventData = new OnELCCustomCheck
+      {
+        Player = player,
+      };
+
+      virtualMachine.ExecuteInScriptContext(() =>
+      {
+        OnCustomCheck?.Invoke(eventData);
+      });
+
+      return !eventData.IsFailed;
+    }
+
+    private void InvokeSuccessEvent(NwPlayer player)
+    {
+      OnELCValidationSuccess eventData = new OnELCValidationSuccess
+      {
+        Player = player,
+      };
+
+      virtualMachine.ExecuteInScriptContext(() =>
+      {
+        OnValidationSuccess?.Invoke(eventData);
+      });
+    }
+
+    private void InvokeValidationBeforeEvent(NwPlayer player)
+    {
+      OnELCValidationBefore eventData = new OnELCValidationBefore
+      {
+        Player = player,
+      };
+
+      virtualMachine.ExecuteInScriptContext(() =>
+      {
+        OnValidationBefore?.Invoke(eventData);
+      });
     }
 
     private int OnValidateCharacter(void* player, int* bFailedServerRestriction)
@@ -1920,164 +2079,6 @@ namespace Anvil.Services
 
       InvokeSuccessEvent(nwPlayer);
       return 0;
-    }
-
-    private bool HandleValidationFailure(out int strRefFailure, OnELCValidationFailure eventData)
-    {
-      virtualMachine.ExecuteInScriptContext(() =>
-      {
-        OnValidationFailure?.Invoke(eventData);
-      });
-
-      strRefFailure = eventData.StrRef;
-
-      return !eventData.IgnoreFailure;
-    }
-
-    private void InvokeValidationBeforeEvent(NwPlayer player)
-    {
-      OnELCValidationBefore eventData = new OnELCValidationBefore
-      {
-        Player = player,
-      };
-
-      virtualMachine.ExecuteInScriptContext(() =>
-      {
-        OnValidationBefore?.Invoke(eventData);
-      });
-    }
-
-    private bool InvokeCustomCheck(NwPlayer player)
-    {
-      OnELCCustomCheck eventData = new OnELCCustomCheck
-      {
-        Player = player,
-      };
-
-      virtualMachine.ExecuteInScriptContext(() =>
-      {
-        OnCustomCheck?.Invoke(eventData);
-      });
-
-      return !eventData.IsFailed;
-    }
-
-    private void InvokeSuccessEvent(NwPlayer player)
-    {
-      OnELCValidationSuccess eventData = new OnELCValidationSuccess
-      {
-        Player = player,
-      };
-
-      virtualMachine.ExecuteInScriptContext(() =>
-      {
-        OnValidationSuccess?.Invoke(eventData);
-      });
-    }
-
-    private int[] GetStatBonusesFromFeats(CExoArrayListUInt16 lstFeats, bool subtractBonuses)
-    {
-      int[] abilityMods = new int[6];
-
-      HashSet<Feat> creatureFeats = new HashSet<Feat>();
-      foreach (ushort nFeat in lstFeats)
-      {
-        creatureFeats.Add((Feat)nFeat);
-      }
-
-      int GetFeatCount(params Feat[] epicFeats)
-      {
-        return epicFeats.Count(feat => creatureFeats.Contains(feat));
-      }
-
-      abilityMods[(int)Ability.Strength] += epicGreatStatBonus * GetFeatCount(
-        Feat.EpicGreatStrength1,
-        Feat.EpicGreatStrength2,
-        Feat.EpicGreatStrength3,
-        Feat.EpicGreatStrength4,
-        Feat.EpicGreatStrength5,
-        Feat.EpicGreatStrength6,
-        Feat.EpicGreatStrength7,
-        Feat.EpicGreatStrength8,
-        Feat.EpicGreatStrength9,
-        Feat.EpicGreatStrength10);
-
-      abilityMods[(int)Ability.Dexterity] += epicGreatStatBonus * GetFeatCount(
-        Feat.EpicGreatDexterity1,
-        Feat.EpicGreatDexterity2,
-        Feat.EpicGreatDexterity3,
-        Feat.EpicGreatDexterity4,
-        Feat.EpicGreatDexterity5,
-        Feat.EpicGreatDexterity6,
-        Feat.EpicGreatDexterity7,
-        Feat.EpicGreatDexterity8,
-        Feat.EpicGreatDexterity9,
-        Feat.EpicGreatDexterity10);
-
-      abilityMods[(int)Ability.Constitution] += epicGreatStatBonus * GetFeatCount(
-        Feat.EpicGreatConstitution1,
-        Feat.EpicGreatConstitution2,
-        Feat.EpicGreatConstitution3,
-        Feat.EpicGreatConstitution4,
-        Feat.EpicGreatConstitution5,
-        Feat.EpicGreatConstitution6,
-        Feat.EpicGreatConstitution7,
-        Feat.EpicGreatConstitution8,
-        Feat.EpicGreatConstitution9,
-        Feat.EpicGreatConstitution10);
-
-      abilityMods[(int)Ability.Intelligence] += epicGreatStatBonus * GetFeatCount(
-        Feat.EpicGreatIntelligence1,
-        Feat.EpicGreatIntelligence2,
-        Feat.EpicGreatIntelligence3,
-        Feat.EpicGreatIntelligence4,
-        Feat.EpicGreatIntelligence5,
-        Feat.EpicGreatIntelligence6,
-        Feat.EpicGreatIntelligence7,
-        Feat.EpicGreatIntelligence8,
-        Feat.EpicGreatIntelligence9,
-        Feat.EpicGreatIntelligence10);
-
-      abilityMods[(int)Ability.Wisdom] += epicGreatStatBonus * GetFeatCount(
-        Feat.EpicGreatWisdom1,
-        Feat.EpicGreatWisdom2,
-        Feat.EpicGreatWisdom3,
-        Feat.EpicGreatWisdom4,
-        Feat.EpicGreatWisdom5,
-        Feat.EpicGreatWisdom6,
-        Feat.EpicGreatWisdom7,
-        Feat.EpicGreatWisdom8,
-        Feat.EpicGreatWisdom9,
-        Feat.EpicGreatWisdom10);
-
-      abilityMods[(int)Ability.Charisma] += epicGreatStatBonus * GetFeatCount(
-        Feat.EpicGreatCharisma1,
-        Feat.EpicGreatCharisma2,
-        Feat.EpicGreatCharisma3,
-        Feat.EpicGreatCharisma4,
-        Feat.EpicGreatCharisma5,
-        Feat.EpicGreatCharisma6,
-        Feat.EpicGreatCharisma7,
-        Feat.EpicGreatCharisma8,
-        Feat.EpicGreatCharisma9,
-        Feat.EpicGreatCharisma10);
-
-      if (subtractBonuses)
-      {
-        abilityMods[(int)Ability.Strength] *= -1;
-        abilityMods[(int)Ability.Dexterity] *= -1;
-        abilityMods[(int)Ability.Constitution] *= -1;
-        abilityMods[(int)Ability.Intelligence] *= -1;
-        abilityMods[(int)Ability.Wisdom] *= -1;
-        abilityMods[(int)Ability.Charisma] *= -1;
-      }
-
-      return abilityMods;
-    }
-
-    public void Dispose()
-    {
-      validateCharacterHook.Dispose();
     }
   }
 }

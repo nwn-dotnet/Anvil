@@ -11,9 +11,9 @@ namespace Anvil.API
       this.joiningRestrictions = joiningRestrictions;
     }
 
-    public int MinLevel
+    public bool AllowLocalVaultCharacters
     {
-      get => joiningRestrictions.nMinLevel;
+      get => joiningRestrictions.bAllowLocalVaultChars.ToBool();
     }
 
     public int MaxLevel
@@ -21,9 +21,9 @@ namespace Anvil.API
       get => joiningRestrictions.nMaxLevel;
     }
 
-    public bool AllowLocalVaultCharacters
+    public int MinLevel
     {
-      get => joiningRestrictions.bAllowLocalVaultChars.ToBool();
+      get => joiningRestrictions.nMinLevel;
     }
   }
 }

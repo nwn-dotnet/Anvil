@@ -104,6 +104,11 @@ namespace Anvil.API
       return NWScript.ItemPropertyContainerReducedWeight((int)weightReduction);
     }
 
+    public static ItemProperty Custom(int type, int subType = -1, int costTableValue = -1, int param1Value = -1)
+    {
+      return NWScript.ItemPropertyCustom(type, subType, costTableValue, param1Value);
+    }
+
     public static ItemProperty DamageBonus(IPDamageType damageType, IPDamageBonus damageBonus)
     {
       return NWScript.ItemPropertyDamageBonus((int)damageType, (int)damageBonus);
@@ -392,11 +397,6 @@ namespace Anvil.API
     public static ItemProperty WeightReduction(IPReducedWeight weightReduction)
     {
       return NWScript.ItemPropertyWeightReduction((int)weightReduction);
-    }
-
-    public static ItemProperty Custom(int type, int subType = -1, int costTableValue = -1, int param1Value = -1)
-    {
-      return NWScript.ItemPropertyCustom(type, subType, costTableValue, param1Value);
     }
   }
 }

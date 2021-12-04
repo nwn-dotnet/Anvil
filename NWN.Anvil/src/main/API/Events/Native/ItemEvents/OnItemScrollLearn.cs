@@ -17,14 +17,14 @@ namespace Anvil.API.Events
     public NwCreature Creature { get; private init; }
 
     /// <summary>
-    /// Gets the scroll that is being learnt.
-    /// </summary>
-    public NwItem Scroll { get; private init; }
-
-    /// <summary>
     /// Gets or sets whether this scroll should be prevented from being learned.
     /// </summary>
     public bool PreventLearnScroll { get; set; }
+
+    /// <summary>
+    /// Gets the scroll that is being learnt.
+    /// </summary>
+    public NwItem Scroll { get; private init; }
 
     NwObject IEvent.Context
     {

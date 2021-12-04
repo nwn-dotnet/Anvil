@@ -41,6 +41,11 @@ namespace Anvil.API
       return new HitEffect(IPOnHit.Disease, (int)diseaseType);
     }
 
+    public static HitEffect DispelMagic()
+    {
+      return new HitEffect(IPOnHit.DispelMagic);
+    }
+
     public static HitEffect Doom(IPOnHitDuration duration)
     {
       return new HitEffect(IPOnHit.Doom, (int)duration);
@@ -49,6 +54,11 @@ namespace Anvil.API
     public static HitEffect Fear(IPOnHitDuration duration)
     {
       return new HitEffect(IPOnHit.Fear, (int)duration);
+    }
+
+    public static HitEffect GreaterDispel()
+    {
+      return new HitEffect(IPOnHit.GreaterDispel);
     }
 
     public static HitEffect Hold(IPOnHitDuration duration)
@@ -61,14 +71,34 @@ namespace Anvil.API
       return new HitEffect(IPOnHit.ItemPoison, (int)poisonType);
     }
 
+    public static HitEffect Knock()
+    {
+      return new HitEffect(IPOnHit.Knock);
+    }
+
+    public static HitEffect LesserDispel()
+    {
+      return new HitEffect(IPOnHit.LesserDispel);
+    }
+
+    public static HitEffect LevelDrain(int levelDrain = 1)
+    {
+      return new HitEffect(IPOnHit.LevelDrain, levelDrain);
+    }
+
+    public static HitEffect MordsDisjunction()
+    {
+      return new HitEffect(IPOnHit.MordsDisjunction);
+    }
+
     public static HitEffect Silence(IPOnHitDuration duration)
     {
       return new HitEffect(IPOnHit.Silence, (int)duration);
     }
 
-    public static HitEffect SlayRace(IPRacialType racialType)
+    public static HitEffect SlayAlignment(IPAlignment alignment)
     {
-      return new HitEffect(IPOnHit.SlayRace, (int)racialType);
+      return new HitEffect(IPOnHit.SlayAlignment, (int)alignment);
     }
 
     public static HitEffect SlayAlignmentGroup(IPAlignmentGroup alignmentGroup)
@@ -76,9 +106,9 @@ namespace Anvil.API
       return new HitEffect(IPOnHit.SlayAlignmentGroup, (int)alignmentGroup);
     }
 
-    public static HitEffect SlayAlignment(IPAlignment alignment)
+    public static HitEffect SlayRace(IPRacialType racialType)
     {
-      return new HitEffect(IPOnHit.SlayAlignment, (int)alignment);
+      return new HitEffect(IPOnHit.SlayRace, (int)racialType);
     }
 
     public static HitEffect Sleep(IPOnHitDuration duration)
@@ -96,44 +126,14 @@ namespace Anvil.API
       return new HitEffect(IPOnHit.Stun, (int)duration);
     }
 
-    public static HitEffect LevelDrain(int levelDrain = 1)
+    public static HitEffect Vorpal()
     {
-      return new HitEffect(IPOnHit.LevelDrain, levelDrain);
+      return new HitEffect(IPOnHit.Vorpal);
     }
 
     public static HitEffect Wounding(int bleedDamage)
     {
       return new HitEffect(IPOnHit.Wounding, bleedDamage);
-    }
-
-    public static HitEffect Knock()
-    {
-      return new HitEffect(IPOnHit.Knock);
-    }
-
-    public static HitEffect LesserDispel()
-    {
-      return new HitEffect(IPOnHit.LesserDispel);
-    }
-
-    public static HitEffect DispelMagic()
-    {
-      return new HitEffect(IPOnHit.DispelMagic);
-    }
-
-    public static HitEffect GreaterDispel()
-    {
-      return new HitEffect(IPOnHit.GreaterDispel);
-    }
-
-    public static HitEffect MordsDisjunction()
-    {
-      return new HitEffect(IPOnHit.MordsDisjunction);
-    }
-
-    public static HitEffect Vorpal()
-    {
-      return new HitEffect(IPOnHit.Vorpal);
     }
   }
 }

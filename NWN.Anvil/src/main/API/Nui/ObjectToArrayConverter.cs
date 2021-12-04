@@ -14,32 +14,6 @@ namespace Anvil.API
       return typeof(T) == objectType;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-    {
-      Type objectType = value.GetType();
-      JsonObjectContract contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
-      if (contract == null)
-      {
-        throw new JsonSerializationException($"invalid type {objectType.FullName}.");
-      }
-
-      writer.WriteStartArray();
-      foreach (JsonProperty property in SerializableProperties(contract))
-      {
-        object propertyValue = property?.ValueProvider?.GetValue(value);
-        if (property?.Converter != null && property.Converter.CanWrite)
-        {
-          property.Converter.WriteJson(writer, propertyValue, serializer);
-        }
-        else
-        {
-          serializer.Serialize(writer, propertyValue);
-        }
-      }
-
-      writer.WriteEndArray();
-    }
-
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
       JsonObjectContract contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
@@ -108,6 +82,32 @@ namespace Anvil.API
       }
     }
 
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+      Type objectType = value.GetType();
+      JsonObjectContract contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
+      if (contract == null)
+      {
+        throw new JsonSerializationException($"invalid type {objectType.FullName}.");
+      }
+
+      writer.WriteStartArray();
+      foreach (JsonProperty property in SerializableProperties(contract))
+      {
+        object propertyValue = property?.ValueProvider?.GetValue(value);
+        if (property?.Converter != null && property.Converter.CanWrite)
+        {
+          property.Converter.WriteJson(writer, propertyValue, serializer);
+        }
+        else
+        {
+          serializer.Serialize(writer, propertyValue);
+        }
+      }
+
+      writer.WriteEndArray();
+    }
+
     private static IEnumerable<JsonProperty> SerializableProperties(JsonObjectContract contract)
     {
       return contract.Properties.Where(p => !p.Ignored && p.Readable && p.Writable);
@@ -116,11 +116,6 @@ namespace Anvil.API
 
   internal static class JsonExtensions
   {
-    public static JsonReader ReadToContentAndAssert(this JsonReader reader)
-    {
-      return reader.ReadAndAssert().MoveToContentAndAssert();
-    }
-
     public static JsonReader MoveToContentAndAssert(this JsonReader reader)
     {
       if (reader == null)
@@ -154,6 +149,11 @@ namespace Anvil.API
       }
 
       return reader;
+    }
+
+    public static JsonReader ReadToContentAndAssert(this JsonReader reader)
+    {
+      return reader.ReadAndAssert().MoveToContentAndAssert();
     }
   }
 }

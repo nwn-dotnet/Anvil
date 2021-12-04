@@ -9,12 +9,12 @@ namespace Anvil.Plugins
   internal sealed class PluginLoadContext : AssemblyLoadContext, IDisposable
   {
     private static readonly string[] NativeLibPrefixes = { "lib" };
-
-    private readonly PluginManager pluginManager;
+    private readonly Dictionary<string, WeakReference<Assembly>> assemblyCache = new Dictionary<string, WeakReference<Assembly>>();
     private readonly Plugin plugin;
 
+    private readonly PluginManager pluginManager;
+
     private readonly AssemblyDependencyResolver resolver;
-    private readonly Dictionary<string, WeakReference<Assembly>> assemblyCache = new Dictionary<string, WeakReference<Assembly>>();
 
     public PluginLoadContext(PluginManager pluginManager, Plugin plugin) : base(EnvironmentConfig.ReloadEnabled)
     {
@@ -22,6 +22,14 @@ namespace Anvil.Plugins
       this.plugin = plugin;
 
       resolver = new AssemblyDependencyResolver(plugin.Path);
+    }
+
+    public void Dispose()
+    {
+      if (EnvironmentConfig.ReloadEnabled)
+      {
+        Unload();
+      }
     }
 
     protected override Assembly Load(AssemblyName assemblyName)
@@ -79,12 +87,6 @@ namespace Anvil.Plugins
       return ResolveFromAdditionalPaths(assemblyName);
     }
 
-    private Assembly ResolveLocal(AssemblyName assemblyName)
-    {
-      string assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);
-      return assemblyPath != null ? LoadFromAssemblyPath(assemblyPath) : null;
-    }
-
     private Assembly ResolveFromAdditionalPaths(AssemblyName assemblyName)
     {
       if (plugin.AdditionalAssemblyPaths != null && plugin.AdditionalAssemblyPaths.TryGetValue(assemblyName.Name!, out string assemblyPath))
@@ -93,6 +95,12 @@ namespace Anvil.Plugins
       }
 
       return null;
+    }
+
+    private Assembly ResolveLocal(AssemblyName assemblyName)
+    {
+      string assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);
+      return assemblyPath != null ? LoadFromAssemblyPath(assemblyPath) : null;
     }
 
     private string ResolveUnamangedFromAdditionalPaths(string unmanagedDllName)
@@ -116,14 +124,6 @@ namespace Anvil.Plugins
       }
 
       return null;
-    }
-
-    public void Dispose()
-    {
-      if (EnvironmentConfig.ReloadEnabled)
-      {
-        Unload();
-      }
     }
   }
 }

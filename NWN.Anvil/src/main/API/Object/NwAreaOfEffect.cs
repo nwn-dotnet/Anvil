@@ -18,17 +18,17 @@ namespace Anvil.API
       AreaOfEffect = areaOfEffectObject;
     }
 
-    public static implicit operator CNWSAreaOfEffectObject(NwAreaOfEffect areaOfEffect)
-    {
-      return areaOfEffect?.AreaOfEffect;
-    }
-
     /// <summary>
     /// Gets the creator of this Area of Effect.
     /// </summary>
     public NwGameObject Creator
     {
       get => NWScript.GetAreaOfEffectCreator(this).ToNwObject<NwGameObject>();
+    }
+
+    public static implicit operator CNWSAreaOfEffectObject(NwAreaOfEffect areaOfEffect)
+    {
+      return areaOfEffect?.AreaOfEffect;
     }
 
     /// <summary>
@@ -68,14 +68,14 @@ namespace Anvil.API
       throw new NotSupportedException();
     }
 
-    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
-    {
-      AreaOfEffect.AddToArea(area, x, y, z, true.ToInt());
-    }
-
     internal override void RemoveFromArea()
     {
       AreaOfEffect.RemoveFromArea();
+    }
+
+    private protected override void AddToArea(CNWSArea area, float x, float y, float z)
+    {
+      AreaOfEffect.AddToArea(area, x, y, z, true.ToInt());
     }
   }
 }

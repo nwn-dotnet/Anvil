@@ -8,19 +8,19 @@ namespace Anvil.API.Events
 {
   public sealed class OnStealthModeUpdate : IEvent
   {
+    public NwCreature Creature { get; private init; }
+
     /// <summary>
     /// Gets or sets an override behaviour to use if <see cref="EventType"/> is an Enter event.
     /// </summary>
     public StealthModeOverride EnterOverride { get; set; }
 
+    public ToggleModeEventType EventType { get; private init; }
+
     /// <summary>
     /// Gets or sets a value indicating whether this creature should not be allowed to exit stealth mode, if <see cref="EventType"/> is an Exit event.
     /// </summary>
     public bool PreventExit { get; set; }
-
-    public ToggleModeEventType EventType { get; private init; }
-
-    public NwCreature Creature { get; private init; }
 
     NwObject IEvent.Context
     {
@@ -37,25 +37,20 @@ namespace Anvil.API.Events
         return HookService.RequestHook<SetStealthModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature14SetStealthModeEh, HookOrder.Early);
       }
 
-      [UnmanagedCallersOnly]
-      private static void OnSetStealthMode(void* pCreature, byte nStealthMode)
+      private static void ForceEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
-        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
-
-        bool willBeStealthed = nStealthMode != 0;
-        bool currentlyStealthed = creature.m_nStealthMode != 0;
-
-        if (!currentlyStealthed && willBeStealthed)
+        bool noHIPS = false;
+        if (!creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight).ToBool())
         {
-          HandleEnterStealth(creature, nStealthMode);
+          creature.m_pStats.AddFeat((ushort)Feat.HideInPlainSight);
+          noHIPS = true;
         }
-        else if (currentlyStealthed && !willBeStealthed)
+
+        Hook.CallOriginal(creature, nStealthMode);
+
+        if (noHIPS)
         {
-          HandleExitStealth(creature, nStealthMode);
-        }
-        else
-        {
-          Hook.CallOriginal(pCreature, nStealthMode);
+          creature.m_pStats.RemoveFeat((ushort)Feat.HideInPlainSight);
         }
       }
 
@@ -102,20 +97,25 @@ namespace Anvil.API.Events
         }
       }
 
-      private static void ForceEnterStealth(CNWSCreature creature, byte nStealthMode)
+      [UnmanagedCallersOnly]
+      private static void OnSetStealthMode(void* pCreature, byte nStealthMode)
       {
-        bool noHIPS = false;
-        if (!creature.m_pStats.HasFeat((ushort)Feat.HideInPlainSight).ToBool())
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
+
+        bool willBeStealthed = nStealthMode != 0;
+        bool currentlyStealthed = creature.m_nStealthMode != 0;
+
+        if (!currentlyStealthed && willBeStealthed)
         {
-          creature.m_pStats.AddFeat((ushort)Feat.HideInPlainSight);
-          noHIPS = true;
+          HandleEnterStealth(creature, nStealthMode);
         }
-
-        Hook.CallOriginal(creature, nStealthMode);
-
-        if (noHIPS)
+        else if (currentlyStealthed && !willBeStealthed)
         {
-          creature.m_pStats.RemoveFeat((ushort)Feat.HideInPlainSight);
+          HandleExitStealth(creature, nStealthMode);
+        }
+        else
+        {
+          Hook.CallOriginal(pCreature, nStealthMode);
         }
       }
 
