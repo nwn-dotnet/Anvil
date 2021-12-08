@@ -163,7 +163,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the base armor class of this item.
+    /// Gets the current stack size of this <see cref="NwItem"/>.
     /// </summary>
     public bool IsStackable
     {
@@ -194,6 +194,18 @@ namespace Anvil.API
         {
           yield return itemProperty;
         }
+      }
+    }
+
+    /// <summary>
+    /// Gets the maximum stack size of this <see cref="NwItem"/>.
+    /// </summary>
+    public int MaxStackSize
+    {
+      get
+      {
+        CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)Item.m_nBaseItem);
+        return baseItem.m_nStackSize;
       }
     }
 
