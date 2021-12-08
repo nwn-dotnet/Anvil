@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Anvil.API;
 using Anvil.Internal;
 using NLog;
 
@@ -16,7 +17,7 @@ namespace Anvil.Services
 
     public ServerUpdateLoopService(IEnumerable<IUpdateable> updateables)
     {
-      this.updateables = updateables.ToArray();
+      this.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
       Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");
     }
 
