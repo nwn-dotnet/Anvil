@@ -1,3 +1,4 @@
+using System;
 using NWN.Core;
 
 namespace Anvil.API
@@ -40,9 +41,10 @@ namespace Anvil.API
     /// </summary>
     /// <param name="faction">The standard faction.</param>
     /// <returns>A NwFaction representing the specified standard faction.</returns>
+    [Obsolete("Use NwFaction.FromStandardFaction instead.")]
     public static NwFaction ToFaction(this StandardFaction faction)
     {
-      return new NwFaction((int)faction);
+      return NwFaction.FromStandardFaction(faction);
     }
   }
 }

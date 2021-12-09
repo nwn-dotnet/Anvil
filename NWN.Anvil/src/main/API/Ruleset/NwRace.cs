@@ -1,4 +1,4 @@
-using Anvil.Services;
+using System.Linq;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -8,9 +8,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NwRace
   {
-    [Inject]
-    private static RulesetService RulesetService { get; set; }
-
     private readonly CNWRace raceInfo;
 
     public NwRace(RacialType racialType, CNWRace raceInfo)
@@ -75,9 +72,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets the favoured class for this race, for the purposes of multi-classing.
     /// </summary>
-    public ClassType FavoredClass
+    public NwClass FavoredClass
     {
-      get => (ClassType)raceInfo.m_nFavoredClass;
+      get => NwClass.FromClassId(raceInfo.m_nFavoredClass);
     }
 
     /// <summary>
@@ -129,7 +126,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the RacialType of this race.
+    /// Gets the associated <see cref="RacialType"/> for this race.
     /// </summary>
     public RacialType RacialType { get; }
 
@@ -152,23 +149,23 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a race structure from the specified race id.
+    /// Resolves a <see cref="NwRace"/> from a race id.
     /// </summary>
-    /// <param name="raceId">The associated race id.</param>
-    /// <returns>The associated <see cref="NwRace"/> structure, or null if the race has no matching entry.</returns>
+    /// <param name="raceId">The id of the race to resolve.</param>
+    /// <returns>The associated <see cref="NwRace"/> instance. Null if the race id is invalid.</returns>
     public static NwRace FromRaceId(int raceId)
     {
-      return raceId >= 0 && raceId < RulesetService.Races.Count ? RulesetService.Races[raceId] : null;
+      return NwRuleset.Races.ElementAtOrDefault(raceId);
     }
 
     /// <summary>
-    /// Creates a race structure from the specified <see cref="Anvil.API.RacialType"/>.
+    /// Resolves a <see cref="NwRace"/> from a <see cref="Anvil.API.RacialType"/>.
     /// </summary>
-    /// <param name="racialType">The associated racial type.</param>
-    /// <returns>The associated <see cref="NwRace"/> structure, or null if the race has no matching entry.</returns>
+    /// <param name="racialType">The racial type to resolve.</param>
+    /// <returns>The associated <see cref="NwRace"/> instance. Null if the racial type is invalid.</returns>
     public static NwRace FromRacialType(RacialType racialType)
     {
-      return RulesetService.Races[(int)racialType];
+      return NwRuleset.Races.ElementAtOrDefault((int)racialType);
     }
 
     /// <summary>

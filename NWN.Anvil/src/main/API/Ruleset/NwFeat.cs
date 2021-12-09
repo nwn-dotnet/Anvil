@@ -7,13 +7,10 @@ using NWN.Native.API;
 namespace Anvil.API
 {
   /// <summary>
-  /// A creature/character feat(ure).
+  /// A creature/character feat(ure) definition.
   /// </summary>
   public sealed class NwFeat
   {
-    [Inject]
-    private static RulesetService RulesetService { get; set; }
-
     [Inject]
     private static TlkTable TlkTable { get; set; }
 
@@ -41,6 +38,9 @@ namespace Anvil.API
       get => TlkTable.GetSimpleString((uint)featInfo.m_nDescriptionStrref);
     }
 
+    /// <summary>
+    /// Gets the associated <see cref="Feat"/> type for this feat.
+    /// </summary>
     public Feat FeatType { get; }
 
     /// <summary>
@@ -104,7 +104,7 @@ namespace Anvil.API
     /// </summary>
     public NwClass MinLevelClass
     {
-      get => NwClass.FromClassId(featInfo.m_nMinLevelClass);
+      get => NwRuleset.Classes.ElementAtOrDefault(featInfo.m_nMinLevelClass);
     }
 
     /// <summary>
@@ -246,34 +246,29 @@ namespace Anvil.API
       get => featInfo.m_nUsesPerDay;
     }
 
-    /// <summary>
-    /// Creates a feat from the specified feat id.
-    /// </summary>
-    /// <param name="featId">The associated feat id.</param>
-    /// <returns>The associated <see cref="NwFeat"/> structure, or null if the feat has no matching entry.</returns>
-    public static NwFeat FromFeatId(ushort featId)
+    private static NwFeat FromFeatId(ushort featId)
     {
-      return featId != IntegerExtensions.AsUShort(-1) ? FromFeatId((int)featId) : null;
+      return NwRuleset.Feats.ElementAtOrDefault(featId);
     }
 
     /// <summary>
-    /// Creates a feat from the specified feat id.
+    /// Resolves a <see cref="NwFeat"/> from a feat id.
     /// </summary>
-    /// <param name="featId">The associated feat id.</param>
-    /// <returns>The associated <see cref="NwFeat"/> structure, or null if the feat has no matching entry.</returns>
+    /// <param name="featId">The id of the feat to resolve.</param>
+    /// <returns>The associated <see cref="NwFeat"/> instance. Null if the feat id is invalid.</returns>
     public static NwFeat FromFeatId(int featId)
     {
-      return featId >= 0 && featId < RulesetService.Feats.Count ? RulesetService.Feats[featId] : null;
+      return NwRuleset.Feats.ElementAtOrDefault(featId);
     }
 
     /// <summary>
-    /// Creates a feat from the specified <see cref="Feat"/>.
+    /// Resolves a <see cref="NwFeat"/> from a <see cref="Anvil.API.Feat"/>.
     /// </summary>
-    /// <param name="featType">The associated feat type.</param>
-    /// <returns>The associated <see cref="NwFeat"/> structure, or null if the feat has no matching entry.</returns>
+    /// <param name="featType">The feat type to resolve.</param>
+    /// <returns>The associated <see cref="NwFeat"/> instance. Null if the feat type is invalid.</returns>
     public static NwFeat FromFeatType(Feat featType)
     {
-      return FromFeatId((int)featType);
+      return NwRuleset.Feats.ElementAtOrDefault((int)featType);
     }
 
     /// <summary>

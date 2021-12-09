@@ -70,8 +70,18 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the <see cref="NwBaseItem"/> for this item.
+    /// </summary>
+    public NwBaseItem BaseItem
+    {
+      get => NwBaseItem.FromItemId((int)Item.m_nBaseItem);
+      set => Item.m_nBaseItem = (uint)value.ItemType;
+    }
+
+    /// <summary>
     /// Gets or sets the <see cref="BaseItemType"/> for this item.
     /// </summary>
+    [Obsolete("Use BaseItem.ItemType instead.")]
     public BaseItemType BaseItemType
     {
       get => (BaseItemType)Item.m_nBaseItem;
@@ -194,18 +204,6 @@ namespace Anvil.API
         {
           yield return itemProperty;
         }
-      }
-    }
-
-    /// <summary>
-    /// Gets the maximum stack size of this <see cref="NwItem"/>.
-    /// </summary>
-    public int MaxStackSize
-    {
-      get
-      {
-        CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)Item.m_nBaseItem);
-        return baseItem.m_nStackSize;
       }
     }
 
