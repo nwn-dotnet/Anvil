@@ -262,6 +262,7 @@ namespace Anvil.Services
       });
     }
 
+    // ReSharper disable once FunctionComplexityOverflow
     private int OnValidateCharacter(void* player, int* bFailedServerRestriction)
     {
       CNWSPlayer pPlayer = CNWSPlayer.FromPointer(player);
