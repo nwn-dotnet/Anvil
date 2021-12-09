@@ -10,7 +10,9 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...HEAD
 - N/A
 
 ### Package Updates
-- N/A
+- (Docker) NWNX: 16b2c88 -> ba4646c
+- NWN.Core: 8193.33.4 -> 8193.34.0
+- NWN.Native: 8193.33.4 -> 8193.34.0
 
 ### Changed
 - N/A
