@@ -1353,10 +1353,10 @@ namespace Anvil.API
     /// <param name="target">The target to use the skill on.</param>
     /// <param name="subSkill">A specific subskill to use.</param>
     /// <param name="itemUsed">An item to use in conjunction with this skill.</param>
-    public async Task ActionUseSkill(Skill skill, NwGameObject target, SubSkill subSkill = SubSkill.None, NwItem itemUsed = null)
+    public async Task ActionUseSkill(NwSkill skill, NwGameObject target, SubSkill subSkill = SubSkill.None, NwItem itemUsed = null)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseSkill((int)skill, target, (int)subSkill, itemUsed);
+      NWScript.ActionUseSkill((int)skill.SkillType, target, (int)subSkill, itemUsed);
     }
 
     /// <summary>
@@ -1524,9 +1524,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="skill">The type of skill check.</param>
     /// <param name="difficultyClass">The DC of this skill check.</param>
-    public bool DoSkillCheck(Skill skill, int difficultyClass)
+    public bool DoSkillCheck(NwSkill skill, int difficultyClass)
     {
-      return NWScript.GetIsSkillSuccessful(this, (int)skill, difficultyClass).ToBool();
+      return NWScript.GetIsSkillSuccessful(this, (int)skill.SkillType, difficultyClass).ToBool();
     }
 
     /// <summary>
@@ -1800,9 +1800,9 @@ namespace Anvil.API
     /// <param name="skill">The skill to check.</param>
     /// <param name="ranksOnly">If true, returns the base amount of skill ranks without any ability modifiers.</param>
     /// <returns>-1 if the creature does not have this skill, 0 if untrained, otherwise the number of skill ranks.</returns>
-    public int GetSkillRank(Skill skill, bool ranksOnly = false)
+    public int GetSkillRank(NwSkill skill, bool ranksOnly = false)
     {
-      return NWScript.GetSkillRank((int)skill, this, ranksOnly.ToInt());
+      return NWScript.GetSkillRank((int)skill.SkillType, this, ranksOnly.ToInt());
     }
 
     /// <summary>
@@ -2320,9 +2320,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="skill">The skill to modify.</param>
     /// <param name="rank">The new number of skill ranks.</param>
-    public void SetSkillRank(Skill skill, sbyte rank)
+    public void SetSkillRank(NwSkill skill, sbyte rank)
     {
-      Creature.m_pStats.SetSkillRank((byte)skill, rank.AsByte());
+      Creature.m_pStats.SetSkillRank((byte)skill.SkillType, rank.AsByte());
     }
 
     /// <summary>

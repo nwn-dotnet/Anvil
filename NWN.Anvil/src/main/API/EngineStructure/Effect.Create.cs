@@ -539,14 +539,14 @@ namespace Anvil.API
       return NWScript.EffectSilence();
     }
 
-    public static Effect SkillDecrease(Skill skill, int amount)
+    public static Effect SkillDecrease(NwSkill skill, int amount)
     {
-      return NWScript.EffectSkillDecrease((int)skill, amount);
+      return NWScript.EffectSkillDecrease((int)skill.SkillType, amount);
     }
 
-    public static Effect SkillIncrease(Skill skill, int amount)
+    public static Effect SkillIncrease(NwSkill skill, int amount)
     {
-      return NWScript.EffectSkillIncrease((int)skill, amount);
+      return NWScript.EffectSkillIncrease((int)skill.SkillType, amount);
     }
 
     public static Effect Sleep()
