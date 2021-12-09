@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NWN.Core;
 using NWN.Native.API;
@@ -38,14 +39,10 @@ namespace Anvil.API
     /// <returns>True if the item will fit, otherwise false.</returns>
     public bool CheckFit(NwItem item)
     {
-      return CheckFit(item.BaseItemType);
+      return CheckFit(item.BaseItem);
     }
 
-    /// <summary>
-    /// Gets if the specified base item type will fit in this inventory.
-    /// </summary>
-    /// <param name="baseItem">The base item type to check.</param>
-    /// <returns>True if the item will fit, otherwise false.</returns>
+    [Obsolete("Use CheckFit(NwBaseItem) instead.")]
     public bool CheckFit(BaseItemType baseItem)
     {
       byte width = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotWidth;
@@ -56,6 +53,29 @@ namespace Anvil.API
         for (byte x = 0; x < repo.m_nWidth - width + 1; x++)
         {
           if (repo.CheckBaseItemFits((uint)baseItem, x, y).ToBool())
+          {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+
+    /// <summary>
+    /// Gets if the specified base item type will fit in this inventory.
+    /// </summary>
+    /// <param name="baseItem">The base item type to check.</param>
+    /// <returns>True if the item will fit, otherwise false.</returns>
+    public bool CheckFit(NwBaseItem baseItem)
+    {
+      Vector2Int itemSize = baseItem.InventorySlotSize;
+
+      for (byte y = 0; y < repo.m_nHeight - itemSize.Y + 1; y++)
+      {
+        for (byte x = 0; x < repo.m_nWidth - itemSize.X + 1; x++)
+        {
+          if (repo.CheckBaseItemFits((uint)baseItem.ItemType, x, y).ToBool())
           {
             return true;
           }

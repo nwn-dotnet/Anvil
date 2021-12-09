@@ -12,8 +12,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
 - NwCreature: Added `AlwaysWalk` and `WalkRateCap` for restricting creature & player movement.
 - Added `OnCheckEffectImmunity` event for bypassing effect immunity checks.
 - Added `OnEffectApply` and `OnEffectRemove` events.
-- Added `RulesetService` for loading/importing rules from `CNWRules`.
-- Added ruleset APIs: `NwClass`, `NwFeat`, `NwRace` and `NwSkill`
+- Added ruleset APIs: `NwRuleset`, `NwBaseItem`, `NwClass`, `NwFeat`, `NwRace` `NwSkill` and `NwSpell`
 
 ### Package Updates
 - N/A
@@ -26,6 +25,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
 ### Deprecated
 - `LoopTimeService` - use `Anvil.API.Time` instead.
 - Moved `NwDateTime` and `NwTimeSpan` to `Anvil.API` namespace.
+- Duplicated APIs `NwItem.CanStack`/`NwItem.IsStackable`. Use `NwBaseItem.IsStackable` instead.
 
 ### Removed
 - N/A

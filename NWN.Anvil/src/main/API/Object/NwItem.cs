@@ -70,20 +70,28 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the <see cref="NwBaseItem"/> for this item.
+    /// </summary>
+    public NwBaseItem BaseItem
+    {
+      get => NwBaseItem.FromItemId((int)Item.m_nBaseItem);
+      set => Item.m_nBaseItem = (uint)value.ItemType;
+    }
+
+    /// <summary>
     /// Gets or sets the <see cref="BaseItemType"/> for this item.
     /// </summary>
+    [Obsolete("Use BaseItem.ItemType instead.")]
     public BaseItemType BaseItemType
     {
       get => (BaseItemType)Item.m_nBaseItem;
       set => Item.m_nBaseItem = (uint)value;
     }
 
-    /// <summary>
-    /// Gets if this item can stack.
-    /// </summary>
+    [Obsolete("Use BaseItem.IsStackable instead.")]
     public bool CanStack
     {
-      get => NWScript.Get2DAString("baseitems", "Stacking", (int)BaseItemType).ParseInt() > 1;
+      get => BaseItem.IsStackable;
     }
 
     /// <summary>
@@ -162,16 +170,10 @@ namespace Anvil.API
       get => NWScript.GetWeaponRanged(this).ToBool();
     }
 
-    /// <summary>
-    /// Gets the base armor class of this item.
-    /// </summary>
+    [Obsolete("Use BaseItem.IsStackable instead.")]
     public bool IsStackable
     {
-      get
-      {
-        CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)Item.m_nBaseItem);
-        return baseItem != null && baseItem.m_nStackSize > 1;
-      }
+      get => BaseItem.IsStackable;
     }
 
     /// <summary>

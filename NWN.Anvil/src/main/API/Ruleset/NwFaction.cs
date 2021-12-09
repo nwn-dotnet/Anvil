@@ -12,8 +12,27 @@ namespace Anvil.API
   {
     private static readonly CFactionManager FactionManager = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pFactionManager;
 
+    /// <summary>
+    /// Gets a list of all active factions.
+    /// </summary>
+    public static IReadOnlyList<NwFaction> Factions
+    {
+      get
+      {
+        CExoArrayListCNWSFactionPtr factions = FactionManager.m_pFactionList;
+        NwFaction[] retVal = new NwFaction[factions.Count];
+        for (int i = 0; i < retVal.Length; i++)
+        {
+          retVal[i] = new NwFaction(factions[i]);
+        }
+
+        return retVal;
+      }
+    }
+
     private readonly CNWSFaction faction;
 
+    [Obsolete("The constructor for NwFaction is deprecated. Use NwFaction.FromFactionId instead.")]
     public NwFaction(int factionId)
     {
       faction = FactionManager.GetFaction(factionId);
@@ -85,14 +104,44 @@ namespace Anvil.API
     /// Gets the most common type of class among the members of this faction/party.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public ClassType MostFrequentClass
+    public NwClass MostFrequentClass
     {
-      get => (ClassType)faction.GetMostFrequentClass();
+      get => NwClass.FromClassId(faction.GetMostFrequentClass());
+    }
+
+    /// <summary>
+    /// Gets the <see cref="StandardFaction"/> type of this faction.<br/>
+    /// If this is a player or custom faction, returns an out-of-range value.
+    /// </summary>
+    public StandardFaction StandardFactionType
+    {
+      get => (StandardFaction)FactionId;
     }
 
     internal int FactionId
     {
       get => faction.m_nFactionId;
+    }
+
+    /// <summary>
+    /// Resolves a <see cref="NwFaction"/> from a faction id.
+    /// </summary>
+    /// <param name="factionId">The id of the faction to resolve.</param>
+    /// <returns>The associated <see cref="NwFaction"/> instance. Null if the faction id is invalid.</returns>
+    public static NwFaction FromFactionId(int factionId)
+    {
+      CNWSFaction faction = FactionManager.GetFaction(factionId);
+      return faction != null ? new NwFaction(faction) : null;
+    }
+
+    /// <summary>
+    /// Resolves a <see cref="NwFaction"/> from a <see cref="StandardFaction"/>.
+    /// </summary>
+    /// <param name="factionType">The faction type to resolve.</param>
+    /// <returns>The associated <see cref="NwFaction"/> instance. Null if the faction type is invalid.</returns>
+    public static NwFaction FromStandardFaction(StandardFaction factionType)
+    {
+      return FromFactionId((int)factionType);
     }
 
     public static bool operator ==(NwFaction left, NwFaction right)

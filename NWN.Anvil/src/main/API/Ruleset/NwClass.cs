@@ -1,27 +1,28 @@
+using System.Linq;
 using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
 {
   /// <summary>
-  /// A creature/character class.
+  /// A creature/character class definition.
   /// </summary>
   public sealed class NwClass
   {
-    [Inject]
-    private static RulesetService RulesetService { get; set; }
-
     [Inject]
     private static TlkTable TlkTable { get; set; }
 
     private readonly CNWClass classInfo;
 
-    public NwClass(ClassType classType, CNWClass classInfo)
+    internal NwClass(CNWClass classInfo, ClassType classType)
     {
       this.classInfo = classInfo;
       ClassType = classType;
     }
 
+    /// <summary>
+    /// Gets the associated <see cref="ClassType"/> for this class.
+    /// </summary>
     public ClassType ClassType { get; }
 
     /// <summary>
@@ -56,24 +57,24 @@ namespace Anvil.API
       get => TlkTable.GetSimpleString(classInfo.m_nNamePlural);
     }
 
-    public static NwClass FromClassId(byte classId)
-    {
-      return classId != IntegerExtensions.AsByte(-1) ? FromClassId((int)classId) : null;
-    }
-
-    public static NwClass FromClassId(ushort classId)
-    {
-      return classId != IntegerExtensions.AsUShort(-1) ? FromClassId((int)classId) : null;
-    }
-
+    /// <summary>
+    /// Resolves a <see cref="NwClass"/> from a class id.
+    /// </summary>
+    /// <param name="classId">The id of the class to resolve.</param>
+    /// <returns>The associated <see cref="NwClass"/> instance. Null if the class id is invalid.</returns>
     public static NwClass FromClassId(int classId)
     {
-      return classId >= 0 && classId < RulesetService.Classes.Count ? RulesetService.Classes[classId] : null;
+      return NwRuleset.Classes.ElementAtOrDefault(classId);
     }
 
+    /// <summary>
+    /// Resolves a <see cref="NwClass"/> from a <see cref="Anvil.API.ClassType"/>.
+    /// </summary>
+    /// <param name="classType">The class type to resolve.</param>
+    /// <returns>The associated <see cref="NwClass"/> instance. Null if the class type is invalid.</returns>
     public static NwClass FromClassType(ClassType classType)
     {
-      return RulesetService.Classes[(int)classType];
+      return NwRuleset.Classes.ElementAtOrDefault((int)classType);
     }
   }
 }
