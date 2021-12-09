@@ -44,15 +44,15 @@ namespace Anvil.API
       return new CreatureTypeFilter(CreatureType.PlayerChar, isPc.ToInt());
     }
 
+    public static CreatureTypeFilter Race(NwRace race)
+    {
+      return new CreatureTypeFilter(CreatureType.RacialType, (int)race.RacialType);
+    }
+
     [Obsolete("Use CreatureTypeFilter.Race(NwRace) instead.")]
     public static CreatureTypeFilter RacialType(RacialType racialType)
     {
       return new CreatureTypeFilter(CreatureType.RacialType, (int)racialType);
-    }
-
-    public static CreatureTypeFilter Race(NwRace race)
-    {
-      return new CreatureTypeFilter(CreatureType.RacialType, (int)race.RacialType);
     }
 
     public static CreatureTypeFilter Reputation(ReputationType reputationType)

@@ -25,6 +25,14 @@ namespace Anvil.API
     public ClassType ClassType { get; }
 
     /// <summary>
+    /// Gets the description name of this class.
+    /// </summary>
+    public string Description
+    {
+      get => TlkTable.GetSimpleString(classInfo.m_nDescription);
+    }
+
+    /// <summary>
     /// Gets the name of this class as shown on the character sheet.
     /// </summary>
     public string Name
@@ -46,14 +54,6 @@ namespace Anvil.API
     public string NamePlural
     {
       get => TlkTable.GetSimpleString(classInfo.m_nNamePlural);
-    }
-
-    /// <summary>
-    /// Gets the description name of this class.
-    /// </summary>
-    public string Description
-    {
-      get => TlkTable.GetSimpleString(classInfo.m_nDescription);
     }
 
     public static NwClass FromClassId(byte classId)
