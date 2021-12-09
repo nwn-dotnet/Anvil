@@ -2,6 +2,7 @@ using System;
 using NLog;
 using NWN.Core;
 
+// ReSharper disable once CheckNamespace
 namespace Anvil.Services
 {
   [Obsolete("Use Anvil.API.NwDateTime instead.")]
