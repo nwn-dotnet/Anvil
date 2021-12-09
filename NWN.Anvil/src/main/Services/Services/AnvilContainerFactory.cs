@@ -67,11 +67,9 @@ namespace Anvil.Services
       };
     }
 
-    private static string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
+    private static string GetServiceName(Type implementation)
     {
-      int bindingPriority = options?.Priority ?? (int)InternalBindingPriority.Normal;
-      bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);
-
+      int bindingPriority = implementation.GetServicePriority();
       return bindingPriority.ToString("D5") + implementation.FullName;
     }
 
@@ -99,7 +97,7 @@ namespace Anvil.Services
 
     private static void RegisterBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] bindings, ServiceBindingOptionsAttribute options)
     {
-      string serviceName = GetServiceName(bindTo, options);
+      string serviceName = GetServiceName(bindTo);
 
       PerContainerLifetime lifeTime = new PerContainerLifetime();
       RegisterExplicitBindings(serviceContainer, bindTo, bindings, serviceName, lifeTime);
@@ -115,9 +113,8 @@ namespace Anvil.Services
     private static void RegisterCoreService(ServiceContainer serviceContainer, object instance)
     {
       Type instanceType = instance.GetType();
-      ServiceBindingOptionsAttribute options = instanceType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
 
-      string serviceName = GetServiceName(instanceType, options);
+      string serviceName = GetServiceName(instanceType);
       serviceContainer.RegisterInstance(instanceType, instance, serviceName);
     }
 

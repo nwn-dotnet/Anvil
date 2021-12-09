@@ -19,10 +19,13 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
 - N/A
 
 ### Changed
-- N/A
+- Migrated LoopTimeService properties to static class `Anvil.API.Time`.
+- Exposed `ScheduledTask` to Scheduler Service.
+- Services implementing `IUpdateable` are now executed in deterministic order based on the service binding order defined in `ServiceBindingOptions`.
 
 ### Deprecated
-- N/A
+- `LoopTimeService` - use `Anvil.API.Time` instead.
+- Moved `NwDateTime` and `NwTimeSpan` to `Anvil.API` namespace.
 
 ### Removed
 - N/A
