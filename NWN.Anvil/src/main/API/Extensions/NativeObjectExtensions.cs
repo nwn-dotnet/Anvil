@@ -5,9 +5,16 @@ namespace Anvil.API
 {
   public static class NativeObjectExtensions
   {
-    public static Effect ToEffect(this CGameEffect effect)
+    public static Effect ToEffect(this CGameEffect effect, bool preventGc = true)
     {
-      return effect != null && effect.Pointer != IntPtr.Zero ? new Effect(effect) : null;
+      Effect retVal = effect != null && effect.Pointer != IntPtr.Zero ? new Effect(effect) : null;
+
+      if (retVal != null && preventGc)
+      {
+        GC.SuppressFinalize(effect);
+      }
+
+      return retVal;
     }
 
     public static ItemProperty ToItemProperty(this CGameEffect ipEffect)
