@@ -9,7 +9,8 @@ namespace Anvil.API
     {
       Effect retVal = effect != null && effect.Pointer != IntPtr.Zero ? new Effect(effect) : null;
 
-      if (retVal != null && preventGc) {
+      if (retVal != null && preventGc)
+      {
         GC.SuppressFinalize(effect);
       }
 
