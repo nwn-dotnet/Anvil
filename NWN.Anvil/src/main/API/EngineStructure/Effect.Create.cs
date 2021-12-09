@@ -564,7 +564,7 @@ namespace Anvil.API
       return NWScript.EffectSpellFailure(failPct, (int)spellSchool);
     }
 
-    public static Effect SpellImmunity(Spell spell = Spell.AllSpells)
+    public static Effect SpellImmunity(Spell spell = API.Spell.AllSpells)
     {
       return NWScript.EffectSpellImmunity((int)spell);
     }

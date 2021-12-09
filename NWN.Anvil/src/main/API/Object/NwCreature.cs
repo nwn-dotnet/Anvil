@@ -1419,7 +1419,7 @@ namespace Anvil.API
       CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
       specialAbilities.Add(new CNWSStats_SpellLikeAbility
       {
-        m_nSpellId = (uint)ability.Spell,
+        m_nSpellId = (uint)ability.Spell.SpellType,
         m_bReadied = ability.Ready.ToInt(),
         m_nCasterLevel = ability.CasterLevel,
       });
@@ -2336,7 +2336,7 @@ namespace Anvil.API
       if (index < specialAbilities.Count)
       {
         CNWSStats_SpellLikeAbility specialAbility = specialAbilities[index];
-        specialAbility.m_nSpellId = (uint)ability.Spell;
+        specialAbility.m_nSpellId = (uint)ability.Spell.SpellType;
         specialAbility.m_bReadied = ability.Ready.ToInt();
         specialAbility.m_nCasterLevel = ability.CasterLevel;
       }
