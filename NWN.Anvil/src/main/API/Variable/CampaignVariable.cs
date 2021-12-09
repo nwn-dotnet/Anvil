@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NWN.Core;
 
 namespace Anvil.API
@@ -71,7 +72,7 @@ namespace Anvil.API
         return true;
       }
 
-      return Equals(Value, other.Value);
+      return EqualityComparer<T>.Default.Equals(Value, other.Value);
     }
 
     public override bool Equals(object obj)
@@ -96,7 +97,7 @@ namespace Anvil.API
 
     public override int GetHashCode()
     {
-      return Value != null ? Value.GetHashCode() : 0;
+      return EqualityComparer<T>.Default.GetHashCode(Value);
     }
   }
 }
