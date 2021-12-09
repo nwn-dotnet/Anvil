@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.33.5
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...v8193.33.5
 
 ### Added
 - NwModule: Added `LimboGameObjects` property to list all GameObjects currently stored in limbo.
@@ -13,9 +34,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
 - Added `OnCheckEffectImmunity` event for bypassing effect immunity checks.
 - Added `OnEffectApply` and `OnEffectRemove` events.
 - Added ruleset APIs: `NwRuleset`, `NwBaseItem`, `NwClass`, `NwFeat`, `NwRace` `NwSkill` and `NwSpell`
-
-### Package Updates
-- N/A
 
 ### Changed
 - Migrated LoopTimeService properties to static class `Anvil.API.Time`.
@@ -26,12 +44,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
 - `LoopTimeService` - use `Anvil.API.Time` instead.
 - Moved `NwDateTime` and `NwTimeSpan` to `Anvil.API` namespace.
 - Duplicated APIs `NwItem.CanStack`/`NwItem.IsStackable`. Use `NwBaseItem.IsStackable` instead.
-
-### Removed
-- N/A
-
-### Fixed
-- N/A
 
 ## 8193.33.4
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.3...v8193.33.4
