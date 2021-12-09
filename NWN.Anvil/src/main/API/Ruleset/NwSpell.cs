@@ -1,4 +1,5 @@
 using System.Linq;
+using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -8,11 +9,14 @@ namespace Anvil.API
   /// </summary>
   public sealed class NwSpell
   {
-    private readonly CNWSpell spell;
+    [Inject]
+    private static TlkTable TlkTable { get; set; }
 
-    public NwSpell(CNWSpell spell, Spell spellType)
+    private readonly CNWSpell spellInfo;
+
+    public NwSpell(CNWSpell spellInfo, Spell spellType)
     {
-      this.spell = spell;
+      this.spellInfo = spellInfo;
       SpellType = spellType;
     }
 
@@ -20,6 +24,22 @@ namespace Anvil.API
     /// Gets the associated <see cref="Spell"/> type for this spell.
     /// </summary>
     public Spell SpellType { get; }
+
+    /// <summary>
+    /// Gets the name of this spell.
+    /// </summary>
+    public string Name
+    {
+      get => TlkTable.GetSimpleString((uint)spellInfo.m_strrefName);
+    }
+
+    /// <summary>
+    /// Gets the description of this spell.
+    /// </summary>
+    public string Description
+    {
+      get => TlkTable.GetSimpleString(spellInfo.m_strrefDesc);
+    }
 
     /// <summary>
     /// Resolves a <see cref="NwSpell"/> from a spell id.

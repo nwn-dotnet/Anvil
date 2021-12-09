@@ -8,11 +8,11 @@ namespace Anvil.API
   /// </summary>
   public sealed class NwBaseItem
   {
-    private readonly CNWBaseItem baseItem;
+    private readonly CNWBaseItem baseItemInfo;
 
-    internal NwBaseItem(CNWBaseItem baseItem, BaseItemType itemType)
+    internal NwBaseItem(CNWBaseItem baseItemInfo, BaseItemType itemType)
     {
-      this.baseItem = baseItem;
+      this.baseItemInfo = baseItemInfo;
       ItemType = itemType;
     }
 
@@ -21,7 +21,7 @@ namespace Anvil.API
     /// </summary>
     public Vector2Int InventorySlotSize
     {
-      get => new Vector2Int(baseItem.m_nInvSlotWidth, baseItem.m_nInvSlotHeight);
+      get => new Vector2Int(baseItemInfo.m_nInvSlotWidth, baseItemInfo.m_nInvSlotHeight);
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ namespace Anvil.API
     /// </summary>
     public int MaxStackSize
     {
-      get => baseItem.m_nStackSize;
+      get => baseItemInfo.m_nStackSize;
     }
 
     /// <summary>
