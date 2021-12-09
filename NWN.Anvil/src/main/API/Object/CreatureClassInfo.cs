@@ -41,18 +41,18 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spell">The spell to be added.</param>
     /// <param name="spellLevel">The spell level for the spell to be added.</param>
-    public void AddKnownSpell(Spell spell, byte spellLevel)
+    public void AddKnownSpell(NwSpell spell, byte spellLevel)
     {
-      classInfo.AddKnownSpell(spellLevel, (uint)spell);
+      classInfo.AddKnownSpell(spellLevel, (uint)spell.SpellType);
     }
 
     /// <summary>
     /// Clears the specified spell from the creature's spellbook.
     /// </summary>
     /// <param name="spell">The spell to clear.</param>
-    public void ClearMemorizedKnownSpells(Spell spell)
+    public void ClearMemorizedKnownSpells(NwSpell spell)
     {
-      classInfo.ClearMemorizedKnownSpells((uint)spell);
+      classInfo.ClearMemorizedKnownSpells((uint)spell.SpellType);
     }
 
     /// <summary>
@@ -70,14 +70,14 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
     /// <returns>A list containing the creatures known spells.</returns>
-    public IReadOnlyList<Spell> GetKnownSpells(byte spellLevel)
+    public IReadOnlyList<NwSpell> GetKnownSpells(byte spellLevel)
     {
       int spellCount = GetKnownSpellCountByLevel(spellLevel);
-      Spell[] retVal = new Spell[spellCount];
+      NwSpell[] retVal = new NwSpell[spellCount];
 
       for (byte i = 0; i < spellCount; i++)
       {
-        retVal[i] = (Spell)classInfo.GetKnownSpell(spellLevel, i);
+        retVal[i] = NwSpell.FromSpellId((int)classInfo.GetKnownSpell(spellLevel, i));
       }
 
       return retVal;
@@ -126,9 +126,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
     /// <param name="spell">The spell to remove.</param>
-    public void RemoveKnownSpell(byte spellLevel, Spell spell)
+    public void RemoveKnownSpell(byte spellLevel, NwSpell spell)
     {
-      classInfo.RemoveKnownSpell(spellLevel, (uint)spell);
+      classInfo.RemoveKnownSpell(spellLevel, (uint)spell.SpellType);
     }
 
     /// <summary>

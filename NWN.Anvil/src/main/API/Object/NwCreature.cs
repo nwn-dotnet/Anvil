@@ -865,7 +865,7 @@ namespace Anvil.API
         {
           if (ability.m_nSpellId != ~0u)
           {
-            retVal.Add(new SpecialAbility((Spell)ability.m_nSpellId, ability.m_nCasterLevel, ability.m_bReadied.ToBool()));
+            retVal.Add(new SpecialAbility(NwSpell.FromSpellId((int)ability.m_nSpellId), ability.m_nCasterLevel, ability.m_bReadied.ToBool()));
           }
         }
 
@@ -1032,10 +1032,10 @@ namespace Anvil.API
     /// <param name="spell">The spell to cast.</param>
     /// <param name="location">The target location for the fake spell to be cast at.</param>
     /// <param name="pathType">An optional path type for this spell to use.</param>
-    public async Task ActionCastFakeSpellAt(Spell spell, Location location, ProjectilePathType pathType = ProjectilePathType.Default)
+    public async Task ActionCastFakeSpellAt(NwSpell spell, Location location, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtLocation((int)spell, location, (int)pathType);
+      NWScript.ActionCastFakeSpellAtLocation((int)spell.SpellType, location, (int)pathType);
     }
 
     /// <summary>
@@ -1044,10 +1044,10 @@ namespace Anvil.API
     /// <param name="spell">The spell to cast.</param>
     /// <param name="target">The target object for the fake spell to be cast at.</param>
     /// <param name="pathType">An optional path type for this spell to use.</param>
-    public async Task ActionCastFakeSpellAt(Spell spell, NwGameObject target, ProjectilePathType pathType = ProjectilePathType.Default)
+    public async Task ActionCastFakeSpellAt(NwSpell spell, NwGameObject target, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtObject((int)spell, target, (int)pathType);
+      NWScript.ActionCastFakeSpellAtObject((int)spell.SpellType, target, (int)pathType);
     }
 
     /// <summary>
@@ -1918,9 +1918,9 @@ namespace Anvil.API
     /// Gets whether this creature is under the effects of the specified spell.
     /// </summary>
     /// <param name="spell">The spell to check.</param>
-    public bool HasSpellEffect(Spell spell)
+    public bool HasSpellEffect(NwSpell spell)
     {
-      return NWScript.GetHasSpellEffect((int)spell, this).ToBool();
+      return NWScript.GetHasSpellEffect((int)spell.SpellType, this).ToBool();
     }
 
     /// <summary>
@@ -1928,9 +1928,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spell">The spell to check.</param>
     /// <returns>True if this creature can immediately cast the spell.</returns>
-    public bool HasSpellUse(Spell spell)
+    public bool HasSpellUse(NwSpell spell)
     {
-      return NWScript.GetHasSpell((int)spell, this) > 0;
+      return NWScript.GetHasSpell((int)spell.SpellType, this) > 0;
     }
 
     /// <summary>

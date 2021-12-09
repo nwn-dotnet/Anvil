@@ -193,10 +193,10 @@ namespace Anvil.API
     /// <param name="domainLevel">Specifies the spell level if the spell is to be cast as a domain spell.</param>
     /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
     /// <param name="instant">If true, the spell is cast immediately.</param>
-    public async Task ActionCastSpellAt(Spell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    public async Task ActionCastSpellAt(NwSpell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtObject((int)spell, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtObject((int)spell.SpellType, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -208,10 +208,10 @@ namespace Anvil.API
     /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
     /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
     /// <param name="instant">If true, the spell is cast immediately.</param>
-    public async Task ActionCastSpellAt(Spell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    public async Task ActionCastSpellAt(NwSpell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtLocation((int)spell, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtLocation((int)spell.SpellType, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>

@@ -34,7 +34,7 @@ namespace Anvil.API.Events
 
     public Lazy<bool> Result { get; private set; }
 
-    public Spell Spell { get; private init; }
+    public NwSpell Spell { get; private init; }
 
     public NwGameObject TargetObject { get; private init; }
 
@@ -67,7 +67,7 @@ namespace Anvil.API.Events
         OnSpellAction eventData = new OnSpellAction
         {
           Caster = creature.ToNwObject<NwCreature>(),
-          Spell = (Spell)nSpellId,
+          Spell = NwSpell.FromSpellId((int)nSpellId),
           ClassIndex = nMultiClass,
           Domain = (Domain)nDomainLevel,
           MetaMagic = (MetaMagic)nMetaType,

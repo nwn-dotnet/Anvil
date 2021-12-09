@@ -15,7 +15,7 @@ namespace Anvil.API.Events
     public NwFeat Feat { get; private init; }
     public bool PreventSpellCast { get; set; }
 
-    public Spell Spell { get; private init; }
+    public NwSpell Spell { get; private init; }
 
     NwObject IEvent.Context
     {
@@ -40,7 +40,7 @@ namespace Anvil.API.Events
         OnSpellBroadcast eventData = ProcessEvent(new OnSpellBroadcast
         {
           Caster = creature.ToNwObject<NwCreature>(),
-          Spell = (Spell)nSpellId,
+          Spell = NwSpell.FromSpellId((int)nSpellId),
           ClassIndex = nMultiClass,
           Feat = NwFeat.FromFeatId(nFeat),
         });

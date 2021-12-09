@@ -199,9 +199,9 @@ namespace Anvil.API
     /// <summary>
     /// The Spell associated with this feat.
     /// </summary>
-    public Spell Spell
+    public NwSpell Spell
     {
-      get => (Spell)featInfo.m_nSpellId;
+      get => NwSpell.FromSpellId(featInfo.m_nSpellId);
     }
 
     /// <summary>

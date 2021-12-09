@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     public MetaMagic MetaMagic { get; private init; }
 
-    public Spell Spell { get; private init; }
+    public NwSpell Spell { get; private init; }
 
     public bool Spontaneous { get; private init; }
 
@@ -56,7 +56,7 @@ namespace Anvil.API.Events
         ProcessEvent(new OnSpellInterrupt
         {
           InterruptedCaster = gameObject.ToNwObject<NwGameObject>(),
-          Spell = (Spell)gameObject.m_nLastSpellId,
+          Spell = NwSpell.FromSpellId((int)gameObject.m_nLastSpellId),
           ClassIndex = gameObject.m_nLastSpellCastMulticlass,
           Feat = NwFeat.FromFeatId(gameObject.m_nLastSpellCastFeat),
           Domain = (Domain)gameObject.m_nLastDomainLevel,

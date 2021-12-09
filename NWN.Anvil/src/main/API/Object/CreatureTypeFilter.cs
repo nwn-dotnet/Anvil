@@ -22,14 +22,14 @@ namespace Anvil.API
       return new CreatureTypeFilter(CreatureType.Class, (int)nwClass.ClassType);
     }
 
-    public static CreatureTypeFilter DoesNotHaveSpellEffect(Spell spellEffect)
+    public static CreatureTypeFilter DoesNotHaveSpellEffect(NwSpell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect);
+      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect.SpellType);
     }
 
-    public static CreatureTypeFilter HasSpellEffect(Spell spellEffect)
+    public static CreatureTypeFilter HasSpellEffect(NwSpell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.HasSpellEffect, (int)spellEffect);
+      return new CreatureTypeFilter(CreatureType.HasSpellEffect, (int)spellEffect.SpellType);
     }
 
     public static CreatureTypeFilter Perception(PerceptionType perceptionType)
