@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['waitforobjectcontext_0',['WaitForObjectContext',['../classAnvil_1_1API_1_1NwObject.html#afbb94a19d2c70f6fcd0bd9401b5c5505',1,'Anvil::API::NwObject']]],
-  ['waituntil_1',['WaitUntil',['../classAnvil_1_1API_1_1NwTask.html#a8a3d5383fd63a0c21fecf6691d187fa7',1,'Anvil::API::NwTask']]],
-  ['waituntilvaluechanged_3c_20t_20_3e_2',['WaitUntilValueChanged&lt; T &gt;',['../classAnvil_1_1API_1_1NwTask.html#abf11f74d2c1dc78779edc1704dd64050',1,'Anvil::API::NwTask']]],
-  ['weaponused_3',['WeaponUsed',['../classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnPhysicalAttacked.html#a652f954f8ca6bfa73f4963b1bea4340d',1,'Anvil.API.Events.DoorEvents.OnPhysicalAttacked.WeaponUsed()'],['../classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a4f4ce2f8982827db60b8473b5fed21d0',1,'Anvil.API.Events.PlaceableEvents.OnPhysicalAttacked.WeaponUsed()']]],
-  ['whenall_4',['WhenAll',['../classAnvil_1_1API_1_1NwTask.html#a19b0155fcea1438cf99c8a22864668a0',1,'Anvil.API.NwTask.WhenAll(params Task[] tasks)'],['../classAnvil_1_1API_1_1NwTask.html#a5b670d468bee5634d039517302d22fd9',1,'Anvil.API.NwTask.WhenAll(IEnumerable&lt; Task &gt; tasks)']]],
-  ['whenall_3c_20tresult_20_3e_5',['WhenAll&lt; TResult &gt;',['../classAnvil_1_1API_1_1NwTask.html#ad936b2bd51fa94e3f996c710d8549268',1,'Anvil.API.NwTask.WhenAll&lt; TResult &gt;(params Task&lt; TResult &gt;[] tasks)'],['../classAnvil_1_1API_1_1NwTask.html#ad1c2bc33e8a1281a9eb2f9e2df937645',1,'Anvil.API.NwTask.WhenAll&lt; TResult &gt;(IEnumerable&lt; Task&lt; TResult &gt; &gt; tasks)']]],
-  ['whenany_6',['WhenAny',['../classAnvil_1_1API_1_1NwTask.html#ae7bada259cef51d40b46ea22fb37e376',1,'Anvil.API.NwTask.WhenAny(params Task[] tasks)'],['../classAnvil_1_1API_1_1NwTask.html#a3730d1f6d829308b4342d281527174d5',1,'Anvil.API.NwTask.WhenAny(IEnumerable&lt; Task &gt; tasks)']]],
-  ['whenany_3c_20tresult_20_3e_7',['WhenAny&lt; TResult &gt;',['../classAnvil_1_1API_1_1NwTask.html#a6bc2bf6d1e758f4560e6122d73351fdb',1,'Anvil.API.NwTask.WhenAny&lt; TResult &gt;(params Task&lt; TResult &gt;[] tasks)'],['../classAnvil_1_1API_1_1NwTask.html#af34bdd7bf076040ab9d59d9c0d5d5ce4',1,'Anvil.API.NwTask.WhenAny&lt; TResult &gt;(IEnumerable&lt; Task&lt; TResult &gt; &gt; tasks)']]]
+  ['value_0',['Value',['../classAnvil_1_1API_1_1GffResourceField.html#ac22d9118004b12786b4e704d5343591a',1,'Anvil::API::GffResourceField']]],
+  ['value_3c_20t_20_3e_1',['Value&lt; T &gt;',['../classAnvil_1_1API_1_1GffResourceField.html#a5d9dad21c9bd646b4bc0c173618eb26a',1,'Anvil::API::GffResourceField']]],
+  ['valueordefault_2',['ValueOrDefault',['../classAnvil_1_1API_1_1GffResourceField.html#a49589923164a455c16dd7e0020fa97a0',1,'Anvil::API::GffResourceField']]],
+  ['valueordefault_3c_20t_20_3e_3',['ValueOrDefault&lt; T &gt;',['../classAnvil_1_1API_1_1GffResourceField.html#ac349f16d3dbe3babddc3138cfcffd4af',1,'Anvil::API::GffResourceField']]],
+  ['vectortoangle_4',['VectorToAngle',['../classAnvil_1_1API_1_1NwMath.html#ad05bf228b5171ce7f5471e18d5f3b8d2',1,'Anvil.API.NwMath.VectorToAngle(Vector2 direction)'],['../classAnvil_1_1API_1_1NwMath.html#a3597716bab3d92771d3bd66e4dbc26d6',1,'Anvil.API.NwMath.VectorToAngle(Vector3 direction)']]],
+  ['vibrate_5',['Vibrate',['../classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f',1,'Anvil::API::NwPlayer']]]
 ];

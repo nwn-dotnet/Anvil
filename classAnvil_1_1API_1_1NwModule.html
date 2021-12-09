@@ -149,6 +149,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ExportAllCharacters</
 <a class="el" href="classAnvil_1_1API_1_1NwWaypoint.html">NwWaypoint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetWaypointByTag</b> (string tag)</td></tr>
 <tr class="memdesc:a20214b9456fd69f812d5bd476611da72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the specified waypoint with the given tag. <br /></td></tr>
 <tr class="separator:a20214b9456fd69f812d5bd476611da72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ae4f0d2b0b2b0b94898ef3d36ebf057"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#a0ae4f0d2b0b2b0b94898ef3d36ebf057">MoveObjectToLimbo</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> gameObject)</td></tr>
+<tr class="memdesc:a0ae4f0d2b0b2b0b94898ef3d36ebf057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the specified <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas.">NwGameObject</a> from its current location/owner to limbo.  <a href="classAnvil_1_1API_1_1NwModule.html#a0ae4f0d2b0b2b0b94898ef3d36ebf057">More...</a><br /></td></tr>
+<tr class="separator:a0ae4f0d2b0b2b0b94898ef3d36ebf057"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af24f2d1c4ce99110d39c63c750866475"><td class="memItemLeft" align="right" valign="top">override? Guid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#af24f2d1c4ce99110d39c63c750866475">PeekUUID</a> ()</td></tr>
 <tr class="memdesc:af24f2d1c4ce99110d39c63c750866475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get the UUID of this object, if assigned.  <a href="classAnvil_1_1API_1_1NwModule.html#af24f2d1c4ce99110d39c63c750866475">More...</a><br /></td></tr>
 <tr class="separator:af24f2d1c4ce99110d39c63c750866475"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -297,6 +300,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsDusk</b><code> [get
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsNight</b><code> [get]</code></td></tr>
 <tr class="memdesc:ac60a35717f3d00d69a3482dcccbb4dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether it is currently night. <br /></td></tr>
 <tr class="separator:ac60a35717f3d00d69a3482dcccbb4dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a436532b265406117eb26a72d84916cf1"><td class="memItemLeft" align="right" valign="top"><a id="a436532b265406117eb26a72d84916cf1" name="a436532b265406117eb26a72d84916cf1"></a>
+IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>LimboGameObjects</b><code> [get]</code></td></tr>
+<tr class="memdesc:a436532b265406117eb26a72d84916cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all objects currently stored in limbo. <br /></td></tr>
+<tr class="separator:a436532b265406117eb26a72d84916cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a266fa325dec2f20fc24faa618e7629d8"><td class="memItemLeft" align="right" valign="top"><a id="a266fa325dec2f20fc24faa618e7629d8" name="a266fa325dec2f20fc24faa618e7629d8"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>MaxHenchmen</b><code> [getset]</code></td></tr>
 <tr class="memdesc:a266fa325dec2f20fc24faa618e7629d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the maximum number of henchmen. <br /></td></tr>
@@ -325,6 +332,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChan
 <tr class="memitem:a650c8389e5c1b251c1f0ead7134cb23c"><td class="memItemLeft" align="right" valign="top"><a id="a650c8389e5c1b251c1f0ead7134cb23c" name="a650c8389e5c1b251c1f0ead7134cb23c"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html">OnChatMessageSend</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnChatMessageSend</b></td></tr>
 <tr class="separator:a650c8389e5c1b251c1f0ead7134cb23c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1f76d1851d64d604b7e7b7255cbdd2a"><td class="memItemLeft" align="right" valign="top"><a id="ac1f76d1851d64d604b7e7b7255cbdd2a" name="ac1f76d1851d64d604b7e7b7255cbdd2a"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html">OnCheckEffectImmunity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnCheckEffectImmunity</b></td></tr>
+<tr class="separator:ac1f76d1851d64d604b7e7b7255cbdd2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ca3e98d44425875d138039ba8376040"><td class="memItemLeft" align="right" valign="top"><a id="a3ca3e98d44425875d138039ba8376040" name="a3ca3e98d44425875d138039ba8376040"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnClientConnect.html">OnClientConnect</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnClientConnect</b></td></tr>
 <tr class="separator:a3ca3e98d44425875d138039ba8376040"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -493,6 +503,12 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDoListenDetectio
 <tr class="memitem:acf7397368420d397eca36ac1a886638c"><td class="memItemLeft" align="right" valign="top"><a id="acf7397368420d397eca36ac1a886638c" name="acf7397368420d397eca36ac1a886638c"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDoSpotDetection.html">OnDoSpotDetection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnDoSpotDetection</b></td></tr>
 <tr class="separator:acf7397368420d397eca36ac1a886638c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00540b464c1177136898c3a7837b0a2b"><td class="memItemLeft" align="right" valign="top"><a id="a00540b464c1177136898c3a7837b0a2b" name="a00540b464c1177136898c3a7837b0a2b"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnEffectApply.html">OnEffectApply</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnEffectApply</b></td></tr>
+<tr class="separator:a00540b464c1177136898c3a7837b0a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4cf37ffa52ad0d1e448f47af1c1a4a1"><td class="memItemLeft" align="right" valign="top"><a id="aa4cf37ffa52ad0d1e448f47af1c1a4a1" name="aa4cf37ffa52ad0d1e448f47af1c1a4a1"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html">OnEffectRemove</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnEffectRemove</b></td></tr>
+<tr class="separator:aa4cf37ffa52ad0d1e448f47af1c1a4a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85ec3c9b9fbe64b2b77efa736e63c0cb"><td class="memItemLeft" align="right" valign="top"><a id="a85ec3c9b9fbe64b2b77efa736e63c0cb" name="a85ec3c9b9fbe64b2b77efa736e63c0cb"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnExamineObject.html">OnExamineObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnExamineObject</b></td></tr>
 <tr class="separator:a85ec3c9b9fbe64b2b77efa736e63c0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -981,6 +997,40 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 
 </div>
 </div>
+<a id="a0ae4f0d2b0b2b0b94898ef3d36ebf057" name="a0ae4f0d2b0b2b0b94898ef3d36ebf057"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ae4f0d2b0b2b0b94898ef3d36ebf057">&#9670;&nbsp;</a></span>MoveObjectToLimbo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwModule.MoveObjectToLimbo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td>
+          <td class="paramname"><em>gameObject</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves the specified <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas.">NwGameObject</a> from its current location/owner to limbo. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameObject</td><td>The game object to move to limbo.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="af24f2d1c4ce99110d39c63c750866475" name="af24f2d1c4ce99110d39c63c750866475"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af24f2d1c4ce99110d39c63c750866475">&#9670;&nbsp;</a></span>PeekUUID()</h2>
 
@@ -1189,7 +1239,28 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnAcquireItem.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnActivateItem.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnClientEnter.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnClientLeave.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnCutsceneAbort.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnHeartbeat.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnModuleLoad.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnModuleStart.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnNuiEvent.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerChat.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerDeath.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerDying.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerEquipItem.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerGuiEvent.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerLevelUp.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerRespawn.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerRest.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerTarget.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerTileAction.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerUnequipItem.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnUnacquireItem.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnUserDefined.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/AssociateEvents/OnAssociateAdd.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/AssociateEvents/OnAssociateRemove.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/AssociateEvents/OnFamiliarPossess.cs</li>
@@ -1223,6 +1294,9 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <li>NWN.Anvil/src/main/API/Events/Native/DMEvents/OnDMSpawnObject.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/DMEvents/OnDMSpawnTrapOnObject.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/DMEvents/OnDMViewInventory.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/EffectEvents/OnCheckEffectImmunity.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/EffectEvents/OnEffectApply.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/EffectEvents/OnEffectRemove.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/ExamineEvents/OnExamineObject.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/ExamineEvents/OnExamineTrap.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/FeatEvents/OnUseFeat.cs</li>

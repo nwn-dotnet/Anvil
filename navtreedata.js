@@ -33,12 +33,13 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html",
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a8e5b0e5cf4a60da3824dd9257aedcc42",
-"classAnvil_1_1API_1_1NwArea.html#a111e325ad9e32787a82189e0f72fc62c",
-"classAnvil_1_1API_1_1NwCreature.html#acd96b82341a720a023eb18c39e17e23b",
-"classAnvil_1_1API_1_1NwModule.html#a3f43a0b8fe0f2858c0f179121edd8833",
-"classAnvil_1_1API_1_1NwPlayer.html#a9e59f0d74b02612e1b7b208dd2da2015",
-"classAnvil_1_1API_1_1VisualTransform.html"
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html",
+"classAnvil_1_1API_1_1NuiWindow.html#a23ce00832bbcb6523a3a7561823c7656",
+"classAnvil_1_1API_1_1NwCreature.html#aaf3cacdad7a5ec0d5d56ad88c64584ae",
+"classAnvil_1_1API_1_1NwItem.html#a86bf9236e06035a1c44efd790342c4db",
+"classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2",
+"classAnvil_1_1API_1_1NwTimeSpan.html",
+"classAnvil_1_1Services_1_1WeaponService.html#af8ff3b5ab720528943dd902f376551f4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

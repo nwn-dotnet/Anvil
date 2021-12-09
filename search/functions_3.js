@@ -27,7 +27,7 @@ var searchData=
   ['disease_24',['Disease',['../classAnvil_1_1API_1_1Effect.html#a0f042236d2adbf2fd2ec96fec795ef01',1,'Anvil::API::Effect']]],
   ['dispelmagicall_25',['DispelMagicAll',['../classAnvil_1_1API_1_1Effect.html#a27159912288b5c60bd05d1ec472ffe6c',1,'Anvil::API::Effect']]],
   ['dispelmagicbest_26',['DispelMagicBest',['../classAnvil_1_1API_1_1Effect.html#a91f8af5c05185c5db68fcaf7f8bd626a',1,'Anvil::API::Effect']]],
-  ['dispose_27',['Dispose',['../classAnvil_1_1Services_1_1FunctionHook.html#ae52ba650399a3e1bd858cdd66448ee62',1,'Anvil::Services::FunctionHook']]],
+  ['dispose_27',['Dispose',['../classAnvil_1_1Services_1_1FunctionHook.html#ae52ba650399a3e1bd858cdd66448ee62',1,'Anvil.Services.FunctionHook.Dispose()'],['../classAnvil_1_1Services_1_1ScheduledTask.html#aa9e3f149c91ce08d893f6e6c046db6f4',1,'Anvil.Services.ScheduledTask.Dispose()']]],
   ['distance_28',['Distance',['../classAnvil_1_1API_1_1Location.html#a3cbbdf9f494fdad1da6641b4d513f1a6',1,'Anvil.API.Location.Distance()'],['../classAnvil_1_1API_1_1NwGameObject.html#abe1c02439d4246398df5ef2913e8ef0a',1,'Anvil.API.NwGameObject.Distance()']]],
   ['distancesquared_29',['DistanceSquared',['../classAnvil_1_1API_1_1Location.html#ad772c7d00b86c2d0b4957dc0c41afaf0',1,'Anvil.API.Location.DistanceSquared()'],['../classAnvil_1_1API_1_1NwGameObject.html#ae077de5e25b6dfb7b661c42b142dfdd8',1,'Anvil.API.NwGameObject.DistanceSquared()']]],
   ['dodooraction_30',['DoDoorAction',['../classAnvil_1_1API_1_1NwCreature.html#ac716c1d8ed69a3057f9f7d27adc31e29',1,'Anvil::API::NwCreature']]],

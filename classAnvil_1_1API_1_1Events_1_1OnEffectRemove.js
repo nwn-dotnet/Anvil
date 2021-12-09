@@ -1,0 +1,6 @@
+var classAnvil_1_1API_1_1Events_1_1OnEffectRemove =
+[
+    [ "Effect", "classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html#a9b4ca883cb834a7ed7170b2c8a4c6de1", null ],
+    [ "Object", "classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html#ac02ebe1187dd8ad540db9ff3d38dc0c9", null ],
+    [ "PreventRemove", "classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html#a4be6c26d4aca387200b6ec41508150ac", null ]
+];

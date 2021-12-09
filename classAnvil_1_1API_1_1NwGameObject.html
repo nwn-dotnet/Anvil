@@ -364,6 +364,12 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.
 <tr class="memitem:a10348c77b57c4efade948e772127d229"><td class="memItemLeft" align="right" valign="top"><a id="a10348c77b57c4efade948e772127d229" name="a10348c77b57c4efade948e772127d229"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html">OnDisarmWeapon</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnDisarmWeapon</b></td></tr>
 <tr class="separator:a10348c77b57c4efade948e772127d229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedabe0904e6c916837cd8231bfb039ba"><td class="memItemLeft" align="right" valign="top"><a id="aedabe0904e6c916837cd8231bfb039ba" name="aedabe0904e6c916837cd8231bfb039ba"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnEffectApply.html">OnEffectApply</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnEffectApply</b></td></tr>
+<tr class="separator:aedabe0904e6c916837cd8231bfb039ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ae38c1806f1deae49113a57daf7f4f"><td class="memItemLeft" align="right" valign="top"><a id="a07ae38c1806f1deae49113a57daf7f4f" name="a07ae38c1806f1deae49113a57daf7f4f"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html">OnEffectRemove</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnEffectRemove</b></td></tr>
+<tr class="separator:a07ae38c1806f1deae49113a57daf7f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a906967453cb73532e7b32abb7a6c916d"><td class="memItemLeft" align="right" valign="top"><a id="a906967453cb73532e7b32abb7a6c916d" name="a906967453cb73532e7b32abb7a6c916d"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnHeal.html">OnHeal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnHeal</b></td></tr>
 <tr class="separator:a906967453cb73532e7b32abb7a6c916d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -749,7 +755,7 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <p>Destroys this object (irrevocably). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">delay</td><td>Time in seconds until this object should be destroyed.</td></tr>
+    <tr><td class="paramname">delay</td><td><a class="el" href="classAnvil_1_1API_1_1Time.html" title="Interface for querying time information for the current frame or since startup.">Time</a> in seconds until this object should be destroyed.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1747,9 +1753,12 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnAcquireItem.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnUnacquireItem.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/ChatEvents/OnChatMessageSend.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/CombatEvents/OnDisarmWeapon.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/EffectEvents/OnEffectApply.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/EffectEvents/OnEffectRemove.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/HealEvents/OnHeal.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnSpellBroadcast.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnSpellCast.cs</li>

@@ -115,6 +115,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "AC", "classAnvil_1_1API_1_1NwCreature.html#a0f9a9f5ddc1595241fa4694f539ab4bf", null ],
     [ "Age", "classAnvil_1_1API_1_1NwCreature.html#a6e4bd5d72462574dd2722017bcf5c703", null ],
     [ "AiLevel", "classAnvil_1_1API_1_1NwCreature.html#aeaba42c0edcac2fb790daa7293c14173", null ],
+    [ "AlwaysWalk", "classAnvil_1_1API_1_1NwCreature.html#af0243ba0799cb3fcf963dd00ef7c571d", null ],
     [ "AnimalCompanionName", "classAnvil_1_1API_1_1NwCreature.html#ac31519e7be1a96d02f34c92847858b42", null ],
     [ "AnimalCompanionType", "classAnvil_1_1API_1_1NwCreature.html#a54cc0d4c86ab11c2d4bb3a685efe177a", null ],
     [ "ArcaneSpellFailure", "classAnvil_1_1API_1_1NwCreature.html#af6a05f853ebb54780f7182c7fc5a4da4", null ],
@@ -183,6 +184,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "OnAssociateAdd", "classAnvil_1_1API_1_1NwCreature.html#a695f1a63fc683da262f4237cf264a104", null ],
     [ "OnAssociateRemove", "classAnvil_1_1API_1_1NwCreature.html#ac0dee263169ec3f4640b5371ba698f86", null ],
     [ "OnBlocked", "classAnvil_1_1API_1_1NwCreature.html#aaa685df24a330d3811f617e10a6d47c9", null ],
+    [ "OnCheckEffectImmunity", "classAnvil_1_1API_1_1NwCreature.html#a36a83b87eea9946bca47bc67d2b0178a", null ],
     [ "OnCombatDRBroken", "classAnvil_1_1API_1_1NwCreature.html#a55d7579dd9fadb0402c4e5ba2c45d23c", null ],
     [ "OnCombatModeToggle", "classAnvil_1_1API_1_1NwCreature.html#abae9981cddc168a96506fb278d5a715a", null ],
     [ "OnCombatRoundEnd", "classAnvil_1_1API_1_1NwCreature.html#a6330e5f8095f0de8a8faffbc62af69cc", null ],
@@ -232,6 +234,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "OriginalLastName", "classAnvil_1_1API_1_1NwCreature.html#a8a6fffe3e9dc9143814367b93f7b95be", null ],
     [ "OriginalName", "classAnvil_1_1API_1_1NwCreature.html#a09ada771e2ae9792561ba7307e7faaf4", null ],
     [ "Phenotype", "classAnvil_1_1API_1_1NwCreature.html#ab203e6ac984dcd2a572271011b759075", null ],
+    [ "Race", "classAnvil_1_1API_1_1NwCreature.html#a34e880887bf89a2e6aa73933d03fbac3", null ],
     [ "RacialType", "classAnvil_1_1API_1_1NwCreature.html#a035bc11a7e859aca2c3e956bad088991", null ],
     [ "Size", "classAnvil_1_1API_1_1NwCreature.html#af3fce6670ae3fc42a04467211b5ee204", null ],
     [ "SoundSet", "classAnvil_1_1API_1_1NwCreature.html#a4e5ae43237b6316f54479bbe7a47f792", null ],
@@ -243,6 +246,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "TailType", "classAnvil_1_1API_1_1NwCreature.html#a456573c1d660289c5ae58bb0a5c66ac2", null ],
     [ "TotalWeight", "classAnvil_1_1API_1_1NwCreature.html#a4dc08b6fb28468045396cb6aef18b3c2", null ],
     [ "TurnResistanceHitDice", "classAnvil_1_1API_1_1NwCreature.html#a0afc668b15374e5e649770c8f6b5dd83", null ],
+    [ "WalkRateCap", "classAnvil_1_1API_1_1NwCreature.html#a0399c801600ff4e6f3041bfc380207bf", null ],
     [ "WingType", "classAnvil_1_1API_1_1NwCreature.html#a4b2ac1ff2d096337020121704be48e42", null ],
     [ "Xp", "classAnvil_1_1API_1_1NwCreature.html#a54095d1fd30770109dde23bfec451606", null ]
 ];

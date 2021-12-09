@@ -348,6 +348,13 @@ async Task&#160;</td><td class="memItemRight" valign="bottom"><b>StoreCameraFaci
 <tr class="memdesc:a0bc9c76edce52a72270972857a12cf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores (bookmarks) the camera's facing and position so it can be restored later with RestoreCameraFacing.<br  />
  <br /></td></tr>
 <tr class="separator:a0bc9c76edce52a72270972857a12cf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1962676b01346914b13373408f1011f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2">TryCreateNuiWindow</a> (<a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a> window, out int token, string windowId=&quot;&quot;)</td></tr>
+<tr class="memdesc:a1962676b01346914b13373408f1011f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NUI window inline for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2">More...</a><br /></td></tr>
+<tr class="separator:a1962676b01346914b13373408f1011f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19bc6505d5880d90034d9bf5d0dbe6c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c">TryEnterTargetMode</a> (Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt; handler, ObjectTypes validTargets=ObjectTypes.All, MouseCursor cursorType=MouseCursor.Magic, MouseCursor badTargetCursor=MouseCursor.NoMagic)</td></tr>
+<tr class="memdesc:ac19bc6505d5880d90034d9bf5d0dbe6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br  />
+ If the player is already in targeting mode, the existing handler will not be cleared.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c">More...</a><br /></td></tr>
+<tr class="separator:ac19bc6505d5880d90034d9bf5d0dbe6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">UnlockAchievement</a> (string achievementId, int lastValue=0, int currentValue=0, int maxValue=0)</td></tr>
 <tr class="memdesc:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock an achievement for the player who must be logged in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">More...</a><br /></td></tr>
 <tr class="separator:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -406,6 +413,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsConnectionRelayed</
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsDM</b><code> [get]</code></td></tr>
 <tr class="memdesc:acd0cd46b2a3ae23868701fe00b079c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether the player is a Dungeon Master. <br /></td></tr>
 <tr class="separator:acd0cd46b2a3ae23868701fe00b079c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0231693ae3d04bb2e7e985d3b53a2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0c0231693ae3d04bb2e7e985d3b53a2a">IsInCursorTargetMode</a><code> [get]</code></td></tr>
+<tr class="memdesc:a0c0231693ae3d04bb2e7e985d3b53a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this player is in cursor targeting mode.<br  />
+ NOTE! Only works if the player entered target mode using <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c" title="Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the p...">TryEnterTargetMode</a>.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a0c0231693ae3d04bb2e7e985d3b53a2a">More...</a><br /></td></tr>
+<tr class="separator:a0c0231693ae3d04bb2e7e985d3b53a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a791a7cf9b498bae61b86fe269659e28a"><td class="memItemLeft" align="right" valign="top"><a id="a791a7cf9b498bae61b86fe269659e28a" name="a791a7cf9b498bae61b86fe269659e28a"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsInCutsceneMode</b><code> [get]</code></td></tr>
 <tr class="memdesc:a791a7cf9b498bae61b86fe269659e28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether ControlledCreature creature is currently in "Cutscene" mode. <br /></td></tr>
@@ -1636,7 +1647,7 @@ TimeSpan?&#160;</td><td class="memItemRight" valign="bottom"><b>RestDurationOver
 <p>Changes the current Day/Night cycle for the player to daylight. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">delayTransitionTime</td><td>Time it takes for the daylight to fade in.</td></tr>
+    <tr><td class="paramname">delayTransitionTime</td><td><a class="el" href="classAnvil_1_1API_1_1Time.html" title="Interface for querying time information for the current frame or since startup.">Time</a> it takes for the daylight to fade in.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2740,6 +2751,120 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
+<a id="a1962676b01346914b13373408f1011f2" name="a1962676b01346914b13373408f1011f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1962676b01346914b13373408f1011f2">&#9670;&nbsp;</a></span>TryCreateNuiWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwPlayer.TryCreateNuiWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a>&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>windowId</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a NUI window inline for this player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The window to create.</td></tr>
+    <tr><td class="paramname">token</td><td>The player-unique token for this window instance.</td></tr>
+    <tr><td class="paramname">windowId</td><td>A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the window was successfully created, otherwise false.</dd></dl>
+
+</div>
+</div>
+<a id="ac19bc6505d5880d90034d9bf5d0dbe6c" name="ac19bc6505d5880d90034d9bf5d0dbe6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19bc6505d5880d90034d9bf5d0dbe6c">&#9670;&nbsp;</a></span>TryEnterTargetMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwPlayer.TryEnterTargetMode </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt;&#160;</td>
+          <td class="paramname"><em>handler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ObjectTypes&#160;</td>
+          <td class="paramname"><em>validTargets</em> = <code>ObjectTypes.All</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MouseCursor&#160;</td>
+          <td class="paramname"><em>cursorType</em> = <code>MouseCursor.Magic</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MouseCursor&#160;</td>
+          <td class="paramname"><em>badTargetCursor</em> = <code>MouseCursor.NoMagic</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br  />
+ If the player is already in targeting mode, the existing handler will not be cleared. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handler</td><td>The lamda/method to invoke once this player selects something.</td></tr>
+    <tr><td class="paramname">validTargets</td><td>The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</td></tr>
+    <tr><td class="paramname">cursorType</td><td>The type of cursor to show if the player is hovering over a valid target.</td></tr>
+    <tr><td class="paramname">badTargetCursor</td><td>The type of cursor to show if the player is hovering over an invalid target.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the player successfully entered target mode, otherwise false.</dd></dl>
+
+</div>
+</div>
 <a id="a8e2c0d6b5ef7e90493f25cac14830f1e" name="a8e2c0d6b5ef7e90493f25cac14830f1e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e2c0d6b5ef7e90493f25cac14830f1e">&#9670;&nbsp;</a></span>UnlockAchievement()</h2>
 
@@ -2851,8 +2976,49 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a0c0231693ae3d04bb2e7e985d3b53a2a" name="a0c0231693ae3d04bb2e7e985d3b53a2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c0231693ae3d04bb2e7e985d3b53a2a">&#9670;&nbsp;</a></span>IsInCursorTargetMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwPlayer.IsInCursorTargetMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets if this player is in cursor targeting mode.<br  />
+ NOTE! Only works if the player entered target mode using <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c" title="Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the p...">TryEnterTargetMode</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if this player is attempting to target something.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnClientEnter.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnClientLeave.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnCutsceneAbort.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnNuiEvent.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerChat.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerDeath.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerDying.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerEquipItem.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerGuiEvent.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerLevelUp.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerRespawn.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerRest.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerTarget.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerTileAction.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Game/ModuleEvents/ModuleEvents.OnPlayerUnequipItem.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/BarterEvents/OnBarterEnd.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/BarterEvents/OnBarterStart.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/ClientEvents/OnClientDisconnect.cs</li>

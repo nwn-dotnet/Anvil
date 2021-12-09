@@ -8,5 +8,6 @@ var searchData=
   ['usedby_5',['UsedBy',['../classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUsed.html#a875c6cdd8e7e8c7b6e39865c4f6bf9a2',1,'Anvil.API.Events.PlaceableEvents.OnUsed.UsedBy()'],['../classAnvil_1_1API_1_1Events_1_1OnHealKitUse.html#a7324981de809c3262b7727d1854e9dbe',1,'Anvil.API.Events.OnHealKitUse.UsedBy()']]],
   ['useditem_6',['UsedItem',['../classAnvil_1_1API_1_1Events_1_1OnUseSkill.html#a576c96978383ab3b8bdcf1a9c8e3027e',1,'Anvil::API::Events::OnUseSkill']]],
   ['userdirectory_7',['UserDirectory',['../classAnvil_1_1API_1_1NwServer.html#ae7aa74d53ee0190e3af13dfd76b548ff',1,'Anvil::API::NwServer']]],
-  ['uuid_8',['UUID',['../classAnvil_1_1API_1_1NwObject.html#ae3571cdf0a4723852aba21eed594476e',1,'Anvil::API::NwObject']]]
+  ['usesperday_8',['UsesPerDay',['../classAnvil_1_1API_1_1NwFeat.html#a8b2ff116dfdfc65d06772365949900df',1,'Anvil::API::NwFeat']]],
+  ['uuid_9',['UUID',['../classAnvil_1_1API_1_1NwObject.html#ae3571cdf0a4723852aba21eed594476e',1,'Anvil::API::NwObject']]]
 ];

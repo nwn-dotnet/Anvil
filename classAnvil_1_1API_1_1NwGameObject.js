@@ -45,6 +45,8 @@ var classAnvil_1_1API_1_1NwGameObject =
     [ "OnAcquireItem", "classAnvil_1_1API_1_1NwGameObject.html#aa0e605177bb15f1197c9890eb3df55dc", null ],
     [ "OnChatMessageSend", "classAnvil_1_1API_1_1NwGameObject.html#af411d228df3bc9166d948b69daffab88", null ],
     [ "OnDisarmWeapon", "classAnvil_1_1API_1_1NwGameObject.html#a10348c77b57c4efade948e772127d229", null ],
+    [ "OnEffectApply", "classAnvil_1_1API_1_1NwGameObject.html#aedabe0904e6c916837cd8231bfb039ba", null ],
+    [ "OnEffectRemove", "classAnvil_1_1API_1_1NwGameObject.html#a07ae38c1806f1deae49113a57daf7f4f", null ],
     [ "OnHeal", "classAnvil_1_1API_1_1NwGameObject.html#a906967453cb73532e7b32abb7a6c916d", null ],
     [ "OnSpellBroadcast", "classAnvil_1_1API_1_1NwGameObject.html#aafa049a94e76d5e82b3b7cf9a24bf7ed", null ],
     [ "OnSpellCast", "classAnvil_1_1API_1_1NwGameObject.html#aedbe5d51a208a27fbe3e8dda497b144a", null ],

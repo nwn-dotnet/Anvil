@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['value_0',['Value',['../classAnvil_1_1API_1_1GffResourceField.html#ac22d9118004b12786b4e704d5343591a',1,'Anvil::API::GffResourceField']]],
-  ['value_3c_20t_20_3e_1',['Value&lt; T &gt;',['../classAnvil_1_1API_1_1GffResourceField.html#a5d9dad21c9bd646b4bc0c173618eb26a',1,'Anvil::API::GffResourceField']]],
-  ['valueordefault_2',['ValueOrDefault',['../classAnvil_1_1API_1_1GffResourceField.html#a49589923164a455c16dd7e0020fa97a0',1,'Anvil::API::GffResourceField']]],
-  ['valueordefault_3c_20t_20_3e_3',['ValueOrDefault&lt; T &gt;',['../classAnvil_1_1API_1_1GffResourceField.html#ac349f16d3dbe3babddc3138cfcffd4af',1,'Anvil::API::GffResourceField']]],
-  ['vectortoangle_4',['VectorToAngle',['../classAnvil_1_1API_1_1NwMath.html#ad05bf228b5171ce7f5471e18d5f3b8d2',1,'Anvil.API.NwMath.VectorToAngle(Vector2 direction)'],['../classAnvil_1_1API_1_1NwMath.html#a3597716bab3d92771d3bd66e4dbc26d6',1,'Anvil.API.NwMath.VectorToAngle(Vector3 direction)']]],
-  ['vibrate_5',['Vibrate',['../classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f',1,'Anvil::API::NwPlayer']]]
+  ['unlockachievement_0',['UnlockAchievement',['../classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e',1,'Anvil::API::NwPlayer']]],
+  ['unpossessfamiliar_1',['UnpossessFamiliar',['../classAnvil_1_1API_1_1NwCreature.html#ac3c35fc175ae3cadf1f4a3e1b4829bb4',1,'Anvil::API::NwCreature']]],
+  ['unregisterscripthandler_2',['UnregisterScriptHandler',['../classAnvil_1_1Services_1_1ScriptHandleFactory.html#a76d5b57f4d5cbce41ab1c815e5b4760a',1,'Anvil::Services::ScriptHandleFactory']]],
+  ['update_3',['Update',['../interfaceAnvil_1_1Services_1_1IUpdateable.html#a331b548c29b52cf54923c420cb6decd5',1,'Anvil::Services::IUpdateable']]]
 ];
