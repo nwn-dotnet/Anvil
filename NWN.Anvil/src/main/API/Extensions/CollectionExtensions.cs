@@ -103,7 +103,7 @@ namespace Anvil.API
     /// <returns>An IEnumerable&lt;T&gt; consisting of a single item. </returns>
     public static IEnumerable<T> SafeYield<T>(this T item)
     {
-      return item != null ? item.Yield() : Enumerable.Empty<T>();
+      return item is not null ? item.Yield() : Enumerable.Empty<T>();
     }
 
     /// <summary>

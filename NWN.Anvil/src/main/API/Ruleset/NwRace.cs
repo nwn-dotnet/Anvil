@@ -142,16 +142,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a race structure from the specified <see cref="Anvil.API.RacialType"/>.
-    /// </summary>
-    /// <param name="racialType">The associated racial type.</param>
-    /// <returns>The associated <see cref="NwRace"/> structure, or null if the race has no matching entry.</returns>
-    public static NwRace FromRacialType(RacialType racialType)
-    {
-      return RulesetService.Races[(int)racialType];
-    }
-
-    /// <summary>
     /// Creates a race structure from the specified race id.
     /// </summary>
     /// <param name="raceId">The associated race id.</param>
@@ -169,6 +159,16 @@ namespace Anvil.API
     public static NwRace FromRaceId(int raceId)
     {
       return raceId >= 0 && raceId < RulesetService.Races.Count ? RulesetService.Races[raceId] : null;
+    }
+
+    /// <summary>
+    /// Creates a race structure from the specified <see cref="Anvil.API.RacialType"/>.
+    /// </summary>
+    /// <param name="racialType">The associated racial type.</param>
+    /// <returns>The associated <see cref="NwRace"/> structure, or null if the race has no matching entry.</returns>
+    public static NwRace FromRacialType(RacialType racialType)
+    {
+      return RulesetService.Races[(int)racialType];
     }
 
     /// <summary>
