@@ -11,6 +11,11 @@ namespace Anvil.API
   public static class NwRuleset
   {
     /// <summary>
+    /// Gets a list of all base item types defined in the module's ruleset.
+    /// </summary>
+    public static IReadOnlyList<NwBaseItem> BaseItems { get; private set; }
+
+    /// <summary>
     /// Gets a list of all classes defined in the module's ruleset.
     /// </summary>
     public static IReadOnlyList<NwClass> Classes { get; private set; }
@@ -31,11 +36,6 @@ namespace Anvil.API
     public static IReadOnlyList<NwSkill> Skills { get; private set; }
 
     /// <summary>
-    /// Gets a list of all base item types defined in the module's ruleset.
-    /// </summary>
-    public static IReadOnlyList<NwBaseItem> BaseItems { get; private set; }
-
-    /// <summary>
     /// Gets a list of all spells defined in the module's ruleset.
     /// </summary>
     public static IReadOnlyList<NwSpell> Spells { get; private set; }
@@ -53,6 +53,17 @@ namespace Anvil.API
       }
 
       private delegate void ReloadAllHook(void* pRules);
+
+      private static IReadOnlyList<NwBaseItem> LoadBaseItems(CNWBaseItemArray baseItemArray)
+      {
+        NwBaseItem[] retVal = new NwBaseItem[baseItemArray.m_nNumBaseItems];
+        for (int i = 0; i < retVal.Length; i++)
+        {
+          retVal[i] = new NwBaseItem(baseItemArray.GetBaseItem(i), (BaseItemType)i);
+        }
+
+        return retVal;
+      }
 
       private static IReadOnlyList<NwClass> LoadClasses(CNWClassArray classArray, int count)
       {
@@ -87,23 +98,24 @@ namespace Anvil.API
         return retVal;
       }
 
+      private static void LoadRules()
+      {
+        CNWRules rules = NWNXLib.Rules();
+
+        Races = LoadRaces(CNWRaceArray.FromPointer(rules.m_lstRaces), rules.m_nNumRaces);
+        Classes = LoadClasses(CNWClassArray.FromPointer(rules.m_lstClasses), rules.m_nNumClasses);
+        Skills = LoadSkills(CNWSkillArray.FromPointer(rules.m_lstSkills), rules.m_nNumSkills);
+        Feats = LoadFeats(CNWFeatArray.FromPointer(rules.m_lstFeats), rules.m_nNumFeats);
+        BaseItems = LoadBaseItems(rules.m_pBaseItemArray);
+        Spells = LoadSpells(rules.m_pSpellArray);
+      }
+
       private static IReadOnlyList<NwSkill> LoadSkills(CNWSkillArray skillArray, int count)
       {
         NwSkill[] retVal = new NwSkill[count];
         for (int i = 0; i < retVal.Length; i++)
         {
           retVal[i] = new NwSkill((Skill)i, skillArray.GetItem(i));
-        }
-
-        return retVal;
-      }
-
-      private static IReadOnlyList<NwBaseItem> LoadBaseItems(CNWBaseItemArray baseItemArray)
-      {
-        NwBaseItem[] retVal = new NwBaseItem[baseItemArray.m_nNumBaseItems];
-        for (int i = 0; i < retVal.Length; i++)
-        {
-          retVal[i] = new NwBaseItem(baseItemArray.GetBaseItem(i), (BaseItemType)i);
         }
 
         return retVal;
@@ -118,18 +130,6 @@ namespace Anvil.API
         }
 
         return retVal;
-      }
-
-      private static void LoadRules()
-      {
-        CNWRules rules = NWNXLib.Rules();
-
-        Races = LoadRaces(CNWRaceArray.FromPointer(rules.m_lstRaces), rules.m_nNumRaces);
-        Classes = LoadClasses(CNWClassArray.FromPointer(rules.m_lstClasses), rules.m_nNumClasses);
-        Skills = LoadSkills(CNWSkillArray.FromPointer(rules.m_lstSkills), rules.m_nNumSkills);
-        Feats = LoadFeats(CNWFeatArray.FromPointer(rules.m_lstFeats), rules.m_nNumFeats);
-        BaseItems = LoadBaseItems(rules.m_pBaseItemArray);
-        Spells = LoadSpells(rules.m_pSpellArray);
       }
 
       private void OnReloadAll(void* pRules)

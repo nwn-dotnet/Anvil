@@ -10,11 +10,6 @@ namespace Anvil.API
   {
     private readonly CNWBaseItem baseItem;
 
-    /// <summary>
-    /// Gets the associated <see cref="BaseItemType"/> for this base item.
-    /// </summary>
-    public BaseItemType ItemType { get; }
-
     internal NwBaseItem(CNWBaseItem baseItem, BaseItemType itemType)
     {
       this.baseItem = baseItem;
@@ -30,21 +25,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the associated <see cref="BaseItemType"/> for this base item.
+    /// </summary>
+    public BaseItemType ItemType { get; }
+
+    /// <summary>
     /// Gets the maximum stack size for this base item.
     /// </summary>
     public int MaxStackSize
     {
       get => baseItem.m_nStackSize;
-    }
-
-    /// <summary>
-    /// Resolves a <see cref="NwBaseItem"/> from a <see cref="BaseItemType"/>.
-    /// </summary>
-    /// <param name="itemType">The item type to resolve.</param>
-    /// <returns>The associated <see cref="NwBaseItem"/> instance. Null if the base item type is invalid.</returns>
-    public static NwBaseItem FromItemType(BaseItemType itemType)
-    {
-      return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
     }
 
     /// <summary>
@@ -55,6 +45,16 @@ namespace Anvil.API
     public static NwBaseItem FromItemId(int itemId)
     {
       return NwRuleset.BaseItems.ElementAtOrDefault(itemId);
+    }
+
+    /// <summary>
+    /// Resolves a <see cref="NwBaseItem"/> from a <see cref="BaseItemType"/>.
+    /// </summary>
+    /// <param name="itemType">The item type to resolve.</param>
+    /// <returns>The associated <see cref="NwBaseItem"/> instance. Null if the base item type is invalid.</returns>
+    public static NwBaseItem FromItemType(BaseItemType itemType)
+    {
+      return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
     }
   }
 }

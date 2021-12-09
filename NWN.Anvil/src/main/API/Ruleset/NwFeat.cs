@@ -246,11 +246,6 @@ namespace Anvil.API
       get => featInfo.m_nUsesPerDay;
     }
 
-    private static NwFeat FromFeatId(ushort featId)
-    {
-      return NwRuleset.Feats.ElementAtOrDefault(featId);
-    }
-
     /// <summary>
     /// Resolves a <see cref="NwFeat"/> from a feat id.
     /// </summary>
@@ -288,6 +283,11 @@ namespace Anvil.API
         Ability.Charisma => featInfo.m_nMinCHA,
         _ => 0,
       };
+    }
+
+    private static NwFeat FromFeatId(ushort featId)
+    {
+      return NwRuleset.Feats.ElementAtOrDefault(featId);
     }
   }
 }
