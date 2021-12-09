@@ -6,8 +6,6 @@ namespace Anvil.API
 {
   public sealed class Inventory
   {
-    private static readonly CNWBaseItemArray BaseItemArray = NWNXLib.Rules().m_pBaseItemArray;
-
     private readonly NwGameObject owner;
     private readonly CItemRepository repo;
 
