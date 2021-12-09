@@ -32,16 +32,6 @@ namespace Anvil.API
 
     private readonly CNWSFaction faction;
 
-    [Obsolete("The constructor for NwFaction is deprecated. Use NwFaction.FromFactionId instead.")]
-    public NwFaction(int factionId)
-    {
-      faction = FactionManager.GetFaction(factionId);
-      if (faction == null)
-      {
-        throw new ArgumentOutOfRangeException(nameof(factionId), "Invalid faction ID specified.");
-      }
-    }
-
     internal NwFaction(CNWSFaction faction)
     {
       this.faction = faction;

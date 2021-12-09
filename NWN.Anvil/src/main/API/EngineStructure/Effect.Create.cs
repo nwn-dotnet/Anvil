@@ -55,12 +55,6 @@ namespace Anvil.API
       return NWScript.EffectAppear();
     }
 
-    [Obsolete("Use the overload with ScriptCallBackHandles instead.")]
-    public static Effect AreaOfEffect(int areaEffectId, string onEnterScript = "", string heartbeatScript = "", string onExitScript = "")
-    {
-      return NWScript.EffectAreaOfEffect(areaEffectId, onEnterScript, heartbeatScript, onExitScript);
-    }
-
     /// <summary>
     /// Creates an area of effect (AOE) effect.
     /// </summary>

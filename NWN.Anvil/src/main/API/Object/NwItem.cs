@@ -79,22 +79,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the <see cref="BaseItemType"/> for this item.
-    /// </summary>
-    [Obsolete("Use BaseItem.ItemType instead.")]
-    public BaseItemType BaseItemType
-    {
-      get => (BaseItemType)Item.m_nBaseItem;
-      set => Item.m_nBaseItem = (uint)value;
-    }
-
-    [Obsolete("Use BaseItem.IsStackable instead.")]
-    public bool CanStack
-    {
-      get => BaseItem.IsStackable;
-    }
-
-    /// <summary>
     /// Gets or sets a value indicating whether this item is considered cursed. Cursed items cannot be dropped.
     /// </summary>
     public bool CursedFlag
@@ -168,12 +152,6 @@ namespace Anvil.API
     public bool IsRangedWeapon
     {
       get => NWScript.GetWeaponRanged(this).ToBool();
-    }
-
-    [Obsolete("Use BaseItem.IsStackable instead.")]
-    public bool IsStackable
-    {
-      get => BaseItem.IsStackable;
     }
 
     /// <summary>

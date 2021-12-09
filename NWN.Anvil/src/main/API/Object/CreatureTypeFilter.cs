@@ -49,12 +49,6 @@ namespace Anvil.API
       return new CreatureTypeFilter(CreatureType.RacialType, (int)race.RacialType);
     }
 
-    [Obsolete("Use CreatureTypeFilter.Race(NwRace) instead.")]
-    public static CreatureTypeFilter RacialType(RacialType racialType)
-    {
-      return new CreatureTypeFilter(CreatureType.RacialType, (int)racialType);
-    }
-
     public static CreatureTypeFilter Reputation(ReputationType reputationType)
     {
       return new CreatureTypeFilter(CreatureType.Reputation, (int)reputationType);

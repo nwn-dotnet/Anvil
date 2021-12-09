@@ -35,16 +35,5 @@ namespace Anvil.API
     {
       NWScript.SetStandardFactionReputation((int)faction, newReputation, target);
     }
-
-    /// <summary>
-    /// Gets the faction object representing the specified standard faction.
-    /// </summary>
-    /// <param name="faction">The standard faction.</param>
-    /// <returns>A NwFaction representing the specified standard faction.</returns>
-    [Obsolete("Use NwFaction.FromStandardFaction instead.")]
-    public static NwFaction ToFaction(this StandardFaction faction)
-    {
-      return NwFaction.FromStandardFaction(faction);
-    }
   }
 }

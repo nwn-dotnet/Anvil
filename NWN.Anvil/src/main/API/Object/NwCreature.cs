@@ -829,16 +829,6 @@ namespace Anvil.API
       set => Creature.m_pStats.m_nRace = (ushort)value.RacialType;
     }
 
-    /// <summary>
-    /// Gets the racial type of this creature.
-    /// </summary>
-    [Obsolete("Use NwCreature.Race.RacialType instead.")]
-    public RacialType RacialType
-    {
-      get => (RacialType)Creature.m_pStats.m_nRace;
-      set => Creature.m_pStats.m_nRace = (ushort)value;
-    }
-
     public sbyte ShieldCheckPenalty
     {
       get => (sbyte)Creature.m_pStats.m_nShieldCheckPenalty;

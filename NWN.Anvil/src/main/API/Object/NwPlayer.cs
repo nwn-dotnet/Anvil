@@ -930,26 +930,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Swaps out the element specified by ID with the given nui layout (partial).
-    /// </summary>
-    /// <param name="uiToken">The ui token to update.</param>
-    /// <param name="elementId">The ID of the element to update.</param>
-    /// <param name="updatedLayout">The updated element to publish.</param>
-    [Obsolete("This method causes a nested group bug and will be removed in a future release. Use NuiGroup.UpdateLayout instead.")]
-    public void NuiSetGroupLayout(int uiToken, string elementId, NuiGroup updatedLayout)
-    {
-      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
-      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
-    }
-
-    [Obsolete("This method causes a nested group bug and will be removed in a future release. Use NuiGroup.UpdateLayout instead.")]
-    public void NuiSetGroupLayout(int uiToken, string elementId, NuiWindow updatedLayout)
-    {
-      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
-      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
-    }
-
-    /// <summary>
     /// Sets an arbitrary json value as userdata on the given window token.<br/>
     /// This userdata is not read or handled by the game engine and not sent to clients.<br/>
     /// This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.<br/>
@@ -1322,9 +1302,7 @@ namespace Anvil.API
         return false;
       }
 
-#pragma warning disable 618
       CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
-#pragma warning restore 618
       return true;
     }
 
