@@ -28,9 +28,12 @@ namespace Anvil.API
       get => classInfo.m_nNegativeLevels;
     }
 
-    public ClassType Type
+    /// <summary>
+    /// Gets the associated class.
+    /// </summary>
+    public NwClass Class
     {
-      get => (ClassType)classInfo.m_nClass;
+      get => NwClass.FromClassId(classInfo.m_nClass);
     }
 
     /// <summary>

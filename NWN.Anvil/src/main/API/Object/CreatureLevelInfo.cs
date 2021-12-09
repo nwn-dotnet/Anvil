@@ -17,7 +17,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the class chosen at this level.
     /// </summary>
-    public ClassType Class
+    public NwClass Class
     {
       get => creature.Classes[levelStats.m_nClass - 1];
     }

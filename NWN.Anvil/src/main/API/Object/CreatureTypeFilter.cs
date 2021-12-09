@@ -19,9 +19,9 @@ namespace Anvil.API
       return new CreatureTypeFilter(CreatureType.IsAlive, alive.ToInt());
     }
 
-    public static CreatureTypeFilter Class(ClassType classType)
+    public static CreatureTypeFilter Class(NwClass nwClass)
     {
-      return new CreatureTypeFilter(CreatureType.Class, (int)classType);
+      return new CreatureTypeFilter(CreatureType.Class, (int)nwClass.ClassType);
     }
 
     public static CreatureTypeFilter DoesNotHaveSpellEffect(Spell spellEffect)

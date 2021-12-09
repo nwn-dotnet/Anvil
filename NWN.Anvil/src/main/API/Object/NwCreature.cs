@@ -196,25 +196,25 @@ namespace Anvil.API
     /// <summary>
     /// Gets this creature's classes.
     /// </summary>
-    public IReadOnlyList<ClassType> Classes
+    public IReadOnlyList<NwClass> Classes
     {
       get
       {
         int classCount = Creature.m_pStats.m_nNumMultiClasses;
-        List<ClassType> classes = new List<ClassType>(classCount);
+        List<NwClass> classes = new List<NwClass>(classCount);
 
         for (byte i = 0; i < classCount; i++)
         {
-          ClassType classType = (ClassType)Creature.m_pStats.GetClass(i);
-          if (classType == ClassType.Invalid)
+          byte classId = Creature.m_pStats.GetClass(i);
+          if (classId == (int)ClassType.Invalid)
           {
             break;
           }
 
-          classes.Add(classType);
+          classes.Add(NwClass.FromClassId(classId));
         }
 
-        return classes.AsReadOnly();
+        return classes;
       }
     }
 
@@ -231,7 +231,6 @@ namespace Anvil.API
         for (byte i = 0; i < classCount; i++)
         {
           CNWSCreatureStats_ClassInfo classInfo = Creature.m_pStats.GetClassInfo(i);
-
           if (classInfo.m_nClass == (int)ClassType.Invalid)
           {
             break;
@@ -1638,12 +1637,14 @@ namespace Anvil.API
     /// <summary>
     /// Returns this creature's domains in the specified class. Unless custom content is used, only clerics have domains.
     /// </summary>
-    /// <param name="classType">The class with domains.</param>
+    /// <param name="nwClass">The class with domains. Defaults to <see cref="ClassType.Cleric"/> if not specified.</param>
     /// <returns>An enumeration of this creature's domains.</returns>
-    public IEnumerable<Domain> GetClassDomains(ClassType classType = ClassType.Cleric)
+    public IEnumerable<Domain> GetClassDomains(NwClass nwClass = default)
     {
+      nwClass ??= NwClass.FromClassType(ClassType.Cleric);
+
       const int error = (int)Domain.Error;
-      int classT = (int)classType;
+      int classT = (int)nwClass.ClassType;
 
       int i;
       int current;
@@ -1657,11 +1658,11 @@ namespace Anvil.API
     /// <summary>
     /// Gets the <see cref="CreatureClassInfo"/> associated with the specified class type.
     /// </summary>
-    /// <param name="classType">The class type to query.</param>
+    /// <param name="nwClass">The class type to query.</param>
     /// <returns>The <see cref="CreatureClassInfo"/> for the specified class, otherwise null if this creature does not have any levels in the class.</returns>
-    public CreatureClassInfo GetClassInfo(ClassType classType)
+    public CreatureClassInfo GetClassInfo(NwClass nwClass)
     {
-      return ClassInfo.FirstOrDefault(classInfo => classInfo.Type == classType);
+      return ClassInfo.FirstOrDefault(classInfo => classInfo.Class == nwClass);
     }
 
     /// <summary>
@@ -1817,11 +1818,12 @@ namespace Anvil.API
     /// Returns this creature's spell school specialization in the specified class.<br/>
     /// Unless custom content is used, only Wizards have spell schools.
     /// </summary>
-    /// <param name="classType">The class to query for specialized spell schools.</param>
+    /// <param name="nwClass">The class to query for specialized spell schools. Defaults to <see cref="ClassType.Wizard"/> if not specified.</param>
     /// <returns>The creature's selected spell specialization.</returns>
-    public SpellSchool GetSpecialization(ClassType classType = ClassType.Wizard)
+    public SpellSchool GetSpecialization(NwClass nwClass = default)
     {
-      return (SpellSchool)NWScript.GetSpecialization(this, (int)classType);
+      nwClass ??= NwClass.FromClassType(ClassType.Wizard);
+      return (SpellSchool)NWScript.GetSpecialization(this, (int)nwClass.ClassType);
     }
 
     /// <summary>
@@ -2093,13 +2095,13 @@ namespace Anvil.API
     /// Package determines which package to level up with.<br/>
     /// If package is omitted it will use the starting package assigned to that class or just the class package.<br/>
     /// </summary>
-    /// <param name="classType">Constant matching the class to level the creature in.</param>
+    /// <param name="nwClass">Constant matching the class to level the creature in.</param>
     /// <param name="package"> Constant matching the package used to select skills and feats for the henchman.</param>
     /// <param name="spellsReady">Determines if all memorable spell slots will be filled without requiring rest.</param>
     /// <returns>Returns the new level if successful, or 0 if the function fails.</returns>
-    public int LevelUpHenchman(ClassType classType, PackageType package, bool spellsReady = false)
+    public int LevelUpHenchman(NwClass nwClass, PackageType package, bool spellsReady = false)
     {
-      return NWScript.LevelUpHenchman(this, (int)classType, (int)package, spellsReady.ToInt());
+      return NWScript.LevelUpHenchman(this, (int)nwClass.ClassType, (int)package, spellsReady.ToInt());
     }
 
     public bool MeetsFeatRequirements(Feat feat)
