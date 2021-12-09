@@ -142,9 +142,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddEpicWeaponDevastatingCriticalFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddEpicWeaponDevastatingCriticalFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      epicWeaponDevastatingCriticalMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      epicWeaponDevastatingCriticalMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -152,9 +152,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddEpicWeaponFocusFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddEpicWeaponFocusFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      epicWeaponFocusMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      epicWeaponFocusMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -162,9 +162,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddEpicWeaponOverwhelmingCriticalFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddEpicWeaponOverwhelmingCriticalFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      epicWeaponOverwhelmingCriticalMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      epicWeaponOverwhelmingCriticalMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -172,9 +172,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddEpicWeaponSpecializationFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddEpicWeaponSpecializationFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      epicWeaponSpecializationMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      epicWeaponSpecializationMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -183,9 +183,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddGreaterWeaponFocusFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddGreaterWeaponFocusFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      greaterWeaponFocusMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      greaterWeaponFocusMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -194,9 +194,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddGreaterWeaponSpecializationFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddGreaterWeaponSpecializationFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      greaterWeaponSpecializationMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      greaterWeaponSpecializationMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -204,9 +204,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddWeaponFocusFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddWeaponFocusFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      weaponFocusMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      weaponFocusMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -214,9 +214,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddWeaponImprovedCriticalFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddWeaponImprovedCriticalFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      weaponImprovedCriticalMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      weaponImprovedCriticalMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -224,9 +224,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddWeaponOfChoiceFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddWeaponOfChoiceFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      weaponOfChoiceMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      weaponOfChoiceMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -234,9 +234,9 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="baseItem">The base item type to be mapped.</param>
     /// <param name="feat">The feat to map to the base item.</param>
-    public void AddWeaponSpecializationFeat(NwBaseItem baseItem, API.Feat feat)
+    public void AddWeaponSpecializationFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      weaponSpecializationMap.AddElement((uint)baseItem.ItemType, (ushort)feat);
+      weaponSpecializationMap.AddElement((uint)baseItem.ItemType, (ushort)feat.FeatType);
     }
 
     /// <summary>

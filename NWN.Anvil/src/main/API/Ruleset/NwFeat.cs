@@ -16,7 +16,7 @@ namespace Anvil.API
 
     private readonly CNWFeat featInfo;
 
-    public NwFeat(Feat featType, CNWFeat featInfo)
+    internal NwFeat(Feat featType, CNWFeat featInfo)
     {
       this.featInfo = featInfo;
       FeatType = featType;

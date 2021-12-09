@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NWN.Core;
 using NWN.Native.API;

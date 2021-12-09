@@ -2,17 +2,17 @@ namespace Anvil.API
 {
   public static class TalentExtensions
   {
-    public static Talent ToTalent(this Skill skill)
+    public static Talent ToTalent(this NwSkill skill)
     {
       return skill;
     }
 
-    public static Talent ToTalent(this Spell spell)
+    public static Talent ToTalent(this NwSpell spell)
     {
       return spell;
     }
 
-    public static Talent ToTalent(this Feat feat)
+    public static Talent ToTalent(this NwFeat feat)
     {
       return feat;
     }

@@ -12,7 +12,7 @@ namespace Anvil.API.Events
 
     public Domain Domain { get; private init; }
 
-    public Feat Feat { get; private init; }
+    public NwFeat Feat { get; private init; }
     public NwGameObject InterruptedCaster { get; private init; }
 
     public MetaMagic MetaMagic { get; private init; }
@@ -58,7 +58,7 @@ namespace Anvil.API.Events
           InterruptedCaster = gameObject.ToNwObject<NwGameObject>(),
           Spell = (Spell)gameObject.m_nLastSpellId,
           ClassIndex = gameObject.m_nLastSpellCastMulticlass,
-          Feat = (Feat)gameObject.m_nLastSpellCastFeat,
+          Feat = NwFeat.FromFeatId(gameObject.m_nLastSpellCastFeat),
           Domain = (Domain)gameObject.m_nLastDomainLevel,
           Spontaneous = gameObject.m_bLastSpellCastSpontaneous.ToBool(),
           MetaMagic = (MetaMagic)gameObject.m_nLastSpellCastMetaType,

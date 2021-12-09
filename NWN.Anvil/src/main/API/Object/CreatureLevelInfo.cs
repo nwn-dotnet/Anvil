@@ -33,15 +33,15 @@ namespace Anvil.API
     /// <summary>
     /// Gets the feats gained at this level.
     /// </summary>
-    public IReadOnlyList<Feat> Feats
+    public IReadOnlyList<NwFeat> Feats
     {
       get
       {
-        Feat[] feats = new Feat[FeatCount];
+        NwFeat[] feats = new NwFeat[FeatCount];
 
         for (int i = 0; i < feats.Length; i++)
         {
-          feats[i] = (Feat)levelStats.m_lstFeats[i];
+          feats[i] = NwFeat.FromFeatId(levelStats.m_lstFeats[i]);
         }
 
         return feats;

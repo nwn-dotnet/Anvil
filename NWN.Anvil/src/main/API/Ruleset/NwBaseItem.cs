@@ -12,7 +12,7 @@ namespace Anvil.API
 
     internal NwBaseItem(CNWBaseItem baseItemInfo, BaseItemType itemType)
     {
-      this.BaseItemInfo = baseItemInfo;
+      BaseItemInfo = baseItemInfo;
       ItemType = itemType;
     }
 

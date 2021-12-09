@@ -50,9 +50,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the feat that was selected. Only valid in <see cref="GuiEventType.CharacterSheetFeatClick"/> events.
       /// </summary>
-      public Feat FeatSelection
+      public NwFeat FeatSelection
       {
-        get => (Feat)integerEventData;
+        get => NwFeat.FromFeatId(integerEventData);
       }
 
       /// <summary>

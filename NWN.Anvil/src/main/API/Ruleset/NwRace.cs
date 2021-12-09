@@ -10,7 +10,7 @@ namespace Anvil.API
   {
     private readonly CNWRace raceInfo;
 
-    public NwRace(RacialType racialType, CNWRace raceInfo)
+    internal NwRace(RacialType racialType, CNWRace raceInfo)
     {
       RacialType = racialType;
       this.raceInfo = raceInfo;
@@ -183,9 +183,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The feat to query.</param>
     /// <returns>True if this is a default granted feat for this race, otherwise false.</returns>
-    public bool IsFirstLevelGrantedFeat(Feat feat)
+    public bool IsFirstLevelGrantedFeat(NwFeat feat)
     {
-      return raceInfo.IsFirstLevelGrantedFeat((ushort)feat).ToBool();
+      return raceInfo.IsFirstLevelGrantedFeat((ushort)feat.FeatType).ToBool();
     }
   }
 }

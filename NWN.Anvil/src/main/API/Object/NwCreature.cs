@@ -385,15 +385,15 @@ namespace Anvil.API
     /// <summary>
     /// Gets the feats known by this character.
     /// </summary>
-    public IReadOnlyList<Feat> Feats
+    public IReadOnlyList<NwFeat> Feats
     {
       get
       {
-        Feat[] feats = new Feat[FeatCount];
+        NwFeat[] feats = new NwFeat[FeatCount];
 
         for (int i = 0; i < feats.Length; i++)
         {
-          feats[i] = (Feat)Creature.m_pStats.m_lstFeats[i];
+          feats[i] = NwFeat.FromFeatId(Creature.m_pStats.m_lstFeats[i]);
         }
 
         return feats;
@@ -1312,10 +1312,10 @@ namespace Anvil.API
     /// <remarks>This action cannot be used on PCs.</remarks>
     /// <param name="feat">The feat to use.</param>
     /// <param name="target">The target object for the feat.</param>
-    public async Task ActionUseFeat(Feat feat, NwGameObject target)
+    public async Task ActionUseFeat(NwFeat feat, NwGameObject target)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat((int)feat, target);
+      NWScript.ActionUseFeat((int)feat.FeatType, target);
     }
 
     /// <summary>
@@ -1383,21 +1383,21 @@ namespace Anvil.API
 
     /// <summary>
     /// Gives this creature the specified feat.<br/>
-    /// Consider using the <see cref="AddFeat(Feat, int)"/> overload to properly allocate the feat to a level.
+    /// Consider using the <see cref="AddFeat(NwFeat, int)"/> overload to properly allocate the feat to a level.
     /// </summary>
     /// <param name="feat">The feat to give.</param>
-    public void AddFeat(Feat feat)
+    public void AddFeat(NwFeat feat)
     {
-      Creature.m_pStats.AddFeat((ushort)feat);
+      Creature.m_pStats.AddFeat((ushort)feat.FeatType);
     }
 
     /// <summary>
     /// Gives this creature the specified feat at a level.<br/>
-    /// Consider using the <see cref="AddFeat(Feat, int)"/> overload to properly allocate the feat to a level.
+    /// Consider using the <see cref="AddFeat(NwFeat, int)"/> overload to properly allocate the feat to a level.
     /// </summary>
     /// <param name="feat">The feat to give.</param>
     /// <param name="level">The level the feat was gained.</param>
-    public void AddFeat(Feat feat, int level)
+    public void AddFeat(NwFeat feat, int level)
     {
       if (level == 0 || level > Creature.m_pStats.m_lstLevelStats.Count)
       {
@@ -1406,8 +1406,8 @@ namespace Anvil.API
 
       CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats[level - 1];
 
-      levelStats.AddFeat((ushort)feat);
-      Creature.m_pStats.AddFeat((ushort)feat);
+      levelStats.AddFeat((ushort)feat.FeatType);
+      Creature.m_pStats.AddFeat((ushort)feat.FeatType);
     }
 
     /// <summary>
@@ -1465,11 +1465,11 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The n/day feat to decrement uses.</param>
     /// <param name="amount">The amount of uses to decrement.</param>
-    public void DecrementRemainingFeatUses(Feat feat, int amount = 1)
+    public void DecrementRemainingFeatUses(NwFeat feat, int amount = 1)
     {
       for (int i = 0; i < amount; i++)
       {
-        NWScript.DecrementRemainingFeatUses(this, (int)feat);
+        NWScript.DecrementRemainingFeatUses(this, (int)feat.FeatType);
       }
     }
 
@@ -1669,7 +1669,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The feat to query.</param>
     /// <returns>The character level a feat was gained, otherwise 0 if the character does not have the feat.</returns>
-    public int GetFeatGainLevel(Feat feat)
+    public int GetFeatGainLevel(NwFeat feat)
     {
       IReadOnlyList<CreatureLevelInfo> levelInfo = LevelInfo;
       for (int i = 0; i < levelInfo.Count; i++)
@@ -1890,18 +1890,18 @@ namespace Anvil.API
     /// Gets whether this creature is under the effects of the specified feat.
     /// </summary>
     /// <param name="feat">The feat to check.</param>
-    public bool HasFeatEffect(Feat feat)
+    public bool HasFeatEffect(NwFeat feat)
     {
-      return NWScript.GetHasFeatEffect((int)feat, this).ToBool();
+      return NWScript.GetHasFeatEffect((int)feat.FeatType, this).ToBool();
     }
 
     /// <summary>
-    /// Returns true if this creature knows the specified <see cref="Feat"/>, and can use it.<br/>
-    /// Use <see cref="KnowsFeat"/> to simply check if a creature knows <see cref="Feat"/>, but may or may not have uses remaining.
+    /// Returns true if this creature knows the specified <see cref="NwFeat"/>, and can use it.<br/>
+    /// Use <see cref="KnowsFeat"/> to simply check if a creature knows <see cref="NwFeat"/>, but may or may not have uses remaining.
     /// </summary>
-    public bool HasFeatPrepared(Feat feat)
+    public bool HasFeatPrepared(NwFeat feat)
     {
-      return NWScript.GetHasFeat((int)feat, this).ToBool();
+      return NWScript.GetHasFeat((int)feat.FeatType, this).ToBool();
     }
 
     /// <summary>
@@ -1909,9 +1909,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="skill">The skill to check.</param>
     /// <returns>True if the creature has this skill.</returns>
-    public bool HasSkill(Skill skill)
+    public bool HasSkill(NwSkill skill)
     {
-      return NWScript.GetHasSkill((int)skill, this).ToBool();
+      return NWScript.GetHasSkill((int)skill.SkillType, this).ToBool();
     }
 
     /// <summary>
@@ -1949,11 +1949,11 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The n/day feat to add uses.</param>
     /// <param name="amount">The amount of uses to add.</param>
-    public void IncrementRemainingFeatUses(Feat feat, int amount = 1)
+    public void IncrementRemainingFeatUses(NwFeat feat, int amount = 1)
     {
       for (int i = 0; i < amount; i++)
       {
-        NWScript.IncrementRemainingFeatUses(this, (int)feat);
+        NWScript.IncrementRemainingFeatUses(this, (int)feat.FeatType);
       }
     }
 
@@ -2074,9 +2074,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The feat to check.</param>
     /// <returns>True if the creature knows the feat, otherwise false.</returns>
-    public bool KnowsFeat(Feat feat)
+    public bool KnowsFeat(NwFeat feat)
     {
-      return Creature.m_pStats.HasFeat((ushort)feat).ToBool();
+      return Creature.m_pStats.HasFeat((ushort)feat.FeatType).ToBool();
     }
 
     /// <summary>
@@ -2095,10 +2095,10 @@ namespace Anvil.API
       return NWScript.LevelUpHenchman(this, (int)nwClass.ClassType, (int)package, spellsReady.ToInt());
     }
 
-    public bool MeetsFeatRequirements(Feat feat)
+    public bool MeetsFeatRequirements(NwFeat feat)
     {
       using CExoArrayListUInt16 unused = new CExoArrayListUInt16();
-      return Creature.m_pStats.FeatRequirementsMet((ushort)feat, unused).ToBool();
+      return Creature.m_pStats.FeatRequirementsMet((ushort)feat.FeatType, unused).ToBool();
     }
 
     /// <summary>
@@ -2114,9 +2114,9 @@ namespace Anvil.API
     /// Removes the specified feat from this creature.
     /// </summary>
     /// <param name="feat">The feat to remove.</param>
-    public void RemoveFeat(Feat feat)
+    public void RemoveFeat(NwFeat feat)
     {
-      Creature.m_pStats.RemoveFeat((ushort)feat);
+      Creature.m_pStats.RemoveFeat((ushort)feat.FeatType);
     }
 
     /// <summary>

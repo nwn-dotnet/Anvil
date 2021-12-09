@@ -14,7 +14,7 @@ namespace Anvil.API
 
     private readonly CNWSpell spellInfo;
 
-    public NwSpell(CNWSpell spellInfo, Spell spellType)
+    internal NwSpell(CNWSpell spellInfo, Spell spellType)
     {
       this.spellInfo = spellInfo;
       SpellType = spellType;

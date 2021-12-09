@@ -14,7 +14,7 @@ namespace Anvil.API
 
     private readonly CNWSkill skillInfo;
 
-    public NwSkill(Skill skillType, CNWSkill skillInfo)
+    internal NwSkill(Skill skillType, CNWSkill skillInfo)
     {
       this.skillInfo = skillInfo;
       SkillType = skillType;

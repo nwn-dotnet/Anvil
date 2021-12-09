@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     public Domain Domain { get; private init; }
 
-    public Feat Feat { get; private init; }
+    public NwFeat Feat { get; private init; }
 
     public bool IsAreaTarget { get; private init; }
 
@@ -78,7 +78,7 @@ namespace Anvil.API.Events
           IsFake = bFake.ToBool(),
           ProjectilePath = (ProjectilePathType)nProjectilePathType,
           IsInstant = bInstant.ToBool(),
-          Feat = (Feat)nFeat,
+          Feat = NwFeat.FromFeatId(nFeat),
           CasterLevel = nCasterLevel,
         };
 

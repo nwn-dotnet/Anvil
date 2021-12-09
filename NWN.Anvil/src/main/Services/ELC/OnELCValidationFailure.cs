@@ -26,16 +26,16 @@ namespace Anvil.Services
 
   public sealed class OnELCSkillValidationFailure : OnELCValidationFailure
   {
-    public Skill Skill { get; init; }
+    public NwSkill Skill { get; init; }
   }
 
   public sealed class OnELCFeatValidationFailure : OnELCValidationFailure
   {
-    public Feat Feat { get; init; }
+    public NwFeat Feat { get; init; }
   }
 
   public sealed class OnELCSpellValidationFailure : OnELCValidationFailure
   {
-    public Spell Spell { get; init; }
+    public NwSpell Spell { get; init; }
   }
 }
