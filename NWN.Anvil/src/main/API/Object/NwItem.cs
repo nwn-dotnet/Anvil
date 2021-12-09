@@ -88,12 +88,10 @@ namespace Anvil.API
       set => Item.m_nBaseItem = (uint)value;
     }
 
-    /// <summary>
-    /// Gets if this item can stack.
-    /// </summary>
+    [Obsolete("Use BaseItem.IsStackable instead.")]
     public bool CanStack
     {
-      get => NWScript.Get2DAString("baseitems", "Stacking", (int)BaseItemType).ParseInt() > 1;
+      get => BaseItem.IsStackable;
     }
 
     /// <summary>
@@ -172,16 +170,10 @@ namespace Anvil.API
       get => NWScript.GetWeaponRanged(this).ToBool();
     }
 
-    /// <summary>
-    /// Gets the current stack size of this <see cref="NwItem"/>.
-    /// </summary>
+    [Obsolete("Use BaseItem.IsStackable instead.")]
     public bool IsStackable
     {
-      get
-      {
-        CNWBaseItem baseItem = NWNXLib.Rules().m_pBaseItemArray.GetBaseItem((int)Item.m_nBaseItem);
-        return baseItem != null && baseItem.m_nStackSize > 1;
-      }
+      get => BaseItem.IsStackable;
     }
 
     /// <summary>

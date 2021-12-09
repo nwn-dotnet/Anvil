@@ -38,6 +38,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets if this item type can be stacked.
+    /// </summary>
+    public bool IsStackable
+    {
+      get => MaxStackSize > 1;
+    }
+
+    /// <summary>
     /// Resolves a <see cref="NwBaseItem"/> from a base item id.
     /// </summary>
     /// <param name="itemId">The item id to resolve.</param>
