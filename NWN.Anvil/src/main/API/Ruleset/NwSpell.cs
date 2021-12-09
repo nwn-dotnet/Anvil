@@ -21,9 +21,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the associated <see cref="Spell"/> type for this spell.
+    /// Gets the description of this spell.
     /// </summary>
-    public Spell SpellType { get; }
+    public string Description
+    {
+      get => TlkTable.GetSimpleString(spellInfo.m_strrefDesc);
+    }
 
     /// <summary>
     /// Gets the name of this spell.
@@ -34,12 +37,9 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the description of this spell.
+    /// Gets the associated <see cref="Spell"/> type for this spell.
     /// </summary>
-    public string Description
-    {
-      get => TlkTable.GetSimpleString(spellInfo.m_strrefDesc);
-    }
+    public Spell SpellType { get; }
 
     /// <summary>
     /// Resolves a <see cref="NwSpell"/> from a spell id.

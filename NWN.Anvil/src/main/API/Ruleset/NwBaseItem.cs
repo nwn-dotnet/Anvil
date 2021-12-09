@@ -25,6 +25,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets if this item type can be stacked.
+    /// </summary>
+    public bool IsStackable
+    {
+      get => MaxStackSize > 1;
+    }
+
+    /// <summary>
     /// Gets the associated <see cref="BaseItemType"/> for this base item.
     /// </summary>
     public BaseItemType ItemType { get; }
@@ -35,14 +43,6 @@ namespace Anvil.API
     public int MaxStackSize
     {
       get => baseItemInfo.m_nStackSize;
-    }
-
-    /// <summary>
-    /// Gets if this item type can be stacked.
-    /// </summary>
-    public bool IsStackable
-    {
-      get => MaxStackSize > 1;
     }
 
     /// <summary>
