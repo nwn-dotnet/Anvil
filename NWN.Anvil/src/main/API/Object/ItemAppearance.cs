@@ -241,7 +241,7 @@ namespace Anvil.API
     {
       int index = (int)slot;
 
-      if (value <= 255 && index >= 0 && index <= 119)
+      if (index >= 0 && index <= 119)
       {
         //1.69 colors
         if (index <= 5)
@@ -308,7 +308,7 @@ namespace Anvil.API
     {
       int index = (int)slot;
 
-      if (value <= 255 && index >= 0 && index <= 5)
+      if (index >= 0 && index <= 5)
       {
         item.m_nLayeredTextureColors[index] = value;
       }
