@@ -8,11 +8,11 @@ namespace Anvil.API
   /// </summary>
   public sealed class NwBaseItem
   {
-    private readonly CNWBaseItem baseItemInfo;
+    internal readonly CNWBaseItem BaseItemInfo;
 
     internal NwBaseItem(CNWBaseItem baseItemInfo, BaseItemType itemType)
     {
-      this.baseItemInfo = baseItemInfo;
+      this.BaseItemInfo = baseItemInfo;
       ItemType = itemType;
     }
 
@@ -21,7 +21,7 @@ namespace Anvil.API
     /// </summary>
     public Vector2Int InventorySlotSize
     {
-      get => new Vector2Int(baseItemInfo.m_nInvSlotWidth, baseItemInfo.m_nInvSlotHeight);
+      get => new Vector2Int(BaseItemInfo.m_nInvSlotWidth, BaseItemInfo.m_nInvSlotHeight);
     }
 
     /// <summary>
@@ -42,7 +42,24 @@ namespace Anvil.API
     /// </summary>
     public int MaxStackSize
     {
-      get => baseItemInfo.m_nStackSize;
+      get => BaseItemInfo.m_nStackSize;
+    }
+
+    /// <summary>
+    /// Gets if this base item is a ranged weapon.
+    /// </summary>
+    public bool IsRangedWeapon
+    {
+      get => BaseItemInfo.m_nWeaponRanged > 0;
+    }
+
+    /// <summary>
+    /// Gets or sets the preferred attack distance for this base item.
+    /// </summary>
+    public float PreferredAttackDistance
+    {
+      get => BaseItemInfo.m_fPreferredAttackDist;
+      set => BaseItemInfo.m_fPreferredAttackDist = value;
     }
 
     /// <summary>
