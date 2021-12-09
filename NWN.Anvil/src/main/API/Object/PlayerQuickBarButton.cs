@@ -4,32 +4,6 @@ namespace Anvil.API
 {
   public sealed class PlayerQuickBarButton
   {
-    public NwObject Item { get; set; }
-
-    public NwObject SecondaryItem { get; set; }
-
-    public QuickBarButtonType ObjectType { get; set; }
-
-    public int MultiClass { get; set; }
-
-    public string ResRef { get; set; }
-
-    public string CommandLabel { get; set; }
-
-    public string CommandLine { get; set; }
-
-    public string ToolTip { get; set; }
-
-    public int Param1 { get; set; }
-
-    public byte MetaType { get; set; }
-
-    public byte DomainLevel { get; set; }
-
-    public int AssociateType { get; set; }
-
-    public NwObject Associate { get; set; }
-
     public PlayerQuickBarButton() {}
 
     public PlayerQuickBarButton(CNWSQuickbarButton button)
@@ -48,6 +22,31 @@ namespace Anvil.API
       AssociateType = button.m_nAssociateType;
       Associate = button.m_oidAssociate.ToNwObject();
     }
+
+    public NwObject Associate { get; set; }
+
+    public int AssociateType { get; set; }
+
+    public string CommandLabel { get; set; }
+
+    public string CommandLine { get; set; }
+
+    public byte DomainLevel { get; set; }
+    public NwObject Item { get; set; }
+
+    public byte MetaType { get; set; }
+
+    public int MultiClass { get; set; }
+
+    public QuickBarButtonType ObjectType { get; set; }
+
+    public int Param1 { get; set; }
+
+    public string ResRef { get; set; }
+
+    public NwObject SecondaryItem { get; set; }
+
+    public string ToolTip { get; set; }
 
     internal unsafe void ApplyToNativeStructure(CNWSQuickbarButton button)
     {

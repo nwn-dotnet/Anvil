@@ -40,12 +40,13 @@ namespace Anvil.Services
       return serviceContainer;
     }
 
-    private static string SelectHighestPriorityService(string[] services)
-    {
-      // Services are sorted in priority order.
-      // So we just return the first service.
-      return services[0];
-    }
+    /// <summary>
+    /// Override in a child class to specify additional bindings/overrides.<br/>
+    /// See https://www.lightinject.net/ for documentation.
+    /// </summary>
+    // ReSharper disable UnusedParameter.Global
+    protected virtual void RegisterOverrides(PluginManager pluginManager, ServiceContainer serviceContainer) {}
+    // ReSharper restore UnusedParameter.Global
 
     private static Action<LogEntry> CreateLogHandler(Type type)
     {
@@ -66,67 +67,10 @@ namespace Anvil.Services
       };
     }
 
-    private static void RegisterCoreService(ServiceContainer serviceContainer, object instance)
+    private static string GetServiceName(Type implementation)
     {
-      Type instanceType = instance.GetType();
-      ServiceBindingOptionsAttribute options = instanceType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-
-      string serviceName = GetServiceName(instanceType, options);
-      serviceContainer.RegisterInstance(instanceType, instance, serviceName);
-    }
-
-    private void BuildContainer(PluginManager pluginManager, ServiceContainer serviceContainer)
-    {
-      Log.Info("Loading services...");
-      foreach (Type type in pluginManager.LoadedTypes)
-      {
-        TryRegisterType(pluginManager, serviceContainer, type);
-      }
-
-      RegisterOverrides(pluginManager, serviceContainer);
-    }
-
-    /// <summary>
-    /// Override in a child class to specify additional bindings/overrides.<br/>
-    /// See https://www.lightinject.net/ for documentation.
-    /// </summary>
-    // ReSharper disable UnusedParameter.Global
-    protected virtual void RegisterOverrides(PluginManager pluginManager, ServiceContainer serviceContainer) {}
-    // ReSharper restore UnusedParameter.Global
-
-    private static void TryRegisterType(PluginManager pluginManager, ServiceContainer serviceContainer, Type type)
-    {
-      if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
-      {
-        return;
-      }
-
-      ServiceBindingAttribute[] bindings = type.GetCustomAttributes<ServiceBindingAttribute>();
-      if (bindings.Length == 0)
-      {
-        return;
-      }
-
-      ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-      if (IsServiceRequirementsMet(pluginManager, options))
-      {
-        RegisterBindings(serviceContainer, type, bindings, options);
-      }
-    }
-
-    private static void RegisterBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] bindings, ServiceBindingOptionsAttribute options)
-    {
-      string serviceName = GetServiceName(bindTo, options);
-
-      PerContainerLifetime lifeTime = new PerContainerLifetime();
-      RegisterExplicitBindings(serviceContainer, bindTo, bindings, serviceName, lifeTime);
-
-      if (options is not { Lazy: true })
-      {
-        RegisterImplicitBindings(serviceContainer, bindTo, serviceName, lifeTime);
-      }
-
-      Log.Info("Registered service {Service}", bindTo.FullName);
+      int bindingPriority = implementation.GetServicePriority();
+      return bindingPriority.ToString("D5") + implementation.FullName;
     }
 
 #pragma warning disable 618
@@ -151,6 +95,38 @@ namespace Anvil.Services
     }
 #pragma warning restore 618
 
+    private static void RegisterBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] bindings, ServiceBindingOptionsAttribute options)
+    {
+      string serviceName = GetServiceName(bindTo);
+
+      PerContainerLifetime lifeTime = new PerContainerLifetime();
+      RegisterExplicitBindings(serviceContainer, bindTo, bindings, serviceName, lifeTime);
+
+      if (options is not { Lazy: true })
+      {
+        RegisterImplicitBindings(serviceContainer, bindTo, serviceName, lifeTime);
+      }
+
+      Log.Info("Registered service {Service}", bindTo.FullName);
+    }
+
+    private static void RegisterCoreService(ServiceContainer serviceContainer, object instance)
+    {
+      Type instanceType = instance.GetType();
+
+      string serviceName = GetServiceName(instanceType);
+      serviceContainer.RegisterInstance(instanceType, instance, serviceName);
+    }
+
+    private static void RegisterExplicitBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] newBindings, string serviceName, ILifetime lifeTime)
+    {
+      foreach (ServiceBindingAttribute bindingInfo in newBindings)
+      {
+        serviceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
+        Log.Debug("Bind {BindFrom} -> {BindTo}", bindingInfo.BindFrom.FullName, bindTo.FullName);
+      }
+    }
+
     private static void RegisterImplicitBindings(ServiceContainer serviceContainer, Type bindTo, string serviceName, ILifetime lifeTime)
     {
       serviceContainer.Register(typeof(object), bindTo, serviceName, lifeTime);
@@ -166,13 +142,11 @@ namespace Anvil.Services
       }
     }
 
-    private static void RegisterExplicitBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] newBindings, string serviceName, ILifetime lifeTime)
+    private static string SelectHighestPriorityService(string[] services)
     {
-      foreach (ServiceBindingAttribute bindingInfo in newBindings)
-      {
-        serviceContainer.Register(bindingInfo.BindFrom, bindTo, serviceName, lifeTime);
-        Log.Debug("Bind {BindFrom} -> {BindTo}", bindingInfo.BindFrom.FullName, bindTo.FullName);
-      }
+      // Services are sorted in priority order.
+      // So we just return the first service.
+      return services[0];
     }
 
     private static void SetupInjectPropertySelector(ServiceContainer serviceContainer)
@@ -181,12 +155,35 @@ namespace Anvil.Services
       serviceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
     }
 
-    private static string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
+    private static void TryRegisterType(PluginManager pluginManager, ServiceContainer serviceContainer, Type type)
     {
-      int bindingPriority = options?.Priority ?? (int)InternalBindingPriority.Normal;
-      bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);
+      if (!type.IsClass || type.IsAbstract || type.ContainsGenericParameters)
+      {
+        return;
+      }
 
-      return bindingPriority.ToString("D5") + implementation.FullName;
+      ServiceBindingAttribute[] bindings = type.GetCustomAttributes<ServiceBindingAttribute>();
+      if (bindings.Length == 0)
+      {
+        return;
+      }
+
+      ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      if (IsServiceRequirementsMet(pluginManager, options))
+      {
+        RegisterBindings(serviceContainer, type, bindings, options);
+      }
+    }
+
+    private void BuildContainer(PluginManager pluginManager, ServiceContainer serviceContainer)
+    {
+      Log.Info("Loading services...");
+      foreach (Type type in pluginManager.LoadedTypes)
+      {
+        TryRegisterType(pluginManager, serviceContainer, type);
+      }
+
+      RegisterOverrides(pluginManager, serviceContainer);
     }
   }
 }

@@ -5,11 +5,10 @@ namespace Anvil.API.Events
 {
   public abstract class DMGroupTargetEvent : IEvent
   {
-    public NwObject[] Targets { get; internal init; }
-
     public NwPlayer DungeonMaster { get; internal init; }
 
     public bool Skip { get; set; }
+    public NwObject[] Targets { get; internal init; }
 
     NwObject IEvent.Context
     {
@@ -36,6 +35,13 @@ namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
+    /// <inheritdoc cref="Events.OnDMForceRest"/>
+    public event Action<OnDMForceRest> OnDMForceRest
+    {
+      add => EventService.Subscribe<OnDMForceRest, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMForceRest, DMEventFactory>(LoginCreature, value);
+    }
+
     /// <inheritdoc cref="Events.OnDMHeal"/>
     public event Action<OnDMHeal> OnDMHeal
     {
@@ -48,20 +54,6 @@ namespace Anvil.API
     {
       add => EventService.Subscribe<OnDMKill, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMKill, DMEventFactory>(LoginCreature, value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMForceRest"/>
-    public event Action<OnDMForceRest> OnDMForceRest
-    {
-      add => EventService.Subscribe<OnDMForceRest, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMForceRest, DMEventFactory>(LoginCreature, value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMToggleInvulnerable"/>
-    public event Action<OnDMToggleInvulnerable> OnDMToggleInvulnerable
-    {
-      add => EventService.Subscribe<OnDMToggleInvulnerable, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMToggleInvulnerable, DMEventFactory>(LoginCreature, value);
     }
 
     /// <inheritdoc cref="Events.OnDMLimbo"/>
@@ -84,10 +76,24 @@ namespace Anvil.API
       add => EventService.Subscribe<OnDMToggleImmortal, DMEventFactory>(LoginCreature, value);
       remove => EventService.Unsubscribe<OnDMToggleImmortal, DMEventFactory>(LoginCreature, value);
     }
+
+    /// <inheritdoc cref="Events.OnDMToggleInvulnerable"/>
+    public event Action<OnDMToggleInvulnerable> OnDMToggleInvulnerable
+    {
+      add => EventService.Subscribe<OnDMToggleInvulnerable, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMToggleInvulnerable, DMEventFactory>(LoginCreature, value);
+    }
   }
 
   public sealed partial class NwModule
   {
+    /// <inheritdoc cref="Events.OnDMForceRest"/>
+    public event Action<OnDMForceRest> OnDMForceRest
+    {
+      add => EventService.SubscribeAll<OnDMForceRest, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMForceRest, DMEventFactory>(value);
+    }
+
     /// <inheritdoc cref="Events.OnDMHeal"/>
     public event Action<OnDMHeal> OnDMHeal
     {
@@ -100,20 +106,6 @@ namespace Anvil.API
     {
       add => EventService.SubscribeAll<OnDMKill, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMKill, DMEventFactory>(value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMForceRest"/>
-    public event Action<OnDMForceRest> OnDMForceRest
-    {
-      add => EventService.SubscribeAll<OnDMForceRest, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMForceRest, DMEventFactory>(value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMToggleInvulnerable"/>
-    public event Action<OnDMToggleInvulnerable> OnDMToggleInvulnerable
-    {
-      add => EventService.SubscribeAll<OnDMToggleInvulnerable, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMToggleInvulnerable, DMEventFactory>(value);
     }
 
     /// <inheritdoc cref="Events.OnDMLimbo"/>
@@ -135,6 +127,13 @@ namespace Anvil.API
     {
       add => EventService.SubscribeAll<OnDMToggleImmortal, DMEventFactory>(value);
       remove => EventService.UnsubscribeAll<OnDMToggleImmortal, DMEventFactory>(value);
+    }
+
+    /// <inheritdoc cref="Events.OnDMToggleInvulnerable"/>
+    public event Action<OnDMToggleInvulnerable> OnDMToggleInvulnerable
+    {
+      add => EventService.SubscribeAll<OnDMToggleInvulnerable, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMToggleInvulnerable, DMEventFactory>(value);
     }
   }
 }

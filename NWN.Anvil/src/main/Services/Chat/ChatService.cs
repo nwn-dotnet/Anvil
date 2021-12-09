@@ -8,12 +8,6 @@ namespace Anvil.Services
   [ServiceBinding(typeof(ChatService))]
   public sealed unsafe partial class ChatService
   {
-    private readonly FunctionHook<SendServerToPlayerChatMessageHook> sendServerToPlayerChatMessageHook;
-
-    private delegate int SendServerToPlayerChatMessageHook(void* pMessage, ChatChannel nChatMessageType, uint oidSpeaker, void* sSpeakerMessage, uint nTellPlayerId, void* tellName);
-
-    private readonly Dictionary<NwPlayer, Dictionary<ChatChannel, float>> playerHearingDistances = new Dictionary<NwPlayer, Dictionary<ChatChannel, float>>();
-
     private readonly Dictionary<ChatChannel, float> globalHearingDistances = new Dictionary<ChatChannel, float>
     {
       { ChatChannel.DmTalk, 20.0f },
@@ -22,6 +16,9 @@ namespace Anvil.Services
       { ChatChannel.PlayerWhisper, 3.0f },
     };
 
+    private readonly Dictionary<NwPlayer, Dictionary<ChatChannel, float>> playerHearingDistances = new Dictionary<NwPlayer, Dictionary<ChatChannel, float>>();
+    private readonly FunctionHook<SendServerToPlayerChatMessageHook> sendServerToPlayerChatMessageHook;
+
     private bool customHearingDistances;
 
     public ChatService(HookService hookService)
@@ -29,29 +26,28 @@ namespace Anvil.Services
       sendServerToPlayerChatMessageHook = hookService.RequestHook<SendServerToPlayerChatMessageHook>(OnSendServerToPlayerChatMessage, FunctionsLinux._ZN11CNWSMessage29SendServerToPlayerChatMessageEhj10CExoStringjRKS0_, HookOrder.Late);
     }
 
+    private delegate int SendServerToPlayerChatMessageHook(void* pMessage, ChatChannel nChatMessageType, uint oidSpeaker, void* sSpeakerMessage, uint nTellPlayerId, void* tellName);
+
     /// <summary>
-    /// Sends a message as the specified creature.
+    /// Clears the hearing distance override for the specified <see cref="NwPlayer"/> and <see cref="ChatChannel"/>.
     /// </summary>
-    /// <param name="chatChannel">The <see cref="ChatChannel"/> to send the message.</param>
-    /// <param name="message">The message to send.</param>
-    /// <param name="sender">The sender of the message.</param>
-    /// <param name="target">The receiver of the message.</param>
-    /// <returns>True if the message was sent successfully, otherwise false.</returns>
-    public bool SendMessage(ChatChannel chatChannel, string message, NwCreature sender, NwPlayer target = null)
+    /// <param name="player">The <see cref="NwPlayer"/> to query.</param>
+    /// <param name="chatChannel">The <see cref="ChatChannel"/> to query.</param>
+    public void ClearPlayerChatHearingDistance(NwPlayer player, ChatChannel chatChannel)
     {
-      return SendMessage(chatChannel, message, (NwObject)sender, target);
+      if (playerHearingDistances.TryGetValue(player, out Dictionary<ChatChannel, float> playerHearingDistance))
+      {
+        playerHearingDistance.Remove(chatChannel);
+      }
     }
 
     /// <summary>
-    /// Sends a message from the "Server".
+    /// Clears any hearing distance overrides for the specified <see cref="NwPlayer"/>.
     /// </summary>
-    /// <param name="chatChannel">The <see cref="ChatChannel"/> to send the message. Only works with ServerMessage and Player/DMShout</param>
-    /// <param name="message">The message to send.</param>
-    /// <param name="target">The receiver of the message.</param>
-    /// <returns>True if the message was sent successfully, otherwise false.</returns>
-    public bool SendServerMessage(ChatChannel chatChannel, string message, NwPlayer target = null)
+    /// <param name="player">The <see cref="NwPlayer"/> to query.</param>
+    public void ClearPlayerChatHearingDistance(NwPlayer player)
     {
-      return SendMessage(chatChannel, message, NwModule.Instance, target);
+      playerHearingDistances.Remove(player);
     }
 
     /// <summary>
@@ -86,6 +82,31 @@ namespace Anvil.Services
     }
 
     /// <summary>
+    /// Sends a message as the specified creature.
+    /// </summary>
+    /// <param name="chatChannel">The <see cref="ChatChannel"/> to send the message.</param>
+    /// <param name="message">The message to send.</param>
+    /// <param name="sender">The sender of the message.</param>
+    /// <param name="target">The receiver of the message.</param>
+    /// <returns>True if the message was sent successfully, otherwise false.</returns>
+    public bool SendMessage(ChatChannel chatChannel, string message, NwCreature sender, NwPlayer target = null)
+    {
+      return SendMessage(chatChannel, message, (NwObject)sender, target);
+    }
+
+    /// <summary>
+    /// Sends a message from the "Server".
+    /// </summary>
+    /// <param name="chatChannel">The <see cref="ChatChannel"/> to send the message. Only works with ServerMessage and Player/DMShout</param>
+    /// <param name="message">The message to send.</param>
+    /// <param name="target">The receiver of the message.</param>
+    /// <returns>True if the message was sent successfully, otherwise false.</returns>
+    public bool SendServerMessage(ChatChannel chatChannel, string message, NwPlayer target = null)
+    {
+      return SendMessage(chatChannel, message, NwModule.Instance, target);
+    }
+
+    /// <summary>
     /// Sets the global hearing distance for the specified <see cref="ChatChannel"/>.
     /// </summary>
     /// <param name="chatChannel">The <see cref="ChatChannel"/> to query.</param>
@@ -112,68 +133,6 @@ namespace Anvil.Services
 
       playerHearingDistance[chatChannel] = distance;
       customHearingDistances = true;
-    }
-
-    /// <summary>
-    /// Clears the hearing distance override for the specified <see cref="NwPlayer"/> and <see cref="ChatChannel"/>.
-    /// </summary>
-    /// <param name="player">The <see cref="NwPlayer"/> to query.</param>
-    /// <param name="chatChannel">The <see cref="ChatChannel"/> to query.</param>
-    public void ClearPlayerChatHearingDistance(NwPlayer player, ChatChannel chatChannel)
-    {
-      if (playerHearingDistances.TryGetValue(player, out Dictionary<ChatChannel, float> playerHearingDistance))
-      {
-        playerHearingDistance.Remove(chatChannel);
-      }
-    }
-
-    /// <summary>
-    /// Clears any hearing distance overrides for the specified <see cref="NwPlayer"/>.
-    /// </summary>
-    /// <param name="player">The <see cref="NwPlayer"/> to query.</param>
-    public void ClearPlayerChatHearingDistance(NwPlayer player)
-    {
-      playerHearingDistances.Remove(player);
-    }
-
-    private bool SendMessage(ChatChannel chatChannel, string message, NwObject speaker, NwPlayer target)
-    {
-      uint playerId = target != null ? target.Player.m_nPlayerID : PlayerIdConstants.AllClients;
-      if (playerId == PlayerIdConstants.Invalid)
-      {
-        return false;
-      }
-
-      CNWSMessage messageDispatch = LowLevel.ServerExoApp.GetNWSMessage();
-
-      if (target != null)
-      {
-        // This means we're sending this to one player only.
-        // The normal function broadcasts in an area for talk, shout, and whisper, therefore
-        // we need to call these functions directly if we are in those categories.
-        switch (chatChannel)
-        {
-          case ChatChannel.PlayerTalk:
-            return messageDispatch.SendServerToPlayerChat_Talk(playerId, speaker, message.ToExoString()).ToBool();
-          case ChatChannel.DmTalk:
-            return messageDispatch.SendServerToPlayerChat_DM_Talk(playerId, speaker, message.ToExoString()).ToBool();
-          case ChatChannel.DmDm:
-          case ChatChannel.PlayerDm:
-            return messageDispatch.SendServerToPlayerChat_DM_Silent_Shout(playerId, speaker, message.ToExoString()).ToBool();
-          case ChatChannel.PlayerShout:
-          case ChatChannel.DmShout:
-            return messageDispatch.SendServerToPlayerChat_Shout(playerId, speaker, message.ToExoString()).ToBool();
-          case ChatChannel.PlayerWhisper:
-            return messageDispatch.SendServerToPlayerChat_Whisper(playerId, speaker, message.ToExoString()).ToBool();
-          case ChatChannel.DmWhisper:
-            return messageDispatch.SendServerToPlayerChat_DM_Whisper(playerId, speaker, message.ToExoString()).ToBool();
-          case ChatChannel.PlayerParty:
-          case ChatChannel.DmParty:
-            return messageDispatch.SendServerToPlayerChat_Party(playerId, speaker, message.ToExoString()).ToBool();
-        }
-      }
-
-      return messageDispatch.SendServerToPlayerChatMessage((byte)chatChannel, speaker, message.ToExoString(), playerId).ToBool();
     }
 
     private int OnSendServerToPlayerChatMessage(void* pMessage, ChatChannel nChatMessageType, uint oidSpeaker, void* sSpeakerMessage, uint nTellPlayerId, void* tellName)
@@ -253,6 +212,46 @@ namespace Anvil.Services
       }
 
       return true.ToInt();
+    }
+
+    private bool SendMessage(ChatChannel chatChannel, string message, NwObject speaker, NwPlayer target)
+    {
+      uint playerId = target != null ? target.Player.m_nPlayerID : PlayerIdConstants.AllClients;
+      if (playerId == PlayerIdConstants.Invalid)
+      {
+        return false;
+      }
+
+      CNWSMessage messageDispatch = LowLevel.ServerExoApp.GetNWSMessage();
+
+      if (target != null)
+      {
+        // This means we're sending this to one player only.
+        // The normal function broadcasts in an area for talk, shout, and whisper, therefore
+        // we need to call these functions directly if we are in those categories.
+        switch (chatChannel)
+        {
+          case ChatChannel.PlayerTalk:
+            return messageDispatch.SendServerToPlayerChat_Talk(playerId, speaker, message.ToExoString()).ToBool();
+          case ChatChannel.DmTalk:
+            return messageDispatch.SendServerToPlayerChat_DM_Talk(playerId, speaker, message.ToExoString()).ToBool();
+          case ChatChannel.DmDm:
+          case ChatChannel.PlayerDm:
+            return messageDispatch.SendServerToPlayerChat_DM_Silent_Shout(playerId, speaker, message.ToExoString()).ToBool();
+          case ChatChannel.PlayerShout:
+          case ChatChannel.DmShout:
+            return messageDispatch.SendServerToPlayerChat_Shout(playerId, speaker, message.ToExoString()).ToBool();
+          case ChatChannel.PlayerWhisper:
+            return messageDispatch.SendServerToPlayerChat_Whisper(playerId, speaker, message.ToExoString()).ToBool();
+          case ChatChannel.DmWhisper:
+            return messageDispatch.SendServerToPlayerChat_DM_Whisper(playerId, speaker, message.ToExoString()).ToBool();
+          case ChatChannel.PlayerParty:
+          case ChatChannel.DmParty:
+            return messageDispatch.SendServerToPlayerChat_Party(playerId, speaker, message.ToExoString()).ToBool();
+        }
+      }
+
+      return messageDispatch.SendServerToPlayerChatMessage((byte)chatChannel, speaker, message.ToExoString(), playerId).ToBool();
     }
   }
 }

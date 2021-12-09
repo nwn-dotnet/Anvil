@@ -15,16 +15,6 @@ namespace Anvil.API
   {
     internal readonly CNWSItem Item;
 
-    /// <summary>
-    /// Gets the inventory of this item, if it is a container.
-    /// </summary>
-    public Inventory Inventory { get; }
-
-    /// <summary>
-    /// Gets the appearance properties of this item.
-    /// </summary>
-    public ItemAppearance Appearance { get; }
-
     internal NwItem(CNWSItem item) : base(item)
     {
       Item = item;
@@ -32,43 +22,120 @@ namespace Anvil.API
       Appearance = new ItemAppearance(item);
     }
 
-    public static implicit operator CNWSItem(NwItem item)
+    /// <summary>
+    /// Gets the armor class of this item.
+    /// <remarks>
+    /// This will return the full AC value of this item, taking into account all modifiers in regards to bonus AC.<br/>
+    /// Unlike the standard ruleset, it will stack multiple AC bonuses instead of taking the highest.<br/>
+    /// This value does not take into account AC bonuses vs certain conditions nor the <see cref="ItemProperty.DecreaseAC"/> Item Property.<br/>
+    /// It will also not take into account ability changes, nor if there is an existing amount of that bonus type. For example, wearing +1 armor, thus using a +1 Armor AC modifier, will not stack with Epic Mage Armor, which gives +5 in Armor AC bonuses.
+    /// </remarks>
+    /// </summary>
+    public int ACValue
     {
-      return item?.Item;
+      get => NWScript.GetItemACValue(this);
     }
 
     /// <summary>
-    /// Gets the original unidentified description for this item.
+    /// Gets or sets the additional GP value of this item.<br/>
+    /// Does not persist through saving.
     /// </summary>
-    public string OriginalUnidentifiedDescription
+    public int AddGoldValue
     {
-      get => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
+      get => Item.m_nAdditionalCost;
+      set => Item.m_nAdditionalCost = value;
     }
 
     /// <summary>
-    /// Gets or sets the unidentified description for this item.
+    /// Gets the appearance properties of this item.
     /// </summary>
-    public string UnidentifiedDescription
+    public ItemAppearance Appearance { get; }
+
+    /// <summary>
+    /// Gets the base armor class of this item.
+    /// </summary>
+    public int BaseACValue
     {
-      get => NWScript.GetDescription(this, false.ToInt(), false.ToInt());
-      set => NWScript.SetDescription(this, value, false.ToInt());
+      get => Item.m_nArmorValue;
     }
 
     /// <summary>
-    /// Gets if this item can stack.
+    /// Gets or sets the base GP value of this item.<br/>
+    /// Does not persist through saving.
     /// </summary>
+    public uint BaseGoldValue
+    {
+      get => Item.m_nBaseUnitCost;
+      set => Item.m_nBaseUnitCost = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the <see cref="NwBaseItem"/> for this item.
+    /// </summary>
+    public NwBaseItem BaseItem
+    {
+      get => NwBaseItem.FromItemId((int)Item.m_nBaseItem);
+      set => Item.m_nBaseItem = (uint)value.ItemType;
+    }
+
+    /// <summary>
+    /// Gets or sets the <see cref="BaseItemType"/> for this item.
+    /// </summary>
+    [Obsolete("Use BaseItem.ItemType instead.")]
+    public BaseItemType BaseItemType
+    {
+      get => (BaseItemType)Item.m_nBaseItem;
+      set => Item.m_nBaseItem = (uint)value;
+    }
+
+    [Obsolete("Use BaseItem.IsStackable instead.")]
     public bool CanStack
     {
-      get => NWScript.Get2DAString("baseitems", "Stacking", (int)BaseItemType).ParseInt() > 1;
+      get => BaseItem.IsStackable;
     }
 
     /// <summary>
-    /// Gets or sets the number of stacked items attached to this item.
+    /// Gets or sets a value indicating whether this item is considered cursed. Cursed items cannot be dropped.
     /// </summary>
-    public int StackSize
+    public bool CursedFlag
     {
-      get => NWScript.GetItemStackSize(this);
-      set => NWScript.SetItemStackSize(this, value);
+      get => NWScript.GetItemCursedFlag(this).ToBool();
+      set => NWScript.SetItemCursedFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this item can be dropped.
+    /// <remarks>Droppable items will appear on a creature's remains when the creature is killed.</remarks>
+    /// </summary>
+    public bool Droppable
+    {
+      get => NWScript.GetDroppableFlag(this).ToBool();
+      set => NWScript.SetDroppableFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets the gp value for this item.
+    /// </summary>
+    public int GoldValue
+    {
+      get => NWScript.GetGoldPieceValue(this);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this item has an inventory (container).
+    /// </summary>
+    public bool HasInventory
+    {
+      get => NWScript.GetHasInventory(this).ToBool();
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this item should be hidden when equipped.
+    /// </summary>
+    public int HiddenWhenEquipped
+    {
+      get => NWScript.GetHiddenWhenEquipped(this);
+      set => NWScript.SetHiddenWhenEquipped(this, value);
     }
 
     /// <summary>
@@ -91,85 +158,9 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets a value indicating whether this item is considered stolen. Only stores with the "Buys Stolen Goods" will purchase this item.
-    /// <remarks>The stolen flag is set automatically on pickpocketed items, and traps crafted with the craft trap skill.</remarks>
+    /// Gets the inventory of this item, if it is a container.
     /// </summary>
-    public bool Stolen
-    {
-      get => NWScript.GetStolenFlag(this).ToBool();
-      set => NWScript.SetStolenFlag(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this item can be dropped.
-    /// <remarks>Droppable items will appear on a creature's remains when the creature is killed.</remarks>
-    /// </summary>
-    public bool Droppable
-    {
-      get => NWScript.GetDroppableFlag(this).ToBool();
-      set => NWScript.SetDroppableFlag(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this item is considered cursed. Cursed items cannot be dropped.
-    /// </summary>
-    public bool CursedFlag
-    {
-      get => NWScript.GetItemCursedFlag(this).ToBool();
-      set => NWScript.SetItemCursedFlag(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this item can be pickpocketed.
-    /// </summary>
-    public bool Pickpocketable
-    {
-      get => NWScript.GetPickpocketableFlag(this).ToBool();
-      set => NWScript.SetPickpocketableFlag(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets the number of charges left on this item.
-    /// </summary>
-    public int ItemCharges
-    {
-      get => NWScript.GetItemCharges(this);
-      set => NWScript.SetItemCharges(this, value);
-    }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this item should be hidden when equipped.
-    /// </summary>
-    public int HiddenWhenEquipped
-    {
-      get => NWScript.GetHiddenWhenEquipped(this);
-      set => NWScript.SetHiddenWhenEquipped(this, value);
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether this item has an inventory (container).
-    /// </summary>
-    public bool HasInventory
-    {
-      get => NWScript.GetHasInventory(this).ToBool();
-    }
-
-    /// <summary>
-    /// Gets the GameObject that has this item in its inventory. Returns null if it is on the ground, or not in any inventory.
-    /// </summary>
-    public NwGameObject Possessor
-    {
-      get => NWScript.GetItemPossessor(this).ToNwObject<NwGameObject>();
-    }
-
-    /// <summary>
-    /// Gets or sets the <see cref="BaseItemType"/> for this item.
-    /// </summary>
-    public BaseItemType BaseItemType
-    {
-      get => (BaseItemType)Item.m_nBaseItem;
-      set => Item.m_nBaseItem = (uint)value;
-    }
+    public Inventory Inventory { get; }
 
     /// <summary>
     /// Gets if this item is considered a ranged weapon.
@@ -179,75 +170,19 @@ namespace Anvil.API
       get => NWScript.GetWeaponRanged(this).ToBool();
     }
 
-    /// <summary>
-    /// Gets the gp value for this item.
-    /// </summary>
-    public int GoldValue
+    [Obsolete("Use BaseItem.IsStackable instead.")]
+    public bool IsStackable
     {
-      get => NWScript.GetGoldPieceValue(this);
+      get => BaseItem.IsStackable;
     }
 
     /// <summary>
-    /// Gets or sets the weight of this item, in pounds.
+    /// Gets or sets the number of charges left on this item.
     /// </summary>
-    public decimal Weight
+    public int ItemCharges
     {
-      get => NWScript.GetWeight(this) / 10.0m;
-      set
-      {
-        Item.m_nWeight = (int)Math.Round(value * 10.0m, MidpointRounding.ToZero);
-        Item.m_oidPossessor.ToNwObject<NwCreature>()?.Creature.UpdateEncumbranceState();
-      }
-    }
-
-    /// <summary>
-    /// Gets the armor class of this item.
-    /// <remarks>
-    /// This will return the full AC value of this item, taking into account all modifiers in regards to bonus AC.<br/>
-    /// Unlike the standard ruleset, it will stack multiple AC bonuses instead of taking the highest.<br/>
-    /// This value does not take into account AC bonuses vs certain conditions nor the <see cref="ItemProperty.DecreaseAC"/> Item Property.<br/>
-    /// It will also not take into account ability changes, nor if there is an existing amount of that bonus type. For example, wearing +1 armor, thus using a +1 Armor AC modifier, will not stack with Epic Mage Armor, which gives +5 in Armor AC bonuses.
-    /// </remarks>
-    /// </summary>
-    public int ACValue
-    {
-      get => NWScript.GetItemACValue(this);
-    }
-
-    /// <summary>
-    /// Gets the base armor class of this item.
-    /// </summary>
-    public int BaseACValue
-    {
-      get => Item.m_nArmorValue;
-    }
-
-    /// <summary>
-    /// Gets or sets the base GP value of this item.<br/>
-    /// Does not persist through saving.
-    /// </summary>
-    public uint BaseGoldValue
-    {
-      get => Item.m_nBaseUnitCost;
-      set => Item.m_nBaseUnitCost = value;
-    }
-
-    /// <summary>
-    /// Gets or sets the additional GP value of this item.<br/>
-    /// Does not persist through saving.
-    /// </summary>
-    public int AddGoldValue
-    {
-      get => Item.m_nAdditionalCost;
-      set => Item.m_nAdditionalCost = value;
-    }
-
-    /// <summary>
-    /// Gets the minimum level required to equip this item.
-    /// </summary>
-    public byte MinEquipLevel
-    {
-      get => Item.GetMinEquipLevel();
+      get => NWScript.GetItemCharges(this);
+      set => NWScript.SetItemCharges(this, value);
     }
 
     /// <summary>
@@ -265,24 +200,77 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Adds the specified item property to this item.
+    /// Gets the minimum level required to equip this item.
     /// </summary>
-    /// <param name="itemProperty">The item property to add.</param>
-    /// <param name="durationType">(Permanent/Temporary) - the duration of this item property.</param>
-    /// <param name="duration">If DurationType is temporary, how long this item property should stay applied.</param>
-    public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default)
+    public byte MinEquipLevel
     {
-      NWScript.AddItemProperty((int)durationType, itemProperty, this, (float)duration.TotalSeconds);
+      get => Item.GetMinEquipLevel();
     }
 
     /// <summary>
-    /// Removes the specified item property from this item.<br/>
-    /// See <see cref="ItemProperties"/> to enumerate item properties on this item.
+    /// Gets the original unidentified description for this item.
     /// </summary>
-    /// <param name="itemProperty">The item property to remove.</param>
-    public void RemoveItemProperty(ItemProperty itemProperty)
+    public string OriginalUnidentifiedDescription
     {
-      NWScript.RemoveItemProperty(this, itemProperty);
+      get => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this item can be pickpocketed.
+    /// </summary>
+    public bool Pickpocketable
+    {
+      get => NWScript.GetPickpocketableFlag(this).ToBool();
+      set => NWScript.SetPickpocketableFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets the GameObject that has this item in its inventory. Returns null if it is on the ground, or not in any inventory.
+    /// </summary>
+    public NwGameObject Possessor
+    {
+      get => NWScript.GetItemPossessor(this).ToNwObject<NwGameObject>();
+    }
+
+    /// <summary>
+    /// Gets or sets the number of stacked items attached to this item.
+    /// </summary>
+    public int StackSize
+    {
+      get => NWScript.GetItemStackSize(this);
+      set => NWScript.SetItemStackSize(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether this item is considered stolen. Only stores with the "Buys Stolen Goods" will purchase this item.
+    /// <remarks>The stolen flag is set automatically on pickpocketed items, and traps crafted with the craft trap skill.</remarks>
+    /// </summary>
+    public bool Stolen
+    {
+      get => NWScript.GetStolenFlag(this).ToBool();
+      set => NWScript.SetStolenFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets the unidentified description for this item.
+    /// </summary>
+    public string UnidentifiedDescription
+    {
+      get => NWScript.GetDescription(this, false.ToInt(), false.ToInt());
+      set => NWScript.SetDescription(this, value, false.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets the weight of this item, in pounds.
+    /// </summary>
+    public decimal Weight
+    {
+      get => NWScript.GetWeight(this) / 10.0m;
+      set
+      {
+        Item.m_nWeight = (int)Math.Round(value * 10.0m, MidpointRounding.ToZero);
+        Item.m_oidPossessor.ToNwObject<NwCreature>()?.Creature.UpdateEncumbranceState();
+      }
     }
 
     /// <summary>
@@ -313,6 +301,58 @@ namespace Anvil.API
     {
       await NwModule.Instance.WaitForObjectContext();
       return NWScript.CreateItemOnObject(template, target, stackSize, newTag).ToNwObject<NwItem>();
+    }
+
+    public static NwItem Deserialize(byte[] serialized)
+    {
+      CNWSItem item = null;
+
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTI"))
+        {
+          return false;
+        }
+
+        item = new CNWSItem(Invalid);
+        if (item.LoadItem(resGff, resStruct, false.ToInt()).ToBool())
+        {
+          GC.SuppressFinalize(item);
+          return true;
+        }
+
+        item.Dispose();
+        return false;
+      });
+
+      return result && item != null ? item.ToNwObject<NwItem>() : null;
+    }
+
+    public static implicit operator CNWSItem(NwItem item)
+    {
+      return item?.Item;
+    }
+
+    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    {
+      if (item == null)
+      {
+        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+      }
+
+      void* itemPtr = item.Item;
+      Item.AcquireItem(&itemPtr, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
+    }
+
+    /// <summary>
+    /// Adds the specified item property to this item.
+    /// </summary>
+    /// <param name="itemProperty">The item property to add.</param>
+    /// <param name="durationType">(Permanent/Temporary) - the duration of this item property.</param>
+    /// <param name="duration">If DurationType is temporary, how long this item property should stay applied.</param>
+    public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default)
+    {
+      NWScript.AddItemProperty((int)durationType, itemProperty, this, (float)duration.TotalSeconds);
     }
 
     /// <summary>
@@ -351,18 +391,14 @@ namespace Anvil.API
       return clone;
     }
 
-    private static void CleanLocalVariables(NwItem clone)
+    /// <summary>
+    /// Gets the number of uses per day remaining for the specified item property on this item.
+    /// </summary>
+    /// <param name="property">The item property to test for uses remaining.</param>
+    /// <returns>The number of uses per day remaining for the specified item property, or 0 if this item property is not uses/day, or belongs to a different item.</returns>
+    public int GetUsesPerDayRemaining(ItemProperty property)
     {
-      if (clone == null)
-      {
-        return;
-      }
-
-      List<ObjectVariable> localVariables = clone.LocalVariables.ToList();
-      foreach (ObjectVariable localVariable in localVariables)
-      {
-        localVariable.Delete();
-      }
+      return NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
     }
 
     /// <summary>
@@ -376,13 +412,18 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the number of uses per day remaining for the specified item property on this item.
+    /// Removes the specified item property from this item.<br/>
+    /// See <see cref="ItemProperties"/> to enumerate item properties on this item.
     /// </summary>
-    /// <param name="property">The item property to test for uses remaining.</param>
-    /// <returns>The number of uses per day remaining for the specified item property, or 0 if this item property is not uses/day, or belongs to a different item.</returns>
-    public int GetUsesPerDayRemaining(ItemProperty property)
+    /// <param name="itemProperty">The item property to remove.</param>
+    public void RemoveItemProperty(ItemProperty itemProperty)
     {
-      return NWScript.GetItemPropertyUsesPerDayRemaining(this, property);
+      NWScript.RemoveItemProperty(this, itemProperty);
+    }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTI", (resGff, resStruct) => Item.SaveItem(resGff, resStruct, 0).ToBool());
     }
 
     /// <summary>
@@ -395,45 +436,38 @@ namespace Anvil.API
       NWScript.SetItemPropertyUsesPerDayRemaining(this, property, numUses);
     }
 
-    public unsafe void AcquireItem(NwItem item, bool displayFeedback = true)
+    internal override void RemoveFromArea()
     {
-      if (item == null)
+      if (Possessor is NwCreature creature)
       {
-        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
+        creature.Creature.RemoveItem(this, true.ToInt(), true.ToInt(), true.ToInt(), true.ToInt());
+      }
+      else if (Possessor is NwPlaceable placeable)
+      {
+        placeable.Placeable.RemoveItem(this, true.ToInt());
+      }
+      else if (Possessor is NwStore store)
+      {
+        store.Store.RemoveItem(this);
+      }
+      else
+      {
+        Item.RemoveFromArea();
+      }
+    }
+
+    private static void CleanLocalVariables(NwItem clone)
+    {
+      if (clone == null)
+      {
+        return;
       }
 
-      void* itemPtr = item.Item;
-      Item.AcquireItem(&itemPtr, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
-    }
-
-    public override byte[] Serialize()
-    {
-      return NativeUtils.SerializeGff("UTI", (resGff, resStruct) => Item.SaveItem(resGff, resStruct, 0).ToBool());
-    }
-
-    public static NwItem Deserialize(byte[] serialized)
-    {
-      CNWSItem item = null;
-
-      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      List<ObjectVariable> localVariables = clone.LocalVariables.ToList();
+      foreach (ObjectVariable localVariable in localVariables)
       {
-        if (!resGff.IsValidGff("UTI"))
-        {
-          return false;
-        }
-
-        item = new CNWSItem(Invalid);
-        if (item.LoadItem(resGff, resStruct, false.ToInt()).ToBool())
-        {
-          GC.SuppressFinalize(item);
-          return true;
-        }
-
-        item.Dispose();
-        return false;
-      });
-
-      return result && item != null ? item.ToNwObject<NwItem>() : null;
+        localVariable.Delete();
+      }
     }
 
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)

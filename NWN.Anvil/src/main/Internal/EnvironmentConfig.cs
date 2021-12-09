@@ -10,27 +10,18 @@ namespace Anvil.Internal
   {
     private static readonly string[] VariablePrefixes = { "ANVIL_", "NWM_" };
 
-    // Anvil
     public static readonly string AnvilHome = GetAnvilVariableString("HOME", "./anvil");
-    public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
-    public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
-    public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
-    public static readonly LogMode LogMode = GetAnvilVariableEnum("LOG_MODE", LogMode.Default);
-
-    // NWNX
-    public static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
     public static readonly string CoreShutdownScript = Environment.GetEnvironmentVariable("NWNX_CORE_SHUTDOWN_SCRIPT");
+    public static readonly LogMode LogMode = GetAnvilVariableEnum("LOG_MODE", LogMode.Default);
+    public static readonly string ModStartScript = Environment.GetEnvironmentVariable("NWNX_UTIL_PRE_MODULE_START_SCRIPT");
+    public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
+    public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
+    public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
 
     static EnvironmentConfig()
     {
       ValidateUnset("NLOG_CONFIG");
       ValidateUnset("PLUGIN_PATH");
-    }
-
-    private static T GetAnvilVariableEnum<T>(string key, T defaultValue = default) where T : struct, Enum
-    {
-      string value = GetAnvilVariableString(key, defaultValue.ToString());
-      return Enum.TryParse(value, out T result) ? result : defaultValue;
     }
 
     private static bool GetAnvilVariableBool(string key, bool defaultValue = false)
@@ -39,12 +30,10 @@ namespace Anvil.Internal
       return value.Equals("true", StringComparison.OrdinalIgnoreCase);
     }
 
-    private static void ValidateUnset(string key)
+    private static T GetAnvilVariableEnum<T>(string key, T defaultValue = default) where T : struct, Enum
     {
-      if (Environment.GetEnvironmentVariable(key) != null)
-      {
-        throw new Exception($"Unsupported environment variable {key}. Please see the changelog for more information.");
-      }
+      string value = GetAnvilVariableString(key, defaultValue.ToString());
+      return Enum.TryParse(value, out T result) ? result : defaultValue;
     }
 
     private static string GetAnvilVariableString(string key, string defaultValue = null)
@@ -59,6 +48,14 @@ namespace Anvil.Internal
       }
 
       return defaultValue;
+    }
+
+    private static void ValidateUnset(string key)
+    {
+      if (Environment.GetEnvironmentVariable(key) != null)
+      {
+        throw new Exception($"Unsupported environment variable {key}. Please see the changelog for more information.");
+      }
     }
   }
 }

@@ -18,11 +18,6 @@ namespace Anvil.API
       Encounter = encounter;
     }
 
-    public static implicit operator CNWSEncounter(NwEncounter encounter)
-    {
-      return encounter?.Encounter;
-    }
-
     /// <summary>
     /// Gets or sets a value indicating whether this encounter is spawned and active.
     /// </summary>
@@ -33,90 +28,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the difficulty of this encounter.
-    /// </summary>
-    public EncounterDifficulty Difficulty
-    {
-      get => (EncounterDifficulty)NWScript.GetEncounterDifficulty(this);
-      set => NWScript.SetEncounterDifficulty((int)value, ObjectId);
-    }
-
-    /// <summary>
-    /// Gets or sets the total amount of spawns this encounter has generated.
-    /// </summary>
-    public int Spawns
-    {
-      get => NWScript.GetEncounterSpawnsCurrent(this);
-      set => NWScript.SetEncounterSpawnsCurrent(value, this);
-    }
-
-    /// <summary>
-    /// Gets or sets the max amount of spawns this encounter can generate.
-    /// </summary>
-    public int MaxSpawns
-    {
-      get => NWScript.GetEncounterSpawnsMax(this);
-      set => NWScript.SetEncounterSpawnsMax(value, this);
-    }
-
-    /// <summary>
-    /// Gets or sets the faction for this encounter.
-    /// </summary>
-    public NwFaction Faction
-    {
-      get => new NwFaction(Encounter.m_nFactionId);
-      set => Encounter.m_nFactionId = value.FactionId;
-    }
-
-    /// <summary>
-    /// Gets or sets if this encounter is player triggered only.
-    /// </summary>
-    public bool PlayerTriggeredOnly
-    {
-      get => Encounter.m_bPlayerTriggeredOnly.ToBool();
-      set => Encounter.m_bPlayerTriggeredOnly = value.ToInt();
-    }
-
-    /// <summary>
     /// Gets or sets if this encounter respawns or not.
     /// </summary>
     public bool CanReset
     {
       get => Encounter.m_bReset.ToBool();
       set => Encounter.m_bReset = value.ToInt();
-    }
-
-    /// <summary>
-    /// Gets or sets the reset time of this encounter.
-    /// </summary>
-    public TimeSpan ResetTime
-    {
-      get => TimeSpan.FromSeconds(Encounter.m_nResetTime);
-      set => Encounter.m_nResetTime = (int)Math.Round(value.TotalSeconds, MidpointRounding.ToZero);
-    }
-
-    /// <summary>
-    /// Gets the minimum amount of creatures that this encounter will spawn.
-    /// </summary>
-    public int MinSpawnedCreatures
-    {
-      get => Encounter.m_nMinNumSpawnedCreatures;
-    }
-
-    /// <summary>
-    /// Gets the maximum amount of creatures that this encounter will spawn.
-    /// </summary>
-    public int MaxSpawnedCreatures
-    {
-      get => Encounter.m_nMaxSpawnedCreatures;
-    }
-
-    /// <summary>
-    /// Gets the number of creatures that are spawned and alive.
-    /// </summary>
-    public int NumSpawnedCreatures
-    {
-      get => Encounter.m_nNumSpawnedCreatures;
     }
 
     /// <summary>
@@ -139,6 +56,75 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the difficulty of this encounter.
+    /// </summary>
+    public EncounterDifficulty Difficulty
+    {
+      get => (EncounterDifficulty)NWScript.GetEncounterDifficulty(this);
+      set => NWScript.SetEncounterDifficulty((int)value, ObjectId);
+    }
+
+    /// <summary>
+    /// Gets or sets the faction for this encounter.
+    /// </summary>
+    public NwFaction Faction
+    {
+      get => NwFaction.FromFactionId(Encounter.m_nFactionId);
+      set => Encounter.m_nFactionId = value.FactionId;
+    }
+
+    /// <summary>
+    /// Gets the maximum amount of creatures that this encounter will spawn.
+    /// </summary>
+    public int MaxSpawnedCreatures
+    {
+      get => Encounter.m_nMaxSpawnedCreatures;
+    }
+
+    /// <summary>
+    /// Gets or sets the max amount of spawns this encounter can generate.
+    /// </summary>
+    public int MaxSpawns
+    {
+      get => NWScript.GetEncounterSpawnsMax(this);
+      set => NWScript.SetEncounterSpawnsMax(value, this);
+    }
+
+    /// <summary>
+    /// Gets the minimum amount of creatures that this encounter will spawn.
+    /// </summary>
+    public int MinSpawnedCreatures
+    {
+      get => Encounter.m_nMinNumSpawnedCreatures;
+    }
+
+    /// <summary>
+    /// Gets the number of creatures that are spawned and alive.
+    /// </summary>
+    public int NumSpawnedCreatures
+    {
+      get => Encounter.m_nNumSpawnedCreatures;
+    }
+
+    /// <summary>
+    /// Gets or sets if this encounter is player triggered only.
+    /// </summary>
+    public bool PlayerTriggeredOnly
+    {
+      get => Encounter.m_bPlayerTriggeredOnly.ToBool();
+      set => Encounter.m_bPlayerTriggeredOnly = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets the reset time of this encounter.
+    /// </summary>
+    public TimeSpan ResetTime
+    {
+      get => TimeSpan.FromSeconds(Encounter.m_nResetTime);
+      set => Encounter.m_nResetTime = (int)Math.Round(value.TotalSeconds, MidpointRounding.ToZero);
+    }
+
+    /// <summary>
     /// Gets the list of spawn points that creatures can spawn at from this encounter.
     /// </summary>
     public IReadOnlyList<EncounterSpawnPoint> SpawnPointList
@@ -155,6 +141,46 @@ namespace Anvil.API
 
         return retVal;
       }
+    }
+
+    /// <summary>
+    /// Gets or sets the total amount of spawns this encounter has generated.
+    /// </summary>
+    public int Spawns
+    {
+      get => NWScript.GetEncounterSpawnsCurrent(this);
+      set => NWScript.SetEncounterSpawnsCurrent(value, this);
+    }
+
+    public static NwEncounter Deserialize(byte[] serialized)
+    {
+      CNWSEncounter encounter = null;
+
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTE"))
+        {
+          return false;
+        }
+
+        encounter = new CNWSEncounter(Invalid);
+        if (encounter.LoadEncounter(resGff, resStruct).ToBool())
+        {
+          encounter.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(encounter);
+          return true;
+        }
+
+        encounter.Dispose();
+        return false;
+      });
+
+      return result && encounter != null ? encounter.ToNwObject<NwEncounter>() : null;
+    }
+
+    public static implicit operator CNWSEncounter(NwEncounter encounter)
+    {
+      return encounter?.Encounter;
     }
 
     /// <summary>
@@ -194,30 +220,9 @@ namespace Anvil.API
       });
     }
 
-    public static NwEncounter Deserialize(byte[] serialized)
+    internal override void RemoveFromArea()
     {
-      CNWSEncounter encounter = null;
-
-      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
-      {
-        if (!resGff.IsValidGff("UTE"))
-        {
-          return false;
-        }
-
-        encounter = new CNWSEncounter(Invalid);
-        if (encounter.LoadEncounter(resGff, resStruct).ToBool())
-        {
-          encounter.LoadObjectState(resGff, resStruct);
-          GC.SuppressFinalize(encounter);
-          return true;
-        }
-
-        encounter.Dispose();
-        return false;
-      });
-
-      return result && encounter != null ? encounter.ToNwObject<NwEncounter>() : null;
+      Encounter.RemoveFromArea();
     }
 
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)

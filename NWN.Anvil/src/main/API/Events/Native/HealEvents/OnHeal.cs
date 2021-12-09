@@ -9,6 +9,11 @@ namespace Anvil.API.Events
   public sealed class OnHeal : IEvent
   {
     /// <summary>
+    /// Gets or sets how much HP the heal will provide.
+    /// </summary>
+    public int HealAmount { get; set; }
+
+    /// <summary>
     /// Gets the <see cref="NwObject"/> performing the heal.
     /// </summary>
     public NwObject Healer { get; private init; }
@@ -17,11 +22,6 @@ namespace Anvil.API.Events
     /// Gets the target being healed.
     /// </summary>
     public NwGameObject Target { get; private init; }
-
-    /// <summary>
-    /// Gets or sets how much HP the heal will provide.
-    /// </summary>
-    public int HealAmount { get; set; }
 
     NwObject IEvent.Context
     {

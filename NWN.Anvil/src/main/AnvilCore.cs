@@ -21,14 +21,15 @@ namespace Anvil
 
     private static AnvilCore instance;
 
-    // Public Core Services
+    private CoreInteropHandler interopHandler;
+    private LoggerManager loggerManager;
+
     private PluginManager pluginManager;
     private ServiceManager serviceManager;
 
-    // Internal Core Services
-    private CoreInteropHandler interopHandler;
-    private LoggerManager loggerManager;
     private UnhandledExceptionLogger unhandledExceptionLogger;
+
+    private AnvilCore() {}
 
     /// <summary>
     /// Entrypoint to start Anvil.
@@ -76,8 +77,6 @@ namespace Anvil
       instance.InitServices();
     }
 
-    private AnvilCore() {}
-
     void IServerLifeCycleEventHandler.HandleLifeCycleEvent(LifeCycleEvent eventType)
     {
       switch (eventType)
@@ -97,6 +96,20 @@ namespace Anvil
           break;
         default:
           throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
+      }
+    }
+
+    private void CheckServerVersion()
+    {
+      AssemblyName assemblyName = Assemblies.Anvil.GetName();
+      Version serverVersion = NwServer.Instance.ServerVersion;
+
+      if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
+      {
+        Log.Warn("The current version of {Name} targets version {TargetVersion}, but the server is running {ServerVersion}! You may encounter compatibility issues",
+          assemblyName.Name,
+          assemblyName.Version,
+          serverVersion);
       }
     }
 
@@ -131,36 +144,9 @@ namespace Anvil
       pluginManager.Load();
     }
 
-    private void ShutdownCore()
-    {
-      serviceManager.ShutdownLateServices();
-      pluginManager.Unload();
-      unhandledExceptionLogger.Dispose();
-      loggerManager.Dispose();
-    }
-
     private void InitServices()
     {
       serviceManager.Init(instance.pluginManager, instance.serviceManager);
-    }
-
-    private void ShutdownServices()
-    {
-      serviceManager.ShutdownServices();
-    }
-
-    private void CheckServerVersion()
-    {
-      AssemblyName assemblyName = Assemblies.Anvil.GetName();
-      Version serverVersion = NwServer.Instance.ServerVersion;
-
-      if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
-      {
-        Log.Warn("The current version of {Name} targets version {TargetVersion}, but the server is running {ServerVersion}! You may encounter compatibility issues",
-          assemblyName.Name,
-          assemblyName.Version,
-          serverVersion);
-      }
     }
 
     private void PrelinkNative()
@@ -188,6 +174,19 @@ namespace Anvil
         Log.Fatal("The NWNX_SWIG_DotNET plugin could not be loaded");
         throw;
       }
+    }
+
+    private void ShutdownCore()
+    {
+      serviceManager.ShutdownLateServices();
+      pluginManager.Unload();
+      unhandledExceptionLogger.Dispose();
+      loggerManager.Dispose();
+    }
+
+    private void ShutdownServices()
+    {
+      serviceManager.ShutdownServices();
     }
   }
 }

@@ -8,11 +8,10 @@ namespace Anvil.API.Events
 {
   public sealed class OnCalendarTimeChange : IEvent
   {
-    public TimeChangeType TimeChangeType { get; private init; }
+    public uint NewValue { get; private init; }
 
     public uint OldValue { get; private init; }
-
-    public uint NewValue { get; private init; }
+    public TimeChangeType TimeChangeType { get; private init; }
 
     NwObject IEvent.Context
     {

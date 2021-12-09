@@ -21,9 +21,61 @@ namespace Anvil.API
       VisualTransform = new VisualTransform(this);
     }
 
-    internal override CNWSScriptVarTable ScriptVarTable
+    /// <summary>
+    /// Gets all effects (permanent and temporary) that are active on this game object.
+    /// </summary>
+    public IEnumerable<Effect> ActiveEffects
     {
-      get => GameObject.m_ScriptVars;
+      get
+      {
+        for (Effect effect = NWScript.GetFirstEffect(this); NWScript.GetIsEffectValid(effect) == true.ToInt(); effect = NWScript.GetNextEffect(this))
+        {
+          yield return effect;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Gets the area this object is currently in.
+    /// </summary>
+    public NwArea Area
+    {
+      get => GameObject.GetArea().ToNwObject<NwArea>();
+    }
+
+    /// <summary>
+    /// Gets or sets the appearance of this creature.
+    /// </summary>
+    public AppearanceType CreatureAppearanceType
+    {
+      get => (AppearanceType)NWScript.GetAppearanceType(this);
+      set => NWScript.SetCreatureAppearanceType(this, (int)value);
+    }
+
+    /// <summary>
+    /// Gets or sets the highlight color of this object.
+    /// </summary>
+    public Color HighlightColor
+    {
+      get => GameObject.m_vHiliteColor.ToColor();
+      set => NWScript.SetObjectHiliteColor(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets the current HP for this object.
+    /// </summary>
+    public int HP
+    {
+      get => NWScript.GetCurrentHitPoints(this);
+      set => GameObject.m_nCurrentHitPoints = value;
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether this object is in a conversation.
+    /// </summary>
+    public bool IsInConversation
+    {
+      get => NWScript.IsInConversation(this).ToBool();
     }
 
     /// <summary>
@@ -45,11 +97,48 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the area this object is currently in.
+    /// Gets or sets the maximum HP for this object. Returns 0 if this object has no defined HP.
     /// </summary>
-    public NwArea Area
+    public int MaxHP
     {
-      get => GameObject.GetArea().ToNwObject<NwArea>();
+      get => NWScript.GetMaxHitPoints(this);
+      set => GameObject.m_nBaseHitPoints = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the mouse cursor for this object.
+    /// </summary>
+    public MouseCursor MouseCursor
+    {
+      get => (MouseCursor)GameObject.m_nMouseCursor;
+      set => NWScript.SetObjectMouseCursor(this, (int)value);
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the plot flag is enabled.
+    /// </summary>
+    public bool PlotFlag
+    {
+      get => NWScript.GetPlotFlag(this).ToBool();
+      set => NWScript.SetPlotFlag(this, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets the PortraitId of this (game object).
+    /// </summary>
+    public int PortraitId
+    {
+      get => NWScript.GetPortraitId(this);
+      set => NWScript.SetPortraitId(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the Portrait ResRef for this object.
+    /// </summary>
+    public string PortraitResRef
+    {
+      get => NWScript.GetPortraitResRef(this);
+      set => NWScript.SetPortraitResRef(this, value);
     }
 
     /// <summary>
@@ -59,15 +148,6 @@ namespace Anvil.API
     {
       get => GameObject.m_vPosition.ToManagedVector();
       set => GameObject.SetPosition(value.ToNativeVector(), false.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets the transition target for this object.
-    /// </summary>
-    public NwGameObject TransitionTarget
-    {
-      get => NWScript.GetTransitionTarget(this).ToNwObject<NwGameObject>();
-      set => NWScript.SetTransitionTarget(this, value);
     }
 
     /// <summary>
@@ -85,96 +165,83 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the transition target for this object.
+    /// </summary>
+    public NwGameObject TransitionTarget
+    {
+      get => NWScript.GetTransitionTarget(this).ToNwObject<NwGameObject>();
+      set => NWScript.SetTransitionTarget(this, value);
+    }
+
+    /// <summary>
     /// Gets the visual transform for this object.
     /// </summary>
     public VisualTransform VisualTransform { get; }
 
-    /// <summary>
-    /// Gets a value indicating whether this object is in a conversation.
-    /// </summary>
-    public bool IsInConversation
+    internal override CNWSScriptVarTable ScriptVarTable
     {
-      get => NWScript.IsInConversation(this).ToBool();
+      get => GameObject.m_ScriptVars;
     }
 
     /// <summary>
-    /// Gets or sets the Portrait ResRef for this object.
+    /// Casts a spell at an object.
     /// </summary>
-    public string PortraitResRef
+    /// <param name="spell">The spell to cast.</param>
+    /// <param name="target">The target for the spell.</param>
+    /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
+    /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
+    /// <param name="domainLevel">Specifies the spell level if the spell is to be cast as a domain spell.</param>
+    /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
+    /// <param name="instant">If true, the spell is cast immediately.</param>
+    public async Task ActionCastSpellAt(Spell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
-      get => NWScript.GetPortraitResRef(this);
-      set => NWScript.SetPortraitResRef(this, value);
+      await WaitForObjectContext();
+      NWScript.ActionCastSpellAtObject((int)spell, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
-    /// Gets or sets the current HP for this object.
+    /// Casts a spell at an location.
     /// </summary>
-    public int HP
+    /// <param name="spell">The spell to cast.</param>
+    /// <param name="target">The target for the spell.</param>
+    /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
+    /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
+    /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
+    /// <param name="instant">If true, the spell is cast immediately.</param>
+    public async Task ActionCastSpellAt(Spell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
-      get => NWScript.GetCurrentHitPoints(this);
-      set => GameObject.m_nCurrentHitPoints = value;
+      await WaitForObjectContext();
+      NWScript.ActionCastSpellAtLocation((int)spell, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
-    /// Gets or sets the maximum HP for this object. Returns 0 if this object has no defined HP.
+    /// Instructs this object to do nothing for the specified duration, before continuing with the next item in the action queue.
     /// </summary>
-    public int MaxHP
+    /// <param name="duration">The time to wait.</param>
+    public async Task ActionWait(TimeSpan duration)
     {
-      get => NWScript.GetMaxHitPoints(this);
-      set => GameObject.m_nBaseHitPoints = value;
+      await WaitForObjectContext();
+      NWScript.ActionWait((float)duration.TotalSeconds);
     }
 
     /// <summary>
-    /// Gets or sets a value indicating whether the plot flag is enabled.
+    /// Applies the specified effect to this game object.
     /// </summary>
-    public bool PlotFlag
+    /// <param name="durationType">The duration type to apply with this effect.</param>
+    /// <param name="effect">The effect to apply.</param>
+    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
+    public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
     {
-      get => NWScript.GetPlotFlag(this).ToBool();
-      set => NWScript.SetPlotFlag(this, value.ToInt());
+      NWScript.ApplyEffectToObject((int)durationType, effect, this, (float)duration.TotalSeconds);
     }
 
     /// <summary>
-    /// Gets or sets the highlight color of this object.
+    /// Destroys this object (irrevocably).
     /// </summary>
-    public Color HighlightColor
+    /// <param name="delay">Time in seconds until this object should be destroyed.</param>
+    public void Destroy(float delay = 0.0f)
     {
-      get => GameObject.m_vHiliteColor.ToColor();
-      set => NWScript.SetObjectHiliteColor(this, value.ToInt());
-    }
-
-    /// <summary>
-    /// Gets or sets the mouse cursor for this object.
-    /// </summary>
-    public MouseCursor MouseCursor
-    {
-      get => (MouseCursor)GameObject.m_nMouseCursor;
-      set => NWScript.SetObjectMouseCursor(this, (int)value);
-    }
-
-    /// <summary>
-    /// Gets all effects (permanent and temporary) that are active on this game object.
-    /// </summary>
-    public IEnumerable<Effect> ActiveEffects
-    {
-      get
-      {
-        for (Effect effect = NWScript.GetFirstEffect(this); NWScript.GetIsEffectValid(effect) == true.ToInt(); effect = NWScript.GetNextEffect(this))
-        {
-          yield return effect;
-        }
-      }
-    }
-
-    public override Guid? PeekUUID()
-    {
-      CNWSUUID uid = GameObject.m_pUUID;
-      if (!uid.CanCarryUUID())
-      {
-        return null;
-      }
-
-      CExoString uidString = uid.m_uuid;
-      return uidString != null ? Guid.Parse(uidString.ToString()) : null;
+      NWScript.DestroyObject(this, delay);
     }
 
     /// <summary>
@@ -209,13 +276,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Rotates this object to face the specified facing angle.
+    /// Immediately ends this GameObject's current conversation.
     /// </summary>
-    /// <param name="facing">The angle to face.</param>
-    public async Task SetFacing(float facing)
+    public async void EndConversation()
     {
-      await WaitForObjectContext();
-      NWScript.SetFacing(facing);
+      await NwTask.NextFrame();
+      GameObject.StopDialog();
     }
 
     /// <summary>
@@ -246,49 +312,6 @@ namespace Anvil.API
     public int GetColor(ColorChannel colorChannel)
     {
       return NWScript.GetColor(this, (int)colorChannel);
-    }
-
-    /// <summary>
-    /// Sets the color for the specified color channel.
-    /// </summary>
-    /// @note A chart of available colors can be found here: https://nwnlexicon.com/index.php?title=Color_Charts
-    /// <param name="colorChannel">The color channel to modify.</param>
-    /// <param name="newColor">The color channel's new color index.</param>
-    public void SetColor(ColorChannel colorChannel, int newColor)
-    {
-      NWScript.SetColor(this, (int)colorChannel, newColor);
-    }
-
-    /// <summary>
-    /// Sets whether this object is destroyable.
-    /// </summary>
-    /// <param name="destroyable">If false, this creature does not fade out on death, but sticks around as a corpse.</param>
-    /// <param name="raiseable">If true, this creature can be raised via resurrection.</param>
-    /// <param name="selectableWhenDead">If true, this creature is selectable after death.</param>
-    public async Task SetIsDestroyable(bool destroyable, bool raiseable = true, bool selectableWhenDead = false)
-    {
-      await WaitForObjectContext();
-      NWScript.SetIsDestroyable(destroyable.ToInt(), raiseable.ToInt(), selectableWhenDead.ToInt());
-    }
-
-    /// <summary>
-    /// Plays the specified animation.
-    /// </summary>
-    /// <param name="animation">Constant value representing the animation to play.</param>
-    /// <param name="animSpeed">Speed to play the animation.</param>
-    /// <param name="queueAsAction">If true, enqueues animation playback in the object's action queue.</param>
-    /// <param name="duration">Duration to keep animating. Not used in fire and forget animations.</param>
-    public async Task PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, TimeSpan duration = default)
-    {
-      await WaitForObjectContext();
-      if (!queueAsAction)
-      {
-        NWScript.PlayAnimation((int)animation, animSpeed, (float)duration.TotalSeconds);
-      }
-      else
-      {
-        NWScript.ActionPlayAnimation((int)animation, animSpeed, (float)duration.TotalSeconds);
-      }
     }
 
     /// <summary>
@@ -374,6 +397,49 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets whether this object has a direct line of sight to the specified object (not blocked by any geometry).<br/>
+    /// @note This is an expensive function and may degrade performance if used frequently.
+    /// </summary>
+    /// <param name="target">The target object to perform the line of sight check against.</param>
+    /// <returns>true if this object has line of sight on the target, otherwise false.</returns>
+    public bool HasLineOfSight(NwGameObject target)
+    {
+      return NWScript.LineOfSightObject(this, target).ToBool();
+    }
+
+    public override Guid? PeekUUID()
+    {
+      CNWSUUID uid = GameObject.m_pUUID;
+      if (!uid.CanCarryUUID())
+      {
+        return null;
+      }
+
+      CExoString uidString = uid.m_uuid;
+      return uidString != null ? Guid.Parse(uidString.ToString()) : null;
+    }
+
+    /// <summary>
+    /// Plays the specified animation.
+    /// </summary>
+    /// <param name="animation">Constant value representing the animation to play.</param>
+    /// <param name="animSpeed">Speed to play the animation.</param>
+    /// <param name="queueAsAction">If true, enqueues animation playback in the object's action queue.</param>
+    /// <param name="duration">Duration to keep animating. Not used in fire and forget animations.</param>
+    public async Task PlayAnimation(Animation animation, float animSpeed, bool queueAsAction = false, TimeSpan duration = default)
+    {
+      await WaitForObjectContext();
+      if (!queueAsAction)
+      {
+        NWScript.PlayAnimation((int)animation, animSpeed, (float)duration.TotalSeconds);
+      }
+      else
+      {
+        NWScript.ActionPlayAnimation((int)animation, animSpeed, (float)duration.TotalSeconds);
+      }
+    }
+
+    /// <summary>
     /// Plays the specified sound as mono audio from the location of this object.
     /// </summary>
     /// <param name="soundName">The name of the sound to play.</param>
@@ -398,6 +464,52 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Removes the specified effect from this game object.
+    /// </summary>
+    /// <param name="effect">The existing effect instance.</param>
+    public void RemoveEffect(Effect effect)
+    {
+      NWScript.RemoveEffect(this, effect);
+    }
+
+    /// <summary>
+    /// Replaces the specified texture with a new texture on this object only.
+    /// </summary>
+    /// <param name="texture">The texture to be replaced.</param>
+    /// <param name="newTexture">The replacement texture.</param>
+    public void ReplaceObjectTexture(string texture, string newTexture)
+    {
+      NWScript.ReplaceObjectTexture(this, texture, newTexture);
+    }
+
+    /// <summary>
+    /// Resets all material shader parameter overrides on this object.
+    /// </summary>
+    public void ResetMaterialShaderUniforms()
+    {
+      NWScript.ResetMaterialShaderUniforms(this);
+    }
+
+    /// <summary>
+    /// Resets all material shader parameter overrides for the specified material on this object.
+    /// <param name="material">The material on the object to be reset.</param>
+    /// </summary>
+    public void ResetMaterialShaderUniforms(string material)
+    {
+      NWScript.ResetMaterialShaderUniforms(this, material);
+    }
+
+    /// <summary>
+    /// Resets the specified material shader parameter override for the specified material.
+    /// <param name="material">The material on the object to be reset.</param>
+    /// <param name="param">The parameter override to reset.</param>
+    /// </summary>
+    public void ResetMaterialShaderUniforms(string material, string param)
+    {
+      NWScript.ResetMaterialShaderUniforms(this, material, param);
+    }
+
+    /// <summary>
     /// Performs a saving throw against the given dc.
     /// </summary>
     /// <param name="savingThrow">The type of saving throw to make (Fortitude/Reflex/Will).</param>
@@ -417,113 +529,39 @@ namespace Anvil.API
       };
     }
 
+    public abstract byte[] Serialize();
+
     /// <summary>
-    /// Casts a spell at an object.
+    /// Sets the color for the specified color channel.
     /// </summary>
-    /// <param name="spell">The spell to cast.</param>
-    /// <param name="target">The target for the spell.</param>
-    /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
-    /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
-    /// <param name="domainLevel">Specifies the spell level if the spell is to be cast as a domain spell.</param>
-    /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
-    /// <param name="instant">If true, the spell is cast immediately.</param>
-    public async Task ActionCastSpellAt(Spell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    /// @note A chart of available colors can be found here: https://nwnlexicon.com/index.php?title=Color_Charts
+    /// <param name="colorChannel">The color channel to modify.</param>
+    /// <param name="newColor">The color channel's new color index.</param>
+    public void SetColor(ColorChannel colorChannel, int newColor)
+    {
+      NWScript.SetColor(this, (int)colorChannel, newColor);
+    }
+
+    /// <summary>
+    /// Rotates this object to face the specified facing angle.
+    /// </summary>
+    /// <param name="facing">The angle to face.</param>
+    public async Task SetFacing(float facing)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtObject((int)spell, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
+      NWScript.SetFacing(facing);
     }
 
     /// <summary>
-    /// Casts a spell at an location.
+    /// Sets whether this object is destroyable.
     /// </summary>
-    /// <param name="spell">The spell to cast.</param>
-    /// <param name="target">The target for the spell.</param>
-    /// <param name="metaMagic">Metamagic that should be applied to the spell.</param>
-    /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
-    /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
-    /// <param name="instant">If true, the spell is cast immediately.</param>
-    public async Task ActionCastSpellAt(Spell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    /// <param name="destroyable">If false, this creature does not fade out on death, but sticks around as a corpse.</param>
+    /// <param name="raiseable">If true, this creature can be raised via resurrection.</param>
+    /// <param name="selectableWhenDead">If true, this creature is selectable after death.</param>
+    public async Task SetIsDestroyable(bool destroyable, bool raiseable = true, bool selectableWhenDead = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtLocation((int)spell, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
-    }
-
-    /// <summary>
-    /// Instructs this object to do nothing for the specified duration, before continuing with the next item in the action queue.
-    /// </summary>
-    /// <param name="duration">The time to wait.</param>
-    public async Task ActionWait(TimeSpan duration)
-    {
-      await WaitForObjectContext();
-      NWScript.ActionWait((float)duration.TotalSeconds);
-    }
-
-    /// <summary>
-    /// Destroys this object (irrevocably).
-    /// </summary>
-    /// <param name="delay">Time in seconds until this object should be destroyed.</param>
-    public void Destroy(float delay = 0.0f)
-    {
-      NWScript.DestroyObject(this, delay);
-    }
-
-    /// <summary>
-    /// Gets or sets the appearance of this creature.
-    /// </summary>
-    public AppearanceType CreatureAppearanceType
-    {
-      get => (AppearanceType)NWScript.GetAppearanceType(this);
-      set => NWScript.SetCreatureAppearanceType(this, (int)value);
-    }
-
-    /// <summary>
-    /// Gets or sets the PortraitId of this (game object).
-    /// </summary>
-    public int PortraitId
-    {
-      get => NWScript.GetPortraitId(this);
-      set => NWScript.SetPortraitId(this, value);
-    }
-
-    /// <summary>
-    /// Gets whether this object has a direct line of sight to the specified object (not blocked by any geometry).<br/>
-    /// @note This is an expensive function and may degrade performance if used frequently.
-    /// </summary>
-    /// <param name="target">The target object to perform the line of sight check against.</param>
-    /// <returns>true if this object has line of sight on the target, otherwise false.</returns>
-    public bool HasLineOfSight(NwGameObject target)
-    {
-      return NWScript.LineOfSightObject(this, target).ToBool();
-    }
-
-    /// <summary>
-    /// Applies the specified effect to this game object.
-    /// </summary>
-    /// <param name="durationType">The duration type to apply with this effect.</param>
-    /// <param name="effect">The effect to apply.</param>
-    /// <param name="duration">If duration type is <see cref="EffectDuration.Temporary"/>, the duration of this effect.</param>
-    public void ApplyEffect(EffectDuration durationType, Effect effect, TimeSpan duration = default)
-    {
-      NWScript.ApplyEffectToObject((int)durationType, effect, this, (float)duration.TotalSeconds);
-    }
-
-    /// <summary>
-    /// Removes the specified effect from this game object.
-    /// </summary>
-    /// <param name="effect">The existing effect instance.</param>
-    public void RemoveEffect(Effect effect)
-    {
-      NWScript.RemoveEffect(this, effect);
-    }
-
-    /// <summary>
-    /// Replaces the specified texture with a new texture on this object only.
-    /// </summary>
-    /// <param name="texture">The texture to be replaced.</param>
-    /// <param name="newTexture">The replacement texture.</param>
-    public void ReplaceObjectTexture(string texture, string newTexture)
-    {
-      NWScript.ReplaceObjectTexture(this, texture, newTexture);
+      NWScript.SetIsDestroyable(destroyable.ToInt(), raiseable.ToInt(), selectableWhenDead.ToInt());
     }
 
     /// <summary>
@@ -559,43 +597,7 @@ namespace Anvil.API
       NWScript.SetMaterialShaderUniformVec4(this, material, param, value);
     }
 
-    /// <summary>
-    /// Resets all material shader parameter overrides on this object.
-    /// </summary>
-    public void ResetMaterialShaderUniforms()
-    {
-      NWScript.ResetMaterialShaderUniforms(this);
-    }
-
-    /// <summary>
-    /// Resets all material shader parameter overrides for the specified material on this object.
-    /// <param name="material">The material on the object to be reset.</param>
-    /// </summary>
-    public void ResetMaterialShaderUniforms(string material)
-    {
-      NWScript.ResetMaterialShaderUniforms(this, material);
-    }
-
-    /// <summary>
-    /// Resets the specified material shader parameter override for the specified material.
-    /// <param name="material">The material on the object to be reset.</param>
-    /// <param name="param">The parameter override to reset.</param>
-    /// </summary>
-    public void ResetMaterialShaderUniforms(string material, string param)
-    {
-      NWScript.ResetMaterialShaderUniforms(this, material, param);
-    }
-
-    /// <summary>
-    /// Immediately ends this GameObject's current conversation.
-    /// </summary>
-    public async void EndConversation()
-    {
-      await NwTask.NextFrame();
-      GameObject.StopDialog();
-    }
-
-    public abstract byte[] Serialize();
+    internal abstract void RemoveFromArea();
 
     private protected abstract void AddToArea(CNWSArea area, float x, float y, float z);
   }

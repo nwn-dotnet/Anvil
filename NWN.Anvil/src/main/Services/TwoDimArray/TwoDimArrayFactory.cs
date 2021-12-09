@@ -14,10 +14,10 @@ namespace Anvil.Services
   [ServiceBinding(typeof(TwoDimArrayFactory))]
   public sealed class TwoDimArrayFactory
   {
+    private readonly Dictionary<string, ITwoDimArray> cache = new Dictionary<string, ITwoDimArray>();
     private readonly InjectionService injectionService;
 
     private readonly CTwoDimArrays twoDimArrays = NWNXLib.Rules().m_p2DArrays;
-    private readonly Dictionary<string, ITwoDimArray> cache = new Dictionary<string, ITwoDimArray>();
 
     public TwoDimArrayFactory(InjectionService injectionService)
     {

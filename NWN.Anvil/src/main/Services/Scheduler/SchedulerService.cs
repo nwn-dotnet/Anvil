@@ -23,115 +23,112 @@ namespace Anvil.Services
     /// </summary>
     public static readonly TimeSpan NextUpdate = TimeSpan.Zero;
 
-    // Dependencies
-    private readonly LoopTimeService loopTimeService;
-
-    private readonly List<ScheduledItem> scheduledItems = new List<ScheduledItem>(1024);
-    private readonly IComparer<ScheduledItem> comparer = new ScheduledItem.SortedByExecutionTime();
-
-    public SchedulerService(LoopTimeService loopTimeService)
-    {
-      this.loopTimeService = loopTimeService;
-    }
+    private readonly IComparer<ScheduledTask> comparer = new ScheduledTask.SortedByExecutionTime();
+    private readonly List<ScheduledTask> scheduledTasks = new List<ScheduledTask>(1024);
 
     /// <summary>
     /// Schedules the specified action to be invoked after the given delay.
     /// </summary>
-    /// <param name="task">The task/action to run.</param>
+    /// <param name="action">The task/action to run.</param>
     /// <param name="delay">The delay until the task is run.</param>
     /// <returns>A disposable object representing the scheduled task. Calling Dispose() will prevent the schedule from running.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the delay is less than 0.</exception>
     /// <exception cref="ArgumentNullException">Thrown if no action is specified.</exception>
-    public IDisposable Schedule(Action task, TimeSpan delay)
+    public ScheduledTask Schedule(Action action, TimeSpan delay)
     {
       if (delay < TimeSpan.Zero)
       {
         throw new ArgumentOutOfRangeException(nameof(delay), $"{nameof(delay)} cannot be < zero.");
       }
 
-      if (task == null)
+      if (action == null)
       {
-        throw new ArgumentNullException(nameof(task));
+        throw new ArgumentNullException(nameof(action));
       }
 
-      Log.Debug("Scheduled Future Task {TaskName}", task.Method.GetFullName());
-      ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds);
-      scheduledItems.InsertOrdered(item, comparer);
-      return item;
+      Log.Debug("Scheduled Future Task {TaskName}", action.Method.GetFullName());
+      ScheduledTask task = new ScheduledTask(action, Time.TimeSinceStartup + delay);
+      scheduledTasks.InsertOrdered(task, comparer);
+
+      return task;
     }
 
     /// <summary>
     /// Schedules the specified task to be invoked on a specified schedule, after an optional delay.
     /// </summary>
-    /// <param name="task">The task/action to be run.</param>
+    /// <param name="action">The task/action to be run.</param>
     /// <param name="schedule">The delay between invocations.</param>
     /// <param name="delay">An additional delay for the first time run.</param>
     /// <returns>A disposable object representing the scheduled task. Calling Dispose() will cancel the schedule and any future invocations.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the schedule is less than 0.</exception>
     /// <exception cref="ArgumentNullException">Thrown if no action is specified.</exception>
-    public IDisposable ScheduleRepeating(Action task, TimeSpan schedule, TimeSpan delay = default)
+    public ScheduledTask ScheduleRepeating(Action action, TimeSpan schedule, TimeSpan delay = default)
     {
       if (schedule <= TimeSpan.Zero)
       {
         throw new ArgumentOutOfRangeException(nameof(delay), $"{nameof(delay)} cannot be <= zero.");
       }
 
-      if (task == null)
+      if (action == null)
       {
-        throw new ArgumentNullException(nameof(task));
+        throw new ArgumentNullException(nameof(action));
       }
 
-      Log.Debug("Scheduled Repeating Task: {TaskName}", task.Method.GetFullName());
-      ScheduledItem item = new ScheduledItem(task, loopTimeService.Time + delay.TotalSeconds + schedule.TotalSeconds, schedule.TotalSeconds);
-      scheduledItems.InsertOrdered(item, comparer);
-      return item;
-    }
+      Log.Debug("Scheduled Repeating Task: {TaskName}", action.Method.GetFullName());
+      ScheduledTask task = new ScheduledTask(action, Time.TimeSinceStartup + delay + schedule, schedule);
+      scheduledTasks.InsertOrdered(task, comparer);
 
-    internal void Unschedule(ScheduledItem scheduledItem)
-    {
-      scheduledItems.Remove(scheduledItem);
+      return task;
     }
 
     void IUpdateable.Update()
     {
       int i;
-      for (i = 0; i < scheduledItems.Count; i++)
+      for (i = 0; i < scheduledTasks.Count; i++)
       {
-        ScheduledItem item = scheduledItems[i];
-        if (loopTimeService.Time < item.ExecutionTime)
+        ScheduledTask task = scheduledTasks[i];
+        if (Time.TimeSinceStartup < task.ExecutionTime)
         {
           break;
         }
 
-        if (item.Disposed)
+        if (task.IsCancelled)
         {
           continue;
         }
 
         try
         {
-          item.Execute();
+          task.Execute();
+          task.ExecutionCount++;
         }
         catch (Exception e)
         {
+          task.FailedExecutionCount++;
           Log.Error(e);
         }
 
-        if (!item.Repeating || item.Disposed)
+        if (!task.Repeating || task.IsCancelled)
         {
           continue;
         }
 
-        item.Reschedule(loopTimeService.Time + item.Schedule);
-        scheduledItems.RemoveAt(i);
-        scheduledItems.InsertOrdered(item, comparer);
+        task.ExecutionTime = Time.TimeSinceStartup + task.Schedule;
+
+        scheduledTasks.RemoveAt(i);
+        scheduledTasks.InsertOrdered(task, comparer);
         i--;
       }
 
       if (i > 0)
       {
-        scheduledItems.RemoveRange(0, i);
+        scheduledTasks.RemoveRange(0, i);
       }
+    }
+
+    internal void Unschedule(ScheduledTask scheduledTask)
+    {
+      scheduledTasks.Remove(scheduledTask);
     }
   }
 }

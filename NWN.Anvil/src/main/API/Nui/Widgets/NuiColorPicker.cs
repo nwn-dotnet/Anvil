@@ -7,11 +7,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiColorPicker : NuiWidget
   {
-    public override string Type
-    {
-      get => "color_picker";
-    }
-
     [JsonConstructor]
     public NuiColorPicker(NuiProperty<NuiColor> color)
     {
@@ -20,5 +15,10 @@ namespace Anvil.API
 
     [JsonProperty("value")]
     public NuiProperty<NuiColor> Color { get; set; }
+
+    public override string Type
+    {
+      get => "color_picker";
+    }
   }
 }

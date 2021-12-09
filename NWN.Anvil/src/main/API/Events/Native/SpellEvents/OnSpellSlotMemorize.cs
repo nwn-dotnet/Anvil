@@ -8,21 +8,20 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellSlotMemorize : IEvent
   {
-    public bool PreventMemorize { get; set; }
+    public int ClassIndex { get; private init; }
 
     public NwCreature Creature { get; private init; }
 
-    public int ClassIndex { get; private init; }
+    public Domain Domain { get; private init; }
+
+    public bool FromClient { get; private init; }
+
+    public MetaMagic MetaMagic { get; private init; }
+    public bool PreventMemorize { get; set; }
 
     public int SlotIndex { get; private init; }
 
     public Spell Spell { get; private init; }
-
-    public Domain Domain { get; private init; }
-
-    public MetaMagic MetaMagic { get; private init; }
-
-    public bool FromClient { get; private init; }
 
     NwObject IEvent.Context
     {

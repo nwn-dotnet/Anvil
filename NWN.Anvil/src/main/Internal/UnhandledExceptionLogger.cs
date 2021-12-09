@@ -7,6 +7,17 @@ namespace Anvil.Internal
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    ~UnhandledExceptionLogger()
+    {
+      Unregister();
+    }
+
+    public void Dispose()
+    {
+      Unregister();
+      GC.SuppressFinalize(this);
+    }
+
     public void Init()
     {
       Log.Info("Registering Unhandled Exception Logger");
@@ -24,17 +35,6 @@ namespace Anvil.Internal
       {
         Log.Error(e, "Unhandled Exception.");
       }
-    }
-
-    public void Dispose()
-    {
-      Unregister();
-      GC.SuppressFinalize(this);
-    }
-
-    ~UnhandledExceptionLogger()
-    {
-      Unregister();
     }
 
     private void Unregister()

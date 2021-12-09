@@ -6,8 +6,8 @@ namespace Anvil.API
   [AttributeUsage(AttributeTargets.Class)]
   internal sealed class NativeObjectInfoAttribute : Attribute
   {
-    public readonly ObjectTypes ObjectType;
     public readonly ObjectType NativeObjectType;
+    public readonly ObjectTypes ObjectType;
 
     public NativeObjectInfoAttribute(ObjectTypes objectType, ObjectType nativeObjectType)
     {

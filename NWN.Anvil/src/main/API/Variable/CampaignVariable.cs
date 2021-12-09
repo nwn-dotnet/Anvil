@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NWN.Core;
 
 namespace Anvil.API
@@ -36,12 +37,22 @@ namespace Anvil.API
     /// </summary>
     public abstract T Value { get; set; }
 
+    public static bool operator ==(CampaignVariable<T> left, CampaignVariable<T> right)
+    {
+      return Equals(left, right);
+    }
+
     /// <summary>
     /// Implicit conversion of the value of this variable.
     /// </summary>
     public static implicit operator T(CampaignVariable<T> value)
     {
       return value.Value;
+    }
+
+    public static bool operator !=(CampaignVariable<T> left, CampaignVariable<T> right)
+    {
+      return !Equals(left, right);
     }
 
     public override void Delete()
@@ -61,7 +72,7 @@ namespace Anvil.API
         return true;
       }
 
-      return Equals(Value, other.Value);
+      return EqualityComparer<T>.Default.Equals(Value, other.Value);
     }
 
     public override bool Equals(object obj)
@@ -86,17 +97,7 @@ namespace Anvil.API
 
     public override int GetHashCode()
     {
-      return Value != null ? Value.GetHashCode() : 0;
-    }
-
-    public static bool operator ==(CampaignVariable<T> left, CampaignVariable<T> right)
-    {
-      return Equals(left, right);
-    }
-
-    public static bool operator !=(CampaignVariable<T> left, CampaignVariable<T> right)
-    {
-      return !Equals(left, right);
+      return EqualityComparer<T>.Default.GetHashCode(Value);
     }
   }
 }

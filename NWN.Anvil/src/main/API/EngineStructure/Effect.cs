@@ -6,21 +6,25 @@ namespace Anvil.API
 {
   public sealed partial class Effect : EffectBase
   {
-    internal Effect(IntPtr handle, CGameEffect effect) : base(handle, effect) {}
+    internal const int DurationMask = 0x7;
+    internal const int SubTypeMask = 0x18;
 
-    protected override int StructureId
+    internal Effect(CGameEffect effect) : base(effect) {}
+
+    /// <summary>
+    /// Gets the remaining duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
+    /// </summary>
+    public float DurationRemaining
     {
-      get => NWScript.ENGINE_STRUCTURE_EFFECT;
+      get => NWScript.GetEffectDurationRemaining(this);
     }
 
-    public static implicit operator Effect(IntPtr intPtr)
+    /// <summary>
+    /// Gets the duration type (Temporary, Instant, Permanent) of this effect.
+    /// </summary>
+    public EffectDuration DurationType
     {
-      return new Effect(intPtr, CGameEffect.FromPointer(intPtr));
-    }
-
-    public static explicit operator Effect(ItemProperty itemProperty)
-    {
-      return new Effect(itemProperty, itemProperty);
+      get => (EffectDuration)(Effect.m_nSubType & DurationMask);
     }
 
     /// <summary>
@@ -32,27 +36,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the duration type (Temporary, Instant, Permanent) of this effect.
+    /// Gets or sets the subtype of this effect.
     /// </summary>
-    public EffectDuration DurationType
+    public EffectSubType SubType
     {
-      get => (EffectDuration)NWScript.GetEffectDurationType(this);
-    }
-
-    /// <summary>
-    /// Gets the total duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
-    /// </summary>
-    public float TotalDuration
-    {
-      get => NWScript.GetEffectDuration(this);
-    }
-
-    /// <summary>
-    /// Gets the remaining duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
-    /// </summary>
-    public float DurationRemaining
-    {
-      get => NWScript.GetEffectDurationRemaining(this);
+      get => (EffectSubType)(Effect.m_nSubType & SubTypeMask);
+      set => Effect.m_nSubType = (ushort)(value | (EffectSubType)DurationType);
     }
 
     /// <summary>
@@ -65,12 +54,26 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the subtype of this effect.
+    /// Gets the total duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
     /// </summary>
-    public EffectSubType SubType
+    public float TotalDuration
     {
-      get => (EffectSubType)Effect.m_nSubType;
-      set => Effect.m_nSubType = (ushort)value;
+      get => NWScript.GetEffectDuration(this);
+    }
+
+    protected override int StructureId
+    {
+      get => NWScript.ENGINE_STRUCTURE_EFFECT;
+    }
+
+    public static explicit operator Effect(ItemProperty itemProperty)
+    {
+      return new Effect(itemProperty);
+    }
+
+    public static implicit operator Effect(IntPtr intPtr)
+    {
+      return new Effect(CGameEffect.FromPointer(intPtr));
     }
 
     /// <summary>
@@ -81,7 +84,7 @@ namespace Anvil.API
       CGameEffect clone = new CGameEffect(true.ToInt());
       clone.CopyEffect(this, false.ToInt());
 
-      return new Effect(clone.Pointer, clone);
+      return new Effect(clone);
     }
   }
 }

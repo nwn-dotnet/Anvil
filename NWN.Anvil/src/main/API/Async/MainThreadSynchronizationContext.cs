@@ -13,8 +13,29 @@ namespace Anvil.API
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly List<QueuedTask> queuedTasks = new List<QueuedTask>();
     private readonly List<QueuedTask> currentWork = new List<QueuedTask>();
+    private readonly List<QueuedTask> queuedTasks = new List<QueuedTask>();
+
+    public IAwaiter GetAwaiter()
+    {
+      return new SynchronizationContextAwaiter(this);
+    }
+
+    public override void Post(SendOrPostCallback callback, object state)
+    {
+      lock (queuedTasks)
+      {
+        queuedTasks.Add(new QueuedTask(callback, state));
+      }
+    }
+
+    public override void Send(SendOrPostCallback callback, object state)
+    {
+      lock (queuedTasks)
+      {
+        queuedTasks.Add(new QueuedTask(callback, state));
+      }
+    }
 
     void IUpdateable.Update()
     {
@@ -39,27 +60,6 @@ namespace Anvil.API
       {
         currentWork.Clear();
       }
-    }
-
-    public override void Post(SendOrPostCallback callback, object state)
-    {
-      lock (queuedTasks)
-      {
-        queuedTasks.Add(new QueuedTask(callback, state));
-      }
-    }
-
-    public override void Send(SendOrPostCallback callback, object state)
-    {
-      lock (queuedTasks)
-      {
-        queuedTasks.Add(new QueuedTask(callback, state));
-      }
-    }
-
-    public IAwaiter GetAwaiter()
-    {
-      return new SynchronizationContextAwaiter(this);
     }
 
     private readonly struct QueuedTask

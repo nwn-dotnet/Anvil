@@ -8,57 +8,57 @@ namespace Anvil.API.Events
 {
   public sealed class OnCreatureAttack : IEvent
   {
+    public NwCreature Attacker { get; private init; }
+
+    public int AttackModifier { get; private init; }
+
+    public int AttackNumber { get; private init; }
+
     public AttackResult AttackResult
     {
       get => (AttackResult)CombatAttackData.m_nAttackResult;
       set => CombatAttackData.m_nAttackResult = (byte)value;
     }
 
-    public NwCreature Attacker { get; private init; }
-
-    public NwGameObject Target { get; private init; }
-
-    public int AttackNumber { get; private init; }
-
-    public WeaponAttackType WeaponAttackType { get; private init; }
-
-    public SneakAttack SneakAttack { get; private init; }
+    public byte AttackRoll { get; private init; }
 
     public int AttackType { get; private init; }
 
-    public bool KillingBlow { get; private init; }
-
-    public byte AttackRoll { get; private init; }
-
-    public int AttackModifier { get; private init; }
-
-    public bool IsRangedAttack { get; private init; }
-
-    public bool IsCoupDeGrace { get; private init; }
+    public DamageData<short> DamageData { get; private init; }
 
     public bool IsAttackDeflected { get; private init; }
 
+    public bool IsCoupDeGrace { get; private init; }
+
     public bool IsCriticalThreat { get; private init; }
 
-    public DamageData<short> DamageData { get; private init; }
+    public bool IsRangedAttack { get; private init; }
+
+    public bool KillingBlow { get; private init; }
+
+    public SneakAttack SneakAttack { get; private init; }
+
+    public NwGameObject Target { get; private init; }
 
     public int TotalDamage { get; private init; }
 
-    private CNWSCombatAttackData CombatAttackData { get; init; }
+    public WeaponAttackType WeaponAttackType { get; private init; }
 
     NwObject IEvent.Context
     {
       get => Attacker;
     }
 
+    private CNWSCombatAttackData CombatAttackData { get; init; }
+
     internal sealed unsafe class Factory : MultiHookEventFactory
     {
+      private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook;
+      private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook;
+
       internal delegate void SignalMeleeDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
       internal delegate void SignalRangedDamageHook(void* pCreature, void* pTarget, int nAttacks);
-
-      private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook;
-      private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook;
 
       protected override IDisposable[] RequestHooks()
       {
@@ -69,30 +69,6 @@ namespace Anvil.API.Events
         signalRangedDamageHook = HookService.RequestHook<SignalRangedDamageHook>(pSignalRangedDamageHook, FunctionsLinux._ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti, HookOrder.Late);
 
         return new IDisposable[] { signalMeleeDamageHook, signalRangedDamageHook };
-      }
-
-      [UnmanagedCallersOnly]
-      private static void OnSignalMeleeDamage(void* pCreature, void* pTarget, int nAttacks)
-      {
-        OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
-        foreach (OnCreatureAttack eventData in attackEvents)
-        {
-          ProcessEvent(eventData);
-        }
-
-        signalMeleeDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
-      }
-
-      [UnmanagedCallersOnly]
-      private static void OnSignalRangedDamage(void* pCreature, void* pTarget, int nAttacks)
-      {
-        OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
-        foreach (OnCreatureAttack eventData in attackEvents)
-        {
-          ProcessEvent(eventData);
-        }
-
-        signalRangedDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
       }
 
       private static OnCreatureAttack[] GetAttackEvents(void* pCreature, void* pTarget, int nAttacks)
@@ -138,6 +114,30 @@ namespace Anvil.API.Events
           DamageData = new DamageData<short>(combatAttackData.m_nDamage),
           TotalDamage = combatAttackData.GetTotalDamage(),
         };
+      }
+
+      [UnmanagedCallersOnly]
+      private static void OnSignalMeleeDamage(void* pCreature, void* pTarget, int nAttacks)
+      {
+        OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
+        foreach (OnCreatureAttack eventData in attackEvents)
+        {
+          ProcessEvent(eventData);
+        }
+
+        signalMeleeDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
+      }
+
+      [UnmanagedCallersOnly]
+      private static void OnSignalRangedDamage(void* pCreature, void* pTarget, int nAttacks)
+      {
+        OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
+        foreach (OnCreatureAttack eventData in attackEvents)
+        {
+          ProcessEvent(eventData);
+        }
+
+        signalRangedDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
       }
     }
   }

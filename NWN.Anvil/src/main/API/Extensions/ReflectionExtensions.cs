@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using Anvil.Services;
 
 namespace Anvil.API
 {
@@ -44,6 +45,16 @@ namespace Anvil.API
     {
       // GetCustomAttribute(Type) or GetCustomAttribute<T>() will throw an exception on types with missing assembly references, as they navigate into the type.
       return memberInfo.GetCustomAttributes(inherit).OfType<T>().FirstOrDefault();
+    }
+
+    internal static int GetServicePriority(this Type type)
+    {
+      ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+
+      int bindingPriority = options?.Priority ?? (int)InternalBindingPriority.Default;
+      bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);
+
+      return bindingPriority;
     }
   }
 }

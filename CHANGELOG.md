@@ -3,6 +3,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.33.5
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...v8193.33.5
+
+### Added
+- NwModule: Added `LimboGameObjects` property to list all GameObjects currently stored in limbo.
+- NwModule: Added `MoveObjectToLimbo` method to remove a GameObject from an area and store it in limbo.
+- NwCreature: Added `AlwaysWalk` and `WalkRateCap` for restricting creature & player movement.
+- Added `OnCheckEffectImmunity` event for bypassing effect immunity checks.
+- Added `OnEffectApply` and `OnEffectRemove` events.
+- Added ruleset APIs: `NwRuleset`, `NwBaseItem`, `NwClass`, `NwFeat`, `NwRace` `NwSkill` and `NwSpell`
+
+### Changed
+- Migrated LoopTimeService properties to static class `Anvil.API.Time`.
+- Exposed `ScheduledTask` to Scheduler Service.
+- Services implementing `IUpdateable` are now executed in deterministic order based on the service binding order defined in `ServiceBindingOptions`.
+
+### Deprecated
+- `LoopTimeService` - use `Anvil.API.Time` instead.
+- Moved `NwDateTime` and `NwTimeSpan` to `Anvil.API` namespace.
+- Duplicated APIs `NwItem.CanStack`/`NwItem.IsStackable`. Use `NwBaseItem.IsStackable` instead.
+
 ## 8193.33.4
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.3...v8193.33.4
 

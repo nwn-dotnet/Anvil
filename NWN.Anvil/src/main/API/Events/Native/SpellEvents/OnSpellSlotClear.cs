@@ -8,15 +8,14 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellSlotClear : IEvent
   {
-    public bool PreventClear { get; set; }
-
-    public NwCreature Creature { get; private init; }
-
     public int ClassIndex { get; private init; }
 
-    public int SpellLevel { get; private init; }
+    public NwCreature Creature { get; private init; }
+    public bool PreventClear { get; set; }
 
     public int SlotIndex { get; private init; }
+
+    public int SpellLevel { get; private init; }
 
     NwObject IEvent.Context
     {

@@ -11,19 +11,14 @@ namespace Anvil.API
       this.persistantWorldOptions = persistantWorldOptions;
     }
 
-    public bool VaultCharactersOnly
-    {
-      get => persistantWorldOptions.bVaultCharsOnly.ToBool();
-    }
-
     public bool SaveCharactersInSaveGame
     {
       get => persistantWorldOptions.bSaveCharsInSaveGame.ToBool();
     }
 
-    public bool SuppressBaseServerVault
+    public bool ServerVaultByPlayerName
     {
-      get => persistantWorldOptions.bSuppressBaseServerVault.ToBool();
+      get => persistantWorldOptions.bServerVaultByPlayerName.ToBool();
     }
 
     public bool StickyPlayerNames
@@ -31,9 +26,14 @@ namespace Anvil.API
       get => persistantWorldOptions.bStickyPlayerNames.ToBool();
     }
 
-    public bool ServerVaultByPlayerName
+    public bool SuppressBaseServerVault
     {
-      get => persistantWorldOptions.bServerVaultByPlayerName.ToBool();
+      get => persistantWorldOptions.bSuppressBaseServerVault.ToBool();
+    }
+
+    public bool VaultCharactersOnly
+    {
+      get => persistantWorldOptions.bVaultCharsOnly.ToBool();
     }
   }
 }

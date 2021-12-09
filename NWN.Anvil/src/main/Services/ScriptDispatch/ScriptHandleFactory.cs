@@ -11,9 +11,38 @@ namespace Anvil.Services
   [ServiceBinding(typeof(IScriptDispatcher))]
   public sealed class ScriptHandleFactory : IScriptDispatcher
   {
+    private readonly Dictionary<string, ScriptCallbackHandle> activeHandlers = new Dictionary<string, ScriptCallbackHandle>();
     public int ExecutionOrder { get; } = 0;
 
-    private readonly Dictionary<string, ScriptCallbackHandle> activeHandlers = new Dictionary<string, ScriptCallbackHandle>();
+    /// <summary>
+    /// Creates a unique script callback handle for the specified callback method.<br/>
+    /// The returned handle can be used for certain API functions that take a script name as a parameter.
+    /// </summary>
+    /// <param name="handler">The callback function.</param>
+    /// <returns>The callback handle.</returns>
+    public ScriptCallbackHandle CreateUniqueHandler(Func<CallInfo, ScriptHandleResult> handler)
+    {
+      string scriptName;
+
+      do
+      {
+        scriptName = ResourceNameGenerator.Create();
+      }
+      while (IsScriptRegistered(scriptName));
+
+      ScriptCallbackHandle handle = RegisterScriptHandler(scriptName, handler);
+      return handle;
+    }
+
+    /// <summary>
+    /// Gets if the specified script name has a script handler already defined.
+    /// </summary>
+    /// <param name="scriptName">The script name to query.</param>
+    /// <returns>True if a handler already exists, otherwise false.</returns>
+    public bool IsScriptRegistered(string scriptName)
+    {
+      return activeHandlers.ContainsKey(scriptName);
+    }
 
     /// <summary>
     /// Registers the specified action as a callback for the specified script name.
@@ -43,26 +72,6 @@ namespace Anvil.Services
     }
 
     /// <summary>
-    /// Creates a unique script callback handle for the specified callback method.<br/>
-    /// The returned handle can be used for certain API functions that take a script name as a parameter.
-    /// </summary>
-    /// <param name="handler">The callback function.</param>
-    /// <returns>The callback handle.</returns>
-    public ScriptCallbackHandle CreateUniqueHandler(Func<CallInfo, ScriptHandleResult> handler)
-    {
-      string scriptName;
-
-      do
-      {
-        scriptName = ResourceNameGenerator.Create();
-      }
-      while (IsScriptRegistered(scriptName));
-
-      ScriptCallbackHandle handle = RegisterScriptHandler(scriptName, handler);
-      return handle;
-    }
-
-    /// <summary>
     /// Unregisters any handler assigned to the specified script.
     /// </summary>
     /// <param name="scriptName">The script name to unregister.</param>
@@ -75,16 +84,6 @@ namespace Anvil.Services
       }
 
       return activeHandlers.Remove(scriptName);
-    }
-
-    /// <summary>
-    /// Gets if the specified script name has a script handler already defined.
-    /// </summary>
-    /// <param name="scriptName">The script name to query.</param>
-    /// <returns>True if a handler already exists, otherwise false.</returns>
-    public bool IsScriptRegistered(string scriptName)
-    {
-      return activeHandlers.ContainsKey(scriptName);
     }
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)

@@ -14,25 +14,32 @@ namespace Anvil.Services
   {
     private static readonly CServerExoApp ServerExoApp = NWNXLib.AppManager().m_pServerExoApp;
 
-    private delegate void SendFeedbackMessageHook(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer);
-
-    private delegate int SendServerToPlayerCCMessageHook(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData);
-
-    private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString);
-
-    private readonly HookService hookService;
-
     private readonly HashSet<CombatLogMessage> globalFilterListCombatMessage = new HashSet<CombatLogMessage>();
     private readonly HashSet<FeedbackMessage> globalFilterListFeedbackMessage = new HashSet<FeedbackMessage>();
 
+    private readonly HookService hookService;
+
     private readonly Dictionary<uint, HashSet<CombatLogMessage>> playerFilterListCombatMessage = new Dictionary<uint, HashSet<CombatLogMessage>>();
     private readonly Dictionary<uint, HashSet<FeedbackMessage>> playerFilterListFeedbackMessage = new Dictionary<uint, HashSet<FeedbackMessage>>();
+
+    private FilterMode combatMessageFilterMode;
+
+    private FilterMode feedbackMessageFilterMode;
 
     private FunctionHook<SendFeedbackMessageHook> sendFeedbackMessageHook;
     private FunctionHook<SendServerToPlayerCCMessageHook> sendServerToPlayerCCMessageHook;
     private FunctionHook<SendServerToPlayerJournalUpdatedHook> sendServerToPlayerJournalUpdatedHook;
 
-    private FilterMode combatMessageFilterMode;
+    public FeedbackService(HookService hookService)
+    {
+      this.hookService = hookService;
+    }
+
+    private delegate void SendFeedbackMessageHook(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer);
+
+    private delegate int SendServerToPlayerCCMessageHook(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData);
+
+    private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString);
 
     public FilterMode CombatMessageFilterMode
     {
@@ -47,8 +54,6 @@ namespace Anvil.Services
         }
       }
     }
-
-    private FilterMode feedbackMessageFilterMode;
 
     public FilterMode FeedbackMessageFilterMode
     {
@@ -65,11 +70,6 @@ namespace Anvil.Services
             FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
         }
       }
-    }
-
-    public FeedbackService(HookService hookService)
-    {
-      this.hookService = hookService;
     }
 
     public void AddCombatLogMessageFilter(CombatLogMessage message)
@@ -120,24 +120,14 @@ namespace Anvil.Services
       playerFilterListFeedbackMessage.AddElement(player.ControlledCreature, message);
     }
 
-    public void RemoveFeedbackMessageFilter(FeedbackMessage message)
+    public bool IsCombatLogMessageHidden(CombatLogMessage message)
     {
-      globalFilterListFeedbackMessage.Remove(message);
+      return IsMessageHidden(globalFilterListCombatMessage, message, CombatMessageFilterMode);
     }
 
-    public void RemoveFeedbackMessageFilter(FeedbackMessage message, NwPlayer player)
+    public bool IsCombatLogMessageHidden(CombatLogMessage message, NwPlayer player)
     {
-      playerFilterListFeedbackMessage.RemoveElement(player.ControlledCreature, message);
-    }
-
-    public void RemoveCombatMessageFilter(CombatLogMessage message)
-    {
-      globalFilterListCombatMessage.Remove(message);
-    }
-
-    public void RemoveCombatMessageFilter(CombatLogMessage message, NwPlayer player)
-    {
-      playerFilterListCombatMessage.RemoveElement(player.ControlledCreature, message);
+      return IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player.ControlledCreature, message, CombatMessageFilterMode);
     }
 
     public bool IsFeedbackMessageHidden(FeedbackMessage message)
@@ -150,14 +140,31 @@ namespace Anvil.Services
       return IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.ControlledCreature, message, FeedbackMessageFilterMode);
     }
 
-    public bool IsCombatLogMessageHidden(CombatLogMessage message)
+    public void RemoveCombatMessageFilter(CombatLogMessage message)
     {
-      return IsMessageHidden(globalFilterListCombatMessage, message, CombatMessageFilterMode);
+      globalFilterListCombatMessage.Remove(message);
     }
 
-    public bool IsCombatLogMessageHidden(CombatLogMessage message, NwPlayer player)
+    public void RemoveCombatMessageFilter(CombatLogMessage message, NwPlayer player)
     {
-      return IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player.ControlledCreature, message, CombatMessageFilterMode);
+      playerFilterListCombatMessage.RemoveElement(player.ControlledCreature, message);
+    }
+
+    public void RemoveFeedbackMessageFilter(FeedbackMessage message)
+    {
+      globalFilterListFeedbackMessage.Remove(message);
+    }
+
+    public void RemoveFeedbackMessageFilter(FeedbackMessage message, NwPlayer player)
+    {
+      playerFilterListFeedbackMessage.RemoveElement(player.ControlledCreature, message);
+    }
+
+    void IDisposable.Dispose()
+    {
+      sendFeedbackMessageHook?.Dispose();
+      sendServerToPlayerCCMessageHook?.Dispose();
+      sendServerToPlayerJournalUpdatedHook?.Dispose();
     }
 
     private bool IsMessageHidden<T>(HashSet<T> globalFilter, T message, FilterMode filterMode)
@@ -203,13 +210,6 @@ namespace Anvil.Services
       }
 
       return sendServerToPlayerJournalUpdatedHook.CallOriginal(pMessage, pPlayer, bQuest, bCompleted, cExoLocString);
-    }
-
-    void IDisposable.Dispose()
-    {
-      sendFeedbackMessageHook?.Dispose();
-      sendServerToPlayerCCMessageHook?.Dispose();
-      sendServerToPlayerJournalUpdatedHook?.Dispose();
     }
   }
 }

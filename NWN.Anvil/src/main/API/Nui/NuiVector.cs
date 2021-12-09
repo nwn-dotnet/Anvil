@@ -19,6 +19,16 @@ namespace Anvil.API
       Y = y;
     }
 
+    public static NuiVector operator +(NuiVector a, NuiVector b)
+    {
+      return new NuiVector(a.X + b.X, a.Y + b.Y);
+    }
+
+    public static bool operator ==(NuiVector left, NuiVector right)
+    {
+      return left.Equals(right);
+    }
+
     public static implicit operator Vector2(NuiVector vector)
     {
       return new Vector2(vector.X, vector.Y);
@@ -29,14 +39,14 @@ namespace Anvil.API
       return new NuiVector(vector.X, vector.Y);
     }
 
+    public static bool operator !=(NuiVector left, NuiVector right)
+    {
+      return !left.Equals(right);
+    }
+
     public static NuiVector operator -(NuiVector a, NuiVector b)
     {
       return new NuiVector(a.X - b.X, a.Y - b.Y);
-    }
-
-    public static NuiVector operator +(NuiVector a, NuiVector b)
-    {
-      return new NuiVector(a.X + b.X, a.Y + b.Y);
     }
 
     public bool Equals(NuiVector other)
@@ -52,16 +62,6 @@ namespace Anvil.API
     public override int GetHashCode()
     {
       return HashCode.Combine(X, Y);
-    }
-
-    public static bool operator ==(NuiVector left, NuiVector right)
-    {
-      return left.Equals(right);
-    }
-
-    public static bool operator !=(NuiVector left, NuiVector right)
-    {
-      return !left.Equals(right);
     }
   }
 }

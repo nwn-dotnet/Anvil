@@ -8,11 +8,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiButtonSelect : NuiWidget
   {
-    public override string Type
-    {
-      get => "button_select";
-    }
-
     [JsonConstructor]
     public NuiButtonSelect(NuiProperty<string> label, NuiProperty<bool> selected)
     {
@@ -25,5 +20,10 @@ namespace Anvil.API
 
     [JsonProperty("value")]
     public NuiProperty<bool> Selected { get; set; }
+
+    public override string Type
+    {
+      get => "button_select";
+    }
   }
 }

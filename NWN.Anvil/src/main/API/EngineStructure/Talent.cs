@@ -7,24 +7,6 @@ namespace Anvil.API
   {
     internal Talent(IntPtr handle) : base(handle) {}
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_TALENT;
-    }
-
-    public static implicit operator Talent(IntPtr intPtr)
-    {
-      return new Talent(intPtr);
-    }
-
-    /// <summary>
-    /// Gets the associated spell, if this talent is a spell.
-    /// </summary>
-    public Spell Spell
-    {
-      get => (Spell)TryGetId(TalentType.Spell);
-    }
-
     /// <summary>
     /// Gets the associated feat, if this talent is a feat.
     /// </summary>
@@ -42,6 +24,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the associated spell, if this talent is a spell.
+    /// </summary>
+    public Spell Spell
+    {
+      get => (Spell)TryGetId(TalentType.Spell);
+    }
+
+    /// <summary>
     /// Gets the type of this talent (Spell/Feat/Skill).
     /// </summary>
     public TalentType Type
@@ -55,6 +45,16 @@ namespace Anvil.API
     public bool Valid
     {
       get => NWScript.GetIsTalentValid(this).ToBool();
+    }
+
+    protected override int StructureId
+    {
+      get => NWScript.ENGINE_STRUCTURE_TALENT;
+    }
+
+    public static implicit operator Talent(IntPtr intPtr)
+    {
+      return new Talent(intPtr);
     }
 
     private int TryGetId(TalentType expectedType)

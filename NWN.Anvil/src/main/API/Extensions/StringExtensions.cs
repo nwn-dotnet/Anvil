@@ -11,9 +11,36 @@ namespace Anvil.API
   {
     private static readonly Regex StripColorsRegex = new Regex("<c.+?(?=>)>|<\\/c>");
 
-    public static bool TryParseFloat(this string floatString, out float result)
+    public static void AppendColored(this StringBuilder stringBuilder, string text, Color color)
     {
-      return float.TryParse(floatString, out result);
+      stringBuilder.Append(ColorString(text, color));
+    }
+
+    public static string ColorString(this string input, Color color)
+    {
+      return $"<c{color.ToColorToken()}>{input}</c>";
+    }
+
+    public static bool IsReservedScriptName(this string scriptName)
+    {
+      if (string.IsNullOrEmpty(scriptName))
+      {
+        return false;
+      }
+
+      string lowerName = scriptName.ToLower();
+      return lowerName is ScriptConstants.GameEventScriptName or ScriptConstants.NWNXEventScriptName;
+    }
+
+    public static bool IsValidScriptName(this string scriptName)
+    {
+      if (string.IsNullOrEmpty(scriptName))
+      {
+        return false;
+      }
+
+      string lowerName = scriptName.ToLower();
+      return lowerName != ScriptConstants.GameEventScriptName && lowerName != ScriptConstants.NWNXEventScriptName;
     }
 
     /// <inheritdoc cref="ParseFloat(string,float)"/>
@@ -32,11 +59,6 @@ namespace Anvil.API
       return float.TryParse(floatString, out float retVal) ? retVal : defaultValue;
     }
 
-    public static bool TryParseInt(this string intString, out int result)
-    {
-      return int.TryParse(intString, out result);
-    }
-
     /// <inheritdoc cref="ParseInt(string,int)"/>
     public static int ParseInt(this string intString)
     {
@@ -51,14 +73,6 @@ namespace Anvil.API
     public static int ParseInt(this string intString, int defaultValue)
     {
       return int.TryParse(intString, out int retVal) ? retVal : defaultValue;
-    }
-
-    public static bool TryParseIntBool(this string intBoolString, out bool result)
-    {
-      bool retVal = int.TryParse(intBoolString, out int intResult);
-      result = intResult.ToBool();
-
-      return retVal;
     }
 
     /// <inheritdoc cref="ParseIntBool(string,bool)"/>
@@ -94,56 +108,20 @@ namespace Anvil.API
       return uint.Parse(objectIdString, NumberStyles.HexNumber).ToNwObject<T>();
     }
 
-    public static void AppendColored(this StringBuilder stringBuilder, string text, Color color)
+    public static string ReadBlock(this StringReader stringReader, int length)
     {
-      stringBuilder.Append(ColorString(text, color));
-    }
+      char[] retVal = new char[length];
 
-    public static string ColorString(this string input, Color color)
-    {
-      return $"<c{color.ToColorToken()}>{input}</c>";
-    }
+      int next;
+      int i = 0;
 
-    /// <summary>
-    /// Strip any color codes from a string.
-    /// </summary>
-    /// <param name="input">The string to strip of color.</param>
-    /// <returns>The new string without any color codes.</returns>
-    public static string StripColors(this string input)
-    {
-      return StripColorsRegex.Replace(input, string.Empty);
-    }
-
-    public static string ToBase64EncodedString(this byte[] data)
-    {
-      return Convert.ToBase64String(data);
-    }
-
-    public static byte[] ToByteArray(this string base64String)
-    {
-      return Convert.FromBase64String(base64String);
-    }
-
-    public static bool IsValidScriptName(this string scriptName)
-    {
-      if (string.IsNullOrEmpty(scriptName))
+      while (i < length && (next = stringReader.Read()) >= 0)
       {
-        return false;
+        retVal[i] = (char)next;
+        i++;
       }
 
-      string lowerName = scriptName.ToLower();
-      return lowerName != ScriptConstants.GameEventScriptName && lowerName != ScriptConstants.NWNXEventScriptName;
-    }
-
-    public static bool IsReservedScriptName(this string scriptName)
-    {
-      if (string.IsNullOrEmpty(scriptName))
-      {
-        return false;
-      }
-
-      string lowerName = scriptName.ToLower();
-      return lowerName is ScriptConstants.GameEventScriptName or ScriptConstants.NWNXEventScriptName;
+      return new string(retVal, 0, i);
     }
 
     public static string ReadUntilChar(this StringReader stringReader, char character)
@@ -166,28 +144,50 @@ namespace Anvil.API
       return new string(retVal.ToArray());
     }
 
-    public static string ReadBlock(this StringReader stringReader, int length)
-    {
-      char[] retVal = new char[length];
-
-      int next;
-      int i = 0;
-
-      while (i < length && (next = stringReader.Read()) >= 0)
-      {
-        retVal[i] = (char)next;
-        i++;
-      }
-
-      return new string(retVal, 0, i);
-    }
-
     public static void Skip(this StringReader stringReader, int count)
     {
       for (int i = 0; i < count; i++)
       {
         stringReader.Read();
       }
+    }
+
+    /// <summary>
+    /// Strip any color codes from a string.
+    /// </summary>
+    /// <param name="input">The string to strip of color.</param>
+    /// <returns>The new string without any color codes.</returns>
+    public static string StripColors(this string input)
+    {
+      return StripColorsRegex.Replace(input, string.Empty);
+    }
+
+    public static string ToBase64EncodedString(this byte[] data)
+    {
+      return Convert.ToBase64String(data);
+    }
+
+    public static byte[] ToByteArray(this string base64String)
+    {
+      return Convert.FromBase64String(base64String);
+    }
+
+    public static bool TryParseFloat(this string floatString, out float result)
+    {
+      return float.TryParse(floatString, out result);
+    }
+
+    public static bool TryParseInt(this string intString, out int result)
+    {
+      return int.TryParse(intString, out result);
+    }
+
+    public static bool TryParseIntBool(this string intBoolString, out bool result)
+    {
+      bool retVal = int.TryParse(intBoolString, out int intResult);
+      result = intResult.ToBool();
+
+      return retVal;
     }
   }
 }

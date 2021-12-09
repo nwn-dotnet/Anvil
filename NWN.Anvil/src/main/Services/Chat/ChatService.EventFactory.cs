@@ -16,24 +16,6 @@ namespace Anvil.Services
 
     private bool isEventHooked;
 
-    private bool ProcessEvent(ChatChannel chatChannel, string message, NwObject sender, NwPlayer target)
-    {
-      OnChatMessageSend eventData = null;
-
-      VirtualMachine.ExecuteInScriptContext(() =>
-      {
-        eventData = EventService.Value.ProcessEvent(new OnChatMessageSend
-        {
-          ChatChannel = chatChannel,
-          Message = message,
-          Sender = sender,
-          Target = target,
-        });
-      });
-
-      return eventData.Skip;
-    }
-
     void IEventFactory<NullRegistrationData>.Register<TEvent>(NullRegistrationData data)
     {
       if (typeof(TEvent) != typeof(OnChatMessageSend))
@@ -52,6 +34,24 @@ namespace Anvil.Services
       }
 
       isEventHooked = false;
+    }
+
+    private bool ProcessEvent(ChatChannel chatChannel, string message, NwObject sender, NwPlayer target)
+    {
+      OnChatMessageSend eventData = null;
+
+      VirtualMachine.ExecuteInScriptContext(() =>
+      {
+        eventData = EventService.Value.ProcessEvent(new OnChatMessageSend
+        {
+          ChatChannel = chatChannel,
+          Message = message,
+          Sender = sender,
+          Target = target,
+        });
+      });
+
+      return eventData.Skip;
     }
   }
 }

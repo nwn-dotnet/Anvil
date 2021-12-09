@@ -12,10 +12,10 @@ namespace Anvil.API
       set => *NWNXLib.EnableCombatDebugging() = value.ToInt();
     }
 
-    public bool EnableSavingThrowDebugging
+    public bool EnableHitDieDebugging
     {
-      get => (*NWNXLib.EnableSavingThrowDebugging()).ToBool();
-      set => *NWNXLib.EnableSavingThrowDebugging() = value.ToInt();
+      get => (*NWNXLib.EnableHitDieDebugging()).ToBool();
+      set => *NWNXLib.EnableHitDieDebugging() = value.ToInt();
     }
 
     public bool EnableMovementSpeedDebugging
@@ -24,10 +24,10 @@ namespace Anvil.API
       set => *NWNXLib.EnableMovementSpeedDebugging() = value.ToInt();
     }
 
-    public bool EnableHitDieDebugging
+    public bool EnableSavingThrowDebugging
     {
-      get => (*NWNXLib.EnableHitDieDebugging()).ToBool();
-      set => *NWNXLib.EnableHitDieDebugging() = value.ToInt();
+      get => (*NWNXLib.EnableSavingThrowDebugging()).ToBool();
+      set => *NWNXLib.EnableSavingThrowDebugging() = value.ToInt();
     }
   }
 }

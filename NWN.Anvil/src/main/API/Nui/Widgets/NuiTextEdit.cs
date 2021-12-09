@@ -7,11 +7,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiTextEdit : NuiWidget
   {
-    public override string Type
-    {
-      get => "textedit";
-    }
-
     [JsonConstructor]
     public NuiTextEdit(NuiProperty<string> label, NuiProperty<string> value, ushort maxLength, bool multiLine)
     {
@@ -24,13 +19,18 @@ namespace Anvil.API
     [JsonProperty("label")]
     public NuiProperty<string> Label { get; set; }
 
-    [JsonProperty("value")]
-    public NuiProperty<string> Value { get; set; }
-
     [JsonProperty("max")]
     public ushort MaxLength { get; set; }
 
     [JsonProperty("multiline")]
     public bool MultiLine { get; set; }
+
+    public override string Type
+    {
+      get => "textedit";
+    }
+
+    [JsonProperty("value")]
+    public NuiProperty<string> Value { get; set; }
   }
 }

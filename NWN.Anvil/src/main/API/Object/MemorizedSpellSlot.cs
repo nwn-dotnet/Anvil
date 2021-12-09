@@ -8,10 +8,22 @@ namespace Anvil.API
     private readonly byte spellLevel;
     private readonly byte spellSlot;
 
-    public Spell Spell
+    internal MemorizedSpellSlot(CNWSCreatureStats_ClassInfo classInfo, byte spellLevel, byte spellSlot)
     {
-      get => (Spell)classInfo.GetMemorizedSpellInSlot(spellLevel, spellSlot);
-      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, (uint)value, IsDomainSpell.ToInt(), (byte)MetaMagic);
+      this.classInfo = classInfo;
+      this.spellLevel = spellLevel;
+      this.spellSlot = spellSlot;
+    }
+
+    public bool IsDomainSpell
+    {
+      get => classInfo.GetIsDomainSpell(spellLevel, spellSlot).ToBool();
+      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, (uint)Spell, value.ToInt(), (byte)MetaMagic);
+    }
+
+    public bool IsPopulated
+    {
+      get => classInfo.GetMemorizedSpellInSlotDetails(spellLevel, spellSlot) != null;
     }
 
     public bool IsReady
@@ -26,22 +38,10 @@ namespace Anvil.API
       set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, (uint)Spell, IsDomainSpell.ToInt(), (byte)value);
     }
 
-    public bool IsDomainSpell
+    public Spell Spell
     {
-      get => classInfo.GetIsDomainSpell(spellLevel, spellSlot).ToBool();
-      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, (uint)Spell, value.ToInt(), (byte)MetaMagic);
-    }
-
-    public bool IsPopulated
-    {
-      get => classInfo.GetMemorizedSpellInSlotDetails(spellLevel, spellSlot) != null;
-    }
-
-    internal MemorizedSpellSlot(CNWSCreatureStats_ClassInfo classInfo, byte spellLevel, byte spellSlot)
-    {
-      this.classInfo = classInfo;
-      this.spellLevel = spellLevel;
-      this.spellSlot = spellSlot;
+      get => (Spell)classInfo.GetMemorizedSpellInSlot(spellLevel, spellSlot);
+      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, (uint)value, IsDomainSpell.ToInt(), (byte)MetaMagic);
     }
 
     public void ClearMemorizedSpell()

@@ -5,13 +5,12 @@ namespace Anvil.API.Events
 {
   public sealed class OnDMDumpLocals : IEvent
   {
-    public DumpLocalsType Type { get; internal init; }
-
-    public NwObject Target { get; internal init; }
-
     public NwPlayer DungeonMaster { get; internal init; }
 
     public bool Skip { get; set; }
+
+    public NwObject Target { get; internal init; }
+    public DumpLocalsType Type { get; internal init; }
 
     NwObject IEvent.Context
     {
