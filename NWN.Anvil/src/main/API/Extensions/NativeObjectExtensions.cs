@@ -1,13 +1,15 @@
 using System;
 using NWN.Native.API;
+
 namespace Anvil.API
 {
   public static class NativeObjectExtensions
   {
-    public static Effect ToEffect(this CGameEffect effect, bool preventGC = true)
+    public static Effect ToEffect(this CGameEffect effect, bool preventGc = true)
     {
       Effect retVal = effect != null && effect.Pointer != IntPtr.Zero ? new Effect(effect) : null;
-      if (retVal != null && preventGC) {
+
+      if (retVal != null && preventGc) {
         GC.SuppressFinalize(effect);
       }
 
