@@ -1437,15 +1437,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Forces this creature to join the specified standard faction. This will NOT work on players.
-    /// </summary>
-    /// <param name="newFaction">The NPCs new faction.</param>
-    public void ChangeToStandardFaction(StandardFaction newFaction)
-    {
-      NWScript.ChangeToStandardFaction(this, (int)newFaction);
-    }
-
-    /// <summary>
     /// Performs a spell resistance check between this creature, and the specified target object.
     /// </summary>
     /// <param name="target">The target of the spell.</param>

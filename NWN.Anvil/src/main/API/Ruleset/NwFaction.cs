@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Anvil.Internal;
+using NWN.Core;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -270,6 +271,32 @@ namespace Anvil.API
     public NwCreature GetWorstACMember(NwCreature referenceCreature = null, bool visible = false)
     {
       return faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+    }
+
+    /// <summary>
+    /// Gets an integer between 0 and 100 (inclusive) that represents how this faction feels about the specified target.<br/>
+    ///  -> 0-10 means this faction is hostile to the target<br/>
+    ///  -> 11-89 means this faction is neutral to the target<br/>
+    ///  -> 90-100 means this faction is friendly to the target.
+    /// </summary>
+    /// <param name="target">The target object.</param>
+    /// <returns>0-100 (inclusive) based on the standing of the target within this standard faction.</returns>
+    public int GetReputation(NwGameObject target)
+    {
+      return NWScript.GetStandardFactionReputation(FactionId, target);
+    }
+
+    /// <summary>
+    /// Sets how this faction feels about the specified creature.<br/>
+    ///  -> 0-10 means this faction is hostile to the target.<br/>
+    ///  -> 11-89 means this faction is neutral to the target.<br/>
+    ///  -> 90-100 means this faction is friendly to the target.
+    /// </summary>
+    /// <param name="target">The target object.</param>
+    /// <param name="newReputation">A value between 0-100 (inclusive).</param>
+    public void SetReputation(NwGameObject target, int newReputation)
+    {
+      NWScript.SetStandardFactionReputation(FactionId, newReputation, target);
     }
 
     internal void AddMember(NwCreature creature)

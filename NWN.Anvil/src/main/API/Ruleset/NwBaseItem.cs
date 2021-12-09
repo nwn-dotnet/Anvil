@@ -54,6 +54,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets if this base item is a monk weapon.
+    /// </summary>
+    public bool IsMonkWeapon
+    {
+      get => BaseItemInfo.m_bIsMonkWeapon.ToBool();
+    }
+
+    /// <summary>
     /// Gets or sets the preferred attack distance for this base item.
     /// </summary>
     public float PreferredAttackDistance
