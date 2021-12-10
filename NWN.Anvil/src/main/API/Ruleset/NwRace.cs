@@ -187,5 +187,10 @@ namespace Anvil.API
     {
       return raceInfo.IsFirstLevelGrantedFeat((ushort)feat.FeatType).ToBool();
     }
+
+    public static implicit operator NwRace(RacialType racialType)
+    {
+      return NwRuleset.Races.ElementAtOrDefault((int)racialType);
+    }
   }
 }

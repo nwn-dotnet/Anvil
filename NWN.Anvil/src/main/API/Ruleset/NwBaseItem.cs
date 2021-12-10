@@ -89,5 +89,10 @@ namespace Anvil.API
     {
       return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
     }
+
+    public static implicit operator NwBaseItem(BaseItemType itemType)
+    {
+      return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
+    }
   }
 }

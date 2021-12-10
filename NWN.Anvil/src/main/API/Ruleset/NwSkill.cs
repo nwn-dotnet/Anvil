@@ -108,5 +108,10 @@ namespace Anvil.API
     {
       return NwRuleset.Skills.ElementAtOrDefault((int)skillType);
     }
+
+    public static implicit operator NwSkill(Skill skillType)
+    {
+      return NwRuleset.Skills.ElementAtOrDefault((int)skillType);
+    }
   }
 }

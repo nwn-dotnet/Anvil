@@ -289,5 +289,10 @@ namespace Anvil.API
     {
       return NwRuleset.Feats.ElementAtOrDefault(featId);
     }
+
+    public static implicit operator NwFeat(Feat featType)
+    {
+      return NwRuleset.Feats.ElementAtOrDefault((int)featType);
+    }
   }
 }

@@ -303,5 +303,10 @@ namespace Anvil.API
     {
       faction.AddMember(creature);
     }
+
+    public static implicit operator NwFaction(StandardFaction faction)
+    {
+      return FromFactionId((int)faction);
+    }
   }
 }

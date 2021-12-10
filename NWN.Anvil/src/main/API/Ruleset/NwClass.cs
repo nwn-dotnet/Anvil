@@ -76,5 +76,10 @@ namespace Anvil.API
     {
       return NwRuleset.Classes.ElementAtOrDefault((int)classType);
     }
+
+    public static implicit operator NwClass(ClassType classType)
+    {
+      return NwRuleset.Classes.ElementAtOrDefault((int)classType);
+    }
   }
 }

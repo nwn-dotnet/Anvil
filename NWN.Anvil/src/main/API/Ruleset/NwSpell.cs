@@ -60,5 +60,10 @@ namespace Anvil.API
     {
       return NwRuleset.Spells.ElementAtOrDefault((int)spellType);
     }
+
+    public static implicit operator NwSpell(Spell spellType)
+    {
+      return NwRuleset.Spells.ElementAtOrDefault((int)spellType);
+    }
   }
 }
