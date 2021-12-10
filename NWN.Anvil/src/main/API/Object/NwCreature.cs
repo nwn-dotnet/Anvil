@@ -194,34 +194,9 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets this creature's classes.
-    /// </summary>
-    public IReadOnlyList<NwClass> Classes
-    {
-      get
-      {
-        int classCount = Creature.m_pStats.m_nNumMultiClasses;
-        List<NwClass> classes = new List<NwClass>(classCount);
-
-        for (byte i = 0; i < classCount; i++)
-        {
-          byte classId = Creature.m_pStats.GetClass(i);
-          if (classId == (int)ClassType.Invalid)
-          {
-            break;
-          }
-
-          classes.Add(NwClass.FromClassId(classId));
-        }
-
-        return classes;
-      }
-    }
-
-    /// <summary>
     /// Gets this creature's classes, and associated class info.
     /// </summary>
-    public IReadOnlyList<CreatureClassInfo> ClassInfo
+    public IReadOnlyList<CreatureClassInfo> Classes
     {
       get
       {
@@ -1653,7 +1628,7 @@ namespace Anvil.API
     /// <returns>The <see cref="CreatureClassInfo"/> for the specified class, otherwise null if this creature does not have any levels in the class.</returns>
     public CreatureClassInfo GetClassInfo(NwClass nwClass)
     {
-      return ClassInfo.FirstOrDefault(classInfo => classInfo.Class == nwClass);
+      return Classes.FirstOrDefault(classInfo => classInfo.Class == nwClass);
     }
 
     /// <summary>
