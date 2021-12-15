@@ -42,7 +42,7 @@ namespace Anvil.API.Events
 
       public static void Signal(NwObject caster, NwPlaceable target, NwSpell spell, bool harmful = true)
       {
-        Event nwEvent = NWScript.EventSpellCastAt(caster, (int)spell.SpellType, harmful.ToInt());
+        Event nwEvent = NWScript.EventSpellCastAt(caster, (int)spell.Id, harmful.ToInt());
         NWScript.SignalEvent(target, nwEvent);
       }
     }

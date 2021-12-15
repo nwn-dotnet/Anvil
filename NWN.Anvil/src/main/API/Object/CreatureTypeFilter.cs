@@ -19,17 +19,17 @@ namespace Anvil.API
 
     public static CreatureTypeFilter Class(NwClass nwClass)
     {
-      return new CreatureTypeFilter(CreatureType.Class, (int)nwClass.ClassType);
+      return new CreatureTypeFilter(CreatureType.Class, (int)nwClass.Id);
     }
 
     public static CreatureTypeFilter DoesNotHaveSpellEffect(NwSpell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect.SpellType);
+      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect.Id);
     }
 
     public static CreatureTypeFilter HasSpellEffect(NwSpell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.HasSpellEffect, (int)spellEffect.SpellType);
+      return new CreatureTypeFilter(CreatureType.HasSpellEffect, (int)spellEffect.Id);
     }
 
     public static CreatureTypeFilter Perception(PerceptionType perceptionType)
@@ -44,7 +44,7 @@ namespace Anvil.API
 
     public static CreatureTypeFilter Race(NwRace race)
     {
-      return new CreatureTypeFilter(CreatureType.RacialType, (int)race.RacialType);
+      return new CreatureTypeFilter(CreatureType.RacialType, (int)race.Id);
     }
 
     public static CreatureTypeFilter Reputation(ReputationType reputationType)

@@ -73,7 +73,7 @@ namespace Anvil.API
     /// <returns>The number of skill ranks.</returns>
     public sbyte GetSkillRank(NwSkill skill)
     {
-      return levelStats.m_lstSkillRanks[(int)skill.SkillType].AsSByte();
+      return levelStats.m_lstSkillRanks[(int)skill.Id].AsSByte();
     }
 
     /// <summary>
@@ -83,7 +83,7 @@ namespace Anvil.API
     /// <param name="rank">The new number of skill ranks.</param>
     public void SetSkillRank(NwSkill skill, sbyte rank)
     {
-      levelStats.m_lstSkillRanks[(int)skill.SkillType] = rank.AsByte();
+      levelStats.m_lstSkillRanks[(int)skill.Id] = rank.AsByte();
     }
   }
 }

@@ -52,7 +52,7 @@ namespace Anvil.API
       {
         for (byte x = 0; x < repo.m_nWidth - itemSize.X + 1; x++)
         {
-          if (repo.CheckBaseItemFits((uint)baseItem.ItemType, x, y).ToBool())
+          if (repo.CheckBaseItemFits((uint)baseItem.Id, x, y).ToBool())
           {
             return true;
           }

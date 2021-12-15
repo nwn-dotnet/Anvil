@@ -14,10 +14,10 @@ namespace Anvil.API
 
     private readonly CNWSpell spellInfo;
 
-    internal NwSpell(CNWSpell spellInfo, Spell spellType)
+    internal NwSpell(uint spellId, CNWSpell spellInfo)
     {
+      Id = spellId;
       this.spellInfo = spellInfo;
-      SpellType = spellType;
     }
 
     /// <summary>
@@ -27,6 +27,11 @@ namespace Anvil.API
     {
       get => TlkTable.GetSimpleString(spellInfo.m_strrefDesc);
     }
+
+    /// <summary>
+    /// Gets the ID of this skill.
+    /// </summary>
+    public uint Id { get; }
 
     /// <summary>
     /// Gets the name of this spell.
@@ -39,7 +44,10 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated <see cref="Spell"/> type for this spell.
     /// </summary>
-    public Spell SpellType { get; }
+    public Spell SkillType
+    {
+      get => (Spell)Id;
+    }
 
     /// <summary>
     /// Resolves a <see cref="NwSpell"/> from a spell id.

@@ -541,12 +541,12 @@ namespace Anvil.API
 
     public static Effect SkillDecrease(NwSkill skill, int amount)
     {
-      return NWScript.EffectSkillDecrease((int)skill.SkillType, amount);
+      return NWScript.EffectSkillDecrease((int)skill.Id, amount);
     }
 
     public static Effect SkillIncrease(NwSkill skill, int amount)
     {
-      return NWScript.EffectSkillIncrease((int)skill.SkillType, amount);
+      return NWScript.EffectSkillIncrease((int)skill.Id, amount);
     }
 
     public static Effect Sleep()

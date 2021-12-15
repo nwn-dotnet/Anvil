@@ -2,7 +2,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public enum Skill
+  public enum Skill : byte
   {
     AnimalEmpathy = NWScript.SKILL_ANIMAL_EMPATHY,
     Concentration = NWScript.SKILL_CONCENTRATION,

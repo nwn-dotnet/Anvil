@@ -13,6 +13,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the associated class.
+    /// </summary>
+    public NwClass Class
+    {
+      get => NwClass.FromClassId(classInfo.m_nClass);
+    }
+
+    /// <summary>
     /// Gets the amount of levels in this class.
     /// </summary>
     public byte Level
@@ -29,21 +37,13 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the associated class.
-    /// </summary>
-    public NwClass Class
-    {
-      get => NwClass.FromClassId(classInfo.m_nClass);
-    }
-
-    /// <summary>
     /// Adds the specified spell as a known spell at the specified spell level.
     /// </summary>
     /// <param name="spell">The spell to be added.</param>
     /// <param name="spellLevel">The spell level for the spell to be added.</param>
     public void AddKnownSpell(NwSpell spell, byte spellLevel)
     {
-      classInfo.AddKnownSpell(spellLevel, (uint)spell.SpellType);
+      classInfo.AddKnownSpell(spellLevel, (uint)spell.Id);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ namespace Anvil.API
     /// <param name="spell">The spell to clear.</param>
     public void ClearMemorizedKnownSpells(NwSpell spell)
     {
-      classInfo.ClearMemorizedKnownSpells((uint)spell.SpellType);
+      classInfo.ClearMemorizedKnownSpells((uint)spell.Id);
     }
 
     /// <summary>
@@ -128,7 +128,7 @@ namespace Anvil.API
     /// <param name="spell">The spell to remove.</param>
     public void RemoveKnownSpell(byte spellLevel, NwSpell spell)
     {
-      classInfo.RemoveKnownSpell(spellLevel, (uint)spell.SpellType);
+      classInfo.RemoveKnownSpell(spellLevel, (uint)spell.Id);
     }
 
     /// <summary>

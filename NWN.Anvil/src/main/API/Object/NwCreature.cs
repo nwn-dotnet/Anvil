@@ -800,7 +800,7 @@ namespace Anvil.API
     public NwRace Race
     {
       get => NwRace.FromRaceId(Creature.m_pStats.m_nRace);
-      set => Creature.m_pStats.m_nRace = (ushort)value.RacialType;
+      set => Creature.m_pStats.m_nRace = (ushort)value.Id;
     }
 
     public sbyte ShieldCheckPenalty
@@ -1010,7 +1010,7 @@ namespace Anvil.API
     public async Task ActionCastFakeSpellAt(NwSpell spell, Location location, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtLocation((int)spell.SpellType, location, (int)pathType);
+      NWScript.ActionCastFakeSpellAtLocation((int)spell.Id, location, (int)pathType);
     }
 
     /// <summary>
@@ -1022,7 +1022,7 @@ namespace Anvil.API
     public async Task ActionCastFakeSpellAt(NwSpell spell, NwGameObject target, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtObject((int)spell.SpellType, target, (int)pathType);
+      NWScript.ActionCastFakeSpellAtObject((int)spell.Id, target, (int)pathType);
     }
 
     /// <summary>
@@ -1290,7 +1290,7 @@ namespace Anvil.API
     public async Task ActionUseFeat(NwFeat feat, NwGameObject target)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat((int)feat.FeatType, target);
+      NWScript.ActionUseFeat((int)feat.Id, target);
     }
 
     /// <summary>
@@ -1331,7 +1331,7 @@ namespace Anvil.API
     public async Task ActionUseSkill(NwSkill skill, NwGameObject target, SubSkill subSkill = SubSkill.None, NwItem itemUsed = null)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseSkill((int)skill.SkillType, target, (int)subSkill, itemUsed);
+      NWScript.ActionUseSkill((int)skill.Id, target, (int)subSkill, itemUsed);
     }
 
     /// <summary>
@@ -1363,7 +1363,7 @@ namespace Anvil.API
     /// <param name="feat">The feat to give.</param>
     public void AddFeat(NwFeat feat)
     {
-      Creature.m_pStats.AddFeat((ushort)feat.FeatType);
+      Creature.m_pStats.AddFeat((ushort)feat.Id);
     }
 
     /// <summary>
@@ -1381,8 +1381,8 @@ namespace Anvil.API
 
       CNWLevelStats levelStats = Creature.m_pStats.m_lstLevelStats[level - 1];
 
-      levelStats.AddFeat((ushort)feat.FeatType);
-      Creature.m_pStats.AddFeat((ushort)feat.FeatType);
+      levelStats.AddFeat((ushort)feat.Id);
+      Creature.m_pStats.AddFeat((ushort)feat.Id);
     }
 
     /// <summary>
@@ -1394,7 +1394,7 @@ namespace Anvil.API
       CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
       specialAbilities.Add(new CNWSStats_SpellLikeAbility
       {
-        m_nSpellId = (uint)ability.Spell.SpellType,
+        m_nSpellId = (uint)ability.Spell.Id,
         m_bReadied = ability.Ready.ToInt(),
         m_nCasterLevel = ability.CasterLevel,
       });
@@ -1444,7 +1444,7 @@ namespace Anvil.API
     {
       for (int i = 0; i < amount; i++)
       {
-        NWScript.DecrementRemainingFeatUses(this, (int)feat.FeatType);
+        NWScript.DecrementRemainingFeatUses(this, (int)feat.Id);
       }
     }
 
@@ -1501,7 +1501,7 @@ namespace Anvil.API
     /// <param name="difficultyClass">The DC of this skill check.</param>
     public bool DoSkillCheck(NwSkill skill, int difficultyClass)
     {
-      return NWScript.GetIsSkillSuccessful(this, (int)skill.SkillType, difficultyClass).ToBool();
+      return NWScript.GetIsSkillSuccessful(this, (int)skill.Id, difficultyClass).ToBool();
     }
 
     /// <summary>
@@ -1610,7 +1610,7 @@ namespace Anvil.API
       nwClass ??= NwClass.FromClassType(ClassType.Cleric);
 
       const int error = (int)Domain.Error;
-      int classT = (int)nwClass.ClassType;
+      int classT = (int)nwClass.Id;
 
       int i;
       int current;
@@ -1777,7 +1777,7 @@ namespace Anvil.API
     /// <returns>-1 if the creature does not have this skill, 0 if untrained, otherwise the number of skill ranks.</returns>
     public int GetSkillRank(NwSkill skill, bool ranksOnly = false)
     {
-      return NWScript.GetSkillRank((int)skill.SkillType, this, ranksOnly.ToInt());
+      return NWScript.GetSkillRank((int)skill.Id, this, ranksOnly.ToInt());
     }
 
     /// <summary>
@@ -1789,7 +1789,7 @@ namespace Anvil.API
     public SpellSchool GetSpecialization(NwClass nwClass = default)
     {
       nwClass ??= NwClass.FromClassType(ClassType.Wizard);
-      return (SpellSchool)NWScript.GetSpecialization(this, (int)nwClass.ClassType);
+      return (SpellSchool)NWScript.GetSpecialization(this, (int)nwClass.Id);
     }
 
     /// <summary>
@@ -1867,7 +1867,7 @@ namespace Anvil.API
     /// <param name="feat">The feat to check.</param>
     public bool HasFeatEffect(NwFeat feat)
     {
-      return NWScript.GetHasFeatEffect((int)feat.FeatType, this).ToBool();
+      return NWScript.GetHasFeatEffect((int)feat.Id, this).ToBool();
     }
 
     /// <summary>
@@ -1876,7 +1876,7 @@ namespace Anvil.API
     /// </summary>
     public bool HasFeatPrepared(NwFeat feat)
     {
-      return NWScript.GetHasFeat((int)feat.FeatType, this).ToBool();
+      return NWScript.GetHasFeat((int)feat.Id, this).ToBool();
     }
 
     /// <summary>
@@ -1886,7 +1886,7 @@ namespace Anvil.API
     /// <returns>True if the creature has this skill.</returns>
     public bool HasSkill(NwSkill skill)
     {
-      return NWScript.GetHasSkill((int)skill.SkillType, this).ToBool();
+      return NWScript.GetHasSkill((int)skill.Id, this).ToBool();
     }
 
     /// <summary>
@@ -1895,7 +1895,7 @@ namespace Anvil.API
     /// <param name="spell">The spell to check.</param>
     public bool HasSpellEffect(NwSpell spell)
     {
-      return NWScript.GetHasSpellEffect((int)spell.SpellType, this).ToBool();
+      return NWScript.GetHasSpellEffect((int)spell.Id, this).ToBool();
     }
 
     /// <summary>
@@ -1905,7 +1905,7 @@ namespace Anvil.API
     /// <returns>True if this creature can immediately cast the spell.</returns>
     public bool HasSpellUse(NwSpell spell)
     {
-      return NWScript.GetHasSpell((int)spell.SpellType, this) > 0;
+      return NWScript.GetHasSpell((int)spell.Id, this) > 0;
     }
 
     /// <summary>
@@ -1928,7 +1928,7 @@ namespace Anvil.API
     {
       for (int i = 0; i < amount; i++)
       {
-        NWScript.IncrementRemainingFeatUses(this, (int)feat.FeatType);
+        NWScript.IncrementRemainingFeatUses(this, (int)feat.Id);
       }
     }
 
@@ -2051,7 +2051,7 @@ namespace Anvil.API
     /// <returns>True if the creature knows the feat, otherwise false.</returns>
     public bool KnowsFeat(NwFeat feat)
     {
-      return Creature.m_pStats.HasFeat((ushort)feat.FeatType).ToBool();
+      return Creature.m_pStats.HasFeat((ushort)feat.Id).ToBool();
     }
 
     /// <summary>
@@ -2067,13 +2067,13 @@ namespace Anvil.API
     /// <returns>Returns the new level if successful, or 0 if the function fails.</returns>
     public int LevelUpHenchman(NwClass nwClass, PackageType package, bool spellsReady = false)
     {
-      return NWScript.LevelUpHenchman(this, (int)nwClass.ClassType, (int)package, spellsReady.ToInt());
+      return NWScript.LevelUpHenchman(this, (int)nwClass.Id, (int)package, spellsReady.ToInt());
     }
 
     public bool MeetsFeatRequirements(NwFeat feat)
     {
       using CExoArrayListUInt16 unused = new CExoArrayListUInt16();
-      return Creature.m_pStats.FeatRequirementsMet((ushort)feat.FeatType, unused).ToBool();
+      return Creature.m_pStats.FeatRequirementsMet((ushort)feat.Id, unused).ToBool();
     }
 
     /// <summary>
@@ -2091,7 +2091,7 @@ namespace Anvil.API
     /// <param name="feat">The feat to remove.</param>
     public void RemoveFeat(NwFeat feat)
     {
-      Creature.m_pStats.RemoveFeat((ushort)feat.FeatType);
+      Creature.m_pStats.RemoveFeat((ushort)feat.Id);
     }
 
     /// <summary>
@@ -2297,7 +2297,7 @@ namespace Anvil.API
     /// <param name="rank">The new number of skill ranks.</param>
     public void SetSkillRank(NwSkill skill, sbyte rank)
     {
-      Creature.m_pStats.SetSkillRank((byte)skill.SkillType, rank.AsByte());
+      Creature.m_pStats.SetSkillRank((byte)skill.Id, rank.AsByte());
     }
 
     /// <summary>
@@ -2311,7 +2311,7 @@ namespace Anvil.API
       if (index < specialAbilities.Count)
       {
         CNWSStats_SpellLikeAbility specialAbility = specialAbilities[index];
-        specialAbility.m_nSpellId = (uint)ability.Spell.SpellType;
+        specialAbility.m_nSpellId = (uint)ability.Spell.Id;
         specialAbility.m_bReadied = ability.Ready.ToInt();
         specialAbility.m_nCasterLevel = ability.CasterLevel;
       }

@@ -16,10 +16,10 @@ namespace Anvil.API
 
     private readonly CNWFeat featInfo;
 
-    internal NwFeat(Feat featType, CNWFeat featInfo)
+    internal NwFeat(ushort featId, CNWFeat featInfo)
     {
+      Id = featId;
       this.featInfo = featInfo;
-      FeatType = featType;
     }
 
     /// <summary>
@@ -41,7 +41,10 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated <see cref="Feat"/> type for this feat.
     /// </summary>
-    public Feat FeatType { get; }
+    public Feat FeatType
+    {
+      get => (Feat)Id;
+    }
 
     /// <summary>
     /// Gets the ResRef for the icon representing this skill.
@@ -50,6 +53,11 @@ namespace Anvil.API
     {
       get => featInfo.m_cIcon.ToString();
     }
+
+    /// <summary>
+    /// Gets the id of this feat.
+    /// </summary>
+    public ushort Id { get; }
 
     /// <summary>
     /// Gets whether the use of this feat is considered as a hostile act.
@@ -266,6 +274,11 @@ namespace Anvil.API
       return NwRuleset.Feats.ElementAtOrDefault((int)featType);
     }
 
+    public static implicit operator NwFeat(Feat featType)
+    {
+      return NwRuleset.Feats.ElementAtOrDefault((int)featType);
+    }
+
     /// <summary>
     /// Gets the minimum ability score a character must have to select this feat.
     /// </summary>
@@ -288,11 +301,6 @@ namespace Anvil.API
     private static NwFeat FromFeatId(ushort featId)
     {
       return NwRuleset.Feats.ElementAtOrDefault(featId);
-    }
-
-    public static implicit operator NwFeat(Feat featType)
-    {
-      return NwRuleset.Feats.ElementAtOrDefault((int)featType);
     }
   }
 }

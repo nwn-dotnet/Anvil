@@ -59,7 +59,7 @@ namespace Anvil.API
         NwBaseItem[] retVal = new NwBaseItem[baseItemArray.m_nNumBaseItems];
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new NwBaseItem(baseItemArray.GetBaseItem(i), (BaseItemType)i);
+          retVal[i] = new NwBaseItem((uint)i, baseItemArray.GetBaseItem(i));
         }
 
         return retVal;
@@ -70,7 +70,7 @@ namespace Anvil.API
         NwClass[] retVal = new NwClass[count];
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new NwClass(classArray.GetItem(i), (ClassType)i);
+          retVal[i] = new NwClass((byte)i, classArray.GetItem(i));
         }
 
         return retVal;
@@ -81,7 +81,7 @@ namespace Anvil.API
         NwFeat[] retVal = new NwFeat[count];
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new NwFeat((Feat)i, featArray.GetItem(i));
+          retVal[i] = new NwFeat((ushort)i, featArray.GetItem(i));
         }
 
         return retVal;
@@ -92,7 +92,7 @@ namespace Anvil.API
         NwRace[] retVal = new NwRace[count];
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new NwRace((RacialType)i, raceArray.GetItem(i));
+          retVal[i] = new NwRace((ushort)i, raceArray.GetItem(i));
         }
 
         return retVal;
@@ -101,7 +101,6 @@ namespace Anvil.API
       private static void LoadRules()
       {
         CNWRules rules = NWNXLib.Rules();
-
         Races = LoadRaces(CNWRaceArray.FromPointer(rules.m_lstRaces), rules.m_nNumRaces);
         Classes = LoadClasses(CNWClassArray.FromPointer(rules.m_lstClasses), rules.m_nNumClasses);
         Skills = LoadSkills(CNWSkillArray.FromPointer(rules.m_lstSkills), rules.m_nNumSkills);
@@ -115,7 +114,7 @@ namespace Anvil.API
         NwSkill[] retVal = new NwSkill[count];
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new NwSkill((Skill)i, skillArray.GetItem(i));
+          retVal[i] = new NwSkill((byte)i, skillArray.GetItem(i));
         }
 
         return retVal;
@@ -126,7 +125,7 @@ namespace Anvil.API
         NwSpell[] retVal = new NwSpell[spellArray.m_nNumSpells];
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new NwSpell(spellArray.GetSpell(i), (Spell)i);
+          retVal[i] = new NwSpell((uint)i, spellArray.GetSpell(i));
         }
 
         return retVal;

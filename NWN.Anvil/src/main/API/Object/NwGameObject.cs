@@ -196,7 +196,7 @@ namespace Anvil.API
     public async Task ActionCastSpellAt(NwSpell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtObject((int)spell.SpellType, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtObject((int)spell.Id, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -211,7 +211,7 @@ namespace Anvil.API
     public async Task ActionCastSpellAt(NwSpell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtLocation((int)spell.SpellType, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtLocation((int)spell.Id, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>

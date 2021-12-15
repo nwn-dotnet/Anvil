@@ -70,7 +70,7 @@ namespace Anvil.API
     public NwFaction Faction
     {
       get => NwFaction.FromFactionId(Encounter.m_nFactionId);
-      set => Encounter.m_nFactionId = value.FactionId;
+      set => Encounter.m_nFactionId = value.Id;
     }
 
     /// <summary>

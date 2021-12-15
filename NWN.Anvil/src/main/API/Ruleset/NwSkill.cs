@@ -14,10 +14,10 @@ namespace Anvil.API
 
     private readonly CNWSkill skillInfo;
 
-    internal NwSkill(Skill skillType, CNWSkill skillInfo)
+    internal NwSkill(byte skillId, CNWSkill skillInfo)
     {
+      Id = skillId;
       this.skillInfo = skillInfo;
-      SkillType = skillType;
     }
 
     /// <summary>
@@ -51,6 +51,11 @@ namespace Anvil.API
     {
       get => skillInfo.m_sIconName.ToString();
     }
+
+    /// <summary>
+    /// Gets the ID of this skill.
+    /// </summary>
+    public byte Id { get; }
 
     /// <summary>
     /// Gets if this skill is considered a hostile action.
@@ -87,7 +92,10 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated <see cref="Skill"/> type for this skill.
     /// </summary>
-    public Skill SkillType { get; }
+    public Skill SkillType
+    {
+      get => (Skill)Id;
+    }
 
     /// <summary>
     /// Resolves a <see cref="NwSkill"/> from a skill id.

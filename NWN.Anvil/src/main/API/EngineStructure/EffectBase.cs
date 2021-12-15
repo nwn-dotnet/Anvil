@@ -79,7 +79,7 @@ namespace Anvil.API
     public NwSpell Spell
     {
       get => NwSpell.FromSpellId((int)Effect.m_nSpellId);
-      set => Effect.m_nSpellId = (uint)value.SpellType;
+      set => Effect.m_nSpellId = (uint)value.Id;
     }
 
     /// <summary>

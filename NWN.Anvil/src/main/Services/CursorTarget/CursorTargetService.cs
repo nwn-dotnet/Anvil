@@ -40,6 +40,16 @@ namespace Anvil.Services
       return activeHandlers.ContainsKey(player);
     }
 
+    private ModuleEvents.OnPlayerTarget CreateCancelledEventData(NwPlayer player)
+    {
+      return new ModuleEvents.OnPlayerTarget
+      {
+        Player = player,
+        TargetObject = null,
+        TargetPosition = default,
+      };
+    }
+
     private void OnClientLeave(ModuleEvents.OnClientLeave eventData)
     {
       UnregisterHandlerForPlayer(eventData.Player, true);
@@ -69,16 +79,6 @@ namespace Anvil.Services
           eventCallback(CreateCancelledEventData(player));
         }
       }
-    }
-
-    private ModuleEvents.OnPlayerTarget CreateCancelledEventData(NwPlayer player)
-    {
-      return new ModuleEvents.OnPlayerTarget
-      {
-        Player = player,
-        TargetObject = null,
-        TargetPosition = default,
-      };
     }
   }
 }
