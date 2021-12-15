@@ -1307,6 +1307,19 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br/>
+    /// If the player is already in targeting mode, the existing handler will be cleared. See <see cref="TryEnterTargetMode"/> to handle this.
+    /// </summary>
+    /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
+    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
+    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
+    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
+    public void EnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    {
+      CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
+    }
+
+    /// <summary>
     /// Unlock an achievement for the player who must be logged in.
     /// </summary>
     /// <param name="achievementId">The achievement ID on the remote server.</param>
