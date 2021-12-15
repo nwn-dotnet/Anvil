@@ -1333,7 +1333,7 @@ namespace Anvil.Services
           // Skill Focus Feats
           int SkillFocusFeatCheck(ushort nReqSkill)
           {
-            if (nReqSkill != unchecked((ushort)-1))
+            if (nReqSkill != IntegerExtensions.AsUShort(-1))
             {
               bool bSkillRequirementMet = false;
               CNWSkill pReqSkill = skills[nReqSkill];
