@@ -84,6 +84,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the id of this faction.
+    /// </summary>
+    public int Id
+    {
+      get => faction.m_nFactionId;
+    }
+
+    /// <summary>
     /// Gets the leader of this player faction (party).<br/>
     /// </summary>
     public NwPlayer Leader
@@ -107,14 +115,6 @@ namespace Anvil.API
     public StandardFaction StandardFactionType
     {
       get => (StandardFaction)Id;
-    }
-
-    /// <summary>
-    /// Gets the id of this faction.
-    /// </summary>
-    public int Id
-    {
-      get => faction.m_nFactionId;
     }
 
     /// <summary>
