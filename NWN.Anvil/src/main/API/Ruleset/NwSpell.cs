@@ -44,7 +44,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated <see cref="Spell"/> type for this spell.
     /// </summary>
-    public Spell SkillType
+    public Spell SpellType
     {
       get => (Spell)Id;
     }
