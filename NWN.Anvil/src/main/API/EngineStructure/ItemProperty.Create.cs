@@ -169,9 +169,9 @@ namespace Anvil.API
       return NWScript.ItemPropertyDecreaseAC((int)modifierType, penalty);
     }
 
-    public static ItemProperty DecreaseSkill(Skill skill, int penalty)
+    public static ItemProperty DecreaseSkill(NwSkill skill, int penalty)
     {
-      return NWScript.ItemPropertyDecreaseSkill((int)skill, penalty);
+      return NWScript.ItemPropertyDecreaseSkill(skill.Id, penalty);
     }
 
     public static ItemProperty EnhancementBonus(int bonus)
@@ -334,9 +334,9 @@ namespace Anvil.API
       return NWScript.ItemPropertyRegeneration(regenAmount);
     }
 
-    public static ItemProperty SkillBonus(Skill skill, int bonus)
+    public static ItemProperty SkillBonus(NwSkill skill, int bonus)
     {
-      return NWScript.ItemPropertySkillBonus((int)skill, bonus);
+      return NWScript.ItemPropertySkillBonus(skill.Id, bonus);
     }
 
     public static ItemProperty SpecialWalk()

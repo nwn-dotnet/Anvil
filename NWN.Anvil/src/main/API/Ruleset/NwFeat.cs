@@ -16,10 +16,10 @@ namespace Anvil.API
 
     private readonly CNWFeat featInfo;
 
-    public NwFeat(Feat featType, CNWFeat featInfo)
+    internal NwFeat(ushort featId, CNWFeat featInfo)
     {
+      Id = featId;
       this.featInfo = featInfo;
-      FeatType = featType;
     }
 
     /// <summary>
@@ -41,7 +41,10 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated <see cref="Feat"/> type for this feat.
     /// </summary>
-    public Feat FeatType { get; }
+    public Feat FeatType
+    {
+      get => (Feat)Id;
+    }
 
     /// <summary>
     /// Gets the ResRef for the icon representing this skill.
@@ -50,6 +53,11 @@ namespace Anvil.API
     {
       get => featInfo.m_cIcon.ToString();
     }
+
+    /// <summary>
+    /// Gets the id of this feat.
+    /// </summary>
+    public ushort Id { get; }
 
     /// <summary>
     /// Gets whether the use of this feat is considered as a hostile act.
@@ -199,9 +207,9 @@ namespace Anvil.API
     /// <summary>
     /// The Spell associated with this feat.
     /// </summary>
-    public Spell Spell
+    public NwSpell Spell
     {
-      get => (Spell)featInfo.m_nSpellId;
+      get => NwSpell.FromSpellId(featInfo.m_nSpellId);
     }
 
     /// <summary>
@@ -262,6 +270,11 @@ namespace Anvil.API
     /// <param name="featType">The feat type to resolve.</param>
     /// <returns>The associated <see cref="NwFeat"/> instance. Null if the feat type is invalid.</returns>
     public static NwFeat FromFeatType(Feat featType)
+    {
+      return NwRuleset.Feats.ElementAtOrDefault((int)featType);
+    }
+
+    public static implicit operator NwFeat(Feat featType)
     {
       return NwRuleset.Feats.ElementAtOrDefault((int)featType);
     }

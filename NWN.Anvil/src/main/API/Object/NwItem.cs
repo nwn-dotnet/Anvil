@@ -75,23 +75,7 @@ namespace Anvil.API
     public NwBaseItem BaseItem
     {
       get => NwBaseItem.FromItemId((int)Item.m_nBaseItem);
-      set => Item.m_nBaseItem = (uint)value.ItemType;
-    }
-
-    /// <summary>
-    /// Gets or sets the <see cref="BaseItemType"/> for this item.
-    /// </summary>
-    [Obsolete("Use BaseItem.ItemType instead.")]
-    public BaseItemType BaseItemType
-    {
-      get => (BaseItemType)Item.m_nBaseItem;
-      set => Item.m_nBaseItem = (uint)value;
-    }
-
-    [Obsolete("Use BaseItem.IsStackable instead.")]
-    public bool CanStack
-    {
-      get => BaseItem.IsStackable;
+      set => Item.m_nBaseItem = value.Id;
     }
 
     /// <summary>
@@ -168,12 +152,6 @@ namespace Anvil.API
     public bool IsRangedWeapon
     {
       get => NWScript.GetWeaponRanged(this).ToBool();
-    }
-
-    [Obsolete("Use BaseItem.IsStackable instead.")]
-    public bool IsStackable
-    {
-      get => BaseItem.IsStackable;
     }
 
     /// <summary>

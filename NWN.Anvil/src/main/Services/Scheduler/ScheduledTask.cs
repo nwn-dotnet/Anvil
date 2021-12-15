@@ -33,19 +33,9 @@ namespace Anvil.Services
     }
 
     /// <summary>
-    /// Gets if this task has been cancelled for execution.
-    /// </summary>
-    public bool IsCancelled { get; private set; }
-
-    /// <summary>
     /// Gets the number of times this task has successfully executed.
     /// </summary>
     public int ExecutionCount { get; internal set; }
-
-    /// <summary>
-    /// Gets the number of times this task has failed to execute because of an exception.
-    /// </summary>
-    public int FailedExecutionCount { get; internal set; }
 
     /// <summary>
     /// Gets the <see cref="API.Time.TimeSinceStartup"/> that this task was last executed/will next be executed at.
@@ -53,12 +43,14 @@ namespace Anvil.Services
     public TimeSpan ExecutionTime { get; internal set; }
 
     /// <summary>
-    /// <inheritdoc cref="Cancel"/>
+    /// Gets the number of times this task has failed to execute because of an exception.
     /// </summary>
-    public void Dispose()
-    {
-      Cancel();
-    }
+    public int FailedExecutionCount { get; internal set; }
+
+    /// <summary>
+    /// Gets if this task has been cancelled for execution.
+    /// </summary>
+    public bool IsCancelled { get; private set; }
 
     /// <summary>
     /// Cancels the execution of this task.
@@ -66,6 +58,14 @@ namespace Anvil.Services
     public void Cancel()
     {
       IsCancelled = true;
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="Cancel"/>
+    /// </summary>
+    public void Dispose()
+    {
+      Cancel();
     }
 
     internal void Execute()

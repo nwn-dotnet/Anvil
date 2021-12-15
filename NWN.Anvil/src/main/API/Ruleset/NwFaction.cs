@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Anvil.Internal;
+using NWN.Core;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -31,16 +32,6 @@ namespace Anvil.API
     }
 
     private readonly CNWSFaction faction;
-
-    [Obsolete("The constructor for NwFaction is deprecated. Use NwFaction.FromFactionId instead.")]
-    public NwFaction(int factionId)
-    {
-      faction = FactionManager.GetFaction(factionId);
-      if (faction == null)
-      {
-        throw new ArgumentOutOfRangeException(nameof(factionId), "Invalid faction ID specified.");
-      }
-    }
 
     internal NwFaction(CNWSFaction faction)
     {
@@ -93,6 +84,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the id of this faction.
+    /// </summary>
+    public int Id
+    {
+      get => faction.m_nFactionId;
+    }
+
+    /// <summary>
     /// Gets the leader of this player faction (party).<br/>
     /// </summary>
     public NwPlayer Leader
@@ -115,12 +114,7 @@ namespace Anvil.API
     /// </summary>
     public StandardFaction StandardFactionType
     {
-      get => (StandardFaction)FactionId;
-    }
-
-    internal int FactionId
-    {
-      get => faction.m_nFactionId;
+      get => (StandardFaction)Id;
     }
 
     /// <summary>
@@ -147,6 +141,11 @@ namespace Anvil.API
     public static bool operator ==(NwFaction left, NwFaction right)
     {
       return Equals(left, right);
+    }
+
+    public static implicit operator NwFaction(StandardFaction faction)
+    {
+      return FromFactionId((int)faction);
     }
 
     public static bool operator !=(NwFaction left, NwFaction right)
@@ -253,6 +252,19 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets an integer between 0 and 100 (inclusive) that represents how this faction feels about the specified target.<br/>
+    ///  -> 0-10 means this faction is hostile to the target<br/>
+    ///  -> 11-89 means this faction is neutral to the target<br/>
+    ///  -> 90-100 means this faction is friendly to the target.
+    /// </summary>
+    /// <param name="target">The target object.</param>
+    /// <returns>0-100 (inclusive) based on the standing of the target within this standard faction.</returns>
+    public int GetReputation(NwGameObject target)
+    {
+      return NWScript.GetStandardFactionReputation(Id, target);
+    }
+
+    /// <summary>
     /// Gets the strongest member in this faction that is visible from the specified object.
     /// </summary>
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the strongest member.</param>
@@ -280,6 +292,19 @@ namespace Anvil.API
     public NwCreature GetWorstACMember(NwCreature referenceCreature = null, bool visible = false)
     {
       return faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+    }
+
+    /// <summary>
+    /// Sets how this faction feels about the specified creature.<br/>
+    ///  -> 0-10 means this faction is hostile to the target.<br/>
+    ///  -> 11-89 means this faction is neutral to the target.<br/>
+    ///  -> 90-100 means this faction is friendly to the target.
+    /// </summary>
+    /// <param name="target">The target object.</param>
+    /// <param name="newReputation">A value between 0-100 (inclusive).</param>
+    public void SetReputation(NwGameObject target, int newReputation)
+    {
+      NWScript.SetStandardFactionReputation(Id, newReputation, target);
     }
 
     internal void AddMember(NwCreature creature)

@@ -2,7 +2,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public enum ClassType
+  public enum ClassType : byte
   {
     Barbarian = NWScript.CLASS_TYPE_BARBARIAN,
     Bard = NWScript.CLASS_TYPE_BARD,

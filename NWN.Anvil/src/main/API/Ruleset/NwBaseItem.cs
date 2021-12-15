@@ -8,20 +8,41 @@ namespace Anvil.API
   /// </summary>
   public sealed class NwBaseItem
   {
-    private readonly CNWBaseItem baseItemInfo;
+    internal readonly CNWBaseItem BaseItemInfo;
 
-    internal NwBaseItem(CNWBaseItem baseItemInfo, BaseItemType itemType)
+    internal NwBaseItem(uint baseItemId, CNWBaseItem baseItemInfo)
     {
-      this.baseItemInfo = baseItemInfo;
-      ItemType = itemType;
+      Id = baseItemId;
+      BaseItemInfo = baseItemInfo;
     }
+
+    /// <summary>
+    /// Gets the id of this base item.
+    /// </summary>
+    public uint Id { get; }
 
     /// <summary>
     /// Gets the size/number of inventory slots that this base item occupies.
     /// </summary>
     public Vector2Int InventorySlotSize
     {
-      get => new Vector2Int(baseItemInfo.m_nInvSlotWidth, baseItemInfo.m_nInvSlotHeight);
+      get => new Vector2Int(BaseItemInfo.m_nInvSlotWidth, BaseItemInfo.m_nInvSlotHeight);
+    }
+
+    /// <summary>
+    /// Gets if this base item is a monk weapon.
+    /// </summary>
+    public bool IsMonkWeapon
+    {
+      get => BaseItemInfo.m_bIsMonkWeapon.ToBool();
+    }
+
+    /// <summary>
+    /// Gets if this base item is a ranged weapon.
+    /// </summary>
+    public bool IsRangedWeapon
+    {
+      get => BaseItemInfo.m_nWeaponRanged > 0;
     }
 
     /// <summary>
@@ -35,14 +56,26 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated <see cref="BaseItemType"/> for this base item.
     /// </summary>
-    public BaseItemType ItemType { get; }
+    public BaseItemType ItemType
+    {
+      get => (BaseItemType)Id;
+    }
 
     /// <summary>
     /// Gets the maximum stack size for this base item.
     /// </summary>
     public int MaxStackSize
     {
-      get => baseItemInfo.m_nStackSize;
+      get => BaseItemInfo.m_nStackSize;
+    }
+
+    /// <summary>
+    /// Gets or sets the preferred attack distance for this base item.
+    /// </summary>
+    public float PreferredAttackDistance
+    {
+      get => BaseItemInfo.m_fPreferredAttackDist;
+      set => BaseItemInfo.m_fPreferredAttackDist = value;
     }
 
     /// <summary>
@@ -61,6 +94,11 @@ namespace Anvil.API
     /// <param name="itemType">The item type to resolve.</param>
     /// <returns>The associated <see cref="NwBaseItem"/> instance. Null if the base item type is invalid.</returns>
     public static NwBaseItem FromItemType(BaseItemType itemType)
+    {
+      return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
+    }
+
+    public static implicit operator NwBaseItem(BaseItemType itemType)
     {
       return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
     }

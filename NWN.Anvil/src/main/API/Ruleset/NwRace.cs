@@ -10,9 +10,9 @@ namespace Anvil.API
   {
     private readonly CNWRace raceInfo;
 
-    public NwRace(RacialType racialType, CNWRace raceInfo)
+    internal NwRace(ushort raceId, CNWRace raceInfo)
     {
-      RacialType = racialType;
+      Id = raceId;
       this.raceInfo = raceInfo;
     }
 
@@ -86,6 +86,11 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the id of this race.
+    /// </summary>
+    public ushort Id { get; }
+
+    /// <summary>
     /// Gets if this race can be chosen/used by players.
     /// </summary>
     public bool IsPlayerRace
@@ -126,9 +131,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the associated <see cref="RacialType"/> for this race.
+    /// Gets the associated <see cref="Id"/> for this race.
     /// </summary>
-    public RacialType RacialType { get; }
+    public RacialType RacialType
+    {
+      get => (RacialType)Id;
+    }
 
     /// <summary>
     /// Gets the ability score used to determine bonus skill points at level up.
@@ -168,6 +176,11 @@ namespace Anvil.API
       return NwRuleset.Races.ElementAtOrDefault((int)racialType);
     }
 
+    public static implicit operator NwRace(RacialType racialType)
+    {
+      return NwRuleset.Races.ElementAtOrDefault((int)racialType);
+    }
+
     /// <summary>
     /// Gets the ability score adjustment for the specified ability.
     /// </summary>
@@ -183,9 +196,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The feat to query.</param>
     /// <returns>True if this is a default granted feat for this race, otherwise false.</returns>
-    public bool IsFirstLevelGrantedFeat(Feat feat)
+    public bool IsFirstLevelGrantedFeat(NwFeat feat)
     {
-      return raceInfo.IsFirstLevelGrantedFeat((ushort)feat).ToBool();
+      return raceInfo.IsFirstLevelGrantedFeat(feat.Id).ToBool();
     }
   }
 }

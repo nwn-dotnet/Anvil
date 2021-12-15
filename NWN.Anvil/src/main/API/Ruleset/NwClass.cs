@@ -14,16 +14,19 @@ namespace Anvil.API
 
     private readonly CNWClass classInfo;
 
-    internal NwClass(CNWClass classInfo, ClassType classType)
+    internal NwClass(byte classId, CNWClass classInfo)
     {
+      Id = classId;
       this.classInfo = classInfo;
-      ClassType = classType;
     }
 
     /// <summary>
-    /// Gets the associated <see cref="ClassType"/> for this class.
+    /// Gets the associated <see cref="Id"/> for this class.
     /// </summary>
-    public ClassType ClassType { get; }
+    public ClassType ClassType
+    {
+      get => (ClassType)Id;
+    }
 
     /// <summary>
     /// Gets the description name of this class.
@@ -32,6 +35,11 @@ namespace Anvil.API
     {
       get => TlkTable.GetSimpleString(classInfo.m_nDescription);
     }
+
+    /// <summary>
+    /// Gets the id of this class.
+    /// </summary>
+    public byte Id { get; }
 
     /// <summary>
     /// Gets the name of this class as shown on the character sheet.
@@ -73,6 +81,11 @@ namespace Anvil.API
     /// <param name="classType">The class type to resolve.</param>
     /// <returns>The associated <see cref="NwClass"/> instance. Null if the class type is invalid.</returns>
     public static NwClass FromClassType(ClassType classType)
+    {
+      return NwRuleset.Classes.ElementAtOrDefault((int)classType);
+    }
+
+    public static implicit operator NwClass(ClassType classType)
     {
       return NwRuleset.Classes.ElementAtOrDefault((int)classType);
     }

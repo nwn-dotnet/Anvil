@@ -2,7 +2,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public enum Feat
+  public enum Feat : ushort
   {
     Alertness = NWScript.FEAT_ALERTNESS,
     Ambidexterity = NWScript.FEAT_AMBIDEXTERITY,

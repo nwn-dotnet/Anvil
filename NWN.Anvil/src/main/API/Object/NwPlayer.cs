@@ -655,6 +655,19 @@ namespace Anvil.API
       NWScript.SetCutsceneMode(ControlledCreature, true.ToInt(), allowLeftClick.ToInt());
     }
 
+    /// <summary>
+    /// Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br/>
+    /// If the player is already in targeting mode, the existing handler will be cleared. See <see cref="TryEnterTargetMode"/> to handle this.
+    /// </summary>
+    /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
+    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
+    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
+    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
+    public void EnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    {
+      CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
+    }
+
     public bool Equals(NwPlayer other)
     {
       if (ReferenceEquals(null, other))
@@ -927,26 +940,6 @@ namespace Anvil.API
     public string NuiGetWindowId(int uiToken)
     {
       return NWScript.NuiGetWindowId(ControlledCreature, uiToken);
-    }
-
-    /// <summary>
-    /// Swaps out the element specified by ID with the given nui layout (partial).
-    /// </summary>
-    /// <param name="uiToken">The ui token to update.</param>
-    /// <param name="elementId">The ID of the element to update.</param>
-    /// <param name="updatedLayout">The updated element to publish.</param>
-    [Obsolete("This method causes a nested group bug and will be removed in a future release. Use NuiGroup.UpdateLayout instead.")]
-    public void NuiSetGroupLayout(int uiToken, string elementId, NuiGroup updatedLayout)
-    {
-      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
-      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
-    }
-
-    [Obsolete("This method causes a nested group bug and will be removed in a future release. Use NuiGroup.UpdateLayout instead.")]
-    public void NuiSetGroupLayout(int uiToken, string elementId, NuiWindow updatedLayout)
-    {
-      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
-      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
     }
 
     /// <summary>
@@ -1322,9 +1315,7 @@ namespace Anvil.API
         return false;
       }
 
-#pragma warning disable 618
       CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
-#pragma warning restore 618
       return true;
     }
 
