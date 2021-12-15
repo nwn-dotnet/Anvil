@@ -75,7 +75,7 @@ namespace Anvil.API
     public NwBaseItem BaseItem
     {
       get => NwBaseItem.FromItemId((int)Item.m_nBaseItem);
-      set => Item.m_nBaseItem = (uint)value.Id;
+      set => Item.m_nBaseItem = value.Id;
     }
 
     /// <summary>

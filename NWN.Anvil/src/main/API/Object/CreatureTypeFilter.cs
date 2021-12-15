@@ -19,7 +19,7 @@ namespace Anvil.API
 
     public static CreatureTypeFilter Class(NwClass nwClass)
     {
-      return new CreatureTypeFilter(CreatureType.Class, (int)nwClass.Id);
+      return new CreatureTypeFilter(CreatureType.Class, nwClass.Id);
     }
 
     public static CreatureTypeFilter DoesNotHaveSpellEffect(NwSpell spellEffect)
@@ -44,7 +44,7 @@ namespace Anvil.API
 
     public static CreatureTypeFilter Race(NwRace race)
     {
-      return new CreatureTypeFilter(CreatureType.RacialType, (int)race.Id);
+      return new CreatureTypeFilter(CreatureType.RacialType, race.Id);
     }
 
     public static CreatureTypeFilter Reputation(ReputationType reputationType)

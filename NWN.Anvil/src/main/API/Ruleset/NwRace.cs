@@ -198,7 +198,7 @@ namespace Anvil.API
     /// <returns>True if this is a default granted feat for this race, otherwise false.</returns>
     public bool IsFirstLevelGrantedFeat(NwFeat feat)
     {
-      return raceInfo.IsFirstLevelGrantedFeat((ushort)feat.Id).ToBool();
+      return raceInfo.IsFirstLevelGrantedFeat(feat.Id).ToBool();
     }
   }
 }

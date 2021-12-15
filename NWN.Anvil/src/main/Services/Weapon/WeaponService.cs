@@ -144,7 +144,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddEpicWeaponDevastatingCriticalFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      epicWeaponDevastatingCriticalMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      epicWeaponDevastatingCriticalMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -154,7 +154,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddEpicWeaponFocusFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      epicWeaponFocusMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      epicWeaponFocusMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -164,7 +164,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddEpicWeaponOverwhelmingCriticalFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      epicWeaponOverwhelmingCriticalMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      epicWeaponOverwhelmingCriticalMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -174,7 +174,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddEpicWeaponSpecializationFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      epicWeaponSpecializationMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      epicWeaponSpecializationMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -185,7 +185,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddGreaterWeaponFocusFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      greaterWeaponFocusMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      greaterWeaponFocusMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -196,7 +196,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddGreaterWeaponSpecializationFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      greaterWeaponSpecializationMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      greaterWeaponSpecializationMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -206,7 +206,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddWeaponFocusFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      weaponFocusMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      weaponFocusMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -216,7 +216,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddWeaponImprovedCriticalFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      weaponImprovedCriticalMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      weaponImprovedCriticalMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -226,7 +226,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddWeaponOfChoiceFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      weaponOfChoiceMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      weaponOfChoiceMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -236,7 +236,7 @@ namespace Anvil.Services
     /// <param name="feat">The feat to map to the base item.</param>
     public void AddWeaponSpecializationFeat(NwBaseItem baseItem, NwFeat feat)
     {
-      weaponSpecializationMap.AddElement((uint)baseItem.Id, (ushort)feat.Id);
+      weaponSpecializationMap.AddElement(baseItem.Id, feat.Id);
     }
 
     /// <summary>
@@ -246,7 +246,7 @@ namespace Anvil.Services
     /// <returns>The size of the creature needed to consider this weapon finessable.</returns>
     public CreatureSize GetWeaponFinesseSize(NwBaseItem baseItem)
     {
-      return weaponFinesseSizeMap.TryGetValue((uint)baseItem.Id, out byte size) ? (CreatureSize)size : CreatureSize.Invalid;
+      return weaponFinesseSizeMap.TryGetValue(baseItem.Id, out byte size) ? (CreatureSize)size : CreatureSize.Invalid;
     }
 
     /// <summary>
@@ -270,7 +270,7 @@ namespace Anvil.Services
       overrideData.MaxRangedAttackDistance = max;
       overrideData.MaxRangedPassiveAttackDistance = maxPassive;
 
-      maxRangedAttackDistanceOverrideMap[(uint)baseItem.Id] = overrideData;
+      maxRangedAttackDistanceOverrideMap[baseItem.Id] = overrideData;
       maxAttackRangeHook ??= hookService.RequestHook<MaxAttackRangeHook>(OnMaxAttackRange, FunctionsLinux._ZN12CNWSCreature14MaxAttackRangeEjii, HookOrder.Final);
     }
 
@@ -281,7 +281,7 @@ namespace Anvil.Services
     /// <param name="size">The size of the creature needed to consider this weapon finessable.</param>
     public void SetWeaponFinesseSize(NwBaseItem baseItem, CreatureSize size)
     {
-      weaponFinesseSizeMap[(uint)baseItem.Id] = (byte)size;
+      weaponFinesseSizeMap[baseItem.Id] = (byte)size;
     }
 
     /// <summary>
@@ -290,7 +290,7 @@ namespace Anvil.Services
     /// <param name="baseItem">The base item type to be considered a monk weapon.</param>
     public void SetWeaponIsMonkWeapon(NwBaseItem baseItem)
     {
-      monkWeaponSet.Add((uint)baseItem.Id);
+      monkWeaponSet.Add(baseItem.Id);
 
       if (!combatModeEventSubscribed)
       {
@@ -305,7 +305,7 @@ namespace Anvil.Services
     /// <param name="baseItem">The base item type to be considered unarmed.</param>
     public void SetWeaponUnarmed(NwBaseItem baseItem)
     {
-      weaponUnarmedSet.Add((uint)baseItem.Id);
+      weaponUnarmedSet.Add(baseItem.Id);
     }
 
     void IDisposable.Dispose()
