@@ -21,10 +21,130 @@ namespace Anvil.API
       BaseItemInfo = baseItemInfo;
     }
 
+    public ACBonus ACBonusType
+    {
+      get => (ACBonus)BaseItemInfo.m_nACEnchantmentType;
+    }
+
+    public BaseItemAmmunitionType AmmunitionType
+    {
+      get => (BaseItemAmmunitionType)BaseItemInfo.m_nAmmunitionType;
+    }
+
+    public byte AnimSlashL
+    {
+      get => BaseItemInfo.m_nPercentageSlashL;
+    }
+
+    public byte AnimSlashR
+    {
+      get => BaseItemInfo.m_nPercentageSlashR;
+    }
+
+    public byte AnimSlashS
+    {
+      get => BaseItemInfo.m_nPercentageSlashS;
+    }
+
+    public byte ArcaneSpellFailure
+    {
+      get => BaseItemInfo.m_nArcaneSpellFailure;
+    }
+
+    public byte ArmorCheckPenalty
+    {
+      get => BaseItemInfo.m_nArmorCheckPenalty;
+    }
+
+    public byte BaseAC
+    {
+      get => BaseItemInfo.m_nBaseAC;
+    }
+
+    public float BaseCost
+    {
+      get => BaseItemInfo.m_nBaseCost;
+    }
+
+    public string BaseItemStatsText
+    {
+      get => TlkTable.GetSimpleString(BaseItemInfo.m_nStatsString);
+    }
+
+    public BaseItemCategory Category
+    {
+      get => (BaseItemCategory)BaseItemInfo.m_nCategory;
+    }
+
+    public float CostMultiplier
+    {
+      get => BaseItemInfo.m_nCostMultiplier;
+    }
+
+    public byte CritMultiplier
+    {
+      get => BaseItemInfo.m_nCritMult;
+    }
+
+    public byte CritThreat
+    {
+      get => BaseItemInfo.m_nCritThreat;
+    }
+
+    public string DefaultIcon
+    {
+      get => BaseItemInfo.m_DefaultIconResRef.ToString();
+    }
+
+    public string DefaultModel
+    {
+      get => BaseItemInfo.m_DefaultModelResRef.ToString();
+    }
+
+    public string Description
+    {
+      get => TlkTable.GetSimpleString(BaseItemInfo.m_nDescription);
+    }
+
+    public byte DieToRoll
+    {
+      get => BaseItemInfo.m_nDieToRoll;
+    }
+
+    public NwFeat EpicDevastatingCriticalFeat
+    {
+      get => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponDevastatingCriticalFeat);
+    }
+
+    public NwFeat EpicOverwhelmingCriticalFeat
+    {
+      get => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponOverwhelmingCriticalFeat);
+    }
+
+    public NwFeat EpicWeaponFocusFeat
+    {
+      get => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponFocusFeat);
+    }
+
+    public NwFeat EpicWeaponSpecializationFeat
+    {
+      get => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponSpecializationFeat);
+    }
+
     /// <summary>
     /// Gets the id of this base item.
     /// </summary>
     public uint Id { get; }
+
+    public byte ILRStackSize
+    {
+      get => BaseItemInfo.m_nILRStackSize;
+    }
+
+    public NwFeat ImprovedCriticalFeat
+    {
+      get => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponImprovedCriticalFeat);
+    }
 
     /// <summary>
     /// Gets the size/number of inventory slots that this base item occupies.
@@ -32,6 +152,21 @@ namespace Anvil.API
     public Vector2Int InventorySlotSize
     {
       get => new Vector2Int(BaseItemInfo.m_nInvSlotWidth, BaseItemInfo.m_nInvSlotHeight);
+    }
+
+    public byte InvSoundTypeIndex
+    {
+      get => BaseItemInfo.m_InventorySoundType;
+    }
+
+    public bool IsContainer
+    {
+      get => BaseItemInfo.m_bContainer.ToBool();
+    }
+
+    public bool IsGenderSpecific
+    {
+      get => BaseItemInfo.m_bGenderSpecific.ToBool();
     }
 
     /// <summary>
@@ -42,14 +177,20 @@ namespace Anvil.API
       get => BaseItemInfo.m_bIsMonkWeapon.ToBool();
     }
 
-    public bool RotateIcon
+    /// <summary>
+    /// Gets if this base item is a ranged weapon.
+    /// </summary>
+    public bool IsRangedWeapon
     {
-      get => BaseItemInfo.m_bCanRotateIcon.ToBool();
+      get => BaseItemInfo.m_nWeaponRanged > 0;
     }
 
-    public BaseItemModelType ModelType
+    /// <summary>
+    /// Gets if this item type can be stacked.
+    /// </summary>
+    public bool IsStackable
     {
-      get => (BaseItemModelType)BaseItemInfo.m_nModelType;
+      get => MaxStackSize > 1;
     }
 
     public string ItemClass
@@ -57,29 +198,146 @@ namespace Anvil.API
       get => BaseItemInfo.m_ItemClassResRefChunk.ToString();
     }
 
-    public bool IsGenderSpecific
+    public byte ItemPropertiesMax
     {
-      get => BaseItemInfo.m_bGenderSpecific.ToBool();
+      get => BaseItemInfo.m_nMaxProperties;
     }
 
-    public string DefaultModel
+    public byte ItemPropertiesMin
     {
-      get => BaseItemInfo.m_DefaultModelResRef.ToString();
+      get => BaseItemInfo.m_nMinProperties;
     }
 
-    public string DefaultIcon
+    public byte ItemPropertyColumnId
     {
-      get => BaseItemInfo.m_DefaultIconResRef.ToString();
+      get => BaseItemInfo.m_nPropColumn;
     }
 
-    public bool IsContainer
+    /// <summary>
+    /// Gets the associated <see cref="BaseItemType"/> for this base item.
+    /// </summary>
+    public BaseItemType ItemType
     {
-      get => BaseItemInfo.m_bContainer.ToBool();
+      get => (BaseItemType)Id;
     }
 
-    public BaseItemWeaponWieldType WeaponWieldType
+    /// <summary>
+    /// Gets the maximum stack size for this base item.
+    /// </summary>
+    public int MaxStackSize
     {
-      get => (BaseItemWeaponWieldType)BaseItemInfo.m_nWeaponWield;
+      get => BaseItemInfo.m_nStackSize;
+    }
+
+    public float ModelRangeMax
+    {
+      get => BaseItemInfo.m_nMaxRange;
+    }
+
+    public float ModelRangeMin
+    {
+      get => BaseItemInfo.m_nMinRange;
+    }
+
+    public BaseItemModelType ModelType
+    {
+      get => (BaseItemModelType)BaseItemInfo.m_nModelType;
+    }
+
+    public string Name
+    {
+      get => TlkTable.GetSimpleString(BaseItemInfo.m_nName);
+    }
+
+    public byte NumDamageDice
+    {
+      get => BaseItemInfo.m_nNumDice;
+    }
+
+    /// <summary>
+    /// Gets or sets the preferred attack distance for this base item.
+    /// </summary>
+    public float PreferredAttackDistance
+    {
+      get => BaseItemInfo.m_fPreferredAttackDist;
+      set => BaseItemInfo.m_fPreferredAttackDist = value;
+    }
+
+    public BaseItemQBBehaviour QBBehaviour
+    {
+      get => (BaseItemQBBehaviour)BaseItemInfo.m_nQBBehaviourType;
+    }
+
+    public IEnumerable<NwFeat> RequiredFeats
+    {
+      get
+      {
+        NwFeat[] retVal = new NwFeat[BaseItemInfo.m_nRequiredFeatCount];
+        for (int i = 0; i < retVal.Length; i++)
+        {
+          retVal[i] = NwFeat.FromFeatId(BaseItemInfo.m_pRequiredFeats[i]);
+        }
+
+        return retVal;
+      }
+    }
+
+    public bool RotateIcon
+    {
+      get => BaseItemInfo.m_bCanRotateIcon.ToBool();
+    }
+
+    public BaseItemRotation RotateOnGround
+    {
+      get => (BaseItemRotation)BaseItemInfo.m_nRotateOnGround;
+    }
+
+    public byte StartingCharges
+    {
+      get => BaseItemInfo.m_nStartingCharges;
+    }
+
+    public StoreCategory StoreCategory
+    {
+      get => (StoreCategory)BaseItemInfo.m_nStorePanel;
+    }
+
+    public byte StoreSortOrder
+    {
+      get => BaseItemInfo.m_nStorePanelSort;
+    }
+
+    public CreatureSize WeaponFinesseMinimumCreatureSize
+    {
+      get => (CreatureSize)BaseItemInfo.m_nWeaponFinesseMinimumCreatureSize;
+    }
+
+    public NwFeat WeaponFocusFeat
+    {
+      get => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponFocusFeat);
+    }
+
+    public byte WeaponMaterialTypeIndex
+    {
+      get => BaseItemInfo.m_nWeaponMaterialType;
+    }
+
+    public NwFeat WeaponOfChoiceFeat
+    {
+      get => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponOfChoiceFeat);
+    }
+
+    /// <summary>
+    /// Gets the <see cref="WeaponSize"/> of this base item if the item is a weapon.
+    /// </summary>
+    public BaseItemWeaponSize WeaponSize
+    {
+      get => (BaseItemWeaponSize)BaseItemInfo.m_nWeaponSize;
+    }
+
+    public NwFeat WeaponSpecializationFeat
+    {
+      get => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponSpecializationFeat);
     }
 
     public IEnumerable<DamageType> WeaponType
@@ -104,277 +362,14 @@ namespace Anvil.API
       }
     }
 
-    public bool IsPartUsingEnvMap(int partIndex)
+    public BaseItemWeaponWieldType WeaponWieldType
     {
-      return BaseItemInfo.m_bPartEnvMap[partIndex].ToBool();
-    }
-
-    /// <summary>
-    /// Gets if this base item is a ranged weapon.
-    /// </summary>
-    public bool IsRangedWeapon
-    {
-      get => BaseItemInfo.m_nWeaponRanged > 0;
-    }
-
-    /// <summary>
-    /// Gets if this item type can be stacked.
-    /// </summary>
-    public bool IsStackable
-    {
-      get => MaxStackSize > 1;
-    }
-
-    /// <summary>
-    /// Gets the associated <see cref="BaseItemType"/> for this base item.
-    /// </summary>
-    public BaseItemType ItemType
-    {
-      get => (BaseItemType)Id;
-    }
-
-    /// <summary>
-    /// Gets the <see cref="WeaponSize"/> of this base item if the item is a weapon.
-    /// </summary>
-    public BaseItemWeaponSize WeaponSize
-    {
-      get => (BaseItemWeaponSize)BaseItemInfo.m_nWeaponSize;
-    }
-
-    public float ModelRangeMin
-    {
-      get => BaseItemInfo.m_nMinRange;
-    }
-
-    public float ModelRangeMax
-    {
-      get => BaseItemInfo.m_nMaxRange;
-    }
-
-    public byte NumDamageDice
-    {
-      get => BaseItemInfo.m_nNumDice;
-    }
-
-    public byte DieToRoll
-    {
-      get => BaseItemInfo.m_nDieToRoll;
-    }
-
-    public byte CritThreat
-    {
-      get => BaseItemInfo.m_nCritThreat;
-    }
-
-    public byte CritMultiplier
-    {
-      get => BaseItemInfo.m_nCritMult;
-    }
-
-    public BaseItemCategory Category
-    {
-      get => (BaseItemCategory)BaseItemInfo.m_nCategory;
-    }
-
-    public float BaseCost
-    {
-      get => BaseItemInfo.m_nBaseCost;
-    }
-
-    public float CostMultiplier
-    {
-      get => BaseItemInfo.m_nCostMultiplier;
-    }
-
-    public string Description
-    {
-      get => TlkTable.GetSimpleString(BaseItemInfo.m_nDescription);
-    }
-
-    public string Name
-    {
-      get => TlkTable.GetSimpleString(BaseItemInfo.m_nName);
-    }
-
-    public byte InvSoundTypeIndex
-    {
-      get => BaseItemInfo.m_InventorySoundType;
-    }
-
-    public byte ItemPropertiesMin
-    {
-      get => BaseItemInfo.m_nMinProperties;
-    }
-
-    public byte ItemPropertiesMax
-    {
-      get => BaseItemInfo.m_nMaxProperties;
-    }
-
-    public byte ItemPropertyColumnId
-    {
-      get => BaseItemInfo.m_nPropColumn;
-    }
-
-    public StoreCategory StoreCategory
-    {
-      get => (StoreCategory)BaseItemInfo.m_nStorePanel;
-    }
-
-    public IEnumerable<NwFeat> RequiredFeats
-    {
-      get
-      {
-        NwFeat[] retVal = new NwFeat[BaseItemInfo.m_nRequiredFeatCount];
-        for (int i = 0; i < retVal.Length; i++)
-        {
-          retVal[i] = NwFeat.FromFeatId(BaseItemInfo.m_pRequiredFeats[i]);
-        }
-
-        return retVal;
-      }
-    }
-
-    public ACBonus ACBonusType
-    {
-      get => (ACBonus)BaseItemInfo.m_nACEnchantmentType;
-    }
-
-    public byte BaseAC
-    {
-      get => BaseItemInfo.m_nBaseAC;
-    }
-
-    public byte ArmorCheckPenalty
-    {
-      get => BaseItemInfo.m_nArmorCheckPenalty;
-    }
-
-    public string BaseItemStatsText
-    {
-      get => TlkTable.GetSimpleString(BaseItemInfo.m_nStatsString);
-    }
-
-    public byte StartingCharges
-    {
-      get => BaseItemInfo.m_nStartingCharges;
-    }
-
-    public BaseItemRotation RotateOnGround
-    {
-      get => (BaseItemRotation)BaseItemInfo.m_nRotateOnGround;
+      get => (BaseItemWeaponWieldType)BaseItemInfo.m_nWeaponWield;
     }
 
     public decimal Weight
     {
       get => BaseItemInfo.m_nWeight / 10.0m;
-    }
-
-    public byte WeaponMaterialTypeIndex
-    {
-      get => BaseItemInfo.m_nWeaponMaterialType;
-    }
-
-    public BaseItemAmmunitionType AmmunitionType
-    {
-      get => (BaseItemAmmunitionType)BaseItemInfo.m_nAmmunitionType;
-    }
-
-    public BaseItemQBBehaviour QBBehaviour
-    {
-      get => (BaseItemQBBehaviour)BaseItemInfo.m_nQBBehaviourType;
-    }
-
-    public byte ArcaneSpellFailure
-    {
-      get => BaseItemInfo.m_nArcaneSpellFailure;
-    }
-
-    public byte AnimSlashL
-    {
-      get => BaseItemInfo.m_nPercentageSlashL;
-    }
-
-    public byte AnimSlashR
-    {
-      get => BaseItemInfo.m_nPercentageSlashR;
-    }
-
-    public byte AnimSlashS
-    {
-      get => BaseItemInfo.m_nPercentageSlashS;
-    }
-
-    public byte StoreSortOrder
-    {
-      get => BaseItemInfo.m_nStorePanelSort;
-    }
-
-    public byte ILRStackSize
-    {
-      get => BaseItemInfo.m_nILRStackSize;
-    }
-
-    public NwFeat WeaponFocusFeat
-    {
-      get => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponFocusFeat);
-    }
-
-    public NwFeat EpicWeaponFocusFeat
-    {
-      get => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponFocusFeat);
-    }
-
-    public NwFeat WeaponSpecializationFeat
-    {
-      get => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponSpecializationFeat);
-    }
-
-    public NwFeat EpicWeaponSpecializationFeat
-    {
-      get => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponSpecializationFeat);
-    }
-
-    public NwFeat ImprovedCriticalFeat
-    {
-      get => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponImprovedCriticalFeat);
-    }
-
-    public NwFeat EpicOverwhelmingCriticalFeat
-    {
-      get => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponOverwhelmingCriticalFeat);
-    }
-
-    public NwFeat EpicDevastatingCriticalFeat
-    {
-      get => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponDevastatingCriticalFeat);
-    }
-
-    public NwFeat WeaponOfChoiceFeat
-    {
-      get => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponOfChoiceFeat);
-    }
-
-    public CreatureSize WeaponFinesseMinimumCreatureSize
-    {
-      get => (CreatureSize)BaseItemInfo.m_nWeaponFinesseMinimumCreatureSize;
-    }
-
-    /// <summary>
-    /// Gets the maximum stack size for this base item.
-    /// </summary>
-    public int MaxStackSize
-    {
-      get => BaseItemInfo.m_nStackSize;
-    }
-
-    /// <summary>
-    /// Gets or sets the preferred attack distance for this base item.
-    /// </summary>
-    public float PreferredAttackDistance
-    {
-      get => BaseItemInfo.m_fPreferredAttackDist;
-      set => BaseItemInfo.m_fPreferredAttackDist = value;
     }
 
     /// <summary>
@@ -400,6 +395,11 @@ namespace Anvil.API
     public static implicit operator NwBaseItem(BaseItemType itemType)
     {
       return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
+    }
+
+    public bool IsPartUsingEnvMap(int partIndex)
+    {
+      return BaseItemInfo.m_bPartEnvMap[partIndex].ToBool();
     }
   }
 }
