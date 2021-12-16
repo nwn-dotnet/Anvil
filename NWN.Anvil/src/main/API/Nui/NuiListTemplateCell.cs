@@ -29,7 +29,7 @@ namespace Anvil.API
     [JsonConstructor]
     public NuiListTemplateCell(NuiElement element)
     {
-      this.Element = element;
+      Element = element;
     }
   }
 }
