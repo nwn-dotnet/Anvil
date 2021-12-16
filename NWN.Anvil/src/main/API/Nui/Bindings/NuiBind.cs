@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using NWN.Core;
 
@@ -22,12 +23,24 @@ namespace Anvil.API
     /// Queries the specified player for the value of this binding.
     /// </summary>
     /// <param name="player">The player to query.</param>
-    /// <param name="nUiToken">The associated UI token.</param>
+    /// <param name="uiToken">The associated UI token.</param>
     /// <returns>The current value of the binding.</returns>
-    public T GetBindValue(NwPlayer player, int nUiToken)
+    public T GetBindValue(NwPlayer player, int uiToken)
     {
-      Json json = NWScript.NuiGetBind(player.ControlledCreature, nUiToken, Key);
+      Json json = NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key);
       return JsonConvert.DeserializeObject<T>(json.Dump());
+    }
+
+    /// <summary>
+    /// Queries the specified player for the array of values assigned to this binding.
+    /// </summary>
+    /// <param name="player">The player to query.</param>
+    /// <param name="uiToken">The associated UI token.</param>
+    /// <returns>The current values of the binding.</returns>
+    public List<T> GetBindValues(NwPlayer player, int uiToken)
+    {
+      Json json = NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key);
+      return JsonConvert.DeserializeObject<List<T>>(json.Dump());
     }
 
     /// <summary>
@@ -39,6 +52,20 @@ namespace Anvil.API
     public void SetBindValue(NwPlayer player, int uiToken, T value)
     {
       string jsonString = JsonConvert.SerializeObject(value);
+      Json json = Json.Parse(jsonString);
+
+      NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, json);
+    }
+
+    /// <summary>
+    /// Assigns an array of values to the binding for the specified player.
+    /// </summary>
+    /// <param name="player">The player whose binding will be updated.</param>
+    /// <param name="uiToken">The unique UI token to be updated.</param>
+    /// <param name="values">The new value to assign.</param>
+    public void SetBindValues(NwPlayer player, int uiToken, IEnumerable<T> values)
+    {
+      string jsonString = JsonConvert.SerializeObject(values);
       Json json = Json.Parse(jsonString);
 
       NWScript.NuiSetBind(player.ControlledCreature, uiToken, Key, json);
