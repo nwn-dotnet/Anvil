@@ -7,7 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...HEAD
 
 ### Added
-- N/A
+- `NwBaseItem`: Added various properties.
+- Added support for `NuiList` & `NuiListTemplateCell`.
 
 ### Package Updates
 - (Docker) NWNX: 16b2c88 -> ba4646c
