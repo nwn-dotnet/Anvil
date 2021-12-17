@@ -48,11 +48,6 @@ namespace Anvil.API
       get => raceInfo.GetDescriptionText().ToString();
     }
 
-    public byte Endurance
-    {
-      get => raceInfo.m_nEndurance;
-    }
-
     /// <summary>
     /// Gets the number of extra feats that this race grants characters at first level.
     /// </summary>
