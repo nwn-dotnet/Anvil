@@ -419,7 +419,7 @@ namespace Anvil.API
     /// <returns>The associated <see cref="NwSpell"/> instance. Null if the spell id is invalid.</returns>
     public static NwSpell FromSpellId(int spellId)
     {
-      return NwRuleset.Spells.ElementAtOrDefault((int)spellId);
+      return NwRuleset.Spells.ElementAtOrDefault(spellId);
     }
 
     /// <summary>
