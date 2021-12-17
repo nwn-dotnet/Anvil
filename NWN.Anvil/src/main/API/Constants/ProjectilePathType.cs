@@ -1,5 +1,3 @@
-using NWN.Core;
-
 namespace Anvil.API
 {
   public enum ProjectilePathType : uint
