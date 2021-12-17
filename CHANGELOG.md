@@ -8,6 +8,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...HEAD
 
 ### Added
 - `NwBaseItem`: Added various properties.
+- `NwSpell`: Added various properties.
 - Added support for `NuiList` & `NuiListTemplateCell`.
 
 ### Package Updates
