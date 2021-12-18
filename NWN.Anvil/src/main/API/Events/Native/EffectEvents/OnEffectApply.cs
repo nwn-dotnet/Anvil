@@ -61,7 +61,7 @@ namespace Anvil.API.Events
         OnEffectApply eventData = ProcessEvent(new OnEffectApply
         {
           Object = gameObject.ToNwObject(),
-          Effect = gameEffect.ToEffect(),
+          Effect = gameEffect.ToEffect(true),
         });
 
         return eventData.PreventApply ? false.ToInt() : Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);

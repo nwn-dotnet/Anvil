@@ -61,7 +61,7 @@ namespace Anvil.API.Events
         OnEffectRemove eventData = ProcessEvent(new OnEffectRemove
         {
           Object = gameObject.ToNwObject(),
-          Effect = gameEffect.ToEffect(),
+          Effect = gameEffect.ToEffect(true),
         });
 
         return eventData.PreventRemove ? false.ToInt() : Hook.CallOriginal(pEffectListHandler, pObject, pEffect);
