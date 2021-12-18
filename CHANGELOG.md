@@ -9,12 +9,14 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...HEAD
 ### Added
 - `NwBaseItem`: Added various properties.
 - `NwSpell`: Added various properties.
+- `NwClass`: Added various properties.
 - Added support for `NuiList` & `NuiListTemplateCell`.
+- `Effect.DurationType`: Added setter.
 
 ### Package Updates
-- (Docker) NWNX: 16b2c88 -> ba4646c
+- (Docker) NWNX: 16b2c88 -> 790a54b
 - NWN.Core: 8193.33.4 -> 8193.34.0
-- NWN.Native: 8193.33.4 -> 8193.34.0
+- NWN.Native: 8193.33.4 -> 8193.34.2
 
 ### Changed
 Updated APIs to use ruleset classes:
@@ -99,7 +101,7 @@ Updated APIs to use ruleset classes:
 - `WeaponService.Add***Feat(NwBaseItem,NwFeat)`
 
 ### Deprecated
-- N/A
+- `CursorTargetService.EnterTargetMode` - Use NwPlayer.EnterTargetMode/NwPlayer.TryEnterTargetMode instead.
 
 ### Removed
 - `Effect.AreaOfEffect(int,string,string,string)`
