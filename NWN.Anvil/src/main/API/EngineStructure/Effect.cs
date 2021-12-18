@@ -6,9 +6,6 @@ namespace Anvil.API
 {
   public sealed partial class Effect : EffectBase
   {
-    internal const int DurationMask = 0x7;
-    internal const int SubTypeMask = 0x18;
-
     internal Effect(CGameEffect effect) : base(effect) {}
 
     /// <summary>
@@ -20,11 +17,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the duration type (Temporary, Instant, Permanent) of this effect.
+    /// Gets or sets the duration type (Temporary, Instant, Permanent) of this effect.
     /// </summary>
     public EffectDuration DurationType
     {
-      get => (EffectDuration)(Effect.m_nSubType & DurationMask);
+      get => (EffectDuration)Effect.GetDurationType();
+      set => Effect.SetDurationType((ushort)value);
     }
 
     /// <summary>
@@ -40,8 +38,8 @@ namespace Anvil.API
     /// </summary>
     public EffectSubType SubType
     {
-      get => (EffectSubType)(Effect.m_nSubType & SubTypeMask);
-      set => Effect.m_nSubType = (ushort)(value | (EffectSubType)DurationType);
+      get => (EffectSubType)Effect.GetSubType();
+      set => Effect.SetSubType((ushort)value);
     }
 
     /// <summary>

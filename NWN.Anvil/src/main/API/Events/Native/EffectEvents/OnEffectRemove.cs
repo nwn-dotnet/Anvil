@@ -52,7 +52,7 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect);
         }
 
-        EffectDurationType durationType = (EffectDurationType)(gameEffect.m_nSubType & Effect.DurationMask);
+        EffectDurationType durationType = (EffectDurationType)gameEffect.GetDurationType();
         if (durationType != EffectDurationType.Temporary && durationType != EffectDurationType.Permanent)
         {
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect);
