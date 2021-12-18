@@ -101,6 +101,14 @@ namespace Anvil.API
       get => TlkTable.GetSimpleString(BaseItemInfo.m_nStatsString);
     }
 
+    /// <summary>
+    /// Gets if the inventory icon for this item may be rotated 90 degrees clockwise, such as when placed on a player's quickbar.
+    /// </summary>
+    public bool CanRotateIcon
+    {
+      get => BaseItemInfo.m_bCanRotateIcon.ToBool();
+    }
+
     public BaseItemCategory Category
     {
       get => (BaseItemCategory)BaseItemInfo.m_nCategory;
@@ -368,14 +376,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the behaviour when this property appears on the player's quick bar.
-    /// </summary>
-    public BaseItemQBBehaviour QBBehaviour
-    {
-      get => (BaseItemQBBehaviour)BaseItemInfo.m_nQBBehaviourType;
-    }
-
-    /// <summary>
     /// Gets a list of feats that grants proficiency with this item. A character must be proficient with an item in order to equip or use it.
     /// </summary>
     public IEnumerable<NwFeat> PrerequisiteFeats
@@ -393,11 +393,11 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets if the inventory icon for this item may be rotated 90 degrees clockwise, such as when placed on a player's quickbar.
+    /// Gets the behaviour when this property appears on the player's quick bar.
     /// </summary>
-    public bool CanRotateIcon
+    public BaseItemQBBehaviour QBBehaviour
     {
-      get => BaseItemInfo.m_bCanRotateIcon.ToBool();
+      get => (BaseItemQBBehaviour)BaseItemInfo.m_nQBBehaviourType;
     }
 
     /// <summary>

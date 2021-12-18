@@ -52,7 +52,7 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
         }
 
-        EffectDurationType durationType = (EffectDurationType)(gameEffect.m_nSubType & Effect.DurationMask);
+        EffectDurationType durationType = (EffectDurationType)gameEffect.GetDurationType();
         if (durationType != EffectDurationType.Temporary && durationType != EffectDurationType.Permanent)
         {
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
@@ -61,7 +61,7 @@ namespace Anvil.API.Events
         OnEffectApply eventData = ProcessEvent(new OnEffectApply
         {
           Object = gameObject.ToNwObject(),
-          Effect = gameEffect.ToEffect(),
+          Effect = gameEffect.ToEffect(true),
         });
 
         return eventData.PreventApply ? false.ToInt() : Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);

@@ -8,17 +8,18 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiList : NuiElement
   {
-    public override string Type
+    [JsonConstructor]
+    public NuiList(IReadOnlyCollection<NuiListTemplateCell> rowTemplate, NuiProperty<int> rowCount)
     {
-      get => "list";
+      RowTemplate = new List<NuiListTemplateCell>(rowTemplate);
+      RowCount = rowCount;
     }
 
     /// <summary>
-    /// Gets or sets the list of cells composing the row template.<br/>
-    /// A max of 16 cells are supported.
+    /// Gets or sets whether a border should be rendered around this list view.
     /// </summary>
-    [JsonProperty("row_template")]
-    public List<NuiListTemplateCell> RowTemplate { get; set; }
+    [JsonProperty("border")]
+    public bool Border { get; set; } = true;
 
     /// <summary>
     /// Gets or sets the number of rows in this list.
@@ -33,10 +34,11 @@ namespace Anvil.API
     public float RowHeight { get; set; } = NuiStyle.RowHeight;
 
     /// <summary>
-    /// Gets or sets whether a border should be rendered around this list view.
+    /// Gets or sets the list of cells composing the row template.<br/>
+    /// A max of 16 cells are supported.
     /// </summary>
-    [JsonProperty("border")]
-    public bool Border { get; set; } = true;
+    [JsonProperty("row_template")]
+    public List<NuiListTemplateCell> RowTemplate { get; set; }
 
     /// <summary>
     /// Gets or sets whether scroll bars should be rendered for this scroll list.<br/>
@@ -45,11 +47,9 @@ namespace Anvil.API
     [JsonProperty("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Y;
 
-    [JsonConstructor]
-    public NuiList(IReadOnlyCollection<NuiListTemplateCell> rowTemplate, NuiProperty<int> rowCount)
+    public override string Type
     {
-      RowTemplate = new List<NuiListTemplateCell>(rowTemplate);
-      RowCount = rowCount;
+      get => "list";
     }
   }
 }
