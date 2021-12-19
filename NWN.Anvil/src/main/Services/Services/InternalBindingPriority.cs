@@ -13,6 +13,11 @@ namespace Anvil.Services
     Lowest = 99999,
 
     /// <summary>
+    /// The default priority for services without a configuration.
+    /// </summary>
+    Default = Normal,
+
+    /// <summary>
     /// Use for Core services that must be initialized first (e.g PluginManager)
     /// </summary>
     Core = Highest,

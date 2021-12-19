@@ -7,7 +7,6 @@ using NWN.Native.API;
 using Ability = NWN.Native.API.Ability;
 using Feat = NWN.Native.API.Feat;
 using MovementRate = NWN.Native.API.MovementRate;
-using Skill = Anvil.API.Skill;
 
 namespace Anvil.Services
 {
@@ -262,6 +261,7 @@ namespace Anvil.Services
       });
     }
 
+    // ReSharper disable once FunctionComplexityOverflow
     private int OnValidateCharacter(void* player, int* bFailedServerRestriction)
     {
       CNWSPlayer pPlayer = CNWSPlayer.FromPointer(player);
@@ -1333,7 +1333,7 @@ namespace Anvil.Services
           // Skill Focus Feats
           int SkillFocusFeatCheck(ushort nReqSkill)
           {
-            if (nReqSkill != unchecked((ushort)-1))
+            if (nReqSkill != IntegerExtensions.AsUShort(-1))
             {
               bool bSkillRequirementMet = false;
               CNWSkill pReqSkill = skills[nReqSkill];
@@ -1938,7 +1938,7 @@ namespace Anvil.Services
                   Player = nwPlayer,
                   Type = ValidationFailureType.Spell,
                   SubType = ValidationFailureSubType.SpellListComparison,
-                  Spell = (Spell)nSpellID,
+                  Spell = NwSpell.FromSpellId((int)nSpellID),
                   StrRef = StrRefSpellIllegalNumSpells,
                 }))
                 {
@@ -1978,7 +1978,7 @@ namespace Anvil.Services
             Player = nwPlayer,
             Type = ValidationFailureType.Skill,
             SubType = ValidationFailureSubType.SkillListComparison,
-            Skill = (Skill)nSkill,
+            Skill = NwSkill.FromSkillId(nSkill),
             StrRef = StrRefSkillInvalidRanks,
           }))
           {
@@ -2012,7 +2012,7 @@ namespace Anvil.Services
             Player = nwPlayer,
             Type = ValidationFailureType.Feat,
             SubType = ValidationFailureSubType.FeatListComparison,
-            Feat = (API.Feat)nFeat,
+            Feat = NwFeat.FromFeatId(nFeat),
             StrRef = StrRefFeatTooMany,
           }))
           {

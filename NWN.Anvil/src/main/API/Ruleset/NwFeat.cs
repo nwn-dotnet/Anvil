@@ -7,22 +7,19 @@ using NWN.Native.API;
 namespace Anvil.API
 {
   /// <summary>
-  /// A creature/character feat(ure).
+  /// A creature/character feat(ure) definition.
   /// </summary>
   public sealed class NwFeat
   {
-    [Inject]
-    private static RulesetService RulesetService { get; set; }
-
     [Inject]
     private static TlkTable TlkTable { get; set; }
 
     private readonly CNWFeat featInfo;
 
-    public NwFeat(Feat featType, CNWFeat featInfo)
+    internal NwFeat(ushort featId, CNWFeat featInfo)
     {
+      Id = featId;
       this.featInfo = featInfo;
-      FeatType = featType;
     }
 
     /// <summary>
@@ -41,7 +38,13 @@ namespace Anvil.API
       get => TlkTable.GetSimpleString((uint)featInfo.m_nDescriptionStrref);
     }
 
-    public Feat FeatType { get; }
+    /// <summary>
+    /// Gets the associated <see cref="Feat"/> type for this feat.
+    /// </summary>
+    public Feat FeatType
+    {
+      get => (Feat)Id;
+    }
 
     /// <summary>
     /// Gets the ResRef for the icon representing this skill.
@@ -50,6 +53,11 @@ namespace Anvil.API
     {
       get => featInfo.m_cIcon.ToString();
     }
+
+    /// <summary>
+    /// Gets the id of this feat.
+    /// </summary>
+    public ushort Id { get; }
 
     /// <summary>
     /// Gets whether the use of this feat is considered as a hostile act.
@@ -104,7 +112,7 @@ namespace Anvil.API
     /// </summary>
     public NwClass MinLevelClass
     {
-      get => NwClass.FromClassId(featInfo.m_nMinLevelClass);
+      get => NwRuleset.Classes.ElementAtOrDefault(featInfo.m_nMinLevelClass);
     }
 
     /// <summary>
@@ -199,9 +207,9 @@ namespace Anvil.API
     /// <summary>
     /// The Spell associated with this feat.
     /// </summary>
-    public Spell Spell
+    public NwSpell Spell
     {
-      get => (Spell)featInfo.m_nSpellId;
+      get => NwSpell.FromSpellId(featInfo.m_nSpellId);
     }
 
     /// <summary>
@@ -247,33 +255,28 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a feat from the specified feat id.
+    /// Resolves a <see cref="NwFeat"/> from a feat id.
     /// </summary>
-    /// <param name="featId">The associated feat id.</param>
-    /// <returns>The associated <see cref="NwFeat"/> structure, or null if the feat has no matching entry.</returns>
-    public static NwFeat FromFeatId(ushort featId)
-    {
-      return featId != IntegerExtensions.AsUShort(-1) ? FromFeatId((int)featId) : null;
-    }
-
-    /// <summary>
-    /// Creates a feat from the specified feat id.
-    /// </summary>
-    /// <param name="featId">The associated feat id.</param>
-    /// <returns>The associated <see cref="NwFeat"/> structure, or null if the feat has no matching entry.</returns>
+    /// <param name="featId">The id of the feat to resolve.</param>
+    /// <returns>The associated <see cref="NwFeat"/> instance. Null if the feat id is invalid.</returns>
     public static NwFeat FromFeatId(int featId)
     {
-      return featId >= 0 && featId < RulesetService.Feats.Count ? RulesetService.Feats[featId] : null;
+      return NwRuleset.Feats.ElementAtOrDefault(featId);
     }
 
     /// <summary>
-    /// Creates a feat from the specified <see cref="Feat"/>.
+    /// Resolves a <see cref="NwFeat"/> from a <see cref="Anvil.API.Feat"/>.
     /// </summary>
-    /// <param name="featType">The associated feat type.</param>
-    /// <returns>The associated <see cref="NwFeat"/> structure, or null if the feat has no matching entry.</returns>
+    /// <param name="featType">The feat type to resolve.</param>
+    /// <returns>The associated <see cref="NwFeat"/> instance. Null if the feat type is invalid.</returns>
     public static NwFeat FromFeatType(Feat featType)
     {
-      return FromFeatId((int)featType);
+      return NwRuleset.Feats.ElementAtOrDefault((int)featType);
+    }
+
+    public static implicit operator NwFeat(Feat featType)
+    {
+      return NwRuleset.Feats.ElementAtOrDefault((int)featType);
     }
 
     /// <summary>
@@ -293,6 +296,11 @@ namespace Anvil.API
         Ability.Charisma => featInfo.m_nMinCHA,
         _ => 0,
       };
+    }
+
+    private static NwFeat FromFeatId(ushort featId)
+    {
+      return NwRuleset.Feats.ElementAtOrDefault(featId);
     }
   }
 }

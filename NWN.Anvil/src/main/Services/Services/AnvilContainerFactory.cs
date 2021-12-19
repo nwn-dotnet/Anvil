@@ -67,39 +67,20 @@ namespace Anvil.Services
       };
     }
 
-    private static string GetServiceName(Type implementation, ServiceBindingOptionsAttribute options)
+    private static string GetServiceName(Type implementation)
     {
-      int bindingPriority = options?.Priority ?? (int)InternalBindingPriority.Normal;
-      bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);
-
+      int bindingPriority = implementation.GetServicePriority();
       return bindingPriority.ToString("D5") + implementation.FullName;
     }
 
-#pragma warning disable 618
     private static bool IsServiceRequirementsMet(PluginManager pluginManager, ServiceBindingOptionsAttribute options)
     {
-      if (options == null || options.PluginDependencies == null && options.MissingPluginDependencies == null)
-      {
-        return true;
-      }
-
-      if (options.PluginDependencies != null && options.PluginDependencies.Any(dependency => !pluginManager.IsPluginLoaded(dependency)))
-      {
-        return false;
-      }
-
-      if (options.MissingPluginDependencies != null && options.MissingPluginDependencies.Any(pluginManager.IsPluginLoaded))
-      {
-        return false;
-      }
-
-      return true;
+      return options?.PluginDependencies == null || options.PluginDependencies.All(pluginManager.IsPluginLoaded);
     }
-#pragma warning restore 618
 
     private static void RegisterBindings(ServiceContainer serviceContainer, Type bindTo, ServiceBindingAttribute[] bindings, ServiceBindingOptionsAttribute options)
     {
-      string serviceName = GetServiceName(bindTo, options);
+      string serviceName = GetServiceName(bindTo);
 
       PerContainerLifetime lifeTime = new PerContainerLifetime();
       RegisterExplicitBindings(serviceContainer, bindTo, bindings, serviceName, lifeTime);
@@ -115,9 +96,8 @@ namespace Anvil.Services
     private static void RegisterCoreService(ServiceContainer serviceContainer, object instance)
     {
       Type instanceType = instance.GetType();
-      ServiceBindingOptionsAttribute options = instanceType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
 
-      string serviceName = GetServiceName(instanceType, options);
+      string serviceName = GetServiceName(instanceType);
       serviceContainer.RegisterInstance(instanceType, instance, serviceName);
     }
 

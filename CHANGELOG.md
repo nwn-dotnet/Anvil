@@ -4,7 +4,129 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...HEAD
+
+### Added
+- `NwBaseItem`: Added various properties.
+- `NwSpell`: Added various properties.
+- `NwClass`: Added various properties.
+- Added support for `NuiList` & `NuiListTemplateCell`.
+- `Effect.DurationType`: Added setter.
+
+### Package Updates
+- (Docker) NWNX: 16b2c88 -> 790a54b
+- NWN.Core: 8193.33.4 -> 8193.34.0
+- NWN.Native: 8193.33.4 -> 8193.34.2
+
+### Changed
+Updated APIs to use ruleset classes:
+- `Effect.SkillDecrease(NwSkill,int)`
+- `Effect.SkillIncrease(NwSkill,int)`
+- `Effect.Spell`
+- `ItemProperty.DecreaseSkill(NwSkill,int)`
+- `ItemProperty.SkillBonus(NwSkill,int)`
+- `Talent.Feat`
+- `Talent.Skill`
+- `Talent.Spell`
+- `NwSkill.ToTalent(this NwSkill)`
+- `NwSkill.ToTalent(this NwSpell)`
+- `NwSkill.ToTalent(this NwFeat)`
+- `CreatureEvents.OnSpellCastAt.Spell`
+- `CreatureEvents.OnSpellCastAt.Signal(NwObject,NwCreature,NwSpell,bool)`
+- `DoorEvents.OnSpellCastAt.Spell`
+- `DoorEvents.OnSpellCastAt.Signal(NwObject,NwDoor,NwSpell,bool)`
+- `ModuleEvents.OnPlayerGuiEvent.FeatSelection`
+- `ModuleEvents.OnPlayerGuiEvent.SkillSelection`
+- `PlaceableEvents.OnSpellCastAt.Spell`
+- `PlaceableEvents.OnSpellCastAt.Signal(NwObject,NwPlaceable,NwSpell,bool)`
+- `OnDisarmWeapon.Feat`
+- `OnUseFeat.Feat`
+- `OnUseSkill.Skill`
+- `OnSpellAction.Feat`
+- `OnSpellAction.Spell`
+- `OnSpellBroadcast.Feat`
+- `OnSpellBroadcast.Spell`
+- `OnSpellCast.Spell`
+- `OnSpellInterrupt.Feat`
+- `OnSpellInterrupt.Spell`
+- `OnSpellSlotMemorize.Spell`
+- `SpellEvents.OnSpellCast.Spell`
+- `SpellEvents.OnSpellCast.SpellCastClass`
+- `CreatureClassInfo.Class`
+- `CreatureClassInfo.AddKnownSpell(NwSpell,byte)`
+- `CreatureClassInfo.ClearMemorizedKnownSpells(NwSpell)`
+- `CreatureClassInfo.GetKnownSpells(byte)`
+- `CreatureClassInfo.RemoveKnownSpell(byte,NwSpell)`
+- `CreatureLevelInfo.Class`
+- `CreatureLevelInfo.Feats`
+- `CreatureLevelInfo.GetSkillRank(NwSkill)`
+- `CreatureLevelInfo.SetSkillRank(NwSkill,sbyte)`
+- `CreatureTypeFilter.Class(NwClass)`
+- `CreatureTypeFilter.DoesNotHaveSpellEffect(NwSpell)`
+- `CreatureTypeFilter.HasSpellEffect(NwSpell)`
+- `MemorizedSpellSlot.Spell`
+- `NwCreature.Classes`
+- `NwCreature.Feats`
+- `NwCreature.ActionCastFakeSpellAt(NwSpell,Location,ProjectilePathType)`
+- `NwCreature.ActionCastFakeSpellAt(NwSpell,NwGameObject,ProjectilePathType)`
+- `NwCreature.ActionUseFeat(NwFeat,NwGameObject)`
+- `NwCreature.ActionUseSkill(NwSkill,NwGameObject,SubSkill,NwItem)`
+- `NwCreature.AddFeat(NwFeat)`
+- `NwCreature.AddFeat(NwFeat,int)`
+- `NwCreature.DecrementRemainingFeatUses(NwFeat,int)`
+- `NwCreature.DoSkillCheck(NwSkill,int)`
+- `NwCreature.GetClassDomains(NwClass)`
+- `NwCreature.GetClassInfo(NwClass)`
+- `NwCreature.GetFeatGainLevel(NwFeat)`
+- `NwCreature.GetSkillRank(NwSkill,bool)`
+- `NwCreature.GetSpecialization(NwClass)`
+- `NwCreature.HasFeatEffect(NwFeat)`
+- `NwCreature.HasFeatPrepared(NwFeat)`
+- `NwCreature.HasSkill(NwSkill)`
+- `NwCreature.HasSpellEffect(NwSpell)`
+- `NwCreature.HasSpellUse(NwSpell)`
+- `NwCreature.IncrementRemainingFeatUses(NwFeat,int)`
+- `NwCreature.KnowsFeat(NwFeat)`
+- `NwCreature.LevelUpHenchman(NwClass,PackageType,bool)`
+- `NwCreature.MeetsFeatRequirements(NwFeat)`
+- `NwCreature.RemoveFeat(NwFeat)`
+- `NwCreature.SetSkillRank(NwSkill)`
+- `NwGameObject.ActionCastSpellAt(NwSpell,NwGameObject,MetaMagic,bool,int,ProjectilePathType,bool)`
+- `NwGameObject.ActionCastSpellAt(NwSpell,Location,MetaMagic,bool,int,ProjectilePathType,bool)`
+- `SpecialAbility(NwSpell,byte,bool)`
+- `SpecialAbility.Spell`
+- `OnELCSkillValidationFailure.Skill`
+- `OnELCSkillValidationFailure.Feat`
+- `OnELCSkillValidationFailure.Spell`
+- `WeaponService.Add***Feat(NwBaseItem,NwFeat)`
+
+### Deprecated
+- `CursorTargetService.EnterTargetMode` - Use NwPlayer.EnterTargetMode/NwPlayer.TryEnterTargetMode instead.
+
+### Removed
+- `Effect.AreaOfEffect(int,string,string,string)`
+- `AttributeExtensions`
+- `StandardFactionExtensions`
+- `CreatureTypeFilter.RacialType`
+- `Inventory.CheckFit(BaseItemType)`
+- `NwCreature.RacialType`
+- `NwCreature.ChangeToStandardFaction`
+- `NwItem.BaseItemType`
+- `NwItem.CanStack`
+- `NwItem.IsStackable`
+- `NwPlayer.NuiSetGroupLayout(int,string,NuiGroup)`
+- `NwPlayer.NuiSetGroupLayout(int,string,NuiWindow)`
+- `NwFaction(int)`
+- `Anvil.Services.NwDateTime`
+- `LoopTimeService`
+- `ServiceBindingOptions.MissingPluginDependencies`
+- `ServiceBindingOptions.Order`
+
+### Fixed
+- N/A
+
+## 8193.33.5
+https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...v8193.33.5
 
 ### Added
 - NwModule: Added `LimboGameObjects` property to list all GameObjects currently stored in limbo.
@@ -12,23 +134,17 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.4...HEAD
 - NwCreature: Added `AlwaysWalk` and `WalkRateCap` for restricting creature & player movement.
 - Added `OnCheckEffectImmunity` event for bypassing effect immunity checks.
 - Added `OnEffectApply` and `OnEffectRemove` events.
-- Added `RulesetService` for loading/importing rules from `CNWRules`.
-- Added ruleset APIs: `NwClass`, `NwFeat`, `NwRace` and `NwSkill`
-
-### Package Updates
-- N/A
+- Added ruleset APIs: `NwRuleset`, `NwBaseItem`, `NwClass`, `NwFeat`, `NwRace` `NwSkill` and `NwSpell`
 
 ### Changed
-- N/A
+- Migrated LoopTimeService properties to static class `Anvil.API.Time`.
+- Exposed `ScheduledTask` to Scheduler Service.
+- Services implementing `IUpdateable` are now executed in deterministic order based on the service binding order defined in `ServiceBindingOptions`.
 
 ### Deprecated
-- N/A
-
-### Removed
-- N/A
-
-### Fixed
-- N/A
+- `LoopTimeService` - use `Anvil.API.Time` instead.
+- Moved `NwDateTime` and `NwTimeSpan` to `Anvil.API` namespace.
+- Duplicated APIs `NwItem.CanStack`/`NwItem.IsStackable`. Use `NwBaseItem.IsStackable` instead.
 
 ## 8193.33.4
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.3...v8193.33.4

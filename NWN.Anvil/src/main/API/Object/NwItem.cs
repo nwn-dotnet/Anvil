@@ -70,20 +70,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the <see cref="BaseItemType"/> for this item.
+    /// Gets or sets the <see cref="NwBaseItem"/> for this item.
     /// </summary>
-    public BaseItemType BaseItemType
+    public NwBaseItem BaseItem
     {
-      get => (BaseItemType)Item.m_nBaseItem;
-      set => Item.m_nBaseItem = (uint)value;
-    }
-
-    /// <summary>
-    /// Gets if this item can stack.
-    /// </summary>
-    public bool CanStack
-    {
-      get => NWScript.Get2DAString("baseitems", "Stacking", (int)BaseItemType).ParseInt() > 1;
+      get => NwBaseItem.FromItemId((int)Item.m_nBaseItem);
+      set => Item.m_nBaseItem = value.Id;
     }
 
     /// <summary>

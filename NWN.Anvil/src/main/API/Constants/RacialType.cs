@@ -2,7 +2,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public enum RacialType
+  public enum RacialType : ushort
   {
     Dwarf = NWScript.RACIAL_TYPE_DWARF,
     Elf = NWScript.RACIAL_TYPE_ELF,

@@ -2,7 +2,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public enum BaseItemType
+  public enum BaseItemType : uint
   {
     Shortsword = NWScript.BASE_ITEM_SHORTSWORD,
     Longsword = NWScript.BASE_ITEM_LONGSWORD,

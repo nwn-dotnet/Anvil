@@ -33,16 +33,16 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="Spell"/>  that was cast.
       /// </summary>
-      public Spell Spell { get; } = (Spell)NWScript.GetLastSpell();
+      public NwSpell Spell { get; } = NwSpell.FromSpellId(NWScript.GetLastSpell());
 
       NwObject IEvent.Context
       {
         get => Creature;
       }
 
-      public static void Signal(NwObject caster, NwCreature target, Spell spell, bool harmful = true)
+      public static void Signal(NwObject caster, NwCreature target, NwSpell spell, bool harmful = true)
       {
-        Event nwEvent = NWScript.EventSpellCastAt(caster, (int)spell, harmful.ToInt());
+        Event nwEvent = NWScript.EventSpellCastAt(caster, (int)spell.Id, harmful.ToInt());
         NWScript.SignalEvent(target, nwEvent);
       }
     }

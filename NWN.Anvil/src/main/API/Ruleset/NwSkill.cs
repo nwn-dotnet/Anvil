@@ -1,25 +1,23 @@
+using System.Linq;
 using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
 {
   /// <summary>
-  /// A creature/character skill.
+  /// A creature/character skill definition.
   /// </summary>
   public sealed class NwSkill
   {
-    [Inject]
-    private static RulesetService RulesetService { get; set; }
-
     [Inject]
     private static TlkTable TlkTable { get; set; }
 
     private readonly CNWSkill skillInfo;
 
-    public NwSkill(Skill skillType, CNWSkill skillInfo)
+    internal NwSkill(byte skillId, CNWSkill skillInfo)
     {
+      Id = skillId;
       this.skillInfo = skillInfo;
-      SkillType = skillType;
     }
 
     /// <summary>
@@ -55,6 +53,11 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the ID of this skill.
+    /// </summary>
+    public byte Id { get; }
+
+    /// <summary>
     /// Gets if this skill is considered a hostile action.
     /// </summary>
     public bool IsHostileSkill
@@ -86,16 +89,37 @@ namespace Anvil.API
       get => TlkTable.GetSimpleString((uint)skillInfo.m_nNameStrref);
     }
 
-    public Skill SkillType { get; }
-
-    public static NwSkill FromSkillId(int skillId)
+    /// <summary>
+    /// Gets the associated <see cref="Skill"/> type for this skill.
+    /// </summary>
+    public Skill SkillType
     {
-      return RulesetService.Skills[skillId];
+      get => (Skill)Id;
     }
 
+    /// <summary>
+    /// Resolves a <see cref="NwSkill"/> from a skill id.
+    /// </summary>
+    /// <param name="skillId">The id of the skill to resolve.</param>
+    /// <returns>The associated <see cref="NwSkill"/> instance. Null if the skill id is invalid.</returns>
+    public static NwSkill FromSkillId(int skillId)
+    {
+      return NwRuleset.Skills.ElementAtOrDefault(skillId);
+    }
+
+    /// <summary>
+    /// Resolves a <see cref="NwSkill"/> from a <see cref="Anvil.API.Skill"/>.
+    /// </summary>
+    /// <param name="skillType">The skill type to resolve.</param>
+    /// <returns>The associated <see cref="NwSkill"/> instance. Null if the skill type is invalid.</returns>
     public static NwSkill FromSkillType(Skill skillType)
     {
-      return RulesetService.Skills[(int)skillType];
+      return NwRuleset.Skills.ElementAtOrDefault((int)skillType);
+    }
+
+    public static implicit operator NwSkill(Skill skillType)
+    {
+      return NwRuleset.Skills.ElementAtOrDefault((int)skillType);
     }
   }
 }

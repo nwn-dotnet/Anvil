@@ -6,8 +6,6 @@ namespace Anvil.API
 {
   public sealed class Inventory
   {
-    private static readonly CNWBaseItemArray BaseItemArray = NWNXLib.Rules().m_pBaseItemArray;
-
     private readonly NwGameObject owner;
     private readonly CItemRepository repo;
 
@@ -38,7 +36,7 @@ namespace Anvil.API
     /// <returns>True if the item will fit, otherwise false.</returns>
     public bool CheckFit(NwItem item)
     {
-      return CheckFit(item.BaseItemType);
+      return CheckFit(item.BaseItem);
     }
 
     /// <summary>
@@ -46,16 +44,15 @@ namespace Anvil.API
     /// </summary>
     /// <param name="baseItem">The base item type to check.</param>
     /// <returns>True if the item will fit, otherwise false.</returns>
-    public bool CheckFit(BaseItemType baseItem)
+    public bool CheckFit(NwBaseItem baseItem)
     {
-      byte width = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotWidth;
-      byte height = BaseItemArray.GetBaseItem((int)baseItem).m_nInvSlotHeight;
+      Vector2Int itemSize = baseItem.InventorySlotSize;
 
-      for (byte y = 0; y < repo.m_nHeight - height + 1; y++)
+      for (byte y = 0; y < repo.m_nHeight - itemSize.Y + 1; y++)
       {
-        for (byte x = 0; x < repo.m_nWidth - width + 1; x++)
+        for (byte x = 0; x < repo.m_nWidth - itemSize.X + 1; x++)
         {
-          if (repo.CheckBaseItemFits((uint)baseItem, x, y).ToBool())
+          if (repo.CheckBaseItemFits(baseItem.Id, x, y).ToBool())
           {
             return true;
           }

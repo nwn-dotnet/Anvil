@@ -1,4 +1,4 @@
-using Anvil.Services;
+using System.Linq;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -8,14 +8,11 @@ namespace Anvil.API
   /// </summary>
   public sealed class NwRace
   {
-    [Inject]
-    private static RulesetService RulesetService { get; set; }
-
     private readonly CNWRace raceInfo;
 
-    public NwRace(RacialType racialType, CNWRace raceInfo)
+    internal NwRace(ushort raceId, CNWRace raceInfo)
     {
-      RacialType = racialType;
+      Id = raceId;
       this.raceInfo = raceInfo;
     }
 
@@ -51,11 +48,6 @@ namespace Anvil.API
       get => raceInfo.GetDescriptionText().ToString();
     }
 
-    public byte Endurance
-    {
-      get => raceInfo.m_nEndurance;
-    }
-
     /// <summary>
     /// Gets the number of extra feats that this race grants characters at first level.
     /// </summary>
@@ -75,9 +67,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets the favoured class for this race, for the purposes of multi-classing.
     /// </summary>
-    public ClassType FavoredClass
+    public NwClass FavoredClass
     {
-      get => (ClassType)raceInfo.m_nFavoredClass;
+      get => NwClass.FromClassId(raceInfo.m_nFavoredClass);
     }
 
     /// <summary>
@@ -87,6 +79,11 @@ namespace Anvil.API
     {
       get => raceInfo.m_nFirstLevelSkillPointsMultiplier;
     }
+
+    /// <summary>
+    /// Gets the id of this race.
+    /// </summary>
+    public ushort Id { get; }
 
     /// <summary>
     /// Gets if this race can be chosen/used by players.
@@ -129,9 +126,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the RacialType of this race.
+    /// Gets the associated <see cref="Id"/> for this race.
     /// </summary>
-    public RacialType RacialType { get; }
+    public RacialType RacialType
+    {
+      get => (RacialType)Id;
+    }
 
     /// <summary>
     /// Gets the ability score used to determine bonus skill points at level up.
@@ -139,16 +139,6 @@ namespace Anvil.API
     public Ability SkillPointModifierAbility
     {
       get => (Ability)raceInfo.m_nSkillPointModifierAbility;
-    }
-
-    /// <summary>
-    /// Creates a race structure from the specified <see cref="Anvil.API.RacialType"/>.
-    /// </summary>
-    /// <param name="racialType">The associated racial type.</param>
-    /// <returns>The associated <see cref="NwRace"/> structure, or null if the race has no matching entry.</returns>
-    public static NwRace FromRacialType(RacialType racialType)
-    {
-      return RulesetService.Races[(int)racialType];
     }
 
     /// <summary>
@@ -162,13 +152,28 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a race structure from the specified race id.
+    /// Resolves a <see cref="NwRace"/> from a race id.
     /// </summary>
-    /// <param name="raceId">The associated race id.</param>
-    /// <returns>The associated <see cref="NwRace"/> structure, or null if the race has no matching entry.</returns>
+    /// <param name="raceId">The id of the race to resolve.</param>
+    /// <returns>The associated <see cref="NwRace"/> instance. Null if the race id is invalid.</returns>
     public static NwRace FromRaceId(int raceId)
     {
-      return raceId >= 0 && raceId < RulesetService.Races.Count ? RulesetService.Races[raceId] : null;
+      return NwRuleset.Races.ElementAtOrDefault(raceId);
+    }
+
+    /// <summary>
+    /// Resolves a <see cref="NwRace"/> from a <see cref="Anvil.API.RacialType"/>.
+    /// </summary>
+    /// <param name="racialType">The racial type to resolve.</param>
+    /// <returns>The associated <see cref="NwRace"/> instance. Null if the racial type is invalid.</returns>
+    public static NwRace FromRacialType(RacialType racialType)
+    {
+      return NwRuleset.Races.ElementAtOrDefault((int)racialType);
+    }
+
+    public static implicit operator NwRace(RacialType racialType)
+    {
+      return NwRuleset.Races.ElementAtOrDefault((int)racialType);
     }
 
     /// <summary>
@@ -186,9 +191,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The feat to query.</param>
     /// <returns>True if this is a default granted feat for this race, otherwise false.</returns>
-    public bool IsFirstLevelGrantedFeat(Feat feat)
+    public bool IsFirstLevelGrantedFeat(NwFeat feat)
     {
-      return raceInfo.IsFirstLevelGrantedFeat((ushort)feat).ToBool();
+      return raceInfo.IsFirstLevelGrantedFeat(feat.Id).ToBool();
     }
   }
 }

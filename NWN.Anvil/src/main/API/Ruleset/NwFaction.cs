@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Anvil.Internal;
+using NWN.Core;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -12,16 +13,25 @@ namespace Anvil.API
   {
     private static readonly CFactionManager FactionManager = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pFactionManager;
 
-    private readonly CNWSFaction faction;
-
-    public NwFaction(int factionId)
+    /// <summary>
+    /// Gets a list of all active factions.
+    /// </summary>
+    public static IReadOnlyList<NwFaction> Factions
     {
-      faction = FactionManager.GetFaction(factionId);
-      if (faction == null)
+      get
       {
-        throw new ArgumentOutOfRangeException(nameof(factionId), "Invalid faction ID specified.");
+        CExoArrayListCNWSFactionPtr factions = FactionManager.m_pFactionList;
+        NwFaction[] retVal = new NwFaction[factions.Count];
+        for (int i = 0; i < retVal.Length; i++)
+        {
+          retVal[i] = new NwFaction(factions[i]);
+        }
+
+        return retVal;
       }
     }
+
+    private readonly CNWSFaction faction;
 
     internal NwFaction(CNWSFaction faction)
     {
@@ -74,6 +84,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the id of this faction.
+    /// </summary>
+    public int Id
+    {
+      get => faction.m_nFactionId;
+    }
+
+    /// <summary>
     /// Gets the leader of this player faction (party).<br/>
     /// </summary>
     public NwPlayer Leader
@@ -85,19 +103,49 @@ namespace Anvil.API
     /// Gets the most common type of class among the members of this faction/party.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public ClassType MostFrequentClass
+    public NwClass MostFrequentClass
     {
-      get => (ClassType)faction.GetMostFrequentClass();
+      get => NwClass.FromClassId(faction.GetMostFrequentClass());
     }
 
-    internal int FactionId
+    /// <summary>
+    /// Gets the <see cref="StandardFaction"/> type of this faction.<br/>
+    /// If this is a player or custom faction, returns an out-of-range value.
+    /// </summary>
+    public StandardFaction StandardFactionType
     {
-      get => faction.m_nFactionId;
+      get => (StandardFaction)Id;
+    }
+
+    /// <summary>
+    /// Resolves a <see cref="NwFaction"/> from a faction id.
+    /// </summary>
+    /// <param name="factionId">The id of the faction to resolve.</param>
+    /// <returns>The associated <see cref="NwFaction"/> instance. Null if the faction id is invalid.</returns>
+    public static NwFaction FromFactionId(int factionId)
+    {
+      CNWSFaction faction = FactionManager.GetFaction(factionId);
+      return faction != null ? new NwFaction(faction) : null;
+    }
+
+    /// <summary>
+    /// Resolves a <see cref="NwFaction"/> from a <see cref="StandardFaction"/>.
+    /// </summary>
+    /// <param name="factionType">The faction type to resolve.</param>
+    /// <returns>The associated <see cref="NwFaction"/> instance. Null if the faction type is invalid.</returns>
+    public static NwFaction FromStandardFaction(StandardFaction factionType)
+    {
+      return FromFactionId((int)factionType);
     }
 
     public static bool operator ==(NwFaction left, NwFaction right)
     {
       return Equals(left, right);
+    }
+
+    public static implicit operator NwFaction(StandardFaction faction)
+    {
+      return FromFactionId((int)faction);
     }
 
     public static bool operator !=(NwFaction left, NwFaction right)
@@ -204,6 +252,19 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets an integer between 0 and 100 (inclusive) that represents how this faction feels about the specified target.<br/>
+    ///  -> 0-10 means this faction is hostile to the target<br/>
+    ///  -> 11-89 means this faction is neutral to the target<br/>
+    ///  -> 90-100 means this faction is friendly to the target.
+    /// </summary>
+    /// <param name="target">The target object.</param>
+    /// <returns>0-100 (inclusive) based on the standing of the target within this standard faction.</returns>
+    public int GetReputation(NwGameObject target)
+    {
+      return NWScript.GetStandardFactionReputation(Id, target);
+    }
+
+    /// <summary>
     /// Gets the strongest member in this faction that is visible from the specified object.
     /// </summary>
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the strongest member.</param>
@@ -231,6 +292,19 @@ namespace Anvil.API
     public NwCreature GetWorstACMember(NwCreature referenceCreature = null, bool visible = false)
     {
       return faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+    }
+
+    /// <summary>
+    /// Sets how this faction feels about the specified creature.<br/>
+    ///  -> 0-10 means this faction is hostile to the target.<br/>
+    ///  -> 11-89 means this faction is neutral to the target.<br/>
+    ///  -> 90-100 means this faction is friendly to the target.
+    /// </summary>
+    /// <param name="target">The target object.</param>
+    /// <param name="newReputation">A value between 0-100 (inclusive).</param>
+    public void SetReputation(NwGameObject target, int newReputation)
+    {
+      NWScript.SetStandardFactionReputation(Id, newReputation, target);
     }
 
     internal void AddMember(NwCreature creature)

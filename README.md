@@ -4,7 +4,7 @@ Anvil is a C# framework for building behaviours and adding new functionalty to N
 Builders can add functionality like opening a store from a dialogue with a few lines of code, while plugin developers can leverage [NuGet](https://www.nuget.org/packages) to add new functionality with external packages and the [NWN.Native](https://github.com/nwn-dotnet/NWN.Native) library to completely rewrite existing game systems and mechanics.
 
 - Latest [Release](https://github.com/nwn-dotnet/Anvil/releases/latest)
-- [Changelog](https://github.com/nwn-dotnet/Anvil/blob/master/CHANGELOG.md) ([Development](https://github.com/nwn-dotnet/Anvil/blob/development/CHANGELOG.md))
+- [Changelog](https://github.com/nwn-dotnet/Anvil/blob/main/CHANGELOG.md) ([Development](https://github.com/nwn-dotnet/Anvil/blob/development/CHANGELOG.md))
 - View [Community Submitted Plugins](https://github.com/nwn-dotnet/Anvil/discussions/categories/plugins)
 - Join the community: [![Discord](https://img.shields.io/discord/714927668826472600?color=7289DA&label=Discord&logo=discord&logoColor=7289DA)](https://discord.gg/gKt495UBgS)
 
@@ -150,7 +150,7 @@ Save and close the file. The plugin should now download and run the next time yo
 ## Plugins & Services
 Adding module behaviours starts by creating your own plugin assembly (.dll).
 
-To get started, it is recommended to start by making a copy of the sample project found [HERE](https://github.com/nwn-dotnet/NWN.Samples/tree/master/managed/plugin-sample) with the package dependencies already setup for you.
+To get started, it is recommended to start by making a copy of the sample project found [HERE](https://github.com/nwn-dotnet/NWN.Samples/tree/main/managed/plugin-sample) with the package dependencies already setup for you.
 
 The core of Anvil is built around a dependency injection model, and the library expects you to implement features in your plugins a similar way.
 

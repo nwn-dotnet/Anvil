@@ -38,7 +38,7 @@ namespace Anvil.API.Events
       /// </summary>
       /// <remarks>
       /// <see cref="GuiEventType.ChatBarFocus"/>: The selected chat channel. Does not indicate the actual used channel. 0 = Shout, 1 = Whisper, 2 = Talk, 3 = Party, 4 = DM
-      /// <see cref="GuiEventType.CharacterSheetSkillClick"/>: The <see cref="Skill"/>
+      /// <see cref="GuiEventType.CharacterSheetSkillClick"/>: The <see cref="NwSkill"/>
       /// </remarks>
       public NwObject EventObject { get; } = NWScript.GetLastGuiEventObject().ToNwObject();
 
@@ -50,9 +50,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the feat that was selected. Only valid in <see cref="GuiEventType.CharacterSheetFeatClick"/> events.
       /// </summary>
-      public Feat FeatSelection
+      public NwFeat FeatSelection
       {
-        get => (Feat)integerEventData;
+        get => NwFeat.FromFeatId(integerEventData);
       }
 
       /// <summary>
@@ -71,9 +71,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.
       /// </summary>
-      public Skill SkillSelection
+      public NwSkill SkillSelection
       {
-        get => (Skill)integerEventData;
+        get => NwSkill.FromSkillId(integerEventData);
       }
 
       NwObject IEvent.Context

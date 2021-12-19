@@ -1,5 +1,5 @@
 # Configure nwserver to run with nwnx
-FROM nwnxee/unified:16b2c88
+FROM nwnxee/unified:790a54b
 
 ARG BINARY_PATH
 COPY ${BINARY_PATH} /nwn/anvil/
