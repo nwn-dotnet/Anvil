@@ -18,10 +18,7 @@ namespace Anvil.API.Events
 
     public InventorySlot Slot { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => EquippedBy;
-    }
+    NwObject IEvent.Context => EquippedBy;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RunEquipHook>
     {

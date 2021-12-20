@@ -21,10 +21,7 @@ namespace Anvil.API
       set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, Spell.Id, value.ToInt(), (byte)MetaMagic);
     }
 
-    public bool IsPopulated
-    {
-      get => classInfo.GetMemorizedSpellInSlotDetails(spellLevel, spellSlot) != null;
-    }
+    public bool IsPopulated => classInfo.GetMemorizedSpellInSlotDetails(spellLevel, spellSlot) != null;
 
     public bool IsReady
     {

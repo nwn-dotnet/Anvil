@@ -25,10 +25,7 @@ namespace Anvil.Internal
       this.signalHandler = signalHandler;
     }
 
-    uint ICoreFunctionHandler.ObjectSelf
-    {
-      get => objectSelf;
-    }
+    uint ICoreFunctionHandler.ObjectSelf => objectSelf;
 
     public void Dispose()
     {

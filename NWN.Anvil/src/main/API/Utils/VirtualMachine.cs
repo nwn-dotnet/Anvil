@@ -47,15 +47,9 @@ namespace Anvil.API
     /// <summary>
     /// Returns true if the current executing code is being executed on the main thread, and in a Virtual Machine script context.
     /// </summary>
-    public bool IsInScriptContext
-    {
-      get => Thread.CurrentThread.ManagedThreadId == mainThreadId && RecursionLevel >= 0;
-    }
+    public bool IsInScriptContext => Thread.CurrentThread.ManagedThreadId == mainThreadId && RecursionLevel >= 0;
 
-    public int RecursionLevel
-    {
-      get => virtualMachine.m_nRecursionLevel;
-    }
+    public int RecursionLevel => virtualMachine.m_nRecursionLevel;
 
     public unsafe bool ScriptReturnValue
     {

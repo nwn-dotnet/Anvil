@@ -63,10 +63,7 @@ namespace Anvil.API
       }
     }
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_SQLQUERY;
-    }
+    protected override int StructureId => NWScript.ENGINE_STRUCTURE_SQLQUERY;
 
     public static implicit operator SQLQuery(IntPtr intPtr)
     {

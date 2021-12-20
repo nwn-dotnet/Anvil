@@ -25,10 +25,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlaceable LockedPlaceable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
 
-      NwObject IEvent.Context
-      {
-        get => LockedPlaceable;
-      }
+      NwObject IEvent.Context => LockedPlaceable;
     }
   }
 }

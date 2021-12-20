@@ -28,10 +28,7 @@ namespace Anvil.API.Events
     public bool UseCharges { get; set; }
     public NwCreature UsedBy { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => UsedBy;
-    }
+    NwObject IEvent.Context => UsedBy;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.UseItemHook>
     {

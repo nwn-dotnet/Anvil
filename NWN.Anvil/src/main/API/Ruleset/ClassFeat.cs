@@ -11,24 +11,12 @@ namespace Anvil.API
       this.classFeat = classFeat;
     }
 
-    public NwFeat Feat
-    {
-      get => NwFeat.FromFeatId(classFeat.nFeat);
-    }
+    public NwFeat Feat => NwFeat.FromFeatId(classFeat.nFeat);
 
-    public sbyte LevelGranted
-    {
-      get => classFeat.nLevelGranted.AsSByte();
-    }
+    public sbyte LevelGranted => classFeat.nLevelGranted.AsSByte();
 
-    public ClassFeatListType ListType
-    {
-      get => (ClassFeatListType)classFeat.nListType;
-    }
+    public ClassFeatListType ListType => (ClassFeatListType)classFeat.nListType;
 
-    public bool OnMenu
-    {
-      get => classFeat.nOnClassRadial.ToBool();
-    }
+    public bool OnMenu => classFeat.nOnClassRadial.ToBool();
   }
 }

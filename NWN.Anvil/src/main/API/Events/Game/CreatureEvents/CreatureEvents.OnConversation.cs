@@ -30,10 +30,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlayer PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
 
-      NwObject IEvent.Context
-      {
-        get => CurrentSpeaker;
-      }
+      NwObject IEvent.Context => CurrentSpeaker;
 
       public static void Signal(NwCreature creature)
       {

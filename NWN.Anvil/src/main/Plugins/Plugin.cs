@@ -23,15 +23,9 @@ namespace Anvil.Plugins
 
     public Assembly Assembly { get; private set; }
 
-    public bool HasResourceDirectory
-    {
-      get => ResourcePath != null && Directory.Exists(ResourcePath);
-    }
+    public bool HasResourceDirectory => ResourcePath != null && Directory.Exists(ResourcePath);
 
-    public bool IsLoaded
-    {
-      get => Assembly != null;
-    }
+    public bool IsLoaded => Assembly != null;
 
     public bool Loading { get; private set; }
 

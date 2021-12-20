@@ -25,10 +25,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature UsedBy { get; } = NWScript.GetLastUsedBy().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context
-      {
-        get => Placeable;
-      }
+      NwObject IEvent.Context => Placeable;
     }
   }
 }

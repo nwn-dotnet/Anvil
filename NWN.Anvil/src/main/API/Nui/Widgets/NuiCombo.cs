@@ -14,9 +14,6 @@ namespace Anvil.API
     [JsonProperty("value")]
     public NuiProperty<int> Selected { get; set; } = 0;
 
-    public override string Type
-    {
-      get => "combo";
-    }
+    public override string Type => "combo";
   }
 }

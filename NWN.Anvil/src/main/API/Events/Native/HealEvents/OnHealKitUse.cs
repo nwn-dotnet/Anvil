@@ -46,10 +46,7 @@ namespace Anvil.API.Events
     /// </summary>
     public NwCreature UsedBy { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => UsedBy;
-    }
+    NwObject IEvent.Context => UsedBy;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AIActionHealHook>
     {

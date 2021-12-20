@@ -20,18 +20,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the chat bar channel that is selected. Only valid in <see cref="GuiEventType.ChatBarFocus"/> and <see cref="GuiEventType.ChatBarUnFocus"/> type events.
       /// </summary>
-      public ChatBarChannel ChatBarChannel
-      {
-        get => (ChatBarChannel)integerEventData;
-      }
+      public ChatBarChannel ChatBarChannel => (ChatBarChannel)integerEventData;
 
       /// <summary>
       /// Gets the effect icon that was selected. Only valid in <see cref="GuiEventType.EffectIconClick"/> events.
       /// </summary>
-      public EffectIcon EffectIcon
-      {
-        get => (EffectIcon)integerEventData;
-      }
+      public EffectIcon EffectIcon => (EffectIcon)integerEventData;
 
       /// <summary>
       /// Gets the object data associated with this GUI event.
@@ -50,18 +44,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the feat that was selected. Only valid in <see cref="GuiEventType.CharacterSheetFeatClick"/> events.
       /// </summary>
-      public NwFeat FeatSelection
-      {
-        get => NwFeat.FromFeatId(integerEventData);
-      }
+      public NwFeat FeatSelection => NwFeat.FromFeatId(integerEventData);
 
       /// <summary>
       /// Gets the GUI panel that attempted to be opened. Only valid in <see cref="GuiEventType.DisabledPanelAttemptOpen"/> events.
       /// </summary>
-      public GUIPanel OpenedPanel
-      {
-        get => (GUIPanel)integerEventData;
-      }
+      public GUIPanel OpenedPanel => (GUIPanel)integerEventData;
 
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that triggered this event.
@@ -71,15 +59,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.
       /// </summary>
-      public NwSkill SkillSelection
-      {
-        get => NwSkill.FromSkillId(integerEventData);
-      }
+      public NwSkill SkillSelection => NwSkill.FromSkillId(integerEventData);
 
-      NwObject IEvent.Context
-      {
-        get => Player.ControlledCreature;
-      }
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
   }
 }

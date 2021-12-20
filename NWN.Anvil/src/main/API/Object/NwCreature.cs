@@ -39,10 +39,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets this creature's armour class.
     /// </summary>
-    public int AC
-    {
-      get => NWScript.GetAC(this);
-    }
+    public int AC => NWScript.GetAC(this);
 
     /// <summary>
     /// Gets or sets this creature's age, in years.
@@ -75,31 +72,19 @@ namespace Anvil.API
     /// <summary>
     /// Gets this creature's animal companion name.
     /// </summary>
-    public string AnimalCompanionName
-    {
-      get => NWScript.GetAnimalCompanionName(this);
-    }
+    public string AnimalCompanionName => NWScript.GetAnimalCompanionName(this);
 
     /// <summary>
     /// Gets this creature's animal companion creature type.
     /// </summary>
-    public AnimalCompanionCreatureType AnimalCompanionType
-    {
-      get => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
-    }
+    public AnimalCompanionCreatureType AnimalCompanionType => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
 
     /// <summary>
     /// Gets the arcane spell failure factor for this creature.
     /// </summary>
-    public int ArcaneSpellFailure
-    {
-      get => NWScript.GetArcaneSpellFailure(this);
-    }
+    public int ArcaneSpellFailure => NWScript.GetArcaneSpellFailure(this);
 
-    public sbyte ArmorCheckPenalty
-    {
-      get => (sbyte)Creature.m_pStats.m_nArmorCheckPenalty;
-    }
+    public sbyte ArmorCheckPenalty => (sbyte)Creature.m_pStats.m_nArmorCheckPenalty;
 
     /// <summary>
     /// Gets all creatures associated with this creature.
@@ -116,34 +101,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associate type of this creature, otherwise returns <see cref="Anvil.API.AssociateType.None"/> if this creature is not an associate of anyone.
     /// </summary>
-    public AssociateType AssociateType
-    {
-      get => (AssociateType)NWScript.GetAssociateType(this);
-    }
+    public AssociateType AssociateType => (AssociateType)NWScript.GetAssociateType(this);
 
     /// <summary>
     /// Gets this creature's current attack target.
     /// </summary>
-    public NwGameObject AttackTarget
-    {
-      get => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
-    }
+    public NwGameObject AttackTarget => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets the last target this creature tried to attack.
     /// </summary>
-    public NwGameObject AttemptedAttackTarget
-    {
-      get => Creature.m_oidAttemptedAttackTarget.ToNwObject<NwGameObject>();
-    }
+    public NwGameObject AttemptedAttackTarget => Creature.m_oidAttemptedAttackTarget.ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets the target this creature attempted to cast a spell at.
     /// </summary>
-    public NwGameObject AttemptedSpellTarget
-    {
-      get => Creature.m_oidAttemptedSpellTarget.ToNwObject<NwGameObject>();
-    }
+    public NwGameObject AttemptedSpellTarget => Creature.m_oidAttemptedSpellTarget.ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets or sets the base AC for this creature.
@@ -154,10 +127,7 @@ namespace Anvil.API
       set => Creature.m_pStats.m_nACNaturalBase = value.AsByte();
     }
 
-    public byte BaseArmorArcaneSpellFailure
-    {
-      get => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure;
-    }
+    public byte BaseArmorArcaneSpellFailure => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure;
 
     /// <summary>
     /// Gets or sets the Base Attack Bonus for this creature.
@@ -180,18 +150,12 @@ namespace Anvil.API
       set => NWScript.SetBaseAttackBonus(value, this);
     }
 
-    public byte BaseShieldArcaneSpellFailure
-    {
-      get => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
-    }
+    public byte BaseShieldArcaneSpellFailure => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
 
     /// <summary>
     /// Gets the calculated challenge rating for this creature.
     /// </summary>
-    public float ChallengeRating
-    {
-      get => NWScript.GetChallengeRating(this);
-    }
+    public float ChallengeRating => NWScript.GetChallengeRating(this);
 
     /// <summary>
     /// Gets this creature's classes, and associated class info.
@@ -222,10 +186,7 @@ namespace Anvil.API
     /// Gets the creature's current Combat Mode.<br/>
     /// Can be used in the <see cref="Events.OnCombatModeToggle"/> event to determine which combat mode is being toggled off.
     /// </summary>
-    public CombatMode CombatMode
-    {
-      get => (CombatMode)Creature.m_nCombatMode;
-    }
+    public CombatMode CombatMode => (CombatMode)Creature.m_nCombatMode;
 
     /// <summary>
     /// Gets or sets a value indicating whether this creature's action queue can be modified.
@@ -242,10 +203,7 @@ namespace Anvil.API
     /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns null.<br/>
     /// If no player is controlling this creature, this returns null.
     /// </summary>
-    public NwPlayer ControllingPlayer
-    {
-      get => ObjectId.ToNwPlayer(PlayerSearch.Controlled);
-    }
+    public NwPlayer ControllingPlayer => ObjectId.ToNwPlayer(PlayerSearch.Controlled);
 
     /// <summary>
     /// Gets or sets the corpse decay time for this creature.
@@ -259,18 +217,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the current action that this creature is executing.
     /// </summary>
-    public Action CurrentAction
-    {
-      get => (Action)NWScript.GetCurrentAction(this);
-    }
+    public Action CurrentAction => (Action)NWScript.GetCurrentAction(this);
 
     /// <summary>
     /// Gets a value indicating whether this creature is currently in Defensive Casting Mode.
     /// </summary>
-    public bool DefensiveCastingModeActive
-    {
-      get => NWScript.GetDefensiveCastingMode(this).ToBool();
-    }
+    public bool DefensiveCastingModeActive => NWScript.GetDefensiveCastingMode(this).ToBool();
 
     /// <summary>
     /// Gets or sets the name of this creature's deity.
@@ -284,10 +236,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this creature is currently in Detect Mode.
     /// </summary>
-    public bool DetectModeActive
-    {
-      get => NWScript.GetDetectMode(this).ToBool();
-    }
+    public bool DetectModeActive => NWScript.GetDetectMode(this).ToBool();
 
     /// <summary>
     /// Gets or sets the dialog ResRef for this creature.
@@ -301,10 +250,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this creature can be disarmed (checks disarm flag on creature, and if the creature actually has a weapon equipped in their right hand that is droppable).
     /// </summary>
-    public bool Disarmable
-    {
-      get => NWScript.GetIsCreatureDisarmable(this).ToBool();
-    }
+    public bool Disarmable => NWScript.GetIsCreatureDisarmable(this).ToBool();
 
     /// <summary>
     /// Gets or sets a value indicating whether this creature will auto-explore the minimap as it walks around.
@@ -336,26 +282,17 @@ namespace Anvil.API
     /// <summary>
     /// Gets this creature's familiar name.
     /// </summary>
-    public string FamiliarName
-    {
-      get => NWScript.GetFamiliarName(this);
-    }
+    public string FamiliarName => NWScript.GetFamiliarName(this);
 
     /// <summary>
     /// Gets the type of familiar that this creature can summon.
     /// </summary>
-    public FamiliarCreatureType FamiliarType
-    {
-      get => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
-    }
+    public FamiliarCreatureType FamiliarType => (FamiliarCreatureType)NWScript.GetFamiliarCreatureType(this);
 
     /// <summary>
     /// Gets the number of feats known by this creature.
     /// </summary>
-    public int FeatCount
-    {
-      get => Creature.m_pStats.m_lstFeats.Count;
-    }
+    public int FeatCount => Creature.m_pStats.m_lstFeats.Count;
 
     /// <summary>
     /// Gets the feats known by this character.
@@ -378,10 +315,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this creature is flat footed.
     /// </summary>
-    public bool FlatFooted
-    {
-      get => Creature.GetFlatFooted().ToBool();
-    }
+    public bool FlatFooted => Creature.GetFlatFooted().ToBool();
 
     /// <summary>
     /// Gets or sets the sounds to use when this creature makes a step. By default, this is based on the creature's appearance.
@@ -418,10 +352,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets this creature's Good/Evil Alignment.
     /// </summary>
-    public Alignment GoodEvilAlignment
-    {
-      get => (Alignment)NWScript.GetAlignmentGoodEvil(this);
-    }
+    public Alignment GoodEvilAlignment => (Alignment)NWScript.GetAlignmentGoodEvil(this);
 
     /// <summary>
     /// Gets or sets this creature's Evil (0) - Good (100) alignment value.
@@ -446,10 +377,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets all henchmen associated with this creature.
     /// </summary>
-    public IEnumerable<NwCreature> Henchmen
-    {
-      get => GetAssociates(AssociateType.Henchman);
-    }
+    public IEnumerable<NwCreature> Henchmen => GetAssociates(AssociateType.Henchman);
 
     /// <summary>
     /// Gets or sets a value indicating whether this creature is immortal.<br/>
@@ -469,51 +397,33 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
-    public bool IsDead
-    {
-      get => NWScript.GetIsDead(this).ToBool();
-    }
+    public bool IsDead => NWScript.GetIsDead(this).ToBool();
 
     /// <summary>
     /// Gets a value indicating whether this creature is currently possessed by a DM avatar.
     /// </summary>
-    public bool IsDMPossessed
-    {
-      get => NWScript.GetIsDMPossessed(this).ToBool();
-    }
+    public bool IsDMPossessed => NWScript.GetIsDMPossessed(this).ToBool();
 
     /// <summary>
     /// Gets a value indicating whether this creature was spawned from an encounter.
     /// </summary>
-    public bool IsEncounterCreature
-    {
-      get => NWScript.GetIsEncounterCreature(this).ToBool();
-    }
+    public bool IsEncounterCreature => NWScript.GetIsEncounterCreature(this).ToBool();
 
     /// <summary>
     /// Gets a value indicating whether this creature is in combat.
     /// </summary>
-    public bool IsInCombat
-    {
-      get => NWScript.GetIsInCombat(this).ToBool();
-    }
+    public bool IsInCombat => NWScript.GetIsInCombat(this).ToBool();
 
     /// <summary>
     /// Gets if this creature is a player character/DM avatar.<br/>
     /// If this creature is a NPC or familiar, regardless of possession, this will return false.
     /// </summary>
-    public bool IsLoginPlayerCharacter
-    {
-      get => LoginPlayer != null;
-    }
+    public bool IsLoginPlayerCharacter => LoginPlayer != null;
 
     /// <summary>
     /// Gets a value indicating whether this creature is a playable racial type.
     /// </summary>
-    public bool IsPlayableRace
-    {
-      get => NWScript.GetIsPlayableRacialType(this).ToBool();
-    }
+    public bool IsPlayableRace => NWScript.GetIsPlayableRacialType(this).ToBool();
 
     /// <summary>
     /// Gets if this creature is currently being controlled by a player/DM.<br/>
@@ -521,18 +431,12 @@ namespace Anvil.API
     /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns false.<br/>
     /// If no player is controlling this creature, this returns false.
     /// </summary>
-    public bool IsPlayerControlled
-    {
-      get => ControllingPlayer != null;
-    }
+    public bool IsPlayerControlled => ControllingPlayer != null;
 
     /// <summary>
     /// Gets a value indicating whether this creature is a familiar currently possessed by a master.
     /// </summary>
-    public bool IsPossessedFamiliar
-    {
-      get => NWScript.GetIsPossessedFamiliar(this).ToBool();
-    }
+    public bool IsPossessedFamiliar => NWScript.GetIsPossessedFamiliar(this).ToBool();
 
     /// <summary>
     /// Gets if this creature is currently holding a ranged weapon.
@@ -554,58 +458,37 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this creature is currently resting.
     /// </summary>
-    public bool IsResting
-    {
-      get => NWScript.GetIsResting(this).ToBool();
-    }
+    public bool IsResting => NWScript.GetIsResting(this).ToBool();
 
     /// <summary>
     /// Gets the attack mode used during this creature's last attack.
     /// </summary>
-    public LastAttackMode LastAttackMode
-    {
-      get => (LastAttackMode)NWScript.GetLastAttackMode(this);
-    }
+    public LastAttackMode LastAttackMode => (LastAttackMode)NWScript.GetLastAttackMode(this);
 
     /// <summary>
     /// Gets the last command issued to this creature.
     /// </summary>
-    public AssociateCommand LastCommandFromMaster
-    {
-      get => (AssociateCommand)NWScript.GetLastAssociateCommand(this);
-    }
+    public AssociateCommand LastCommandFromMaster => (AssociateCommand)NWScript.GetLastAssociateCommand(this);
 
     /// <summary>
     /// Gets the special attack type used in the last physical attack against this creature.
     /// </summary>
-    public SpecialAttack LastSpecialAttackType
-    {
-      get => (SpecialAttack)NWScript.GetLastAttackType(this);
-    }
+    public SpecialAttack LastSpecialAttackType => (SpecialAttack)NWScript.GetLastAttackType(this);
 
     /// <summary>
     /// Gets the caster level of the last spell this creature casted.
     /// </summary>
-    public int LastSpellCasterLevel
-    {
-      get => NWScript.GetCasterLevel(this);
-    }
+    public int LastSpellCasterLevel => NWScript.GetCasterLevel(this);
 
     /// <summary>
     /// Gets the last trap detected by this creature.
     /// </summary>
-    public NwTrappable LastTrapDetected
-    {
-      get => NWScript.GetLastTrapDetected(this).ToNwObject<NwTrappable>();
-    }
+    public NwTrappable LastTrapDetected => NWScript.GetLastTrapDetected(this).ToNwObject<NwTrappable>();
 
     /// <summary>
     /// Gets this creature's Law/Chaos Alignment.
     /// </summary>
-    public Alignment LawChaosAlignment
-    {
-      get => (Alignment)NWScript.GetAlignmentLawChaos(this);
-    }
+    public Alignment LawChaosAlignment => (Alignment)NWScript.GetAlignmentLawChaos(this);
 
     /// <summary>
     /// Gets or sets this creature's Chaos (0) - Lawful (100) alignment value.
@@ -630,10 +513,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the Hit Dice/Level of this creature.
     /// </summary>
-    public int Level
-    {
-      get => NWScript.GetHitDice(this);
-    }
+    public int Level => NWScript.GetHitDice(this);
 
     /// <summary>
     /// Gets an enumerable containing information about this creature's levels (feats, skills, class taken, etc).
@@ -659,10 +539,7 @@ namespace Anvil.API
     /// Gets the player that logged in with this creature.<br/>
     /// If this creature is a NPC or familiar, regardless of possession, this will return null.
     /// </summary>
-    public NwPlayer LoginPlayer
-    {
-      get => ObjectId.ToNwPlayer(PlayerSearch.Login);
-    }
+    public NwPlayer LoginPlayer => ObjectId.ToNwPlayer(PlayerSearch.Login);
 
     /// <summary>
     /// Gets or sets a value indicating whether this creature will leave a lootable corpse on death.<br/>
@@ -677,10 +554,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the possessor of this creature. This can be the master of a familiar, or the DM for a DM controlled creature.
     /// </summary>
-    public NwCreature Master
-    {
-      get => NWScript.GetMaster(this).ToNwObject<NwCreature>();
-    }
+    public NwCreature Master => NWScript.GetMaster(this).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets or sets the movement rate of this creature.
@@ -753,10 +627,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the original name of this creature.
     /// </summary>
-    public string OriginalName
-    {
-      get => $"{OriginalFirstName} {OriginalLastName}";
-    }
+    public string OriginalName => $"{OriginalFirstName} {OriginalLastName}";
 
     /// <summary>
     /// Gets or sets this creature's currently set Phenotype (body type).
@@ -803,10 +674,7 @@ namespace Anvil.API
       set => Creature.m_pStats.m_nRace = value.Id;
     }
 
-    public sbyte ShieldCheckPenalty
-    {
-      get => (sbyte)Creature.m_pStats.m_nShieldCheckPenalty;
-    }
+    public sbyte ShieldCheckPenalty => (sbyte)Creature.m_pStats.m_nShieldCheckPenalty;
 
     /// <summary>
     /// Gets or sets the size of this creature.
@@ -861,18 +729,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets this creature's default level up package.
     /// </summary>
-    public PackageType StartingPackage
-    {
-      get => (PackageType)NWScript.GetCreatureStartingPackage(this);
-    }
+    public PackageType StartingPackage => (PackageType)NWScript.GetCreatureStartingPackage(this);
 
     /// <summary>
     /// Gets a value indicating whether this creature is currently in stealth mode.
     /// </summary>
-    public bool StealthModeActive
-    {
-      get => NWScript.GetStealthMode(this).ToBool();
-    }
+    public bool StealthModeActive => NWScript.GetStealthMode(this).ToBool();
 
     /// <summary>
     /// Gets or sets the name of this creature's sub-race.
@@ -895,18 +757,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the total weight of this creature, in pounds.
     /// </summary>
-    public decimal TotalWeight
-    {
-      get => NWScript.GetWeight(this) * 0.1m;
-    }
+    public decimal TotalWeight => NWScript.GetWeight(this) * 0.1m;
 
     /// <summary>
     /// Gets the number of hit dice worth of Turn Resistance this creature has.
     /// </summary>
-    public int TurnResistanceHitDice
-    {
-      get => NWScript.GetTurnResistanceHD(this);
-    }
+    public int TurnResistanceHitDice => NWScript.GetTurnResistanceHD(this);
 
     /// <summary>
     /// Gets or sets the walk rate cap for this creature (persistent).<br/>

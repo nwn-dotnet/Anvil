@@ -49,18 +49,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this object has an assigned UUID.
     /// </summary>
-    public bool HasUUID
-    {
-      get => PeekUUID() != null;
-    }
+    public bool HasUUID => PeekUUID() != null;
 
     /// <summary>
     /// Gets a value indicating whether this is a valid object.
     /// </summary>
-    public bool IsValid
-    {
-      get => NWScript.GetIsObjectValid(this).ToBool();
-    }
+    public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
 
     /// <summary>
     /// Gets all local variables assigned on this object.
@@ -111,18 +105,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the original description for this object as defined in the toolset.
     /// </summary>
-    public string OriginalDescription
-    {
-      get => NWScript.GetDescription(this, true.ToInt());
-    }
+    public string OriginalDescription => NWScript.GetDescription(this, true.ToInt());
 
     /// <summary>
     /// Gets the resource reference used to create this object.
     /// </summary>
-    public string ResRef
-    {
-      get => NWScript.GetResRef(this);
-    }
+    public string ResRef => NWScript.GetResRef(this);
 
     /// <summary>
     /// Gets or sets the tag for this object.

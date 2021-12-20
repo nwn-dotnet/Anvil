@@ -13,25 +13,13 @@ namespace Anvil.API
       this.values = values;
     }
 
-    public int Count
-    {
-      get => values.Length;
-    }
+    public int Count => values.Length;
 
-    public IEnumerable<Ability> Keys
-    {
-      get => Enum.GetValues<Ability>();
-    }
+    public IEnumerable<Ability> Keys => Enum.GetValues<Ability>();
 
-    public IEnumerable<sbyte> Values
-    {
-      get => values;
-    }
+    public IEnumerable<sbyte> Values => values;
 
-    public sbyte this[Ability key]
-    {
-      get => values[(int)key];
-    }
+    public sbyte this[Ability key] => values[(int)key];
 
     public bool ContainsKey(Ability key)
     {

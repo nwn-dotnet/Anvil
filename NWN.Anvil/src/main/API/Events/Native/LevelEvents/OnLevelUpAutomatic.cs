@@ -10,10 +10,7 @@ namespace Anvil.API.Events
   {
     public NwCreature Creature { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Creature;
-    }
+    NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.LevelUpAutomaticHook>
     {

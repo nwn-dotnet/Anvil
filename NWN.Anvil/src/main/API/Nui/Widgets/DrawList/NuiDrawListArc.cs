@@ -26,9 +26,6 @@ namespace Anvil.API
     [JsonProperty("radius")]
     public NuiProperty<float> Radius { get; set; }
 
-    public override NuiDrawListItemType Type
-    {
-      get => NuiDrawListItemType.Arc;
-    }
+    public override NuiDrawListItemType Type => NuiDrawListItemType.Arc;
   }
 }

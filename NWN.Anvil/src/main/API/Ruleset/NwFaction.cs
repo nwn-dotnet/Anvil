@@ -42,80 +42,53 @@ namespace Anvil.API
     /// Gets the average Good/Evil alignment value of members in this faction.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public int AverageGoodEvilAlignment
-    {
-      get => faction.GetAverageGoodEvilAlignment();
-    }
+    public int AverageGoodEvilAlignment => faction.GetAverageGoodEvilAlignment();
 
     /// <summary>
     /// Gets the average Law/Chaos alignment value of members in this faction.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public int AverageLawChaosAlignment
-    {
-      get => faction.GetAverageLawChaosAlignment();
-    }
+    public int AverageLawChaosAlignment => faction.GetAverageLawChaosAlignment();
 
     /// <summary>
     /// Gets the average level of members in this faction.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public int AverageLevel
-    {
-      get => faction.GetAverageLevel();
-    }
+    public int AverageLevel => faction.GetAverageLevel();
 
     /// <summary>
     /// Gets the average amount of XP of members in this faction.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public int AverageXP
-    {
-      get => faction.GetAverageXP();
-    }
+    public int AverageXP => faction.GetAverageXP();
 
     /// <summary>
     /// Gets the total amount of gold held by all members of this party.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public int Gold
-    {
-      get => faction.GetGold();
-    }
+    public int Gold => faction.GetGold();
 
     /// <summary>
     /// Gets the id of this faction.
     /// </summary>
-    public int Id
-    {
-      get => faction.m_nFactionId;
-    }
+    public int Id => faction.m_nFactionId;
 
     /// <summary>
     /// Gets the leader of this player faction (party).<br/>
     /// </summary>
-    public NwPlayer Leader
-    {
-      get => faction.GetLeader().ToNwPlayer();
-    }
+    public NwPlayer Leader => faction.GetLeader().ToNwPlayer();
 
     /// <summary>
     /// Gets the most common type of class among the members of this faction/party.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public NwClass MostFrequentClass
-    {
-      get => NwClass.FromClassId(faction.GetMostFrequentClass());
-    }
+    public NwClass MostFrequentClass => NwClass.FromClassId(faction.GetMostFrequentClass());
 
     /// <summary>
     /// Gets the <see cref="StandardFaction"/> type of this faction.<br/>
     /// If this is a player or custom faction, returns an out-of-range value.
     /// </summary>
-    public StandardFaction StandardFactionType
-    {
-      get => (StandardFaction)Id;
-    }
+    public StandardFaction StandardFactionType => (StandardFaction)Id;
 
     /// <summary>
     /// Resolves a <see cref="NwFaction"/> from a faction id.

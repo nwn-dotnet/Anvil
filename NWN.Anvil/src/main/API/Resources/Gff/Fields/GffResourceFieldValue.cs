@@ -17,10 +17,7 @@ namespace Anvil.API
       this.fieldId = fieldId;
     }
 
-    public override GffResourceFieldType FieldType
-    {
-      get => (GffResourceFieldType)ResGff.GetFieldType(parentStruct, fieldId);
-    }
+    public override GffResourceFieldType FieldType => (GffResourceFieldType)ResGff.GetFieldType(parentStruct, fieldId);
 
     public bool TryReadByte(out byte value)
     {

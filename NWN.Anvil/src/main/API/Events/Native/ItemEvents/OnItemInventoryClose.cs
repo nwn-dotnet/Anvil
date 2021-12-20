@@ -20,10 +20,7 @@ namespace Anvil.API.Events
 
     public bool PreventClose { get; set; }
 
-    NwObject IEvent.Context
-    {
-      get => ClosedBy;
-    }
+    NwObject IEvent.Context => ClosedBy;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.CloseInventoryHook>
     {

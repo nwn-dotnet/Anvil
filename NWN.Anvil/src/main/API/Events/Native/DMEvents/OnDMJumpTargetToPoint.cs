@@ -15,10 +15,7 @@ namespace Anvil.API.Events
 
     public NwGameObject[] Targets { get; init; }
 
-    NwObject IEvent.Context
-    {
-      get => DungeonMaster?.LoginCreature;
-    }
+    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
   }
 }
 

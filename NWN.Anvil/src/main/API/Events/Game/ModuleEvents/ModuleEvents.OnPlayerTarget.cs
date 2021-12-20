@@ -19,10 +19,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets if the player cancelled target selection.
       /// </summary>
-      public bool IsCancelled
-      {
-        get => TargetObject == null;
-      }
+      public bool IsCancelled => TargetObject == null;
 
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has targeted something.
@@ -39,10 +36,7 @@ namespace Anvil.API.Events
       /// </summary>
       public Vector3 TargetPosition { get; internal init; } = NWScript.GetTargetingModeSelectedPosition();
 
-      NwObject IEvent.Context
-      {
-        get => Player.ControlledCreature;
-      }
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
   }
 }

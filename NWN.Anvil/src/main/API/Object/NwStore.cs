@@ -44,10 +44,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the number of current customers using this store.
     /// </summary>
-    public int CustomerCount
-    {
-      get => Store.m_aCurrentCustomers.Count;
-    }
+    public int CustomerCount => Store.m_aCurrentCustomers.Count;
 
     public int IdentifyCost
     {

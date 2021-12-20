@@ -38,10 +38,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the area this object is currently in.
     /// </summary>
-    public NwArea Area
-    {
-      get => GameObject.GetArea().ToNwObject<NwArea>();
-    }
+    public NwArea Area => GameObject.GetArea().ToNwObject<NwArea>();
 
     /// <summary>
     /// Gets or sets the appearance of this creature.
@@ -73,10 +70,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this object is in a conversation.
     /// </summary>
-    public bool IsInConversation
-    {
-      get => NWScript.IsInConversation(this).ToBool();
-    }
+    public bool IsInConversation => NWScript.IsInConversation(this).ToBool();
 
     /// <summary>
     /// Gets or sets the location of this object.
@@ -178,10 +172,7 @@ namespace Anvil.API
     /// </summary>
     public VisualTransform VisualTransform { get; }
 
-    internal override CNWSScriptVarTable ScriptVarTable
-    {
-      get => GameObject.m_ScriptVars;
-    }
+    internal override CNWSScriptVarTable ScriptVarTable => GameObject.m_ScriptVars;
 
     /// <summary>
     /// Casts a spell at an object.

@@ -11,10 +11,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the remaining duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
     /// </summary>
-    public float DurationRemaining
-    {
-      get => NWScript.GetEffectDurationRemaining(this);
-    }
+    public float DurationRemaining => NWScript.GetEffectDurationRemaining(this);
 
     /// <summary>
     /// Gets or sets the duration type (Temporary, Instant, Permanent) of this effect.
@@ -28,10 +25,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the type of this effect.
     /// </summary>
-    public EffectType EffectType
-    {
-      get => (EffectType)NWScript.GetEffectType(this);
-    }
+    public EffectType EffectType => (EffectType)NWScript.GetEffectType(this);
 
     /// <summary>
     /// Gets or sets the subtype of this effect.
@@ -54,15 +48,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets the total duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
     /// </summary>
-    public float TotalDuration
-    {
-      get => NWScript.GetEffectDuration(this);
-    }
+    public float TotalDuration => NWScript.GetEffectDuration(this);
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_EFFECT;
-    }
+    protected override int StructureId => NWScript.ENGINE_STRUCTURE_EFFECT;
 
     public static explicit operator Effect(ItemProperty itemProperty)
     {

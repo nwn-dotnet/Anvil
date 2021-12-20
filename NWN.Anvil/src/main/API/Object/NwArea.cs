@@ -57,42 +57,27 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this area is above ground (true), or underground (false).
     /// </summary>
-    public bool IsAboveGround
-    {
-      get => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
-    }
+    public bool IsAboveGround => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
 
     /// <summary>
     /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
     /// </summary>
-    public bool IsInterior
-    {
-      get => NWScript.GetIsAreaInterior(this).ToBool();
-    }
+    public bool IsInterior => NWScript.GetIsAreaInterior(this).ToBool();
 
     /// <summary>
     /// Gets a value indicating whether this area is natural (true), or artificial (false).
     /// </summary>
-    public bool IsNatural
-    {
-      get => (AreaInfo)NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
-    }
+    public bool IsNatural => (AreaInfo)NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
 
     /// <summary>
     /// Gets the last object that entered this area.
     /// </summary>
-    public NwGameObject LastEntered
-    {
-      get => Area.m_oidLastEntered.ToNwObject<NwGameObject>();
-    }
+    public NwGameObject LastEntered => Area.m_oidLastEntered.ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets the last object that left this area.
     /// </summary>
-    public NwGameObject LastLeft
-    {
-      get => Area.m_oidLastLeft.ToNwObject<NwGameObject>();
-    }
+    public NwGameObject LastLeft => Area.m_oidLastLeft.ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets or sets the listen modifier for this area.
@@ -150,10 +135,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the number of players in this area.
     /// </summary>
-    public int PlayerCount
-    {
-      get => Area.m_nPlayersInArea;
-    }
+    public int PlayerCount => Area.m_nPlayersInArea;
 
     /// <summary>
     /// Gets or sets the PvP setting for this area.
@@ -177,10 +159,7 @@ namespace Anvil.API
     /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>
     /// </summary>
-    public Vector2Int Size
-    {
-      get => new Vector2Int(NWScript.GetAreaSize((int)AreaSizeDimension.Width, this), NWScript.GetAreaSize((int)AreaSizeDimension.Height, this));
-    }
+    public Vector2Int Size => new Vector2Int(NWScript.GetAreaSize((int)AreaSizeDimension.Width, this), NWScript.GetAreaSize((int)AreaSizeDimension.Height, this));
 
     /// <summary>
     /// Gets or sets the current skybox for this area.
@@ -203,10 +182,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the tileset (.set) resource name used for this area.
     /// </summary>
-    public string Tileset
-    {
-      get => NWScript.GetTilesetResRef(this);
-    }
+    public string Tileset => NWScript.GetTilesetResRef(this);
 
     /// <summary>
     /// Gets or sets the current weather conditions for this area.
@@ -227,10 +203,7 @@ namespace Anvil.API
       set => Area.m_nWindAmount = value;
     }
 
-    internal override CNWSScriptVarTable ScriptVarTable
-    {
-      get => Area.m_ScriptVars;
-    }
+    internal override CNWSScriptVarTable ScriptVarTable => Area.m_ScriptVars;
 
     /// <summary>
     /// Creates a new area from the specified resource reference.

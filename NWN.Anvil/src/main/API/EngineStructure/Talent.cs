@@ -10,47 +10,29 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated feat, if this talent is a feat.
     /// </summary>
-    public NwFeat Feat
-    {
-      get => NwFeat.FromFeatId(TryGetId(TalentType.Feat));
-    }
+    public NwFeat Feat => NwFeat.FromFeatId(TryGetId(TalentType.Feat));
 
     /// <summary>
     /// Gets the associated skill, if this talent is a skill.
     /// </summary>
-    public NwSkill Skill
-    {
-      get => NwSkill.FromSkillId(TryGetId(TalentType.Skill));
-    }
+    public NwSkill Skill => NwSkill.FromSkillId(TryGetId(TalentType.Skill));
 
     /// <summary>
     /// Gets the associated spell, if this talent is a spell.
     /// </summary>
-    public NwSpell Spell
-    {
-      get => NwSpell.FromSpellId(TryGetId(TalentType.Spell));
-    }
+    public NwSpell Spell => NwSpell.FromSpellId(TryGetId(TalentType.Spell));
 
     /// <summary>
     /// Gets the type of this talent (Spell/Feat/Skill).
     /// </summary>
-    public TalentType Type
-    {
-      get => (TalentType)NWScript.GetTypeFromTalent(this);
-    }
+    public TalentType Type => (TalentType)NWScript.GetTypeFromTalent(this);
 
     /// <summary>
     /// Gets a value indicating whether this talent is valid.
     /// </summary>
-    public bool Valid
-    {
-      get => NWScript.GetIsTalentValid(this).ToBool();
-    }
+    public bool Valid => NWScript.GetIsTalentValid(this).ToBool();
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_TALENT;
-    }
+    protected override int StructureId => NWScript.ENGINE_STRUCTURE_TALENT;
 
     public static implicit operator Talent(IntPtr intPtr)
     {

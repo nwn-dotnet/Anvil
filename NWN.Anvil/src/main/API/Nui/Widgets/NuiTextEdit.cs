@@ -25,10 +25,7 @@ namespace Anvil.API
     [JsonProperty("multiline")]
     public bool MultiLine { get; set; }
 
-    public override string Type
-    {
-      get => "textedit";
-    }
+    public override string Type => "textedit";
 
     [JsonProperty("value")]
     public NuiProperty<string> Value { get; set; }

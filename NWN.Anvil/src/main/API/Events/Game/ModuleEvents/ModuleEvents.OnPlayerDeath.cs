@@ -30,10 +30,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwGameObject Killer { get; }
 
-      NwObject IEvent.Context
-      {
-        get => DeadPlayer.ControlledCreature;
-      }
+      NwObject IEvent.Context => DeadPlayer.ControlledCreature;
     }
   }
 }

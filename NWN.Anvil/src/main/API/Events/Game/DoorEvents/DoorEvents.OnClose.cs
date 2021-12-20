@@ -22,10 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
 
-      NwObject IEvent.Context
-      {
-        get => Door;
-      }
+      NwObject IEvent.Context => Door;
     }
   }
 }

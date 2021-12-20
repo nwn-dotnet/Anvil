@@ -13,9 +13,6 @@ namespace Anvil.API
 
     public override string Type { get; } = "row";
 
-    protected override IEnumerable<NuiElement> SerializedChildren
-    {
-      get => Children;
-    }
+    protected override IEnumerable<NuiElement> SerializedChildren => Children;
   }
 }

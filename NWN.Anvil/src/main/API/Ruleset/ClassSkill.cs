@@ -11,14 +11,8 @@ namespace Anvil.API
       this.skill = skill;
     }
 
-    public bool IsClassSkill
-    {
-      get => skill.bClassSkill.ToBool();
-    }
+    public bool IsClassSkill => skill.bClassSkill.ToBool();
 
-    public NwSkill Skill
-    {
-      get => NwSkill.FromSkillId(skill.nSkill);
-    }
+    public NwSkill Skill => NwSkill.FromSkillId(skill.nSkill);
   }
 }

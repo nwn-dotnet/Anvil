@@ -14,10 +14,7 @@ namespace Anvil.API.Events
     {
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
-      NwObject IEvent.Context
-      {
-        get => null;
-      }
+      NwObject IEvent.Context => null;
 
       public static void Signal(int eventId)
       {

@@ -11,29 +11,14 @@ namespace Anvil.API
       this.persistantWorldOptions = persistantWorldOptions;
     }
 
-    public bool SaveCharactersInSaveGame
-    {
-      get => persistantWorldOptions.bSaveCharsInSaveGame.ToBool();
-    }
+    public bool SaveCharactersInSaveGame => persistantWorldOptions.bSaveCharsInSaveGame.ToBool();
 
-    public bool ServerVaultByPlayerName
-    {
-      get => persistantWorldOptions.bServerVaultByPlayerName.ToBool();
-    }
+    public bool ServerVaultByPlayerName => persistantWorldOptions.bServerVaultByPlayerName.ToBool();
 
-    public bool StickyPlayerNames
-    {
-      get => persistantWorldOptions.bStickyPlayerNames.ToBool();
-    }
+    public bool StickyPlayerNames => persistantWorldOptions.bStickyPlayerNames.ToBool();
 
-    public bool SuppressBaseServerVault
-    {
-      get => persistantWorldOptions.bSuppressBaseServerVault.ToBool();
-    }
+    public bool SuppressBaseServerVault => persistantWorldOptions.bSuppressBaseServerVault.ToBool();
 
-    public bool VaultCharactersOnly
-    {
-      get => persistantWorldOptions.bVaultCharsOnly.ToBool();
-    }
+    public bool VaultCharactersOnly => persistantWorldOptions.bVaultCharsOnly.ToBool();
   }
 }

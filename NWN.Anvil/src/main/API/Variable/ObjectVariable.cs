@@ -11,10 +11,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this variable has no value.
     /// </summary>
-    public bool HasNothing
-    {
-      get => !HasValue;
-    }
+    public bool HasNothing => !HasValue;
 
     /// <summary>
     /// Gets a value indicating whether this variable has a value.

@@ -31,10 +31,7 @@ namespace Anvil.API
     /// It will also not take into account ability changes, nor if there is an existing amount of that bonus type. For example, wearing +1 armor, thus using a +1 Armor AC modifier, will not stack with Epic Mage Armor, which gives +5 in Armor AC bonuses.
     /// </remarks>
     /// </summary>
-    public int ACValue
-    {
-      get => NWScript.GetItemACValue(this);
-    }
+    public int ACValue => NWScript.GetItemACValue(this);
 
     /// <summary>
     /// Gets or sets the additional GP value of this item.<br/>
@@ -54,10 +51,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the base armor class of this item.
     /// </summary>
-    public int BaseACValue
-    {
-      get => Item.m_nArmorValue;
-    }
+    public int BaseACValue => Item.m_nArmorValue;
 
     /// <summary>
     /// Gets or sets the base GP value of this item.<br/>
@@ -100,18 +94,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the gp value for this item.
     /// </summary>
-    public int GoldValue
-    {
-      get => NWScript.GetGoldPieceValue(this);
-    }
+    public int GoldValue => NWScript.GetGoldPieceValue(this);
 
     /// <summary>
     /// Gets a value indicating whether this item has an inventory (container).
     /// </summary>
-    public bool HasInventory
-    {
-      get => NWScript.GetHasInventory(this).ToBool();
-    }
+    public bool HasInventory => NWScript.GetHasInventory(this).ToBool();
 
     /// <summary>
     /// Gets or sets a value indicating whether this item should be hidden when equipped.
@@ -149,10 +137,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets if this item is considered a ranged weapon.
     /// </summary>
-    public bool IsRangedWeapon
-    {
-      get => NWScript.GetWeaponRanged(this).ToBool();
-    }
+    public bool IsRangedWeapon => NWScript.GetWeaponRanged(this).ToBool();
 
     /// <summary>
     /// Gets or sets the number of charges left on this item.
@@ -180,18 +165,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the minimum level required to equip this item.
     /// </summary>
-    public byte MinEquipLevel
-    {
-      get => Item.GetMinEquipLevel();
-    }
+    public byte MinEquipLevel => Item.GetMinEquipLevel();
 
     /// <summary>
     /// Gets the original unidentified description for this item.
     /// </summary>
-    public string OriginalUnidentifiedDescription
-    {
-      get => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
-    }
+    public string OriginalUnidentifiedDescription => NWScript.GetDescription(this, true.ToInt(), false.ToInt());
 
     /// <summary>
     /// Gets or sets a value indicating whether this item can be pickpocketed.
@@ -205,10 +184,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the GameObject that has this item in its inventory. Returns null if it is on the ground, or not in any inventory.
     /// </summary>
-    public NwGameObject Possessor
-    {
-      get => NWScript.GetItemPossessor(this).ToNwObject<NwGameObject>();
-    }
+    public NwGameObject Possessor => NWScript.GetItemPossessor(this).ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets or sets the number of stacked items attached to this item.

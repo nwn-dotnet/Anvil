@@ -27,10 +27,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwStationary TransitionTarget { get; } = NWScript.GetTransitionTarget(NWScript.OBJECT_SELF).ToNwObject<NwStationary>();
 
-      NwObject IEvent.Context
-      {
-        get => Door;
-      }
+      NwObject IEvent.Context => Door;
 
       /// <summary>
       /// Sets the graphic shown when a PC moves between two different areas in a module.

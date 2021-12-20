@@ -11,9 +11,6 @@ namespace Anvil.API
     [JsonProperty("value")]
     public List<NuiChartSlot> ChartSlots { get; set; }
 
-    public override string Type
-    {
-      get => "chart";
-    }
+    public override string Type => "chart";
   }
 }

@@ -12,100 +12,64 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated Area of this location.
     /// </summary>
-    public NwArea Area
-    {
-      get => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
-    }
+    public NwArea Area => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
 
     /// <summary>
     /// Gets the inverted rotation value of this location (placeables).
     /// </summary>
-    public float FlippedRotation
-    {
-      get => (360 - Rotation) % 360;
-    }
+    public float FlippedRotation => (360 - Rotation) % 360;
 
     /// <summary>
     /// Gets the z-offset for the walkmesh at this location.
     /// </summary>
-    public float GroundHeight
-    {
-      get => NWScript.GetGroundHeight(this);
-    }
+    public float GroundHeight => NWScript.GetGroundHeight(this);
 
     /// <summary>
     /// Gets a value indicating whether the location is walkable.
     /// </summary>
-    public bool IsWalkable
-    {
-      get => NWScript.Get2DAString("surfacemat", "Walk", SurfaceMaterial).ParseIntBool();
-    }
+    public bool IsWalkable => NWScript.Get2DAString("surfacemat", "Walk", SurfaceMaterial).ParseIntBool();
 
     /// <summary>
     /// Gets the position Vector of this location.
     /// </summary>
-    public Vector3 Position
-    {
-      get => NWScript.GetPositionFromLocation(this);
-    }
+    public Vector3 Position => NWScript.GetPositionFromLocation(this);
 
     /// <summary>
     /// Gets the rotation value of this location.
     /// </summary>
-    public float Rotation
-    {
-      get => NWScript.GetFacingFromLocation(this);
-    }
+    public float Rotation => NWScript.GetFacingFromLocation(this);
 
     /// <summary>
     /// Gets the surface material index at this location.<br/>
     /// Returns 0 if the location is invalid or has no surface type.
     /// </summary>
-    public int SurfaceMaterial
-    {
-      get => NWScript.GetSurfaceMaterial(this);
-    }
+    public int SurfaceMaterial => NWScript.GetSurfaceMaterial(this);
 
     /// <summary>
     /// Gets the color of the first main light in the tile containing this location.
     /// </summary>
     /// <returns>A <see cref="TileMainLightColor"/> value representing the main light color of the specified tile.</returns>
-    public TileMainLightColor TileMainLightColorOne
-    {
-      get => (TileMainLightColor)NWScript.GetTileMainLight1Color(this);
-    }
+    public TileMainLightColor TileMainLightColorOne => (TileMainLightColor)NWScript.GetTileMainLight1Color(this);
 
     /// <summary>
     /// Gets the color of the second main light in the tile containing this location.
     /// </summary>
     /// <returns>A <see cref="TileMainLightColor"/> value representing the second main light color of the specified tile.</returns>
-    public TileMainLightColor TileMainLightColorTwo
-    {
-      get => (TileMainLightColor)NWScript.GetTileMainLight2Color(this);
-    }
+    public TileMainLightColor TileMainLightColorTwo => (TileMainLightColor)NWScript.GetTileMainLight2Color(this);
 
     /// <summary>
     /// Gets the color of the first light source in the tile containing this location.
     /// </summary>
     /// <returns>A <see cref="TileSourceLightColor"/> value representing the first light source color of the specified tile.</returns>
-    public TileSourceLightColor TileSourceLightColorOne
-    {
-      get => (TileSourceLightColor)NWScript.GetTileSourceLight1Color(this);
-    }
+    public TileSourceLightColor TileSourceLightColorOne => (TileSourceLightColor)NWScript.GetTileSourceLight1Color(this);
 
     /// <summary>
     /// Gets the color of the second light source in the tile containing this location.
     /// </summary>
     /// <returns>A <see cref="TileSourceLightColor"/> value representing the second light source color of the specified tile.</returns>
-    public TileSourceLightColor TileSourceLightColorTwo
-    {
-      get => (TileSourceLightColor)NWScript.GetTileSourceLight2Color(this);
-    }
+    public TileSourceLightColor TileSourceLightColorTwo => (TileSourceLightColor)NWScript.GetTileSourceLight2Color(this);
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_LOCATION;
-    }
+    protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
 
     public static Location Create(NwArea area, Vector3 position, float orientation)
     {

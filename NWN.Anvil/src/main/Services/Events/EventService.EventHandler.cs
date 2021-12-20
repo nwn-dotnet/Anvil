@@ -19,10 +19,7 @@ namespace Anvil.Services
 
       private Action<T> globalCallback;
 
-      public bool HasSubscribers
-      {
-        get => globalCallback != null || filteredCallbacks.Count > 0;
-      }
+      public bool HasSubscribers => globalCallback != null || filteredCallbacks.Count > 0;
 
       public override void ClearObjectSubscriptions(NwObject gameObject)
       {

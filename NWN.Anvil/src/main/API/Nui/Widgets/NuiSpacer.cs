@@ -6,9 +6,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NuiSpacer : NuiWidget
   {
-    public override string Type
-    {
-      get => "spacer";
-    }
+    public override string Type => "spacer";
   }
 }

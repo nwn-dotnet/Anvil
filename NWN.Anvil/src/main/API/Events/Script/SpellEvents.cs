@@ -64,10 +64,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwGameObject TargetObject { get; }
 
-      NwObject IEvent.Context
-      {
-        get => Caster;
-      }
+      NwObject IEvent.Context => Caster;
     }
   }
 }
