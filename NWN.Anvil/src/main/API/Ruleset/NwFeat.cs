@@ -25,34 +25,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets whether all classes can use this feat or not.
     /// </summary>
-    public bool AllClassesCanUse
-    {
-      get => featInfo.m_bAllClassesCanUse.ToBool();
-    }
+    public bool AllClassesCanUse => featInfo.m_bAllClassesCanUse.ToBool();
 
     /// <summary>
     /// Gets the description of this feat, as shown in the in-game skill window.
     /// </summary>
-    public string Description
-    {
-      get => TlkTable.GetSimpleString((uint)featInfo.m_nDescriptionStrref);
-    }
+    public string Description => TlkTable.GetSimpleString((uint)featInfo.m_nDescriptionStrref);
 
     /// <summary>
     /// Gets the associated <see cref="Feat"/> type for this feat.
     /// </summary>
-    public Feat FeatType
-    {
-      get => (Feat)Id;
-    }
+    public Feat FeatType => (Feat)Id;
 
     /// <summary>
     /// Gets the ResRef for the icon representing this skill.
     /// </summary>
-    public string IconResRef
-    {
-      get => featInfo.m_cIcon.ToString();
-    }
+    public string IconResRef => featInfo.m_cIcon.ToString();
 
     /// <summary>
     /// Gets the id of this feat.
@@ -62,75 +50,48 @@ namespace Anvil.API
     /// <summary>
     /// Gets whether the use of this feat is considered as a hostile act.
     /// </summary>
-    public bool IsHostileFeat
-    {
-      get => featInfo.m_bHostileFeat.ToBool();
-    }
+    public bool IsHostileFeat => featInfo.m_bHostileFeat.ToBool();
 
     /// <summary>
     /// This number references masterfeats.2da. The master feat is used when a feat falls into a subcategory, such as the way "improved critical (longsword)" is a subcategory of improved critical.
     /// </summary>
-    public byte MasterFeat
-    {
-      get => featInfo.m_nMasterFeat;
-    }
+    public byte MasterFeat => featInfo.m_nMasterFeat;
 
     /// <summary>
     /// Gets the maximum character level allowed a character to be able to select this feat.
     /// </summary>
-    public byte MaxLevel
-    {
-      get => featInfo.m_nMaxLevel;
-    }
+    public byte MaxLevel => featInfo.m_nMaxLevel;
 
     /// <summary>
     /// Gets the minimum attack bonus a character must have to select this feat.
     /// </summary>
-    public byte MinAttackBonus
-    {
-      get => featInfo.m_nMinAttackBonus;
-    }
+    public byte MinAttackBonus => featInfo.m_nMinAttackBonus;
 
     /// <summary>
     /// Gets the minimum fortitude saving throw bonus a character must have to be able to select this feat.
     /// </summary>
-    public byte MinFortSave
-    {
-      get => featInfo.m_nMinFortSave;
-    }
+    public byte MinFortSave => featInfo.m_nMinFortSave;
 
     /// <summary>
     /// Gets the minimum level a character must have to be able to take this feat.
     /// </summary>
-    public byte MinLevel
-    {
-      get => featInfo.m_nMinLevel;
-    }
+    public byte MinLevel => featInfo.m_nMinLevel;
 
     /// <summary>
     /// Gets the corresponding class the character must have <see cref="MinLevel"/> levels in.
     /// </summary>
-    public NwClass MinLevelClass
-    {
-      get => NwRuleset.Classes.ElementAtOrDefault(featInfo.m_nMinLevelClass);
-    }
+    public NwClass MinLevelClass => NwRuleset.Classes.ElementAtOrDefault(featInfo.m_nMinLevelClass);
 
     /// <summary>
     /// The minimum spell level a spellcasting character must be able to cast in order to select this feat.<br/>
     /// To determine eligibility, a check is made in classes.2da, examining the "SpellGainTable" and either the "SpellKnownTable" (for bards and sorcerers) or the "PrimaryAbil" (for other classes).
     /// </summary>
-    public byte MinSpellLevel
-    {
-      get => featInfo.m_nMinSpellLevel;
-    }
+    public byte MinSpellLevel => featInfo.m_nMinSpellLevel;
 
     /// <summary>
     /// Gets the name of this feat, as shown in the in-game skill window.
     /// </summary>
-    public string Name
-    {
-      get => TlkTable.GetSimpleString((uint)featInfo.m_nNameStrref);
-    }
+    public string Name => TlkTable.GetSimpleString((uint)featInfo.m_nNameStrref);
 
     /// <summary>
     /// Gets all feats that need to be selected before this one may be chosen.
@@ -158,101 +119,65 @@ namespace Anvil.API
     /// <summary>
     /// Gets the first required skill the character must have to be able to select this feat.
     /// </summary>
-    public NwSkill RequiredSkill1
-    {
-      get => NwSkill.FromSkillId(featInfo.m_nRequiredSkill);
-    }
+    public NwSkill RequiredSkill1 => NwSkill.FromSkillId(featInfo.m_nRequiredSkill);
 
     /// <summary>
     /// Gets the number of skill ranks needed for <see cref="RequiredSkill1"/>.
     /// </summary>
-    public ushort RequiredSkill1MinRanks
-    {
-      get => featInfo.m_nMinRequiredSkillRank;
-    }
+    public ushort RequiredSkill1MinRanks => featInfo.m_nMinRequiredSkillRank;
 
     /// <summary>
     /// Gets the second required skill the character must have to be able to select this feat.
     /// </summary>
-    public NwSkill RequiredSkill2
-    {
-      get => NwSkill.FromSkillId(featInfo.m_nRequiredSkill2);
-    }
+    public NwSkill RequiredSkill2 => NwSkill.FromSkillId(featInfo.m_nRequiredSkill2);
 
     /// <summary>
     /// Gets the number of skill ranks needed for <see cref="RequiredSkill2"/>.
     /// </summary>
-    public ushort RequiredSkill2MinRanks
-    {
-      get => featInfo.m_nMinRequiredSkillRank;
-    }
+    public ushort RequiredSkill2MinRanks => featInfo.m_nMinRequiredSkillRank;
 
     /// <summary>
     /// Gets if this feat requires a character action.<br/>
     /// If this is true and the character uses this feat, it is added to the character's action queue, instead of running instantly.
     /// </summary>
-    public bool RequiresAction
-    {
-      get => featInfo.m_bRequiresAction.ToBool();
-    }
+    public bool RequiresAction => featInfo.m_bRequiresAction.ToBool();
 
     /// <summary>
     /// Gets if only epic characters can choose this feat.
     /// </summary>
-    public bool RequiresEpic
-    {
-      get => featInfo.m_bRequiresEpic.ToBool();
-    }
+    public bool RequiresEpic => featInfo.m_bRequiresEpic.ToBool();
 
     /// <summary>
     /// The Spell associated with this feat.
     /// </summary>
-    public NwSpell Spell
-    {
-      get => NwSpell.FromSpellId(featInfo.m_nSpellId);
-    }
+    public NwSpell Spell => NwSpell.FromSpellId(featInfo.m_nSpellId);
 
     /// <summary>
     /// Gets the feat which follows this feat. For example, the Disarm feat has Improved Disarm as a successor.
     /// </summary>
-    public NwFeat SuccessorFeat
-    {
-      get => FromFeatId(featInfo.m_nSuccessor);
-    }
+    public NwFeat SuccessorFeat => FromFeatId(featInfo.m_nSuccessor);
 
     /// <summary>
     /// This determines how the AI treats this feat. It is an ID value in categories.2da.
     /// </summary>
-    public TalentCategory TalentCategory
-    {
-      get => (TalentCategory)featInfo.m_nTalentCategory;
-    }
+    public TalentCategory TalentCategory => (TalentCategory)featInfo.m_nTalentCategory;
 
     /// <summary>
     /// To do with the functions around Talents. The "Level" of the feat when we are searching for feats we want to not use if the enemy is of a certain CR.<br/>
     /// Just as a reference spells.2da entries just double the spell level (so enemy is CR5, we cast level 1 or 2 spells, but not level 3 which doubles to 6).
     /// </summary>
-    public int TalentMaxCR
-    {
-      get => featInfo.m_nTalentMaxCR;
-    }
+    public int TalentMaxCR => featInfo.m_nTalentMaxCR;
 
     /// <summary>
     /// Gets whether this feat targets the character using the feat (so when using it, it doesn't pop up a selection for who to target).<br/>
     /// Overrides spells.2da targeting options for PCs.
     /// </summary>
-    public bool TargetSelf
-    {
-      get => featInfo.m_bTargetSelf.ToBool();
-    }
+    public bool TargetSelf => featInfo.m_bTargetSelf.ToBool();
 
     /// <summary>
     /// Gets the number of uses per day that this feat can be used.
     /// </summary>
-    public byte UsesPerDay
-    {
-      get => featInfo.m_nUsesPerDay;
-    }
+    public byte UsesPerDay => featInfo.m_nUsesPerDay;
 
     /// <summary>
     /// Resolves a <see cref="NwFeat"/> from a feat id.

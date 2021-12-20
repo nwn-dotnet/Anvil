@@ -17,18 +17,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the class chosen at this level.
     /// </summary>
-    public CreatureClassInfo ClassInfo
-    {
-      get => creature.Classes[levelStats.m_nClass - 1];
-    }
+    public CreatureClassInfo ClassInfo => creature.Classes[levelStats.m_nClass - 1];
 
     /// <summary>
     /// Gets the number of feats gained at this level.
     /// </summary>
-    public int FeatCount
-    {
-      get => levelStats.m_lstFeats.Count;
-    }
+    public int FeatCount => levelStats.m_lstFeats.Count;
 
     /// <summary>
     /// Gets the feats gained at this level.

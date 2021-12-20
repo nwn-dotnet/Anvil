@@ -28,10 +28,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlayer PlayerSpeaker { get; }
 
-      NwObject IEvent.Context
-      {
-        get => CurrentSpeaker;
-      }
+      NwObject IEvent.Context => CurrentSpeaker;
 
       public void PauseConversation()
       {
@@ -68,10 +65,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlayer PlayerSpeaker { get; }
 
-      NwObject IEvent.Context
-      {
-        get => CurrentSpeaker;
-      }
+      NwObject IEvent.Context => CurrentSpeaker;
     }
   }
 }

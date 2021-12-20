@@ -17,10 +17,7 @@ namespace Anvil.API.Events
 
     public Lazy<bool> Result { get; private set; }
 
-    NwObject IEvent.Context
-    {
-      get => DisarmedObject;
-    }
+    NwObject IEvent.Context => DisarmedObject;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.ApplyDisarmHook>
     {

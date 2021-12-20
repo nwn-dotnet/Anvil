@@ -44,10 +44,7 @@ namespace Anvil.API.Events
 
     public WeaponAttackType WeaponAttackType { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Attacker;
-    }
+    NwObject IEvent.Context => Attacker;
 
     private CNWSCombatAttackData CombatAttackData { get; init; }
 

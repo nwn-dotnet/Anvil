@@ -32,10 +32,7 @@ namespace Anvil.API.Events
 
       public InventoryDisturbType DisturbType { get; } = (InventoryDisturbType)NWScript.GetInventoryDisturbType();
 
-      NwObject IEvent.Context
-      {
-        get => CreatureDisturbed;
-      }
+      NwObject IEvent.Context => CreatureDisturbed;
     }
   }
 }

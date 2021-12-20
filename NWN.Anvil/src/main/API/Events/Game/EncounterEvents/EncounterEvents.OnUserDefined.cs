@@ -17,10 +17,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
 
-      NwObject IEvent.Context
-      {
-        get => Encounter;
-      }
+      NwObject IEvent.Context => Encounter;
 
       public static void Signal(NwEncounter encounter, int eventId)
       {

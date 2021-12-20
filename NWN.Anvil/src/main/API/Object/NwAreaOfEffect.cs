@@ -21,10 +21,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the creator of this Area of Effect.
     /// </summary>
-    public NwGameObject Creator
-    {
-      get => NWScript.GetAreaOfEffectCreator(this).ToNwObject<NwGameObject>();
-    }
+    public NwGameObject Creator => NWScript.GetAreaOfEffectCreator(this).ToNwObject<NwGameObject>();
 
     public static implicit operator CNWSAreaOfEffectObject(NwAreaOfEffect areaOfEffect)
     {

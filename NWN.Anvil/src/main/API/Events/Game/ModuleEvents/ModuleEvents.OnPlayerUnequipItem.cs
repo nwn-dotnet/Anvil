@@ -25,10 +25,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature UnequippedBy { get; } = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context
-      {
-        get => UnequippedBy;
-      }
+      NwObject IEvent.Context => UnequippedBy;
     }
   }
 }

@@ -44,10 +44,7 @@ namespace Anvil.API.Events
       /// </summary>
       public int ArrayIndex { get; } = NWScript.NuiGetEventArrayIndex();
 
-      public NwObject Context
-      {
-        get => Player?.ControlledCreature;
-      }
+      public NwObject Context => Player?.ControlledCreature;
 
       /// <summary>
       /// Gets the ID of the <see cref="NuiElement"/> that triggered the event.

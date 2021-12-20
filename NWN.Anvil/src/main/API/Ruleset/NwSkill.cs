@@ -23,34 +23,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets if this skill can be used by all classes.
     /// </summary>
-    public bool AllClassesCanUse
-    {
-      get => skillInfo.m_bAllClassesCanUse.ToBool();
-    }
+    public bool AllClassesCanUse => skillInfo.m_bAllClassesCanUse.ToBool();
 
     /// <summary>
     /// Gets if this skill is subject to the armor check penalty.
     /// </summary>
-    public bool ArmorCheckPenalty
-    {
-      get => skillInfo.m_bArmorCheckPenalty.ToBool();
-    }
+    public bool ArmorCheckPenalty => skillInfo.m_bArmorCheckPenalty.ToBool();
 
     /// <summary>
     /// Gets the description of this skill.
     /// </summary>
-    public string Description
-    {
-      get => TlkTable.GetSimpleString((uint)skillInfo.m_nDescriptionStrref);
-    }
+    public string Description => TlkTable.GetSimpleString((uint)skillInfo.m_nDescriptionStrref);
 
     /// <summary>
     /// Gets the ResRef of the GUI icon representing this skill.
     /// </summary>
-    public string IconResRef
-    {
-      get => skillInfo.m_sIconName.ToString();
-    }
+    public string IconResRef => skillInfo.m_sIconName.ToString();
 
     /// <summary>
     /// Gets the ID of this skill.
@@ -60,42 +48,27 @@ namespace Anvil.API
     /// <summary>
     /// Gets if this skill is considered a hostile action.
     /// </summary>
-    public bool IsHostileSkill
-    {
-      get => skillInfo.m_bHostileSkill.ToBool();
-    }
+    public bool IsHostileSkill => skillInfo.m_bHostileSkill.ToBool();
 
     /// <summary>
     /// Gets if this skill is untrained. Trained skills require at least a single rank before they can be used.
     /// </summary>
-    public bool IsUntrained
-    {
-      get => skillInfo.m_bUntrained.ToBool();
-    }
+    public bool IsUntrained => skillInfo.m_bUntrained.ToBool();
 
     /// <summary>
     /// Gets the ability that the skill uses as
     /// </summary>
-    public Ability KeyAbility
-    {
-      get => (Ability)skillInfo.m_nKeyAbility;
-    }
+    public Ability KeyAbility => (Ability)skillInfo.m_nKeyAbility;
 
     /// <summary>
     /// Gets the name of this skill.
     /// </summary>
-    public string Name
-    {
-      get => TlkTable.GetSimpleString((uint)skillInfo.m_nNameStrref);
-    }
+    public string Name => TlkTable.GetSimpleString((uint)skillInfo.m_nNameStrref);
 
     /// <summary>
     /// Gets the associated <see cref="Skill"/> type for this skill.
     /// </summary>
-    public Skill SkillType
-    {
-      get => (Skill)Id;
-    }
+    public Skill SkillType => (Skill)Id;
 
     /// <summary>
     /// Resolves a <see cref="NwSkill"/> from a skill id.

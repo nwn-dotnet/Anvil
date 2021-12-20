@@ -8,10 +8,7 @@ namespace Anvil.API
     [Inject]
     private static ObjectStorageService ObjectStorageService { get; set; }
 
-    public sealed override bool HasValue
-    {
-      get => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsString(Prefix, Key);
-    }
+    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsString(Prefix, Key);
 
     public sealed override Guid Value
     {
@@ -23,10 +20,7 @@ namespace Anvil.API
       set => ObjectStorageService.GetObjectStorage(Object).Set(Prefix, Key, value.ToUUIDString(), true);
     }
 
-    protected sealed override string KeyPrefix
-    {
-      get => "PERSTR!";
-    }
+    protected sealed override string KeyPrefix => "PERSTR!";
 
     public sealed override void Delete()
     {
@@ -35,10 +29,7 @@ namespace Anvil.API
 
     internal sealed class Internal : PersistentVariableGuid
     {
-      protected override string Prefix
-      {
-        get => "ANVIL_API";
-      }
+      protected override string Prefix => "ANVIL_API";
     }
   }
 }

@@ -19,10 +19,7 @@ namespace Anvil.API.Events
 
       public NwGameObject Entering { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context
-      {
-        get => Effect;
-      }
+      NwObject IEvent.Context => Effect;
     }
   }
 }

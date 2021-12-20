@@ -10,10 +10,7 @@ namespace Anvil.API.Events
     public bool Skip { get; set; }
     public NwObject[] Targets { get; internal init; }
 
-    NwObject IEvent.Context
-    {
-      get => DungeonMaster?.LoginCreature;
-    }
+    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
   }
 
   public sealed class OnDMHeal : DMGroupTargetEvent {}

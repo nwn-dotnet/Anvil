@@ -69,10 +69,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the remaining duration until the item property expires (if this item property is temporary). Otherwise, returns <see cref="TimeSpan.Zero"/>.
     /// </summary>
-    public TimeSpan RemainingDuration
-    {
-      get => TimeSpan.FromSeconds(NWScript.GetItemPropertyDurationRemaining(this));
-    }
+    public TimeSpan RemainingDuration => TimeSpan.FromSeconds(NWScript.GetItemPropertyDurationRemaining(this));
 
     /// <summary>
     /// Gets or sets the SubType index for this item property.<br/>
@@ -96,10 +93,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the total duration of the item property effect (if this item property is temporary). Otherwise, returns <see cref="TimeSpan.Zero"/>.
     /// </summary>
-    public TimeSpan TotalDuration
-    {
-      get => TimeSpan.FromSeconds(NWScript.GetItemPropertyDuration(this));
-    }
+    public TimeSpan TotalDuration => TimeSpan.FromSeconds(NWScript.GetItemPropertyDuration(this));
 
     public bool Usable
     {
@@ -116,15 +110,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this item property is valid.
     /// </summary>
-    public bool Valid
-    {
-      get => NWScript.GetIsItemPropertyValid(this).ToBool();
-    }
+    public bool Valid => NWScript.GetIsItemPropertyValid(this).ToBool();
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_ITEMPROPERTY;
-    }
+    protected override int StructureId => NWScript.ENGINE_STRUCTURE_ITEMPROPERTY;
 
     public static explicit operator ItemProperty(Effect effect)
     {

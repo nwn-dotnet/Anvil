@@ -14,10 +14,7 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.ModuleOnModuleLoad)]
     public sealed class OnModuleLoad : IEvent
     {
-      NwObject IEvent.Context
-      {
-        get => null;
-      }
+      NwObject IEvent.Context => null;
     }
   }
 }

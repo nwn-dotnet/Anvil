@@ -17,10 +17,7 @@ namespace Anvil.API.Events
 
     public NwSpell Spell { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Caster;
-    }
+    NwObject IEvent.Context => Caster;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.BroadcastSpellCastHook>
     {

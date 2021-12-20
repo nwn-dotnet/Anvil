@@ -76,10 +76,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the maximum amount of creatures that this encounter will spawn.
     /// </summary>
-    public int MaxSpawnedCreatures
-    {
-      get => Encounter.m_nMaxSpawnedCreatures;
-    }
+    public int MaxSpawnedCreatures => Encounter.m_nMaxSpawnedCreatures;
 
     /// <summary>
     /// Gets or sets the max amount of spawns this encounter can generate.
@@ -93,18 +90,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the minimum amount of creatures that this encounter will spawn.
     /// </summary>
-    public int MinSpawnedCreatures
-    {
-      get => Encounter.m_nMinNumSpawnedCreatures;
-    }
+    public int MinSpawnedCreatures => Encounter.m_nMinNumSpawnedCreatures;
 
     /// <summary>
     /// Gets the number of creatures that are spawned and alive.
     /// </summary>
-    public int NumSpawnedCreatures
-    {
-      get => Encounter.m_nNumSpawnedCreatures;
-    }
+    public int NumSpawnedCreatures => Encounter.m_nNumSpawnedCreatures;
 
     /// <summary>
     /// Gets or sets if this encounter is player triggered only.

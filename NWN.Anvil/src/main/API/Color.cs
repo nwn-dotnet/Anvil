@@ -61,34 +61,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets the alpha value of this color as a float (0-1).
     /// </summary>
-    public float AlphaF
-    {
-      get => Alpha / 255f;
-    }
+    public float AlphaF => Alpha / 255f;
 
     /// <summary>
     /// Gets the blue value of this color as a float (0-1).
     /// </summary>
-    public float BlueF
-    {
-      get => Blue / 255f;
-    }
+    public float BlueF => Blue / 255f;
 
     /// <summary>
     /// Gets the green value of this color as a float (0-1).
     /// </summary>
-    public float GreenF
-    {
-      get => Green / 255f;
-    }
+    public float GreenF => Green / 255f;
 
     /// <summary>
     /// Gets the red value of this color as a float (0-1).
     /// </summary>
-    public float RedF
-    {
-      get => Red / 255f;
-    }
+    public float RedF => Red / 255f;
 
     /// <summary>
     /// Returns the 3 character sequence token for this color, used in coloring text.<br/>

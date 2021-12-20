@@ -13,10 +13,7 @@ namespace Anvil.API
       this.context = context;
     }
 
-    public bool IsCompleted
-    {
-      get => context == SynchronizationContext.Current;
-    }
+    public bool IsCompleted => context == SynchronizationContext.Current;
 
     public void GetResult() {}
 

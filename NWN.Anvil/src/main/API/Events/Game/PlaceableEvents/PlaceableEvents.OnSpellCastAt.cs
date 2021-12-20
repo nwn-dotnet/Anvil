@@ -35,10 +35,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwSpell Spell { get; } = NwSpell.FromSpellId(NWScript.GetLastSpell());
 
-      NwObject IEvent.Context
-      {
-        get => Placeable;
-      }
+      NwObject IEvent.Context => Placeable;
 
       public static void Signal(NwObject caster, NwPlaceable target, NwSpell spell, bool harmful = true)
       {

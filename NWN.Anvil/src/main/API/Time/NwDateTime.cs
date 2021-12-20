@@ -75,15 +75,9 @@ namespace Anvil.API
       Ticks = ticks;
     }
 
-    public NwDateTime Date
-    {
-      get => new NwDateTime(Ticks - Ticks % TicksPerDay);
-    }
+    public NwDateTime Date => new NwDateTime(Ticks - Ticks % TicksPerDay);
 
-    public int DayInMonth
-    {
-      get => (int)(Ticks / TicksPerDay % 28) + 1;
-    }
+    public int DayInMonth => (int)(Ticks / TicksPerDay % 28) + 1;
 
     public int DayInTenday
     {
@@ -94,40 +88,19 @@ namespace Anvil.API
       }
     }
 
-    public int DayInYear
-    {
-      get => Month * DaysInMonth + DayInMonth;
-    }
+    public int DayInYear => Month * DaysInMonth + DayInMonth;
 
-    public int Hour
-    {
-      get => (int)(Ticks / TicksPerHour % 24);
-    }
+    public int Hour => (int)(Ticks / TicksPerHour % 24);
 
-    public int Millisecond
-    {
-      get => (int)(Ticks % 1000);
-    }
+    public int Millisecond => (int)(Ticks % 1000);
 
-    public int Minute
-    {
-      get => (int)(Ticks / TicksPerMinute % 60);
-    }
+    public int Minute => (int)(Ticks / TicksPerMinute % 60);
 
-    public int Month
-    {
-      get => (int)(Ticks / TicksPerMonth % 12) + 1;
-    }
+    public int Month => (int)(Ticks / TicksPerMonth % 12) + 1;
 
-    public int Second
-    {
-      get => (int)(Ticks / TicksPerSecond % 60);
-    }
+    public int Second => (int)(Ticks / TicksPerSecond % 60);
 
-    public int Year
-    {
-      get => (int)(Ticks / TicksPerYear);
-    }
+    public int Year => (int)(Ticks / TicksPerYear);
 
     public static NwDateTime FromTicks(long ticks)
     {

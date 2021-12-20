@@ -35,10 +35,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context
-      {
-        get => Player;
-      }
+      NwObject IEvent.Context => Player;
     }
   }
 }

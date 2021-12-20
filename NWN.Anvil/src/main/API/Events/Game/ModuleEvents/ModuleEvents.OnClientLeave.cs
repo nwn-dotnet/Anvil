@@ -20,10 +20,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(PlayerSearch.Login);
 
-      NwObject IEvent.Context
-      {
-        get => Player.LoginCreature;
-      }
+      NwObject IEvent.Context => Player.LoginCreature;
     }
   }
 }

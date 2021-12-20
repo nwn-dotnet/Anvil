@@ -31,10 +31,7 @@ namespace Anvil.API.Events
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetLastTileActionPosition();
 
-      NwObject IEvent.Context
-      {
-        get => Player.ControlledCreature;
-      }
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
   }
 }

@@ -7,10 +7,7 @@ namespace Anvil.API
   {
     internal Event(IntPtr handle) : base(handle) {}
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_EVENT;
-    }
+    protected override int StructureId => NWScript.ENGINE_STRUCTURE_EVENT;
 
     public static implicit operator Event(IntPtr intPtr)
     {

@@ -20,10 +20,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwPlayer();
 
-      NwObject IEvent.Context
-      {
-        get => Player.ControlledCreature;
-      }
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
   }
 }

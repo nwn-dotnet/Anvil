@@ -12,14 +12,8 @@ namespace Anvil.API
       this.spawnPoint = spawnPoint;
     }
 
-    public float Orientation
-    {
-      get => spawnPoint.m_fOrientation;
-    }
+    public float Orientation => spawnPoint.m_fOrientation;
 
-    public Vector3 Position
-    {
-      get => spawnPoint.m_vPosition.ToManagedVector();
-    }
+    public Vector3 Position => spawnPoint.m_vPosition.ToManagedVector();
   }
 }

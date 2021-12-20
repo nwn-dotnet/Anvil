@@ -25,10 +25,7 @@ namespace Anvil.API.Events
       /// </summary>
       public RestEventType RestEventType { get; } = (RestEventType)NWScript.GetLastRestEventType();
 
-      NwObject IEvent.Context
-      {
-        get => Player.ControlledCreature;
-      }
+      NwObject IEvent.Context => Player.ControlledCreature;
     }
   }
 }

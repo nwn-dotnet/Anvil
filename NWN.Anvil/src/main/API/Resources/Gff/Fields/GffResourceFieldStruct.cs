@@ -33,37 +33,19 @@ namespace Anvil.API
       EntrySet = entrySet;
     }
 
-    public override int Count
-    {
-      get => keys.Count;
-    }
+    public override int Count => keys.Count;
 
     public override IEnumerable<KeyValuePair<string, GffResourceField>> EntrySet { get; }
 
-    public override GffResourceFieldType FieldType
-    {
-      get => GffResourceFieldType.Struct;
-    }
+    public override GffResourceFieldType FieldType => GffResourceFieldType.Struct;
 
-    public override IEnumerable<string> Keys
-    {
-      get => keys;
-    }
+    public override IEnumerable<string> Keys => keys;
 
-    public override IEnumerable<GffResourceField> Values
-    {
-      get => values;
-    }
+    public override IEnumerable<GffResourceField> Values => values;
 
-    public override GffResourceField this[int index]
-    {
-      get => fieldLookup[keys[index]];
-    }
+    public override GffResourceField this[int index] => fieldLookup[keys[index]];
 
-    public override GffResourceField this[string key]
-    {
-      get => fieldLookup[key];
-    }
+    public override GffResourceField this[string key] => fieldLookup[key];
 
     public override bool ContainsKey(string key)
     {

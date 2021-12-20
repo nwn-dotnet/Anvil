@@ -14,10 +14,7 @@ namespace Anvil.API.Events
 
     public bool Success { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => ExaminedBy.ControlledCreature;
-    }
+    NwObject IEvent.Context => ExaminedBy.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.TrapExamineHook>
     {

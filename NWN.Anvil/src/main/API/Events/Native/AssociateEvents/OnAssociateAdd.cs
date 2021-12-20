@@ -13,10 +13,7 @@ namespace Anvil.API.Events
     public AssociateType AssociateType { get; private init; }
     public NwCreature Owner { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Owner;
-    }
+    NwObject IEvent.Context => Owner;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddAssociateHook>
     {

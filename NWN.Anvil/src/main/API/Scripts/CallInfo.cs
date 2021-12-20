@@ -32,10 +32,7 @@ namespace Anvil.API
     /// Gets the parameters set for this script call.<br/>
     /// NOTE: variable values are NOT guaranteed outside of this script context, and must be read before any async method/lambda is invoked.
     /// </summary>
-    public ScriptParams ScriptParams
-    {
-      get => CachedScriptParams;
-    }
+    public ScriptParams ScriptParams => CachedScriptParams;
 
     /// <summary>
     /// Gets the event that triggered the execution of this script.

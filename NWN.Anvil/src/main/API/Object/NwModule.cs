@@ -66,10 +66,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the current server difficulty setting.
     /// </summary>
-    public GameDifficulty GameDifficulty
-    {
-      get => (GameDifficulty)NWScript.GetGameDifficulty();
-    }
+    public GameDifficulty GameDifficulty => (GameDifficulty)NWScript.GetGameDifficulty();
 
     /// <summary>
     /// Gets or sets the max possible ability score bonus from temporary effects/items (Default: 12).
@@ -83,34 +80,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether it is currently dawn.
     /// </summary>
-    public bool IsDawn
-    {
-      get => NWScript.GetIsDawn().ToBool();
-    }
+    public bool IsDawn => NWScript.GetIsDawn().ToBool();
 
     /// <summary>
     /// Gets a value indicating whether it is currently day.
     /// </summary>
-    public bool IsDay
-    {
-      get => NWScript.GetIsDay().ToBool();
-    }
+    public bool IsDay => NWScript.GetIsDay().ToBool();
 
     /// <summary>
     /// Gets a value indicating whether it is currently dusk.
     /// </summary>
-    public bool IsDusk
-    {
-      get => NWScript.GetIsDusk().ToBool();
-    }
+    public bool IsDusk => NWScript.GetIsDusk().ToBool();
 
     /// <summary>
     /// Gets a value indicating whether it is currently night.
     /// </summary>
-    public bool IsNight
-    {
-      get => NWScript.GetIsNight().ToBool();
-    }
+    public bool IsNight => NWScript.GetIsNight().ToBool();
 
     /// <summary>
     /// Gets all objects currently stored in limbo.
@@ -135,10 +120,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the current player count.
     /// </summary>
-    public uint PlayerCount
-    {
-      get => LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.Count();
-    }
+    public uint PlayerCount => LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.Count();
 
     /// <summary>
     /// Gets all current online players.
@@ -178,10 +160,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the starting location for new players.
     /// </summary>
-    public Location StartingLocation
-    {
-      get => NWScript.GetStartingLocation();
-    }
+    public Location StartingLocation => NWScript.GetStartingLocation();
 
     /// <summary>
     /// Gets or sets the XP scale for this module. Must be a value between 0-200.
@@ -192,10 +171,7 @@ namespace Anvil.API
       set => NWScript.SetModuleXPScale(value);
     }
 
-    internal override CNWSScriptVarTable ScriptVarTable
-    {
-      get => Module.m_ScriptVars;
-    }
+    internal override CNWSScriptVarTable ScriptVarTable => Module.m_ScriptVars;
 
     public static implicit operator CNWSModule(NwModule module)
     {

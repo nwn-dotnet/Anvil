@@ -17,9 +17,6 @@ namespace Anvil.API
     [JsonProperty("text")]
     public NuiProperty<string> Text { get; set; }
 
-    public override NuiDrawListItemType Type
-    {
-      get => NuiDrawListItemType.Text;
-    }
+    public override NuiDrawListItemType Type => NuiDrawListItemType.Text;
   }
 }

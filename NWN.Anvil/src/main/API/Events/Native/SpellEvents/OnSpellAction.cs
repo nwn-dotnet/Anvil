@@ -40,10 +40,7 @@ namespace Anvil.API.Events
 
     public Vector3 TargetPosition { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Caster;
-    }
+    NwObject IEvent.Context => Caster;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddCastSpellActionsHook>
     {

@@ -7,10 +7,7 @@ namespace Anvil.API
     [Inject]
     private static ObjectStorageService ObjectStorageService { get; set; }
 
-    public sealed override bool HasValue
-    {
-      get => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsFloat(Prefix, Key);
-    }
+    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsFloat(Prefix, Key);
 
     public sealed override float Value
     {
@@ -18,10 +15,7 @@ namespace Anvil.API
       set => ObjectStorageService.GetObjectStorage(Object).Set(Prefix, Key, value, true);
     }
 
-    protected sealed override string KeyPrefix
-    {
-      get => "PERFLT!";
-    }
+    protected sealed override string KeyPrefix => "PERFLT!";
 
     public sealed override void Delete()
     {
@@ -30,10 +24,7 @@ namespace Anvil.API
 
     internal sealed class Internal : PersistentVariableFloat
     {
-      protected override string Prefix
-      {
-        get => "ANVIL_API";
-      }
+      protected override string Prefix => "ANVIL_API";
     }
   }
 }

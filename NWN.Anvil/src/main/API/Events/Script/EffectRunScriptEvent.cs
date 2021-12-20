@@ -16,9 +16,6 @@ namespace Anvil.API.Events
 
     public EffectRunScriptType EventType { get; }
 
-    NwObject IEvent.Context
-    {
-      get => EffectTarget;
-    }
+    NwObject IEvent.Context => EffectTarget;
   }
 }

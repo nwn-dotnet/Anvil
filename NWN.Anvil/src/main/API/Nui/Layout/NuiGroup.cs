@@ -22,10 +22,7 @@ namespace Anvil.API
 
     public override string Type { get; } = "group";
 
-    protected override IEnumerable<NuiElement> SerializedChildren
-    {
-      get => Layout.SafeYield();
-    }
+    protected override IEnumerable<NuiElement> SerializedChildren => Layout.SafeYield();
 
     /// <summary>
     /// Sets the group layout for a specific player + window token (override/partial update).<br/>

@@ -13,15 +13,9 @@ namespace Anvil.API
       this.array = array;
     }
 
-    public int Count
-    {
-      get => array.Length;
-    }
+    public int Count => array.Length;
 
-    public byte this[int index]
-    {
-      get => GetGainAmount(index);
-    }
+    public byte this[int index] => GetGainAmount(index);
 
     public IEnumerator<byte> GetEnumerator()
     {

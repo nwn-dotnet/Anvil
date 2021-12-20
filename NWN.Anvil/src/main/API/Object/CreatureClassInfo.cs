@@ -15,26 +15,17 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated class.
     /// </summary>
-    public NwClass Class
-    {
-      get => NwClass.FromClassId(classInfo.m_nClass);
-    }
+    public NwClass Class => NwClass.FromClassId(classInfo.m_nClass);
 
     /// <summary>
     /// Gets the amount of levels in this class.
     /// </summary>
-    public byte Level
-    {
-      get => classInfo.m_nLevel;
-    }
+    public byte Level => classInfo.m_nLevel;
 
     /// <summary>
     /// Gets any negative levels applied to this class (e.g. through level drain).
     /// </summary>
-    public byte NegativeLevels
-    {
-      get => classInfo.m_nNegativeLevels;
-    }
+    public byte NegativeLevels => classInfo.m_nNegativeLevels;
 
     /// <summary>
     /// Adds the specified spell as a known spell at the specified spell level.

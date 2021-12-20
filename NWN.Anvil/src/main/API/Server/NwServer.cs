@@ -25,10 +25,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a list of all banned IPs/Keys/names as a string.
     /// </summary>
-    public string BannedList
-    {
-      get => server.GetBannedListString().ToString();
-    }
+    public string BannedList => server.GetBannedListString().ToString();
 
     /// <summary>
     /// Gets or sets the current DM password.

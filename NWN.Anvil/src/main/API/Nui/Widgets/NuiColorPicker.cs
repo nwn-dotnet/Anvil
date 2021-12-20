@@ -16,9 +16,6 @@ namespace Anvil.API
     [JsonProperty("value")]
     public NuiProperty<NuiColor> Color { get; set; }
 
-    public override string Type
-    {
-      get => "color_picker";
-    }
+    public override string Type => "color_picker";
   }
 }
