@@ -135,6 +135,14 @@ namespace Anvil.API
     public NwFeat EpicWeaponSpecializationFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponSpecializationFeat);
 
     /// <summary>
+    /// Gets the inventory slots that this item may be equipped in.
+    /// </summary>
+    public EquipmentSlots EquipmentSlots
+    {
+      get => (EquipmentSlots)BaseItemInfo.m_nEquipableSlots;
+    }
+
+    /// <summary>
     /// Gets the id of this base item.
     /// </summary>
     public uint Id { get; }
