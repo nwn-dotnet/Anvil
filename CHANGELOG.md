@@ -12,6 +12,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...HEAD
 - `NwClass`: Added various properties.
 - Added support for `NuiList` & `NuiListTemplateCell`.
 - `Effect.DurationType`: Added setter.
+- Added assembly attribute `PluginInfo` for defining optional dependencies.
+- `PluginManager`: Added check for missing types from optional plugins.
 
 ### Package Updates
 - (Docker) NWNX: 16b2c88 -> 790a54b
@@ -19,6 +21,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...HEAD
 - NWN.Native: 8193.33.4 -> 8193.34.2
 
 ### Changed
+- Services implementing `IInitializable` are now executed in deterministic order based on the service binding order defined in `ServiceBindingOptions`.
 Updated APIs to use ruleset classes:
 - `Effect.SkillDecrease(NwSkill,int)`
 - `Effect.SkillIncrease(NwSkill,int)`
