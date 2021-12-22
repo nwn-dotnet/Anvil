@@ -1,27 +1,4 @@
 var searchData=
 [
-  ['race_0',['Race',['../classAnvil_1_1API_1_1NwCreature.html#a34e880887bf89a2e6aa73933d03fbac3',1,'Anvil::API::NwCreature']]],
-  ['races_1',['Races',['../classAnvil_1_1API_1_1NwRuleset.html#a280080c2baa95863484042ca6bf150c2',1,'Anvil::API::NwRuleset']]],
-  ['racialtype_2',['RacialType',['../classAnvil_1_1API_1_1NwCreature.html#a035bc11a7e859aca2c3e956bad088991',1,'Anvil.API.NwCreature.RacialType()'],['../classAnvil_1_1API_1_1NwRace.html#a9b24ef697e78e2ef90020b437f7cb9b3',1,'Anvil.API.NwRace.RacialType()']]],
-  ['ready_3',['Ready',['../classAnvil_1_1API_1_1SpecialAbility.html#a8ce94c642d35f54b713fffc43a947e86',1,'Anvil::API::SpecialAbility']]],
-  ['redf_4',['RedF',['../structAnvil_1_1API_1_1Color.html#addbd104c574099318f8eceeb4dec7e4f',1,'Anvil::API::Color']]],
-  ['remainingduration_5',['RemainingDuration',['../classAnvil_1_1API_1_1ItemProperty.html#a2011e8b4326c15ed8ef7d651be68dad3',1,'Anvil::API::ItemProperty']]],
-  ['requiredfeatsall_6',['RequiredFeatsAll',['../classAnvil_1_1API_1_1NwFeat.html#a7683ec9052ed4f92b0dca8ed9bf3579a',1,'Anvil::API::NwFeat']]],
-  ['requiredfeatssome_7',['RequiredFeatsSome',['../classAnvil_1_1API_1_1NwFeat.html#ae3d6ce17b67cd2caa0b7bf6072e525c1',1,'Anvil::API::NwFeat']]],
-  ['requiredskill1_8',['RequiredSkill1',['../classAnvil_1_1API_1_1NwFeat.html#a2ba6ff1fdd19995dbd9c4ec5b2d42108',1,'Anvil::API::NwFeat']]],
-  ['requiredskill1minranks_9',['RequiredSkill1MinRanks',['../classAnvil_1_1API_1_1NwFeat.html#af057872aaff0f88bffbbf80767e59ad8',1,'Anvil::API::NwFeat']]],
-  ['requiredskill2_10',['RequiredSkill2',['../classAnvil_1_1API_1_1NwFeat.html#a2883f215a2871af6ccd27e9e67739a53',1,'Anvil::API::NwFeat']]],
-  ['requiredskill2minranks_11',['RequiredSkill2MinRanks',['../classAnvil_1_1API_1_1NwFeat.html#a3ec9094c3ed23b3ad864c1b0be651501',1,'Anvil::API::NwFeat']]],
-  ['requiresaction_12',['RequiresAction',['../classAnvil_1_1API_1_1NwFeat.html#a19308bb5ed46e2549d59ed8ebd512d14',1,'Anvil::API::NwFeat']]],
-  ['requiresepic_13',['RequiresEpic',['../classAnvil_1_1API_1_1NwFeat.html#a00af419c7acb0c07bbff04fd52821bbf',1,'Anvil::API::NwFeat']]],
-  ['resettime_14',['ResetTime',['../classAnvil_1_1API_1_1NwEncounter.html#a0211c0e71b5a9411e8dca3c8e333a9f1',1,'Anvil::API::NwEncounter']]],
-  ['resizable_15',['Resizable',['../classAnvil_1_1API_1_1NuiWindow.html#af9de735908016dc43b1dc14adda0f640',1,'Anvil::API::NuiWindow']]],
-  ['resref_16',['ResRef',['../classAnvil_1_1API_1_1NwObject.html#a361cf7b02756b21cab0d37128e94a82f',1,'Anvil::API::NwObject']]],
-  ['restdurationoverride_17',['RestDurationOverride',['../classAnvil_1_1API_1_1NwPlayer.html#aa46dedbe708c62c5680943460b260c22',1,'Anvil::API::NwPlayer']]],
-  ['resteventtype_18',['RestEventType',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerRest.html#ad73a4c2226665a05f7cd8ae71bc0a8a0',1,'Anvil::API::Events::ModuleEvents::OnPlayerRest']]],
-  ['restingallowed_19',['RestingAllowed',['../classAnvil_1_1API_1_1NwArea.html#aa09f7ba1be619e538ab53a4d512f2abb',1,'Anvil::API::NwArea']]],
-  ['result_20',['Result',['../classAnvil_1_1API_1_1SQLQuery.html#a48e8204ec27d2b9f9fab2f7321bd8cfe',1,'Anvil.API.SQLQuery.Result()'],['../classAnvil_1_1API_1_1Events_1_1OnHealKitUse.html#af44fbc39bffbab04e2fac52cadf39bbb',1,'Anvil.API.Events.OnHealKitUse.Result()']]],
-  ['results_21',['Results',['../classAnvil_1_1API_1_1SQLQuery.html#a5ca58c65256ada2ed86156f23d278a99',1,'Anvil::API::SQLQuery']]],
-  ['root_22',['Root',['../classAnvil_1_1API_1_1NuiWindow.html#a6d5ecff78918bc6d75fdf33becc4ffe5',1,'Anvil::API::NuiWindow']]],
-  ['rotation_23',['Rotation',['../classAnvil_1_1API_1_1Location.html#a58f45d58cbf423181796f81a1eacab32',1,'Anvil.API.Location.Rotation()'],['../classAnvil_1_1API_1_1NwGameObject.html#a63d1cb6b4ad2e3d6d9bae9439a8ee39e',1,'Anvil.API.NwGameObject.Rotation()']]]
+  ['qbbehaviour_3339',['QBBehaviour',['../classAnvil_1_1API_1_1NwBaseItem.html#a91f9d9fa050560f73e097f261603f56f',1,'Anvil::API::NwBaseItem']]]
 ];

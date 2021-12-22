@@ -32,14 +32,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1Events_1_1EncounterEvents_1_1OnExhausted.html",
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html",
-"classAnvil_1_1API_1_1NuiWindow.html#a23ce00832bbcb6523a3a7561823c7656",
-"classAnvil_1_1API_1_1NwCreature.html#aaf3cacdad7a5ec0d5d56ad88c64584ae",
-"classAnvil_1_1API_1_1NwItem.html#a86bf9236e06035a1c44efd790342c4db",
-"classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2",
-"classAnvil_1_1API_1_1NwTimeSpan.html",
-"classAnvil_1_1Services_1_1WeaponService.html#af8ff3b5ab720528943dd902f376551f4"
+"classAnvil_1_1API_1_1EffectBase.html#ac42610187f45f80b679daf388c0e0e4e",
+"classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#ab3a3bc315cae4ba44c157e97fbc78c01",
+"classAnvil_1_1API_1_1Events_1_1OnDMGetVariable.html",
+"classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a9ca2332ad92acbbce652686b6c8a1287",
+"classAnvil_1_1API_1_1GffResourceField.html#a8dec7cb904353f91027d20fc6eb67c52",
+"classAnvil_1_1API_1_1Location.html#adf79295d79f836396aad567d0ebce674",
+"classAnvil_1_1API_1_1NuiWidget.html",
+"classAnvil_1_1API_1_1NwCreature.html#a36a83b87eea9946bca47bc67d2b0178a",
+"classAnvil_1_1API_1_1NwEncounter.html#a89cdd475267ee2bb9c7ed15d3c2928c0",
+"classAnvil_1_1API_1_1NwModule.html#a600693e96bb344e5be2ebcc05a8a6b77",
+"classAnvil_1_1API_1_1NwPlayer.html#a7c6e4661a3f250ea294332fe3b460ec4",
+"classAnvil_1_1API_1_1NwTask.html#a66aaee968dcabd97171fdd69930c2e46",
+"classAnvil_1_1API_1_1Talent.html#ac4f793db6c17e90fef247c187a420d27",
+"classAnvil_1_1Services_1_1SchedulerService.html#a53e7bb62e54c67edaffee3511b07749b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

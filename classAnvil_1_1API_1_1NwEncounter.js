@@ -1,7 +1,11 @@
 var classAnvil_1_1API_1_1NwEncounter =
 [
-    [ "GetObjectsInEncounterArea", "classAnvil_1_1API_1_1NwEncounter.html#a3ef4c744fd6b93d057a1c998307c2b3b", null ],
-    [ "GetObjectsInEncounterArea< T >", "classAnvil_1_1API_1_1NwEncounter.html#a17cb84e1ae06fa12a2fbb1382178d155", null ],
+    [ "AddToArea", "classAnvil_1_1API_1_1NwEncounter.html#abbc3cdd59a4a53804e54bbb474cf17ad", null ],
+    [ "Deserialize", "classAnvil_1_1API_1_1NwEncounter.html#add5cb3261002f6820e1d3a35bc3eecaf", null ],
+    [ "GetObjectsInEncounterArea", "classAnvil_1_1API_1_1NwEncounter.html#aac6101d639e1f4b787382a920bc8f42e", null ],
+    [ "GetObjectsInEncounterArea< T >", "classAnvil_1_1API_1_1NwEncounter.html#ad2fd38769f6840349a6a041bcb8d3162", null ],
+    [ "operator CNWSEncounter", "classAnvil_1_1API_1_1NwEncounter.html#a3f19f14c0087c5b474fb7e4f8ca5b172", null ],
+    [ "Serialize", "classAnvil_1_1API_1_1NwEncounter.html#af67e42d7bb167d4ea5ee8eb1ca49c41b", null ],
     [ "Active", "classAnvil_1_1API_1_1NwEncounter.html#aaeab8b19ddd694cedc6ff9af54b9a58c", null ],
     [ "CanReset", "classAnvil_1_1API_1_1NwEncounter.html#ae7f8f56510001f66ca4043e83285e52f", null ],
     [ "CreatureList", "classAnvil_1_1API_1_1NwEncounter.html#a46118e0efdadb10a6d805cb0961c9609", null ],
