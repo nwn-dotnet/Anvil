@@ -118,10 +118,45 @@ namespace Anvil.Plugins
       List<Type> loadedTypes = new List<Type>();
       foreach (Assembly assembly in loadedAssemblies)
       {
-        loadedTypes.AddRange(assembly.GetTypes());
+        loadedTypes.AddRange(GetTypesFromAssembly(assembly));
       }
 
-      return loadedTypes.AsReadOnly();
+      return loadedTypes;
+    }
+
+    private IEnumerable<Type> GetTypesFromAssembly(Assembly assembly)
+    {
+      IEnumerable<Type> assemblyTypes;
+      try
+      {
+        assemblyTypes = assembly.GetTypes();
+      }
+      catch (ReflectionTypeLoadException e)
+      {
+        PluginInfoAttribute pluginInfoAttribute = assembly.GetCustomAttribute<PluginInfoAttribute>();
+        if (pluginInfoAttribute?.OptionalDependencies == null)
+        {
+          throw;
+        }
+
+        foreach (Exception exception in e.LoaderExceptions)
+        {
+          if (exception is FileNotFoundException fileNotFoundException)
+          {
+            AssemblyName assemblyName = new AssemblyName(fileNotFoundException.FileName!);
+            if (pluginInfoAttribute.OptionalDependencies.Contains(assemblyName.Name))
+            {
+              continue;
+            }
+          }
+
+          throw;
+        }
+
+        assemblyTypes = e.Types.Where(type => type != null);
+      }
+
+      return assemblyTypes;
     }
 
     private IReadOnlyCollection<string> GetResourcePaths()
@@ -135,7 +170,7 @@ namespace Anvil.Plugins
         }
       }
 
-      return resourcePaths.AsReadOnly();
+      return resourcePaths;
     }
 
     private bool IsValidDependency(string plugin, AssemblyName requested, AssemblyName resolved)

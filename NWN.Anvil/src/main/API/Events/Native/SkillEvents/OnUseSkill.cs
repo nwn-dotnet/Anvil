@@ -30,7 +30,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the skill that is being used.
     /// </summary>
-    public Skill Skill { get; private init; }
+    public NwSkill Skill { get; private init; }
 
     /// <summary>
     /// Gets the SubSkill (if any) that is being used.
@@ -52,10 +52,7 @@ namespace Anvil.API.Events
     /// </summary>
     public NwItem UsedItem { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Creature;
-    }
+    NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.UseSkillHook>
     {
@@ -73,7 +70,7 @@ namespace Anvil.API.Events
         OnUseSkill eventData = ProcessEvent(new OnUseSkill
         {
           Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Skill = (Skill)nSkill,
+          Skill = NwSkill.FromSkillId(nSkill),
           SubSkill = (SubSkill)nSubSkill,
           Target = oidTarget.ToNwObject<NwGameObject>(),
           Area = oidArea.ToNwObject<NwArea>(),

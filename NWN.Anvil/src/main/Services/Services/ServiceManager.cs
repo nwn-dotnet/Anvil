@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Anvil.API;
 using Anvil.Internal;
 using Anvil.Plugins;
 using LightInject;
@@ -72,9 +73,9 @@ namespace Anvil.Services
 
     private void InitServices()
     {
-      foreach (IInitializable initializable in serviceContainer.GetAllInstances<IInitializable>())
+      foreach (IInitializable service in serviceContainer.GetAllInstances<IInitializable>().OrderBy(service => service.GetType().GetServicePriority()))
       {
-        initializable.Init();
+        service.Init();
       }
     }
   }

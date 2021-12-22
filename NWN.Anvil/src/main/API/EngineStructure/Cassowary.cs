@@ -10,15 +10,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets a printable debug state of this solver, which may help you debug complex systems.
     /// </summary>
-    public string DebugState
-    {
-      get => NWScript.CassowaryDebug(this);
-    }
+    public string DebugState => NWScript.CassowaryDebug(this);
 
-    protected override int StructureId
-    {
-      get => NWScript.ENGINE_STRUCTURE_CASSOWARY;
-    }
+    protected override int StructureId => NWScript.ENGINE_STRUCTURE_CASSOWARY;
 
     public static implicit operator Cassowary(IntPtr intPtr)
     {

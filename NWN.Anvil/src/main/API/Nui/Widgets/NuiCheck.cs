@@ -20,9 +20,6 @@ namespace Anvil.API
     [JsonProperty("value")]
     public NuiProperty<bool> Selected { get; set; }
 
-    public override string Type
-    {
-      get => "check";
-    }
+    public override string Type => "check";
   }
 }

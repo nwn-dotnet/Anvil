@@ -17,10 +17,7 @@ namespace Anvil.API.Events
 
     public NwCreature Target { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Player.ControlledCreature;
-    }
+    NwObject IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.HandlePartyMessageHook>
     {

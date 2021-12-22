@@ -23,10 +23,7 @@ namespace Anvil.API
     [JsonProperty("image")]
     public NuiProperty<string> ResRef { get; set; }
 
-    public override NuiDrawListItemType Type
-    {
-      get => NuiDrawListItemType.Image;
-    }
+    public override NuiDrawListItemType Type => NuiDrawListItemType.Image;
 
     [JsonProperty("image_valign")]
     public NuiProperty<NuiVAlign> VerticalAlign { get; set; } = NuiVAlign.Top;

@@ -26,10 +26,7 @@ namespace Anvil.API.Events
     /// </summary>
     public bool PreventRemove { get; set; }
 
-    NwObject IEvent.Context
-    {
-      get => Object;
-    }
+    NwObject IEvent.Context => Object;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.EffectRemovedHook>
     {
@@ -52,7 +49,7 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect);
         }
 
-        EffectDurationType durationType = (EffectDurationType)(gameEffect.m_nSubType & Effect.DurationMask);
+        EffectDurationType durationType = (EffectDurationType)gameEffect.GetDurationType();
         if (durationType != EffectDurationType.Temporary && durationType != EffectDurationType.Permanent)
         {
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect);
@@ -61,7 +58,7 @@ namespace Anvil.API.Events
         OnEffectRemove eventData = ProcessEvent(new OnEffectRemove
         {
           Object = gameObject.ToNwObject(),
-          Effect = gameEffect.ToEffect(),
+          Effect = gameEffect.ToEffect(true),
         });
 
         return eventData.PreventRemove ? false.ToInt() : Hook.CallOriginal(pEffectListHandler, pObject, pEffect);

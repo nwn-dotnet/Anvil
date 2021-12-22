@@ -17,31 +17,25 @@ namespace Anvil.API
     /// <summary>
     /// Gets the class chosen at this level.
     /// </summary>
-    public ClassType Class
-    {
-      get => creature.Classes[levelStats.m_nClass - 1];
-    }
+    public CreatureClassInfo ClassInfo => creature.Classes[levelStats.m_nClass - 1];
 
     /// <summary>
     /// Gets the number of feats gained at this level.
     /// </summary>
-    public int FeatCount
-    {
-      get => levelStats.m_lstFeats.Count;
-    }
+    public int FeatCount => levelStats.m_lstFeats.Count;
 
     /// <summary>
     /// Gets the feats gained at this level.
     /// </summary>
-    public IReadOnlyList<Feat> Feats
+    public IReadOnlyList<NwFeat> Feats
     {
       get
       {
-        Feat[] feats = new Feat[FeatCount];
+        NwFeat[] feats = new NwFeat[FeatCount];
 
         for (int i = 0; i < feats.Length; i++)
         {
-          feats[i] = (Feat)levelStats.m_lstFeats[i];
+          feats[i] = NwFeat.FromFeatId(levelStats.m_lstFeats[i]);
         }
 
         return feats;
@@ -71,9 +65,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="skill">The skill to query.</param>
     /// <returns>The number of skill ranks.</returns>
-    public sbyte GetSkillRank(Skill skill)
+    public sbyte GetSkillRank(NwSkill skill)
     {
-      return levelStats.m_lstSkillRanks[(int)skill].AsSByte();
+      return levelStats.m_lstSkillRanks[skill.Id].AsSByte();
     }
 
     /// <summary>
@@ -81,9 +75,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="skill">The skill to modify.</param>
     /// <param name="rank">The new number of skill ranks.</param>
-    public void SetSkillRank(Skill skill, sbyte rank)
+    public void SetSkillRank(NwSkill skill, sbyte rank)
     {
-      levelStats.m_lstSkillRanks[(int)skill] = rank.AsByte();
+      levelStats.m_lstSkillRanks[skill.Id] = rank.AsByte();
     }
   }
 }

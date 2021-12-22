@@ -1,5 +1,3 @@
-using System;
-
 namespace Anvil.API
 {
   public readonly struct CreatureTypeFilter
@@ -19,19 +17,19 @@ namespace Anvil.API
       return new CreatureTypeFilter(CreatureType.IsAlive, alive.ToInt());
     }
 
-    public static CreatureTypeFilter Class(ClassType classType)
+    public static CreatureTypeFilter Class(NwClass nwClass)
     {
-      return new CreatureTypeFilter(CreatureType.Class, (int)classType);
+      return new CreatureTypeFilter(CreatureType.Class, nwClass.Id);
     }
 
-    public static CreatureTypeFilter DoesNotHaveSpellEffect(Spell spellEffect)
+    public static CreatureTypeFilter DoesNotHaveSpellEffect(NwSpell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect);
+      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect.Id);
     }
 
-    public static CreatureTypeFilter HasSpellEffect(Spell spellEffect)
+    public static CreatureTypeFilter HasSpellEffect(NwSpell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.HasSpellEffect, (int)spellEffect);
+      return new CreatureTypeFilter(CreatureType.HasSpellEffect, (int)spellEffect.Id);
     }
 
     public static CreatureTypeFilter Perception(PerceptionType perceptionType)
@@ -46,13 +44,7 @@ namespace Anvil.API
 
     public static CreatureTypeFilter Race(NwRace race)
     {
-      return new CreatureTypeFilter(CreatureType.RacialType, (int)race.RacialType);
-    }
-
-    [Obsolete("Use CreatureTypeFilter.Race(NwRace) instead.")]
-    public static CreatureTypeFilter RacialType(RacialType racialType)
-    {
-      return new CreatureTypeFilter(CreatureType.RacialType, (int)racialType);
+      return new CreatureTypeFilter(CreatureType.RacialType, race.Id);
     }
 
     public static CreatureTypeFilter Reputation(ReputationType reputationType)

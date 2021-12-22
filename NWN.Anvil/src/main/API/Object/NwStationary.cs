@@ -25,10 +25,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this stationary object is currently open.
     /// </summary>
-    public bool IsOpen
-    {
-      get => NWScript.GetIsOpen(this).ToBool();
-    }
+    public bool IsOpen => NWScript.GetIsOpen(this).ToBool();
 
     /// <summary>
     /// Gets or sets a value indicating whether the key for this lock should "break"/be removed from the creature's inventory when used on this lock.
@@ -44,10 +41,7 @@ namespace Anvil.API
       set => NWScript.SetKeyRequiredFeedback(this, value);
     }
 
-    public override Location Location
-    {
-      get => Location.Create(Area, Position, Rotation);
-    }
+    public override Location Location => Location.Create(Area, Position, Rotation);
 
     /// <summary>
     /// Gets or sets a value indicating whether this stationary object is lockable.

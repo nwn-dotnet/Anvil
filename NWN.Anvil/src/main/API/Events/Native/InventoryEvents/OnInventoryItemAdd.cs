@@ -16,10 +16,7 @@ namespace Anvil.API.Events
 
     public Lazy<bool> Result { get; private set; }
 
-    NwObject IEvent.Context
-    {
-      get => AcquiredBy;
-    }
+    NwObject IEvent.Context => AcquiredBy;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddItemHook>
     {

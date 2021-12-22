@@ -17,10 +17,7 @@ namespace Anvil.API.Events
     /// </summary>
     public bool Prevent { get; set; }
 
-    NwObject IEvent.Context
-    {
-      get => Creature;
-    }
+    NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetDetectModeHook>
     {

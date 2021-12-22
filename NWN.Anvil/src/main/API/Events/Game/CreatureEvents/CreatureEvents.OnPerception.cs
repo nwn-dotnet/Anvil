@@ -30,10 +30,7 @@ namespace Anvil.API.Events
       /// </summary>
       public PerceptionEventType PerceptionEventType { get; } = GetPerceptionEventType();
 
-      NwObject IEvent.Context
-      {
-        get => Creature;
-      }
+      NwObject IEvent.Context => Creature;
 
       private static PerceptionEventType GetPerceptionEventType()
       {

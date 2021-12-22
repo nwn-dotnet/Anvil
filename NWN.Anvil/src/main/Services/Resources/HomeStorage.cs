@@ -8,30 +8,15 @@ namespace Anvil.Services
   {
     private static readonly string AnvilHome = Path.GetFullPath(EnvironmentConfig.AnvilHome, NwServer.Instance.UserDirectory);
 
-    public static string NLogConfig
-    {
-      get => ResolveFilePath("nlog.config");
-    }
+    public static string NLogConfig => ResolveFilePath("nlog.config");
 
-    public static string Paket
-    {
-      get => ResolveDirectoryPath("Paket");
-    }
+    public static string Paket => ResolveDirectoryPath("Paket");
 
-    public static string PluginData
-    {
-      get => ResolveDirectoryPath("PluginData");
-    }
+    public static string PluginData => ResolveDirectoryPath("PluginData");
 
-    public static string Plugins
-    {
-      get => ResolveDirectoryPath("Plugins");
-    }
+    public static string Plugins => ResolveDirectoryPath("Plugins");
 
-    public static string ResourceTemp
-    {
-      get => ResolveDirectoryPath("ResourceTemp", false);
-    }
+    public static string ResourceTemp => ResolveDirectoryPath("ResourceTemp", false);
 
     private static void CreateDirectory(string folderPath)
     {

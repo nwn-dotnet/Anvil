@@ -14,10 +14,7 @@ namespace Anvil.API.Events
 
     public Lazy<bool> Result { get; private set; }
 
-    NwObject IEvent.Context
-    {
-      get => Player.ControlledCreature;
-    }
+    NwObject IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.HandlePlayerToServerLevelUpMessageHook>
     {

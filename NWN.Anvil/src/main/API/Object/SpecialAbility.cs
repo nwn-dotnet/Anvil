@@ -2,7 +2,7 @@ namespace Anvil.API
 {
   public sealed class SpecialAbility
   {
-    public SpecialAbility(Spell spell, byte casterLevel, bool ready = true)
+    public SpecialAbility(NwSpell spell, byte casterLevel, bool ready = true)
     {
       Spell = spell;
       Ready = ready;
@@ -22,6 +22,6 @@ namespace Anvil.API
     /// <summary>
     /// Gets the spell associated with this special ability.
     /// </summary>
-    public Spell Spell { get; set; }
+    public NwSpell Spell { get; set; }
   }
 }

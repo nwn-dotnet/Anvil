@@ -25,9 +25,6 @@ namespace Anvil.API
     [JsonProperty("b")]
     public NuiProperty<NuiVector> PointB { get; set; }
 
-    public override NuiDrawListItemType Type
-    {
-      get => NuiDrawListItemType.Curve;
-    }
+    public override NuiDrawListItemType Type => NuiDrawListItemType.Curve;
   }
 }

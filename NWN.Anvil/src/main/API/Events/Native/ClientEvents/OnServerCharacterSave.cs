@@ -23,10 +23,7 @@ namespace Anvil.API.Events
     /// </summary>
     public bool PreventSave { get; set; }
 
-    NwObject IEvent.Context
-    {
-      get => Player.ControlledCreature;
-    }
+    NwObject IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SaveServerCharacterHook>
     {

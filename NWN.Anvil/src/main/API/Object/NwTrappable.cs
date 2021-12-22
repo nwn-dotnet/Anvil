@@ -14,18 +14,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this trap has been flagged as visible to all creatures in the game.
     /// </summary>
-    public bool IsTrapFlagged
-    {
-      get => NWScript.GetTrapFlagged(this).ToBool();
-    }
+    public bool IsTrapFlagged => NWScript.GetTrapFlagged(this).ToBool();
 
     /// <summary>
     /// Gets a value indicating whether this object is trapped.
     /// </summary>
-    public bool IsTrapped
-    {
-      get => NWScript.GetIsTrapped(this).ToBool();
-    }
+    public bool IsTrapped => NWScript.GetIsTrapped(this).ToBool();
 
     /// <summary>
     /// Gets or sets a value indicating whether this trap should not reset after firing (true = don't reset).
@@ -49,18 +43,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the base type of this trap.
     /// </summary>
-    public TrapBaseType TrapBaseType
-    {
-      get => (TrapBaseType)NWScript.GetTrapBaseType(this);
-    }
+    public TrapBaseType TrapBaseType => (TrapBaseType)NWScript.GetTrapBaseType(this);
 
     /// <summary>
     /// Gets the player that created this trap. If the trap was placed in the toolset, this returns null.
     /// </summary>
-    public NwPlayer TrapCreator
-    {
-      get => NWScript.GetTrapCreator(this).ToNwPlayer();
-    }
+    public NwPlayer TrapCreator => NWScript.GetTrapCreator(this).ToNwPlayer();
 
     /// <summary>
     /// Gets or sets a value indicating whether this trap can be detected.

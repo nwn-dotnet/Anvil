@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     public Domain Domain { get; private init; }
 
-    public Feat Feat { get; private init; }
+    public NwFeat Feat { get; private init; }
 
     public bool IsAreaTarget { get; private init; }
 
@@ -34,16 +34,13 @@ namespace Anvil.API.Events
 
     public Lazy<bool> Result { get; private set; }
 
-    public Spell Spell { get; private init; }
+    public NwSpell Spell { get; private init; }
 
     public NwGameObject TargetObject { get; private init; }
 
     public Vector3 TargetPosition { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Caster;
-    }
+    NwObject IEvent.Context => Caster;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddCastSpellActionsHook>
     {
@@ -67,7 +64,7 @@ namespace Anvil.API.Events
         OnSpellAction eventData = new OnSpellAction
         {
           Caster = creature.ToNwObject<NwCreature>(),
-          Spell = (Spell)nSpellId,
+          Spell = NwSpell.FromSpellId((int)nSpellId),
           ClassIndex = nMultiClass,
           Domain = (Domain)nDomainLevel,
           MetaMagic = (MetaMagic)nMetaType,
@@ -78,7 +75,7 @@ namespace Anvil.API.Events
           IsFake = bFake.ToBool(),
           ProjectilePath = (ProjectilePathType)nProjectilePathType,
           IsInstant = bInstant.ToBool(),
-          Feat = (Feat)nFeat,
+          Feat = NwFeat.FromFeatId(nFeat),
           CasterLevel = nCasterLevel,
         };
 

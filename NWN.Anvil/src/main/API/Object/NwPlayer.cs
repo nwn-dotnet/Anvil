@@ -42,10 +42,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of the player's .bic file.
     /// </summary>
-    public string BicFileName
-    {
-      get => Player.m_resFileName.ToString();
-    }
+    public string BicFileName => Player.m_resFileName.ToString();
 
     /// <summary>
     /// Sets the camera height for this player.
@@ -58,27 +55,18 @@ namespace Anvil.API
     /// <summary>
     /// Gets the public part of the CD key that the player used when logging in.
     /// </summary>
-    public string CDKey
-    {
-      get => NWScript.GetPCPublicCDKey(ControlledCreature, true.ToInt());
-    }
+    public string CDKey => NWScript.GetPCPublicCDKey(ControlledCreature, true.ToInt());
 
     /// <summary>
     /// Gets the player's client version (Major + Minor).
     /// </summary>
-    public Version ClientVersion
-    {
-      get => new Version(NWScript.GetPlayerBuildVersionMajor(ControlledCreature), NWScript.GetPlayerBuildVersionMinor(ControlledCreature));
-    }
+    public Version ClientVersion => new Version(NWScript.GetPlayerBuildVersionMajor(ControlledCreature), NWScript.GetPlayerBuildVersionMinor(ControlledCreature));
 
     /// <summary>
     /// Gets the creature this player is currently controlling.<br/>
     /// This will return the player's current possessed creature (familiar, DM possession), otherwise their player character if they are currently not possessing a creature.
     /// </summary>
-    public NwCreature ControlledCreature
-    {
-      get => Player.m_oidNWSObject.ToNwObject<NwCreature>();
-    }
+    public NwCreature ControlledCreature => Player.m_oidNWSObject.ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets or sets the movement rate factor for the cutscene camera following ControlledCreature 'camera man'.
@@ -92,44 +80,29 @@ namespace Anvil.API
     /// <summary>
     /// Gets the connecting IP address for the player.
     /// </summary>
-    public string IPAddress
-    {
-      get => NWScript.GetPCIPAddress(ControlledCreature);
-    }
+    public string IPAddress => NWScript.GetPCIPAddress(ControlledCreature);
 
     /// <summary>
     /// Gets a value indicating whether the player has connected to the server over a relay (instead of directly).
     /// </summary>
-    public bool IsConnectionRelayed
-    {
-      get => NWScript.GetIsPlayerConnectionRelayed(ControlledCreature).ToBool();
-    }
+    public bool IsConnectionRelayed => NWScript.GetIsPlayerConnectionRelayed(ControlledCreature).ToBool();
 
     /// <summary>
     /// Gets a value indicating whether the player is a Dungeon Master.
     /// </summary>
-    public bool IsDM
-    {
-      get => NWScript.GetIsDM(ControlledCreature).ToBool();
-    }
+    public bool IsDM => NWScript.GetIsDM(ControlledCreature).ToBool();
 
     /// <summary>
     /// Gets if this player is in cursor targeting mode.<br/>
     /// NOTE! Only works if the player entered target mode using <see cref="TryEnterTargetMode"/>.
     /// </summary>
     /// <returns>True if this player is attempting to target something.</returns>
-    public bool IsInCursorTargetMode
-    {
-      get => CursorTargetService.IsInTargetMode(this);
-    }
+    public bool IsInCursorTargetMode => CursorTargetService.IsInTargetMode(this);
 
     /// <summary>
     /// Gets a value indicating whether ControlledCreature creature is currently in "Cutscene" mode.
     /// </summary>
-    public bool IsInCutsceneMode
-    {
-      get => NWScript.GetCutsceneMode(ControlledCreature).ToBool();
-    }
+    public bool IsInCutsceneMode => NWScript.GetCutsceneMode(ControlledCreature).ToBool();
 
     /// <summary>
     /// Gets or sets whether the player has DM privileges gained through a player login (as opposed to the DM client).
@@ -230,18 +203,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the language configured by this player.
     /// </summary>
-    public PlayerLanguage Language
-    {
-      get => (PlayerLanguage)NWScript.GetPlayerLanguage(ControlledCreature);
-    }
+    public PlayerLanguage Language => (PlayerLanguage)NWScript.GetPlayerLanguage(ControlledCreature);
 
     /// <summary>
     /// Gets the original creature that this player logged in with.
     /// </summary>
-    public NwCreature LoginCreature
-    {
-      get => Player.m_oidPCObject.ToNwObject<NwCreature>();
-    }
+    public NwCreature LoginCreature => Player.m_oidPCObject.ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets the members in the player's party.
@@ -260,10 +227,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the platform this player is currently playing from.
     /// </summary>
-    public PlayerPlatform Platform
-    {
-      get => (PlayerPlatform)NWScript.GetPlayerDevicePlatform(ControlledCreature);
-    }
+    public PlayerPlatform Platform => (PlayerPlatform)NWScript.GetPlayerDevicePlatform(ControlledCreature);
 
     /// <summary>
     /// Gets the unique numeric ID of this player.
@@ -273,10 +237,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the player's login name.
     /// </summary>
-    public string PlayerName
-    {
-      get => NWScript.GetPCPlayerName(ControlledCreature);
-    }
+    public string PlayerName => NWScript.GetPCPlayerName(ControlledCreature);
 
     /// <summary>
     /// Gets or sets a custom rest duration for this player.<br/>
@@ -655,6 +616,19 @@ namespace Anvil.API
       NWScript.SetCutsceneMode(ControlledCreature, true.ToInt(), allowLeftClick.ToInt());
     }
 
+    /// <summary>
+    /// Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br/>
+    /// If the player is already in targeting mode, the existing handler will be cleared. See <see cref="TryEnterTargetMode"/> to handle this.
+    /// </summary>
+    /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
+    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
+    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
+    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
+    public void EnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    {
+      CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
+    }
+
     public bool Equals(NwPlayer other)
     {
       if (ReferenceEquals(null, other))
@@ -927,26 +901,6 @@ namespace Anvil.API
     public string NuiGetWindowId(int uiToken)
     {
       return NWScript.NuiGetWindowId(ControlledCreature, uiToken);
-    }
-
-    /// <summary>
-    /// Swaps out the element specified by ID with the given nui layout (partial).
-    /// </summary>
-    /// <param name="uiToken">The ui token to update.</param>
-    /// <param name="elementId">The ID of the element to update.</param>
-    /// <param name="updatedLayout">The updated element to publish.</param>
-    [Obsolete("This method causes a nested group bug and will be removed in a future release. Use NuiGroup.UpdateLayout instead.")]
-    public void NuiSetGroupLayout(int uiToken, string elementId, NuiGroup updatedLayout)
-    {
-      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
-      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
-    }
-
-    [Obsolete("This method causes a nested group bug and will be removed in a future release. Use NuiGroup.UpdateLayout instead.")]
-    public void NuiSetGroupLayout(int uiToken, string elementId, NuiWindow updatedLayout)
-    {
-      Json json = Json.Parse(JsonConvert.SerializeObject(updatedLayout));
-      NWScript.NuiSetGroupLayout(ControlledCreature, uiToken, elementId, json);
     }
 
     /// <summary>
@@ -1322,9 +1276,7 @@ namespace Anvil.API
         return false;
       }
 
-#pragma warning disable 618
       CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
-#pragma warning restore 618
       return true;
     }
 

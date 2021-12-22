@@ -13,10 +13,7 @@ namespace Anvil.API
       Value = value;
     }
 
-    public override string Type
-    {
-      get => "progress";
-    }
+    public override string Type => "progress";
 
     /// <summary>
     /// The current value of this progress bar (0-1).

@@ -64,10 +64,7 @@ namespace Anvil.API
       set => Placeable.m_bAutoRemoveKey = value.ToInt();
     }
 
-    public bool Occupied
-    {
-      get => NWScript.GetSittingCreature(this) != Invalid;
-    }
+    public bool Occupied => NWScript.GetSittingCreature(this) != Invalid;
 
     public override float Rotation
     {
@@ -80,10 +77,7 @@ namespace Anvil.API
       }
     }
 
-    public NwCreature SittingCreature
-    {
-      get => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
-    }
+    public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets or sets a value indicating whether this placeable should be useable (clickable).

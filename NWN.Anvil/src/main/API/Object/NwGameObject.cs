@@ -38,10 +38,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the area this object is currently in.
     /// </summary>
-    public NwArea Area
-    {
-      get => GameObject.GetArea().ToNwObject<NwArea>();
-    }
+    public NwArea Area => GameObject.GetArea().ToNwObject<NwArea>();
 
     /// <summary>
     /// Gets or sets the appearance of this creature.
@@ -73,10 +70,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this object is in a conversation.
     /// </summary>
-    public bool IsInConversation
-    {
-      get => NWScript.IsInConversation(this).ToBool();
-    }
+    public bool IsInConversation => NWScript.IsInConversation(this).ToBool();
 
     /// <summary>
     /// Gets or sets the location of this object.
@@ -178,10 +172,7 @@ namespace Anvil.API
     /// </summary>
     public VisualTransform VisualTransform { get; }
 
-    internal override CNWSScriptVarTable ScriptVarTable
-    {
-      get => GameObject.m_ScriptVars;
-    }
+    internal override CNWSScriptVarTable ScriptVarTable => GameObject.m_ScriptVars;
 
     /// <summary>
     /// Casts a spell at an object.
@@ -193,10 +184,10 @@ namespace Anvil.API
     /// <param name="domainLevel">Specifies the spell level if the spell is to be cast as a domain spell.</param>
     /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
     /// <param name="instant">If true, the spell is cast immediately.</param>
-    public async Task ActionCastSpellAt(Spell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    public async Task ActionCastSpellAt(NwSpell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtObject((int)spell, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtObject((int)spell.Id, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -208,10 +199,10 @@ namespace Anvil.API
     /// <param name="cheat">If true, this object doesn't have to be able to cast the spell.</param>
     /// <param name="projectilePathType">The type of projectile path to use for this spell.</param>
     /// <param name="instant">If true, the spell is cast immediately.</param>
-    public async Task ActionCastSpellAt(Spell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
+    public async Task ActionCastSpellAt(NwSpell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtLocation((int)spell, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtLocation((int)spell.Id, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>

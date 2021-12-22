@@ -34,22 +34,6 @@ namespace Anvil.Services
     public bool Lazy { get; init; }
 
     /// <summary>
-    /// An optional list of plugin names that must be missing for this service to be loaded.
-    /// </summary>
-    [Obsolete("This property will be removed in a future release. BindingPriority now determines which service gets injected for multiple dependency candidates, making this property obsolete.")]
-    public string[] MissingPluginDependencies { get; init; }
-
-    /// <summary>
-    /// The order that this service should be loaded in, after dependency constraints have been resolved. Values less than 0 are reserved by anvil.
-    /// </summary>
-    [Obsolete("Use the BindingPriority property instead. This property will be removed in a future release.")]
-    public short Order
-    {
-      get => (short)Priority;
-      init => Priority = value;
-    }
-
-    /// <summary>
     /// An optional list of plugin names that must exist for this service to be loaded.
     /// </summary>
     public string[] PluginDependencies { get; init; }

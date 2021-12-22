@@ -12,15 +12,12 @@ namespace Anvil.API.Events
 
     public NwGameObject DisarmedObject { get; private init; }
 
-    public Feat Feat { get; private init; }
+    public NwFeat Feat { get; private init; }
     public bool PreventDisarm { get; set; }
 
     public Lazy<bool> Result { get; private set; }
 
-    NwObject IEvent.Context
-    {
-      get => DisarmedObject;
-    }
+    NwObject IEvent.Context => DisarmedObject;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.ApplyDisarmHook>
     {
@@ -42,7 +39,7 @@ namespace Anvil.API.Events
         {
           DisarmedObject = gameObject.ToNwObject<NwGameObject>(),
           DisarmedBy = gameEffect.m_oidCreator.ToNwObject<NwGameObject>(),
-          Feat = gameEffect.GetInteger(0) == 1 ? Feat.ImprovedDisarm : Feat.Disarm,
+          Feat = gameEffect.GetInteger(0) == 1 ? NwFeat.FromFeatType(API.Feat.ImprovedDisarm) : NwFeat.FromFeatType(API.Feat.Disarm),
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventDisarm && Hook.CallOriginal(pEffectHandler, pObject, pEffect, bLoadingGame).ToBool());

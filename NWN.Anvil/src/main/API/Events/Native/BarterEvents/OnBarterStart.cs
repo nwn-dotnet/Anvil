@@ -12,10 +12,7 @@ namespace Anvil.API.Events
 
     public NwPlayer Target { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Initiator.ControlledCreature;
-    }
+    NwObject IEvent.Context => Initiator.ControlledCreature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartBarterHook>
     {

@@ -21,25 +21,13 @@ namespace Anvil.API
       }
     }
 
-    public override int Count
-    {
-      get => children.Count;
-    }
+    public override int Count => children.Count;
 
-    public override GffResourceFieldType FieldType
-    {
-      get => GffResourceFieldType.List;
-    }
+    public override GffResourceFieldType FieldType => GffResourceFieldType.List;
 
-    public override IEnumerable<GffResourceFieldStruct> Values
-    {
-      get => children;
-    }
+    public override IEnumerable<GffResourceFieldStruct> Values => children;
 
-    public override GffResourceFieldStruct this[int index]
-    {
-      get => children[index];
-    }
+    public override GffResourceFieldStruct this[int index] => children[index];
 
     public IEnumerator<GffResourceFieldStruct> GetEnumerator()
     {

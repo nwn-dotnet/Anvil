@@ -55,12 +55,6 @@ namespace Anvil.API
       return NWScript.EffectAppear();
     }
 
-    [Obsolete("Use the overload with ScriptCallBackHandles instead.")]
-    public static Effect AreaOfEffect(int areaEffectId, string onEnterScript = "", string heartbeatScript = "", string onExitScript = "")
-    {
-      return NWScript.EffectAreaOfEffect(areaEffectId, onEnterScript, heartbeatScript, onExitScript);
-    }
-
     /// <summary>
     /// Creates an area of effect (AOE) effect.
     /// </summary>
@@ -545,14 +539,14 @@ namespace Anvil.API
       return NWScript.EffectSilence();
     }
 
-    public static Effect SkillDecrease(Skill skill, int amount)
+    public static Effect SkillDecrease(NwSkill skill, int amount)
     {
-      return NWScript.EffectSkillDecrease((int)skill, amount);
+      return NWScript.EffectSkillDecrease(skill.Id, amount);
     }
 
-    public static Effect SkillIncrease(Skill skill, int amount)
+    public static Effect SkillIncrease(NwSkill skill, int amount)
     {
-      return NWScript.EffectSkillIncrease((int)skill, amount);
+      return NWScript.EffectSkillIncrease(skill.Id, amount);
     }
 
     public static Effect Sleep()
@@ -570,7 +564,7 @@ namespace Anvil.API
       return NWScript.EffectSpellFailure(failPct, (int)spellSchool);
     }
 
-    public static Effect SpellImmunity(Spell spell = Spell.AllSpells)
+    public static Effect SpellImmunity(Spell spell = API.Spell.AllSpells)
     {
       return NWScript.EffectSpellImmunity((int)spell);
     }

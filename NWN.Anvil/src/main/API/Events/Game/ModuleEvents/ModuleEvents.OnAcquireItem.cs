@@ -45,10 +45,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
 
-      NwObject IEvent.Context
-      {
-        get => AcquiredBy;
-      }
+      NwObject IEvent.Context => AcquiredBy;
     }
   }
 }

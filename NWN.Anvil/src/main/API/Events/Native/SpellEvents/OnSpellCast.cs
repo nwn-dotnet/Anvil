@@ -25,7 +25,7 @@ namespace Anvil.API.Events
 
     public ProjectilePathType ProjectilePathType { get; private init; }
 
-    public Spell Spell { get; private init; }
+    public NwSpell Spell { get; private init; }
 
     public bool SpellCountered { get; private init; }
 
@@ -33,10 +33,7 @@ namespace Anvil.API.Events
 
     public Vector3 TargetPosition { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Caster;
-    }
+    NwObject IEvent.Context => Caster;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SpellCastAndImpactHook>
     {
@@ -62,7 +59,7 @@ namespace Anvil.API.Events
           eventData = ProcessEvent(new OnSpellCast
           {
             Caster = gameObject.ToNwObject<NwGameObject>(),
-            Spell = (Spell)nSpellId,
+            Spell = NwSpell.FromSpellId(nSpellId),
             TargetPosition = targetPosition,
             TargetObject = oidTarget.ToNwObject<NwGameObject>(),
             ClassIndex = nMultiClass,

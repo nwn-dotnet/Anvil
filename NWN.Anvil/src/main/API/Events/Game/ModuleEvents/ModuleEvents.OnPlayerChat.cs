@@ -38,10 +38,7 @@ namespace Anvil.API.Events
         set => NWScript.SetPCChatVolume((int)value);
       }
 
-      NwObject IEvent.Context
-      {
-        get => Sender.ControlledCreature;
-      }
+      NwObject IEvent.Context => Sender.ControlledCreature;
     }
   }
 }

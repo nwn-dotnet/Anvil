@@ -10,133 +10,91 @@ namespace Anvil.API
   {
     private readonly CNWRace raceInfo;
 
-    public NwRace(RacialType racialType, CNWRace raceInfo)
+    internal NwRace(ushort raceId, CNWRace raceInfo)
     {
-      RacialType = racialType;
+      Id = raceId;
       this.raceInfo = raceInfo;
     }
 
     /// <summary>
     /// Gets the amount of points granted to this race during ability score point buy in character creation.
     /// </summary>
-    public int AbilityPointBuyAmount
-    {
-      get => raceInfo.m_nAbilitiesPointBuyNumber;
-    }
+    public int AbilityPointBuyAmount => raceInfo.m_nAbilitiesPointBuyNumber;
 
     /// <summary>
     /// Gets the default age used during character creation.
     /// </summary>
-    public int DefaultAge
-    {
-      get => raceInfo.m_nAge;
-    }
+    public int DefaultAge => raceInfo.m_nAge;
 
     /// <summary>
     /// Gets the description used by default for the character's description.
     /// </summary>
-    public string DefaultCharacterDescription
-    {
-      get => raceInfo.GetDefaultBiographyText().ToString();
-    }
+    public string DefaultCharacterDescription => raceInfo.GetDefaultBiographyText().ToString();
 
     /// <summary>
     /// Gets the description of this race.
     /// </summary>
-    public string Description
-    {
-      get => raceInfo.GetDescriptionText().ToString();
-    }
-
-    public byte Endurance
-    {
-      get => raceInfo.m_nEndurance;
-    }
+    public string Description => raceInfo.GetDescriptionText().ToString();
 
     /// <summary>
     /// Gets the number of extra feats that this race grants characters at first level.
     /// </summary>
-    public int ExtraFeatsAtFirstLevel
-    {
-      get => raceInfo.m_nExtraFeatsAtFirstLevel;
-    }
+    public int ExtraFeatsAtFirstLevel => raceInfo.m_nExtraFeatsAtFirstLevel;
 
     /// <summary>
     /// Gets the number of extra skill points that this race grants characters per level.
     /// </summary>
-    public int ExtraSkillPointsPerLevel
-    {
-      get => raceInfo.m_nExtraSkillPointsPerLevel;
-    }
+    public int ExtraSkillPointsPerLevel => raceInfo.m_nExtraSkillPointsPerLevel;
 
     /// <summary>
     /// Gets the favoured class for this race, for the purposes of multi-classing.
     /// </summary>
-    public NwClass FavoredClass
-    {
-      get => NwClass.FromClassId(raceInfo.m_nFavoredClass);
-    }
+    public NwClass FavoredClass => NwClass.FromClassId(raceInfo.m_nFavoredClass);
 
     /// <summary>
     /// Gets the initial muliplier for skill points given at first level.
     /// </summary>
-    public int FirstLevelSkillPointsMultiplier
-    {
-      get => raceInfo.m_nFirstLevelSkillPointsMultiplier;
-    }
+    public int FirstLevelSkillPointsMultiplier => raceInfo.m_nFirstLevelSkillPointsMultiplier;
+
+    /// <summary>
+    /// Gets the id of this race.
+    /// </summary>
+    public ushort Id { get; }
 
     /// <summary>
     /// Gets if this race can be chosen/used by players.
     /// </summary>
-    public bool IsPlayerRace
-    {
-      get => raceInfo.m_bIsPlayerRace.ToBool();
-    }
+    public bool IsPlayerRace => raceInfo.m_bIsPlayerRace.ToBool();
 
     /// <summary>
     /// Gets the name of this race.
     /// </summary>
-    public string Name
-    {
-      get => raceInfo.GetNameText().ToString();
-    }
+    public string Name => raceInfo.GetNameText().ToString();
 
     /// <summary>
     /// Gets the level period that feats are granted from this race.
     /// </summary>
-    public int NormalFeatEveryNthLevel
-    {
-      get => raceInfo.m_nNormalFeatEveryNthLevel;
-    }
+    public int NormalFeatEveryNthLevel => raceInfo.m_nNormalFeatEveryNthLevel;
 
     /// <summary>
     /// Gets how many feats are given to the character every <see cref="NormalFeatEveryNthLevel"/>.
     /// </summary>
-    public int NumberNormalFeatsEveryNthLevel
-    {
-      get => raceInfo.m_nNumberNormalFeatsEveryNthLevel;
-    }
+    public int NumberNormalFeatsEveryNthLevel => raceInfo.m_nNumberNormalFeatsEveryNthLevel;
 
     /// <summary>
     /// Gets the plural name of this race.
     /// </summary>
-    public string PluralName
-    {
-      get => raceInfo.GetNamePluralText().ToString();
-    }
+    public string PluralName => raceInfo.GetNamePluralText().ToString();
 
     /// <summary>
-    /// Gets the associated <see cref="RacialType"/> for this race.
+    /// Gets the associated <see cref="Id"/> for this race.
     /// </summary>
-    public RacialType RacialType { get; }
+    public RacialType RacialType => (RacialType)Id;
 
     /// <summary>
     /// Gets the ability score used to determine bonus skill points at level up.
     /// </summary>
-    public Ability SkillPointModifierAbility
-    {
-      get => (Ability)raceInfo.m_nSkillPointModifierAbility;
-    }
+    public Ability SkillPointModifierAbility => (Ability)raceInfo.m_nSkillPointModifierAbility;
 
     /// <summary>
     /// Creates a race structure from the specified race id.
@@ -168,6 +126,11 @@ namespace Anvil.API
       return NwRuleset.Races.ElementAtOrDefault((int)racialType);
     }
 
+    public static implicit operator NwRace(RacialType racialType)
+    {
+      return NwRuleset.Races.ElementAtOrDefault((int)racialType);
+    }
+
     /// <summary>
     /// Gets the ability score adjustment for the specified ability.
     /// </summary>
@@ -183,9 +146,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="feat">The feat to query.</param>
     /// <returns>True if this is a default granted feat for this race, otherwise false.</returns>
-    public bool IsFirstLevelGrantedFeat(Feat feat)
+    public bool IsFirstLevelGrantedFeat(NwFeat feat)
     {
-      return raceInfo.IsFirstLevelGrantedFeat((ushort)feat).ToBool();
+      return raceInfo.IsFirstLevelGrantedFeat(feat.Id).ToBool();
     }
   }
 }

@@ -22,10 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
 
-      NwObject IEvent.Context
-      {
-        get => Trigger;
-      }
+      NwObject IEvent.Context => Trigger;
 
       public static void Signal(NwTrigger trigger, int eventId)
       {

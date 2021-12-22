@@ -3,14 +3,14 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - master
+      - main
       - development
     paths-ignore:
       - '**.md'
       - 'docs/**'
   pull_request:
     branches:
-      - master
+      - main
       - development
     paths-ignore:
       - '**.md'
@@ -93,7 +93,7 @@ jobs:
       - name: Prepare Outputs
         id: vars
         run: |
-          if [[ "${{github.base_ref}}" == "master" || "${{github.ref}}" == "refs/heads/master" ]]; then
+          if [[ "${{github.base_ref}}" == "main" || "${{github.ref}}" == "refs/heads/main" ]]; then
             echo "::set-output name=tag::$(git describe --tags)"
             echo "::set-output name=version::$(git describe --tags | sed 's/^v//')"
           else
@@ -129,7 +129,7 @@ jobs:
 
   release:
     runs-on: ubuntu-20.04
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/master'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     needs: build
     steps:
       - name: Download Release Artifacts

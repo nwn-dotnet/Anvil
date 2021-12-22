@@ -11,7 +11,7 @@ namespace Anvil.Services
   /// </summary>
   [ServiceBinding(typeof(CursorTargetService))]
   [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed class CursorTargetService
+  internal sealed class CursorTargetService
   {
     private readonly Dictionary<NwPlayer, Action<ModuleEvents.OnPlayerTarget>> activeHandlers = new Dictionary<NwPlayer, Action<ModuleEvents.OnPlayerTarget>>();
 
@@ -28,10 +28,9 @@ namespace Anvil.Services
     /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
     /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
     /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
-    [Obsolete("This is an internal method and access will be removed in a future release. Use NwPlayer.TryEnterTargetMode instead.")]
-    public void EnterTargetMode(NwPlayer player, Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    internal void EnterTargetMode(NwPlayer player, Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
     {
-      UnregisterHandlerForPlayer(player);
+      UnregisterHandlerForPlayer(player, true);
       RegisterHandlerForPlayer(player, handler);
       NWScript.EnterTargetingMode(player.ControlledCreature, (int)validTargets, (int)cursorType, (int)badTargetCursor);
     }
@@ -41,16 +40,26 @@ namespace Anvil.Services
       return activeHandlers.ContainsKey(player);
     }
 
+    private ModuleEvents.OnPlayerTarget CreateCancelledEventData(NwPlayer player)
+    {
+      return new ModuleEvents.OnPlayerTarget
+      {
+        Player = player,
+        TargetObject = null,
+        TargetPosition = default,
+      };
+    }
+
     private void OnClientLeave(ModuleEvents.OnClientLeave eventData)
     {
-      UnregisterHandlerForPlayer(eventData.Player);
+      UnregisterHandlerForPlayer(eventData.Player, true);
     }
 
     private void RegisterHandlerForPlayer(NwPlayer player, Action<ModuleEvents.OnPlayerTarget> handler)
     {
       void InvokeEventHandlerOnce(ModuleEvents.OnPlayerTarget eventData)
       {
-        UnregisterHandlerForPlayer(eventData.Player);
+        UnregisterHandlerForPlayer(eventData.Player, false);
         handler?.Invoke(eventData);
       }
 
@@ -60,11 +69,15 @@ namespace Anvil.Services
       player.OnPlayerTarget += eventCallback;
     }
 
-    private void UnregisterHandlerForPlayer(NwPlayer player)
+    private void UnregisterHandlerForPlayer(NwPlayer player, bool cancelled)
     {
-      if (activeHandlers.Remove(player, out Action<ModuleEvents.OnPlayerTarget> existingHandler))
+      if (activeHandlers.Remove(player, out Action<ModuleEvents.OnPlayerTarget> eventCallback))
       {
-        player.OnPlayerTarget -= existingHandler;
+        player.OnPlayerTarget -= eventCallback;
+        if (cancelled)
+        {
+          eventCallback(CreateCancelledEventData(player));
+        }
       }
     }
   }

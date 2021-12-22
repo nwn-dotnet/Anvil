@@ -19,10 +19,7 @@ namespace Anvil.API
     [JsonProperty("value")]
     public NuiProperty<string> Label { get; set; }
 
-    public override string Type
-    {
-      get => "label";
-    }
+    public override string Type => "label";
 
     [JsonProperty("text_valign")]
     public NuiProperty<NuiVAlign> VerticalAlign { get; set; } = NuiVAlign.Top;

@@ -13,43 +13,37 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the associated class.
+    /// </summary>
+    public NwClass Class => NwClass.FromClassId(classInfo.m_nClass);
+
+    /// <summary>
     /// Gets the amount of levels in this class.
     /// </summary>
-    public byte Level
-    {
-      get => classInfo.m_nLevel;
-    }
+    public byte Level => classInfo.m_nLevel;
 
     /// <summary>
     /// Gets any negative levels applied to this class (e.g. through level drain).
     /// </summary>
-    public byte NegativeLevels
-    {
-      get => classInfo.m_nNegativeLevels;
-    }
-
-    public ClassType Type
-    {
-      get => (ClassType)classInfo.m_nClass;
-    }
+    public byte NegativeLevels => classInfo.m_nNegativeLevels;
 
     /// <summary>
     /// Adds the specified spell as a known spell at the specified spell level.
     /// </summary>
     /// <param name="spell">The spell to be added.</param>
     /// <param name="spellLevel">The spell level for the spell to be added.</param>
-    public void AddKnownSpell(Spell spell, byte spellLevel)
+    public void AddKnownSpell(NwSpell spell, byte spellLevel)
     {
-      classInfo.AddKnownSpell(spellLevel, (uint)spell);
+      classInfo.AddKnownSpell(spellLevel, spell.Id);
     }
 
     /// <summary>
     /// Clears the specified spell from the creature's spellbook.
     /// </summary>
     /// <param name="spell">The spell to clear.</param>
-    public void ClearMemorizedKnownSpells(Spell spell)
+    public void ClearMemorizedKnownSpells(NwSpell spell)
     {
-      classInfo.ClearMemorizedKnownSpells((uint)spell);
+      classInfo.ClearMemorizedKnownSpells(spell.Id);
     }
 
     /// <summary>
@@ -67,14 +61,14 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
     /// <returns>A list containing the creatures known spells.</returns>
-    public IReadOnlyList<Spell> GetKnownSpells(byte spellLevel)
+    public IReadOnlyList<NwSpell> GetKnownSpells(byte spellLevel)
     {
       int spellCount = GetKnownSpellCountByLevel(spellLevel);
-      Spell[] retVal = new Spell[spellCount];
+      NwSpell[] retVal = new NwSpell[spellCount];
 
       for (byte i = 0; i < spellCount; i++)
       {
-        retVal[i] = (Spell)classInfo.GetKnownSpell(spellLevel, i);
+        retVal[i] = NwSpell.FromSpellId((int)classInfo.GetKnownSpell(spellLevel, i));
       }
 
       return retVal;
@@ -123,9 +117,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
     /// <param name="spell">The spell to remove.</param>
-    public void RemoveKnownSpell(byte spellLevel, Spell spell)
+    public void RemoveKnownSpell(byte spellLevel, NwSpell spell)
     {
-      classInfo.RemoveKnownSpell(spellLevel, (uint)spell);
+      classInfo.RemoveKnownSpell(spellLevel, spell.Id);
     }
 
     /// <summary>

@@ -21,12 +21,9 @@ namespace Anvil.API.Events
 
     public int SlotIndex { get; private init; }
 
-    public Spell Spell { get; private init; }
+    public NwSpell Spell { get; private init; }
 
-    NwObject IEvent.Context
-    {
-      get => Creature;
-    }
+    NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetMemorizedSpellSlotHook>
     {
@@ -50,7 +47,7 @@ namespace Anvil.API.Events
           Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>(),
           ClassIndex = nMultiClass,
           SlotIndex = nSpellSlot,
-          Spell = (Spell)nSpellId,
+          Spell = NwSpell.FromSpellId((int)nSpellId),
           Domain = (Domain)nDomainLevel,
           MetaMagic = (MetaMagic)nMetaType,
           FromClient = bFromClient.ToBool(),

@@ -21,7 +21,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the number of child fields.
     /// </summary>
-    public virtual int Count { get => 0; }
+    public virtual int Count => 0;
 
     /// <summary>
     /// If this field is a struct, gets an enumerable of the key/values pairs.<br/>
@@ -37,10 +37,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets whether this field contains child values.
     /// </summary>
-    public bool HasChildren
-    {
-      get => this is IEnumerable;
-    }
+    public bool HasChildren => this is IEnumerable;
 
     /// <summary>
     /// If this field is a struct, gets an enumerable of the struct's keys.<br/>
@@ -58,18 +55,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the child <see cref="GffResourceField"/> at the specified index.
     /// </summary>
-    public virtual GffResourceField this[int index]
-    {
-      get => throw new InvalidOperationException($"Cannot get child value of {FieldType} with field index.");
-    }
+    public virtual GffResourceField this[int index] => throw new InvalidOperationException($"Cannot get child value of {FieldType} with field index.");
 
     /// <summary>
     /// Gets the child <see cref="GffResourceField"/> with the specified key.
     /// </summary>
-    public virtual GffResourceField this[string key]
-    {
-      get => throw new InvalidOperationException($"Cannot get child value of {FieldType} with field key.");
-    }
+    public virtual GffResourceField this[string key] => throw new InvalidOperationException($"Cannot get child value of {FieldType} with field key.");
 
     public static explicit operator byte(GffResourceField field)
     {

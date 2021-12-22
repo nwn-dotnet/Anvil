@@ -4,7 +4,7 @@ using NWN.Core;
 namespace Anvil.API
 {
   [Flags]
-  public enum MetaMagic
+  public enum MetaMagic : byte
   {
     None = NWScript.METAMAGIC_NONE,
     Empower = NWScript.METAMAGIC_EMPOWER,
