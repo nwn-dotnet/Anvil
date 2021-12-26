@@ -1,4 +1,3 @@
-// ReSharper disable All
 // https://github.com/nunit/nunit/blob/master/src/NUnitFramework/nunitlite/TextRunner.cs
 // Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License - see LICENSE.txt: https://raw.githubusercontent.com/nunit/nunit/master/LICENSE.txt
 
