@@ -24,6 +24,7 @@ namespace Anvil.Tests
       AnvilTestRunner testRunner = new AnvilTestRunner(typeof(TestRunnerService).Assembly);
 
       testRunner.Execute(args);
+      NwServer.Instance.ShutdownServer();
     }
 
     private string[] GetRunnerArguments()
