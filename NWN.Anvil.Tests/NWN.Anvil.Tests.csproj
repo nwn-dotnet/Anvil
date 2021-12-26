@@ -40,4 +40,8 @@
     <PackageReference Include="NUnitLite" Version="3.13.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ContentWithTargetPath Include="src\docker\**" TargetPath="..\%(RecursiveDir)%(FileName)%(Extension)" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
 </Project>

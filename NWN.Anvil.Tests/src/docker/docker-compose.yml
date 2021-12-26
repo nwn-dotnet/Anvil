@@ -1,0 +1,9 @@
+version: '3'
+services:
+  anvil:
+    image: "nwnxee/unified:${NWNX_VERSION}"
+    env_file:
+      - ${PWD-.}/config/nwserver.env
+    volumes:
+      - ${PWD-.}/NWN.Anvil.Tests:/nwn/run/anvil/Plugins/NWN.Anvil.Tests
+      - ${PWD-.}/../../../NWN.Anvil/bin/Release:/nwn/anvil
