@@ -1,4 +1,4 @@
-name: Test Report
+name: Post Test Report
 
 on:
   workflow_run:
