@@ -53,7 +53,7 @@ jobs:
         run: |
             $xslt = New-Object System.Xml.Xsl.XslCompiledTransform;
             $xslt.Load("nunit3-junit.xslt");
-            $xslt.Transform("NWN.Anvil.Tests/bin/Release/results/TestResult.xml", "TestResult.junit.xml");
+            $xslt.Transform("NWN.Anvil.Tests/bin/Release/results/NWN.Anvil.Tests/TestResult.xml", "TestResult.junit.xml");
         shell: pwsh
 
       - name: Upload Results
