@@ -11,15 +11,24 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Download Results
-        uses: actions/download-artifact@v2
-        with:
-          name: test-results
-          path: test-results
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+           mkdir -p test-results && cd test-results
+
+           artifacts_url=${{ github.event.workflow_run.artifacts_url }}
+
+           gh api "$artifacts_url" -q '.test-results[] | [.name, .archive_download_url] | @tsv' | while read artifact
+           do
+             IFS=$'\t' read name url <<< "$artifact"
+             gh api $url > "$name.zip"
+             unzip -d "$name" "$name.zip"
+           done
  
       - name: Report Test Results
         uses: xibz/nunit-reporter@v1.0.12
         if: always()
         with:
-          reportTitle: v1
+          reportTitle: Anvil
           path: test-results/**/*.xml"
           access-token: ${{ secrets.GITHUB_TOKEN }}
