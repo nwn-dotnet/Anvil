@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Check Line Endings
         uses: erclu/check-crlf@v1
@@ -78,7 +80,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          submodules: recursive
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
@@ -188,6 +190,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
