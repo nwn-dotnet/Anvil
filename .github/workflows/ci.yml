@@ -173,7 +173,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: nuget-binaries
-          path: output/
+          path: |
+            output/*.nupkg
+            output/*.snupkg
           if-no-files-found: error
 
       - name: Upload Build Artifacts
