@@ -15,4 +15,4 @@ jobs:
         artifact: test-results
         name: Test Results
         path: '*.xml'
-        reporter: jest-junit
+        reporter: java-junit
