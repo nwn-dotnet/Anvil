@@ -32,6 +32,8 @@ jobs:
 
       - name: Check Line Endings
         uses: erclu/check-crlf@v1
+        with:
+          path: NWN.Anvil
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
