@@ -39,7 +39,7 @@ jobs:
           dotnet-version: 5.0.100
 
       - name: Build
-        run: dotnet build --configuration Release /warnaserror
+        run: dotnet build --configuration Release
 
       - name: Prepare Outputs
         id: vars
