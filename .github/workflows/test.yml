@@ -42,7 +42,7 @@ jobs:
 
       - name: Upload Results
         uses: actions/upload-artifact@v2
-        if: success() || failure()
+        if: always()
         with:
           name: test-results
           path: NWN.Anvil.Tests/bin/Release/results
