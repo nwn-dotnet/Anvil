@@ -12,6 +12,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <SourceControlInformationFeatureSupported>true</SourceControlInformationFeatureSupported>
     <EnableDynamicLoading>true</EnableDynamicLoading>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
     <NoWarn>1591</NoWarn>
 

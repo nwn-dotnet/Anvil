@@ -27,9 +27,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Check Line Endings
         uses: erclu/check-crlf@v1
+        with:
+          path: NWN.Anvil
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
@@ -37,7 +41,7 @@ jobs:
           dotnet-version: 5.0.100
 
       - name: Build
-        run: dotnet build --configuration Release /warnaserror
+        run: dotnet build --configuration Release
 
       - name: Prepare Outputs
         id: vars
@@ -64,10 +68,61 @@ jobs:
         run: |
           ! grep "<Issue TypeId=" results.xml
 
+  test:
+    runs-on: ubuntu-20.04
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.100
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Run Tests
+        run: docker-compose --env-file ../../../.env up
+        working-directory: NWN.Anvil.Tests/bin/Release/
+
+      - name: Install NUnit
+        run: |
+          nuget install NUnit.Console -Version 3.12.0
+
+      - name: Fetch transform code
+        run: |
+          wget https://raw.githubusercontent.com/nunit/nunit-transforms/master/nunit3-junit/nunit3-junit.xslt
+        shell: bash
+
+      - name: Transform NUnit3 to JUnit
+        run: |
+            $xslt = New-Object System.Xml.Xsl.XslCompiledTransform;
+            $xslt.Load("nunit3-junit.xslt");
+            $xslt.Transform("NWN.Anvil.Tests/bin/Release/results/NWN.Anvil.Tests/TestResult.xml", "TestResult.junit.xml");
+        shell: pwsh
+
+      - name: Upload Event File
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Event File
+          path: ${{ github.event_path }}
+
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Test Results
+          path: TestResult.junit.xml
+
   build:
     runs-on: ubuntu-20.04
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-    needs: compile
+    needs: [compile, test]
     outputs:
       version: ${{ steps.vars.outputs.version }}
       tag: ${{ steps.vars.outputs.tag }}
@@ -78,7 +133,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          submodules: recursive
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
@@ -188,6 +243,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2

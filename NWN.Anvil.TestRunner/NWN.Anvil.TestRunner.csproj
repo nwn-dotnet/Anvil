@@ -1,0 +1,139 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+
+    <NoWarn>1591</NoWarn>
+
+    <RootNamespace>Anvil.TestRunner</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <PackageId>$(AssemblyName)</PackageId>
+    <Authors>Jorteck</Authors>
+
+    <RepositoryUrl>https://github.com/nwn-dotnet/Anvil.TestRunner</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <Description>
+      Test runner plugin for anvil based on NUnit: https://github.com/nunit/nunit
+    </Description>
+
+    <PackageTags>Neverwinter Nights;NWN;</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <DebugSymbols>true</DebugSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\$(AssemblyName)</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <DefineConstants>TRACE;TASK_PARALLEL_LIBRARY_API</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\$(AssemblyName)</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Portable</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <DefineConstants>TRACE;TASK_PARALLEL_LIBRARY_API</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NWN.Anvil\NWN.Anvil.csproj">
+      <Private>false</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="src\lib\nunit\CONTRIBUTING.md" />
+    <None Remove="src\lib\nunit\CODE_OF_CONDUCT.md" />
+    <None Remove="src\lib\nunit\CHANGES.md" />
+    <None Remove="src\lib\nunit\BUILDING.md" />
+    <None Remove="src\lib\nunit\build.sh" />
+    <None Remove="src\lib\nunit\build.ps1" />
+    <None Remove="src\lib\nunit\build.cmd" />
+    <None Remove="src\lib\nunit\build.cake" />
+    <None Remove="src\lib\nunit\build" />
+    <None Remove="src\lib\nunit\bin\**" />
+    <None Remove="src\lib\nunit\azure-pipelines.yml" />
+    <None Remove="src\lib\nunit\appveyor.yml" />
+    <None Remove="src\lib\nunit\.gitignore" />
+    <None Remove="src\lib\nunit\.gitattributes" />
+    <None Remove="src\lib\nunit\tools\**" />
+    <None Remove="src\lib\nunit\signclient.json" />
+    <None Remove="src\lib\nunit\README.md" />
+    <None Remove="src\lib\nunit\NUnit.sln.DotSettings" />
+    <None Remove="src\lib\nunit\NuGet.config" />
+    <None Remove="src\lib\nunit\nuget\**" />
+    <None Remove="src\lib\nunit\NOTICES.txt" />
+    <None Remove="src\lib\nunit\LICENSE.txt" />
+    <None Remove="src\lib\nunit\global.json" />
+    <None Remove="src\lib\nunit\src\nunit.snk" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\mock-assembly\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\nunitlite.tests\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\nunitlite-runner\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\slow-tests\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\testdata\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\testdata.fsharp\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\tests\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\framework\Properties\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\nunitlite\Properties\**" />
+    <None Remove="src\lib\nunit\src\NUnitFramework\Directory.Build.props" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="src\lib\nunit\bin\**" />
+    <Compile Remove="src\lib\nunit\tools\**" />
+    <Compile Remove="src\lib\nunit\nuget\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\mock-assembly\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\nunitlite.tests\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\nunitlite-runner\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\slow-tests\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\testdata\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\testdata.fsharp\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\tests\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\framework\Properties\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\nunitlite\Properties\**" />
+    <Compile Remove="src\lib\nunit\src\NUnitFramework\FrameworkVersion.cs" />
+    <Compile Remove="src\lib\nunit\src\CommonAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="src\lib\nunit\bin\**" />
+    <EmbeddedResource Remove="src\lib\nunit\tools\**" />
+    <EmbeddedResource Remove="src\lib\nunit\nuget\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\mock-assembly\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\nunitlite.tests\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\nunitlite-runner\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\slow-tests\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\testdata\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\testdata.fsharp\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\tests\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\framework\Properties\**" />
+    <EmbeddedResource Remove="src\lib\nunit\src\NUnitFramework\nunitlite\Properties\**" />
+  </ItemGroup>
+</Project>
