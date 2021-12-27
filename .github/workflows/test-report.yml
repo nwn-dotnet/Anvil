@@ -1,4 +1,4 @@
-name: Post Test Report
+name: Tests
 
 on:
   workflow_run:
@@ -10,9 +10,16 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     steps:
-    - uses: dorny/test-reporter@v1.5.0
-      with:
-        artifact: test-results
-        name: Test Results
-        path: '*.xml'
-        reporter: java-junit
+      - name: Download Results
+        uses: actions/download-artifact@v2
+        with:
+          name: test-results
+          path: test-results
+ 
+      - name: Report Test Results
+        uses: xibz/nunit-reporter@v1.0.12
+        if: always()
+        with:
+          reportTitle: v1
+          path: test-results/**/*.xml"
+          access-token: ${{ secrets.GITHUB_TOKEN }}
