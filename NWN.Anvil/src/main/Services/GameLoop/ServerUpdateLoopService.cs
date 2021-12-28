@@ -9,11 +9,11 @@ using NLog;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ICoreLoopHandler))]
-  internal sealed class ServerUpdateLoopService : ICoreLoopHandler
+  internal sealed class ServerUpdateLoopService : ICoreLoopHandler, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly IUpdateable[] updateables;
+    private IUpdateable[] updateables;
 
     public ServerUpdateLoopService(IEnumerable<IUpdateable> updateables)
     {
@@ -34,6 +34,11 @@ namespace Anvil.Services
           Log.Error(e);
         }
       }
+    }
+
+    public void Dispose()
+    {
+      updateables = Array.Empty<IUpdateable>();
     }
   }
 }

@@ -14,7 +14,7 @@ namespace Anvil.Services
   /// </summary>
   [ServiceBinding(typeof(IUpdateable))]
   [ServiceBinding(typeof(SchedulerService))]
-  public class SchedulerService : IUpdateable
+  public class SchedulerService : IUpdateable, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -120,7 +120,7 @@ namespace Anvil.Services
         i--;
       }
 
-      if (i > 0)
+      if (i > 0 && i <= scheduledTasks.Count)
       {
         scheduledTasks.RemoveRange(0, i);
       }
@@ -129,6 +129,11 @@ namespace Anvil.Services
     internal void Unschedule(ScheduledTask scheduledTask)
     {
       scheduledTasks.Remove(scheduledTask);
+    }
+
+    void IDisposable.Dispose()
+    {
+      scheduledTasks.Clear();
     }
   }
 }
