@@ -9,16 +9,21 @@ using NLog;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ICoreLoopHandler))]
-  internal sealed class ServerUpdateLoopService : ICoreLoopHandler
+  internal sealed class ServerUpdateLoopService : ICoreLoopHandler, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly IUpdateable[] updateables;
+    private IUpdateable[] updateables;
 
     public ServerUpdateLoopService(IEnumerable<IUpdateable> updateables)
     {
       this.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
       Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");
+    }
+
+    public void Dispose()
+    {
+      updateables = Array.Empty<IUpdateable>();
     }
 
     public void OnLoop()

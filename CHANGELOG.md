@@ -7,7 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...HEAD
 
 ### Added
-- N/A
+- NwPlayer: `IsConnected` boolean added. Should be checked when enumerating `NwModule.Players`
+- NwPlayer: Added `DMPossessCreature` and `UnpossessCreature` for controlling player creature.
+- NwPlayer: `ForceExamine` now supports creatures, placeables, items and doors.
+- Implemented `NWN.Anvil.TestRunner` for running automated tests.
 
 ### Package Updates
 - N/A
@@ -22,7 +25,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- `AnvilCore.Reload()` now uses the scheduler service to schedule the reload. This should fix some edge cases where async methods would hold a reference preventing unload.
+- Fixed an issue where the `SchedulerService` would throw an exception if the server was shutdown/reloaded during a schedule callback.
 
 ## 8193.34.0
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...v8193.34.0
