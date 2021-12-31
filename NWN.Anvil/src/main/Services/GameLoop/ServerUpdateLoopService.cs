@@ -21,6 +21,11 @@ namespace Anvil.Services
       Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");
     }
 
+    public void Dispose()
+    {
+      updateables = Array.Empty<IUpdateable>();
+    }
+
     public void OnLoop()
     {
       foreach (IUpdateable updateable in updateables)
@@ -34,11 +39,6 @@ namespace Anvil.Services
           Log.Error(e);
         }
       }
-    }
-
-    public void Dispose()
-    {
-      updateables = Array.Empty<IUpdateable>();
     }
   }
 }

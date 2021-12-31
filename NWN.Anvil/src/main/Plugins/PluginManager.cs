@@ -124,6 +124,20 @@ namespace Anvil.Plugins
       return loadedTypes;
     }
 
+    private IReadOnlyCollection<string> GetResourcePaths()
+    {
+      List<string> resourcePaths = new List<string>();
+      foreach (Plugin plugin in plugins)
+      {
+        if (plugin.HasResourceDirectory)
+        {
+          resourcePaths.Add(plugin.ResourcePath);
+        }
+      }
+
+      return resourcePaths;
+    }
+
     private IEnumerable<Type> GetTypesFromAssembly(Assembly assembly)
     {
       IEnumerable<Type> assemblyTypes;
@@ -157,20 +171,6 @@ namespace Anvil.Plugins
       }
 
       return assemblyTypes;
-    }
-
-    private IReadOnlyCollection<string> GetResourcePaths()
-    {
-      List<string> resourcePaths = new List<string>();
-      foreach (Plugin plugin in plugins)
-      {
-        if (plugin.HasResourceDirectory)
-        {
-          resourcePaths.Add(plugin.ResourcePath);
-        }
-      }
-
-      return resourcePaths;
     }
 
     private bool IsValidDependency(string plugin, AssemblyName requested, AssemblyName resolved)

@@ -83,6 +83,11 @@ namespace Anvil.API
     public string IPAddress => NWScript.GetPCIPAddress(ControlledCreature);
 
     /// <summary>
+    /// Gets if this player is connected and playing (true), or if this player is still on character selection or connecting (false).
+    /// </summary>
+    public bool IsConnected => Player.m_oidPCObject != NwObject.Invalid;
+
+    /// <summary>
     /// Gets a value indicating whether the player has connected to the server over a relay (instead of directly).
     /// </summary>
     public bool IsConnectionRelayed => NWScript.GetIsPlayerConnectionRelayed(ControlledCreature).ToBool();
@@ -601,6 +606,28 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// If this player is a DM, causes them to possess the specified creature.
+    /// </summary>
+    /// <param name="creature"></param>
+    /// <param name="impersonate">True if the DM should retain their full powers during possession, false if they get the creature's powers.</param>
+    /// <exception cref="InvalidOperationException">Thrown if the player is not a DM, or the creature is already possessed by another player.</exception>
+    public void DMPossessCreature(NwCreature creature, bool impersonate = false)
+    {
+      if (IsDM)
+      {
+        throw new InvalidOperationException("Player must be a DM to possess the creature.");
+      }
+
+      if (creature.Master != null)
+      {
+        throw new InvalidOperationException("Cannot possess creature as it is already being possessed.");
+      }
+
+      NWN.Native.API.AssociateType possessType = impersonate ? NWN.Native.API.AssociateType.DMImpersonate : NWN.Native.API.AssociateType.DMPossess;
+      Player.PossessCreature(creature, (byte)possessType);
+    }
+
+    /// <summary>
     /// Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br/>
     /// See <see cref="Effect.CutsceneGhost"/>, and other Cutscene* effects for hiding and controlling the player creature during cutscene mode.
     /// </summary>
@@ -709,13 +736,35 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Forces the player to examine the specified placeable.
+    /// Forces the player to examine the specified game object.<br/>
+    /// Works on <see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwItem"/> and <see cref="NwDoor"/>.<br/>
+    /// Does nothing for other object types.
     /// </summary>
-    /// <param name="target">The placeable to examine.</param>
-    public void ForceExamine(NwPlaceable target)
+    /// <param name="target">The GameObject to examine.</param>
+    public void ForceExamine(NwGameObject target)
     {
       CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
-      message?.SendServerToPlayerExamineGui_PlaceableData(Player, target);
+      if (message == null)
+      {
+        return;
+      }
+
+      if (target is NwCreature)
+      {
+        message.SendServerToPlayerExamineGui_CreatureData(Player, target);
+      }
+      else if (target is NwPlaceable)
+      {
+        message.SendServerToPlayerExamineGui_PlaceableData(Player, target);
+      }
+      else if (target is NwItem)
+      {
+        message.SendServerToPlayerExamineGui_ItemData(Player, target);
+      }
+      else if (target is NwDoor)
+      {
+        message.SendServerToPlayerExamineGui_DoorData(Player, target);
+      }
     }
 
     /// <summary>
@@ -1290,6 +1339,14 @@ namespace Anvil.API
     public void UnlockAchievement(string achievementId, int lastValue = 0, int currentValue = 0, int maxValue = 0)
     {
       NWScript.UnlockAchievement(ControlledCreature, achievementId, lastValue, currentValue, maxValue);
+    }
+
+    /// <summary>
+    /// If this player is possessing a creature, instructs them to unpossess them.
+    /// </summary>
+    public void UnpossessCreature()
+    {
+      Player.PossessCreature(NwObject.Invalid, (byte)NWN.Native.API.AssociateType.None);
     }
 
     /// <summary>

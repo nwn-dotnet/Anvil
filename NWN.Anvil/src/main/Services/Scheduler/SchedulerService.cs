@@ -81,6 +81,11 @@ namespace Anvil.Services
       return task;
     }
 
+    void IDisposable.Dispose()
+    {
+      scheduledTasks.Clear();
+    }
+
     void IUpdateable.Update()
     {
       int i;
@@ -129,11 +134,6 @@ namespace Anvil.Services
     internal void Unschedule(ScheduledTask scheduledTask)
     {
       scheduledTasks.Remove(scheduledTask);
-    }
-
-    void IDisposable.Dispose()
-    {
-      scheduledTasks.Clear();
     }
   }
 }
