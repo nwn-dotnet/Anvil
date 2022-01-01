@@ -174,8 +174,8 @@ jobs:
         with:
           name: nuget-binaries
           path: |
-            NWN.Anvil/NWN.Anvil/bin/Release/*.nupkg
-            NWN.Anvil/NWN.Anvil/bin/Release/*.snupkg
+            NWN.Anvil/bin/Release/*.nupkg
+            NWN.Anvil/bin/Release/*.snupkg
           if-no-files-found: error
 
       - name: Upload Build Artifacts
@@ -183,9 +183,9 @@ jobs:
         with:
           name: binaries
           path: |
-            NWN.Anvil/NWN.Anvil/bin/Release/
-            !NWN.Anvil/NWN.Anvil/bin/Release/*.nupkg
-            !NWN.Anvil/NWN.Anvil/bin/Release/*.snupkg
+            NWN.Anvil/bin/Release/
+            !NWN.Anvil/bin/Release/*.nupkg
+            !NWN.Anvil/bin/Release/*.snupkg
           if-no-files-found: error
 
   release:
