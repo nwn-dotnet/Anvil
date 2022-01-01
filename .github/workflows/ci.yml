@@ -166,7 +166,7 @@ jobs:
       - name: Build Release Binaries
         id: build
         run: |
-          dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
+          dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }}
           echo "::set-output name=created::$(echo date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
       - name: Upload NuGet Artifacts
@@ -174,15 +174,18 @@ jobs:
         with:
           name: nuget-binaries
           path: |
-            output/*.nupkg
-            output/*.snupkg
+            NWN.Anvil/NWN.Anvil/bin/Release/*.nupkg
+            NWN.Anvil/NWN.Anvil/bin/Release/*.snupkg
           if-no-files-found: error
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: binaries
-          path: NWN.Anvil.zip
+          path: |
+            NWN.Anvil/NWN.Anvil/bin/Release/
+            !NWN.Anvil/NWN.Anvil/bin/Release/*.nupkg
+            !NWN.Anvil/NWN.Anvil/bin/Release/*.snupkg
           if-no-files-found: error
 
   release:
@@ -231,13 +234,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: nuget-binaries
-          path: output
+          path: binaries
 
       - name: NuGet Publish
-        run: dotnet nuget push 'output/*.nupkg' --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push 'binaries/*.nupkg' --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
       - name: GitHub Publish
-        run: dotnet nuget push 'output/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
+        run: dotnet nuget push 'binaries/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
 
   docker:
     runs-on: ubuntu-20.04
@@ -253,11 +256,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: binaries
-          path: output
-
-      - name: Unzip Binaries
-        run: unzip NWN.Anvil.zip && rm NWN.Anvil.zip
-        working-directory: output
+          path: binaries
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -279,7 +278,7 @@ jobs:
           context: ./
           file: ./dockerfile
           push: true
-          build-args: BINARY_PATH=/output
+          build-args: BINARY_PATH=/binaries
           labels: |
               org.opencontainers.image.title=Anvil
               org.opencontainers.image.description=Anvil is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use Anvil.
