@@ -172,7 +172,7 @@ jobs:
       - name: Upload NuGet Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: nuget-binaries
+          name: NuGet Packages
           path: |
             NWN.Anvil/bin/Release/*.nupkg
             NWN.Anvil/bin/Release/*.snupkg
@@ -181,7 +181,7 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: binaries
+          name: Binaries
           path: |
             NWN.Anvil/bin/Release/
             !NWN.Anvil/bin/Release/*.nupkg
@@ -196,7 +196,12 @@ jobs:
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: binaries
+          name: Binaries
+          path: binaries
+
+      - name: Zip Binaries
+        run: zip -r ../NWN.Anvil.zip ./*
+        working-directory: binaries
 
       - name: Create Release
         id: create_release
@@ -233,7 +238,7 @@ jobs:
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: nuget-binaries
+          name: NuGet Packages
           path: binaries
 
       - name: NuGet Publish
@@ -255,7 +260,7 @@ jobs:
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: binaries
+          name: Binaries
           path: binaries
 
       - name: Login to DockerHub
