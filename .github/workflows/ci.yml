@@ -158,7 +158,7 @@ jobs:
             META=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[2]}'`
             BUILD=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[3]}'`
             COMMIT=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[4]}'`
-            echo "::set-output name=version::$(echo ${VERSION}-${META}.${BUILD}.${COMMIT:1} | sed 's/^v//')"
+            echo "::set-output name=version::$(echo ${VERSION}-${META}.${BUILD}.r${COMMIT:1} | sed 's/^v//')"
           fi
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
