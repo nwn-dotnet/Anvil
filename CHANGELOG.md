@@ -13,7 +13,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...HEAD
 - Implemented `NWN.Anvil.TestRunner` for running automated tests.
 
 ### Package Updates
-- N/A
+- NWN.Core: 8193.34.0 -> 8193.34.1
 
 ### Changed
 - N/A
