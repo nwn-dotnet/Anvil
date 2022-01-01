@@ -256,7 +256,8 @@ jobs:
           path: output
 
       - name: Unzip Binaries
-        run: unzip output/NWN.Anvil.zip && rm NWN.Anvil.zip
+        run: unzip NWN.Anvil.zip && rm NWN.Anvil.zip
+        working-directory: output
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
