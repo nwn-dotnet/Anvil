@@ -176,9 +176,11 @@ jobs:
           path: |
             NWN.Anvil/bin/Release/*.nupkg
             NWN.Anvil/bin/Release/*.snupkg
+            NWN.Anvil.TestRunner/bin/Release/*.nupkg
+            NWN.Anvil.TestRunner/bin/Release/*.snupkg
           if-no-files-found: error
 
-      - name: Upload Build Artifacts
+      - name: Upload Build Artifacts (Anvil)
         uses: actions/upload-artifact@v2
         with:
           name: Binaries
@@ -186,6 +188,16 @@ jobs:
             NWN.Anvil/bin/Release/
             !NWN.Anvil/bin/Release/*.nupkg
             !NWN.Anvil/bin/Release/*.snupkg
+          if-no-files-found: error
+
+      - name: Upload Build Artifacts (Test Runner)
+        uses: actions/upload-artifact@v2
+        with:
+          name: Binaries (Test Runner)
+          path: |
+            NWN.Anvil.TestRunner/bin/Release/
+            !NWN.Anvil.TestRunner/bin/Release/*.nupkg
+            !NWN.Anvil.TestRunner/bin/Release/*.snupkg
           if-no-files-found: error
 
   release:
@@ -242,10 +254,10 @@ jobs:
           path: binaries
 
       - name: NuGet Publish
-        run: dotnet nuget push 'binaries/*.nupkg' --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push 'binaries/**/*.nupkg' --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
       - name: GitHub Publish
-        run: dotnet nuget push 'binaries/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
+        run: dotnet nuget push 'binaries/**/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
 
   docker:
     runs-on: ubuntu-20.04
