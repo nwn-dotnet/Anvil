@@ -176,8 +176,8 @@ jobs:
           path: |
             NWN.Anvil/bin/Release/*.nupkg
             NWN.Anvil/bin/Release/*.snupkg
-            NWN.Anvil.TestRunner/bin/Release/*.nupkg
-            NWN.Anvil.TestRunner/bin/Release/*.snupkg
+            NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner/*.nupkg
+            NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner/*.snupkg
           if-no-files-found: error
 
       - name: Upload Build Artifacts (Anvil)
@@ -196,8 +196,8 @@ jobs:
           name: Binaries (Test Runner)
           path: |
             NWN.Anvil.TestRunner/bin/Release/
-            !NWN.Anvil.TestRunner/bin/Release/*.nupkg
-            !NWN.Anvil.TestRunner/bin/Release/*.snupkg
+            !NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner/*.nupkg
+            !NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner/*.snupkg
           if-no-files-found: error
 
   release:
