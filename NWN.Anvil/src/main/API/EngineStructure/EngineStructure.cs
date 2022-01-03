@@ -8,7 +8,7 @@ namespace Anvil.API
   /// </summary>
   public abstract class EngineStructure : IDisposable
   {
-    private readonly IntPtr handle;
+    private IntPtr handle;
     private bool memoryOwn;
 
     private protected EngineStructure(IntPtr handle, bool memoryOwn)
@@ -29,8 +29,18 @@ namespace Anvil.API
 
     protected abstract int StructureId { get; }
 
+    /// <summary>
+    /// Gets if this object is valid.
+    /// </summary>
+    public bool IsValid => handle != IntPtr.Zero;
+
     public static implicit operator IntPtr(EngineStructure engineStructure)
     {
+      if (!engineStructure.IsValid)
+      {
+        throw new InvalidOperationException("Engine structure is not valid.");
+      }
+
       return engineStructure.handle;
     }
 
@@ -46,6 +56,7 @@ namespace Anvil.API
       {
         memoryOwn = false;
         VM.FreeGameDefinedStructure(StructureId, handle);
+        handle = IntPtr.Zero;
       }
     }
   }

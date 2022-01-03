@@ -40,6 +40,10 @@
       <ExcludeAssets>runtime</ExcludeAssets>
     </ProjectReference>
   </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="NWN.Native" Version="8193.34.2" PrivateAssets="compile" />
+  </ItemGroup>
 
   <ItemGroup>
     <ContentWithTargetPath Include="src\docker\**" TargetPath="..\%(RecursiveDir)%(FileName)%(Extension)" CopyToOutputDirectory="Always" />
