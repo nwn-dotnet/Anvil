@@ -7,7 +7,7 @@ namespace Anvil.API
 {
   public sealed class Location : EngineStructure
   {
-    internal Location(IntPtr handle) : base(handle) {}
+    internal Location(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
     /// <summary>
     /// Gets the associated Area of this location.
@@ -78,7 +78,7 @@ namespace Anvil.API
 
     public static implicit operator Location(IntPtr intPtr)
     {
-      return new Location(intPtr);
+      return new Location(intPtr, true);
     }
 
     /// <summary>

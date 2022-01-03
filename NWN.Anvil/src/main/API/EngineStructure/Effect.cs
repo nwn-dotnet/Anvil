@@ -6,7 +6,7 @@ namespace Anvil.API
 {
   public sealed partial class Effect : EffectBase
   {
-    internal Effect(CGameEffect effect) : base(effect) {}
+    internal Effect(CGameEffect effect, bool memoryOwn) : base(effect, memoryOwn) {}
 
     /// <summary>
     /// Gets the remaining duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
@@ -54,12 +54,12 @@ namespace Anvil.API
 
     public static explicit operator Effect(ItemProperty itemProperty)
     {
-      return new Effect(itemProperty);
+      return new Effect(itemProperty, true);
     }
 
     public static implicit operator Effect(IntPtr intPtr)
     {
-      return new Effect(CGameEffect.FromPointer(intPtr));
+      return new Effect(CGameEffect.FromPointer(intPtr), true);
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ namespace Anvil.API
       CGameEffect clone = new CGameEffect(true.ToInt());
       clone.CopyEffect(this, false.ToInt());
 
-      return new Effect(clone);
+      return new Effect(clone, true);
     }
   }
 }

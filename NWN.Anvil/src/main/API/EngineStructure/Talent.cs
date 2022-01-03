@@ -5,7 +5,7 @@ namespace Anvil.API
 {
   public sealed partial class Talent : EngineStructure
   {
-    internal Talent(IntPtr handle) : base(handle) {}
+    internal Talent(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
     /// <summary>
     /// Gets the associated feat, if this talent is a feat.
@@ -36,7 +36,7 @@ namespace Anvil.API
 
     public static implicit operator Talent(IntPtr intPtr)
     {
-      return new Talent(intPtr);
+      return new Talent(intPtr, true);
     }
 
     private int TryGetId(TalentType expectedType)

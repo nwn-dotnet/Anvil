@@ -5,13 +5,13 @@ namespace Anvil.API
 {
   public sealed class Json : EngineStructure
   {
-    internal Json(IntPtr handle) : base(handle) {}
+    internal Json(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_JSON;
 
     public static implicit operator Json(IntPtr intPtr)
     {
-      return new Json(intPtr);
+      return new Json(intPtr, true);
     }
 
     public static Json Parse(string jsonString)

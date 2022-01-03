@@ -34,10 +34,14 @@ namespace Anvil.API.Events
       private static int OnApplyDamage(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame)
       {
         CNWSObject gameObject = CNWSObject.FromPointer(pObject);
+        CGameEffect effect = CGameEffect.FromPointer(pEffect);
+        if (gameObject == null || effect == null)
+        {
+          return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
+        }
+
         if (IsValidObjectTarget((ObjectType)gameObject.m_nObjectType))
         {
-          CGameEffect effect = CGameEffect.FromPointer(pEffect);
-
           ProcessEvent(new OnCreatureDamage
           {
             DamagedBy = effect.m_oidCreator.ToNwObject<NwObject>(),

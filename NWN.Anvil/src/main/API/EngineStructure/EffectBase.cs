@@ -7,7 +7,7 @@ namespace Anvil.API
   {
     protected readonly CGameEffect Effect;
 
-    private protected unsafe EffectBase(CGameEffect effect) : base(effect.Pointer)
+    private protected unsafe EffectBase(CGameEffect effect, bool memoryOwn) : base(effect.Pointer, memoryOwn)
     {
       Effect = effect;
 

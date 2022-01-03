@@ -5,21 +5,15 @@ namespace Anvil.API
 {
   public static class NativeObjectExtensions
   {
-    public static Effect ToEffect(this CGameEffect effect, bool preventGc)
+    public static Effect ToEffect(this CGameEffect effect, bool memoryOwn)
     {
-      Effect retVal = effect != null && effect.Pointer != IntPtr.Zero ? new Effect(effect) : null;
-
-      if (retVal != null && preventGc)
-      {
-        GC.SuppressFinalize(effect);
-      }
-
+      Effect retVal = effect != null && effect.Pointer != IntPtr.Zero ? new Effect(effect, memoryOwn) : null;
       return retVal;
     }
 
-    public static ItemProperty ToItemProperty(this CGameEffect ipEffect)
+    public static ItemProperty ToItemProperty(this CGameEffect ipEffect, bool memoryOwn)
     {
-      return ipEffect != null && ipEffect.Pointer != IntPtr.Zero ? new ItemProperty(ipEffect) : null;
+      return ipEffect != null && ipEffect.Pointer != IntPtr.Zero ? new ItemProperty(ipEffect, memoryOwn) : null;
     }
 
     public static T ToNwObject<T>(this ICGameObject gameObject) where T : NwObject
