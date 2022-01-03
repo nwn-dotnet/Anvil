@@ -27,6 +27,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...HEAD
 ### Fixed
 - `AnvilCore.Reload()` now uses the scheduler service to schedule the reload. This should fix some edge cases where async methods would hold a reference preventing unload.
 - Fixed an issue where the `SchedulerService` would throw an exception if the server was shutdown/reloaded during a schedule callback.
+- Fixed a rare crash when subscribed to effect events.
 
 ## 8193.34.0
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...v8193.34.0
