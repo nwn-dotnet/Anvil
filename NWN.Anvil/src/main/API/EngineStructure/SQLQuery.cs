@@ -12,7 +12,7 @@ namespace Anvil.API
   {
     private bool executed;
     private bool hasResult;
-    internal SQLQuery(IntPtr handle) : base(handle) {}
+    internal SQLQuery(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
     /// <summary>
     /// Returns "" if the last Sql command succeeded; or a human-readable error otherwise.
@@ -67,7 +67,7 @@ namespace Anvil.API
 
     public static implicit operator SQLQuery(IntPtr intPtr)
     {
-      return new SQLQuery(intPtr);
+      return new SQLQuery(intPtr, true);
     }
 
     /// <summary>

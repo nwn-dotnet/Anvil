@@ -6,7 +6,7 @@ namespace Anvil.API
 {
   public sealed partial class ItemProperty : EffectBase
   {
-    internal ItemProperty(CGameEffect effect) : base(effect) {}
+    internal ItemProperty(CGameEffect effect, bool memoryOwn) : base(effect, memoryOwn) {}
 
     /// <summary>
     /// Gets or sets the cost table to use for this item property.<br/>
@@ -116,12 +116,12 @@ namespace Anvil.API
 
     public static explicit operator ItemProperty(Effect effect)
     {
-      return new ItemProperty(effect);
+      return new ItemProperty(effect, true);
     }
 
     public static implicit operator ItemProperty(IntPtr intPtr)
     {
-      return new ItemProperty(CGameEffect.FromPointer(intPtr));
+      return new ItemProperty(CGameEffect.FromPointer(intPtr), true);
     }
   }
 }
