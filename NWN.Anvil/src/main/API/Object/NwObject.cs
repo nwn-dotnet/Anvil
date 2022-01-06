@@ -21,6 +21,9 @@ namespace Anvil.API
     private protected static EventService EventService { get; private set; }
 
     [Inject]
+    private protected static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; private set; }
+
+    [Inject]
     private protected static ResourceManager ResourceManager { get; private set; }
 
     [Inject]

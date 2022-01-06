@@ -29,6 +29,9 @@ namespace Anvil.API
     private static EventService EventService { get; set; }
 
     [Inject]
+    private static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; set; }
+
+    [Inject]
     private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; }
 
     internal readonly CNWSPlayer Player;
@@ -95,7 +98,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether the player is a Dungeon Master.
     /// </summary>
-    public bool IsDM => NWScript.GetIsDM(ControlledCreature).ToBool();
+    public bool IsDM => ControlledCreature.Creature.m_pStats.GetIsDM().ToBool();
 
     /// <summary>
     /// Gets if this player is in cursor targeting mode.<br/>
@@ -874,6 +877,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the visiblity override for the specified object for this player.
+    /// </summary>
+    public VisibilityMode GetPersonalVisibilityOverride(NwGameObject target)
+    {
+      return ObjectVisibilityService.Value.GetPersonalOverride(this, target);
+    }
+
+    /// <summary>
     /// Gives the specified XP to the player, adjusted by any multiclass penalty.
     /// </summary>
     /// <param name="xPAmount">Amount of experience to give.</param>
@@ -1229,6 +1240,14 @@ namespace Anvil.API
       {
         NWScript.SetPCDislike(ControlledCreature, target.ControlledCreature);
       }
+    }
+
+    /// <summary>
+    /// Sets the visiblity override for the specified object for this player.
+    /// </summary>
+    public void SetPersonalVisibilityOverride(NwGameObject target, VisibilityMode visibilityMode)
+    {
+      ObjectVisibilityService.Value.SetPersonalOverride(this, target, visibilityMode);
     }
 
     /// <summary>
