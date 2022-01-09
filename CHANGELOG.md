@@ -11,7 +11,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...HEAD
 - NwPlayer: Added `DMPossessCreature` and `UnpossessCreature` for controlling player creature.
 - NwPlayer: `ForceExamine` now supports creatures, placeables, items and doors.
 - Implemented `NWN.Anvil.TestRunner` for running automated tests.
-- NwPlayer: Added `SetPersonalVisibilityOverride` method for customizing object visibility per player.
+- NwPlayer: Added `Get/SetPersonalVisibilityOverride` methods for customizing object visibility per player.
 - NwGameObject: Added `VisibilityOverride` property for customizing object visibility globally.
 - Added `OnCreatureCheckProficiencies` property.
 
