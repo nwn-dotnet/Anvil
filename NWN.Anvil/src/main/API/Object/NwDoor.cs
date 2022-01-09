@@ -147,6 +147,18 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Creates a door at the specified location.
+    /// </summary>
+    /// <param name="template">The door resref template from the toolset palette.</param>
+    /// <param name="location">The location where this door will spawn.</param>
+    /// <param name="useAppearAnim">If true, plays EffectAppear when created.</param>
+    /// <param name="newTag">The new tag to assign this creature. Leave uninitialized/as null to use the template's tag.</param>
+    public static NwDoor Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    {
+      return CreateInternal<NwDoor>(template, location, useAppearAnim, newTag);
+    }
+
     internal override void RemoveFromArea()
     {
       Door.RemoveFromArea();
