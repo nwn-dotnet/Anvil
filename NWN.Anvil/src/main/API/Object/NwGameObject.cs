@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
+using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
 using Vector3 = System.Numerics.Vector3;
@@ -165,6 +166,15 @@ namespace Anvil.API
     {
       get => NWScript.GetTransitionTarget(this).ToNwObject<NwGameObject>();
       set => NWScript.SetTransitionTarget(this, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the global visiblity override for this object.
+    /// </summary>
+    public VisibilityMode VisibilityOverride
+    {
+      get => ObjectVisibilityService.Value.GetGlobalOverride(this);
+      set => ObjectVisibilityService.Value.SetGlobalOverride(this, value);
     }
 
     /// <summary>

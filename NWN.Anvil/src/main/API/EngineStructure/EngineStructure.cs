@@ -27,12 +27,12 @@ namespace Anvil.API
       ReleaseUnmanagedResources();
     }
 
-    protected abstract int StructureId { get; }
-
     /// <summary>
     /// Gets if this object is valid.
     /// </summary>
     public bool IsValid => handle != IntPtr.Zero;
+
+    protected abstract int StructureId { get; }
 
     public static implicit operator IntPtr(EngineStructure engineStructure)
     {

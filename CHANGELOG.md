@@ -11,12 +11,17 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...HEAD
 - NwPlayer: Added `DMPossessCreature` and `UnpossessCreature` for controlling player creature.
 - NwPlayer: `ForceExamine` now supports creatures, placeables, items and doors.
 - Implemented `NWN.Anvil.TestRunner` for running automated tests.
+- NwPlayer: Added `Get/SetPersonalVisibilityOverride` methods for customizing object visibility per player.
+- NwGameObject: Added `VisibilityOverride` property for customizing object visibility globally.
+- Creature Events: Added `OnCreatureCheckProficiencies` event.
+- Added `Local/Campaign/PersistentVariableEnum<T>` object variable type for user enum types.  The underlying type must be an integer.
 
 ### Package Updates
 - NWN.Core: 8193.34.0 -> 8193.34.1
 
 ### Changed
-- N/A
+- `NwCreature.WalkRateCap` and `NwCreature.AlwaysWalk` properties are no-longer persistent. Additionally, the services and functions are not hooked until the associated property is used for the first time.
+- `NwObject.ObjectId` is now public.
 
 ### Deprecated
 - N/A
