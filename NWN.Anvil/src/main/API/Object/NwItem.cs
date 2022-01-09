@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NWN.Core;
 using NWN.Native.API;
@@ -328,7 +329,27 @@ namespace Anvil.API
 
     public override NwItem Clone(Location location, string newTag = null, bool copyLocalState = true)
     {
-      return CloneInternal<NwItem>(location, newTag, copyLocalState);
+      NwItem clone = CloneInternal<NwItem>(location, newTag, copyLocalState);
+      if (!copyLocalState)
+      {
+        CleanLocalVariables(clone);
+      }
+
+      return clone;
+    }
+
+    private static void CleanLocalVariables(NwItem clone)
+    {
+      if (clone == null)
+      {
+        return;
+      }
+
+      List<ObjectVariable> localVariables = clone.LocalVariables.ToList();
+      foreach (ObjectVariable localVariable in localVariables)
+      {
+        localVariable.Delete();
+      }
     }
 
     /// <summary>
