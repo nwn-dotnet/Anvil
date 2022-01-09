@@ -32,7 +32,11 @@ namespace Anvil.API
     [UsedImplicitly]
     internal readonly ICGameObject Object;
 
-    protected readonly uint ObjectId;
+    /// <summary>
+    /// The ID of this object instance. Not persistent, changes after every spawn of the object.<br/>
+    /// See <see cref="UUID"/> for a persistent unique ID for objects.
+    /// </summary>
+    public readonly uint ObjectId;
 
     protected NwObject(ICGameObject gameObject)
     {

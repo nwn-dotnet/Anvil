@@ -5,11 +5,9 @@ using NWN.Native.API;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ObjectVisibilityService))]
-  [ServiceBindingOptions(Lazy = true)]
+  [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   internal sealed unsafe class ObjectVisibilityService
   {
-    private const string VisibilityVar = "VISIBILITY_OVERRIDE";
-
     private readonly FunctionHook<TestObjectVisibleHook> testObjectVisibleHook;
 
     public ObjectVisibilityService(HookService hookService)
@@ -22,26 +20,24 @@ namespace Anvil.Services
 
     public VisibilityMode GetGlobalOverride(NwGameObject target)
     {
-      PersistentVariableInt.Internal value = target.GetObjectVariable<PersistentVariableInt.Internal>(VisibilityVar);
-      return value.HasValue ? (VisibilityMode)value.Value : VisibilityMode.Default;
+      return InternalVariables.GlobalVisibilityOverride(target);
     }
 
     public VisibilityMode GetPersonalOverride(NwPlayer player, NwObject target)
     {
-      PersistentVariableInt.Internal value = player.ControlledCreature.GetObjectVariable<PersistentVariableInt.Internal>(VisibilityVar + target);
-      return value.HasValue ? (VisibilityMode)value.Value : VisibilityMode.Default;
+      return InternalVariables.PlayerVisibilityOverride(player, target);
     }
 
     public void SetGlobalOverride(NwGameObject target, VisibilityMode visibilityMode)
     {
-      PersistentVariableInt.Internal value = target.GetObjectVariable<PersistentVariableInt.Internal>(VisibilityVar);
-      value.Value = (int)visibilityMode;
+      InternalVariableEnum<VisibilityMode> value = InternalVariables.GlobalVisibilityOverride(target);
+      value.Value = visibilityMode;
     }
 
     public void SetPersonalOverride(NwPlayer player, NwObject target, VisibilityMode visibilityMode)
     {
-      PersistentVariableInt.Internal value = player.ControlledCreature.GetObjectVariable<PersistentVariableInt.Internal>(VisibilityVar + target);
-      value.Value = (int)visibilityMode;
+      InternalVariableEnum<VisibilityMode> value = InternalVariables.PlayerVisibilityOverride(player, target);
+      value.Value = visibilityMode;
     }
 
     private int OnTestObjectVisible(void* pMessage, void* pAreaObject, void* pPlayerGameObject)

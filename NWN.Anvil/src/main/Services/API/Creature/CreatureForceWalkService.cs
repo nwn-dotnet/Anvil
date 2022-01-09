@@ -5,11 +5,9 @@ using NWN.Native.API;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(CreatureForceWalkService))]
-  [ServiceBindingOptions(InternalBindingPriority.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   internal sealed unsafe class CreatureForceWalkService
   {
-    public const string AlwaysWalkVariable = "ALWAYS_WALK";
-
     private readonly FunctionHook<RemoveLimitMovementSpeedHook> removeLimitMovementSpeedHook;
 
     public CreatureForceWalkService(HookService hookService)
@@ -21,13 +19,13 @@ namespace Anvil.Services
 
     public bool GetAlwaysWalk(NwCreature creature)
     {
-      return creature.GetObjectVariable<PersistentVariableBool.Internal>(AlwaysWalkVariable);
+      return InternalVariables.AlwaysWalk(creature);
     }
 
     public void SetAlwaysWalk(NwCreature creature, bool forceWalk)
     {
       CNWSCreature nativeCreature = creature.Creature;
-      PersistentVariableBool.Internal alwaysWalk = creature.GetObjectVariable<PersistentVariableBool.Internal>(AlwaysWalkVariable);
+      InternalVariableBool alwaysWalk = InternalVariables.AlwaysWalk(creature);
 
       if (forceWalk)
       {
@@ -56,7 +54,7 @@ namespace Anvil.Services
     private int OnRemoveLimitMovementSpeed(void* pEffectListHandler, void* pObject, void* pEffect)
     {
       NwObject nwObject = CNWSObject.FromPointer(pObject).ToNwObject();
-      if (nwObject != null && nwObject.GetObjectVariable<PersistentVariableBool.Internal>(AlwaysWalkVariable))
+      if (nwObject != null && InternalVariables.AlwaysWalk(nwObject))
       {
         return 1;
       }

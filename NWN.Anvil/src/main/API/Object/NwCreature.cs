@@ -20,10 +20,10 @@ namespace Anvil.API
     private const byte QuickBarButtonCount = 36;
 
     [Inject]
-    private static CreatureForceWalkService CreatureForceWalkService { get; set; }
+    private static Lazy<CreatureForceWalkService> CreatureForceWalkService { get; set; }
 
     [Inject]
-    private static CreatureWalkRateCapService CreatureWalkRateCapService { get; set; }
+    private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; }
 
     internal readonly CNWSCreature Creature;
 
@@ -65,8 +65,8 @@ namespace Anvil.API
     /// </summary>
     public bool AlwaysWalk
     {
-      get => CreatureForceWalkService.GetAlwaysWalk(this);
-      set => CreatureForceWalkService.SetAlwaysWalk(this, value);
+      get => CreatureForceWalkService.Value.GetAlwaysWalk(this);
+      set => CreatureForceWalkService.Value.SetAlwaysWalk(this, value);
     }
 
     /// <summary>
@@ -770,8 +770,8 @@ namespace Anvil.API
     /// </summary>
     public float? WalkRateCap
     {
-      get => CreatureWalkRateCapService.GetWalkRateCap(this);
-      set => CreatureWalkRateCapService.SetWalkRateCap(this, value);
+      get => CreatureWalkRateCapService.Value.GetWalkRateCap(this);
+      set => CreatureWalkRateCapService.Value.SetWalkRateCap(this, value);
     }
 
     /// <summary>
