@@ -33,7 +33,7 @@ namespace Anvil.Tests.Generators
       WriteConstants(injectionService);
       constantWriter.Dispose();
 
-      Log.Info($"Generation complete.");
+      Log.Info("Generation complete.");
     }
 
     private void WriteConstants(InjectionService injectionService)

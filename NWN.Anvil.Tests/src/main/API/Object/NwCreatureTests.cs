@@ -34,7 +34,7 @@ namespace Anvil.Tests.API
       LocalVariableInt testVar = creature.GetObjectVariable<LocalVariableInt>("test");
       testVar.Value = 9999;
 
-      NwCreature clone = creature.Clone(startLocation, null, true);
+      NwCreature clone = creature.Clone(startLocation);
 
       Assert.IsNotNull(clone, $"Creature {creatureResRef} was null after clone.");
       Assert.IsTrue(clone.IsValid, $"Creature {creatureResRef} was invalid after clone.");

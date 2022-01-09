@@ -397,20 +397,6 @@ namespace Anvil.API
       }
     }
 
-    private static void CleanLocalVariables(NwItem clone)
-    {
-      if (clone == null)
-      {
-        return;
-      }
-
-      List<ObjectVariable> localVariables = clone.LocalVariables.ToList();
-      foreach (ObjectVariable localVariable in localVariables)
-      {
-        localVariable.Delete();
-      }
-    }
-
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)
     {
       Item.AddToArea(area, x, y, z, true.ToInt());
