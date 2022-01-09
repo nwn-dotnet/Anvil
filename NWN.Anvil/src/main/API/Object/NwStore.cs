@@ -137,6 +137,11 @@ namespace Anvil.API
       NWScript.OpenStore(this, player.ControlledCreature, bonusMarkup, bonusMarkDown);
     }
 
+    public override NwStore Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      return CloneInternal<NwStore>(location, newTag, copyLocalState);
+    }
+
     public override byte[] Serialize()
     {
       return NativeUtils.SerializeGff("UTM", (resGff, resStruct) =>

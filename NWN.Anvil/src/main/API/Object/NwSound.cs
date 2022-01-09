@@ -74,6 +74,11 @@ namespace Anvil.API
       });
     }
 
+    public override NwGameObject Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      throw new NotSupportedException("Sound objects may not be cloned.");
+    }
+
     /// <summary>
     /// Stops this sound object from playing.
     /// </summary>

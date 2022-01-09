@@ -136,6 +136,11 @@ namespace Anvil.API
       Placeable.AcquireItem(&pItem, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
     }
 
+    public override NwPlaceable Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      return CloneInternal<NwPlaceable>(location, newTag, copyLocalState);
+    }
+
     /// <summary>
     /// Gets this placeable's base save value for the specified saving throw.
     /// </summary>

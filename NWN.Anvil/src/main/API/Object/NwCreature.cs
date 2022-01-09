@@ -1277,16 +1277,9 @@ namespace Anvil.API
       return (ResistSpellResult)NWScript.ResistSpell(this, target);
     }
 
-    /// <summary>
-    /// Creates a copy of this creature.
-    /// </summary>
-    /// <param name="location">The location to place the new creature. Defaults to the current creature's location.</param>
-    /// <param name="newTag">A new tag to assign to the creature.</param>
-    /// <returns>The cloned creature.</returns>
-    public NwCreature Clone(Location location = null, string newTag = null)
+    public override NwCreature Clone(Location location, string newTag = null, bool copyLocalState = true)
     {
-      location ??= Location;
-      return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty).ToNwObject<NwCreature>();
+      return CloneInternal<NwCreature>(location, newTag, copyLocalState);
     }
 
     /// <summary>

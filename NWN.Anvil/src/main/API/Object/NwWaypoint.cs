@@ -61,6 +61,11 @@ namespace Anvil.API
       });
     }
 
+    public override NwWaypoint Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      return CloneInternal<NwWaypoint>(location, newTag, copyLocalState);
+    }
+
     internal override void RemoveFromArea()
     {
       Waypoint.RemoveFromArea();

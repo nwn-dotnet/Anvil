@@ -211,6 +211,11 @@ namespace Anvil.API
       });
     }
 
+    public override NwEncounter Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      throw new NotSupportedException("Encounter objects may not be cloned.");
+    }
+
     internal override void RemoveFromArea()
     {
       Encounter.RemoveFromArea();

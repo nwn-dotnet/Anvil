@@ -65,6 +65,11 @@ namespace Anvil.API
       throw new NotSupportedException();
     }
 
+    public override NwAreaOfEffect Clone(Location location, string newTag = null, bool copyLocalState = false)
+    {
+      throw new NotSupportedException("Area of Effect objects may not be cloned.");
+    }
+
     internal override void RemoveFromArea()
     {
       AreaOfEffect.RemoveFromArea();

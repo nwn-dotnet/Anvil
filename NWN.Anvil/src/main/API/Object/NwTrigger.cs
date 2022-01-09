@@ -86,6 +86,11 @@ namespace Anvil.API
       });
     }
 
+    public override NwTrigger Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      return CloneInternal<NwTrigger>(location, newTag, copyLocalState);
+    }
+
     internal override void RemoveFromArea()
     {
       if (IsTrapped)
