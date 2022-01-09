@@ -1,6 +1,5 @@
 // ReSharper disable ArrangeMethodOrOperatorBody
 
-using Anvil.API.Events;
 using Anvil.Services;
 
 namespace Anvil.API
