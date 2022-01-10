@@ -1,4 +1,3 @@
-using System;
 using Anvil.API;
 using NWN.Native.API;
 
@@ -12,7 +11,6 @@ namespace Anvil.Services
 
     public ObjectVisibilityService(HookService hookService)
     {
-      Console.WriteLine("Service initialized");
       testObjectVisibleHook = hookService.RequestHook<TestObjectVisibleHook>(OnTestObjectVisible, FunctionsLinux._ZN11CNWSMessage17TestObjectVisibleEP10CNWSObjectS1_, HookOrder.Late);
     }
 

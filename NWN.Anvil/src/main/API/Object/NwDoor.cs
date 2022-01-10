@@ -1,5 +1,4 @@
 using System;
-using System.Numerics;
 using System.Threading.Tasks;
 using NWN.Core;
 using NWN.Native.API;
@@ -153,34 +152,41 @@ namespace Anvil.API
     /// </summary>
     /// <param name="template">The door resref template from the toolset palette.</param>
     /// <param name="location">The location where this door will spawn.</param>
-    /// <param name="useAppearAnim">If true, plays EffectAppear when created.</param>
-    /// <param name="newTag">The new tag to assign this creature. Leave uninitialized/as null to use the template's tag.</param>
-    public static unsafe NwDoor Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    /// <param name="newTag">The new tag to assign this door. Leave uninitialized/as null to use the template's tag.</param>
+    public static NwDoor Create(string template, Location location, string newTag = null)
     {
       if (string.IsNullOrEmpty(template))
       {
         return default;
       }
 
-      CResGFF resGFF = new CResGFF((ushort)ResRefType.UTD, "UTD ".GetNullTerminatedString(), template.ToResRef());
-      if (resGFF.m_bResourceLoaded.ToBool())
-      {
-        using CResStruct resStruct = new CResStruct();
-        resGFF.GetTopLevelStruct(resStruct);
-        CNWSDoor door = new CNWSDoor();
+      CNWSArea area = location.Area.Area;
+      Vector position = location.Position.ToNativeVector();
+      Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
 
-        if (door.LoadDoor(resGFF, resStruct).ToBool())
+      CNWSDoor door = null;
+      bool result = NativeUtils.CreateFromResRef(ResRefType.UTD, template, (resGff, resStruct) =>
+      {
+        door = new CNWSDoor();
+        GC.SuppressFinalize(door);
+
+        door.m_sTemplate = template.ToExoString();
+        door.LoadDoor(resGff, resStruct);
+        door.LoadVarTable(resGff, resStruct);
+
+        door.SetPosition(position);
+        door.SetOrientation(orientation);
+
+        if (!string.IsNullOrEmpty(newTag))
         {
-          CNWSArea area = location.Area.Area;
-          Vector3 position = location.Position;
-          door.AddToArea(area, position.X, position.Y, position.Z);
-          return door.ToNwObject<NwDoor>();
+          door.m_sTag = newTag.ToExoString();
+          NwModule.Instance.Module.AddObjectToLookupTable(door.m_sTag, door.m_idSelf);
         }
 
-        door.Dispose();
-      }
+        door.AddToArea(area, position.x, position.y, area.ComputeHeight(position));
+      });
 
-      return CreateInternal<NwDoor>(template, location, useAppearAnim, newTag);
+      return result && door != null ? door.ToNwObject<NwDoor>() : null;
     }
 
     internal override void RemoveFromArea()
