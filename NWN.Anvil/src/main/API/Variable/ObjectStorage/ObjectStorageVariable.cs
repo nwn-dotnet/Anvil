@@ -4,10 +4,10 @@ namespace Anvil.API
   {
     protected string Key => VariableTypePrefix + Name;
 
-    protected abstract string VariableTypePrefix { get; }
-
     protected abstract string ObjectStoragePrefix { get; }
 
     protected abstract bool Persist { get; }
+
+    protected abstract string VariableTypePrefix { get; }
   }
 }

@@ -29,14 +29,14 @@ namespace Anvil.API
     [Inject]
     private protected static VirtualMachine VirtualMachine { get; private set; }
 
-    [UsedImplicitly]
-    internal readonly ICGameObject Object;
-
     /// <summary>
     /// The ID of this object instance. Not persistent, changes after every spawn of the object.<br/>
     /// See <see cref="UUID"/> for a persistent unique ID for objects.
     /// </summary>
     public readonly uint ObjectId;
+
+    [UsedImplicitly]
+    internal readonly ICGameObject Object;
 
     protected NwObject(ICGameObject gameObject)
     {

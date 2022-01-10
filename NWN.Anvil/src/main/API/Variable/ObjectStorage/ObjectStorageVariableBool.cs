@@ -25,19 +25,19 @@ namespace Anvil.API
 
   public sealed class PersistentVariableBool : ObjectStorageVariableBool
   {
-    protected override bool Persist => true;
     protected override string ObjectStoragePrefix => "NWNX_Object";
+    protected override bool Persist => true;
   }
 
   internal sealed class InternalVariableBool : ObjectStorageVariableBool
   {
-    protected override bool Persist => true;
     protected override string ObjectStoragePrefix => "ANVIL_API";
+    protected override bool Persist => true;
 
     internal sealed class Persistent : ObjectStorageVariableBool
     {
-      protected override bool Persist => false;
       protected override string ObjectStoragePrefix => "ANVIL_API";
+      protected override bool Persist => false;
     }
   }
 }

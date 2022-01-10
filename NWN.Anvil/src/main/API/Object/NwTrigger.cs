@@ -18,6 +18,42 @@ namespace Anvil.API
       Trigger = trigger;
     }
 
+    public static NwTrigger Create(string template, Location location, float size = 2.0f, string newTag = null)
+    {
+      if (string.IsNullOrEmpty(template))
+      {
+        return default;
+      }
+
+      CNWSArea area = location.Area.Area;
+      Vector position = location.Position.ToNativeVector();
+      Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
+
+      CNWSTrigger trigger = null;
+      bool result = NativeUtils.CreateFromResRef(ResRefType.UTT, template, (resGff, resStruct) =>
+      {
+        trigger = new CNWSTrigger();
+        GC.SuppressFinalize(trigger);
+        trigger.m_sTemplate = template.ToExoString();
+        trigger.LoadTrigger(resGff, resStruct);
+        trigger.LoadVarTable(resGff, resStruct);
+
+        trigger.SetPosition(position);
+        trigger.SetOrientation(orientation);
+        trigger.CreateNewGeometry(size, position, area);
+
+        if (!string.IsNullOrEmpty(newTag))
+        {
+          trigger.m_sTag = newTag.ToExoString();
+          NwModule.Instance.Module.AddObjectToLookupTable(trigger.m_sTag, trigger.m_idSelf);
+        }
+
+        trigger.AddToArea(area, position.x, position.y, position.z, true.ToInt());
+      });
+
+      return result && trigger != null ? trigger.ToNwObject<NwTrigger>() : null;
+    }
+
     public static NwTrigger Deserialize(byte[] serialized)
     {
       CNWSTrigger trigger = null;
@@ -47,6 +83,11 @@ namespace Anvil.API
     public static implicit operator CNWSTrigger(NwTrigger trigger)
     {
       return trigger?.Trigger;
+    }
+
+    public override NwTrigger Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      return CloneInternal<NwTrigger>(location, newTag, copyLocalState);
     }
 
     /// <summary>

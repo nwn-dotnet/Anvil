@@ -314,11 +314,11 @@ namespace Anvil.API
     /// </summary>
     /// <param name="targetInventory">The target inventory to create the cloned item.</param>
     /// <param name="newTag">A new tag to assign the cloned item.</param>
-    /// <param name="copyVars">If true, local variables on the item are copied.</param>
+    /// <param name="copyLocalState">If true, local variables on the item are copied.</param>
     /// <returns>The newly cloned copy of the item.</returns>
-    public NwItem Clone(NwGameObject targetInventory, string newTag = null, bool copyVars = true)
+    public NwItem Clone(NwGameObject targetInventory, string newTag = null, bool copyLocalState = true)
     {
-      NwItem clone = NWScript.CopyItem(this, targetInventory, copyVars.ToInt()).ToNwObject<NwItem>();
+      NwItem clone = NWScript.CopyItem(this, targetInventory, copyLocalState.ToInt()).ToNwObject<NwItem>();
       if (clone != null && newTag != null)
       {
         clone.Tag = newTag;
@@ -327,17 +327,10 @@ namespace Anvil.API
       return clone;
     }
 
-    /// <summary>
-    /// Creates a copy of this item.
-    /// </summary>
-    /// <param name="location">The location to create the cloned item.</param>
-    /// <param name="newTag">A new tag to assign the cloned item.</param>
-    /// <param name="copyVars">If true, local variables on the item are copied.</param>
-    /// <returns>The newly cloned copy of the item.</returns>
-    public NwItem Clone(Location location, string newTag = "", bool copyVars = true)
+    public override NwItem Clone(Location location, string newTag = null, bool copyLocalState = true)
     {
-      NwItem clone = NWScript.CopyObject(this, location, Invalid, newTag).ToNwObject<NwItem>();
-      if (!copyVars)
+      NwItem clone = CloneInternal<NwItem>(location, newTag, copyLocalState);
+      if (!copyLocalState)
       {
         CleanLocalVariables(clone);
       }

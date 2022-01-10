@@ -237,6 +237,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Creates a copy of this game object.
+    /// </summary>
+    /// <param name="location">The location to create the cloned object.</param>
+    /// <param name="newTag">A new tag to assign the cloned object.</param>
+    /// <param name="copyLocalState">If true, will clone all local variables, effects, action queue and transition info (triggers, doors) for the object.</param>
+    /// <returns>The newly cloned copy of the item.</returns>
+    public abstract NwGameObject Clone(Location location, string newTag = null, bool copyLocalState = true);
+
+    /// <summary>
     /// Destroys this object (irrevocably).
     /// </summary>
     /// <param name="delay">Time in seconds until this object should be destroyed.</param>
@@ -601,5 +610,10 @@ namespace Anvil.API
     internal abstract void RemoveFromArea();
 
     private protected abstract void AddToArea(CNWSArea area, float x, float y, float z);
+
+    private protected T CloneInternal<T>(Location location, string newTag, bool copyLocalState) where T : NwGameObject
+    {
+      return NWScript.CopyObject(this, location, Invalid, newTag ?? string.Empty, copyLocalState.ToInt()).ToNwObject<T>();
+    }
   }
 }

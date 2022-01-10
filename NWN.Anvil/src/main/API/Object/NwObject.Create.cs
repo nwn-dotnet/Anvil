@@ -70,7 +70,7 @@ namespace Anvil.API
       return uuid == Guid.Empty ? null : CreateInternal(NWScript.GetObjectByUUID(uuid.ToUUIDString()));
     }
 
-    internal static T CreateInternal<T>(string template, Location location, bool useAppearAnim, string newTag) where T : NwObject
+    internal static T CreateInternal<T>(string template, Location location, bool useAppearAnim, string newTag) where T : NwGameObject
     {
       ObjectTypes objectType = GetObjectType<T>();
       return NWScript.CreateObject((int)objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
