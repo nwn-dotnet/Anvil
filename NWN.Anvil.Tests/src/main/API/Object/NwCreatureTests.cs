@@ -10,6 +10,28 @@ namespace Anvil.Tests.API
   {
     private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
 
+    [Test(Description = "Creating a creature with a valid ResRef creates a valid creature.")]
+    [TestCase(StandardResRef.Creature.nw_bandit001)]
+    [TestCase(StandardResRef.Creature.nw_bandit002)]
+    [TestCase(StandardResRef.Creature.nw_bandit003)]
+    [TestCase(StandardResRef.Creature.nw_shopkeep)]
+    [TestCase(StandardResRef.Creature.nw_bartender)]
+    [TestCase(StandardResRef.Creature.nw_drgblack001)]
+    [TestCase(StandardResRef.Creature.nw_drgblue002)]
+    [TestCase(StandardResRef.Creature.nw_drggold003)]
+    [TestCase(StandardResRef.Creature.nw_drgred003)]
+    [TestCase(StandardResRef.Creature.x2_beholder001)]
+    public void CreateCreatureIsCreated(string creatureResRef)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwCreature creature = NwCreature.Create(creatureResRef, startLocation);
+
+      Assert.IsNotNull(creature, $"Creature {creatureResRef} was null after creation.");
+      Assert.IsTrue(creature.IsValid, $"Creature {creatureResRef} was invalid after creation.");
+
+      createdTestObjects.Add(creature);
+    }
+
     [Test(Description = "Cloning a creature with copyLocalState = true copies expected local state information.")]
     [TestCase(StandardResRef.Creature.nw_bandit001)]
     [TestCase(StandardResRef.Creature.nw_bandit002)]
@@ -153,6 +175,7 @@ namespace Anvil.Tests.API
     {
       foreach (NwGameObject testObject in createdTestObjects)
       {
+        testObject.PlotFlag = false;
         testObject.Destroy();
       }
 
