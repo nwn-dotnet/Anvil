@@ -29,6 +29,7 @@ var classAnvil_1_1API_1_1NwObject =
     [ "IsValid", "classAnvil_1_1API_1_1NwObject.html#a55d6fa2ef762491e726138e5f43df85e", null ],
     [ "LocalVariables", "classAnvil_1_1API_1_1NwObject.html#ad2cedc189329ef4272dc7e088a536e94", null ],
     [ "Name", "classAnvil_1_1API_1_1NwObject.html#ab370d5ce40fcc71a94f6236500775b56", null ],
+    [ "ObjectVisibilityService", "classAnvil_1_1API_1_1NwObject.html#a1d66d3d37f2533731e55b48b42a7d4c3", null ],
     [ "OriginalDescription", "classAnvil_1_1API_1_1NwObject.html#abef323f5f1eed8bf9581487eed5ef2d9", null ],
     [ "ResourceManager", "classAnvil_1_1API_1_1NwObject.html#afe6c7725f56d3c3e5106635b7aa3b678", null ],
     [ "ResRef", "classAnvil_1_1API_1_1NwObject.html#a361cf7b02756b21cab0d37128e94a82f", null ],

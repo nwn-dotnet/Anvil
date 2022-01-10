@@ -48,6 +48,7 @@ var classAnvil_1_1API_1_1NwModule =
     [ "OnCombatRoundStart", "classAnvil_1_1API_1_1NwModule.html#a946fb33cddb9a0bb1d924bcfeb9da651", null ],
     [ "OnCombatStatusChange", "classAnvil_1_1API_1_1NwModule.html#a07a3c9c7662e8b4aabcc33444d98f9d6", null ],
     [ "OnCreatureAttack", "classAnvil_1_1API_1_1NwModule.html#a28bb7b86ac2fe77d3bc8c9ecd6d7f1d4", null ],
+    [ "OnCreatureCheckProficiencies", "classAnvil_1_1API_1_1NwModule.html#a619f3fa478da2b76d488e3cb8de3814b", null ],
     [ "OnCreatureDamage", "classAnvil_1_1API_1_1NwModule.html#a8c5f1425919d1324d626a3a34daff959", null ],
     [ "OnCutsceneAbort", "classAnvil_1_1API_1_1NwModule.html#acd1404124f9e702271e6524ad03c2fda", null ],
     [ "OnDetectModeUpdate", "classAnvil_1_1API_1_1NwModule.html#a3b77b5fd28c1421b8049968d1480be96", null ],

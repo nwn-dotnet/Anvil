@@ -1,6 +1,6 @@
 var classAnvil_1_1API_1_1EffectBase =
 [
-    [ "EffectBase", "classAnvil_1_1API_1_1EffectBase.html#aab4976cb74a23180e6cf49808b374dbe", null ],
+    [ "EffectBase", "classAnvil_1_1API_1_1EffectBase.html#a726e5497268b40eab72926a23c2c4a7b", null ],
     [ "operator CGameEffect", "classAnvil_1_1API_1_1EffectBase.html#a562bd71907494202843bbe7055cdecf3", null ],
     [ "Effect", "classAnvil_1_1API_1_1EffectBase.html#a249c0d233d87e5e11de469ecb78f9c8e", null ],
     [ "CasterLevel", "classAnvil_1_1API_1_1EffectBase.html#a734262a8a2552af7b1d30d63069ab7a6", null ],

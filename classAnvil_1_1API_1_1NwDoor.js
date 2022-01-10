@@ -1,7 +1,9 @@
 var classAnvil_1_1API_1_1NwDoor =
 [
     [ "AddToArea", "classAnvil_1_1API_1_1NwDoor.html#a98f12777e29372a749ae2ccc36a71eab", null ],
+    [ "Clone", "classAnvil_1_1API_1_1NwDoor.html#ad3c33fb0a2869a75097ac301f7240fd0", null ],
     [ "Close", "classAnvil_1_1API_1_1NwDoor.html#aaacd6f7e797ff38769e6ba7ffd0c3faa", null ],
+    [ "Create", "classAnvil_1_1API_1_1NwDoor.html#ae808a5e6fd5b8c7074f7d5d854f4d676", null ],
     [ "Deserialize", "classAnvil_1_1API_1_1NwDoor.html#a320c4e3e224e39552cc057936b90551b", null ],
     [ "GetBaseSavingThrow", "classAnvil_1_1API_1_1NwDoor.html#aee094c7c665da4c508919bd65dfd0ab7", null ],
     [ "IsDoorActionPossible", "classAnvil_1_1API_1_1NwDoor.html#a6d33bd5d1314f762c9bb27eed7f05493", null ],

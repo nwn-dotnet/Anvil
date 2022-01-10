@@ -346,6 +346,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCombatStatusChan
 <tr class="memitem:a28bb7b86ac2fe77d3bc8c9ecd6d7f1d4"><td class="memItemLeft" align="right" valign="top"><a id="a28bb7b86ac2fe77d3bc8c9ecd6d7f1d4"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCreatureAttack.html">OnCreatureAttack</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#a28bb7b86ac2fe77d3bc8c9ecd6d7f1d4">OnCreatureAttack</a></td></tr>
 <tr class="separator:a28bb7b86ac2fe77d3bc8c9ecd6d7f1d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a619f3fa478da2b76d488e3cb8de3814b"><td class="memItemLeft" align="right" valign="top"><a id="a619f3fa478da2b76d488e3cb8de3814b"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCreatureCheckProficiencies.html">OnCreatureCheckProficiencies</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#a619f3fa478da2b76d488e3cb8de3814b">OnCreatureCheckProficiencies</a></td></tr>
+<tr class="separator:a619f3fa478da2b76d488e3cb8de3814b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c5f1425919d1324d626a3a34daff959"><td class="memItemLeft" align="right" valign="top"><a id="a8c5f1425919d1324d626a3a34daff959"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCreatureDamage.html">OnCreatureDamage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwModule.html#a8c5f1425919d1324d626a3a34daff959">OnCreatureDamage</a></td></tr>
 <tr class="separator:a8c5f1425919d1324d626a3a34daff959"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -686,6 +689,9 @@ static <a class="el" href="classAnvil_1_1Services_1_1EventService.html">EventSer
 <tr class="memitem:ab370d5ce40fcc71a94f6236500775b56 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#ab370d5ce40fcc71a94f6236500775b56">Name</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ab370d5ce40fcc71a94f6236500775b56 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the name of this object.  <a href="classAnvil_1_1API_1_1NwObject.html#ab370d5ce40fcc71a94f6236500775b56">More...</a><br /></td></tr>
 <tr class="separator:ab370d5ce40fcc71a94f6236500775b56 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d66d3d37f2533731e55b48b42a7d4c3 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="a1d66d3d37f2533731e55b48b42a7d4c3"></a>
+static Lazy&lt; ObjectVisibilityService &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectVisibilityService</b><code> [get]</code></td></tr>
+<tr class="separator:a1d66d3d37f2533731e55b48b42a7d4c3 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abef323f5f1eed8bf9581487eed5ef2d9 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#abef323f5f1eed8bf9581487eed5ef2d9">OriginalDescription</a><code> [get]</code></td></tr>
 <tr class="memdesc:abef323f5f1eed8bf9581487eed5ef2d9 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the original description for this object as defined in the toolset.  <a href="classAnvil_1_1API_1_1NwObject.html#abef323f5f1eed8bf9581487eed5ef2d9">More...</a><br /></td></tr>
 <tr class="separator:abef323f5f1eed8bf9581487eed5ef2d9 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -707,14 +713,15 @@ static <a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html">VirtualMach
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classAnvil_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classAnvil_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classAnvil_1_1API_1_1NwObject.html">Anvil.API.NwObject</a></td></tr>
+<tr class="memitem:a5945eebf67518e945b212596768ab7ba inherit pub_attribs_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">readonly uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a5945eebf67518e945b212596768ab7ba">ObjectId</a></td></tr>
+<tr class="memdesc:a5945eebf67518e945b212596768ab7ba inherit pub_attribs_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID of this object instance. Not persistent, changes after every spawn of the object.<br  />
+ See <a class="el" href="classAnvil_1_1API_1_1NwObject.html#ae3571cdf0a4723852aba21eed594476e" title="Gets the globally unique identifier for this object.">UUID</a> for a persistent unique ID for objects.  <a href="classAnvil_1_1API_1_1NwObject.html#a5945eebf67518e945b212596768ab7ba">More...</a><br /></td></tr>
+<tr class="separator:a5945eebf67518e945b212596768ab7ba inherit pub_attribs_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classAnvil_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classAnvil_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classAnvil_1_1API_1_1NwObject.html">Anvil.API.NwObject</a></td></tr>
 <tr class="memitem:acf4da19f27875fba7da44a4c563bc673 inherit pro_methods_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="acf4da19f27875fba7da44a4c563bc673"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>NwObject</b> (ICGameObject gameObject)</td></tr>
 <tr class="separator:acf4da19f27875fba7da44a4c563bc673 inherit pro_methods_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classAnvil_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classAnvil_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classAnvil_1_1API_1_1NwObject.html">Anvil.API.NwObject</a></td></tr>
-<tr class="memitem:a5945eebf67518e945b212596768ab7ba inherit pro_attribs_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="a5945eebf67518e945b212596768ab7ba"></a>
-readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b></td></tr>
-<tr class="separator:a5945eebf67518e945b212596768ab7ba inherit pro_attribs_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The root container object for all areas and module entities. </p>
@@ -1732,6 +1739,7 @@ readonly uint&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectId</b>
 <li>NWN.Anvil/src/main/API/Events/Native/CombatEvents/OnCombatRoundStart.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/CombatEvents/OnCombatStatusChange.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/CombatEvents/OnDisarmWeapon.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/CreatureEvents/OnCreatureCheckProficiencies.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/DamageEvents/OnCreatureAttack.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/DamageEvents/OnCreatureDamage.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/DMEvents/DMGiveEvent.cs</li>

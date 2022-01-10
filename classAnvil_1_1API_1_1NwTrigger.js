@@ -1,6 +1,8 @@
 var classAnvil_1_1API_1_1NwTrigger =
 [
     [ "AddToArea", "classAnvil_1_1API_1_1NwTrigger.html#a7acad366fa4c3444540f854b942b943b", null ],
+    [ "Clone", "classAnvil_1_1API_1_1NwTrigger.html#a0eaa759589eb1dee721ee8d81b7319f6", null ],
+    [ "Create", "classAnvil_1_1API_1_1NwTrigger.html#acbfd66aeb29b9d961a660d3f9238c16d", null ],
     [ "Deserialize", "classAnvil_1_1API_1_1NwTrigger.html#ab4cadc3a1cadc662f7b3c2dabb1af680", null ],
     [ "GetObjectsInTrigger", "classAnvil_1_1API_1_1NwTrigger.html#a89b877db30fa14089976f4c5c2cc12d3", null ],
     [ "GetObjectsInTrigger< T >", "classAnvil_1_1API_1_1NwTrigger.html#aac6cbdf380bfea9e60bb37d27369cc10", null ],

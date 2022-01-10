@@ -2,6 +2,7 @@ var classAnvil_1_1API_1_1NwPlaceable =
 [
     [ "AcquireItem", "classAnvil_1_1API_1_1NwPlaceable.html#ab6ddcd61d8826ee529bd08a64a52a87a", null ],
     [ "AddToArea", "classAnvil_1_1API_1_1NwPlaceable.html#ac5acadad9e0f9cb2660e38736828797d", null ],
+    [ "Clone", "classAnvil_1_1API_1_1NwPlaceable.html#aea14e1e57aca0e8d0a4f1e3b9216c6d4", null ],
     [ "Create", "classAnvil_1_1API_1_1NwPlaceable.html#ab8ff80a616d68b7508afc0e1f9f780b9", null ],
     [ "Deserialize", "classAnvil_1_1API_1_1NwPlaceable.html#a7cb6c182df89740bcde72f734dd4229a", null ],
     [ "GetBaseSavingThrow", "classAnvil_1_1API_1_1NwPlaceable.html#a57933104cc89dce16e1ed70cea61aa84", null ],

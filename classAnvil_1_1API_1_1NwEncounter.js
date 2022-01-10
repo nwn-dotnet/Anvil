@@ -1,6 +1,8 @@
 var classAnvil_1_1API_1_1NwEncounter =
 [
     [ "AddToArea", "classAnvil_1_1API_1_1NwEncounter.html#abbc3cdd59a4a53804e54bbb474cf17ad", null ],
+    [ "Clone", "classAnvil_1_1API_1_1NwEncounter.html#afe3c80a11b25f1721a7db1ead7894a9d", null ],
+    [ "Create", "classAnvil_1_1API_1_1NwEncounter.html#af5dcab7d7e916931d449289010d06047", null ],
     [ "Deserialize", "classAnvil_1_1API_1_1NwEncounter.html#add5cb3261002f6820e1d3a35bc3eecaf", null ],
     [ "GetObjectsInEncounterArea", "classAnvil_1_1API_1_1NwEncounter.html#aac6101d639e1f4b787382a920bc8f42e", null ],
     [ "GetObjectsInEncounterArea< T >", "classAnvil_1_1API_1_1NwEncounter.html#ad2fd38769f6840349a6a041bcb8d3162", null ],

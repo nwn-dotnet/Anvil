@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1NativeUtils =
 [
+    [ "CreateFromResRef", "classAnvil_1_1API_1_1NativeUtils.html#ac68fcfc5e70704da881272e9527e73f3", null ],
     [ "DeserializeGff", "classAnvil_1_1API_1_1NativeUtils.html#a12a5e13a464c2745fc5ed2ec259d3d72", null ],
     [ "ExtractLocString", "classAnvil_1_1API_1_1NativeUtils.html#a75475c36bb18beae773ef4c9259645bc", null ],
     [ "IsValidGff", "classAnvil_1_1API_1_1NativeUtils.html#a295ec6f3bd653a6bce9c0f32fd78bcb7", null ],
@@ -16,5 +17,7 @@ var classAnvil_1_1API_1_1NativeUtils =
     [ "ToManagedVector", "classAnvil_1_1API_1_1NativeUtils.html#a04243dc7ae03853d5e74d2c47bf81734", null ],
     [ "ToNativeVector", "classAnvil_1_1API_1_1NativeUtils.html#a5a0c82b7d71901666a90208cf8fedc4d", null ],
     [ "ToNativeVector", "classAnvil_1_1API_1_1NativeUtils.html#a4b0f10b8c7a971b363b1dada09596b42", null ],
-    [ "ToResRef", "classAnvil_1_1API_1_1NativeUtils.html#a23687239564cb1ee7e900145d51f36b5", null ]
+    [ "ToResRef", "classAnvil_1_1API_1_1NativeUtils.html#a23687239564cb1ee7e900145d51f36b5", null ],
+    [ "ToVectorOrientation", "classAnvil_1_1API_1_1NativeUtils.html#acdc2626d67b1dc58e1a3f9c5e35574ab", null ],
+    [ "ResourceManager", "classAnvil_1_1API_1_1NativeUtils.html#a1e404d9e9d12eb9ea604a27a3dfb4cda", null ]
 ];

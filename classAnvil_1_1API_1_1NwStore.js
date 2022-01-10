@@ -2,6 +2,7 @@ var classAnvil_1_1API_1_1NwStore =
 [
     [ "AcquireItem", "classAnvil_1_1API_1_1NwStore.html#aa07718b3d86614068bed901bf2c84dd0", null ],
     [ "AddToArea", "classAnvil_1_1API_1_1NwStore.html#aa405e561f7c2c5c645805d432fa85c75", null ],
+    [ "Clone", "classAnvil_1_1API_1_1NwStore.html#a670b429aae5db2d010f6fa84cd1b19ff", null ],
     [ "Create", "classAnvil_1_1API_1_1NwStore.html#af1b25412bfdf94bcc69534caa91cc639", null ],
     [ "Deserialize", "classAnvil_1_1API_1_1NwStore.html#a017d26a5ffaed248a6b6ca2e00b29e61", null ],
     [ "Open", "classAnvil_1_1API_1_1NwStore.html#ab9997ab8f4b6b63783b4fabf4c43fde6", null ],

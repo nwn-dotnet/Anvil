@@ -5,6 +5,8 @@ var classAnvil_1_1API_1_1NwGameObject =
     [ "ActionWait", "classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638", null ],
     [ "AddToArea", "classAnvil_1_1API_1_1NwGameObject.html#a6bbd1c4042addbe9cc62610c84b834fc", null ],
     [ "ApplyEffect", "classAnvil_1_1API_1_1NwGameObject.html#a49f3df80e23f87e48b83ab66387764d2", null ],
+    [ "Clone", "classAnvil_1_1API_1_1NwGameObject.html#ad02cf21fb218d1680f6a943a391880b0", null ],
+    [ "CloneInternal< T >", "classAnvil_1_1API_1_1NwGameObject.html#a3e6bc43a8f8be01727c01538e151b528", null ],
     [ "Destroy", "classAnvil_1_1API_1_1NwGameObject.html#a258b352c0b385ea6026dd4773e669e71", null ],
     [ "Distance", "classAnvil_1_1API_1_1NwGameObject.html#abe1c02439d4246398df5ef2913e8ef0a", null ],
     [ "DistanceSquared", "classAnvil_1_1API_1_1NwGameObject.html#ae077de5e25b6dfb7b661c42b142dfdd8", null ],
@@ -61,5 +63,6 @@ var classAnvil_1_1API_1_1NwGameObject =
     [ "Rotation", "classAnvil_1_1API_1_1NwGameObject.html#a63d1cb6b4ad2e3d6d9bae9439a8ee39e", null ],
     [ "ScriptVarTable", "classAnvil_1_1API_1_1NwGameObject.html#a5e6dfaa21ff9326954b21e9f3918f356", null ],
     [ "TransitionTarget", "classAnvil_1_1API_1_1NwGameObject.html#a46d7f96e4971379ce3ec95835d9bcdd6", null ],
+    [ "VisibilityOverride", "classAnvil_1_1API_1_1NwGameObject.html#a7a0185edcb261acde7e98eb265d767ab", null ],
     [ "VisualTransform", "classAnvil_1_1API_1_1NwGameObject.html#ae326638a871dd397a526a9127ba9f76f", null ]
 ];

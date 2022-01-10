@@ -1,6 +1,7 @@
 var classAnvil_1_1API_1_1NwAreaOfEffect =
 [
     [ "AddToArea", "classAnvil_1_1API_1_1NwAreaOfEffect.html#ac0272c48ca29d465c2c43635174bb508", null ],
+    [ "Clone", "classAnvil_1_1API_1_1NwAreaOfEffect.html#a90bc8cf36bbed0e353fac7529044529f", null ],
     [ "GetObjectsInEffectArea", "classAnvil_1_1API_1_1NwAreaOfEffect.html#a2d75e451837000549d7bb20049ae9892", null ],
     [ "GetObjectsInEffectArea< T >", "classAnvil_1_1API_1_1NwAreaOfEffect.html#a7853b481e840e6885d8212ea35783625", null ],
     [ "operator CNWSAreaOfEffectObject", "classAnvil_1_1API_1_1NwAreaOfEffect.html#ab74f5d1df02d24765019da10ae6eb12b", null ],

@@ -162,6 +162,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5754ed242c8ebfd2d3b23fa73da9b9bb"><td class="memItemLeft" align="right" valign="top"><a id="a5754ed242c8ebfd2d3b23fa73da9b9bb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayFloatingTextStringOnCreature</b> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> target, string text)</td></tr>
 <tr class="separator:a5754ed242c8ebfd2d3b23fa73da9b9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72d6379daf92b244490ae8728d859428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a72d6379daf92b244490ae8728d859428">DMPossessCreature</a> (<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> creature, bool impersonate=false)</td></tr>
+<tr class="memdesc:a72d6379daf92b244490ae8728d859428"><td class="mdescLeft">&#160;</td><td class="mdescRight">If this player is a DM, causes them to possess the specified creature.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a72d6379daf92b244490ae8728d859428">More...</a><br /></td></tr>
+<tr class="separator:a72d6379daf92b244490ae8728d859428"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6be81659c72fd8310b12916246da2cf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8">EnterCutsceneMode</a> (bool allowLeftClick=false)</td></tr>
 <tr class="memdesc:a6be81659c72fd8310b12916246da2cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br  />
  See <a class="el" href="classAnvil_1_1API_1_1Effect.html#a704380652a799a2d295bb17b017b8d13" title="Creates an effect that allows creatures to pathfind through other creatures without bumping.">Effect.CutsceneGhost</a>, and other Cutscene* effects for hiding and controlling the player creature during cutscene mode.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8">More...</a><br /></td></tr>
@@ -194,9 +197,11 @@ override bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (
 <tr class="memitem:abb2026176f2a997894f47bc06dbee509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#abb2026176f2a997894f47bc06dbee509">FloatingTextStrRef</a> (int strRef, bool broadcastToParty=true)</td></tr>
 <tr class="memdesc:abb2026176f2a997894f47bc06dbee509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays a floating text message above the player's head using the specified string reference.  <a href="classAnvil_1_1API_1_1NwPlayer.html#abb2026176f2a997894f47bc06dbee509">More...</a><br /></td></tr>
 <tr class="separator:abb2026176f2a997894f47bc06dbee509"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8faa350aa66b522a6da3b399d43ef26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab8faa350aa66b522a6da3b399d43ef26">ForceExamine</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlaceable.html">NwPlaceable</a> target)</td></tr>
-<tr class="memdesc:ab8faa350aa66b522a6da3b399d43ef26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the player to examine the specified placeable.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab8faa350aa66b522a6da3b399d43ef26">More...</a><br /></td></tr>
-<tr class="separator:ab8faa350aa66b522a6da3b399d43ef26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31e644aa2e286c410411061f468a9fc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a31e644aa2e286c410411061f468a9fc7">ForceExamine</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
+<tr class="memdesc:a31e644aa2e286c410411061f468a9fc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the player to examine the specified game object.<br  />
+ Works on <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar">NwCreature</a>, <a class="el" href="classAnvil_1_1API_1_1NwPlaceable.html" title="A static world object that is optionally interactable or destroyable.">NwPlaceable</a>, <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a> and <a class="el" href="classAnvil_1_1API_1_1NwDoor.html" title="A tile-based door.">NwDoor</a>.<br  />
+ Does nothing for other object types.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a31e644aa2e286c410411061f468a9fc7">More...</a><br /></td></tr>
+<tr class="separator:a31e644aa2e286c410411061f468a9fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3a458927a1bde6bdb714306154edb65"><td class="memItemLeft" align="right" valign="top">unsafe byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae3a458927a1bde6bdb714306154edb65">GetAreaExplorationState</a> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area)</td></tr>
 <tr class="memdesc:ae3a458927a1bde6bdb714306154edb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this player's area exploration state for the specified area.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae3a458927a1bde6bdb714306154edb65">More...</a><br /></td></tr>
 <tr class="separator:ae3a458927a1bde6bdb714306154edb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,6 +217,9 @@ override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</
 <tr class="memitem:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1JournalEntry.html">JournalEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acdbd1d4d0a044f7e722f1ed42936e36f">GetJournalEntry</a> (string questTag)</td></tr>
 <tr class="memdesc:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an existing journal entry with the specified quest tag.  <a href="classAnvil_1_1API_1_1NwPlayer.html#acdbd1d4d0a044f7e722f1ed42936e36f">More...</a><br /></td></tr>
 <tr class="separator:acdbd1d4d0a044f7e722f1ed42936e36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01f742420e86f7fd493b5759ad91b8c3"><td class="memItemLeft" align="right" valign="top">VisibilityMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a01f742420e86f7fd493b5759ad91b8c3">GetPersonalVisibilityOverride</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
+<tr class="memdesc:a01f742420e86f7fd493b5759ad91b8c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visiblity override for the specified object for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a01f742420e86f7fd493b5759ad91b8c3">More...</a><br /></td></tr>
+<tr class="separator:a01f742420e86f7fd493b5759ad91b8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeeb2c99dae407b366ef8e1597c342038"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aeeb2c99dae407b366ef8e1597c342038">GiveXp</a> (int xPAmount)</td></tr>
 <tr class="memdesc:aeeb2c99dae407b366ef8e1597c342038"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives the specified XP to the player, adjusted by any multiclass penalty.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aeeb2c99dae407b366ef8e1597c342038">More...</a><br /></td></tr>
 <tr class="separator:aeeb2c99dae407b366ef8e1597c342038"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -318,6 +326,9 @@ byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (bool
 <tr class="memitem:a3097068bed88aef4766eedff9a2245fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3097068bed88aef4766eedff9a2245fd">SetPCReputation</a> (bool like, <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> target)</td></tr>
 <tr class="memdesc:a3097068bed88aef4766eedff9a2245fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if the player should like, or unlike the specified player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3097068bed88aef4766eedff9a2245fd">More...</a><br /></td></tr>
 <tr class="separator:a3097068bed88aef4766eedff9a2245fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64db0e1fe04d86635cba198cf9aa010c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a64db0e1fe04d86635cba198cf9aa010c">SetPersonalVisibilityOverride</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target, VisibilityMode visibilityMode)</td></tr>
+<tr class="memdesc:a64db0e1fe04d86635cba198cf9aa010c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visiblity override for the specified object for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a64db0e1fe04d86635cba198cf9aa010c">More...</a><br /></td></tr>
+<tr class="separator:a64db0e1fe04d86635cba198cf9aa010c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a">SetTextureOverride</a> (string oldTexName, string newTexName)</td></tr>
 <tr class="memdesc:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes ControlledCreature PC load a new texture instead of another.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a">More...</a><br /></td></tr>
 <tr class="separator:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -345,6 +356,9 @@ byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (bool
 <tr class="memitem:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">UnlockAchievement</a> (string achievementId, int lastValue=0, int currentValue=0, int maxValue=0)</td></tr>
 <tr class="memdesc:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock an achievement for the player who must be logged in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">More...</a><br /></td></tr>
 <tr class="separator:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac411575f614c9c99a7ce5fb330e57742"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac411575f614c9c99a7ce5fb330e57742">UnpossessCreature</a> ()</td></tr>
+<tr class="memdesc:ac411575f614c9c99a7ce5fb330e57742"><td class="mdescLeft">&#160;</td><td class="mdescRight">If this player is possessing a creature, instructs them to unpossess them.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac411575f614c9c99a7ce5fb330e57742">More...</a><br /></td></tr>
+<tr class="separator:ac411575f614c9c99a7ce5fb330e57742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a177e0618112f153fe00e296718eeac5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f">Vibrate</a> (VibratorMotor motor, float strength, TimeSpan duration)</td></tr>
 <tr class="memdesc:a177e0618112f153fe00e296718eeac5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vibrates the player's device or controller. Does nothing if vibration is not supported.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a177e0618112f153fe00e296718eeac5f">More...</a><br /></td></tr>
 <tr class="separator:a177e0618112f153fe00e296718eeac5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -385,6 +399,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a197b9eefcb69683d25775a4ee097885d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a197b9eefcb69683d25775a4ee097885d">IPAddress</a><code> [get]</code></td></tr>
 <tr class="memdesc:a197b9eefcb69683d25775a4ee097885d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the connecting IP address for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a197b9eefcb69683d25775a4ee097885d">More...</a><br /></td></tr>
 <tr class="separator:a197b9eefcb69683d25775a4ee097885d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a027d37aba88941a6baac94da460f3677"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a027d37aba88941a6baac94da460f3677">IsConnected</a><code> [get]</code></td></tr>
+<tr class="memdesc:a027d37aba88941a6baac94da460f3677"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this player is connected and playing (true), or if this player is still on character selection or connecting (false).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a027d37aba88941a6baac94da460f3677">More...</a><br /></td></tr>
+<tr class="separator:a027d37aba88941a6baac94da460f3677"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abade420c3c1e86d852c60cc7d138feb6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#abade420c3c1e86d852c60cc7d138feb6">IsConnectionRelayed</a><code> [get]</code></td></tr>
 <tr class="memdesc:abade420c3c1e86d852c60cc7d138feb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether the player has connected to the server over a relay (instead of directly).  <a href="classAnvil_1_1API_1_1NwPlayer.html#abade420c3c1e86d852c60cc7d138feb6">More...</a><br /></td></tr>
 <tr class="separator:abade420c3c1e86d852c60cc7d138feb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1179,6 +1196,57 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 
 </div>
 </div>
+<a id="a72d6379daf92b244490ae8728d859428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72d6379daf92b244490ae8728d859428">&#9670;&nbsp;</a></span>DMPossessCreature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.DMPossessCreature </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td>
+          <td class="paramname"><em>creature</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>impersonate</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If this player is a DM, causes them to possess the specified creature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">creature</td><td></td></tr>
+    <tr><td class="paramname">impersonate</td><td>True if the DM should retain their full powers during possession, false if they get the creature's powers.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidOperationException</td><td>Thrown if the player is not a DM, or the creature is already possessed by another player.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a6be81659c72fd8310b12916246da2cf8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6be81659c72fd8310b12916246da2cf8">&#9670;&nbsp;</a></span>EnterCutsceneMode()</h2>
 
@@ -1486,8 +1554,8 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 
 </div>
 </div>
-<a id="ab8faa350aa66b522a6da3b399d43ef26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8faa350aa66b522a6da3b399d43ef26">&#9670;&nbsp;</a></span>ForceExamine()</h2>
+<a id="a31e644aa2e286c410411061f468a9fc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31e644aa2e286c410411061f468a9fc7">&#9670;&nbsp;</a></span>ForceExamine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1498,7 +1566,7 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
         <tr>
           <td class="memname">void Anvil.API.NwPlayer.ForceExamine </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwPlaceable.html">NwPlaceable</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td>
           <td class="paramname"><em>target</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1510,10 +1578,12 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 </table>
 </div><div class="memdoc">
 
-<p>Forces the player to examine the specified placeable. </p>
+<p>Forces the player to examine the specified game object.<br  />
+ Works on <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar">NwCreature</a>, <a class="el" href="classAnvil_1_1API_1_1NwPlaceable.html" title="A static world object that is optionally interactable or destroyable.">NwPlaceable</a>, <a class="el" href="classAnvil_1_1API_1_1NwItem.html" title="An item object that can be carried by creatures, stored in placeable containers, or dropped in an anr...">NwItem</a> and <a class="el" href="classAnvil_1_1API_1_1NwDoor.html" title="A tile-based door.">NwDoor</a>.<br  />
+ Does nothing for other object types. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">target</td><td>The placeable to examine.</td></tr>
+    <tr><td class="paramname">target</td><td>The GameObject to examine.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1693,6 +1763,34 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classAnvil_1_1API_1_1JournalEntry.html">JournalEntry</a> structure containing the journal entry data, null if an entry with the specified tag cannot be found.</dd></dl>
+
+</div>
+</div>
+<a id="a01f742420e86f7fd493b5759ad91b8c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01f742420e86f7fd493b5759ad91b8c3">&#9670;&nbsp;</a></span>GetPersonalVisibilityOverride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VisibilityMode Anvil.API.NwPlayer.GetPersonalVisibilityOverride </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the visiblity override for the specified object for this player. </p>
 
 </div>
 </div>
@@ -2833,6 +2931,44 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
+<a id="a64db0e1fe04d86635cba198cf9aa010c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64db0e1fe04d86635cba198cf9aa010c">&#9670;&nbsp;</a></span>SetPersonalVisibilityOverride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetPersonalVisibilityOverride </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VisibilityMode&#160;</td>
+          <td class="paramname"><em>visibilityMode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the visiblity override for the specified object for this player. </p>
+
+</div>
+</div>
 <a id="adeeb25eb5bc3151144cb3ac9025f8a4a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adeeb25eb5bc3151144cb3ac9025f8a4a">&#9670;&nbsp;</a></span>SetTextureOverride()</h2>
 
@@ -3203,6 +3339,33 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
+<a id="ac411575f614c9c99a7ce5fb330e57742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac411575f614c9c99a7ce5fb330e57742">&#9670;&nbsp;</a></span>UnpossessCreature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.UnpossessCreature </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If this player is possessing a creature, instructs them to unpossess them. </p>
+
+</div>
+</div>
 <a id="a177e0618112f153fe00e296718eeac5f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a177e0618112f153fe00e296718eeac5f">&#9670;&nbsp;</a></span>Vibrate()</h2>
 
@@ -3422,6 +3585,30 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 </div><div class="memdoc">
 
 <p>Gets the connecting IP address for the player. </p>
+
+</div>
+</div>
+<a id="a027d37aba88941a6baac94da460f3677"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a027d37aba88941a6baac94da460f3677">&#9670;&nbsp;</a></span>IsConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwPlayer.IsConnected</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets if this player is connected and playing (true), or if this player is still on character selection or connecting (false). </p>
 
 </div>
 </div>
