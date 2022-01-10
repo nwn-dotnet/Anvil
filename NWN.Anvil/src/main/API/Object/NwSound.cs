@@ -25,68 +25,6 @@ namespace Anvil.API
       set => NWScript.SoundObjectSetVolume(this, value);
     }
 
-    public static NwSound Deserialize(byte[] serialized)
-    {
-      CNWSSoundObject soundObject = null;
-
-      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
-      {
-        if (!resGff.IsValidGff("UTS"))
-        {
-          return false;
-        }
-
-        soundObject = new CNWSSoundObject(Invalid);
-        if (soundObject.Load(resGff, resStruct).ToBool())
-        {
-          soundObject.LoadObjectState(resGff, resStruct);
-          GC.SuppressFinalize(soundObject);
-          return true;
-        }
-
-        soundObject.Dispose();
-        return false;
-      });
-
-      return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
-    }
-
-    public static implicit operator CNWSSoundObject(NwSound sound)
-    {
-      return sound?.SoundObject;
-    }
-
-    /// <summary>
-    /// Plays this sound object.
-    /// </summary>
-    public void Play()
-    {
-      NWScript.SoundObjectPlay(this);
-    }
-
-    public override byte[] Serialize()
-    {
-      return NativeUtils.SerializeGff("UTS", (resGff, resStruct) =>
-      {
-        SoundObject.SaveObjectState(resGff, resStruct);
-        SoundObject.Save(resGff, resStruct);
-        return true;
-      });
-    }
-
-    public override NwGameObject Clone(Location location, string newTag = null, bool copyLocalState = true)
-    {
-      throw new NotSupportedException("Sound objects may not be cloned.");
-    }
-
-    /// <summary>
-    /// Stops this sound object from playing.
-    /// </summary>
-    public void Stop()
-    {
-      NWScript.SoundObjectStop(this);
-    }
-
     public static NwSound Create(string template, Location location, string newTag = null)
     {
       if (string.IsNullOrEmpty(template))
@@ -121,6 +59,68 @@ namespace Anvil.API
       });
 
       return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
+    }
+
+    public static NwSound Deserialize(byte[] serialized)
+    {
+      CNWSSoundObject soundObject = null;
+
+      bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
+      {
+        if (!resGff.IsValidGff("UTS"))
+        {
+          return false;
+        }
+
+        soundObject = new CNWSSoundObject(Invalid);
+        if (soundObject.Load(resGff, resStruct).ToBool())
+        {
+          soundObject.LoadObjectState(resGff, resStruct);
+          GC.SuppressFinalize(soundObject);
+          return true;
+        }
+
+        soundObject.Dispose();
+        return false;
+      });
+
+      return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
+    }
+
+    public static implicit operator CNWSSoundObject(NwSound sound)
+    {
+      return sound?.SoundObject;
+    }
+
+    public override NwGameObject Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      throw new NotSupportedException("Sound objects may not be cloned.");
+    }
+
+    /// <summary>
+    /// Plays this sound object.
+    /// </summary>
+    public void Play()
+    {
+      NWScript.SoundObjectPlay(this);
+    }
+
+    public override byte[] Serialize()
+    {
+      return NativeUtils.SerializeGff("UTS", (resGff, resStruct) =>
+      {
+        SoundObject.SaveObjectState(resGff, resStruct);
+        SoundObject.Save(resGff, resStruct);
+        return true;
+      });
+    }
+
+    /// <summary>
+    /// Stops this sound object from playing.
+    /// </summary>
+    public void Stop()
+    {
+      NWScript.SoundObjectStop(this);
     }
 
     internal override void RemoveFromArea()

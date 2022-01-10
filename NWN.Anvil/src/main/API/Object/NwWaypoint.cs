@@ -52,6 +52,11 @@ namespace Anvil.API
       return waypoint?.Waypoint;
     }
 
+    public override NwWaypoint Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      return CloneInternal<NwWaypoint>(location, newTag, copyLocalState);
+    }
+
     public override byte[] Serialize()
     {
       return NativeUtils.SerializeGff("UTW", (resGff, resStruct) =>
@@ -59,11 +64,6 @@ namespace Anvil.API
         Waypoint.SaveObjectState(resGff, resStruct);
         return Waypoint.SaveWaypoint(resGff, resStruct).ToBool();
       });
-    }
-
-    public override NwWaypoint Clone(Location location, string newTag = null, bool copyLocalState = true)
-    {
-      return CloneInternal<NwWaypoint>(location, newTag, copyLocalState);
     }
 
     internal override void RemoveFromArea()

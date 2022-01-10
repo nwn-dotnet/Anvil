@@ -28,6 +28,11 @@ namespace Anvil.API
       return areaOfEffect?.AreaOfEffect;
     }
 
+    public override NwAreaOfEffect Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      throw new NotSupportedException("Area of Effect objects may not be cloned.");
+    }
+
     /// <summary>
     /// Gets all objects of the given type that are currently in this area of effect.
     /// </summary>
@@ -63,11 +68,6 @@ namespace Anvil.API
     public override byte[] Serialize()
     {
       throw new NotSupportedException();
-    }
-
-    public override NwAreaOfEffect Clone(Location location, string newTag = null, bool copyLocalState = true)
-    {
-      throw new NotSupportedException("Area of Effect objects may not be cloned.");
     }
 
     internal override void RemoveFromArea()

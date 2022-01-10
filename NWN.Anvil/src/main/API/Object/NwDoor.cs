@@ -33,6 +33,48 @@ namespace Anvil.API
       set => Door.m_bAutoRemoveKey = value.ToInt();
     }
 
+    /// <summary>
+    /// Creates a door at the specified location.
+    /// </summary>
+    /// <param name="template">The door resref template from the toolset palette.</param>
+    /// <param name="location">The location where this door will spawn.</param>
+    /// <param name="newTag">The new tag to assign this door. Leave uninitialized/as null to use the template's tag.</param>
+    public static NwDoor Create(string template, Location location, string newTag = null)
+    {
+      if (string.IsNullOrEmpty(template))
+      {
+        return default;
+      }
+
+      CNWSArea area = location.Area.Area;
+      Vector position = location.Position.ToNativeVector();
+      Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
+
+      CNWSDoor door = null;
+      bool result = NativeUtils.CreateFromResRef(ResRefType.UTD, template, (resGff, resStruct) =>
+      {
+        door = new CNWSDoor();
+        GC.SuppressFinalize(door);
+
+        door.m_sTemplate = template.ToExoString();
+        door.LoadDoor(resGff, resStruct);
+        door.LoadVarTable(resGff, resStruct);
+
+        door.SetPosition(position);
+        door.SetOrientation(orientation);
+
+        if (!string.IsNullOrEmpty(newTag))
+        {
+          door.m_sTag = newTag.ToExoString();
+          NwModule.Instance.Module.AddObjectToLookupTable(door.m_sTag, door.m_idSelf);
+        }
+
+        door.AddToArea(area, position.x, position.y, area.ComputeHeight(position));
+      });
+
+      return result && door != null ? door.ToNwObject<NwDoor>() : null;
+    }
+
     public static NwDoor Deserialize(byte[] serialized)
     {
       CNWSDoor door = null;
@@ -62,6 +104,11 @@ namespace Anvil.API
     public static implicit operator CNWSDoor(NwDoor door)
     {
       return door?.Door;
+    }
+
+    public override NwDoor Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty, bCopyLocalState: copyLocalState.ToInt()).ToNwObject<NwDoor>();
     }
 
     /// <summary>
@@ -118,11 +165,6 @@ namespace Anvil.API
       });
     }
 
-    public override NwDoor Clone(Location location, string newTag = null, bool copyLocalState = true)
-    {
-      return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty, bCopyLocalState: copyLocalState.ToInt()).ToNwObject<NwDoor>();
-    }
-
     /// <summary>
     /// Sets this door's base save value for the specified saving throw.
     /// </summary>
@@ -145,48 +187,6 @@ namespace Anvil.API
         default:
           throw new ArgumentOutOfRangeException(nameof(savingThrow), savingThrow, null);
       }
-    }
-
-    /// <summary>
-    /// Creates a door at the specified location.
-    /// </summary>
-    /// <param name="template">The door resref template from the toolset palette.</param>
-    /// <param name="location">The location where this door will spawn.</param>
-    /// <param name="newTag">The new tag to assign this door. Leave uninitialized/as null to use the template's tag.</param>
-    public static NwDoor Create(string template, Location location, string newTag = null)
-    {
-      if (string.IsNullOrEmpty(template))
-      {
-        return default;
-      }
-
-      CNWSArea area = location.Area.Area;
-      Vector position = location.Position.ToNativeVector();
-      Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
-
-      CNWSDoor door = null;
-      bool result = NativeUtils.CreateFromResRef(ResRefType.UTD, template, (resGff, resStruct) =>
-      {
-        door = new CNWSDoor();
-        GC.SuppressFinalize(door);
-
-        door.m_sTemplate = template.ToExoString();
-        door.LoadDoor(resGff, resStruct);
-        door.LoadVarTable(resGff, resStruct);
-
-        door.SetPosition(position);
-        door.SetOrientation(orientation);
-
-        if (!string.IsNullOrEmpty(newTag))
-        {
-          door.m_sTag = newTag.ToExoString();
-          NwModule.Instance.Module.AddObjectToLookupTable(door.m_sTag, door.m_idSelf);
-        }
-
-        door.AddToArea(area, position.x, position.y, area.ComputeHeight(position));
-      });
-
-      return result && door != null ? door.ToNwObject<NwDoor>() : null;
     }
 
     internal override void RemoveFromArea()

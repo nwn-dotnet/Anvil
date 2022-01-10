@@ -12,11 +12,6 @@ namespace Anvil.API.Events
   public sealed class OnCreatureCheckProficiencies : IEvent
   {
     /// <summary>
-    /// Gets or sets an override result to use for this proficiency check.
-    /// </summary>
-    public CheckProficiencyOverride ResultOverride { get; set; }
-
-    /// <summary>
     /// The creature whose proficiencies are being checked for the item to be equipped.
     /// </summary>
     public NwCreature Creature { get; private init; }
@@ -25,6 +20,11 @@ namespace Anvil.API.Events
     /// The item attempting to be equipped.
     /// </summary>
     public NwItem Item { get; private init; }
+
+    /// <summary>
+    /// Gets or sets an override result to use for this proficiency check.
+    /// </summary>
+    public CheckProficiencyOverride ResultOverride { get; set; }
 
     /// <summary>
     /// The inventory slot the item is attempting to be equipped to.

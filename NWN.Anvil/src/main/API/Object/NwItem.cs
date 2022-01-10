@@ -338,20 +338,6 @@ namespace Anvil.API
       return clone;
     }
 
-    private static void CleanLocalVariables(NwItem clone)
-    {
-      if (clone == null)
-      {
-        return;
-      }
-
-      List<ObjectVariable> localVariables = clone.LocalVariables.ToList();
-      foreach (ObjectVariable localVariable in localVariables)
-      {
-        localVariable.Delete();
-      }
-    }
-
     /// <summary>
     /// Gets the number of uses per day remaining for the specified item property on this item.
     /// </summary>
@@ -414,6 +400,20 @@ namespace Anvil.API
       else
       {
         Item.RemoveFromArea();
+      }
+    }
+
+    private static void CleanLocalVariables(NwItem clone)
+    {
+      if (clone == null)
+      {
+        return;
+      }
+
+      List<ObjectVariable> localVariables = clone.LocalVariables.ToList();
+      foreach (ObjectVariable localVariable in localVariables)
+      {
+        localVariable.Delete();
       }
     }
 

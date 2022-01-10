@@ -143,6 +143,41 @@ namespace Anvil.API
       set => NWScript.SetEncounterSpawnsCurrent(value, this);
     }
 
+    public static NwEncounter Create(string template, Location location, string newTag = null)
+    {
+      if (string.IsNullOrEmpty(template))
+      {
+        return default;
+      }
+
+      CNWSArea area = location.Area.Area;
+      Vector position = location.Position.ToNativeVector();
+      Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
+
+      CNWSEncounter encounter = null;
+      bool result = NativeUtils.CreateFromResRef(ResRefType.UTE, template, (resGff, resStruct) =>
+      {
+        encounter = new CNWSEncounter();
+        GC.SuppressFinalize(encounter);
+        encounter.m_sTemplate = template.ToExoString();
+        encounter.LoadEncounter(resGff, resStruct);
+        encounter.LoadVarTable(resGff, resStruct);
+
+        encounter.SetPosition(position);
+        encounter.SetOrientation(orientation);
+
+        if (!string.IsNullOrEmpty(newTag))
+        {
+          encounter.m_sTag = newTag.ToExoString();
+          NwModule.Instance.Module.AddObjectToLookupTable(encounter.m_sTag, encounter.m_idSelf);
+        }
+
+        encounter.AddToArea(area, position.x, position.y, area.ComputeHeight(position));
+      });
+
+      return result && encounter != null ? encounter.ToNwObject<NwEncounter>() : null;
+    }
+
     public static NwEncounter Deserialize(byte[] serialized)
     {
       CNWSEncounter encounter = null;
@@ -172,6 +207,11 @@ namespace Anvil.API
     public static implicit operator CNWSEncounter(NwEncounter encounter)
     {
       return encounter?.Encounter;
+    }
+
+    public override NwEncounter Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      throw new NotSupportedException("Encounter objects may not be cloned.");
     }
 
     /// <summary>
@@ -209,46 +249,6 @@ namespace Anvil.API
         Encounter.SaveObjectState(resGff, resStruct);
         return Encounter.SaveEncounter(resGff, resStruct).ToBool();
       });
-    }
-
-    public override NwEncounter Clone(Location location, string newTag = null, bool copyLocalState = true)
-    {
-      throw new NotSupportedException("Encounter objects may not be cloned.");
-    }
-
-    public static NwEncounter Create(string template, Location location, string newTag = null)
-    {
-      if (string.IsNullOrEmpty(template))
-      {
-        return default;
-      }
-
-      CNWSArea area = location.Area.Area;
-      Vector position = location.Position.ToNativeVector();
-      Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
-
-      CNWSEncounter encounter = null;
-      bool result = NativeUtils.CreateFromResRef(ResRefType.UTE, template, (resGff, resStruct) =>
-      {
-        encounter = new CNWSEncounter();
-        GC.SuppressFinalize(encounter);
-        encounter.m_sTemplate = template.ToExoString();
-        encounter.LoadEncounter(resGff, resStruct);
-        encounter.LoadVarTable(resGff, resStruct);
-
-        encounter.SetPosition(position);
-        encounter.SetOrientation(orientation);
-
-        if (!string.IsNullOrEmpty(newTag))
-        {
-          encounter.m_sTag = newTag.ToExoString();
-          NwModule.Instance.Module.AddObjectToLookupTable(encounter.m_sTag, encounter.m_idSelf);
-        }
-
-        encounter.AddToArea(area, position.x, position.y, area.ComputeHeight(position));
-      });
-
-      return result && encounter != null ? encounter.ToNwObject<NwEncounter>() : null;
     }
 
     internal override void RemoveFromArea()
