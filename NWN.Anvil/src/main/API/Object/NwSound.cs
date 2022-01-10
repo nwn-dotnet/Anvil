@@ -87,6 +87,42 @@ namespace Anvil.API
       NWScript.SoundObjectStop(this);
     }
 
+    public static NwSound Create(string template, Location location, string newTag = null)
+    {
+      if (string.IsNullOrEmpty(template))
+      {
+        return default;
+      }
+
+      CNWSArea area = location.Area.Area;
+      Vector position = location.Position.ToNativeVector();
+      Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
+
+      CNWSSoundObject soundObject = null;
+      bool result = NativeUtils.CreateFromResRef(ResRefType.UTS, template, (resGff, resStruct) =>
+      {
+        soundObject = new CNWSSoundObject();
+        GC.SuppressFinalize(soundObject);
+        soundObject.m_sTemplate = template.ToExoString();
+        soundObject.Load(resGff, resStruct);
+        soundObject.LoadVarTable(resGff, resStruct);
+
+        soundObject.SetPosition(position);
+        soundObject.SetOrientation(orientation);
+
+        if (!string.IsNullOrEmpty(newTag))
+        {
+          soundObject.m_sTag = newTag.ToExoString();
+          NwModule.Instance.Module.AddObjectToLookupTable(soundObject.m_sTag, soundObject.m_idSelf);
+        }
+
+        soundObject.AddToArea(area);
+        soundObject.ChangePosition(position);
+      });
+
+      return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
+    }
+
     internal override void RemoveFromArea()
     {
       SoundObject.RemoveFromArea();
