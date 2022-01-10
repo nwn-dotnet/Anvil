@@ -15,7 +15,12 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...HEAD
 - NwGameObject: Added `VisibilityOverride` property for customizing object visibility globally.
 - Creature Events: Added `OnCreatureCheckProficiencies` event.
 - Added `Local/Campaign/PersistentVariableEnum<T>` object variable type for user enum types.  The underlying type must be an integer.
-- Added `NwObject.Clone()` method for cloning non-creature and item objects.
+- NwGameObject: Added `Clone` method for cloning non-creature and item objects.
+- NwDoor: Added `Create` method for creating doors from ResRefs.
+- NwEncounter: Added `Create` method for creating encounters from ResRefs.
+- NwSound: Added `Create` method for creating sound objects from ResRefs.
+- NwTrigger: Added `Create` method for creating triggers from ResRefs.
+- NWN.Anvil.TestRunner: Added generator for generating ResRef constants from the standard creator palette.
 
 ### Package Updates
 - NWN.Core: 8193.34.0 -> 8193.34.1
