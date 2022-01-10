@@ -43,6 +43,11 @@ namespace Anvil.API.Events
       private static int OnGetEffectImmunity(void* pStats, byte nType, void* pVerses, int bConsiderFeats)
       {
         CNWSCreatureStats creatureStats = CNWSCreatureStats.FromPointer(pStats);
+        if (creatureStats == null)
+        {
+          return Hook.CallOriginal(pStats, nType, pVerses, bConsiderFeats);
+        }
+
         OnCheckEffectImmunity eventData = ProcessEvent(new OnCheckEffectImmunity
         {
           Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>(),

@@ -3,6 +3,43 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.1
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...v8193.34.1
+
+### Added
+- NwPlayer: `IsConnected` boolean added. Should be checked when enumerating `NwModule.Players`
+- NwPlayer: Added `DMPossessCreature` and `UnpossessCreature` for controlling player creature.
+- NwPlayer: `ForceExamine` now supports creatures, placeables, items and doors.
+- Implemented `NWN.Anvil.TestRunner` for running automated tests.
+- NwPlayer: Added `Get/SetPersonalVisibilityOverride` methods for customizing object visibility per player.
+- NwGameObject: Added `VisibilityOverride` property for customizing object visibility globally.
+- Creature Events: Added `OnCreatureCheckProficiencies` event.
+- Added `Local/Campaign/PersistentVariableEnum<T>` object variable type for user enum types.  The underlying type must be an integer.
+- NwGameObject: Added `Clone` method for cloning non-creature and item objects.
+- NwDoor: Added `Create` method for creating doors from ResRefs.
+- NwEncounter: Added `Create` method for creating encounters from ResRefs.
+- NwSound: Added `Create` method for creating sound objects from ResRefs.
+- NwTrigger: Added `Create` method for creating triggers from ResRefs.
+- NWN.Anvil.TestRunner: Added generator for generating ResRef constants from the standard creator palette.
+
+### Package Updates
+- NWN.Core: 8193.34.0 -> 8193.34.1
+
+### Changed
+- `NwCreature.WalkRateCap` and `NwCreature.AlwaysWalk` properties are no-longer persistent. Additionally, the services and functions are not hooked until the associated property is used for the first time.
+- `NwObject.ObjectId` is now public.
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- `AnvilCore.Reload()` now uses the scheduler service to schedule the reload. This should fix some edge cases where async methods would hold a reference preventing unload.
+- Fixed an issue where the `SchedulerService` would throw an exception if the server was shutdown/reloaded during a schedule callback.
+- Fixed a rare crash when subscribed to effect events.
+
 ## 8193.34.0
 https://github.com/nwn-dotnet/Anvil/compare/v8193.33.5...v8193.34.0
 

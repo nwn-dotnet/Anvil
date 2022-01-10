@@ -124,6 +124,11 @@ namespace Anvil.API
       Store.AcquireItem(item.Item, true.ToInt(), 0xFF, 0xFF);
     }
 
+    public override NwStore Clone(Location location, string newTag = null, bool copyLocalState = true)
+    {
+      return CloneInternal<NwStore>(location, newTag, copyLocalState);
+    }
+
     /// <summary>
     /// Open oStore for oPC.<br/>
     /// You can mark up or down the prices with the optional parameters.<br/>

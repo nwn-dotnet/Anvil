@@ -70,19 +70,19 @@ namespace Anvil.API.Events
 
       private static OnCreatureAttack[] GetAttackEvents(void* pCreature, void* pTarget, int nAttacks)
       {
-        CNWSCreature cnwsCreature = CNWSCreature.FromPointer(pCreature);
-        NwCreature creature = cnwsCreature.ToNwObject<NwCreature>();
+        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
         NwGameObject target = CNWSObject.FromPointer(pTarget).ToNwObject<NwGameObject>();
+        NwCreature nwCreature = creature.ToNwObject<NwCreature>();
 
         // m_nCurrentAttack points to the attack after this flurry.
-        int attackNumberOffset = cnwsCreature.m_pcCombatRound.m_nCurrentAttack - nAttacks;
-        CNWSCombatRound combatRound = cnwsCreature.m_pcCombatRound;
+        int attackNumberOffset = creature.m_pcCombatRound.m_nCurrentAttack - nAttacks;
+        CNWSCombatRound combatRound = creature.m_pcCombatRound;
 
         // Create an event for each attack in the flurry
         OnCreatureAttack[] attackEvents = new OnCreatureAttack[nAttacks];
         for (int i = 0; i < nAttacks; i++)
         {
-          attackEvents[i] = GetEventData(creature, target, combatRound, attackNumberOffset + i);
+          attackEvents[i] = GetEventData(nwCreature, target, combatRound, attackNumberOffset + i);
         }
 
         return attackEvents;
@@ -116,6 +116,12 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnSignalMeleeDamage(void* pCreature, void* pTarget, int nAttacks)
       {
+        if (pCreature == null || pTarget == null)
+        {
+          signalMeleeDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
+          return;
+        }
+
         OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
         foreach (OnCreatureAttack eventData in attackEvents)
         {
@@ -128,6 +134,12 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnSignalRangedDamage(void* pCreature, void* pTarget, int nAttacks)
       {
+        if (pCreature == null || pTarget == null)
+        {
+          signalRangedDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
+          return;
+        }
+
         OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
         foreach (OnCreatureAttack eventData in attackEvents)
         {

@@ -20,10 +20,10 @@ namespace Anvil.API
     private const byte QuickBarButtonCount = 36;
 
     [Inject]
-    private static CreatureForceWalkService CreatureForceWalkService { get; set; }
+    private static Lazy<CreatureForceWalkService> CreatureForceWalkService { get; set; }
 
     [Inject]
-    private static CreatureWalkRateCapService CreatureWalkRateCapService { get; set; }
+    private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; }
 
     internal readonly CNWSCreature Creature;
 
@@ -65,8 +65,8 @@ namespace Anvil.API
     /// </summary>
     public bool AlwaysWalk
     {
-      get => CreatureForceWalkService.GetAlwaysWalk(this);
-      set => CreatureForceWalkService.SetAlwaysWalk(this, value);
+      get => CreatureForceWalkService.Value.GetAlwaysWalk(this);
+      set => CreatureForceWalkService.Value.SetAlwaysWalk(this, value);
     }
 
     /// <summary>
@@ -770,8 +770,8 @@ namespace Anvil.API
     /// </summary>
     public float? WalkRateCap
     {
-      get => CreatureWalkRateCapService.GetWalkRateCap(this);
-      set => CreatureWalkRateCapService.SetWalkRateCap(this, value);
+      get => CreatureWalkRateCapService.Value.GetWalkRateCap(this);
+      set => CreatureWalkRateCapService.Value.SetWalkRateCap(this, value);
     }
 
     /// <summary>
@@ -1277,16 +1277,9 @@ namespace Anvil.API
       return (ResistSpellResult)NWScript.ResistSpell(this, target);
     }
 
-    /// <summary>
-    /// Creates a copy of this creature.
-    /// </summary>
-    /// <param name="location">The location to place the new creature. Defaults to the current creature's location.</param>
-    /// <param name="newTag">A new tag to assign to the creature.</param>
-    /// <returns>The cloned creature.</returns>
-    public NwCreature Clone(Location location = null, string newTag = null)
+    public override NwCreature Clone(Location location, string newTag = null, bool copyLocalState = true)
     {
-      location ??= Location;
-      return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty).ToNwObject<NwCreature>();
+      return CloneInternal<NwCreature>(location, newTag, copyLocalState);
     }
 
     /// <summary>

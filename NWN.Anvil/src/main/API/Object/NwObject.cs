@@ -21,15 +21,22 @@ namespace Anvil.API
     private protected static EventService EventService { get; private set; }
 
     [Inject]
+    private protected static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; private set; }
+
+    [Inject]
     private protected static ResourceManager ResourceManager { get; private set; }
 
     [Inject]
     private protected static VirtualMachine VirtualMachine { get; private set; }
 
+    /// <summary>
+    /// The ID of this object instance. Not persistent, changes after every spawn of the object.<br/>
+    /// See <see cref="UUID"/> for a persistent unique ID for objects.
+    /// </summary>
+    public readonly uint ObjectId;
+
     [UsedImplicitly]
     internal readonly ICGameObject Object;
-
-    protected readonly uint ObjectId;
 
     protected NwObject(ICGameObject gameObject)
     {

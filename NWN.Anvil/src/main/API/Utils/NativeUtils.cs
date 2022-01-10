@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Anvil.Services;
+using NLog;
 using NWN.Native.API;
 using Vector = NWN.Native.API.Vector;
 
@@ -10,8 +12,41 @@ namespace Anvil.API
 {
   public static unsafe class NativeUtils
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private const string DefaultGffVersion = "V3.2";
     private static readonly CExoString DefaultGffVersionExoString = "V3.2".ToExoString();
+
+    [Inject]
+    private static ResourceManager ResourceManager { get; set; }
+
+    public static bool CreateFromResRef(ResRefType resRefType, string resRef, Action<CResGFF, CResStruct> deserializeAction)
+    {
+      if (string.IsNullOrEmpty(resRef))
+      {
+        return false;
+      }
+
+      if (!ResourceManager.IsValidResource(resRef, resRefType))
+      {
+        return false;
+      }
+
+      CResGFF resGff = new CResGFF((ushort)resRefType, $"{resRefType} ".GetNullTerminatedString(), resRef.ToResRef());
+      if (!resGff.m_bLoaded.ToBool())
+      {
+        Log.Warn($"Unable to load ResRef: {resRef}");
+        return false;
+      }
+
+      CResStruct resStruct = new CResStruct();
+      resGff.GetTopLevelStruct(resStruct).ToBool();
+      deserializeAction(resGff, resStruct);
+
+      resStruct.Dispose();
+      resGff.Dispose();
+      return true;
+    }
 
     public static bool DeserializeGff(byte[] serialized, Func<CResGFF, CResStruct, bool> deserializeAction)
     {
@@ -164,6 +199,12 @@ namespace Anvil.API
     public static CResRef ToResRef(this string str)
     {
       return str != null ? new CResRef(str) : new CResRef();
+    }
+
+    public static Vector3 ToVectorOrientation(this float facing)
+    {
+      float radians = (float)(facing * (Math.PI / 180));
+      return new Vector3((float)Math.Cos(radians), (float)Math.Sin(radians), 0.0f);
     }
 
     private static byte[] SerializeGff(CExoString fileType, CExoString version, Func<CResGFF, CResStruct, bool> serializeAction)

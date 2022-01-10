@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NWN.Anvil", "NWN.Anvil\NWN.Anvil.csproj", "{E52A41DA-2151-447A-B821-4F86B7E95CAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWN.Anvil.Tests", "NWN.Anvil.Tests\NWN.Anvil.Tests.csproj", "{3497535C-72C1-483C-B9FE-77139F99C741}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWN.Anvil.TestRunner", "NWN.Anvil.TestRunner\NWN.Anvil.TestRunner.csproj", "{0FF456D7-499D-46D4-A88F-5ACE1D665EF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,5 +18,17 @@ Global
 		{E52A41DA-2151-447A-B821-4F86B7E95CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E52A41DA-2151-447A-B821-4F86B7E95CAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E52A41DA-2151-447A-B821-4F86B7E95CAB}.Samples|Any CPU.ActiveCfg = Samples|Any CPU
+		{3497535C-72C1-483C-B9FE-77139F99C741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3497535C-72C1-483C-B9FE-77139F99C741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3497535C-72C1-483C-B9FE-77139F99C741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3497535C-72C1-483C-B9FE-77139F99C741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3497535C-72C1-483C-B9FE-77139F99C741}.Samples|Any CPU.ActiveCfg = Debug|Any CPU
+		{3497535C-72C1-483C-B9FE-77139F99C741}.Samples|Any CPU.Build.0 = Debug|Any CPU
+		{0FF456D7-499D-46D4-A88F-5ACE1D665EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF456D7-499D-46D4-A88F-5ACE1D665EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF456D7-499D-46D4-A88F-5ACE1D665EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF456D7-499D-46D4-A88F-5ACE1D665EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF456D7-499D-46D4-A88F-5ACE1D665EF7}.Samples|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF456D7-499D-46D4-A88F-5ACE1D665EF7}.Samples|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,7 @@
 # Anvil
+
+[![Downloads](https://img.shields.io/nuget/dt/NWN.Anvil)](https://www.nuget.org/packages/NWN.Anvil) [![License](https://img.shields.io/github/license/nwn-dotnet/Anvil)](https://github.com/nwn-dotnet/Anvil/blob/development/LICENSE) [![Release](https://img.shields.io/nuget/v/NWN.Anvil?label=Release)](https://github.com/nwn-dotnet/Anvil/releases) [![Development](https://img.shields.io/nuget/vpre/NWN.Anvil?label=Development)](https://www.nuget.org/packages/NWN.Anvil/#versions-tab) [![CI](https://github.com/nwn-dotnet/Anvil/actions/workflows/ci.yml/badge.svg)](https://github.com/nwn-dotnet/Anvil/actions/workflows/ci.yml)
+
 Anvil is a C# framework for building behaviours and adding new functionalty to Neverwinter Nights: Enhanced Edition. The library allows server owners and builders to create simple behaviours, while giving plugin developers the option to implement complex systems or modify existing hardcoded rules.
 
 Builders can add functionality like opening a store from a dialogue with a few lines of code, while plugin developers can leverage [NuGet](https://www.nuget.org/packages) to add new functionality with external packages and the [NWN.Native](https://github.com/nwn-dotnet/NWN.Native) library to completely rewrite existing game systems and mechanics.

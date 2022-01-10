@@ -1,0 +1,3 @@
+[submodule "NWN.Anvil.TestRunner/src/lib/nunit"]
+	path = NWN.Anvil.TestRunner/src/lib/nunit
+	url = https://github.com/nwn-dotnet/nunit.git

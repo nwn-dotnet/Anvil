@@ -7,8 +7,6 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.API)]
   internal sealed unsafe class CreatureWalkRateCapService
   {
-    private const string WalkCapVariable = "WALK_RATE_CAP";
-
     private readonly FunctionHook<GetWalkRateHook> walkRateHook;
 
     public CreatureWalkRateCapService(HookService hookService)
@@ -20,13 +18,13 @@ namespace Anvil.Services
 
     public float? GetWalkRateCap(NwCreature creature)
     {
-      PersistentVariableFloat.Internal overrideValue = creature.GetObjectVariable<PersistentVariableFloat.Internal>(WalkCapVariable);
+      InternalVariableFloat overrideValue = InternalVariables.WalkRateCap(creature);
       return overrideValue.HasValue ? overrideValue.Value : null;
     }
 
     public void SetWalkRateCap(NwCreature creature, float? newValue)
     {
-      PersistentVariableFloat.Internal overrideValue = creature.GetObjectVariable<PersistentVariableFloat.Internal>(WalkCapVariable);
+      InternalVariableFloat overrideValue = InternalVariables.WalkRateCap(creature);
       if (newValue.HasValue)
       {
         overrideValue.Value = newValue.Value;
@@ -45,7 +43,7 @@ namespace Anvil.Services
         return walkRateHook.CallOriginal(pCreature);
       }
 
-      PersistentVariableFloat.Internal rateCap = creature.GetObjectVariable<PersistentVariableFloat.Internal>(WalkCapVariable);
+      InternalVariableFloat rateCap = InternalVariables.WalkRateCap(creature);
       return rateCap.HasValue ? rateCap.Value : walkRateHook.CallOriginal(pCreature);
     }
   }

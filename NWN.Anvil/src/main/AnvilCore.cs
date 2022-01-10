@@ -57,24 +57,24 @@ namespace Anvil
     /// Initiates a complete reload of plugins and Anvil services.<br/>
     /// This will reload all plugins.
     /// </summary>
-    public static async void Reload()
+    public static void Reload()
     {
       if (!EnvironmentConfig.ReloadEnabled)
       {
         Log.Error("Hot Reload of plugins is not enabled (NWM_RELOAD_ENABLED=true)");
-        return;
       }
 
-      await NwTask.NextFrame();
+      instance.serviceManager?.GetService<SchedulerService>()?.Schedule(() =>
+      {
+        Log.Info("Reloading Anvil");
 
-      Log.Info("Reloading Anvil");
+        instance.ShutdownServices();
+        instance.serviceManager.ShutdownLateServices();
+        instance.pluginManager.Unload();
 
-      instance.ShutdownServices();
-      instance.serviceManager.ShutdownLateServices();
-      instance.pluginManager.Unload();
-
-      instance.pluginManager.Load();
-      instance.InitServices();
+        instance.pluginManager.Load();
+        instance.InitServices();
+      }, TimeSpan.Zero);
     }
 
     void IServerLifeCycleEventHandler.HandleLifeCycleEvent(LifeCycleEvent eventType)

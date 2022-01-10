@@ -27,9 +27,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Check Line Endings
         uses: erclu/check-crlf@v1
+        with:
+          path: NWN.Anvil
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
@@ -37,7 +41,7 @@ jobs:
           dotnet-version: 5.0.100
 
       - name: Build
-        run: dotnet build --configuration Release /warnaserror
+        run: dotnet build --configuration Release
 
       - name: Prepare Outputs
         id: vars
@@ -64,10 +68,61 @@ jobs:
         run: |
           ! grep "<Issue TypeId=" results.xml
 
+  test:
+    runs-on: ubuntu-20.04
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.100
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Run Tests
+        run: docker-compose --env-file ../../../.env up
+        working-directory: NWN.Anvil.Tests/bin/Release/
+
+      - name: Install NUnit
+        run: |
+          nuget install NUnit.Console -Version 3.12.0
+
+      - name: Fetch transform code
+        run: |
+          wget https://raw.githubusercontent.com/nunit/nunit-transforms/master/nunit3-junit/nunit3-junit.xslt
+        shell: bash
+
+      - name: Transform NUnit3 to JUnit
+        run: |
+            $xslt = New-Object System.Xml.Xsl.XslCompiledTransform;
+            $xslt.Load("nunit3-junit.xslt");
+            $xslt.Transform("NWN.Anvil.Tests/bin/Release/results/NWN.Anvil.Tests/TestResult.xml", "TestResult.junit.xml");
+        shell: pwsh
+
+      - name: Upload Event File
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Event File
+          path: ${{ github.event_path }}
+
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Test Results
+          path: TestResult.junit.xml
+
   build:
     runs-on: ubuntu-20.04
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-    needs: compile
+    needs: [compile, test]
     outputs:
       version: ${{ steps.vars.outputs.version }}
       tag: ${{ steps.vars.outputs.tag }}
@@ -79,6 +134,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          submodules: recursive
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
@@ -102,7 +158,7 @@ jobs:
             META=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[2]}'`
             BUILD=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[3]}'`
             COMMIT=`echo $DESCRIBE | awk '{split($0,a,"-"); print a[4]}'`
-            echo "::set-output name=version::$(echo ${VERSION}-${META}.${BUILD}.${COMMIT:1} | sed 's/^v//')"
+            echo "::set-output name=version::$(echo ${VERSION}-${META}.${BUILD}.r${COMMIT:1} | sed 's/^v//')"
           fi
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=image_repository::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
@@ -110,21 +166,38 @@ jobs:
       - name: Build Release Binaries
         id: build
         run: |
-          dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }} -o output
+          dotnet build --configuration Release -p:Version=${{ steps.vars.outputs.version }}
           echo "::set-output name=created::$(echo date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
       - name: Upload NuGet Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: nuget-binaries
-          path: output/
+          name: NuGet Packages
+          path: |
+            NWN.Anvil/bin/Release/*.nupkg
+            NWN.Anvil/bin/Release/*.snupkg
+            NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner/*.nupkg
+            NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner/*.snupkg
           if-no-files-found: error
 
-      - name: Upload Build Artifacts
+      - name: Upload Build Artifacts (Anvil)
         uses: actions/upload-artifact@v2
         with:
-          name: binaries
-          path: NWN.Anvil.zip
+          name: Binaries
+          path: |
+            NWN.Anvil/bin/Release/
+            !NWN.Anvil/bin/Release/*.nupkg
+            !NWN.Anvil/bin/Release/*.snupkg
+          if-no-files-found: error
+
+      - name: Upload Build Artifacts (Test Runner)
+        uses: actions/upload-artifact@v2
+        with:
+          name: Binaries (Test Runner)
+          path: |
+            NWN.Anvil.TestRunner/bin/Release/
+            !NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner/*.nupkg
+            !NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner/*.snupkg
           if-no-files-found: error
 
   release:
@@ -135,7 +208,12 @@ jobs:
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: binaries
+          name: Binaries
+          path: binaries
+
+      - name: Zip Binaries
+        run: zip -r ../NWN.Anvil.zip ./*
+        working-directory: binaries
 
       - name: Create Release
         id: create_release
@@ -172,14 +250,14 @@ jobs:
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: nuget-binaries
-          path: output
+          name: NuGet Packages
+          path: binaries
 
       - name: NuGet Publish
-        run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push 'binaries/**/*.nupkg' --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
       - name: GitHub Publish
-        run: dotnet nuget push output/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
+        run: dotnet nuget push 'binaries/**/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/nwn-dotnet/index.json
 
   docker:
     runs-on: ubuntu-20.04
@@ -188,15 +266,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: nuget-binaries
-          path: output
-
-      - name: Remove NuGet packages
-        run: rm output/*nupkg
+          name: Binaries
+          path: binaries
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -218,7 +295,7 @@ jobs:
           context: ./
           file: ./dockerfile
           push: true
-          build-args: BINARY_PATH=/output
+          build-args: BINARY_PATH=/binaries
           labels: |
               org.opencontainers.image.title=Anvil
               org.opencontainers.image.description=Anvil is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use Anvil.

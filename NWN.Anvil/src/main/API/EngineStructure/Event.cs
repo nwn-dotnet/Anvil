@@ -5,13 +5,13 @@ namespace Anvil.API
 {
   internal sealed class Event : EngineStructure
   {
-    internal Event(IntPtr handle) : base(handle) {}
+    internal Event(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_EVENT;
 
     public static implicit operator Event(IntPtr intPtr)
     {
-      return new Event(intPtr);
+      return new Event(intPtr, true);
     }
   }
 }

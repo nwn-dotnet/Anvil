@@ -5,7 +5,7 @@ namespace Anvil.API
 {
   public sealed class Cassowary : EngineStructure
   {
-    internal Cassowary(IntPtr handle) : base(handle) {}
+    internal Cassowary(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
     /// <summary>
     /// Gets a printable debug state of this solver, which may help you debug complex systems.
@@ -16,7 +16,7 @@ namespace Anvil.API
 
     public static implicit operator Cassowary(IntPtr intPtr)
     {
-      return new Cassowary(intPtr);
+      return new Cassowary(intPtr, true);
     }
 
     /// <summary>

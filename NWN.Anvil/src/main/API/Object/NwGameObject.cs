@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
+using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
 using Vector3 = System.Numerics.Vector3;
@@ -168,6 +169,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the global visiblity override for this object.
+    /// </summary>
+    public VisibilityMode VisibilityOverride
+    {
+      get => ObjectVisibilityService.Value.GetGlobalOverride(this);
+      set => ObjectVisibilityService.Value.SetGlobalOverride(this, value);
+    }
+
+    /// <summary>
     /// Gets the visual transform for this object.
     /// </summary>
     public VisualTransform VisualTransform { get; }
@@ -225,6 +235,15 @@ namespace Anvil.API
     {
       NWScript.ApplyEffectToObject((int)durationType, effect, this, (float)duration.TotalSeconds);
     }
+
+    /// <summary>
+    /// Creates a copy of this game object.
+    /// </summary>
+    /// <param name="location">The location to create the cloned object.</param>
+    /// <param name="newTag">A new tag to assign the cloned object.</param>
+    /// <param name="copyLocalState">If true, will clone all local variables, effects, action queue and transition info (triggers, doors) for the object.</param>
+    /// <returns>The newly cloned copy of the item.</returns>
+    public abstract NwGameObject Clone(Location location, string newTag = null, bool copyLocalState = true);
 
     /// <summary>
     /// Destroys this object (irrevocably).
@@ -591,5 +610,10 @@ namespace Anvil.API
     internal abstract void RemoveFromArea();
 
     private protected abstract void AddToArea(CNWSArea area, float x, float y, float z);
+
+    private protected T CloneInternal<T>(Location location, string newTag, bool copyLocalState) where T : NwGameObject
+    {
+      return NWScript.CopyObject(this, location, Invalid, newTag ?? string.Empty, copyLocalState.ToInt()).ToNwObject<T>();
+    }
   }
 }
