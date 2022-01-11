@@ -64,7 +64,8 @@ jobs:
           report: results.xml
 
       - name: Analysis Result
-        run: ! grep "<Issue TypeId=" results.xml
+        run: |
+          !grep "<Issue TypeId=" results.xml
 
   test:
     runs-on: ubuntu-20.04
