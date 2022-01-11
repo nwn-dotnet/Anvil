@@ -45,8 +45,7 @@ jobs:
 
       - name: Prepare Outputs
         id: vars
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       - name: Code Analysis Cache
         uses: actions/cache@v2
@@ -65,8 +64,7 @@ jobs:
           report: results.xml
 
       - name: Analysis Result
-        run: |
-          ! grep "<Issue TypeId=" results.xml
+        run: ! grep "<Issue TypeId=" results.xml
 
   test:
     runs-on: ubuntu-20.04
@@ -90,12 +88,10 @@ jobs:
         working-directory: NWN.Anvil.Tests/bin/Release/
 
       - name: Install NUnit
-        run: |
-          nuget install NUnit.Console -Version 3.12.0
+        run: nuget install NUnit.Console -Version 3.12.0
 
       - name: Fetch transform code
-        run: |
-          wget https://raw.githubusercontent.com/nunit/nunit-transforms/master/nunit3-junit/nunit3-junit.xslt
+        run: wget https://raw.githubusercontent.com/nunit/nunit-transforms/master/nunit3-junit/nunit3-junit.xslt
         shell: bash
 
       - name: Transform NUnit3 to JUnit
@@ -143,8 +139,7 @@ jobs:
 
       - name: Tag Commit
         if: github.event.inputs.tag != ''
-        run: |
-          git tag ${{ github.event.inputs.tag }} && git push origin ${{ github.event.inputs.tag }}
+        run: git tag ${{ github.event.inputs.tag }} && git push origin ${{ github.event.inputs.tag }}
 
       - name: Prepare Outputs
         id: vars
@@ -288,6 +283,10 @@ jobs:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.CR_PAT }}
 
+      - name: Load Environment Variables
+        id: env_vars
+        uses: falti/dotenv-action@v0.2.7
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
@@ -295,7 +294,9 @@ jobs:
           context: ./
           file: ./dockerfile
           push: true
-          build-args: BINARY_PATH=/binaries
+          build-args: |
+              NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }}
+              BINARY_PATH=/binaries
           labels: |
               org.opencontainers.image.title=Anvil
               org.opencontainers.image.description=Anvil is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use Anvil.
