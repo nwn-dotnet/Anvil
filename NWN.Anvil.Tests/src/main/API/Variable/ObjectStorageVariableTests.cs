@@ -5,7 +5,7 @@ using Anvil.API;
 using Anvil.Tests.Resources;
 using NUnit.Framework;
 
-namespace Anvil.Tests.API.Variable
+namespace Anvil.Tests.API
 {
   [TestFixture(Category = "API.Variable")]
   public class ObjectStorageVariableTests
@@ -63,6 +63,43 @@ namespace Anvil.Tests.API.Variable
       VariableAssert(true, Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f"), creature.GetObjectVariable<PersistentVariableGuid>(variableName));
       VariableAssert(true, 506, creature.GetObjectVariable<PersistentVariableInt>(variableName));
       VariableAssert(true, "test_string", creature.GetObjectVariable<PersistentVariableString>(variableName));
+    }
+
+    [Test(Description = "Setting a variable on an object and deleting it returns a variable object with the correct properties.")]
+    [TestCase("aaabbb")]
+    [TestCase("123")]
+    [TestCase(",;'.-2=,'\"")]
+    [TestCase("__\n")]
+    [TestCase("\0")]
+    [TestCase("\0aaa")]
+    public void DeletePersistentVariablePropertiesValid(string variableName)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
+
+      Assert.IsNotNull(creature);
+      createdTestObjects.Add(creature);
+
+      creature.GetObjectVariable<PersistentVariableBool>(variableName).Value = true;
+      creature.GetObjectVariable<PersistentVariableEnum<ValidEnum>>(variableName).Value = ValidEnum.TestA;
+      creature.GetObjectVariable<PersistentVariableFloat>(variableName).Value = 999f;
+      creature.GetObjectVariable<PersistentVariableGuid>(variableName).Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
+      creature.GetObjectVariable<PersistentVariableInt>(variableName).Value = 506;
+      creature.GetObjectVariable<PersistentVariableString>(variableName).Value = "test_string";
+
+      creature.GetObjectVariable<PersistentVariableBool>(variableName).Delete();
+      creature.GetObjectVariable<PersistentVariableEnum<ValidEnum>>(variableName).Delete();
+      creature.GetObjectVariable<PersistentVariableFloat>(variableName).Delete();
+      creature.GetObjectVariable<PersistentVariableGuid>(variableName).Delete();
+      creature.GetObjectVariable<PersistentVariableInt>(variableName).Delete();
+      creature.GetObjectVariable<PersistentVariableString>(variableName).Delete();
+
+      VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableBool>(variableName));
+      VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableEnum<ValidEnum>>(variableName));
+      VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableFloat>(variableName));
+      VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableGuid>(variableName));
+      VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableInt>(variableName));
+      VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableString>(variableName));
     }
 
     [Test(Description = "Attempting to create an object enum variable with an incorrect size throws an exception.")]
