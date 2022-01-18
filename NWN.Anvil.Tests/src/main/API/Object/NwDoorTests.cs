@@ -211,7 +211,7 @@ namespace Anvil.Tests.API
     }
 
     [TearDown]
-    public void CleanupTestObject()
+    public void CleanupTestObjects()
     {
       foreach (NwGameObject testObject in createdTestObjects)
       {
