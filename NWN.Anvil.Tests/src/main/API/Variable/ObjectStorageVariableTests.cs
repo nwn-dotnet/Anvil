@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Anvil.API;
 using Anvil.Tests.Resources;
 using NUnit.Framework;
@@ -79,12 +80,12 @@ namespace Anvil.Tests.API.Variable
       Assert.IsNotNull(creature);
       createdTestObjects.Add(creature);
 
-      Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
+      Assert.Throws(typeof(TargetInvocationException), () =>
       {
         creature.GetObjectVariable<PersistentVariableEnum<InvalidEnumA>>(variableName).Value = InvalidEnumA.TestA;
       });
 
-      Assert.Throws(typeof(ArgumentOutOfRangeException), () =>
+      Assert.Throws(typeof(TargetInvocationException), () =>
       {
         creature.GetObjectVariable<PersistentVariableEnum<InvalidEnumB>>(variableName).Value = InvalidEnumB.TestB;
       });
