@@ -22,7 +22,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed a NRE when using visibility properties.
+- Fixed a NRE when using `PersistentVariableEnum`.
 
 ## 8193.34.1
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...v8193.34.1

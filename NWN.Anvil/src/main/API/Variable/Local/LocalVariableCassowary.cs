@@ -2,7 +2,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public class LocalVariableCassowary : LocalVariable<Cassowary>
+  public sealed class LocalVariableCassowary : LocalVariable<Cassowary>
   {
     public override Cassowary Value
     {
