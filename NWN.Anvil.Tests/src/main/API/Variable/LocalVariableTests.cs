@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Anvil.Tests.API
 {
   [TestFixture(Category = "API.Variable")]
-  public class LocalVariableTests
+  public sealed class LocalVariableTests
   {
     private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
 
@@ -25,12 +25,12 @@ namespace Anvil.Tests.API
       Assert.IsNotNull(creature);
       createdTestObjects.Add(creature);
 
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableBool>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableFloat>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableGuid>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableInt>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableString>(variableName));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableBool>(variableName + "bool"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableFloat>(variableName + "float"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableInt>(variableName + "int"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableString>(variableName + "string"));
     }
 
     [Test(Description = "Setting/getting a variable on an object returns a variable object with the correct properties.")]
@@ -46,19 +46,19 @@ namespace Anvil.Tests.API
       Assert.IsNotNull(creature);
       createdTestObjects.Add(creature);
 
-      creature.GetObjectVariable<LocalVariableBool>(variableName).Value = true;
-      creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName).Value = ValidEnum.TestA;
-      creature.GetObjectVariable<LocalVariableFloat>(variableName).Value = 999f;
-      creature.GetObjectVariable<LocalVariableGuid>(variableName).Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
-      creature.GetObjectVariable<LocalVariableInt>(variableName).Value = 506;
-      creature.GetObjectVariable<LocalVariableString>(variableName).Value = "test_string";
+      creature.GetObjectVariable<LocalVariableBool>(variableName + "bool").Value = true;
+      creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum").Value = ValidEnum.TestA;
+      creature.GetObjectVariable<LocalVariableFloat>(variableName + "float").Value = 999f;
+      creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid").Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
+      creature.GetObjectVariable<LocalVariableInt>(variableName + "int").Value = 506;
+      creature.GetObjectVariable<LocalVariableString>(variableName + "string").Value = "test_string";
 
-      VariableAssert(true, true, creature.GetObjectVariable<LocalVariableBool>(variableName));
-      VariableAssert(true, ValidEnum.TestA, creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName));
-      VariableAssert(true, 999f, creature.GetObjectVariable<LocalVariableFloat>(variableName));
-      VariableAssert(true, Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f"), creature.GetObjectVariable<LocalVariableGuid>(variableName));
-      VariableAssert(true, 506, creature.GetObjectVariable<LocalVariableInt>(variableName));
-      VariableAssert(true, "test_string", creature.GetObjectVariable<LocalVariableString>(variableName));
+      VariableAssert(true, true, creature.GetObjectVariable<LocalVariableBool>(variableName + "bool"));
+      VariableAssert(true, ValidEnum.TestA, creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum"));
+      VariableAssert(true, 999f, creature.GetObjectVariable<LocalVariableFloat>(variableName + "float"));
+      VariableAssert(true, Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f"), creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid"));
+      VariableAssert(true, 506, creature.GetObjectVariable<LocalVariableInt>(variableName + "int"));
+      VariableAssert(true, "test_string", creature.GetObjectVariable<LocalVariableString>(variableName + "string"));
     }
 
     [Test(Description = "Setting a variable on an object and deleting it returns a variable object with the correct properties.")]
@@ -74,26 +74,26 @@ namespace Anvil.Tests.API
       Assert.IsNotNull(creature);
       createdTestObjects.Add(creature);
 
-      creature.GetObjectVariable<LocalVariableBool>(variableName).Value = true;
-      creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName).Value = ValidEnum.TestA;
-      creature.GetObjectVariable<LocalVariableFloat>(variableName).Value = 999f;
-      creature.GetObjectVariable<LocalVariableGuid>(variableName).Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
-      creature.GetObjectVariable<LocalVariableInt>(variableName).Value = 506;
-      creature.GetObjectVariable<LocalVariableString>(variableName).Value = "test_string";
+      creature.GetObjectVariable<LocalVariableBool>(variableName + "bool").Value = true;
+      creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum").Value = ValidEnum.TestA;
+      creature.GetObjectVariable<LocalVariableFloat>(variableName + "float").Value = 999f;
+      creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid").Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
+      creature.GetObjectVariable<LocalVariableInt>(variableName + "int").Value = 506;
+      creature.GetObjectVariable<LocalVariableString>(variableName + "string").Value = "test_string";
 
-      creature.GetObjectVariable<LocalVariableBool>(variableName).Delete();
-      creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName).Delete();
-      creature.GetObjectVariable<LocalVariableFloat>(variableName).Delete();
-      creature.GetObjectVariable<LocalVariableGuid>(variableName).Delete();
-      creature.GetObjectVariable<LocalVariableInt>(variableName).Delete();
-      creature.GetObjectVariable<LocalVariableString>(variableName).Delete();
+      creature.GetObjectVariable<LocalVariableBool>(variableName + "bool").Delete();
+      creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum").Delete();
+      creature.GetObjectVariable<LocalVariableFloat>(variableName + "float").Delete();
+      creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid").Delete();
+      creature.GetObjectVariable<LocalVariableInt>(variableName + "int").Delete();
+      creature.GetObjectVariable<LocalVariableString>(variableName + "string").Delete();
 
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableBool>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableFloat>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableGuid>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableInt>(variableName));
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableString>(variableName));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableBool>(variableName + "bool"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableFloat>(variableName + "float"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableInt>(variableName + "int"));
+      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableString>(variableName + "string"));
     }
 
     [Test(Description = "Attempting to create an object enum variable with an incorrect size throws an exception.")]
@@ -111,12 +111,12 @@ namespace Anvil.Tests.API
 
       Assert.Throws(typeof(TargetInvocationException), () =>
       {
-        creature.GetObjectVariable<LocalVariableEnum<InvalidEnumA>>(variableName).Value = InvalidEnumA.TestA;
+        creature.GetObjectVariable<LocalVariableEnum<InvalidEnumA>>(variableName + "enum").Value = InvalidEnumA.TestA;
       });
 
       Assert.Throws(typeof(TargetInvocationException), () =>
       {
-        creature.GetObjectVariable<LocalVariableEnum<InvalidEnumB>>(variableName).Value = InvalidEnumB.TestB;
+        creature.GetObjectVariable<LocalVariableEnum<InvalidEnumB>>(variableName + "enum").Value = InvalidEnumB.TestB;
       });
     }
 
