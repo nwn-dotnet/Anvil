@@ -5,6 +5,7 @@ using Anvil.API;
 using Anvil.Tests.Resources;
 using NUnit.Framework;
 
+// ReSharper disable UnusedMember.Local
 namespace Anvil.Tests.API
 {
   [TestFixture(Category = "API.Variable")]
