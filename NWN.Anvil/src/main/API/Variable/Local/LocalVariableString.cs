@@ -6,7 +6,7 @@ namespace Anvil.API
   {
     public override string Value
     {
-      get => NWScript.GetLocalString(Object, Name);
+      get => HasValue ? NWScript.GetLocalString(Object, Name) : null;
       set => NWScript.SetLocalString(Object, Name, value);
     }
 
