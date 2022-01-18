@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.Services;
 
 namespace Anvil.API
 {
@@ -8,6 +9,9 @@ namespace Anvil.API
   /// </summary>
   public abstract class ObjectVariable
   {
+    [Inject]
+    private static InjectionService InjectionService { get; set; }
+
     /// <summary>
     /// Gets a value indicating whether this variable has no value.
     /// </summary>
@@ -29,11 +33,11 @@ namespace Anvil.API
 
     internal static T Create<T>(NwObject gameObject, string name) where T : ObjectVariable, new()
     {
-      return new T
+      return InjectionService.Inject(new T
       {
         Name = name,
         Object = gameObject,
-      };
+      });
     }
   }
 

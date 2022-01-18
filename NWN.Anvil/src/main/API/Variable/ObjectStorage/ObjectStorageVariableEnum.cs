@@ -7,7 +7,7 @@ namespace Anvil.API
   public abstract class ObjectStorageVariableEnum<T> : ObjectStorageVariable<T> where T : struct, Enum
   {
     [Inject]
-    private ObjectStorageService ObjectStorageService { get; set; }
+    private ObjectStorageService ObjectStorageService { get; init; }
 
     protected ObjectStorageVariableEnum()
     {
