@@ -10,7 +10,7 @@ namespace Anvil.API
   public abstract class ObjectVariable
   {
     [Inject]
-    private static InjectionService InjectionService { get; set; }
+    private static Lazy<InjectionService> InjectionService { get; set; }
 
     /// <summary>
     /// Gets a value indicating whether this variable has no value.
@@ -33,7 +33,7 @@ namespace Anvil.API
 
     internal static T Create<T>(NwObject gameObject, string name) where T : ObjectVariable, new()
     {
-      return InjectionService.Inject(new T
+      return InjectionService.Value.Inject(new T
       {
         Name = name,
         Object = gameObject,
