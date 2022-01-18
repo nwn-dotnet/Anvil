@@ -5,7 +5,7 @@ namespace Anvil.API
   public abstract class ObjectStorageVariableInt : ObjectStorageVariable<int>
   {
     [Inject]
-    private ObjectStorageService ObjectStorageService { get; init; }
+    internal ObjectStorageService ObjectStorageService { private get; init; }
 
     public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsInt(ObjectStoragePrefix, Key);
 
