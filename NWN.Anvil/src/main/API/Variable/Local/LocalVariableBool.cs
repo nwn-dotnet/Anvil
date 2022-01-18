@@ -2,7 +2,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public class LocalVariableBool : LocalVariable<bool>
+  public sealed class LocalVariableBool : LocalVariable<bool>
   {
     public override bool Value
     {
