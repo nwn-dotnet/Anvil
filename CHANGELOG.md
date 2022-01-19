@@ -7,7 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
 
 ### Added
-- N/A
+- Added net6.0 target framework. Since multiple frameworks are now being targeted, there is a small change to the binary output paths.
+  - When building locally, binaries are now located in `NWN.Anvil/bin/Release/<framework>`. Release binaries on github will now have a folder for each framework.
 
 ### Package Updates
 - NWNX: 790a54b -> 989ea04
