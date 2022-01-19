@@ -36,9 +36,9 @@ jobs:
           path: NWN.Anvil
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: 5.0.100
+          dotnet-version: '6.0.x'
 
       - name: Build
         run: dotnet build --configuration Release
@@ -77,9 +77,9 @@ jobs:
           submodules: recursive
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: 5.0.100
+          dotnet-version: '6.0.x'
 
       - name: Build
         run: dotnet build --configuration Release
@@ -134,9 +134,9 @@ jobs:
           submodules: recursive
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: 5.0.100
+          dotnet-version: '6.0.x'
 
       - name: Tag Commit
         if: github.event.inputs.tag != ''
@@ -239,9 +239,9 @@ jobs:
     needs: build
     steps:
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: 5.0.100
+          dotnet-version: '6.0.x'
 
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
@@ -297,7 +297,7 @@ jobs:
           push: true
           build-args: |
               NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }}
-              BINARY_PATH=/binaries
+              BINARY_PATH=/binaries/net6.0
           labels: |
               org.opencontainers.image.title=Anvil
               org.opencontainers.image.description=Anvil is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use Anvil.

@@ -7,10 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
 
 ### Added
-- N/A
+- Added net6.0 target framework. Since multiple frameworks are now being targeted, there is a small change to the binary output paths.
+  - When building locally, binaries are now located in `NWN.Anvil/bin/Release/<framework>`. Release binaries on github will now have a folder for each framework.
 
 ### Package Updates
-- N/A
+- NWNX: 790a54b -> 989ea04
+- NWN.Core: 8193.34.1 -> 8193.34.2
+- NWN.Native: 8193.34.2 -> 8193.34.3
 
 ### Changed
 - N/A
@@ -50,12 +53,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...v8193.34.1
 ### Changed
 - `NwCreature.WalkRateCap` and `NwCreature.AlwaysWalk` properties are no-longer persistent. Additionally, the services and functions are not hooked until the associated property is used for the first time.
 - `NwObject.ObjectId` is now public.
-
-### Deprecated
-- N/A
-
-### Removed
-- N/A
 
 ### Fixed
 - `AnvilCore.Reload()` now uses the scheduler service to schedule the reload. This should fix some edge cases where async methods would hold a reference preventing unload.
