@@ -133,6 +133,7 @@ namespace Anvil.API
     /// Reloads all game rules (2da stuff, etc).<br/>
     /// @warning DANGER, DRAGONS. Bad things may or may not happen. Only use this if you know what you are doing.
     /// </summary>
+    [Obsolete("Use NwRuleset.ReloadRules instead.")]
     public void ReloadRules()
     {
       NWNXLib.Rules().ReloadAll();
