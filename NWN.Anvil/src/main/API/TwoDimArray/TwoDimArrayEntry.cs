@@ -1,32 +1,54 @@
-using System;
-
 namespace Anvil.API
 {
   public sealed class TwoDimArrayEntry
   {
-    private readonly string[] columns;
-    private readonly string[] values;
+    private readonly TwoDimArray array;
+    private readonly int rowIndex;
 
-    internal TwoDimArrayEntry(string[] columns, string[] values)
+    internal TwoDimArrayEntry(TwoDimArray array, int rowIndex)
     {
-      this.columns = columns;
-      this.values = values;
+      this.array = array;
+      this.rowIndex = rowIndex;
     }
 
-    public string this[int columnIndex] => values[columnIndex];
-
-    public string this[string columnName]
+    public string GetString(string columnName)
     {
-      get
-      {
-        int index = Array.IndexOf(columns, columnName);
-        if (index == -1)
-        {
-          throw new ArgumentException($"Unknown column name {columnName}", columnName);
-        }
+      return array.GetString(rowIndex, columnName);
+    }
 
-        return values[index];
-      }
+    public string GetString(int columnIndex)
+    {
+      return array.GetString(rowIndex, columnIndex);
+    }
+
+    public int? GetInt(string columnName)
+    {
+      return array.GetInt(rowIndex, columnName);
+    }
+
+    public int? GetInt(int columnIndex)
+    {
+      return array.GetInt(rowIndex, columnIndex);
+    }
+
+    public bool? GetBool(string columnName)
+    {
+      return array.GetBool(rowIndex, columnName);
+    }
+
+    public bool? GetBool(int columnIndex)
+    {
+      return array.GetBool(rowIndex, columnIndex);
+    }
+
+    public float? GetFloat(string columnName)
+    {
+      return array.GetFloat(rowIndex, columnName);
+    }
+
+    public float? GetFloat(int columnIndex)
+    {
+      return array.GetFloat(rowIndex, columnIndex);
     }
   }
 }

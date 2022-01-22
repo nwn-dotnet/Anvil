@@ -5,19 +5,17 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public class TwoDimArray : IReadOnlyList<string[]>
+  public class TwoDimArray
   {
-    protected readonly C2DA Array;
+    private readonly C2DA array;
 
     public string[] Columns { get; private set; }
-
-    private readonly CExoString tmp = new CExoString();
 
     public TwoDimArray(string resRef)
     {
       resRef = resRef.Replace(".2da", string.Empty);
-      Array = NWNXLib.Rules().m_p2DArrays.GetCached2DA(resRef.ToExoString(), true.ToInt());
-      if (Array == null)
+      array = NWNXLib.Rules().m_p2DArrays.GetCached2DA(resRef.ToExoString(), true.ToInt());
+      if (array == null)
       {
         throw new ArgumentException("Invalid 2DA resref.", nameof(resRef));
       }
@@ -27,7 +25,7 @@ namespace Anvil.API
 
     internal TwoDimArray(C2DA array)
     {
-      Array = array;
+      this.array = array;
       if (array == null)
       {
         throw new ArgumentNullException(nameof(array));
@@ -38,71 +36,92 @@ namespace Anvil.API
 
     private void Init()
     {
-      CExoStringArray columnArray = CExoStringArray.FromPointer(Array.m_pColumnLabel);
-      Columns = new string[Array.m_nNumColumns];
+      CExoStringArray columnArray = CExoStringArray.FromPointer(array.m_pColumnLabel);
+      Columns = new string[array.m_nNumColumns];
 
-      for (int i = 0; i < Array.m_nNumColumns; i++)
+      for (int i = 0; i < array.m_nNumColumns; i++)
       {
         string columnName = columnArray.GetItem(i).ToString();
         Columns[i] = columnName;
       }
     }
 
-    public string this[int rowIndex, int columnIndex]
+    public string GetString(int rowIndex, string columnName)
     {
-      get
-      {
-        Array.GetCExoStringEntry(rowIndex, columnIndex, tmp);
-        return tmp.ToString();
-      }
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetString(rowIndex, columnIndex) : null;
     }
 
-    public string this[int rowIndex, string columnName]
+    public string GetString(int rowIndex, int columnIndex)
     {
-      get
+      using CExoString retVal = new CExoString();
+      if (array.GetCExoStringEntry(rowIndex, columnIndex, retVal).ToBool())
       {
-        int columnIndex = GetColumnIndex(columnName);
-        return columnIndex < 0 ? null : this[rowIndex, columnIndex];
+        return retVal.ToString();
       }
+
+      return null;
     }
 
-    public string[] this[int rowIndex]
+    public int? GetInt(int rowIndex, string columnName)
     {
-      get
-      {
-        string[] retVal = new string[Array.m_nNumColumns];
-        for (int i = 0; i < retVal.Length; i++)
-        {
-          retVal[i] = this[rowIndex, i];
-        }
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetInt(rowIndex, columnIndex) : null;
+    }
 
+    public unsafe int? GetInt(int rowIndex, int columnIndex)
+    {
+      int retVal;
+      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      {
         return retVal;
       }
+
+      return null;
+    }
+
+    public bool? GetBool(int rowIndex, string columnName)
+    {
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetBool(rowIndex, columnIndex) : null;
+    }
+
+    public unsafe bool? GetBool(int rowIndex, int columnIndex)
+    {
+      int retVal;
+      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      {
+        return retVal.ToBool();
+      }
+
+      return null;
+    }
+
+    public float? GetFloat(int rowIndex, string columnName)
+    {
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetFloat(rowIndex, columnIndex) : null;
+    }
+
+    public unsafe float? GetFloat(int rowIndex, int columnIndex)
+    {
+      float retVal;
+      if (array.GetFLOATEntry(rowIndex, columnIndex, &retVal).ToBool())
+      {
+        return retVal;
+      }
+
+      return null;
     }
 
     public int GetColumnIndex(string columnName)
     {
-      return System.Array.IndexOf(Columns, columnName);
+      return Array.FindIndex(Columns, column => columnName.Equals(column, StringComparison.OrdinalIgnoreCase));
     }
 
-    public int RowCount => Array.m_nNumRows;
+    public int RowCount => array.m_nNumRows;
 
-    public int ColumnCount => Array.m_nNumColumns;
-
-    public IEnumerator<string[]> GetEnumerator()
-    {
-      for (int i = 0; i < RowCount; i++)
-      {
-        yield return this[i];
-      }
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return GetEnumerator();
-    }
-
-    public int Count => RowCount;
+    public int ColumnCount => array.m_nNumColumns;
   }
 
   public sealed class TwoDimArray<T> : TwoDimArray, IReadOnlyList<T> where T : ITwoDimArrayEntry, new()
@@ -123,22 +142,25 @@ namespace Anvil.API
 
     public T GetRow(int rowIndex)
     {
-      string[] rowValues = base[rowIndex];
-      if (rowValues == null)
+      if (rowIndex < 0 || rowIndex >= RowCount)
       {
-        return default;
+        throw new ArgumentOutOfRangeException(nameof(rowIndex), "Row index was out of range. Must be non-negative and less than the size of the array.");
       }
 
-      TwoDimArrayEntry entry = new TwoDimArrayEntry(Columns, rowValues);
-      T retVal = new T();
+      TwoDimArrayEntry entry = new TwoDimArrayEntry(this, rowIndex);
+      T retVal = new T
+      {
+        RowIndex = rowIndex,
+      };
       retVal.InterpretEntry(entry);
+
       return retVal;
     }
 
     public TwoDimArray(string resRef) : base(resRef) {}
     internal TwoDimArray(C2DA array) : base(array) {}
 
-    public new IEnumerator<T> GetEnumerator()
+    public IEnumerator<T> GetEnumerator()
     {
       return Rows.GetEnumerator();
     }
@@ -148,6 +170,8 @@ namespace Anvil.API
       return GetEnumerator();
     }
 
-    public new T this[int index] => throw new NotImplementedException();
+    public T this[int index] => GetRow(index);
+
+    public int Count => RowCount;
   }
 }
