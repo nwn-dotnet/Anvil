@@ -172,5 +172,11 @@ namespace Anvil.API
       get => playOptions.bValidateSpells.ToBool();
       set => playOptions.bValidateSpells = value.ToInt();
     }
+
+    public bool PlayerPartyControl
+    {
+      get => playOptions.bPlayerPartyControl.ToBool();
+      set => playOptions.bPlayerPartyControl = value.ToInt();
+    }
   }
 }
