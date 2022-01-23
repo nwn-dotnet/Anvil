@@ -34,8 +34,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwDoor door = NwDoor.Create(doorResRef, startLocation);
 
-      Assert.IsNotNull(door, $"Door {doorResRef} was null after creation.");
-      Assert.IsTrue(door.IsValid, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
+      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
     }
@@ -64,8 +64,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwDoor door = NwDoor.Create(doorResRef, startLocation);
 
-      Assert.IsNotNull(door, $"Door {doorResRef} was null after creation.");
-      Assert.IsTrue(door.IsValid, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
+      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
 
@@ -74,15 +74,15 @@ namespace Anvil.Tests.API
 
       NwDoor clone = door.Clone(startLocation);
 
-      Assert.IsNotNull(clone, $"Door {doorResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Door {doorResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Door {doorResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Door {doorResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
       LocalVariableInt cloneTestVar = clone.GetObjectVariable<LocalVariableInt>("test");
 
-      Assert.IsTrue(cloneTestVar.HasValue, "Local variable did not exist on the clone with copyLocalState = true.");
-      Assert.AreEqual(cloneTestVar.Value, testVar.Value, "Local variable on the cloned door did not match the value of the original door.");
+      Assert.That(cloneTestVar.HasValue, Is.True, "Local variable did not exist on the clone with copyLocalState = true.");
+      Assert.That(cloneTestVar.Value, Is.EqualTo(testVar.Value), "Local variable on the cloned door did not match the value of the original door.");
     }
 
     [Test(Description = "Cloning a door with copyLocalState = false does not copy local state information.")]
@@ -109,8 +109,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwDoor door = NwDoor.Create(doorResRef, startLocation);
 
-      Assert.IsNotNull(door, $"Door {doorResRef} was null after creation.");
-      Assert.IsTrue(door.IsValid, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
+      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
 
@@ -119,15 +119,15 @@ namespace Anvil.Tests.API
 
       NwDoor clone = door.Clone(startLocation, null, false);
 
-      Assert.IsNotNull(clone, $"Door {doorResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Door {doorResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Door {doorResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Door {doorResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
       LocalVariableInt cloneTestVar = clone.GetObjectVariable<LocalVariableInt>("test");
 
-      Assert.IsFalse(cloneTestVar.HasValue, "Local variable exists on the clone with copyLocalState = false.");
-      Assert.AreNotEqual(cloneTestVar.Value, testVar.Value, "Local variable on the cloned door matches the value of the original door.");
+      Assert.That(cloneTestVar.HasValue, Is.False, "Local variable exists on the clone with copyLocalState = false.");
+      Assert.That(cloneTestVar.Value, Is.Not.EqualTo(testVar.Value), "Local variable on the cloned door matches the value of the original door.");
     }
 
     [Test(Description = "Cloning a door with a custom tag defined causes the new door to gain the new tag.")]
@@ -154,20 +154,20 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwDoor door = NwDoor.Create(doorResRef, startLocation);
 
-      Assert.IsNotNull(door, $"Door {doorResRef} was null after creation.");
-      Assert.IsTrue(door.IsValid, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
+      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
 
       string expectedNewTag = "expectedNewTag";
       NwDoor clone = door.Clone(startLocation, expectedNewTag, false);
 
-      Assert.IsNotNull(clone, $"Door {doorResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Door {doorResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Door {doorResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Door {doorResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
-      Assert.AreEqual(expectedNewTag, clone.Tag, "Tag defined in clone method was not applied to the cloned door.");
+      Assert.That(clone.Tag, Is.EqualTo(expectedNewTag), "Tag defined in clone method was not applied to the cloned door.");
     }
 
     [Test(Description = "Cloning a door with no tag defined uses the original door's tag instead.")]
@@ -195,19 +195,19 @@ namespace Anvil.Tests.API
       NwDoor door = NwDoor.Create(doorResRef, startLocation);
       door.Tag = "expectedNewTag";
 
-      Assert.IsNotNull(door, $"Door {doorResRef} was null after creation.");
-      Assert.IsTrue(door.IsValid, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
+      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
 
       NwDoor clone = door.Clone(startLocation, null, false);
 
-      Assert.IsNotNull(clone, $"Door {doorResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Door {doorResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Door {doorResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Door {doorResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
-      Assert.AreEqual(door.Tag, clone.Tag, "Cloned door's tag did not match the original door's.");
+      Assert.That(clone.Tag, Is.EqualTo(door.Tag), "Cloned door's tag did not match the original door's.");
     }
 
     [TearDown]

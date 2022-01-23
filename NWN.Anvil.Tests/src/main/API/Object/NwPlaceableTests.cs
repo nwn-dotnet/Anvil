@@ -27,8 +27,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
-      Assert.IsNotNull(placeable, $"Placeable {placeableResRef} was null after creation.");
-      Assert.IsTrue(placeable.IsValid, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
+      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
     }
@@ -50,8 +50,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
-      Assert.IsNotNull(placeable, $"Placeable {placeableResRef} was null after creation.");
-      Assert.IsTrue(placeable.IsValid, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
+      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
 
@@ -60,15 +60,15 @@ namespace Anvil.Tests.API
 
       NwPlaceable clone = placeable.Clone(startLocation);
 
-      Assert.IsNotNull(clone, $"Placeable {placeableResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Placeable {placeableResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Placeable {placeableResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
       LocalVariableInt cloneTestVar = clone.GetObjectVariable<LocalVariableInt>("test");
 
-      Assert.IsTrue(cloneTestVar.HasValue, "Local variable did not exist on the clone with copyLocalState = true.");
-      Assert.AreEqual(cloneTestVar.Value, testVar.Value, "Local variable on the cloned placeable did not match the value of the original placeable.");
+      Assert.That(cloneTestVar.HasValue, Is.True, "Local variable did not exist on the clone with copyLocalState = true.");
+      Assert.That(cloneTestVar.Value, Is.EqualTo(testVar.Value), "Local variable on the cloned placeable did not match the value of the original placeable.");
     }
 
     [Test(Description = "Cloning a placeable with copyLocalState = false does not copy local state information.")]
@@ -88,8 +88,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
-      Assert.IsNotNull(placeable, $"Placeable {placeableResRef} was null after creation.");
-      Assert.IsTrue(placeable.IsValid, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
+      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
 
@@ -98,15 +98,15 @@ namespace Anvil.Tests.API
 
       NwPlaceable clone = placeable.Clone(startLocation, null, false);
 
-      Assert.IsNotNull(clone, $"Placeable {placeableResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Placeable {placeableResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Placeable {placeableResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
       LocalVariableInt cloneTestVar = clone.GetObjectVariable<LocalVariableInt>("test");
 
-      Assert.IsFalse(cloneTestVar.HasValue, "Local variable exists on the clone with copyLocalState = false.");
-      Assert.AreNotEqual(cloneTestVar.Value, testVar.Value, "Local variable on the cloned placeable matches the value of the original placeable.");
+      Assert.That(cloneTestVar.HasValue, Is.False, "Local variable exists on the clone with copyLocalState = false.");
+      Assert.That(cloneTestVar.Value, Is.Not.EqualTo(testVar.Value), "Local variable on the cloned placeable matches the value of the original placeable.");
     }
 
     [Test(Description = "Cloning a placeable with a custom tag defined causes the new placeable to gain the new tag.")]
@@ -126,20 +126,20 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
-      Assert.IsNotNull(placeable, $"Placeable {placeableResRef} was null after creation.");
-      Assert.IsTrue(placeable.IsValid, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
+      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
 
       string expectedNewTag = "expectedNewTag";
       NwPlaceable clone = placeable.Clone(startLocation, expectedNewTag, false);
 
-      Assert.IsNotNull(clone, $"Placeable {placeableResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Placeable {placeableResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Placeable {placeableResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
-      Assert.AreEqual(expectedNewTag, clone.Tag, "Tag defined in clone method was not applied to the cloned placeable.");
+      Assert.That(clone.Tag, Is.EqualTo(expectedNewTag), "Tag defined in clone method was not applied to the cloned placeable.");
     }
 
     [Test(Description = "Cloning a placeable with no tag defined uses the original placeable's tag instead.")]
@@ -160,19 +160,19 @@ namespace Anvil.Tests.API
       NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
       placeable.Tag = "expectedNewTag";
 
-      Assert.IsNotNull(placeable, $"Placeable {placeableResRef} was null after creation.");
-      Assert.IsTrue(placeable.IsValid, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
+      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
 
       NwPlaceable clone = placeable.Clone(startLocation, null, false);
 
-      Assert.IsNotNull(clone, $"Placeable {placeableResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Placeable {placeableResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Placeable {placeableResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
-      Assert.AreEqual(placeable.Tag, clone.Tag, "Cloned placeable's tag did not match the original placeable's.");
+      Assert.That(clone.Tag, Is.EqualTo(placeable.Tag), "Cloned placeable's tag did not match the original placeable's.");
     }
 
     [TearDown]

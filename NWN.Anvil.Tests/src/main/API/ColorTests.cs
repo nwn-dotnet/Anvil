@@ -13,7 +13,7 @@ namespace Anvil.Tests.API
     public void CreateColorTokenContainsNoNullTerminators(Color color)
     {
       string colorToken = color.ToColorToken();
-      Assert.IsFalse(colorToken.Contains('\0'), "color token contains a null character");
+      Assert.That(colorToken, Does.Not.Contain('\0'), "color token contains a null character");
     }
 
     private static IEnumerable<Color> ColorTestCases()

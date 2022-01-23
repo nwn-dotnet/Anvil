@@ -47,13 +47,13 @@ namespace Anvil.Tests.API
     [TestCase(StandardResRef.Item.nw_wbwmsh005)]
     [TestCase(StandardResRef.Item.x1_wmgrenade005)]
     [TestCase(StandardResRef.Item.nw_wthmsh003)]
-    public void CreateDoorIsCreated(string itemResRef)
+    public void CreateItemIsCreated(string itemResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
       NwItem item = NwItem.Create(itemResRef, startLocation);
 
-      Assert.IsNotNull(item, $"Creature {itemResRef} was null after creation.");
-      Assert.IsTrue(item.IsValid, $"Creature {itemResRef} was invalid after creation.");
+      Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
+      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
     }
@@ -100,8 +100,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwItem item = NwItem.Create(itemResRef, startLocation);
 
-      Assert.IsNotNull(item, $"Creature {itemResRef} was null after creation.");
-      Assert.IsTrue(item.IsValid, $"Creature {itemResRef} was invalid after creation.");
+      Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
+      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
 
@@ -110,15 +110,15 @@ namespace Anvil.Tests.API
 
       NwItem clone = item.Clone(startLocation);
 
-      Assert.IsNotNull(clone, $"Creature {itemResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Creature {itemResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Item {itemResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Item {itemResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
       LocalVariableInt cloneTestVar = clone.GetObjectVariable<LocalVariableInt>("test");
 
-      Assert.IsTrue(cloneTestVar.HasValue, "Local variable did not exist on the clone with copyLocalState = true.");
-      Assert.AreEqual(cloneTestVar.Value, testVar.Value, "Local variable on the cloned item did not match the value of the original item.");
+      Assert.That(cloneTestVar.HasValue, Is.True, "Local variable did not exist on the clone with copyLocalState = true.");
+      Assert.That(cloneTestVar.Value, Is.EqualTo(testVar.Value), "Local variable on the cloned item did not match the value of the original item.");
     }
 
     [Test(Description = "Cloning a item with copyLocalState = false does not copy local state information.")]
@@ -163,8 +163,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwItem item = NwItem.Create(itemResRef, startLocation);
 
-      Assert.IsNotNull(item, $"Creature {itemResRef} was null after creation.");
-      Assert.IsTrue(item.IsValid, $"Creature {itemResRef} was invalid after creation.");
+      Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
+      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
 
@@ -173,15 +173,15 @@ namespace Anvil.Tests.API
 
       NwItem clone = item.Clone(startLocation, null, false);
 
-      Assert.IsNotNull(clone, $"Creature {itemResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Creature {itemResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Item {itemResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Item {itemResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
       LocalVariableInt cloneTestVar = clone.GetObjectVariable<LocalVariableInt>("test");
 
-      Assert.IsFalse(cloneTestVar.HasValue, "Local variable exists on the clone with copyLocalState = false.");
-      Assert.AreNotEqual(cloneTestVar.Value, testVar.Value, "Local variable on the cloned item matches the value of the original item.");
+      Assert.That(cloneTestVar.HasValue, Is.False, "Local variable exists on the clone with copyLocalState = false.");
+      Assert.That(cloneTestVar.Value, Is.Not.EqualTo(testVar.Value), "Local variable on the cloned item matches the value of the original item.");
     }
 
     [Test(Description = "Cloning a item with a custom tag defined causes the new item to gain the new tag.")]
@@ -226,20 +226,20 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwItem item = NwItem.Create(itemResRef, startLocation);
 
-      Assert.IsNotNull(item, $"Creature {itemResRef} was null after creation.");
-      Assert.IsTrue(item.IsValid, $"Creature {itemResRef} was invalid after creation.");
+      Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
+      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
 
       string expectedNewTag = "expectedNewTag";
       NwItem clone = item.Clone(startLocation, expectedNewTag, false);
 
-      Assert.IsNotNull(clone, $"Creature {itemResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Creature {itemResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Item {itemResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Item {itemResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
-      Assert.AreEqual(expectedNewTag, clone.Tag, "Tag defined in clone method was not applied to the cloned item.");
+      Assert.That(clone.Tag, Is.EqualTo(expectedNewTag), "Tag defined in clone method was not applied to the cloned item.");
     }
 
     [Test(Description = "Cloning a item with no tag defined uses the original item's tag instead.")]
@@ -285,19 +285,19 @@ namespace Anvil.Tests.API
       NwItem item = NwItem.Create(itemResRef, startLocation);
       item.Tag = "expectedNewTag";
 
-      Assert.IsNotNull(item, $"Creature {itemResRef} was null after creation.");
-      Assert.IsTrue(item.IsValid, $"Creature {itemResRef} was invalid after creation.");
+      Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
+      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
 
       NwItem clone = item.Clone(startLocation, null, false);
 
-      Assert.IsNotNull(clone, $"Creature {itemResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Creature {itemResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Item {itemResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Item {itemResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
-      Assert.AreEqual(item.Tag, clone.Tag, "Cloned item's tag did not match the original item's.");
+      Assert.That(clone.Tag, Is.EqualTo(item.Tag), "Cloned item's tag did not match the original item's.");
     }
 
     [TearDown]

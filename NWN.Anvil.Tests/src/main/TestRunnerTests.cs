@@ -14,39 +14,39 @@ namespace Anvil.Tests
     [OneTimeSetUp]
     public void OneTimeSetupRunsInScriptContext()
     {
-      Assert.IsTrue(VirtualMachine.IsInScriptContext);
+      Assert.That(VirtualMachine.IsInScriptContext, Is.True);
     }
 
     [SetUp]
     public void SetupRunsInScriptContext()
     {
-      Assert.IsTrue(VirtualMachine.IsInScriptContext);
+      Assert.That(VirtualMachine.IsInScriptContext, Is.True);
     }
 
     [Test]
     public void TestRunsInScriptContext()
     {
-      Assert.IsTrue(VirtualMachine.IsInScriptContext);
+      Assert.That(VirtualMachine.IsInScriptContext, Is.True);
     }
 
     [Test]
     public async Task AsyncTestRunsInScriptContext()
     {
-      Assert.IsTrue(VirtualMachine.IsInScriptContext);
+      Assert.That(VirtualMachine.IsInScriptContext, Is.True);
       await NwTask.DelayFrame(1);
-      Assert.IsTrue(VirtualMachine.IsInScriptContext);
+      Assert.That(VirtualMachine.IsInScriptContext, Is.True);
     }
 
     [TearDown]
     public void TearDownRunsInScriptContext()
     {
-      Assert.IsTrue(VirtualMachine.IsInScriptContext);
+      Assert.That(VirtualMachine.IsInScriptContext, Is.True);
     }
 
     [OneTimeTearDown]
     public void OneTimeTearDownRunsInScriptContext()
     {
-      Assert.IsTrue(VirtualMachine.IsInScriptContext);
+      Assert.That(VirtualMachine.IsInScriptContext, Is.True);
     }
   }
 }
