@@ -1067,7 +1067,7 @@ namespace Anvil.API
       start ??= ColorConstants.White;
       end ??= ColorConstants.White;
 
-      NWScript.PostString(ControlledCreature, message, xPos, yPos, (int)anchor, life, start.Value.ToInt(), end.Value.ToInt(), id, font);
+      NWScript.PostString(ControlledCreature, message, xPos, yPos, (int)anchor, life, start.Value.ToRGBA(), end.Value.ToRGBA(), id, font);
     }
 
     /// <summary>
