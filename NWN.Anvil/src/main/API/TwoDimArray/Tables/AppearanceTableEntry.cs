@@ -24,12 +24,7 @@ namespace Anvil.API
     void ITwoDimArrayEntry.InterpretEntry(TwoDimArrayEntry entry)
     {
       Label = entry.GetString("LABEL");
-      int? strRef = entry.GetInt("STRING_REF");
-      if (strRef.HasValue)
-      {
-        StrRef = new StrRef(strRef.Value);
-      }
-
+      StrRef = entry.GetStrRef("STRING_REF");
       Name = entry.GetString("NAME");
       Race = entry.GetString("RACE");
       EnvironmentMap = entry.GetString("ENVMAP");

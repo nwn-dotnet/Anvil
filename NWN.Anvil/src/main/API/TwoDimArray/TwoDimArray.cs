@@ -97,6 +97,23 @@ namespace Anvil.API
       return null;
     }
 
+    public StrRef? GetStrRef(int rowIndex, string columnName)
+    {
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetStrRef(rowIndex, columnIndex) : null;
+    }
+
+    public unsafe StrRef? GetStrRef(int rowIndex, int columnIndex)
+    {
+      int retVal;
+      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      {
+        return new StrRef(retVal);
+      }
+
+      return null;
+    }
+
     public float? GetFloat(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);

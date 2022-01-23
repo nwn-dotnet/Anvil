@@ -50,5 +50,15 @@ namespace Anvil.API
     {
       return array.GetFloat(rowIndex, columnIndex);
     }
+
+    public StrRef? GetStrRef(string columnName)
+    {
+      return array.GetStrRef(rowIndex, columnName);
+    }
+
+    public StrRef? GetStrRef(int columnIndex)
+    {
+      return array.GetStrRef(rowIndex, columnIndex);
+    }
   }
 }
