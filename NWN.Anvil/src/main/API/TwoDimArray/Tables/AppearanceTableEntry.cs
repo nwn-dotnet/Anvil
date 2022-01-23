@@ -47,7 +47,7 @@ namespace Anvil.API
       Height = entry.GetFloat("HEIGHT");
       HitDistance = entry.GetFloat("HITDIST");
       PreferredAttackDistance = entry.GetFloat("PREFATCKDIST");
-      TargetHeight = entry.GetFloat("TARGETHEIGHT");
+      TargetHeight = entry.GetString("TARGETHEIGHT");
       AbortOnParry = entry.GetBool("ABORTONPARRY");
       RacialType = entry.GetInt("RACIALTYPE");
       HasLegs = entry.GetBool("HASLEGS");
@@ -58,10 +58,10 @@ namespace Anvil.API
       FootstepType = entry.GetInt("FOOTSTEPTYPE");
       AppearanceSoundSet = entry.GetInt("SOUNDAPPTYPE");
       HeadTrack = entry.GetBool("HEADTRACK");
-      HorizontalHeadArc = entry.GetInt("HEAD_ARC_H");
-      VerticalHeadArc = entry.GetInt("HEAD_ARC_V");
+      HeadArcHorizontal = entry.GetInt("HEAD_ARC_H");
+      HeadArcVertical = entry.GetInt("HEAD_ARC_V");
       HeadName = entry.GetString("HEAD_NAME");
-      BodyBag = entry.GetString("BODY_BAG");
+      BodyBag = entry.GetInt("BODY_BAG");
       Targetable = entry.GetBool("TARGETABLE");
     }
 
@@ -71,13 +71,13 @@ namespace Anvil.API
 
     public bool? Targetable { get; private set; }
 
-    public string BodyBag { get; private set; }
+    public int? BodyBag { get; private set; }
 
     public string HeadName { get; private set; }
 
-    public int? VerticalHeadArc { get; private set; }
+    public int? HeadArcVertical { get; private set; }
 
-    public int? HorizontalHeadArc { get; private set; }
+    public int? HeadArcHorizontal { get; private set; }
 
     public bool? HeadTrack { get; private set; }
 
@@ -95,7 +95,7 @@ namespace Anvil.API
 
     public bool? AbortOnParry { get; private set; }
 
-    public float? TargetHeight { get; private set; }
+    public string TargetHeight { get; private set; }
 
     public float? PreferredAttackDistance { get; private set; }
 

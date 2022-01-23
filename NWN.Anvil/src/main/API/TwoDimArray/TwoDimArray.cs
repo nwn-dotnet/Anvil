@@ -17,7 +17,7 @@ namespace Anvil.API
       array = NWNXLib.Rules().m_p2DArrays.GetCached2DA(resRef.ToExoString(), true.ToInt());
       if (array == null)
       {
-        throw new ArgumentException("Invalid 2DA resref.", nameof(resRef));
+        throw new ArgumentException("Invalid 2DA ResRef.", nameof(resRef));
       }
 
       Init();
