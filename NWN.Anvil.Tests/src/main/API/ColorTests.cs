@@ -16,6 +16,60 @@ namespace Anvil.Tests.API
       Assert.That(colorToken, Does.Not.Contain('\0'), "color token contains a null character");
     }
 
+    [Test]
+    [Description("Converting a color structure to a packed rgba value retains the correct value.")]
+    [TestCaseSource(nameof(ColorTestCases))]
+    public void ConvertColorToRgbaRetainsValue(Color color)
+    {
+      int rgba = color.ToRGBA();
+      Color fromRgba = Color.FromRGBA(rgba);
+
+      Assert.That(fromRgba, Is.EqualTo(color));
+    }
+
+    [Test]
+    [Description("Converting a color structure to a packed unsigned rgba value retains the correct value.")]
+    [TestCaseSource(nameof(ColorTestCases))]
+    public void ConvertColorToUnsignedRgbaRetainsValue(Color color)
+    {
+      uint rgba = color.ToUnsignedRGBA();
+      Color fromRgba = Color.FromRGBA(rgba);
+
+      Assert.That(fromRgba, Is.EqualTo(color));
+    }
+
+    [Test]
+    [Description("Converting a packed rgba value returns the correct value.")]
+    [TestCase(0xFF0000FFu, 0xFF, 0, 0, 0xFF)]
+    [TestCase(0x6E7882FFu, 0x6E, 0x78, 0x82, 0xFF)]
+    [TestCase(0x6E141E10u, 0x6E, 0x14, 0x1E, 0x10)]
+    public void ParseRGBAReturnsCorrectColor(uint packedColor, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
+    {
+      Assert.That(Color.FromRGBA(packedColor), Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
+    }
+
+    [Test]
+    [Description("Converting a rgba hex string returns the correct value.")]
+    [TestCase("0xFF0000FF", 0xFF, 0, 0, 0xFF)]
+    [TestCase("0x6E7882FF", 0x6E, 0x78, 0x82, 0xFF)]
+    [TestCase("0x6E141E10", 0x6E, 0x14, 0x1E, 0x10)]
+    [TestCase("0xff0000ff", 0xFF, 0, 0, 0xFF)]
+    [TestCase("0x6e7882ff", 0x6E, 0x78, 0x82, 0xFF)]
+    [TestCase("0x6e141e10", 0x6E, 0x14, 0x1E, 0x10)]
+    [TestCase("FF0000FF", 0xFF, 0, 0, 0xFF)]
+    [TestCase("6E7882FF", 0x6E, 0x78, 0x82, 0xFF)]
+    [TestCase("6E141E10", 0x6E, 0x14, 0x1E, 0x10)]
+    [TestCase("ff0000ff", 0xFF, 0, 0, 0xFF)]
+    [TestCase("6e7882ff", 0x6E, 0x78, 0x82, 0xFF)]
+    [TestCase("6e141e10", 0x6E, 0x14, 0x1E, 0x10)]
+    [TestCase("#ff0000ff", 0xFF, 0, 0, 0xFF)]
+    [TestCase("#6e7882ff", 0x6E, 0x78, 0x82, 0xFF)]
+    [TestCase("#6e141e10", 0x6E, 0x14, 0x1E, 0x10)]
+    public void ParseRGBAHexStringReturnsCorrectColor(string hexString, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
+    {
+      Assert.That(Color.FromRGBA(hexString), Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
+    }
+
     private static IEnumerable<Color> ColorTestCases()
     {
       yield return ColorConstants.Black;
