@@ -5,7 +5,7 @@ namespace Anvil.API
   public sealed class NuiDrawListArc : NuiDrawListItem
   {
     [JsonConstructor]
-    public NuiDrawListArc(NuiProperty<NuiColor> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, NuiProperty<NuiVector> center, NuiProperty<float> radius,
+    public NuiDrawListArc(NuiProperty<Color> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, NuiProperty<NuiVector> center, NuiProperty<float> radius,
       NuiProperty<float> angleMin, NuiProperty<float> angleMax) : base(color, fill, lineThickness)
     {
       Center = center;

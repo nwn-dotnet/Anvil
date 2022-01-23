@@ -25,7 +25,7 @@ namespace Anvil.API
     /// For example, labels would style their text color; progress bars would style the bar.
     /// </summary>
     [JsonProperty("foreground_color", NullValueHandling = NullValueHandling.Ignore)]
-    public NuiProperty<NuiColor> ForegroundColor { get; set; }
+    public NuiProperty<Color> ForegroundColor { get; set; }
 
     /// <summary>
     /// The height of this element, in pixels.

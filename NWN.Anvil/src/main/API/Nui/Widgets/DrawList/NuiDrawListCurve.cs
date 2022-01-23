@@ -5,7 +5,7 @@ namespace Anvil.API
   public sealed class NuiDrawListCurve : NuiDrawListItem
   {
     [JsonConstructor]
-    public NuiDrawListCurve(NuiProperty<NuiColor> color, NuiProperty<float> lineThickness, NuiProperty<NuiVector> pointA, NuiProperty<NuiVector> pointB, NuiProperty<NuiVector> control0, NuiProperty<NuiVector> control1) : base(color, false, lineThickness)
+    public NuiDrawListCurve(NuiProperty<Color> color, NuiProperty<float> lineThickness, NuiProperty<NuiVector> pointA, NuiProperty<NuiVector> pointB, NuiProperty<NuiVector> control0, NuiProperty<NuiVector> control1) : base(color, false, lineThickness)
     {
       PointA = pointA;
       PointB = pointB;

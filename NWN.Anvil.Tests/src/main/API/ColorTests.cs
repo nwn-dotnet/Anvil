@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Anvil.API;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace Anvil.Tests.API
@@ -17,9 +18,9 @@ namespace Anvil.Tests.API
     }
 
     [Test]
-    [Description("Converting a color structure to a packed rgba value retains the correct value.")]
+    [Description("Converting a color structure to a packed rgba value retains the correct color values.")]
     [TestCaseSource(nameof(ColorTestCases))]
-    public void ConvertColorToRgbaRetainsValue(Color color)
+    public void ConvertColorToRgbaRetainsColorValues(Color color)
     {
       int rgba = color.ToRGBA();
       Color fromRgba = Color.FromRGBA(rgba);
@@ -28,7 +29,7 @@ namespace Anvil.Tests.API
     }
 
     [Test]
-    [Description("Converting a color structure to a packed unsigned rgba value retains the correct value.")]
+    [Description("Converting a color structure to a packed unsigned rgba value retains the correct color values.")]
     [TestCaseSource(nameof(ColorTestCases))]
     public void ConvertColorToUnsignedRgbaRetainsValue(Color color)
     {
@@ -39,7 +40,7 @@ namespace Anvil.Tests.API
     }
 
     [Test]
-    [Description("Converting a packed rgba value returns the correct value.")]
+    [Description("Converting a packed rgba value returns the correct color.")]
     [TestCase(0xFF0000FFu, 0xFF, 0, 0, 0xFF)]
     [TestCase(0x6E7882FFu, 0x6E, 0x78, 0x82, 0xFF)]
     [TestCase(0x6E141E10u, 0x6E, 0x14, 0x1E, 0x10)]
@@ -49,7 +50,7 @@ namespace Anvil.Tests.API
     }
 
     [Test]
-    [Description("Converting a rgba hex string returns the correct value.")]
+    [Description("Converting a rgba hex string returns the correct color.")]
     [TestCase("0xFF0000FF", 0xFF, 0, 0, 0xFF)]
     [TestCase("0x6E7882FF", 0x6E, 0x78, 0x82, 0xFF)]
     [TestCase("0x6E141E10", 0x6E, 0x14, 0x1E, 0x10)]
@@ -68,6 +69,28 @@ namespace Anvil.Tests.API
     public void ParseRGBAHexStringReturnsCorrectColor(string hexString, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
     {
       Assert.That(Color.FromRGBA(hexString), Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
+    }
+
+    [Test]
+    [Description("Deserializing a NUI color json structure creates the correct color.")]
+    [TestCase(@"{""r"":255,""g"":0,""b"":0,""a"":0}", 255, 0, 0, 0)]
+    [TestCase(@"{""r"":255,""g"":100,""b"":0,""a"":0}", 255, 100, 0, 0)]
+    [TestCase(@"{""r"":255,""g"":100,""b"":10,""a"":30}", 255, 100, 10, 30)]
+    public void DeserializeColorCreatesCorrectColor(string json, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
+    {
+      Color color = JsonConvert.DeserializeObject<Color>(json);
+      Assert.That(color, Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
+    }
+
+    [Test]
+    [Description("Serializing a color structure to json retains the correct color values.")]
+    [TestCaseSource(nameof(ColorTestCases))]
+    public void SerializeColorRetainsColorValues(Color color)
+    {
+      string serializedColor = JsonConvert.SerializeObject(color);
+      Color deserializedColor = JsonConvert.DeserializeObject<Color>(serializedColor);
+
+      Assert.That(deserializedColor, Is.EqualTo(color));
     }
 
     private static IEnumerable<Color> ColorTestCases()
