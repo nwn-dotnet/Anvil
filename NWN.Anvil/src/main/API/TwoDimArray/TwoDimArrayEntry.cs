@@ -1,5 +1,8 @@
 namespace Anvil.API
 {
+  /// <summary>
+  /// 2da row data.
+  /// </summary>
   public sealed class TwoDimArrayEntry
   {
     private readonly TwoDimArray array;

@@ -5,6 +5,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A two dimensional array data resource.
+  /// </summary>
   public class TwoDimArray : IEquatable<TwoDimArray>
   {
     private readonly C2DA array;
@@ -32,10 +35,19 @@ namespace Anvil.API
       Init();
     }
 
+    /// <summary>
+    /// Gets the number of columns in this 2da.
+    /// </summary>
     public int ColumnCount => array.m_nNumColumns;
 
+    /// <summary>
+    /// Gets the column labels/names for this 2da.
+    /// </summary>
     public string[] Columns { get; private set; }
 
+    /// <summary>
+    /// Gets the number of rows in this 2da.
+    /// </summary>
     public int RowCount => array.m_nNumRows;
 
     public static bool operator ==(TwoDimArray left, TwoDimArray right)
@@ -68,12 +80,24 @@ namespace Anvil.API
       return ReferenceEquals(this, obj) || obj is TwoDimArray other && Equals(other);
     }
 
+    /// <summary>
+    /// Gets the specified boolean value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public bool? GetBool(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);
       return columnIndex >= 0 ? GetBool(rowIndex, columnIndex) : null;
     }
 
+    /// <summary>
+    /// Gets the specified boolean value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public unsafe bool? GetBool(int rowIndex, int columnIndex)
     {
       int retVal;
@@ -85,17 +109,34 @@ namespace Anvil.API
       return null;
     }
 
+    /// <summary>
+    /// Gets the index of the column with the specified name/label.
+    /// </summary>
+    /// <param name="columnName">The column to lookup.</param>
+    /// <returns>The zero-based index of the column if found, otherwise -1.</returns>
     public int GetColumnIndex(string columnName)
     {
       return Array.FindIndex(Columns, column => columnName.Equals(column, StringComparison.OrdinalIgnoreCase));
     }
 
+    /// <summary>
+    /// Gets the specified float value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public float? GetFloat(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);
       return columnIndex >= 0 ? GetFloat(rowIndex, columnIndex) : null;
     }
 
+    /// <summary>
+    /// Gets the specified float value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public unsafe float? GetFloat(int rowIndex, int columnIndex)
     {
       float retVal;
@@ -112,12 +153,24 @@ namespace Anvil.API
       return array.GetHashCode();
     }
 
+    /// <summary>
+    /// Gets the specified int value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public int? GetInt(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);
       return columnIndex >= 0 ? GetInt(rowIndex, columnIndex) : null;
     }
 
+    /// <summary>
+    /// Gets the specified int value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public unsafe int? GetInt(int rowIndex, int columnIndex)
     {
       int retVal;
@@ -129,12 +182,24 @@ namespace Anvil.API
       return null;
     }
 
+    /// <summary>
+    /// Gets the specified string value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public string GetString(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);
       return columnIndex >= 0 ? GetString(rowIndex, columnIndex) : null;
     }
 
+    /// <summary>
+    /// Gets the specified string value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public string GetString(int rowIndex, int columnIndex)
     {
       using CExoString retVal = new CExoString();
@@ -146,12 +211,24 @@ namespace Anvil.API
       return null;
     }
 
+    /// <summary>
+    /// Gets the specified <see cref="StrRef"/> value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public StrRef? GetStrRef(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);
       return columnIndex >= 0 ? GetStrRef(rowIndex, columnIndex) : null;
     }
 
+    /// <summary>
+    /// Gets the specified <see cref="StrRef"/> value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
     public unsafe StrRef? GetStrRef(int rowIndex, int columnIndex)
     {
       int retVal;
@@ -176,13 +253,21 @@ namespace Anvil.API
     }
   }
 
+  /// <summary>
+  /// A two dimensional array resource, with a decoded row type.
+  /// </summary>
+  /// <typeparam name="T">The row/entry type to decode the array.</typeparam>
   public sealed class TwoDimArray<T> : TwoDimArray, IReadOnlyList<T> where T : ITwoDimArrayEntry, new()
   {
     public TwoDimArray(string resRef) : base(resRef) {}
     internal TwoDimArray(C2DA array) : base(array) {}
 
+    /// <inheritdoc cref="TwoDimArray.RowCount"/>
     public int Count => RowCount;
 
+    /// <summary>
+    /// Gets a read-only list of all rows in this 2da.
+    /// </summary>
     public IReadOnlyList<T> Rows
     {
       get
@@ -197,13 +282,18 @@ namespace Anvil.API
       }
     }
 
-    public T this[int index] => GetRow(index);
+    /// <inheritdoc cref="GetRow"/>
+    public T this[int rowIndex] => GetRow(rowIndex);
 
     public IEnumerator<T> GetEnumerator()
     {
       return Rows.GetEnumerator();
     }
 
+    /// <summary>
+    /// Gets the row at the specified index.
+    /// </summary>
+    /// <param name="rowIndex">The row index.</param>
     public T GetRow(int rowIndex)
     {
       if (rowIndex < 0 || rowIndex >= RowCount)

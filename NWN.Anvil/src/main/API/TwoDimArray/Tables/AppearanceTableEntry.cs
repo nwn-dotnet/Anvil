@@ -58,6 +58,7 @@ namespace Anvil.API
     public string Race { get; private set; }
 
     public int? RacialType { get; private set; }
+
     public int RowIndex { get; init; }
 
     public float? RunDistance { get; private set; }
