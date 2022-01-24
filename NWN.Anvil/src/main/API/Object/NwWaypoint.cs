@@ -1,4 +1,5 @@
 using System;
+using NWN.Core;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -19,6 +20,11 @@ namespace Anvil.API
     public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
+    }
+
+    public static NwWaypoint Create(Location location, bool useAppearAnim = false, string newTag = "")
+    {
+      return Create("nw_waypoint001", location, useAppearAnim, newTag);
     }
 
     public static NwWaypoint Deserialize(byte[] serialized)
