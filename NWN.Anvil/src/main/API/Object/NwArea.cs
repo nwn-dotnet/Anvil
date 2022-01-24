@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using Anvil.Services;
 using NWN.Core;
@@ -78,6 +79,148 @@ namespace Anvil.API
     /// Gets the last object that left this area.
     /// </summary>
     public NwGameObject LastLeft => Area.m_oidLastLeft.ToNwObject<NwGameObject>();
+
+    /// <summary>
+    /// Gets or sets the day/night mode to use for this area.
+    /// </summary>
+    public DayNightMode DayNightMode
+    {
+      get => Area.m_bUseDayNightCycle.ToBool() ? DayNightMode.EnableDayNightCycle : Area.m_bIsNight.ToBool() ? DayNightMode.AlwaysNight : DayNightMode.AlwaysDay;
+      set
+      {
+        switch (value)
+        {
+          case DayNightMode.EnableDayNightCycle:
+            Area.m_bUseDayNightCycle = true.ToInt();
+            break;
+          case DayNightMode.AlwaysNight:
+            Area.SetIsNight(true.ToInt());
+            Area.m_bUseDayNightCycle = false.ToInt();
+            break;
+          case DayNightMode.AlwaysDay:
+            Area.m_bUseDayNightCycle = false.ToInt();
+            Area.SetIsNight(false.ToInt());
+            break;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets the area ambient color during day time.
+    /// </summary>
+    public Color SunAmbientColor
+    {
+      get => Color.FromRGBA(Area.m_nSunAmbientColor);
+      set => Area.m_nSunAmbientColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets the area diffuse color during day time.
+    /// </summary>
+    public Color SunDiffuseColor
+    {
+      get => Color.FromRGBA(Area.m_nSunDiffuseColor);
+      set => Area.m_nSunDiffuseColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets the area fog color during day time.
+    /// </summary>
+    public Color SunFogColor
+    {
+      get => Color.FromRGBA(Area.m_nSunFogColor);
+      set => Area.m_nSunFogColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets the fog density during day time.
+    /// </summary>
+    public int SunFogAmount
+    {
+      get => Area.m_nSunFogAmount;
+      set => Area.m_nSunFogAmount = (byte)value;
+    }
+
+    /// <summary>
+    /// Gets or sets whether shadows are cast during day time.
+    /// </summary>
+    public bool SunShadows
+    {
+      get => Area.m_bSunShadows.ToBool();
+      set => Area.m_bSunShadows = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets the area ambient color during night time.
+    /// </summary>
+    public Color MoonAmbientColor
+    {
+      get => Color.FromRGBA(Area.m_nMoonAmbientColor);
+      set => Area.m_nMoonAmbientColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets the area diffuse color during night time.
+    /// </summary>
+    public Color MoonDiffuseColor
+    {
+      get => Color.FromRGBA(Area.m_nMoonDiffuseColor);
+      set => Area.m_nMoonDiffuseColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets the area fog color during night time.
+    /// </summary>
+    public Color MoonFogColor
+    {
+      get => Color.FromRGBA(Area.m_nMoonFogColor);
+      set => Area.m_nMoonFogColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets the fog density during night time.
+    /// </summary>
+    public int MoonFogAmount
+    {
+      get => Area.m_nMoonFogAmount;
+      set => Area.m_nMoonFogAmount = (byte)value;
+    }
+
+    /// <summary>
+    /// Gets or sets whether shadows are cast during night time.
+    /// </summary>
+    public bool MoonShadows
+    {
+      get => Area.m_bMoonShadows.ToBool();
+      set => Area.m_bMoonShadows = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets the percentage value (0-100) that rain may occur.
+    /// </summary>
+    public int RainChance
+    {
+      get => Area.m_nChanceOfRain;
+      set => Area.m_nChanceOfRain = (byte)value;
+    }
+
+    /// <summary>
+    /// Gets or sets the percentage value (0-100) that snow may occur.
+    /// </summary>
+    public int SnowChance
+    {
+      get => Area.m_nChanceOfSnow;
+      set => Area.m_nChanceOfSnow = (byte)value;
+    }
+
+    /// <summary>
+    /// Gets or sets the percentage value (0-100) that lightning may occur.
+    /// </summary>
+    public int LightningChance
+    {
+      get => Area.m_nChanceOfLightning;
+      set => Area.m_nChanceOfLightning = (byte)value;
+    }
 
     /// <summary>
     /// Gets or sets the listen modifier for this area.
@@ -284,6 +427,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the fog amount for this area, at the specified time of day.
     /// </summary>
+    [Obsolete("Use SunFogAmount or MoonFogAmount instead.")]
     public int GetFogAmount(FogType fogType)
     {
       return NWScript.GetFogAmount((int)fogType, this);
@@ -292,6 +436,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the fog color for this area, at the specified time of day.
     /// </summary>
+    [Obsolete("Use SunFogColor or MoonFogColor instead.")]
     public FogColor GetFogColor(FogType fogType)
     {
       return (FogColor)NWScript.GetFogColor((int)fogType, this);
@@ -646,6 +791,47 @@ namespace Anvil.API
     public void StopBattleMusic()
     {
       NWScript.MusicBattleStop(this);
+    }
+
+    public void ApplyEnvironmentPreset(EnvironmentPreset preset)
+    {
+      DayNightMode = preset.DayNightMode;
+      SunAmbientColor = preset.SunAmbientColor;
+      SunDiffuseColor = preset.SunDiffuseColor;
+      SunFogColor = preset.SunFogColor;
+      SunFogAmount = preset.SunFogAmount.GetValueOrDefault(0);
+      SunShadows = preset.SunShadows.GetValueOrDefault(false);
+      MoonAmbientColor = preset.MoonAmbientColor;
+      MoonDiffuseColor = preset.MoonDiffuseColor;
+      MoonFogColor = preset.MoonFogColor;
+      MoonFogAmount = preset.MoonFogAmount.GetValueOrDefault(0);
+      MoonShadows = preset.MoonShadows.GetValueOrDefault(false);
+      WindPower = (byte)preset.WindPower.GetValueOrDefault(0);
+      SnowChance = preset.SnowChance.GetValueOrDefault(0);
+      RainChance = preset.RainChance.GetValueOrDefault(0);
+      LightningChance = preset.LightningChance.GetValueOrDefault(0);
+    }
+
+    public EnvironmentPreset CreateEnvironmentPreset()
+    {
+      return new EnvironmentPreset
+      {
+        DayNightMode = DayNightMode,
+        SunAmbientColor = SunAmbientColor,
+        SunDiffuseColor = SunDiffuseColor,
+        SunFogColor = SunFogColor,
+        SunFogAmount = SunFogAmount,
+        SunShadows = SunShadows,
+        MoonAmbientColor = MoonAmbientColor,
+        MoonDiffuseColor = MoonDiffuseColor,
+        MoonFogColor = MoonFogColor,
+        MoonFogAmount = MoonFogAmount,
+        MoonShadows = MoonShadows,
+        WindPower = WindPower,
+        SnowChance = SnowChance,
+        RainChance = RainChance,
+        LightningChance = LightningChance,
+      };
     }
   }
 }

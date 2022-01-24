@@ -5,7 +5,7 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public class TwoDimArray
+  public class TwoDimArray : IEquatable<TwoDimArray>
   {
     private readonly C2DA array;
 
@@ -139,6 +139,41 @@ namespace Anvil.API
     public int RowCount => array.m_nNumRows;
 
     public int ColumnCount => array.m_nNumColumns;
+
+    public bool Equals(TwoDimArray other)
+    {
+      if (ReferenceEquals(null, other))
+      {
+        return false;
+      }
+
+      if (ReferenceEquals(this, other))
+      {
+        return true;
+      }
+
+      return array.Equals(other.array);
+    }
+
+    public override bool Equals(object obj)
+    {
+      return ReferenceEquals(this, obj) || obj is TwoDimArray other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+      return array.GetHashCode();
+    }
+
+    public static bool operator ==(TwoDimArray left, TwoDimArray right)
+    {
+      return Equals(left, right);
+    }
+
+    public static bool operator !=(TwoDimArray left, TwoDimArray right)
+    {
+      return !Equals(left, right);
+    }
   }
 
   public sealed class TwoDimArray<T> : TwoDimArray, IReadOnlyList<T> where T : ITwoDimArrayEntry, new()

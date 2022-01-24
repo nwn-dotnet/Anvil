@@ -1,26 +1,12 @@
-using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
 {
   public static class NwGameTables
   {
-    public static TwoDimArray<AppearanceTableEntry> AppearanceTable { get; private set; }
+    public static TwoDimArray<AppearanceTableEntry> AppearanceTable => new TwoDimArray<AppearanceTableEntry>(Arrays.m_pAppearanceTable);
+    public static TwoDimArray<EnvironmentPreset> EnvironmentPresetTable => new TwoDimArray<EnvironmentPreset>("environment.2da");
 
-    [ServiceBinding(typeof(Factory))]
-    [ServiceBindingOptions(InternalBindingPriority.API)]
-    internal sealed class Factory
-    {
-      public Factory()
-      {
-        LoadTables();
-      }
-
-      internal void LoadTables()
-      {
-        CTwoDimArrays twoDimArrays = NWNXLib.Rules().m_p2DArrays;
-        AppearanceTable = new TwoDimArray<AppearanceTableEntry>(twoDimArrays.m_pAppearanceTable);
-      }
-    }
+    private static CTwoDimArrays Arrays => NWNXLib.Rules().m_p2DArrays;
   }
 }
