@@ -55,31 +55,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets a value indicating whether this area is above ground (true), or underground (false).
-    /// </summary>
-    public bool IsAboveGround => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
-
-    /// <summary>
-    /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
-    /// </summary>
-    public bool IsInterior => NWScript.GetIsAreaInterior(this).ToBool();
-
-    /// <summary>
-    /// Gets a value indicating whether this area is natural (true), or artificial (false).
-    /// </summary>
-    public bool IsNatural => (AreaInfo)NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
-
-    /// <summary>
-    /// Gets the last object that entered this area.
-    /// </summary>
-    public NwGameObject LastEntered => Area.m_oidLastEntered.ToNwObject<NwGameObject>();
-
-    /// <summary>
-    /// Gets the last object that left this area.
-    /// </summary>
-    public NwGameObject LastLeft => Area.m_oidLastLeft.ToNwObject<NwGameObject>();
-
-    /// <summary>
     /// Gets or sets the day/night mode to use for this area.
     /// </summary>
     public DayNightMode DayNightMode
@@ -105,48 +80,46 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the area ambient color during day time.
+    /// Gets a value indicating whether this area is above ground (true), or underground (false).
     /// </summary>
-    public Color SunAmbientColor
+    public bool IsAboveGround => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
+
+    /// <summary>
+    /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
+    /// </summary>
+    public bool IsInterior => NWScript.GetIsAreaInterior(this).ToBool();
+
+    /// <summary>
+    /// Gets a value indicating whether this area is natural (true), or artificial (false).
+    /// </summary>
+    public bool IsNatural => (AreaInfo)NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
+
+    /// <summary>
+    /// Gets the last object that entered this area.
+    /// </summary>
+    public NwGameObject LastEntered => Area.m_oidLastEntered.ToNwObject<NwGameObject>();
+
+    /// <summary>
+    /// Gets the last object that left this area.
+    /// </summary>
+    public NwGameObject LastLeft => Area.m_oidLastLeft.ToNwObject<NwGameObject>();
+
+    /// <summary>
+    /// Gets or sets the percentage value (0-100) that lightning may occur.
+    /// </summary>
+    public int LightningChance
     {
-      get => Color.FromRGBA(Area.m_nSunAmbientColor);
-      set => Area.m_nSunAmbientColor = value.ToUnsignedRGBA();
+      get => Area.m_nChanceOfLightning;
+      set => Area.m_nChanceOfLightning = (byte)value;
     }
 
     /// <summary>
-    /// Gets or sets the area diffuse color during day time.
+    /// Gets or sets the listen modifier for this area.
     /// </summary>
-    public Color SunDiffuseColor
+    public int ListenModifier
     {
-      get => Color.FromRGBA(Area.m_nSunDiffuseColor);
-      set => Area.m_nSunDiffuseColor = value.ToUnsignedRGBA();
-    }
-
-    /// <summary>
-    /// Gets or sets the area fog color during day time.
-    /// </summary>
-    public Color SunFogColor
-    {
-      get => Color.FromRGBA(Area.m_nSunFogColor);
-      set => Area.m_nSunFogColor = value.ToUnsignedRGBA();
-    }
-
-    /// <summary>
-    /// Gets or sets the fog density during day time.
-    /// </summary>
-    public int SunFogAmount
-    {
-      get => Area.m_nSunFogAmount;
-      set => Area.m_nSunFogAmount = (byte)value;
-    }
-
-    /// <summary>
-    /// Gets or sets whether shadows are cast during day time.
-    /// </summary>
-    public bool SunShadows
-    {
-      get => Area.m_bSunShadows.ToBool();
-      set => Area.m_bSunShadows = value.ToInt();
+      get => Area.m_nAreaListenModifier;
+      set => Area.m_nAreaListenModifier = value;
     }
 
     /// <summary>
@@ -168,15 +141,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the area fog color during night time.
-    /// </summary>
-    public Color MoonFogColor
-    {
-      get => Color.FromRGBA(Area.m_nMoonFogColor);
-      set => Area.m_nMoonFogColor = value.ToUnsignedRGBA();
-    }
-
-    /// <summary>
     /// Gets or sets the fog density during night time.
     /// </summary>
     public int MoonFogAmount
@@ -186,48 +150,21 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the area fog color during night time.
+    /// </summary>
+    public Color MoonFogColor
+    {
+      get => Color.FromRGBA(Area.m_nMoonFogColor);
+      set => Area.m_nMoonFogColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
     /// Gets or sets whether shadows are cast during night time.
     /// </summary>
     public bool MoonShadows
     {
       get => Area.m_bMoonShadows.ToBool();
       set => Area.m_bMoonShadows = value.ToInt();
-    }
-
-    /// <summary>
-    /// Gets or sets the percentage value (0-100) that rain may occur.
-    /// </summary>
-    public int RainChance
-    {
-      get => Area.m_nChanceOfRain;
-      set => Area.m_nChanceOfRain = (byte)value;
-    }
-
-    /// <summary>
-    /// Gets or sets the percentage value (0-100) that snow may occur.
-    /// </summary>
-    public int SnowChance
-    {
-      get => Area.m_nChanceOfSnow;
-      set => Area.m_nChanceOfSnow = (byte)value;
-    }
-
-    /// <summary>
-    /// Gets or sets the percentage value (0-100) that lightning may occur.
-    /// </summary>
-    public int LightningChance
-    {
-      get => Area.m_nChanceOfLightning;
-      set => Area.m_nChanceOfLightning = (byte)value;
-    }
-
-    /// <summary>
-    /// Gets or sets the listen modifier for this area.
-    /// </summary>
-    public int ListenModifier
-    {
-      get => Area.m_nAreaListenModifier;
-      set => Area.m_nAreaListenModifier = value;
     }
 
     /// <summary>
@@ -289,6 +226,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the percentage value (0-100) that rain may occur.
+    /// </summary>
+    public int RainChance
+    {
+      get => Area.m_nChanceOfRain;
+      set => Area.m_nChanceOfRain = (byte)value;
+    }
+
+    /// <summary>
     /// Gets or sets whether resting is allowed in this area.
     /// </summary>
     public bool RestingAllowed
@@ -313,12 +259,66 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the percentage value (0-100) that snow may occur.
+    /// </summary>
+    public int SnowChance
+    {
+      get => Area.m_nChanceOfSnow;
+      set => Area.m_nChanceOfSnow = (byte)value;
+    }
+
+    /// <summary>
     /// Gets or sets the spot modifier for this area.
     /// </summary>
     public int SpotModifier
     {
       get => Area.m_nAreaSpotModifier;
       set => Area.m_nAreaSpotModifier = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the area ambient color during day time.
+    /// </summary>
+    public Color SunAmbientColor
+    {
+      get => Color.FromRGBA(Area.m_nSunAmbientColor);
+      set => Area.m_nSunAmbientColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets the area diffuse color during day time.
+    /// </summary>
+    public Color SunDiffuseColor
+    {
+      get => Color.FromRGBA(Area.m_nSunDiffuseColor);
+      set => Area.m_nSunDiffuseColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets the fog density during day time.
+    /// </summary>
+    public int SunFogAmount
+    {
+      get => Area.m_nSunFogAmount;
+      set => Area.m_nSunFogAmount = (byte)value;
+    }
+
+    /// <summary>
+    /// Gets or sets the area fog color during day time.
+    /// </summary>
+    public Color SunFogColor
+    {
+      get => Color.FromRGBA(Area.m_nSunFogColor);
+      set => Area.m_nSunFogColor = value.ToUnsignedRGBA();
+    }
+
+    /// <summary>
+    /// Gets or sets whether shadows are cast during day time.
+    /// </summary>
+    public bool SunShadows
+    {
+      get => Area.m_bSunShadows.ToBool();
+      set => Area.m_bSunShadows = value.ToInt();
     }
 
     /// <summary>
@@ -388,6 +388,25 @@ namespace Anvil.API
       return area?.Area;
     }
 
+    public void ApplyEnvironmentPreset(EnvironmentPreset preset)
+    {
+      DayNightMode = preset.DayNightMode;
+      SunAmbientColor = preset.SunAmbientColor;
+      SunDiffuseColor = preset.SunDiffuseColor;
+      SunFogColor = preset.SunFogColor;
+      SunFogAmount = preset.SunFogAmount.GetValueOrDefault(0);
+      SunShadows = preset.SunShadows.GetValueOrDefault(false);
+      MoonAmbientColor = preset.MoonAmbientColor;
+      MoonDiffuseColor = preset.MoonDiffuseColor;
+      MoonFogColor = preset.MoonFogColor;
+      MoonFogAmount = preset.MoonFogAmount.GetValueOrDefault(0);
+      MoonShadows = preset.MoonShadows.GetValueOrDefault(false);
+      WindPower = (byte)preset.WindPower.GetValueOrDefault(0);
+      SnowChance = preset.SnowChance.GetValueOrDefault(0);
+      RainChance = preset.RainChance.GetValueOrDefault(0);
+      LightningChance = preset.LightningChance.GetValueOrDefault(0);
+    }
+
     /// <summary>
     /// Creates a copy of this area, including everything inside of it (except players).
     /// </summary>
@@ -395,6 +414,28 @@ namespace Anvil.API
     public NwArea Clone()
     {
       return NWScript.CopyArea(this).ToNwObject<NwArea>();
+    }
+
+    public EnvironmentPreset CreateEnvironmentPreset()
+    {
+      return new EnvironmentPreset
+      {
+        DayNightMode = DayNightMode,
+        SunAmbientColor = SunAmbientColor,
+        SunDiffuseColor = SunDiffuseColor,
+        SunFogColor = SunFogColor,
+        SunFogAmount = SunFogAmount,
+        SunShadows = SunShadows,
+        MoonAmbientColor = MoonAmbientColor,
+        MoonDiffuseColor = MoonDiffuseColor,
+        MoonFogColor = MoonFogColor,
+        MoonFogAmount = MoonFogAmount,
+        MoonShadows = MoonShadows,
+        WindPower = WindPower,
+        SnowChance = SnowChance,
+        RainChance = RainChance,
+        LightningChance = LightningChance,
+      };
     }
 
     /// <summary>
@@ -790,47 +831,6 @@ namespace Anvil.API
     public void StopBattleMusic()
     {
       NWScript.MusicBattleStop(this);
-    }
-
-    public void ApplyEnvironmentPreset(EnvironmentPreset preset)
-    {
-      DayNightMode = preset.DayNightMode;
-      SunAmbientColor = preset.SunAmbientColor;
-      SunDiffuseColor = preset.SunDiffuseColor;
-      SunFogColor = preset.SunFogColor;
-      SunFogAmount = preset.SunFogAmount.GetValueOrDefault(0);
-      SunShadows = preset.SunShadows.GetValueOrDefault(false);
-      MoonAmbientColor = preset.MoonAmbientColor;
-      MoonDiffuseColor = preset.MoonDiffuseColor;
-      MoonFogColor = preset.MoonFogColor;
-      MoonFogAmount = preset.MoonFogAmount.GetValueOrDefault(0);
-      MoonShadows = preset.MoonShadows.GetValueOrDefault(false);
-      WindPower = (byte)preset.WindPower.GetValueOrDefault(0);
-      SnowChance = preset.SnowChance.GetValueOrDefault(0);
-      RainChance = preset.RainChance.GetValueOrDefault(0);
-      LightningChance = preset.LightningChance.GetValueOrDefault(0);
-    }
-
-    public EnvironmentPreset CreateEnvironmentPreset()
-    {
-      return new EnvironmentPreset
-      {
-        DayNightMode = DayNightMode,
-        SunAmbientColor = SunAmbientColor,
-        SunDiffuseColor = SunDiffuseColor,
-        SunFogColor = SunFogColor,
-        SunFogAmount = SunFogAmount,
-        SunShadows = SunShadows,
-        MoonAmbientColor = MoonAmbientColor,
-        MoonDiffuseColor = MoonDiffuseColor,
-        MoonFogColor = MoonFogColor,
-        MoonFogAmount = MoonFogAmount,
-        MoonShadows = MoonShadows,
-        WindPower = WindPower,
-        SnowChance = SnowChance,
-        RainChance = RainChance,
-        LightningChance = LightningChance,
-      };
     }
   }
 }

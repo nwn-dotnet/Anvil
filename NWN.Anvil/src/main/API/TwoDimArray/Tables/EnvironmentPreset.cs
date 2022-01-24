@@ -5,12 +5,64 @@ namespace Anvil.API
   /// </summary>
   public sealed class EnvironmentPreset : ITwoDimArrayEntry
   {
-    public int RowIndex { get; init; }
+    public DayNightMode DayNightMode { get; set; }
 
     public string Label { get; set; }
+
+    public int? LightningChance { get; set; }
+
+    public int? Main1Color1 { get; set; }
+
+    public int? Main1Color2 { get; set; }
+
+    public int? Main1Color3 { get; set; }
+
+    public int? Main1Color4 { get; set; }
+
+    public int? Main2Color1 { get; set; }
+
+    public int? Main2Color2 { get; set; }
+
+    public int? Main2Color3 { get; set; }
+
+    public int? Main2Color4 { get; set; }
+
+    public Color MoonAmbientColor { get; set; }
+
+    public Color MoonDiffuseColor { get; set; }
+
+    public int? MoonFogAmount { get; set; }
+
+    public Color MoonFogColor { get; set; }
+
+    public bool? MoonShadows { get; set; }
+
+    public int? RainChance { get; set; }
+    public int RowIndex { get; init; }
+
+    public int? SecondaryColor1 { get; set; }
+
+    public int? SecondaryColor2 { get; set; }
+
+    public int? SecondaryColor3 { get; set; }
+
+    public int? SecondaryColor4 { get; set; }
+
+    public float? ShadowAlpha { get; set; }
+
+    public int? SnowChance { get; set; }
     public StrRef? StrRef { get; set; }
-    public DayNightMode DayNightMode { get; set; }
     public Color SunAmbientColor { get; set; }
+
+    public Color SunDiffuseColor { get; set; }
+
+    public int? SunFogAmount { get; set; }
+
+    public Color SunFogColor { get; set; }
+
+    public bool? SunShadows { get; set; }
+
+    public int? WindPower { get; set; }
 
     void ITwoDimArrayEntry.InterpretEntry(TwoDimArrayEntry entry)
     {
@@ -52,57 +104,5 @@ namespace Anvil.API
       LightningChance = entry.GetInt("LIGHTNING");
       ShadowAlpha = entry.GetFloat("SHADOW_ALPHA");
     }
-
-    public int? MoonFogAmount { get; set; }
-
-    public int? SunFogAmount { get; set; }
-
-    public float? ShadowAlpha { get; set; }
-
-    public int? LightningChance { get; set; }
-
-    public int? RainChance { get; set; }
-
-    public int? SnowChance { get; set; }
-
-    public int? WindPower { get; set; }
-
-    public int? SecondaryColor4 { get; set; }
-
-    public int? SecondaryColor3 { get; set; }
-
-    public int? SecondaryColor2 { get; set; }
-
-    public int? SecondaryColor1 { get; set; }
-
-    public int? Main2Color4 { get; set; }
-
-    public int? Main2Color3 { get; set; }
-
-    public int? Main2Color2 { get; set; }
-
-    public int? Main2Color1 { get; set; }
-
-    public int? Main1Color4 { get; set; }
-
-    public int? Main1Color3 { get; set; }
-
-    public int? Main1Color2 { get; set; }
-
-    public int? Main1Color1 { get; set; }
-
-    public bool? MoonShadows { get; set; }
-
-    public Color MoonFogColor { get; set; }
-
-    public Color MoonDiffuseColor { get; set; }
-
-    public Color MoonAmbientColor { get; set; }
-
-    public bool? SunShadows { get; set; }
-
-    public Color SunFogColor { get; set; }
-
-    public Color SunDiffuseColor { get; set; }
   }
 }

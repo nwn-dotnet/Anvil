@@ -9,8 +9,6 @@ namespace Anvil.API
   {
     private readonly C2DA array;
 
-    public string[] Columns { get; private set; }
-
     public TwoDimArray(string resRef)
     {
       resRef = resRef.Replace(".2da", string.Empty);
@@ -34,33 +32,84 @@ namespace Anvil.API
       Init();
     }
 
-    private void Init()
-    {
-      CExoStringArray columnArray = CExoStringArray.FromPointer(array.m_pColumnLabel);
-      Columns = new string[array.m_nNumColumns];
+    public int ColumnCount => array.m_nNumColumns;
 
-      for (int i = 0; i < array.m_nNumColumns; i++)
-      {
-        string columnName = columnArray.GetItem(i).ToString();
-        Columns[i] = columnName;
-      }
+    public string[] Columns { get; private set; }
+
+    public int RowCount => array.m_nNumRows;
+
+    public static bool operator ==(TwoDimArray left, TwoDimArray right)
+    {
+      return Equals(left, right);
     }
 
-    public string GetString(int rowIndex, string columnName)
+    public static bool operator !=(TwoDimArray left, TwoDimArray right)
+    {
+      return !Equals(left, right);
+    }
+
+    public bool Equals(TwoDimArray other)
+    {
+      if (ReferenceEquals(null, other))
+      {
+        return false;
+      }
+
+      if (ReferenceEquals(this, other))
+      {
+        return true;
+      }
+
+      return array.Equals(other.array);
+    }
+
+    public override bool Equals(object obj)
+    {
+      return ReferenceEquals(this, obj) || obj is TwoDimArray other && Equals(other);
+    }
+
+    public bool? GetBool(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);
-      return columnIndex >= 0 ? GetString(rowIndex, columnIndex) : null;
+      return columnIndex >= 0 ? GetBool(rowIndex, columnIndex) : null;
     }
 
-    public string GetString(int rowIndex, int columnIndex)
+    public unsafe bool? GetBool(int rowIndex, int columnIndex)
     {
-      using CExoString retVal = new CExoString();
-      if (array.GetCExoStringEntry(rowIndex, columnIndex, retVal).ToBool())
+      int retVal;
+      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
       {
-        return retVal.ToString();
+        return retVal.ToBool();
       }
 
       return null;
+    }
+
+    public int GetColumnIndex(string columnName)
+    {
+      return Array.FindIndex(Columns, column => columnName.Equals(column, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public float? GetFloat(int rowIndex, string columnName)
+    {
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetFloat(rowIndex, columnIndex) : null;
+    }
+
+    public unsafe float? GetFloat(int rowIndex, int columnIndex)
+    {
+      float retVal;
+      if (array.GetFLOATEntry(rowIndex, columnIndex, &retVal).ToBool())
+      {
+        return retVal;
+      }
+
+      return null;
+    }
+
+    public override int GetHashCode()
+    {
+      return array.GetHashCode();
     }
 
     public int? GetInt(int rowIndex, string columnName)
@@ -80,18 +129,18 @@ namespace Anvil.API
       return null;
     }
 
-    public bool? GetBool(int rowIndex, string columnName)
+    public string GetString(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);
-      return columnIndex >= 0 ? GetBool(rowIndex, columnIndex) : null;
+      return columnIndex >= 0 ? GetString(rowIndex, columnIndex) : null;
     }
 
-    public unsafe bool? GetBool(int rowIndex, int columnIndex)
+    public string GetString(int rowIndex, int columnIndex)
     {
-      int retVal;
-      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      using CExoString retVal = new CExoString();
+      if (array.GetCExoStringEntry(rowIndex, columnIndex, retVal).ToBool())
       {
-        return retVal.ToBool();
+        return retVal.ToString();
       }
 
       return null;
@@ -114,70 +163,26 @@ namespace Anvil.API
       return null;
     }
 
-    public float? GetFloat(int rowIndex, string columnName)
+    private void Init()
     {
-      int columnIndex = GetColumnIndex(columnName);
-      return columnIndex >= 0 ? GetFloat(rowIndex, columnIndex) : null;
-    }
+      CExoStringArray columnArray = CExoStringArray.FromPointer(array.m_pColumnLabel);
+      Columns = new string[array.m_nNumColumns];
 
-    public unsafe float? GetFloat(int rowIndex, int columnIndex)
-    {
-      float retVal;
-      if (array.GetFLOATEntry(rowIndex, columnIndex, &retVal).ToBool())
+      for (int i = 0; i < array.m_nNumColumns; i++)
       {
-        return retVal;
+        string columnName = columnArray.GetItem(i).ToString();
+        Columns[i] = columnName;
       }
-
-      return null;
-    }
-
-    public int GetColumnIndex(string columnName)
-    {
-      return Array.FindIndex(Columns, column => columnName.Equals(column, StringComparison.OrdinalIgnoreCase));
-    }
-
-    public int RowCount => array.m_nNumRows;
-
-    public int ColumnCount => array.m_nNumColumns;
-
-    public bool Equals(TwoDimArray other)
-    {
-      if (ReferenceEquals(null, other))
-      {
-        return false;
-      }
-
-      if (ReferenceEquals(this, other))
-      {
-        return true;
-      }
-
-      return array.Equals(other.array);
-    }
-
-    public override bool Equals(object obj)
-    {
-      return ReferenceEquals(this, obj) || obj is TwoDimArray other && Equals(other);
-    }
-
-    public override int GetHashCode()
-    {
-      return array.GetHashCode();
-    }
-
-    public static bool operator ==(TwoDimArray left, TwoDimArray right)
-    {
-      return Equals(left, right);
-    }
-
-    public static bool operator !=(TwoDimArray left, TwoDimArray right)
-    {
-      return !Equals(left, right);
     }
   }
 
   public sealed class TwoDimArray<T> : TwoDimArray, IReadOnlyList<T> where T : ITwoDimArrayEntry, new()
   {
+    public TwoDimArray(string resRef) : base(resRef) {}
+    internal TwoDimArray(C2DA array) : base(array) {}
+
+    public int Count => RowCount;
+
     public IReadOnlyList<T> Rows
     {
       get
@@ -190,6 +195,13 @@ namespace Anvil.API
 
         return retVal;
       }
+    }
+
+    public T this[int index] => GetRow(index);
+
+    public IEnumerator<T> GetEnumerator()
+    {
+      return Rows.GetEnumerator();
     }
 
     public T GetRow(int rowIndex)
@@ -209,21 +221,9 @@ namespace Anvil.API
       return retVal;
     }
 
-    public TwoDimArray(string resRef) : base(resRef) {}
-    internal TwoDimArray(C2DA array) : base(array) {}
-
-    public IEnumerator<T> GetEnumerator()
-    {
-      return Rows.GetEnumerator();
-    }
-
     IEnumerator IEnumerable.GetEnumerator()
     {
       return GetEnumerator();
     }
-
-    public T this[int index] => GetRow(index);
-
-    public int Count => RowCount;
   }
 }
