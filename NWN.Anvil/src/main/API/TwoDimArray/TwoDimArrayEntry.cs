@@ -11,26 +11,6 @@ namespace Anvil.API
       this.rowIndex = rowIndex;
     }
 
-    public string GetString(string columnName)
-    {
-      return array.GetString(rowIndex, columnName);
-    }
-
-    public string GetString(int columnIndex)
-    {
-      return array.GetString(rowIndex, columnIndex);
-    }
-
-    public int? GetInt(string columnName)
-    {
-      return array.GetInt(rowIndex, columnName);
-    }
-
-    public int? GetInt(int columnIndex)
-    {
-      return array.GetInt(rowIndex, columnIndex);
-    }
-
     public bool? GetBool(string columnName)
     {
       return array.GetBool(rowIndex, columnName);
@@ -49,6 +29,26 @@ namespace Anvil.API
     public float? GetFloat(int columnIndex)
     {
       return array.GetFloat(rowIndex, columnIndex);
+    }
+
+    public int? GetInt(string columnName)
+    {
+      return array.GetInt(rowIndex, columnName);
+    }
+
+    public int? GetInt(int columnIndex)
+    {
+      return array.GetInt(rowIndex, columnIndex);
+    }
+
+    public string GetString(string columnName)
+    {
+      return array.GetString(rowIndex, columnName);
+    }
+
+    public string GetString(int columnIndex)
+    {
+      return array.GetString(rowIndex, columnIndex);
     }
 
     public StrRef? GetStrRef(string columnName)

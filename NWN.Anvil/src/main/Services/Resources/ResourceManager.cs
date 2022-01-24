@@ -40,6 +40,20 @@ namespace Anvil.Services
     }
 
     /// <summary>
+    /// Deletes the temporary resource with the specified name.
+    /// </summary>
+    /// <param name="resourceName">The resource to delete.</param>
+    public void DeleteTempResource(string resourceName)
+    {
+      GuardIsResourceNameValid(resourceName);
+      string path = Path.Combine(HomeStorage.ResourceTemp, resourceName);
+      if (File.Exists(path))
+      {
+        File.Delete(path);
+      }
+    }
+
+    /// <summary>
     /// Gets all resource names for the specified type.
     /// </summary>
     /// <param name="type">A resource type.</param>
@@ -165,34 +179,6 @@ namespace Anvil.Services
       WriteTempResource(resourceName, StringHelper.Cp1252Encoding.GetBytes(text));
     }
 
-    /// <summary>
-    /// Deletes the temporary resource with the specified name.
-    /// </summary>
-    /// <param name="resourceName">The resource to delete.</param>
-    public void DeleteTempResource(string resourceName)
-    {
-      GuardIsResourceNameValid(resourceName);
-      string path = Path.Combine(HomeStorage.ResourceTemp, resourceName);
-      if (File.Exists(path))
-      {
-        File.Delete(path);
-      }
-    }
-
-    private void GuardIsResourceNameValid(string resourceName)
-    {
-      string nameWithoutExtension = Path.ChangeExtension(resourceName, null);
-      if (nameWithoutExtension.Length > MaxNameLength)
-      {
-        throw new ArgumentOutOfRangeException(nameof(resourceName), $"Resource name (excl. extension) must be less than {MaxNameLength} characters.");
-      }
-
-      if (nameWithoutExtension.Any(c => !char.IsLetterOrDigit(c) && c != '_'))
-      {
-        throw new ArgumentOutOfRangeException(nameof(resourceName), "Resource name must only contain alphanumeric characters, or underscores.");
-      }
-    }
-
     void IDisposable.Dispose()
     {
       if (Directory.Exists(HomeStorage.ResourceTemp))
@@ -237,6 +223,20 @@ namespace Anvil.Services
       }
 
       return null;
+    }
+
+    private void GuardIsResourceNameValid(string resourceName)
+    {
+      string nameWithoutExtension = Path.ChangeExtension(resourceName, null);
+      if (nameWithoutExtension.Length > MaxNameLength)
+      {
+        throw new ArgumentOutOfRangeException(nameof(resourceName), $"Resource name (excl. extension) must be less than {MaxNameLength} characters.");
+      }
+
+      if (nameWithoutExtension.Any(c => !char.IsLetterOrDigit(c) && c != '_'))
+      {
+        throw new ArgumentOutOfRangeException(nameof(resourceName), "Resource name must only contain alphanumeric characters, or underscores.");
+      }
     }
 
     private bool TryGetNativeResource(string name, ResRefType type, out CRes res)
