@@ -8,66 +8,69 @@ using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
 
-// Our base chat command interface...
-public interface IChatCommand
+namespace NWN.Anvil.Samples
 {
-  string Command { get; }
-  void ExecuteCommand(NwPlayer caller);
-}
-
-// ...Each one of our commands implements the IChatCommand interface...
-[ServiceBinding(typeof(IChatCommand))]
-public class GpCommand : IChatCommand
-{
-  public string Command { get; } = "!gp";
-  private const int AMOUNT = 10000;
-
-  public void ExecuteCommand(NwPlayer caller)
+  // Our base chat command interface...
+  public interface IChatCommand
   {
-    caller.ControlledCreature.GiveGold(AMOUNT);
-  }
-}
-
-/// ...and uses the interface type instead of the class type inside the ServiceBinding attribute.
-[ServiceBinding(typeof(IChatCommand))]
-public class SaveCommand : IChatCommand
-{
-  public string Command { get; } = "!save";
-
-  public void ExecuteCommand(NwPlayer caller)
-  {
-    caller.ExportCharacter();
-    caller.SendServerMessage("Character Saved");
-  }
-}
-
-[ServiceBinding(typeof(ChatHandler))]
-public class ChatHandler
-{
-  private readonly List<IChatCommand> chatCommands;
-
-  // We add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.
-  public ChatHandler(IEnumerable<IChatCommand> commands)
-  {
-    // Store all define chat commands.
-    this.chatCommands = commands.ToList();
-
-    // Subscribe to the global module chat event. When this event occurs, we call the OnChatMessage method.
-    NwModule.Instance.OnPlayerChat += OnChatMessage;
+    string Command { get; }
+    void ExecuteCommand(NwPlayer caller);
   }
 
-  public void OnChatMessage(ModuleEvents.OnPlayerChat eventInfo)
+  // ...Each one of our commands implements the IChatCommand interface...
+  [ServiceBinding(typeof(IChatCommand))]
+  public class GpCommand : IChatCommand
   {
-    // Get the message from the event.
-    string message = eventInfo.Message;
+    public string Command { get; } = "!gp";
+    private const int AMOUNT = 10000;
 
-    // Loop through all of our created commands, and execute the behaviour of the one that matches.
-    foreach (IChatCommand command in chatCommands)
+    public void ExecuteCommand(NwPlayer caller)
     {
-      if (command.Command == message)
+      caller.ControlledCreature.GiveGold(AMOUNT);
+    }
+  }
+
+  /// ...and uses the interface type instead of the class type inside the ServiceBinding attribute.
+  [ServiceBinding(typeof(IChatCommand))]
+  public class SaveCommand : IChatCommand
+  {
+    public string Command { get; } = "!save";
+
+    public void ExecuteCommand(NwPlayer caller)
+    {
+      caller.ExportCharacter();
+      caller.SendServerMessage("Character Saved");
+    }
+  }
+
+  [ServiceBinding(typeof(ChatHandler))]
+  public class ChatHandler
+  {
+    private readonly List<IChatCommand> chatCommands;
+
+    // We add a dependency to the chat commands created above by defining an IEnumerable parameter of the interface type.
+    public ChatHandler(IEnumerable<IChatCommand> commands)
+    {
+      // Store all define chat commands.
+      this.chatCommands = commands.ToList();
+
+      // Subscribe to the global module chat event. When this event occurs, we call the OnChatMessage method.
+      NwModule.Instance.OnPlayerChat += OnChatMessage;
+    }
+
+    public void OnChatMessage(ModuleEvents.OnPlayerChat eventInfo)
+    {
+      // Get the message from the event.
+      string message = eventInfo.Message;
+
+      // Loop through all of our created commands, and execute the behaviour of the one that matches.
+      foreach (IChatCommand command in chatCommands)
       {
-        command.ExecuteCommand(eventInfo.Sender);
-        break;
+        if (command.Command == message)
+        {
+          command.ExecuteCommand(eventInfo.Sender);
+          break;
+        }
       }
     }
   }

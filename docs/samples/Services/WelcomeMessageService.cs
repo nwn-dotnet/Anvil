@@ -6,16 +6,19 @@ using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
 
-[ServiceBinding(typeof(WelcomeMessageService))]
-public class WelcomeMessageService
+namespace NWN.Anvil.Samples
 {
-  public WelcomeMessageService()
+  [ServiceBinding(typeof(WelcomeMessageService))]
+  public class WelcomeMessageService
   {
-    NwModule.Instance.OnClientEnter += OnClientEnter;
-  }
+    public WelcomeMessageService()
+    {
+      NwModule.Instance.OnClientEnter += OnClientEnter;
+    }
 
-  private void OnClientEnter(ModuleEvents.OnClientEnter onEnter)
-  {
-    onEnter.Player.SendServerMessage($"Welcome to the server, {onEnter.Player}!", ColorConstants.Pink);
+    private void OnClientEnter(ModuleEvents.OnClientEnter onEnter)
+    {
+      onEnter.Player.SendServerMessage($"Welcome to the server, {onEnter.Player}!", ColorConstants.Pink);
+    }
   }
 }

@@ -5,41 +5,44 @@
 using System;
 using Anvil.Services;
 
-[ServiceBinding(typeof(ScheduledService))]
-public class ScheduledService
+namespace NWN.Anvil.Samples
 {
-  private IDisposable schedule;
-  private IDisposable runLater;
-  private int timesRun;
-
-  private readonly SchedulerService schedulerService;
-
-  public ScheduledService(SchedulerService schedulerService)
+  [ServiceBinding(typeof(ScheduledService))]
+  public class ScheduledService
   {
-    this.schedulerService = schedulerService;
-    // Schedules a repeating task to run every minute.
-    schedule = schedulerService.ScheduleRepeating(OncePerMinute, TimeSpan.FromMinutes(1));
+    private IDisposable schedule;
+    private IDisposable runLater;
+    private int timesRun;
 
-    // Schedules a once-off task to run in 20 minutes.
-    runLater = schedulerService.Schedule(RunIn20Minutes, TimeSpan.FromMinutes(20));
-  }
+    private readonly SchedulerService schedulerService;
 
-  private void OncePerMinute()
-  {
-    timesRun++;
-    if (timesRun > 10)
+    public ScheduledService(SchedulerService schedulerService)
     {
-      // Cancel the repeating task after 10 runs.
-      schedule.Dispose();
+      this.schedulerService = schedulerService;
+      // Schedules a repeating task to run every minute.
+      schedule = schedulerService.ScheduleRepeating(OncePerMinute, TimeSpan.FromMinutes(1));
 
-      // Actually, don't run the "RunLater" task in 20 minutes. Run it in 30 instead.
-      runLater.Dispose();
-      runLater = schedulerService.Schedule(RunIn20Minutes, TimeSpan.FromMinutes(30));
+      // Schedules a once-off task to run in 20 minutes.
+      runLater = schedulerService.Schedule(RunIn20Minutes, TimeSpan.FromMinutes(20));
     }
-  }
 
-  private void RunIn20Minutes()
-  {
-    // Do something
+    private void OncePerMinute()
+    {
+      timesRun++;
+      if (timesRun > 10)
+      {
+        // Cancel the repeating task after 10 runs.
+        schedule.Dispose();
+
+        // Actually, don't run the "RunLater" task in 20 minutes. Run it in 30 instead.
+        runLater.Dispose();
+        runLater = schedulerService.Schedule(RunIn20Minutes, TimeSpan.FromMinutes(30));
+      }
+    }
+
+    private void RunIn20Minutes()
+    {
+      // Do something
+    }
   }
 }

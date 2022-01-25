@@ -9,98 +9,101 @@ using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
 
-// This is the deserialization class for this specific type of 2da.
-// We can implement our own helper functions here that operate on the 2da data, and cache it.
-public class ExpTable : ITwoDimArray
+namespace NWN.Anvil.Samples
 {
-  private readonly List<Entry> entries = new List<Entry>();
-
-  /// <summary>
-  /// Gets the max possible player level.
-  /// </summary>
-  public int MaxLevel => entries[^1].Level;
-
-  /// <summary>
-  /// Gets the amount of XP needed for the specified level.
-  /// </summary>
-  /// <param name="level">The level to lookup.</param>
-  public int GetXpForLevel(int level)
+  // This is the deserialization class for this specific type of 2da.
+  // We can implement our own helper functions here that operate on the 2da data, and cache it.
+  public class ExpTable : ITwoDimArray
   {
-    return entries.First(entry => entry.Level == level).XP;
-  }
+    private readonly List<Entry> entries = new List<Entry>();
 
-  /// <summary>
-  /// Gets the current level for a player with the specified XP.
-  /// </summary>
-  /// <param name="xp">The amount of xp.</param>
-  public int GetLevelFromXp(int xp)
-  {
-    int level = 1;
-    foreach (Entry entry in entries)
+    /// <summary>
+    /// Gets the max possible player level.
+    /// </summary>
+    public int MaxLevel => entries[^1].Level;
+
+    /// <summary>
+    /// Gets the amount of XP needed for the specified level.
+    /// </summary>
+    /// <param name="level">The level to lookup.</param>
+    public int GetXpForLevel(int level)
     {
-      if (entry.XP > xp)
+      return entries.First(entry => entry.Level == level).XP;
+    }
+
+    /// <summary>
+    /// Gets the current level for a player with the specified XP.
+    /// </summary>
+    /// <param name="xp">The amount of xp.</param>
+    public int GetLevelFromXp(int xp)
+    {
+      int level = 1;
+      foreach (Entry entry in entries)
       {
-        break;
+        if (entry.XP > xp)
+        {
+          break;
+        }
+
+        level = entry.Level;
       }
 
-      level = entry.Level;
+      return level;
     }
 
-    return level;
-  }
-
-  void ITwoDimArray.DeserializeRow(int rowIndex, TwoDimEntry twoDimEntry)
-  {
-    // Use twoDimEntry(columnName) to get your serialized data, then convert it here.
-    int level = int.Parse(twoDimEntry("Level"));
-    uint xp = ParseXpColumn(twoDimEntry("XP"));
-
-    if (xp > int.MaxValue)
+    void ITwoDimArray.DeserializeRow(int rowIndex, TwoDimEntry twoDimEntry)
     {
-      return;
+      // Use twoDimEntry(columnName) to get your serialized data, then convert it here.
+      int level = int.Parse(twoDimEntry("Level"));
+      uint xp = ParseXpColumn(twoDimEntry("XP"));
+
+      if (xp > int.MaxValue)
+      {
+        return;
+      }
+
+      entries.Add(new Entry(level, (int)xp));
     }
 
-    entries.Add(new Entry(level, (int)xp));
-  }
-
-  private uint ParseXpColumn(string value)
-  {
-    return uint.TryParse(value, out uint retVal) ? retVal : uint.Parse(value.Substring(2), NumberStyles.AllowHexSpecifier);
-  }
-
-  private readonly struct Entry
-  {
-    public readonly int Level;
-    public readonly int XP;
-
-    public Entry(int level, int xp)
+    private uint ParseXpColumn(string value)
     {
-      Level = level;
-      XP = xp;
+      return uint.TryParse(value, out uint retVal) ? retVal : uint.Parse(value.Substring(2), NumberStyles.AllowHexSpecifier);
     }
-  }
-}
 
-[ServiceBinding(typeof(XPReportService))]
-public class XPReportService
-{
-  private readonly ExpTable expTable;
-
-  public XPReportService(TwoDimArrayFactory twoDimArrayFactory)
-  {
-    expTable = twoDimArrayFactory.Get2DA<ExpTable>("exptable");
-    NwModule.Instance.OnClientEnter += OnClientEnter;
-  }
-
-  private void OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)
-  {
-    NwPlayer player = onClientEnter.Player;
-    int nextLevel = expTable.GetLevelFromXp(player.ControlledCreature.Xp) + 1;
-    if (nextLevel > expTable.MaxLevel)
+    private readonly struct Entry
     {
-      return;
+      public readonly int Level;
+      public readonly int XP;
+
+      public Entry(int level, int xp)
+      {
+        Level = level;
+        XP = xp;
+      }
+    }
+  }
+
+  [ServiceBinding(typeof(XPReportService))]
+  public class XPReportService
+  {
+    private readonly ExpTable expTable;
+
+    public XPReportService(TwoDimArrayFactory twoDimArrayFactory)
+    {
+      expTable = twoDimArrayFactory.Get2DA<ExpTable>("exptable");
+      NwModule.Instance.OnClientEnter += OnClientEnter;
     }
 
-    player.SendServerMessage($"Next level up: {expTable.GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}");
+    private void OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)
+    {
+      NwPlayer player = onClientEnter.Player;
+      int nextLevel = expTable.GetLevelFromXp(player.ControlledCreature.Xp) + 1;
+      if (nextLevel > expTable.MaxLevel)
+      {
+        return;
+      }
+
+      player.SendServerMessage($"Next level up: {expTable.GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}");
+    }
   }
 }

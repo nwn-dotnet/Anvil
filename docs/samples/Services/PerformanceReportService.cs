@@ -3,21 +3,18 @@
  */
 
 using System;
+using Anvil.API;
 using Anvil.Services;
 
-[ServiceBinding(typeof(IUpdateable))]
-[ServiceBinding(typeof(PerformanceReportService))]
-public class PerformanceReportService : IUpdateable
+namespace NWN.Anvil.Samples
 {
-  private readonly LoopTimeService timeService;
-
-  public PerformanceReportService(LoopTimeService timeService)
+  [ServiceBinding(typeof(IUpdateable))]
+  [ServiceBinding(typeof(PerformanceReportService))]
+  public class PerformanceReportService : IUpdateable
   {
-    this.timeService = timeService;
-  }
-
-  public void Update()
-  {
-    Console.WriteLine($"Current tick rate: {1/timeService.DeltaTime}");
+    public void Update()
+    {
+      Console.WriteLine($"Current tick rate: {1/Time.DeltaTime.TotalSeconds}");
+    }
   }
 }
