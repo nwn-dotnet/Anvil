@@ -10,7 +10,8 @@ namespace NWN.Anvil.Samples
   [ServiceBinding(typeof(ScheduledService))]
   public class ScheduledService
   {
-    private IDisposable schedule;
+    private readonly IDisposable schedule;
+
     private IDisposable runLater;
     private int timesRun;
 

@@ -18,7 +18,10 @@ namespace NWN.Anvil.Samples
     public TriggerHandlerService()
     {
       NwTrigger trigger = NwObject.FindObjectsWithTag<NwTrigger>("mytrigger").FirstOrDefault();
-      trigger.OnEnter += OnTriggerEnter;
+      if (trigger != null)
+      {
+        trigger.OnEnter += OnTriggerEnter;
+      }
     }
 
     private void OnTriggerEnter(TriggerEvents.OnEnter obj)

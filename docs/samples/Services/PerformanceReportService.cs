@@ -14,7 +14,7 @@ namespace NWN.Anvil.Samples
   {
     public void Update()
     {
-      Console.WriteLine($"Current tick rate: {1/Time.DeltaTime.TotalSeconds}");
+      Console.WriteLine($"Current tick rate: {1 / Time.DeltaTime.TotalSeconds}");
     }
   }
 }

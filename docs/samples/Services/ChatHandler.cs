@@ -22,11 +22,11 @@ namespace NWN.Anvil.Samples
   public class GpCommand : IChatCommand
   {
     public string Command { get; } = "!gp";
-    private const int AMOUNT = 10000;
+    private const int Amount = 10000;
 
     public void ExecuteCommand(NwPlayer caller)
     {
-      caller.ControlledCreature.GiveGold(AMOUNT);
+      caller.ControlledCreature.GiveGold(Amount);
     }
   }
 
@@ -52,7 +52,7 @@ namespace NWN.Anvil.Samples
     public ChatHandler(IEnumerable<IChatCommand> commands)
     {
       // Store all define chat commands.
-      this.chatCommands = commands.ToList();
+      chatCommands = commands.ToList();
 
       // Subscribe to the global module chat event. When this event occurs, we call the OnChatMessage method.
       NwModule.Instance.OnPlayerChat += OnChatMessage;

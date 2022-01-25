@@ -13,7 +13,7 @@ namespace NWN.Anvil.Samples
 {
   // This is the deserialization class for this specific type of 2da.
   // We can implement our own helper functions here that operate on the 2da data, and cache it.
-  public class ExpTable : ITwoDimArray
+  public sealed class ExpTable : ITwoDimArray
   {
     private readonly List<Entry> entries = new List<Entry>();
 
@@ -67,7 +67,12 @@ namespace NWN.Anvil.Samples
 
     private uint ParseXpColumn(string value)
     {
-      return uint.TryParse(value, out uint retVal) ? retVal : uint.Parse(value.Substring(2), NumberStyles.AllowHexSpecifier);
+      if (string.IsNullOrEmpty(value))
+      {
+        return 0;
+      }
+
+      return uint.TryParse(value, out uint retVal) ? retVal : uint.Parse(value);
     }
 
     private readonly struct Entry
