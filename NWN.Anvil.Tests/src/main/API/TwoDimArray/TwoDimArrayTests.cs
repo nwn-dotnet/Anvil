@@ -21,9 +21,10 @@ namespace Anvil.Tests.API
       string twoDimArray =
         @"2DA V2.0
 
-    LABEL    TESTSTR    TESTINT    TESTFLOAT
-0   Test0    ""Test 0""   0         0.0f 
-1   Test1    ""Test 1""   1         1.0f";
+    LABEL    TESTSTR      TESTINT          TESTFLOAT
+0   Test0    ""Test 0""   0                0.0f 
+1   Test1    ""Test 1""   0x1              1.0f
+2   Test2    ""Test 2""   0x00000002       2.0f";
 
       string resourceName = "testtemp.2da";
       ResourceManager.WriteTempResource(resourceName, StringHelper.Cp1252Encoding.GetBytes(twoDimArray));
@@ -37,10 +38,13 @@ namespace Anvil.Tests.API
 
       Assert.That(array.GetString(0, "TESTSTR"), Is.EqualTo("Test 0"));
       Assert.That(array.GetString(1, "TESTSTR"), Is.EqualTo("Test 1"));
+      Assert.That(array.GetString(2, "TESTSTR"), Is.EqualTo("Test 2"));
       Assert.That(array.GetInt(0, "TESTINT"), Is.EqualTo(0));
-      Assert.That(array.GetInt(1, "TESTINT"), Is.EqualTo(1));
+      Assert.That(array.GetInt(1, "TESTINT"), Is.EqualTo(0x1));
+      Assert.That(array.GetInt(2, "TESTINT"), Is.EqualTo(0x00000002));
       Assert.That(array.GetFloat(0, "TESTFLOAT"), Is.EqualTo(0f));
       Assert.That(array.GetFloat(1, "TESTFLOAT"), Is.EqualTo(1f));
+      Assert.That(array.GetFloat(2, "TESTFLOAT"), Is.EqualTo(2f));
     }
 
     [Test(Description = "An invalid 2da ResRef throws an exception.")]

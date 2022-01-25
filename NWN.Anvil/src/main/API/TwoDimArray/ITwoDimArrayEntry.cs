@@ -1,8 +1,10 @@
 namespace Anvil.API
 {
+  //! ## Examples
+  //! @include XPReportService.cs
+
   /// <summary>
-  /// Implement to decode <see cref="TwoDimArrayEntry"/> into a type using <see cref="TwoDimArray{T}(string)"/>.<br/>
-  /// See <see cref="AppearanceTableEntry"/> for an example.
+  /// Implement to decode <see cref="TwoDimArrayEntry"/> into a type using <see cref="TwoDimArray{T}(string)"/>.
   /// </summary>
   public interface ITwoDimArrayEntry
   {

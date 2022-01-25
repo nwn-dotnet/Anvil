@@ -5,6 +5,9 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  //! ## Examples
+  //! @include XPReportService.cs
+
   /// <summary>
   /// A two dimensional array data resource.
   /// </summary>
