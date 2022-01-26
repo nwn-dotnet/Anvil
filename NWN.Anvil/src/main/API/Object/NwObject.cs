@@ -98,11 +98,6 @@ namespace Anvil.API
           {
             yield return ObjectVariable.Create<LocalVariableString>(this, keyValue);
           }
-
-          if (value.HasJson())
-          {
-            yield return ObjectVariable.Create<LocalVariableJson>(this, keyValue);
-          }
         }
       }
     }

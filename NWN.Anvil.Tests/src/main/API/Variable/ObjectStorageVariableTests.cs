@@ -34,6 +34,7 @@ namespace Anvil.Tests.API
       VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableGuid>(variableName + "guid"));
       VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableInt>(variableName + "int"));
       VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableString>(variableName + "string"));
+      VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableStruct<ExampleSerializable>>(variableName + "struct"));
     }
 
     [Test(Description = "Setting/getting a variable on an object returns a variable object with the correct properties.")]
@@ -57,6 +58,12 @@ namespace Anvil.Tests.API
       creature.GetObjectVariable<PersistentVariableGuid>(variableName + "guid").Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
       creature.GetObjectVariable<PersistentVariableInt>(variableName + "int").Value = 506;
       creature.GetObjectVariable<PersistentVariableString>(variableName + "string").Value = "test_string";
+      ExampleSerializable serializable = new ExampleSerializable
+      {
+        Value = 1,
+        Value2 = "test",
+      };
+      creature.GetObjectVariable<PersistentVariableStruct<ExampleSerializable>>(variableName + "struct").Value = serializable;
 
       VariableAssert(true, true, creature.GetObjectVariable<PersistentVariableBool>(variableName + "bool"));
       VariableAssert(true, ValidEnum.TestA, creature.GetObjectVariable<PersistentVariableEnum<ValidEnum>>(variableName + "enum"));
@@ -64,6 +71,7 @@ namespace Anvil.Tests.API
       VariableAssert(true, Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f"), creature.GetObjectVariable<PersistentVariableGuid>(variableName + "guid"));
       VariableAssert(true, 506, creature.GetObjectVariable<PersistentVariableInt>(variableName + "int"));
       VariableAssert(true, "test_string", creature.GetObjectVariable<PersistentVariableString>(variableName + "string"));
+      VariableAssert(true, serializable, creature.GetObjectVariable<PersistentVariableStruct<ExampleSerializable>>(variableName + "struct"));
     }
 
     [Test(Description = "Setting a variable on an object and deleting it returns a variable object with the correct properties.")]
@@ -87,6 +95,12 @@ namespace Anvil.Tests.API
       creature.GetObjectVariable<PersistentVariableGuid>(variableName + "guid").Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
       creature.GetObjectVariable<PersistentVariableInt>(variableName + "int").Value = 506;
       creature.GetObjectVariable<PersistentVariableString>(variableName + "string").Value = "test_string";
+      ExampleSerializable serializable = new ExampleSerializable
+      {
+        Value = 1,
+        Value2 = "test",
+      };
+      creature.GetObjectVariable<PersistentVariableStruct<ExampleSerializable>>(variableName + "struct").Value = serializable;
 
       creature.GetObjectVariable<PersistentVariableBool>(variableName + "bool").Delete();
       creature.GetObjectVariable<PersistentVariableEnum<ValidEnum>>(variableName + "enum").Delete();
@@ -94,6 +108,7 @@ namespace Anvil.Tests.API
       creature.GetObjectVariable<PersistentVariableGuid>(variableName + "guid").Delete();
       creature.GetObjectVariable<PersistentVariableInt>(variableName + "int").Delete();
       creature.GetObjectVariable<PersistentVariableString>(variableName + "string").Delete();
+      creature.GetObjectVariable<PersistentVariableStruct<ExampleSerializable>>(variableName + "struct").Delete();
 
       VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableBool>(variableName + "bool"));
       VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableEnum<ValidEnum>>(variableName + "enum"));
@@ -101,6 +116,7 @@ namespace Anvil.Tests.API
       VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableGuid>(variableName + "guid"));
       VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableInt>(variableName + "int"));
       VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableString>(variableName + "string"));
+      VariableAssert(false, default, creature.GetObjectVariable<PersistentVariableStruct<ExampleSerializable>>(variableName + "struct"));
     }
 
     [Test(Description = "Attempting to create an object enum variable with an incorrect size throws an exception.")]
@@ -166,6 +182,13 @@ namespace Anvil.Tests.API
       Default = 0,
       TestA = 1,
       TestB = 2,
+    }
+
+    [Serializable]
+    private record ExampleSerializable
+    {
+      public int Value { get; set; }
+      public string Value2 { get; set; }
     }
 
     [TearDown]

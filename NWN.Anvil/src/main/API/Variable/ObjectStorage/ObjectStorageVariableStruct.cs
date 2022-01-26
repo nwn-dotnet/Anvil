@@ -12,7 +12,7 @@ namespace Anvil.API
 
     public sealed override T Value
     {
-      get => JsonSerializer.Deserialize<T>(ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key));
+      get => HasValue ? JsonSerializer.Deserialize<T>(ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key)) : default;
       set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, JsonSerializer.Serialize(value), Persist);
     }
 
