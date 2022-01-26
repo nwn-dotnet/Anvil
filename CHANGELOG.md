@@ -9,6 +9,20 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
 ### Added
 - Added net6.0 target framework. Since multiple frameworks are now being targeted, there is a small change to the binary output paths.
   - When building locally, binaries are now located in `NWN.Anvil/bin/Release/<framework>`. Release binaries on github will now have a folder for each framework.
+- `NwColor`: Added `FromRGBA`, `ToRGBA` `ToUnsignedRGBA` methods. `ToString` is now more explicit.
+- Added various tests for `Color` conversion.
+- Added `ResourceManager` tests.
+- `NwArea`: Added various properties for environment visual options.
+- `NwArea`: Added `CreateEnvironmentPreset`, `ApplyEnvironmentPreset` for saving and loading preset visual options.
+- `NwWaypoint.Create`: Added overload without template parameter for creating a general waypoint.
+- `PlayOptions`: Added PlayerPartyControl option.
+- `StrRef`: Added value structure for string references (StrRefs). The associated talk table string can be resolved by invoking `ToString`.
+- `NwGameTables`: Contains static members for commonly used 2das (internally cached by `CTwoDimArrays`).
+  - Implemented `AppearanceTable` & `EnvironmentPresetTable`
+- Implemented new `TwoDimArray`, `TwoDimArrayEntry` and `ITwoDimArrayEntry` APIs.
+  - Supports general usage through `TwoDimArray`, and a generic `TwoDimArray<T>` type for specifying a custom row format. See the docs for more info.
+- `ResourceManager`: Added `DeleteTempResource` and `GetResourceText`.
+- `ResourceManager`: Added string overload for `WriteTempResource`.
 
 ### Package Updates
 - NWNX: 790a54b -> 989ea04
@@ -16,13 +30,19 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
 - NWN.Native: 8193.34.2 -> 8193.34.3
 
 ### Changed
-- N/A
+- Change test assertion pattern to use NUnit constraints: https://docs.nunit.org/artcles/nunit/writing-tests/assertions/assertion-models/constraint.html
+- Code samples are now built as a separate plugin project, and included in CI analysis.
+- Improved path validation for `Delete/WriteTempResource`. It should no-longer be possible to navigate outside of the resource folder.
 
 ### Deprecated
-- N/A
+- `NwServer.ReloadRules()`. Use `NwRuleset.ReloadRules()` instead.
+- `NwColor.ToInt()`. Use `NwColor.ToRGBA()` instead.
+- `ITwoDimArray`/`TwoDimArrayFactory`: The 2da APIs have been superseded by a simpler API. See the `ITwoDimArrayEntry` example for more info.
+- `NwArea.GetFogAmount`: Use `SunFogAmount` and `MoonFogAmount` instead.
+- `NwArea.GetFogColor`: Use `SunFogColor` and `MoonFogColor` instead.
 
 ### Removed
-- N/A
+- NuiColor was removed and functionality replaced with the standard `Color` class. The intention is to remove confusion and conversion issues when interacting with both types.
 
 ### Fixed
 - Fixed a NRE when using visibility properties.
