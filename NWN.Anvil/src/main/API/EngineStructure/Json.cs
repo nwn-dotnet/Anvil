@@ -3,7 +3,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  public sealed class Json : EngineStructure
+  internal sealed class Json : EngineStructure
   {
     internal Json(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
