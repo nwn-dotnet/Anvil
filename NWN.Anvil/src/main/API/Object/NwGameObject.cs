@@ -56,7 +56,7 @@ namespace Anvil.API
     public Color HighlightColor
     {
       get => GameObject.m_vHiliteColor.ToColor();
-      set => NWScript.SetObjectHiliteColor(this, value.ToInt());
+      set => NWScript.SetObjectHiliteColor(this, value.ToRGBA());
     }
 
     /// <summary>

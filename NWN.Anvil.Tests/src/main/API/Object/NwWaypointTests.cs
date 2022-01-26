@@ -29,8 +29,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
-      Assert.IsNotNull(waypoint, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.IsTrue(waypoint.IsValid, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
+      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
     }
@@ -54,8 +54,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
-      Assert.IsNotNull(waypoint, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.IsTrue(waypoint.IsValid, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
+      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
 
@@ -64,15 +64,15 @@ namespace Anvil.Tests.API
 
       NwWaypoint clone = waypoint.Clone(startLocation);
 
-      Assert.IsNotNull(clone, $"Waypoint {waypointResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Waypoint {waypointResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Waypoint {waypointResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
       LocalVariableInt cloneTestVar = clone.GetObjectVariable<LocalVariableInt>("test");
 
-      Assert.IsTrue(cloneTestVar.HasValue, "Local variable did not exist on the clone with copyLocalState = true.");
-      Assert.AreEqual(cloneTestVar.Value, testVar.Value, "Local variable on the cloned waypoint did not match the value of the original waypoint.");
+      Assert.That(cloneTestVar.HasValue, Is.True, "Local variable did not exist on the clone with copyLocalState = true.");
+      Assert.That(cloneTestVar.Value, Is.EqualTo(testVar.Value), "Local variable on the cloned waypoint did not match the value of the original waypoint.");
     }
 
     [Test(Description = "Cloning a waypoint with copyLocalState = false does not copy local state information.")]
@@ -94,8 +94,8 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
-      Assert.IsNotNull(waypoint, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.IsTrue(waypoint.IsValid, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
+      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
 
@@ -104,15 +104,15 @@ namespace Anvil.Tests.API
 
       NwWaypoint clone = waypoint.Clone(startLocation, null, false);
 
-      Assert.IsNotNull(clone, $"Waypoint {waypointResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Waypoint {waypointResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Waypoint {waypointResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
       LocalVariableInt cloneTestVar = clone.GetObjectVariable<LocalVariableInt>("test");
 
-      Assert.IsFalse(cloneTestVar.HasValue, "Local variable exists on the clone with copyLocalState = false.");
-      Assert.AreNotEqual(cloneTestVar.Value, testVar.Value, "Local variable on the cloned waypoint matches the value of the original waypoint.");
+      Assert.That(cloneTestVar.HasValue, Is.False, "Local variable exists on the clone with copyLocalState = false.");
+      Assert.That(cloneTestVar.Value, Is.Not.EqualTo(testVar.Value), "Local variable on the cloned waypoint matches the value of the original waypoint.");
     }
 
     [Test(Description = "Cloning a waypoint with a custom tag defined causes the new waypoint to gain the new tag.")]
@@ -134,20 +134,20 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
-      Assert.IsNotNull(waypoint, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.IsTrue(waypoint.IsValid, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
+      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
 
       string expectedNewTag = "expectedNewTag";
       NwWaypoint clone = waypoint.Clone(startLocation, expectedNewTag, false);
 
-      Assert.IsNotNull(clone, $"Waypoint {waypointResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Waypoint {waypointResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Waypoint {waypointResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
-      Assert.AreEqual(expectedNewTag, clone.Tag, "Tag defined in clone method was not applied to the cloned waypoint.");
+      Assert.That(clone.Tag, Is.EqualTo(expectedNewTag), "Tag defined in clone method was not applied to the cloned waypoint.");
     }
 
     [Test(Description = "Cloning a waypoint with no tag defined uses the original waypoint's tag instead.")]
@@ -170,19 +170,19 @@ namespace Anvil.Tests.API
       NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
       waypoint.Tag = "expectedNewTag";
 
-      Assert.IsNotNull(waypoint, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.IsTrue(waypoint.IsValid, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
+      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
 
       NwWaypoint clone = waypoint.Clone(startLocation, null, false);
 
-      Assert.IsNotNull(clone, $"Waypoint {waypointResRef} was null after clone.");
-      Assert.IsTrue(clone.IsValid, $"Waypoint {waypointResRef} was invalid after clone.");
+      Assert.That(clone, Is.Not.Null, $"Waypoint {waypointResRef} was null after clone.");
+      Assert.That(clone.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after clone.");
 
       createdTestObjects.Add(clone);
 
-      Assert.AreEqual(waypoint.Tag, clone.Tag, "Cloned waypoint's tag did not match the original waypoint's.");
+      Assert.That(clone.Tag, Is.EqualTo(waypoint.Tag), "Cloned waypoint's tag did not match the original waypoint's.");
     }
 
     [TearDown]

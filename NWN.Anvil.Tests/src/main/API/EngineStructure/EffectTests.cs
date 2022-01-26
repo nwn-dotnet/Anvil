@@ -11,23 +11,23 @@ namespace Anvil.Tests.API
     public void CreateAndDisposeEffectValidPropertyUpdated()
     {
       Effect effect = Effect.CutsceneParalyze();
-      Assert.IsTrue(effect.IsValid, "Effect was not valid after creation.");
+      Assert.That(effect.IsValid, Is.True, "Effect was not valid after creation.");
       effect.Dispose();
-      Assert.IsFalse(effect.IsValid, "Effect was still valid after disposing.");
+      Assert.That(effect.IsValid, Is.False, "Effect was still valid after disposing.");
     }
 
     [Test(Description = "A soft effect reference created from a native object does not cause the original effect to be deleted.")]
     public void CreateSoftEffectReferencAndDisposeDoesNotFreeMemory()
     {
       Effect effect = Effect.Blindness();
-      Assert.IsTrue(effect.IsValid, "Effect was not valid after creation.");
+      Assert.That(effect.IsValid, Is.True, "Effect was not valid after creation.");
 
       CGameEffect gameEffect = effect;
-      Assert.IsNotNull(gameEffect, "Native effect was not valid after implicit cast.");
+      Assert.That(gameEffect, Is.Not.Null, "Native effect was not valid after implicit cast.");
 
       Effect softReference = gameEffect.ToEffect(false);
       softReference.Dispose();
-      Assert.IsTrue(softReference.IsValid, "The soft reference disposed the memory of the original effect.");
+      Assert.That(softReference.IsValid, Is.True, "The soft reference disposed the memory of the original effect.");
     }
   }
 }

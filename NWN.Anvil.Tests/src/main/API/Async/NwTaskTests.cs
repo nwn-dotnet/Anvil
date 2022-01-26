@@ -20,9 +20,9 @@ namespace Anvil.Tests.API
         await Task.Delay(TimeSpan.FromSeconds(0.1f));
       });
 
-      Assert.IsFalse(VirtualMachine.IsInScriptContext, "Expected to be outside of script context.");
+      Assert.That(VirtualMachine.IsInScriptContext, Is.False, "Expected to be outside of script context.");
       await NwTask.SwitchToMainThread();
-      Assert.IsTrue(VirtualMachine.IsInScriptContext, "Did not return to the main thread after SwitchToMainThread.");
+      Assert.That(VirtualMachine.IsInScriptContext, Is.True, "Did not return to the main thread after SwitchToMainThread.");
     }
   }
 }

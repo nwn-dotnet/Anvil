@@ -23,7 +23,7 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
 
-      Assert.IsNotNull(creature);
+      Assert.That(creature, Is.Not.Null);
       createdTestObjects.Add(creature);
 
       VariableAssert(false, default, creature.GetObjectVariable<LocalVariableBool>(variableName + "bool"));
@@ -44,7 +44,7 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
 
-      Assert.IsNotNull(creature);
+      Assert.That(creature, Is.Not.Null);
       createdTestObjects.Add(creature);
 
       creature.GetObjectVariable<LocalVariableBool>(variableName + "bool").Value = true;
@@ -72,7 +72,7 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
 
-      Assert.IsNotNull(creature);
+      Assert.That(creature, Is.Not.Null);
       createdTestObjects.Add(creature);
 
       creature.GetObjectVariable<LocalVariableBool>(variableName + "bool").Value = true;
@@ -107,36 +107,36 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
 
-      Assert.IsNotNull(creature);
+      Assert.That(creature, Is.Not.Null);
       createdTestObjects.Add(creature);
 
-      Assert.Throws(typeof(TargetInvocationException), () =>
+      Assert.That(() =>
       {
         creature.GetObjectVariable<LocalVariableEnum<InvalidEnumA>>(variableName + "enum").Value = InvalidEnumA.TestA;
-      });
+      }, Throws.TypeOf<TargetInvocationException>());
 
-      Assert.Throws(typeof(TargetInvocationException), () =>
+      Assert.That(() =>
       {
         creature.GetObjectVariable<LocalVariableEnum<InvalidEnumB>>(variableName + "enum").Value = InvalidEnumB.TestB;
-      });
+      }, Throws.TypeOf<TargetInvocationException>());
     }
 
     private void VariableAssert<T>(bool expectHasValue, T expectedValue, ObjectVariable<T> variable)
     {
-      Assert.IsNotNull(variable, "Created variable was null.");
+      Assert.That(variable, Is.Not.Null, "Created variable was null.");
 
       if (expectHasValue)
       {
-        Assert.IsTrue(variable.HasValue, "Expected variable to have value, but HasValue returned false.");
-        Assert.IsFalse(variable.HasNothing, "Expected variable to have value, but HasNothing returned true.");
+        Assert.That(variable.HasValue, Is.True, "Expected variable to have value, but HasValue returned false.");
+        Assert.That(variable.HasNothing, Is.False, "Expected variable to have value, but HasNothing returned true.");
       }
       else
       {
-        Assert.IsTrue(variable.HasNothing, "Expected variable to have no value, but HasNothing returned false.");
-        Assert.IsFalse(variable.HasValue, "Expected variable to have no value, but HasValue returned true.");
+        Assert.That(variable.HasNothing, Is.True, "Expected variable to have no value, but HasNothing returned false.");
+        Assert.That(variable.HasValue, Is.False, "Expected variable to have no value, but HasValue returned true.");
       }
 
-      Assert.AreEqual(expectedValue, variable.Value);
+      Assert.That(expectedValue, Is.EqualTo(variable.Value));
     }
 
     private enum ValidEnum

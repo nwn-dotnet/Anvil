@@ -6,7 +6,7 @@ namespace Anvil.API
   public sealed class NuiDrawListPolyLine : NuiDrawListItem
   {
     [JsonConstructor]
-    public NuiDrawListPolyLine(NuiProperty<NuiColor> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, List<float> points) : base(color, fill, lineThickness)
+    public NuiDrawListPolyLine(NuiProperty<Color> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness, List<float> points) : base(color, fill, lineThickness)
     {
       Points = points;
     }

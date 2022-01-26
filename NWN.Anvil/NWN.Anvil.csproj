@@ -16,7 +16,7 @@
     <NoWarn>1591</NoWarn>
 
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Configurations>Debug;Release;Samples</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU</Platforms>
 
     <RootNamespace>Anvil</RootNamespace>
