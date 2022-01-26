@@ -72,29 +72,36 @@ namespace Anvil.API
       {
         foreach ((CExoString key, CNWSScriptVar value) in ScriptVarTable.m_vars)
         {
+          string keyValue = key.ToString();
+
           if (value.HasFloat())
           {
-            yield return ObjectVariable.Create<LocalVariableFloat>(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableFloat>(this, keyValue);
           }
 
           if (value.HasInt())
           {
-            yield return ObjectVariable.Create<LocalVariableInt>(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableInt>(this, keyValue);
           }
 
           if (value.HasLocation())
           {
-            yield return ObjectVariable.Create<LocalVariableLocation>(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableLocation>(this, keyValue);
           }
 
           if (value.HasObject())
           {
-            yield return ObjectVariable.Create<LocalVariableObject<NwObject>>(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableObject<NwObject>>(this, keyValue);
           }
 
           if (value.HasString())
           {
-            yield return ObjectVariable.Create<LocalVariableString>(this, key.ToString());
+            yield return ObjectVariable.Create<LocalVariableString>(this, keyValue);
+          }
+
+          if (value.HasJson())
+          {
+            yield return ObjectVariable.Create<LocalVariableJson>(this, keyValue);
           }
         }
       }
