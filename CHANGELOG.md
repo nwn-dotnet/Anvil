@@ -23,6 +23,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
   - Supports general usage through `TwoDimArray`, and a generic `TwoDimArray<T>` type for specifying a custom row format. See the docs for more info.
 - `ResourceManager`: Added `DeleteTempResource` and `GetResourceText`.
 - `ResourceManager`: Added string overload for `WriteTempResource`.
+- `LocalVariableStruct`: Added local variable type for serializing any C# type to JSON.
+- `PersistentVariableStruct`: Added persistent variable type for serializing any C# type to JSON.
 
 ### Package Updates
 - NWNX: 790a54b -> 989ea04
