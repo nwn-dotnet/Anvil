@@ -32,7 +32,7 @@ namespace Anvil.Tests.API
 
       TwoDimArray array = new TwoDimArray(resourceName);
 
-      Assert.That(array.RowCount, Is.EqualTo(2));
+      Assert.That(array.RowCount, Is.EqualTo(3));
       Assert.That(array.ColumnCount, Is.EqualTo(4));
       Assert.That(array.Columns, Is.EquivalentTo(new[] { "label", "teststr", "testint", "testfloat" }));
 
