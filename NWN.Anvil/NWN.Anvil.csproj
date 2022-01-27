@@ -77,12 +77,6 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(Configuration)' != 'Samples'">
-    <None Remove="docs\**" />
-    <EmbeddedResource Remove="docs\**" />
-    <Compile Remove="docs\**" />
-  </ItemGroup>
-
   <Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
     <Exec Command="git describe --long --always --dirty --exclude=* --abbrev=8" ConsoleToMSBuild="True" IgnoreExitCode="False">
       <Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput" />
