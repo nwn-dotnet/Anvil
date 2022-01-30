@@ -80,6 +80,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the fog clip distance in the area.
+    /// </summary>
+    public float FogClipDistance
+    {
+      get => Area.m_fFogClipDistance;
+      set => Area.m_fFogClipDistance = value;
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this area is above ground (true), or underground (false).
     /// </summary>
     public bool IsAboveGround => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
@@ -88,6 +97,16 @@ namespace Anvil.API
     /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
     /// </summary>
     public bool IsInterior => NWScript.GetIsAreaInterior(this).ToBool();
+
+    /// <summary>
+    /// Gets a value indicating whether ambient music is currently playing in the area.
+    /// </summary>
+    public bool IsMusicPlaying => Area.m_pAmbientSound.m_bMusicPlaying.ToBool();
+
+    /// <summary>
+    /// Gets a value indicating whether battle music is currently playing in the area.
+    /// </summary>
+    public bool IsBattleMusicPlaying => Area.m_pAmbientSound.m_bBattlePlaying.ToBool();
 
     /// <summary>
     /// Gets a value indicating whether this area is natural (true), or artificial (false).
