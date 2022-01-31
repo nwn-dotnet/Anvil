@@ -12,7 +12,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
 - `NwColor`: Added `FromRGBA`, `ToRGBA` `ToUnsignedRGBA` methods. `ToString` is now more explicit.
 - Added various tests for `Color` conversion.
 - Added `ResourceManager` tests.
-- `NwArea`: Added various properties for environment visual options.
+- `NwArea`: Added various properties for environment visual options and metadata.
 - `NwArea`: Added `CreateEnvironmentPreset`, `ApplyEnvironmentPreset` for saving and loading preset visual options.
 - `NwWaypoint.Create`: Added overload without template parameter for creating a general waypoint.
 - `PlayOptions`: Added PlayerPartyControl option.
@@ -25,6 +25,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
 - `ResourceManager`: Added string overload for `WriteTempResource`.
 - `LocalVariableStruct`: Added local variable type for serializing any C# type to JSON.
 - `PersistentVariableStruct`: Added persistent variable type for serializing any C# type to JSON.
+- Added `OnTriggerEnter` event.
 
 ### Package Updates
 - NWNX: 790a54b -> c51d233
