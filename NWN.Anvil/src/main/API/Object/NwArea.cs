@@ -55,6 +55,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets area terrain metadata flags.
+    /// </summary>
+    public AreaFlags AreaFlags
+    {
+      get => (AreaFlags)Area.m_nFlags;
+      set => Area.m_nFlags = (uint)value;
+    }
+
+    /// <summary>
     /// Gets or sets the day/night mode to use for this area.
     /// </summary>
     public DayNightMode DayNightMode
@@ -80,19 +89,81 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets a value indicating whether this area is above ground (true), or underground (false).
+    /// Gets or sets the fog clip distance in the area.
     /// </summary>
-    public bool IsAboveGround => (AreaInfo)NWScript.GetIsAreaAboveGround(this) == AreaInfo.AboveGround;
+    public float FogClipDistance
+    {
+      get => Area.m_fFogClipDistance;
+      set => Area.m_fFogClipDistance = value;
+    }
 
     /// <summary>
-    /// Gets a value indicating whether this area is flagged as either interior (true) or underground (false).
+    /// Gets or sets whether this area is considered above ground and not under ground.
     /// </summary>
-    public bool IsInterior => NWScript.GetIsAreaInterior(this).ToBool();
+    public bool IsAboveGround
+    {
+      get => !IsUnderGround;
+      set => IsUnderGround = !value;
+    }
 
     /// <summary>
-    /// Gets a value indicating whether this area is natural (true), or artificial (false).
+    /// Gets a value indicating whether battle music is currently playing in the area.
     /// </summary>
-    public bool IsNatural => (AreaInfo)NWScript.GetIsAreaNatural(this) == AreaInfo.Natural;
+    public bool IsBattleMusicPlaying => Area.m_pAmbientSound.m_bBattlePlaying.ToBool();
+
+    /// <summary>
+    /// Gets or sets whether this area is considered an as exterior, and not an interior.
+    /// </summary>
+    public bool IsExterior
+    {
+      get => !IsInterior;
+      set => IsInterior = !value;
+    }
+
+    /// <summary>
+    /// Gets or sets whether this area is considered an as interior, and not an exterior.
+    /// </summary>
+    /// <remarks>Unlike the equivalent NwScript function <see cref="NWScript.GetIsAreaInterior"/>, this function will only return true if the <see cref="API.AreaFlags.Interior"/> flag is set.<br/>
+    /// An area that is simply underground is not considered an interior.<br/><br/>
+    /// Use IsInterior || IsUnderGround together to replicate the existing function.
+    /// </remarks>
+    public bool IsInterior
+    {
+      get => IsAreaFlagSet(AreaFlags.Interior);
+      set => SetAreaFlag(AreaFlags.Interior, value);
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether ambient music is currently playing in the area.
+    /// </summary>
+    public bool IsMusicPlaying => Area.m_pAmbientSound.m_bMusicPlaying.ToBool();
+
+    /// <summary>
+    /// Gets or sets whether this area is considered natural and non-urban.
+    /// </summary>
+    public bool IsNatural
+    {
+      get => IsAreaFlagSet(AreaFlags.Natural);
+      set => SetAreaFlag(AreaFlags.Natural, value);
+    }
+
+    /// <summary>
+    /// Gets or sets whether this area is considered under ground and not above ground.
+    /// </summary>
+    public bool IsUnderGround
+    {
+      get => IsAreaFlagSet(AreaFlags.UnderGround);
+      set => SetAreaFlag(AreaFlags.UnderGround, value);
+    }
+
+    /// <summary>
+    /// Gets or sets whether this area is considered urban and not natural.
+    /// </summary>
+    public bool IsUrban
+    {
+      get => !IsNatural;
+      set => IsNatural = !value;
+    }
 
     /// <summary>
     /// Gets the last object that entered this area.
@@ -241,6 +312,15 @@ namespace Anvil.API
     {
       get => !Area.m_bNoRestingAllowed.ToBool();
       set => Area.m_bNoRestingAllowed = (!value).ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets the shadow opacity for this area (0-100).
+    /// </summary>
+    public byte ShadowOpacity
+    {
+      get => Area.m_nShadowOpacity;
+      set => Area.m_nShadowOpacity = value;
     }
 
     /// <summary>
@@ -405,6 +485,8 @@ namespace Anvil.API
       SnowChance = preset.SnowChance.GetValueOrDefault(0);
       RainChance = preset.RainChance.GetValueOrDefault(0);
       LightningChance = preset.LightningChance.GetValueOrDefault(0);
+      FogClipDistance = preset.FogClipDistance;
+      ShadowOpacity = (byte)Math.Round(preset.ShadowAlpha.GetValueOrDefault(0.5f) * 10, MidpointRounding.ToZero);
     }
 
     /// <summary>
@@ -435,6 +517,8 @@ namespace Anvil.API
         SnowChance = SnowChance,
         RainChance = RainChance,
         LightningChance = LightningChance,
+        FogClipDistance = FogClipDistance,
+        ShadowAlpha = ShadowOpacity / 10f,
       };
     }
 
@@ -831,6 +915,23 @@ namespace Anvil.API
     public void StopBattleMusic()
     {
       NWScript.MusicBattleStop(this);
+    }
+
+    private bool IsAreaFlagSet(AreaFlags flag)
+    {
+      return (AreaFlags & flag) == flag;
+    }
+
+    private void SetAreaFlag(AreaFlags flag, bool state)
+    {
+      if (state)
+      {
+        AreaFlags |= flag;
+      }
+      else
+      {
+        AreaFlags &= ~flag;
+      }
     }
   }
 }
