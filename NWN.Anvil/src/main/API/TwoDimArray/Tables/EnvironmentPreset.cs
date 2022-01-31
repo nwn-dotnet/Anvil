@@ -7,6 +7,8 @@ namespace Anvil.API
   {
     public DayNightMode DayNightMode { get; set; }
 
+    public float FogClipDistance { get; set; } = 45f;
+
     public string Label { get; set; }
 
     public int? LightningChance { get; set; }
@@ -38,6 +40,7 @@ namespace Anvil.API
     public bool? MoonShadows { get; set; }
 
     public int? RainChance { get; set; }
+
     public int RowIndex { get; init; }
 
     public int? SecondaryColor1 { get; set; }
@@ -51,7 +54,9 @@ namespace Anvil.API
     public float? ShadowAlpha { get; set; }
 
     public int? SnowChance { get; set; }
+
     public StrRef? StrRef { get; set; }
+
     public Color SunAmbientColor { get; set; }
 
     public Color SunDiffuseColor { get; set; }

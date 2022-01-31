@@ -12,11 +12,6 @@ namespace Anvil.API.Events
   public sealed class OnTriggerEnter : IEvent
   {
     /// <summary>
-    /// Gets the trigger that was entered.
-    /// </summary>
-    public NwTrigger Trigger { get; private init; }
-
-    /// <summary>
     /// Gets the object that entered the trigger.
     /// </summary>
     public NwGameObject EnteredObject { get; private init; }
@@ -36,6 +31,11 @@ namespace Anvil.API.Events
     /// </summary>
     public bool Skip { get; set; }
 
+    /// <summary>
+    /// Gets the trigger that was entered.
+    /// </summary>
+    public NwTrigger Trigger { get; private init; }
+
     NwObject IEvent.Context => Trigger;
 
     internal sealed unsafe class Factory : SingleHookEventFactory<Factory.TriggerEventHandlerHook>
@@ -46,6 +46,19 @@ namespace Anvil.API.Events
       {
         delegate* unmanaged<void*, uint, uint, void*, uint, uint, void> pHook = &OnTriggerEventHandler;
         return HookService.RequestHook<TriggerEventHandlerHook>(pHook, FunctionsLinux._ZN11CNWSTrigger12EventHandlerEjjPvjj, HookOrder.Late);
+      }
+
+      private static bool HandleEnter(CNWSTrigger trigger, CScriptEvent scriptEvent)
+      {
+        OnTriggerEnter eventData = ProcessEvent(new OnTriggerEnter
+        {
+          Trigger = trigger.ToNwObject<NwTrigger>(),
+          EnteredObject = scriptEvent.GetObjectID(0).ToNwObject<NwGameObject>(),
+          IsTrap = trigger.m_bTrap.ToBool(),
+          IsTrapForceSet = scriptEvent.GetInteger(0).ToBool(),
+        });
+
+        return eventData.Skip;
       }
 
       [UnmanagedCallersOnly]
@@ -71,19 +84,6 @@ namespace Anvil.API.Events
         }
 
         Hook.CallOriginal(pTrigger, nEventId, nCallerObjectId, pScript, nCalendarDay, nTimeOfDay);
-      }
-
-      private static bool HandleEnter(CNWSTrigger trigger, CScriptEvent scriptEvent)
-      {
-        OnTriggerEnter eventData = ProcessEvent(new OnTriggerEnter
-        {
-          Trigger = trigger.ToNwObject<NwTrigger>(),
-          EnteredObject = scriptEvent.GetObjectID(0).ToNwObject<NwGameObject>(),
-          IsTrap = trigger.m_bTrap.ToBool(),
-          IsTrapForceSet = scriptEvent.GetInteger(0).ToBool(),
-        });
-
-        return eventData.Skip;
       }
     }
   }

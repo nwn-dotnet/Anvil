@@ -56,6 +56,8 @@ namespace Anvil.Tests.API
       Assert.That(area.SnowChance, Is.EqualTo(preset.SnowChance));
       Assert.That(area.RainChance, Is.EqualTo(preset.RainChance));
       Assert.That(area.LightningChance, Is.EqualTo(preset.LightningChance));
+      Assert.That(area.FogClipDistance, Is.EqualTo(preset.FogClipDistance));
+      Assert.That(area.ShadowOpacity, Is.EqualTo(preset.ShadowAlpha * 10));
     }
 
     [Test(Description = "Modifying an area flag correctly updates the area.")]

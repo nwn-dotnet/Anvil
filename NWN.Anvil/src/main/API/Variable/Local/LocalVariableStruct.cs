@@ -13,15 +13,15 @@ namespace Anvil.API
   /// <typeparam name="T">The class type to serialize/deserialize.</typeparam>
   public sealed class LocalVariableStruct<T> : LocalVariable<T>
   {
-    public override void Delete()
-    {
-      NWScript.DeleteLocalJson(Object, Name);
-    }
-
     public override T Value
     {
       get => HasValue ? JsonSerializer.Deserialize<T>(((Json)NWScript.GetLocalJson(Object, Name)).Dump()) : default;
       set => NWScript.SetLocalJson(Object, Name, Json.Parse(JsonSerializer.Serialize(value)));
+    }
+
+    public override void Delete()
+    {
+      NWScript.DeleteLocalJson(Object, Name);
     }
   }
 }

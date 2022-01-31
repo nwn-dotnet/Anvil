@@ -315,6 +315,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the shadow opacity for this area (0-100).
+    /// </summary>
+    public byte ShadowOpacity
+    {
+      get => Area.m_nShadowOpacity;
+      set => Area.m_nShadowOpacity = value;
+    }
+
+    /// <summary>
     /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>
     /// </summary>
@@ -476,6 +485,8 @@ namespace Anvil.API
       SnowChance = preset.SnowChance.GetValueOrDefault(0);
       RainChance = preset.RainChance.GetValueOrDefault(0);
       LightningChance = preset.LightningChance.GetValueOrDefault(0);
+      FogClipDistance = preset.FogClipDistance;
+      ShadowOpacity = (byte)Math.Round(preset.ShadowAlpha.GetValueOrDefault(0.5f) * 10, MidpointRounding.ToZero);
     }
 
     /// <summary>
@@ -506,6 +517,8 @@ namespace Anvil.API
         SnowChance = SnowChance,
         RainChance = RainChance,
         LightningChance = LightningChance,
+        FogClipDistance = FogClipDistance,
+        ShadowAlpha = ShadowOpacity / 10f,
       };
     }
 
