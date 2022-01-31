@@ -28,7 +28,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...HEAD
 - Added `OnTriggerEnter` event.
 
 ### Package Updates
-- NWNX: 790a54b -> 989ea04
+- NWNX: 790a54b -> c51d233
 - NWN.Core: 8193.34.1 -> 8193.34.2
 - NWN.Native: 8193.34.2 -> 8193.34.3
 
