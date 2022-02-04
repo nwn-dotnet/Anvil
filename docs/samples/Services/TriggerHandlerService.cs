@@ -8,22 +8,28 @@ using Anvil.API.Events;
 using Anvil.Services;
 using NLog;
 
-[ServiceBinding(typeof(TriggerHandlerService))]
-public class TriggerHandlerService
+namespace NWN.Anvil.Samples
 {
-  private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-  public TriggerHandlerService()
+  [ServiceBinding(typeof(TriggerHandlerService))]
+  public class TriggerHandlerService
   {
-    NwTrigger trigger = NwObject.FindObjectsWithTag<NwTrigger>("mytrigger").FirstOrDefault();
-    trigger.OnEnter += OnTriggerEnter;
-  }
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-  private void OnTriggerEnter(TriggerEvents.OnEnter obj)
-  {
-    if (obj.EnteringObject.IsPlayerControlled(out NwPlayer player))
+    public TriggerHandlerService()
     {
-      Log.Info("Player entered trigger: " + player?.PlayerName);
+      NwTrigger trigger = NwObject.FindObjectsWithTag<NwTrigger>("mytrigger").FirstOrDefault();
+      if (trigger != null)
+      {
+        trigger.OnEnter += OnTriggerEnter;
+      }
+    }
+
+    private void OnTriggerEnter(TriggerEvents.OnEnter obj)
+    {
+      if (obj.EnteringObject.IsPlayerControlled(out NwPlayer player))
+      {
+        Log.Info("Player entered trigger: " + player?.PlayerName);
+      }
     }
   }
 }

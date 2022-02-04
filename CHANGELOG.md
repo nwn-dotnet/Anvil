@@ -3,6 +3,54 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.2
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...v8193.34.2
+
+### Added
+- Added net6.0 target framework. Since multiple frameworks are now being targeted, there is a small change to the binary output paths.
+  - When building locally, binaries are now located in `NWN.Anvil/bin/Release/<framework>`. Release binaries on github will now have a folder for each framework.
+- `NwColor`: Added `FromRGBA`, `ToRGBA` `ToUnsignedRGBA` methods. `ToString` is now more explicit.
+- Added various tests for `Color` conversion.
+- Added `ResourceManager` tests.
+- `NwArea`: Added various properties for environment visual options and metadata.
+- `NwArea`: Added `CreateEnvironmentPreset`, `ApplyEnvironmentPreset` for saving and loading preset visual options.
+- `NwWaypoint.Create`: Added overload without template parameter for creating a general waypoint.
+- `PlayOptions`: Added PlayerPartyControl option.
+- `StrRef`: Added value structure for string references (StrRefs). The associated talk table string can be resolved by invoking `ToString`.
+- `NwGameTables`: Contains static members for commonly used 2das (internally cached by `CTwoDimArrays`).
+  - Implemented `AppearanceTable` & `EnvironmentPresetTable`
+- Implemented new `TwoDimArray`, `TwoDimArrayEntry` and `ITwoDimArrayEntry` APIs.
+  - Supports general usage through `TwoDimArray`, and a generic `TwoDimArray<T>` type for specifying a custom row format. See the docs for more info.
+- `ResourceManager`: Added `DeleteTempResource` and `GetResourceText`.
+- `ResourceManager`: Added string overload for `WriteTempResource`.
+- `LocalVariableStruct`: Added local variable type for serializing any C# type to JSON.
+- `PersistentVariableStruct`: Added persistent variable type for serializing any C# type to JSON.
+- Added `OnTriggerEnter` event.
+
+### Package Updates
+- NWNX: 790a54b -> c51d233
+- NWN.Core: 8193.34.1 -> 8193.34.2
+- NWN.Native: 8193.34.2 -> 8193.34.3
+
+### Changed
+- Change test assertion pattern to use NUnit constraints: https://docs.nunit.org/artcles/nunit/writing-tests/assertions/assertion-models/constraint.html
+- Code samples are now built as a separate plugin project, and included in CI analysis.
+- Improved path validation for `Delete/WriteTempResource`. It should no-longer be possible to navigate outside of the resource folder.
+
+### Deprecated
+- `NwServer.ReloadRules()`. Use `NwRuleset.ReloadRules()` instead.
+- `NwColor.ToInt()`. Use `NwColor.ToRGBA()` instead.
+- `ITwoDimArray`/`TwoDimArrayFactory`: The 2da APIs have been superseded by a simpler API. See the `ITwoDimArrayEntry` example for more info.
+- `NwArea.GetFogAmount`: Use `SunFogAmount` and `MoonFogAmount` instead.
+- `NwArea.GetFogColor`: Use `SunFogColor` and `MoonFogColor` instead.
+
+### Removed
+- NuiColor was removed and functionality replaced with the standard `Color` class. The intention is to remove confusion and conversion issues when interacting with both types.
+
+### Fixed
+- Fixed a NRE when using visibility properties.
+- Fixed a NRE when using `PersistentVariableEnum`.
+
 ## 8193.34.1
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...v8193.34.1
 
@@ -28,12 +76,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.0...v8193.34.1
 ### Changed
 - `NwCreature.WalkRateCap` and `NwCreature.AlwaysWalk` properties are no-longer persistent. Additionally, the services and functions are not hooked until the associated property is used for the first time.
 - `NwObject.ObjectId` is now public.
-
-### Deprecated
-- N/A
-
-### Removed
-- N/A
 
 ### Fixed
 - `AnvilCore.Reload()` now uses the scheduler service to schedule the reload. This should fix some edge cases where async methods would hold a reference preventing unload.

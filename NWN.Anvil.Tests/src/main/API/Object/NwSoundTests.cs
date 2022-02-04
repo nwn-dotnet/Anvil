@@ -26,14 +26,14 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwSound sound = NwSound.Create(soundResRef, startLocation);
 
-      Assert.IsNotNull(sound, $"Sound {soundResRef} was null after creation.");
-      Assert.IsTrue(sound.IsValid, $"Sound {soundResRef} was invalid after creation.");
+      Assert.That(sound, Is.Not.Null, $"Sound {soundResRef} was null after creation.");
+      Assert.That(sound.IsValid, Is.True, $"Sound {soundResRef} was invalid after creation.");
 
       createdTestObjects.Add(sound);
     }
 
     [TearDown]
-    public void CleanupTestObject()
+    public void CleanupTestObjects()
     {
       foreach (NwGameObject testObject in createdTestObjects)
       {

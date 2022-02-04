@@ -26,14 +26,14 @@ namespace Anvil.Tests.API
       Location startLocation = NwModule.Instance.StartingLocation;
       NwEncounter encounter = NwEncounter.Create(encounterResRef, startLocation);
 
-      Assert.IsNotNull(encounter, $"Encounter {encounterResRef} was null after creation.");
-      Assert.IsTrue(encounter.IsValid, $"Encounter {encounterResRef} was invalid after creation.");
+      Assert.That(encounter, Is.Not.Null, $"Encounter {encounterResRef} was null after creation.");
+      Assert.That(encounter.IsValid, Is.True, $"Encounter {encounterResRef} was invalid after creation.");
 
       createdTestObjects.Add(encounter);
     }
 
     [TearDown]
-    public void CleanupTestObject()
+    public void CleanupTestObjects()
     {
       foreach (NwGameObject testObject in createdTestObjects)
       {

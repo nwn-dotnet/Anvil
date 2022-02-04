@@ -40,6 +40,15 @@ namespace Anvil.API
     /// </summary>
     public static IReadOnlyList<NwSpell> Spells { get; private set; }
 
+    /// <summary>
+    /// Reloads all game rules (2da stuff, etc).<br/>
+    /// @warning DANGER, DRAGONS. Bad things may or may not happen. Only use this if you know what you are doing.
+    /// </summary>
+    public static void ReloadRules()
+    {
+      NWNXLib.Rules().ReloadAll();
+    }
+
     [ServiceBinding(typeof(Factory))]
     [ServiceBindingOptions(InternalBindingPriority.API)]
     internal sealed unsafe class Factory

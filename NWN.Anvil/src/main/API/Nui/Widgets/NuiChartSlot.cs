@@ -9,7 +9,7 @@ namespace Anvil.API
   public sealed class NuiChartSlot
   {
     [JsonConstructor]
-    public NuiChartSlot(NuiChartType chartType, NuiProperty<string> legend, NuiProperty<NuiColor> color, NuiProperty<List<float>> data)
+    public NuiChartSlot(NuiChartType chartType, NuiProperty<string> legend, NuiProperty<Color> color, NuiProperty<List<float>> data)
     {
       ChartType = chartType;
       Legend = legend;
@@ -21,7 +21,7 @@ namespace Anvil.API
     public NuiChartType ChartType { get; set; }
 
     [JsonProperty("color")]
-    public NuiProperty<NuiColor> Color { get; set; }
+    public NuiProperty<Color> Color { get; set; }
 
     [JsonProperty("data")]
     public NuiProperty<List<float>> Data { get; set; }

@@ -131,6 +131,12 @@ namespace Anvil.API
       set => playOptions.bPauseAndPlay = value.ToInt();
     }
 
+    public bool PlayerPartyControl
+    {
+      get => playOptions.bPlayerPartyControl.ToBool();
+      set => playOptions.bPlayerPartyControl = value.ToInt();
+    }
+
     public PvPSetting PvPSetting
     {
       get => (PvPSetting)playOptions.nPVPSetting;

@@ -8,19 +8,22 @@ using NLog;
 
 // The "ServiceBinding" attribute indicates this class should be created on start, and available to other classes as a dependency "MyScriptHandler"
 // You can also bind yourself to an interface or base class. The system also supports multiple bindings.
-[ServiceBinding(typeof(BasicScriptHandler))]
-public class BasicScriptHandler
+namespace NWN.Anvil.Samples
 {
-  // Gets the server log. By default, this reports to "anvil.log"
-  private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-  // This function will be called as if the same script was called by a toolset event, or by another script.
-  // Script name must be <= 16 characters similar to the toolset.
-  // This function must always return void, or a bool in the case of a conditional.
-  // The NwObject parameter is optional, but if defined, must always be a single parameter of the NWObject type.
-  [ScriptHandler("test_nwscript")]
-  private void OnScriptCalled(CallInfo callInfo)
+  [ServiceBinding(typeof(BasicScriptHandler))]
+  public class BasicScriptHandler
   {
-    Log.Info($"test_nwscript called by {callInfo.ObjectSelf.Name}");
+    // Gets the server log. By default, this reports to "anvil.log"
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+    // This function will be called as if the same script was called by a toolset event, or by another script.
+    // Script name must be <= 16 characters similar to the toolset.
+    // This function must always return void, or a bool in the case of a conditional.
+    // The NwObject parameter is optional, but if defined, must always be a single parameter of the NWObject type.
+    [ScriptHandler("test_nwscript")]
+    private void OnScriptCalled(CallInfo callInfo)
+    {
+      Log.Info($"test_nwscript called by {callInfo.ObjectSelf.Name}");
+    }
   }
 }

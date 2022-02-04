@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Anvil.API;
 using NWN.Core;
@@ -12,6 +13,7 @@ namespace Anvil.Services
   /// Creates a deserialized 2da structure using a <see cref="ITwoDimArray"/> converter.
   /// </summary>
   [ServiceBinding(typeof(TwoDimArrayFactory))]
+  [Obsolete("Create instances of Anvil.API.TwoDimArray instead.")]
   public sealed class TwoDimArrayFactory
   {
     private readonly Dictionary<string, ITwoDimArray> cache = new Dictionary<string, ITwoDimArray>();

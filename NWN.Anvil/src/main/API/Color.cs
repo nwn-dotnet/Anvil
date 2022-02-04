@@ -85,6 +85,38 @@ namespace Anvil.API
     public float RedF => Red / 255f;
 
     /// <summary>
+    /// Creates a Color structure from a 32-bit RGBA value.
+    /// </summary>
+    /// <param name="rgba">The 32-bit RGBA value.</param>
+    /// <returns>A Color structure representing the RGBA value.</returns>
+    public static unsafe Color FromRGBA(int rgba)
+    {
+      byte* colorPtr = (byte*)&rgba;
+      return new Color(colorPtr[3], colorPtr[2], colorPtr[1], colorPtr[0]);
+    }
+
+    /// <summary>
+    /// Creates a Color structure from an unsigned 32-bit RGBA value.
+    /// </summary>
+    /// <param name="rgba">The 32-bit RGBA value.</param>
+    /// <returns>A Color structure representing the RGBA value.</returns>
+    public static unsafe Color FromRGBA(uint rgba)
+    {
+      byte* colorPtr = (byte*)&rgba;
+      return new Color(colorPtr[3], colorPtr[2], colorPtr[1], colorPtr[0]);
+    }
+
+    /// <summary>
+    /// Creates a Color structure from a 32-bit RGBA hex string.
+    /// </summary>
+    /// <param name="rgbaHexString">The 32-bit RGBA hex string.</param>
+    /// <returns>A Color structure representing the RGBA value.</returns>
+    public static Color FromRGBA(string rgbaHexString)
+    {
+      return FromRGBA(Convert.ToInt32(rgbaHexString.Trim().TrimStart('#'), 16));
+    }
+
+    /// <summary>
     /// Returns the 3 character sequence token for this color, used in coloring text.<br/>
     /// This is mostly for internal use. Use <see cref="StringExtensions.ColorString"/> for formatting text with a certain color.
     /// </summary>
@@ -96,13 +128,35 @@ namespace Anvil.API
       return StringHelper.Cp1252Encoding.GetString(tokenBytes);
     }
 
-    /// <summary>
-    /// Returns an integer that represents this color.
-    /// </summary>
+    [Obsolete("Use Color.ToRGBA() instead.")]
     public int ToInt()
+    {
+      return ToRGBA();
+    }
+
+    /// <summary>
+    /// Gets the 32-bit RGBA value of this Color structure.
+    /// </summary>
+    /// <returns>The 32-bit RGBA value of this Color.</returns>
+    public int ToRGBA()
     {
       ReadOnlySpan<byte> data = stackalloc[] { Alpha, Blue, Green, Red };
       return BitConverter.ToInt32(data);
+    }
+
+    public override string ToString()
+    {
+      return $"R:{Red}, G:{Green}, B:{Blue}, A:{Alpha}";
+    }
+
+    /// <summary>
+    /// Gets the unsigned 32-bit RGBA value of this Color structure.
+    /// </summary>
+    /// <returns>The 32-bit RGBA value of this Color.</returns>
+    public uint ToUnsignedRGBA()
+    {
+      ReadOnlySpan<byte> data = stackalloc[] { Alpha, Blue, Green, Red };
+      return BitConverter.ToUInt32(data);
     }
   }
 }

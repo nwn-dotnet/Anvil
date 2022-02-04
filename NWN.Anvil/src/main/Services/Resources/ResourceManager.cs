@@ -40,6 +40,20 @@ namespace Anvil.Services
     }
 
     /// <summary>
+    /// Deletes the temporary resource with the specified name.
+    /// </summary>
+    /// <param name="resourceName">The resource to delete.</param>
+    public void DeleteTempResource(string resourceName)
+    {
+      GuardIsResourceNameValid(resourceName);
+      string path = Path.Combine(HomeStorage.ResourceTemp, resourceName);
+      if (File.Exists(path))
+      {
+        File.Delete(path);
+      }
+    }
+
+    /// <summary>
     /// Gets all resource names for the specified type.
     /// </summary>
     /// <param name="type">A resource type.</param>
@@ -114,6 +128,25 @@ namespace Anvil.Services
     }
 
     /// <summary>
+    /// Gets the raw text of the specified resource.
+    /// </summary>
+    /// <param name="name">The resource name to retrieve.</param>
+    /// <param name="type">The type of resource to retrieve.</param>
+    /// <returns>The raw text of the associated resource, otherwise null if the resource does not exist.</returns>
+    public string GetResourceText(string name, ResRefType type)
+    {
+      switch (type)
+      {
+        case ResRefType.NSS:
+          return GetNSSContents(name.ToExoString());
+        case ResRefType.NCS:
+          return null;
+        default:
+          return StringHelper.Cp1252Encoding.GetString(GetStandardResourceData(name, type));
+      }
+    }
+
+    /// <summary>
     /// Determines if the supplied resource exists and is of the specified type.
     /// </summary>
     /// <param name="name">The resource name to check.</param>
@@ -124,22 +157,26 @@ namespace Anvil.Services
       return ResMan.Exists(new CResRef(name), (ushort)type, null).ToBool();
     }
 
+    /// <summary>
+    /// Creates a temporary resource with the specified name.
+    /// </summary>
+    /// <param name="resourceName">The resource name.</param>
+    /// <param name="data">The data to populate in the resource.</param>
     public void WriteTempResource(string resourceName, byte[] data)
     {
-      string nameWithoutExtension = Path.GetFileNameWithoutExtension(resourceName);
-
-      if (nameWithoutExtension.Length > MaxNameLength)
-      {
-        throw new ArgumentOutOfRangeException(nameof(resourceName), $"Resource name (excl. extension) must be less than {MaxNameLength} characters.");
-      }
-
-      if (nameWithoutExtension.Any(c => !char.IsLetterOrDigit(c) && c != '_'))
-      {
-        throw new ArgumentOutOfRangeException(nameof(resourceName), "Resource name must only contain alphanumeric characters, or underscores.");
-      }
-
+      GuardIsResourceNameValid(resourceName);
       File.WriteAllBytes(Path.Combine(HomeStorage.ResourceTemp, resourceName), data);
       ResMan.UpdateResourceDirectory(tempAlias);
+    }
+
+    /// <summary>
+    /// Creates a temporary resource with the specified name.
+    /// </summary>
+    /// <param name="resourceName">The resource name.</param>
+    /// <param name="text">The text to populate in the resource.</param>
+    public void WriteTempResource(string resourceName, string text)
+    {
+      WriteTempResource(resourceName, StringHelper.Cp1252Encoding.GetBytes(text));
     }
 
     void IDisposable.Dispose()
@@ -165,7 +202,7 @@ namespace Anvil.Services
 
       ExoBase.m_pcExoAliasList.Add(exoAlias, path.ToExoString());
       ResMan.CreateDirectory(exoAlias);
-      ResMan.AddResourceDirectory(exoAlias, priority, false.ToInt());
+      ResMan.AddResourceDirectory(exoAlias, priority, true.ToInt());
       ResMan.UpdateResourceDirectory(exoAlias);
 
       currentIndex++;
@@ -186,6 +223,20 @@ namespace Anvil.Services
       }
 
       return null;
+    }
+
+    private void GuardIsResourceNameValid(string resourceName)
+    {
+      string nameWithoutExtension = Path.ChangeExtension(resourceName, null);
+      if (nameWithoutExtension.Length > MaxNameLength)
+      {
+        throw new ArgumentOutOfRangeException(nameof(resourceName), $"Resource name (excl. extension) must be less than {MaxNameLength} characters.");
+      }
+
+      if (nameWithoutExtension.Any(c => !char.IsLetterOrDigit(c) && c != '_'))
+      {
+        throw new ArgumentOutOfRangeException(nameof(resourceName), "Resource name must only contain alphanumeric characters, or underscores.");
+      }
     }
 
     private bool TryGetNativeResource(string name, ResRefType type, out CRes res)

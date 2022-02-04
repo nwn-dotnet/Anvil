@@ -5,7 +5,7 @@ namespace Anvil.API
   public sealed class NuiDrawListText : NuiDrawListItem
   {
     [JsonConstructor]
-    public NuiDrawListText(NuiProperty<NuiColor> color, NuiProperty<NuiRect> rect, NuiProperty<string> text) : base(color, null, null)
+    public NuiDrawListText(NuiProperty<Color> color, NuiProperty<NuiRect> rect, NuiProperty<string> text) : base(color, null, null)
     {
       Rect = rect;
       Text = text;
