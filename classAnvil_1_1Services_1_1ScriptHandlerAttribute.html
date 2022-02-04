@@ -140,20 +140,23 @@ readonly string&#160;</td><td class="memItemRight" valign="bottom"><b>ScriptName
 <div class="line"> </div>
 <div class="line"><span class="comment">// The &quot;ServiceBinding&quot; attribute indicates this class should be created on start, and available to other classes as a dependency &quot;MyScriptHandler&quot;</span></div>
 <div class="line"><span class="comment">// You can also bind yourself to an interface or base class. The system also supports multiple bindings.</span></div>
-<div class="line">[ServiceBinding(typeof(BasicScriptHandler))]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>BasicScriptHandler</div>
+<div class="line"><span class="keyword">namespace </span>NWN.Anvil.Samples</div>
 <div class="line">{</div>
-<div class="line">  <span class="comment">// Gets the server log. By default, this reports to &quot;anvil.log&quot;</span></div>
-<div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> readonly Logger Log = LogManager.GetCurrentClassLogger();</div>
-<div class="line"> </div>
-<div class="line">  <span class="comment">// This function will be called as if the same script was called by a toolset event, or by another script.</span></div>
-<div class="line">  <span class="comment">// Script name must be &lt;= 16 characters similar to the toolset.</span></div>
-<div class="line">  <span class="comment">// This function must always return void, or a bool in the case of a conditional.</span></div>
-<div class="line">  <span class="comment">// The NwObject parameter is optional, but if defined, must always be a single parameter of the NWObject type.</span></div>
-<div class="line">  [ScriptHandler(<span class="stringliteral">&quot;test_nwscript&quot;</span>)]</div>
-<div class="line">  <span class="keyword">private</span> <span class="keywordtype">void</span> OnScriptCalled(CallInfo callInfo)</div>
+<div class="line">  [ServiceBinding(typeof(BasicScriptHandler))]</div>
+<div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>BasicScriptHandler</div>
 <div class="line">  {</div>
-<div class="line">    Log.Info($<span class="stringliteral">&quot;test_nwscript called by {callInfo.ObjectSelf.Name}&quot;</span>);</div>
+<div class="line">    <span class="comment">// Gets the server log. By default, this reports to &quot;anvil.log&quot;</span></div>
+<div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> readonly Logger Log = LogManager.GetCurrentClassLogger();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// This function will be called as if the same script was called by a toolset event, or by another script.</span></div>
+<div class="line">    <span class="comment">// Script name must be &lt;= 16 characters similar to the toolset.</span></div>
+<div class="line">    <span class="comment">// This function must always return void, or a bool in the case of a conditional.</span></div>
+<div class="line">    <span class="comment">// The NwObject parameter is optional, but if defined, must always be a single parameter of the NWObject type.</span></div>
+<div class="line">    [ScriptHandler(<span class="stringliteral">&quot;test_nwscript&quot;</span>)]</div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OnScriptCalled(CallInfo callInfo)</div>
+<div class="line">    {</div>
+<div class="line">      Log.Info($<span class="stringliteral">&quot;test_nwscript called by {callInfo.ObjectSelf.Name}&quot;</span>);</div>
+<div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --></div><hr/>The documentation for this class was generated from the following file:<ul>

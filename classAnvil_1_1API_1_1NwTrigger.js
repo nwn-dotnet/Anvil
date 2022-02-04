@@ -9,6 +9,7 @@ var classAnvil_1_1API_1_1NwTrigger =
     [ "operator CNWSTrigger", "classAnvil_1_1API_1_1NwTrigger.html#a0cd5dee4e718584620b2c8ce37c86e16", null ],
     [ "Serialize", "classAnvil_1_1API_1_1NwTrigger.html#a693204b075f8bc4b67c2affd3dab1559", null ],
     [ "OnClicked", "classAnvil_1_1API_1_1NwTrigger.html#a313470f83508872cc471db6fdc8baaa3", null ],
+    [ "OnDetectModeUpdate", "classAnvil_1_1API_1_1NwTrigger.html#ac6931428d6dbd2b39efc5264204938eb", null ],
     [ "OnDisarmed", "classAnvil_1_1API_1_1NwTrigger.html#afd2410058b4691fc290cf34a0368a406", null ],
     [ "OnEnter", "classAnvil_1_1API_1_1NwTrigger.html#a9f36043869bcf830c1be7c77b1508a94", null ],
     [ "OnExit", "classAnvil_1_1API_1_1NwTrigger.html#abddfc504f2594e391cdad2ed962dd21c", null ],

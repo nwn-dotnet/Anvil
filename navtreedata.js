@@ -32,21 +32,21 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1EffectBase.html#a726e5497268b40eab72926a23c2c4a7b",
-"classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html",
-"classAnvil_1_1API_1_1Events_1_1OnDMDisableTrap.html",
-"classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a28290f3c808ea85f161846234d2185d6",
-"classAnvil_1_1API_1_1GffResourceField.html#a23b66cabbb5f63a66361a1b16d6e7a36",
-"classAnvil_1_1API_1_1Location.html#a669da02cd227248d0ec72aba33daa7ef",
-"classAnvil_1_1API_1_1NuiText.html#aad9a37bbf440e9395a87044ef19e1559",
-"classAnvil_1_1API_1_1NwCreature.html#a23162530a8233c62291c6c65e72c9e0b",
-"classAnvil_1_1API_1_1NwDoor.html#aa26bffeb6d69d6916d0f2be7a9d7a0e5",
-"classAnvil_1_1API_1_1NwModule.html#a39219ab323b418c74751c6e5baed544d",
-"classAnvil_1_1API_1_1NwPlayer.html#a4216166616a7f794bd4950476ac2027a",
-"classAnvil_1_1API_1_1NwStationary.html#a13d2208e9b7e4d05f0c93f9e3e00351f",
-"classAnvil_1_1API_1_1SQLQuery.html#a3e0324b810a5eec18c6963ed3bea16c2",
-"classAnvil_1_1Services_1_1InjectionService.html#a4f44104f44902e8877b00fadcc623d6f",
-"structAnvil_1_1API_1_1NwDateTime.html#aa666726e273fbbed4034e05cd91072de"
+"classAnvil_1_1API_1_1Effect.html#ab9d9eb0c71d4e3cd776264d1ba7c2068",
+"classAnvil_1_1API_1_1Events_1_1DialogEvents_1_1AppearsWhen.html#affcfc059852465c751e49de51a5b6cea",
+"classAnvil_1_1API_1_1Events_1_1OnClientConnect.html#a077308ba58798cde562914c4074e37be",
+"classAnvil_1_1API_1_1Events_1_1OnItemInventoryOpen.html#a25cc18dd0777951bb8eecfe11c55d953",
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnUserDefined.html#a6cfb8a4ee17233142136ab781798762f",
+"classAnvil_1_1API_1_1ItemProperty.html#adeec009c431ef97dba2ee1bfa4007034",
+"classAnvil_1_1API_1_1NuiImage.html#a70292f100c09597d7577e98d7d1531f2",
+"classAnvil_1_1API_1_1NwBaseItem.html#afad7fcf791f37b0b10fe48041bd549c4",
+"classAnvil_1_1API_1_1NwCreature.html#ac05ab1949f7bc1af17f2d7e32c3694eb",
+"classAnvil_1_1API_1_1NwGameObject.html#ae9ebc4f77bb2d792c4471bb56eeee0b6",
+"classAnvil_1_1API_1_1NwObject.html#ab370d5ce40fcc71a94f6236500775b56",
+"classAnvil_1_1API_1_1NwRuleset.html#a69132efd38354fab1567d83a449d4a8a",
+"classAnvil_1_1API_1_1ObjectVariable.html#a7f3dd23f0bef35e21ee7af09e6206f05",
+"classAnvil_1_1API_1_1TwoDimArray.html#ac8e95c33af2ea53e6a7a9a8b1590b233",
+"classAnvil_1_1Services_1_1WeaponService.html#a59f8e75b1b04f0f319fb1f46cea9536f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -105,95 +105,78 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeRow</b> (i
 <div class="line"><span class="comment"> * Define a implementation to deserialize &quot;xptable.2da&quot;, and use this class to determine how much XP is remaining until the next level.</span></div>
 <div class="line"><span class="comment"> */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">using</span> System.Collections.Generic;</div>
-<div class="line"><span class="keyword">using</span> System.Globalization;</div>
 <div class="line"><span class="keyword">using</span> System.Linq;</div>
 <div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>;</div>
 <div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>.<a class="code" href="namespaceAnvil_1_1API_1_1Events.html">Events</a>;</div>
 <div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1Services.html">Services</a>;</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// This is the deserialization class for this specific type of 2da.</span></div>
-<div class="line"><span class="comment">// We can implement our own helper functions here that operate on the 2da data, and cache it.</span></div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>ExpTable : ITwoDimArray</div>
+<div class="line"><span class="keyword">namespace </span>NWN.Anvil.Samples</div>
 <div class="line">{</div>
-<div class="line">  <span class="keyword">private</span> readonly List&lt;Entry&gt; entries = <span class="keyword">new</span> List&lt;Entry&gt;();</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">public</span> <span class="keywordtype">int</span> MaxLevel =&gt; entries[^1].Level;</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">public</span> <span class="keywordtype">int</span> GetXpForLevel(<span class="keywordtype">int</span> level)</div>
+<div class="line">  <span class="comment">// This is the deserialization class for this specific type of 2da.</span></div>
+<div class="line">  <span class="comment">// We can implement our own helper functions here that operate on the 2da data, and cache it.</span></div>
+<div class="line">  <span class="keyword">public</span> sealed <span class="keyword">class </span>ExpTableEntry : ITwoDimArrayEntry</div>
 <div class="line">  {</div>
-<div class="line">    <span class="keywordflow">return</span> entries.First(entry =&gt; entry.Level == level).XP;</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> Level { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> XP { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// RowIndex is already populated externally, and we do not need to assign it in InterpretEntry.</span></div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> RowIndex { <span class="keyword">get</span>; init; }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// InterpretEntry is where we populate our entry properties (Level &amp; XP) with the correct data.</span></div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">void</span> InterpretEntry(TwoDimArrayEntry entry)</div>
+<div class="line">    {</div>
+<div class="line">      Level = entry.GetInt(<span class="stringliteral">&quot;Level&quot;</span>).GetValueOrDefault(0);</div>
+<div class="line">      XP = entry.GetInt(<span class="stringliteral">&quot;XP&quot;</span>).GetValueOrDefault(0);</div>
+<div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line"> </div>
-<div class="line">  <span class="keyword">public</span> <span class="keywordtype">int</span> GetLevelFromXp(<span class="keywordtype">int</span> xp)</div>
+<div class="line">  [ServiceBinding(typeof(XPReportService))]</div>
+<div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>XPReportService</div>
 <div class="line">  {</div>
-<div class="line">    <span class="keywordtype">int</span> level = 1;</div>
-<div class="line">    <span class="keywordflow">foreach</span> (Entry entry <span class="keywordflow">in</span> entries)</div>
+<div class="line">    <span class="comment">// The TwoDimArray is created here.</span></div>
+<div class="line">    <span class="comment">// ExpTableEntry (the type above) is passed in as a type parameter to be used to create our row data from exptable.2da.</span></div>
+<div class="line">    <span class="keyword">private</span> readonly TwoDimArray&lt;ExpTableEntry&gt; expTable = <span class="keyword">new</span> TwoDimArray&lt;ExpTableEntry&gt;(<span class="stringliteral">&quot;exptable.2da&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> XPReportService()</div>
 <div class="line">    {</div>
-<div class="line">      <span class="keywordflow">if</span> (entry.XP &gt; xp)</div>
+<div class="line">      NwModule.Instance.OnClientEnter += OnClientEnter;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)</div>
+<div class="line">    {</div>
+<div class="line">      NwPlayer player = onClientEnter.Player;</div>
+<div class="line">      <span class="keywordtype">int</span> nextLevel = GetLevelFromXp(player.ControlledCreature.Xp) + 1;</div>
+<div class="line">      <span class="keywordflow">if</span> (nextLevel &gt; MaxLevel)</div>
 <div class="line">      {</div>
-<div class="line">        <span class="keywordflow">break</span>;</div>
+<div class="line">        <span class="keywordflow">return</span>;</div>
 <div class="line">      }</div>
 <div class="line"> </div>
-<div class="line">      level = entry.Level;</div>
+<div class="line">      player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> level;</div>
-<div class="line">  }</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> MaxLevel =&gt; expTable[^1].Level;</div>
 <div class="line"> </div>
-<div class="line">  <span class="keywordtype">void</span> ITwoDimArray.DeserializeRow(<span class="keywordtype">int</span> rowIndex, TwoDimEntry twoDimEntry)</div>
-<div class="line">  {</div>
-<div class="line">    <span class="comment">// Use twoDimEntry(columnName) to get your serialized data, then convert it here.</span></div>
-<div class="line">    <span class="keywordtype">int</span> level = <span class="keywordtype">int</span>.Parse(twoDimEntry(<span class="stringliteral">&quot;Level&quot;</span>));</div>
-<div class="line">    uint xp = ParseXpColumn(twoDimEntry(<span class="stringliteral">&quot;XP&quot;</span>));</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (xp &gt; <span class="keywordtype">int</span>.MaxValue)</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> GetXpForLevel(<span class="keywordtype">int</span> level)</div>
 <div class="line">    {</div>
-<div class="line">      <span class="keywordflow">return</span>;</div>
+<div class="line">      <span class="keywordflow">return</span> expTable.First(entry =&gt; entry.Level == level).XP;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    entries.Add(<span class="keyword">new</span> Entry(level, (<span class="keywordtype">int</span>)xp));</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">private</span> uint ParseXpColumn(<span class="keywordtype">string</span> value)</div>
-<div class="line">  {</div>
-<div class="line">    <span class="keywordflow">return</span> uint.TryParse(value, out uint retVal) ? retVal : uint.Parse(value.Substring(2), NumberStyles.AllowHexSpecifier);</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">private</span> readonly <span class="keyword">struct </span>Entry</div>
-<div class="line">  {</div>
-<div class="line">    <span class="keyword">public</span> readonly <span class="keywordtype">int</span> Level;</div>
-<div class="line">    <span class="keyword">public</span> readonly <span class="keywordtype">int</span> XP;</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> Entry(<span class="keywordtype">int</span> level, <span class="keywordtype">int</span> xp)</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> GetLevelFromXp(<span class="keywordtype">int</span> xp)</div>
 <div class="line">    {</div>
-<div class="line">      Level = level;</div>
-<div class="line">      XP = xp;</div>
+<div class="line">      <span class="keywordtype">int</span> level = 1;</div>
+<div class="line">      <span class="keywordflow">foreach</span> (ExpTableEntry entry <span class="keywordflow">in</span> expTable.Rows)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">if</span> (entry.XP &gt; xp)</div>
+<div class="line">        {</div>
+<div class="line">          <span class="keywordflow">break</span>;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        level = entry.Level;</div>
+<div class="line">      }</div>
+<div class="line"> </div>
+<div class="line">      <span class="keywordflow">return</span> level;</div>
 <div class="line">    }</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line">[ServiceBinding(typeof(XPReportService))]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>XPReportService</div>
-<div class="line">{</div>
-<div class="line">  <span class="keyword">private</span> readonly ExpTable expTable;</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">public</span> XPReportService(TwoDimArrayFactory twoDimArrayFactory)</div>
-<div class="line">  {</div>
-<div class="line">    expTable = twoDimArrayFactory.Get2DA&lt;ExpTable&gt;(<span class="stringliteral">&quot;exptable&quot;</span>);</div>
-<div class="line">    NwModule.Instance.OnClientEnter += OnClientEnter;</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">private</span> <span class="keywordtype">void</span> OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)</div>
-<div class="line">  {</div>
-<div class="line">    NwPlayer player = onClientEnter.Player;</div>
-<div class="line">    <span class="keywordtype">int</span> nextLevel = expTable.GetLevelFromXp(player.ControlledCreature.Xp) + 1;</div>
-<div class="line">    <span class="keywordflow">if</span> (nextLevel &gt; expTable.MaxLevel)</div>
-<div class="line">    {</div>
-<div class="line">      <span class="keywordflow">return</span>;</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {expTable.GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}&quot;</span>);</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --></div><hr/>The documentation for this interface was generated from the following file:<ul>

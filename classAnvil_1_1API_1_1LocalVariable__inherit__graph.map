@@ -1,8 +1,9 @@
 <map id="Anvil.API.LocalVariable&lt; T &gt;" name="Anvil.API.LocalVariable&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="146,169,334,196"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1LocalVariableEnum.html" title=" " alt="" coords="5,244,227,271"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1LocalVariableObject.html" title=" " alt="" coords="251,244,477,271"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1ObjectVariable.html" title="A key/value pair/variable stored on an Object." alt="" coords="171,95,309,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="104,13,211,39"/>
-<area shape="rect" id="node4" title=" " alt="" coords="235,5,413,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="417,56,605,83"/>
+<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1LocalVariableEnum.html" title=" " alt="" coords="656,5,877,32"/>
+<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1LocalVariableObject.html" title=" " alt="" coords="653,56,880,83"/>
+<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1LocalVariableStruct.html" title="A local variable generic structure." alt="" coords="655,107,878,133"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1ObjectVariable.html" title="A key/value pair/variable stored on an Object." alt="" coords="232,56,369,83"/>
+<area shape="rect" id="node3" title=" " alt="" coords="41,27,148,53"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,78,184,119"/>
 </map>

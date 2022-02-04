@@ -118,22 +118,19 @@ Public Member Functions</h2></td></tr>
 <div class="line"><span class="comment"> */</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using</span> System;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>;</div>
 <div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1Services.html">Services</a>;</div>
 <div class="line"> </div>
-<div class="line">[ServiceBinding(typeof(IUpdateable))]</div>
-<div class="line">[ServiceBinding(typeof(PerformanceReportService))]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>PerformanceReportService : IUpdateable</div>
+<div class="line"><span class="keyword">namespace </span>NWN.Anvil.Samples</div>
 <div class="line">{</div>
-<div class="line">  <span class="keyword">private</span> readonly LoopTimeService timeService;</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">public</span> PerformanceReportService(LoopTimeService timeService)</div>
+<div class="line">  [ServiceBinding(typeof(IUpdateable))]</div>
+<div class="line">  [ServiceBinding(typeof(PerformanceReportService))]</div>
+<div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>PerformanceReportService : IUpdateable</div>
 <div class="line">  {</div>
-<div class="line">    this.timeService = timeService;</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="interfaceAnvil_1_1Services_1_1IUpdateable.html#a331b548c29b52cf54923c420cb6decd5" title="Called once every main loop frame. You may safely use any of the NWN API in this callback,...">Update</a>()</div>
-<div class="line">  {</div>
-<div class="line">    Console.WriteLine($<span class="stringliteral">&quot;Current tick rate: {1/timeService.DeltaTime}&quot;</span>);</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="interfaceAnvil_1_1Services_1_1IUpdateable.html#a331b548c29b52cf54923c420cb6decd5" title="Called once every main loop frame. You may safely use any of the NWN API in this callback,...">Update</a>()</div>
+<div class="line">    {</div>
+<div class="line">      Console.WriteLine($<span class="stringliteral">&quot;Current tick rate: {1 / Time.DeltaTime.TotalSeconds}&quot;</span>);</div>
+<div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --></div><h2 class="groupheader">Member Function Documentation</h2>

@@ -1,0 +1,4 @@
+<map id="Anvil.API.AppearanceTableEntry" name="Anvil.API.AppearanceTableEntry">
+<area shape="rect" id="node1" title="A creature appearance table entry (appearance.2da)" alt="" coords="5,80,185,121"/>
+<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html" title="Implement to decode TwoDimArrayEntry into a type using TwoDimArray&lt;T&gt;(string)." alt="" coords="29,5,162,32"/>
+</map>

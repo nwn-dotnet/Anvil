@@ -20,6 +20,7 @@ var classAnvil_1_1API_1_1PlayOptions =
     [ "NonPartyKillable", "classAnvil_1_1API_1_1PlayOptions.html#a38773186aac161a109f4db22b929fba8", null ],
     [ "OnPartyOnly", "classAnvil_1_1API_1_1PlayOptions.html#ac1b470cc4ffd8bb9d295c9f55ab9afdf", null ],
     [ "PauseAndPlay", "classAnvil_1_1API_1_1PlayOptions.html#af2e3c2a6c4a0aae790b8640ac0119f31", null ],
+    [ "PlayerPartyControl", "classAnvil_1_1API_1_1PlayOptions.html#a28a21d0319ee32b8b6efb6c9c47ee6fb", null ],
     [ "PvPSetting", "classAnvil_1_1API_1_1PlayOptions.html#a9702c607ed5d5905ee352ca66c8d7026", null ],
     [ "RequireResurrection", "classAnvil_1_1API_1_1PlayOptions.html#a1e42a4369b89462f77590d1c18657271", null ],
     [ "ResetEncounterSpawnPool", "classAnvil_1_1API_1_1PlayOptions.html#a10921c7bd3bdba0b45b74bbc6917b0e1", null ],

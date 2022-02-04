@@ -142,42 +142,46 @@ Static Public Attributes</h2></td></tr>
 <div class="line"><span class="keyword">using</span> System;</div>
 <div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1Services.html">Services</a>;</div>
 <div class="line"> </div>
-<div class="line">[ServiceBinding(typeof(ScheduledService))]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>ScheduledService</div>
+<div class="line"><span class="keyword">namespace </span>NWN.Anvil.Samples</div>
 <div class="line">{</div>
-<div class="line">  <span class="keyword">private</span> IDisposable schedule;</div>
-<div class="line">  <span class="keyword">private</span> IDisposable runLater;</div>
-<div class="line">  <span class="keyword">private</span> <span class="keywordtype">int</span> timesRun;</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">private</span> readonly SchedulerService schedulerService;</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">public</span> ScheduledService(SchedulerService schedulerService)</div>
+<div class="line">  [ServiceBinding(typeof(ScheduledService))]</div>
+<div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>ScheduledService</div>
 <div class="line">  {</div>
-<div class="line">    this.schedulerService = schedulerService;</div>
-<div class="line">    <span class="comment">// Schedules a repeating task to run every minute.</span></div>
-<div class="line">    schedule = schedulerService.ScheduleRepeating(OncePerMinute, TimeSpan.FromMinutes(1));</div>
+<div class="line">    <span class="keyword">private</span> readonly IDisposable schedule;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Schedules a once-off task to run in 20 minutes.</span></div>
-<div class="line">    runLater = schedulerService.Schedule(RunIn20Minutes, TimeSpan.FromMinutes(20));</div>
-<div class="line">  }</div>
+<div class="line">    <span class="keyword">private</span> IDisposable runLater;</div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">int</span> timesRun;</div>
 <div class="line"> </div>
-<div class="line">  <span class="keyword">private</span> <span class="keywordtype">void</span> OncePerMinute()</div>
-<div class="line">  {</div>
-<div class="line">    timesRun++;</div>
-<div class="line">    <span class="keywordflow">if</span> (timesRun &gt; 10)</div>
+<div class="line">    <span class="keyword">private</span> readonly SchedulerService schedulerService;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> ScheduledService(SchedulerService schedulerService)</div>
 <div class="line">    {</div>
-<div class="line">      <span class="comment">// Cancel the repeating task after 10 runs.</span></div>
-<div class="line">      schedule.Dispose();</div>
+<div class="line">      this.schedulerService = schedulerService;</div>
+<div class="line">      <span class="comment">// Schedules a repeating task to run every minute.</span></div>
+<div class="line">      schedule = schedulerService.ScheduleRepeating(OncePerMinute, TimeSpan.FromMinutes(1));</div>
 <div class="line"> </div>
-<div class="line">      <span class="comment">// Actually, don&#39;t run the &quot;RunLater&quot; task in 20 minutes. Run it in 30 instead.</span></div>
-<div class="line">      runLater.Dispose();</div>
-<div class="line">      runLater = schedulerService.Schedule(RunIn20Minutes, TimeSpan.FromMinutes(30));</div>
+<div class="line">      <span class="comment">// Schedules a once-off task to run in 20 minutes.</span></div>
+<div class="line">      runLater = schedulerService.Schedule(RunIn20Minutes, TimeSpan.FromMinutes(20));</div>
 <div class="line">    }</div>
-<div class="line">  }</div>
 <div class="line"> </div>
-<div class="line">  <span class="keyword">private</span> <span class="keywordtype">void</span> RunIn20Minutes()</div>
-<div class="line">  {</div>
-<div class="line">    <span class="comment">// Do something</span></div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OncePerMinute()</div>
+<div class="line">    {</div>
+<div class="line">      timesRun++;</div>
+<div class="line">      <span class="keywordflow">if</span> (timesRun &gt; 10)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="comment">// Cancel the repeating task after 10 runs.</span></div>
+<div class="line">        schedule.Dispose();</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Actually, don&#39;t run the &quot;RunLater&quot; task in 20 minutes. Run it in 30 instead.</span></div>
+<div class="line">        runLater.Dispose();</div>
+<div class="line">        runLater = schedulerService.Schedule(RunIn20Minutes, TimeSpan.FromMinutes(30));</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> RunIn20Minutes()</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// Do something</span></div>
+<div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --></div><h2 class="groupheader">Member Function Documentation</h2>

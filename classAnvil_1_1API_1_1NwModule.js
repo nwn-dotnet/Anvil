@@ -146,6 +146,7 @@ var classAnvil_1_1API_1_1NwModule =
     [ "OnStealthModeUpdate", "classAnvil_1_1API_1_1NwModule.html#a501525fd63d576502d5724f1d9109289", null ],
     [ "OnStoreRequestBuy", "classAnvil_1_1API_1_1NwModule.html#a954e28f779ba02a941aab6b3f4ccdf3b", null ],
     [ "OnStoreRequestSell", "classAnvil_1_1API_1_1NwModule.html#aadfd159afa64f54b070373508da25332", null ],
+    [ "OnTriggerEnter", "classAnvil_1_1API_1_1NwModule.html#aa7557f9cdccf921de92288e7d047f7d3", null ],
     [ "OnUnacquireItem", "classAnvil_1_1API_1_1NwModule.html#aff29335bd889db907866b3dc039b41b4", null ],
     [ "OnUseFeat", "classAnvil_1_1API_1_1NwModule.html#acf465d56f6b77720c717b6798c26a94f", null ],
     [ "OnUserDefined", "classAnvil_1_1API_1_1NwModule.html#aa1a6ad0ebf94d9da6e128265106e360f", null ],

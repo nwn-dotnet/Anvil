@@ -120,9 +120,15 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NwArea.html','');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a1315aaf09ecf4336e66b63fdb9dcc140"><td class="memItemLeft" align="right" valign="top"><a id="a1315aaf09ecf4336e66b63fdb9dcc140"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyEnvironmentPreset</b> (<a class="el" href="classAnvil_1_1API_1_1EnvironmentPreset.html">EnvironmentPreset</a> preset)</td></tr>
+<tr class="separator:a1315aaf09ecf4336e66b63fdb9dcc140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f13e0984db9c10f05f351fbb504b00f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a4f13e0984db9c10f05f351fbb504b00f">Clone</a> ()</td></tr>
 <tr class="memdesc:a4f13e0984db9c10f05f351fbb504b00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this area, including everything inside of it (except players).  <a href="classAnvil_1_1API_1_1NwArea.html#a4f13e0984db9c10f05f351fbb504b00f">More...</a><br /></td></tr>
 <tr class="separator:a4f13e0984db9c10f05f351fbb504b00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bf23af20f0bb0ddb1e92a44e7f8daa1"><td class="memItemLeft" align="right" valign="top"><a id="a3bf23af20f0bb0ddb1e92a44e7f8daa1"></a>
+<a class="el" href="classAnvil_1_1API_1_1EnvironmentPreset.html">EnvironmentPreset</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateEnvironmentPreset</b> ()</td></tr>
+<tr class="separator:a3bf23af20f0bb0ddb1e92a44e7f8daa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6224b15f34fa2d68f6ecdb01324a597"><td class="memItemLeft" align="right" valign="top">AreaDestroyResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ac6224b15f34fa2d68f6ecdb01324a597">Destroy</a> ()</td></tr>
 <tr class="memdesc:ac6224b15f34fa2d68f6ecdb01324a597"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this area and anything within it.  <a href="classAnvil_1_1API_1_1NwArea.html#ac6224b15f34fa2d68f6ecdb01324a597">More...</a><br /></td></tr>
 <tr class="separator:ac6224b15f34fa2d68f6ecdb01324a597"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -271,24 +277,66 @@ Properties</h2></td></tr>
 <tr class="memitem:aee72d42a6d9be7c63d76ec93391985d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#aee72d42a6d9be7c63d76ec93391985d9">AmbientNightVolume</a><code> [set]</code></td></tr>
 <tr class="memdesc:aee72d42a6d9be7c63d76ec93391985d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the night ambient track volume for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#aee72d42a6d9be7c63d76ec93391985d9">More...</a><br /></td></tr>
 <tr class="separator:aee72d42a6d9be7c63d76ec93391985d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07e4ce15d7921ddcd74c9e8953c1b429"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a07e4ce15d7921ddcd74c9e8953c1b429">IsAboveGround</a><code> [get]</code></td></tr>
-<tr class="memdesc:a07e4ce15d7921ddcd74c9e8953c1b429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this area is above ground (true), or underground (false).  <a href="classAnvil_1_1API_1_1NwArea.html#a07e4ce15d7921ddcd74c9e8953c1b429">More...</a><br /></td></tr>
+<tr class="memitem:a4ba2d2f13f420fcc2fe731543cd8ba8c"><td class="memItemLeft" align="right" valign="top">AreaFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a4ba2d2f13f420fcc2fe731543cd8ba8c">AreaFlags</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a4ba2d2f13f420fcc2fe731543cd8ba8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets area terrain metadata flags.  <a href="classAnvil_1_1API_1_1NwArea.html#a4ba2d2f13f420fcc2fe731543cd8ba8c">More...</a><br /></td></tr>
+<tr class="separator:a4ba2d2f13f420fcc2fe731543cd8ba8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ef95bc8dfee1b10cb58b7507977eeec"><td class="memItemLeft" align="right" valign="top">DayNightMode??&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a2ef95bc8dfee1b10cb58b7507977eeec">DayNightMode</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2ef95bc8dfee1b10cb58b7507977eeec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the day/night mode to use for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a2ef95bc8dfee1b10cb58b7507977eeec">More...</a><br /></td></tr>
+<tr class="separator:a2ef95bc8dfee1b10cb58b7507977eeec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940991567b58008bee4a676d9f60b43c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a940991567b58008bee4a676d9f60b43c">FogClipDistance</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a940991567b58008bee4a676d9f60b43c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the fog clip distance in the area.  <a href="classAnvil_1_1API_1_1NwArea.html#a940991567b58008bee4a676d9f60b43c">More...</a><br /></td></tr>
+<tr class="separator:a940991567b58008bee4a676d9f60b43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e4ce15d7921ddcd74c9e8953c1b429"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a07e4ce15d7921ddcd74c9e8953c1b429">IsAboveGround</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a07e4ce15d7921ddcd74c9e8953c1b429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this area is considered above ground and not under ground.  <a href="classAnvil_1_1API_1_1NwArea.html#a07e4ce15d7921ddcd74c9e8953c1b429">More...</a><br /></td></tr>
 <tr class="separator:a07e4ce15d7921ddcd74c9e8953c1b429"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a834c214784bfaff49783add5bddfb66e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a834c214784bfaff49783add5bddfb66e">IsInterior</a><code> [get]</code></td></tr>
-<tr class="memdesc:a834c214784bfaff49783add5bddfb66e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this area is flagged as either interior (true) or underground (false).  <a href="classAnvil_1_1API_1_1NwArea.html#a834c214784bfaff49783add5bddfb66e">More...</a><br /></td></tr>
+<tr class="memitem:ad7e1db79bee154202485db5c4a3600b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ad7e1db79bee154202485db5c4a3600b8">IsBattleMusicPlaying</a><code> [get]</code></td></tr>
+<tr class="memdesc:ad7e1db79bee154202485db5c4a3600b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether battle music is currently playing in the area.  <a href="classAnvil_1_1API_1_1NwArea.html#ad7e1db79bee154202485db5c4a3600b8">More...</a><br /></td></tr>
+<tr class="separator:ad7e1db79bee154202485db5c4a3600b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad691ec2e20c4dc213939f038e8e1edbf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ad691ec2e20c4dc213939f038e8e1edbf">IsExterior</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad691ec2e20c4dc213939f038e8e1edbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this area is considered an as exterior, and not an interior.  <a href="classAnvil_1_1API_1_1NwArea.html#ad691ec2e20c4dc213939f038e8e1edbf">More...</a><br /></td></tr>
+<tr class="separator:ad691ec2e20c4dc213939f038e8e1edbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a834c214784bfaff49783add5bddfb66e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a834c214784bfaff49783add5bddfb66e">IsInterior</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a834c214784bfaff49783add5bddfb66e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this area is considered an as interior, and not an exterior.  <a href="classAnvil_1_1API_1_1NwArea.html#a834c214784bfaff49783add5bddfb66e">More...</a><br /></td></tr>
 <tr class="separator:a834c214784bfaff49783add5bddfb66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6cfd38bbeeac5782cfacd3e33afddac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ae6cfd38bbeeac5782cfacd3e33afddac">IsNatural</a><code> [get]</code></td></tr>
-<tr class="memdesc:ae6cfd38bbeeac5782cfacd3e33afddac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this area is natural (true), or artificial (false).  <a href="classAnvil_1_1API_1_1NwArea.html#ae6cfd38bbeeac5782cfacd3e33afddac">More...</a><br /></td></tr>
+<tr class="memitem:afae95fa7749f1ae876aae1d68882420e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#afae95fa7749f1ae876aae1d68882420e">IsMusicPlaying</a><code> [get]</code></td></tr>
+<tr class="memdesc:afae95fa7749f1ae876aae1d68882420e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether ambient music is currently playing in the area.  <a href="classAnvil_1_1API_1_1NwArea.html#afae95fa7749f1ae876aae1d68882420e">More...</a><br /></td></tr>
+<tr class="separator:afae95fa7749f1ae876aae1d68882420e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6cfd38bbeeac5782cfacd3e33afddac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ae6cfd38bbeeac5782cfacd3e33afddac">IsNatural</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae6cfd38bbeeac5782cfacd3e33afddac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this area is considered natural and non-urban.  <a href="classAnvil_1_1API_1_1NwArea.html#ae6cfd38bbeeac5782cfacd3e33afddac">More...</a><br /></td></tr>
 <tr class="separator:ae6cfd38bbeeac5782cfacd3e33afddac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad76ec7f2d6b1f64fbc767bd5de23822f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ad76ec7f2d6b1f64fbc767bd5de23822f">IsUnderGround</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad76ec7f2d6b1f64fbc767bd5de23822f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this area is considered under ground and not above ground.  <a href="classAnvil_1_1API_1_1NwArea.html#ad76ec7f2d6b1f64fbc767bd5de23822f">More...</a><br /></td></tr>
+<tr class="separator:ad76ec7f2d6b1f64fbc767bd5de23822f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0918256d5217ba8cf9b1c6b45b3ce560"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a0918256d5217ba8cf9b1c6b45b3ce560">IsUrban</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a0918256d5217ba8cf9b1c6b45b3ce560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this area is considered urban and not natural.  <a href="classAnvil_1_1API_1_1NwArea.html#a0918256d5217ba8cf9b1c6b45b3ce560">More...</a><br /></td></tr>
+<tr class="separator:a0918256d5217ba8cf9b1c6b45b3ce560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41d7dbd8a2b13c90a1030c92c43b2524"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a41d7dbd8a2b13c90a1030c92c43b2524">LastEntered</a><code> [get]</code></td></tr>
 <tr class="memdesc:a41d7dbd8a2b13c90a1030c92c43b2524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the last object that entered this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a41d7dbd8a2b13c90a1030c92c43b2524">More...</a><br /></td></tr>
 <tr class="separator:a41d7dbd8a2b13c90a1030c92c43b2524"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19de204e942b930e064110f1bcd27631"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a19de204e942b930e064110f1bcd27631">LastLeft</a><code> [get]</code></td></tr>
 <tr class="memdesc:a19de204e942b930e064110f1bcd27631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the last object that left this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a19de204e942b930e064110f1bcd27631">More...</a><br /></td></tr>
 <tr class="separator:a19de204e942b930e064110f1bcd27631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad86773d5ccea1daf8faf74baa6a39845"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ad86773d5ccea1daf8faf74baa6a39845">LightningChance</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad86773d5ccea1daf8faf74baa6a39845"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the percentage value (0-100) that lightning may occur.  <a href="classAnvil_1_1API_1_1NwArea.html#ad86773d5ccea1daf8faf74baa6a39845">More...</a><br /></td></tr>
+<tr class="separator:ad86773d5ccea1daf8faf74baa6a39845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a27fbd60b4a5c386765507c2aa2f631"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a3a27fbd60b4a5c386765507c2aa2f631">ListenModifier</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a3a27fbd60b4a5c386765507c2aa2f631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the listen modifier for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a3a27fbd60b4a5c386765507c2aa2f631">More...</a><br /></td></tr>
 <tr class="separator:a3a27fbd60b4a5c386765507c2aa2f631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a786b91c143c6f394ffd15125e04f3ade"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a786b91c143c6f394ffd15125e04f3ade">MoonAmbientColor</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a786b91c143c6f394ffd15125e04f3ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the area ambient color during night time.  <a href="classAnvil_1_1API_1_1NwArea.html#a786b91c143c6f394ffd15125e04f3ade">More...</a><br /></td></tr>
+<tr class="separator:a786b91c143c6f394ffd15125e04f3ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a248459eea265df372780c38b7a6c32f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a248459eea265df372780c38b7a6c32f2">MoonDiffuseColor</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a248459eea265df372780c38b7a6c32f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the area diffuse color during night time.  <a href="classAnvil_1_1API_1_1NwArea.html#a248459eea265df372780c38b7a6c32f2">More...</a><br /></td></tr>
+<tr class="separator:a248459eea265df372780c38b7a6c32f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10cee8e86c878504d4717ff71c8b4d5b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a10cee8e86c878504d4717ff71c8b4d5b">MoonFogAmount</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a10cee8e86c878504d4717ff71c8b4d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the fog density during night time.  <a href="classAnvil_1_1API_1_1NwArea.html#a10cee8e86c878504d4717ff71c8b4d5b">More...</a><br /></td></tr>
+<tr class="separator:a10cee8e86c878504d4717ff71c8b4d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a805bcf70d22703dac77705a882e542a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a805bcf70d22703dac77705a882e542a4">MoonFogColor</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a805bcf70d22703dac77705a882e542a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the area fog color during night time.  <a href="classAnvil_1_1API_1_1NwArea.html#a805bcf70d22703dac77705a882e542a4">More...</a><br /></td></tr>
+<tr class="separator:a805bcf70d22703dac77705a882e542a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fc270641fe1224e2b9e2ce52362451a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a9fc270641fe1224e2b9e2ce52362451a">MoonShadows</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a9fc270641fe1224e2b9e2ce52362451a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether shadows are cast during night time.  <a href="classAnvil_1_1API_1_1NwArea.html#a9fc270641fe1224e2b9e2ce52362451a">More...</a><br /></td></tr>
+<tr class="separator:a9fc270641fe1224e2b9e2ce52362451a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff00495f6422aa476655ee61aac9879e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#aff00495f6422aa476655ee61aac9879e">MusicBackgroundDayTrack</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aff00495f6422aa476655ee61aac9879e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the daytime background track index for this area.<br  />
  See "Resources &gt; Sounds and Music &gt; Music" in the toolset for track numbers.  <a href="classAnvil_1_1API_1_1NwArea.html#aff00495f6422aa476655ee61aac9879e">More...</a><br /></td></tr>
@@ -322,9 +370,15 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaEvents_1_1OnUs
 <tr class="memitem:a3814da43a364d8d90a50e2710380a68d"><td class="memItemLeft" align="right" valign="top">PVPSetting&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a3814da43a364d8d90a50e2710380a68d">PVPSetting</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a3814da43a364d8d90a50e2710380a68d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the PvP setting for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a3814da43a364d8d90a50e2710380a68d">More...</a><br /></td></tr>
 <tr class="separator:a3814da43a364d8d90a50e2710380a68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8416803e04fdd09c619e55f1d2fa58dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a8416803e04fdd09c619e55f1d2fa58dc">RainChance</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a8416803e04fdd09c619e55f1d2fa58dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the percentage value (0-100) that rain may occur.  <a href="classAnvil_1_1API_1_1NwArea.html#a8416803e04fdd09c619e55f1d2fa58dc">More...</a><br /></td></tr>
+<tr class="separator:a8416803e04fdd09c619e55f1d2fa58dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa09f7ba1be619e538ab53a4d512f2abb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#aa09f7ba1be619e538ab53a4d512f2abb">RestingAllowed</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aa09f7ba1be619e538ab53a4d512f2abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether resting is allowed in this area.  <a href="classAnvil_1_1API_1_1NwArea.html#aa09f7ba1be619e538ab53a4d512f2abb">More...</a><br /></td></tr>
 <tr class="separator:aa09f7ba1be619e538ab53a4d512f2abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af05ac527a5d2885a27cd65f6560b5842"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#af05ac527a5d2885a27cd65f6560b5842">ShadowOpacity</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af05ac527a5d2885a27cd65f6560b5842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the shadow opacity for this area (0-100).  <a href="classAnvil_1_1API_1_1NwArea.html#af05ac527a5d2885a27cd65f6560b5842">More...</a><br /></td></tr>
+<tr class="separator:af05ac527a5d2885a27cd65f6560b5842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af86dde1730dddb9c9097fbb8e51908bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAnvil_1_1API_1_1Vector2Int.html">Vector2Int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#af86dde1730dddb9c9097fbb8e51908bd">Size</a><code> [get]</code></td></tr>
 <tr class="memdesc:af86dde1730dddb9c9097fbb8e51908bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of this area. </p><dl class="section return"><dt>Returns</dt><dd>The number of tiles that the area is wide/high.</dd></dl>
  <a href="classAnvil_1_1API_1_1NwArea.html#af86dde1730dddb9c9097fbb8e51908bd">More...</a><br /></td></tr>
@@ -332,9 +386,27 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaEvents_1_1OnUs
 <tr class="memitem:a49ca2e535f8c7af0d10e1480a4ccf6e4"><td class="memItemLeft" align="right" valign="top">Skybox&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a49ca2e535f8c7af0d10e1480a4ccf6e4">SkyBox</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a49ca2e535f8c7af0d10e1480a4ccf6e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the current skybox for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a49ca2e535f8c7af0d10e1480a4ccf6e4">More...</a><br /></td></tr>
 <tr class="separator:a49ca2e535f8c7af0d10e1480a4ccf6e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae835bf21d177eb22b55c65b843f35a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#aae835bf21d177eb22b55c65b843f35a9">SnowChance</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aae835bf21d177eb22b55c65b843f35a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the percentage value (0-100) that snow may occur.  <a href="classAnvil_1_1API_1_1NwArea.html#aae835bf21d177eb22b55c65b843f35a9">More...</a><br /></td></tr>
+<tr class="separator:aae835bf21d177eb22b55c65b843f35a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade93d520e9612f979d3ddc3fd8420604"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ade93d520e9612f979d3ddc3fd8420604">SpotModifier</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ade93d520e9612f979d3ddc3fd8420604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the spot modifier for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#ade93d520e9612f979d3ddc3fd8420604">More...</a><br /></td></tr>
 <tr class="separator:ade93d520e9612f979d3ddc3fd8420604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad846c108fd9db4fc9822b67601f771c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ad846c108fd9db4fc9822b67601f771c9">SunAmbientColor</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad846c108fd9db4fc9822b67601f771c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the area ambient color during day time.  <a href="classAnvil_1_1API_1_1NwArea.html#ad846c108fd9db4fc9822b67601f771c9">More...</a><br /></td></tr>
+<tr class="separator:ad846c108fd9db4fc9822b67601f771c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0ce82493834f07013e036648354cef9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ae0ce82493834f07013e036648354cef9">SunDiffuseColor</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae0ce82493834f07013e036648354cef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the area diffuse color during day time.  <a href="classAnvil_1_1API_1_1NwArea.html#ae0ce82493834f07013e036648354cef9">More...</a><br /></td></tr>
+<tr class="separator:ae0ce82493834f07013e036648354cef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44aeaba80377fe23e1000f8ba4bb4115"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a44aeaba80377fe23e1000f8ba4bb4115">SunFogAmount</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a44aeaba80377fe23e1000f8ba4bb4115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the fog density during day time.  <a href="classAnvil_1_1API_1_1NwArea.html#a44aeaba80377fe23e1000f8ba4bb4115">More...</a><br /></td></tr>
+<tr class="separator:a44aeaba80377fe23e1000f8ba4bb4115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e02552b4659c7b9e47b9be5c87dd16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a06e02552b4659c7b9e47b9be5c87dd16">SunFogColor</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a06e02552b4659c7b9e47b9be5c87dd16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the area fog color during day time.  <a href="classAnvil_1_1API_1_1NwArea.html#a06e02552b4659c7b9e47b9be5c87dd16">More...</a><br /></td></tr>
+<tr class="separator:a06e02552b4659c7b9e47b9be5c87dd16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81909d18aa7fc08f1fb942665f8cc14e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a81909d18aa7fc08f1fb942665f8cc14e">SunShadows</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a81909d18aa7fc08f1fb942665f8cc14e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether shadows are cast during day time.  <a href="classAnvil_1_1API_1_1NwArea.html#a81909d18aa7fc08f1fb942665f8cc14e">More...</a><br /></td></tr>
+<tr class="separator:a81909d18aa7fc08f1fb942665f8cc14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb20aacc0b90506ff88974594d76cfd6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#abb20aacc0b90506ff88974594d76cfd6">Tileset</a><code> [get]</code></td></tr>
 <tr class="memdesc:abb20aacc0b90506ff88974594d76cfd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tileset (.set) resource name used for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#abb20aacc0b90506ff88974594d76cfd6">More...</a><br /></td></tr>
 <tr class="separator:abb20aacc0b90506ff88974594d76cfd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1132,6 +1204,78 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a4ba2d2f13f420fcc2fe731543cd8ba8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba2d2f13f420fcc2fe731543cd8ba8c">&#9670;&nbsp;</a></span>AreaFlags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AreaFlags Anvil.API.NwArea.AreaFlags</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets area terrain metadata flags. </p>
+
+</div>
+</div>
+<a id="a2ef95bc8dfee1b10cb58b7507977eeec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ef95bc8dfee1b10cb58b7507977eeec">&#9670;&nbsp;</a></span>DayNightMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DayNightMode?? Anvil.API.NwArea.DayNightMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the day/night mode to use for this area. </p>
+
+</div>
+</div>
+<a id="a940991567b58008bee4a676d9f60b43c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940991567b58008bee4a676d9f60b43c">&#9670;&nbsp;</a></span>FogClipDistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Anvil.API.NwArea.FogClipDistance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the fog clip distance in the area. </p>
+
+</div>
+</div>
 <a id="a07e4ce15d7921ddcd74c9e8953c1b429"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a07e4ce15d7921ddcd74c9e8953c1b429">&#9670;&nbsp;</a></span>IsAboveGround</h2>
 
@@ -1147,12 +1291,60 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets whether this area is considered above ground and not under ground. </p>
+
+</div>
+</div>
+<a id="ad7e1db79bee154202485db5c4a3600b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7e1db79bee154202485db5c4a3600b8">&#9670;&nbsp;</a></span>IsBattleMusicPlaying</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwArea.IsBattleMusicPlaying</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets a value indicating whether this area is above ground (true), or underground (false). </p>
+<p>Gets a value indicating whether battle music is currently playing in the area. </p>
+
+</div>
+</div>
+<a id="ad691ec2e20c4dc213939f038e8e1edbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad691ec2e20c4dc213939f038e8e1edbf">&#9670;&nbsp;</a></span>IsExterior</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwArea.IsExterior</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets whether this area is considered an as exterior, and not an interior. </p>
 
 </div>
 </div>
@@ -1171,12 +1363,40 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets whether this area is considered an as interior, and not an exterior. </p>
+<p>Unlike the equivalent NwScript function NWScript.GetIsAreaInterior, this function will only return true if the API.AreaFlags.Interior flag is set.<br  />
+ An area that is simply underground is not considered an interior.<br  />
+<br  />
+ Use IsInterior || IsUnderGround together to replicate the existing function. </p>
+
+</div>
+</div>
+<a id="afae95fa7749f1ae876aae1d68882420e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afae95fa7749f1ae876aae1d68882420e">&#9670;&nbsp;</a></span>IsMusicPlaying</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwArea.IsMusicPlaying</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets a value indicating whether this area is flagged as either interior (true) or underground (false). </p>
+<p>Gets a value indicating whether ambient music is currently playing in the area. </p>
 
 </div>
 </div>
@@ -1195,12 +1415,60 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets a value indicating whether this area is natural (true), or artificial (false). </p>
+<p>Gets or sets whether this area is considered natural and non-urban. </p>
+
+</div>
+</div>
+<a id="ad76ec7f2d6b1f64fbc767bd5de23822f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad76ec7f2d6b1f64fbc767bd5de23822f">&#9670;&nbsp;</a></span>IsUnderGround</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwArea.IsUnderGround</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets whether this area is considered under ground and not above ground. </p>
+
+</div>
+</div>
+<a id="a0918256d5217ba8cf9b1c6b45b3ce560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0918256d5217ba8cf9b1c6b45b3ce560">&#9670;&nbsp;</a></span>IsUrban</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwArea.IsUrban</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets whether this area is considered urban and not natural. </p>
 
 </div>
 </div>
@@ -1252,6 +1520,30 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ad86773d5ccea1daf8faf74baa6a39845"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad86773d5ccea1daf8faf74baa6a39845">&#9670;&nbsp;</a></span>LightningChance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwArea.LightningChance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the percentage value (0-100) that lightning may occur. </p>
+
+</div>
+</div>
 <a id="a3a27fbd60b4a5c386765507c2aa2f631"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a27fbd60b4a5c386765507c2aa2f631">&#9670;&nbsp;</a></span>ListenModifier</h2>
 
@@ -1273,6 +1565,126 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets or sets the listen modifier for this area. </p>
+
+</div>
+</div>
+<a id="a786b91c143c6f394ffd15125e04f3ade"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a786b91c143c6f394ffd15125e04f3ade">&#9670;&nbsp;</a></span>MoonAmbientColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> Anvil.API.NwArea.MoonAmbientColor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the area ambient color during night time. </p>
+
+</div>
+</div>
+<a id="a248459eea265df372780c38b7a6c32f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a248459eea265df372780c38b7a6c32f2">&#9670;&nbsp;</a></span>MoonDiffuseColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> Anvil.API.NwArea.MoonDiffuseColor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the area diffuse color during night time. </p>
+
+</div>
+</div>
+<a id="a10cee8e86c878504d4717ff71c8b4d5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10cee8e86c878504d4717ff71c8b4d5b">&#9670;&nbsp;</a></span>MoonFogAmount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwArea.MoonFogAmount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the fog density during night time. </p>
+
+</div>
+</div>
+<a id="a805bcf70d22703dac77705a882e542a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a805bcf70d22703dac77705a882e542a4">&#9670;&nbsp;</a></span>MoonFogColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> Anvil.API.NwArea.MoonFogColor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the area fog color during night time. </p>
+
+</div>
+</div>
+<a id="a9fc270641fe1224e2b9e2ce52362451a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fc270641fe1224e2b9e2ce52362451a">&#9670;&nbsp;</a></span>MoonShadows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwArea.MoonShadows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets whether shadows are cast during night time. </p>
 
 </div>
 </div>
@@ -1423,6 +1835,30 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a8416803e04fdd09c619e55f1d2fa58dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8416803e04fdd09c619e55f1d2fa58dc">&#9670;&nbsp;</a></span>RainChance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwArea.RainChance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the percentage value (0-100) that rain may occur. </p>
+
+</div>
+</div>
 <a id="aa09f7ba1be619e538ab53a4d512f2abb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa09f7ba1be619e538ab53a4d512f2abb">&#9670;&nbsp;</a></span>RestingAllowed</h2>
 
@@ -1444,6 +1880,30 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets or sets whether resting is allowed in this area. </p>
+
+</div>
+</div>
+<a id="af05ac527a5d2885a27cd65f6560b5842"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af05ac527a5d2885a27cd65f6560b5842">&#9670;&nbsp;</a></span>ShadowOpacity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte Anvil.API.NwArea.ShadowOpacity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the shadow opacity for this area (0-100). </p>
 
 </div>
 </div>
@@ -1496,6 +1956,30 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aae835bf21d177eb22b55c65b843f35a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae835bf21d177eb22b55c65b843f35a9">&#9670;&nbsp;</a></span>SnowChance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwArea.SnowChance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the percentage value (0-100) that snow may occur. </p>
+
+</div>
+</div>
 <a id="ade93d520e9612f979d3ddc3fd8420604"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ade93d520e9612f979d3ddc3fd8420604">&#9670;&nbsp;</a></span>SpotModifier</h2>
 
@@ -1517,6 +2001,126 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets or sets the spot modifier for this area. </p>
+
+</div>
+</div>
+<a id="ad846c108fd9db4fc9822b67601f771c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad846c108fd9db4fc9822b67601f771c9">&#9670;&nbsp;</a></span>SunAmbientColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> Anvil.API.NwArea.SunAmbientColor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the area ambient color during day time. </p>
+
+</div>
+</div>
+<a id="ae0ce82493834f07013e036648354cef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0ce82493834f07013e036648354cef9">&#9670;&nbsp;</a></span>SunDiffuseColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> Anvil.API.NwArea.SunDiffuseColor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the area diffuse color during day time. </p>
+
+</div>
+</div>
+<a id="a44aeaba80377fe23e1000f8ba4bb4115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44aeaba80377fe23e1000f8ba4bb4115">&#9670;&nbsp;</a></span>SunFogAmount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwArea.SunFogAmount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the fog density during day time. </p>
+
+</div>
+</div>
+<a id="a06e02552b4659c7b9e47b9be5c87dd16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06e02552b4659c7b9e47b9be5c87dd16">&#9670;&nbsp;</a></span>SunFogColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structAnvil_1_1API_1_1Color.html">Color</a> Anvil.API.NwArea.SunFogColor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the area fog color during day time. </p>
+
+</div>
+</div>
+<a id="a81909d18aa7fc08f1fb942665f8cc14e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81909d18aa7fc08f1fb942665f8cc14e">&#9670;&nbsp;</a></span>SunShadows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwArea.SunShadows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets whether shadows are cast during day time. </p>
 
 </div>
 </div>

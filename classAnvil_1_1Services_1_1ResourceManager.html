@@ -114,6 +114,9 @@ $(document).ready(function(){initNavTree('classAnvil_1_1Services_1_1ResourceMana
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a31caabdff125e3a5318170b565c0520d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#a31caabdff125e3a5318170b565c0520d">DeleteTempResource</a> (string resourceName)</td></tr>
+<tr class="memdesc:a31caabdff125e3a5318170b565c0520d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the temporary resource with the specified name.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#a31caabdff125e3a5318170b565c0520d">More...</a><br /></td></tr>
+<tr class="separator:a31caabdff125e3a5318170b565c0520d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4086368358594abf06b9901a16bf352"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#ad4086368358594abf06b9901a16bf352">FindResourcesOfType</a> (ResRefType type, bool moduleOnly=true)</td></tr>
 <tr class="memdesc:ad4086368358594abf06b9901a16bf352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all resource names for the specified type.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#ad4086368358594abf06b9901a16bf352">More...</a><br /></td></tr>
 <tr class="separator:ad4086368358594abf06b9901a16bf352"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,12 +129,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5fda65c447c25201caa72fe41641f6ab"><td class="memItemLeft" align="right" valign="top">byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#a5fda65c447c25201caa72fe41641f6ab">GetResourceData</a> (string name, ResRefType type)</td></tr>
 <tr class="memdesc:a5fda65c447c25201caa72fe41641f6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw data of the specified resource.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#a5fda65c447c25201caa72fe41641f6ab">More...</a><br /></td></tr>
 <tr class="separator:a5fda65c447c25201caa72fe41641f6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7d95f16cbe7457f2750d12d694508c3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#ab7d95f16cbe7457f2750d12d694508c3">GetResourceText</a> (string name, ResRefType type)</td></tr>
+<tr class="memdesc:ab7d95f16cbe7457f2750d12d694508c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw text of the specified resource.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#ab7d95f16cbe7457f2750d12d694508c3">More...</a><br /></td></tr>
+<tr class="separator:ab7d95f16cbe7457f2750d12d694508c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaac3dfe48a51ab2d1f2ac209d77d9485"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#aaac3dfe48a51ab2d1f2ac209d77d9485">IsValidResource</a> (string name, ResRefType type=ResRefType.UTC)</td></tr>
 <tr class="memdesc:aaac3dfe48a51ab2d1f2ac209d77d9485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the supplied resource exists and is of the specified type.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#aaac3dfe48a51ab2d1f2ac209d77d9485">More...</a><br /></td></tr>
 <tr class="separator:aaac3dfe48a51ab2d1f2ac209d77d9485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a321c3b9fa6da680c3d725b6ea7ed93bd"><td class="memItemLeft" align="right" valign="top"><a id="a321c3b9fa6da680c3d725b6ea7ed93bd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>WriteTempResource</b> (string resourceName, byte[] data)</td></tr>
+<tr class="memitem:a321c3b9fa6da680c3d725b6ea7ed93bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#a321c3b9fa6da680c3d725b6ea7ed93bd">WriteTempResource</a> (string resourceName, byte[] data)</td></tr>
+<tr class="memdesc:a321c3b9fa6da680c3d725b6ea7ed93bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a temporary resource with the specified name.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#a321c3b9fa6da680c3d725b6ea7ed93bd">More...</a><br /></td></tr>
 <tr class="separator:a321c3b9fa6da680c3d725b6ea7ed93bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbd14ebf53b18b161498a8d02ef6641c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#acbd14ebf53b18b161498a8d02ef6641c">WriteTempResource</a> (string resourceName, string text)</td></tr>
+<tr class="memdesc:acbd14ebf53b18b161498a8d02ef6641c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a temporary resource with the specified name.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#acbd14ebf53b18b161498a8d02ef6641c">More...</a><br /></td></tr>
+<tr class="separator:acbd14ebf53b18b161498a8d02ef6641c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -140,6 +149,40 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>MaxNameLength</b
 <tr class="separator:a1a5b0817e29de64345e8e52a20f57eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a31caabdff125e3a5318170b565c0520d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31caabdff125e3a5318170b565c0520d">&#9670;&nbsp;</a></span>DeleteTempResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.Services.ResourceManager.DeleteTempResource </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>resourceName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes the temporary resource with the specified name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resourceName</td><td>The resource to delete.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad4086368358594abf06b9901a16bf352"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4086368358594abf06b9901a16bf352">&#9670;&nbsp;</a></span>FindResourcesOfType()</h2>
 
@@ -313,6 +356,52 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>MaxNameLength</b
 
 </div>
 </div>
+<a id="ab7d95f16cbe7457f2750d12d694508c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7d95f16cbe7457f2750d12d694508c3">&#9670;&nbsp;</a></span>GetResourceText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Anvil.Services.ResourceManager.GetResourceText </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ResRefType&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the raw text of the specified resource. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The resource name to retrieve.</td></tr>
+    <tr><td class="paramname">type</td><td>The type of resource to retrieve.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The raw text of the associated resource, otherwise null if the resource does not exist.</dd></dl>
+
+</div>
+</div>
 <a id="aaac3dfe48a51ab2d1f2ac209d77d9485"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaac3dfe48a51ab2d1f2ac209d77d9485">&#9670;&nbsp;</a></span>IsValidResource()</h2>
 
@@ -356,6 +445,96 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>MaxNameLength</b
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the supplied resource exists and is of the specified type, otherwise false.</dd></dl>
+
+</div>
+</div>
+<a id="a321c3b9fa6da680c3d725b6ea7ed93bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a321c3b9fa6da680c3d725b6ea7ed93bd">&#9670;&nbsp;</a></span>WriteTempResource() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.Services.ResourceManager.WriteTempResource </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>resourceName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a temporary resource with the specified name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resourceName</td><td>The resource name.</td></tr>
+    <tr><td class="paramname">data</td><td>The data to populate in the resource.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acbd14ebf53b18b161498a8d02ef6641c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbd14ebf53b18b161498a8d02ef6641c">&#9670;&nbsp;</a></span>WriteTempResource() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.Services.ResourceManager.WriteTempResource </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>resourceName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a temporary resource with the specified name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resourceName</td><td>The resource name.</td></tr>
+    <tr><td class="paramname">text</td><td>The text to populate in the resource.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

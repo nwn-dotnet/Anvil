@@ -9,6 +9,7 @@ var classAnvil_1_1API_1_1ObjectVariable =
     [ "operator==", "classAnvil_1_1API_1_1ObjectVariable.html#aa3ca355b3f3e68c30997f2dd668f1681", null ],
     [ "HasNothing", "classAnvil_1_1API_1_1ObjectVariable.html#a495e42d63f1d70d6154d4e969ab7e4b0", null ],
     [ "HasValue", "classAnvil_1_1API_1_1ObjectVariable.html#a9f28b31634ce043fae90c4486a8ddf7d", null ],
+    [ "InjectionService", "classAnvil_1_1API_1_1ObjectVariable.html#a20b987a159be4ea61f54efe9c9af9fa2", null ],
     [ "Name", "classAnvil_1_1API_1_1ObjectVariable.html#aeb3244f8e3b8248c6d950c7d08c8819d", null ],
     [ "Object", "classAnvil_1_1API_1_1ObjectVariable.html#ae9a5c6b4ad2bd45492add8f44150d44f", null ],
     [ "Value", "classAnvil_1_1API_1_1ObjectVariable.html#ab0571066c7425e19d7a578bca45b98cc", null ]

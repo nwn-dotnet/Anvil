@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1NwRuleset =
 [
+    [ "ReloadRules", "classAnvil_1_1API_1_1NwRuleset.html#a40adfd66b54fe25b8e43e9e2ae9afd70", null ],
     [ "BaseItems", "classAnvil_1_1API_1_1NwRuleset.html#aba1ed16993a06b011fbd27e4defb9f85", null ],
     [ "Classes", "classAnvil_1_1API_1_1NwRuleset.html#a69132efd38354fab1567d83a449d4a8a", null ],
     [ "Feats", "classAnvil_1_1API_1_1NwRuleset.html#a1f923b5ea486e8fd44ac5f76555698bc", null ],
