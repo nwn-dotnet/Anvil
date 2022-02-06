@@ -1,6 +1,5 @@
 using System;
 using Anvil.Services;
-using NWN.Core;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -11,26 +10,45 @@ namespace Anvil.API
   {
     private readonly CTlkTable tlkTable = NWNXLib.TlkTable();
 
-    /// <summary>
-    /// Clears the specified TLK override.
-    /// </summary>
-    /// <param name="strRef">The strref to restore to default.</param>
-    public void ClearTlkOverride(uint strRef)
+    [Obsolete("Use StrRef.ClearOverride instead.")]
+    public void ClearTlkOverride(uint strId)
     {
-      NWScript.SetTlkOverride((int)strRef);
+      StrRef strRef = new StrRef(strId);
+      strRef.ClearOverride();
     }
 
-    /// <summary>
-    /// Gets the value of the specified token.
-    /// </summary>
-    /// <param name="tokenNumber">The token number to query.</param>
-    /// <returns>The string representation of the token value.</returns>
+    [Obsolete("Use StrTokenCustom.Value instead.")]
     public string GetCustomToken(uint tokenNumber)
+    {
+      return new StrTokenCustom((int)tokenNumber).Value;
+    }
+
+    [Obsolete("Use StrRef.ToString() instead.")]
+    public string GetSimpleString(uint strRef)
+    {
+      return new StrRef(strRef).ToString();
+    }
+
+    [Obsolete("Use StrToken.Value instead.")]
+    public void SetCustomToken(uint tokenNumber, string tokenValue)
+    {
+      StrTokenCustom token = new StrTokenCustom((int)tokenNumber);
+      token.Value = tokenValue;
+    }
+
+    [Obsolete("Use StrRef.Override instead.")]
+    public void SetTlkOverride(uint strId, string value)
+    {
+      StrRef strRef = new StrRef(strId);
+      strRef.Override = value;
+    }
+
+    internal string GetCustomToken(StrTokenCustom customToken)
     {
       int numTokens = (int)tlkTable.m_nTokensCustom;
 
       CTlkTableTokenCustomArray tokenArray = CTlkTableTokenCustomArray.FromPointer(tlkTable.m_pTokensCustom);
-      CTlkTableTokenCustom token = new CTlkTableTokenCustom { m_nNumber = tokenNumber };
+      CTlkTableTokenCustom token = new CTlkTableTokenCustom { m_nNumber = (uint)customToken.TokenNumber };
 
       int index = BinarySearch(tokenArray, 0, numTokens, token);
       if (index < 0)
@@ -42,41 +60,29 @@ namespace Anvil.API
       return retVal.ToString();
     }
 
-    public string GetSimpleString(uint strRef)
+    internal string ResolveStringFromStrRef(StrRef strRef)
     {
-      return tlkTable.GetSimpleString(strRef).ToString();
+      return tlkTable.GetSimpleString(strRef.Id).ToString();
     }
 
-    /// <summary>
-    /// Sets the value of the specified token.<br/>
-    /// </summary>
-    /// <remarks>
-    /// Custom tokens 0-9 are used by BioWare and should not be used.<br/>
-    /// There is a risk if you reuse components that they will have scripts that set the same custom tokens as you set.<br/>
-    /// To avoid this, set your custom tokens right before your conversations (do not create new tokens within a conversation, create them all at the beginning of the conversation).<br/>
-    /// To use a custom token, place &lt;CUSTOMxxxx&gt; somewhere in your conversation, where xxxx is the value supplied for nCustomTokenNumber. &lt;CUSTOM100&gt; for example.
-    /// </remarks>
-    /// <param name="tokenNumber">The token number to query.</param>
-    /// <param name="tokenValue">The new string representation of the token value.</param>
-    public void SetCustomToken(uint tokenNumber, string tokenValue)
+    internal string GetTlkOverride(StrRef strRef)
     {
-      NWScript.SetCustomToken((int)tokenNumber, tokenValue);
-    }
-
-    /// <summary>
-    /// Overrides the specified strref to return a dfferent value instead of what is in the TLK file.
-    /// </summary>
-    /// <param name="strRef">The strref to override.</param>
-    /// <param name="value">The override value.</param>
-    /// <exception cref="ArgumentException">Thrown if value is an empty string or null. Use <see cref="ClearTlkOverride"/> to clear overrides.</exception>
-    public void SetTlkOverride(uint strRef, string value)
-    {
-      if (string.IsNullOrEmpty(value))
+      if (tlkTable.m_overrides.TryGetValue(strRef.Id, out CExoString retVal))
       {
-        throw new ArgumentException("New value must not be null or empty.", nameof(value));
+        return retVal.ToString();
       }
 
-      tlkTable.SetOverride(strRef, value.ToExoString());
+      return null;
+    }
+
+    internal void SetTlkOverride(StrRef strRef, string value)
+    {
+      tlkTable.SetOverride(strRef.Id, value.ToExoString());
+    }
+
+    internal void SetCustomToken(StrTokenCustom customToken, string value)
+    {
+      tlkTable.SetCustomToken(customToken.TokenNumber, value.ToExoString());
     }
 
     private int BinarySearch(CTlkTableTokenCustomArray array, int index, int length, CTlkTableTokenCustom value)
