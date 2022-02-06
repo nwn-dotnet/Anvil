@@ -11,9 +11,6 @@ namespace Anvil.API
   /// </summary>
   public sealed unsafe class NwClass
   {
-    [Inject]
-    private static TlkTable TlkTable { get; set; }
-
     private readonly CNWClass classInfo;
 
     internal NwClass(byte classId, CNWClass classInfo)
@@ -85,7 +82,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the description name of this class.
     /// </summary>
-    public string Description => TlkTable.GetSimpleString(classInfo.m_nDescription);
+    public StrRef Description => new StrRef(classInfo.m_nDescription);
 
     /// <summary>
     /// If positive, this specifies the number of levels in this class that together add one level to a divine class when determining the spell slots based on class level.
@@ -209,17 +206,17 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of this class as shown on the character sheet.
     /// </summary>
-    public string Name => TlkTable.GetSimpleString(classInfo.m_nName);
+    public StrRef Name => new StrRef(classInfo.m_nName);
 
     /// <summary>
     /// Gets the name of this class, in lowercase.
     /// </summary>
-    public string NameLower => TlkTable.GetSimpleString(classInfo.m_nNameLower);
+    public StrRef NameLower => new StrRef(classInfo.m_nNameLower);
 
     /// <summary>
     /// Gets the name of this class, in plural form.
     /// </summary>
-    public string NamePlural => TlkTable.GetSimpleString(classInfo.m_nNamePlural);
+    public StrRef NamePlural => new StrRef(classInfo.m_nNamePlural);
 
     /// <summary>
     /// Gets a list containing the natural AC progression granted by this class (e.g. Pale Masters).<br/>

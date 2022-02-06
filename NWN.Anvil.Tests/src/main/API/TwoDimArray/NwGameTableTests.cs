@@ -24,7 +24,7 @@ namespace Anvil.Tests.API
 
       Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
       Assert.That(row.Label, Is.EqualTo(label));
-      Assert.That(row.StrRef?.TokenNumber, Is.EqualTo(strRef));
+      Assert.That(row.StrRef?.Id, Is.EqualTo(strRef));
       Assert.That(row.Name, Is.EqualTo(name));
       Assert.That(row.Race, Is.EqualTo(race));
       Assert.That(row.EnvironmentMap, Is.EqualTo(envMap));
