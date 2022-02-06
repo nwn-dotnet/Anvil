@@ -56,8 +56,27 @@ namespace Anvil.Tests.API
       Assert.That(row.HeadArcHorizontal, Is.EqualTo(headArcH));
       Assert.That(row.HeadArcVertical, Is.EqualTo(headArcV));
       Assert.That(row.HeadName, Is.EqualTo(headName));
-      Assert.That(row.BodyBag, Is.EqualTo(bodyBag));
+      Assert.That(row.BodyBag?.RowIndex, Is.EqualTo(bodyBag));
       Assert.That(row.Targetable, Is.EqualTo(targetable));
+    }
+
+    [Test(Description = "Body Bag Table entries match the expected values.")]
+    [TestCase(0, "default", 6671u, null)]
+    [TestCase(1, "Potion", 66483u, 194)]
+    [TestCase(2, "Scroll", 66484u, 195)]
+    [TestCase(3, "Treasure", 66490u, 196)]
+    [TestCase(4, "Body", 66492u, 198)]
+    [TestCase(5, "Bones", 66493u, 199)]
+    [TestCase(6, "Pouch", 66494u, 200)]
+    public void BodyBagTableReturnsValidData(int rowIndex, string label, uint? nameStrRef, int? appearance)
+    {
+      TwoDimArray<BodyBagTableEntry> table = NwGameTables.BodyBagTable;
+      BodyBagTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
+      Assert.That(row.Label, Is.EqualTo(label));
+      Assert.That(row.Name?.Id, Is.EqualTo(nameStrRef));
+      Assert.That(row.Appearance?.RowIndex, Is.EqualTo(appearance));
     }
 
     [Test(Description = "Environment table entries match the expected values.")]
@@ -128,6 +147,132 @@ namespace Anvil.Tests.API
       Assert.That(row.RainChance, Is.EqualTo(rain));
       Assert.That(row.LightningChance, Is.EqualTo(lightning));
       Assert.That(row.ShadowAlpha, Is.EqualTo(shadowAlpha));
+    }
+
+    [Test(Description = "Light Color Table entries match the expected values.")]
+    [TestCase(0, 0.00f, 0.00f, 0.00f, "Black", 0.00f, 0.00f, 0.00f)]
+    [TestCase(1, 0.60f, 0.60f, 0.60f, "DimWhite", 0.33f, 0.33f, 0.33f)]
+    [TestCase(2, 1.20f, 1.20f, 1.20f, "White", 0.66f, 0.66f, 0.66f)]
+    [TestCase(3, 2.00f, 2.00f, 2.00f, "BrightWhite", 1.00f, 1.00f, 1.00f)]
+    [TestCase(4, 0.94f, 0.94f, 0.50f, "PaleDarkYellow", 0.59f, 0.56f, 0.37f)]
+    [TestCase(5, 0.96f, 0.87f, 0.03f, "DarkYellow", 0.42f, 0.39f, 0.00f)]
+    [TestCase(6, 1.90f, 1.90f, 1.00f, "PaleYellow", 0.94f, 0.94f, 0.77f)]
+    [TestCase(7, 1.90f, 1.70f, 0.06f, "Yellow", 0.96f, 0.87f, 0.03f)]
+    [TestCase(8, 0.72f, 0.87f, 0.56f, "PaleDarkGreen", 0.38f, 0.57f, 0.02f)]
+    [TestCase(9, 0.06f, 0.93f, 0.21f, "DarkGreen", 0.20f, 0.41f, 0.09f)]
+    [TestCase(10, 1.40f, 1.80f, 1.40f, "PaleGreen", 0.72f, 0.87f, 0.56f)]
+    [TestCase(11, 0.12f, 1.85f, 0.42f, "Green", 0.06f, 0.93f, 0.21f)]
+    [TestCase(12, 0.65f, 0.96f, 0.91f, "PaleDarkAqua", 0.41f, 0.58f, 0.52f)]
+    [TestCase(13, 0.18f, 0.84f, 0.94f, "DarkAqua", 0.08f, 0.37f, 0.41f)]
+    [TestCase(14, 1.30f, 1.92f, 1.82f, "PaleAqua", 0.82f, 0.96f, 0.91f)]
+    [TestCase(15, 0.36f, 1.68f, 1.90f, "Aqua", 0.18f, 0.84f, 0.94f)]
+    [TestCase(16, 0.70f, 0.70f, 1.20f, "PaleDarkBlue", 0.30f, 0.25f, 0.59f)]
+    [TestCase(17, 0.40f, 0.40f, 0.95f, "DarkBlue", 0.00f, 0.02f, 0.42f)]
+    [TestCase(18, 1.40f, 1.40f, 2.40f, "PaleBlue", 0.69f, 0.65f, 0.92f)]
+    [TestCase(19, 0.80f, 0.80f, 1.90f, "Blue", 0.00f, 0.06f, 0.95f)]
+    [TestCase(20, 0.92f, 0.65f, 0.92f, "PaleDarkPurple", 0.59f, 0.26f, 0.58f)]
+    [TestCase(21, 0.76f, 0.25f, 0.95f, "DarkPurple", 0.33f, 0.00f, 0.42f)]
+    [TestCase(22, 1.84f, 1.30f, 1.84f, "PalePurple", 0.92f, 0.65f, 0.92f)]
+    [TestCase(23, 1.50f, 0.50f, 1.90f, "Purple", 0.76f, 0.00f, 0.95f)]
+    [TestCase(24, 1.00f, 0.50f, 0.50f, "PaleDarkRed", 0.60f, 0.36f, 0.26f)]
+    [TestCase(25, 1.00f, 0.15f, 0.10f, "DarkRed", 0.42f, 0.04f, 0.00f)]
+    [TestCase(26, 2.00f, 1.20f, 1.20f, "PaleRed", 0.92f, 0.72f, 0.65f)]
+    [TestCase(27, 2.00f, 0.50f, 0.20f, "Red", 0.95f, 0.08f, 0.00f)]
+    [TestCase(28, 1.00f, 0.75f, 0.30f, "PaleDarkOrange", 0.59f, 0.45f, 0.26f)]
+    [TestCase(29, 1.00f, 0.50f, 0.00f, "DarkOrange", 0.42f, 0.15f, 0.00f)]
+    [TestCase(30, 1.85f, 1.20f, 0.60f, "PaleOrange", 0.92f, 0.80f, 0.65f)]
+    [TestCase(31, 1.90f, 0.70f, 0.00f, "Orange", 0.95f, 0.35f, 0.00f)]
+    public void LightColorTableReturnsValidData(int rowIndex, float red, float green, float blue, string label, float toolsetRed, float toolsetGreen, float toolsetBlue)
+    {
+      TwoDimArray<LightColorTableEntry> table = NwGameTables.LightColorTable;
+      LightColorTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
+      Assert.That(row.Red, Is.EqualTo(red));
+      Assert.That(row.Green, Is.EqualTo(green));
+      Assert.That(row.Blue, Is.EqualTo(blue));
+      Assert.That(row.Label, Is.EqualTo(label));
+      Assert.That(row.ToolsetRed, Is.EqualTo(toolsetRed));
+      Assert.That(row.ToolsetGreen, Is.EqualTo(toolsetGreen));
+      Assert.That(row.ToolsetBlue, Is.EqualTo(toolsetBlue));
+    }
+
+    [Test(Description = "Placeable sound table entries return valid data")]
+    [TestCase(0, "medium_wood", "wood", "as_dr_woodmedop1", "as_dr_woodmedcl1", "cb_bu_woodlrg", null, "as_dr_locked1")]
+    [TestCase(1, "large_wood", "wood", "as_dr_woodlgop1", "as_dr_woodlgcl1", "cb_bu_woodlrg", null, "as_dr_locked1")]
+    [TestCase(2, "very_large_wood", "wood", "as_dr_woodvlgop1", "as_dr_woodvlgcl1", "cb_bu_woodlrg", null, "as_dr_locked1")]
+    [TestCase(3, "very_large_wood_sliding", "wood", "as_dr_woodvlgop2", "as_dr_woodvlgcl2", "cb_bu_woodlrg", null, "as_dr_locked1")]
+    [TestCase(4, "medium_stone", "stone", "as_dr_stonmedop1", "as_dr_stonmedcl1", "cb_bu_stonelrg", null, "as_dr_locked2")]
+    [TestCase(5, "large_stone_gears", "stone", "as_dr_stonlgop1", "as_dr_stonlgcl1", "cb_bu_stonelrg", null, "as_dr_locked2")]
+    [TestCase(6, "very_large_stone_gears", "stone", "as_dr_stonvlgop1", "as_dr_stonvlgcl1", "cb_bu_stonelrg", null, "as_dr_locked2")]
+    [TestCase(7, "medium_metal", "plate", "as_dr_metlmedop1", "as_dr_metlmedcl1", "cb_bu_metallrg", null, "as_dr_locked3")]
+    [TestCase(8, "large_metal", "plate", "as_dr_metllgop1", "as_dr_metllgcl1", "cb_bu_metallrg", null, "as_dr_locked3")]
+    [TestCase(9, "very_large_metal", "plate", "as_dr_metlvlgop1", "as_dr_metlvlgcl1", "cb_bu_metallrg", null, "as_dr_locked3")]
+    [TestCase(10, "medium_metal_sliding", "plate", "as_dr_metlmedop2", "as_dr_metlmedcl2", "cb_bu_metallrg", null, "as_dr_locked3")]
+    [TestCase(11, "medium_metal_portcullis", "plate", "as_dr_metlprtop1", "as_dr_metlprtcl1", "cb_bu_metallrg", null, "as_dr_locked3")]
+    [TestCase(12, "crate_small", "wood", "as_sw_crateop1", "as_sw_cratecl1", "cb_bu_woodsml", null, "as_sw_genericlk1")]
+    [TestCase(13, "crate_large", "wood", "as_sw_crateop1", "as_sw_cratecl1", "cb_bu_woodlrg", null, "as_sw_genericlk1")]
+    [TestCase(14, "chest_small", "wood", "as_sw_chestop1", "as_sw_chestcl1", "cb_bu_woodsml", null, "as_sw_genericlk1")]
+    [TestCase(15, "chest_large", "wood", "as_sw_chestop1", "as_sw_chestcl1", "cb_bu_woodlrg", null, "as_sw_genericlk1")]
+    [TestCase(16, "drawer", "wood", "as_sw_drawerop1", "as_sw_drawercl1", "cb_bu_woodlrg", null, "as_sw_genericlk1")]
+    [TestCase(17, "generic_wood_small", "wood", "as_sw_genericop1", "as_sw_genericcl1", "cb_bu_woodsml", null, "as_sw_genericlk1")]
+    [TestCase(18, "generic_wood_large", "wood", "as_sw_genericop1", "as_sw_genericcl1", "cb_bu_woodlrg", null, "as_sw_genericlk1")]
+    [TestCase(19, "generic_stone_small", "stone", "as_sw_genericop1", "as_sw_genericcl1", "cb_bu_stonesml", null, "as_sw_genericlk1")]
+    [TestCase(20, "generic_stone_large", "stone", "as_sw_genericop1", "as_sw_genericcl1", "cb_bu_stonelrg", null, "as_sw_genericlk1")]
+    [TestCase(21, "generic_metal_small", "plate", "as_sw_genericop1", "as_sw_genericcl1", "cb_bu_metalsml", null, "as_sw_genericlk1")]
+    [TestCase(22, "generic_metal_large", "plate", "as_sw_genericop1", "as_sw_genericcl1", "cb_bu_metallrg", null, "as_sw_genericlk1")]
+    [TestCase(23, "cloth_object_small", "leather", "as_sw_clothop1", "as_sw_clothcl1", "cb_bu_matersml", null, "as_sw_clothlk1")]
+    [TestCase(24, "cloth_object_large", "leather", "as_sw_clothop1", "as_sw_clothcl1", "cb_bu_materlrg", null, "as_sw_clothlk1")]
+    [TestCase(25, "stone_object_small", "stone", "as_sw_stoneop1", "as_sw_stonecl1", "cb_bu_stonesml", null, "as_sw_stonelk1")]
+    [TestCase(26, "stone_object_large", "stone", "as_sw_stoneop1", "as_sw_stonecl1", "cb_bu_stonelrg", null, "as_sw_stonelk1")]
+    [TestCase(27, "metal_object_small", "plate", "as_sw_metalop1", "as_sw_metalcl1", "cb_bu_metalsml", null, "as_sw_genericlk1")]
+    [TestCase(28, "metal_object_large", "plate", "as_sw_metalop1", "as_sw_metalcl1", "cb_bu_metallrg", null, "as_sw_genericlk1")]
+    [TestCase(29, "lever", "wood", null, null, "cb_bu_metalsml", "as_sw_lever1", "as_sw_genericlk1")]
+    [TestCase(30, "wood_pressure_plate", "wood", null, null, "cb_bu_woodsml", "as_sw_woodplate1", "as_sw_genericlk1")]
+    [TestCase(31, "stone_pressure_plate", "stone", null, null, "cb_bu_stonesml", "as_sw_stonplate1", "as_sw_genericlk1")]
+    [TestCase(32, "stone_water", "stone", "fs_water_hard1", "fs_water_hard1", "cb_bu_stonelrg", null, "as_sw_stonelk1")]
+    [TestCase(33, "corpse", "leather", "as_sw_clothop1", "as_sw_clothcl1", "cb_ht_chunk", null, "as_sw_clothlk1")]
+    [TestCase(34, "NOTHING", null, null, null, null, null, null)]
+    public void PlaceableSoundTableReturnsValidData(int rowIndex, string label, string armorType, string opened, string closed, string destroyed, string used, string locked)
+    {
+      TwoDimArray<PlaceableSoundTableEntry> table = NwGameTables.PlaceableSoundTable;
+      PlaceableSoundTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
+      Assert.That(row.Label, Is.EqualTo(label));
+      Assert.That(row.ArmorType, Is.EqualTo(armorType));
+      Assert.That(row.Opened, Is.EqualTo(opened));
+      Assert.That(row.Closed, Is.EqualTo(closed));
+      Assert.That(row.Destroyed, Is.EqualTo(destroyed));
+      Assert.That(row.Used, Is.EqualTo(used));
+      Assert.That(row.Locked, Is.EqualTo(locked));
+    }
+
+    [Test(Description = "Placeable table entries return valid data")]
+    [TestCase(0, "Armoire", 5645u, "PLC_A01", null, null, null, null, 13, ShadowSize.Medium, false, null, null, true)]
+    [TestCase(28, "Portal", 5670u, "PLC_D07", null, null, null, null, null, ShadowSize.Medium, false, null, null, true)]
+    [TestCase(57, "Brazier", 5699u, "PLC_I05", 6, 0.003989f, 0.010825f, 0.874821f, 21, ShadowSize.Medium, false, null, null, true)]
+    [TestCase(118, "ImpledCrpse2", 5761u, "PLC_O10", null, null, null, null, 33, ShadowSize.Medium, false, "PLC_P04", null, true)]
+    [TestCase(157, "InvisObj", 5800u, "PLC_U02", null, null, null, null, 34, ShadowSize.Medium, false, null, null, true)]
+    [TestCase(191, "TreasureLrg", 63234u, "PLC_C09", null, null, null, null, 21, ShadowSize.Medium, false, null, "PLC_G_ENV", true)]
+    [TestCase(819, "new:Ballista,Arbalet", 111342u, "pwc_sieg_003", null, null, null, null, 18, ShadowSize.Medium, false, null, null, false)]
+    [TestCase(15600, "silm: Fog (50m), Low", null, "silm_fog_50_lo", null, 0f, 0f, 1.5f, null, ShadowSize.Medium, false, null, null, null)]
+    [TestCase(15398, "Lantern - Elven (Ambient Light)", null, "ptm_lantern01", 28, 0.00399f, -.57095f, 1.84292f, 17, ShadowSize.Medium, false, null, null, true)]
+    public void PlaceableTableReturnsValidData(int rowIndex, string label, uint? strRef, string modelName, int? lightColor, float? lightOffsetX, float? lightOffsetY, float? lightOffsetZ, int? soundAppType, ShadowSize? shadowSize, bool? bodyBag, string lowGore, string reflection, bool? staticAllowed)
+    {
+      TwoDimArray<PlaceableTableEntry> table = NwGameTables.PlaceableTable;
+      PlaceableTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
+      Assert.That(row.Label, Is.EqualTo(label));
+      Assert.That(row.StrRef?.Id, Is.EqualTo(strRef));
+      Assert.That(row.ModelName, Is.EqualTo(modelName));
+      Assert.That(row.LightColor?.RowIndex, Is.EqualTo(lightColor));
+      Assert.That(row.LightOffset?.X, Is.EqualTo(lightOffsetX));
+      Assert.That(row.LightOffset?.Y, Is.EqualTo(lightOffsetY));
+      Assert.That(row.LightOffset?.Z, Is.EqualTo(lightOffsetZ));
+      Assert.That(row.SoundType?.RowIndex, Is.EqualTo(soundAppType));
+      Assert.That(row.ShadowSize, Is.EqualTo(shadowSize));
     }
   }
 }

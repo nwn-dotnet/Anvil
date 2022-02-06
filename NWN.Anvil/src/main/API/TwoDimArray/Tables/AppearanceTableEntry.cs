@@ -11,7 +11,7 @@ namespace Anvil.API
 
     public string BloodColor { get; private set; }
 
-    public int? BodyBag { get; private set; }
+    public BodyBagTableEntry BodyBag { get; private set; }
 
     public float? CreaturePersonalSpace { get; private set; }
 
@@ -112,7 +112,7 @@ namespace Anvil.API
       HeadArcHorizontal = entry.GetInt("HEAD_ARC_H");
       HeadArcVertical = entry.GetInt("HEAD_ARC_V");
       HeadName = entry.GetString("HEAD_NAME");
-      BodyBag = entry.GetInt("BODY_BAG");
+      BodyBag = entry.GetTableEntry("BODY_BAG", NwGameTables.BodyBagTable);
       Targetable = entry.GetBool("TARGETABLE");
     }
   }
