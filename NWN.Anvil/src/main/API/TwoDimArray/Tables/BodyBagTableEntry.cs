@@ -2,13 +2,12 @@ namespace Anvil.API
 {
   public sealed class BodyBagTableEntry : ITwoDimArrayEntry
   {
-    public int RowIndex { get; init; }
+    public PlaceableTableEntry Appearance { get; private set; }
 
     public string Label { get; private set; }
 
     public StrRef? Name { get; private set; }
-
-    public PlaceableTableEntry Appearance { get; private set; }
+    public int RowIndex { get; init; }
 
     void ITwoDimArrayEntry.InterpretEntry(TwoDimArrayEntry entry)
     {

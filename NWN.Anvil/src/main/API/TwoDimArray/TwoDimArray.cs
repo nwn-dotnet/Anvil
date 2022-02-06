@@ -125,6 +125,40 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the specified <see cref="StrRef"/> value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
+    public T? GetEnum<T>(int rowIndex, string columnName) where T : struct, Enum
+    {
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetEnum<T>(rowIndex, columnIndex) : null;
+    }
+
+    /// <summary>
+    /// Gets the specified enum value value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
+    public unsafe T? GetEnum<T>(int rowIndex, int columnIndex) where T : struct, Enum
+    {
+      if (Unsafe.SizeOf<T>() != Unsafe.SizeOf<int>())
+      {
+        throw new ArgumentOutOfRangeException(nameof(T), "Specified enum must be backed by a signed int32 (int)");
+      }
+
+      int retVal;
+      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      {
+        return Unsafe.As<int, T>(ref retVal);
+      }
+
+      return null;
+    }
+
+    /// <summary>
     /// Gets the specified float value.
     /// </summary>
     /// <param name="rowIndex">The index of the row to query.</param>
@@ -314,40 +348,6 @@ namespace Anvil.API
         array.GetFLOATEntry(rowIndex, columnIndexZ, &zVal).ToBool())
       {
         return new Vector3(xVal, yVal, zVal);
-      }
-
-      return null;
-    }
-
-    /// <summary>
-    /// Gets the specified <see cref="StrRef"/> value.
-    /// </summary>
-    /// <param name="rowIndex">The index of the row to query.</param>
-    /// <param name="columnName">The name/label of the column to query.</param>
-    /// <returns>The associated value. null if no value is set.</returns>
-    public T? GetEnum<T>(int rowIndex, string columnName) where T : struct, Enum
-    {
-      int columnIndex = GetColumnIndex(columnName);
-      return columnIndex >= 0 ? GetEnum<T>(rowIndex, columnIndex) : null;
-    }
-
-    /// <summary>
-    /// Gets the specified enum value value.
-    /// </summary>
-    /// <param name="rowIndex">The index of the row to query.</param>
-    /// <param name="columnIndex">The index of the column to query.</param>
-    /// <returns>The associated value. null if no value is set.</returns>
-    public unsafe T? GetEnum<T>(int rowIndex, int columnIndex) where T : struct, Enum
-    {
-      if (Unsafe.SizeOf<T>() != Unsafe.SizeOf<int>())
-      {
-        throw new ArgumentOutOfRangeException(nameof(T), "Specified enum must be backed by a signed int32 (int)");
-      }
-
-      int retVal;
-      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
-      {
-        return Unsafe.As<int, T>(ref retVal);
       }
 
       return null;

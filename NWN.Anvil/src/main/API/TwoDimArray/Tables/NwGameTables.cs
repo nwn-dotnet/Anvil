@@ -41,13 +41,13 @@ namespace Anvil.API
     {
       private readonly FunctionHook<ReloadAllHook> reloadAllHook;
 
-      private delegate void ReloadAllHook(void* pRules);
-
       public Factory(HookService hookService)
       {
         reloadAllHook = hookService.RequestHook<ReloadAllHook>(OnReloadAll, FunctionsLinux._ZN8CNWRules9ReloadAllEv, HookOrder.Latest);
         LoadTables();
       }
+
+      private delegate void ReloadAllHook(void* pRules);
 
       private static void LoadTables()
       {
