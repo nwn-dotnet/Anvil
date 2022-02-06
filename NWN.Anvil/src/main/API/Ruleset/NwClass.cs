@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API

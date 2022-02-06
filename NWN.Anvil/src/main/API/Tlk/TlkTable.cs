@@ -60,9 +60,14 @@ namespace Anvil.API
       return retVal.ToString();
     }
 
-    internal string ResolveStringFromStrRef(StrRef strRef)
+    internal string GetTlkOverride(StrRef strRef)
     {
-      return tlkTable.GetSimpleString(strRef.Id).ToString();
+      if (tlkTable.m_overrides.TryGetValue(strRef.Id, out CExoString retVal))
+      {
+        return retVal.ToString();
+      }
+
+      return null;
     }
 
     internal string ResolveParsedStringFromStrRef(StrRef strRef)
@@ -76,24 +81,19 @@ namespace Anvil.API
       return rawString?.ToString();
     }
 
-    internal string GetTlkOverride(StrRef strRef)
+    internal string ResolveStringFromStrRef(StrRef strRef)
     {
-      if (tlkTable.m_overrides.TryGetValue(strRef.Id, out CExoString retVal))
-      {
-        return retVal.ToString();
-      }
-
-      return null;
-    }
-
-    internal void SetTlkOverride(StrRef strRef, string value)
-    {
-      tlkTable.SetOverride(strRef.Id, value.ToExoString());
+      return tlkTable.GetSimpleString(strRef.Id).ToString();
     }
 
     internal void SetCustomToken(StrTokenCustom customToken, string value)
     {
       tlkTable.SetCustomToken(customToken.TokenNumber, value.ToExoString());
+    }
+
+    internal void SetTlkOverride(StrRef strRef, string value)
+    {
+      tlkTable.SetOverride(strRef.Id, value.ToExoString());
     }
 
     private int BinarySearch(CTlkTableTokenCustomArray array, int index, int length, CTlkTableTokenCustom value)

@@ -9,6 +9,11 @@ namespace Anvil.API
 
     public readonly int TokenNumber;
 
+    public StrTokenCustom(int tokenNumber)
+    {
+      TokenNumber = tokenNumber;
+    }
+
     /// <summary>
     /// Gets or sets the string value of this token.<br/>
     /// </summary>
@@ -22,11 +27,6 @@ namespace Anvil.API
     {
       get => TlkTable.GetCustomToken(this);
       set => TlkTable.SetCustomToken(this, value);
-    }
-
-    public StrTokenCustom(int tokenNumber)
-    {
-      TokenNumber = tokenNumber;
     }
   }
 }

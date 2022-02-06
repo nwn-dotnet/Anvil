@@ -19,6 +19,13 @@ namespace Anvil.API
     /// </summary>
     public readonly uint Id;
 
+    public StrRef(uint stringId)
+    {
+      Id = stringId;
+    }
+
+    public StrRef(int stringId) : this((uint)stringId) {}
+
     /// <summary>
     /// Gets the index/key for this StrRef relative to the module's custom talk table. (-16777216)
     /// </summary>
@@ -33,12 +40,16 @@ namespace Anvil.API
       set => TlkTable.SetTlkOverride(this, value);
     }
 
-    public StrRef(uint stringId)
+    /// <summary>
+    /// Gets a StrRef from the module's custom tlk table.<br/>
+    /// Use the index from the custom tlk. This factory method will automatically offset the id value.
+    /// </summary>
+    /// <param name="stringId">The custom token index.</param>
+    /// <returns>The associated StrRef.</returns>
+    public static StrRef FromCustomTlk(uint stringId)
     {
-      Id = stringId;
+      return new StrRef(stringId + CustomTlkOffset);
     }
-
-    public StrRef(int stringId) : this((uint)stringId) {}
 
     /// <summary>
     /// Clears the current text override for this StrRef.
@@ -77,14 +88,13 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets a StrRef from the module's custom tlk table.<br/>
-    /// Use the index from the custom tlk. This factory method will automatically offset the id value.
+    /// Gets the formatted string associated with this string reference/token number.<br/>
+    /// This will parse any tokens (e.g. &lt;CUSTOM0&gt;) as their current set token values.
     /// </summary>
-    /// <param name="stringId">The custom token index.</param>
-    /// <returns>The associated StrRef.</returns>
-    public static StrRef FromCustomTlk(uint stringId)
+    /// <returns></returns>
+    public string ToParsedString()
     {
-      return new StrRef(stringId + CustomTlkOffset);
+      return TlkTable.ResolveParsedStringFromStrRef(this);
     }
 
     /// <summary>
@@ -94,16 +104,6 @@ namespace Anvil.API
     public override string ToString()
     {
       return TlkTable.ResolveStringFromStrRef(this);
-    }
-
-    /// <summary>
-    /// Gets the formatted string associated with this string reference/token number.<br/>
-    /// This will parse any tokens (e.g. &lt;CUSTOM0&gt;) as their current set token values.
-    /// </summary>
-    /// <returns></returns>
-    public string ToParsedString()
-    {
-      return TlkTable.ResolveParsedStringFromStrRef(this);
     }
   }
 }
