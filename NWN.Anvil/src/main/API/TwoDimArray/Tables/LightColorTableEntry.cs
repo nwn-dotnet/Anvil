@@ -2,21 +2,20 @@ namespace Anvil.API
 {
   public sealed class LightColorTableEntry : ITwoDimArrayEntry
   {
-    public int RowIndex { get; init; }
+    public float? Blue { get; private set; }
+
+    public float? Green { get; private set; }
 
     public string Label { get; private set; }
 
     public float? Red { get; private set; }
+    public int RowIndex { get; init; }
 
-    public float? Green { get; private set; }
-
-    public float? Blue { get; private set; }
-
-    public float? ToolsetRed { get; private set; }
+    public float? ToolsetBlue { get; private set; }
 
     public float? ToolsetGreen { get; private set; }
 
-    public float? ToolsetBlue { get; private set; }
+    public float? ToolsetRed { get; private set; }
 
     void ITwoDimArrayEntry.InterpretEntry(TwoDimArrayEntry entry)
     {

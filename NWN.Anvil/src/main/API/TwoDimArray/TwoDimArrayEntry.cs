@@ -41,6 +41,26 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the specified enum value.
+    /// </summary>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
+    public T? GetEnum<T>(string columnName) where T : struct, Enum
+    {
+      return array.GetEnum<T>(rowIndex, columnName);
+    }
+
+    /// <summary>
+    /// Gets the specified enum value.
+    /// </summary>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
+    public T? GetEnum<T>(int columnIndex) where T : struct, Enum
+    {
+      return array.GetEnum<T>(rowIndex, columnIndex);
+    }
+
+    /// <summary>
     /// Gets the specified float value.
     /// </summary>
     /// <param name="columnName">The name/label of the column to query.</param>
@@ -166,26 +186,6 @@ namespace Anvil.API
     public Vector3? GetVector3(int columnIndexX, int columnIndexY, int columnIndexZ)
     {
       return array.GetVector3(rowIndex, columnIndexX, columnIndexY, columnIndexZ);
-    }
-
-    /// <summary>
-    /// Gets the specified enum value.
-    /// </summary>
-    /// <param name="columnName">The name/label of the column to query.</param>
-    /// <returns>The associated value. null if no value is set.</returns>
-    public T? GetEnum<T>(string columnName) where T : struct, Enum
-    {
-      return array.GetEnum<T>(rowIndex, columnName);
-    }
-
-    /// <summary>
-    /// Gets the specified enum value.
-    /// </summary>
-    /// <param name="columnIndex">The index of the column to query.</param>
-    /// <returns>The associated value. null if no value is set.</returns>
-    public T? GetEnum<T>(int columnIndex) where T : struct, Enum
-    {
-      return array.GetEnum<T>(rowIndex, columnIndex);
     }
   }
 }

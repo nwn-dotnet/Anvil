@@ -4,6 +4,7 @@ using System.Numerics;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
+using Vector = NWN.Native.API.Vector;
 
 namespace Anvil.API
 {
@@ -564,6 +565,26 @@ namespace Anvil.API
     public FogColor GetFogColor(FogType fogType)
     {
       return (FogColor)NWScript.GetFogColor((int)fogType, this);
+    }
+
+    /// <summary>
+    /// Gets the tile info at the specified position in the area.
+    /// </summary>
+    /// <param name="tileX">The x coordinate of the tile to get info.</param>
+    /// <param name="tileY">The y coordinate of the tile to get info.</param>
+    /// <returns>A structure containing the associated tile info.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the tile coordinates are larger than the area size.</exception>
+    public TileInfo GetTileInfo(uint tileX, uint tileY)
+    {
+      Vector2Int max = Size;
+      if (tileX >= max.X || tileY >= max.Y)
+      {
+        throw new ArgumentOutOfRangeException(null, "Tile index must be smaller than the area size.");
+      }
+
+      CNWTile tile = Area.GetTile(new Vector(tileX, tileY, 0f));
+
+      return tile != null ? new TileInfo(tile) : null;
     }
 
     public override Guid? PeekUUID()
