@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -11,9 +10,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NwFeat
   {
-    [Inject]
-    private static TlkTable TlkTable { get; set; }
-
     private readonly CNWFeat featInfo;
 
     internal NwFeat(ushort featId, CNWFeat featInfo)
@@ -30,7 +26,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the description of this feat, as shown in the in-game skill window.
     /// </summary>
-    public string Description => TlkTable.GetSimpleString((uint)featInfo.m_nDescriptionStrref);
+    public StrRef Description => new StrRef(featInfo.m_nDescriptionStrref);
 
     /// <summary>
     /// Gets the associated <see cref="Feat"/> type for this feat.
@@ -91,7 +87,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of this feat, as shown in the in-game skill window.
     /// </summary>
-    public string Name => TlkTable.GetSimpleString((uint)featInfo.m_nNameStrref);
+    public StrRef Name => new StrRef(featInfo.m_nNameStrref);
 
     /// <summary>
     /// Gets all feats that need to be selected before this one may be chosen.
