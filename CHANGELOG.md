@@ -7,7 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
 
 ### Added
-- N/A
+- `StrRef.ToParsedString()`: Gets the string associated with a StrRef and parses any tokens (e.g. \<CUSTOM0\>)
+- `StrTokenCustom`: New structure for resolving/setting custom token values.
 
 ### Package Updates
 - N/A
@@ -16,7 +17,25 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
 - N/A
 
 ### Deprecated
-- N/A
+- APIs using int-based StrRef parameters have been deprecated. Please use the StrRef overloads:
+  - `NwGameObject.PlaySoundByStrRef()`
+  - `NwPlayer.ClearTlkOverride()`
+  - `NwPlayer.SetTlkOverride()`
+  - `NwBaseItem.BaseItemStatsText`
+  - `NwBaseItem.Description`
+  - `NwBaseItem.Name`
+  - `NwClass.Description`
+  - `NwClass.Name`
+  - `NwClass.NameLower`
+  - `NwClass.NamePlural`
+  - `NwFeat.Description`
+  - `NwFeat.Name`
+  - `NwSkill.Description`
+  - `NwSkill.Name`
+  - `NwSpell.AltMessage`
+  - `NwSpell.Description`
+  - `NwSpell.Name`
+  - `OnELCValidationFailure.StrRef`
 
 ### Removed
 - N/A
