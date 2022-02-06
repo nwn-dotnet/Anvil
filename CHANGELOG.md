@@ -9,6 +9,11 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
 ### Added
 - `StrRef.ToParsedString()`: Gets the string associated with a StrRef and parses any tokens (e.g. \<CUSTOM0\>)
 - `StrTokenCustom`: New structure for resolving/setting custom token values.
+- `NwGameTables`: Added new 2da tables
+  - `BodyBagTable`
+  - `LightColorTable`
+  - `PlaceableSoundTable`
+  - `PlaceableTable`
 
 ### Package Updates
 - N/A
