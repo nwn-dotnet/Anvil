@@ -485,26 +485,10 @@ namespace Anvil.API
       NWScript.SetTextureOverride(texName, string.Empty, ControlledCreature);
     }
 
-    /// <summary>
-    /// Clears the specified TlkTable override for the player, optionally restoring the global override.
-    /// </summary>
-    /// <param name="strRef">The overridden string reference to restore.</param>
-    /// <param name="restoreGlobal">If true, restores the global override current set for ControlledCreature string ref.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when an invalid string ref is specified (&lt; 0).</exception>
+    [Obsolete("Use StrRef.ClearPlayerOverride instead.")]
     public void ClearTlkOverride(int strRef, bool restoreGlobal = true)
     {
-      if (strRef < 0)
-      {
-        throw new ArgumentOutOfRangeException(nameof(strRef), "StrRef must not be less than 0.");
-      }
-
-      string strOverride = string.Empty;
-      if (restoreGlobal && NWNXLib.TlkTable().m_overrides.TryGetValue((uint)strRef, out CExoString globalOverride))
-      {
-        strOverride = globalOverride.ToString();
-      }
-
-      SetTlkOverride(strRef, strOverride);
+      new StrRef(strRef).ClearPlayerOverride(this, restoreGlobal);
     }
 
     /// <summary>
@@ -1260,22 +1244,10 @@ namespace Anvil.API
       NWScript.SetTextureOverride(oldTexName, newTexName, ControlledCreature);
     }
 
-    /// <summary>
-    /// Overrides the specified string from the TlkTable using the specified override for the player only.<br/>
-    /// Overrides will not persist through re-logging.
-    /// </summary>
-    /// <param name="strRef">The string reference to be overridden.</param>
-    /// <param name="strOverride">The new string to assign.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when an invalid string ref is specified (&lt; 0).</exception>
-    public void SetTlkOverride(int strRef, string strOverride)
+    [Obsolete("Use StrRef.SetPlayerOverride instead.")]
+    public void SetTlkOverride(int strRef, string value)
     {
-      if (strRef < 0)
-      {
-        throw new ArgumentOutOfRangeException(nameof(strRef), "StrRef must not be less than 0.");
-      }
-
-      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
-      message?.SendServerToPlayerSetTlkOverride(Player.m_nPlayerID, strRef, strOverride.ToExoString());
+      new StrRef(strRef).SetPlayerOverride(this, value);
     }
 
     /// <summary>

@@ -1,4 +1,6 @@
+using Anvil.Internal;
 using Anvil.Services;
+using NWN.Native.API;
 
 namespace Anvil.API
 {
@@ -38,9 +40,40 @@ namespace Anvil.API
 
     public StrRef(int stringId) : this((uint)stringId) {}
 
+    /// <summary>
+    /// Clears the current text override for this StrRef.
+    /// </summary>
     public void ClearOverride()
     {
       TlkTable.SetTlkOverride(this, null);
+    }
+
+    /// <summary>
+    /// Clears the string override for the specified player, optionally restoring the global override.
+    /// </summary>
+    /// <param name="player">The player to clear the override from.</param>
+    /// <param name="restoreGlobal">If true, restores <see cref="Override"/> as the string value.</param>
+    public void ClearPlayerOverride(NwPlayer player, bool restoreGlobal = true)
+    {
+      string strOverride = null;
+      if (restoreGlobal)
+      {
+        strOverride = Override;
+      }
+
+      SetPlayerOverride(player, strOverride);
+    }
+
+    /// <summary>
+    /// Overrides the string for the specified player only.<br/>
+    /// Overrides will not persist through re-logging.
+    /// </summary>
+    /// <param name="player">The player who should see the different string.</param>
+    /// <param name="value">The override string to show.</param>
+    public void SetPlayerOverride(NwPlayer player, string value)
+    {
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      message?.SendServerToPlayerSetTlkOverride(player.Player.m_nPlayerID, (int)Id, value.ToExoString());
     }
 
     /// <summary>
