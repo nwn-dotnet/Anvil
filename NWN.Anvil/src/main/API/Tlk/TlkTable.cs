@@ -65,6 +65,17 @@ namespace Anvil.API
       return tlkTable.GetSimpleString(strRef.Id).ToString();
     }
 
+    internal string ResolveParsedStringFromStrRef(StrRef strRef)
+    {
+      CExoString rawString = tlkTable.GetSimpleString(strRef.Id);
+      if (rawString != null)
+      {
+        tlkTable.ParseStr(rawString);
+      }
+
+      return rawString?.ToString();
+    }
+
     internal string GetTlkOverride(StrRef strRef)
     {
       if (tlkTable.m_overrides.TryGetValue(strRef.Id, out CExoString retVal))

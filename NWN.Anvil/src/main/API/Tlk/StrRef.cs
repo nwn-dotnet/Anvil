@@ -88,12 +88,22 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the string associated with this string reference/token number.
+    /// Gets the raw string associated with this string reference/token number.
     /// </summary>
     /// <returns>The associated string.</returns>
     public override string ToString()
     {
       return TlkTable.ResolveStringFromStrRef(this);
+    }
+
+    /// <summary>
+    /// Gets the formatted string associated with this string reference/token number.<br/>
+    /// This will parse any tokens (e.g. &lt;CUSTOM0&gt;) as their current set token values.
+    /// </summary>
+    /// <returns></returns>
+    public string ToParsedString()
+    {
+      return TlkTable.ResolveParsedStringFromStrRef(this);
     }
   }
 }
