@@ -14,6 +14,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
   - `LightColorTable`
   - `PlaceableSoundTable`
   - `PlaceableTable`
+- `NwArea`: Added `GetTileInfo()`
 
 ### Package Updates
 - N/A
