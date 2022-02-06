@@ -32,15 +32,19 @@ namespace Anvil.API
     [Obsolete("Use StrToken.Value instead.")]
     public void SetCustomToken(uint tokenNumber, string tokenValue)
     {
-      StrTokenCustom token = new StrTokenCustom((int)tokenNumber);
-      token.Value = tokenValue;
+      StrTokenCustom _ = new StrTokenCustom((int)tokenNumber)
+      {
+        Value = tokenValue,
+      };
     }
 
     [Obsolete("Use StrRef.Override instead.")]
     public void SetTlkOverride(uint strId, string value)
     {
-      StrRef strRef = new StrRef(strId);
-      strRef.Override = value;
+      StrRef _ = new StrRef(strId)
+      {
+        Override = value,
+      };
     }
 
     internal string GetCustomToken(StrTokenCustom customToken)
