@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Anvil.API.Events;
 using Anvil.Internal;
 using Anvil.Services;
-using Newtonsoft.Json;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
