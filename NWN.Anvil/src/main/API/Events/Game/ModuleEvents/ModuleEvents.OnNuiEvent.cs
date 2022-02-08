@@ -73,7 +73,7 @@ namespace Anvil.API.Events
       /// <returns>The payload data, or null if the event has no payload.</returns>
       public T GetEventPayload<T>()
       {
-        return JsonConvert.DeserializeObject<T>(eventPayload);
+        return JsonUtility.FromJson<T>(eventPayload);
       }
     }
   }

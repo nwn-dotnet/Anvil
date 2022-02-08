@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Anvil.Services;
 
 namespace Anvil.API
@@ -12,8 +11,8 @@ namespace Anvil.API
 
     public sealed override T Value
     {
-      get => HasValue ? JsonSerializer.Deserialize<T>(ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key)) : default;
-      set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, JsonSerializer.Serialize(value), Persist);
+      get => HasValue ? JsonUtility.FromJson<T>(ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key)) : default;
+      set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, JsonUtility.ToJson(value), Persist);
     }
 
     protected sealed override string VariableTypePrefix => "PERSTR!";
