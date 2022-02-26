@@ -20,6 +20,9 @@ namespace Anvil.API
       Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 
+    /// <summary>
+    /// Gets or sets the appearance of this placeable.
+    /// </summary>
     public PlaceableTableEntry Appearance
     {
       get => NwGameTables.PlaceableTable[Placeable.m_nAppearance];

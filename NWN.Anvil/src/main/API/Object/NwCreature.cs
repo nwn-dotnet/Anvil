@@ -79,6 +79,9 @@ namespace Anvil.API
     /// </summary>
     public AnimalCompanionCreatureType AnimalCompanionType => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
 
+    /// <summary>
+    /// Gets or sets the appearance of this creature.
+    /// </summary>
     public AppearanceTableEntry Appearance
     {
       get => NwGameTables.AppearanceTable[NWScript.GetAppearanceType(this)];
