@@ -213,7 +213,7 @@ namespace Anvil
         lateDisposable.LateDispose();
       }
 
-      foreach (ICoreService coreService in CoreServices)
+      foreach (ICoreService coreService in CoreServices.Reverse())
       {
         coreService.Shutdown();
       }
@@ -234,7 +234,7 @@ namespace Anvil
       serviceContainer.Dispose();
       serviceContainer = null;
 
-      foreach (ICoreService coreService in CoreServices)
+      foreach (ICoreService coreService in CoreServices.Reverse())
       {
         coreService.Unload();
       }
