@@ -8,6 +8,7 @@ using NWN.Native.API;
 
 namespace Anvil.Services
 {
+  [ServiceBinding(typeof(ServerUpdateLoopService))]
   internal sealed unsafe class ServerUpdateLoopService : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
