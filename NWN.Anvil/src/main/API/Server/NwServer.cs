@@ -170,6 +170,26 @@ namespace Anvil.API
       *NWNXLib.ExitProgram() = 1;
     }
 
+    void ICoreService.Init()
+    {
+      exoBase = NWNXLib.ExoBase();
+      UserDirectory = exoBase.m_sUserDirectory.ToString();
+      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
+    }
+
+    void ICoreService.Load()
+    {
+      server = NWNXLib.AppManager().m_pServerExoApp;
+      netLayer = server.GetNetLayer();
+
+      WorldTimer = new WorldTimer(server.GetWorldTimer());
+      ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
+    }
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Unload() {}
+
     private static CExoLinkedListNode FindTURD(CExoLinkedListInternal turds, string playerName, string characterName)
     {
       for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
@@ -194,25 +214,5 @@ namespace Anvil.API
 
       return null;
     }
-
-    void ICoreService.Init()
-    {
-      exoBase = NWNXLib.ExoBase();
-      UserDirectory = exoBase.m_sUserDirectory.ToString();
-      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
-    }
-
-    void ICoreService.Load()
-    {
-      server = NWNXLib.AppManager().m_pServerExoApp;
-      netLayer = server.GetNetLayer();
-
-      WorldTimer = new WorldTimer(server.GetWorldTimer());
-      ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
-    }
-
-    void ICoreService.Unload() {}
-
-    void ICoreService.Shutdown() {}
   }
 }

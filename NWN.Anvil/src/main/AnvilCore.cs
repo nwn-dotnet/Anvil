@@ -28,16 +28,30 @@ namespace Anvil
     private IReadOnlyList<ICoreService> CoreServices { get; init; }
 
     [Inject]
-    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
+    private NwServer NwServer { get; init; }
 
     [Inject]
-    private NwServer NwServer { get; init; }
+    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
 
     private readonly IContainerFactory containerFactory;
 
     private readonly ServiceContainer coreServiceContainer;
-    private ServiceContainer serviceContainer;
     private List<ILateDisposable> lateDisposableServices;
+    private ServiceContainer serviceContainer;
+
+    private AnvilCore(IContainerFactory containerFactory)
+    {
+      this.containerFactory = containerFactory;
+      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
+
+      coreServiceContainer = containerFactory.BuildCoreContainer(this);
+      coreServiceContainer.InjectProperties(this);
+    }
+
+    public static T GetService<T>()
+    {
+      return instance.serviceContainer.GetInstance<T>();
+    }
 
     /// <summary>
     /// Entrypoint to start Anvil.
@@ -62,13 +76,37 @@ namespace Anvil
       return NWNCore.Init(arg, argLength, instance.VirtualMachineFunctionHandler, eventHandles);
     }
 
-    private AnvilCore(IContainerFactory containerFactory)
+    /// <summary>
+    /// Initiates a complete reload of plugins and Anvil services.<br/>
+    /// This will reload all plugins.
+    /// </summary>
+    public static void Reload()
     {
-      this.containerFactory = containerFactory;
-      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
+      if (!EnvironmentConfig.ReloadEnabled)
+      {
+        Log.Error("Hot Reload of plugins is not enabled (NWM_RELOAD_ENABLED=true)");
+      }
 
-      coreServiceContainer = containerFactory.BuildCoreContainer(this);
-      coreServiceContainer.InjectProperties(this);
+      GetService<SchedulerService>()?.Schedule(() =>
+      {
+        Log.Info("Reloading Anvil");
+        instance.Unload();
+        instance.Load();
+      }, TimeSpan.Zero);
+    }
+
+    private void CheckServerVersion()
+    {
+      AssemblyName assemblyName = Assemblies.Anvil.GetName();
+      Version serverVersion = NwServer.ServerVersion;
+
+      if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
+      {
+        Log.Warn("The current version of {Name} targets version {TargetVersion}, but the server is running {ServerVersion}! You may encounter compatibility issues",
+          assemblyName.Name,
+          assemblyName.Version,
+          serverVersion);
+      }
     }
 
     private void Init()
@@ -116,69 +154,6 @@ namespace Anvil
       }
     }
 
-    private void Unload()
-    {
-      if (serviceContainer == null)
-      {
-        return;
-      }
-
-      Log.Info("Unloading services...");
-      lateDisposableServices = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
-
-      serviceContainer.Dispose();
-      serviceContainer = null;
-
-      foreach (ICoreService coreService in CoreServices)
-      {
-        coreService.Unload();
-      }
-    }
-
-    private void Shutdown()
-    {
-      if (lateDisposableServices == null)
-      {
-        return;
-      }
-
-      foreach (ILateDisposable lateDisposable in lateDisposableServices)
-      {
-        lateDisposable.LateDispose();
-      }
-
-      foreach (ICoreService coreService in CoreServices)
-      {
-        coreService.Shutdown();
-      }
-
-      lateDisposableServices = null;
-    }
-
-    /// <summary>
-    /// Initiates a complete reload of plugins and Anvil services.<br/>
-    /// This will reload all plugins.
-    /// </summary>
-    public static void Reload()
-    {
-      if (!EnvironmentConfig.ReloadEnabled)
-      {
-        Log.Error("Hot Reload of plugins is not enabled (NWM_RELOAD_ENABLED=true)");
-      }
-
-      GetService<SchedulerService>()?.Schedule(() =>
-      {
-        Log.Info("Reloading Anvil");
-        instance.Unload();
-        instance.Load();
-      }, TimeSpan.Zero);
-    }
-
-    public static T GetService<T>()
-    {
-      return instance.serviceContainer.GetInstance<T>();
-    }
-
     private void OnNWNXSignal(string signal)
     {
       switch (signal)
@@ -196,20 +171,6 @@ namespace Anvil
         case "ON_DESTROY_SERVER_AFTER":
           Shutdown();
           break;
-      }
-    }
-
-    private void CheckServerVersion()
-    {
-      AssemblyName assemblyName = Assemblies.Anvil.GetName();
-      Version serverVersion = NwServer.ServerVersion;
-
-      if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
-      {
-        Log.Warn("The current version of {Name} targets version {TargetVersion}, but the server is running {ServerVersion}! You may encounter compatibility issues",
-          assemblyName.Name,
-          assemblyName.Version,
-          serverVersion);
       }
     }
 
@@ -237,6 +198,45 @@ namespace Anvil
       {
         Log.Fatal("The NWNX_SWIG_DotNET plugin could not be loaded");
         throw;
+      }
+    }
+
+    private void Shutdown()
+    {
+      if (lateDisposableServices == null)
+      {
+        return;
+      }
+
+      foreach (ILateDisposable lateDisposable in lateDisposableServices)
+      {
+        lateDisposable.LateDispose();
+      }
+
+      foreach (ICoreService coreService in CoreServices)
+      {
+        coreService.Shutdown();
+      }
+
+      lateDisposableServices = null;
+    }
+
+    private void Unload()
+    {
+      if (serviceContainer == null)
+      {
+        return;
+      }
+
+      Log.Info("Unloading services...");
+      lateDisposableServices = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
+
+      serviceContainer.Dispose();
+      serviceContainer = null;
+
+      foreach (ICoreService coreService in CoreServices)
+      {
+        coreService.Unload();
       }
     }
   }

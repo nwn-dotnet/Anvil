@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Anvil.API;
 using NLog;
 
 namespace Anvil.Services
@@ -10,10 +9,11 @@ namespace Anvil.Services
   internal sealed class ScriptDispatchService : IInitializable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-    private readonly List<IScriptDispatcher> dispatchers;
 
     [Inject]
     private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
+
+    private readonly List<IScriptDispatcher> dispatchers;
 
     public ScriptDispatchService(IReadOnlyList<IScriptDispatcher> dispatchers)
     {

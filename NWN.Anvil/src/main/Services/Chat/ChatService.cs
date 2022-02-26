@@ -8,8 +8,6 @@ namespace Anvil.Services
   [ServiceBinding(typeof(ChatService))]
   public sealed unsafe partial class ChatService
   {
-    private readonly NwServer nwServer;
-
     private readonly Dictionary<ChatChannel, float> globalHearingDistances = new Dictionary<ChatChannel, float>
     {
       { ChatChannel.DmTalk, 20.0f },
@@ -17,6 +15,8 @@ namespace Anvil.Services
       { ChatChannel.DmWhisper, 3.0f },
       { ChatChannel.PlayerWhisper, 3.0f },
     };
+
+    private readonly NwServer nwServer;
 
     private readonly Dictionary<NwPlayer, Dictionary<ChatChannel, float>> playerHearingDistances = new Dictionary<NwPlayer, Dictionary<ChatChannel, float>>();
     private readonly FunctionHook<SendServerToPlayerChatMessageHook> sendServerToPlayerChatMessageHook;

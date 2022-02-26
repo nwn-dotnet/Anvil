@@ -28,13 +28,13 @@ namespace Anvil.API
     private static EventService EventService { get; set; }
 
     [Inject]
+    private static NwServer NwServer { get; set; }
+
+    [Inject]
     private static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; set; }
 
     [Inject]
     private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; }
-
-    [Inject]
-    private static NwServer NwServer { get; set; }
 
     internal readonly CNWSPlayer Player;
 
@@ -722,6 +722,32 @@ namespace Anvil.API
       NWScript.FloatingTextStrRefOnCreature(strRef, ControlledCreature, broadcastToParty.ToInt());
     }
 
+    public void ForceAreaReload()
+    {
+      NwCreature creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      CNWSCreature cCreature = creature.Creature;
+
+      NwArea area = creature.Area;
+      Vector3 position = creature.Position;
+
+      cCreature.m_oidDesiredArea = area.ObjectId;
+      cCreature.m_vDesiredAreaLocation = cCreature.m_vPosition;
+      cCreature.m_bDesiredAreaUpdateComplete = false.ToInt();
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      message.SendServerToPlayerArea_ClientArea(Player, area.Area, position.X, position.Y, position.Z, cCreature.m_vOrientation, false.ToInt());
+      cCreature.SetArea(null);
+
+      cCreature.m_oidDesiredArea = NwObject.Invalid;
+      message.DeleteLastUpdateObjectsInOtherAreas(Player);
+      cCreature.m_oidDesiredArea = area.ObjectId;
+    }
+
     /// <summary>
     /// Forces the player to examine the specified game object.<br/>
     /// Works on <see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwItem"/> and <see cref="NwDoor"/>.<br/>
@@ -1345,32 +1371,6 @@ namespace Anvil.API
     public void Vibrate(VibratorMotor motor, float strength, TimeSpan duration)
     {
       NWScript.Vibrate(ControlledCreature, (int)motor, strength, (float)duration.TotalSeconds);
-    }
-
-    public void ForceAreaReload()
-    {
-      NwCreature creature = ControlledCreature;
-      if (creature == null)
-      {
-        return;
-      }
-
-      CNWSCreature cCreature = creature.Creature;
-
-      NwArea area = creature.Area;
-      Vector3 position = creature.Position;
-
-      cCreature.m_oidDesiredArea = area.ObjectId;
-      cCreature.m_vDesiredAreaLocation = cCreature.m_vPosition;
-      cCreature.m_bDesiredAreaUpdateComplete = false.ToInt();
-
-      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
-      message.SendServerToPlayerArea_ClientArea(Player, area.Area, position.X, position.Y, position.Z, cCreature.m_vOrientation, false.ToInt());
-      cCreature.SetArea(null);
-
-      cCreature.m_oidDesiredArea = NwObject.Invalid;
-      message.DeleteLastUpdateObjectsInOtherAreas(Player);
-      cCreature.m_oidDesiredArea = area.ObjectId;
     }
 
     internal static NwPlayer FromPlayerId(uint playerId)

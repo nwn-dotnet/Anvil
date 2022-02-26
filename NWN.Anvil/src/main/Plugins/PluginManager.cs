@@ -77,6 +77,8 @@ namespace Anvil.Plugins
       ResourcePaths = GetResourcePaths();
     }
 
+    void ICoreService.Shutdown() {}
+
     void ICoreService.Unload()
     {
       loadedAssemblies.Clear();
@@ -93,8 +95,6 @@ namespace Anvil.Plugins
 
       plugins.Clear();
     }
-
-    void ICoreService.Shutdown() {}
 
     private void BootstrapPlugins()
     {

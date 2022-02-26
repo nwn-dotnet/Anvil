@@ -21,13 +21,13 @@ namespace Anvil.Services
 
     void ICoreService.Load() {}
 
-    void ICoreService.Unload() {}
-
     void ICoreService.Shutdown()
     {
       Unregister();
       GC.SuppressFinalize(this);
     }
+
+    void ICoreService.Unload() {}
 
     private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs eventData)
     {

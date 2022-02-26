@@ -4,7 +4,7 @@ namespace Anvil.Services
   {
     void Init();
     void Load();
-    void Unload();
     void Shutdown();
+    void Unload();
   }
 }

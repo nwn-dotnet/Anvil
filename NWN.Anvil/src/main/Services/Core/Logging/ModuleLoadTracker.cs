@@ -10,9 +10,20 @@ namespace Anvil.Services
     [Inject]
     private HookService HookService { get; init; }
 
+    private FunctionHook<LoadModuleInProgressHook> loadModuleInProgressHook;
+
     private delegate uint LoadModuleInProgressHook(void* pModule, int nAreasLoaded, int nAreasToLoad);
 
-    private FunctionHook<LoadModuleInProgressHook> loadModuleInProgressHook;
+    void ICoreService.Init()
+    {
+      loadModuleInProgressHook = HookService.RequestHook<LoadModuleInProgressHook>(OnModuleLoadProgressChange, FunctionsLinux._ZN10CNWSModule20LoadModuleInProgressEii, HookOrder.Earliest);
+    }
+
+    void ICoreService.Load() {}
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Unload() {}
 
     private uint OnModuleLoadProgressChange(void* pModule, int nAreasLoaded, int nAreasToLoad)
     {
@@ -49,16 +60,5 @@ namespace Anvil.Services
 
       return retVal;
     }
-
-    void ICoreService.Init()
-    {
-      loadModuleInProgressHook = HookService.RequestHook<LoadModuleInProgressHook>(OnModuleLoadProgressChange, FunctionsLinux._ZN10CNWSModule20LoadModuleInProgressEii, HookOrder.Earliest);
-    }
-
-    void ICoreService.Load() {}
-
-    void ICoreService.Unload() {}
-
-    void ICoreService.Shutdown() {}
   }
 }

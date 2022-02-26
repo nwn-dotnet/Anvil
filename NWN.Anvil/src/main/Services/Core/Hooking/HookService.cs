@@ -55,14 +55,11 @@ namespace Anvil.Services
       return retVal;
     }
 
-    internal void RemoveHook<T>(FunctionHook<T> hook) where T : Delegate
-    {
-      hooks.Remove(hook);
-    }
-
     void ICoreService.Init() {}
 
     void ICoreService.Load() {}
+
+    void ICoreService.Shutdown() {}
 
     void ICoreService.Unload()
     {
@@ -74,6 +71,9 @@ namespace Anvil.Services
       hooks.Clear();
     }
 
-    void ICoreService.Shutdown() {}
+    internal void RemoveHook<T>(FunctionHook<T> hook) where T : Delegate
+    {
+      hooks.Remove(hook);
+    }
   }
 }

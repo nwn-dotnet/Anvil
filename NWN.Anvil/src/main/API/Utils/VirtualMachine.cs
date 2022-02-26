@@ -43,18 +43,6 @@ namespace Anvil.API
       set => virtualMachine.m_nInstructionsExecuted = value;
     }
 
-    internal int ReturnValueParameterType
-    {
-      get => virtualMachine.m_nReturnValueParameterType;
-      set => virtualMachine.m_nReturnValueParameterType = value;
-    }
-
-    internal void* ReturnValue
-    {
-      get => virtualMachine.m_pReturnValue;
-      set => virtualMachine.m_pReturnValue = value;
-    }
-
     /// <summary>
     /// Returns true if the current executing code is being executed on the main thread, and in a Virtual Machine script context.
     /// </summary>
@@ -157,6 +145,17 @@ namespace Anvil.API
       return null;
     }
 
+    void ICoreService.Init() {}
+
+    void ICoreService.Load()
+    {
+      virtualMachine = NWNXLib.VirtualMachine();
+    }
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Unload() {}
+
     internal IEnumerable<ScriptParam> GetCurrentContextScriptParams()
     {
       if (IsInScriptContext)
@@ -201,16 +200,5 @@ namespace Anvil.API
 
       return virtualMachine.m_cRunTimeStack.GetStackPointer();
     }
-
-    void ICoreService.Init() {}
-
-    void ICoreService.Load()
-    {
-      virtualMachine = NWNXLib.VirtualMachine();
-    }
-
-    void ICoreService.Unload() {}
-
-    void ICoreService.Shutdown() {}
   }
 }

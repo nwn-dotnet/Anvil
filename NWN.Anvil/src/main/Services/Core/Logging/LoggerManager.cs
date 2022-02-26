@@ -50,12 +50,12 @@ namespace Anvil.Services
 
     void ICoreService.Load() {}
 
-    void ICoreService.Unload() {}
-
     void ICoreService.Shutdown()
     {
       LogManager.Shutdown();
     }
+
+    void ICoreService.Unload() {}
 
     private static LoggingConfiguration GetDefaultConfig()
     {

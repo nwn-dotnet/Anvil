@@ -25,23 +25,6 @@ namespace Anvil.Services
       LogFactory = CreateLogHandler,
     };
 
-    public ServiceContainer BuildCoreContainer(AnvilCore anvilCore)
-    {
-      ServiceContainer serviceContainer = CreateContainer();
-      serviceContainer.RegisterInstance(anvilCore);
-
-      RegisterCoreService<NwServer>(serviceContainer);
-      RegisterCoreService<LoggerManager>(serviceContainer);
-      RegisterCoreService<UnhandledExceptionLogger>(serviceContainer);
-      RegisterCoreService<ModuleLoadTracker>(serviceContainer);
-      RegisterCoreService<VirtualMachineFunctionHandler>(serviceContainer);
-      RegisterCoreService<HookService>(serviceContainer);
-      RegisterCoreService<VirtualMachine>(serviceContainer);
-      RegisterCoreService<PluginManager>(serviceContainer);
-
-      return serviceContainer;
-    }
-
     public ServiceContainer BuildAnvilServiceContainer(ServiceContainer coreContainer)
     {
       ServiceContainer serviceContainer = CreateContainer();
@@ -65,10 +48,19 @@ namespace Anvil.Services
       return serviceContainer;
     }
 
-    private ServiceContainer CreateContainer()
+    public ServiceContainer BuildCoreContainer(AnvilCore anvilCore)
     {
-      ServiceContainer serviceContainer = new ServiceContainer(containerOptions);
-      SetupInjectPropertySelector(serviceContainer);
+      ServiceContainer serviceContainer = CreateContainer();
+      serviceContainer.RegisterInstance(anvilCore);
+
+      RegisterCoreService<NwServer>(serviceContainer);
+      RegisterCoreService<LoggerManager>(serviceContainer);
+      RegisterCoreService<UnhandledExceptionLogger>(serviceContainer);
+      RegisterCoreService<ModuleLoadTracker>(serviceContainer);
+      RegisterCoreService<VirtualMachineFunctionHandler>(serviceContainer);
+      RegisterCoreService<HookService>(serviceContainer);
+      RegisterCoreService<VirtualMachine>(serviceContainer);
+      RegisterCoreService<PluginManager>(serviceContainer);
 
       return serviceContainer;
     }
@@ -126,6 +118,18 @@ namespace Anvil.Services
       Log.Info("Registered service {Service}", bindToType.FullName);
     }
 
+    private static void RegisterCoreService<T>(ServiceContainer serviceContainer) where T : ICoreService
+    {
+      Type bindToType = typeof(T);
+      if (bindToType.IsAbstract || bindToType.ContainsGenericParameters)
+      {
+        return;
+      }
+
+      ServiceBindingOptionsAttribute options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      RegisterBindings(serviceContainer, bindToType, new[] { bindToType, typeof(ICoreService) }, options);
+    }
+
     private static void RegisterExplicitBindings(ServiceContainer serviceContainer, Type bindToType, IEnumerable<Type> bindFromTypes, string serviceName, ILifetime lifeTime)
     {
       foreach (Type binding in bindFromTypes)
@@ -163,18 +167,6 @@ namespace Anvil.Services
       serviceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
     }
 
-    private static void RegisterCoreService<T>(ServiceContainer serviceContainer) where T : ICoreService
-    {
-      Type bindToType = typeof(T);
-      if (bindToType.IsAbstract || bindToType.ContainsGenericParameters)
-      {
-        return;
-      }
-
-      ServiceBindingOptionsAttribute options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-      RegisterBindings(serviceContainer, bindToType, new[] { bindToType, typeof(ICoreService) }, options);
-    }
-
     private static void TryRegisterType(PluginManager pluginManager, ServiceContainer serviceContainer, Type bindToType)
     {
       if (!bindToType.IsClass || bindToType.IsAbstract || bindToType.ContainsGenericParameters)
@@ -193,6 +185,14 @@ namespace Anvil.Services
       {
         RegisterBindings(serviceContainer, bindToType, bindings.Select(attribute => attribute.BindFrom), options);
       }
+    }
+
+    private ServiceContainer CreateContainer()
+    {
+      ServiceContainer serviceContainer = new ServiceContainer(containerOptions);
+      SetupInjectPropertySelector(serviceContainer);
+
+      return serviceContainer;
     }
   }
 }

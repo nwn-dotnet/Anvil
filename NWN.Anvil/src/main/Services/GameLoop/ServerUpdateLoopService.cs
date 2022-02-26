@@ -13,13 +13,11 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    [Inject]
-    private static VirtualMachine VirtualMachine { get; set; }
-
-    internal delegate int MainLoopHook(void* pServerExoAppInternal);
-
     private static FunctionHook<MainLoopHook> hook;
     private static IUpdateable[] updateables;
+
+    [Inject]
+    private static VirtualMachine VirtualMachine { get; set; }
 
     public ServerUpdateLoopService(HookService hookService, IEnumerable<IUpdateable> updateables)
     {
@@ -29,10 +27,7 @@ namespace Anvil.Services
       hook = hookService.RequestHook<MainLoopHook>(pHook, FunctionsLinux._ZN21CServerExoAppInternal8MainLoopEv, HookOrder.VeryEarly);
     }
 
-    public void Dispose()
-    {
-      updateables = Array.Empty<IUpdateable>();
-    }
+    internal delegate int MainLoopHook(void* pServerExoAppInternal);
 
     [UnmanagedCallersOnly]
     public static int OnLoop(void* pServerExoAppInternal)
@@ -53,6 +48,11 @@ namespace Anvil.Services
       });
 
       return hook.CallOriginal(pServerExoAppInternal);
+    }
+
+    public void Dispose()
+    {
+      updateables = Array.Empty<IUpdateable>();
     }
   }
 }
