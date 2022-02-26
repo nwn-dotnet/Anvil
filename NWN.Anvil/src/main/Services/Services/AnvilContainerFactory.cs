@@ -33,6 +33,7 @@ namespace Anvil.Services
       RegisterCoreService<NwServer>(serviceContainer);
       RegisterCoreService<LoggerManager>(serviceContainer);
       RegisterCoreService<UnhandledExceptionLogger>(serviceContainer);
+      RegisterCoreService<ModuleLoadTracker>(serviceContainer);
       RegisterCoreService<VirtualMachineFunctionHandler>(serviceContainer);
       RegisterCoreService<HookService>(serviceContainer);
       RegisterCoreService<VirtualMachine>(serviceContainer);
