@@ -14,7 +14,7 @@ namespace Anvil.Tests.API
     private static VirtualMachine VirtualMachine { get; set; }
 
     [Test(Description = "Starts an async task, then attempts to switch back to the main thread & script context.")]
-    [Timeout(10000)]
+    [Timeout(2000)]
     public async Task ReturnToMainThreadAfterSwitch()
     {
       await Task.Run(async () =>

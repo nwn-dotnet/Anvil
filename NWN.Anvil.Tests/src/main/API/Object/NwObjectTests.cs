@@ -13,7 +13,7 @@ namespace Anvil.Tests.API
     private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
 
     [Test(Description = "Tests if assigning an action/closure using WaitForObjectContext correctly updates the script context.")]
-    [Timeout(5000)]
+    [Timeout(2000)]
     public async Task WaitForObjectContextEntersCorrectContext()
     {
       NwModule module = NwModule.Instance;
@@ -31,7 +31,7 @@ namespace Anvil.Tests.API
     }
 
     [Test(Description = "Tests if adding an action correctly queues an action on the game object.")]
-    [Timeout(5000)]
+    [Timeout(2000)]
     public async Task QueueCreatureActionIsQueued()
     {
       NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation);
