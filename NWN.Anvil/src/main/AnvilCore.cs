@@ -30,6 +30,9 @@ namespace Anvil
     [Inject]
     private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
 
+    [Inject]
+    private NwServer NwServer { get; init; }
+
     private readonly IContainerFactory containerFactory;
 
     private readonly ServiceContainer coreServiceContainer;
@@ -72,7 +75,7 @@ namespace Anvil
     {
       foreach (ICoreService coreService in CoreServices)
       {
-        Log.Info($"Init core service: {coreService.GetType().FullName}");
+        Log.Info("Initialising core service: {CoreService}", coreService.GetType().FullName);
         coreService.Init();
       }
 
@@ -101,7 +104,6 @@ namespace Anvil
 
     private void Load()
     {
-      NwServer.Instance.Init(NWNXLib.AppManager().m_pServerExoApp);
       foreach (ICoreService coreService in CoreServices)
       {
         coreService.Load();
@@ -200,7 +202,7 @@ namespace Anvil
     private void CheckServerVersion()
     {
       AssemblyName assemblyName = Assemblies.Anvil.GetName();
-      Version serverVersion = NwServer.Instance.ServerVersion;
+      Version serverVersion = NwServer.ServerVersion;
 
       if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
       {

@@ -1,30 +1,21 @@
 using System;
+using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public sealed unsafe class NwServer
+  [ServiceBindingOptions(InternalBindingPriority.Highest)]
+  public sealed unsafe class NwServer : ICoreService
   {
-    public static readonly NwServer Instance = new NwServer(NWNXLib.ExoBase());
+    public static NwServer Instance { get; private set; }
 
-    private readonly CExoBase exoBase;
+    private CExoBase exoBase;
     private CNetLayer netLayer;
     private CServerExoApp server;
 
-    internal NwServer(CExoBase exoBase)
+    public NwServer()
     {
-      this.exoBase = exoBase;
-      UserDirectory = exoBase.m_sUserDirectory.ToString();
-      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
-    }
-
-    internal void Init(CServerExoApp server)
-    {
-      this.server = server;
-      netLayer = server.GetNetLayer();
-
-      WorldTimer = new WorldTimer(server.GetWorldTimer());
-      ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
+      Instance = this;
     }
 
     /// <summary>
@@ -58,12 +49,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the version of this server.
     /// </summary>
-    public Version ServerVersion { get; }
+    public Version ServerVersion { get; set; }
 
     /// <summary>
     /// Gets the absolute path of the server's home directory (-userDirectory).
     /// </summary>
-    public string UserDirectory { get; }
+    public string UserDirectory { get; set; }
 
     /// <summary>
     /// Gets the server world timer.
@@ -203,5 +194,25 @@ namespace Anvil.API
 
       return null;
     }
+
+    void ICoreService.Init()
+    {
+      exoBase = NWNXLib.ExoBase();
+      UserDirectory = exoBase.m_sUserDirectory.ToString();
+      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
+    }
+
+    void ICoreService.Load()
+    {
+      server = NWNXLib.AppManager().m_pServerExoApp;
+      netLayer = server.GetNetLayer();
+
+      WorldTimer = new WorldTimer(server.GetWorldTimer());
+      ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
+    }
+
+    void ICoreService.Unload() {}
+
+    void ICoreService.Shutdown() {}
   }
 }

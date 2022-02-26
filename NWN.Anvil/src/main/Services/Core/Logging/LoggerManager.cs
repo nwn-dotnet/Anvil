@@ -7,15 +7,18 @@ using NLog.Targets;
 
 namespace Anvil.Services
 {
-  [ServiceBindingOptions(InternalBindingPriority.Highest)]
+  [ServiceBindingOptions(InternalBindingPriority.VeryHigh)]
   internal sealed class LoggerManager : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
     private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message}${onexception:${newline}${exception:format=ToString}}");
 
-    public LoggerManager()
+    private readonly NwServer nwServer;
+
+    public LoggerManager(NwServer nwServer)
     {
+      this.nwServer = nwServer;
+
       LogManager.AutoShutdown = false;
       LogManager.Configuration = null;
       LogManager.ThrowConfigExceptions = true;
@@ -42,7 +45,7 @@ namespace Anvil.Services
         Log.Info("Using default configuration");
       }
 
-      LogManager.Configuration.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
+      LogManager.Configuration.Variables["nwn_home"] = nwServer.UserDirectory;
     }
 
     void ICoreService.Load() {}
@@ -84,7 +87,7 @@ namespace Anvil.Services
     private LoggingConfiguration GetConfigFromFile(string path)
     {
       LoggingConfiguration config = new XmlLoggingConfiguration(path);
-      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
+      config.Variables["nwn_home"] = nwServer.UserDirectory;
 
       return config;
     }

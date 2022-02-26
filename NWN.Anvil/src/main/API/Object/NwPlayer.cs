@@ -33,6 +33,9 @@ namespace Anvil.API
     [Inject]
     private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; }
 
+    [Inject]
+    private static NwServer NwServer { get; set; }
+
     internal readonly CNWSPlayer Player;
 
     internal NwPlayer(CNWSPlayer player)
@@ -509,8 +512,8 @@ namespace Anvil.API
     public async Task Delete(string kickMessage, bool preserveBackup = true)
     {
       string bicName = BicFileName;
-      string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
-      string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
+      string serverVault = NwServer.GetAliasPath("SERVERVAULT");
+      string playerDir = NwServer.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
       string characterName = LoginCreature.Name;
       string playerName = PlayerName;
 
@@ -529,7 +532,7 @@ namespace Anvil.API
       await NwTask.NextFrame();
 
       // Delete their character's TURD
-      bool turdDeleted = NwServer.Instance.DeletePlayerTURD(playerName, characterName);
+      bool turdDeleted = NwServer.DeletePlayerTURD(playerName, characterName);
       if (!turdDeleted)
       {
         Log.Warn("Could not delete the TURD for deleted character {Character}", characterName);

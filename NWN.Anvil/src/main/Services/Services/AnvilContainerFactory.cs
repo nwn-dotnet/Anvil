@@ -30,6 +30,7 @@ namespace Anvil.Services
       ServiceContainer serviceContainer = CreateContainer();
       serviceContainer.RegisterInstance(anvilCore);
 
+      RegisterCoreService<NwServer>(serviceContainer);
       RegisterCoreService<LoggerManager>(serviceContainer);
       RegisterCoreService<UnhandledExceptionLogger>(serviceContainer);
       RegisterCoreService<VirtualMachineFunctionHandler>(serviceContainer);
