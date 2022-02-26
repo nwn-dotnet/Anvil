@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Anvil.API.Events;
 using Anvil.Internal;
 using Anvil.Services;
-using Newtonsoft.Json;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
@@ -499,9 +498,7 @@ namespace Anvil.API
     /// <returns>The window token on success (!= 0), or 0 on error.</returns>
     public int CreateNuiWindow(NuiWindow window, string windowId = "")
     {
-      string jsonString = JsonConvert.SerializeObject(window);
-      Json json = Json.Parse(jsonString);
-      return NWScript.NuiCreate(ControlledCreature, json, windowId);
+      return NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
     }
 
     /// <summary>
@@ -933,8 +930,7 @@ namespace Anvil.API
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
     public T NuiGetUserData<T>(int uiToken)
     {
-      Json json = NWScript.NuiGetUserData(ControlledCreature, uiToken);
-      return JsonConvert.DeserializeObject<T>(json.Dump());
+      return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(ControlledCreature, uiToken));
     }
 
     /// <summary>
@@ -958,8 +954,7 @@ namespace Anvil.API
     /// <typeparam name="T">The type of data to store. Must be serializable to JSON.</typeparam>
     public void NuiSetUserData<T>(int uiToken, T userData)
     {
-      Json json = Json.Parse(JsonConvert.SerializeObject(userData));
-      NWScript.NuiSetUserData(ControlledCreature, uiToken, json);
+      NWScript.NuiSetUserData(ControlledCreature, uiToken, JsonUtility.ToJsonStructure(userData));
     }
 
     /// <summary>
@@ -1293,9 +1288,7 @@ namespace Anvil.API
     /// <returns>True if the window was successfully created, otherwise false.</returns>
     public bool TryCreateNuiWindow(NuiWindow window, out int token, string windowId = "")
     {
-      string jsonString = JsonConvert.SerializeObject(window);
-      Json json = Json.Parse(jsonString);
-      token = NWScript.NuiCreate(ControlledCreature, json, windowId);
+      token = NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
 
       return token != 0;
     }
