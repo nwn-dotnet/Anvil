@@ -67,21 +67,25 @@ namespace Anvil.API
     /// <summary>
     /// Gets the alpha value of this color as a float (0-1).
     /// </summary>
+    [JsonIgnore]
     public float AlphaF => Alpha / 255f;
 
     /// <summary>
     /// Gets the blue value of this color as a float (0-1).
     /// </summary>
+    [JsonIgnore]
     public float BlueF => Blue / 255f;
 
     /// <summary>
     /// Gets the green value of this color as a float (0-1).
     /// </summary>
+    [JsonIgnore]
     public float GreenF => Green / 255f;
 
     /// <summary>
     /// Gets the red value of this color as a float (0-1).
     /// </summary>
+    [JsonIgnore]
     public float RedF => Red / 255f;
 
     /// <summary>
