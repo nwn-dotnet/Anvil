@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -16,7 +14,7 @@ namespace Anvil
 {
   /// <summary>
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
-  /// Until <see cref="Init(IntPtr, int, IContainerFactory)"/> is called, all APIs are unavailable for usage.
+  /// Until <see cref="Init(IntPtr, int, IServiceManager)"/> is called, all APIs are unavailable for usage.
   /// </summary>
   public sealed class AnvilCore
   {
@@ -25,32 +23,23 @@ namespace Anvil
     private static AnvilCore instance;
 
     [Inject]
-    private IReadOnlyList<ICoreService> CoreServices { get; init; }
-
-    [Inject]
     private NwServer NwServer { get; init; }
 
     [Inject]
     private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
 
-    private readonly IContainerFactory containerFactory;
+    private readonly IServiceManager serviceManager;
 
-    private readonly ServiceContainer coreServiceContainer;
-    private List<ILateDisposable> lateDisposableServices;
-    private ServiceContainer serviceContainer;
-
-    private AnvilCore(IContainerFactory containerFactory)
+    private AnvilCore(IServiceManager serviceManager)
     {
-      this.containerFactory = containerFactory;
-      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
-
-      coreServiceContainer = containerFactory.BuildCoreContainer(this);
-      coreServiceContainer.InjectProperties(this);
+      Log.Info("Using {ServiceManager} to manage Anvil services", serviceManager.GetType().FullName);
+      this.serviceManager = serviceManager;
+      this.serviceManager.CoreServiceContainer.InjectProperties(this);
     }
 
     public static T GetService<T>()
     {
-      return instance.serviceContainer.GetInstance<T>();
+      return instance.serviceManager.AnvilServiceContainer.GetInstance<T>();
     }
 
     /// <summary>
@@ -58,13 +47,13 @@ namespace Anvil
     /// </summary>
     /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
     /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
-    /// <param name="containerFactory">An optional container factory to use instead of the default <see cref="AnvilContainerFactory"/>.</param>
+    /// <param name="serviceManager">A custom service manager to use instead of the default <see cref="AnvilServiceManager"/>. For advanced users only.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IContainerFactory containerFactory = default)
+    public static int Init(IntPtr arg, int argLength, IServiceManager serviceManager = default)
     {
-      containerFactory ??= new AnvilContainerFactory();
-      instance = new AnvilCore(containerFactory);
+      serviceManager ??= new AnvilServiceManager();
+      instance = new AnvilCore(serviceManager);
 
       NWNCore.NativeEventHandles eventHandles = new NWNCore.NativeEventHandles
       {
@@ -91,7 +80,7 @@ namespace Anvil
       {
         Log.Info("Reloading Anvil");
         instance.Unload();
-        instance.Load();
+        instance.LoadAndStart();
       }, TimeSpan.Zero);
     }
 
@@ -111,11 +100,7 @@ namespace Anvil
 
     private void Init()
     {
-      foreach (ICoreService coreService in CoreServices)
-      {
-        Log.Info("Initialising core service: {CoreService}", coreService.GetType().FullName);
-        coreService.Init();
-      }
+      serviceManager.Init();
 
       try
       {
@@ -140,18 +125,10 @@ namespace Anvil
       CheckServerVersion();
     }
 
-    private void Load()
+    private void LoadAndStart()
     {
-      foreach (ICoreService coreService in CoreServices)
-      {
-        coreService.Load();
-      }
-
-      serviceContainer = containerFactory.BuildAnvilServiceContainer(coreServiceContainer);
-      foreach (IInitializable service in serviceContainer.GetAllInstances<IInitializable>().OrderBy(service => service.GetType().GetServicePriority()))
-      {
-        service.Init();
-      }
+      serviceManager.Load();
+      serviceManager.Start();
     }
 
     private void OnNWNXSignal(string signal)
@@ -162,7 +139,7 @@ namespace Anvil
           Init();
           break;
         case "ON_MODULE_LOAD_FINISH":
-          Load();
+          LoadAndStart();
           break;
         case "ON_DESTROY_SERVER":
           Log.Info("Server is shutting down...");
@@ -203,41 +180,17 @@ namespace Anvil
 
     private void Shutdown()
     {
-      if (lateDisposableServices == null)
-      {
-        return;
-      }
-
-      foreach (ILateDisposable lateDisposable in lateDisposableServices)
-      {
-        lateDisposable.LateDispose();
-      }
-
-      foreach (ICoreService coreService in CoreServices.Reverse())
-      {
-        coreService.Shutdown();
-      }
-
-      lateDisposableServices = null;
+      serviceManager.Shutdown();
     }
 
     private void Unload()
     {
-      if (serviceContainer == null)
+      serviceManager?.Unload();
+      if (serviceManager == null)
       {
         return;
       }
 
-      Log.Info("Unloading services...");
-      lateDisposableServices = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
-
-      serviceContainer.Dispose();
-      serviceContainer = null;
-
-      foreach (ICoreService coreService in CoreServices.Reverse())
-      {
-        coreService.Unload();
-      }
     }
   }
 }

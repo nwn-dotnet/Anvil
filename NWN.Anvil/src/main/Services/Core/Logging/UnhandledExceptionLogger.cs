@@ -15,11 +15,12 @@ namespace Anvil.Services
 
     void ICoreService.Init()
     {
-      Log.Info("Registering Unhandled Exception Logger");
       AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
     }
 
     void ICoreService.Load() {}
+
+    void ICoreService.Start() {}
 
     void ICoreService.Shutdown()
     {

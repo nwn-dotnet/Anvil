@@ -186,6 +186,8 @@ namespace Anvil.API
       ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
     }
 
+    void ICoreService.Start() {}
+
     void ICoreService.Shutdown() {}
 
     void ICoreService.Unload() {}

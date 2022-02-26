@@ -50,6 +50,8 @@ namespace Anvil.Services
 
     void ICoreService.Load() {}
 
+    void ICoreService.Start() {}
+
     void ICoreService.Shutdown()
     {
       LogManager.Shutdown();

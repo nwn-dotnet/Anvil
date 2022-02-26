@@ -7,19 +7,25 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    [Inject]
-    private HookService HookService { get; init; }
+    private readonly HookService hookService;
 
     private FunctionHook<LoadModuleInProgressHook> loadModuleInProgressHook;
 
     private delegate uint LoadModuleInProgressHook(void* pModule, int nAreasLoaded, int nAreasToLoad);
 
+    public ModuleLoadTracker(HookService hookService)
+    {
+      this.hookService = hookService;
+    }
+
     void ICoreService.Init()
     {
-      loadModuleInProgressHook = HookService.RequestHook<LoadModuleInProgressHook>(OnModuleLoadProgressChange, FunctionsLinux._ZN10CNWSModule20LoadModuleInProgressEii, HookOrder.Earliest);
+      loadModuleInProgressHook = hookService.RequestHook<LoadModuleInProgressHook>(OnModuleLoadProgressChange, FunctionsLinux._ZN10CNWSModule20LoadModuleInProgressEii, HookOrder.Earliest);
     }
 
     void ICoreService.Load() {}
+
+    void ICoreService.Start() {}
 
     void ICoreService.Shutdown() {}
 
