@@ -44,6 +44,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the appearance of this creature.
     /// </summary>
+    [Obsolete("Use NwCreature.Appearance instead.")]
     public AppearanceType CreatureAppearanceType
     {
       get => (AppearanceType)NWScript.GetAppearanceType(this);

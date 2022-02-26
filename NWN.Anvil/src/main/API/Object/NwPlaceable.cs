@@ -20,6 +20,12 @@ namespace Anvil.API
       Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 
+    public PlaceableTableEntry Appearance
+    {
+      get => NwGameTables.PlaceableTable[Placeable.m_nAppearance];
+      set => Placeable.m_nAppearance = (ushort)value.RowIndex;
+    }
+
     /// <summary>
     /// Gets or sets the dialog ResRef for this placeable.
     /// </summary>

@@ -30,11 +30,11 @@ namespace Anvil.Services
       }
     }
 
-    ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint oidSelf)
+    ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint objectSelf)
     {
       if (scriptHandlers.TryGetValue(script, out ScriptCallback handler))
       {
-        return handler.ProcessCallbacks(oidSelf);
+        return handler.ProcessCallbacks(objectSelf);
       }
 
       return ScriptHandleResult.NotHandled;

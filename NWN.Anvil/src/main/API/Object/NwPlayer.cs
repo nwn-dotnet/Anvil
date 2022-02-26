@@ -1344,6 +1344,32 @@ namespace Anvil.API
       NWScript.Vibrate(ControlledCreature, (int)motor, strength, (float)duration.TotalSeconds);
     }
 
+    public void ForceAreaReload()
+    {
+      NwCreature creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      CNWSCreature cCreature = creature.Creature;
+
+      NwArea area = creature.Area;
+      Vector3 position = creature.Position;
+
+      cCreature.m_oidDesiredArea = area.ObjectId;
+      cCreature.m_vDesiredAreaLocation = cCreature.m_vPosition;
+      cCreature.m_bDesiredAreaUpdateComplete = false.ToInt();
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      message.SendServerToPlayerArea_ClientArea(Player, area.Area, position.X, position.Y, position.Z, cCreature.m_vOrientation, false.ToInt());
+      cCreature.SetArea(null);
+
+      cCreature.m_oidDesiredArea = NwObject.Invalid;
+      message.DeleteLastUpdateObjectsInOtherAreas(Player);
+      cCreature.m_oidDesiredArea = area.ObjectId;
+    }
+
     internal static NwPlayer FromPlayerId(uint playerId)
     {
       CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId, 0)?.AsNWSPlayer();

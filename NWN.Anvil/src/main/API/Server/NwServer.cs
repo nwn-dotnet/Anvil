@@ -5,21 +5,26 @@ namespace Anvil.API
 {
   public sealed unsafe class NwServer
   {
-    public static readonly NwServer Instance = new NwServer(NWNXLib.ExoBase(), NWNXLib.AppManager().m_pServerExoApp);
-    private readonly CExoBase exoBase;
-    private readonly CNetLayer netLayer;
-    private readonly CServerExoApp server;
+    public static readonly NwServer Instance = new NwServer(NWNXLib.ExoBase());
 
-    internal NwServer(CExoBase exoBase, CServerExoApp server)
+    private readonly CExoBase exoBase;
+    private CNetLayer netLayer;
+    private CServerExoApp server;
+
+    internal NwServer(CExoBase exoBase)
     {
       this.exoBase = exoBase;
+      UserDirectory = exoBase.m_sUserDirectory.ToString();
+      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
+    }
+
+    internal void Init(CServerExoApp server)
+    {
       this.server = server;
       netLayer = server.GetNetLayer();
 
-      UserDirectory = exoBase.m_sUserDirectory.ToString();
       WorldTimer = new WorldTimer(server.GetWorldTimer());
       ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
-      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
     }
 
     /// <summary>
@@ -48,7 +53,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets server configuration and display info.
     /// </summary>
-    public ServerInfo ServerInfo { get; }
+    public ServerInfo ServerInfo { get; private set; }
 
     /// <summary>
     /// Gets the version of this server.
@@ -63,7 +68,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the server world timer.
     /// </summary>
-    public WorldTimer WorldTimer { get; }
+    public WorldTimer WorldTimer { get; private set; }
 
     /// <summary>
     /// Bans the provided public CD key.

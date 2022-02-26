@@ -1,15 +1,14 @@
-using System;
 using System.IO;
 using Anvil.API;
-using Anvil.Services;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
 
-namespace Anvil.Internal
+namespace Anvil.Services
 {
-  internal sealed class LoggerManager : IDisposable
+  [ServiceBindingOptions(InternalBindingPriority.Highest)]
+  internal sealed class LoggerManager : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -22,12 +21,7 @@ namespace Anvil.Internal
       LogManager.ThrowConfigExceptions = true;
     }
 
-    public void Dispose()
-    {
-      LogManager.Shutdown();
-    }
-
-    public void Init()
+    void ICoreService.Init()
     {
       if (File.Exists(HomeStorage.NLogConfig))
       {
@@ -47,11 +41,17 @@ namespace Anvil.Internal
         LogManager.Configuration = GetDefaultConfig();
         Log.Info("Using default configuration");
       }
+
+      LogManager.Configuration.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
     }
 
-    public void InitVariables()
+    void ICoreService.Load() {}
+
+    void ICoreService.Unload() {}
+
+    void ICoreService.Shutdown()
     {
-      LogManager.Configuration.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
+      LogManager.Shutdown();
     }
 
     private static LoggingConfiguration GetDefaultConfig()

@@ -1,24 +1,31 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Anvil.API;
-using Anvil.Internal;
 using NLog;
+using NWN.Native.API;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(ICoreLoopHandler))]
-  internal sealed class ServerUpdateLoopService : ICoreLoopHandler, IDisposable
+  internal sealed unsafe class ServerUpdateLoopService : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private IUpdateable[] updateables;
+    [Inject]
+    private static VirtualMachine VirtualMachine { get; set; }
 
-    public ServerUpdateLoopService(IEnumerable<IUpdateable> updateables)
+    internal delegate int MainLoopHook(void* pServerExoAppInternal);
+
+    private static FunctionHook<MainLoopHook> hook;
+    private static IUpdateable[] updateables;
+
+    public ServerUpdateLoopService(HookService hookService, IEnumerable<IUpdateable> updateables)
     {
-      this.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
-      Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");
+      ServerUpdateLoopService.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
+
+      delegate* unmanaged<void*, int> pHook = &OnLoop;
+      hook = hookService.RequestHook<MainLoopHook>(pHook, FunctionsLinux._ZN21CServerExoAppInternal8MainLoopEv, HookOrder.VeryEarly);
     }
 
     public void Dispose()
@@ -26,19 +33,25 @@ namespace Anvil.Services
       updateables = Array.Empty<IUpdateable>();
     }
 
-    public void OnLoop()
+    [UnmanagedCallersOnly]
+    public static int OnLoop(void* pServerExoAppInternal)
     {
-      foreach (IUpdateable updateable in updateables)
+      VirtualMachine.ExecuteInScriptContext(() =>
       {
-        try
+        foreach (IUpdateable updateable in updateables)
         {
-          updateable.Update();
+          try
+          {
+            updateable.Update();
+          }
+          catch (Exception e)
+          {
+            Log.Error(e);
+          }
         }
-        catch (Exception e)
-        {
-          Log.Error(e);
-        }
-      }
+      });
+
+      return hook.CallOriginal(pServerExoAppInternal);
     }
   }
 }

@@ -1,13 +1,16 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Anvil.API;
 using Anvil.Internal;
-using Anvil.Plugins;
 using Anvil.Services;
+using LightInject;
 using NLog;
 using NWN.Core;
+using NWN.Native.API;
 
 namespace Anvil
 {
@@ -15,21 +18,23 @@ namespace Anvil
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
   /// Until <see cref="Init(IntPtr, int, IContainerFactory)"/> is called, all APIs are unavailable for usage.
   /// </summary>
-  public sealed class AnvilCore : IServerLifeCycleEventHandler
+  public sealed class AnvilCore
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private static AnvilCore instance;
 
-    private CoreInteropHandler interopHandler;
-    private LoggerManager loggerManager;
+    [Inject]
+    private IReadOnlyList<ICoreService> CoreServices { get; init; }
 
-    private PluginManager pluginManager;
-    private ServiceManager serviceManager;
+    [Inject]
+    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
 
-    private UnhandledExceptionLogger unhandledExceptionLogger;
+    private readonly IContainerFactory containerFactory;
 
-    private AnvilCore() {}
+    private readonly ServiceContainer coreServiceContainer;
+    private ServiceContainer serviceContainer;
+    private List<ILateDisposable> lateDisposableServices;
 
     /// <summary>
     /// Entrypoint to start Anvil.
@@ -42,15 +47,110 @@ namespace Anvil
     public static int Init(IntPtr arg, int argLength, IContainerFactory containerFactory = default)
     {
       containerFactory ??= new AnvilContainerFactory();
+      instance = new AnvilCore(containerFactory);
 
-      instance = new AnvilCore();
-      instance.interopHandler = new CoreInteropHandler(instance);
-      instance.loggerManager = new LoggerManager();
-      instance.unhandledExceptionLogger = new UnhandledExceptionLogger();
-      instance.pluginManager = new PluginManager();
-      instance.serviceManager = new ServiceManager(instance.pluginManager, instance.interopHandler, containerFactory);
+      NWNCore.NativeEventHandles eventHandles = new NWNCore.NativeEventHandles
+      {
+        Signal = instance.OnNWNXSignal,
+        RunScript = instance.VirtualMachineFunctionHandler.OnRunScript,
+        Closure = instance.VirtualMachineFunctionHandler.OnClosure,
+      };
 
-      return NWNCore.Init(arg, argLength, instance.interopHandler, instance.interopHandler);
+      return NWNCore.Init(arg, argLength, instance.VirtualMachineFunctionHandler, eventHandles);
+    }
+
+    private AnvilCore(IContainerFactory containerFactory)
+    {
+      this.containerFactory = containerFactory;
+      Log.Info("Using {ContainerFactory} to install service bindings", containerFactory.GetType().FullName);
+
+      coreServiceContainer = containerFactory.BuildCoreContainer(this);
+      coreServiceContainer.InjectProperties(this);
+    }
+
+    private void Init()
+    {
+      foreach (ICoreService coreService in CoreServices)
+      {
+        Log.Info($"Init core service: {coreService.GetType().FullName}");
+        coreService.Init();
+      }
+
+      try
+      {
+        PrelinkNative();
+      }
+      catch (Exception e)
+      {
+        Log.Fatal(e, "Failed to load {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
+          Assemblies.Anvil.GetName().Name,
+          AssemblyInfo.VersionInfo.InformationalVersion,
+          Assemblies.Core.GetName().Version,
+          Assemblies.Native.GetName().Version);
+        throw;
+      }
+
+      Log.Info("Loading {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
+        Assemblies.Anvil.GetName().Name,
+        AssemblyInfo.VersionInfo.InformationalVersion,
+        Assemblies.Core.GetName().Version,
+        Assemblies.Native.GetName().Version);
+
+      CheckServerVersion();
+    }
+
+    private void Load()
+    {
+      NwServer.Instance.Init(NWNXLib.AppManager().m_pServerExoApp);
+      foreach (ICoreService coreService in CoreServices)
+      {
+        coreService.Load();
+      }
+
+      serviceContainer = containerFactory.BuildAnvilServiceContainer(coreServiceContainer);
+      foreach (IInitializable service in serviceContainer.GetAllInstances<IInitializable>().OrderBy(service => service.GetType().GetServicePriority()))
+      {
+        service.Init();
+      }
+    }
+
+    private void Unload()
+    {
+      if (serviceContainer == null)
+      {
+        return;
+      }
+
+      Log.Info("Unloading services...");
+      lateDisposableServices = serviceContainer.GetAllInstances<ILateDisposable>().ToList();
+
+      serviceContainer.Dispose();
+      serviceContainer = null;
+
+      foreach (ICoreService coreService in CoreServices)
+      {
+        coreService.Unload();
+      }
+    }
+
+    private void Shutdown()
+    {
+      if (lateDisposableServices == null)
+      {
+        return;
+      }
+
+      foreach (ILateDisposable lateDisposable in lateDisposableServices)
+      {
+        lateDisposable.LateDispose();
+      }
+
+      foreach (ICoreService coreService in CoreServices)
+      {
+        coreService.Shutdown();
+      }
+
+      lateDisposableServices = null;
     }
 
     /// <summary>
@@ -64,38 +164,36 @@ namespace Anvil
         Log.Error("Hot Reload of plugins is not enabled (NWM_RELOAD_ENABLED=true)");
       }
 
-      instance.serviceManager?.GetService<SchedulerService>()?.Schedule(() =>
+      GetService<SchedulerService>()?.Schedule(() =>
       {
         Log.Info("Reloading Anvil");
-
-        instance.ShutdownServices();
-        instance.serviceManager.ShutdownLateServices();
-        instance.pluginManager.Unload();
-
-        instance.pluginManager.Load();
-        instance.InitServices();
+        instance.Unload();
+        instance.Load();
       }, TimeSpan.Zero);
     }
 
-    void IServerLifeCycleEventHandler.HandleLifeCycleEvent(LifeCycleEvent eventType)
+    public static T GetService<T>()
     {
-      switch (eventType)
+      return instance.serviceContainer.GetInstance<T>();
+    }
+
+    private void OnNWNXSignal(string signal)
+    {
+      switch (signal)
       {
-        case LifeCycleEvent.ModuleLoad:
-          InitCore();
-          InitServices();
+        case "ON_NWNX_LOADED":
+          Init();
           break;
-        case LifeCycleEvent.DestroyServer:
+        case "ON_MODULE_LOAD_FINISH":
+          Load();
+          break;
+        case "ON_DESTROY_SERVER":
           Log.Info("Server is shutting down...");
-          ShutdownServices();
+          Unload();
           break;
-        case LifeCycleEvent.DestroyServerAfter:
-          ShutdownCore();
+        case "ON_DESTROY_SERVER_AFTER":
+          Shutdown();
           break;
-        case LifeCycleEvent.Unhandled:
-          break;
-        default:
-          throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
       }
     }
 
@@ -113,42 +211,6 @@ namespace Anvil
       }
     }
 
-    private void InitCore()
-    {
-      loggerManager.Init();
-
-      try
-      {
-        PrelinkNative();
-      }
-      catch (Exception e)
-      {
-        Log.Fatal(e, "Failed to load {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
-          Assemblies.Anvil.GetName().Name,
-          AssemblyInfo.VersionInfo.InformationalVersion,
-          Assemblies.Core.GetName().Version,
-          Assemblies.Native.GetName().Version);
-        throw;
-      }
-
-      loggerManager.InitVariables();
-      unhandledExceptionLogger.Init();
-
-      Log.Info("Loading {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
-        Assemblies.Anvil.GetName().Name,
-        AssemblyInfo.VersionInfo.InformationalVersion,
-        Assemblies.Core.GetName().Version,
-        Assemblies.Native.GetName().Version);
-
-      CheckServerVersion();
-      pluginManager.Load();
-    }
-
-    private void InitServices()
-    {
-      serviceManager.Init(instance.pluginManager, instance.serviceManager);
-    }
-
     private void PrelinkNative()
     {
       if (!EnvironmentConfig.NativePrelinkEnabled)
@@ -161,7 +223,7 @@ namespace Anvil
 
       try
       {
-        Marshal.PrelinkAll(typeof(NWN.Native.API.NWNXLibPINVOKE));
+        Marshal.PrelinkAll(typeof(NWNXLibPINVOKE));
         Log.Info("Prelinking complete");
       }
       catch (TypeInitializationException)
@@ -174,19 +236,6 @@ namespace Anvil
         Log.Fatal("The NWNX_SWIG_DotNET plugin could not be loaded");
         throw;
       }
-    }
-
-    private void ShutdownCore()
-    {
-      serviceManager.ShutdownLateServices();
-      pluginManager.Unload();
-      unhandledExceptionLogger.Dispose();
-      loggerManager.Dispose();
-    }
-
-    private void ShutdownServices()
-    {
-      serviceManager.ShutdownServices();
     }
   }
 }

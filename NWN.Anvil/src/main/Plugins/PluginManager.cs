@@ -12,8 +12,7 @@ namespace Anvil.Plugins
   /// <summary>
   /// Loads all available plugins and their types for service initialisation.
   /// </summary>
-  [ServiceBindingOptions(InternalBindingPriority.Core)]
-  public sealed class PluginManager
+  public sealed class PluginManager : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -66,7 +65,9 @@ namespace Anvil.Plugins
       return assembly;
     }
 
-    internal void Load()
+    void ICoreService.Init() {}
+
+    void ICoreService.Load()
     {
       LoadCore();
       BootstrapPlugins();
@@ -76,7 +77,7 @@ namespace Anvil.Plugins
       ResourcePaths = GetResourcePaths();
     }
 
-    internal void Unload()
+    void ICoreService.Unload()
     {
       loadedAssemblies.Clear();
       LoadedTypes = null;
@@ -92,6 +93,8 @@ namespace Anvil.Plugins
 
       plugins.Clear();
     }
+
+    void ICoreService.Shutdown() {}
 
     private void BootstrapPlugins()
     {
