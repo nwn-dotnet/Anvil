@@ -4,9 +4,9 @@ namespace Anvil.Services
 {
   public interface IServiceManager
   {
-    public ServiceContainer CoreServiceContainer { get; init; }
+    public ServiceContainer CoreServiceContainer { get; }
 
-    public ServiceContainer AnvilServiceContainer { get; set; }
+    public ServiceContainer AnvilServiceContainer { get; }
 
     /// <summary>
     /// Called during NWNX initialization. Core services should be initialized here.
