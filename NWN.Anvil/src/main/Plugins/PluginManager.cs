@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Anvil.Internal;
 using Anvil.Services;
 using NLog;
@@ -89,14 +90,43 @@ namespace Anvil.Plugins
       ResourcePaths = null;
 
       Log.Info("Unloading plugins...");
+      Dictionary<WeakReference, string> unloadingContexts = new Dictionary<WeakReference, string>();
       foreach (Plugin plugin in plugins)
       {
         Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
-        plugin.Dispose();
-        Log.Info("Unloaded DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
+        unloadingContexts.Add(plugin.Unload(), plugin.Name.Name);
       }
 
       plugins.Clear();
+      plugins.TrimExcess();
+
+      if (EnvironmentConfig.ReloadEnabled)
+      {
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+
+        while (!IsUnloadComplete(unloadingContexts))
+        {
+          GC.Collect();
+          GC.WaitForPendingFinalizers();
+          Thread.Sleep(2000);
+        }
+      }
+    }
+
+    private bool IsUnloadComplete(Dictionary<WeakReference, string> unloadingContexts)
+    {
+      bool retVal = true;
+      foreach (KeyValuePair<WeakReference, string> context in unloadingContexts)
+      {
+        if (context.Key.IsAlive)
+        {
+          Log.Warn("Plugin {PluginName} is preventing unload", context.Value);
+          retVal = false;
+        }
+      }
+
+      return retVal;
     }
 
     private void BootstrapPlugins()
