@@ -8,14 +8,14 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
   public sealed class InjectionService : ICoreService
   {
-    private readonly IServiceManager containers;
+    private readonly IServiceManager serviceManager;
     private readonly PluginManager pluginManager;
 
     private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
 
-    public InjectionService(IServiceManager containers, PluginManager pluginManager)
+    public InjectionService(IServiceManager serviceManager, PluginManager pluginManager)
     {
-      this.containers = containers;
+      this.serviceManager = serviceManager;
       this.pluginManager = pluginManager;
     }
 
@@ -32,7 +32,7 @@ namespace Anvil.Services
         return default;
       }
 
-      containers.AnvilServiceContainer.InjectProperties(instance);
+      serviceManager.AnvilServiceContainer.InjectProperties(instance);
       return instance;
     }
 
@@ -45,7 +45,7 @@ namespace Anvil.Services
 
         foreach (PropertyInfo propertyInfo in injectableTypes)
         {
-          object value = containers.AnvilServiceContainer.TryGetInstance(propertyInfo.PropertyType);
+          object value = serviceManager.AnvilServiceContainer.TryGetInstance(propertyInfo.PropertyType);
           propertyInfo.SetValue(null, value);
           injectedStaticProperties.Add(propertyInfo);
         }
