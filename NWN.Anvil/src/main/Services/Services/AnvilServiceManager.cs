@@ -23,7 +23,7 @@ namespace Anvil.Services
       LogFactory = CreateLogHandler,
     };
 
-    public ServiceContainer CoreServiceContainer { get; private set; }
+    public ServiceContainer CoreServiceContainer { get; }
 
     public ServiceContainer AnvilServiceContainer { get; private set; }
 
