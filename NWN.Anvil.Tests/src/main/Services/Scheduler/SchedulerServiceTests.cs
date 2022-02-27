@@ -26,7 +26,7 @@ namespace Anvil.Tests.Services
       bool executed = false;
       SchedulerService.Schedule(() =>
       {
-        Assert.That(stopwatch.Elapsed.TotalMilliseconds, Is.EqualTo(delay.TotalMilliseconds).Within(2).Percent, "Delay was not within the margin of error.");
+        Assert.That(stopwatch.Elapsed, Is.EqualTo(delay).Within(100).Milliseconds, "Delay was not within the margin of error.");
         executed = true;
       }, delay);
 
@@ -64,7 +64,7 @@ namespace Anvil.Tests.Services
       int executionCount = 0;
       ScheduledTask task = SchedulerService.ScheduleRepeating(() =>
       {
-        Assert.That(stopwatch.Elapsed.TotalMilliseconds, Is.EqualTo(interval.TotalMilliseconds).Within(2).Percent, "Delay was not within the margin of error.");
+        Assert.That(stopwatch.Elapsed, Is.EqualTo(interval).Within(100).Milliseconds, "Delay was not within the margin of error.");
         executionCount++;
         stopwatch.Restart();
       }, interval);
