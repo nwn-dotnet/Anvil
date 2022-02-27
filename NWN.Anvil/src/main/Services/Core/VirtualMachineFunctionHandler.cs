@@ -10,20 +10,19 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    [Inject]
+    private static ScriptDispatchService ScriptDispatchService { get; set; }
+
+    [Inject]
+    private static ServerUpdateLoopService ServerUpdateLoopService { get; set; }
+
     private readonly Dictionary<ulong, Action> closures = new Dictionary<ulong, Action>();
     private readonly Stack<uint> scriptContexts = new Stack<uint>();
 
     private ulong nextEventId;
     private uint objectSelf;
 
-    private ScriptDispatchService scriptDispatchService;
-
     uint ICoreFunctionHandler.ObjectSelf => objectSelf;
-
-    public void Load(ScriptDispatchService scriptDispatchService)
-    {
-      this.scriptDispatchService = scriptDispatchService;
-    }
 
     void ICoreFunctionHandler.ClosureActionDoCommand(uint obj, Action func)
     {
@@ -85,7 +84,7 @@ namespace Anvil.Services
 
       try
       {
-        retVal = (int)scriptDispatchService.TryExecuteScript(script, oidSelf);
+        retVal = (int)ScriptDispatchService.TryExecuteScript(script, oidSelf);
       }
       catch (Exception e)
       {
@@ -95,6 +94,11 @@ namespace Anvil.Services
       scriptContexts.Pop();
       objectSelf = scriptContexts.Count == 0 ? NWScript.OBJECT_INVALID : scriptContexts.Peek();
       return retVal;
+    }
+
+    public void OnLoop(ulong _)
+    {
+      ServerUpdateLoopService?.Update();
     }
   }
 }

@@ -60,6 +60,7 @@ namespace Anvil
         Signal = instance.OnNWNXSignal,
         RunScript = instance.VirtualMachineFunctionHandler.OnRunScript,
         Closure = instance.VirtualMachineFunctionHandler.OnClosure,
+        MainLoop = instance.VirtualMachineFunctionHandler.OnLoop,
       };
 
       return NWNCore.Init(arg, argLength, instance.VirtualMachineFunctionHandler, eventHandles);
@@ -185,12 +186,7 @@ namespace Anvil
 
     private void Unload()
     {
-      serviceManager?.Unload();
-      if (serviceManager == null)
-      {
-        return;
-      }
-
+      serviceManager.Unload();
     }
   }
 }

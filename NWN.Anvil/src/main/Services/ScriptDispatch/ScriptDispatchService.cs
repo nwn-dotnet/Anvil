@@ -6,12 +6,9 @@ using NLog;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ScriptDispatchService))]
-  internal sealed class ScriptDispatchService : IInitializable
+  internal sealed class ScriptDispatchService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-    [Inject]
-    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
 
     private readonly List<IScriptDispatcher> dispatchers;
 
@@ -42,11 +39,6 @@ namespace Anvil.Services
         Log.Error(e);
         return (int)ScriptHandleResult.Handled;
       }
-    }
-
-    void IInitializable.Init()
-    {
-      VirtualMachineFunctionHandler.Load(this);
     }
   }
 }

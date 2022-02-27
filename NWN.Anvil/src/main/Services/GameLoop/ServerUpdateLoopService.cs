@@ -1,53 +1,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Anvil.API;
 using NLog;
-using NWN.Native.API;
 
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ServerUpdateLoopService))]
-  internal sealed unsafe class ServerUpdateLoopService : IDisposable
+  internal sealed class ServerUpdateLoopService : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private static FunctionHook<MainLoopHook> hook;
-    private static IUpdateable[] updateables;
+    private IUpdateable[] updateables;
 
-    [Inject]
-    private static VirtualMachine VirtualMachine { get; set; }
-
-    public ServerUpdateLoopService(HookService hookService, IEnumerable<IUpdateable> updateables)
+    public ServerUpdateLoopService(IEnumerable<IUpdateable> updateables)
     {
-      ServerUpdateLoopService.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
-
-      delegate* unmanaged<void*, int> pHook = &OnLoop;
-      hook = hookService.RequestHook<MainLoopHook>(pHook, FunctionsLinux._ZN21CServerExoAppInternal8MainLoopEv, HookOrder.VeryEarly);
+      this.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
     }
 
-    internal delegate int MainLoopHook(void* pServerExoAppInternal);
-
-    [UnmanagedCallersOnly]
-    public static int OnLoop(void* pServerExoAppInternal)
+    internal void Update()
     {
-      VirtualMachine.ExecuteInScriptContext(() =>
+      for (int i = 0; i < updateables.Length; i++)
       {
-        foreach (IUpdateable updateable in updateables)
+        try
         {
-          try
-          {
-            updateable.Update();
-          }
-          catch (Exception e)
-          {
-            Log.Error(e);
-          }
+          updateables[i].Update();
         }
-      });
-
-      return hook.CallOriginal(pServerExoAppInternal);
+        catch (Exception e)
+        {
+          Log.Error(e);
+        }
+      }
     }
 
     public void Dispose()
