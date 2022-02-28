@@ -722,6 +722,9 @@ namespace Anvil.API
       NWScript.FloatingTextStrRefOnCreature(strRef, ControlledCreature, broadcastToParty.ToInt());
     }
 
+    /// <summary>
+    /// Forces this player to reload their current area.
+    /// </summary>
     public void ForceAreaReload()
     {
       NwCreature creature = ControlledCreature;
