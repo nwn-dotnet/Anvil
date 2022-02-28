@@ -21,7 +21,7 @@ namespace Anvil.Plugins
 
     public Dictionary<string, string> AdditionalAssemblyPaths { get; init; }
 
-    public Assembly Assembly { get; internal set; }
+    public Assembly Assembly { get; private set; }
 
     public bool HasResourceDirectory => ResourcePath != null && Directory.Exists(ResourcePath);
 
@@ -54,6 +54,7 @@ namespace Anvil.Plugins
 
     public WeakReference Unload()
     {
+      Assembly = null;
       WeakReference unloadHandle = new WeakReference(pluginLoadContext, true);
       if (EnvironmentConfig.ReloadEnabled)
       {
