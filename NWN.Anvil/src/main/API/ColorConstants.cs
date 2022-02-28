@@ -1,6 +1,6 @@
 namespace Anvil.API
 {
-  public class ColorConstants
+  public static class ColorConstants
   {
     public static readonly Color Black = new Color(0, 0, 0);
     public static readonly Color Blue = new Color(0, 0, 255);
