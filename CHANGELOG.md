@@ -15,14 +15,25 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
   - `PlaceableSoundTable`
   - `PlaceableTable`
 - `NwArea`: Added `GetTileInfo()`
+- Added `InjectionService` & `ServiceBinding` tests.
+- `NwPlaceable.Appearance`: Gets or sets the appearance for the placeable.
+- `ModuleLoadTracker`: Added core service for tracking module load progress as debug log messages.
+  - If a module fails to load due to an error with an area, the area is logged as an error instead.
 
 ### Package Updates
-- N/A
+- NWNX c51d233 -> d15bc22
+- NWN.Core 8193.34.2 -> 8193.34.3
 
 ### Changed
-- N/A
+- Rewrote core services and initialisation logic for easier extensibility, and reduced coupling with AnvilCore.
+  - All core services now implement `ICoreService`, an interface containing specific event functions that are called at specific times in the server lifecycle.
+  - Core services are executed in the order defined by `ServiceBindingOptions`.
+  - The CoreService composition root is defined in `AnvilServiceManager`.
+  - AnvilCore is now "dumber", and simply passes signals to `AnvilServiceManager` and `VirtualMachineFunctionHandler`.
+  - `AnvilServiceManager` merges service initialization in `AnvilCore`, with the container/composition root setup from `IContainerFactory`
 
 ### Deprecated
+- `NwGameObject.CreatureAppearanceType`. Use `NwCreature.Appearance` instead.
 - APIs using int-based StrRef parameters have been deprecated. Please use the StrRef overloads:
   - `NwGameObject.PlaySoundByStrRef()`
   - `NwPlayer.ClearTlkOverride()`
@@ -47,7 +58,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed a stack overflow when injecting the `InjectionService` as a property dependency.
+- Unload is now triggered on all plugins before waiting for the assemblies to be unloaded. This fixes some edge cases where assemblies would not unload.
 
 ## 8193.34.2
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...v8193.34.2

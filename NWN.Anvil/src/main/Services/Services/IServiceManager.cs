@@ -2,10 +2,20 @@ using LightInject;
 
 namespace Anvil.Services
 {
+  /// <summary>
+  /// The interface that manages all core, anvil and plugin services.<br/>
+  /// Advanced: implement in your own class and specify in <see cref="AnvilCore.Init"/> to implement your own service manager.
+  /// </summary>
   public interface IServiceManager
   {
+    /// <summary>
+    /// The container holding internal core services. (logging, function hooking, etc).
+    /// </summary>
     public ServiceContainer CoreServiceContainer { get; }
 
+    /// <summary>
+    /// The container holding services for anvil and anvil plugins.
+    /// </summary>
     public ServiceContainer AnvilServiceContainer { get; }
 
     /// <summary>
