@@ -30,6 +30,8 @@ namespace Anvil.Services
 
     private PluginManager pluginManager;
     private List<ICoreService> coreServices;
+
+    private bool shuttingDown;
     private List<ILateDisposable> lateDisposableServices;
 
     public AnvilServiceManager()
@@ -109,14 +111,20 @@ namespace Anvil.Services
 
     void IServiceManager.Shutdown()
     {
-      if (lateDisposableServices == null)
+      // Prevent multiple invocations
+      if (shuttingDown)
       {
         return;
       }
 
-      foreach (ILateDisposable lateDisposable in lateDisposableServices)
+      shuttingDown = true;
+
+      if (lateDisposableServices != null)
       {
-        lateDisposable.LateDispose();
+        foreach (ILateDisposable lateDisposable in lateDisposableServices)
+        {
+          lateDisposable.LateDispose();
+        }
       }
 
       for (int i = coreServices.Count - 1; i >= 0; i--)
