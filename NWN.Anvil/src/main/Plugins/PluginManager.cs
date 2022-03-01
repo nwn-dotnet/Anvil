@@ -16,6 +16,9 @@ namespace Anvil.Plugins
   [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
   public sealed class PluginManager : ICoreService
   {
+    private const int PluginUnloadAttempts = 10;
+    private const int PluginUnloadSleepMs = 5000;
+
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
@@ -90,11 +93,11 @@ namespace Anvil.Plugins
       ResourcePaths = null;
 
       Log.Info("Unloading plugins...");
-      Dictionary<WeakReference, string> unloadingContexts = new Dictionary<WeakReference, string>();
+      Dictionary<WeakReference, string> pendingUnloads = new Dictionary<WeakReference, string>();
       foreach (Plugin plugin in plugins)
       {
         Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
-        unloadingContexts.Add(plugin.Unload(), plugin.Name.Name);
+        pendingUnloads.Add(plugin.Unload(), plugin.Name.Name);
       }
 
       plugins.Clear();
@@ -102,26 +105,31 @@ namespace Anvil.Plugins
 
       if (EnvironmentConfig.ReloadEnabled)
       {
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
-
-        while (!IsUnloadComplete(unloadingContexts))
+        for (int unloadAttempt = 1; !IsUnloadComplete(pendingUnloads, unloadAttempt); unloadAttempt++)
         {
           GC.Collect();
           GC.WaitForPendingFinalizers();
-          Thread.Sleep(2000);
+
+          if (unloadAttempt > PluginUnloadAttempts)
+          {
+            Thread.Sleep(PluginUnloadSleepMs);
+          }
         }
       }
     }
 
-    private bool IsUnloadComplete(Dictionary<WeakReference, string> unloadingContexts)
+    private bool IsUnloadComplete(Dictionary<WeakReference, string> pendingUnloads, int attempt)
     {
       bool retVal = true;
-      foreach (KeyValuePair<WeakReference, string> context in unloadingContexts)
+      foreach (KeyValuePair<WeakReference, string> context in pendingUnloads)
       {
         if (context.Key.IsAlive)
         {
-          Log.Warn("Plugin {PluginName} is preventing unload", context.Value);
+          if (attempt > PluginUnloadAttempts)
+          {
+            Log.Warn("Plugin {PluginName} is preventing unload", context.Value);
+          }
+
           retVal = false;
         }
       }
