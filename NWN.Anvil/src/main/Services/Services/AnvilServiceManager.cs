@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using Anvil.API;
 using Anvil.Plugins;
 using LightInject;
@@ -79,12 +80,23 @@ namespace Anvil.Services
 
     void IServiceManager.Unload()
     {
+      UnloadAnvilServices();
+      UnloadCoreServices();
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void UnloadAnvilServices()
+    {
       Log.Info("Unloading anvil services...");
+
+      // This must always happen in a separate scope/method, otherwise in Debug and some Release configurations, AnvilServiceContainer will hold a strong reference and prevent plugin unload.
       lateDisposableServices = AnvilServiceContainer.GetAllInstances<ILateDisposable>().ToList();
-
       AnvilServiceContainer.Dispose();
-      AnvilServiceContainer = null;
+      AnvilServiceContainer = CreateContainer();
+    }
 
+    private void UnloadCoreServices()
+    {
       Log.Info("Unloading core services...");
       for (int i = coreServices.Count - 1; i >= 0; i--)
       {
@@ -93,8 +105,6 @@ namespace Anvil.Services
         Log.Info("Unloading core service {CoreService}", coreService.GetType().FullName);
         coreService.Unload();
       }
-
-      AnvilServiceContainer = CreateContainer();
     }
 
     void IServiceManager.Shutdown()
