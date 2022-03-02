@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Anvil.Internal;
 using Anvil.Services;
 using NLog;
@@ -12,9 +13,12 @@ namespace Anvil.Plugins
   /// <summary>
   /// Loads all available plugins and their types for service initialisation.
   /// </summary>
-  [ServiceBindingOptions(InternalBindingPriority.Core)]
-  public sealed class PluginManager
+  [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
+  public sealed class PluginManager : ICoreService
   {
+    private const int PluginUnloadAttempts = 10;
+    private const int PluginUnloadSleepMs = 5000;
+
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
@@ -66,7 +70,9 @@ namespace Anvil.Plugins
       return assembly;
     }
 
-    internal void Load()
+    void ICoreService.Init() {}
+
+    void ICoreService.Load()
     {
       LoadCore();
       BootstrapPlugins();
@@ -76,21 +82,59 @@ namespace Anvil.Plugins
       ResourcePaths = GetResourcePaths();
     }
 
-    internal void Unload()
+    void ICoreService.Start() {}
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Unload()
     {
       loadedAssemblies.Clear();
       LoadedTypes = null;
       ResourcePaths = null;
 
       Log.Info("Unloading plugins...");
+      Dictionary<WeakReference, string> pendingUnloads = new Dictionary<WeakReference, string>();
       foreach (Plugin plugin in plugins)
       {
         Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
-        plugin.Dispose();
-        Log.Info("Unloaded DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
+        pendingUnloads.Add(plugin.Unload(), plugin.Name.Name);
       }
 
       plugins.Clear();
+      plugins.TrimExcess();
+
+      if (EnvironmentConfig.ReloadEnabled)
+      {
+        for (int unloadAttempt = 1; !IsUnloadComplete(pendingUnloads, unloadAttempt); unloadAttempt++)
+        {
+          GC.Collect();
+          GC.WaitForPendingFinalizers();
+
+          if (unloadAttempt > PluginUnloadAttempts)
+          {
+            Thread.Sleep(PluginUnloadSleepMs);
+          }
+        }
+      }
+    }
+
+    private bool IsUnloadComplete(Dictionary<WeakReference, string> pendingUnloads, int attempt)
+    {
+      bool retVal = true;
+      foreach (KeyValuePair<WeakReference, string> context in pendingUnloads)
+      {
+        if (context.Key.IsAlive)
+        {
+          if (attempt > PluginUnloadAttempts)
+          {
+            Log.Warn("Plugin {PluginName} is preventing unload", context.Value);
+          }
+
+          retVal = false;
+        }
+      }
+
+      return retVal;
     }
 
     private void BootstrapPlugins()

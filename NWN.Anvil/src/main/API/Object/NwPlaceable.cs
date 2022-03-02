@@ -21,6 +21,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the appearance of this placeable.
+    /// </summary>
+    public PlaceableTableEntry Appearance
+    {
+      get => NwGameTables.PlaceableTable[Placeable.m_nAppearance];
+      set => Placeable.m_nAppearance = (ushort)value.RowIndex;
+    }
+
+    /// <summary>
     /// Gets or sets the dialog ResRef for this placeable.
     /// </summary>
     public string DialogResRef

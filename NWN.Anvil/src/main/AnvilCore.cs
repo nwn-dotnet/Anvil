@@ -4,53 +4,66 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Anvil.API;
 using Anvil.Internal;
-using Anvil.Plugins;
 using Anvil.Services;
+using LightInject;
 using NLog;
 using NWN.Core;
+using NWN.Native.API;
 
 namespace Anvil
 {
   /// <summary>
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
-  /// Until <see cref="Init(IntPtr, int, IContainerFactory)"/> is called, all APIs are unavailable for usage.
+  /// Until <see cref="Init(IntPtr, int, IServiceManager)"/> is called, all APIs are unavailable for usage.
   /// </summary>
-  public sealed class AnvilCore : IServerLifeCycleEventHandler
+  public sealed class AnvilCore
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private static AnvilCore instance;
 
-    private CoreInteropHandler interopHandler;
-    private LoggerManager loggerManager;
+    [Inject]
+    private NwServer NwServer { get; init; }
 
-    private PluginManager pluginManager;
-    private ServiceManager serviceManager;
+    [Inject]
+    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
 
-    private UnhandledExceptionLogger unhandledExceptionLogger;
+    private readonly IServiceManager serviceManager;
 
-    private AnvilCore() {}
+    private AnvilCore(IServiceManager serviceManager)
+    {
+      Log.Info("Using {ServiceManager} to manage Anvil services", serviceManager.GetType().FullName);
+      this.serviceManager = serviceManager;
+      this.serviceManager.CoreServiceContainer.InjectProperties(this);
+    }
+
+    public static T GetService<T>()
+    {
+      return instance.serviceManager.AnvilServiceContainer.GetInstance<T>();
+    }
 
     /// <summary>
     /// Entrypoint to start Anvil.
     /// </summary>
     /// <param name="arg">The NativeHandles pointer, provided by the NWNX bootstrap entry point.</param>
     /// <param name="argLength">The size of the NativeHandles bootstrap structure, provided by the NWNX entry point.</param>
-    /// <param name="containerFactory">An optional container factory to use instead of the default <see cref="AnvilContainerFactory"/>.</param>
+    /// <param name="serviceManager">A custom service manager to use instead of the default <see cref="AnvilServiceManager"/>. For advanced users only.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IContainerFactory containerFactory = default)
+    public static int Init(IntPtr arg, int argLength, IServiceManager serviceManager = default)
     {
-      containerFactory ??= new AnvilContainerFactory();
+      serviceManager ??= new AnvilServiceManager();
+      instance = new AnvilCore(serviceManager);
 
-      instance = new AnvilCore();
-      instance.interopHandler = new CoreInteropHandler(instance);
-      instance.loggerManager = new LoggerManager();
-      instance.unhandledExceptionLogger = new UnhandledExceptionLogger();
-      instance.pluginManager = new PluginManager();
-      instance.serviceManager = new ServiceManager(instance.pluginManager, instance.interopHandler, containerFactory);
+      NWNCore.NativeEventHandles eventHandles = new NWNCore.NativeEventHandles
+      {
+        Signal = instance.OnNWNXSignal,
+        RunScript = instance.VirtualMachineFunctionHandler.OnRunScript,
+        Closure = instance.VirtualMachineFunctionHandler.OnClosure,
+        MainLoop = instance.VirtualMachineFunctionHandler.OnLoop,
+      };
 
-      return NWNCore.Init(arg, argLength, instance.interopHandler, instance.interopHandler);
+      return NWNCore.Init(arg, argLength, instance.VirtualMachineFunctionHandler, eventHandles);
     }
 
     /// <summary>
@@ -64,45 +77,18 @@ namespace Anvil
         Log.Error("Hot Reload of plugins is not enabled (NWM_RELOAD_ENABLED=true)");
       }
 
-      instance.serviceManager?.GetService<SchedulerService>()?.Schedule(() =>
+      GetService<SchedulerService>()?.Schedule(() =>
       {
         Log.Info("Reloading Anvil");
-
-        instance.ShutdownServices();
-        instance.serviceManager.ShutdownLateServices();
-        instance.pluginManager.Unload();
-
-        instance.pluginManager.Load();
-        instance.InitServices();
+        instance.Unload();
+        instance.LoadAndStart();
       }, TimeSpan.Zero);
-    }
-
-    void IServerLifeCycleEventHandler.HandleLifeCycleEvent(LifeCycleEvent eventType)
-    {
-      switch (eventType)
-      {
-        case LifeCycleEvent.ModuleLoad:
-          InitCore();
-          InitServices();
-          break;
-        case LifeCycleEvent.DestroyServer:
-          Log.Info("Server is shutting down...");
-          ShutdownServices();
-          break;
-        case LifeCycleEvent.DestroyServerAfter:
-          ShutdownCore();
-          break;
-        case LifeCycleEvent.Unhandled:
-          break;
-        default:
-          throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
-      }
     }
 
     private void CheckServerVersion()
     {
       AssemblyName assemblyName = Assemblies.Anvil.GetName();
-      Version serverVersion = NwServer.Instance.ServerVersion;
+      Version serverVersion = NwServer.ServerVersion;
 
       if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
       {
@@ -113,9 +99,9 @@ namespace Anvil
       }
     }
 
-    private void InitCore()
+    private void Init()
     {
-      loggerManager.Init();
+      serviceManager.Init();
 
       try
       {
@@ -131,9 +117,6 @@ namespace Anvil
         throw;
       }
 
-      loggerManager.InitVariables();
-      unhandledExceptionLogger.Init();
-
       Log.Info("Loading {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
         Assemblies.Anvil.GetName().Name,
         AssemblyInfo.VersionInfo.InformationalVersion,
@@ -141,12 +124,32 @@ namespace Anvil
         Assemblies.Native.GetName().Version);
 
       CheckServerVersion();
-      pluginManager.Load();
     }
 
-    private void InitServices()
+    private void LoadAndStart()
     {
-      serviceManager.Init(instance.pluginManager, instance.serviceManager);
+      serviceManager.Load();
+      serviceManager.Start();
+    }
+
+    private void OnNWNXSignal(string signal)
+    {
+      switch (signal)
+      {
+        case "ON_NWNX_LOADED":
+          Init();
+          break;
+        case "ON_MODULE_LOAD_FINISH":
+          LoadAndStart();
+          break;
+        case "ON_DESTROY_SERVER":
+          Log.Info("Server is shutting down...");
+          Unload();
+          break;
+        case "ON_DESTROY_SERVER_AFTER":
+          Shutdown();
+          break;
+      }
     }
 
     private void PrelinkNative()
@@ -161,7 +164,7 @@ namespace Anvil
 
       try
       {
-        Marshal.PrelinkAll(typeof(NWN.Native.API.NWNXLibPINVOKE));
+        Marshal.PrelinkAll(typeof(NWNXLibPINVOKE));
         Log.Info("Prelinking complete");
       }
       catch (TypeInitializationException)
@@ -176,17 +179,14 @@ namespace Anvil
       }
     }
 
-    private void ShutdownCore()
+    private void Shutdown()
     {
-      serviceManager.ShutdownLateServices();
-      pluginManager.Unload();
-      unhandledExceptionLogger.Dispose();
-      loggerManager.Dispose();
+      serviceManager.Shutdown();
     }
 
-    private void ShutdownServices()
+    private void Unload()
     {
-      serviceManager.ShutdownServices();
+      serviceManager.Unload();
     }
   }
 }

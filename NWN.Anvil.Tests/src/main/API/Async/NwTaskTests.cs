@@ -14,7 +14,7 @@ namespace Anvil.Tests.API
     private static VirtualMachine VirtualMachine { get; set; }
 
     [Test(Description = "Starts an async task, then attempts to switch back to the main thread & script context.")]
-    [Timeout(10000)]
+    [Timeout(2000)]
     public async Task ReturnToMainThreadAfterSwitch()
     {
       await Task.Run(async () =>
@@ -39,7 +39,7 @@ namespace Anvil.Tests.API
 
       await NwTask.Delay(delay);
 
-      Assert.That(stopwatch.Elapsed.TotalMilliseconds, Is.EqualTo(delay.TotalMilliseconds).Within(2).Percent, "Delay was not within the margin of error.");
+      Assert.That(stopwatch.Elapsed, Is.EqualTo(delay).Within(100).Milliseconds, "Delay was not within the margin of error.");
       Assert.That(VirtualMachine.IsInScriptContext, Is.True, "Did not return to the main thread after NwTask.Delay.");
     }
   }

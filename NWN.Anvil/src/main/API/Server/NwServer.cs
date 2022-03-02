@@ -1,25 +1,21 @@
 using System;
+using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public sealed unsafe class NwServer
+  [ServiceBindingOptions(InternalBindingPriority.Highest)]
+  public sealed unsafe class NwServer : ICoreService
   {
-    public static readonly NwServer Instance = new NwServer(NWNXLib.ExoBase(), NWNXLib.AppManager().m_pServerExoApp);
-    private readonly CExoBase exoBase;
-    private readonly CNetLayer netLayer;
-    private readonly CServerExoApp server;
+    public static NwServer Instance { get; private set; }
 
-    internal NwServer(CExoBase exoBase, CServerExoApp server)
+    private CExoBase exoBase;
+    private CNetLayer netLayer;
+    private CServerExoApp server;
+
+    public NwServer()
     {
-      this.exoBase = exoBase;
-      this.server = server;
-      netLayer = server.GetNetLayer();
-
-      UserDirectory = exoBase.m_sUserDirectory.ToString();
-      WorldTimer = new WorldTimer(server.GetWorldTimer());
-      ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
-      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
+      Instance = this;
     }
 
     /// <summary>
@@ -48,22 +44,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets server configuration and display info.
     /// </summary>
-    public ServerInfo ServerInfo { get; }
+    public ServerInfo ServerInfo { get; private set; }
 
     /// <summary>
     /// Gets the version of this server.
     /// </summary>
-    public Version ServerVersion { get; }
+    public Version ServerVersion { get; set; }
 
     /// <summary>
     /// Gets the absolute path of the server's home directory (-userDirectory).
     /// </summary>
-    public string UserDirectory { get; }
+    public string UserDirectory { get; set; }
 
     /// <summary>
     /// Gets the server world timer.
     /// </summary>
-    public WorldTimer WorldTimer { get; }
+    public WorldTimer WorldTimer { get; private set; }
 
     /// <summary>
     /// Bans the provided public CD key.
@@ -173,6 +169,28 @@ namespace Anvil.API
     {
       *NWNXLib.ExitProgram() = 1;
     }
+
+    void ICoreService.Init()
+    {
+      exoBase = NWNXLib.ExoBase();
+      UserDirectory = exoBase.m_sUserDirectory.ToString();
+      ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
+    }
+
+    void ICoreService.Load()
+    {
+      server = NWNXLib.AppManager().m_pServerExoApp;
+      netLayer = server.GetNetLayer();
+
+      WorldTimer = new WorldTimer(server.GetWorldTimer());
+      ServerInfo = new ServerInfo(server.GetServerInfo(), netLayer);
+    }
+
+    void ICoreService.Start() {}
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Unload() {}
 
     private static CExoLinkedListNode FindTURD(CExoLinkedListInternal turds, string playerName, string characterName)
     {

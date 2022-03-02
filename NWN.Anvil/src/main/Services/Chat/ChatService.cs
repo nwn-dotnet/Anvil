@@ -16,13 +16,16 @@ namespace Anvil.Services
       { ChatChannel.PlayerWhisper, 3.0f },
     };
 
+    private readonly NwServer nwServer;
+
     private readonly Dictionary<NwPlayer, Dictionary<ChatChannel, float>> playerHearingDistances = new Dictionary<NwPlayer, Dictionary<ChatChannel, float>>();
     private readonly FunctionHook<SendServerToPlayerChatMessageHook> sendServerToPlayerChatMessageHook;
 
     private bool customHearingDistances;
 
-    public ChatService(HookService hookService)
+    public ChatService(HookService hookService, NwServer nwServer)
     {
+      this.nwServer = nwServer;
       sendServerToPlayerChatMessageHook = hookService.RequestHook<SendServerToPlayerChatMessageHook>(OnSendServerToPlayerChatMessage, FunctionsLinux._ZN11CNWSMessage29SendServerToPlayerChatMessageEhj10CExoStringjRKS0_, HookOrder.Late);
     }
 
@@ -163,7 +166,7 @@ namespace Anvil.Services
         return false.ToInt();
       }
 
-      if (nChatMessageType == ChatChannel.PlayerShout && NwServer.Instance.ServerInfo.PlayOptions.DisallowShouting)
+      if (nChatMessageType == ChatChannel.PlayerShout && nwServer.ServerInfo.PlayOptions.DisallowShouting)
       {
         nChatMessageType = ChatChannel.PlayerTalk;
       }

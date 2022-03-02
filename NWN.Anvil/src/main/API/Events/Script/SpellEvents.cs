@@ -4,7 +4,7 @@ namespace Anvil.API.Events
 {
   public static class SpellEvents
   {
-    public class OnSpellCast : IEvent
+    public sealed class OnSpellCast : IEvent
     {
       public OnSpellCast()
       {

@@ -1,9 +1,10 @@
 using System;
 using NLog;
 
-namespace Anvil.Internal
+namespace Anvil.Services
 {
-  internal sealed class UnhandledExceptionLogger : IDisposable
+  [ServiceBindingOptions(InternalBindingPriority.High)]
+  internal sealed class UnhandledExceptionLogger : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -12,17 +13,22 @@ namespace Anvil.Internal
       Unregister();
     }
 
-    public void Dispose()
+    void ICoreService.Init()
+    {
+      AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+    }
+
+    void ICoreService.Load() {}
+
+    void ICoreService.Start() {}
+
+    void ICoreService.Shutdown()
     {
       Unregister();
       GC.SuppressFinalize(this);
     }
 
-    public void Init()
-    {
-      Log.Info("Registering Unhandled Exception Logger");
-      AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-    }
+    void ICoreService.Unload() {}
 
     private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs eventData)
     {

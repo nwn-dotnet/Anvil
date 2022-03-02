@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using Anvil.Services;
+using NLog;
 
 namespace Anvil.API
 {
@@ -25,8 +26,15 @@ namespace Anvil.API
     [ServiceBindingOptions(InternalBindingPriority.Highest)] // Highest, as we always want this to execute first in the frame.
     internal sealed class Service : IUpdateable
     {
+      private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
       private readonly Stopwatch deltaTimeStopwatch = Stopwatch.StartNew();
       private readonly Stopwatch startupTimeStopwatch = Stopwatch.StartNew();
+
+      public Service()
+      {
+        Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");
+      }
 
       public void Update()
       {

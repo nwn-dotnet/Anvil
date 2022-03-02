@@ -80,6 +80,15 @@ namespace Anvil.API
     public AnimalCompanionCreatureType AnimalCompanionType => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
 
     /// <summary>
+    /// Gets or sets the appearance of this creature.
+    /// </summary>
+    public AppearanceTableEntry Appearance
+    {
+      get => NwGameTables.AppearanceTable[NWScript.GetAppearanceType(this)];
+      set => NWScript.SetCreatureAppearanceType(this, value.RowIndex);
+    }
+
+    /// <summary>
     /// Gets the arcane spell failure factor for this creature.
     /// </summary>
     public int ArcaneSpellFailure => NWScript.GetArcaneSpellFailure(this);

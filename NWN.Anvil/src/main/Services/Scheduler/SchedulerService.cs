@@ -14,7 +14,7 @@ namespace Anvil.Services
   /// </summary>
   [ServiceBinding(typeof(IUpdateable))]
   [ServiceBinding(typeof(SchedulerService))]
-  public class SchedulerService : IUpdateable, IDisposable
+  public sealed class SchedulerService : IUpdateable, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 

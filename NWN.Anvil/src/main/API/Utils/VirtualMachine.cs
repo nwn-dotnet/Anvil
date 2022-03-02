@@ -11,14 +11,13 @@ namespace Anvil.API
   /// <summary>
   /// Standard and Low Level methods and properties for querying/interacting with the NwScript virtual machine.
   /// </summary>
-  [ServiceBinding(typeof(VirtualMachine))]
-  [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed class VirtualMachine
+  public sealed unsafe class VirtualMachine : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly int mainThreadId = Thread.CurrentThread.ManagedThreadId;
-    private readonly CVirtualMachine virtualMachine = NWNXLib.VirtualMachine();
+
+    private CVirtualMachine virtualMachine;
 
     /// <summary>
     /// Gets or sets the current running script event.
@@ -51,7 +50,7 @@ namespace Anvil.API
 
     public int RecursionLevel => virtualMachine.m_nRecursionLevel;
 
-    public unsafe bool ScriptReturnValue
+    public bool ScriptReturnValue
     {
       get
       {
@@ -90,9 +89,9 @@ namespace Anvil.API
       Execute(scriptName, null, scriptParams);
     }
 
-    public void ExecuteInScriptContext(System.Action action, uint objectId = NwObject.Invalid)
+    public void ExecuteInScriptContext(System.Action action, uint objectId = NwObject.Invalid, int scriptEventId = 0, bool valid = false)
     {
-      int spBefore = PushScriptContext(objectId, 0, false);
+      int spBefore = PushScriptContext(objectId, scriptEventId, valid);
       try
       {
         action();
@@ -107,9 +106,9 @@ namespace Anvil.API
       }
     }
 
-    public T ExecuteInScriptContext<T>(System.Func<T> action, uint objectId = NwObject.Invalid)
+    public T ExecuteInScriptContext<T>(System.Func<T> action, uint objectId = NwObject.Invalid, int scriptEventId = 0, bool valid = false)
     {
-      int spBefore = PushScriptContext(objectId, 0, false);
+      int spBefore = PushScriptContext(objectId, scriptEventId, valid);
 
       try
       {
@@ -145,6 +144,19 @@ namespace Anvil.API
 
       return null;
     }
+
+    void ICoreService.Init() {}
+
+    void ICoreService.Load()
+    {
+      virtualMachine = NWNXLib.VirtualMachine();
+    }
+
+    void ICoreService.Start() {}
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Unload() {}
 
     internal IEnumerable<ScriptParam> GetCurrentContextScriptParams()
     {

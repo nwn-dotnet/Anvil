@@ -1,33 +1,30 @@
-using System;
 using System.IO;
 using Anvil.API;
-using Anvil.Services;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
 
-namespace Anvil.Internal
+namespace Anvil.Services
 {
-  internal sealed class LoggerManager : IDisposable
+  [ServiceBindingOptions(InternalBindingPriority.VeryHigh)]
+  internal sealed class LoggerManager : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
     private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message}${onexception:${newline}${exception:format=ToString}}");
 
-    public LoggerManager()
+    private readonly NwServer nwServer;
+
+    public LoggerManager(NwServer nwServer)
     {
+      this.nwServer = nwServer;
+
       LogManager.AutoShutdown = false;
       LogManager.Configuration = null;
       LogManager.ThrowConfigExceptions = true;
     }
 
-    public void Dispose()
-    {
-      LogManager.Shutdown();
-    }
-
-    public void Init()
+    void ICoreService.Init()
     {
       if (File.Exists(HomeStorage.NLogConfig))
       {
@@ -47,12 +44,20 @@ namespace Anvil.Internal
         LogManager.Configuration = GetDefaultConfig();
         Log.Info("Using default configuration");
       }
+
+      LogManager.Configuration.Variables["nwn_home"] = nwServer.UserDirectory;
     }
 
-    public void InitVariables()
+    void ICoreService.Load() {}
+
+    void ICoreService.Start() {}
+
+    void ICoreService.Shutdown()
     {
-      LogManager.Configuration.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
+      LogManager.Shutdown();
     }
+
+    void ICoreService.Unload() {}
 
     private static LoggingConfiguration GetDefaultConfig()
     {
@@ -84,7 +89,7 @@ namespace Anvil.Internal
     private LoggingConfiguration GetConfigFromFile(string path)
     {
       LoggingConfiguration config = new XmlLoggingConfiguration(path);
-      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
+      config.Variables["nwn_home"] = nwServer.UserDirectory;
 
       return config;
     }

@@ -28,6 +28,9 @@ namespace Anvil.API
     private static EventService EventService { get; set; }
 
     [Inject]
+    private static NwServer NwServer { get; set; }
+
+    [Inject]
     private static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; set; }
 
     [Inject]
@@ -509,8 +512,8 @@ namespace Anvil.API
     public async Task Delete(string kickMessage, bool preserveBackup = true)
     {
       string bicName = BicFileName;
-      string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
-      string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
+      string serverVault = NwServer.GetAliasPath("SERVERVAULT");
+      string playerDir = NwServer.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
       string characterName = LoginCreature.Name;
       string playerName = PlayerName;
 
@@ -529,7 +532,7 @@ namespace Anvil.API
       await NwTask.NextFrame();
 
       // Delete their character's TURD
-      bool turdDeleted = NwServer.Instance.DeletePlayerTURD(playerName, characterName);
+      bool turdDeleted = NwServer.DeletePlayerTURD(playerName, characterName);
       if (!turdDeleted)
       {
         Log.Warn("Could not delete the TURD for deleted character {Character}", characterName);
@@ -717,6 +720,35 @@ namespace Anvil.API
     public void FloatingTextStrRef(int strRef, bool broadcastToParty = true)
     {
       NWScript.FloatingTextStrRefOnCreature(strRef, ControlledCreature, broadcastToParty.ToInt());
+    }
+
+    /// <summary>
+    /// Forces this player to reload their current area.
+    /// </summary>
+    public void ForceAreaReload()
+    {
+      NwCreature creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      CNWSCreature cCreature = creature.Creature;
+
+      NwArea area = creature.Area;
+      Vector3 position = creature.Position;
+
+      cCreature.m_oidDesiredArea = area.ObjectId;
+      cCreature.m_vDesiredAreaLocation = cCreature.m_vPosition;
+      cCreature.m_bDesiredAreaUpdateComplete = false.ToInt();
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      message.SendServerToPlayerArea_ClientArea(Player, area.Area, position.X, position.Y, position.Z, cCreature.m_vOrientation, false.ToInt());
+      cCreature.SetArea(null);
+
+      cCreature.m_oidDesiredArea = NwObject.Invalid;
+      message.DeleteLastUpdateObjectsInOtherAreas(Player);
+      cCreature.m_oidDesiredArea = area.ObjectId;
     }
 
     /// <summary>

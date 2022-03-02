@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Anvil.API;
-using Anvil.Internal;
 using NLog;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(ICoreLoopHandler))]
-  internal sealed class ServerUpdateLoopService : ICoreLoopHandler, IDisposable
+  [ServiceBinding(typeof(ServerUpdateLoopService))]
+  internal sealed class ServerUpdateLoopService : IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -18,27 +16,26 @@ namespace Anvil.Services
     public ServerUpdateLoopService(IEnumerable<IUpdateable> updateables)
     {
       this.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
-      Log.Debug(Stopwatch.IsHighResolution ? "Using high resolution loop timer for loop operations..." : "Using system time for loop operations...");
     }
 
-    public void Dispose()
+    internal void Update()
     {
-      updateables = Array.Empty<IUpdateable>();
-    }
-
-    public void OnLoop()
-    {
-      foreach (IUpdateable updateable in updateables)
+      for (int i = 0; i < updateables.Length; i++)
       {
         try
         {
-          updateable.Update();
+          updateables[i].Update();
         }
         catch (Exception e)
         {
           Log.Error(e);
         }
       }
+    }
+
+    public void Dispose()
+    {
+      updateables = Array.Empty<IUpdateable>();
     }
   }
 }

@@ -1,7 +1,7 @@
 namespace Anvil.Services
 {
   /// <summary>
-  /// Interface that is invoked after the server has been shutdown, and during reloads.
+  /// Interface that is invoked after the server has been shutdown. Not called during hot reloads.
   /// </summary>
   /// <remarks>
   /// This interface should only be used to release function hooks, or to replicate data that was written during server shutdown (e.g. characters).<br/>

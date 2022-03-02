@@ -6,7 +6,7 @@ using Anvil.Internal;
 
 namespace Anvil.Plugins
 {
-  internal sealed class Plugin : IDisposable
+  internal sealed class Plugin
   {
     private readonly PluginManager pluginManager;
 
@@ -37,24 +37,6 @@ namespace Anvil.Plugins
 
     public Dictionary<string, string> UnmanagedAssemblyPaths { get; init; }
 
-    public void Dispose()
-    {
-      Assembly = null;
-
-      pluginLoadContext?.Dispose();
-      WeakReference unloadHandle = new WeakReference(pluginLoadContext);
-      pluginLoadContext = null;
-
-      if (EnvironmentConfig.ReloadEnabled)
-      {
-        while (unloadHandle.IsAlive)
-        {
-          GC.Collect();
-          GC.WaitForPendingFinalizers();
-        }
-      }
-    }
-
     public void Load()
     {
       pluginLoadContext = new PluginLoadContext(pluginManager, this);
@@ -68,6 +50,19 @@ namespace Anvil.Plugins
       {
         Loading = false;
       }
+    }
+
+    public WeakReference Unload()
+    {
+      Assembly = null;
+      WeakReference unloadHandle = new WeakReference(pluginLoadContext, true);
+      if (EnvironmentConfig.ReloadEnabled)
+      {
+        pluginLoadContext.Dispose();
+      }
+
+      pluginLoadContext = null;
+      return unloadHandle;
     }
   }
 }

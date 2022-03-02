@@ -10,11 +10,11 @@ namespace Anvil.Plugins
   {
     private static readonly string[] NativeLibPrefixes = { "lib" };
     private readonly Dictionary<string, WeakReference<Assembly>> assemblyCache = new Dictionary<string, WeakReference<Assembly>>();
-    private readonly Plugin plugin;
 
-    private readonly PluginManager pluginManager;
+    private PluginManager pluginManager;
 
-    private readonly AssemblyDependencyResolver resolver;
+    private Plugin plugin;
+    private AssemblyDependencyResolver resolver;
 
     public PluginLoadContext(PluginManager pluginManager, Plugin plugin) : base(EnvironmentConfig.ReloadEnabled)
     {
@@ -22,14 +22,6 @@ namespace Anvil.Plugins
       this.plugin = plugin;
 
       resolver = new AssemblyDependencyResolver(plugin.Path);
-    }
-
-    public void Dispose()
-    {
-      if (EnvironmentConfig.ReloadEnabled)
-      {
-        Unload();
-      }
     }
 
     protected override Assembly Load(AssemblyName assemblyName)
@@ -124,6 +116,15 @@ namespace Anvil.Plugins
       }
 
       return null;
+    }
+
+    public void Dispose()
+    {
+      pluginManager = null;
+      plugin = null;
+      resolver = null;
+      assemblyCache.Clear();
+      Unload();
     }
   }
 }
