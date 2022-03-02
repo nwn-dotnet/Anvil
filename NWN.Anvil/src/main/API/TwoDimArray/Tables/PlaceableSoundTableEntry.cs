@@ -13,6 +13,7 @@ namespace Anvil.API
     public string Locked { get; private set; }
 
     public string Opened { get; private set; }
+
     public int RowIndex { get; init; }
 
     public string Used { get; private set; }

@@ -7,6 +7,7 @@ namespace Anvil.API
     public string Label { get; private set; }
 
     public StrRef? Name { get; private set; }
+
     public int RowIndex { get; init; }
 
     void ITwoDimArrayEntry.InterpretEntry(TwoDimArrayEntry entry)

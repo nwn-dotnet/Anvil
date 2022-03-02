@@ -17,6 +17,7 @@ namespace Anvil.API
     public string ModelName { get; private set; }
 
     public string Reflection { get; private set; }
+
     public int RowIndex { get; init; }
 
     public ShadowSize? ShadowSize { get; private set; }
