@@ -152,9 +152,9 @@ namespace Anvil.API
       virtualMachine = NWNXLib.VirtualMachine();
     }
 
-    void ICoreService.Start() {}
-
     void ICoreService.Shutdown() {}
+
+    void ICoreService.Start() {}
 
     void ICoreService.Unload() {}
 

@@ -14,6 +14,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
   - `LightColorTable`
   - `PlaceableSoundTable`
   - `PlaceableTable`
+  - `ProgrammedEffectTable`
+  - `VisualEffectTable`
 - `NwArea`: Added `GetTileInfo()`
 - Added `InjectionService` & `ServiceBinding` tests.
 - `NwPlaceable.Appearance`: Gets or sets the appearance for the placeable.

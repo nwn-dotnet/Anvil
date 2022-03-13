@@ -16,10 +16,10 @@ namespace Anvil.Plugins
   [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
   public sealed class PluginManager : ICoreService
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private const int PluginUnloadAttempts = 10;
     private const int PluginUnloadSleepMs = 5000;
-
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
     private readonly List<Plugin> plugins = new List<Plugin>();
@@ -82,9 +82,9 @@ namespace Anvil.Plugins
       ResourcePaths = GetResourcePaths();
     }
 
-    void ICoreService.Start() {}
-
     void ICoreService.Shutdown() {}
+
+    void ICoreService.Start() {}
 
     void ICoreService.Unload()
     {
@@ -116,25 +116,6 @@ namespace Anvil.Plugins
           }
         }
       }
-    }
-
-    private bool IsUnloadComplete(Dictionary<WeakReference, string> pendingUnloads, int attempt)
-    {
-      bool retVal = true;
-      foreach (KeyValuePair<WeakReference, string> context in pendingUnloads)
-      {
-        if (context.Key.IsAlive)
-        {
-          if (attempt > PluginUnloadAttempts)
-          {
-            Log.Warn("Plugin {PluginName} is preventing unload", context.Value);
-          }
-
-          retVal = false;
-        }
-      }
-
-      return retVal;
     }
 
     private void BootstrapPlugins()
@@ -215,6 +196,25 @@ namespace Anvil.Plugins
       }
 
       return assemblyTypes;
+    }
+
+    private bool IsUnloadComplete(Dictionary<WeakReference, string> pendingUnloads, int attempt)
+    {
+      bool retVal = true;
+      foreach (KeyValuePair<WeakReference, string> context in pendingUnloads)
+      {
+        if (context.Key.IsAlive)
+        {
+          if (attempt > PluginUnloadAttempts)
+          {
+            Log.Warn("Plugin {PluginName} is preventing unload", context.Value);
+          }
+
+          retVal = false;
+        }
+      }
+
+      return retVal;
     }
 
     private bool IsValidDependency(string plugin, AssemblyName requested, AssemblyName resolved)

@@ -35,6 +35,10 @@ namespace Anvil.API
     /// </summary>
     public static TwoDimArray<PlaceableTableEntry> PlaceableTable { get; private set; }
 
+    public static TwoDimArray<ProgrammedEffectTableEntry> ProgrammedEffectTable { get; private set; }
+
+    public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; }
+
     [ServiceBinding(typeof(Factory))]
     [ServiceBindingOptions(InternalBindingPriority.API)]
     internal sealed unsafe class Factory
@@ -59,6 +63,8 @@ namespace Anvil.API
         LightColorTable = new TwoDimArray<LightColorTableEntry>(arrays.m_pLightColorTable);
         PlaceableSoundTable = new TwoDimArray<PlaceableSoundTableEntry>("placeableobjsnds.2da"); // arrays.m_pPlaceableSoundsTable does not exist in nwserver.
         PlaceableTable = new TwoDimArray<PlaceableTableEntry>(arrays.m_pPlaceablesTable);
+        VisualEffectTable = new TwoDimArray<VisualEffectTableEntry>(arrays.m_pVisualEffectTable);
+        ProgrammedEffectTable = new TwoDimArray<ProgrammedEffectTableEntry>("progfx.2da"); // arrays.m_pProgFxTable does not exist in nwserver.
       }
 
       private void OnReloadAll(void* pRules)

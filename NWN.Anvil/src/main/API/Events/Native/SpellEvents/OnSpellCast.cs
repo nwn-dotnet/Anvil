@@ -21,6 +21,7 @@ namespace Anvil.API.Events
     public NwItem Item { get; private init; }
 
     public MetaMagic MetaMagic { get; private init; }
+
     public bool PreventSpellCast { get; set; }
 
     public ProjectilePathType ProjectilePathType { get; private init; }

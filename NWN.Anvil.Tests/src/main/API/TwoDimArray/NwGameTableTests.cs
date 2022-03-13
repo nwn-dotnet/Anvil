@@ -274,5 +274,99 @@ namespace Anvil.Tests.API
       Assert.That(row.SoundType?.RowIndex, Is.EqualTo(soundAppType));
       Assert.That(row.ShadowSize, Is.EqualTo(shadowSize));
     }
+
+    [Test(Description = "Visual effect table entries return valid data")]
+    [TestCase(0, "VFX_DUR_BLUR", "D", false, null, null, null, null, null, null, null, "sdr_blur", 501, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    [TestCase(1, "VFX_DUR_DARKNESS", "D", false, null, null, null, "vdr_darkness", null, null, null, "sdr_darkness", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    [TestCase(2, "VFX_DUR_ENTANGLE", "D", false, null, null, null, "vdr_entangle", "vdr_entang01", "vdr_entang02", null, "sdr_entangle", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    [TestCase(3, "VFX_DUR_FREEDOM_OF_MOVEMENT", "D", false, null, null, null, "vdr_freemove", "vdr_freemov01", "vdr_freemov02", null, "sdr_freemove", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    [TestCase(4, "VFX_DUR_GLOBE_INVULVERABILITY", "D", false, null, null, null, "vdr_globemax", "vdr_globe01", "vdr_globe02", null, "sdr_globemax", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    [TestCase(5, "VFX_DUR_BLACKOUT", "D", false, null, null, null, null, null, null, null, "sdr_blackout", 333, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    [TestCase(6, "VFX_DUR_INVISIBILITY", "D", false, null, null, null, null, null, null, null, null, 400, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    [TestCase(7, "VFX_DUR_MIND_AFFECTING_NEGATIVE", "D", false, "vdr_mindhit", null, null, null, null, null, null, "sdr_mindhit", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    [TestCase(8, "VFX_DUR_MIND_AFFECTING_POSITIVE", "D", false, "vdr_mindhelp", null, null, null, null, null, null, "sdr_mindhelp", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false)]
+    public void VisualEffectTableReturnsValidData(int rowIndex, string label, string typeFd, bool orientWithGround, string impHeadConNode,
+      string impImpactNode, string impRootSNode, string impRootMNode, string impRootLNode, string impRootHNode, int? progFxImpact,
+      string soundImpact, int? progFxDuration, string soundDuration, int? progFxCessation, string soundCessation, string cesHeadConNode,
+      string cesImpactNode, string cesRootSNode, string cesRootMNode, string cesRootLNode, string cesRootHNode, int? shakeType,
+      float? shakeDelay, float? shakeDuration, string lowViolence, string lowQuality, bool? orientWithObject)
+    {
+      TwoDimArray<VisualEffectTableEntry> table = NwGameTables.VisualEffectTable;
+      VisualEffectTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
+      Assert.That(row.Label, Is.EqualTo(label));
+      Assert.That(row.TypeFd, Is.EqualTo(typeFd));
+      Assert.That(row.OrientWithGround, Is.EqualTo(orientWithGround));
+      Assert.That(row.ImpHeadConNode, Is.EqualTo(impHeadConNode));
+      Assert.That(row.ImpImpactNode, Is.EqualTo(impImpactNode));
+      Assert.That(row.ImpRootSmallNode, Is.EqualTo(impRootSNode));
+      Assert.That(row.ImpRootMediumNode, Is.EqualTo(impRootMNode));
+      Assert.That(row.ImpRootLargeNode, Is.EqualTo(impRootLNode));
+      Assert.That(row.ImpRootHugeNode, Is.EqualTo(impRootHNode));
+      Assert.That(row.ProgFxImpact?.RowIndex, Is.EqualTo(progFxImpact));
+      Assert.That(row.SoundImpact, Is.EqualTo(soundImpact));
+      Assert.That(row.ProgFxDuration?.RowIndex, Is.EqualTo(progFxDuration));
+      Assert.That(row.SoundDuration, Is.EqualTo(soundDuration));
+      Assert.That(row.ProgFxCessastion, Is.EqualTo(progFxCessation));
+      Assert.That(row.SoundCessastion, Is.EqualTo(soundCessation));
+      Assert.That(row.CesHeadConNode, Is.EqualTo(cesHeadConNode));
+      Assert.That(row.CesImpactNode, Is.EqualTo(cesImpactNode));
+      Assert.That(row.CesRootSmallNode, Is.EqualTo(cesRootSNode));
+      Assert.That(row.CesRootMediumNode, Is.EqualTo(cesRootMNode));
+      Assert.That(row.CesRootLargeNode, Is.EqualTo(cesRootLNode));
+      Assert.That(row.CesRootHugeNode, Is.EqualTo(cesRootHNode));
+      Assert.That((int?)row.ShakeType, Is.EqualTo(shakeType));
+      Assert.That(row.ShakeDelay, Is.EqualTo(shakeDelay));
+      Assert.That(row.ShakeDuration, Is.EqualTo(shakeDuration));
+      Assert.That(row.LowViolenceVariant, Is.EqualTo(lowViolence));
+      Assert.That(row.LowQualityVariant, Is.EqualTo(lowQuality));
+      Assert.That(row.OrientWithObject, Is.EqualTo(orientWithObject));
+    }
+
+    [Test(Description = "Programmed effect table entries return valid data")]
+    public void ProgrammedEffectTableReturnsValidData()
+    {
+      TwoDimArray<ProgrammedEffectTableEntry> table = NwGameTables.ProgrammedEffectTable;
+
+      ProgrammedEffectTableEntry envMapRow = table.GetRow(100);
+      Assert.That(envMapRow.RowIndex, Is.EqualTo(100));
+      Assert.That(envMapRow.Label, Is.EqualTo("EnvMap00"));
+      Assert.That(envMapRow.Type, Is.EqualTo(ProgFxType.EnvironmentMap));
+      Assert.That(envMapRow.GetParamString(1), Is.EqualTo("vdu_envmap_000"));
+      Assert.That(envMapRow.GetParamString(2), Is.EqualTo(null));
+      Assert.That(envMapRow.GetParamString(3), Is.EqualTo(null));
+      Assert.That(envMapRow.GetParamString(4), Is.EqualTo(null));
+      Assert.That(envMapRow.GetParamString(5), Is.EqualTo(null));
+      Assert.That(envMapRow.GetParamString(6), Is.EqualTo(null));
+      Assert.That(envMapRow.GetParamString(7), Is.EqualTo(null));
+      Assert.That(envMapRow.GetParamString(8), Is.EqualTo(null));
+
+      ProgrammedEffectTableEntry selfIllumRow = table.GetRow(200);
+      Assert.That(selfIllumRow.RowIndex, Is.EqualTo(200));
+      Assert.That(selfIllumRow.Label, Is.EqualTo("SelfIllumRed"));
+      Assert.That(selfIllumRow.Type, Is.EqualTo(ProgFxType.StaticGlow));
+      Assert.That(selfIllumRow.GetParamFloat(1), Is.EqualTo(1.0f));
+      Assert.That(selfIllumRow.GetParamFloat(2), Is.EqualTo(0.0f));
+      Assert.That(selfIllumRow.GetParamFloat(3), Is.EqualTo(0.0f));
+      Assert.That(selfIllumRow.GetParamFloat(4), Is.EqualTo(null));
+      Assert.That(selfIllumRow.GetParamFloat(5), Is.EqualTo(null));
+      Assert.That(selfIllumRow.GetParamFloat(6), Is.EqualTo(null));
+      Assert.That(selfIllumRow.GetParamFloat(7), Is.EqualTo(null));
+      Assert.That(selfIllumRow.GetParamFloat(8), Is.EqualTo(null));
+
+      ProgrammedEffectTableEntry lightRow = table.GetRow(300);
+      Assert.That(lightRow.RowIndex, Is.EqualTo(300));
+      Assert.That(lightRow.Label, Is.EqualTo("LightWhite5m"));
+      Assert.That(lightRow.Type, Is.EqualTo(ProgFxType.Light));
+      Assert.That(lightRow.GetParamString(1), Is.EqualTo("White_5m"));
+      Assert.That(lightRow.GetParamFloat(2), Is.EqualTo(1.0f));
+      Assert.That(lightRow.GetParamInt(3), Is.EqualTo(0));
+      Assert.That(lightRow.GetParamInt(4), Is.EqualTo(20));
+      Assert.That(lightRow.GetParamInt(5), Is.EqualTo(0));
+      Assert.That(lightRow.GetParamInt(6), Is.EqualTo(0));
+      Assert.That(lightRow.GetParamString(7), Is.EqualTo("fx_light_clr"));
+      Assert.That(lightRow.GetParamString(8), Is.EqualTo(null));
+    }
   }
 }

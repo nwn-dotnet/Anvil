@@ -18,6 +18,11 @@ namespace Anvil.Services
       this.updateables = updateables.OrderBy(updateable => updateable.GetType().GetServicePriority()).ToArray();
     }
 
+    public void Dispose()
+    {
+      updateables = Array.Empty<IUpdateable>();
+    }
+
     internal void Update()
     {
       for (int i = 0; i < updateables.Length; i++)
@@ -31,11 +36,6 @@ namespace Anvil.Services
           Log.Error(e);
         }
       }
-    }
-
-    public void Dispose()
-    {
-      updateables = Array.Empty<IUpdateable>();
     }
   }
 }

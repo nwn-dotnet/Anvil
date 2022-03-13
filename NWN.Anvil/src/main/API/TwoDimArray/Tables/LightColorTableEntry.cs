@@ -9,6 +9,7 @@ namespace Anvil.API
     public string Label { get; private set; }
 
     public float? Red { get; private set; }
+
     public int RowIndex { get; init; }
 
     public float? ToolsetBlue { get; private set; }
