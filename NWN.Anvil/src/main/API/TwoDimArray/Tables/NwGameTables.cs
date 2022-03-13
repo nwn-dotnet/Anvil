@@ -35,9 +35,9 @@ namespace Anvil.API
     /// </summary>
     public static TwoDimArray<PlaceableTableEntry> PlaceableTable { get; private set; }
 
-    public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; }
-
     public static TwoDimArray<ProgrammedEffectTableEntry> ProgrammedEffectTable { get; private set; }
+
+    public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; }
 
     [ServiceBinding(typeof(Factory))]
     [ServiceBindingOptions(InternalBindingPriority.API)]

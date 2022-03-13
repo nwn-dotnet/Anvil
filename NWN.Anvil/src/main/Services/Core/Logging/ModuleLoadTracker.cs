@@ -11,12 +11,12 @@ namespace Anvil.Services
 
     private FunctionHook<LoadModuleInProgressHook> loadModuleInProgressHook;
 
-    private delegate uint LoadModuleInProgressHook(void* pModule, int nAreasLoaded, int nAreasToLoad);
-
     public ModuleLoadTracker(HookService hookService)
     {
       this.hookService = hookService;
     }
+
+    private delegate uint LoadModuleInProgressHook(void* pModule, int nAreasLoaded, int nAreasToLoad);
 
     void ICoreService.Init()
     {
@@ -25,9 +25,9 @@ namespace Anvil.Services
 
     void ICoreService.Load() {}
 
-    void ICoreService.Start() {}
-
     void ICoreService.Shutdown() {}
+
+    void ICoreService.Start() {}
 
     void ICoreService.Unload() {}
 

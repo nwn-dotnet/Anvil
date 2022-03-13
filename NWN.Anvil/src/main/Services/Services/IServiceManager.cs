@@ -9,14 +9,14 @@ namespace Anvil.Services
   public interface IServiceManager
   {
     /// <summary>
-    /// The container holding internal core services. (logging, function hooking, etc).
-    /// </summary>
-    public ServiceContainer CoreServiceContainer { get; }
-
-    /// <summary>
     /// The container holding services for anvil and anvil plugins.
     /// </summary>
     public ServiceContainer AnvilServiceContainer { get; }
+
+    /// <summary>
+    /// The container holding internal core services. (logging, function hooking, etc).
+    /// </summary>
+    public ServiceContainer CoreServiceContainer { get; }
 
     /// <summary>
     /// Called during NWNX initialization. Core services should be initialized here.
@@ -29,6 +29,11 @@ namespace Anvil.Services
     void Load();
 
     /// <summary>
+    /// Called after the server is shut down/destroyed. Core services should be unloaded here.
+    /// </summary>
+    void Shutdown();
+
+    /// <summary>
     /// Called after all services have been loaded and just before the module is ready to play. Run any last routines on all services here.
     /// </summary>
     void Start();
@@ -37,10 +42,5 @@ namespace Anvil.Services
     /// Called before the server is shutting down/reloading. Anvil/plugin services should be unloaded here.
     /// </summary>
     void Unload();
-
-    /// <summary>
-    /// Called after the server is shut down/destroyed. Core services should be unloaded here.
-    /// </summary>
-    void Shutdown();
   }
 }

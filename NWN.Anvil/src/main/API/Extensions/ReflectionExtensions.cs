@@ -47,16 +47,6 @@ namespace Anvil.API
       return memberInfo.GetCustomAttributes(inherit).OfType<T>().FirstOrDefault();
     }
 
-    internal static int GetServicePriority(this Type type)
-    {
-      ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
-
-      int bindingPriority = options?.Priority ?? (int)InternalBindingPriority.Default;
-      bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);
-
-      return bindingPriority;
-    }
-
     /// <summary>
     /// Gets the internal service name of this type.<br/>
     /// This name is used for determining execution order of the service.
@@ -67,6 +57,16 @@ namespace Anvil.API
     {
       int bindingPriority = type.GetServicePriority() - (int)InternalBindingPriority.Highest;
       return bindingPriority.ToString("D6") + type.FullName;
+    }
+
+    internal static int GetServicePriority(this Type type)
+    {
+      ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+
+      int bindingPriority = options?.Priority ?? (int)InternalBindingPriority.Default;
+      bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);
+
+      return bindingPriority;
     }
   }
 }

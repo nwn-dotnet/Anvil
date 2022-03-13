@@ -24,6 +24,11 @@ namespace Anvil.Services
 
     uint ICoreFunctionHandler.ObjectSelf => objectSelf;
 
+    public void OnLoop(ulong _)
+    {
+      ServerUpdateLoopService?.Update();
+    }
+
     void ICoreFunctionHandler.ClosureActionDoCommand(uint obj, Action func)
     {
       if (VM.ClosureActionDoCommand(obj, nextEventId) != 0)
@@ -52,9 +57,9 @@ namespace Anvil.Services
 
     void ICoreService.Load() {}
 
-    void ICoreService.Start() {}
-
     void ICoreService.Shutdown() {}
+
+    void ICoreService.Start() {}
 
     void ICoreService.Unload() {}
 
@@ -94,11 +99,6 @@ namespace Anvil.Services
       scriptContexts.Pop();
       objectSelf = scriptContexts.Count == 0 ? NWScript.OBJECT_INVALID : scriptContexts.Peek();
       return retVal;
-    }
-
-    public void OnLoop(ulong _)
-    {
-      ServerUpdateLoopService?.Update();
     }
   }
 }

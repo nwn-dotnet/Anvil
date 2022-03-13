@@ -2,18 +2,23 @@ namespace Anvil.API
 {
   public sealed class ProgrammedEffectTableEntry : ITwoDimArrayEntry
   {
-    public int RowIndex { get; init; }
+    private const int ParamCount = 8;
+
+    private const string ParamPrefix = "Param";
+    private readonly float?[] floatParamValues = new float?[ParamCount];
+    private readonly int?[] intParamValues = new int?[ParamCount];
+
+    private readonly string[] stringParamValues = new string[ParamCount];
 
     public string Label { get; private set; }
+    public int RowIndex { get; init; }
 
     public ProgFxType? Type { get; private set; }
 
-    private const string ParamPrefix = "Param";
-    private const int ParamCount = 8;
-
-    private readonly string[] stringParamValues = new string[ParamCount];
-    private readonly float?[] floatParamValues = new float?[ParamCount];
-    private readonly int?[] intParamValues = new int?[ParamCount];
+    public float? GetParamFloat(int param)
+    {
+      return floatParamValues[param - 1];
+    }
 
     public int? GetParamInt(int param)
     {
@@ -23,11 +28,6 @@ namespace Anvil.API
     public string GetParamString(int param)
     {
       return stringParamValues[param - 1];
-    }
-
-    public float? GetParamFloat(int param)
-    {
-      return floatParamValues[param - 1];
     }
 
     public void InterpretEntry(TwoDimArrayEntry entry)

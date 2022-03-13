@@ -8,10 +8,9 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
   public sealed class InjectionService : ICoreService
   {
-    private readonly IServiceManager serviceManager;
-    private readonly PluginManager pluginManager;
-
     private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
+    private readonly PluginManager pluginManager;
+    private readonly IServiceManager serviceManager;
 
     public InjectionService(IServiceManager serviceManager, PluginManager pluginManager)
     {
@@ -36,6 +35,28 @@ namespace Anvil.Services
       return instance;
     }
 
+    void ICoreService.Init() {}
+
+    void ICoreService.Load() {}
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Start()
+    {
+      InjectStaticProperties(pluginManager.LoadedTypes);
+    }
+
+    // We clear injected properties as they can hold invalid references when reloading Anvil.
+    void ICoreService.Unload()
+    {
+      foreach (PropertyInfo propertyInfo in injectedStaticProperties)
+      {
+        propertyInfo.SetValue(null, default);
+      }
+
+      injectedStaticProperties.Clear();
+    }
+
     private void InjectStaticProperties(IEnumerable<Type> types)
     {
       InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.StaticOnly);
@@ -50,28 +71,6 @@ namespace Anvil.Services
           injectedStaticProperties.Add(propertyInfo);
         }
       }
-    }
-
-    void ICoreService.Init() {}
-
-    void ICoreService.Load() {}
-
-    void ICoreService.Start()
-    {
-      InjectStaticProperties(pluginManager.LoadedTypes);
-    }
-
-    void ICoreService.Shutdown() {}
-
-    // We clear injected properties as they can hold invalid references when reloading Anvil.
-    void ICoreService.Unload()
-    {
-      foreach (PropertyInfo propertyInfo in injectedStaticProperties)
-      {
-        propertyInfo.SetValue(null, default);
-      }
-
-      injectedStaticProperties.Clear();
     }
   }
 }
