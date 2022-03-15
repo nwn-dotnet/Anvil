@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Anvil.API;
 using Anvil.Services;
 using NUnit.Framework;
@@ -10,43 +8,36 @@ namespace Anvil.Tests.Services
   [TestFixture(Category = "Services.Services")]
   public sealed class ServiceTests
   {
-    private readonly MethodInfo getServiceNameMethod = typeof(ReflectionExtensions).GetMethod("GetInternalServiceName", BindingFlags.Static | BindingFlags.NonPublic);
-
     [TestCase(Description = "Anvil services are sorted based on binding priority.")]
     public void InjectionServiceInjectsServicesOnStaticProperties()
     {
       List<string> serviceNames = new List<string>
       {
-        GetServiceName(typeof(LowestPriorityService)),
-        GetServiceName(typeof(VeryLowPriorityService)),
-        GetServiceName(typeof(LowPriorityService)),
-        GetServiceName(typeof(BelowNormalPriorityService)),
-        GetServiceName(typeof(NormalPriorityService)),
-        GetServiceName(typeof(AboveNormalPriorityService)),
-        GetServiceName(typeof(HighPriorityService)),
-        GetServiceName(typeof(VeryHighPriorityService)),
-        GetServiceName(typeof(HighestPriorityService)),
+        typeof(LowestPriorityService).GetInternalServiceName(),
+        typeof(VeryLowPriorityService).GetInternalServiceName(),
+        typeof(LowPriorityService).GetInternalServiceName(),
+        typeof(BelowNormalPriorityService).GetInternalServiceName(),
+        typeof(NormalPriorityService).GetInternalServiceName(),
+        typeof(AboveNormalPriorityService).GetInternalServiceName(),
+        typeof(HighPriorityService).GetInternalServiceName(),
+        typeof(VeryHighPriorityService).GetInternalServiceName(),
+        typeof(HighestPriorityService).GetInternalServiceName(),
       };
 
       serviceNames.Sort();
 
       Assert.That(serviceNames, Is.EquivalentTo(new[]
       {
-        GetServiceName(typeof(HighestPriorityService)),
-        GetServiceName(typeof(VeryHighPriorityService)),
-        GetServiceName(typeof(HighPriorityService)),
-        GetServiceName(typeof(AboveNormalPriorityService)),
-        GetServiceName(typeof(NormalPriorityService)),
-        GetServiceName(typeof(BelowNormalPriorityService)),
-        GetServiceName(typeof(LowPriorityService)),
-        GetServiceName(typeof(VeryLowPriorityService)),
-        GetServiceName(typeof(LowestPriorityService)),
+        typeof(HighestPriorityService).GetInternalServiceName(),
+        typeof(VeryHighPriorityService).GetInternalServiceName(),
+        typeof(HighPriorityService).GetInternalServiceName(),
+        typeof(AboveNormalPriorityService).GetInternalServiceName(),
+        typeof(NormalPriorityService).GetInternalServiceName(),
+        typeof(BelowNormalPriorityService).GetInternalServiceName(),
+        typeof(LowPriorityService).GetInternalServiceName(),
+        typeof(VeryLowPriorityService).GetInternalServiceName(),
+        typeof(LowestPriorityService).GetInternalServiceName(),
       }));
-    }
-
-    private string GetServiceName(Type type)
-    {
-      return getServiceNameMethod.Invoke(null, new object[] { type })?.ToString();
     }
 
     [ServiceBindingOptions(BindingPriority = BindingPriority.Highest)]
