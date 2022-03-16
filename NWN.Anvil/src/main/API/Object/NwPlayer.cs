@@ -34,6 +34,9 @@ namespace Anvil.API
     private static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; set; }
 
     [Inject]
+    private static Lazy<PlayerNameOverrideService> PlayerNameOverrideService { get; set; }
+
+    [Inject]
     private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; }
 
     internal readonly CNWSPlayer Player;
@@ -987,6 +990,38 @@ namespace Anvil.API
     public void NuiSetUserData<T>(int uiToken, T userData)
     {
       NWScript.NuiSetUserData(ControlledCreature, uiToken, JsonUtility.ToJsonStructure(userData));
+    }
+
+    /// <summary>
+    /// Gets the current name override for the specified player.
+    /// </summary>
+    /// <param name="observer">The specific observer.</param>
+    public string GetPlayerNameOverride(NwPlayer observer = null)
+    {
+      return PlayerNameOverrideService.Value.GetPlayerNameOverride(this, observer);
+    }
+
+    /// <summary>
+    /// Sets a player character name and community name on the player list. Is not persistent.
+    /// </summary>
+    /// <param name="newName">The new name.</param>
+    /// <param name="prefix">The prefix for their character name, sometimes used for a color code.</param>
+    /// <param name="suffix">The suffix for their character name.</param>
+    /// <param name="playerNameState">How to change the Community Name.</param>
+    /// <param name="observer">If specified, the character name will appear to that specific observer as set, this overrides a global setting.</param>
+    public void SetPlayerNameOverride(string newName, string prefix = "", string suffix = "", PlayerNameState playerNameState = PlayerNameState.Default, NwPlayer observer = null)
+    {
+      PlayerNameOverrideService.Value.SetPlayerNameOverride(this, newName, prefix, suffix, playerNameState, observer);
+    }
+
+    /// <summary>
+    /// Clears an overridden player character name.
+    /// </summary>
+    /// <param name="observer">The observer whose overriden name of target is being cleared. If oTarget is null then all overrides are cleared.</param>
+    /// <param name="clearAll">If true, both the global and personal overrides will be cleared for that target player. Requires observer to be null.</param>
+    public void ClearPlayerNameOverride(NwPlayer observer = null, bool clearAll = false)
+    {
+      PlayerNameOverrideService.Value.ClearPlayerNameOverride(this, observer, clearAll);
     }
 
     /// <summary>

@@ -6,7 +6,7 @@ using NWN.Native.API;
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(PlayerNameOverrideService))]
-  [ServiceBindingOptions(Lazy = true)]
+  [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   public sealed unsafe class PlayerNameOverrideService
   {
     private delegate void WriteGameObjUpdateUpdateObjectHook(void* pMessage, void* pPlayer, void* pAreaObject, void* pLastUpdateObject, uint nObjectUpdatesRequired, uint nObjectAppearanceUpdatesRequired);
@@ -97,7 +97,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="target">The player whose name to query.</param>
     /// <param name="observer">The specific observer.</param>
-    public void GetPlayerNameOverride(NwPlayer target, NwPlayer observer = null)
+    public string GetPlayerNameOverride(NwPlayer target, NwPlayer observer = null)
     {
     }
 
