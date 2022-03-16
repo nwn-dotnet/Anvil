@@ -64,8 +64,16 @@ namespace Anvil.Services
     /// </summary>
     public bool RenameAllowDM { get; set; } = true;
 
+    /// <summary>
+    /// When using <see cref="SetPlayerNameOverride"/> with <see cref="PlayerNameState.Anonymous"/>, this is the string used for the player name.
+    /// </summary>
     public string AnonymousName { get; set; } = "Someone";
 
+    /// <summary>
+    /// When set to true, global overrides change the display name globally - scripts and DMs included.<br/>
+    /// When set to false, then name is only changed for players.<br/>
+    /// Scripts and DMs see the original names (unless <see cref="RenameAllowDM"/> is set).
+    /// </summary>
     public bool RenameOverwriteDisplayName { get; set; } = false;
 
     public PlayerNameOverrideService(HookService hookService)
@@ -82,6 +90,40 @@ namespace Anvil.Services
       sendServerToPlayerChatPartyHook = hookService.RequestHook<SendServerToPlayerChatPartyHook>(OnSendServerToPlayerChatParty, FunctionsLinux._ZN11CNWSMessage28SendServerToPlayerChat_PartyEjj10CExoString, HookOrder.Early);
       sendServerToPlayerChatShoutHook = hookService.RequestHook<SendServerToPlayerChatShoutHook>(OnSendServerToPlayerChatShout, FunctionsLinux._ZN11CNWSMessage28SendServerToPlayerChat_ShoutEjj10CExoString, HookOrder.Early);
       sendServerToPlayerChatTellHook = hookService.RequestHook<SendServerToPlayerChatTellHook>(OnSendServerToPlayerChatTell, FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerChat_TellEjj10CExoString, HookOrder.Early);
+    }
+
+    /// <summary>
+    /// Gets the current name override for the specified player.
+    /// </summary>
+    /// <param name="target">The player whose name to query.</param>
+    /// <param name="observer">The specific observer.</param>
+    public void GetPlayerNameOverride(NwPlayer target, NwPlayer observer = null)
+    {
+    }
+
+    /// <summary>
+    /// Sets a player character name and community name on the player list. Is not persistent.
+    /// </summary>
+    /// <param name="target">The PC whose name is being overridden.</param>
+    /// <param name="newName">The new name.</param>
+    /// <param name="prefix">The prefix for their character name, sometimes used for a color code.</param>
+    /// <param name="suffix">The suffix for their character name.</param>
+    /// <param name="playerNameState">How to change the Community Name.</param>
+    /// <param name="observer">If specified, the character name will appear to that specific observer as set, this overrides a global setting.</param>
+    public void SetPlayerNameOverride(NwPlayer target, string newName, string prefix = "", string suffix = "", PlayerNameState playerNameState = PlayerNameState.Default, NwPlayer observer = null)
+    {
+
+    }
+
+    /// <summary>
+    /// Clears an overridden player character name.
+    /// </summary>
+    /// <param name="target">The player whose overridden name to clear, use null if you're clearing all overrides for an observer.</param>
+    /// <param name="observer">The observer whose overriden name of target is being cleared. If oTarget is null then all overrides are cleared.</param>
+    /// <param name="clearAll">If true, both the global and personal overrides will be cleared for that target player. Requires observer to be null.</param>
+    public void ClearPlayerNameOverride(NwPlayer target, NwPlayer observer = null, bool clearAll = false)
+    {
+
     }
 
     private void OnWriteGameObjUpdateUpdateObject(void* pMessage, void* pPlayer, void* pAreaObject, void* pLastUpdateObject, uint nObjectUpdatesRequired, uint nObjectAppearanceUpdatesRequired)
@@ -393,7 +435,7 @@ namespace Anvil.Services
 
     private string GenerateRandomPlayerName(int length, uint targetOid)
     {
-      return "Random Player Name";
+
     }
   }
 }
