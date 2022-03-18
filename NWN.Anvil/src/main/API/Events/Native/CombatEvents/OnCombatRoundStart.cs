@@ -14,14 +14,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartCombatRoundHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void StartCombatRoundHook(void* pCombatRound, uint oidTarget);
+      private static FunctionHook<StartCombatRoundHook> Hook { get; set; }
 
-      protected override FunctionHook<StartCombatRoundHook> RequestHook()
+      private delegate void StartCombatRoundHook(void* pCombatRound, uint oidTarget);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnStartCombatRound;
-        return HookService.RequestHook<StartCombatRoundHook>(pHook, FunctionsLinux._ZN15CNWSCombatRound16StartCombatRoundEj, HookOrder.Earliest);
+        Hook = HookService.RequestHook<StartCombatRoundHook>(pHook, FunctionsLinux._ZN15CNWSCombatRound16StartCombatRoundEj, HookOrder.Earliest);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

@@ -13,14 +13,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => RemovedFrom;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RemoveItemHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate int RemoveItemHook(void* pItemRepository, void* pItem);
+      private static FunctionHook<RemoveItemHook> Hook { get; set; }
 
-      protected override FunctionHook<RemoveItemHook> RequestHook()
+      private delegate int RemoveItemHook(void* pItemRepository, void* pItem);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnRemoveItem;
-        return HookService.RequestHook<RemoveItemHook>(pHook, FunctionsLinux._ZN15CItemRepository10RemoveItemEP8CNWSItem, HookOrder.Earliest);
+        Hook = HookService.RequestHook<RemoveItemHook>(pHook, FunctionsLinux._ZN15CItemRepository10RemoveItemEP8CNWSItem, HookOrder.Earliest);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

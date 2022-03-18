@@ -22,15 +22,15 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Initiator.ControlledCreature;
 
-    internal sealed unsafe class Factory : MultiHookEventFactory
+    internal sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SendServerToPlayerBarterCloseBarterHook> sendServerToPlayerBarterCloseBarterHook;
 
       private static FunctionHook<SetListAcceptedHook> setListAcceptedHook;
 
-      internal delegate int SendServerToPlayerBarterCloseBarterHook(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
+      private delegate int SendServerToPlayerBarterCloseBarterHook(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
 
-      internal delegate int SetListAcceptedHook(void* pBarter, int bAccepted);
+      private delegate int SetListAcceptedHook(void* pBarter, int bAccepted);
 
       protected override IDisposable[] RequestHooks()
       {

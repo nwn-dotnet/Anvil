@@ -15,14 +15,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => UsedBy;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.CanUseItemHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate int CanUseItemHook(void* pCreature, void* pItem, int bIgnoreIdentifiedFlag);
+      private static FunctionHook<CanUseItemHook> Hook { get; set; }
 
-      protected override FunctionHook<CanUseItemHook> RequestHook()
+      private delegate int CanUseItemHook(void* pCreature, void* pItem, int bIgnoreIdentifiedFlag);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int, int> pHook = &OnCanUseItem;
-        return HookService.RequestHook<CanUseItemHook>(pHook, FunctionsLinux._ZN12CNWSCreature10CanUseItemEP8CNWSItemi, HookOrder.Early);
+        Hook = HookService.RequestHook<CanUseItemHook>(pHook, FunctionsLinux._ZN12CNWSCreature10CanUseItemEP8CNWSItemi, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

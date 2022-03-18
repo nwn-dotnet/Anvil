@@ -28,14 +28,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Object;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.EffectAppliedHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate int EffectAppliedHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
+      private static FunctionHook<EffectAppliedHook> Hook { get; set; }
 
-      protected override FunctionHook<EffectAppliedHook> RequestHook()
+      private delegate int EffectAppliedHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnEffectApplied;
-        return HookService.RequestHook<EffectAppliedHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler15OnEffectAppliedEP10CNWSObjectP11CGameEffecti, HookOrder.Earliest);
+        Hook = HookService.RequestHook<EffectAppliedHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler15OnEffectAppliedEP10CNWSObjectP11CGameEffecti, HookOrder.Earliest);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

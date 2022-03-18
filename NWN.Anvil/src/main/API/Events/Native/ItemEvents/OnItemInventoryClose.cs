@@ -22,14 +22,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => ClosedBy;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.CloseInventoryHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void CloseInventoryHook(void* pItem, uint oidCloser, int bUpdatePlayer);
+      private static FunctionHook<CloseInventoryHook> Hook { get; set; }
 
-      protected override FunctionHook<CloseInventoryHook> RequestHook()
+      private delegate void CloseInventoryHook(void* pItem, uint oidCloser, int bUpdatePlayer);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int, void> pHook = &OnCloseInventory;
-        return HookService.RequestHook<CloseInventoryHook>(pHook, FunctionsLinux._ZN8CNWSItem14CloseInventoryEji, HookOrder.Early);
+        Hook = HookService.RequestHook<CloseInventoryHook>(pHook, FunctionsLinux._ZN8CNWSItem14CloseInventoryEji, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]
