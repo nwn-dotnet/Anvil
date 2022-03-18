@@ -29,14 +29,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.GetEffectImmunityHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate int GetEffectImmunityHook(void* pStats, byte nType, void* pVerses, int bConsiderFeats);
+      private static FunctionHook<GetEffectImmunityHook> Hook { get; set; }
 
-      protected override FunctionHook<GetEffectImmunityHook> RequestHook()
+      private delegate int GetEffectImmunityHook(void* pStats, byte nType, void* pVerses, int bConsiderFeats);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte, void*, int, int> pHook = &OnGetEffectImmunity;
-        return HookService.RequestHook<GetEffectImmunityHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats17GetEffectImmunityEhP12CNWSCreaturei, HookOrder.Late);
+        Hook = HookService.RequestHook<GetEffectImmunityHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats17GetEffectImmunityEhP12CNWSCreaturei, HookOrder.Late);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

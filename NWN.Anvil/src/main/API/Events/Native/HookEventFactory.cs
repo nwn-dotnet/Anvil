@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using Anvil.Services;
 
 namespace Anvil.API.Events
 {
-  public abstract class HookEventFactory
+  [ServiceBinding(typeof(IEventFactory))]
+  public abstract class HookEventFactory : IEventFactory<NullRegistrationData>, IDisposable
   {
     [Inject]
     protected static Lazy<EventService> EventService { get; private set; }
@@ -13,6 +15,30 @@ namespace Anvil.API.Events
 
     [Inject]
     protected static VirtualMachine VirtualMachine { get; private set; }
+
+    private readonly HashSet<Type> activeEvents = new HashSet<Type>();
+    private IDisposable[] hooks;
+
+    public void Dispose()
+    {
+      hooks.DisposeAll();
+      hooks = null;
+    }
+
+    void IEventFactory<NullRegistrationData>.Register<TEvent>(NullRegistrationData data)
+    {
+      hooks ??= RequestHooks();
+      activeEvents.Add(typeof(TEvent));
+    }
+
+    void IEventFactory.Unregister<TEvent>()
+    {
+      activeEvents.Remove(typeof(TEvent));
+      if (activeEvents.Count == 0)
+      {
+        Dispose();
+      }
+    }
 
     protected static TEvent ProcessEvent<TEvent>(TEvent eventData, bool executeInScriptContext = true) where TEvent : IEvent
     {
@@ -27,5 +53,7 @@ namespace Anvil.API.Events
 
       return eventData;
     }
+
+    protected abstract IDisposable[] RequestHooks();
   }
 }

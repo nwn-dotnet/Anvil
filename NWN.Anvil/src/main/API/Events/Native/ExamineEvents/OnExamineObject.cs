@@ -14,20 +14,20 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => ExaminedBy.ControlledCreature;
 
-    internal sealed unsafe class Factory : MultiHookEventFactory
+    internal sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<CreatureExamineHook> creatureExamineHook;
       private static FunctionHook<DoorExamineHook> doorExamineHook;
       private static FunctionHook<ItemExamineHook> itemExamineHook;
       private static FunctionHook<PlaceableExamineHook> placeableExamineHook;
 
-      internal delegate void CreatureExamineHook(void* pMessage, void* pPlayer, uint oidCreature);
+      private delegate void CreatureExamineHook(void* pMessage, void* pPlayer, uint oidCreature);
 
-      internal delegate void DoorExamineHook(void* pMessage, void* pPlayer, uint oidDoor);
+      private delegate void DoorExamineHook(void* pMessage, void* pPlayer, uint oidDoor);
 
-      internal delegate void ItemExamineHook(void* pMessage, void* pPlayer, uint oidItem);
+      private delegate void ItemExamineHook(void* pMessage, void* pPlayer, uint oidItem);
 
-      internal delegate void PlaceableExamineHook(void* pMessage, void* pPlayer, uint oidPlaceable);
+      private delegate void PlaceableExamineHook(void* pMessage, void* pPlayer, uint oidPlaceable);
 
       protected override IDisposable[] RequestHooks()
       {

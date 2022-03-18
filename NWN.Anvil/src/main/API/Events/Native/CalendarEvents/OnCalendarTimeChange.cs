@@ -15,14 +15,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => null;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.UpdateTimeHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
+      private static FunctionHook<UpdateTimeHook> Hook { get; set; }
 
-      protected override FunctionHook<UpdateTimeHook> RequestHook()
+      private delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, uint, void> pHook = &OnUpdateTime;
-        return HookService.RequestHook<UpdateTimeHook>(pHook, FunctionsLinux._ZN10CNWSModule10UpdateTimeEjjj, HookOrder.Earliest);
+        Hook = HookService.RequestHook<UpdateTimeHook>(pHook, FunctionsLinux._ZN10CNWSModule10UpdateTimeEjjj, HookOrder.Earliest);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

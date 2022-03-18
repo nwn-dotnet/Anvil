@@ -13,14 +13,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.RemoveAssociateHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void RemoveAssociateHook(void* pCreature, uint oidAssociate);
+      private static FunctionHook<RemoveAssociateHook> Hook { get; set; }
 
-      protected override FunctionHook<RemoveAssociateHook> RequestHook()
+      private delegate void RemoveAssociateHook(void* pCreature, uint oidAssociate);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnRemoveAssociate;
-        return HookService.RequestHook<RemoveAssociateHook>(pHook, FunctionsLinux._ZN12CNWSCreature15RemoveAssociateEj, HookOrder.Earliest);
+        Hook = HookService.RequestHook<RemoveAssociateHook>(pHook, FunctionsLinux._ZN12CNWSCreature15RemoveAssociateEj, HookOrder.Earliest);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]
