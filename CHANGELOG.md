@@ -33,6 +33,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
   - The CoreService composition root is defined in `AnvilServiceManager`.
   - AnvilCore is now "dumber", and simply passes signals to `AnvilServiceManager` and `VirtualMachineFunctionHandler`.
   - `AnvilServiceManager` merges service initialization in `AnvilCore`, with the container/composition root setup from `IContainerFactory`
+- `OnPlayerDeath.Killer` now tries to `GetLastDamager` when `GetLastHostileActor` is invalid.
 
 ### Deprecated
 - `NwGameObject.CreatureAppearanceType`. Use `NwCreature.Appearance` instead.
