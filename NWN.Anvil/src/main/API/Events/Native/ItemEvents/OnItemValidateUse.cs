@@ -17,9 +17,9 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private delegate int CanUseItemHook(void* pCreature, void* pItem, int bIgnoreIdentifiedFlag);
-
       private static FunctionHook<CanUseItemHook> Hook { get; set; }
+
+      private delegate int CanUseItemHook(void* pCreature, void* pItem, int bIgnoreIdentifiedFlag);
 
       protected override IDisposable[] RequestHooks()
       {

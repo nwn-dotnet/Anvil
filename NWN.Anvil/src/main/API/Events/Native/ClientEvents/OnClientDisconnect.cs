@@ -21,9 +21,9 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private delegate void RemovePCFromWorldHook(void* pServerExoAppInternal, void* pPlayer);
-
       private static FunctionHook<RemovePCFromWorldHook> Hook { get; set; }
+
+      private delegate void RemovePCFromWorldHook(void* pServerExoAppInternal, void* pPlayer);
 
       protected override IDisposable[] RequestHooks()
       {

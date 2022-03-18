@@ -38,10 +38,10 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
+      private static FunctionHook<SpellCastAndImpactHook> Hook { get; set; }
+
       private delegate void SpellCastAndImpactHook(void* pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
         byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell);
-
-      private static FunctionHook<SpellCastAndImpactHook> Hook { get; set; }
 
       protected override IDisposable[] RequestHooks()
       {

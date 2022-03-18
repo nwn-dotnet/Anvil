@@ -30,9 +30,9 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private delegate int EffectRemovedHook(void* pEffectListHandler, void* pObject, void* pEffect);
-
       private static FunctionHook<EffectRemovedHook> Hook { get; set; }
+
+      private delegate int EffectRemovedHook(void* pEffectListHandler, void* pObject, void* pEffect);
 
       protected override IDisposable[] RequestHooks()
       {

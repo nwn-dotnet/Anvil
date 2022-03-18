@@ -30,9 +30,9 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private delegate int LearnScrollHook(void* pCreature, uint oidScrollToLearn);
-
       private static FunctionHook<LearnScrollHook> Hook { get; set; }
+
+      private delegate int LearnScrollHook(void* pCreature, uint oidScrollToLearn);
 
       protected override IDisposable[] RequestHooks()
       {

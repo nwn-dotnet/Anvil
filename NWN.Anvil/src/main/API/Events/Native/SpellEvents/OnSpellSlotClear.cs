@@ -21,9 +21,9 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private delegate void ClearMemorizedSpellSlotHook(void* pCreatureStats, byte nMultiClass, byte nSpellLevel, byte nSpellSlot);
-
       private static FunctionHook<ClearMemorizedSpellSlotHook> Hook { get; set; }
+
+      private delegate void ClearMemorizedSpellSlotHook(void* pCreatureStats, byte nMultiClass, byte nSpellLevel, byte nSpellSlot);
 
       protected override IDisposable[] RequestHooks()
       {

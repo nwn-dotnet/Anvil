@@ -49,9 +49,9 @@ namespace Anvil.API.Events
     {
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
-      internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
-
       private static FunctionHook<SendServerToPlayerCharListHook> Hook { get; set; }
+
+      internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
 
       protected override unsafe IDisposable[] RequestHooks()
       {

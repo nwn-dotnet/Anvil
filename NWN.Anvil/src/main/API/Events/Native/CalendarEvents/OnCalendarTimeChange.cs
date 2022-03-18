@@ -17,9 +17,9 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
-
       private static FunctionHook<UpdateTimeHook> Hook { get; set; }
+
+      private delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
 
       protected override IDisposable[] RequestHooks()
       {

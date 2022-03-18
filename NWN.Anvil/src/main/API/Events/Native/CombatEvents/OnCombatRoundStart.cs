@@ -16,9 +16,9 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private delegate void StartCombatRoundHook(void* pCombatRound, uint oidTarget);
-
       private static FunctionHook<StartCombatRoundHook> Hook { get; set; }
+
+      private delegate void StartCombatRoundHook(void* pCombatRound, uint oidTarget);
 
       protected override IDisposable[] RequestHooks()
       {

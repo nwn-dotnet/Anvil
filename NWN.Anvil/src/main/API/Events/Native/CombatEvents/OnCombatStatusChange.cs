@@ -18,9 +18,9 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private delegate int SendServerToPlayerAmbientBattleMusicPlayHook(void* pMessage, uint nPlayer, int bPlay);
-
       private static FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> Hook { get; set; }
+
+      private delegate int SendServerToPlayerAmbientBattleMusicPlayHook(void* pMessage, uint nPlayer, int bPlay);
 
       protected override IDisposable[] RequestHooks()
       {

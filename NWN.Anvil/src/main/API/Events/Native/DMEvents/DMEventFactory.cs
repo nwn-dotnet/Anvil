@@ -9,9 +9,9 @@ namespace Anvil.API.Events
 {
   public sealed unsafe class DMEventFactory : HookEventFactory
   {
-    public delegate int HandleDMMessageHook(void* pMessage, void* pPlayer, byte nMinor, int bGroup);
-
     private static FunctionHook<HandleDMMessageHook> Hook { get; set; }
+
+    public delegate int HandleDMMessageHook(void* pMessage, void* pPlayer, byte nMinor, int bGroup);
 
     protected override IDisposable[] RequestHooks()
     {
