@@ -22,14 +22,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => OpenedBy;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.OpenInventoryHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate void OpenInventoryHook(void* pItem, uint oidOpener);
 
-      protected override FunctionHook<OpenInventoryHook> RequestHook()
+      private static FunctionHook<OpenInventoryHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnOpenInventory;
-        return HookService.RequestHook<OpenInventoryHook>(pHook, FunctionsLinux._ZN8CNWSItem13OpenInventoryEj, HookOrder.Early);
+        Hook = HookService.RequestHook<OpenInventoryHook>(pHook, FunctionsLinux._ZN8CNWSItem13OpenInventoryEj, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

@@ -19,14 +19,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Player.ControlledCreature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.HandlePartyMessageHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate int HandlePartyMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
-      protected override FunctionHook<HandlePartyMessageHook> RequestHook()
+      private static FunctionHook<HandlePartyMessageHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePartyMessage;
-        return HookService.RequestHook<HandlePartyMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage25HandlePlayerToServerPartyEP10CNWSPlayerh, HookOrder.Early);
+        Hook = HookService.RequestHook<HandlePartyMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage25HandlePlayerToServerPartyEP10CNWSPlayerh, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

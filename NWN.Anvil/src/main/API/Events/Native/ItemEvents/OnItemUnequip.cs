@@ -28,14 +28,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.UnequipItemHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate int UnequipItemHook(void* pCreature, uint oidItemToUnequip, uint oidTargetRepository, byte x, byte y, int bMergeIntoRepository, uint oidFeedbackPlayer);
 
-      protected override FunctionHook<UnequipItemHook> RequestHook()
+      private static FunctionHook<UnequipItemHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, byte, byte, int, uint, int> pHook = &OnUnequipItem;
-        return HookService.RequestHook<UnequipItemHook>(pHook, FunctionsLinux._ZN12CNWSCreature10RunUnequipEjjhhij, HookOrder.Early);
+        Hook = HookService.RequestHook<UnequipItemHook>(pHook, FunctionsLinux._ZN12CNWSCreature10RunUnequipEjjhhij, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

@@ -7,14 +7,17 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
-  public sealed unsafe class DMEventFactory : SingleHookEventFactory<DMEventFactory.HandleDMMessageHook>
+  public sealed unsafe class DMEventFactory : HookEventFactory
   {
     public delegate int HandleDMMessageHook(void* pMessage, void* pPlayer, byte nMinor, int bGroup);
 
-    protected override FunctionHook<HandleDMMessageHook> RequestHook()
+    private static FunctionHook<HandleDMMessageHook> Hook { get; set; }
+
+    protected override IDisposable[] RequestHooks()
     {
       delegate* unmanaged<void*, void*, byte, int, int> pHook = &OnHandleDMMessage;
-      return HookService.RequestHook<HandleDMMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage40HandlePlayerToServerDungeonMasterMessageEP10CNWSPlayerhi, HookOrder.Early);
+      Hook = HookService.RequestHook<HandleDMMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage40HandlePlayerToServerDungeonMasterMessageEP10CNWSPlayerhi, HookOrder.Early);
+      return new IDisposable[] { Hook };
     }
 
     private static bool HandleChangeDifficultyEvent(NwPlayer dungeonMaster, CNWSMessage message)

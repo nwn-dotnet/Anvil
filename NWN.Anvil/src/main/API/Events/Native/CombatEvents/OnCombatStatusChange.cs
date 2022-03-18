@@ -16,14 +16,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Player.ControlledCreature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SendServerToPlayerAmbientBattleMusicPlayHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate int SendServerToPlayerAmbientBattleMusicPlayHook(void* pMessage, uint nPlayer, int bPlay);
 
-      protected override FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> RequestHook()
+      private static FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int, int> pHook = &OnSendServerToPlayerAmbientBattleMusicPlay;
-        return HookService.RequestHook<SendServerToPlayerAmbientBattleMusicPlayHook>(pHook, FunctionsLinux._ZN11CNWSMessage40SendServerToPlayerAmbientBattleMusicPlayEji, HookOrder.Earliest);
+        Hook = HookService.RequestHook<SendServerToPlayerAmbientBattleMusicPlayHook>(pHook, FunctionsLinux._ZN11CNWSMessage40SendServerToPlayerAmbientBattleMusicPlayEji, HookOrder.Earliest);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

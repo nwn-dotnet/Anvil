@@ -15,14 +15,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => DamagedBy;
 
-    internal unsafe class Factory : SingleHookEventFactory<Factory.OnApplyDamageHook>
+    internal unsafe class Factory : HookEventFactory
     {
       internal delegate int OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
-      protected override FunctionHook<OnApplyDamageHook> RequestHook()
+      private static FunctionHook<OnApplyDamageHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyDamage;
-        return HookService.RequestHook<OnApplyDamageHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDamageEP10CNWSObjectP11CGameEffecti, HookOrder.Late);
+        Hook = HookService.RequestHook<OnApplyDamageHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDamageEP10CNWSObjectP11CGameEffecti, HookOrder.Late);
+        return new IDisposable[] { Hook };
       }
 
       private static bool IsValidObjectTarget(ObjectType objectType)

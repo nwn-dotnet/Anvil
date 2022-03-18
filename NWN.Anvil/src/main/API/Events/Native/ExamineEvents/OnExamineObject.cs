@@ -14,7 +14,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => ExaminedBy.ControlledCreature;
 
-    internal sealed unsafe class Factory : MultiHookEventFactory
+    internal sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<CreatureExamineHook> creatureExamineHook;
       private static FunctionHook<DoorExamineHook> doorExamineHook;

@@ -38,14 +38,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Trigger;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.TriggerEventHandlerHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate void TriggerEventHandlerHook(void* pTrigger, uint nEventId, uint nCallerObjectId, void* pScript, uint nCalendarDay, uint nTimeOfDay);
 
-      protected override FunctionHook<TriggerEventHandlerHook> RequestHook()
+      private static FunctionHook<TriggerEventHandlerHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, void*, uint, uint, void> pHook = &OnTriggerEventHandler;
-        return HookService.RequestHook<TriggerEventHandlerHook>(pHook, FunctionsLinux._ZN11CNWSTrigger12EventHandlerEjjPvjj, HookOrder.Late);
+        Hook = HookService.RequestHook<TriggerEventHandlerHook>(pHook, FunctionsLinux._ZN11CNWSTrigger12EventHandlerEjjPvjj, HookOrder.Late);
+        return new IDisposable[] { Hook };
       }
 
       private static bool HandleEnter(CNWSTrigger trigger, CScriptEvent scriptEvent)

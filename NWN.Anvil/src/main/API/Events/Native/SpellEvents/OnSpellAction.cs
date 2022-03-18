@@ -42,16 +42,19 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AddCastSpellActionsHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate int AddCastSpellActionsHook(void* pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
         int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,
         int bFake, byte nProjectilePathType, int bInstant, int bAllowPolymorphedCast, int nFeat, byte nCasterLevel);
 
-      protected override FunctionHook<AddCastSpellActionsHook> RequestHook()
+      private static FunctionHook<AddCastSpellActionsHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int, int, int, int, Vector3, uint, int, int, int, byte, int, int, int, byte, int> pHook = &OnAddCastSpellActions;
-        return HookService.RequestHook<AddCastSpellActionsHook>(pHook, FunctionsLinux._ZN12CNWSCreature19AddCastSpellActionsEjiiii6Vectorjiiihiiih, HookOrder.Early);
+        Hook = HookService.RequestHook<AddCastSpellActionsHook>(pHook, FunctionsLinux._ZN12CNWSCreature19AddCastSpellActionsEjiiii6Vectorjiiihiiih, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

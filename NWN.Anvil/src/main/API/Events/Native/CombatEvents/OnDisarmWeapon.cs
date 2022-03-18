@@ -19,14 +19,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => DisarmedObject;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.ApplyDisarmHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate int ApplyDisarmHook(void* pEffectHandler, void* pObject, void* pEffect, int bLoadingGame);
 
-      protected override FunctionHook<ApplyDisarmHook> RequestHook()
+      private static FunctionHook<ApplyDisarmHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyDisarm;
-        return HookService.RequestHook<ApplyDisarmHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti, HookOrder.Early);
+        Hook = HookService.RequestHook<ApplyDisarmHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

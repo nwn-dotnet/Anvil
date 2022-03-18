@@ -12,14 +12,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.LevelDownHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate void LevelDownHook(void* pCreatureStats, void* pLevelUpStats);
 
-      protected override FunctionHook<LevelDownHook> RequestHook()
+      private static FunctionHook<LevelDownHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void> pHook = &OnLevelDown;
-        return HookService.RequestHook<LevelDownHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats9LevelDownEP13CNWLevelStats, HookOrder.Earliest);
+        Hook = HookService.RequestHook<LevelDownHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats9LevelDownEP13CNWLevelStats, HookOrder.Earliest);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

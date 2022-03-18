@@ -25,15 +25,18 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetMemorizedSpellSlotHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate int SetMemorizedSpellSlotHook(void* pCreatureStats, byte nMultiClass, byte nSpellSlot,
         uint nSpellId, byte nDomainLevel, byte nMetaType, int bFromClient);
 
-      protected override FunctionHook<SetMemorizedSpellSlotHook> RequestHook()
+      private static FunctionHook<SetMemorizedSpellSlotHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte, byte, uint, byte, byte, int, int> pHook = &OnSetMemorizedSpellSlot;
-        return HookService.RequestHook<SetMemorizedSpellSlotHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats21SetMemorizedSpellSlotEhhjhhi, HookOrder.Early);
+        Hook = HookService.RequestHook<SetMemorizedSpellSlotHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats21SetMemorizedSpellSlotEhhjhhi, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

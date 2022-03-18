@@ -24,14 +24,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SetStealthModeHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate void SetStealthModeHook(void* pCreature, byte nStealthMode);
 
-      protected override FunctionHook<SetStealthModeHook> RequestHook()
+      private static FunctionHook<SetStealthModeHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetStealthMode;
-        return HookService.RequestHook<SetStealthModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature14SetStealthModeEh, HookOrder.Early);
+        Hook = HookService.RequestHook<SetStealthModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature14SetStealthModeEh, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       private static void ForceEnterStealth(CNWSCreature creature, byte nStealthMode)

@@ -48,14 +48,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => UsedBy;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.AIActionHealHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
       internal delegate uint AIActionHealHook(void* pCreature, void* pNode);
 
-      protected override FunctionHook<AIActionHealHook> RequestHook()
+      private static FunctionHook<AIActionHealHook> Hook { get; set; }
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, uint> pHook = &OnAIActionHeal;
-        return HookService.RequestHook<AIActionHealHook>(pHook, FunctionsLinux._ZN12CNWSCreature12AIActionHealEP20CNWSObjectActionNode, HookOrder.Early);
+        Hook = HookService.RequestHook<AIActionHealHook>(pHook, FunctionsLinux._ZN12CNWSCreature12AIActionHealEP20CNWSObjectActionNode, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

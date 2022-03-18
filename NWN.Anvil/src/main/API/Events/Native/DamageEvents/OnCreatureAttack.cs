@@ -48,7 +48,7 @@ namespace Anvil.API.Events
 
     private CNWSCombatAttackData CombatAttackData { get; init; }
 
-    internal sealed unsafe class Factory : MultiHookEventFactory
+    internal sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook;
       private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook;
