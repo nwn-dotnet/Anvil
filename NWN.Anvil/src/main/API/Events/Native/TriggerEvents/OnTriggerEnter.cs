@@ -40,7 +40,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void TriggerEventHandlerHook(void* pTrigger, uint nEventId, uint nCallerObjectId, void* pScript, uint nCalendarDay, uint nTimeOfDay);
+      private delegate void TriggerEventHandlerHook(void* pTrigger, uint nEventId, uint nCallerObjectId, void* pScript, uint nCalendarDay, uint nTimeOfDay);
 
       private static FunctionHook<TriggerEventHandlerHook> Hook { get; set; }
 

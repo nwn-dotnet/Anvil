@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     internal unsafe class Factory : HookEventFactory
     {
-      internal delegate int OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
+      private delegate int OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
       private static FunctionHook<OnApplyDamageHook> Hook { get; set; }
 

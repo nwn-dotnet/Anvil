@@ -16,7 +16,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void StartBarterHook(void* pMessage, void* pPlayer);
+      private delegate void StartBarterHook(void* pMessage, void* pPlayer);
 
       private static FunctionHook<StartBarterHook> Hook { get; set; }
 

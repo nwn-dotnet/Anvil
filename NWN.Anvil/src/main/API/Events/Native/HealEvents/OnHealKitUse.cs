@@ -50,7 +50,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate uint AIActionHealHook(void* pCreature, void* pNode);
+      private delegate uint AIActionHealHook(void* pCreature, void* pNode);
 
       private static FunctionHook<AIActionHealHook> Hook { get; set; }
 

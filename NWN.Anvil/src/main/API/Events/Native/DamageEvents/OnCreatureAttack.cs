@@ -53,9 +53,9 @@ namespace Anvil.API.Events
       private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook;
       private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook;
 
-      internal delegate void SignalMeleeDamageHook(void* pCreature, void* pTarget, int nAttacks);
+      private delegate void SignalMeleeDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
-      internal delegate void SignalRangedDamageHook(void* pCreature, void* pTarget, int nAttacks);
+      private delegate void SignalRangedDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
       protected override IDisposable[] RequestHooks()
       {

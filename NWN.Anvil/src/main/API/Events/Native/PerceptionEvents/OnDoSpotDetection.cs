@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate int DoSpotDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
+      private delegate int DoSpotDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
 
       private static FunctionHook<DoSpotDetectionHook> Hook { get; set; }
 

@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void AddAssociateHook(void* pCreature, uint oidAssociate, ushort associateType);
+      private delegate void AddAssociateHook(void* pCreature, uint oidAssociate, ushort associateType);
 
       private static FunctionHook<AddAssociateHook> Hook { get; set; }
 
