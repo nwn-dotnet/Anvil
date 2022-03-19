@@ -128,6 +128,11 @@ namespace Anvil.API
     /// <returns>The associated player for this object, otherwise null.</returns>
     public static unsafe NwPlayer ToNwPlayer(this uint objectId, PlayerSearch playerSearch = PlayerSearch.All)
     {
+      if (objectId == NwObject.Invalid)
+      {
+        return null;
+      }
+
       CNWSPlayer player = null;
       if (playerSearch.HasFlag(PlayerSearch.Controlled))
       {

@@ -2,7 +2,7 @@ using NWN.Native.API;
 
 namespace Anvil.Services
 {
-  internal class RenameOriginalName
+  internal class OriginalNames
   {
     public CExoString PlayerName { get; set; }
     public CExoLocString FirstName { get; set; }

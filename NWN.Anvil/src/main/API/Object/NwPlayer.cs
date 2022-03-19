@@ -996,32 +996,56 @@ namespace Anvil.API
     /// Gets the current name override for the specified player.
     /// </summary>
     /// <param name="observer">The specific observer.</param>
-    public string GetPlayerNameOverride(NwPlayer observer = null)
+    public PlayerNameOverride GetPlayerNameOverride(NwPlayer observer = null)
     {
       return PlayerNameOverrideService.Value.GetPlayerNameOverride(this, observer);
     }
 
     /// <summary>
-    /// Sets a player character name and community name on the player list. Is not persistent.
+    /// Gets a list of all name overrides for the specified observer.
     /// </summary>
-    /// <param name="newName">The new name.</param>
-    /// <param name="prefix">The prefix for their character name, sometimes used for a color code.</param>
-    /// <param name="suffix">The suffix for their character name.</param>
-    /// <param name="playerNameState">How to change the Community Name.</param>
-    /// <param name="observer">If specified, the character name will appear to that specific observer as set, this overrides a global setting.</param>
-    public void SetPlayerNameOverride(string newName, string prefix = "", string suffix = "", PlayerNameState playerNameState = PlayerNameState.Default, NwPlayer observer = null)
+    /// <param name="includeGlobal">True if global overrides should be included in the returned map.</param>
+    /// <returns>A dictionary containing the name overrides for the specified observer.</returns>
+    public Dictionary<NwPlayer, PlayerNameOverride> GetOverridesForObserver(bool includeGlobal = false)
     {
-      PlayerNameOverrideService.Value.SetPlayerNameOverride(this, newName, prefix, suffix, playerNameState, observer);
+      return PlayerNameOverrideService.Value.GetOverridesForObserver(this, includeGlobal);
+    }
+
+    /// <summary>
+    /// Sets an override player character name and community name on the player list for all players. Is not persistent.
+    /// </summary>
+    /// <param name="nameOverride">The new names for the player.</param>
+    public void SetPlayerNameOverride(PlayerNameOverride nameOverride)
+    {
+      PlayerNameOverrideService.Value.SetPlayerNameOverride(this, nameOverride);
+    }
+
+    /// <summary>
+    /// Sets an override player character name and community name on the player list as observed by a specific player. Is not persistent.
+    /// </summary>
+    /// <param name="nameOverride">The new names for the player.</param>
+    /// <param name="observer">The observer to see the new names.</param>
+    public void SetPlayerNameOverride(PlayerNameOverride nameOverride, NwPlayer observer)
+    {
+      PlayerNameOverrideService.Value.SetPlayerNameOverride(this, nameOverride, observer);
     }
 
     /// <summary>
     /// Clears an overridden player character name.
     /// </summary>
-    /// <param name="observer">The observer whose overriden name of target is being cleared. If oTarget is null then all overrides are cleared.</param>
-    /// <param name="clearAll">If true, both the global and personal overrides will be cleared for that target player. Requires observer to be null.</param>
-    public void ClearPlayerNameOverride(NwPlayer observer = null, bool clearAll = false)
+    /// <param name="clearAll">If true, both global and any personal overrides will be cleared for that target player.</param>
+    public void ClearPlayerNameOverride(bool clearAll = false)
     {
-      PlayerNameOverrideService.Value.ClearPlayerNameOverride(this, observer, clearAll);
+      PlayerNameOverrideService.Value.ClearPlayerNameOverride(this, clearAll);
+    }
+
+    /// <summary>
+    /// Clears an overridden player character name for a specific observer.
+    /// </summary>
+    /// <param name="observer">The observer whose overriden name of target is being cleared.</param>
+    public void ClearPlayerNameOverride(NwPlayer observer)
+    {
+      PlayerNameOverrideService.Value.ClearPlayerNameOverride(this, observer);
     }
 
     /// <summary>
