@@ -480,14 +480,7 @@ namespace Anvil.Services
           targetCreature.m_pStats.m_lsLastName = originalName.LastName;
         }
 
-        if (OverwriteDisplayName)
-        {
-          targetCreature.m_sDisplayName = nameOverride.CharacterNameInternal;
-        }
-        else
-        {
-          targetCreature.m_sDisplayName = "".ToExoString();
-        }
+        targetCreature.m_sDisplayName = OverwriteDisplayName ? nameOverride.CharacterNameInternal : "".ToExoString();
       }
     }
 
