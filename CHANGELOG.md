@@ -21,6 +21,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
 - `NwPlaceable.Appearance`: Gets or sets the appearance for the placeable.
 - `ModuleLoadTracker`: Added core service for tracking module load progress as debug log messages.
   - If a module fails to load due to an error with an area, the area is logged as an error instead.
+- `NwPlayer`: Added player name override methods.
+  - `PlayerNameOverrideService` contains configuration options.
 
 ### Package Updates
 - NWNX c51d233 -> d15bc22
