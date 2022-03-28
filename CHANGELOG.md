@@ -24,10 +24,14 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
 - `NwPlayer`: Added player name override methods.
   - `PlayerNameOverrideService` contains configuration options.
 - `NwCreature`: Added `GetFeatRemainingUses` `GetFeatTotalUses` `SetFeatRemainingUses`
+- Added `OnMapPinAddPin`, `OnMapPinChangePin`, `OnMapPinDestroyPin` events.
 
 ### Package Updates
 - NWNX c51d233 -> d15bc22
 - NWN.Core 8193.34.2 -> 8193.34.3
+- LightInject 6.4.0 -> 6.4.1
+- NLog 4.7.13 -> 4.7.15
+- Paket.Core 6.2.1 -> 7.0.2
 
 ### Changed
 - Rewrote core services and initialisation logic for easier extensibility, and reduced coupling with AnvilCore.
