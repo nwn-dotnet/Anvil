@@ -32,12 +32,12 @@ namespace Anvil.API
   internal sealed class InternalVariableInt : ObjectStorageVariableInt
   {
     protected override string ObjectStoragePrefix => "ANVIL_API";
-    protected override bool Persist => true;
+    protected override bool Persist => false;
 
     internal sealed class Persistent : ObjectStorageVariableInt
     {
       protected override string ObjectStoragePrefix => "ANVIL_API";
-      protected override bool Persist => false;
+      protected override bool Persist => true;
     }
   }
 }
