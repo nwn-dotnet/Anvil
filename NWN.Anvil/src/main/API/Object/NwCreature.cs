@@ -1537,7 +1537,8 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Sets the remaining uses available for the specified feat.
+    /// Sets the remaining uses available for the specified feat.<br/>
+    /// Cannot exceed the creature's total/max uses of the feat.
     /// </summary>
     /// <param name="feat">The feat to change.</param>
     /// <param name="remainingUses">The new number of uses remaining.</param>

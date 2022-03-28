@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Anvil.API;
 using Anvil.Tests.Resources;
@@ -214,7 +215,7 @@ namespace Anvil.Tests.API
       NwFeat feat = NwFeat.FromFeatType(Feat.BarbarianRage);
       creature.SetFeatRemainingUses(feat, uses);
 
-      Assert.That(creature.GetFeatRemainingUses(feat), Is.EqualTo(uses), "Remaining feat uses was not updated after being set.");
+      Assert.That(creature.GetFeatRemainingUses(feat), Is.EqualTo(Math.Min(uses, creature.GetFeatTotalUses(feat))), "Remaining feat uses was not updated after being set.");
       Assert.That(creature.HasFeatPrepared(feat), Is.EqualTo(uses > 0), "Creature incorrectly assumes the feat is/is not available.");
     }
 
