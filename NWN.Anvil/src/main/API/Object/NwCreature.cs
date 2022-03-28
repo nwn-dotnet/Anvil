@@ -61,7 +61,8 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets whether this creature is forced to walk (persistent).
+    /// Gets or sets whether this creature is forced to walk.<br/>
+    /// Is not persistent, and must be applied again at login.
     /// </summary>
     public bool AlwaysWalk
     {
@@ -1537,17 +1538,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Sets the remaining uses available for the specified feat.<br/>
-    /// Cannot exceed the creature's total/max uses of the feat.
-    /// </summary>
-    /// <param name="feat">The feat to change.</param>
-    /// <param name="remainingUses">The new number of uses remaining.</param>
-    public void SetFeatRemainingUses(NwFeat feat, byte remainingUses)
-    {
-      Creature.m_pStats.SetFeatRemainingUses(feat.Id, remainingUses);
-    }
-
-    /// <summary>
     /// Gets the item that is equipped in the specified inventory slot.
     /// </summary>
     /// <param name="slot">The inventory slot to check.</param>
@@ -2141,6 +2131,17 @@ namespace Anvil.API
     public void SetCreatureBodyPart(CreaturePart creaturePart, int modelNumber)
     {
       NWScript.SetCreatureBodyPart((int)creaturePart, modelNumber, this);
+    }
+
+    /// <summary>
+    /// Sets the remaining uses available for the specified feat.<br/>
+    /// Cannot exceed the creature's total/max uses of the feat.
+    /// </summary>
+    /// <param name="feat">The feat to change.</param>
+    /// <param name="remainingUses">The new number of uses remaining.</param>
+    public void SetFeatRemainingUses(NwFeat feat, byte remainingUses)
+    {
+      Creature.m_pStats.SetFeatRemainingUses(feat.Id, remainingUses);
     }
 
     public void SetQuickBarButton(byte index, PlayerQuickBarButton data)
