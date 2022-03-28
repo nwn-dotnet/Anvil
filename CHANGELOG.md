@@ -23,6 +23,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
   - If a module fails to load due to an error with an area, the area is logged as an error instead.
 - `NwPlayer`: Added player name override methods.
   - `PlayerNameOverrideService` contains configuration options.
+- `NwCreature`: Added `GetFeatRemainingUses` `GetFeatTotalUses` `SetFeatRemainingUses`
 
 ### Package Updates
 - NWNX c51d233 -> d15bc22

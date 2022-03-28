@@ -1517,6 +1517,37 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the remaining uses available for the specified feat.
+    /// </summary>
+    /// <param name="feat">The feat to query.</param>
+    /// <returns>The amount of remaining uses.</returns>
+    public byte GetFeatRemainingUses(NwFeat feat)
+    {
+      return Creature.m_pStats.GetFeatRemainingUses(feat.Id);
+    }
+
+    /// <summary>
+    /// Gets the max/total amount of times the specified feat can be used.
+    /// </summary>
+    /// <param name="feat">The feat to query.</param>
+    /// <returns>The amount of remaining uses.</returns>
+    public byte GetFeatTotalUses(NwFeat feat)
+    {
+      return Creature.m_pStats.GetFeatTotalUses(feat.Id);
+    }
+
+    /// <summary>
+    /// Sets the remaining uses available for the specified feat.<br/>
+    /// Cannot exceed the creature's total/max uses of the feat.
+    /// </summary>
+    /// <param name="feat">The feat to change.</param>
+    /// <param name="remainingUses">The new number of uses remaining.</param>
+    public void SetFeatRemainingUses(NwFeat feat, byte remainingUses)
+    {
+      Creature.m_pStats.SetFeatRemainingUses(feat.Id, remainingUses);
+    }
+
+    /// <summary>
     /// Gets the item that is equipped in the specified inventory slot.
     /// </summary>
     /// <param name="slot">The inventory slot to check.</param>

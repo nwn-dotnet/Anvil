@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Anvil.API;
 using Anvil.Tests.Resources;
@@ -168,6 +169,54 @@ namespace Anvil.Tests.API
       createdTestObjects.Add(clone);
 
       Assert.That(clone.Tag, Is.EqualTo(creature.Tag), "Cloned creature's tag did not match the original creature's.");
+    }
+
+    [Test(Description = "Querying remaining feat uses returns a valid value.")]
+    public void GetFeatRemainingUsesReturnsValidValue()
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
+
+      Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
+      Assert.That(creature.IsValid, Is.True, "Creature was invalid after creation.");
+
+      createdTestObjects.Add(creature);
+
+      Assert.That(creature.GetFeatRemainingUses(NwFeat.FromFeatType(Feat.BarbarianRage)), Is.EqualTo(1));
+    }
+
+    [Test(Description = "Querying total feat uses returns a valid value.")]
+    public void GetFeatTotalUsesReturnsValidValue()
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
+
+      Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
+      Assert.That(creature.IsValid, Is.True, "Creature was invalid after creation.");
+
+      createdTestObjects.Add(creature);
+
+      Assert.That(creature.GetFeatTotalUses(NwFeat.FromFeatType(Feat.BarbarianRage)), Is.EqualTo(1));
+    }
+
+    [Test(Description = "Setting remaining feat uses correctly updates the creature.")]
+    [TestCase(0)]
+    [TestCase(2)]
+    [TestCase(5)]
+    public void SetFeatRemainingUsesCorrectlyUpdatesState(byte uses)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
+
+      Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
+      Assert.That(creature.IsValid, Is.True, "Creature was invalid after creation.");
+
+      createdTestObjects.Add(creature);
+      NwFeat feat = NwFeat.FromFeatType(Feat.BarbarianRage);
+      creature.SetFeatRemainingUses(feat, uses);
+
+      Assert.That(creature.GetFeatRemainingUses(feat), Is.EqualTo(Math.Min(uses, creature.GetFeatTotalUses(feat))), "Remaining feat uses was not updated after being set.");
+      Assert.That(creature.HasFeatPrepared(feat), Is.EqualTo(uses > 0), "Creature incorrectly assumes the feat is/is not available.");
     }
 
     [TearDown]
