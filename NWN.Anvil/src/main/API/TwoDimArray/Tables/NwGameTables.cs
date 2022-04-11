@@ -15,6 +15,8 @@ namespace Anvil.API
     /// </summary>
     public static TwoDimArray<BodyBagTableEntry> BodyBagTable { get; private set; }
 
+    public static TwoDimArray<DamageLevelEntry> DamageLevelTable { get; private set; }
+
     /// <summary>
     /// Gets the game environment preset table (environment.2da)
     /// </summary>
@@ -65,6 +67,7 @@ namespace Anvil.API
         PlaceableTable = new TwoDimArray<PlaceableTableEntry>(arrays.m_pPlaceablesTable);
         VisualEffectTable = new TwoDimArray<VisualEffectTableEntry>(arrays.m_pVisualEffectTable);
         ProgrammedEffectTable = new TwoDimArray<ProgrammedEffectTableEntry>("progfx.2da"); // arrays.m_pProgFxTable does not exist in nwserver.
+        DamageLevelTable = new TwoDimArray<DamageLevelEntry>(arrays.m_pDamageLevelTable);
       }
 
       private void OnReloadAll(void* pRules)
