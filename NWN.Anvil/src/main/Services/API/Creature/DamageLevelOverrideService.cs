@@ -3,7 +3,7 @@ using NWN.Native.API;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(CreatureForceWalkService))]
+  [ServiceBinding(typeof(DamageLevelOverrideService))]
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   public sealed unsafe class DamageLevelOverrideService
   {
