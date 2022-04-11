@@ -25,7 +25,7 @@ namespace Anvil.Tests.Services.API.Creature
       Location startLocation = NwModule.Instance.StartingLocation;
 
       NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
-      Assert.That(creature, Is.Not.Null, $"Creature was null after creation.");
+      Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
 
       createdTestObjects.Add(creature);
 

@@ -1,6 +1,6 @@
 namespace Anvil.API
 {
-  public class DamageLevelEntry : ITwoDimArrayEntry
+  public sealed class DamageLevelEntry : ITwoDimArrayEntry
   {
     public string Label { get; private set; }
 
