@@ -67,7 +67,7 @@ namespace Anvil.API
         PlaceableTable = new TwoDimArray<PlaceableTableEntry>(arrays.m_pPlaceablesTable);
         VisualEffectTable = new TwoDimArray<VisualEffectTableEntry>(arrays.m_pVisualEffectTable);
         ProgrammedEffectTable = new TwoDimArray<ProgrammedEffectTableEntry>("progfx.2da"); // arrays.m_pProgFxTable does not exist in nwserver.
-        DamageLevelTable = new TwoDimArray<DamageLevelEntry>(arrays.m_pDamageLevelTable);
+        DamageLevelTable = new TwoDimArray<DamageLevelEntry>("damagelevels.2da"); // arrays.m_pDamageLevelTable does not exist in nwserver.
       }
 
       private void OnReloadAll(void* pRules)
