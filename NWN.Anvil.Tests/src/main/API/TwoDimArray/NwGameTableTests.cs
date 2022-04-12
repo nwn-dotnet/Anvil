@@ -368,5 +368,19 @@ namespace Anvil.Tests.API
       Assert.That(lightRow.GetParamString(7), Is.EqualTo("fx_light_clr"));
       Assert.That(lightRow.GetParamString(8), Is.EqualTo(null));
     }
+
+    [TestCase(0, "UNINJURED", 6409)]
+    [TestCase(1, "BARELY_INJURED", 6410)]
+    [TestCase(2, "INJURED", 6411)]
+    [TestCase(3, "HEAVILY_WOUNDED", 6412)]
+    [TestCase(4, "NEAR_DEATH", 6413)]
+    public void DamageLevelTableReturnsValidData(int rowIndex, string label, int? strRef)
+    {
+      TwoDimArray<DamageLevelEntry> table = NwGameTables.DamageLevelTable;
+      DamageLevelEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.Label, Is.EqualTo(label));
+      Assert.That(row.StrRef?.Id, Is.EqualTo(strRef));
+    }
   }
 }

@@ -25,6 +25,9 @@ namespace Anvil.API
     [Inject]
     private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; }
 
+    [Inject]
+    private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; }
+
     internal readonly CNWSCreature Creature;
 
     private NwFaction faction;
@@ -228,6 +231,12 @@ namespace Anvil.API
     /// Gets the current action that this creature is executing.
     /// </summary>
     public Action CurrentAction => (Action)NWScript.GetCurrentAction(this);
+
+    /// <summary>
+    /// Gets the creature's current damage level (Uninjured, Injured, Near Death, etc).<br/>
+    /// If an override is set with <see cref="SetDamageLevelOverride"/>, this property will return the override value.
+    /// </summary>
+    public DamageLevelEntry DamageLevel => NwGameTables.DamageLevelTable[Creature.GetDamageLevel()];
 
     /// <summary>
     /// Gets a value indicating whether this creature is currently in Defensive Casting Mode.
@@ -1287,6 +1296,14 @@ namespace Anvil.API
       return (ResistSpellResult)NWScript.ResistSpell(this, target);
     }
 
+    /// <summary>
+    /// Clears any override that is set for the creature's damage level.<br/>
+    /// </summary>
+    public void ClearDamageLevelOverride()
+    {
+      DamageLevelOverrideService.Value.ClearDamageLevelOverride(this);
+    }
+
     public override NwCreature Clone(Location location, string newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwCreature>(location, newTag, copyLocalState);
@@ -1496,6 +1513,14 @@ namespace Anvil.API
     public int GetCreatureBodyPart(CreaturePart creaturePart)
     {
       return NWScript.GetCreatureBodyPart((int)creaturePart, this);
+    }
+
+    /// <summary>
+    /// Gets the override that is set for the creature's damage level.<br/>
+    /// </summary>
+    public DamageLevelEntry GetDamageLevelOverride()
+    {
+      return DamageLevelOverrideService.Value.GetDamageLevelOverride(this);
     }
 
     /// <summary>
@@ -2131,6 +2156,14 @@ namespace Anvil.API
     public void SetCreatureBodyPart(CreaturePart creaturePart, int modelNumber)
     {
       NWScript.SetCreatureBodyPart((int)creaturePart, modelNumber, this);
+    }
+
+    /// <summary>
+    /// Sets the override value to use for this creature's damage level.<br/>
+    /// </summary>
+    public void SetDamageLevelOverride(DamageLevelEntry damageLevel)
+    {
+      DamageLevelOverrideService.Value.SetDamageLevelOverride(this, damageLevel);
     }
 
     /// <summary>

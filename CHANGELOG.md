@@ -25,6 +25,9 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
   - `PlayerNameOverrideService` contains configuration options.
 - `NwCreature`: Added `GetFeatRemainingUses` `GetFeatTotalUses` `SetFeatRemainingUses`
 - Added `OnMapPinAddPin`, `OnMapPinChangePin`, `OnMapPinDestroyPin` events.
+- `NwCreature`: Added damage level override functions (`ClearDamageLevelOverride`, `GetDamageLevelOverride`, `SetDamageLevelOverride`)
+- `NwCreature`: Added `DamageLevel` property.
+- `NwGameTables`: Added `DamageLevelTable`
 
 ### Package Updates
 - NWNX c51d233 -> d15bc22
