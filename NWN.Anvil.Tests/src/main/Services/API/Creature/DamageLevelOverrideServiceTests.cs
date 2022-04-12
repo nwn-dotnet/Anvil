@@ -10,7 +10,7 @@ namespace Anvil.Tests.Services.API.Creature
   public sealed class DamageLevelOverrideServiceTests
   {
     [Inject]
-    private DamageLevelOverrideService DamageLevelOverrideService { get; init; }
+    private static DamageLevelOverrideService DamageLevelOverrideService { get; set; }
 
     private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
 
@@ -29,15 +29,15 @@ namespace Anvil.Tests.Services.API.Creature
 
       createdTestObjects.Add(creature);
 
-      Assert.That(creature.DamageLevel, Is.EqualTo(NwGameTables.DamageLevelTable[0])); // Uninjured
+      Assert.That(creature.DamageLevel.RowIndex, Is.EqualTo(NwGameTables.DamageLevelTable[0].RowIndex)); // Uninjured
 
       DamageLevelEntry damageLevel = NwGameTables.DamageLevelTable[damageLevelIndex];
 
       DamageLevelOverrideService.SetDamageLevelOverride(creature, damageLevel);
 
-      Assert.That(DamageLevelOverrideService.GetDamageLevelOverride(creature), Is.EqualTo(damageLevel));
-      Assert.That(creature.GetDamageLevelOverride(), Is.EqualTo(damageLevel));
-      Assert.That(creature.DamageLevel, Is.EqualTo(damageLevel));
+      Assert.That(DamageLevelOverrideService.GetDamageLevelOverride(creature).RowIndex, Is.EqualTo(damageLevel.RowIndex));
+      Assert.That(creature.GetDamageLevelOverride().RowIndex, Is.EqualTo(damageLevel.RowIndex));
+      Assert.That(creature.DamageLevel.RowIndex, Is.EqualTo(damageLevel.RowIndex));
     }
 
     [TearDown]
