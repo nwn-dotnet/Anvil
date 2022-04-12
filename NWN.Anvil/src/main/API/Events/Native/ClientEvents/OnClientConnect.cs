@@ -45,16 +45,19 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => null;
 
-    internal sealed class Factory : SingleHookEventFactory<Factory.SendServerToPlayerCharListHook>
+    internal sealed class Factory : HookEventFactory
     {
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
+      private static FunctionHook<SendServerToPlayerCharListHook> Hook { get; set; }
+
       internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
 
-      protected override unsafe FunctionHook<SendServerToPlayerCharListHook> RequestHook()
+      protected override unsafe IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
-        return HookService.RequestHook<SendServerToPlayerCharListHook>(pHook, FunctionsLinux._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer, HookOrder.Early);
+        Hook = HookService.RequestHook<SendServerToPlayerCharListHook>(pHook, FunctionsLinux._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       private static async void DelayDisconnectPlayer(uint playerId, string kickMessage)

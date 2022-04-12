@@ -15,7 +15,7 @@ namespace Anvil.Services
     /// </summary>
     public readonly TimeSpan Schedule;
 
-    private readonly Action task;
+    private Action task;
 
     internal ScheduledTask(Action task, TimeSpan executionTime)
     {
@@ -58,6 +58,7 @@ namespace Anvil.Services
     public void Cancel()
     {
       IsCancelled = true;
+      task = null;
     }
 
     /// <summary>

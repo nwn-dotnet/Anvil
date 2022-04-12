@@ -1,4 +1,3 @@
-using System.Text.Json;
 using NWN.Core;
 
 namespace Anvil.API
@@ -15,8 +14,8 @@ namespace Anvil.API
   {
     public override T Value
     {
-      get => HasValue ? JsonSerializer.Deserialize<T>(((Json)NWScript.GetLocalJson(Object, Name)).Dump()) : default;
-      set => NWScript.SetLocalJson(Object, Name, Json.Parse(JsonSerializer.Serialize(value)));
+      get => HasValue ? JsonUtility.FromJson<T>(NWScript.GetLocalJson(Object, Name)) : default;
+      set => NWScript.SetLocalJson(Object, Name, JsonUtility.ToJsonStructure(value));
     }
 
     public override void Delete()

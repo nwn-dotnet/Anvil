@@ -25,6 +25,9 @@ namespace Anvil.API
     [Inject]
     private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; }
 
+    [Inject]
+    private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; }
+
     internal readonly CNWSCreature Creature;
 
     private NwFaction faction;
@@ -61,7 +64,8 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets whether this creature is forced to walk (persistent).
+    /// Gets or sets whether this creature is forced to walk.<br/>
+    /// Is not persistent, and must be applied again at login.
     /// </summary>
     public bool AlwaysWalk
     {
@@ -78,6 +82,15 @@ namespace Anvil.API
     /// Gets this creature's animal companion creature type.
     /// </summary>
     public AnimalCompanionCreatureType AnimalCompanionType => (AnimalCompanionCreatureType)NWScript.GetAnimalCompanionCreatureType(this);
+
+    /// <summary>
+    /// Gets or sets the appearance of this creature.
+    /// </summary>
+    public AppearanceTableEntry Appearance
+    {
+      get => NwGameTables.AppearanceTable[NWScript.GetAppearanceType(this)];
+      set => NWScript.SetCreatureAppearanceType(this, value.RowIndex);
+    }
 
     /// <summary>
     /// Gets the arcane spell failure factor for this creature.
@@ -218,6 +231,12 @@ namespace Anvil.API
     /// Gets the current action that this creature is executing.
     /// </summary>
     public Action CurrentAction => (Action)NWScript.GetCurrentAction(this);
+
+    /// <summary>
+    /// Gets the creature's current damage level (Uninjured, Injured, Near Death, etc).<br/>
+    /// If an override is set with <see cref="SetDamageLevelOverride"/>, this property will return the override value.
+    /// </summary>
+    public DamageLevelEntry DamageLevel => NwGameTables.DamageLevelTable[Creature.GetDamageLevel()];
 
     /// <summary>
     /// Gets a value indicating whether this creature is currently in Defensive Casting Mode.
@@ -1277,6 +1296,14 @@ namespace Anvil.API
       return (ResistSpellResult)NWScript.ResistSpell(this, target);
     }
 
+    /// <summary>
+    /// Clears any override that is set for the creature's damage level.<br/>
+    /// </summary>
+    public void ClearDamageLevelOverride()
+    {
+      DamageLevelOverrideService.Value.ClearDamageLevelOverride(this);
+    }
+
     public override NwCreature Clone(Location location, string newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwCreature>(location, newTag, copyLocalState);
@@ -1489,6 +1516,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the override that is set for the creature's damage level.<br/>
+    /// </summary>
+    public DamageLevelEntry GetDamageLevelOverride()
+    {
+      return DamageLevelOverrideService.Value.GetDamageLevelOverride(this);
+    }
+
+    /// <summary>
     /// Gets the level a feat was gained.
     /// </summary>
     /// <param name="feat">The feat to query.</param>
@@ -1505,6 +1540,26 @@ namespace Anvil.API
       }
 
       return 0;
+    }
+
+    /// <summary>
+    /// Gets the remaining uses available for the specified feat.
+    /// </summary>
+    /// <param name="feat">The feat to query.</param>
+    /// <returns>The amount of remaining uses.</returns>
+    public byte GetFeatRemainingUses(NwFeat feat)
+    {
+      return Creature.m_pStats.GetFeatRemainingUses(feat.Id);
+    }
+
+    /// <summary>
+    /// Gets the max/total amount of times the specified feat can be used.
+    /// </summary>
+    /// <param name="feat">The feat to query.</param>
+    /// <returns>The amount of remaining uses.</returns>
+    public byte GetFeatTotalUses(NwFeat feat)
+    {
+      return Creature.m_pStats.GetFeatTotalUses(feat.Id);
     }
 
     /// <summary>
@@ -2101,6 +2156,25 @@ namespace Anvil.API
     public void SetCreatureBodyPart(CreaturePart creaturePart, int modelNumber)
     {
       NWScript.SetCreatureBodyPart((int)creaturePart, modelNumber, this);
+    }
+
+    /// <summary>
+    /// Sets the override value to use for this creature's damage level.<br/>
+    /// </summary>
+    public void SetDamageLevelOverride(DamageLevelEntry damageLevel)
+    {
+      DamageLevelOverrideService.Value.SetDamageLevelOverride(this, damageLevel);
+    }
+
+    /// <summary>
+    /// Sets the remaining uses available for the specified feat.<br/>
+    /// Cannot exceed the creature's total/max uses of the feat.
+    /// </summary>
+    /// <param name="feat">The feat to change.</param>
+    /// <param name="remainingUses">The new number of uses remaining.</param>
+    public void SetFeatRemainingUses(NwFeat feat, byte remainingUses)
+    {
+      Creature.m_pStats.SetFeatRemainingUses(feat.Id, remainingUses);
     }
 
     public void SetQuickBarButton(byte index, PlayerQuickBarButton data)

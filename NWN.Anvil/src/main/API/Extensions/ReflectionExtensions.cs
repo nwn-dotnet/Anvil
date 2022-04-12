@@ -47,6 +47,18 @@ namespace Anvil.API
       return memberInfo.GetCustomAttributes(inherit).OfType<T>().FirstOrDefault();
     }
 
+    /// <summary>
+    /// Gets the internal service name of this type.<br/>
+    /// This name is used for determining execution order of the service.
+    /// </summary>
+    /// <param name="type">The <see cref="System.Type"/> of the service to resolve the name of.</param>
+    /// <returns>The internal service name.</returns>
+    internal static string GetInternalServiceName(this Type type)
+    {
+      int bindingPriority = type.GetServicePriority() - (int)InternalBindingPriority.Highest;
+      return bindingPriority.ToString("D6") + type.FullName;
+    }
+
     internal static int GetServicePriority(this Type type)
     {
       ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();

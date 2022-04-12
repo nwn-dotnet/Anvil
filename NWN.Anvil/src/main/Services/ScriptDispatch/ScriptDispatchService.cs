@@ -1,40 +1,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Anvil.Internal;
 using NLog;
 
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(ScriptDispatchService))]
-  [ServiceBinding(typeof(ICoreRunScriptHandler))]
-  internal class ScriptDispatchService : ICoreRunScriptHandler
+  internal sealed class ScriptDispatchService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly List<IScriptDispatcher> dispatchers;
 
-    public ScriptDispatchService(IEnumerable<IScriptDispatcher> dispatchers)
+    public ScriptDispatchService(IReadOnlyList<IScriptDispatcher> dispatchers)
     {
       this.dispatchers = dispatchers.ToList();
       this.dispatchers.Sort((dispatcherA, dispatcherB) => dispatcherA.ExecutionOrder.CompareTo(dispatcherB.ExecutionOrder));
     }
 
-    public int OnRunScript(string script, uint oidSelf)
+    public ScriptHandleResult TryExecuteScript(string script, uint objectSelf)
     {
       try
       {
         ScriptHandleResult result = ScriptHandleResult.NotHandled;
         foreach (IScriptDispatcher dispatcher in dispatchers)
         {
-          result = dispatcher.ExecuteScript(script, oidSelf);
+          result = dispatcher.ExecuteScript(script, objectSelf);
           if (result != ScriptHandleResult.NotHandled)
           {
             break;
           }
         }
 
-        return (int)result;
+        return result;
       }
       catch (Exception e)
       {

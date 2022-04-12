@@ -4,6 +4,77 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## 8193.34.2
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...v8193.34.3
+
+### Added
+- `StrRef.ToParsedString()`: Gets the string associated with a StrRef and parses any tokens (e.g. \<CUSTOM0\>)
+- `StrTokenCustom`: New structure for resolving/setting custom token values.
+- `NwGameTables`: Added new 2da tables
+  - `BodyBagTable`
+  - `LightColorTable`
+  - `PlaceableSoundTable`
+  - `PlaceableTable`
+  - `ProgrammedEffectTable`
+  - `VisualEffectTable`
+- `NwArea`: Added `GetTileInfo()`
+- Added `InjectionService` & `ServiceBinding` tests.
+- `NwPlaceable.Appearance`: Gets or sets the appearance for the placeable.
+- `ModuleLoadTracker`: Added core service for tracking module load progress as debug log messages.
+  - If a module fails to load due to an error with an area, the area is logged as an error instead.
+- `NwPlayer`: Added player name override methods.
+  - `PlayerNameOverrideService` contains configuration options.
+- `NwCreature`: Added `GetFeatRemainingUses` `GetFeatTotalUses` `SetFeatRemainingUses`
+- Added `OnMapPinAddPin`, `OnMapPinChangePin`, `OnMapPinDestroyPin` events.
+- `NwCreature`: Added damage level override functions (`ClearDamageLevelOverride`, `GetDamageLevelOverride`, `SetDamageLevelOverride`)
+- `NwCreature`: Added `DamageLevel` property.
+- `NwGameTables`: Added `DamageLevelTable`
+
+### Package Updates
+- NWNX c51d233 -> d15bc22
+- NWN.Core 8193.34.2 -> 8193.34.3
+- LightInject 6.4.0 -> 6.4.1
+- NLog 4.7.13 -> 4.7.15
+- Paket.Core 6.2.1 -> 7.0.2
+
+### Changed
+- Rewrote core services and initialisation logic for easier extensibility, and reduced coupling with AnvilCore.
+  - All core services now implement `ICoreService`, an interface containing specific event functions that are called at specific times in the server lifecycle.
+  - Core services are executed in the order defined by `ServiceBindingOptions`.
+  - The CoreService composition root is defined in `AnvilServiceManager`.
+  - AnvilCore is now "dumber", and simply passes signals to `AnvilServiceManager` and `VirtualMachineFunctionHandler`.
+  - `AnvilServiceManager` merges service initialization in `AnvilCore`, with the container/composition root setup from `IContainerFactory`
+- `OnPlayerDeath.Killer` now tries to `GetLastDamager` when `GetLastHostileActor` is invalid.
+
+### Deprecated
+- `NwGameObject.CreatureAppearanceType`. Use `NwCreature.Appearance` instead.
+- APIs using int-based StrRef parameters have been deprecated. Please use the StrRef overloads:
+  - `NwGameObject.PlaySoundByStrRef()`
+  - `NwPlayer.ClearTlkOverride()`
+  - `NwPlayer.SetTlkOverride()`
+  - `NwBaseItem.BaseItemStatsText`
+  - `NwBaseItem.Description`
+  - `NwBaseItem.Name`
+  - `NwClass.Description`
+  - `NwClass.Name`
+  - `NwClass.NameLower`
+  - `NwClass.NamePlural`
+  - `NwFeat.Description`
+  - `NwFeat.Name`
+  - `NwSkill.Description`
+  - `NwSkill.Name`
+  - `NwSpell.AltMessage`
+  - `NwSpell.Description`
+  - `NwSpell.Name`
+  - `OnELCValidationFailure.StrRef`
+
+### Removed
+- N/A
+
+### Fixed
+- Fixed a stack overflow when injecting the `InjectionService` as a property dependency.
+- Unload is now triggered on all plugins before waiting for the assemblies to be unloaded. This fixes some edge cases where assemblies would not unload.
+
+## 8193.34.2
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.1...v8193.34.2
 
 ### Added

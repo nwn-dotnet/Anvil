@@ -21,6 +21,7 @@ namespace Anvil.API.Events
     public NwItem Item { get; private init; }
 
     public MetaMagic MetaMagic { get; private init; }
+
     public bool PreventSpellCast { get; set; }
 
     public ProjectilePathType ProjectilePathType { get; private init; }
@@ -35,15 +36,18 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SpellCastAndImpactHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void SpellCastAndImpactHook(void* pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
+      private static FunctionHook<SpellCastAndImpactHook> Hook { get; set; }
+
+      private delegate void SpellCastAndImpactHook(void* pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
         byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell);
 
-      protected override FunctionHook<SpellCastAndImpactHook> RequestHook()
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, int, Vector3, uint, byte, uint, int, int, byte, int, void> pHook = &OnSpellCastAndImpact;
-        return HookService.RequestHook<SpellCastAndImpactHook>(pHook, FunctionsLinux._ZN10CNWSObject18SpellCastAndImpactEj6Vectorjhjiihi, HookOrder.Early);
+        Hook = HookService.RequestHook<SpellCastAndImpactHook>(pHook, FunctionsLinux._ZN10CNWSObject18SpellCastAndImpactEj6Vectorjhjiihi, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

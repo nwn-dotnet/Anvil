@@ -13,7 +13,7 @@ namespace Anvil.API
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
-      object retVal = Activator.CreateInstance(objectType);
+      object retVal = Activator.CreateInstance(objectType, true);
       if (retVal == null)
       {
         return null;
@@ -25,7 +25,9 @@ namespace Anvil.API
         return null;
       }
 
-      propertyInfo.SetValue(retVal, serializer.Deserialize(reader));
+      Type valueType = objectType.GetGenericArguments()[0];
+      propertyInfo.SetValue(retVal, serializer.Deserialize(reader, valueType));
+
       return retVal;
     }
 

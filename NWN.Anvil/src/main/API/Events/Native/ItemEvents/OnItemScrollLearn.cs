@@ -28,14 +28,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.LearnScrollHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate int LearnScrollHook(void* pCreature, uint oidScrollToLearn);
+      private static FunctionHook<LearnScrollHook> Hook { get; set; }
 
-      protected override FunctionHook<LearnScrollHook> RequestHook()
+      private delegate int LearnScrollHook(void* pCreature, uint oidScrollToLearn);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int> pHook = &OnLearnScroll;
-        return HookService.RequestHook<LearnScrollHook>(pHook, FunctionsLinux._ZN12CNWSCreature11LearnScrollEj, HookOrder.Early);
+        Hook = HookService.RequestHook<LearnScrollHook>(pHook, FunctionsLinux._ZN12CNWSCreature11LearnScrollEj, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

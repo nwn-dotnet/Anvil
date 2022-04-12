@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -10,9 +9,6 @@ namespace Anvil.API
   /// </summary>
   public sealed unsafe class NwBaseItem
   {
-    [Inject]
-    private static TlkTable TlkTable { get; set; }
-
     internal readonly CNWBaseItem BaseItemInfo;
 
     internal NwBaseItem(uint baseItemId, CNWBaseItem baseItemInfo)
@@ -69,7 +65,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the string containing basic statistics of this item. This is displayed under the description when an item is examined in the game.
     /// </summary>
-    public string BaseItemStatsText => TlkTable.GetSimpleString(BaseItemInfo.m_nStatsString);
+    public StrRef BaseItemStatsText => new StrRef(BaseItemInfo.m_nStatsString);
 
     /// <summary>
     /// Gets if the inventory icon for this item may be rotated 90 degrees clockwise, such as when placed on a player's quickbar.
@@ -107,7 +103,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the default description for this item type. This is also used in game for items that lack specific descriptions.
     /// </summary>
-    public string Description => TlkTable.GetSimpleString(BaseItemInfo.m_nDescription);
+    public StrRef Description => new StrRef(BaseItemInfo.m_nDescription);
 
     /// <summary>
     /// Gets the number of sides of the dice rolled for this weapon's (item's) damage.
@@ -235,7 +231,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the base name of this item. Used for unidentified items.
     /// </summary>
-    public string Name => TlkTable.GetSimpleString(BaseItemInfo.m_nName);
+    public StrRef Name => new StrRef(BaseItemInfo.m_nName);
 
     /// <summary>
     /// Gets the number of dice rolled for this weapon's (item's) damage.

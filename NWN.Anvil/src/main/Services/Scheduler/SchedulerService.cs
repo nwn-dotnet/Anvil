@@ -14,7 +14,7 @@ namespace Anvil.Services
   /// </summary>
   [ServiceBinding(typeof(IUpdateable))]
   [ServiceBinding(typeof(SchedulerService))]
-  public class SchedulerService : IUpdateable, IDisposable
+  public sealed class SchedulerService : IUpdateable, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -83,7 +83,13 @@ namespace Anvil.Services
 
     void IDisposable.Dispose()
     {
+      foreach (ScheduledTask task in scheduledTasks)
+      {
+        task?.Dispose();
+      }
+
       scheduledTasks.Clear();
+      scheduledTasks.TrimExcess();
     }
 
     void IUpdateable.Update()

@@ -17,9 +17,6 @@ namespace Anvil.Tests.Generators
     [Inject]
     public ResourceManager ResourceManager { private get; init; }
 
-    [Inject]
-    public TlkTable TlkTable { private get; init; }
-
     private readonly List<PaletteEntry> blueprints = new List<PaletteEntry>();
 
     public Palette(string palettePrefix)
@@ -74,7 +71,7 @@ namespace Anvil.Tests.Generators
         }
         else if (field.TryGetValue("STRREF", out GffResourceField creatureNameStrRefField))
         {
-          name = TlkTable.GetSimpleString(creatureNameStrRefField.Value<uint>());
+          name = new StrRef(creatureNameStrRefField.Value<uint>()).ToString();
         }
 
         blueprints.Add(new PaletteEntry
@@ -87,7 +84,7 @@ namespace Anvil.Tests.Generators
       {
         if (field.TryGetValue("STRREF", out GffResourceField groupStrRef))
         {
-          path = Path.Combine(path, TlkTable.GetSimpleString(groupStrRef.Value<uint>()));
+          path = Path.Combine(path, new StrRef(groupStrRef.Value<uint>()).ToString());
         }
 
         if (field.TryGetValue("LIST", out GffResourceField list))

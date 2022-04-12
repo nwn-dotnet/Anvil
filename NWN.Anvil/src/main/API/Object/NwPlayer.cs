@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Anvil.API.Events;
 using Anvil.Internal;
 using Anvil.Services;
-using Newtonsoft.Json;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
@@ -29,7 +28,13 @@ namespace Anvil.API
     private static EventService EventService { get; set; }
 
     [Inject]
+    private static NwServer NwServer { get; set; }
+
+    [Inject]
     private static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; set; }
+
+    [Inject]
+    private static Lazy<PlayerNameOverrideService> PlayerNameOverrideService { get; set; }
 
     [Inject]
     private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; }
@@ -477,6 +482,24 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Clears an overridden player character name.
+    /// </summary>
+    /// <param name="clearAll">If true, both global and any personal overrides will be cleared for that target player.</param>
+    public void ClearPlayerNameOverride(bool clearAll = false)
+    {
+      PlayerNameOverrideService.Value.ClearPlayerNameOverride(this, clearAll);
+    }
+
+    /// <summary>
+    /// Clears an overridden player character name for a specific observer.
+    /// </summary>
+    /// <param name="observer">The observer whose overriden name of target is being cleared.</param>
+    public void ClearPlayerNameOverride(NwPlayer observer)
+    {
+      PlayerNameOverrideService.Value.ClearPlayerNameOverride(this, observer);
+    }
+
+    /// <summary>
     /// Removes the override for the specified texture, reverting to the original texture.
     /// </summary>
     /// <param name="texName">The name of the original texture.</param>
@@ -485,26 +508,10 @@ namespace Anvil.API
       NWScript.SetTextureOverride(texName, string.Empty, ControlledCreature);
     }
 
-    /// <summary>
-    /// Clears the specified TlkTable override for the player, optionally restoring the global override.
-    /// </summary>
-    /// <param name="strRef">The overridden string reference to restore.</param>
-    /// <param name="restoreGlobal">If true, restores the global override current set for ControlledCreature string ref.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when an invalid string ref is specified (&lt; 0).</exception>
+    [Obsolete("Use StrRef.ClearPlayerOverride instead.")]
     public void ClearTlkOverride(int strRef, bool restoreGlobal = true)
     {
-      if (strRef < 0)
-      {
-        throw new ArgumentOutOfRangeException(nameof(strRef), "StrRef must not be less than 0.");
-      }
-
-      string strOverride = string.Empty;
-      if (restoreGlobal && NWNXLib.TlkTable().m_overrides.TryGetValue((uint)strRef, out CExoString globalOverride))
-      {
-        strOverride = globalOverride.ToString();
-      }
-
-      SetTlkOverride(strRef, strOverride);
+      new StrRef(strRef).ClearPlayerOverride(this, restoreGlobal);
     }
 
     /// <summary>
@@ -515,9 +522,7 @@ namespace Anvil.API
     /// <returns>The window token on success (!= 0), or 0 on error.</returns>
     public int CreateNuiWindow(NuiWindow window, string windowId = "")
     {
-      string jsonString = JsonConvert.SerializeObject(window);
-      Json json = Json.Parse(jsonString);
-      return NWScript.NuiCreate(ControlledCreature, json, windowId);
+      return NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
     }
 
     /// <summary>
@@ -528,8 +533,8 @@ namespace Anvil.API
     public async Task Delete(string kickMessage, bool preserveBackup = true)
     {
       string bicName = BicFileName;
-      string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
-      string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
+      string serverVault = NwServer.GetAliasPath("SERVERVAULT");
+      string playerDir = NwServer.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
       string characterName = LoginCreature.Name;
       string playerName = PlayerName;
 
@@ -548,7 +553,7 @@ namespace Anvil.API
       await NwTask.NextFrame();
 
       // Delete their character's TURD
-      bool turdDeleted = NwServer.Instance.DeletePlayerTURD(playerName, characterName);
+      bool turdDeleted = NwServer.DeletePlayerTURD(playerName, characterName);
       if (!turdDeleted)
       {
         Log.Warn("Could not delete the TURD for deleted character {Character}", characterName);
@@ -739,6 +744,35 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Forces this player to reload their current area.
+    /// </summary>
+    public void ForceAreaReload()
+    {
+      NwCreature creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      CNWSCreature cCreature = creature.Creature;
+
+      NwArea area = creature.Area;
+      Vector3 position = creature.Position;
+
+      cCreature.m_oidDesiredArea = area.ObjectId;
+      cCreature.m_vDesiredAreaLocation = cCreature.m_vPosition;
+      cCreature.m_bDesiredAreaUpdateComplete = false.ToInt();
+
+      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
+      message.SendServerToPlayerArea_ClientArea(Player, area.Area, position.X, position.Y, position.Z, cCreature.m_vOrientation, false.ToInt());
+      cCreature.SetArea(null);
+
+      cCreature.m_oidDesiredArea = NwObject.Invalid;
+      message.DeleteLastUpdateObjectsInOtherAreas(Player);
+      cCreature.m_oidDesiredArea = area.ObjectId;
+    }
+
+    /// <summary>
     /// Forces the player to examine the specified game object.<br/>
     /// Works on <see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwItem"/> and <see cref="NwDoor"/>.<br/>
     /// Does nothing for other object types.
@@ -877,11 +911,30 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets a list of all name overrides for the specified observer.
+    /// </summary>
+    /// <param name="includeGlobal">True if global overrides should be included in the returned map.</param>
+    /// <returns>A dictionary containing the name overrides for the specified observer.</returns>
+    public Dictionary<NwPlayer, PlayerNameOverride> GetOverridesForObserver(bool includeGlobal = false)
+    {
+      return PlayerNameOverrideService.Value.GetOverridesForObserver(this, includeGlobal);
+    }
+
+    /// <summary>
     /// Gets the visiblity override for the specified object for this player.
     /// </summary>
     public VisibilityMode GetPersonalVisibilityOverride(NwGameObject target)
     {
       return ObjectVisibilityService.Value.GetPersonalOverride(this, target);
+    }
+
+    /// <summary>
+    /// Gets the current name override for the specified player.
+    /// </summary>
+    /// <param name="observer">The specific observer.</param>
+    public PlayerNameOverride GetPlayerNameOverride(NwPlayer observer = null)
+    {
+      return PlayerNameOverrideService.Value.GetPlayerNameOverride(this, observer);
     }
 
     /// <summary>
@@ -949,8 +1002,7 @@ namespace Anvil.API
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
     public T NuiGetUserData<T>(int uiToken)
     {
-      Json json = NWScript.NuiGetUserData(ControlledCreature, uiToken);
-      return JsonConvert.DeserializeObject<T>(json.Dump());
+      return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(ControlledCreature, uiToken));
     }
 
     /// <summary>
@@ -974,8 +1026,7 @@ namespace Anvil.API
     /// <typeparam name="T">The type of data to store. Must be serializable to JSON.</typeparam>
     public void NuiSetUserData<T>(int uiToken, T userData)
     {
-      Json json = Json.Parse(JsonConvert.SerializeObject(userData));
-      NWScript.NuiSetUserData(ControlledCreature, uiToken, json);
+      NWScript.NuiSetUserData(ControlledCreature, uiToken, JsonUtility.ToJsonStructure(userData));
     }
 
     /// <summary>
@@ -1251,6 +1302,25 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Sets an override player character name and community name on the player list for all players. Is not persistent.
+    /// </summary>
+    /// <param name="nameOverride">The new names for the player.</param>
+    public void SetPlayerNameOverride(PlayerNameOverride nameOverride)
+    {
+      PlayerNameOverrideService.Value.SetPlayerNameOverride(this, nameOverride);
+    }
+
+    /// <summary>
+    /// Sets an override player character name and community name on the player list as observed by a specific player. Is not persistent.
+    /// </summary>
+    /// <param name="nameOverride">The new names for the player.</param>
+    /// <param name="observer">The observer to see the new names.</param>
+    public void SetPlayerNameOverride(PlayerNameOverride nameOverride, NwPlayer observer)
+    {
+      PlayerNameOverrideService.Value.SetPlayerNameOverride(this, nameOverride, observer);
+    }
+
+    /// <summary>
     /// Makes ControlledCreature PC load a new texture instead of another.
     /// </summary>
     /// <param name="oldTexName">The existing texture to replace.</param>
@@ -1260,22 +1330,10 @@ namespace Anvil.API
       NWScript.SetTextureOverride(oldTexName, newTexName, ControlledCreature);
     }
 
-    /// <summary>
-    /// Overrides the specified string from the TlkTable using the specified override for the player only.<br/>
-    /// Overrides will not persist through re-logging.
-    /// </summary>
-    /// <param name="strRef">The string reference to be overridden.</param>
-    /// <param name="strOverride">The new string to assign.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when an invalid string ref is specified (&lt; 0).</exception>
-    public void SetTlkOverride(int strRef, string strOverride)
+    [Obsolete("Use StrRef.SetPlayerOverride instead.")]
+    public void SetTlkOverride(int strRef, string value)
     {
-      if (strRef < 0)
-      {
-        throw new ArgumentOutOfRangeException(nameof(strRef), "StrRef must not be less than 0.");
-      }
-
-      CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
-      message?.SendServerToPlayerSetTlkOverride(Player.m_nPlayerID, strRef, strOverride.ToExoString());
+      new StrRef(strRef).SetPlayerOverride(this, value);
     }
 
     /// <summary>
@@ -1321,9 +1379,7 @@ namespace Anvil.API
     /// <returns>True if the window was successfully created, otherwise false.</returns>
     public bool TryCreateNuiWindow(NuiWindow window, out int token, string windowId = "")
     {
-      string jsonString = JsonConvert.SerializeObject(window);
-      Json json = Json.Parse(jsonString);
-      token = NWScript.NuiCreate(ControlledCreature, json, windowId);
+      token = NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
 
       return token != 0;
     }

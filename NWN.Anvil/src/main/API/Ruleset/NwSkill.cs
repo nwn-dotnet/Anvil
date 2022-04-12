@@ -1,5 +1,4 @@
 using System.Linq;
-using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -9,9 +8,6 @@ namespace Anvil.API
   /// </summary>
   public sealed class NwSkill
   {
-    [Inject]
-    private static TlkTable TlkTable { get; set; }
-
     private readonly CNWSkill skillInfo;
 
     internal NwSkill(byte skillId, CNWSkill skillInfo)
@@ -33,7 +29,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the description of this skill.
     /// </summary>
-    public string Description => TlkTable.GetSimpleString((uint)skillInfo.m_nDescriptionStrref);
+    public StrRef Description => new StrRef(skillInfo.m_nDescriptionStrref);
 
     /// <summary>
     /// Gets the ResRef of the GUI icon representing this skill.
@@ -63,7 +59,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of this skill.
     /// </summary>
-    public string Name => TlkTable.GetSimpleString((uint)skillInfo.m_nNameStrref);
+    public StrRef Name => new StrRef((uint)skillInfo.m_nNameStrref);
 
     /// <summary>
     /// Gets the associated <see cref="Skill"/> type for this skill.

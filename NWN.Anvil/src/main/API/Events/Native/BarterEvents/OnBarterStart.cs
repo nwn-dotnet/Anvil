@@ -14,14 +14,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Initiator.ControlledCreature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.StartBarterHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate void StartBarterHook(void* pMessage, void* pPlayer);
+      private static FunctionHook<StartBarterHook> Hook { get; set; }
 
-      protected override FunctionHook<StartBarterHook> RequestHook()
+      private delegate void StartBarterHook(void* pMessage, void* pPlayer);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void> pHook = &OnStartBarter;
-        return HookService.RequestHook<StartBarterHook>(pHook, FunctionsLinux._ZN11CNWSMessage38HandlePlayerToServerBarter_StartBarterEP10CNWSPlayer, HookOrder.Earliest);
+        Hook = HookService.RequestHook<StartBarterHook>(pHook, FunctionsLinux._ZN11CNWSMessage38HandlePlayerToServerBarter_StartBarterEP10CNWSPlayer, HookOrder.Earliest);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

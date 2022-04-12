@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -11,9 +10,6 @@ namespace Anvil.API
   /// </summary>
   public sealed unsafe class NwSpell
   {
-    [Inject]
-    private static TlkTable TlkTable { get; set; }
-
     private readonly CNWSpell spellInfo;
 
     internal NwSpell(uint spellId, CNWSpell spellInfo)
@@ -30,7 +26,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the unformatted message shown in the combat log when something casts this spell.
     /// </summary>
-    public string AltMessage => TlkTable.GetSimpleString(spellInfo.m_nAltMessage);
+    public StrRef AltMessage => new StrRef(spellInfo.m_nAltMessage);
 
     /// <summary>
     /// Gets the animation type used to cast this spell.
@@ -120,7 +116,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the description of this spell.
     /// </summary>
-    public string Description => TlkTable.GetSimpleString(spellInfo.m_strrefDesc);
+    public StrRef Description => new StrRef(spellInfo.m_strrefDesc);
 
     /// <summary>
     /// Gets the associated feat if this spell is linked to a feat.
@@ -167,7 +163,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of this spell.
     /// </summary>
-    public string Name => TlkTable.GetSimpleString((uint)spellInfo.m_strrefName);
+    public StrRef Name => new StrRef((uint)spellInfo.m_strrefName);
 
     /// <summary>
     /// Gets the ResRef of the projectile model.

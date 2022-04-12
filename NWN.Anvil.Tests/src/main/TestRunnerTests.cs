@@ -30,6 +30,7 @@ namespace Anvil.Tests
     }
 
     [Test]
+    [Timeout(2000)]
     public async Task AsyncTestRunsInScriptContext()
     {
       Assert.That(VirtualMachine.IsInScriptContext, Is.True);

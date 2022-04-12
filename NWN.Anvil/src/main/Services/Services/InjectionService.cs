@@ -2,21 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Anvil.Plugins;
-using LightInject;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(InjectionService))]
-  [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed class InjectionService : IDisposable
+  [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
+  public sealed class InjectionService : ICoreService
   {
-    private readonly IServiceContainer container;
     private readonly List<PropertyInfo> injectedStaticProperties = new List<PropertyInfo>();
+    private readonly PluginManager pluginManager;
+    private readonly IServiceManager serviceManager;
 
-    public InjectionService(IServiceContainer container, PluginManager pluginManager)
+    public InjectionService(IServiceManager serviceManager, PluginManager pluginManager)
     {
-      this.container = container;
-      InjectStaticProperties(pluginManager.LoadedTypes);
+      this.serviceManager = serviceManager;
+      this.pluginManager = pluginManager;
     }
 
     /// <summary>
@@ -32,30 +31,42 @@ namespace Anvil.Services
         return default;
       }
 
-      container.InjectProperties(instance);
+      serviceManager.AnvilServiceContainer.InjectProperties(instance);
       return instance;
     }
 
+    void ICoreService.Init() {}
+
+    void ICoreService.Load() {}
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Start()
+    {
+      InjectStaticProperties(pluginManager.LoadedTypes);
+    }
+
     // We clear injected properties as they can hold invalid references when reloading Anvil.
-    void IDisposable.Dispose()
+    void ICoreService.Unload()
     {
       foreach (PropertyInfo propertyInfo in injectedStaticProperties)
       {
         propertyInfo.SetValue(null, default);
       }
+
+      injectedStaticProperties.Clear();
     }
 
     private void InjectStaticProperties(IEnumerable<Type> types)
     {
       InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.StaticOnly);
-
       foreach (Type type in types)
       {
         List<PropertyInfo> injectableTypes = (List<PropertyInfo>)propertySelector.Execute(type);
 
         foreach (PropertyInfo propertyInfo in injectableTypes)
         {
-          object value = container.TryGetInstance(propertyInfo.PropertyType);
+          object value = serviceManager.AnvilServiceContainer.TryGetInstance(propertyInfo.PropertyType);
           propertyInfo.SetValue(null, value);
           injectedStaticProperties.Add(propertyInfo);
         }

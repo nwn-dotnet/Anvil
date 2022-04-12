@@ -15,14 +15,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.DoListenDetectionHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate int DoListenDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
+      private static FunctionHook<DoListenDetectionHook> Hook { get; set; }
 
-      protected override FunctionHook<DoListenDetectionHook> RequestHook()
+      private delegate int DoListenDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int, int> pHook = &OnDoListenDetection;
-        return HookService.RequestHook<DoListenDetectionHook>(pHook, FunctionsLinux._ZN12CNWSCreature17DoListenDetectionEPS_i, HookOrder.Early);
+        Hook = HookService.RequestHook<DoListenDetectionHook>(pHook, FunctionsLinux._ZN12CNWSCreature17DoListenDetectionEPS_i, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

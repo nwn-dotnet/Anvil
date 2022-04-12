@@ -4,7 +4,7 @@ namespace Anvil.API.Events
 {
   public static class DialogEvents
   {
-    public class ActionTaken : IEvent
+    public sealed class ActionTaken : IEvent
     {
       public ActionTaken()
       {
@@ -41,7 +41,7 @@ namespace Anvil.API.Events
       }
     }
 
-    public class AppearsWhen : IEvent
+    public sealed class AppearsWhen : IEvent
     {
       public AppearsWhen()
       {

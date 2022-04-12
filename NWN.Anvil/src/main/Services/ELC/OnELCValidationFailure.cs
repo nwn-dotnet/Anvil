@@ -7,7 +7,7 @@ namespace Anvil.Services
     public bool IgnoreFailure { get; set; }
     public NwPlayer Player { get; init; }
 
-    public int StrRef { get; set; }
+    public StrRef StrRef { get; set; }
 
     public ValidationFailureSubType SubType { get; init; }
 

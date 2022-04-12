@@ -25,14 +25,17 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Player.ControlledCreature;
 
-    internal sealed unsafe class Factory : SingleHookEventFactory<Factory.SaveServerCharacterHook>
+    internal sealed unsafe class Factory : HookEventFactory
     {
-      internal delegate int SaveServerCharacterHook(void* pPlayer, int bBackupPlayer);
+      private static FunctionHook<SaveServerCharacterHook> Hook { get; set; }
 
-      protected override FunctionHook<SaveServerCharacterHook> RequestHook()
+      private delegate int SaveServerCharacterHook(void* pPlayer, int bBackupPlayer);
+
+      protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, int, int> pHook = &OnSaveServerCharacter;
-        return HookService.RequestHook<SaveServerCharacterHook>(pHook, FunctionsLinux._ZN10CNWSPlayer19SaveServerCharacterEi, HookOrder.Early);
+        Hook = HookService.RequestHook<SaveServerCharacterHook>(pHook, FunctionsLinux._ZN10CNWSPlayer19SaveServerCharacterEi, HookOrder.Early);
+        return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]

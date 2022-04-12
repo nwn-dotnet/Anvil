@@ -24,34 +24,34 @@ namespace Anvil.Services
     private const int NumSpellLevels = 10;
 
     // Validation Failure STRREFs
-    private const int StrRefCharacterDoesNotExist = 63767;
-    private const int StrRefCharacterDungeonMaster = 67641;
-    private const int StrRefCharacterInvalidAbilityScores = 63761;
-    private const int StrRefCharacterLevelRestriction = 57924;
-    private const int StrRefCharacterNonPlayer = 63760;
-    private const int StrRefCharacterNonPlayerClass = 66167;
-    private const int StrRefCharacterNonPlayerRace = 66166;
-    private const int StrRefCharacterSavingThrow = 8066;
-    private const int StrRefCharacterTooManyHitpoints = 3109;
-    private const int StrRefCustom = 164;
-    private const int StrRefFeatInvalid = 76383;
-    private const int StrRefFeatReqAbility = 66175;
-    private const int StrRefFeatReqFeat = 66182;
-    private const int StrRefFeatReqSkill = 66183;
-    private const int StrRefFeatReqSpellLevel = 66176;
-    private const int StrRefFeatTooMany = 66222;
-    private const int StrRefItemLevelRestriction = 68521;
-    private const int StrRefSkillInvalidNumSkillpoints = 66155;
-    private const int StrRefSkillInvalidRanks = 66165;
-    private const int StrRefSkillUnuseable = 63815;
-    private const int StrRefSpellIllegalLevel = 68627;
-    private const int StrRefSpellIllegalNumSpells = 68630;
-    private const int StrRefSpellIllegalRemovedSpells = 68631;
-    private const int StrRefSpellInvalidSpell = 66499;
-    private const int StrRefSpellLearnedTwice = 68629;
-    private const int StrRefSpellOppositeSpellSchool = 66500;
-    private const int StrRefSpellReqAbility = 68628;
-    private const int StrRefSpellReqSpellLevel = 66498;
+    private static readonly StrRef StrRefCharacterDoesNotExist = new StrRef(63767);
+    private static readonly StrRef StrRefCharacterDungeonMaster = new StrRef(67641);
+    private static readonly StrRef StrRefCharacterInvalidAbilityScores = new StrRef(63761);
+    private static readonly StrRef StrRefCharacterLevelRestriction = new StrRef(57924);
+    private static readonly StrRef StrRefCharacterNonPlayer = new StrRef(63760);
+    private static readonly StrRef StrRefCharacterNonPlayerClass = new StrRef(66167);
+    private static readonly StrRef StrRefCharacterNonPlayerRace = new StrRef(66166);
+    private static readonly StrRef StrRefCharacterSavingThrow = new StrRef(8066);
+    private static readonly StrRef StrRefCharacterTooManyHitpoints = new StrRef(3109);
+    private static readonly StrRef StrRefCustom = new StrRef(164);
+    private static readonly StrRef StrRefFeatInvalid = new StrRef(76383);
+    private static readonly StrRef StrRefFeatReqAbility = new StrRef(66175);
+    private static readonly StrRef StrRefFeatReqFeat = new StrRef(66182);
+    private static readonly StrRef StrRefFeatReqSkill = new StrRef(66183);
+    private static readonly StrRef StrRefFeatReqSpellLevel = new StrRef(66176);
+    private static readonly StrRef StrRefFeatTooMany = new StrRef(66222);
+    private static readonly StrRef StrRefItemLevelRestriction = new StrRef(68521);
+    private static readonly StrRef StrRefSkillInvalidNumSkillpoints = new StrRef(66155);
+    private static readonly StrRef StrRefSkillInvalidRanks = new StrRef(66165);
+    private static readonly StrRef StrRefSkillUnuseable = new StrRef(63815);
+    private static readonly StrRef StrRefSpellIllegalLevel = new StrRef(68627);
+    private static readonly StrRef StrRefSpellIllegalNumSpells = new StrRef(68630);
+    private static readonly StrRef StrRefSpellIllegalRemovedSpells = new StrRef(68631);
+    private static readonly StrRef StrRefSpellInvalidSpell = new StrRef(66499);
+    private static readonly StrRef StrRefSpellLearnedTwice = new StrRef(68629);
+    private static readonly StrRef StrRefSpellOppositeSpellSchool = new StrRef(66500);
+    private static readonly StrRef StrRefSpellReqAbility = new StrRef(68628);
+    private static readonly StrRef StrRefSpellReqSpellLevel = new StrRef(66498);
     private readonly int abilityCostIncrement2;
     private readonly int abilityCostIncrement3;
     private readonly int charGenBaseAbilityMax;
@@ -215,7 +215,7 @@ namespace Anvil.Services
         OnValidationFailure?.Invoke(eventData);
       });
 
-      strRefFailure = eventData.StrRef;
+      strRefFailure = (int)eventData.StrRef.Id;
 
       return !eventData.IgnoreFailure;
     }
@@ -269,31 +269,31 @@ namespace Anvil.Services
       // *** Sanity Checks ****************************************************************************************************
       if (pPlayer == null)
       {
-        return StrRefCharacterDoesNotExist;
+        return (int)StrRefCharacterDoesNotExist.Id;
       }
 
       ICGameObject pGameObject = LowLevel.ServerExoApp.GetGameObject(pPlayer.m_oidNWSObject);
       if (pGameObject == null)
       {
-        return StrRefCharacterDoesNotExist;
+        return (int)StrRefCharacterDoesNotExist.Id;
       }
 
       CNWSCreature pCreature = pGameObject.AsNWSCreature();
       if (pCreature == null)
       {
-        return StrRefCharacterDoesNotExist;
+        return (int)StrRefCharacterDoesNotExist.Id;
       }
 
       CNWSCreatureStats pCreatureStats = pCreature.m_pStats;
       if (pCreatureStats == null)
       {
-        return StrRefCharacterDoesNotExist;
+        return (int)StrRefCharacterDoesNotExist.Id;
       }
 
       CNWSInventory pInventory = pCreature.m_pInventory;
       if (pInventory == null)
       {
-        return StrRefCharacterDoesNotExist;
+        return (int)StrRefCharacterDoesNotExist.Id;
       }
       // **********************************************************************************************************************
 
@@ -1331,7 +1331,7 @@ namespace Anvil.Services
           }
 
           // Skill Focus Feats
-          int SkillFocusFeatCheck(ushort nReqSkill)
+          StrRef? SkillFocusFeatCheck(ushort nReqSkill)
           {
             if (nReqSkill != IntegerExtensions.AsUShort(-1))
             {
@@ -1371,18 +1371,18 @@ namespace Anvil.Services
               }
             }
 
-            return 0;
+            return null;
           }
 
-          int retVal = SkillFocusFeatCheck(pFeat.m_nRequiredSkill);
-          if (retVal != 0)
+          StrRef? retVal = SkillFocusFeatCheck(pFeat.m_nRequiredSkill);
+          if (retVal != null)
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredSkillNotMet,
-              StrRef = retVal,
+              StrRef = retVal.Value,
             }))
             {
               return strRefFailure;
@@ -1390,14 +1390,14 @@ namespace Anvil.Services
           }
 
           retVal = SkillFocusFeatCheck(pFeat.m_nRequiredSkill2);
-          if (retVal != 0)
+          if (retVal != null)
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredSkillNotMet,
-              StrRef = retVal,
+              StrRef = retVal.Value,
             }))
             {
               return strRefFailure;
@@ -1405,7 +1405,7 @@ namespace Anvil.Services
           }
 
           // Check Feat Prereqs
-          int PrerequisitesFeatCheck(ushort nPrereqFeat)
+          StrRef? PrerequisitesFeatCheck(ushort nPrereqFeat)
           {
             if (nPrereqFeat != IntegerExtensions.AsUShort(-1))
             {
@@ -1415,18 +1415,18 @@ namespace Anvil.Services
               }
             }
 
-            return 0;
+            return null;
           }
 
           retVal = PrerequisitesFeatCheck(pFeat.m_lstPrereqFeats[0]);
-          if (retVal != 0)
+          if (retVal != null)
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredFeatNotMet,
-              StrRef = retVal,
+              StrRef = retVal.Value,
             }))
             {
               return strRefFailure;
@@ -1434,14 +1434,14 @@ namespace Anvil.Services
           }
 
           retVal = PrerequisitesFeatCheck(pFeat.m_lstPrereqFeats[1]);
-          if (retVal != 0)
+          if (retVal != null)
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
               Player = nwPlayer,
               Type = ValidationFailureType.Feat,
               SubType = ValidationFailureSubType.FeatRequiredFeatNotMet,
-              StrRef = retVal,
+              StrRef = retVal.Value,
             }))
             {
               return strRefFailure;

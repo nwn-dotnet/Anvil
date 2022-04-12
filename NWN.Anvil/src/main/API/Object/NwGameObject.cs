@@ -44,6 +44,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the appearance of this creature.
     /// </summary>
+    [Obsolete("Use NwCreature.Appearance instead.")]
     public AppearanceType CreatureAppearanceType
     {
       get => (AppearanceType)NWScript.GetAppearanceType(this);
@@ -459,6 +460,12 @@ namespace Anvil.API
       NWScript.PlaySound(soundName);
     }
 
+    [Obsolete("Use the StrRef overload instead.")]
+    public async Task PlaySoundByStrRef(int strRef, bool runAsAction = true)
+    {
+      await PlaySoundByStrRef(new StrRef(strRef), runAsAction);
+    }
+
     /// <summary>
     /// Plays a sound associated with a string reference (strRef).<br/>
     /// The sound comes out as a mono sound sourcing from the location of the object running the command.<br/>
@@ -467,10 +474,10 @@ namespace Anvil.API
     /// <param name="strRef">String reference number of the sound to play.</param>
     /// <param name="runAsAction">Determines if this is an action that can be stacked on the action queue.</param>
     /// <remarks>The strRef values for sounds can be found in the file dialog.tlk in the NWN install directory.</remarks>
-    public async Task PlaySoundByStrRef(int strRef, bool runAsAction = true)
+    public async Task PlaySoundByStrRef(StrRef strRef, bool runAsAction = true)
     {
       await WaitForObjectContext();
-      NWScript.PlaySoundByStrRef(strRef, runAsAction.ToInt());
+      NWScript.PlaySoundByStrRef((int)strRef.Id, runAsAction.ToInt());
     }
 
     /// <summary>

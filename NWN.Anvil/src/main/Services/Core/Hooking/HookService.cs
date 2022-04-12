@@ -10,9 +10,7 @@ namespace Anvil.Services
   /// <summary>
   /// An advanced service for hooking native NWN functions.
   /// </summary>
-  [ServiceBinding(typeof(HookService))]
-  [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed unsafe class HookService : ILateDisposable
+  public sealed unsafe class HookService : ICoreService
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -57,12 +55,22 @@ namespace Anvil.Services
       return retVal;
     }
 
-    void ILateDisposable.LateDispose()
+    void ICoreService.Init() {}
+
+    void ICoreService.Load() {}
+
+    void ICoreService.Shutdown() {}
+
+    void ICoreService.Start() {}
+
+    void ICoreService.Unload()
     {
       foreach (IDisposable hook in hooks.ToList())
       {
         hook.Dispose();
       }
+
+      hooks.Clear();
     }
 
     internal void RemoveHook<T>(FunctionHook<T> hook) where T : Delegate

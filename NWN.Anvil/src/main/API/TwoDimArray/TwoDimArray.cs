@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -123,6 +125,40 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the specified <see cref="StrRef"/> value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
+    public T? GetEnum<T>(int rowIndex, string columnName) where T : struct, Enum
+    {
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetEnum<T>(rowIndex, columnIndex) : null;
+    }
+
+    /// <summary>
+    /// Gets the specified enum value value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
+    public unsafe T? GetEnum<T>(int rowIndex, int columnIndex) where T : struct, Enum
+    {
+      if (Unsafe.SizeOf<T>() != Unsafe.SizeOf<int>())
+      {
+        throw new ArgumentOutOfRangeException(nameof(T), "Specified enum must be backed by a signed int32 (int)");
+      }
+
+      int retVal;
+      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      {
+        return Unsafe.As<int, T>(ref retVal);
+      }
+
+      return null;
+    }
+
+    /// <summary>
     /// Gets the specified float value.
     /// </summary>
     /// <param name="rowIndex">The index of the row to query.</param>
@@ -238,6 +274,80 @@ namespace Anvil.API
       if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
       {
         return new StrRef(retVal);
+      }
+
+      return null;
+    }
+
+    /// <summary>
+    /// Interprets the specified value as a table index, and returns the associated table entry.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <param name="table">The table that should be used to resolve the value.</param>
+    /// <typeparam name="T">The type of table entry.</typeparam>
+    /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
+    public T GetTableEntry<T>(int rowIndex, string columnName, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    {
+      int columnIndex = GetColumnIndex(columnName);
+      return GetTableEntry(rowIndex, columnIndex, table);
+    }
+
+    /// <summary>
+    /// Interprets the specified value as a table index, and returns the associated table entry.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <param name="table">The table that should be used to resolve the value.</param>
+    /// <typeparam name="T">The type of table entry.</typeparam>
+    /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
+    public unsafe T GetTableEntry<T>(int rowIndex, int columnIndex, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    {
+      int index;
+      if (array.GetINTEntry(rowIndex, columnIndex, &index).ToBool() && index < table.RowCount)
+      {
+        return table[index];
+      }
+
+      return default;
+    }
+
+    /// <summary>
+    /// Gets the specified Vector3 value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnNameX">The name/label of the column containing the x component of the vector.</param>
+    /// <param name="columnNameY">The name/label of the column containing the y component of the vector.</param>
+    /// <param name="columnNameZ">The name/label of the column containing the z component of the vector.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
+    public Vector3? GetVector3(int rowIndex, string columnNameX, string columnNameY, string columnNameZ)
+    {
+      int columnIndexX = GetColumnIndex(columnNameX);
+      int columnIndexY = GetColumnIndex(columnNameY);
+      int columnIndexZ = GetColumnIndex(columnNameZ);
+
+      return columnIndexX >= 0 && columnIndexY >= 0 && columnIndexZ >= 0 ? GetVector3(rowIndex, columnIndexX, columnIndexY, columnIndexZ) : null;
+    }
+
+    /// <summary>
+    /// Gets the specified Vector3 value.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndexX">The index of the column containing the x component of the vector.</param>
+    /// <param name="columnIndexY">The index of the column containing the y component of the vector.</param>
+    /// <param name="columnIndexZ">The index of the column containing the z component of the vector.</param>
+    /// <returns>The associated value. null if no value is set.</returns>
+    public unsafe Vector3? GetVector3(int rowIndex, int columnIndexX, int columnIndexY, int columnIndexZ)
+    {
+      float xVal;
+      float yVal;
+      float zVal;
+
+      if (array.GetFLOATEntry(rowIndex, columnIndexX, &xVal).ToBool() &&
+        array.GetFLOATEntry(rowIndex, columnIndexY, &yVal).ToBool() &&
+        array.GetFLOATEntry(rowIndex, columnIndexZ, &zVal).ToBool())
+      {
+        return new Vector3(xVal, yVal, zVal);
       }
 
       return null;
