@@ -1,13 +1,22 @@
 var searchData=
 [
-  ['talent_2274',['Talent',['../classAnvil_1_1API_1_1Talent.html',1,'Anvil::API']]],
-  ['talentextensions_2275',['TalentExtensions',['../classAnvil_1_1API_1_1TalentExtensions.html',1,'Anvil::API']]],
-  ['tilesetresref_2276',['TilesetResRef',['../classAnvil_1_1API_1_1TilesetResRef.html',1,'Anvil::API']]],
-  ['time_2277',['Time',['../classAnvil_1_1API_1_1Time.html',1,'Anvil::API']]],
-  ['timeofdaystate_2278',['TimeOfDayState',['../classAnvil_1_1API_1_1Events_1_1TimeOfDayState.html',1,'Anvil::API::Events']]],
-  ['tlktable_2279',['TlkTable',['../classAnvil_1_1API_1_1TlkTable.html',1,'Anvil::API']]],
-  ['triggerevents_2280',['TriggerEvents',['../classAnvil_1_1API_1_1Events_1_1TriggerEvents.html',1,'Anvil::API::Events']]],
-  ['twodimarray_2281',['TwoDimArray',['../classAnvil_1_1API_1_1TwoDimArray.html',1,'Anvil::API']]],
-  ['twodimarrayentry_2282',['TwoDimArrayEntry',['../classAnvil_1_1API_1_1TwoDimArrayEntry.html',1,'Anvil::API']]],
-  ['twodimarrayfactory_2283',['TwoDimArrayFactory',['../classAnvil_1_1Services_1_1TwoDimArrayFactory.html',1,'Anvil::Services']]]
+  ['scheduledtask_2227',['ScheduledTask',['../classAnvil_1_1Services_1_1ScheduledTask.html',1,'Anvil::Services']]],
+  ['schedulerservice_2228',['SchedulerService',['../classAnvil_1_1Services_1_1SchedulerService.html',1,'Anvil::Services']]],
+  ['scriptcallbackhandle_2229',['ScriptCallbackHandle',['../classAnvil_1_1Services_1_1ScriptCallbackHandle.html',1,'Anvil::Services']]],
+  ['scriptconstants_2230',['ScriptConstants',['../classAnvil_1_1API_1_1ScriptConstants.html',1,'Anvil::API']]],
+  ['scripthandlefactory_2231',['ScriptHandleFactory',['../classAnvil_1_1Services_1_1ScriptHandleFactory.html',1,'Anvil::Services']]],
+  ['scripthandlerattribute_2232',['ScriptHandlerAttribute',['../classAnvil_1_1Services_1_1ScriptHandlerAttribute.html',1,'Anvil::Services']]],
+  ['scriptparams_2233',['ScriptParams',['../classAnvil_1_1API_1_1ScriptParams.html',1,'Anvil::API']]],
+  ['serverinfo_2234',['ServerInfo',['../classAnvil_1_1API_1_1ServerInfo.html',1,'Anvil::API']]],
+  ['servicebindingattribute_2235',['ServiceBindingAttribute',['../classAnvil_1_1Services_1_1ServiceBindingAttribute.html',1,'Anvil::Services']]],
+  ['servicebindingoptionsattribute_2236',['ServiceBindingOptionsAttribute',['../classAnvil_1_1Services_1_1ServiceBindingOptionsAttribute.html',1,'Anvil::Services']]],
+  ['specialability_2237',['SpecialAbility',['../classAnvil_1_1API_1_1SpecialAbility.html',1,'Anvil::API']]],
+  ['spellevents_2238',['SpellEvents',['../classAnvil_1_1API_1_1Events_1_1SpellEvents.html',1,'Anvil::API::Events']]],
+  ['sqlquery_2239',['SQLQuery',['../classAnvil_1_1API_1_1SQLQuery.html',1,'Anvil::API']]],
+  ['sqlresult_2240',['SQLResult',['../classAnvil_1_1API_1_1SQLResult.html',1,'Anvil::API']]],
+  ['storeevents_2241',['StoreEvents',['../classAnvil_1_1API_1_1Events_1_1StoreEvents.html',1,'Anvil::API::Events']]],
+  ['stringextensions_2242',['StringExtensions',['../classAnvil_1_1API_1_1StringExtensions.html',1,'Anvil::API']]],
+  ['strref_2243',['StrRef',['../structAnvil_1_1API_1_1StrRef.html',1,'Anvil::API']]],
+  ['strtokencustom_2244',['StrTokenCustom',['../structAnvil_1_1API_1_1StrTokenCustom.html',1,'Anvil::API']]],
+  ['synchronizationcontextawaiter_2245',['SynchronizationContextAwaiter',['../structAnvil_1_1API_1_1SynchronizationContextAwaiter.html',1,'Anvil::API']]]
 ];

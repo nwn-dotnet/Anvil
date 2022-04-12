@@ -92,10 +92,9 @@ $(document).ready(function(){initNavTree('namespaceAnvil_1_1Services.html',''); 
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1AnvilContainerFactory.html">AnvilContainerFactory</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wires up and prepares service classes for dependency injection and initialization.  <a href="classAnvil_1_1Services_1_1AnvilContainerFactory.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ChatService.html">ChatService</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1DamageLevelOverrideService.html">DamageLevelOverrideService</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1DevastatingCriticalData.html">DevastatingCriticalData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,13 +114,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1HookService.html">HookService</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An advanced service for hooking native <a class="el" href="namespaceNWN.html">NWN</a> functions.  <a href="classAnvil_1_1Services_1_1HookService.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceAnvil_1_1Services_1_1IContainerFactory.html">IContainerFactory</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceAnvil_1_1Services_1_1IInitializable.html">IInitializable</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface that is invoked after all services have been initialised.  <a href="interfaceAnvil_1_1Services_1_1IInitializable.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceAnvil_1_1Services_1_1ILateDisposable.html">ILateDisposable</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface that is invoked after the server has been shutdown, and during reloads.  <a href="interfaceAnvil_1_1Services_1_1ILateDisposable.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface that is invoked after the server has been shutdown. Not called during hot reloads.  <a href="interfaceAnvil_1_1Services_1_1ILateDisposable.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1InjectAttribute.html">InjectAttribute</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates a property as a service dependency to be injected.  <a href="classAnvil_1_1Services_1_1InjectAttribute.html#details">More...</a><br /></td></tr>
@@ -130,6 +127,10 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceAnvil_1_1Services_1_1IScriptDispatcher.html">IScriptDispatcher</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implement in a service to add a custom handler for event scripts.  <a href="interfaceAnvil_1_1Services_1_1IScriptDispatcher.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceAnvil_1_1Services_1_1IServiceManager.html">IServiceManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The interface that manages all core, anvil and plugin services.<br  />
+ Advanced: implement in your own class and specify in AnvilCore.Init(System.IntPtr,int,IServiceManager) to implement your own service manager.  <a href="interfaceAnvil_1_1Services_1_1IServiceManager.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceAnvil_1_1Services_1_1ITwoDimArray.html">ITwoDimArray</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implement this interface to use the class as a deserialization target for <a class="el" href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#a2ac4899aaaee0584093e46904940668d" title="Deserializes the given 2da using the specified format.">TwoDimArrayFactory.Get2DA&lt;T&gt;</a>.  <a href="interfaceAnvil_1_1Services_1_1ITwoDimArray.html#details">More...</a><br /></td></tr>
@@ -163,6 +164,10 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1OnELCValidationSuccess.html">OnELCValidationSuccess</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1PlayerNameOverride.html">PlayerNameOverride</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1PlayerNameOverrideService.html">PlayerNameOverrideService</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1PluginStorageService.html">PluginStorageService</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages plugin data stored in the <a class="el" href="namespaceAnvil.html">Anvil</a> home directory.<br  />
  Use this service to get a path for reading and writing configs or data for your plugin.  <a href="classAnvil_1_1Services_1_1PluginStorageService.html#details">More...</a><br /></td></tr>
@@ -189,8 +194,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ServiceBindingOptionsAttribute.html">ServiceBindingOptionsAttribute</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional service binding options.  <a href="classAnvil_1_1Services_1_1ServiceBindingOptionsAttribute.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ServiceManager.html">ServiceManager</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html">TwoDimArrayFactory</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a deserialized 2da structure using a <a class="el" href="interfaceAnvil_1_1Services_1_1ITwoDimArray.html" title="Implement this interface to use the class as a deserialization target for TwoDimArrayFactory....">ITwoDimArray</a> converter.  <a href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#details">More...</a><br /></td></tr>
@@ -886,6 +889,15 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:abd55a38d7cba3654ab734f55cc8f1f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a173380f01584d3f2474eb5529b313731"><td class="memItemLeft" align="right" valign="top"><a id="a173380f01584d3f2474eb5529b313731"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>OverrideNameType</b> { <br />
+&#160;&#160;<b>Original</b> = 0
+, <br />
+&#160;&#160;<b>Character</b> = 1
+, <br />
+&#160;&#160;<b>Player</b> = 2
+<br />
+ }</td></tr>
+<tr class="separator:a173380f01584d3f2474eb5529b313731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab89cc228e8cfa5618daf74c7de4fe82a"><td class="memItemLeft" align="right" valign="top"><a id="ab89cc228e8cfa5618daf74c7de4fe82a"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ScriptHandleResult</b> { <br />
 &#160;&#160;<b>NotHandled</b> = -1
 , <br />

@@ -1,15 +1,18 @@
 var searchData=
 [
-  ['effect_1798',['Effect',['../classAnvil_1_1API_1_1Effect.html',1,'Anvil::API']]],
-  ['effectbase_1799',['EffectBase',['../classAnvil_1_1API_1_1EffectBase.html',1,'Anvil::API']]],
-  ['effectparams_1800',['EffectParams',['../classAnvil_1_1API_1_1EffectParams.html',1,'Anvil::API']]],
-  ['effectrunscriptevent_1801',['EffectRunScriptEvent',['../classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html',1,'Anvil::API::Events']]],
-  ['encounterevents_1802',['EncounterEvents',['../classAnvil_1_1API_1_1Events_1_1EncounterEvents.html',1,'Anvil::API::Events']]],
-  ['encounterlistentry_1803',['EncounterListEntry',['../classAnvil_1_1API_1_1EncounterListEntry.html',1,'Anvil::API']]],
-  ['encounterspawnpoint_1804',['EncounterSpawnPoint',['../classAnvil_1_1API_1_1EncounterSpawnPoint.html',1,'Anvil::API']]],
-  ['enforcelegalcharacterservice_1805',['EnforceLegalCharacterService',['../classAnvil_1_1Services_1_1EnforceLegalCharacterService.html',1,'Anvil::Services']]],
-  ['enginestructure_1806',['EngineStructure',['../classAnvil_1_1API_1_1EngineStructure.html',1,'Anvil::API']]],
-  ['environmentconfig_1807',['EnvironmentConfig',['../classAnvil_1_1Internal_1_1EnvironmentConfig.html',1,'Anvil::Internal']]],
-  ['environmentpreset_1808',['EnvironmentPreset',['../classAnvil_1_1API_1_1EnvironmentPreset.html',1,'Anvil::API']]],
-  ['eventservice_1809',['EventService',['../classAnvil_1_1Services_1_1EventService.html',1,'Anvil::Services']]]
+  ['damagedata_1792',['DamageData',['../classAnvil_1_1API_1_1Events_1_1DamageData.html',1,'Anvil::API::Events']]],
+  ['damagelevelentry_1793',['DamageLevelEntry',['../classAnvil_1_1API_1_1DamageLevelEntry.html',1,'Anvil::API']]],
+  ['damageleveloverrideservice_1794',['DamageLevelOverrideService',['../classAnvil_1_1Services_1_1DamageLevelOverrideService.html',1,'Anvil::Services']]],
+  ['debugoptions_1795',['DebugOptions',['../classAnvil_1_1API_1_1DebugOptions.html',1,'Anvil::API']]],
+  ['devastatingcriticaldata_1796',['DevastatingCriticalData',['../classAnvil_1_1Services_1_1DevastatingCriticalData.html',1,'Anvil::Services']]],
+  ['dialogevents_1797',['DialogEvents',['../classAnvil_1_1API_1_1Events_1_1DialogEvents.html',1,'Anvil::API::Events']]],
+  ['dialogservice_1798',['DialogService',['../classAnvil_1_1Services_1_1DialogService.html',1,'Anvil::Services']]],
+  ['direction_1799',['Direction',['../classAnvil_1_1API_1_1Direction.html',1,'Anvil::API']]],
+  ['dmeventfactory_1800',['DMEventFactory',['../classAnvil_1_1API_1_1Events_1_1DMEventFactory.html',1,'Anvil::API::Events']]],
+  ['dmgiveevent_1801',['DMGiveEvent',['../classAnvil_1_1API_1_1Events_1_1DMGiveEvent.html',1,'Anvil::API::Events']]],
+  ['dmgrouptargetevent_1802',['DMGroupTargetEvent',['../classAnvil_1_1API_1_1Events_1_1DMGroupTargetEvent.html',1,'Anvil::API::Events']]],
+  ['dmsingletargetevent_1803',['DMSingleTargetEvent',['../classAnvil_1_1API_1_1Events_1_1DMSingleTargetEvent.html',1,'Anvil::API::Events']]],
+  ['dmstandardevent_1804',['DMStandardEvent',['../classAnvil_1_1API_1_1Events_1_1DMStandardEvent.html',1,'Anvil::API::Events']]],
+  ['dmteleportevent_1805',['DMTeleportEvent',['../classAnvil_1_1API_1_1Events_1_1DMTeleportEvent.html',1,'Anvil::API::Events']]],
+  ['doorevents_1806',['DoorEvents',['../classAnvil_1_1API_1_1Events_1_1DoorEvents.html',1,'Anvil::API::Events']]]
 ];

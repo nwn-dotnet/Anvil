@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['meterstofeet_2812',['MetersToFeet',['../classAnvil_1_1API_1_1NwMath.html#a9d71b0ea8ed3fba3542cf098e9ea6f9d',1,'Anvil::API::NwMath']]],
-  ['meterstoyards_2813',['MetersToYards',['../classAnvil_1_1API_1_1NwMath.html#a99384e7bd4e63bd5e4a7950ec2b80e4a',1,'Anvil::API::NwMath']]]
+  ['id_2806',['Id',['../structAnvil_1_1API_1_1StrRef.html#aa2988401e0fb26340f94cfe1ca46fec0',1,'Anvil::API::StrRef']]]
 ];

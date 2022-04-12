@@ -143,6 +143,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (<a class=
 <tr class="memitem:adfb80b1ae2a80d31acad54fe63bab859"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html#adfb80b1ae2a80d31acad54fe63bab859">GetColumnIndex</a> (string columnName)</td></tr>
 <tr class="memdesc:adfb80b1ae2a80d31acad54fe63bab859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the index of the column with the specified name/label.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#adfb80b1ae2a80d31acad54fe63bab859">More...</a><br /></td></tr>
 <tr class="separator:adfb80b1ae2a80d31acad54fe63bab859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a00826700d78e3de3f5956f45290725"><td class="memItemLeft" align="right" valign="top">unsafe? T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html#a4a00826700d78e3de3f5956f45290725">GetEnum&lt; T &gt;</a> (int rowIndex, int columnIndex)</td></tr>
+<tr class="memdesc:a4a00826700d78e3de3f5956f45290725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified enum value value.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#a4a00826700d78e3de3f5956f45290725">More...</a><br /></td></tr>
+<tr class="separator:a4a00826700d78e3de3f5956f45290725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78feb507e805657fc036b5635021e398"><td class="memItemLeft" align="right" valign="top">T?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html#a78feb507e805657fc036b5635021e398">GetEnum&lt; T &gt;</a> (int rowIndex, string columnName)</td></tr>
+<tr class="memdesc:a78feb507e805657fc036b5635021e398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified <a class="el" href="structAnvil_1_1API_1_1StrRef.html" title="A talk table (tlk) string reference.">StrRef</a> value.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#a78feb507e805657fc036b5635021e398">More...</a><br /></td></tr>
+<tr class="separator:a78feb507e805657fc036b5635021e398"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01ca2eab4ed9eb0dd1976e2fa6f2159e"><td class="memItemLeft" align="right" valign="top"><a id="a01ca2eab4ed9eb0dd1976e2fa6f2159e"></a>
 IEnumerator&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetEnumerator</b> ()</td></tr>
 <tr class="separator:a01ca2eab4ed9eb0dd1976e2fa6f2159e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,6 +182,18 @@ override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</
 <tr class="memitem:a44ec60a2fc81444c5588b6d79a1d5ffa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAnvil_1_1API_1_1StrRef.html">StrRef</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html#a44ec60a2fc81444c5588b6d79a1d5ffa">GetStrRef</a> (int rowIndex, string columnName)</td></tr>
 <tr class="memdesc:a44ec60a2fc81444c5588b6d79a1d5ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified <a class="el" href="structAnvil_1_1API_1_1StrRef.html" title="A talk table (tlk) string reference.">StrRef</a> value.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#a44ec60a2fc81444c5588b6d79a1d5ffa">More...</a><br /></td></tr>
 <tr class="separator:a44ec60a2fc81444c5588b6d79a1d5ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6121c779e9188d6c4d5f80af34e5563d"><td class="memItemLeft" align="right" valign="top">unsafe T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html#a6121c779e9188d6c4d5f80af34e5563d">GetTableEntry&lt; T &gt;</a> (int rowIndex, int columnIndex, <a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a>&lt; T &gt; table)</td></tr>
+<tr class="memdesc:a6121c779e9188d6c4d5f80af34e5563d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interprets the specified value as a table index, and returns the associated table entry.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#a6121c779e9188d6c4d5f80af34e5563d">More...</a><br /></td></tr>
+<tr class="separator:a6121c779e9188d6c4d5f80af34e5563d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35ecbbece58e29510419ed5aa641cfcb"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html#a35ecbbece58e29510419ed5aa641cfcb">GetTableEntry&lt; T &gt;</a> (int rowIndex, string columnName, <a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a>&lt; T &gt; table)</td></tr>
+<tr class="memdesc:a35ecbbece58e29510419ed5aa641cfcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interprets the specified value as a table index, and returns the associated table entry.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#a35ecbbece58e29510419ed5aa641cfcb">More...</a><br /></td></tr>
+<tr class="separator:a35ecbbece58e29510419ed5aa641cfcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb59c568f37262f649f45d9f5f12a815"><td class="memItemLeft" align="right" valign="top">unsafe? Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html#afb59c568f37262f649f45d9f5f12a815">GetVector3</a> (int rowIndex, int columnIndexX, int columnIndexY, int columnIndexZ)</td></tr>
+<tr class="memdesc:afb59c568f37262f649f45d9f5f12a815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified Vector3 value.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#afb59c568f37262f649f45d9f5f12a815">More...</a><br /></td></tr>
+<tr class="separator:afb59c568f37262f649f45d9f5f12a815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65f7f912e3b0072306da087b4109a8e4"><td class="memItemLeft" align="right" valign="top">Vector3?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html#a65f7f912e3b0072306da087b4109a8e4">GetVector3</a> (int rowIndex, string columnNameX, string columnNameY, string columnNameZ)</td></tr>
+<tr class="memdesc:a65f7f912e3b0072306da087b4109a8e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified Vector3 value.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#a65f7f912e3b0072306da087b4109a8e4">More...</a><br /></td></tr>
+<tr class="separator:a65f7f912e3b0072306da087b4109a8e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -429,6 +447,116 @@ T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAn
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The zero-based index of the column if found, otherwise -1.</dd></dl>
+
+</div>
+</div>
+<a id="a4a00826700d78e3de3f5956f45290725"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a00826700d78e3de3f5956f45290725">&#9670;&nbsp;</a></span>GetEnum&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsafe? T <a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">Anvil.API.TwoDimArray</a>&lt; T &gt;.GetEnum&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rowIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>columnIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the specified enum value value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rowIndex</td><td>The index of the row to query.</td></tr>
+    <tr><td class="paramname">columnIndex</td><td>The index of the column to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The associated value. null if no value is set.</dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>struct</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>Enum</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="a78feb507e805657fc036b5635021e398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78feb507e805657fc036b5635021e398">&#9670;&nbsp;</a></span>GetEnum&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T? <a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">Anvil.API.TwoDimArray</a>&lt; T &gt;.GetEnum&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rowIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>columnName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the specified <a class="el" href="structAnvil_1_1API_1_1StrRef.html" title="A talk table (tlk) string reference.">StrRef</a> value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rowIndex</td><td>The index of the row to query.</td></tr>
+    <tr><td class="paramname">columnName</td><td>The name/label of the column to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The associated value. null if no value is set.</dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>struct</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>Enum</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
 
 </div>
 </div>
@@ -827,6 +955,262 @@ T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAn
   <table class="params">
     <tr><td class="paramname">rowIndex</td><td>The index of the row to query.</td></tr>
     <tr><td class="paramname">columnName</td><td>The name/label of the column to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The associated value. null if no value is set.</dd></dl>
+
+</div>
+</div>
+<a id="a6121c779e9188d6c4d5f80af34e5563d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6121c779e9188d6c4d5f80af34e5563d">&#9670;&nbsp;</a></span>GetTableEntry&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsafe T <a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">Anvil.API.TwoDimArray</a>&lt; T &gt;.GetTableEntry&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rowIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>columnIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interprets the specified value as a table index, and returns the associated table entry. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rowIndex</td><td>The index of the row to query.</td></tr>
+    <tr><td class="paramname">columnIndex</td><td>The index of the column to query.</td></tr>
+    <tr><td class="paramname">table</td><td>The table that should be used to resolve the value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of table entry.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The associated value, otherwise the default array entry value (typically null)</dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>ITwoDimArrayEntry</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="a35ecbbece58e29510419ed5aa641cfcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35ecbbece58e29510419ed5aa641cfcb">&#9670;&nbsp;</a></span>GetTableEntry&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">Anvil.API.TwoDimArray</a>&lt; T &gt;.GetTableEntry&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rowIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>columnName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interprets the specified value as a table index, and returns the associated table entry. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rowIndex</td><td>The index of the row to query.</td></tr>
+    <tr><td class="paramname">columnName</td><td>The name/label of the column to query.</td></tr>
+    <tr><td class="paramname">table</td><td>The table that should be used to resolve the value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of table entry.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The associated value, otherwise the default array entry value (typically null)</dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>ITwoDimArrayEntry</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="afb59c568f37262f649f45d9f5f12a815"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb59c568f37262f649f45d9f5f12a815">&#9670;&nbsp;</a></span>GetVector3() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsafe? Vector3 <a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">Anvil.API.TwoDimArray</a>&lt; T &gt;.GetVector3 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rowIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>columnIndexX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>columnIndexY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>columnIndexZ</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the specified Vector3 value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rowIndex</td><td>The index of the row to query.</td></tr>
+    <tr><td class="paramname">columnIndexX</td><td>The index of the column containing the x component of the vector.</td></tr>
+    <tr><td class="paramname">columnIndexY</td><td>The index of the column containing the y component of the vector.</td></tr>
+    <tr><td class="paramname">columnIndexZ</td><td>The index of the column containing the z component of the vector.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The associated value. null if no value is set.</dd></dl>
+
+</div>
+</div>
+<a id="a65f7f912e3b0072306da087b4109a8e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65f7f912e3b0072306da087b4109a8e4">&#9670;&nbsp;</a></span>GetVector3() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3? <a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">Anvil.API.TwoDimArray</a>&lt; T &gt;.GetVector3 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rowIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>columnNameX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>columnNameY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>columnNameZ</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the specified Vector3 value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rowIndex</td><td>The index of the row to query.</td></tr>
+    <tr><td class="paramname">columnNameX</td><td>The name/label of the column containing the x component of the vector.</td></tr>
+    <tr><td class="paramname">columnNameY</td><td>The name/label of the column containing the y component of the vector.</td></tr>
+    <tr><td class="paramname">columnNameZ</td><td>The name/label of the column containing the z component of the vector.</td></tr>
   </table>
   </dd>
 </dl>

@@ -5,7 +5,7 @@ var classAnvil_1_1API_1_1NwFeat =
     [ "GetRequiredAbilityScore", "classAnvil_1_1API_1_1NwFeat.html#a8c937660fed502c6f856bdd41ccc5f62", null ],
     [ "operator NwFeat", "classAnvil_1_1API_1_1NwFeat.html#afaf652bd62bfd7ad60eab7b4bed8570a", null ],
     [ "AllClassesCanUse", "classAnvil_1_1API_1_1NwFeat.html#a59899416933877c6513c6f9a03a09cab", null ],
-    [ "Description", "classAnvil_1_1API_1_1NwFeat.html#a3dab8c7925efe225636bc84e61aff8ea", null ],
+    [ "Description", "classAnvil_1_1API_1_1NwFeat.html#a8f40a1c8a11b1b2937466970b12a54fd", null ],
     [ "FeatType", "classAnvil_1_1API_1_1NwFeat.html#a13806aa953fe9940864429a0a39453d2", null ],
     [ "IconResRef", "classAnvil_1_1API_1_1NwFeat.html#a4ba52fb4e19fef1f9a8e97384d14a09f", null ],
     [ "Id", "classAnvil_1_1API_1_1NwFeat.html#a6da965c8f6c011499cc4372f6dd6576c", null ],
@@ -17,7 +17,7 @@ var classAnvil_1_1API_1_1NwFeat =
     [ "MinLevel", "classAnvil_1_1API_1_1NwFeat.html#a57d1efe04eb81e371292323d7baa60fb", null ],
     [ "MinLevelClass", "classAnvil_1_1API_1_1NwFeat.html#a0c9ff765273cdee8cfe07a55f3708f26", null ],
     [ "MinSpellLevel", "classAnvil_1_1API_1_1NwFeat.html#a77af91038404cd9a19ec782a60e2cdd3", null ],
-    [ "Name", "classAnvil_1_1API_1_1NwFeat.html#ac8bdf9dbbff17828aeb20245287d786a", null ],
+    [ "Name", "classAnvil_1_1API_1_1NwFeat.html#aa97f653ce6ffb04d2e7608a293f39e53", null ],
     [ "RequiredFeatsAll", "classAnvil_1_1API_1_1NwFeat.html#a7683ec9052ed4f92b0dca8ed9bf3579a", null ],
     [ "RequiredFeatsSome", "classAnvil_1_1API_1_1NwFeat.html#ae3d6ce17b67cd2caa0b7bf6072e525c1", null ],
     [ "RequiredSkill1", "classAnvil_1_1API_1_1NwFeat.html#a2ba6ff1fdd19995dbd9c4ec5b2d42108", null ],
@@ -31,6 +31,5 @@ var classAnvil_1_1API_1_1NwFeat =
     [ "TalentCategory", "classAnvil_1_1API_1_1NwFeat.html#a03ea035355818fd983484f944de475f8", null ],
     [ "TalentMaxCR", "classAnvil_1_1API_1_1NwFeat.html#aa432331aef677cb3da665a5c37270e7c", null ],
     [ "TargetSelf", "classAnvil_1_1API_1_1NwFeat.html#ac81cf8609840ca07aee6e243320bfd32", null ],
-    [ "TlkTable", "classAnvil_1_1API_1_1NwFeat.html#a81174367939c7571dccdf8dd29cebf71", null ],
     [ "UsesPerDay", "classAnvil_1_1API_1_1NwFeat.html#a8b2ff116dfdfc65d06772365949900df", null ]
 ];

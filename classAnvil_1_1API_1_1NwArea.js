@@ -10,6 +10,7 @@ var classAnvil_1_1API_1_1NwArea =
     [ "FindObjectsOfTypeInArea< T >", "classAnvil_1_1API_1_1NwArea.html#a85c244029d99653d7709291fcbef7147", null ],
     [ "GetFogAmount", "classAnvil_1_1API_1_1NwArea.html#a128817035a170a740a70acd78358bb15", null ],
     [ "GetFogColor", "classAnvil_1_1API_1_1NwArea.html#a7c9692156b4526f4e044ea89312878b1", null ],
+    [ "GetTileInfo", "classAnvil_1_1API_1_1NwArea.html#aeda2a6bc7d09e00d1c0286cce5b8e2c2", null ],
     [ "operator CNWSArea", "classAnvil_1_1API_1_1NwArea.html#a1e4e1a2382e60918fa6320d5953f9b16", null ],
     [ "PeekUUID", "classAnvil_1_1API_1_1NwArea.html#abeae94cb5e5f41dbd7a6c949ea694c2d", null ],
     [ "PlayAmbient", "classAnvil_1_1API_1_1NwArea.html#a083dc2171a780daa83cd52a9e91d3af5", null ],

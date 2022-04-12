@@ -92,6 +92,28 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1VirtualMachine.ht
 
 <p>Standard and Low Level methods and properties for querying/interacting with the NwScript virtual machine.  
  <a href="classAnvil_1_1API_1_1VirtualMachine.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.VirtualMachine:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classAnvil_1_1API_1_1VirtualMachine__inherit__graph.png" border="0" usemap="#aAnvil_8API_8VirtualMachine_inherit__map" alt="Inheritance graph"/></div>
+<map name="aAnvil_8API_8VirtualMachine_inherit__map" id="aAnvil_8API_8VirtualMachine_inherit__map">
+<area shape="rect" title="Standard and Low Level methods and properties for querying/interacting with the NwScript virtual mach..." alt="" coords="5,80,171,107"/>
+<area shape="rect" title=" " alt="" coords="39,5,137,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Anvil.API.VirtualMachine:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classAnvil_1_1API_1_1VirtualMachine__coll__graph.png" border="0" usemap="#aAnvil_8API_8VirtualMachine_coll__map" alt="Collaboration graph"/></div>
+<map name="aAnvil_8API_8VirtualMachine_coll__map" id="aAnvil_8API_8VirtualMachine_coll__map">
+<area shape="rect" title="Standard and Low Level methods and properties for querying/interacting with the NwScript virtual mach..." alt="" coords="5,80,171,107"/>
+<area shape="rect" title=" " alt="" coords="39,5,137,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -101,12 +123,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aacb9c482941f7d932ada0342bb04b8c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#aacb9c482941f7d932ada0342bb04b8c6">Execute</a> (string scriptName, params(string ParamName, string ParamValue)[] scriptParams)</td></tr>
 <tr class="memdesc:aacb9c482941f7d932ada0342bb04b8c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the specified <a class="el" href="namespaceNWN.html">NWN</a> script. If scriptName does not specify a compiled script, nothing happens.  <a href="classAnvil_1_1API_1_1VirtualMachine.html#aacb9c482941f7d932ada0342bb04b8c6">More...</a><br /></td></tr>
 <tr class="separator:aacb9c482941f7d932ada0342bb04b8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac921bf48b5974a4dff4274760089d86d"><td class="memItemLeft" align="right" valign="top"><a id="ac921bf48b5974a4dff4274760089d86d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext</b> (System.Action action, uint objectId=NwObject.Invalid)</td></tr>
-<tr class="separator:ac921bf48b5974a4dff4274760089d86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab76651ec9396c86fc6fd0b3cae3a6716"><td class="memItemLeft" align="right" valign="top"><a id="ab76651ec9396c86fc6fd0b3cae3a6716"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext&lt; T &gt;</b> (System.Func&lt; T &gt; action, uint objectId=NwObject.Invalid)</td></tr>
-<tr class="separator:ab76651ec9396c86fc6fd0b3cae3a6716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53867500b8f58ec4b775fa303377708b"><td class="memItemLeft" align="right" valign="top"><a id="a53867500b8f58ec4b775fa303377708b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext</b> (System.Action action, uint objectId=NwObject.Invalid, int scriptEventId=0, bool valid=false)</td></tr>
+<tr class="separator:a53867500b8f58ec4b775fa303377708b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e3ba3b70422747295675a4fffdf137f"><td class="memItemLeft" align="right" valign="top"><a id="a3e3ba3b70422747295675a4fffdf137f"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext&lt; T &gt;</b> (System.Func&lt; T &gt; action, uint objectId=NwObject.Invalid, int scriptEventId=0, bool valid=false)</td></tr>
+<tr class="separator:a3e3ba3b70422747295675a4fffdf137f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c4d54c92e644adca588d4d2a82ca0ec"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#a7c4d54c92e644adca588d4d2a82ca0ec">GetCurrentScriptName</a> (int depth=0)</td></tr>
 <tr class="memdesc:a7c4d54c92e644adca588d4d2a82ca0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the currently executing script.<br  />
  If depth is &gt; 0, it will return the name of the script that called this one via ExecuteScript().  <a href="classAnvil_1_1API_1_1VirtualMachine.html#a7c4d54c92e644adca588d4d2a82ca0ec">More...</a><br /></td></tr>
@@ -129,9 +151,9 @@ uint&#160;</td><td class="memItemRight" valign="bottom"><b>InstructionsExecuted<
 <tr class="memitem:a525cfec3744af90bff857e6f2b2cca7d"><td class="memItemLeft" align="right" valign="top"><a id="a525cfec3744af90bff857e6f2b2cca7d"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>RecursionLevel</b><code> [get]</code></td></tr>
 <tr class="separator:a525cfec3744af90bff857e6f2b2cca7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44c8cb8aa4f5f4508a3056371bef11fb"><td class="memItemLeft" align="right" valign="top"><a id="a44c8cb8aa4f5f4508a3056371bef11fb"></a>
-unsafe bool&#160;</td><td class="memItemRight" valign="bottom"><b>ScriptReturnValue</b><code> [get]</code></td></tr>
-<tr class="separator:a44c8cb8aa4f5f4508a3056371bef11fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad40efaa0f740ad89c2189a54369da215"><td class="memItemLeft" align="right" valign="top"><a id="ad40efaa0f740ad89c2189a54369da215"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ScriptReturnValue</b><code> [get]</code></td></tr>
+<tr class="separator:ad40efaa0f740ad89c2189a54369da215"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Standard and Low Level methods and properties for querying/interacting with the NwScript virtual machine. </p>

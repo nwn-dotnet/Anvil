@@ -89,19 +89,8 @@ $(document).ready(function(){initNavTree('interfaceAnvil_1_1Services_1_1ILateDis
 </div><!--header-->
 <div class="contents">
 
-<p>Interface that is invoked after the server has been shutdown, and during reloads.  
+<p>Interface that is invoked after the server has been shutdown. Not called during hot reloads.  
  <a href="interfaceAnvil_1_1Services_1_1ILateDisposable.html#details">More...</a></p>
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.Services.ILateDisposable:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="interfaceAnvil_1_1Services_1_1ILateDisposable__inherit__graph.png" border="0" usemap="#aAnvil_8Services_8ILateDisposable_inherit__map" alt="Inheritance graph"/></div>
-<map name="aAnvil_8Services_8ILateDisposable_inherit__map" id="aAnvil_8Services_8ILateDisposable_inherit__map">
-<area shape="rect" title="Interface that is invoked after the server has been shutdown, and during reloads." alt="" coords="5,5,208,32"/>
-<area shape="rect" href="classAnvil_1_1Services_1_1HookService.html" title="An advanced service for hooking native NWN functions." alt="" coords="15,80,198,107"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -110,7 +99,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>LateDispose</b> ()</t
 <tr class="separator:ac3e356102aac32bc9f205859e49a47f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interface that is invoked after the server has been shutdown, and during reloads. </p>
+<div class="textblock"><p>Interface that is invoked after the server has been shutdown. Not called during hot reloads. </p>
 <p>This interface should only be used to release function hooks, or to replicate data that was written during server shutdown (e.g. characters).<br  />
  When this is called, the server instance has already been destroyed, and you cannot access any APIs.<br  />
  Implement System.IDisposable instead to receive a callback just before server shutdown. </p>

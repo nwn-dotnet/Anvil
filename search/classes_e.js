@@ -1,8 +1,24 @@
 var searchData=
 [
-  ['radiussize_2192',['RadiusSize',['../classAnvil_1_1API_1_1RadiusSize.html',1,'Anvil::API']]],
-  ['randomextensions_2193',['RandomExtensions',['../classAnvil_1_1API_1_1RandomExtensions.html',1,'Anvil::API']]],
-  ['reflectionextensions_2194',['ReflectionExtensions',['../classAnvil_1_1API_1_1ReflectionExtensions.html',1,'Anvil::API']]],
-  ['registrationdata_2195',['RegistrationData',['../classAnvil_1_1API_1_1Events_1_1GameEventFactory_1_1RegistrationData.html',1,'Anvil::API::Events::GameEventFactory']]],
-  ['resourcemanager_2196',['ResourceManager',['../classAnvil_1_1Services_1_1ResourceManager.html',1,'Anvil::Services']]]
+  ['persistentvariablebool_2201',['PersistentVariableBool',['../classAnvil_1_1API_1_1PersistentVariableBool.html',1,'Anvil::API']]],
+  ['persistentvariableenum_2202',['PersistentVariableEnum',['../classAnvil_1_1API_1_1PersistentVariableEnum.html',1,'Anvil::API']]],
+  ['persistentvariablefloat_2203',['PersistentVariableFloat',['../classAnvil_1_1API_1_1PersistentVariableFloat.html',1,'Anvil::API']]],
+  ['persistentvariableguid_2204',['PersistentVariableGuid',['../classAnvil_1_1API_1_1PersistentVariableGuid.html',1,'Anvil::API']]],
+  ['persistentvariableint_2205',['PersistentVariableInt',['../classAnvil_1_1API_1_1PersistentVariableInt.html',1,'Anvil::API']]],
+  ['persistentvariablestring_2206',['PersistentVariableString',['../classAnvil_1_1API_1_1PersistentVariableString.html',1,'Anvil::API']]],
+  ['persistentvariablestruct_2207',['PersistentVariableStruct',['../classAnvil_1_1API_1_1PersistentVariableStruct.html',1,'Anvil::API']]],
+  ['persistentworldoptions_2208',['PersistentWorldOptions',['../classAnvil_1_1API_1_1PersistentWorldOptions.html',1,'Anvil::API']]],
+  ['placeableevents_2209',['PlaceableEvents',['../classAnvil_1_1API_1_1Events_1_1PlaceableEvents.html',1,'Anvil::API::Events']]],
+  ['placeablesoundtableentry_2210',['PlaceableSoundTableEntry',['../classAnvil_1_1API_1_1PlaceableSoundTableEntry.html',1,'Anvil::API']]],
+  ['placeabletableentry_2211',['PlaceableTableEntry',['../classAnvil_1_1API_1_1PlaceableTableEntry.html',1,'Anvil::API']]],
+  ['playerdeviceproperty_2212',['PlayerDeviceProperty',['../classAnvil_1_1API_1_1PlayerDeviceProperty.html',1,'Anvil::API']]],
+  ['playeridconstants_2213',['PlayerIdConstants',['../classAnvil_1_1API_1_1PlayerIdConstants.html',1,'Anvil::API']]],
+  ['playernameoverride_2214',['PlayerNameOverride',['../classAnvil_1_1Services_1_1PlayerNameOverride.html',1,'Anvil::Services']]],
+  ['playernameoverrideservice_2215',['PlayerNameOverrideService',['../classAnvil_1_1Services_1_1PlayerNameOverrideService.html',1,'Anvil::Services']]],
+  ['playerquickbarbutton_2216',['PlayerQuickBarButton',['../classAnvil_1_1API_1_1PlayerQuickBarButton.html',1,'Anvil::API']]],
+  ['playoptions_2217',['PlayOptions',['../classAnvil_1_1API_1_1PlayOptions.html',1,'Anvil::API']]],
+  ['plugininfoattribute_2218',['PluginInfoAttribute',['../classAnvil_1_1Plugins_1_1PluginInfoAttribute.html',1,'Anvil::Plugins']]],
+  ['pluginmanager_2219',['PluginManager',['../classAnvil_1_1Plugins_1_1PluginManager.html',1,'Anvil::Plugins']]],
+  ['pluginstorageservice_2220',['PluginStorageService',['../classAnvil_1_1Services_1_1PluginStorageService.html',1,'Anvil::Services']]],
+  ['programmedeffecttableentry_2221',['ProgrammedEffectTableEntry',['../classAnvil_1_1API_1_1ProgrammedEffectTableEntry.html',1,'Anvil::API']]]
 ];

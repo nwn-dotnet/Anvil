@@ -141,6 +141,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyEnvironmentPrese
 <tr class="memitem:a7c9692156b4526f4e044ea89312878b1"><td class="memItemLeft" align="right" valign="top">FogColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a7c9692156b4526f4e044ea89312878b1">GetFogColor</a> (FogType fogType)</td></tr>
 <tr class="memdesc:a7c9692156b4526f4e044ea89312878b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the fog color for this area, at the specified time of day.  <a href="classAnvil_1_1API_1_1NwArea.html#a7c9692156b4526f4e044ea89312878b1">More...</a><br /></td></tr>
 <tr class="separator:a7c9692156b4526f4e044ea89312878b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeda2a6bc7d09e00d1c0286cce5b8e2c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1TileInfo.html">TileInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#aeda2a6bc7d09e00d1c0286cce5b8e2c2">GetTileInfo</a> (uint tileX, uint tileY)</td></tr>
+<tr class="memdesc:aeda2a6bc7d09e00d1c0286cce5b8e2c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tile info at the specified position in the area.  <a href="classAnvil_1_1API_1_1NwArea.html#aeda2a6bc7d09e00d1c0286cce5b8e2c2">More...</a><br /></td></tr>
+<tr class="separator:aeda2a6bc7d09e00d1c0286cce5b8e2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abeae94cb5e5f41dbd7a6c949ea694c2d"><td class="memItemLeft" align="right" valign="top">override? Guid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#abeae94cb5e5f41dbd7a6c949ea694c2d">PeekUUID</a> ()</td></tr>
 <tr class="memdesc:abeae94cb5e5f41dbd7a6c949ea694c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get the UUID of this object, if assigned.  <a href="classAnvil_1_1API_1_1NwArea.html#abeae94cb5e5f41dbd7a6c949ea694c2d">More...</a><br /></td></tr>
 <tr class="separator:abeae94cb5e5f41dbd7a6c949ea694c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -744,6 +747,58 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the fog color for this area, at the specified time of day. </p>
+
+</div>
+</div>
+<a id="aeda2a6bc7d09e00d1c0286cce5b8e2c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeda2a6bc7d09e00d1c0286cce5b8e2c2">&#9670;&nbsp;</a></span>GetTileInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1TileInfo.html">TileInfo</a> Anvil.API.NwArea.GetTileInfo </td>
+          <td>(</td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>tileY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the tile info at the specified position in the area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td>The x coordinate of the tile to get info.</td></tr>
+    <tr><td class="paramname">tileY</td><td>The y coordinate of the tile to get info.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A structure containing the associated tile info.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentOutOfRangeException</td><td>Thrown if the tile coordinates are larger than the area size.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

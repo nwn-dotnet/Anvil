@@ -246,6 +246,10 @@ unsafe void&#160;</td><td class="memItemRight" valign="bottom"><b>AcquireItem</b
 <tr class="memitem:a22cacd46bbae44aff87b4ccff9496dd6"><td class="memItemLeft" align="right" valign="top">ResistSpellResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a22cacd46bbae44aff87b4ccff9496dd6">CheckResistSpell</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:a22cacd46bbae44aff87b4ccff9496dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a spell resistance check between this creature, and the specified target object.  <a href="classAnvil_1_1API_1_1NwCreature.html#a22cacd46bbae44aff87b4ccff9496dd6">More...</a><br /></td></tr>
 <tr class="separator:a22cacd46bbae44aff87b4ccff9496dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ecf826631208009095d981e4032e2d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a4ecf826631208009095d981e4032e2d3">ClearDamageLevelOverride</a> ()</td></tr>
+<tr class="memdesc:a4ecf826631208009095d981e4032e2d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any override that is set for the creature's damage level.<br  />
+  <a href="classAnvil_1_1API_1_1NwCreature.html#a4ecf826631208009095d981e4032e2d3">More...</a><br /></td></tr>
+<tr class="separator:a4ecf826631208009095d981e4032e2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a9373c26fe28356535b56ba74574d56"><td class="memItemLeft" align="right" valign="top">override <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0a9373c26fe28356535b56ba74574d56">Clone</a> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location, string newTag=null, bool copyLocalState=true)</td></tr>
 <tr class="memdesc:a0a9373c26fe28356535b56ba74574d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this game object.  <a href="classAnvil_1_1API_1_1NwCreature.html#a0a9373c26fe28356535b56ba74574d56">More...</a><br /></td></tr>
 <tr class="separator:a0a9373c26fe28356535b56ba74574d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -301,9 +305,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeQuickbar</
 <tr class="memitem:a77af15f449f5ea44194da061a294a8e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a77af15f449f5ea44194da061a294a8e0">GetCreatureBodyPart</a> (CreaturePart creaturePart)</td></tr>
 <tr class="memdesc:a77af15f449f5ea44194da061a294a8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the model number for the specified body part on the creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a77af15f449f5ea44194da061a294a8e0">More...</a><br /></td></tr>
 <tr class="separator:a77af15f449f5ea44194da061a294a8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fef4b46f49ec657edca9a82b8ddc8fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1DamageLevelEntry.html">DamageLevelEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a9fef4b46f49ec657edca9a82b8ddc8fc">GetDamageLevelOverride</a> ()</td></tr>
+<tr class="memdesc:a9fef4b46f49ec657edca9a82b8ddc8fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the override that is set for the creature's damage level.<br  />
+  <a href="classAnvil_1_1API_1_1NwCreature.html#a9fef4b46f49ec657edca9a82b8ddc8fc">More...</a><br /></td></tr>
+<tr class="separator:a9fef4b46f49ec657edca9a82b8ddc8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac136dcea0de4a7f672d63123a1a9c4c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ac136dcea0de4a7f672d63123a1a9c4c1">GetFeatGainLevel</a> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat)</td></tr>
 <tr class="memdesc:ac136dcea0de4a7f672d63123a1a9c4c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the level a feat was gained.  <a href="classAnvil_1_1API_1_1NwCreature.html#ac136dcea0de4a7f672d63123a1a9c4c1">More...</a><br /></td></tr>
 <tr class="separator:ac136dcea0de4a7f672d63123a1a9c4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d2a04a430aebc29db22f80c457d960"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a33d2a04a430aebc29db22f80c457d960">GetFeatRemainingUses</a> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat)</td></tr>
+<tr class="memdesc:a33d2a04a430aebc29db22f80c457d960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the remaining uses available for the specified feat.  <a href="classAnvil_1_1API_1_1NwCreature.html#a33d2a04a430aebc29db22f80c457d960">More...</a><br /></td></tr>
+<tr class="separator:a33d2a04a430aebc29db22f80c457d960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f1bb4733764b087f5c78d9fe4e17ab2"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6f1bb4733764b087f5c78d9fe4e17ab2">GetFeatTotalUses</a> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat)</td></tr>
+<tr class="memdesc:a6f1bb4733764b087f5c78d9fe4e17ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the max/total amount of times the specified feat can be used.  <a href="classAnvil_1_1API_1_1NwCreature.html#a6f1bb4733764b087f5c78d9fe4e17ab2">More...</a><br /></td></tr>
+<tr class="separator:a6f1bb4733764b087f5c78d9fe4e17ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c1311c1e321f2c7c6b297e78c6080a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0c1311c1e321f2c7c6b297e78c6080a9">GetItemInSlot</a> (InventorySlot slot)</td></tr>
 <tr class="memdesc:a0c1311c1e321f2c7c6b297e78c6080a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the item that is equipped in the specified inventory slot.  <a href="classAnvil_1_1API_1_1NwCreature.html#a0c1311c1e321f2c7c6b297e78c6080a9">More...</a><br /></td></tr>
 <tr class="separator:a0c1311c1e321f2c7c6b297e78c6080a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -458,6 +472,14 @@ byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>SerializeQuickbar</
 <tr class="memitem:a3caf0715f2d4e10ebb09ce41280811de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a3caf0715f2d4e10ebb09ce41280811de">SetCreatureBodyPart</a> (CreaturePart creaturePart, int modelNumber)</td></tr>
 <tr class="memdesc:a3caf0715f2d4e10ebb09ce41280811de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the model number to use for the specified body part on the creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#a3caf0715f2d4e10ebb09ce41280811de">More...</a><br /></td></tr>
 <tr class="separator:a3caf0715f2d4e10ebb09ce41280811de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add94f0b2d1c42caa843ba6040c17bb22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#add94f0b2d1c42caa843ba6040c17bb22">SetDamageLevelOverride</a> (<a class="el" href="classAnvil_1_1API_1_1DamageLevelEntry.html">DamageLevelEntry</a> damageLevel)</td></tr>
+<tr class="memdesc:add94f0b2d1c42caa843ba6040c17bb22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the override value to use for this creature's damage level.<br  />
+  <a href="classAnvil_1_1API_1_1NwCreature.html#add94f0b2d1c42caa843ba6040c17bb22">More...</a><br /></td></tr>
+<tr class="separator:add94f0b2d1c42caa843ba6040c17bb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b0225d7cfd80773af414144894d6776"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a5b0225d7cfd80773af414144894d6776">SetFeatRemainingUses</a> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat, byte remainingUses)</td></tr>
+<tr class="memdesc:a5b0225d7cfd80773af414144894d6776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the remaining uses available for the specified feat.<br  />
+ Cannot exceed the creature's total/max uses of the feat.  <a href="classAnvil_1_1API_1_1NwCreature.html#a5b0225d7cfd80773af414144894d6776">More...</a><br /></td></tr>
+<tr class="separator:a5b0225d7cfd80773af414144894d6776"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a688ace0d4d3b1a16d75b26bdae118ef5"><td class="memItemLeft" align="right" valign="top"><a id="a688ace0d4d3b1a16d75b26bdae118ef5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetQuickBarButton</b> (byte index, <a class="el" href="classAnvil_1_1API_1_1PlayerQuickBarButton.html">PlayerQuickBarButton</a> data)</td></tr>
 <tr class="separator:a688ace0d4d3b1a16d75b26bdae118ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -570,11 +592,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetQuickBarButtons</b
 <tr class="memitem:a069a68bca6dd329fb10ff68e84d0f46d inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a069a68bca6dd329fb10ff68e84d0f46d">PlaySound</a> (string soundName)</td></tr>
 <tr class="memdesc:a069a68bca6dd329fb10ff68e84d0f46d inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified sound as mono audio from the location of this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a069a68bca6dd329fb10ff68e84d0f46d">More...</a><br /></td></tr>
 <tr class="separator:a069a68bca6dd329fb10ff68e84d0f46d inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae17df8ae36c148dd7ad6bcc9c6c5aa0e inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ae17df8ae36c148dd7ad6bcc9c6c5aa0e">PlaySoundByStrRef</a> (int strRef, bool runAsAction=true)</td></tr>
-<tr class="memdesc:ae17df8ae36c148dd7ad6bcc9c6c5aa0e inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays a sound associated with a string reference (strRef).<br  />
- The sound comes out as a mono sound sourcing from the location of the object running the command.<br  />
- If runAsAction is False, then the sound is played instantly.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ae17df8ae36c148dd7ad6bcc9c6c5aa0e">More...</a><br /></td></tr>
+<tr class="memitem:ae17df8ae36c148dd7ad6bcc9c6c5aa0e inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top"><a id="ae17df8ae36c148dd7ad6bcc9c6c5aa0e"></a>
+async Task&#160;</td><td class="memItemRight" valign="bottom"><b>PlaySoundByStrRef</b> (int strRef, bool runAsAction=true)</td></tr>
 <tr class="separator:ae17df8ae36c148dd7ad6bcc9c6c5aa0e inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa421401ad6bbd6167de91281a68c5c31 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#aa421401ad6bbd6167de91281a68c5c31">PlaySoundByStrRef</a> (<a class="el" href="structAnvil_1_1API_1_1StrRef.html">StrRef</a> strRef, bool runAsAction=true)</td></tr>
+<tr class="memdesc:aa421401ad6bbd6167de91281a68c5c31 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays a sound associated with a string reference (strRef).<br  />
+ The sound comes out as a mono sound sourcing from the location of the object running the command.<br  />
+ If runAsAction is False, then the sound is played instantly.  <a href="classAnvil_1_1API_1_1NwGameObject.html#aa421401ad6bbd6167de91281a68c5c31">More...</a><br /></td></tr>
+<tr class="separator:aa421401ad6bbd6167de91281a68c5c31 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa1d37969f70dadab7e414d4086cda64 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#afa1d37969f70dadab7e414d4086cda64">RemoveEffect</a> (<a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> effect)</td></tr>
 <tr class="memdesc:afa1d37969f70dadab7e414d4086cda64 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified effect from this game object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#afa1d37969f70dadab7e414d4086cda64">More...</a><br /></td></tr>
 <tr class="separator:afa1d37969f70dadab7e414d4086cda64 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -729,7 +754,8 @@ Properties</h2></td></tr>
  Anvil.API.AiLevel.Default is recommended for most creatures. Too many creatures at Anvil.API.AiLevel.Normal or higher can cause performance degradation.  <a href="classAnvil_1_1API_1_1NwCreature.html#aeaba42c0edcac2fb790daa7293c14173">More...</a><br /></td></tr>
 <tr class="separator:aeaba42c0edcac2fb790daa7293c14173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0243ba0799cb3fcf963dd00ef7c571d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#af0243ba0799cb3fcf963dd00ef7c571d">AlwaysWalk</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:af0243ba0799cb3fcf963dd00ef7c571d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this creature is forced to walk (persistent).  <a href="classAnvil_1_1API_1_1NwCreature.html#af0243ba0799cb3fcf963dd00ef7c571d">More...</a><br /></td></tr>
+<tr class="memdesc:af0243ba0799cb3fcf963dd00ef7c571d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this creature is forced to walk.<br  />
+ Is not persistent, and must be applied again at login.  <a href="classAnvil_1_1API_1_1NwCreature.html#af0243ba0799cb3fcf963dd00ef7c571d">More...</a><br /></td></tr>
 <tr class="separator:af0243ba0799cb3fcf963dd00ef7c571d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac31519e7be1a96d02f34c92847858b42"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ac31519e7be1a96d02f34c92847858b42">AnimalCompanionName</a><code> [get]</code></td></tr>
 <tr class="memdesc:ac31519e7be1a96d02f34c92847858b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this creature's animal companion name.  <a href="classAnvil_1_1API_1_1NwCreature.html#ac31519e7be1a96d02f34c92847858b42">More...</a><br /></td></tr>
@@ -737,6 +763,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a54cc0d4c86ab11c2d4bb3a685efe177a"><td class="memItemLeft" align="right" valign="top">AnimalCompanionCreatureType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a54cc0d4c86ab11c2d4bb3a685efe177a">AnimalCompanionType</a><code> [get]</code></td></tr>
 <tr class="memdesc:a54cc0d4c86ab11c2d4bb3a685efe177a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this creature's animal companion creature type.  <a href="classAnvil_1_1API_1_1NwCreature.html#a54cc0d4c86ab11c2d4bb3a685efe177a">More...</a><br /></td></tr>
 <tr class="separator:a54cc0d4c86ab11c2d4bb3a685efe177a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6e5bdf8aaa0c9daeafdaaccb2682286"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1AppearanceTableEntry.html">AppearanceTableEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#af6e5bdf8aaa0c9daeafdaaccb2682286">Appearance</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af6e5bdf8aaa0c9daeafdaaccb2682286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the appearance of this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#af6e5bdf8aaa0c9daeafdaaccb2682286">More...</a><br /></td></tr>
+<tr class="separator:af6e5bdf8aaa0c9daeafdaaccb2682286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6a05f853ebb54780f7182c7fc5a4da4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#af6a05f853ebb54780f7182c7fc5a4da4">ArcaneSpellFailure</a><code> [get]</code></td></tr>
 <tr class="memdesc:af6a05f853ebb54780f7182c7fc5a4da4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the arcane spell failure factor for this creature.  <a href="classAnvil_1_1API_1_1NwCreature.html#af6a05f853ebb54780f7182c7fc5a4da4">More...</a><br /></td></tr>
 <tr class="separator:af6a05f853ebb54780f7182c7fc5a4da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -800,6 +829,10 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><b>BaseShieldArcaneSpell
 <tr class="memitem:ae3fa9e08b360717bfe4c5e2b72c7e6e4"><td class="memItemLeft" align="right" valign="top">Action&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ae3fa9e08b360717bfe4c5e2b72c7e6e4">CurrentAction</a><code> [get]</code></td></tr>
 <tr class="memdesc:ae3fa9e08b360717bfe4c5e2b72c7e6e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current action that this creature is executing.  <a href="classAnvil_1_1API_1_1NwCreature.html#ae3fa9e08b360717bfe4c5e2b72c7e6e4">More...</a><br /></td></tr>
 <tr class="separator:ae3fa9e08b360717bfe4c5e2b72c7e6e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2bb887988bc3a52975ea172ebd2186"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1DamageLevelEntry.html">DamageLevelEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a0a2bb887988bc3a52975ea172ebd2186">DamageLevel</a><code> [get]</code></td></tr>
+<tr class="memdesc:a0a2bb887988bc3a52975ea172ebd2186"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creature's current damage level (Uninjured, Injured, Near Death, etc).<br  />
+ If an override is set with <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#add94f0b2d1c42caa843ba6040c17bb22" title="Sets the override value to use for this creature&#39;s damage level.">SetDamageLevelOverride</a>, this property will return the override value.  <a href="classAnvil_1_1API_1_1NwCreature.html#a0a2bb887988bc3a52975ea172ebd2186">More...</a><br /></td></tr>
+<tr class="separator:a0a2bb887988bc3a52975ea172ebd2186"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d9b495a9a20b0151743cc24cb3aeeda"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a8d9b495a9a20b0151743cc24cb3aeeda">DefensiveCastingModeActive</a><code> [get]</code></td></tr>
 <tr class="memdesc:a8d9b495a9a20b0151743cc24cb3aeeda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this creature is currently in Defensive Casting Mode.  <a href="classAnvil_1_1API_1_1NwCreature.html#a8d9b495a9a20b0151743cc24cb3aeeda">More...</a><br /></td></tr>
 <tr class="separator:a8d9b495a9a20b0151743cc24cb3aeeda"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2880,6 +2913,34 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a4ecf826631208009095d981e4032e2d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ecf826631208009095d981e4032e2d3">&#9670;&nbsp;</a></span>ClearDamageLevelOverride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwCreature.ClearDamageLevelOverride </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clears any override that is set for the creature's damage level.<br  />
+ </p>
+
+</div>
+</div>
 <a id="a0a9373c26fe28356535b56ba74574d56"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0a9373c26fe28356535b56ba74574d56">&#9670;&nbsp;</a></span>Clone()</h2>
 
@@ -3582,6 +3643,34 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a9fef4b46f49ec657edca9a82b8ddc8fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fef4b46f49ec657edca9a82b8ddc8fc">&#9670;&nbsp;</a></span>GetDamageLevelOverride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1DamageLevelEntry.html">DamageLevelEntry</a> Anvil.API.NwCreature.GetDamageLevelOverride </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the override that is set for the creature's damage level.<br  />
+ </p>
+
+</div>
+</div>
 <a id="ac136dcea0de4a7f672d63123a1a9c4c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac136dcea0de4a7f672d63123a1a9c4c1">&#9670;&nbsp;</a></span>GetFeatGainLevel()</h2>
 
@@ -3614,6 +3703,76 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The character level a feat was gained, otherwise 0 if the character does not have the feat.</dd></dl>
+
+</div>
+</div>
+<a id="a33d2a04a430aebc29db22f80c457d960"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33d2a04a430aebc29db22f80c457d960">&#9670;&nbsp;</a></span>GetFeatRemainingUses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte Anvil.API.NwCreature.GetFeatRemainingUses </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a>&#160;</td>
+          <td class="paramname"><em>feat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the remaining uses available for the specified feat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">feat</td><td>The feat to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The amount of remaining uses.</dd></dl>
+
+</div>
+</div>
+<a id="a6f1bb4733764b087f5c78d9fe4e17ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f1bb4733764b087f5c78d9fe4e17ab2">&#9670;&nbsp;</a></span>GetFeatTotalUses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte Anvil.API.NwCreature.GetFeatTotalUses </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a>&#160;</td>
+          <td class="paramname"><em>feat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the max/total amount of times the specified feat can be used. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">feat</td><td>The feat to query.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The amount of remaining uses.</dd></dl>
 
 </div>
 </div>
@@ -5271,6 +5430,81 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="add94f0b2d1c42caa843ba6040c17bb22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add94f0b2d1c42caa843ba6040c17bb22">&#9670;&nbsp;</a></span>SetDamageLevelOverride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwCreature.SetDamageLevelOverride </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1DamageLevelEntry.html">DamageLevelEntry</a>&#160;</td>
+          <td class="paramname"><em>damageLevel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the override value to use for this creature's damage level.<br  />
+ </p>
+
+</div>
+</div>
+<a id="a5b0225d7cfd80773af414144894d6776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b0225d7cfd80773af414144894d6776">&#9670;&nbsp;</a></span>SetFeatRemainingUses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwCreature.SetFeatRemainingUses </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a>&#160;</td>
+          <td class="paramname"><em>feat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>remainingUses</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the remaining uses available for the specified feat.<br  />
+ Cannot exceed the creature's total/max uses of the feat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">feat</td><td>The feat to change.</td></tr>
+    <tr><td class="paramname">remainingUses</td><td>The new number of uses remaining.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a090d7b7014ed98f82635591fb7227292"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a090d7b7014ed98f82635591fb7227292">&#9670;&nbsp;</a></span>SetSkillRank()</h2>
 
@@ -5899,7 +6133,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets whether this creature is forced to walk (persistent). </p>
+<p>Gets or sets whether this creature is forced to walk.<br  />
+ Is not persistent, and must be applied again at login. </p>
 
 </div>
 </div>
@@ -5948,6 +6183,30 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets this creature's animal companion creature type. </p>
+
+</div>
+</div>
+<a id="af6e5bdf8aaa0c9daeafdaaccb2682286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e5bdf8aaa0c9daeafdaaccb2682286">&#9670;&nbsp;</a></span>Appearance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1AppearanceTableEntry.html">AppearanceTableEntry</a> Anvil.API.NwCreature.Appearance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the appearance of this creature. </p>
 
 </div>
 </div>
@@ -6341,6 +6600,31 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the current action that this creature is executing. </p>
+
+</div>
+</div>
+<a id="a0a2bb887988bc3a52975ea172ebd2186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a2bb887988bc3a52975ea172ebd2186">&#9670;&nbsp;</a></span>DamageLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1DamageLevelEntry.html">DamageLevelEntry</a> Anvil.API.NwCreature.DamageLevel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the creature's current damage level (Uninjured, Injured, Near Death, etc).<br  />
+ If an override is set with <a class="el" href="classAnvil_1_1API_1_1NwCreature.html#add94f0b2d1c42caa843ba6040c17bb22" title="Sets the override value to use for this creature&#39;s damage level.">SetDamageLevelOverride</a>, this property will return the override value. </p>
 
 </div>
 </div>

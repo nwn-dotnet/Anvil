@@ -3,7 +3,7 @@ var classAnvil_1_1API_1_1AppearanceTableEntry =
     [ "AbortOnParry", "classAnvil_1_1API_1_1AppearanceTableEntry.html#ac8e74d5b5952e5887f23000a6b0ff508", null ],
     [ "AppearanceSoundSet", "classAnvil_1_1API_1_1AppearanceTableEntry.html#a374845bd11b3138de4f68219d76b002d", null ],
     [ "BloodColor", "classAnvil_1_1API_1_1AppearanceTableEntry.html#ace930886b5483bcc77eec346b8c34d20", null ],
-    [ "BodyBag", "classAnvil_1_1API_1_1AppearanceTableEntry.html#aef4a5ccfeea13e81fe6314ef53b7f925", null ],
+    [ "BodyBag", "classAnvil_1_1API_1_1AppearanceTableEntry.html#a48632c364751b4664836b2ea844e4e00", null ],
     [ "CreaturePersonalSpace", "classAnvil_1_1API_1_1AppearanceTableEntry.html#aa64332f16cb8b823aab06aa8a77e559a", null ],
     [ "EnvironmentMap", "classAnvil_1_1API_1_1AppearanceTableEntry.html#a806f63b97a8838da97d2d2b195df4f0f", null ],
     [ "FootstepType", "classAnvil_1_1API_1_1AppearanceTableEntry.html#a6b25dff021bdb767e6bdf35c44969a92", null ],

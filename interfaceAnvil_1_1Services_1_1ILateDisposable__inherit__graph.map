@@ -1,4 +1,0 @@
-<map id="Anvil.Services.ILateDisposable" name="Anvil.Services.ILateDisposable">
-<area shape="rect" id="node1" title="Interface that is invoked after the server has been shutdown, and during reloads." alt="" coords="5,5,208,32"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1Services_1_1HookService.html" title="An advanced service for hooking native NWN functions." alt="" coords="15,80,198,107"/>
-</map>

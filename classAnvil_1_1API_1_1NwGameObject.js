@@ -24,6 +24,7 @@ var classAnvil_1_1API_1_1NwGameObject =
     [ "PlayAnimation", "classAnvil_1_1API_1_1NwGameObject.html#ab13c7200bb00b22875aa20d9a0559236", null ],
     [ "PlaySound", "classAnvil_1_1API_1_1NwGameObject.html#a069a68bca6dd329fb10ff68e84d0f46d", null ],
     [ "PlaySoundByStrRef", "classAnvil_1_1API_1_1NwGameObject.html#ae17df8ae36c148dd7ad6bcc9c6c5aa0e", null ],
+    [ "PlaySoundByStrRef", "classAnvil_1_1API_1_1NwGameObject.html#aa421401ad6bbd6167de91281a68c5c31", null ],
     [ "RemoveEffect", "classAnvil_1_1API_1_1NwGameObject.html#afa1d37969f70dadab7e414d4086cda64", null ],
     [ "ReplaceObjectTexture", "classAnvil_1_1API_1_1NwGameObject.html#ad2c3313b30c792a8275ffc77fbaa351f", null ],
     [ "ResetMaterialShaderUniforms", "classAnvil_1_1API_1_1NwGameObject.html#a57ada93818247a26ccf2310563cd846e", null ],

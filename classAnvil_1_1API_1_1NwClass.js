@@ -13,7 +13,7 @@ var classAnvil_1_1API_1_1NwClass =
     [ "CanLearnFromScrolls", "classAnvil_1_1API_1_1NwClass.html#a2a8344e42a048b5cd6fa87e254956c26", null ],
     [ "CasterLevelMultiplier", "classAnvil_1_1API_1_1NwClass.html#a1f25255084bfcd1ee26a1c57872872aa", null ],
     [ "ClassType", "classAnvil_1_1API_1_1NwClass.html#a9db631386b66ca1cecd0f1771f3b24af", null ],
-    [ "Description", "classAnvil_1_1API_1_1NwClass.html#abf81bb303b9bb2bbaf5d2a47ceafa0fd", null ],
+    [ "Description", "classAnvil_1_1API_1_1NwClass.html#a0a8ea54c7e9e88f3d6b07a6c64c3dc62", null ],
     [ "DivineSpellUsePerDayLevel", "classAnvil_1_1API_1_1NwClass.html#ad0c8e0a17eecd993d0084ae4c9746fcf", null ],
     [ "EffectiveCRTable", "classAnvil_1_1API_1_1NwClass.html#ab4522323dde3b8fe8d8b1b1320309055", null ],
     [ "EpicLevel", "classAnvil_1_1API_1_1NwClass.html#a96c9e0cc4a2362c6745c1ec2c6336ed7", null ],
@@ -34,9 +34,9 @@ var classAnvil_1_1API_1_1NwClass =
     [ "MaxLevel", "classAnvil_1_1API_1_1NwClass.html#a88ad7329f02130d5f2a14b9053cf7ce6", null ],
     [ "MinAssociateLevel", "classAnvil_1_1API_1_1NwClass.html#a20201815587b82f8bef09e4c112a502f", null ],
     [ "MinCastingLevel", "classAnvil_1_1API_1_1NwClass.html#ad9e58a483036bc29706a0ca1443d9aac", null ],
-    [ "Name", "classAnvil_1_1API_1_1NwClass.html#a3f1fb2a14ae86e920b56f6e44f5bbb5c", null ],
-    [ "NameLower", "classAnvil_1_1API_1_1NwClass.html#a8df24279e41eaa8ad50cd5551e5dab84", null ],
-    [ "NamePlural", "classAnvil_1_1API_1_1NwClass.html#ad27eb1abbf2cb643c3633897b1781b0d", null ],
+    [ "Name", "classAnvil_1_1API_1_1NwClass.html#ae2bec2da591b787ec7b7d8adc99671d0", null ],
+    [ "NameLower", "classAnvil_1_1API_1_1NwClass.html#a8a64c56dd16489a6b70212d733b4affa", null ],
+    [ "NamePlural", "classAnvil_1_1API_1_1NwClass.html#aa5fad9ddbaa298ea8b39ec712b239370", null ],
     [ "NaturalACGainTable", "classAnvil_1_1API_1_1NwClass.html#a732f25b3fc328b6e711e87e35eaead0b", null ],
     [ "PackageIndex", "classAnvil_1_1API_1_1NwClass.html#aa499b319cfeb810d0d657b7036d34ae5", null ],
     [ "PreReqTable", "classAnvil_1_1API_1_1NwClass.html#ab227a7f8f21e045409de7af1dc0e476b", null ],
@@ -48,6 +48,5 @@ var classAnvil_1_1API_1_1NwClass =
     [ "SpellCastingAbility", "classAnvil_1_1API_1_1NwClass.html#a6e810ff10d6402b68a201069c97472b0", null ],
     [ "SpellGainTable", "classAnvil_1_1API_1_1NwClass.html#a39699baf3d2ff0f31bc4f9e79bbab204", null ],
     [ "SpellKnownTable", "classAnvil_1_1API_1_1NwClass.html#a6fe701b19ee2c2665e84afb4b2a181c8", null ],
-    [ "SpellTableColumn", "classAnvil_1_1API_1_1NwClass.html#a20f3863d4de1b260eb8683a634015364", null ],
-    [ "TlkTable", "classAnvil_1_1API_1_1NwClass.html#a500b4659d881b4f7127cb71fbe1f07d4", null ]
+    [ "SpellTableColumn", "classAnvil_1_1API_1_1NwClass.html#a20f3863d4de1b260eb8683a634015364", null ]
 ];
