@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.3...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.34.2
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...v8193.34.3
 
 ### Added
 - `StrRef.ToParsedString()`: Gets the string associated with a StrRef and parses any tokens (e.g. \<CUSTOM0\>)
