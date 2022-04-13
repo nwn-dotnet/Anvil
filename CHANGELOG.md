@@ -3,7 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## 8193.34.2
+## 8193.34.4
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.3...v8193.34.4
+
+### Fixed
+- Fixed an issue where API services would not be constructed in the expected order.
+
+## 8193.34.3
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...v8193.34.3
 
 ### Added
@@ -66,9 +72,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...v8193.34.3
   - `NwSpell.Description`
   - `NwSpell.Name`
   - `OnELCValidationFailure.StrRef`
-
-### Removed
-- N/A
 
 ### Fixed
 - Fixed a stack overflow when injecting the `InjectionService` as a property dependency.
