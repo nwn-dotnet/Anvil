@@ -22,7 +22,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.3...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed an issue where API services would not be constructed in the expected order.
 
 ## 8193.34.2
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...v8193.34.3

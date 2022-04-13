@@ -101,10 +101,17 @@ namespace Anvil.Services
         coreService.Start();
       }
 
+      ConstructAllServices(AnvilServiceContainer);
+
       foreach (IInitializable service in AnvilServiceContainer.GetAllInstances<IInitializable>().OrderBy(service => service.GetType().GetServicePriority()))
       {
         service.Init();
       }
+    }
+
+    private void ConstructAllServices(ServiceContainer container)
+    {
+      container.GetAllInstances<object>();
     }
 
     void IServiceManager.Unload()

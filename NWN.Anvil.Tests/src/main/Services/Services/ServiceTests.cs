@@ -8,8 +8,8 @@ namespace Anvil.Tests.Services
   [TestFixture(Category = "Services.Services")]
   public sealed class ServiceTests
   {
-    [TestCase(Description = "Anvil services are sorted based on binding priority.")]
-    public void InjectionServiceInjectsServicesOnStaticProperties()
+    [Test(Description = "Plugin services are sorted based on binding priority.")]
+    public void PluginServicesSortedByPriority()
     {
       List<string> serviceNames = new List<string>
       {
@@ -39,6 +39,65 @@ namespace Anvil.Tests.Services
         typeof(LowestPriorityService).GetInternalServiceName(),
       }));
     }
+
+    [Test(Description = "Anvil services are sorted based on internal binding priority.")]
+    public void InternalServicesSortedByPriority()
+    {
+      List<string> serviceNames = new List<string>
+      {
+        typeof(InternalLowestPriorityService).GetInternalServiceName(),
+        typeof(InternalVeryLowPriorityService).GetInternalServiceName(),
+        typeof(InternalLowPriorityService).GetInternalServiceName(),
+        typeof(InternalBelowNormalPriorityService).GetInternalServiceName(),
+        typeof(InternalNormalPriorityService).GetInternalServiceName(),
+        typeof(InternalAboveNormalPriorityService).GetInternalServiceName(),
+        typeof(InternalHighPriorityService).GetInternalServiceName(),
+        typeof(InternalVeryHighPriorityService).GetInternalServiceName(),
+        typeof(InternalHighestPriorityService).GetInternalServiceName(),
+      };
+
+      serviceNames.Sort();
+
+      Assert.That(serviceNames, Is.EquivalentTo(new[]
+      {
+        typeof(InternalHighestPriorityService).GetInternalServiceName(),
+        typeof(InternalVeryHighPriorityService).GetInternalServiceName(),
+        typeof(InternalHighPriorityService).GetInternalServiceName(),
+        typeof(InternalAboveNormalPriorityService).GetInternalServiceName(),
+        typeof(InternalNormalPriorityService).GetInternalServiceName(),
+        typeof(InternalBelowNormalPriorityService).GetInternalServiceName(),
+        typeof(InternalLowPriorityService).GetInternalServiceName(),
+        typeof(InternalVeryLowPriorityService).GetInternalServiceName(),
+        typeof(InternalLowestPriorityService).GetInternalServiceName(),
+      }));
+    }
+
+    [ServiceBindingOptions(InternalBindingPriority.Highest)]
+    private sealed class InternalHighestPriorityService {}
+
+    [ServiceBindingOptions(InternalBindingPriority.VeryHigh)]
+    private sealed class InternalVeryHighPriorityService {}
+
+    [ServiceBindingOptions(InternalBindingPriority.High)]
+    private sealed class InternalHighPriorityService {}
+
+    [ServiceBindingOptions(InternalBindingPriority.AboveNormal)]
+    private sealed class InternalAboveNormalPriorityService {}
+
+    [ServiceBindingOptions(InternalBindingPriority.Normal)]
+    private sealed class InternalNormalPriorityService {}
+
+    [ServiceBindingOptions(InternalBindingPriority.BelowNormal)]
+    private sealed class InternalBelowNormalPriorityService {}
+
+    [ServiceBindingOptions(InternalBindingPriority.Low)]
+    private sealed class InternalLowPriorityService {}
+
+    [ServiceBindingOptions(InternalBindingPriority.VeryLow)]
+    private sealed class InternalVeryLowPriorityService {}
+
+    [ServiceBindingOptions(InternalBindingPriority.Lowest)]
+    private sealed class InternalLowestPriorityService {}
 
     [ServiceBindingOptions(BindingPriority = BindingPriority.Highest)]
     private sealed class HighestPriorityService {}
