@@ -16,7 +16,7 @@ namespace Anvil.Tests.Services
     [Inject]
     private static InjectionTestService StaticInjectionTestService { get; set; }
 
-    [TestCase(Description = "Anvil services are injected on static properties.")]
+    [Test(Description = "Anvil services are injected on static properties.")]
     public void InjectionServiceInjectsServicesOnStaticProperties()
     {
       Assert.That(InjectionService, Is.Not.Null, "The standard anvil service was not injected.");
@@ -24,7 +24,7 @@ namespace Anvil.Tests.Services
       Assert.That(StaticInjectionTestService, Is.Not.Null, "The plugin service was not injected.");
     }
 
-    [TestCase(Description = "The injection service injects dependencies into a specified object.")]
+    [Test(Description = "The injection service injects dependencies into a specified object.")]
     public void InjectionServiceInjectsInstanceDependencies()
     {
       InjectionTest injectionTest = new InjectionTest();
@@ -39,7 +39,7 @@ namespace Anvil.Tests.Services
       Assert.That(injectionTest.InjectionTestService, Is.Not.Null);
     }
 
-    [TestCase(Description = "Services with inject properties are implicitly injected.")]
+    [Test(Description = "Services with inject properties are implicitly injected.")]
     public void InjectionServiceInjectsServiceDependencies()
     {
       Assert.That(StaticInjectionTestService.NwServer, Is.Not.Null, "A constructor dependency was not injected.");
