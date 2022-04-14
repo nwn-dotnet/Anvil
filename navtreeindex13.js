@@ -1,5 +1,6 @@
 var NAVTREEINDEX13 =
 {
+"classAnvil_1_1API_1_1NwWaypoint.html#a3e4b122d9893158cbad03887b1c6a2c6":[0,0,0,146,1],
 "classAnvil_1_1API_1_1NwWaypoint.html#a546f62e6f85f58050d3f35dec234e8a2":[0,0,0,146,3],
 "classAnvil_1_1API_1_1NwWaypoint.html#a64df7ac8f447ff16c3fbab9132203c63":[0,0,0,146,2],
 "classAnvil_1_1API_1_1NwWaypoint.html#aacc5ee209a844e0842219d2f52c0a17a":[0,0,0,146,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX13 =
 "classAnvil_1_1API_1_1StringExtensions.html#a7f38f4980d885b80e45e72f7c8752416":[0,0,0,181,6],
 "classAnvil_1_1API_1_1StringExtensions.html#a8013368e4fb9faf1785dd5f5cee6c957":[0,0,0,181,10],
 "classAnvil_1_1API_1_1StringExtensions.html#a852ec4c81a5fa467711445452ae5258f":[0,0,0,181,13],
-"classAnvil_1_1API_1_1StringExtensions.html#a8dc395da09962ea224e1d66450de4e66":[0,0,0,181,5],
-"classAnvil_1_1API_1_1StringExtensions.html#a8f4d23896d8fe2b9cfd63edd23319bb9":[0,0,0,181,4]
+"classAnvil_1_1API_1_1StringExtensions.html#a8dc395da09962ea224e1d66450de4e66":[0,0,0,181,5]
 };

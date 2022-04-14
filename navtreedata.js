@@ -40,14 +40,14 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1ItemProperty.html#a962a26f8ff8e16465beaaf40ec2316e3",
 "classAnvil_1_1API_1_1NuiDrawListPolyLine.html",
 "classAnvil_1_1API_1_1NwBaseItem.html#a7a39a3ba86c7f57cda50f0884626ec82",
-"classAnvil_1_1API_1_1NwCreature.html#a9bfcada217951529aecdf931b7c22518",
-"classAnvil_1_1API_1_1NwGameObject.html#a478d56e63a35511352191a81c421683d",
-"classAnvil_1_1API_1_1NwModule.html#acfaa5ee5509b1fac9f54b9aff405b0f0",
-"classAnvil_1_1API_1_1NwPlayer.html#ad471dd41203a8a1756bc2142630472ea",
-"classAnvil_1_1API_1_1NwWaypoint.html#a546f62e6f85f58050d3f35dec234e8a2",
-"classAnvil_1_1API_1_1StringExtensions.html#a90a2be87851c76612bf9058490d2dd3d",
-"classAnvil_1_1Services_1_1EventService.html#aed3850de5d4778749d89915c6c76045f",
-"structAnvil_1_1API_1_1HitEffect.html#a5cdbd8ffebec4134c56efbd5bf068dde"
+"classAnvil_1_1API_1_1NwCreature.html#a9970c002ab5c77e7b9d53fbd69bfbd0d",
+"classAnvil_1_1API_1_1NwGameObject.html#a46d7f96e4971379ce3ec95835d9bcdd6",
+"classAnvil_1_1API_1_1NwModule.html#acf7397368420d397eca36ac1a886638c",
+"classAnvil_1_1API_1_1NwPlayer.html#ad1891942d38894dbba85c95efc63bafc",
+"classAnvil_1_1API_1_1NwWaypoint.html#a3e4b122d9893158cbad03887b1c6a2c6",
+"classAnvil_1_1API_1_1StringExtensions.html#a8f4d23896d8fe2b9cfd63edd23319bb9",
+"classAnvil_1_1Services_1_1EventService.html#aed02533ef808e885cb918b659cd1b944",
+"structAnvil_1_1API_1_1HitEffect.html#a56e4139fd10aa937d7d26cb832702b49"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

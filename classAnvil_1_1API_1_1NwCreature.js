@@ -164,6 +164,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "DetectModeActive", "classAnvil_1_1API_1_1NwCreature.html#a6c2285a74fd848dc65f6457cead6f259", null ],
     [ "DialogResRef", "classAnvil_1_1API_1_1NwCreature.html#af06c364180b6c09ce2f49d5f0e9048db", null ],
     [ "Disarmable", "classAnvil_1_1API_1_1NwCreature.html#ac07ee3fcbda9117b28c930b4c9cb32d2", null ],
+    [ "Encounter", "classAnvil_1_1API_1_1NwCreature.html#a0010b5459b11c829491964f80dabe4a1", null ],
     [ "ExploresMinimap", "classAnvil_1_1API_1_1NwCreature.html#aaf53821aaca09e54cdc7daa25f0595bd", null ],
     [ "Faction", "classAnvil_1_1API_1_1NwCreature.html#aad610a4dc7b58e8d6481c66e77f3ddd2", null ],
     [ "FamiliarName", "classAnvil_1_1API_1_1NwCreature.html#a0e36aed9b57abeb360cd83953a20bb11", null ],

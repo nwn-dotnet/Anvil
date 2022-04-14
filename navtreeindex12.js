@@ -1,5 +1,6 @@
 var NAVTREEINDEX12 =
 {
+"classAnvil_1_1API_1_1NwPlayer.html#ad1891942d38894dbba85c95efc63bafc":[0,0,0,132,130],
 "classAnvil_1_1API_1_1NwPlayer.html#ad471dd41203a8a1756bc2142630472ea":[0,0,0,132,153],
 "classAnvil_1_1API_1_1NwPlayer.html#ad548fdf4153700e79bf043617862606a":[0,0,0,132,138],
 "classAnvil_1_1API_1_1NwPlayer.html#ad56cc5793a489ca56d03958480e4d66f":[0,0,0,132,106],
@@ -248,6 +249,5 @@ var NAVTREEINDEX12 =
 "classAnvil_1_1API_1_1NwWaypoint.html":[0,0,0,146],
 "classAnvil_1_1API_1_1NwWaypoint.html#a0d7fefc4785547ab7736e27fd792c661":[0,0,0,146,4],
 "classAnvil_1_1API_1_1NwWaypoint.html#a0e3d1c8e1bcd6e57eb3fe7410747afe6":[0,0,0,146,0],
-"classAnvil_1_1API_1_1NwWaypoint.html#a2cdaf346ff2ca5ba5df7c64e160c5bac":[0,0,0,146,6],
-"classAnvil_1_1API_1_1NwWaypoint.html#a3e4b122d9893158cbad03887b1c6a2c6":[0,0,0,146,1]
+"classAnvil_1_1API_1_1NwWaypoint.html#a2cdaf346ff2ca5ba5df7c64e160c5bac":[0,0,0,146,6]
 };

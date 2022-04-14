@@ -1,5 +1,6 @@
 var NAVTREEINDEX16 =
 {
+"structAnvil_1_1API_1_1HitEffect.html#a56e4139fd10aa937d7d26cb832702b49":[0,0,0,45,0],
 "structAnvil_1_1API_1_1HitEffect.html#a5cdbd8ffebec4134c56efbd5bf068dde":[0,0,0,45,1],
 "structAnvil_1_1API_1_1HitEffect.html#a5e8d6e8fb93e9fe927ea3541da0ba9cc":[0,0,0,45,22],
 "structAnvil_1_1API_1_1HitEffect.html#a61c3fe2d541fde0366b19765f3b48e0c":[0,0,0,45,19],
