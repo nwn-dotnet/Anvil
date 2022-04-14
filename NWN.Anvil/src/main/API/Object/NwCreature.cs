@@ -272,6 +272,11 @@ namespace Anvil.API
     public bool Disarmable => NWScript.GetIsCreatureDisarmable(this).ToBool();
 
     /// <summary>
+    /// Gets the encounter that spawned this creature.
+    /// </summary>
+    public NwEncounter Encounter => Creature.m_oidEncounter.ToNwObject<NwEncounter>();
+
+    /// <summary>
     /// Gets or sets a value indicating whether this creature will auto-explore the minimap as it walks around.
     /// </summary>
     public bool ExploresMinimap
