@@ -4,7 +4,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.34.5
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
+
+### Added
+- `NwCreature.Encounter`: Gets the encounter that spawned the creature.
+
+## 8193.34.4
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.3...v8193.34.4
+
+### Fixed
+- Fixed an issue where API services would not be constructed in the expected order.
+
+## 8193.34.3
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...v8193.34.3
 
 ### Added
 - `StrRef.ToParsedString()`: Gets the string associated with a StrRef and parses any tokens (e.g. \<CUSTOM0\>)
@@ -25,6 +58,9 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
   - `PlayerNameOverrideService` contains configuration options.
 - `NwCreature`: Added `GetFeatRemainingUses` `GetFeatTotalUses` `SetFeatRemainingUses`
 - Added `OnMapPinAddPin`, `OnMapPinChangePin`, `OnMapPinDestroyPin` events.
+- `NwCreature`: Added damage level override functions (`ClearDamageLevelOverride`, `GetDamageLevelOverride`, `SetDamageLevelOverride`)
+- `NwCreature`: Added `DamageLevel` property.
+- `NwGameTables`: Added `DamageLevelTable`
 
 ### Package Updates
 - NWNX c51d233 -> d15bc22
@@ -63,9 +99,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.2...HEAD
   - `NwSpell.Description`
   - `NwSpell.Name`
   - `OnELCValidationFailure.StrRef`
-
-### Removed
-- N/A
 
 ### Fixed
 - Fixed a stack overflow when injecting the `InjectionService` as a property dependency.
