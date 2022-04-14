@@ -10,7 +10,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
 - N/A
 
 ### Package Updates
-- N/A
+- Paket.Core 7.0.2 -> 7.1.4
 
 ### Changed
 - N/A
