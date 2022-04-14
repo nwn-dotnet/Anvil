@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
 
 ### Added
-- `NwCreature.Encounter`: Gets the encounter that spawned the creature.
+- N/A
 
 ### Package Updates
 - N/A
@@ -23,6 +23,12 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
 
 ### Fixed
 - N/A
+
+## 8193.34.5
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
+
+### Added
+- `NwCreature.Encounter`: Gets the encounter that spawned the creature.
 
 ## 8193.34.4
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.3...v8193.34.4
