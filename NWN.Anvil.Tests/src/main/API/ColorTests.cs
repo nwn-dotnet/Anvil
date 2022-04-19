@@ -9,15 +9,6 @@ namespace Anvil.Tests.API
   public sealed class ColorTests
   {
     [Test]
-    [Description("Converts a color into a color token, then checks the resulting string for control characters.")]
-    [TestCaseSource(nameof(ColorTestCases))]
-    public void CreateColorTokenContainsNoNullTerminators(Color color)
-    {
-      string colorToken = color.ToColorToken();
-      Assert.That(colorToken, Does.Not.Contain('\0'), "color token contains a null character");
-    }
-
-    [Test]
     [Description("Converting a color structure to a packed rgba value retains the correct color values.")]
     [TestCaseSource(nameof(ColorTestCases))]
     public void ConvertColorToRgbaRetainsColorValues(Color color)
@@ -40,13 +31,32 @@ namespace Anvil.Tests.API
     }
 
     [Test]
-    [Description("Converting a packed rgba value returns the correct color.")]
-    [TestCase(0xFF0000FFu, 0xFF, 0, 0, 0xFF)]
-    [TestCase(0x6E7882FFu, 0x6E, 0x78, 0x82, 0xFF)]
-    [TestCase(0x6E141E10u, 0x6E, 0x14, 0x1E, 0x10)]
-    public void ParseRGBAReturnsCorrectColor(uint packedColor, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
+    [Description("Converts a color into a color token, then checks the resulting string for control characters.")]
+    [TestCaseSource(nameof(ColorTestCases))]
+    public void CreateColorTokenContainsNoNullTerminators(Color color)
     {
-      Assert.That(Color.FromRGBA(packedColor), Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
+      string colorToken = color.ToColorToken();
+      Assert.That(colorToken, Does.Not.Contain('\0'), "color token contains a null character");
+    }
+
+    [Test]
+    [Description("Deserializing a NUI color json structure creates the correct color.")]
+    [TestCase(@"{""r"":255,""g"":0,""b"":0,""a"":0}", 255, 0, 0, 0)]
+    [TestCase(@"{""r"":255,""g"":100,""b"":0,""a"":0}", 255, 100, 0, 0)]
+    [TestCase(@"{""r"":255,""g"":100,""b"":10,""a"":30}", 255, 100, 10, 30)]
+    public void DeserializeColorCreatesCorrectColor(string json, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
+    {
+      Color color = JsonConvert.DeserializeObject<Color>(json);
+      Assert.That(color, Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
+    }
+
+    [Test]
+    [Description("Identical colors are considered equal.")]
+    [TestCaseSource(nameof(ColorTestCases))]
+    public void IdenticalColorsAreEqual(Color color)
+    {
+      Color color2 = new Color(color.Red, color.Green, color.Blue, color.Alpha);
+      Assert.AreEqual(color, color2);
     }
 
     [Test]
@@ -72,14 +82,13 @@ namespace Anvil.Tests.API
     }
 
     [Test]
-    [Description("Deserializing a NUI color json structure creates the correct color.")]
-    [TestCase(@"{""r"":255,""g"":0,""b"":0,""a"":0}", 255, 0, 0, 0)]
-    [TestCase(@"{""r"":255,""g"":100,""b"":0,""a"":0}", 255, 100, 0, 0)]
-    [TestCase(@"{""r"":255,""g"":100,""b"":10,""a"":30}", 255, 100, 10, 30)]
-    public void DeserializeColorCreatesCorrectColor(string json, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
+    [Description("Converting a packed rgba value returns the correct color.")]
+    [TestCase(0xFF0000FFu, 0xFF, 0, 0, 0xFF)]
+    [TestCase(0x6E7882FFu, 0x6E, 0x78, 0x82, 0xFF)]
+    [TestCase(0x6E141E10u, 0x6E, 0x14, 0x1E, 0x10)]
+    public void ParseRGBAReturnsCorrectColor(uint packedColor, byte expectedRed, byte expectedGreen, byte expectedBlue, byte expectedAlpha)
     {
-      Color color = JsonConvert.DeserializeObject<Color>(json);
-      Assert.That(color, Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
+      Assert.That(Color.FromRGBA(packedColor), Is.EqualTo(new Color(expectedRed, expectedGreen, expectedBlue, expectedAlpha)));
     }
 
     [Test]
