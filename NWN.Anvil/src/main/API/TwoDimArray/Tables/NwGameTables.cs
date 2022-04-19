@@ -55,6 +55,11 @@ namespace Anvil.API
     /// </summary>
     public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; }
 
+    /// <summary>
+    /// Gets the item/skill cost table (skillvsitemcost.2da)
+    /// </summary>
+    public static TwoDimArray<SkillItemCostTableEntry> SkillItemCostTable { get; private set; }
+
     [ServiceBinding(typeof(Factory))]
     [ServiceBindingOptions(InternalBindingPriority.API)]
     internal sealed unsafe class Factory
@@ -83,6 +88,7 @@ namespace Anvil.API
         ProgrammedEffectTable = new TwoDimArray<ProgrammedEffectTableEntry>("progfx.2da"); // arrays.m_pProgFxTable does not exist in nwserver.
         DamageLevelTable = new TwoDimArray<DamageLevelEntry>("damagelevels.2da"); // arrays.m_pDamageLevelTable does not exist in nwserver.
         ExpTable = new TwoDimArray<ExpTableEntry>("exptable.2da");
+        SkillItemCostTable = new TwoDimArray<SkillItemCostTableEntry>(arrays.m_pSkillVsItemCostTable);
       }
 
       private void OnReloadAll(void* pRules)

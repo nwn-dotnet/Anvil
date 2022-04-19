@@ -380,6 +380,7 @@ namespace Anvil.Tests.API
       TwoDimArray<DamageLevelEntry> table = NwGameTables.DamageLevelTable;
       DamageLevelEntry row = table.GetRow(rowIndex);
 
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
       Assert.That(row.Label, Is.EqualTo(label));
       Assert.That(row.StrRef?.Id, Is.EqualTo(strRef));
     }
@@ -431,8 +432,78 @@ namespace Anvil.Tests.API
       TwoDimArray<ExpTableEntry> table = NwGameTables.ExpTable;
       ExpTableEntry row = table.GetRow(rowIndex);
 
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
       Assert.That(row.Level, Is.EqualTo(level));
       Assert.That(row.XP, Is.EqualTo(xp));
+    }
+
+    [Test(Description = "Skill item cost entries return valid data")]
+    [TestCase(0, 5, 1, 5, 10)]
+    [TestCase(1, 10, 1, 5, 10)]
+    [TestCase(2, 50, 1, 5, 10)]
+    [TestCase(3, 100, 1, 5, 10)]
+    [TestCase(4, 150, 1, 5, 10)]
+    [TestCase(5, 200, 1, 5, 10)]
+    [TestCase(6, 300, 1, 5, 10)]
+    [TestCase(7, 400, 1, 5, 10)]
+    [TestCase(8, 500, 1, 5, 10)]
+    [TestCase(9, 1000, 1, 5, 10)]
+    [TestCase(10, 2500, 5, 10, 15)]
+    [TestCase(11, 3750, 5, 10, 15)]
+    [TestCase(12, 4800, 5, 10, 15)]
+    [TestCase(13, 6500, 10, 15, 20)]
+    [TestCase(14, 9500, 10, 15, 20)]
+    [TestCase(15, 13000, 10, 15, 20)]
+    [TestCase(16, 17000, 10, 15, 20)]
+    [TestCase(17, 20000, 10, 15, 20)]
+    [TestCase(18, 30000, 15, 20, 25)]
+    [TestCase(19, 40000, 15, 20, 25)]
+    [TestCase(20, 50000, 15, 20, 25)]
+    [TestCase(21, 60000, 15, 20, 25)]
+    [TestCase(22, 80000, 15, 20, 25)]
+    [TestCase(23, 100000, 15, 20, 25)]
+    [TestCase(24, 150000, 20, 25, 30)]
+    [TestCase(25, 200000, 20, 25, 30)]
+    [TestCase(26, 250000, 20, 25, 30)]
+    [TestCase(27, 300000, 20, 25, 30)]
+    [TestCase(28, 350000, 25, 30, 35)]
+    [TestCase(29, 400000, 25, 30, 35)]
+    [TestCase(30, 500000, 25, 30, 35)]
+    [TestCase(31, 600000, 25, 30, 35)]
+    [TestCase(32, 700000, 30, 35, 40)]
+    [TestCase(33, 800000, 30, 35, 40)]
+    [TestCase(34, 900000, 30, 35, 40)]
+    [TestCase(35, 1000000, 30, 35, 40)]
+    [TestCase(36, 1100000, 35, 40, 45)]
+    [TestCase(37, 1200000, 35, 40, 45)]
+    [TestCase(38, 1300000, 35, 40, 45)]
+    [TestCase(39, 1400000, 35, 40, 45)]
+    [TestCase(40, 1500000, 40, 45, 50)]
+    [TestCase(41, 1600000, 40, 45, 50)]
+    [TestCase(42, 1700000, 40, 45, 50)]
+    [TestCase(43, 1800000, 40, 45, 50)]
+    [TestCase(44, 1900000, 45, 50, 55)]
+    [TestCase(45, 2000000, 45, 50, 55)]
+    [TestCase(46, 2100000, 45, 50, 55)]
+    [TestCase(47, 2200000, 45, 50, 55)]
+    [TestCase(48, 2300000, 50, 55, 60)]
+    [TestCase(49, 2400000, 50, 55, 60)]
+    [TestCase(50, 2500000, 50, 55, 60)]
+    [TestCase(51, 3000000, 55, 60, 65)]
+    [TestCase(52, 5000000, 60, 65, 70)]
+    [TestCase(53, 6000000, 70, 75, 80)]
+    [TestCase(54, 9000000, 80, 85, 90)]
+    [TestCase(55, 12000000, null, null, null)]
+    public void SkillItemCostTableReturnsValidData(int rowIndex, int? deviceCostMax, int? skillReqClass, int? skillReqRace, int? skillReqAlign)
+    {
+      TwoDimArray<SkillItemCostTableEntry> table = NwGameTables.SkillItemCostTable;
+      SkillItemCostTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
+      Assert.That(row.DeviceCostMax, Is.EqualTo(deviceCostMax));
+      Assert.That(row.ClassSkillRequirement, Is.EqualTo(skillReqClass));
+      Assert.That(row.RaceSkillRequirement, Is.EqualTo(skillReqRace));
+      Assert.That(row.AlignmentSkillRequirement, Is.EqualTo(skillReqAlign));
     }
   }
 }
