@@ -8,6 +8,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
 
 ### Added
 - Added `Color` equality members `Equals` and operators `==` `!=`
+- `NwGameTables`: Added `ExpTable`
 
 ### Package Updates
 - Paket.Core 7.0.2 -> 7.1.4

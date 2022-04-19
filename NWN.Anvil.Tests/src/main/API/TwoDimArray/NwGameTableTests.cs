@@ -369,6 +369,7 @@ namespace Anvil.Tests.API
       Assert.That(lightRow.GetParamString(8), Is.EqualTo(null));
     }
 
+    [Test(Description = "Damage level table entries return valid data")]
     [TestCase(0, "UNINJURED", 6409)]
     [TestCase(1, "BARELY_INJURED", 6410)]
     [TestCase(2, "INJURED", 6411)]
@@ -381,6 +382,57 @@ namespace Anvil.Tests.API
 
       Assert.That(row.Label, Is.EqualTo(label));
       Assert.That(row.StrRef?.Id, Is.EqualTo(strRef));
+    }
+
+    [Test(Description = "XP table entries return valid data")]
+    [TestCase(0, 1, 0u)]
+    [TestCase(1, 2, 1000u)]
+    [TestCase(2, 3, 3000u)]
+    [TestCase(3, 4, 6000u)]
+    [TestCase(4, 5, 10000u)]
+    [TestCase(5, 6, 15000u)]
+    [TestCase(6, 7, 21000u)]
+    [TestCase(7, 8, 28000u)]
+    [TestCase(8, 9, 36000u)]
+    [TestCase(9, 10, 45000u)]
+    [TestCase(10, 11, 55000u)]
+    [TestCase(11, 12, 66000u)]
+    [TestCase(12, 13, 78000u)]
+    [TestCase(13, 14, 91000u)]
+    [TestCase(14, 15, 105000u)]
+    [TestCase(15, 16, 120000u)]
+    [TestCase(16, 17, 136000u)]
+    [TestCase(17, 18, 153000u)]
+    [TestCase(18, 19, 171000u)]
+    [TestCase(19, 20, 190000u)]
+    [TestCase(20, 21, 210000u)]
+    [TestCase(21, 22, 231000u)]
+    [TestCase(22, 23, 253000u)]
+    [TestCase(23, 24, 276000u)]
+    [TestCase(24, 25, 300000u)]
+    [TestCase(25, 26, 325000u)]
+    [TestCase(26, 27, 351000u)]
+    [TestCase(27, 28, 378000u)]
+    [TestCase(28, 29, 406000u)]
+    [TestCase(29, 30, 435000u)]
+    [TestCase(30, 31, 465000u)]
+    [TestCase(31, 32, 496000u)]
+    [TestCase(32, 33, 528000u)]
+    [TestCase(33, 34, 561000u)]
+    [TestCase(34, 35, 595000u)]
+    [TestCase(35, 36, 630000u)]
+    [TestCase(36, 37, 666000u)]
+    [TestCase(37, 38, 703000u)]
+    [TestCase(38, 39, 741000u)]
+    [TestCase(39, 40, 780000u)]
+    [TestCase(40, 41, 0xFFFFFFFFu)]
+    public void ExpTableReturnsValidData(int rowIndex, int? level, uint? xp)
+    {
+      TwoDimArray<ExpTableEntry> table = NwGameTables.ExpTable;
+      ExpTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.Level, Is.EqualTo(level));
+      Assert.That(row.XP, Is.EqualTo(xp));
     }
   }
 }
