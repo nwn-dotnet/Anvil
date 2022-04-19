@@ -2,12 +2,12 @@ namespace Anvil.API
 {
   public sealed class ExpTableEntry : ITwoDimArrayEntry
   {
-    public int RowIndex { get; init; }
-
     /// <summary>
     /// Gets the character level.
     /// </summary>
     public int? Level { get; set; }
+
+    public int RowIndex { get; init; }
 
     /// <summary>
     /// Gets the XP required to gain <see cref="Level"/>.

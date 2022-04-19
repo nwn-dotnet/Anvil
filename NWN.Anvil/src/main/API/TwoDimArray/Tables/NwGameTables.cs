@@ -51,14 +51,14 @@ namespace Anvil.API
     public static TwoDimArray<ProgrammedEffectTableEntry> ProgrammedEffectTable { get; private set; }
 
     /// <summary>
-    /// Gets the visual effect table (visualeffects.2da)
-    /// </summary>
-    public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; }
-
-    /// <summary>
     /// Gets the item/skill cost table (skillvsitemcost.2da)
     /// </summary>
     public static TwoDimArray<SkillItemCostTableEntry> SkillItemCostTable { get; private set; }
+
+    /// <summary>
+    /// Gets the visual effect table (visualeffects.2da)
+    /// </summary>
+    public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; }
 
     [ServiceBinding(typeof(Factory))]
     [ServiceBindingOptions(InternalBindingPriority.API)]
