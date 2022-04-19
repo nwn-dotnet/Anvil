@@ -6,39 +6,53 @@ namespace Anvil.API
   public static class NwGameTables
   {
     /// <summary>
-    /// Gets the game appearance table (appearance.2da)
+    /// Gets the appearance table (appearance.2da)
     /// </summary>
     public static TwoDimArray<AppearanceTableEntry> AppearanceTable { get; private set; }
 
     /// <summary>
-    /// Gets the game body bag table (bodybag.2da)
+    /// Gets the body bag table (bodybag.2da)
     /// </summary>
     public static TwoDimArray<BodyBagTableEntry> BodyBagTable { get; private set; }
 
+    /// <summary>
+    /// Gets the damage level table (damagelevels.2da
+    /// </summary>
     public static TwoDimArray<DamageLevelEntry> DamageLevelTable { get; private set; }
 
     /// <summary>
-    /// Gets the game environment preset table (environment.2da)
+    /// Gets the environment preset table (environment.2da)
     /// </summary>
     public static TwoDimArray<EnvironmentPreset> EnvironmentPresetTable { get; private set; }
 
     /// <summary>
-    /// Gets the game light color table (lightcolor.2da)
+    /// Gets the experience point/level progression table (exptable.2da)
+    /// </summary>
+    public static TwoDimArray<ExpTableEntry> ExpTable { get; private set; }
+
+    /// <summary>
+    /// Gets the light color table (lightcolor.2da)
     /// </summary>
     public static TwoDimArray<LightColorTableEntry> LightColorTable { get; private set; }
 
     /// <summary>
-    /// Gets the game placeable sound table (placeableobjsnds.2da)
+    /// Gets the placeable sound table (placeableobjsnds.2da)
     /// </summary>
     public static TwoDimArray<PlaceableSoundTableEntry> PlaceableSoundTable { get; private set; }
 
     /// <summary>
-    /// Gets the game placeable table (placeables.2da)
+    /// Gets the placeable table (placeables.2da)
     /// </summary>
     public static TwoDimArray<PlaceableTableEntry> PlaceableTable { get; private set; }
 
+    /// <summary>
+    /// Gets the programmed effect table (progfx.2da)
+    /// </summary>
     public static TwoDimArray<ProgrammedEffectTableEntry> ProgrammedEffectTable { get; private set; }
 
+    /// <summary>
+    /// Gets the visual effect table (visualeffects.2da)
+    /// </summary>
     public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; }
 
     [ServiceBinding(typeof(Factory))]
@@ -68,6 +82,7 @@ namespace Anvil.API
         VisualEffectTable = new TwoDimArray<VisualEffectTableEntry>(arrays.m_pVisualEffectTable);
         ProgrammedEffectTable = new TwoDimArray<ProgrammedEffectTableEntry>("progfx.2da"); // arrays.m_pProgFxTable does not exist in nwserver.
         DamageLevelTable = new TwoDimArray<DamageLevelEntry>("damagelevels.2da"); // arrays.m_pDamageLevelTable does not exist in nwserver.
+        ExpTable = new TwoDimArray<ExpTableEntry>("exptable.2da");
       }
 
       private void OnReloadAll(void* pRules)
