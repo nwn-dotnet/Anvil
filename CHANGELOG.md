@@ -27,7 +27,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
 - N/A
 
 ## 8193.34.5
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...v8193.34.5
 
 ### Added
 - `NwCreature.Encounter`: Gets the encounter that spawned the creature.
