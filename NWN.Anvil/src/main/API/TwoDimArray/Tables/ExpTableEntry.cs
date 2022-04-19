@@ -1,5 +1,3 @@
-using System;
-
 namespace Anvil.API
 {
   public sealed class ExpTableEntry : ITwoDimArrayEntry
