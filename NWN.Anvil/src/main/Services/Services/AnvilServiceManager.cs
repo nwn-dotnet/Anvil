@@ -109,11 +109,6 @@ namespace Anvil.Services
       }
     }
 
-    private void ConstructAllServices(ServiceContainer container)
-    {
-      container.GetAllInstances<object>();
-    }
-
     void IServiceManager.Unload()
     {
       UnloadAnvilServices();
@@ -194,6 +189,11 @@ namespace Anvil.Services
     {
       InjectPropertySelector propertySelector = new InjectPropertySelector(InjectPropertyTypes.InstanceOnly);
       serviceContainer.PropertyDependencySelector = new InjectPropertyDependencySelector(propertySelector);
+    }
+
+    private void ConstructAllServices(ServiceContainer container)
+    {
+      container.GetAllInstances<object>();
     }
 
     private ServiceContainer CreateContainer()
