@@ -11,6 +11,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
 
 ### Package Updates
 - Paket.Core 7.0.2 -> 7.1.4
+- NWNX d15bc22 -> 6a552d9
 
 ### Changed
 - N/A
