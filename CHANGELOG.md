@@ -25,7 +25,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed an issue that prevented .NET 6 plugins from being loaded with Paket.
 
 ## 8193.34.5
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...v8193.34.5
