@@ -20,7 +20,7 @@ namespace Anvil.Plugins
     private static readonly string[] NativeDllPackagePaths = { "runtimes/linux-x64/native" };
 
     private readonly FSharpList<string> frameworks = ListModule.OfArray(Assemblies.TargetFrameworks);
-    private readonly string linkFileFormat = Path.Combine(HomeStorage.Paket, ".paket/load/{0}/main.group.csx");
+    private readonly string linkFilePathFormat = Path.Combine(HomeStorage.Paket, ".paket/load/{0}/main.group.csx");
     private readonly string packagesFolderPath = Path.Combine(HomeStorage.Paket, "packages");
 
     private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
@@ -50,12 +50,15 @@ namespace Anvil.Plugins
     private IEnumerable<Plugin> CreatePlugins(Dependencies dependencies)
     {
       PaketAssemblyLoadFile loadFile = null;
+
+      // Our target frameworks are sorted by preference, so we early out once we find a valid link file.
       foreach (string framework in Assemblies.TargetFrameworks)
       {
-        string linkFilePath = string.Format(linkFileFormat, framework);
+        string linkFilePath = string.Format(linkFilePathFormat, framework);
         if (File.Exists(linkFilePath))
         {
           loadFile = new PaketAssemblyLoadFile(linkFilePath);
+          break;
         }
       }
 
