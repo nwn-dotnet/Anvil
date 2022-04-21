@@ -7,7 +7,7 @@ namespace Anvil.API
   /// <summary>
   /// A 8 bit Color structure.
   /// </summary>
-  public readonly struct Color
+  public readonly struct Color : IEquatable<Color>
   {
     /// <summary>
     /// Gets the alpha value of this color as a byte (0-255).
@@ -118,6 +118,31 @@ namespace Anvil.API
     public static Color FromRGBA(string rgbaHexString)
     {
       return FromRGBA(Convert.ToInt32(rgbaHexString.Trim().TrimStart('#'), 16));
+    }
+
+    public static bool operator ==(Color left, Color right)
+    {
+      return left.Equals(right);
+    }
+
+    public static bool operator !=(Color left, Color right)
+    {
+      return !left.Equals(right);
+    }
+
+    public bool Equals(Color other)
+    {
+      return Alpha == other.Alpha && Blue == other.Blue && Green == other.Green && Red == other.Red;
+    }
+
+    public override bool Equals(object obj)
+    {
+      return obj is Color other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+      return HashCode.Combine(Alpha, Blue, Green, Red);
     }
 
     /// <summary>

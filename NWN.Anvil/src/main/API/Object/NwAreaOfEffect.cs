@@ -19,6 +19,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the spell from which the Area Of Effect was created.
+    /// </summary>
+    public NwSpell Spell => NwSpell.FromSpellId((int)AreaOfEffect.m_nSpellId);
+
+    /// <summary>
+    /// Gets the Area Of Effect duration.
+    /// </summary>
+    public TimeSpan RemainingDuration => TimeSpan.FromMilliseconds(AreaOfEffect.m_nDuration);
+
+    /// <summary>
     /// Gets the creator of this Area of Effect.
     /// </summary>
     public NwGameObject Creator => NWScript.GetAreaOfEffectCreator(this).ToNwObject<NwGameObject>();

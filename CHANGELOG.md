@@ -3,11 +3,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.6
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.5...v8193.34.6
+
+### Added
+- Added `Color` equality members `Equals` and operators `==` `!=`
+- `NwGameTables`: Added `ExpTable`
+- `NwGameTables`: Added `SkillItemCostTable`
+
+### Package Updates
+- Paket.Core 7.0.2 -> 7.1.4
+- NWNX d15bc22 -> 6a552d9
+
+### Fixed
+- Fixed an issue that prevented .NET 6 plugins from being loaded with Paket.
+
 ## 8193.34.5
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...v8193.34.5
 
 ### Added
 - `NwCreature.Encounter`: Gets the encounter that spawned the creature.
+- `NwAreaOfEffect.Spell`: Gets the spell that created the area of effect.
+- `NwAreaOfEffect.RemainingDuration`: Gets the remaining duration on the area of effect.
 
 ## 8193.34.4
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.3...v8193.34.4

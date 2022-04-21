@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!--Build-->
   <PropertyGroup>
+    <!--When changing target frameworks, make sure to update Anvil.Internal.Assemblies.TargetFrameworks-->
     <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
@@ -58,7 +59,7 @@
     <PackageReference Include="LightInject" Version="6.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NLog" Version="4.7.15" />
-    <PackageReference Include="Paket.Core" Version="7.0.2" PrivateAssets="all" />
+    <PackageReference Include="Paket.Core" Version="7.1.4" PrivateAssets="all" />
     <PackageReference Include="NWN.Core" Version="8193.34.3" PrivateAssets="compile" />
     <PackageReference Include="NWN.Native" Version="8193.34.3" PrivateAssets="compile" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
