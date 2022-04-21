@@ -4,16 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.6...HEAD
 
 ### Added
-- Added `Color` equality members `Equals` and operators `==` `!=`
-- `NwGameTables`: Added `ExpTable`
-- `NwGameTables`: Added `SkillItemCostTable`
+- N/A
 
 ### Package Updates
-- Paket.Core 7.0.2 -> 7.1.4
-- NWNX d15bc22 -> 6a552d9
+- N/A
 
 ### Changed
 - N/A
@@ -23,6 +20,21 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...HEAD
 
 ### Removed
 - N/A
+
+### Fixed
+- N/A
+
+## 8193.34.6
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.5...v8193.34.6
+
+### Added
+- Added `Color` equality members `Equals` and operators `==` `!=`
+- `NwGameTables`: Added `ExpTable`
+- `NwGameTables`: Added `SkillItemCostTable`
+
+### Package Updates
+- Paket.Core 7.0.2 -> 7.1.4
+- NWNX d15bc22 -> 6a552d9
 
 ### Fixed
 - Fixed an issue that prevented .NET 6 plugins from being loaded with Paket.
