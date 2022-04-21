@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Anvil.Services;
 using NWN.Native.API;
@@ -51,9 +52,9 @@ namespace Anvil.API
 
     [ServiceBinding(typeof(Factory))]
     [ServiceBindingOptions(InternalBindingPriority.API)]
-    internal sealed unsafe class Factory
+    internal sealed unsafe class Factory : IDisposable
     {
-      private readonly FunctionHook<ReloadAllHook> reloadAllHook;
+      private FunctionHook<ReloadAllHook> reloadAllHook;
 
       public Factory(HookService hookService)
       {
@@ -142,8 +143,19 @@ namespace Anvil.API
 
       private void OnReloadAll(void* pRules)
       {
-        reloadAllHook.CallOriginal(pRules);
-        LoadRules();
+        if (reloadAllHook != null)
+        {
+          reloadAllHook.CallOriginal(pRules);
+          LoadRules();
+        }
+      }
+
+      void IDisposable.Dispose()
+      {
+        // ReloadAll is called from the CNWSModule destructor
+        // If we don't dispose the hook here, the server will get stuck in an infinite segfault loop.
+        reloadAllHook?.Dispose();
+        reloadAllHook = null;
       }
     }
   }

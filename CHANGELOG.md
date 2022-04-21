@@ -10,7 +10,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.6...HEAD
 - N/A
 
 ### Package Updates
-- N/A
+- NWNX 6a552d9 -> 3227d60
 
 ### Changed
 - N/A
@@ -22,7 +22,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.6...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed an edge case issue that caused some servers to enter an infinite crash loop when shutting down.
+- Fixed `NWNX_CORE_SHUTDOWN_SCRIPT` throwing a NRE during shutdown.
 
 ## 8193.34.6
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.5...v8193.34.6
