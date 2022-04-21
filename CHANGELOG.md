@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.7
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.6...v8193.34.7
+
+### Package Updates
+- NWNX 6a552d9 -> 3227d60
+
+### Fixed
+- Fixed an edge case issue that caused some servers to enter an infinite crash loop when shutting down.
+- Fixed `NWNX_CORE_SHUTDOWN_SCRIPT` throwing a NRE during shutdown.
+
 ## 8193.34.6
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.5...v8193.34.6
 

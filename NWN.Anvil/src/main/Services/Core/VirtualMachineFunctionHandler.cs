@@ -93,7 +93,7 @@ namespace Anvil.Services
       }
       catch (Exception e)
       {
-        Log.Error(e);
+        Log.Error(e, "An exception occured while executing script {Script}", script);
       }
 
       scriptContexts.Pop();
