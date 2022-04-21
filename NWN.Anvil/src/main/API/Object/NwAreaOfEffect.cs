@@ -27,6 +27,7 @@ namespace Anvil.API
     /// Gets the Area Of Effect duration.
     /// </summary>
     public TimeSpan RemainingDuration => TimeSpan.FromMilliseconds(AreaOfEffect.m_nDuration);
+
     /// <summary>
     /// Gets the creator of this Area of Effect.
     /// </summary>
