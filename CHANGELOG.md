@@ -32,6 +32,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.4...v8193.34.5
 
 ### Added
 - `NwCreature.Encounter`: Gets the encounter that spawned the creature.
+- `NwAreaOfEffect.Spell`: Gets the spell that created the area of effect.
+- `NwAreaOfEffect.RemainingDuration`: Gets the remaining duration on the area of effect.
 
 ## 8193.34.4
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.3...v8193.34.4
