@@ -19,8 +19,8 @@ namespace Anvil.Plugins
     // https://docs.microsoft.com/en-us/nuget/create-packages/supporting-multiple-target-frameworks#architecture-specific-folders
     private static readonly string[] NativeDllPackagePaths = { "runtimes/linux-x64/native" };
 
-    private readonly FSharpList<string> frameworks = ListModule.OfArray(new[] { Assemblies.TargetFramework });
-    private readonly string linkFilePath = Path.Combine(HomeStorage.Paket, $".paket/load/{Assemblies.TargetFramework}/main.group.csx");
+    private readonly FSharpList<string> frameworks = ListModule.OfArray(Assemblies.TargetFrameworks);
+    private readonly string linkFilePathFormat = Path.Combine(HomeStorage.Paket, ".paket/load/{0}/main.group.csx");
     private readonly string packagesFolderPath = Path.Combine(HomeStorage.Paket, "packages");
 
     private readonly string paketFilePath = Path.Combine(HomeStorage.Paket, "paket.dependencies");
@@ -49,7 +49,24 @@ namespace Anvil.Plugins
 
     private IEnumerable<Plugin> CreatePlugins(Dependencies dependencies)
     {
-      PaketAssemblyLoadFile loadFile = new PaketAssemblyLoadFile(linkFilePath);
+      PaketAssemblyLoadFile loadFile = null;
+
+      // Our target frameworks are sorted by preference, so we early out once we find a valid link file.
+      foreach (string framework in Assemblies.TargetFrameworks)
+      {
+        string linkFilePath = string.Format(linkFilePathFormat, framework);
+        if (File.Exists(linkFilePath))
+        {
+          loadFile = new PaketAssemblyLoadFile(linkFilePath);
+          break;
+        }
+      }
+
+      if (loadFile == null)
+      {
+        throw new InvalidOperationException("Could not locate link file.");
+      }
+
       Dictionary<string, string> nativeAssemblyPaths = GetNativeAssemblyPaths();
 
       List<Plugin> plugins = new List<Plugin>();

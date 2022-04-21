@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!--Build-->
   <PropertyGroup>
+    <!--When changing target frameworks, make sure to update Anvil.Internal.Assemblies.TargetFrameworks-->
     <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
