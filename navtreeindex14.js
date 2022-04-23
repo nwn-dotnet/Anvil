@@ -1,5 +1,8 @@
 var NAVTREEINDEX14 =
 {
+"classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a3b87116e4815034e44873a6c98a2f57a":[0,0,0,180,1],
+"classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a7c9c2e2c92cc533440673cf228bfc72d":[0,0,0,180,5],
+"classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a827adc68e738233a378753a7ef5e3c9e":[0,0,0,180,2],
 "classAnvil_1_1API_1_1SkillItemCostTableEntry.html#ae09b1c926d14470f3b0eba5cc5da751e":[0,0,0,180,4],
 "classAnvil_1_1API_1_1SpecialAbility.html":[0,0,0,181],
 "classAnvil_1_1API_1_1SpecialAbility.html#a5448c4844162ec9e81d07e2027eb9070":[0,0,0,181,0],
@@ -97,8 +100,8 @@ var NAVTREEINDEX14 =
 "classAnvil_1_1API_1_1TlkTable.html#aff921739f4510eef4e6b454526585712":[0,0,0,193,2],
 "classAnvil_1_1API_1_1TwoDimArray.html":[0,0,0,194],
 "classAnvil_1_1API_1_1TwoDimArray.html#a001df6d7033779e87d54d62d5753c085":[0,0,0,194,28],
-"classAnvil_1_1API_1_1TwoDimArray.html#a00fb83d88bf6ad82ef2fea27c648a9bc":[0,0,0,194,0],
 "classAnvil_1_1API_1_1TwoDimArray.html#a00fb83d88bf6ad82ef2fea27c648a9bc":[0,0,0,194,1],
+"classAnvil_1_1API_1_1TwoDimArray.html#a00fb83d88bf6ad82ef2fea27c648a9bc":[0,0,0,194,0],
 "classAnvil_1_1API_1_1TwoDimArray.html#a01ca2eab4ed9eb0dd1976e2fa6f2159e":[0,0,0,194,9],
 "classAnvil_1_1API_1_1TwoDimArray.html#a075f34732b49d244d4cb0af57e640e6d":[0,0,0,194,31],
 "classAnvil_1_1API_1_1TwoDimArray.html#a2a0fbeada14977f2e7e0cefbcc856506":[0,0,0,194,29],
@@ -246,8 +249,5 @@ var NAVTREEINDEX14 =
 "classAnvil_1_1Services_1_1DevastatingCriticalData.html#affa689d3d47231f392b34dca42f8581b":[0,0,3,2,3],
 "classAnvil_1_1Services_1_1DialogService.html":[0,0,3,3],
 "classAnvil_1_1Services_1_1DialogService.html#a168b443b0cffd4e1bef7f40a517970a6":[0,0,3,3,0],
-"classAnvil_1_1Services_1_1DialogService.html#a34f5879404e31fe95a012b4bd65bb262":[0,0,3,3,4],
-"classAnvil_1_1Services_1_1DialogService.html#a510453f4e3dd9f440ada7f3249b73ad0":[0,0,3,3,5],
-"classAnvil_1_1Services_1_1DialogService.html#a6c6b9ae30c5e24ebc564a8728db1bdf6":[0,0,3,3,2],
-"classAnvil_1_1Services_1_1DialogService.html#a89f9f4940a21faa217cc3dc3c86637fd":[0,0,3,3,6]
+"classAnvil_1_1Services_1_1DialogService.html#a34f5879404e31fe95a012b4bd65bb262":[0,0,3,3,4]
 };

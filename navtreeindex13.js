@@ -1,5 +1,8 @@
 var NAVTREEINDEX13 =
 {
+"classAnvil_1_1API_1_1NwTrigger.html#a6b1f7dccb4a2406183983b252259f28d":[0,0,0,147,15],
+"classAnvil_1_1API_1_1NwTrigger.html#a7acad366fa4c3444540f854b942b943b":[0,0,0,147,0],
+"classAnvil_1_1API_1_1NwTrigger.html#a89b877db30fa14089976f4c5c2cc12d3":[0,0,0,147,4],
 "classAnvil_1_1API_1_1NwTrigger.html#a9f36043869bcf830c1be7c77b1508a94":[0,0,0,147,11],
 "classAnvil_1_1API_1_1NwTrigger.html#aac6cbdf380bfea9e60bb37d27369cc10":[0,0,0,147,5],
 "classAnvil_1_1API_1_1NwTrigger.html#ab4cadc3a1cadc662f7b3c2dabb1af680":[0,0,0,147,3],
@@ -246,8 +249,5 @@ var NAVTREEINDEX13 =
 "classAnvil_1_1API_1_1ServerInfo.html#ac44f2b2bf904d13c00292505644f827b":[0,0,0,179,1],
 "classAnvil_1_1API_1_1SkillItemCostTableEntry.html":[0,0,0,180],
 "classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a257cf7b814f9ccbb4a0c05447a53273d":[0,0,0,180,0],
-"classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a2bc8fd0179fcaf4519b600f9342b7d37":[0,0,0,180,3],
-"classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a3b87116e4815034e44873a6c98a2f57a":[0,0,0,180,1],
-"classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a7c9c2e2c92cc533440673cf228bfc72d":[0,0,0,180,5],
-"classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a827adc68e738233a378753a7ef5e3c9e":[0,0,0,180,2]
+"classAnvil_1_1API_1_1SkillItemCostTableEntry.html#a2bc8fd0179fcaf4519b600f9342b7d37":[0,0,0,180,3]
 };

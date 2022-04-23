@@ -147,9 +147,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad02cf21fb218d1680f6a943a391880b0"><td class="memItemLeft" align="right" valign="top">abstract <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ad02cf21fb218d1680f6a943a391880b0">Clone</a> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location, string newTag=null, bool copyLocalState=true)</td></tr>
 <tr class="memdesc:ad02cf21fb218d1680f6a943a391880b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this game object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ad02cf21fb218d1680f6a943a391880b0">More...</a><br /></td></tr>
 <tr class="separator:ad02cf21fb218d1680f6a943a391880b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a258b352c0b385ea6026dd4773e669e71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a258b352c0b385ea6026dd4773e669e71">Destroy</a> (float delay=0.0f)</td></tr>
-<tr class="memdesc:a258b352c0b385ea6026dd4773e669e71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this object (irrevocably).  <a href="classAnvil_1_1API_1_1NwGameObject.html#a258b352c0b385ea6026dd4773e669e71">More...</a><br /></td></tr>
-<tr class="separator:a258b352c0b385ea6026dd4773e669e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a077d8551b03ebac5d76a2d03da1a066d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a077d8551b03ebac5d76a2d03da1a066d">Destroy</a> ()</td></tr>
+<tr class="memdesc:a077d8551b03ebac5d76a2d03da1a066d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this object (irrevocably).  <a href="classAnvil_1_1API_1_1NwGameObject.html#a077d8551b03ebac5d76a2d03da1a066d">More...</a><br /></td></tr>
+<tr class="separator:a077d8551b03ebac5d76a2d03da1a066d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39847164ba20cbf621215703dc0ec179"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a39847164ba20cbf621215703dc0ec179">Destroy</a> (float delay)</td></tr>
+<tr class="memdesc:a39847164ba20cbf621215703dc0ec179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this object (irrevocably).  <a href="classAnvil_1_1API_1_1NwGameObject.html#a39847164ba20cbf621215703dc0ec179">More...</a><br /></td></tr>
+<tr class="separator:a39847164ba20cbf621215703dc0ec179"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe1c02439d4246398df5ef2913e8ef0a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#abe1c02439d4246398df5ef2913e8ef0a">Distance</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:abe1c02439d4246398df5ef2913e8ef0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance to the target.<br  />
  If you only need to compare the distance, you can compare the squared distance using <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ae077de5e25b6dfb7b661c42b142dfdd8" title="Returns the squared distance to the target.">DistanceSquared</a> to avoid a costly sqrt operation.  <a href="classAnvil_1_1API_1_1NwGameObject.html#abe1c02439d4246398df5ef2913e8ef0a">More...</a><br /></td></tr>
@@ -765,8 +768,37 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
 
 </div>
 </div>
-<a id="a258b352c0b385ea6026dd4773e669e71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a258b352c0b385ea6026dd4773e669e71">&#9670;&nbsp;</a></span>Destroy()</h2>
+<a id="a077d8551b03ebac5d76a2d03da1a066d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a077d8551b03ebac5d76a2d03da1a066d">&#9670;&nbsp;</a></span>Destroy() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Anvil.API.NwGameObject.Destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destroys this object (irrevocably). </p>
+
+<p>Reimplemented in <a class="el" href="classAnvil_1_1API_1_1NwEncounter.html#ade0f6be6b596abbb9dbde5eed4f09c3e">Anvil.API.NwEncounter</a>.</p>
+
+</div>
+</div>
+<a id="a39847164ba20cbf621215703dc0ec179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39847164ba20cbf621215703dc0ec179">&#9670;&nbsp;</a></span>Destroy() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -778,7 +810,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
           <td class="memname">void Anvil.API.NwGameObject.Destroy </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>delay</em> = <code>0.0f</code></td><td>)</td>
+          <td class="paramname"><em>delay</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

@@ -4,6 +4,7 @@ var classAnvil_1_1API_1_1NwEncounter =
     [ "Clone", "classAnvil_1_1API_1_1NwEncounter.html#afe3c80a11b25f1721a7db1ead7894a9d", null ],
     [ "Create", "classAnvil_1_1API_1_1NwEncounter.html#af5dcab7d7e916931d449289010d06047", null ],
     [ "Deserialize", "classAnvil_1_1API_1_1NwEncounter.html#add5cb3261002f6820e1d3a35bc3eecaf", null ],
+    [ "Destroy", "classAnvil_1_1API_1_1NwEncounter.html#ade0f6be6b596abbb9dbde5eed4f09c3e", null ],
     [ "GetObjectsInEncounterArea", "classAnvil_1_1API_1_1NwEncounter.html#aac6101d639e1f4b787382a920bc8f42e", null ],
     [ "GetObjectsInEncounterArea< T >", "classAnvil_1_1API_1_1NwEncounter.html#ad2fd38769f6840349a6a041bcb8d3162", null ],
     [ "operator CNWSEncounter", "classAnvil_1_1API_1_1NwEncounter.html#a3f19f14c0087c5b474fb7e4f8ca5b172", null ],

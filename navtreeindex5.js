@@ -1,10 +1,11 @@
 var NAVTREEINDEX5 =
 {
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a4f4ce2f8982827db60b8473b5fed21d0":[0,0,0,0,126,10,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#aac784d89f65a2852b58b8da9f38b774d":[0,0,0,0,126,10,5],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#acdf5a86e3f8abf914c90f1b0ad9e3be1":[0,0,0,0,126,10,4],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#ad7e58c68aad26058368599a9fbf0a67c":[0,0,0,0,126,10,0],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#afa25cca35afca1302deb99efa5635efa":[0,0,0,0,126,10,2],
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a4f4ce2f8982827db60b8473b5fed21d0":[0,0,0,0,126,10,2],
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a72d474b0fbf72b0aa6d3c01e3db46855":[0,0,0,0,126,10,0],
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#aac784d89f65a2852b58b8da9f38b774d":[0,0,0,0,126,10,6],
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#acdf5a86e3f8abf914c90f1b0ad9e3be1":[0,0,0,0,126,10,5],
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#ad7e58c68aad26058368599a9fbf0a67c":[0,0,0,0,126,10,1],
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#afa25cca35afca1302deb99efa5635efa":[0,0,0,0,126,10,3],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt.html":[0,0,0,0,126,11],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt.html#a1185c1ae09fc589d133307e40827f932":[0,0,0,0,126,11,5],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnSpellCastAt.html#a54b98a2e7a7b64e1e81adc332f97616f":[0,0,0,0,126,11,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "classAnvil_1_1API_1_1ItemProperty.html#a643d498cc524edcddf081222477b93db":[0,0,0,53,48],
 "classAnvil_1_1API_1_1ItemProperty.html#a667aff062b6bf9f665d10b6af6ea00d7":[0,0,0,53,90],
 "classAnvil_1_1API_1_1ItemProperty.html#a668af7f5b97f72038e24f8508956763e":[0,0,0,53,36],
-"classAnvil_1_1API_1_1ItemProperty.html#a695a72bcc988a0d4277bcc7afd9eb342":[0,0,0,53,91],
-"classAnvil_1_1API_1_1ItemProperty.html#a6979cc00673b30545eb324c6314a22f6":[0,0,0,53,30]
+"classAnvil_1_1API_1_1ItemProperty.html#a695a72bcc988a0d4277bcc7afd9eb342":[0,0,0,53,91]
 };
