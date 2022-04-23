@@ -250,9 +250,18 @@ namespace Anvil.API
     /// Destroys this object (irrevocably).
     /// </summary>
     /// <param name="delay">Time in seconds until this object should be destroyed.</param>
-    public void Destroy(float delay = 0.0f)
+    [Obsolete("Use the non-delay overload instead, in combination with the scheduler service or async/await.")]
+    public void Destroy(float delay)
     {
       NWScript.DestroyObject(this, delay);
+    }
+
+    /// <summary>
+    /// Destroys this object (irrevocably).
+    /// </summary>
+    public virtual void Destroy()
+    {
+      NWScript.DestroyObject(this);
     }
 
     /// <summary>
