@@ -23,6 +23,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.7...HEAD
 
 ### Fixed
 - Fixed `NwEncounter.Destroy()` not destroying the encounter object.
+- Fixed `PlaceableEvents.OnPhysicalAttacked` event always returning no data.
 
 ## 8193.34.7
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.6...v8193.34.7
