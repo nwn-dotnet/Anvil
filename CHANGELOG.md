@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.8
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.7...v8193.34.8
+
+### Deprecated
+- `NwObject.Destroy(float delay)` - Use the non-delay overload instead, with the `SchedulerService`.
+
+### Fixed
+- Fixed `NwEncounter.Destroy()` not destroying the encounter object.
+- Fixed `PlaceableEvents.OnPhysicalAttacked` event always returning no data.
+
 ## 8193.34.7
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.6...v8193.34.7
 

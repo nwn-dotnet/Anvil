@@ -251,6 +251,13 @@ namespace Anvil.API
       });
     }
 
+    public override void Destroy()
+    {
+      RemoveFromArea();
+      CNWSEncounter encounter = CNWSEncounter.FromPointer(Encounter.Pointer, true);
+      encounter.Dispose();
+    }
+
     internal override void RemoveFromArea()
     {
       Encounter.RemoveFromArea();
