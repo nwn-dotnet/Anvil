@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.Internal;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -249,6 +250,13 @@ namespace Anvil.API
         Encounter.SaveObjectState(resGff, resStruct);
         return Encounter.SaveEncounter(resGff, resStruct).ToBool();
       });
+    }
+
+    public override void Destroy()
+    {
+      RemoveFromArea();
+      CNWSEncounter encounter = CNWSEncounter.FromPointer(Encounter.Pointer, true);
+      encounter.Dispose();
     }
 
     internal override void RemoveFromArea()
