@@ -16,13 +16,13 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.7...HEAD
 - N/A
 
 ### Deprecated
-- N/A
+- `NwObject.Destroy(float delay)` - Use the non-delay overload instead, with the `SchedulerService`.
 
 ### Removed
 - N/A
 
 ### Fixed
-- N/A
+- Fixed `NwEncounter.Destroy()` not destroying the encounter object.
 
 ## 8193.34.7
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.6...v8193.34.7
