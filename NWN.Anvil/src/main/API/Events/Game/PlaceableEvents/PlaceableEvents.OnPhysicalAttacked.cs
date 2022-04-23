@@ -15,20 +15,27 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.PlaceableOnMeleeAttacked)]
     public sealed class OnPhysicalAttacked : IEvent
     {
+      public OnPhysicalAttacked()
+      {
+        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+        Attacker = NWScript.GetLastAttacker(Placeable).ToNwObject<NwCreature>();
+        AttackType = (SpecialAttack)NWScript.GetLastAttackType(Attacker);
+      }
+
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that attacked the <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
+      public NwCreature Attacker { get; }
 
       /// <summary>
       /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
-      public SpecialAttack AttackType { get; } = (SpecialAttack)NWScript.GetLastAttackType();
+      public SpecialAttack AttackType { get; }
 
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was physically attacked.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable Placeable { get; }
 
       NwObject IEvent.Context => Placeable;
 
