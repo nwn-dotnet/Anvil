@@ -6,11 +6,11 @@ using Anvil.Services;
 namespace Anvil.API
 {
   [ServiceBinding(typeof(NuiWindowEventService))]
-  internal sealed class NuiWindowEventService
+  internal sealed class NuiWindowEventService : IInitializable
   {
     private readonly Dictionary<NwPlayer, Dictionary<int, Action<ModuleEvents.OnNuiEvent>>> eventHandlers = new Dictionary<NwPlayer, Dictionary<int, Action<ModuleEvents.OnNuiEvent>>>();
 
-    public NuiWindowEventService()
+    public void Init()
     {
       NwModule.Instance.OnNuiEvent += OnNuiEvent;
       NwModule.Instance.OnClientLeave += OnClientLeave;
