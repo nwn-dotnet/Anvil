@@ -214,6 +214,13 @@ namespace Anvil.API
       throw new NotSupportedException("Encounter objects may not be cloned.");
     }
 
+    public override void Destroy()
+    {
+      RemoveFromArea();
+      CNWSEncounter encounter = CNWSEncounter.FromPointer(Encounter.Pointer, true);
+      encounter.Dispose();
+    }
+
     /// <summary>
     /// Gets all objects of the given type that are currently in this encounter trigger.
     /// </summary>
@@ -249,13 +256,6 @@ namespace Anvil.API
         Encounter.SaveObjectState(resGff, resStruct);
         return Encounter.SaveEncounter(resGff, resStruct).ToBool();
       });
-    }
-
-    public override void Destroy()
-    {
-      RemoveFromArea();
-      CNWSEncounter encounter = CNWSEncounter.FromPointer(Encounter.Pointer, true);
-      encounter.Dispose();
     }
 
     internal override void RemoveFromArea()

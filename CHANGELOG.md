@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...HEAD
 
 ### Added
-- N/A
+- `NuiWindowToken` - small structure with helper methods for controlling NuiWindow instances. Can be created from `NwPlayer.TryCreateNuiWindow`
 
 ### Package Updates
 - N/A
@@ -16,7 +16,9 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...HEAD
 - N/A
 
 ### Deprecated
-- N/A
+- `NwPlayer.TryCreateNuiWindow` - use the `NuiWindowToken` overload instead.
+- `NwPlayer.CreateNuiWindow` - use `TryCreateNuiWindow` instead.
+- `ModuleEvents.OnNuiEvent.WindowToken` - use `ModuleEvents.OnNuiEvent.Token` instead.
 
 ### Removed
 - N/A
