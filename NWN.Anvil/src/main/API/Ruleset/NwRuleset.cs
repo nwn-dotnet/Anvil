@@ -64,6 +64,14 @@ namespace Anvil.API
 
       private delegate void ReloadAllHook(void* pRules);
 
+      void IDisposable.Dispose()
+      {
+        // ReloadAll is called from the CNWSModule destructor
+        // If we don't dispose the hook here, the server will get stuck in an infinite segfault loop.
+        reloadAllHook?.Dispose();
+        reloadAllHook = null;
+      }
+
       private static IReadOnlyList<NwBaseItem> LoadBaseItems(CNWBaseItemArray baseItemArray)
       {
         NwBaseItem[] retVal = new NwBaseItem[baseItemArray.m_nNumBaseItems];
@@ -148,14 +156,6 @@ namespace Anvil.API
           reloadAllHook.CallOriginal(pRules);
           LoadRules();
         }
-      }
-
-      void IDisposable.Dispose()
-      {
-        // ReloadAll is called from the CNWSModule destructor
-        // If we don't dispose the hook here, the server will get stuck in an infinite segfault loop.
-        reloadAllHook?.Dispose();
-        reloadAllHook = null;
       }
     }
   }
