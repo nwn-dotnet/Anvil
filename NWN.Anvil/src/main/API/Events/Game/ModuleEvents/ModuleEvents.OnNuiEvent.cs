@@ -1,5 +1,6 @@
 using System;
 using Anvil.API.Events;
+using Anvil.Services;
 using NWN.Core;
 
 namespace Anvil.API.Events
@@ -9,6 +10,9 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class ModuleEvents
   {
+    [Inject]
+    private static NuiWindowEventService NuiWindowEventService { get; set; }
+
     /// <summary>
     /// Called when a player triggers an event in the NUI system.
     /// </summary>
@@ -34,6 +38,8 @@ namespace Anvil.API.Events
           "mouseup" => NuiEventType.MouseUp,
           _ => NuiEventType.Unknown,
         };
+
+        Token = new NuiWindowToken(Player, NWScript.NuiGetEventWindow());
       }
 
       /// <summary>
@@ -63,6 +69,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the window token associated with this event.
       /// </summary>
+      public NuiWindowToken Token { get; }
+
+      /// <summary>
+      /// Gets the window token associated with this event.
+      /// </summary>
+      [Obsolete("Use Token instead.")]
       public int WindowToken { get; } = NWScript.NuiGetEventWindow();
 
       /// <summary>
@@ -97,6 +109,16 @@ namespace Anvil.API
     {
       add => EventService.Subscribe<ModuleEvents.OnNuiEvent, GameEventFactory, GameEventFactory.RegistrationData>(ControlledCreature, new GameEventFactory.RegistrationData(NwModule.Instance), value);
       remove => EventService.Unsubscribe<ModuleEvents.OnNuiEvent, GameEventFactory>(ControlledCreature, value);
+    }
+  }
+
+  public readonly partial struct NuiWindowToken
+  {
+    /// <inheritdoc cref="ModuleEvents.OnNuiEvent"/>
+    public event Action<ModuleEvents.OnNuiEvent> OnNuiEvent
+    {
+      add => NuiWindowEventService.Subscribe(this, value);
+      remove => NuiWindowEventService.Unsubscribe(this, value);
     }
   }
 }
