@@ -160,15 +160,20 @@ namespace Anvil.API
     /// </summary>
     public int BaseAttackCount
     {
+      get => Creature.m_pStats.GetAttacksPerRound();
       set => NWScript.SetBaseAttackBonus(value, this);
     }
 
     public byte BaseShieldArcaneSpellFailure => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
 
     /// <summary>
-    /// Gets the calculated challenge rating for this creature.
+    /// Gets or sets the calculated challenge rating for this creature.
     /// </summary>
-    public float ChallengeRating => NWScript.GetChallengeRating(this);
+    public float ChallengeRating
+    {
+      get => NWScript.GetChallengeRating(this);
+      set => Creature.m_pStats.m_fChallengeRating = value;
+    }
 
     /// <summary>
     /// Gets this creature's classes, and associated class info.
