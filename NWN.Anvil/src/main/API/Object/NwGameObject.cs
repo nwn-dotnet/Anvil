@@ -85,10 +85,13 @@ namespace Anvil.API
         if (value.Area == Area)
         {
           Position = value.Position;
+          Rotation = value.Rotation;
         }
-
-        AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
-        Rotation = value.Rotation;
+        else
+        {
+          AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+          Rotation = value.Rotation;
+        }
       }
     }
 

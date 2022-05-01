@@ -13,7 +13,9 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...HEAD
 - N/A
 
 ### Changed
-- N/A
+- `NwCreature.Position` will no-longer block the action queue from being modified.
+  - This fixes inconsistencies with actions queued after setting the position, but the new position can sometimes not apply for players using drive mode.
+  - For players, it is recommended to immobilize them before setting their position.
 
 ### Deprecated
 - `NwPlayer.TryCreateNuiWindow` - use the `NuiWindowToken` overload instead.
@@ -24,7 +26,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed `NwGameObject.Location` setter re-triggering Area Enter events.
 
 ## 8193.34.8
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.7...v8193.34.8
