@@ -667,6 +667,11 @@ namespace Anvil.API
       set => NWScript.SetPhenoType((int)value, this);
     }
 
+    /// <summary>
+    /// Gets or sets the creature's position.<br/>
+    /// NOTE: For player creatures, you likely want to immobilize the player first before moving them.<br/>
+    /// An issue exists where drive mode (W/A/S/D) can cause a client/server desync, making the creature appear at their old position.
+    /// </summary>
     public override Vector3 Position
     {
       set
