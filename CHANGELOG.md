@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...HEAD
 
 ### Added
+- NwCreature - Added setters for base armor & shield arcane spell failure
 - `NuiWindowToken` - small structure with helper methods for controlling NuiWindow instances. Can be created from `NwPlayer.TryCreateNuiWindow`
 
 ### Package Updates
