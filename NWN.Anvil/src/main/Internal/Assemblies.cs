@@ -7,8 +7,6 @@ namespace Anvil.Internal
 {
   internal static class Assemblies
   {
-    internal static readonly string[] TargetFrameworks = { "net6.0", "net5.0" };
-
     internal static readonly Assembly Anvil = typeof(Assemblies).Assembly;
     internal static readonly Assembly Core = typeof(NWN.Core.NWNCore).Assembly;
     internal static readonly Assembly Native = typeof(NWN.Native.API.NWNXLib).Assembly;
@@ -29,6 +27,8 @@ namespace Anvil.Internal
       .ToList();
 
     internal static readonly string AssemblyDir = Path.GetDirectoryName(Anvil.Location);
+
+    internal static readonly string[] TargetFrameworks = { "net6.0", "net5.0" };
 
     public static bool IsReservedName(string name)
     {

@@ -681,6 +681,11 @@ namespace Anvil.API
       set => NWScript.SetPhenoType((int)value, this);
     }
 
+    /// <summary>
+    /// Gets or sets the creature's position.<br/>
+    /// NOTE: For player creatures, you likely want to immobilize the player first before moving them.<br/>
+    /// An issue exists where drive mode (W/A/S/D) can cause a client/server desync, making the creature appear at their old position.
+    /// </summary>
     public override Vector3 Position
     {
       set
@@ -691,20 +696,7 @@ namespace Anvil.API
         }
 
         base.Position = value;
-        Creature.m_pcPathfindInformation.Initialize();
         Creature.UpdateSubareasOnJumpPosition(value.ToNativeVector(), Area);
-
-        if (Commandable)
-        {
-          BlockActionQueue();
-        }
-
-        async void BlockActionQueue()
-        {
-          Commandable = false;
-          await NwTask.Delay(TimeSpan.FromSeconds(0.5f));
-          Commandable = true;
-        }
       }
     }
 

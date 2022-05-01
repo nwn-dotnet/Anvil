@@ -32,6 +32,29 @@ namespace Anvil.Tests.API
       createdTestObjects.Add(encounter);
     }
 
+    [Test(Description = "Creating a encounter and destroying it destroys the encounter.")]
+    [TestCase(StandardResRef.Encounter.x2_beholder001)]
+    [TestCase(StandardResRef.Encounter.x2_golem001)]
+    [TestCase(StandardResRef.Encounter.nw_dragonweak)]
+    [TestCase(StandardResRef.Encounter.x2_lich001)]
+    [TestCase(StandardResRef.Encounter.x2_mindflay001)]
+    [TestCase(StandardResRef.Encounter.nw_mummies)]
+    [TestCase(StandardResRef.Encounter.x2_slaad001)]
+    [TestCase(StandardResRef.Encounter.x2_undead001)]
+    [TestCase(StandardResRef.Encounter.nw_undeadhigh)]
+    [TestCase(StandardResRef.Encounter.x2_beholder001)]
+    public void DestroyEncounterIsDestroyed(string encounterResRef)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwEncounter encounter = NwEncounter.Create(encounterResRef, startLocation);
+
+      Assert.That(encounter, Is.Not.Null, $"Encounter {encounterResRef} was null after creation.");
+      Assert.That(encounter.IsValid, Is.True, $"Encounter {encounterResRef} was invalid after creation.");
+
+      encounter.Destroy();
+      Assert.That(encounter.IsValid, Is.False, $"Encounter {encounterResRef} was still valid after deletion.");
+    }
+
     [TearDown]
     public void CleanupTestObjects()
     {

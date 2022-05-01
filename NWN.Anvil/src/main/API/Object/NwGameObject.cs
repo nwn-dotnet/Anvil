@@ -85,10 +85,13 @@ namespace Anvil.API
         if (value.Area == Area)
         {
           Position = value.Position;
+          Rotation = value.Rotation;
         }
-
-        AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
-        Rotation = value.Rotation;
+        else
+        {
+          AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+          Rotation = value.Rotation;
+        }
       }
     }
 
@@ -250,9 +253,18 @@ namespace Anvil.API
     /// Destroys this object (irrevocably).
     /// </summary>
     /// <param name="delay">Time in seconds until this object should be destroyed.</param>
-    public void Destroy(float delay = 0.0f)
+    [Obsolete("Use the non-delay overload instead, in combination with the scheduler service or async/await.")]
+    public void Destroy(float delay)
     {
       NWScript.DestroyObject(this, delay);
+    }
+
+    /// <summary>
+    /// Destroys this object (irrevocably).
+    /// </summary>
+    public virtual void Destroy()
+    {
+      NWScript.DestroyObject(this);
     }
 
     /// <summary>
