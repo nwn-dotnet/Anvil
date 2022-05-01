@@ -140,7 +140,14 @@ namespace Anvil.API
       set => Creature.m_pStats.m_nACNaturalBase = value.AsByte();
     }
 
-    public byte BaseArmorArcaneSpellFailure => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure;
+    /// <summary>
+    /// Gets or sets the current base armor arcane spell failure factor for this creature (global ASF is automatically recalculated).
+    /// </summary>
+    public byte BaseArmorArcaneSpellFailure
+    {
+      get => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure;
+      set => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure = value;
+    }
 
     /// <summary>
     /// Gets or sets the Base Attack Bonus for this creature.
@@ -164,7 +171,14 @@ namespace Anvil.API
       set => NWScript.SetBaseAttackBonus(value, this);
     }
 
-    public byte BaseShieldArcaneSpellFailure => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
+    /// <summary>
+    /// Gets or sets the current base shield arcane spell failure factor for this creature (global ASF is automatically recalculated).
+    /// </summary>
+    public byte BaseShieldArcaneSpellFailure
+    {
+      get => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
+      set => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure = value;
+    }
 
     /// <summary>
     /// Gets or sets the calculated challenge rating for this creature.
