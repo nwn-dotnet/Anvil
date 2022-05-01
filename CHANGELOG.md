@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.6...HEAD
 
 ### Added
-- N/A
+- NwCreature - Added setters for base armor & shield arcane spell failure
 
 ### Package Updates
 - N/A
