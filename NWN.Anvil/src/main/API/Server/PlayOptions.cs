@@ -119,7 +119,7 @@ namespace Anvil.API
       set => playOptions.bNonPartyKillable = value.ToInt();
     }
 
-    public bool OnPartyOnly
+    public bool OnePartyOnly
     {
       get => playOptions.bOnePartyOnly.ToBool();
       set => playOptions.bOnePartyOnly = value.ToInt();
