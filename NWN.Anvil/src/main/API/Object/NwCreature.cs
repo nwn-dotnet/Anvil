@@ -901,7 +901,7 @@ namespace Anvil.API
     public async Task ActionCastFakeSpellAt(NwSpell spell, Location location, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtLocation((int)spell.Id, location, (int)pathType);
+      NWScript.ActionCastFakeSpellAtLocation(spell.Id, location, (int)pathType);
     }
 
     /// <summary>
@@ -913,7 +913,7 @@ namespace Anvil.API
     public async Task ActionCastFakeSpellAt(NwSpell spell, NwGameObject target, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtObject((int)spell.Id, target, (int)pathType);
+      NWScript.ActionCastFakeSpellAtObject(spell.Id, target, (int)pathType);
     }
 
     /// <summary>
@@ -1815,7 +1815,7 @@ namespace Anvil.API
     /// <param name="spell">The spell to check.</param>
     public bool HasSpellEffect(NwSpell spell)
     {
-      return NWScript.GetHasSpellEffect((int)spell.Id, this).ToBool();
+      return NWScript.GetHasSpellEffect(spell.Id, this).ToBool();
     }
 
     /// <summary>
@@ -1825,7 +1825,7 @@ namespace Anvil.API
     /// <returns>True if this creature can immediately cast the spell.</returns>
     public bool HasSpellUse(NwSpell spell)
     {
-      return NWScript.GetHasSpell((int)spell.Id, this) > 0;
+      return NWScript.GetHasSpell(spell.Id, this) > 0;
     }
 
     /// <summary>
