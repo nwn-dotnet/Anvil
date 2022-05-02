@@ -143,7 +143,7 @@ namespace Anvil.API
         NwSpell[] retVal = new NwSpell[spellArray.m_nNumSpells];
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new NwSpell((uint)i, spellArray.GetSpell(i));
+          retVal[i] = new NwSpell(i, spellArray.GetSpell(i));
         }
 
         return retVal;

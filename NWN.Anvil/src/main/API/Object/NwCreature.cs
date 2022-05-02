@@ -901,7 +901,7 @@ namespace Anvil.API
     public async Task ActionCastFakeSpellAt(NwSpell spell, Location location, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtLocation((int)spell.Id, location, (int)pathType);
+      NWScript.ActionCastFakeSpellAtLocation(spell.Id, location, (int)pathType);
     }
 
     /// <summary>
@@ -913,7 +913,7 @@ namespace Anvil.API
     public async Task ActionCastFakeSpellAt(NwSpell spell, NwGameObject target, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtObject((int)spell.Id, target, (int)pathType);
+      NWScript.ActionCastFakeSpellAtObject(spell.Id, target, (int)pathType);
     }
 
     /// <summary>
@@ -1285,7 +1285,7 @@ namespace Anvil.API
       CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
       specialAbilities.Add(new CNWSStats_SpellLikeAbility
       {
-        m_nSpellId = ability.Spell.Id,
+        m_nSpellId = ability.Spell.Id.AsUInt(),
         m_bReadied = ability.Ready.ToInt(),
         m_nCasterLevel = ability.CasterLevel,
       });
@@ -1815,7 +1815,7 @@ namespace Anvil.API
     /// <param name="spell">The spell to check.</param>
     public bool HasSpellEffect(NwSpell spell)
     {
-      return NWScript.GetHasSpellEffect((int)spell.Id, this).ToBool();
+      return NWScript.GetHasSpellEffect(spell.Id, this).ToBool();
     }
 
     /// <summary>
@@ -1825,7 +1825,7 @@ namespace Anvil.API
     /// <returns>True if this creature can immediately cast the spell.</returns>
     public bool HasSpellUse(NwSpell spell)
     {
-      return NWScript.GetHasSpell((int)spell.Id, this) > 0;
+      return NWScript.GetHasSpell(spell.Id, this) > 0;
     }
 
     /// <summary>
@@ -2250,7 +2250,7 @@ namespace Anvil.API
       if (index < specialAbilities.Count)
       {
         CNWSStats_SpellLikeAbility specialAbility = specialAbilities[index];
-        specialAbility.m_nSpellId = ability.Spell.Id;
+        specialAbility.m_nSpellId = ability.Spell.Id.AsUInt();
         specialAbility.m_bReadied = ability.Ready.ToInt();
         specialAbility.m_nCasterLevel = ability.CasterLevel;
       }

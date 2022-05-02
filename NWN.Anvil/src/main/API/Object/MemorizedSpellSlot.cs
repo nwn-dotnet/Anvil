@@ -18,7 +18,7 @@ namespace Anvil.API
     public bool IsDomainSpell
     {
       get => classInfo.GetIsDomainSpell(spellLevel, spellSlot).ToBool();
-      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, Spell.Id, value.ToInt(), (byte)MetaMagic);
+      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, Spell.Id.AsUInt(), value.ToInt(), (byte)MetaMagic);
     }
 
     public bool IsPopulated => classInfo.GetMemorizedSpellInSlotDetails(spellLevel, spellSlot) != null;
@@ -32,13 +32,13 @@ namespace Anvil.API
     public MetaMagic MetaMagic
     {
       get => (MetaMagic)classInfo.GetMemorizedSpellInSlotMetaType(spellLevel, spellSlot);
-      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, Spell.Id, IsDomainSpell.ToInt(), (byte)value);
+      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, Spell.Id.AsUInt(), IsDomainSpell.ToInt(), (byte)value);
     }
 
     public NwSpell Spell
     {
       get => NwSpell.FromSpellId((int)classInfo.GetMemorizedSpellInSlot(spellLevel, spellSlot));
-      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, value.Id, IsDomainSpell.ToInt(), (byte)MetaMagic);
+      set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, value.Id.AsUInt(), IsDomainSpell.ToInt(), (byte)MetaMagic);
     }
 
     public void ClearMemorizedSpell()

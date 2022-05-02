@@ -12,7 +12,7 @@ namespace Anvil.API
   {
     private readonly CNWSpell spellInfo;
 
-    internal NwSpell(uint spellId, CNWSpell spellInfo)
+    internal NwSpell(int spellId, CNWSpell spellInfo)
     {
       Id = spellId;
       this.spellInfo = spellInfo;
@@ -134,9 +134,9 @@ namespace Anvil.API
     public string IconResRef => spellInfo.m_resrefIcon.ToString();
 
     /// <summary>
-    /// Gets the ID of this skill.
+    /// Gets the ID of this spell.
     /// </summary>
-    public uint Id { get; }
+    public int Id { get; }
 
     /// <summary>
     /// Gets the name of the script invoked when the spell impacts a target.<br/>
