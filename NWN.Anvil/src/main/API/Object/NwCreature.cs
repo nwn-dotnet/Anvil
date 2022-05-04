@@ -140,7 +140,14 @@ namespace Anvil.API
       set => Creature.m_pStats.m_nACNaturalBase = value.AsByte();
     }
 
-    public byte BaseArmorArcaneSpellFailure => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure;
+    /// <summary>
+    /// Gets or sets the current base armor arcane spell failure factor for this creature (global ASF is automatically recalculated).
+    /// </summary>
+    public byte BaseArmorArcaneSpellFailure
+    {
+      get => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure;
+      set => Creature.m_pStats.m_nBaseArmorArcaneSpellFailure = value;
+    }
 
     /// <summary>
     /// Gets or sets the Base Attack Bonus for this creature.
@@ -160,15 +167,27 @@ namespace Anvil.API
     /// </summary>
     public int BaseAttackCount
     {
+      get => Creature.m_pStats.GetAttacksPerRound();
       set => NWScript.SetBaseAttackBonus(value, this);
     }
 
-    public byte BaseShieldArcaneSpellFailure => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
+    /// <summary>
+    /// Gets or sets the current base shield arcane spell failure factor for this creature (global ASF is automatically recalculated).
+    /// </summary>
+    public byte BaseShieldArcaneSpellFailure
+    {
+      get => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
+      set => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure = value;
+    }
 
     /// <summary>
-    /// Gets the calculated challenge rating for this creature.
+    /// Gets or sets the calculated challenge rating for this creature.
     /// </summary>
-    public float ChallengeRating => NWScript.GetChallengeRating(this);
+    public float ChallengeRating
+    {
+      get => NWScript.GetChallengeRating(this);
+      set => Creature.m_pStats.m_fChallengeRating = value;
+    }
 
     /// <summary>
     /// Gets this creature's classes, and associated class info.
@@ -662,6 +681,11 @@ namespace Anvil.API
       set => NWScript.SetPhenoType((int)value, this);
     }
 
+    /// <summary>
+    /// Gets or sets the creature's position.<br/>
+    /// NOTE: For player creatures, you likely want to immobilize the player first before moving them.<br/>
+    /// An issue exists where drive mode (W/A/S/D) can cause a client/server desync, making the creature appear at their old position.
+    /// </summary>
     public override Vector3 Position
     {
       set
@@ -672,20 +696,7 @@ namespace Anvil.API
         }
 
         base.Position = value;
-        Creature.m_pcPathfindInformation.Initialize();
         Creature.UpdateSubareasOnJumpPosition(value.ToNativeVector(), Area);
-
-        if (Commandable)
-        {
-          BlockActionQueue();
-        }
-
-        async void BlockActionQueue()
-        {
-          Commandable = false;
-          await NwTask.Delay(TimeSpan.FromSeconds(0.5f));
-          Commandable = true;
-        }
       }
     }
 
@@ -890,7 +901,7 @@ namespace Anvil.API
     public async Task ActionCastFakeSpellAt(NwSpell spell, Location location, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtLocation((int)spell.Id, location, (int)pathType);
+      NWScript.ActionCastFakeSpellAtLocation(spell.Id, location, (int)pathType);
     }
 
     /// <summary>
@@ -902,7 +913,7 @@ namespace Anvil.API
     public async Task ActionCastFakeSpellAt(NwSpell spell, NwGameObject target, ProjectilePathType pathType = ProjectilePathType.Default)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastFakeSpellAtObject((int)spell.Id, target, (int)pathType);
+      NWScript.ActionCastFakeSpellAtObject(spell.Id, target, (int)pathType);
     }
 
     /// <summary>
@@ -1274,7 +1285,7 @@ namespace Anvil.API
       CExoArrayListCNWSStatsSpellLikeAbility specialAbilities = Creature.m_pStats.m_pSpellLikeAbilityList;
       specialAbilities.Add(new CNWSStats_SpellLikeAbility
       {
-        m_nSpellId = ability.Spell.Id,
+        m_nSpellId = ability.Spell.Id.AsUInt(),
         m_bReadied = ability.Ready.ToInt(),
         m_nCasterLevel = ability.CasterLevel,
       });
@@ -1804,7 +1815,7 @@ namespace Anvil.API
     /// <param name="spell">The spell to check.</param>
     public bool HasSpellEffect(NwSpell spell)
     {
-      return NWScript.GetHasSpellEffect((int)spell.Id, this).ToBool();
+      return NWScript.GetHasSpellEffect(spell.Id, this).ToBool();
     }
 
     /// <summary>
@@ -1814,7 +1825,7 @@ namespace Anvil.API
     /// <returns>True if this creature can immediately cast the spell.</returns>
     public bool HasSpellUse(NwSpell spell)
     {
-      return NWScript.GetHasSpell((int)spell.Id, this) > 0;
+      return NWScript.GetHasSpell(spell.Id, this) > 0;
     }
 
     /// <summary>
@@ -2239,7 +2250,7 @@ namespace Anvil.API
       if (index < specialAbilities.Count)
       {
         CNWSStats_SpellLikeAbility specialAbility = specialAbilities[index];
-        specialAbility.m_nSpellId = ability.Spell.Id;
+        specialAbility.m_nSpellId = ability.Spell.Id.AsUInt();
         specialAbility.m_bReadied = ability.Ready.ToInt();
         specialAbility.m_nCasterLevel = ability.CasterLevel;
       }

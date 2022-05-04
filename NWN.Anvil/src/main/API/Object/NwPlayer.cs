@@ -224,15 +224,19 @@ namespace Anvil.API
     public NwCreature LoginCreature => Player.m_oidPCObject.ToNwObject<NwCreature>();
 
     /// <summary>
-    /// Gets the members in the player's party.
+    /// Gets all players in this player's party (including themself).<br/>
+    /// Associates are not included. Use LoginCreature.Faction.GetMembers() for a list of all party members, including associate creatures.
     /// </summary>
     public IEnumerable<NwPlayer> PartyMembers
     {
       get
       {
-        for (uint member = NWScript.GetFirstFactionMember(ControlledCreature); member != NwObject.Invalid; member = NWScript.GetNextFactionMember(ControlledCreature))
+        foreach (NwCreature member in LoginCreature.Faction.GetMembers())
         {
-          yield return member.ToNwPlayer();
+          if (member.IsLoginPlayerCharacter(out NwPlayer player))
+          {
+            yield return player;
+          }
         }
       }
     }
@@ -520,6 +524,7 @@ namespace Anvil.API
     /// <param name="window">The window to create.</param>
     /// <param name="windowId">A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</param>
     /// <returns>The window token on success (!= 0), or 0 on error.</returns>
+    [Obsolete("Use TryCreateNuiWindow instead.")]
     public int CreateNuiWindow(NuiWindow window, string windowId = "")
     {
       return NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
@@ -1377,11 +1382,27 @@ namespace Anvil.API
     /// <param name="token">The player-unique token for this window instance.</param>
     /// <param name="windowId">A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</param>
     /// <returns>True if the window was successfully created, otherwise false.</returns>
+    [Obsolete("Use the NuiWindowToken overload instead.")]
     public bool TryCreateNuiWindow(NuiWindow window, out int token, string windowId = "")
     {
       token = NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
 
       return token != 0;
+    }
+
+    /// <summary>
+    /// Create a NUI window for this player.
+    /// </summary>
+    /// <param name="window">The window to create.</param>
+    /// <param name="token">The created player-unique token for this window instance.</param>
+    /// <param name="windowId">A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</param>
+    /// <returns>True if the window was successfully created, otherwise false.</returns>
+    public bool TryCreateNuiWindow(NuiWindow window, out NuiWindowToken token, string windowId = "")
+    {
+      int tokenId = NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
+      token = tokenId != 0 ? new NuiWindowToken(this, tokenId, windowId) : NuiWindowToken.Invalid;
+
+      return tokenId != 0;
     }
 
     /// <summary>

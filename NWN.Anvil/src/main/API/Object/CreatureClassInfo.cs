@@ -34,7 +34,7 @@ namespace Anvil.API
     /// <param name="spellLevel">The spell level for the spell to be added.</param>
     public void AddKnownSpell(NwSpell spell, byte spellLevel)
     {
-      classInfo.AddKnownSpell(spellLevel, spell.Id);
+      classInfo.AddKnownSpell(spellLevel, spell.Id.AsUInt());
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ namespace Anvil.API
     /// <param name="spell">The spell to clear.</param>
     public void ClearMemorizedKnownSpells(NwSpell spell)
     {
-      classInfo.ClearMemorizedKnownSpells(spell.Id);
+      classInfo.ClearMemorizedKnownSpells(spell.Id.AsUInt());
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ namespace Anvil.API
     /// <param name="spell">The spell to remove.</param>
     public void RemoveKnownSpell(byte spellLevel, NwSpell spell)
     {
-      classInfo.RemoveKnownSpell(spellLevel, spell.Id);
+      classInfo.RemoveKnownSpell(spellLevel, spell.Id.AsUInt());
     }
 
     /// <summary>

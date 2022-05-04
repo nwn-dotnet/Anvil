@@ -3,6 +3,33 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.9
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...v8193.34.9
+
+### Added
+- NwCreature - Added setters for base armor & shield arcane spell failure
+- `NuiWindowToken` - small structure with helper methods for controlling NuiWindow instances. Can be created from `NwPlayer.TryCreateNuiWindow`
+- NwCreature - Added getter for BaseAttackCount
+- NwCreature - Added setter for ChallengeRating.
+
+### Package Updates
+- Paket 7.1.4 -> 7.1.5
+
+### Changed
+- `NwCreature.Position` will no-longer block the action queue from being modified.
+  - This fixes inconsistencies with actions queued after setting the position, but the new position can sometimes not apply for players using drive mode.
+  - For players, it is recommended to immobilize them before setting their position.
+
+### Deprecated
+- `NwPlayer.TryCreateNuiWindow` - use the `NuiWindowToken` overload instead.
+- `NwPlayer.CreateNuiWindow` - use `TryCreateNuiWindow` instead.
+- `ModuleEvents.OnNuiEvent.WindowToken` - use `ModuleEvents.OnNuiEvent.Token` instead.
+
+### Fixed
+- Fixed `NwGameObject.Location` setter re-triggering Area Enter events.
+- Fixed `NwPlayer.PartyMembers` throwing a NRE when a party contained associate creatures.
+- Fixed a typo in PlayOptions.OnePartyOnly.
+
 ## 8193.34.8
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.7...v8193.34.8
 
