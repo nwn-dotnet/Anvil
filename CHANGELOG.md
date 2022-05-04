@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.34.9
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...v8193.34.9
 
 ### Added
 - NwCreature - Added setters for base armor & shield arcane spell failure
@@ -24,9 +45,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...HEAD
 - `NwPlayer.TryCreateNuiWindow` - use the `NuiWindowToken` overload instead.
 - `NwPlayer.CreateNuiWindow` - use `TryCreateNuiWindow` instead.
 - `ModuleEvents.OnNuiEvent.WindowToken` - use `ModuleEvents.OnNuiEvent.Token` instead.
-
-### Removed
-- N/A
 
 ### Fixed
 - Fixed `NwGameObject.Location` setter re-triggering Area Enter events.
