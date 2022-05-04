@@ -18,7 +18,7 @@ var classAnvil_1_1API_1_1PlayOptions =
     [ "LoseItemsNum", "classAnvil_1_1API_1_1PlayOptions.html#af10098c0debb3a157a927d2354aa39a3", null ],
     [ "LoseStolenItems", "classAnvil_1_1API_1_1PlayOptions.html#a4104b52ba54e564361568b102b579332", null ],
     [ "NonPartyKillable", "classAnvil_1_1API_1_1PlayOptions.html#a38773186aac161a109f4db22b929fba8", null ],
-    [ "OnPartyOnly", "classAnvil_1_1API_1_1PlayOptions.html#ac1b470cc4ffd8bb9d295c9f55ab9afdf", null ],
+    [ "OnePartyOnly", "classAnvil_1_1API_1_1PlayOptions.html#af5f6a3c64e63dd44cd2dd158d97f8bc5", null ],
     [ "PauseAndPlay", "classAnvil_1_1API_1_1PlayOptions.html#af2e3c2a6c4a0aae790b8640ac0119f31", null ],
     [ "PlayerPartyControl", "classAnvil_1_1API_1_1PlayOptions.html#a28a21d0319ee32b8b6efb6c9c47ee6fb", null ],
     [ "PvPSetting", "classAnvil_1_1API_1_1PlayOptions.html#a9702c607ed5d5905ee352ca66c8d7026", null ],

@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a75af1ce98f64f256e240bcb5f1cc3dbd":[0,0,0,0,26,3],
+"classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a8715d5323f9060779fd0d749f177228a":[0,0,0,0,26,4],
 "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#ab53b98da9e6c2d5b9dd38c88def6b887":[0,0,0,0,26,0],
 "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#ad28917b0c2ac54ce82e34320cfef2c29":[0,0,0,0,26,2],
 "classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html":[0,0,0,0,27],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "classAnvil_1_1API_1_1Events_1_1OnItemEquip.html":[0,0,0,0,96],
 "classAnvil_1_1API_1_1Events_1_1OnItemEquip.html#a2c93a11bbcbb49cffce91757fb2391a3":[0,0,0,0,96,1],
 "classAnvil_1_1API_1_1Events_1_1OnItemEquip.html#a5803cfad7214eb3ad6090bd0094e6c1a":[0,0,0,0,96,2],
-"classAnvil_1_1API_1_1Events_1_1OnItemEquip.html#a65f60ae465f4d964eae8eeadb3da003e":[0,0,0,0,96,0],
-"classAnvil_1_1API_1_1Events_1_1OnItemEquip.html#a965ecfa3e7d1fae68a008a15bbf3e791":[0,0,0,0,96,5],
-"classAnvil_1_1API_1_1Events_1_1OnItemEquip.html#ab8de6f9cbff5790fdb30ddf294f08bc6":[0,0,0,0,96,4]
+"classAnvil_1_1API_1_1Events_1_1OnItemEquip.html#a65f60ae465f4d964eae8eeadb3da003e":[0,0,0,0,96,0]
 };

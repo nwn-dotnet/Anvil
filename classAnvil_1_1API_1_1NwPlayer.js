@@ -78,6 +78,7 @@ var classAnvil_1_1API_1_1NwPlayer =
     [ "StopFade", "classAnvil_1_1API_1_1NwPlayer.html#afef613e21654d7bd4a06c340ec5904c7", null ],
     [ "StoreCameraFacing", "classAnvil_1_1API_1_1NwPlayer.html#a0bc9c76edce52a72270972857a12cf65", null ],
     [ "TryCreateNuiWindow", "classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2", null ],
+    [ "TryCreateNuiWindow", "classAnvil_1_1API_1_1NwPlayer.html#a1c58899e70f83fc6aa8140a730499fe5", null ],
     [ "TryEnterTargetMode", "classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c", null ],
     [ "UnlockAchievement", "classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e", null ],
     [ "UnpossessCreature", "classAnvil_1_1API_1_1NwPlayer.html#ac411575f614c9c99a7ce5fb330e57742", null ],

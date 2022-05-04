@@ -369,6 +369,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTlkOverride</b> (i
 <tr class="memitem:a1962676b01346914b13373408f1011f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2">TryCreateNuiWindow</a> (<a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a> window, out int token, string windowId=&quot;&quot;)</td></tr>
 <tr class="memdesc:a1962676b01346914b13373408f1011f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NUI window inline for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2">More...</a><br /></td></tr>
 <tr class="separator:a1962676b01346914b13373408f1011f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c58899e70f83fc6aa8140a730499fe5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1c58899e70f83fc6aa8140a730499fe5">TryCreateNuiWindow</a> (<a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a> window, out <a class="el" href="structAnvil_1_1API_1_1NuiWindowToken.html">NuiWindowToken</a> token, string windowId=&quot;&quot;)</td></tr>
+<tr class="memdesc:a1c58899e70f83fc6aa8140a730499fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NUI window for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1c58899e70f83fc6aa8140a730499fe5">More...</a><br /></td></tr>
+<tr class="separator:a1c58899e70f83fc6aa8140a730499fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac19bc6505d5880d90034d9bf5d0dbe6c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c">TryEnterTargetMode</a> (Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt; handler, ObjectTypes validTargets=ObjectTypes.All, MouseCursor cursorType=MouseCursor.Magic, MouseCursor badTargetCursor=MouseCursor.NoMagic)</td></tr>
 <tr class="memdesc:ac19bc6505d5880d90034d9bf5d0dbe6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br  />
  If the player is already in targeting mode, the existing handler will not be cleared.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c">More...</a><br /></td></tr>
@@ -653,7 +656,8 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerCharacterS
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.html">OnServerSendArea</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0f26747b789a98c0481696f736e8bed1">OnServerSendArea</a></td></tr>
 <tr class="separator:a0f26747b789a98c0481696f736e8bed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad86a51433be22500b193138c09133737"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad86a51433be22500b193138c09133737">PartyMembers</a><code> [get]</code></td></tr>
-<tr class="memdesc:ad86a51433be22500b193138c09133737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the members in the player's party.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ad86a51433be22500b193138c09133737">More...</a><br /></td></tr>
+<tr class="memdesc:ad86a51433be22500b193138c09133737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all players in this player's party (including themself).<br  />
+ Associates are not included. Use LoginCreature.Faction.GetMembers() for a list of all party members, including associate creatures.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ad86a51433be22500b193138c09133737">More...</a><br /></td></tr>
 <tr class="separator:ad86a51433be22500b193138c09133737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7e01598fc2bb95c12b5d7c0abdb3240"><td class="memItemLeft" align="right" valign="top">PlayerPlatform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ad7e01598fc2bb95c12b5d7c0abdb3240">Platform</a><code> [get]</code></td></tr>
 <tr class="memdesc:ad7e01598fc2bb95c12b5d7c0abdb3240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the platform this player is currently playing from.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ad7e01598fc2bb95c12b5d7c0abdb3240">More...</a><br /></td></tr>
@@ -3336,7 +3340,7 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 </div>
 </div>
 <a id="a1962676b01346914b13373408f1011f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1962676b01346914b13373408f1011f2">&#9670;&nbsp;</a></span>TryCreateNuiWindow()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1962676b01346914b13373408f1011f2">&#9670;&nbsp;</a></span>TryCreateNuiWindow() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3380,6 +3384,59 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
   <table class="params">
     <tr><td class="paramname">window</td><td>The window to create.</td></tr>
     <tr><td class="paramname">token</td><td>The player-unique token for this window instance.</td></tr>
+    <tr><td class="paramname">windowId</td><td>A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the window was successfully created, otherwise false.</dd></dl>
+
+</div>
+</div>
+<a id="a1c58899e70f83fc6aa8140a730499fe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c58899e70f83fc6aa8140a730499fe5">&#9670;&nbsp;</a></span>TryCreateNuiWindow() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwPlayer.TryCreateNuiWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a>&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="structAnvil_1_1API_1_1NuiWindowToken.html">NuiWindowToken</a>&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>windowId</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a NUI window for this player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The window to create.</td></tr>
+    <tr><td class="paramname">token</td><td>The created player-unique token for this window instance.</td></tr>
     <tr><td class="paramname">windowId</td><td>A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</td></tr>
   </table>
   </dd>
@@ -3996,7 +4053,8 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 </table>
 </div><div class="memdoc">
 
-<p>Gets the members in the player's party. </p>
+<p>Gets all players in this player's party (including themself).<br  />
+ Associates are not included. Use LoginCreature.Faction.GetMembers() for a list of all party members, including associate creatures. </p>
 
 </div>
 </div>

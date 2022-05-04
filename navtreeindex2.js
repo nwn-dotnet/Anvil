@@ -121,6 +121,7 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1HookEventFactory.html#aee97cf0a15380c59886674e3ab28061d":[0,0,0,0,15,2],
 "classAnvil_1_1API_1_1Events_1_1HookEventFactory.html#af23a737880c3c3e0b3b92f767d180225":[0,0,0,0,15,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents.html":[0,0,0,0,19],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents.html#a7fa2b748b9e54ea2ffed08ec6820c837":[0,0,0,0,19,22],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html":[0,0,0,0,19,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a0b3c9f172167538c123518edae097884":[0,0,0,0,19,0,2],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a22cfe8e92b6ab3ed4a13df04b8ad5082":[0,0,0,0,19,0,0],
@@ -151,6 +152,7 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnModuleStart.html":[0,0,0,0,19,7],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnModuleStart.html#a959ab04524c2aa996735787f15cca77c":[0,0,0,0,19,7,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html":[0,0,0,0,19,8],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#a0260c6435a8c6ab5762c121dcbd5ba4c":[0,0,0,0,19,8,7],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#a1e18badf8cc960bbb33f991d287fce1e":[0,0,0,0,19,8,6],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#a3261d8a2b924dc787399d1e02ce98ab6":[0,0,0,0,19,8,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#a33807da3f379253c41eb570e4d8e3a17":[0,0,0,0,19,8,4],
@@ -158,7 +160,7 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#a618a1536711a2b3b7684f5de264dd9db":[0,0,0,0,19,8,3],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#a74a179f88288ed721fcdf4770ae13a0e":[0,0,0,0,19,8,1],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#a9f0839e13347fa972283e42a99c98d09":[0,0,0,0,19,8,5],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#ae6d673882e8940e590726fb5e3b173f0":[0,0,0,0,19,8,7],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#ae6d673882e8940e590726fb5e3b173f0":[0,0,0,0,19,8,8],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html":[0,0,0,0,19,9],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a091f6db56fea7b22c9740e7bbc3af800":[0,0,0,0,19,9,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerChat.html#a727254e285d09d375429cbbba49db3ac":[0,0,0,0,19,9,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a8672f3795388c7d6eebad628ad000a7f":[0,0,0,0,25,2],
 "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html":[0,0,0,0,26],
 "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a0aff9a248332e45499d7f1a2274ab48d":[0,0,0,0,26,1],
-"classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a4f21d05239001b62fd26cb5dae0b861b":[0,0,0,0,26,5],
-"classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a75af1ce98f64f256e240bcb5f1cc3dbd":[0,0,0,0,26,3],
-"classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a8715d5323f9060779fd0d749f177228a":[0,0,0,0,26,4]
+"classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a4f21d05239001b62fd26cb5dae0b861b":[0,0,0,0,26,5]
 };

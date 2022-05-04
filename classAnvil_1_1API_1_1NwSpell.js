@@ -24,7 +24,7 @@ var classAnvil_1_1API_1_1NwSpell =
     [ "FeatReference", "classAnvil_1_1API_1_1NwSpell.html#a7144f39cc887d7432b32134c3c73eb29", null ],
     [ "HasProjectile", "classAnvil_1_1API_1_1NwSpell.html#a38c4ffc3ade4dec5683957fb9579b1e5", null ],
     [ "IconResRef", "classAnvil_1_1API_1_1NwSpell.html#a6afb90a15902dc7d62715e6bb9a04213", null ],
-    [ "Id", "classAnvil_1_1API_1_1NwSpell.html#aa484c17bcc8eeec3b9cd830223b319cf", null ],
+    [ "Id", "classAnvil_1_1API_1_1NwSpell.html#a848c9d15a99be93e6f4828ee351af86c", null ],
     [ "ImpactScript", "classAnvil_1_1API_1_1NwSpell.html#a0b01fb93dfeff5d8a9b4218ee19bfff5", null ],
     [ "InnateSpellLevel", "classAnvil_1_1API_1_1NwSpell.html#a81d197087a8d202ead39a288aec6896c", null ],
     [ "IsHostileSpell", "classAnvil_1_1API_1_1NwSpell.html#a6b3f9c2e01bc6d0a47d2f8381d4039dd", null ],
