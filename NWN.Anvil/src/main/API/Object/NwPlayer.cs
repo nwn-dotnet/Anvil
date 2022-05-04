@@ -224,15 +224,19 @@ namespace Anvil.API
     public NwCreature LoginCreature => Player.m_oidPCObject.ToNwObject<NwCreature>();
 
     /// <summary>
-    /// Gets the members in the player's party.
+    /// Gets all players in this player's party (including themself).<br/>
+    /// Associates are not included. Use LoginCreature.Faction.GetMembers() for a list of all party members, including associate creatures.
     /// </summary>
     public IEnumerable<NwPlayer> PartyMembers
     {
       get
       {
-        for (uint member = NWScript.GetFirstFactionMember(ControlledCreature); member != NwObject.Invalid; member = NWScript.GetNextFactionMember(ControlledCreature))
+        foreach (NwCreature member in LoginCreature.Faction.GetMembers())
         {
-          yield return member.ToNwPlayer();
+          if (member.IsLoginPlayerCharacter(out NwPlayer player))
+          {
+            yield return player;
+          }
         }
       }
     }
