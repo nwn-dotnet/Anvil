@@ -30,7 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NWN.Core" Version="8193.34.3" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Core" Version="8193.34.4" PrivateAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>

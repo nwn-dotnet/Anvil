@@ -10,7 +10,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...HEAD
 - Added ClientVersion/ClientPlatform properties to OnClientConnect event.
 
 ### Package Updates
-- N/A
+- NWNX 3227d60 -> 4842f60
+- NWN.Core 8193.34.3 -> 8193.34.4
 
 ### Changed
 - N/A
