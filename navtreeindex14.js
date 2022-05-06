@@ -1,5 +1,7 @@
 var NAVTREEINDEX14 =
 {
+"classAnvil_1_1API_1_1ServerInfo.html#a433a16baf9cbf374ef074039f76e0290":[0,0,0,180,4],
+"classAnvil_1_1API_1_1ServerInfo.html#a969979483e9ceb8a1bcd7daf7ee13199":[0,0,0,180,3],
 "classAnvil_1_1API_1_1ServerInfo.html#a9f73abfd90256e7a79b77185a829d077":[0,0,0,180,0],
 "classAnvil_1_1API_1_1ServerInfo.html#ac44f2b2bf904d13c00292505644f827b":[0,0,0,180,1],
 "classAnvil_1_1API_1_1SkillItemCostTableEntry.html":[0,0,0,181],
@@ -247,7 +249,5 @@ var NAVTREEINDEX14 =
 "classAnvil_1_1Services_1_1DamageLevelOverrideService.html#a713027150972f4837af44aaa935dcfd7":[0,0,3,1,0],
 "classAnvil_1_1Services_1_1DamageLevelOverrideService.html#a8efa562986360d3843e4cb732a3b09f4":[0,0,3,1,3],
 "classAnvil_1_1Services_1_1DamageLevelOverrideService.html#abec9c9b8667fc6831ad394926559efd3":[0,0,3,1,1],
-"classAnvil_1_1Services_1_1DevastatingCriticalData.html":[0,0,3,2],
-"classAnvil_1_1Services_1_1DevastatingCriticalData.html#a386ede1e710ee87fc3a031a7ded37516":[0,0,3,2,2],
-"classAnvil_1_1Services_1_1DevastatingCriticalData.html#aac583bf80ced567d014e0c3b3da2993f":[0,0,3,2,0]
+"classAnvil_1_1Services_1_1DevastatingCriticalData.html":[0,0,3,2]
 };

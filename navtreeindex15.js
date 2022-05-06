@@ -1,5 +1,7 @@
 var NAVTREEINDEX15 =
 {
+"classAnvil_1_1Services_1_1DevastatingCriticalData.html#a386ede1e710ee87fc3a031a7ded37516":[0,0,3,2,2],
+"classAnvil_1_1Services_1_1DevastatingCriticalData.html#aac583bf80ced567d014e0c3b3da2993f":[0,0,3,2,0],
 "classAnvil_1_1Services_1_1DevastatingCriticalData.html#ae10b47b15235bc064e604c299afc2ccf":[0,0,3,2,1],
 "classAnvil_1_1Services_1_1DevastatingCriticalData.html#affa689d3d47231f392b34dca42f8581b":[0,0,3,2,3],
 "classAnvil_1_1Services_1_1DialogService.html":[0,0,3,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX15 =
 "structAnvil_1_1API_1_1Color.html#a362b5cbfd054d577f90097ca63673aab":[0,0,0,22,10],
 "structAnvil_1_1API_1_1Color.html#a3910084f4b1682661b07d8ebbf4dd1a3":[0,0,0,22,9],
 "structAnvil_1_1API_1_1Color.html#a490c68ccf68f4f62fc7df37b42e331ec":[0,0,0,22,1],
-"structAnvil_1_1API_1_1Color.html#a4c14419dae0a5627fad714b089723f61":[0,0,0,22,18],
-"structAnvil_1_1API_1_1Color.html#a6b3cd9d4248e27153ddc9767da0824cf":[0,0,0,22,14],
-"structAnvil_1_1API_1_1Color.html#a8fe61bba509dbe70f4038b5c30e9a52c":[0,0,0,22,11]
+"structAnvil_1_1API_1_1Color.html#a4c14419dae0a5627fad714b089723f61":[0,0,0,22,18]
 };

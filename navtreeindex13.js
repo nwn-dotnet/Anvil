@@ -1,5 +1,7 @@
 var NAVTREEINDEX13 =
 {
+"classAnvil_1_1API_1_1NwTrappable.html#aea841e00f6b49e2a4d6221cba7091589":[0,0,0,147,7],
+"classAnvil_1_1API_1_1NwTrigger.html":[0,0,0,148],
 "classAnvil_1_1API_1_1NwTrigger.html#a0cd5dee4e718584620b2c8ce37c86e16":[0,0,0,148,6],
 "classAnvil_1_1API_1_1NwTrigger.html#a0eaa759589eb1dee721ee8d81b7319f6":[0,0,0,148,1],
 "classAnvil_1_1API_1_1NwTrigger.html#a313470f83508872cc471db6fdc8baaa3":[0,0,0,148,8],
@@ -247,7 +249,5 @@ var NAVTREEINDEX13 =
 "classAnvil_1_1API_1_1ScriptParams.html#aa9661dec3a7a5f985d46309214a12a0e":[0,0,0,179,1],
 "classAnvil_1_1API_1_1ServerInfo.html":[0,0,0,180],
 "classAnvil_1_1API_1_1ServerInfo.html#a22de7d96e549d07fe3741f98a8d76916":[0,0,0,180,5],
-"classAnvil_1_1API_1_1ServerInfo.html#a27001977a7ec896beb8e5d51cac18b54":[0,0,0,180,2],
-"classAnvil_1_1API_1_1ServerInfo.html#a433a16baf9cbf374ef074039f76e0290":[0,0,0,180,4],
-"classAnvil_1_1API_1_1ServerInfo.html#a969979483e9ceb8a1bcd7daf7ee13199":[0,0,0,180,3]
+"classAnvil_1_1API_1_1ServerInfo.html#a27001977a7ec896beb8e5d51cac18b54":[0,0,0,180,2]
 };

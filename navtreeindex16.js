@@ -1,5 +1,7 @@
 var NAVTREEINDEX16 =
 {
+"structAnvil_1_1API_1_1Color.html#a6b3cd9d4248e27153ddc9767da0824cf":[0,0,0,22,14],
+"structAnvil_1_1API_1_1Color.html#a8fe61bba509dbe70f4038b5c30e9a52c":[0,0,0,22,11],
 "structAnvil_1_1API_1_1Color.html#a9143ded54f9257ae7e568579bccd2536":[0,0,0,22,4],
 "structAnvil_1_1API_1_1Color.html#a93cd13f944014f511b6c6fecefba4568":[0,0,0,22,0],
 "structAnvil_1_1API_1_1Color.html#a9f5575a30f8b95d759c0fc42a2322821":[0,0,0,22,21],
