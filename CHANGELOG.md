@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.10
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...v8193.34.10
+
+### Added
+- Added ClientVersion/ClientPlatform properties to OnClientConnect event.
+
+### Package Updates
+- NWNX 3227d60 -> 4842f60
+- NWN.Core 8193.34.3 -> 8193.34.4
+
 ## 8193.34.9
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.8...v8193.34.9
 
