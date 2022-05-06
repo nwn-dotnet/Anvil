@@ -24,6 +24,16 @@ namespace Anvil.API.Events
     public string CDKey { get; private init; }
 
     /// <summary>
+    /// Gets the platform of the connecting client.
+    /// </summary>
+    public PlayerPlatform ClientPlatform { get; private init; }
+
+    /// <summary>
+    /// Gets the version of the connecting client.
+    /// </summary>
+    public Version ClientVersion { get; private init; }
+
+    /// <summary>
     /// Gets a value indicating whether the client is connecting as a DM (true) or player (false).
     /// </summary>
     public bool DM { get; private init; }
@@ -88,6 +98,8 @@ namespace Anvil.API.Events
         OnClientConnect eventData = ProcessEvent(new OnClientConnect
         {
           PlayerName = playerInfo.m_sPlayerName.ToString(),
+          ClientVersion = new Version(playerInfo.m_nBuildVersion, playerInfo.m_nPatchRevision),
+          ClientPlatform = (PlayerPlatform)playerInfo.m_nPlatformId,
           CDKey = playerInfo.m_lstKeys[0].sPublic.ToString(),
           DM = playerInfo.m_bGameMasterPrivileges.ToBool(),
           IP = ipAddress,

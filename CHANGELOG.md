@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...HEAD
 
 ### Added
-- N/A
+- Added ClientVersion/ClientPlatform properties to OnClientConnect event.
 
 ### Package Updates
 - N/A
