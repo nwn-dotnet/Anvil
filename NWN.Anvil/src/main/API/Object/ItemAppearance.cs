@@ -21,6 +21,78 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Creates a new item with the specified appearance changes.<br/>
+    /// The existing item is destroyed and replaced with the new item.<br/>
+    /// If the item was equipped, it is restored to the original equipment slot.
+    /// </summary>
+    /// <param name="changes">The appearance changes to apply.</param>
+    /// <returns>The new item with the updated appearance.</returns>
+    public NwItem ChangeAppearance(Action<ItemAppearance> changes)
+    {
+      NwGameObject possessor = item.Possessor;
+      EquipmentSlots slot = EquipmentSlots.None;
+      Location location = possessor?.Location ?? item.Location;
+
+      NwCreature creature = possessor as NwCreature;
+      possessor.IsPlayerControlled(out NwPlayer player);
+
+      if (creature is not null)
+      {
+        slot = creature.GetSlotFromItem(item);
+      }
+
+      NwItem clone = item.Clone(location);
+      if (clone == null)
+      {
+        throw new InvalidOperationException("Failed to make item clone.");
+      }
+
+      NwModule.Instance.MoveObjectToLimbo(clone);
+      changes.Invoke(clone.Appearance);
+
+      if (player != null)
+      {
+        FeedbackService.AddCombatLogMessageFilter(CombatLogMessage.Feedback);
+      }
+
+      item.RemoveFromArea();
+      item.PlotFlag = false;
+      item.Destroy();
+
+      if (creature is not null)
+      {
+        creature.AcquireItem(clone);
+        if (slot != EquipmentSlots.None)
+        {
+          creature.RunEquip(clone, slot);
+        }
+      }
+      else if (possessor is NwItem container)
+      {
+        container.AcquireItem(clone);
+      }
+      else if (possessor is NwStore store)
+      {
+        store.AcquireItem(clone);
+      }
+      else if (possessor is NwPlaceable placeable)
+      {
+        placeable.AcquireItem(clone);
+      }
+      else
+      {
+        clone.Location = location;
+      }
+
+      if (player != null)
+      {
+        FeedbackService.RemoveCombatMessageFilter(CombatLogMessage.Feedback);
+      }
+
+      return clone;
+    }
+
+    /// <summary>
     /// Clears any per-part color overrides set for the specified part slot.
     /// </summary>
     /// <param name="modelSlot">The model portion of the slot to clear.</param>

@@ -9,6 +9,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 ### Added
 - NwCreature: Added `GetSlotFromItem`
 - NwCreature: Added `RunEquip(item, EquipmentSlots)`
+- ItemAppearance: Added `ChangeAppearance`
 
 ### Package Updates
 - N/A
