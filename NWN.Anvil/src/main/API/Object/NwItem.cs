@@ -271,6 +271,7 @@ namespace Anvil.API
         item = new CNWSItem(Invalid);
         if (item.LoadItem(resGff, resStruct, false.ToInt()).ToBool())
         {
+          item.m_oidArea = Invalid;
           GC.SuppressFinalize(item);
           return true;
         }

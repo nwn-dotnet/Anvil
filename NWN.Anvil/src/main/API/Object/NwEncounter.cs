@@ -193,6 +193,7 @@ namespace Anvil.API
         if (encounter.LoadEncounter(resGff, resStruct).ToBool())
         {
           encounter.LoadObjectState(resGff, resStruct);
+          encounter.m_oidArea = Invalid;
           GC.SuppressFinalize(encounter);
           return true;
         }

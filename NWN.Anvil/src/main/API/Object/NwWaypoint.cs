@@ -41,6 +41,7 @@ namespace Anvil.API
         if (waypoint.LoadWaypoint(resGff, resStruct, null).ToBool())
         {
           waypoint.LoadObjectState(resGff, resStruct);
+          waypoint.m_oidArea = Invalid;
           GC.SuppressFinalize(waypoint);
           return true;
         }

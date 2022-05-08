@@ -90,6 +90,7 @@ namespace Anvil.API
         if (door.LoadDoor(resGff, resStruct).ToBool())
         {
           door.LoadObjectState(resGff, resStruct);
+          door.m_oidArea = Invalid;
           GC.SuppressFinalize(door);
           return true;
         }

@@ -98,6 +98,7 @@ namespace Anvil.API
         if (store.LoadStore(resGff, resStruct, false.ToInt(), null).ToBool())
         {
           store.LoadObjectState(resGff, resStruct);
+          store.m_oidArea = Invalid;
           GC.SuppressFinalize(store);
           return true;
         }
