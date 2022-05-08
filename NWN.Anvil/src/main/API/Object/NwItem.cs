@@ -19,7 +19,7 @@ namespace Anvil.API
     {
       Item = item;
       Inventory = new Inventory(this, item.m_pItemRepository);
-      Appearance = new ItemAppearance(item);
+      Appearance = new ItemAppearance(this);
     }
 
     /// <summary>

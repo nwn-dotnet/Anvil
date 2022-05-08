@@ -16,7 +16,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 - N/A
 
 ### Deprecated
-- N/A
+- `ItemAppearanceArmorModel` enum. Use `CreaturePart` instead.
 
 ### Removed
 - N/A

@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -9,9 +10,12 @@ namespace Anvil.API
 {
   public sealed class ItemAppearance
   {
-    private readonly CNWSItem item;
+    [Inject]
+    private static FeedbackService FeedbackService { get; set; }
 
-    internal ItemAppearance(CNWSItem item)
+    private readonly NwItem item;
+
+    internal ItemAppearance(NwItem item)
     {
       this.item = item;
     }
@@ -21,9 +25,15 @@ namespace Anvil.API
     /// </summary>
     /// <param name="modelSlot">The model portion of the slot to clear.</param>
     /// <param name="colorSlot">The color portion of the slot to clear.</param>
-    public void ClearArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
+    public void ClearArmorPieceColor(CreaturePart modelSlot, ItemAppearanceArmorColor colorSlot)
     {
       SetArmorPieceColor(modelSlot, colorSlot, 255);
+    }
+
+    [Obsolete("Use the CreaturePart overload instead.")]
+    public void ClearArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
+    {
+      ClearArmorPieceColor((CreaturePart)modelSlot, colorSlot);
     }
 
     /// <summary>
@@ -36,24 +46,24 @@ namespace Anvil.API
 
       for (int idx = 0; idx < 6; idx++)
       {
-        otherAppearance.item.m_nLayeredTextureColors[idx] = item.m_nLayeredTextureColors[idx];
+        otherAppearance.item.Item.m_nLayeredTextureColors[idx] = item.Item.m_nLayeredTextureColors[idx];
       }
 
       for (int idx = 0; idx < 3; idx++)
       {
-        otherAppearance.item.m_nModelPart[idx] = item.m_nModelPart[idx];
+        otherAppearance.item.Item.m_nModelPart[idx] = item.Item.m_nModelPart[idx];
       }
 
       for (int idx = 0; idx < 19; idx++)
       {
-        otherAppearance.item.m_nArmorModelPart[idx] = item.m_nArmorModelPart[idx];
+        otherAppearance.item.Item.m_nArmorModelPart[idx] = item.Item.m_nArmorModelPart[idx];
       }
 
       for (byte texture = 0; texture < 6; texture++)
       {
         for (byte part = 0; part < 19; part++)
         {
-          otherAppearance.item.SetLayeredTextureColorPerPart(texture, part, item.GetLayeredTextureColorPerPart(texture, part));
+          otherAppearance.item.Item.SetLayeredTextureColorPerPart(texture, part, item.Item.GetLayeredTextureColorPerPart(texture, part));
         }
       }
     }
@@ -76,19 +86,19 @@ namespace Anvil.API
       for (int idx = 0; idx < 6; idx++)
       {
         stringReader.ReadBlock(buffer);
-        item.m_nLayeredTextureColors[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+        item.Item.m_nLayeredTextureColors[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
       }
 
       for (int idx = 0; idx < 3; idx++)
       {
         stringReader.ReadBlock(buffer);
-        item.m_nModelPart[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+        item.Item.m_nModelPart[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
       }
 
       for (int idx = 0; idx < 19; idx++)
       {
         stringReader.ReadBlock(buffer);
-        item.m_nArmorModelPart[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+        item.Item.m_nArmorModelPart[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
       }
 
       if (serialized.Length == 2 * 142)
@@ -98,7 +108,7 @@ namespace Anvil.API
           for (byte part = 0; part < 19; part++)
           {
             stringReader.ReadBlock(buffer);
-            item.SetLayeredTextureColorPerPart(texture, part, byte.Parse(buffer, NumberStyles.AllowHexSpecifier));
+            item.Item.SetLayeredTextureColorPerPart(texture, part, byte.Parse(buffer, NumberStyles.AllowHexSpecifier));
           }
         }
       }
@@ -117,13 +127,13 @@ namespace Anvil.API
         //1.69 colors
         if (index <= 5)
         {
-          return item.m_nLayeredTextureColors[index];
+          return item.Item.m_nLayeredTextureColors[index];
         }
 
         //per-part coloring
         byte part = (byte)((index - 6) / 6);
         byte texture = (byte)(index - 6 - part * 6);
-        return item.GetLayeredTextureColorPerPart(texture, part);
+        return item.Item.GetLayeredTextureColorPerPart(texture, part);
       }
 
       return 0;
@@ -133,16 +143,22 @@ namespace Anvil.API
     /// Gets the armor model of this item.
     /// </summary>
     /// <param name="slot">The armor model slot index to query.</param>
-    public byte GetArmorModel(ItemAppearanceArmorModel slot)
+    public byte GetArmorModel(CreaturePart slot)
     {
       int index = (int)slot;
 
       if (index >= 0 && index <= 18)
       {
-        return item.m_nArmorModelPart[index];
+        return item.Item.m_nArmorModelPart[index];
       }
 
       return 0;
+    }
+
+    [Obsolete("Use the CreaturePart overload instead.")]
+    public byte GetArmorModel(ItemAppearanceArmorModel slot)
+    {
+      return GetArmorModel((CreaturePart)slot);
     }
 
     /// <summary>
@@ -150,11 +166,17 @@ namespace Anvil.API
     /// </summary>
     /// <param name="modelSlot">The model portion of the slot to query.</param>
     /// <param name="colorSlot">The color portion of the slot to query.</param>
-    public byte GetArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
+    public byte GetArmorPieceColor(CreaturePart modelSlot, ItemAppearanceArmorColor colorSlot)
     {
       const int numColors = NWScript.ITEM_APPR_ARMOR_NUM_COLORS;
       int index = numColors + (int)modelSlot * numColors + (int)colorSlot;
       return GetArmorColor((ItemAppearanceArmorColor)index);
+    }
+
+    [Obsolete("Use the CreaturePart overload instead.")]
+    public byte GetArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
+    {
+      return GetArmorPieceColor((CreaturePart)modelSlot, colorSlot);
     }
 
     /// <summary>
@@ -162,7 +184,7 @@ namespace Anvil.API
     /// </summary>
     public byte GetSimpleModel()
     {
-      return item.m_nModelPart[0];
+      return item.Item.m_nModelPart[0];
     }
 
     /// <summary>
@@ -175,7 +197,7 @@ namespace Anvil.API
 
       if (index >= 0 && index <= 5)
       {
-        return item.m_nLayeredTextureColors[index];
+        return item.Item.m_nLayeredTextureColors[index];
       }
 
       return 0;
@@ -191,7 +213,7 @@ namespace Anvil.API
 
       if (index >= 0 && index <= 2)
       {
-        return item.m_nModelPart[index];
+        return item.Item.m_nModelPart[index];
       }
 
       return 0;
@@ -208,24 +230,24 @@ namespace Anvil.API
 
       for (int idx = 0; idx < 6; idx++)
       {
-        stringBuilder.Append(item.m_nLayeredTextureColors[idx].ToString("X2"));
+        stringBuilder.Append(item.Item.m_nLayeredTextureColors[idx].ToString("X2"));
       }
 
       for (int idx = 0; idx < 3; idx++)
       {
-        stringBuilder.Append(item.m_nModelPart[idx].ToString("X2"));
+        stringBuilder.Append(item.Item.m_nModelPart[idx].ToString("X2"));
       }
 
       for (int idx = 0; idx < 19; idx++)
       {
-        stringBuilder.Append(item.m_nArmorModelPart[idx].ToString("X2"));
+        stringBuilder.Append(item.Item.m_nArmorModelPart[idx].ToString("X2"));
       }
 
       for (byte texture = 0; texture < 6; texture++)
       {
         for (byte part = 0; part < 19; part++)
         {
-          stringBuilder.Append(item.GetLayeredTextureColorPerPart(texture, part).ToString("X2"));
+          stringBuilder.Append(item.Item.GetLayeredTextureColorPerPart(texture, part).ToString("X2"));
         }
       }
 
@@ -246,7 +268,7 @@ namespace Anvil.API
         //1.69 colors
         if (index <= 5)
         {
-          item.m_nLayeredTextureColors[index] = value;
+          item.Item.m_nLayeredTextureColors[index] = value;
         }
 
         //per-part coloring
@@ -254,7 +276,7 @@ namespace Anvil.API
         {
           byte part = (byte)((index - 6) / 6);
           byte texture = (byte)(index - 6 - part * 6);
-          item.SetLayeredTextureColorPerPart(texture, part, value);
+          item.Item.SetLayeredTextureColorPerPart(texture, part, value);
         }
       }
     }
@@ -264,15 +286,21 @@ namespace Anvil.API
     /// </summary>
     /// <param name="slot">The armor model slot index to be assigned.</param>
     /// <param name="value">The new model to assign.</param>
-    public void SetArmorModel(ItemAppearanceArmorModel slot, byte value)
+    public void SetArmorModel(CreaturePart slot, byte value)
     {
       int index = (int)slot;
 
       if (index >= 0 && index <= 18)
       {
-        item.m_nArmorModelPart[index] = value;
-        item.m_nArmorValue = item.ComputeArmorClass();
+        item.Item.m_nArmorModelPart[index] = value;
+        item.Item.m_nArmorValue = item.Item.ComputeArmorClass();
       }
+    }
+
+    [Obsolete("Use the CreaturePart overload instead.")]
+    public void SetArmorModel(ItemAppearanceArmorModel slot, byte value)
+    {
+      SetArmorModel((CreaturePart)slot, value);
     }
 
     /// <summary>
@@ -281,11 +309,17 @@ namespace Anvil.API
     /// <param name="modelSlot">The model portion of the slot to assign.</param>
     /// <param name="colorSlot">The color portion of the slot to assign.</param>
     /// <param name="value">The new color to assign.</param>
-    public void SetArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot, byte value)
+    public void SetArmorPieceColor(CreaturePart modelSlot, ItemAppearanceArmorColor colorSlot, byte value)
     {
       const int numColors = NWScript.ITEM_APPR_ARMOR_NUM_COLORS;
       int index = numColors + (int)modelSlot * numColors + (int)colorSlot;
       SetArmorColor((ItemAppearanceArmorColor)index, value);
+    }
+
+    [Obsolete("Use the CreaturePart overload instead.")]
+    public void SetArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot, byte value)
+    {
+      SetArmorPieceColor((CreaturePart)modelSlot, colorSlot, value);
     }
 
     /// <summary>
@@ -295,7 +329,7 @@ namespace Anvil.API
     {
       if (value > 0)
       {
-        item.m_nModelPart[0] = value;
+        item.Item.m_nModelPart[0] = value;
       }
     }
 
@@ -310,7 +344,7 @@ namespace Anvil.API
 
       if (index >= 0 && index <= 5)
       {
-        item.m_nLayeredTextureColors[index] = value;
+        item.Item.m_nLayeredTextureColors[index] = value;
       }
     }
 
@@ -325,7 +359,7 @@ namespace Anvil.API
 
       if (index >= 0 && index <= 2)
       {
-        item.m_nModelPart[index] = value;
+        item.Item.m_nModelPart[index] = value;
       }
     }
   }
