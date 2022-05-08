@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using Anvil.Services;
 using NWN.Core;
-using NWN.Native.API;
 
 namespace Anvil.API
 {
