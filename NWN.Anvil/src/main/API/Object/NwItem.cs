@@ -19,7 +19,7 @@ namespace Anvil.API
     {
       Item = item;
       Inventory = new Inventory(this, item.m_pItemRepository);
-      Appearance = new ItemAppearance(item);
+      Appearance = new ItemAppearance(this);
     }
 
     /// <summary>
@@ -388,7 +388,7 @@ namespace Anvil.API
     {
       if (Possessor is NwCreature creature)
       {
-        creature.Creature.RemoveItem(this, true.ToInt(), true.ToInt(), true.ToInt(), true.ToInt());
+        creature.Creature.RemoveItem(this, true.ToInt(), true.ToInt(), false.ToInt(), true.ToInt());
       }
       else if (Possessor is NwPlaceable placeable)
       {

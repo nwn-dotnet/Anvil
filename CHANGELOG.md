@@ -7,7 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 
 ### Added
-- N/A
+- NwCreature: Added `GetSlotFromItem`
+- NwCreature: Added `RunEquip(item, EquipmentSlots)`
+- ItemAppearance: Added `ChangeAppearance`
 
 ### Package Updates
 - N/A
@@ -16,13 +18,14 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 - N/A
 
 ### Deprecated
-- N/A
+- `ItemAppearanceArmorModel` enum. Use `CreaturePart` instead.
 
 ### Removed
 - N/A
 
 ### Fixed
 - Fixed `NwGameObject.Location` setter not working for newly deserialized game objects.
+- Fixed a crash when an equipped item was sent to limbo with `NwModule.MoveObjectToLimbo`.
 
 ## 8193.34.10
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...v8193.34.10

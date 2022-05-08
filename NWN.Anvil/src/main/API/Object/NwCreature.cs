@@ -1702,6 +1702,21 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the slot that the specified item is in.
+    /// </summary>
+    /// <param name="item">The item to query.</param>
+    /// <returns></returns>
+    public EquipmentSlots GetSlotFromItem(NwItem item)
+    {
+      if (item == null)
+      {
+        return EquipmentSlots.None;
+      }
+
+      return (EquipmentSlots)Creature.m_pInventory.GetSlotFromItem(item);
+    }
+
+    /// <summary>
     /// Returns this creature's spell school specialization in the specified class.<br/>
     /// Unless custom content is used, only Wizards have spell schools.
     /// </summary>
@@ -2078,13 +2093,24 @@ namespace Anvil.API
     /// <exception cref="ArgumentNullException">Item is null.</exception>
     public bool RunEquip(NwItem item, InventorySlot inventorySlot)
     {
+      return RunEquip(item, (EquipmentSlots)Math.Pow(2, (uint)inventorySlot));
+    }
+
+    /// <summary>
+    /// Instruct this creature to instantly equip the specified item.
+    /// </summary>
+    /// <param name="item">The item to equip.</param>
+    /// <param name="equipmentSlot">The equipment slot to equip the item to.</param>
+    /// <returns>True if the item was successfully equipped, otherwise false.</returns>
+    /// <exception cref="ArgumentNullException">Item is null.</exception>
+    public bool RunEquip(NwItem item, EquipmentSlots equipmentSlot)
+    {
       if (item == null)
       {
         throw new ArgumentNullException(nameof(item), "Item must not be null.");
       }
 
-      uint targetSlot = (uint)Math.Pow(2, (uint)inventorySlot);
-      return Creature.RunEquip(item, targetSlot).ToBool();
+      return Creature.RunEquip(item, (uint)equipmentSlot).ToBool();
     }
 
     /// <summary>
