@@ -118,6 +118,7 @@ namespace Anvil.API
         if (placeable.LoadPlaceable(resGff, resStruct, false.ToInt(), null).ToBool())
         {
           placeable.LoadObjectState(resGff, resStruct);
+          placeable.m_oidArea = Invalid;
           GC.SuppressFinalize(placeable);
           return true;
         }

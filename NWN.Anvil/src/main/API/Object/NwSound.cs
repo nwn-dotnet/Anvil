@@ -76,6 +76,7 @@ namespace Anvil.API
         if (soundObject.Load(resGff, resStruct).ToBool())
         {
           soundObject.LoadObjectState(resGff, resStruct);
+          soundObject.m_oidArea = Invalid;
           GC.SuppressFinalize(soundObject);
           return true;
         }

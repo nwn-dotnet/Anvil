@@ -69,6 +69,7 @@ namespace Anvil.API
         if (trigger.LoadTrigger(resGff, resStruct).ToBool())
         {
           trigger.LoadObjectState(resGff, resStruct);
+          trigger.m_oidArea = Invalid;
           GC.SuppressFinalize(trigger);
           return true;
         }

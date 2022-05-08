@@ -854,6 +854,7 @@ namespace Anvil.API
         if (creature.LoadCreature(resGff, resStruct, 0, 0, 0, 0).ToBool())
         {
           creature.LoadObjectState(resGff, resStruct);
+          creature.m_oidArea = Invalid;
           GC.SuppressFinalize(creature);
           return true;
         }

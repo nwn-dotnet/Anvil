@@ -22,7 +22,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed `NwGameObject.Location` setter not working for newly deserialized game objects.
 
 ## 8193.34.10
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...v8193.34.10
