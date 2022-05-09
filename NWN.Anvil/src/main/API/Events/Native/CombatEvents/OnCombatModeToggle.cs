@@ -18,7 +18,7 @@ namespace Anvil.API.Events
 
     public bool PreventToggle { get; set; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject? IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

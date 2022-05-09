@@ -10,7 +10,7 @@ namespace Anvil.API.Events
     public bool Skip { get; set; }
     public NwObject Target { get; internal init; }
 
-    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster?.LoginCreature;
   }
 
   public sealed class OnDMGoTo : DMSingleTargetEvent {}

@@ -13,7 +13,7 @@ namespace Anvil.API.Events
     public NwCreature Target { get; private init; }
     public VisibilityOverride VisibilityOverride { get; set; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject? IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

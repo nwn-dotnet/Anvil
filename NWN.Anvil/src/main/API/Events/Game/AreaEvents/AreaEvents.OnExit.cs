@@ -15,14 +15,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwArea"/> that was left.
       /// </summary>
-      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
+      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>()!;
 
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that left the <see cref="NwArea"/>.
       /// </summary>
-      public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
+      public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>()!;
 
-      NwObject IEvent.Context => Area;
+      NwObject? IEvent.Context => Area;
     }
   }
 }

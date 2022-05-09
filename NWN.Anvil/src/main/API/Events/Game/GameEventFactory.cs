@@ -15,7 +15,7 @@ namespace Anvil.API.Events
 
     // Dependencies
     [Inject]
-    private Lazy<EventService> EventService { get; init; }
+    private Lazy<EventService>? EventService { get; init; }
 
     // Caches
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
@@ -34,7 +34,7 @@ namespace Anvil.API.Events
 
     public void Unregister<TEvent>() where TEvent : IEvent, new() {}
 
-    ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
+    ScriptHandleResult IScriptDispatcher.ExecuteScript(string? scriptName, uint oidSelf)
     {
       if (EventService == null || scriptName != ScriptConstants.GameEventScriptName)
       {
@@ -47,7 +47,7 @@ namespace Anvil.API.Events
         return ScriptHandleResult.NotHandled;
       }
 
-      if (eventConstructorCache.TryGetValue(eventScriptType, out Func<IEvent> value))
+      if (eventConstructorCache.TryGetValue(eventScriptType, out Func<IEvent>? value))
       {
         if (originalCallLookup.TryGetValue(new EventKey(eventScriptType, oidSelf), out scriptName))
         {
@@ -78,7 +78,7 @@ namespace Anvil.API.Events
 
     private GameEventAttribute GetEventInfo(Type type)
     {
-      if (eventInfoCache.TryGetValue(type, out GameEventAttribute eventAttribute))
+      if (eventInfoCache.TryGetValue(type, out GameEventAttribute? eventAttribute))
       {
         return eventAttribute;
       }
@@ -91,7 +91,7 @@ namespace Anvil.API.Events
 
     private GameEventAttribute LoadEventInfo(Type type)
     {
-      GameEventAttribute attribute = type.GetCustomAttribute<GameEventAttribute>();
+      GameEventAttribute? attribute = type.GetCustomAttribute<GameEventAttribute>();
       if (attribute != null)
       {
         return attribute;

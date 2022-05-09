@@ -27,7 +27,7 @@ namespace Anvil.API.Events
     /// </summary>
     public ImmunityType ImmunityType { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject? IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

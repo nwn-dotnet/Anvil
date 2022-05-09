@@ -14,9 +14,9 @@ namespace Anvil.API
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_CASSOWARY;
 
-    public static implicit operator Cassowary(IntPtr intPtr)
+    public static implicit operator Cassowary?(IntPtr intPtr)
     {
-      return new Cassowary(intPtr, true);
+      return intPtr != IntPtr.Zero ? new Cassowary(intPtr, true) : null;
     }
 
     /// <summary>

@@ -15,14 +15,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwDoor"/> that was opened.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that opened the <see cref="NwDoor"/>.
       /// </summary>
-      public NwGameObject OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwGameObject>();
+      public NwGameObject OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwGameObject>()!;
 
-      NwObject IEvent.Context => Door;
+      NwObject? IEvent.Context => Door;
     }
   }
 }

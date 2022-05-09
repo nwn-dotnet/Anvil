@@ -9,9 +9,9 @@ namespace Anvil.API
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_EVENT;
 
-    public static implicit operator Event(IntPtr intPtr)
+    public static implicit operator Event?(IntPtr intPtr)
     {
-      return new Event(intPtr, true);
+      return intPtr != IntPtr.Zero ? new Event(intPtr, true) : null;
     }
   }
 }

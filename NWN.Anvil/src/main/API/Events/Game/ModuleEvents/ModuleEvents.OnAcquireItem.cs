@@ -28,12 +28,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that acquired the <see cref="NwItem"/>.
       /// </summary>
-      public NwGameObject AcquiredBy { get; } = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
+      public NwGameObject? AcquiredBy { get; } = NWScript.GetModuleItemAcquiredBy().ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that the <see cref="NwItem"/> was taken from.
       /// </summary>
-      public NwGameObject AcquiredFrom { get; } = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
+      public NwGameObject? AcquiredFrom { get; } = NWScript.GetModuleItemAcquiredFrom().ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the number of items in the item stack that were just acquired.
@@ -43,9 +43,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> that triggered the event.
       /// </summary>
-      public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
+      public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>()!;
 
-      NwObject IEvent.Context => AcquiredBy;
+      NwObject? IEvent.Context => AcquiredBy;
     }
   }
 }

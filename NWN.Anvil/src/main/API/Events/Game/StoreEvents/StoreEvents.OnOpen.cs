@@ -15,14 +15,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that last opened this store.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastOpenedBy().ToNwPlayer();
+      public NwPlayer Player { get; } = NWScript.GetLastOpenedBy().ToNwPlayer()!;
 
       /// <summary>
       /// Gets the <see cref="NwStore"/> being open.
       /// </summary>
-      public NwStore Store { get; } = NWScript.OBJECT_SELF.ToNwObject<NwStore>();
+      public NwStore Store { get; } = NWScript.OBJECT_SELF.ToNwObject<NwStore>()!;
 
-      NwObject IEvent.Context => Store;
+      NwObject? IEvent.Context => Store;
     }
   }
 }

@@ -53,7 +53,7 @@ namespace Anvil.API.Events
     /// </summary>
     public string PlayerName { get; private init; }
 
-    NwObject IEvent.Context => null;
+    NwObject? IEvent.Context => null;
 
     internal sealed class Factory : HookEventFactory
     {

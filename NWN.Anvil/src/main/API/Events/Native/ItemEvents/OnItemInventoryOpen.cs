@@ -20,7 +20,7 @@ namespace Anvil.API.Events
 
     public bool PreventOpen { get; set; }
 
-    NwObject IEvent.Context => OpenedBy;
+    NwObject? IEvent.Context => OpenedBy;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

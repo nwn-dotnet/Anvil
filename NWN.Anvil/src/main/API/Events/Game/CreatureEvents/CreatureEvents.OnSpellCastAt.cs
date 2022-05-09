@@ -18,12 +18,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> of this spell. Returns null from an area of effect.
       /// </summary>
-      public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
+      public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> targeted by this spell.
       /// </summary>
-      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
       /// <summary>
       /// Gets a value indicating whether this spell is considered harmful.
@@ -35,11 +35,11 @@ namespace Anvil.API.Events
       /// </summary>
       public NwSpell Spell { get; } = NwSpell.FromSpellId(NWScript.GetLastSpell());
 
-      NwObject IEvent.Context => Creature;
+      NwObject? IEvent.Context => Creature;
 
       public static void Signal(NwObject caster, NwCreature target, NwSpell spell, bool harmful = true)
       {
-        Event nwEvent = NWScript.EventSpellCastAt(caster, (int)spell.Id, harmful.ToInt());
+        Event nwEvent = NWScript.EventSpellCastAt(caster, spell.Id, harmful.ToInt())!;
         NWScript.SignalEvent(target, nwEvent);
       }
     }

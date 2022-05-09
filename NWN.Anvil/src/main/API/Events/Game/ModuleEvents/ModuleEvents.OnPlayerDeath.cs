@@ -24,14 +24,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has triggered the event.
       /// </summary>
-      public NwPlayer DeadPlayer { get; } = NWScript.GetLastPlayerDied().ToNwPlayer();
+      public NwPlayer DeadPlayer { get; } = NWScript.GetLastPlayerDied().ToNwPlayer()!;
 
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that caused <see cref="NwPlayer"/> to trigger the event.
       /// </summary>
-      public NwGameObject Killer { get; }
+      public NwGameObject? Killer { get; }
 
-      NwObject IEvent.Context => DeadPlayer.ControlledCreature;
+      NwObject? IEvent.Context => DeadPlayer.ControlledCreature;
     }
   }
 }

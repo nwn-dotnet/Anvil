@@ -18,19 +18,19 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was damaged.
       /// </summary>
-      public NwPlaceable DamagedObject { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable DamagedObject { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that damaged the <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
+      public NwGameObject? Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the total damage dealt to <see cref="NwPlaceable"/>.
       /// </summary>
       public int TotalDamageDealt { get; } = NWScript.GetTotalDamageDealt();
 
-      NwObject IEvent.Context => DamagedObject;
+      NwObject? IEvent.Context => DamagedObject;
 
       /// <summary>
       /// Gets <see cref="DamageType"/> dealt to <see cref="NwPlaceable"/>.

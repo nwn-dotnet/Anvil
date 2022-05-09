@@ -119,9 +119,9 @@ namespace Anvil.API
       return new ItemProperty(effect, true);
     }
 
-    public static implicit operator ItemProperty(IntPtr intPtr)
+    public static implicit operator ItemProperty?(IntPtr intPtr)
     {
-      return new ItemProperty(CGameEffect.FromPointer(intPtr), true);
+      return intPtr != IntPtr.Zero ? new ItemProperty(CGameEffect.FromPointer(intPtr), true) : null;
     }
   }
 }

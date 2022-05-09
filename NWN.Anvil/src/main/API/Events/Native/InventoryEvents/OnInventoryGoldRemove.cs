@@ -14,7 +14,7 @@ namespace Anvil.API.Events
 
     public bool PreventGoldRemove { get; set; }
 
-    NwObject IEvent.Context => null;
+    NwObject? IEvent.Context => null;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

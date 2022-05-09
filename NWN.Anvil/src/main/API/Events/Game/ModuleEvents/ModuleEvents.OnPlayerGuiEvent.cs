@@ -34,7 +34,7 @@ namespace Anvil.API.Events
       /// <see cref="GuiEventType.ChatBarFocus"/>: The selected chat channel. Does not indicate the actual used channel. 0 = Shout, 1 = Whisper, 2 = Talk, 3 = Party, 4 = DM
       /// <see cref="GuiEventType.CharacterSheetSkillClick"/>: The <see cref="NwSkill"/>
       /// </remarks>
-      public NwObject EventObject { get; } = NWScript.GetLastGuiEventObject().ToNwObject();
+      public NwObject EventObject { get; } = NWScript.GetLastGuiEventObject().ToNwObject()!;
 
       /// <summary>
       /// Gets the <see cref="GuiEventType"/> that was triggered.
@@ -54,7 +54,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that triggered this event.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastGuiEventPlayer().ToNwPlayer();
+      public NwPlayer Player { get; } = NWScript.GetLastGuiEventPlayer().ToNwPlayer()!;
 
       /// <summary>
       /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.

@@ -20,7 +20,7 @@ namespace Anvil.API.Events
 
     public IReadOnlyList<NwItem> TargetItems { get; private init; }
 
-    NwObject IEvent.Context => Initiator.ControlledCreature;
+    NwObject? IEvent.Context => Initiator.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

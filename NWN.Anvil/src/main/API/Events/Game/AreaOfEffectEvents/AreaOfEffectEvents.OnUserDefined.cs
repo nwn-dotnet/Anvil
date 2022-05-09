@@ -12,13 +12,13 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOfEffectOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
-      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
+      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
 
-      NwObject IEvent.Context => Effect;
+      NwObject? IEvent.Context => Effect;
 
       public static void Signal(NwAreaOfEffect areaOfEffect, int eventId)
       {
-        Event nwEvent = NWScript.EventUserDefined(eventId);
+        Event nwEvent = NWScript.EventUserDefined(eventId)!;
         NWScript.SignalEvent(areaOfEffect, nwEvent);
       }
     }

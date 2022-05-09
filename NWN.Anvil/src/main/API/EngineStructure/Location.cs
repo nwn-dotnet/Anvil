@@ -12,7 +12,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated Area of this location.
     /// </summary>
-    public NwArea Area => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
+    public NwArea? Area => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
 
     /// <summary>
     /// Gets the inverted rotation value of this location (placeables).
@@ -71,14 +71,14 @@ namespace Anvil.API
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
 
-    public static Location Create(NwArea area, Vector3 position, float orientation)
+    public static Location? Create(NwArea area, Vector3 position, float orientation)
     {
       return NWScript.Location(area, position, orientation);
     }
 
-    public static implicit operator Location(IntPtr intPtr)
+    public static implicit operator Location?(IntPtr intPtr)
     {
-      return new Location(intPtr, true);
+      return intPtr != IntPtr.Zero ? new Location(intPtr, true) : null;
     }
 
     /// <summary>
@@ -176,7 +176,11 @@ namespace Anvil.API
           filter3.Key,
           filter3.Value))
       {
-        yield return current.ToNwObject<NwCreature>();
+        NwCreature? creature = current.ToNwObject<NwCreature>();
+        if (creature != null)
+        {
+          yield return creature;
+        }
       }
     }
 
@@ -187,7 +191,7 @@ namespace Anvil.API
       uint next;
       for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.Invalid; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
       {
-        T obj = next.ToNwObjectSafe<T>();
+        T? obj = next.ToNwObjectSafe<T>();
         if (obj != null)
         {
           yield return obj;
@@ -204,7 +208,11 @@ namespace Anvil.API
         obj != NWScript.OBJECT_INVALID;
         obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin))
       {
-        yield return obj.ToNwObject<NwGameObject>();
+        NwGameObject? gameObject = obj.ToNwObject<NwGameObject>();
+        if (gameObject != null)
+        {
+          yield return gameObject;
+        }
       }
     }
 
@@ -217,7 +225,11 @@ namespace Anvil.API
         obj != NWScript.OBJECT_INVALID;
         obj = NWScript.GetNextObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin))
       {
-        yield return obj.ToNwObject<T>();
+        T? gameObject = obj.ToNwObject<T>();
+        if (gameObject != null)
+        {
+          yield return gameObject;
+        }
       }
     }
   }

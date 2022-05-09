@@ -19,7 +19,7 @@ namespace Anvil.API
         (i, value) => effect.m_nParamFloat[i] = value);
       StringParams = new EffectParams<string>(6,
         i => effect.m_sParamString[i].ToString(),
-        (i, value) => effect.m_sParamString[i] = value.ToExoString());
+        (i, value) => effect.m_sParamString[i] = value?.ToExoString());
       VectorParams = new EffectParams<Vector3>(2,
         i => effect.m_vParamVector[i].ToManagedVector(),
         (i, value) => effect.m_vParamVector[i] = value.ToNativeVector());
@@ -40,7 +40,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the creator of this effect/item property.
     /// </summary>
-    public NwObject Creator
+    public NwObject? Creator
     {
       get => Effect.m_oidCreator.ToNwObject();
       set => Effect.m_oidCreator = value;

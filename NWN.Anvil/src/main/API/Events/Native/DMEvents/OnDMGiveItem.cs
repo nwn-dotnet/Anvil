@@ -8,7 +8,7 @@ namespace Anvil.API.Events
     public NwPlayer DungeonMaster { get; internal init; }
     public NwGameObject Target { get; internal init; }
 
-    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster?.LoginCreature;
   }
 
   public sealed class OnDMGiveItemBefore : OnDMGiveItem

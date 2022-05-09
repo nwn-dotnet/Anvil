@@ -18,9 +18,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that has spawned into the game.
       /// </summary>
-      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
-      NwObject IEvent.Context => Creature;
+      NwObject? IEvent.Context => Creature;
     }
   }
 }

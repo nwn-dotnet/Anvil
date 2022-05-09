@@ -18,14 +18,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that clicked on the <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwPlayer ClickedBy { get; } = NWScript.GetPlaceableLastClickedBy().ToNwPlayer();
+      public NwPlayer ClickedBy { get; } = NWScript.GetPlaceableLastClickedBy().ToNwPlayer()!;
 
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was left clicked.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
-      NwObject IEvent.Context => Placeable;
+      NwObject? IEvent.Context => Placeable;
     }
   }
 }

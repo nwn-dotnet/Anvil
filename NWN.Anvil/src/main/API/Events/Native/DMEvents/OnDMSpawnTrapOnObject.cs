@@ -11,7 +11,7 @@ namespace Anvil.API.Events
 
     public NwStationary Target { get; internal init; }
 
-    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster?.LoginCreature;
   }
 }
 

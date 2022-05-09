@@ -155,17 +155,17 @@ namespace Anvil.API
 
     internal abstract CNWSScriptVarTable ScriptVarTable { get; }
 
-    public static bool operator ==(NwObject left, NwObject right)
+    public static bool operator ==(NwObject? left, NwObject? right)
     {
       return Equals(left, right);
     }
 
-    public static implicit operator uint(NwObject gameObject)
+    public static implicit operator uint(NwObject? gameObject)
     {
       return gameObject == null ? Invalid : gameObject.ObjectId;
     }
 
-    public static bool operator !=(NwObject left, NwObject right)
+    public static bool operator !=(NwObject? left, NwObject? right)
     {
       return !Equals(left, right);
     }
@@ -201,7 +201,7 @@ namespace Anvil.API
       EventService.ClearObjectSubscriptions(this);
     }
 
-    public bool Equals(NwObject other)
+    public bool Equals(NwObject? other)
     {
       if (ReferenceEquals(null, other))
       {
@@ -216,7 +216,7 @@ namespace Anvil.API
       return ObjectId == other.ObjectId;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       if (ReferenceEquals(null, obj))
       {

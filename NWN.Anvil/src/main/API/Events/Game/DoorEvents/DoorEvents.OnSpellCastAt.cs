@@ -15,12 +15,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the caster of this <see cref="Spell"/> (<see cref="NwCreature"/>, <see cref="NwPlaceable"/>, <see cref="NwDoor"/>). Returns null from an <see cref="NwAreaOfEffect"/>.
       /// </summary>
-      public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>();
+      public NwGameObject Caster { get; } = NWScript.GetLastSpellCaster().ToNwObject<NwGameObject>()!;
 
       /// <summary>
       /// Gets the <see cref="NwDoor"/> targeted by this <see cref="Spell"/>.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       /// <summary>
       /// Gets a value indicating whether this spell is considered harmful.
@@ -32,11 +32,11 @@ namespace Anvil.API.Events
       /// </summary>
       public NwSpell Spell { get; } = NwSpell.FromSpellId(NWScript.GetLastSpell());
 
-      NwObject IEvent.Context => Door;
+      NwObject? IEvent.Context => Door;
 
       public static void Signal(NwObject caster, NwDoor target, NwSpell spell, bool harmful = true)
       {
-        Event nwEvent = NWScript.EventSpellCastAt(caster, (int)spell.Id, harmful.ToInt());
+        Event nwEvent = NWScript.EventSpellCastAt(caster, spell.Id, harmful.ToInt())!;
         NWScript.SignalEvent(target, nwEvent);
       }
     }

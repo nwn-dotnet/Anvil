@@ -10,10 +10,10 @@ namespace Anvil.API
   /// </summary>
   public readonly partial struct NuiWindowToken : IEquatable<NuiWindowToken>
   {
-    public static NuiWindowToken Invalid = new NuiWindowToken(null, -1);
+    public static NuiWindowToken Invalid = new NuiWindowToken(null!, -1);
 
     [Inject]
-    private static NuiWindowEventService NuiWindowEventService { get; set; }
+    private static NuiWindowEventService NuiWindowEventService { get; set; } = null!;
 
     internal NuiWindowToken(NwPlayer player, int token)
     {
@@ -68,7 +68,7 @@ namespace Anvil.API
       return Player.Equals(other.Player) && Token == other.Token;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       return obj is NuiWindowToken other && Equals(other);
     }

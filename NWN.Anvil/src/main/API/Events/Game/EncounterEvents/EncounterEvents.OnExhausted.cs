@@ -15,9 +15,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwEncounter"/> that was exhausted.
       /// </summary>
-      public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
+      public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>()!;
 
-      NwObject IEvent.Context => Encounter;
+      NwObject? IEvent.Context => Encounter;
     }
   }
 }

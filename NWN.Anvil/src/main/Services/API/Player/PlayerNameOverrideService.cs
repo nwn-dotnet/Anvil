@@ -142,7 +142,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="target">The player whose name to query.</param>
     /// <param name="observer">The specific observer.</param>
-    public PlayerNameOverride GetPlayerNameOverride(NwPlayer target, NwPlayer observer = null)
+    public PlayerNameOverride? GetPlayerNameOverride(NwPlayer? target, NwPlayer? observer = null)
     {
       if (target == null)
       {

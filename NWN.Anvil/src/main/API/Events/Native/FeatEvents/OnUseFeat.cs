@@ -22,7 +22,7 @@ namespace Anvil.API.Events
 
     public Vector3 TargetPosition { get; private init; }
 
-    NwObject IEvent.Context => Creature;
+    NwObject? IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

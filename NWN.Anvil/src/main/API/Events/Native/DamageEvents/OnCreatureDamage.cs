@@ -13,7 +13,7 @@ namespace Anvil.API.Events
 
     public NwGameObject Target { get; private init; }
 
-    NwObject IEvent.Context => DamagedBy;
+    NwObject? IEvent.Context => DamagedBy;
 
     internal unsafe class Factory : HookEventFactory
     {

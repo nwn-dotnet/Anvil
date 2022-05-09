@@ -22,7 +22,7 @@ namespace Anvil.API
       {
         for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(currentArea))
         {
-          T obj = currentObj.ToNwObjectSafe<T>();
+          T? obj = currentObj.ToNwObjectSafe<T>();
           if (obj != null)
           {
             yield return obj;
@@ -65,7 +65,7 @@ namespace Anvil.API
       }
     }
 
-    internal static NwObject CreateInternal(Guid uuid)
+    internal static NwObject? CreateInternal(Guid uuid)
     {
       return uuid == Guid.Empty ? null : CreateInternal(NWScript.GetObjectByUUID(uuid.ToUUIDString()));
     }
@@ -76,7 +76,7 @@ namespace Anvil.API
       return NWScript.CreateObject((int)objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
     }
 
-    internal static NwObject CreateInternal(uint objectId)
+    internal static NwObject? CreateInternal(uint objectId)
     {
       // Not a valid object
       if (objectId == Invalid)
@@ -93,7 +93,7 @@ namespace Anvil.API
       return CreateInternal(LowLevel.ServerExoApp.GetGameObject(objectId));
     }
 
-    internal static NwObject CreateInternal(ICGameObject gameObject)
+    internal static NwObject? CreateInternal(ICGameObject? gameObject)
     {
       if (gameObject == null)
       {

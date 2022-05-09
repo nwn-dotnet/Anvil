@@ -13,7 +13,7 @@ namespace Anvil.API.Events
     public NwItem Item { get; private init; }
     public NwCreature UsedBy { get; private init; }
 
-    NwObject IEvent.Context => UsedBy;
+    NwObject? IEvent.Context => UsedBy;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

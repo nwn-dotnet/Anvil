@@ -27,7 +27,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that sent this message.
       /// </summary>
-      public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwPlayer();
+      public NwPlayer Sender { get; } = NWScript.GetPCChatSpeaker().ToNwPlayer()!;
 
       /// <summary>
       /// Gets or sets the volume of this message.
@@ -38,7 +38,7 @@ namespace Anvil.API.Events
         set => NWScript.SetPCChatVolume((int)value);
       }
 
-      NwObject IEvent.Context => Sender.ControlledCreature;
+      NwObject? IEvent.Context => Sender.ControlledCreature;
     }
   }
 }

@@ -15,19 +15,19 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.ModuleOnActivateItem)]
     public sealed class OnActivateItem : IEvent
     {
-      public NwItem ActivatedItem { get; } = NWScript.GetItemActivated().ToNwObject<NwItem>();
+      public NwItem ActivatedItem { get; } = NWScript.GetItemActivated().ToNwObject<NwItem>()!;
 
-      public NwCreature ItemActivator { get; } = NWScript.GetItemActivator().ToNwObject<NwCreature>();
+      public NwCreature ItemActivator { get; } = NWScript.GetItemActivator().ToNwObject<NwCreature>()!;
 
-      public Location TargetLocation { get; } = NWScript.GetItemActivatedTargetLocation();
+      public Location? TargetLocation { get; } = NWScript.GetItemActivatedTargetLocation();
 
-      public NwGameObject TargetObject { get; } = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
+      public NwGameObject? TargetObject { get; } = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
 
-      NwObject IEvent.Context => ItemActivator;
+      NwObject? IEvent.Context => ItemActivator;
 
-      public static void Signal(NwItem item, Location targetLocation, NwGameObject targetObject = null)
+      public static void Signal(NwItem item, Location targetLocation, NwGameObject? targetObject = null)
       {
-        Event nwEvent = NWScript.EventActivateItem(item, targetLocation, targetObject);
+        Event nwEvent = NWScript.EventActivateItem(item, targetLocation, targetObject)!;
         NWScript.SignalEvent(NwModule.Instance, nwEvent);
       }
     }

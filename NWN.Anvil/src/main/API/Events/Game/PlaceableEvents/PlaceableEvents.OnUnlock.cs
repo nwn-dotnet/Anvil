@@ -18,14 +18,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was unlocked.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that unlocked <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwCreature UnlockedBy { get; } = NWScript.GetLastUnlocked().ToNwObject<NwCreature>();
+      public NwCreature? UnlockedBy { get; } = NWScript.GetLastUnlocked().ToNwObject<NwCreature>();
 
-      NwObject IEvent.Context => Placeable;
+      NwObject? IEvent.Context => Placeable;
     }
   }
 }

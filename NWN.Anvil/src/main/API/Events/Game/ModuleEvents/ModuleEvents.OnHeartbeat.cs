@@ -14,7 +14,7 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.ModuleOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
-      NwObject IEvent.Context => null;
+      NwObject? IEvent.Context => null;
     }
   }
 }

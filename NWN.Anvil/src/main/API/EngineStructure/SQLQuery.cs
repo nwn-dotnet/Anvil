@@ -30,7 +30,7 @@ namespace Anvil.API
     /// Gets the result of this query.<br/>
     /// NOTE: If <see cref="Results"/> have been enumerated, this will be the last enumerated value.
     /// </summary>
-    public SQLResult Result
+    public SQLResult? Result
     {
       get
       {

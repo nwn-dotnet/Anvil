@@ -15,14 +15,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> who disarmed this trigger.
       /// </summary>
-      public NwCreature DisarmedBy { get; } = NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
+      public NwCreature? DisarmedBy { get; } = NWScript.GetLastDisarmed().ToNwObject<NwCreature>();
 
       /// <summary>
       /// Gets the <see cref="NwTrigger"/> that was disarmed.
       /// </summary>
-      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
+      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>()!;
 
-      NwObject IEvent.Context => Trigger;
+      NwObject? IEvent.Context => Trigger;
     }
   }
 }

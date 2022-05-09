@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace Anvil.API
 {
-  public sealed class EffectParams<T> : IReadOnlyList<T>
+  public sealed class EffectParams<T> : IReadOnlyList<T?>
   {
-    private readonly Func<int, T> get;
-    private readonly Action<int, T> set;
+    private readonly Func<int, T?> get;
+    private readonly Action<int, T?> set;
 
-    internal EffectParams(int count, Func<int, T> get, Action<int, T> set)
+    internal EffectParams(int count, Func<int, T?> get, Action<int, T?> set)
     {
       Count = count;
       this.get = get;
@@ -21,7 +21,7 @@ namespace Anvil.API
     /// </summary>
     public int Count { get; }
 
-    public T this[int index]
+    public T? this[int index]
     {
       get
       {
@@ -43,7 +43,7 @@ namespace Anvil.API
       }
     }
 
-    public IEnumerator<T> GetEnumerator()
+    public IEnumerator<T?> GetEnumerator()
     {
       for (int i = 0; i < Count; i++)
       {

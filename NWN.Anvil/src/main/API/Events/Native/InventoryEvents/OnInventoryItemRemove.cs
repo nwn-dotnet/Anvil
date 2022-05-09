@@ -11,7 +11,7 @@ namespace Anvil.API.Events
     public NwItem Item { get; private init; }
     public NwGameObject RemovedFrom { get; private init; }
 
-    NwObject IEvent.Context => RemovedFrom;
+    NwObject? IEvent.Context => RemovedFrom;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

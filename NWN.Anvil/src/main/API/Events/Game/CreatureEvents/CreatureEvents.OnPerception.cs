@@ -18,19 +18,19 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> associated with the perception event.
       /// </summary>
-      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that was perceived by <see cref="NwCreature"/>.
       /// </summary>
-      public NwCreature PerceivedCreature { get; } = NWScript.GetLastPerceived().ToNwObject<NwCreature>();
+      public NwCreature PerceivedCreature { get; } = NWScript.GetLastPerceived().ToNwObject<NwCreature>()!;
 
       /// <summary>
       /// Gets the <see cref="PerceptionEventType"/> event triggered.
       /// </summary>
       public PerceptionEventType PerceptionEventType { get; } = GetPerceptionEventType();
 
-      NwObject IEvent.Context => Creature;
+      NwObject? IEvent.Context => Creature;
 
       private static PerceptionEventType GetPerceptionEventType()
       {

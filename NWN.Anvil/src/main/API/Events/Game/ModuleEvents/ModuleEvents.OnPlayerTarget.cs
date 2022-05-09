@@ -24,19 +24,19 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has targeted something.
       /// </summary>
-      public NwPlayer Player { get; internal init; } = NWScript.GetLastPlayerToSelectTarget().ToNwPlayer();
+      public NwPlayer Player { get; internal init; } = NWScript.GetLastPlayerToSelectTarget().ToNwPlayer()!;
 
       /// <summary>
       /// Gets the <see cref="NwObject"/> that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
       /// </summary>
-      public NwObject TargetObject { get; internal init; } = NWScript.GetTargetingModeSelectedObject().ToNwObject();
+      public NwObject TargetObject { get; internal init; } = NWScript.GetTargetingModeSelectedObject().ToNwObject()!;
 
       /// <summary>
       /// Gets the position targeted by the <see cref="NwPlayer"/>.
       /// </summary>
       public Vector3 TargetPosition { get; internal init; } = NWScript.GetTargetingModeSelectedPosition();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject? IEvent.Context => Player.ControlledCreature;
     }
   }
 }

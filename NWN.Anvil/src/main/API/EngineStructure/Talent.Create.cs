@@ -11,7 +11,7 @@ namespace Anvil.API
 
     public static implicit operator Talent(NwSpell spell)
     {
-      return NWScript.TalentSpell((int)spell.Id);
+      return NWScript.TalentSpell(spell.Id);
     }
 
     public static implicit operator Talent(NwFeat feat)

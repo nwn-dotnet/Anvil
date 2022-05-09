@@ -18,9 +18,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that is leaving.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(PlayerSearch.Login);
+      public NwPlayer Player { get; } = NWScript.GetExitingObject().ToNwPlayer(PlayerSearch.Login)!;
 
-      NwObject IEvent.Context => Player.LoginCreature;
+      NwObject? IEvent.Context => Player.LoginCreature;
     }
   }
 }

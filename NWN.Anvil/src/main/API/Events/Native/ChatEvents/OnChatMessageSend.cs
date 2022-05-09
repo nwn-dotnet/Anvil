@@ -35,7 +35,7 @@ namespace Anvil.API.Events
     /// </summary>
     public NwPlayer Target { get; internal init; }
 
-    NwObject IEvent.Context => Sender;
+    NwObject? IEvent.Context => Sender;
   }
 }
 

@@ -15,9 +15,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwTrigger"/> associated with this heartbeat event.
       /// </summary>
-      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
+      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>()!;
 
-      NwObject IEvent.Context => Trigger;
+      NwObject? IEvent.Context => Trigger;
     }
   }
 }

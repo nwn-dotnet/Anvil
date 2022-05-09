@@ -37,7 +37,7 @@ namespace Anvil.API.Events
     /// </summary>
     public bool PreventPinChange { get; set; }
 
-    NwObject IEvent.Context => Player.ControlledCreature;
+    NwObject? IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

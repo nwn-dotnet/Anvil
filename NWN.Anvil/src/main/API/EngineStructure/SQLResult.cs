@@ -39,7 +39,7 @@ namespace Anvil.API
     /// <param name="spawnLocation">The location to spawn the object.</param>
     /// <param name="targetInventory">(Items only) The target inventory for the item.</param>
     /// <returns>The deserialized object. Returns null on an error.</returns>
-    public T GetObject<T>(int columnIndex, Location spawnLocation, NwGameObject targetInventory = null) where T : NwObject
+    public T? GetObject<T>(int columnIndex, Location spawnLocation, NwGameObject? targetInventory = null) where T : NwObject
     {
       return NWScript.SqlGetObject(query, columnIndex, spawnLocation, targetInventory).ToNwObject<T>();
     }

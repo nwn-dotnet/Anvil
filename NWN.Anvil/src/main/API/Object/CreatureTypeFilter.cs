@@ -24,12 +24,12 @@ namespace Anvil.API
 
     public static CreatureTypeFilter DoesNotHaveSpellEffect(NwSpell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, (int)spellEffect.Id);
+      return new CreatureTypeFilter(CreatureType.DoesNotHaveSpellEffect, spellEffect.Id);
     }
 
     public static CreatureTypeFilter HasSpellEffect(NwSpell spellEffect)
     {
-      return new CreatureTypeFilter(CreatureType.HasSpellEffect, (int)spellEffect.Id);
+      return new CreatureTypeFilter(CreatureType.HasSpellEffect, spellEffect.Id);
     }
 
     public static CreatureTypeFilter Perception(PerceptionType perceptionType)

@@ -15,14 +15,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwDoor"/> that was destroy.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that killed the <see cref="NwDoor"/>.
       /// </summary>
-      public NwCreature Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwCreature>();
+      public NwCreature Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwCreature>()!;
 
-      NwObject IEvent.Context => Door;
+      NwObject? IEvent.Context => Door;
     }
   }
 }

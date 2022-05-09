@@ -28,14 +28,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the last equipped <see cref="NwItem"/> that triggered the event.
       /// </summary>
-      public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
+      public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that last equipped <see cref="NwItem"/>.
       /// </summary>
-      public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
+      public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>()!;
 
-      NwObject IEvent.Context => Player;
+      NwObject? IEvent.Context => Player;
     }
   }
 }

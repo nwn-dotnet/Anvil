@@ -36,7 +36,7 @@ namespace Anvil.API
 
     public static implicit operator IntPtr(EngineStructure engineStructure)
     {
-      if (!engineStructure.IsValid)
+      if (engineStructure == null || !engineStructure.IsValid)
       {
         throw new InvalidOperationException("Engine structure is not valid.");
       }

@@ -15,11 +15,11 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOfEffectOnObjectExit)]
     public sealed class OnExit : IEvent
     {
-      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
+      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
 
-      public NwGameObject Exiting { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>();
+      public NwGameObject Exiting { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>()!;
 
-      NwObject IEvent.Context => Effect;
+      NwObject? IEvent.Context => Effect;
     }
   }
 }

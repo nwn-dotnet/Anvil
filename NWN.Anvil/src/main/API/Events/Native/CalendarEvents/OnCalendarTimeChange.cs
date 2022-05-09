@@ -13,7 +13,7 @@ namespace Anvil.API.Events
     public uint OldValue { get; private init; }
     public TimeChangeType TimeChangeType { get; private init; }
 
-    NwObject IEvent.Context => null;
+    NwObject? IEvent.Context => null;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
