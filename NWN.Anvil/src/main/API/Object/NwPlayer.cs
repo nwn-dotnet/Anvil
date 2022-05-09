@@ -994,6 +994,7 @@ namespace Anvil.API
     ///  The client will close the window asynchronously.
     /// </summary>
     /// <param name="uiToken">The token of the window to destroy.</param>
+    [Obsolete("Use NuiWindowToken.Close()/Dispose() instead.")]
     public void NuiDestroy(int uiToken)
     {
       NWScript.NuiDestroy(ControlledCreature, uiToken);
@@ -1005,6 +1006,7 @@ namespace Anvil.API
     /// <param name="uiToken">The token for the window to query.</param>
     /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
+    [Obsolete("Use NuiWindowToken.GetUserData instead.")]
     public T NuiGetUserData<T>(int uiToken)
     {
       return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(ControlledCreature, uiToken));
@@ -1015,6 +1017,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="uiToken">The token to query.</param>
     /// <returns>The ID of the window if assigned, otherwise an empty string.</returns>
+    [Obsolete("Use NuiWindowToken.WindowId instead.")]
     public string NuiGetWindowId(int uiToken)
     {
       return NWScript.NuiGetWindowId(ControlledCreature, uiToken);
@@ -1029,6 +1032,7 @@ namespace Anvil.API
     /// <param name="uiToken">The token to associate the data with.</param>
     /// <param name="userData">The data to store.</param>
     /// <typeparam name="T">The type of data to store. Must be serializable to JSON.</typeparam>
+    [Obsolete("Use NuiWindowToken.SetUserData instead.")]
     public void NuiSetUserData<T>(int uiToken, T userData)
     {
       NWScript.NuiSetUserData(ControlledCreature, uiToken, JsonUtility.ToJsonStructure(userData));
@@ -1400,7 +1404,7 @@ namespace Anvil.API
     public bool TryCreateNuiWindow(NuiWindow window, out NuiWindowToken token, string windowId = "")
     {
       int tokenId = NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
-      token = tokenId != 0 ? new NuiWindowToken(this, tokenId, windowId) : NuiWindowToken.Invalid;
+      token = tokenId != 0 ? new NuiWindowToken(this, tokenId) : NuiWindowToken.Invalid;
 
       return tokenId != 0;
     }

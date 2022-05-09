@@ -18,6 +18,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Reinterprets the specified value as an int.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static int AsInt(this uint value)
+    {
+      return unchecked((int)value);
+    }
+
+    /// <summary>
     /// Reinterprets the specified value as a long.
     /// </summary>
     /// <param name="value">The value to reinterpret.</param>
@@ -48,6 +58,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Reinterprets the specified value as an unsigned int.
+    /// </summary>
+    /// <param name="value">The value to reinterpret.</param>
+    /// <returns>The reinterpreted value.</returns>
+    public static uint AsUInt(this int value)
+    {
+      return unchecked((uint)value);
+    }
+
+    /// <summary>
     /// Reinterprets the specified value as an unsigned long.
     /// </summary>
     /// <param name="value">The value to reinterpret.</param>
@@ -65,26 +85,6 @@ namespace Anvil.API
     public static ushort AsUShort(this short value)
     {
       return unchecked((ushort)value);
-    }
-
-    /// <summary>
-    /// Reinterprets the specified value as an unsigned int.
-    /// </summary>
-    /// <param name="value">The value to reinterpret.</param>
-    /// <returns>The reinterpreted value.</returns>
-    public static uint AsUInt(this int value)
-    {
-      return unchecked((uint)value);
-    }
-
-    /// <summary>
-    /// Reinterprets the specified value as an int.
-    /// </summary>
-    /// <param name="value">The value to reinterpret.</param>
-    /// <returns>The reinterpreted value.</returns>
-    public static int AsInt(this uint value)
-    {
-      return unchecked((int)value);
     }
 
     /// <summary>
