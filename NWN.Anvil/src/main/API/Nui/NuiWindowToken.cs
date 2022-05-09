@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Anvil.Services;
+using NWN.Core;
 
 namespace Anvil.API
 {
@@ -14,11 +15,10 @@ namespace Anvil.API
     [Inject]
     private static NuiWindowEventService NuiWindowEventService { get; set; }
 
-    internal NuiWindowToken(NwPlayer player, int token, string windowId = "")
+    internal NuiWindowToken(NwPlayer player, int token)
     {
       Player = player;
       Token = token;
-      WindowId = windowId;
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ namespace Anvil.API
     /// The user assigned window id of this token.<br/>
     /// Creating a new window with the same window id will replace the existing window.
     /// </summary>
-    public string WindowId { get; }
+    public string WindowId => NWScript.NuiGetWindowId(Player.ControlledCreature, Token);
 
     public static bool operator ==(NuiWindowToken left, NuiWindowToken right)
     {
@@ -59,7 +59,7 @@ namespace Anvil.API
     {
       if (Player != null && Player.IsValid)
       {
-        Player.NuiDestroy(Token);
+        NWScript.NuiDestroy(Player.ControlledCreature, Token);
       }
     }
 
@@ -98,6 +98,16 @@ namespace Anvil.API
     public override int GetHashCode()
     {
       return HashCode.Combine(Player, Token);
+    }
+
+    /// <summary>
+    /// Get the userdata of this token.
+    /// </summary>
+    /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
+    /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
+    public T GetUserData<T>()
+    {
+      return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(Player.ControlledCreature, Token));
     }
 
     /// <summary>
@@ -141,6 +151,19 @@ namespace Anvil.API
     public void SetGroupLayout(NuiGroup group, NuiLayout newLayout)
     {
       group.SetLayout(Player, Token, newLayout);
+    }
+
+    /// <summary>
+    /// Sets an arbitrary json value as userdata on this token.<br/>
+    /// This userdata is not read or handled by the game engine and not sent to clients.<br/>
+    /// This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.<br/>
+    /// Will do nothing if the window does not exist.
+    /// </summary>
+    /// <param name="userData">The data to store.</param>
+    /// <typeparam name="T">The type of data to store. Must be serializable to JSON.</typeparam>
+    public void SetUserData<T>(T userData)
+    {
+      NWScript.NuiSetUserData(Player.ControlledCreature, Token, JsonUtility.ToJsonStructure(userData));
     }
   }
 }

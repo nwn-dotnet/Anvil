@@ -10,6 +10,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 - NwCreature: Added `GetSlotFromItem`
 - NwCreature: Added `RunEquip(item, EquipmentSlots)`
 - ItemAppearance: Added `ChangeAppearance`
+- NuiWindowToken: Added `Get/SetUserData()`
 
 ### Package Updates
 - N/A
@@ -19,6 +20,10 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 
 ### Deprecated
 - `ItemAppearanceArmorModel` enum. Use `CreaturePart` instead.
+- `NwPlayer.NuiDestroy`. Use `NuiWindowToken.Close` instead.
+- `NwPlayer.NuiGetUserData`. Use `NuiWindowToken.NuiGetUserData` instead.
+- `NwPlayer.NuiSetUserData`. Use `NuiWindowToken.NuiSetUserData` instead.
+- `NwPlayer.NuiGetWindowId`. Use `NuiWindowToken.NuiGetWindowId` instead.
 
 ### Removed
 - N/A
@@ -26,6 +31,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 ### Fixed
 - Fixed `NwGameObject.Location` setter not working for newly deserialized game objects.
 - Fixed a crash when an equipped item was sent to limbo with `NwModule.MoveObjectToLimbo`.
+- Fixed `NuiWindowToken.WindowId` returning an empty string from events.
 
 ## 8193.34.10
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...v8193.34.10
