@@ -26,7 +26,7 @@ namespace Anvil.Services
     {
       if (!File.Exists(path))
       {
-        File.WriteAllText(path, contents);
+        File.WriteAllText(path!, contents);
       }
     }
   }

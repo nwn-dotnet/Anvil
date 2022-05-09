@@ -28,7 +28,7 @@ namespace Anvil.Internal
 
     internal static readonly string AssemblyDir = Path.GetDirectoryName(Anvil.Location);
 
-    internal static readonly string[] TargetFrameworks = { "net6.0", "net5.0" };
+    internal static readonly string[] TargetFrameworks = { "net6.0" };
 
     public static bool IsReservedName(string name)
     {
