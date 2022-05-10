@@ -71,9 +71,9 @@ namespace Anvil.API
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
 
-    public static Location? Create(NwArea area, Vector3 position, float orientation)
+    public static Location Create(NwArea area, Vector3 position, float orientation)
     {
-      return NWScript.Location(area, position, orientation);
+      return NWScript.Location(area, position, orientation)!;
     }
 
     public static implicit operator Location?(IntPtr intPtr)

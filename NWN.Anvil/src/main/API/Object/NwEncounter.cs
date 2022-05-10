@@ -48,7 +48,7 @@ namespace Anvil.API
 
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new EncounterListEntry(this, cEncounterList.GetItem(i));
+          retVal[i] = new EncounterListEntry(Encounter, cEncounterList.GetItem(i));
         }
 
         return retVal;
@@ -249,7 +249,7 @@ namespace Anvil.API
       }
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTE", (resGff, resStruct) =>
       {

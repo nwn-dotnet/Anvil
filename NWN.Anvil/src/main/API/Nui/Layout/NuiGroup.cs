@@ -15,7 +15,7 @@ namespace Anvil.API
     public bool Border { get; set; } = true;
 
     [JsonIgnore]
-    public NuiLayout Layout { get; set; }
+    public NuiLayout? Layout { get; set; }
 
     [JsonProperty("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;

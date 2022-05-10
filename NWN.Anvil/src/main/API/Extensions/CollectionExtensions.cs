@@ -101,7 +101,7 @@ namespace Anvil.API
     /// <typeparam name="T">Type of the object.</typeparam>
     /// <param name="item">The instance that will be wrapped.</param>
     /// <returns>An IEnumerable&lt;T&gt; consisting of a single item. </returns>
-    public static IEnumerable<T> SafeYield<T>(this T item)
+    public static IEnumerable<T> SafeYield<T>(this T? item)
     {
       return item is not null ? item.Yield() : Enumerable.Empty<T>();
     }

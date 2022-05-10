@@ -41,7 +41,7 @@ namespace Anvil.API
       set => NWScript.SetKeyRequiredFeedback(this, value);
     }
 
-    public override Location Location => Location.Create(Area, Position, Rotation);
+    public override Location Location => Location.Create(Area!, Position, Rotation);
 
     /// <summary>
     /// Gets or sets a value indicating whether this stationary object is lockable.
@@ -117,7 +117,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the object that last locked this stationary object.
     /// </summary>
-    public async Task<NwGameObject> GetLastLockedBy()
+    public async Task<NwGameObject?> GetLastLockedBy()
     {
       await WaitForObjectContext();
       return NWScript.GetLastLocked().ToNwObject<NwGameObject>();

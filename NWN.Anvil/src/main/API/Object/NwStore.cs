@@ -30,7 +30,7 @@ namespace Anvil.API
 
         foreach (CStoreCustomer storeCustomer in customersPtr)
         {
-          NwCreature customer = storeCustomer.m_oidObject.ToNwObjectSafe<NwCreature>();
+          NwCreature? customer = storeCustomer.m_oidObject.ToNwObjectSafe<NwCreature>();
           if (customer != null)
           {
             customers.Add(customer);
@@ -61,7 +61,7 @@ namespace Anvil.API
       {
         for (uint item = NWScript.GetFirstItemInInventory(this); item != Invalid; item = NWScript.GetNextItemInInventory(this))
         {
-          yield return item.ToNwObject<NwItem>();
+          yield return item.ToNwObject<NwItem>()!;
         }
       }
     }
@@ -78,14 +78,14 @@ namespace Anvil.API
       set => NWScript.SetStoreGold(this, value);
     }
 
-    public static NwStore Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    public static NwStore? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return CreateInternal<NwStore>(template, location, useAppearAnim, newTag);
     }
 
-    public static NwStore Deserialize(byte[] serialized)
+    public static NwStore? Deserialize(byte[] serialized)
     {
-      CNWSStore store = null;
+      CNWSStore? store = null;
 
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
@@ -110,7 +110,7 @@ namespace Anvil.API
       return result && store != null ? store.ToNwObject<NwStore>() : null;
     }
 
-    public static implicit operator CNWSStore(NwStore store)
+    public static implicit operator CNWSStore?(NwStore? store)
     {
       return store?.Store;
     }
@@ -125,7 +125,7 @@ namespace Anvil.API
       Store.AcquireItem(item.Item, true.ToInt(), 0xFF, 0xFF);
     }
 
-    public override NwStore Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwStore Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwStore>(location, newTag, copyLocalState);
     }
@@ -143,7 +143,7 @@ namespace Anvil.API
       NWScript.OpenStore(this, player.ControlledCreature, bonusMarkup, bonusMarkDown);
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTM", (resGff, resStruct) =>
       {

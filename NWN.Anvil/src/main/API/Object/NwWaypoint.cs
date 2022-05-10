@@ -16,20 +16,19 @@ namespace Anvil.API
       Waypoint = waypoint;
     }
 
-    public static NwWaypoint Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    public static NwWaypoint? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return CreateInternal<NwWaypoint>(template, location, useAppearAnim, newTag);
     }
 
-    public static NwWaypoint Create(Location location, bool useAppearAnim = false, string newTag = "")
+    public static NwWaypoint? Create(Location location, bool useAppearAnim = false, string newTag = "")
     {
       return Create("nw_waypoint001", location, useAppearAnim, newTag);
     }
 
-    public static NwWaypoint Deserialize(byte[] serialized)
+    public static NwWaypoint? Deserialize(byte[] serialized)
     {
-      CNWSWaypoint waypoint = null;
-
+      CNWSWaypoint? waypoint = null;
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTW"))
@@ -53,17 +52,17 @@ namespace Anvil.API
       return result && waypoint != null ? waypoint.ToNwObject<NwWaypoint>() : null;
     }
 
-    public static implicit operator CNWSWaypoint(NwWaypoint waypoint)
+    public static implicit operator CNWSWaypoint?(NwWaypoint? waypoint)
     {
       return waypoint?.Waypoint;
     }
 
-    public override NwWaypoint Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwWaypoint Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwWaypoint>(location, newTag, copyLocalState);
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTW", (resGff, resStruct) =>
       {

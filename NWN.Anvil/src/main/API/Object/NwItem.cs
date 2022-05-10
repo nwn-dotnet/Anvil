@@ -374,7 +374,7 @@ namespace Anvil.API
       NWScript.RemoveItemProperty(this, itemProperty);
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTI", (resGff, resStruct) => Item.SaveItem(resGff, resStruct, 0).ToBool());
     }
