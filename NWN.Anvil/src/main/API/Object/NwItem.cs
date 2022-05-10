@@ -155,7 +155,7 @@ namespace Anvil.API
     {
       get
       {
-        for (ItemProperty itemProperty = NWScript.GetFirstItemProperty(this); itemProperty.Valid; itemProperty = NWScript.GetNextItemProperty(this))
+        for (ItemProperty? itemProperty = NWScript.GetFirstItemProperty(this); itemProperty != null && itemProperty.Valid; itemProperty = NWScript.GetNextItemProperty(this))
         {
           yield return itemProperty;
         }
@@ -184,7 +184,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the GameObject that has this item in its inventory. Returns null if it is on the ground, or not in any inventory.
     /// </summary>
-    public NwGameObject Possessor => NWScript.GetItemPossessor(this).ToNwObject<NwGameObject>();
+    public NwGameObject? Possessor => NWScript.GetItemPossessor(this).ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets or sets the number of stacked items attached to this item.
@@ -236,9 +236,14 @@ namespace Anvil.API
     /// <param name="stackSize">The stack size of the created item.</param>
     /// <param name="newTag">A new tag for the item, otherwise the value set in the blueprint.</param>
     /// <returns>The created item.</returns>
-    public static NwItem Create(string template, Location location, bool useAppearAnim = false, int stackSize = 1, string newTag = null)
+    public static NwItem? Create(string template, Location location, bool useAppearAnim = false, int stackSize = 1, string? newTag = null)
     {
-      NwItem item = CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
+      NwItem? item = CreateInternal<NwItem>(template, location, useAppearAnim, newTag);
+      if (item == null)
+      {
+        return null;
+      }
+
       item.StackSize = stackSize;
       return item;
     }
@@ -251,15 +256,15 @@ namespace Anvil.API
     /// <param name="stackSize">The stack size of the created item.</param>
     /// <param name="newTag">A new tag for the item, otherwise the value set in the blueprint.</param>
     /// <returns>The created item.</returns>
-    public static async Task<NwItem> Create(string template, NwGameObject target = null, int stackSize = 1, string newTag = "")
+    public static async Task<NwItem?> Create(string template, NwGameObject? target = null, int stackSize = 1, string newTag = "")
     {
       await NwModule.Instance.WaitForObjectContext();
       return NWScript.CreateItemOnObject(template, target, stackSize, newTag).ToNwObject<NwItem>();
     }
 
-    public static NwItem Deserialize(byte[] serialized)
+    public static NwItem? Deserialize(byte[] serialized)
     {
-      CNWSItem item = null;
+      CNWSItem? item = null;
 
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
@@ -283,7 +288,7 @@ namespace Anvil.API
       return result && item != null ? item.ToNwObject<NwItem>() : null;
     }
 
-    public static implicit operator CNWSItem(NwItem item)
+    public static implicit operator CNWSItem?(NwItem? item)
     {
       return item?.Item;
     }
@@ -317,10 +322,10 @@ namespace Anvil.API
     /// <param name="newTag">A new tag to assign the cloned item.</param>
     /// <param name="copyLocalState">If true, local variables on the item are copied.</param>
     /// <returns>The newly cloned copy of the item.</returns>
-    public NwItem Clone(NwGameObject targetInventory, string newTag = null, bool copyLocalState = true)
+    public NwItem Clone(NwGameObject targetInventory, string? newTag = null, bool copyLocalState = true)
     {
-      NwItem clone = NWScript.CopyItem(this, targetInventory, copyLocalState.ToInt()).ToNwObject<NwItem>();
-      if (clone != null && newTag != null)
+      NwItem clone = NWScript.CopyItem(this, targetInventory, copyLocalState.ToInt()).ToNwObject<NwItem>()!;
+      if (newTag != null)
       {
         clone.Tag = newTag;
       }
@@ -328,7 +333,7 @@ namespace Anvil.API
       return clone;
     }
 
-    public override NwItem Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwItem Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       NwItem clone = CloneInternal<NwItem>(location, newTag, copyLocalState);
       if (!copyLocalState)
@@ -404,7 +409,7 @@ namespace Anvil.API
       }
     }
 
-    private static void CleanLocalVariables(NwItem clone)
+    private static void CleanLocalVariables(NwItem? clone)
     {
       if (clone == null)
       {

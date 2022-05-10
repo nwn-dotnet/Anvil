@@ -151,7 +151,7 @@ namespace Anvil.API
       return faction.Equals(other.faction);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       return ReferenceEquals(this, obj) || obj is NwFaction other && Equals(other);
     }

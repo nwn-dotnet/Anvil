@@ -18,7 +18,7 @@ namespace Anvil.API
     private static readonly CExoString DefaultGffVersionExoString = "V3.2".ToExoString();
 
     [Inject]
-    private static ResourceManager ResourceManager { get; set; }
+    private static ResourceManager ResourceManager { get; set; } = null!;
 
     public static bool CreateFromResRef(ResRefType resRefType, string resRef, Action<CResGFF, CResStruct> deserializeAction)
     {
@@ -132,7 +132,7 @@ namespace Anvil.API
       return StringHelper.ReadNullTerminatedString(ptr);
     }
 
-    public static byte[] SerializeGff(string fileType, string version, Func<CResGFF, CResStruct, bool> serializeAction)
+    public static byte[]? SerializeGff(string fileType, string version, Func<CResGFF, CResStruct, bool> serializeAction)
     {
       if (string.IsNullOrEmpty(fileType))
       {
@@ -147,7 +147,7 @@ namespace Anvil.API
       return SerializeGff((fileType + " ").ToExoString(), version.ToExoString(), serializeAction);
     }
 
-    public static byte[] SerializeGff(string fileType, Func<CResGFF, CResStruct, bool> serializeAction)
+    public static byte[]? SerializeGff(string fileType, Func<CResGFF, CResStruct, bool> serializeAction)
     {
       if (string.IsNullOrEmpty(fileType))
       {
@@ -162,7 +162,7 @@ namespace Anvil.API
       return new Color(vector.x, vector.y, vector.z);
     }
 
-    public static CExoLocString ToExoLocString(this string str, int nId = 0, byte gender = 0)
+    public static CExoLocString ToExoLocString(this string? str, int nId = 0, byte gender = 0)
     {
       CExoLocString locString = new CExoLocString();
       locString.AddString(nId, str != null ? new CExoString(str) : new CExoString(), gender);
@@ -176,7 +176,7 @@ namespace Anvil.API
       return locString;
     }
 
-    public static CExoString ToExoString(this string str)
+    public static CExoString ToExoString(this string? str)
     {
       return str != null ? new CExoString(str) : new CExoString();
     }
@@ -196,7 +196,7 @@ namespace Anvil.API
       return new Vector(color.Red, color.Green, color.Blue);
     }
 
-    public static CResRef ToResRef(this string str)
+    public static CResRef ToResRef(this string? str)
     {
       return str != null ? new CResRef(str) : new CResRef();
     }
@@ -207,7 +207,7 @@ namespace Anvil.API
       return new Vector3((float)Math.Cos(radians), (float)Math.Sin(radians), 0.0f);
     }
 
-    private static byte[] SerializeGff(CExoString fileType, CExoString version, Func<CResGFF, CResStruct, bool> serializeAction)
+    private static byte[]? SerializeGff(CExoString fileType, CExoString version, Func<CResGFF, CResStruct, bool> serializeAction)
     {
       void* pData;
       int dataLength;

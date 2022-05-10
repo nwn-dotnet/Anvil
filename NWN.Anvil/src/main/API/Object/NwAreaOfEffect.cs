@@ -21,7 +21,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the creator of this Area of Effect.
     /// </summary>
-    public NwGameObject Creator => NWScript.GetAreaOfEffectCreator(this).ToNwObject<NwGameObject>();
+    public NwGameObject? Creator => NWScript.GetAreaOfEffectCreator(this).ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets the Area Of Effect duration.
@@ -33,12 +33,12 @@ namespace Anvil.API
     /// </summary>
     public NwSpell Spell => NwSpell.FromSpellId((int)AreaOfEffect.m_nSpellId);
 
-    public static implicit operator CNWSAreaOfEffectObject(NwAreaOfEffect areaOfEffect)
+    public static implicit operator CNWSAreaOfEffectObject?(NwAreaOfEffect? areaOfEffect)
     {
       return areaOfEffect?.AreaOfEffect;
     }
 
-    public override NwAreaOfEffect Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwAreaOfEffect Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       throw new NotSupportedException("Area of Effect objects may not be cloned.");
     }
@@ -53,7 +53,7 @@ namespace Anvil.API
       int objType = (int)GetObjectType<T>();
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
-        T gameObject = obj.ToNwObjectSafe<T>();
+        T? gameObject = obj.ToNwObjectSafe<T>();
         if (gameObject != null)
         {
           yield return gameObject;
@@ -71,7 +71,7 @@ namespace Anvil.API
       int objType = (int)objectTypes;
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
-        yield return obj.ToNwObject<NwGameObject>();
+        yield return obj.ToNwObject<NwGameObject>()!;
       }
     }
 

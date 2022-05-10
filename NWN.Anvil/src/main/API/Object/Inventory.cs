@@ -24,7 +24,7 @@ namespace Anvil.API
       {
         for (uint item = NWScript.GetFirstItemInInventory(owner); item != NwObject.Invalid; item = NWScript.GetNextItemInInventory(owner))
         {
-          yield return item.ToNwObject<NwItem>();
+          yield return item.ToNwObject<NwItem>()!;
         }
       }
     }

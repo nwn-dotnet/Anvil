@@ -109,7 +109,7 @@ namespace Anvil.Services
     /// <param name="observer">The observer whose overriden name of target is being cleared.</param>
     public void ClearPlayerNameOverride(NwPlayer target, NwPlayer observer)
     {
-      if (perPlayerOverrides.TryGetValue(target, out Dictionary<NwPlayer, PlayerNameOverride> playerOverrides))
+      if (perPlayerOverrides.TryGetValue(target, out Dictionary<NwPlayer, PlayerNameOverride>? playerOverrides))
       {
         playerOverrides.Remove(observer);
       }
@@ -128,7 +128,7 @@ namespace Anvil.Services
       Dictionary<NwPlayer, PlayerNameOverride> nameOverrides = includeGlobal ? new Dictionary<NwPlayer, PlayerNameOverride>(globalNameOverrides) : new Dictionary<NwPlayer, PlayerNameOverride>();
       foreach ((NwPlayer key, Dictionary<NwPlayer, PlayerNameOverride> value) in perPlayerOverrides)
       {
-        if (value.TryGetValue(observer, out PlayerNameOverride nameOverride))
+        if (value.TryGetValue(observer, out PlayerNameOverride? nameOverride))
         {
           nameOverrides[key] = nameOverride;
         }

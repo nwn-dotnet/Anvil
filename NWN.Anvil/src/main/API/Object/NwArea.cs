@@ -169,12 +169,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the last object that entered this area.
     /// </summary>
-    public NwGameObject LastEntered => Area.m_oidLastEntered.ToNwObject<NwGameObject>();
+    public NwGameObject? LastEntered => Area.m_oidLastEntered.ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets the last object that left this area.
     /// </summary>
-    public NwGameObject LastLeft => Area.m_oidLastLeft.ToNwObject<NwGameObject>();
+    public NwGameObject? LastLeft => Area.m_oidLastLeft.ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets or sets the percentage value (0-100) that lightning may occur.
@@ -278,7 +278,7 @@ namespace Anvil.API
       {
         for (uint areaObj = NWScript.GetFirstObjectInArea(this); areaObj != Invalid; areaObj = NWScript.GetNextObjectInArea(this))
         {
-          yield return areaObj.ToNwObject<NwGameObject>();
+          yield return areaObj.ToNwObject<NwGameObject>()!;
         }
       }
     }
@@ -435,13 +435,13 @@ namespace Anvil.API
     /// <param name="newTag">A new tag for this area. Defaults to the tag set in the toolset.</param>
     /// <param name="newName">A new name for this area. Defaults to the name set in the toolset.</param>
     /// <returns>The created area.</returns>
-    public static NwArea Create(string resRef, string newTag = "", string newName = "")
+    public static NwArea? Create(string resRef, string newTag = "", string newName = "")
     {
       return NWScript.CreateArea(resRef, newTag, newName).ToNwObject<NwArea>();
     }
 
     /// <inheritdoc cref="Deserialize(string,byte[],byte[],string,string)"/>
-    public static NwArea Deserialize(byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
+    public static NwArea? Deserialize(byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
     {
       string resourceName = ResourceNameGenerator.Create();
       return Deserialize(resourceName, serializedARE, serializedGIT, newTag, newName);
@@ -456,7 +456,7 @@ namespace Anvil.API
     /// <param name="newTag">A new tag for this area. Defaults to the tag set in the toolset.</param>
     /// <param name="newName">A new name for this area. Defaults to the name set in the toolset.</param>
     /// <returns>The created area.</returns>
-    public static NwArea Deserialize(string resRef, byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
+    public static NwArea? Deserialize(string resRef, byte[] serializedARE, byte[] serializedGIT, string newTag = "", string newName = "")
     {
       ResourceManager.WriteTempResource(resRef + ".git", serializedGIT);
       ResourceManager.WriteTempResource(resRef + ".are", serializedARE);
@@ -464,7 +464,7 @@ namespace Anvil.API
       return Create(resRef, newTag, newName);
     }
 
-    public static implicit operator CNWSArea(NwArea area)
+    public static implicit operator CNWSArea?(NwArea? area)
     {
       return area?.Area;
     }
@@ -494,7 +494,7 @@ namespace Anvil.API
     /// Creates a copy of this area, including everything inside of it (except players).
     /// </summary>
     /// <returns>The new cloned area instance.</returns>
-    public NwArea Clone()
+    public NwArea? Clone()
     {
       return NWScript.CopyArea(this).ToNwObject<NwArea>();
     }
@@ -541,7 +541,7 @@ namespace Anvil.API
     {
       for (uint currentObj = NWScript.GetFirstObjectInArea(this); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(this))
       {
-        T obj = currentObj.ToNwObjectSafe<T>();
+        T? obj = currentObj.ToNwObjectSafe<T>();
         if (obj != null)
         {
           yield return obj;
@@ -574,7 +574,7 @@ namespace Anvil.API
     /// <param name="tileY">The y coordinate of the tile to get info.</param>
     /// <returns>A structure containing the associated tile info.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the tile coordinates are larger than the area size.</exception>
-    public TileInfo GetTileInfo(uint tileX, uint tileY)
+    public TileInfo? GetTileInfo(uint tileX, uint tileY)
     {
       Vector2Int max = Size;
       if (tileX >= max.X || tileY >= max.Y)
@@ -633,7 +633,7 @@ namespace Anvil.API
       NWScript.RecomputeStaticLighting(this);
     }
 
-    public unsafe byte[] SerializeARE(string areaName = null, string resRef = null)
+    public unsafe byte[]? SerializeARE(string? areaName = null, string? resRef = null)
     {
       areaName ??= Name;
       resRef ??= ResRef;
@@ -719,7 +719,7 @@ namespace Anvil.API
       });
     }
 
-    public byte[] SerializeGIT(ObjectTypes objectFilter = ObjectTypes.All, ICollection<NwGameObject> exclusionList = null, bool exportVarTable = true, bool exportUUID = true, string resRef = null)
+    public byte[]? SerializeGIT(ObjectTypes objectFilter = ObjectTypes.All, ICollection<NwGameObject>? exclusionList = null, bool exportVarTable = true, bool exportUUID = true, string? resRef = null)
     {
       resRef ??= ResRef;
 

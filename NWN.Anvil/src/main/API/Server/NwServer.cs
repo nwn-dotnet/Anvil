@@ -7,11 +7,11 @@ namespace Anvil.API
   [ServiceBindingOptions(InternalBindingPriority.Highest)]
   public sealed unsafe class NwServer : ICoreService
   {
-    public static NwServer Instance { get; private set; }
+    public static NwServer Instance { get; private set; } = null!;
 
-    private CExoBase exoBase;
-    private CNetLayer netLayer;
-    private CServerExoApp server;
+    private CExoBase exoBase = null!;
+    private CNetLayer netLayer = null!;
+    private CServerExoApp server = null!;
 
     public NwServer()
     {
@@ -44,22 +44,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets server configuration and display info.
     /// </summary>
-    public ServerInfo ServerInfo { get; private set; }
+    public ServerInfo ServerInfo { get; private set; } = null!;
 
     /// <summary>
     /// Gets the version of this server.
     /// </summary>
-    public Version ServerVersion { get; set; }
+    public Version ServerVersion { get; set; } = null!;
 
     /// <summary>
     /// Gets the absolute path of the server's home directory (-userDirectory).
     /// </summary>
-    public string UserDirectory { get; set; }
+    public string UserDirectory { get; set; } = null!;
 
     /// <summary>
     /// Gets the server world timer.
     /// </summary>
-    public WorldTimer WorldTimer { get; private set; }
+    public WorldTimer WorldTimer { get; private set; } = null!;
 
     /// <summary>
     /// Bans the provided public CD key.
@@ -105,7 +105,7 @@ namespace Anvil.API
       }
 
       CExoLinkedListInternal turds = NwModule.Instance.Module.m_lstTURDList.m_pcExoLinkedListInternal;
-      CExoLinkedListNode node = FindTURD(turds, playerName, characterName);
+      CExoLinkedListNode? node = FindTURD(turds, playerName, characterName);
       if (node == null)
       {
         return false;
@@ -192,7 +192,7 @@ namespace Anvil.API
 
     void ICoreService.Unload() {}
 
-    private static CExoLinkedListNode FindTURD(CExoLinkedListInternal turds, string playerName, string characterName)
+    private static CExoLinkedListNode? FindTURD(CExoLinkedListInternal turds, string playerName, string characterName)
     {
       for (CExoLinkedListNode node = turds.pHead; node != null; node = node.pNext)
       {

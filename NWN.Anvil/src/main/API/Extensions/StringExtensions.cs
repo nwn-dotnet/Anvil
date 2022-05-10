@@ -97,13 +97,13 @@ namespace Anvil.API
     /// </summary>
     /// <param name="objectIdString">The object ID string to parse.</param>
     /// <returns>The NwObject associated with the specified object ID.</returns>
-    public static NwObject ParseObject(this string objectIdString)
+    public static NwObject? ParseObject(this string objectIdString)
     {
       return uint.Parse(objectIdString, NumberStyles.HexNumber).ToNwObject();
     }
 
     /// <inheritdoc cref="ParseObject"/>
-    public static T ParseObject<T>(this string objectIdString) where T : NwObject
+    public static T? ParseObject<T>(this string objectIdString) where T : NwObject
     {
       return uint.Parse(objectIdString, NumberStyles.HexNumber).ToNwObject<T>();
     }

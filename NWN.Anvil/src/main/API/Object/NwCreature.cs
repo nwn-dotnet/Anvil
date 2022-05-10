@@ -20,13 +20,13 @@ namespace Anvil.API
     private const byte QuickBarButtonCount = 36;
 
     [Inject]
-    private static Lazy<CreatureForceWalkService> CreatureForceWalkService { get; set; }
+    private static Lazy<CreatureForceWalkService> CreatureForceWalkService { get; set; } = null!;
 
     [Inject]
-    private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; }
+    private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; } = null!;
 
     [Inject]
-    private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; }
+    private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; } = null!;
 
     internal readonly CNWSCreature Creature;
 
@@ -119,17 +119,17 @@ namespace Anvil.API
     /// <summary>
     /// Gets this creature's current attack target.
     /// </summary>
-    public NwGameObject AttackTarget => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
+    public NwGameObject? AttackTarget => NWScript.GetAttackTarget(this).ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets the last target this creature tried to attack.
     /// </summary>
-    public NwGameObject AttemptedAttackTarget => Creature.m_oidAttemptedAttackTarget.ToNwObject<NwGameObject>();
+    public NwGameObject? AttemptedAttackTarget => Creature.m_oidAttemptedAttackTarget.ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets the target this creature attempted to cast a spell at.
     /// </summary>
-    public NwGameObject AttemptedSpellTarget => Creature.m_oidAttemptedSpellTarget.ToNwObject<NwGameObject>();
+    public NwGameObject? AttemptedSpellTarget => Creature.m_oidAttemptedSpellTarget.ToNwObject<NwGameObject>();
 
     /// <summary>
     /// Gets or sets the base AC for this creature.
@@ -235,7 +235,7 @@ namespace Anvil.API
     /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns null.<br/>
     /// If no player is controlling this creature, this returns null.
     /// </summary>
-    public NwPlayer ControllingPlayer => ObjectId.ToNwPlayer(PlayerSearch.Controlled);
+    public NwPlayer? ControllingPlayer => ObjectId.ToNwPlayer(PlayerSearch.Controlled);
 
     /// <summary>
     /// Gets or sets the corpse decay time for this creature.
@@ -293,7 +293,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the encounter that spawned this creature.
     /// </summary>
-    public NwEncounter Encounter => Creature.m_oidEncounter.ToNwObject<NwEncounter>();
+    public NwEncounter? Encounter => Creature.m_oidEncounter.ToNwObject<NwEncounter>();
 
     /// <summary>
     /// Gets or sets a value indicating whether this creature will auto-explore the minimap as it walks around.
@@ -312,11 +312,6 @@ namespace Anvil.API
       get => faction;
       set
       {
-        if (value == null)
-        {
-          throw new ArgumentNullException(nameof(value), "New faction must not be null.");
-        }
-
         faction = value;
         faction.AddMember(this);
       }
@@ -488,7 +483,7 @@ namespace Anvil.API
     {
       get
       {
-        NwItem weapon = GetItemInSlot(InventorySlot.RightHand);
+        NwItem? weapon = GetItemInSlot(InventorySlot.RightHand);
         if (weapon != null && weapon.IsValid)
         {
           return weapon.IsRangedWeapon;
@@ -526,7 +521,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the last trap detected by this creature.
     /// </summary>
-    public NwTrappable LastTrapDetected => NWScript.GetLastTrapDetected(this).ToNwObject<NwTrappable>();
+    public NwTrappable? LastTrapDetected => NWScript.GetLastTrapDetected(this).ToNwObject<NwTrappable>();
 
     /// <summary>
     /// Gets this creature's Law/Chaos Alignment.
@@ -582,7 +577,7 @@ namespace Anvil.API
     /// Gets the player that logged in with this creature.<br/>
     /// If this creature is a NPC or familiar, regardless of possession, this will return null.
     /// </summary>
-    public NwPlayer LoginPlayer => ObjectId.ToNwPlayer(PlayerSearch.Login);
+    public NwPlayer? LoginPlayer => ObjectId.ToNwPlayer(PlayerSearch.Login);
 
     /// <summary>
     /// Gets or sets a value indicating whether this creature will leave a lootable corpse on death.<br/>
@@ -597,7 +592,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the possessor of this creature. This can be the master of a familiar, or the DM for a DM controlled creature.
     /// </summary>
-    public NwCreature Master => NWScript.GetMaster(this).ToNwObject<NwCreature>();
+    public NwCreature? Master => NWScript.GetMaster(this).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets or sets the movement rate of this creature.
@@ -834,14 +829,14 @@ namespace Anvil.API
     /// <param name="location">The location where this creature will spawn.</param>
     /// <param name="useAppearAnim">If true, plays EffectAppear when created.</param>
     /// <param name="newTag">The new tag to assign this creature. Leave uninitialized/as null to use the template's tag.</param>
-    public static NwCreature Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    public static NwCreature? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       return CreateInternal<NwCreature>(template, location, useAppearAnim, newTag);
     }
 
-    public static NwCreature Deserialize(byte[] serialized)
+    public static NwCreature? Deserialize(byte[] serialized)
     {
-      CNWSCreature creature = null;
+      CNWSCreature? creature = null;
 
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
@@ -866,7 +861,7 @@ namespace Anvil.API
       return result && creature != null ? creature.ToNwObject<NwCreature>() : null;
     }
 
-    public static implicit operator CNWSCreature(NwCreature creature)
+    public static implicit operator CNWSCreature?(NwCreature? creature)
     {
       return creature?.Creature;
     }
@@ -948,7 +943,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="verses">If set, finds the most effective melee weapon for attacking this object.</param>
     /// <param name="offhand">Determines if an off-hand weapon is equipped.</param>
-    public async Task ActionEquipMostDamagingMelee(NwGameObject verses = null, bool offhand = false)
+    public async Task ActionEquipMostDamagingMelee(NwGameObject? verses = null, bool offhand = false)
     {
       await WaitForObjectContext();
       NWScript.ActionEquipMostDamagingMelee(verses, offhand.ToInt());
@@ -958,7 +953,7 @@ namespace Anvil.API
     /// Instructs this creature to equip its most damaging ranged weapon. If no valid ranged weapon is found, it will equip the most damaging melee weapon.<p/>
     /// </summary>
     /// <param name="verses">If set, finds the most effective ranged weapon for attacking this object.</param>
-    public async Task ActionEquipMostDamagingRanged(NwGameObject verses = null)
+    public async Task ActionEquipMostDamagingRanged(NwGameObject? verses = null)
     {
       await WaitForObjectContext();
       NWScript.ActionEquipMostDamagingRanged(verses);
@@ -1220,7 +1215,7 @@ namespace Anvil.API
     /// <param name="target">The target to use the skill on.</param>
     /// <param name="subSkill">A specific subskill to use.</param>
     /// <param name="itemUsed">An item to use in conjunction with this skill.</param>
-    public async Task ActionUseSkill(NwSkill skill, NwGameObject target, SubSkill subSkill = SubSkill.None, NwItem itemUsed = null)
+    public async Task ActionUseSkill(NwSkill skill, NwGameObject target, SubSkill subSkill = SubSkill.None, NwItem? itemUsed = null)
     {
       await WaitForObjectContext();
       NWScript.ActionUseSkill(skill.Id, target, (int)subSkill, itemUsed);
@@ -1321,7 +1316,7 @@ namespace Anvil.API
       DamageLevelOverrideService.Value.ClearDamageLevelOverride(this);
     }
 
-    public override NwCreature Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwCreature Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwCreature>(location, newTag, copyLocalState);
     }
@@ -1354,7 +1349,7 @@ namespace Anvil.API
         return true;
       });
 
-      NwPlayer player = ControllingPlayer;
+      NwPlayer? player = ControllingPlayer;
 
       if (result && player != null)
       {
@@ -1400,7 +1395,7 @@ namespace Anvil.API
     /// <summary>
     /// Get the item possessed by this creature with the tag itemTag.
     /// </summary>
-    public NwItem FindItemWithTag(string itemTag)
+    public NwItem? FindItemWithTag(string itemTag)
     {
       return NWScript.GetItemPossessedBy(this, itemTag).ToNwObject<NwItem>();
     }
@@ -1450,7 +1445,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="associateType">The type of associate to locate.</param>
     /// <returns>The associated creature, otherwise null if this creature does not have an associate of the specified type.</returns>
-    public NwCreature GetAssociate(AssociateType associateType)
+    public NwCreature? GetAssociate(AssociateType associateType)
     {
       return GetAssociates(associateType).FirstOrDefault();
     }
@@ -1498,7 +1493,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="nwClass">The class with domains. Defaults to <see cref="ClassType.Cleric"/> if not specified.</param>
     /// <returns>An enumeration of this creature's domains.</returns>
-    public IEnumerable<Domain> GetClassDomains(NwClass nwClass = default)
+    public IEnumerable<Domain> GetClassDomains(NwClass? nwClass = default)
     {
       nwClass ??= NwClass.FromClassType(ClassType.Cleric);
 
@@ -1519,7 +1514,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="nwClass">The class type to query.</param>
     /// <returns>The <see cref="CreatureClassInfo"/> for the specified class, otherwise null if this creature does not have any levels in the class.</returns>
-    public CreatureClassInfo GetClassInfo(NwClass nwClass)
+    public CreatureClassInfo? GetClassInfo(NwClass? nwClass)
     {
       return Classes.FirstOrDefault(classInfo => classInfo.Class == nwClass);
     }
@@ -1584,7 +1579,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="slot">The inventory slot to check.</param>
     /// <returns>The item in the inventory slot, otherwise null if it is unpopulated.</returns>
-    public NwItem GetItemInSlot(InventorySlot slot)
+    public NwItem? GetItemInSlot(InventorySlot slot)
     {
       return NWScript.GetItemInSlot((int)slot, this).ToNwObject<NwItem>();
     }
@@ -1708,11 +1703,6 @@ namespace Anvil.API
     /// <returns></returns>
     public EquipmentSlots GetSlotFromItem(NwItem item)
     {
-      if (item == null)
-      {
-        return EquipmentSlots.None;
-      }
-
       return (EquipmentSlots)Creature.m_pInventory.GetSlotFromItem(item);
     }
 
@@ -1722,7 +1712,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="nwClass">The class to query for specialized spell schools. Defaults to <see cref="ClassType.Wizard"/> if not specified.</param>
     /// <returns>The creature's selected spell specialization.</returns>
-    public SpellSchool GetSpecialization(NwClass nwClass = default)
+    public SpellSchool GetSpecialization(NwClass? nwClass = default)
     {
       nwClass ??= NwClass.FromClassType(ClassType.Wizard);
       return (SpellSchool)NWScript.GetSpecialization(this, nwClass.Id);
@@ -1764,7 +1754,7 @@ namespace Anvil.API
       }
       else
       {
-        assignTarget = item.Area;
+        assignTarget = item.Area!;
       }
 
       if (assignTarget != this)
@@ -1914,7 +1904,7 @@ namespace Anvil.API
     /// <param name="immunityType">The immunity type to check.</param>
     /// <param name="verses">If specified, the race and alignment of verses will be considered when determining immunities.</param>
     /// <returns>True if the creature has the specified immunity, otherwise false.</returns>
-    public bool IsImmuneTo(ImmunityType immunityType, NwGameObject verses = null)
+    public bool IsImmuneTo(ImmunityType immunityType, NwGameObject? verses = null)
     {
       return NWScript.GetIsImmune(this, (int)immunityType, verses).ToBool();
     }
@@ -2137,7 +2127,7 @@ namespace Anvil.API
       return retVal;
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("BIC", (resGff, resStruct) =>
       {
@@ -2146,7 +2136,7 @@ namespace Anvil.API
       });
     }
 
-    public byte[] SerializeQuickbar()
+    public byte[]? SerializeQuickbar()
     {
       return NativeUtils.SerializeGff("GFF", (resGff, resStruct) =>
       {
@@ -2234,8 +2224,7 @@ namespace Anvil.API
 
       InternalSetQuickBarButton(index, data);
 
-      NwPlayer player = ControllingPlayer;
-
+      NwPlayer? player = ControllingPlayer;
       if (player != null)
       {
         CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
@@ -2335,7 +2324,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="dialogResRef">The dialog resource reference to use.</param>
     /// <param name="tokenTarget">The object to use if there are object-specific tokens in the string.</param>
-    public async Task SpeakOneLinerConversation(string dialogResRef = "", NwGameObject tokenTarget = null)
+    public async Task SpeakOneLinerConversation(string dialogResRef = "", NwGameObject? tokenTarget = null)
     {
       await WaitForObjectContext();
       NWScript.SpeakOneLinerConversation(dialogResRef, tokenTarget);
@@ -2443,7 +2432,7 @@ namespace Anvil.API
 
       for (i = 1, current = NWScript.GetAssociate(type, this, i); current != Invalid; i++, current = NWScript.GetAssociate(type, this, i))
       {
-        yield return current.ToNwObject<NwCreature>();
+        yield return current.ToNwObject<NwCreature>()!;
       }
     }
 

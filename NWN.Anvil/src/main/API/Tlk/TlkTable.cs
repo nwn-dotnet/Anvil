@@ -47,7 +47,7 @@ namespace Anvil.API
       };
     }
 
-    internal string GetCustomToken(StrTokenCustom customToken)
+    internal string? GetCustomToken(StrTokenCustom customToken)
     {
       int numTokens = (int)tlkTable.m_nTokensCustom;
 
@@ -64,7 +64,7 @@ namespace Anvil.API
       return retVal.ToString();
     }
 
-    internal string GetTlkOverride(StrRef strRef)
+    internal string? GetTlkOverride(StrRef strRef)
     {
       if (tlkTable.m_overrides.TryGetValue(strRef.Id, out CExoString retVal))
       {
@@ -74,7 +74,7 @@ namespace Anvil.API
       return null;
     }
 
-    internal string ResolveParsedStringFromStrRef(StrRef strRef)
+    internal string? ResolveParsedStringFromStrRef(StrRef strRef)
     {
       CExoString rawString = tlkTable.GetSimpleString(strRef.Id);
       if (rawString != null)
@@ -95,7 +95,7 @@ namespace Anvil.API
       tlkTable.SetCustomToken(customToken.TokenNumber, value.ToExoString());
     }
 
-    internal void SetTlkOverride(StrRef strRef, string value)
+    internal void SetTlkOverride(StrRef strRef, string? value)
     {
       tlkTable.SetOverride(strRef.Id, value.ToExoString());
     }

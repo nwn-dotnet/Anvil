@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -242,7 +241,7 @@ namespace Anvil.API
         {
           if (member.IsLoginPlayerCharacter(out NwPlayer? player))
           {
-            yield return player!;
+            yield return player;
           }
         }
       }
@@ -791,9 +790,13 @@ namespace Anvil.API
         return;
       }
 
-      CNWSCreature cCreature = creature.Creature;
+      NwArea? area = creature.Area;
+      if (area == null) // Already loading an area.
+      {
+        return;
+      }
 
-      NwArea area = creature.Area;
+      CNWSCreature cCreature = creature.Creature;
       Vector3 position = creature.Position;
 
       cCreature.m_oidDesiredArea = area.ObjectId;
@@ -969,7 +972,7 @@ namespace Anvil.API
     /// Gets the current name override for the specified player.
     /// </summary>
     /// <param name="observer">The specific observer.</param>
-    public PlayerNameOverride GetPlayerNameOverride(NwPlayer? observer = null)
+    public PlayerNameOverride? GetPlayerNameOverride(NwPlayer? observer = null)
     {
       return PlayerNameOverrideService.Value.GetPlayerNameOverride(this, observer);
     }
@@ -1039,7 +1042,7 @@ namespace Anvil.API
     /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
     [Obsolete("Use NuiWindowToken.GetUserData instead.")]
-    public T NuiGetUserData<T>(int uiToken)
+    public T? NuiGetUserData<T>(int uiToken)
     {
       return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(ControlledCreature, uiToken));
     }
@@ -1105,7 +1108,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="sound">The sound resref.</param>
     /// <param name="target">The target object for the sound to originate. Defaults to the location of the player.</param>
-    public void PlaySound(string sound, NwGameObject target = null)
+    public void PlaySound(string sound, NwGameObject? target = null)
     {
       if (target == null)
       {
@@ -1188,7 +1191,13 @@ namespace Anvil.API
     /// </summary>
     public async Task RestoreCameraFacing()
     {
-      await ControlledCreature.WaitForObjectContext();
+      NwCreature? creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      await creature.WaitForObjectContext();
       NWScript.RestoreCameraFacing();
     }
 
@@ -1220,24 +1229,30 @@ namespace Anvil.API
       NWScript.ActivatePortal(ControlledCreature, ipAddress, password, waypointTag, seamless.ToInt());
     }
 
-    public byte[] Serialize(bool stripPCFlags = false)
+    public byte[]? Serialize(bool stripPCFlags = false)
     {
-      if (!stripPCFlags)
+      NwCreature? creature = LoginCreature;
+      if (creature == null)
       {
-        return ControlledCreature.Serialize();
+        return null;
       }
 
-      ControlledCreature.Creature.m_bPlayerCharacter = (!ControlledCreature.Creature.m_bPlayerCharacter.ToBool()).ToInt();
-      ControlledCreature.Creature.m_pStats.m_bIsPC = (!ControlledCreature.Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
+      if (!stripPCFlags)
+      {
+        return creature.Serialize();
+      }
+
+      creature.Creature.m_bPlayerCharacter = (!creature.Creature.m_bPlayerCharacter.ToBool()).ToInt();
+      creature.Creature.m_pStats.m_bIsPC = (!creature.Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
 
       try
       {
-        return ControlledCreature.Serialize();
+        return creature.Serialize();
       }
       finally
       {
-        ControlledCreature.Creature.m_bPlayerCharacter = (!ControlledCreature.Creature.m_bPlayerCharacter.ToBool()).ToInt();
-        ControlledCreature.Creature.m_pStats.m_bIsPC = (!ControlledCreature.Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
+        creature.Creature.m_bPlayerCharacter = (!creature.Creature.m_bPlayerCharacter.ToBool()).ToInt();
+        creature.Creature.m_pStats.m_bIsPC = (!creature.Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
       }
     }
 
@@ -1258,8 +1273,8 @@ namespace Anvil.API
     /// <param name="newState">A byte array representing the tiles explored for the area, as returned by <see cref="GetAreaExplorationState"/>.</param>
     public unsafe void SetAreaExplorationState(NwArea area, byte[] newState)
     {
-      NwCreature creature = LoginCreature;
-      if (area == null || creature == null || newState == null)
+      NwCreature? creature = LoginCreature;
+      if (creature == null)
       {
         return;
       }
@@ -1291,7 +1306,13 @@ namespace Anvil.API
     /// <param name="transitionType">The transition to use for moving the camera.</param>
     public async Task SetCameraFacing(float direction, float pitch = -1.0f, float distance = -1.0f, CameraTransitionType transitionType = CameraTransitionType.Snap)
     {
-      await ControlledCreature.WaitForObjectContext();
+      NwCreature? creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      await creature.WaitForObjectContext();
       NWScript.SetCameraFacing(direction, distance, pitch, (int)transitionType);
     }
 
@@ -1407,7 +1428,13 @@ namespace Anvil.API
     /// </summary>
     public async Task StoreCameraFacing()
     {
-      await ControlledCreature.WaitForObjectContext();
+      NwCreature? creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      await creature.WaitForObjectContext();
       NWScript.StoreCameraFacing();
     }
 
@@ -1492,9 +1519,9 @@ namespace Anvil.API
       NWScript.Vibrate(ControlledCreature, (int)motor, strength, (float)duration.TotalSeconds);
     }
 
-    internal static NwPlayer FromPlayerId(uint playerId)
+    internal static NwPlayer? FromPlayerId(uint playerId)
     {
-      CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId, 0)?.AsNWSPlayer();
+      CNWSPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId, 0)?.AsNWSPlayer();
       return player != null ? new NwPlayer(player) : null;
     }
   }

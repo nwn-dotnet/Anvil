@@ -32,7 +32,7 @@ namespace Anvil.Services
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint objectSelf)
     {
-      if (scriptHandlers.TryGetValue(script, out ScriptCallback handler))
+      if (scriptHandlers.TryGetValue(script, out ScriptCallback? handler))
       {
         return handler.ProcessCallbacks(objectSelf);
       }
@@ -52,7 +52,7 @@ namespace Anvil.Services
         return;
       }
 
-      if (!scriptHandlers.TryGetValue(scriptName, out ScriptCallback callback))
+      if (!scriptHandlers.TryGetValue(scriptName, out ScriptCallback? callback))
       {
         callback = new ScriptCallback(scriptName);
         scriptHandlers.Add(scriptName, callback);

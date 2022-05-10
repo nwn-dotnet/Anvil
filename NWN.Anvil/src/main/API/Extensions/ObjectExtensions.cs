@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 
 namespace Anvil.API
@@ -9,7 +10,7 @@ namespace Anvil.API
     /// If this object is not a <see cref="NwCreature"/>, this returns false.<br/>
     /// If this creature is a NPC or familiar, regardless of possession, this will return false.
     /// </summary>
-    public static bool IsLoginPlayerCharacter(this NwObject? gameObject, out NwPlayer? player)
+    public static bool IsLoginPlayerCharacter(this NwObject? gameObject, [NotNullWhen(true)] out NwPlayer? player)
     {
       player = gameObject is NwCreature creature ? creature.LoginPlayer : null;
       return player != null;
@@ -22,7 +23,7 @@ namespace Anvil.API
     /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns false.<br/>
     /// If no player is controlling this creature, this returns false.
     /// </summary>
-    public static bool IsPlayerControlled(this NwObject? gameObject, out NwPlayer? player)
+    public static bool IsPlayerControlled(this NwObject? gameObject, [NotNullWhen(true)] out NwPlayer? player)
     {
       player = gameObject is NwCreature creature ? creature.ControllingPlayer : null;
       return player != null;

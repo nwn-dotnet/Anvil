@@ -79,7 +79,7 @@ namespace Anvil.API
     /// <param name="bind">The bind value to query.</param>
     /// <typeparam name="T">The value type of the bind.</typeparam>
     /// <returns>The current assigned value of the bind, otherwise the default value of T.</returns>
-    public T GetBindValue<T>(NuiBind<T> bind)
+    public T? GetBindValue<T>(NuiBind<T> bind)
     {
       return bind.GetBindValue(Player, Token);
     }
@@ -90,7 +90,7 @@ namespace Anvil.API
     /// <param name="bind">The bind value to query.</param>
     /// <typeparam name="T">The value type of the bind.</typeparam>
     /// <returns>The current assigned value of the bind, otherwise the default value of T.</returns>
-    public List<T> GetBindValues<T>(NuiBind<T> bind)
+    public List<T>? GetBindValues<T>(NuiBind<T> bind)
     {
       return bind.GetBindValues(Player, Token);
     }
@@ -105,7 +105,7 @@ namespace Anvil.API
     /// </summary>
     /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
-    public T GetUserData<T>()
+    public T? GetUserData<T>()
     {
       return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(Player.ControlledCreature, Token));
     }

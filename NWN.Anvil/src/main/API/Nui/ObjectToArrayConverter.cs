@@ -14,9 +14,9 @@ namespace Anvil.API
       return typeof(T) == objectType;
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
-      JsonObjectContract contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
+      JsonObjectContract? contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
       if (contract == null)
       {
         throw new JsonSerializationException($"invalid type {objectType.FullName}.");
@@ -38,7 +38,7 @@ namespace Anvil.API
       }
 
       // Not implemented: JsonObjectContract.CreatorParameters, serialization callbacks,
-      existingValue ??= contract.DefaultCreator();
+      existingValue ??= contract.DefaultCreator!();
 
       using IEnumerator<JsonProperty> enumerator = SerializableProperties(contract).GetEnumerator();
 
@@ -57,12 +57,12 @@ namespace Anvil.API
             }
 
             JsonProperty property = enumerator.Current;
-            object propertyValue;
+            object? propertyValue;
             // TODO:
             // https://www.newtonsoft.com/json/help/html/Properties_T_Newtonsoft_Json_Serialization_JsonProperty.htm
             // JsonProperty.ItemConverter, ItemIsReference, ItemReferenceLoopHandling, ItemTypeNameHandling, DefaultValue, DefaultValueHandling, ReferenceLoopHandling, Required, TypeNameHandling, ...
 
-            if (property?.PropertyType == null || property.ValueProvider == null)
+            if (property.PropertyType == null || property.ValueProvider == null)
             {
               continue;
             }
@@ -82,26 +82,28 @@ namespace Anvil.API
       }
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
-      Type objectType = value.GetType();
-      JsonObjectContract contract = serializer.ContractResolver.ResolveContract(objectType) as JsonObjectContract;
-      if (contract == null)
-      {
-        throw new JsonSerializationException($"invalid type {objectType.FullName}.");
-      }
-
       writer.WriteStartArray();
-      foreach (JsonProperty property in SerializableProperties(contract))
+      if (value != null)
       {
-        object propertyValue = property?.ValueProvider?.GetValue(value);
-        if (property?.Converter != null && property.Converter.CanWrite)
+        Type objectType = value.GetType();
+        if (serializer.ContractResolver.ResolveContract(objectType) is not JsonObjectContract contract)
         {
-          property.Converter.WriteJson(writer, propertyValue, serializer);
+          throw new JsonSerializationException($"invalid type {objectType.FullName}.");
         }
-        else
+
+        foreach (JsonProperty property in SerializableProperties(contract))
         {
-          serializer.Serialize(writer, propertyValue);
+          object? propertyValue = property?.ValueProvider?.GetValue(value);
+          if (property?.Converter != null && property.Converter.CanWrite)
+          {
+            property.Converter.WriteJson(writer, propertyValue, serializer);
+          }
+          else
+          {
+            serializer.Serialize(writer, propertyValue);
+          }
         }
       }
 

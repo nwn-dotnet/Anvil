@@ -7,7 +7,7 @@ namespace Anvil.API
   public sealed class VisualTransform
   {
     private readonly NwGameObject gameObject;
-    private VisualTransformLerpSettings activeLerpSettings;
+    private VisualTransformLerpSettings? activeLerpSettings;
 
     internal VisualTransform(NwGameObject gameObject)
     {
@@ -97,7 +97,7 @@ namespace Anvil.API
 
       try
       {
-        transforms?.Invoke(this);
+        transforms.Invoke(this);
       }
       finally
       {

@@ -4,7 +4,7 @@ namespace Anvil.API
 {
   public abstract class NuiDrawListItem
   {
-    protected NuiDrawListItem(NuiProperty<Color> color, NuiProperty<bool> fill, NuiProperty<float> lineThickness)
+    protected NuiDrawListItem(NuiProperty<Color>? color, NuiProperty<bool>? fill, NuiProperty<float>? lineThickness)
     {
       Color = color;
       Fill = fill;
@@ -12,16 +12,16 @@ namespace Anvil.API
     }
 
     [JsonProperty("color")]
-    public NuiProperty<Color> Color { get; set; }
+    public NuiProperty<Color>? Color { get; set; }
 
     [JsonProperty("enabled")]
     public NuiProperty<bool> Enabled { get; set; } = true;
 
     [JsonProperty("fill")]
-    public NuiProperty<bool> Fill { get; set; }
+    public NuiProperty<bool>? Fill { get; set; }
 
     [JsonProperty("line_thickness")]
-    public NuiProperty<float> LineThickness { get; set; }
+    public NuiProperty<float>? LineThickness { get; set; }
 
     [JsonProperty("type")]
     public abstract NuiDrawListItemType Type { get; }

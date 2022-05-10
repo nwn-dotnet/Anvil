@@ -18,10 +18,10 @@ namespace Anvil.API
     internal const uint Invalid = NWScript.OBJECT_INVALID;
 
     [Inject]
-    private protected static EventService EventService { get; private set; }
+    private protected static EventService EventService { get; private set; } = null!;
 
     [Inject]
-    private protected static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; private set; }
+    private protected static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; private set; } = null!;
 
     [Inject]
     private protected static ResourceManager ResourceManager { get; private set; }

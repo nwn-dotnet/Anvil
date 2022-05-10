@@ -41,7 +41,7 @@ namespace Anvil.API
       return member.DeclaringType != null ? $"{member.DeclaringType.FullName}.{member.Name}" : member.Name;
     }
 
-    public static T SafeGetCustomAttribute<T>(this MemberInfo memberInfo, bool inherit = true)
+    public static T? SafeGetCustomAttribute<T>(this MemberInfo memberInfo, bool inherit = true)
     {
       // GetCustomAttribute(Type) or GetCustomAttribute<T>() will throw an exception on types with missing assembly references, as they navigate into the type.
       return memberInfo.GetCustomAttributes(inherit).OfType<T>().FirstOrDefault();
@@ -61,7 +61,7 @@ namespace Anvil.API
 
     internal static int GetServicePriority(this Type type)
     {
-      ServiceBindingOptionsAttribute options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      ServiceBindingOptionsAttribute? options = type.GetCustomAttribute<ServiceBindingOptionsAttribute>();
 
       int bindingPriority = options?.Priority ?? (int)InternalBindingPriority.Default;
       bindingPriority = Math.Clamp(bindingPriority, (int)InternalBindingPriority.Highest, (int)InternalBindingPriority.Lowest);

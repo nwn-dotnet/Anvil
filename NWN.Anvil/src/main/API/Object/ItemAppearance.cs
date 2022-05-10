@@ -10,7 +10,7 @@ namespace Anvil.API
   public sealed class ItemAppearance
   {
     [Inject]
-    private static FeedbackService FeedbackService { get; set; }
+    private static FeedbackService FeedbackService { get; set; } = null!;
 
     private readonly NwItem item;
 
@@ -28,19 +28,19 @@ namespace Anvil.API
     /// <returns>The new item with the updated appearance.</returns>
     public NwItem ChangeAppearance(Action<ItemAppearance> changes)
     {
-      NwGameObject possessor = item.Possessor;
+      NwGameObject? possessor = item.Possessor;
       EquipmentSlots slot = EquipmentSlots.None;
-      Location location = possessor?.Location ?? item.Location;
+      Location location = possessor?.Location ?? item.Location!;
 
-      NwCreature creature = possessor as NwCreature;
-      possessor.IsPlayerControlled(out NwPlayer player);
+      NwCreature? creature = possessor as NwCreature;
+      possessor.IsPlayerControlled(out NwPlayer? player);
 
       if (creature is not null)
       {
         slot = creature.GetSlotFromItem(item);
       }
 
-      NwItem clone = item.Clone(location);
+      NwItem? clone = item.Clone(location);
       if (clone == null)
       {
         throw new InvalidOperationException("Failed to make item clone.");
