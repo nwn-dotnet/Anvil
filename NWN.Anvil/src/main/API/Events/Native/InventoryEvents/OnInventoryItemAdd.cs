@@ -8,19 +8,19 @@ namespace Anvil.API.Events
 {
   public sealed class OnInventoryItemAdd : IEvent
   {
-    public NwGameObject AcquiredBy { get; private init; }
+    public NwGameObject AcquiredBy { get; private init; } = null!;
 
-    public NwItem Item { get; private init; }
+    public NwItem Item { get; private init; } = null!;
 
     public bool PreventItemAdd { get; set; }
 
-    public Lazy<bool> Result { get; private set; }
+    public Lazy<bool> Result { get; private set; } = null!;
 
     NwObject? IEvent.Context => AcquiredBy;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<AddItemHook> Hook { get; set; }
+      private static FunctionHook<AddItemHook> Hook { get; set; } = null!;
 
       private delegate int AddItemHook(void* pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem);
 
@@ -35,7 +35,7 @@ namespace Anvil.API.Events
       private static int OnAddItem(void* pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem)
       {
         CItemRepository itemRepository = CItemRepository.FromPointer(pItemRepository);
-        NwGameObject parent = itemRepository.m_oidParent.ToNwObject<NwGameObject>();
+        NwGameObject? parent = itemRepository.m_oidParent.ToNwObject<NwGameObject>();
 
         // Early out if parent isn't an item or placeable or Bad Things(tm) happen
         if (parent is null || parent is not NwItem && parent is not NwPlaceable)
@@ -43,10 +43,15 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pItemRepository, ppItem, x, y, z, bAllowEncumbrance, bMergeItem);
         }
 
+        if (ppItem == null)
+        {
+          return Hook.CallOriginal(pItemRepository, ppItem, x, y, z, bAllowEncumbrance, bMergeItem);
+        }
+
         OnInventoryItemAdd eventData = new OnInventoryItemAdd
         {
           AcquiredBy = parent,
-          Item = ppItem == null ? null : CNWSItem.FromPointer(*ppItem).ToNwObject<NwItem>(),
+          Item = CNWSItem.FromPointer(*ppItem).ToNwObject<NwItem>()!,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventItemAdd && Hook.CallOriginal(pItemRepository, ppItem, x, y, z, bAllowEncumbrance, bMergeItem).ToBool());

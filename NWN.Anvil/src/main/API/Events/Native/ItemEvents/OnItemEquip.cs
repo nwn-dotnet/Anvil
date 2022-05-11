@@ -8,13 +8,13 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemEquip : IEvent
   {
-    public NwCreature EquippedBy { get; private init; }
+    public NwCreature EquippedBy { get; private init; } = null!;
 
-    public NwItem Item { get; private init; }
+    public NwItem Item { get; private init; } = null!;
 
     public bool PreventEquip { get; set; }
 
-    public Lazy<bool> Result { get; private set; }
+    public Lazy<bool> Result { get; private set; } = null!;
 
     public InventorySlot Slot { get; private init; }
 
@@ -22,7 +22,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<RunEquipHook> Hook { get; set; }
+      private static FunctionHook<RunEquipHook> Hook { get; set; } = null!;
 
       private delegate int RunEquipHook(void* pCreature, uint oidItemToEquip, uint nInventorySlot, uint oidFeedbackPlayer);
 
@@ -46,8 +46,8 @@ namespace Anvil.API.Events
 
         OnItemEquip eventData = new OnItemEquip
         {
-          EquippedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Item = oidItemToEquip.ToNwObject<NwItem>(),
+          EquippedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Item = oidItemToEquip.ToNwObject<NwItem>()!,
           Slot = (InventorySlot)slotId,
         };
 

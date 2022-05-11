@@ -8,14 +8,14 @@ namespace Anvil.API.Events
 {
   public sealed class OnInventoryItemRemove : IEvent
   {
-    public NwItem Item { get; private init; }
-    public NwGameObject RemovedFrom { get; private init; }
+    public NwItem Item { get; private init; } = null!;
+    public NwGameObject RemovedFrom { get; private init; } = null!;
 
-    NwObject? IEvent.Context => RemovedFrom;
+    NwObject IEvent.Context => RemovedFrom;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<RemoveItemHook> Hook { get; set; }
+      private static FunctionHook<RemoveItemHook> Hook { get; set; } = null!;
 
       private delegate int RemoveItemHook(void* pItemRepository, void* pItem);
 
@@ -30,7 +30,7 @@ namespace Anvil.API.Events
       private static int OnRemoveItem(void* pItemRepository, void* pItem)
       {
         CItemRepository itemRepository = CItemRepository.FromPointer(pItemRepository);
-        NwGameObject parent = itemRepository.m_oidParent.ToNwObject<NwGameObject>();
+        NwGameObject? parent = itemRepository.m_oidParent.ToNwObject<NwGameObject>();
 
         // Early out if parent isn't an item or placeable or Bad Things(tm) happen
         if (parent is null || parent is not NwItem && parent is not NwPlaceable)
@@ -41,7 +41,7 @@ namespace Anvil.API.Events
         ProcessEvent(new OnInventoryItemRemove
         {
           RemovedFrom = parent,
-          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
+          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
         });
 
         return Hook.CallOriginal(pItemRepository, pItem);

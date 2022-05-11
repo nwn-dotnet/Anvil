@@ -8,15 +8,15 @@ namespace Anvil.API.Events
 {
   public sealed class OnBarterStart : IEvent
   {
-    public NwPlayer Initiator { get; private init; }
+    public NwPlayer Initiator { get; private init; } = null!;
 
-    public NwPlayer Target { get; private init; }
+    public NwPlayer Target { get; private init; } = null!;
 
     NwObject? IEvent.Context => Initiator.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<StartBarterHook> Hook { get; set; }
+      private static FunctionHook<StartBarterHook> Hook { get; set; } = null!;
 
       private delegate void StartBarterHook(void* pMessage, void* pPlayer);
 
@@ -34,8 +34,8 @@ namespace Anvil.API.Events
 
         ProcessEvent(new OnBarterStart
         {
-          Initiator = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwPlayer(),
+          Initiator = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
+          Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwPlayer()!,
         });
 
         Hook.CallOriginal(pMessage, pPlayer);

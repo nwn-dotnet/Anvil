@@ -30,7 +30,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<HandleMapPinDestroyMapPinMessageHook> Hook { get; set; }
+      private static FunctionHook<HandleMapPinDestroyMapPinMessageHook> Hook { get; set; } = null!;
 
       private delegate int HandleMapPinDestroyMapPinMessageHook(void* pMessage, void* pPlayer);
 
@@ -57,7 +57,7 @@ namespace Anvil.API.Events
 
         OnMapPinDestroyPin eventData = ProcessEvent(new OnMapPinDestroyPin
         {
-          Player = player.ToNwPlayer(),
+          Player = player.ToNwPlayer()!,
           Id = id,
         });
 

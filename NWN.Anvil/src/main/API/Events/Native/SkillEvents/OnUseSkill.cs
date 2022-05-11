@@ -56,7 +56,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<UseSkillHook> Hook { get; set; }
+      private static FunctionHook<UseSkillHook> Hook { get; set; } = null!;
 
       private delegate int UseSkillHook(void* pCreature, byte nSkill, byte nSubSkill, uint oidTarget, Vector3 vTargetPosition, uint oidArea, uint oidUsedItem, int nActivePropertyIndex);
 
@@ -72,12 +72,12 @@ namespace Anvil.API.Events
       {
         OnUseSkill eventData = ProcessEvent(new OnUseSkill
         {
-          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
+          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Skill = NwSkill.FromSkillId(nSkill),
           SubSkill = (SubSkill)nSubSkill,
-          Target = oidTarget.ToNwObject<NwGameObject>(),
-          Area = oidArea.ToNwObject<NwArea>(),
-          UsedItem = oidUsedItem.ToNwObject<NwItem>(),
+          Target = oidTarget.ToNwObject<NwGameObject>()!,
+          Area = oidArea.ToNwObject<NwArea>()!,
+          UsedItem = oidUsedItem.ToNwObject<NwItem>()!,
           TargetPosition = vTargetPosition,
         });
 

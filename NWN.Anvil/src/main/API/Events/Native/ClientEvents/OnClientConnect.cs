@@ -21,7 +21,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the public CD Key of the connecting client.
     /// </summary>
-    public string CDKey { get; private init; }
+    public string CDKey { get; private init; } = null!;
 
     /// <summary>
     /// Gets the platform of the connecting client.
@@ -59,7 +59,7 @@ namespace Anvil.API.Events
     {
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
-      private static FunctionHook<SendServerToPlayerCharListHook> Hook { get; set; }
+      private static FunctionHook<SendServerToPlayerCharListHook> Hook { get; set; } = null!;
 
       internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
 

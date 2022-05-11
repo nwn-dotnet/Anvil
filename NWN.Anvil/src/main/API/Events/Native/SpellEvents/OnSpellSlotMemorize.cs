@@ -10,7 +10,7 @@ namespace Anvil.API.Events
   {
     public int ClassIndex { get; private init; }
 
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     public Domain Domain { get; private init; }
 
@@ -21,13 +21,13 @@ namespace Anvil.API.Events
 
     public int SlotIndex { get; private init; }
 
-    public NwSpell Spell { get; private init; }
+    public NwSpell Spell { get; private init; } = null!;
 
     NwObject? IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SetMemorizedSpellSlotHook> Hook { get; set; }
+      private static FunctionHook<SetMemorizedSpellSlotHook> Hook { get; set; } = null!;
 
       private delegate int SetMemorizedSpellSlotHook(void* pCreatureStats, byte nMultiClass, byte nSpellSlot,
         uint nSpellId, byte nDomainLevel, byte nMetaType, int bFromClient);
@@ -47,7 +47,7 @@ namespace Anvil.API.Events
 
         OnSpellSlotMemorize eventData = ProcessEvent(new OnSpellSlotMemorize
         {
-          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>(),
+          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
           ClassIndex = nMultiClass,
           SlotIndex = nSpellSlot,
           Spell = NwSpell.FromSpellId((int)nSpellId),

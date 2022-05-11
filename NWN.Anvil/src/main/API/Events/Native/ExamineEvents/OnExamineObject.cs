@@ -51,8 +51,8 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnExamineObject
         {
-          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidCreature.ToNwObject<NwCreature>(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
+          ExaminedObject = oidCreature.ToNwObject<NwCreature>()!,
         });
 
         creatureExamineHook.CallOriginal(pMessage, pPlayer, oidCreature);
@@ -63,8 +63,8 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnExamineObject
         {
-          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidDoor.ToNwObject<NwDoor>(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
+          ExaminedObject = oidDoor.ToNwObject<NwDoor>()!,
         });
 
         doorExamineHook.CallOriginal(pMessage, pPlayer, oidDoor);
@@ -75,8 +75,8 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnExamineObject
         {
-          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidItem.ToNwObject<NwItem>(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
+          ExaminedObject = oidItem.ToNwObject<NwItem>()!,
         });
 
         itemExamineHook.CallOriginal(pMessage, pPlayer, oidItem);
@@ -87,8 +87,8 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnExamineObject
         {
-          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
+          ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>()!,
         });
 
         placeableExamineHook.CallOriginal(pMessage, pPlayer, oidPlaceable);

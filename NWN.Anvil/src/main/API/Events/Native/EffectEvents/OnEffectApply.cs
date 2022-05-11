@@ -19,7 +19,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the object that the effect is being applied to.
     /// </summary>
-    public NwObject Object { get; private init; }
+    public NwObject Object { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets whether this effect should be prevented from being applied.
@@ -30,7 +30,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<EffectAppliedHook> Hook { get; set; }
+      private static FunctionHook<EffectAppliedHook> Hook { get; set; } = null!;
 
       private delegate int EffectAppliedHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
@@ -60,8 +60,8 @@ namespace Anvil.API.Events
 
         OnEffectApply eventData = ProcessEvent(new OnEffectApply
         {
-          Object = gameObject.ToNwObject(),
-          Effect = gameEffect.ToEffect(false),
+          Object = gameObject.ToNwObject()!,
+          Effect = gameEffect.ToEffect(false)!,
         });
 
         return eventData.PreventApply ? false.ToInt() : Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);

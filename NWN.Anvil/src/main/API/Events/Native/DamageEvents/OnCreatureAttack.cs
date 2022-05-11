@@ -8,7 +8,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnCreatureAttack : IEvent
   {
-    public NwCreature Attacker { get; private init; }
+    public NwCreature Attacker { get; private init; } = null!;
 
     public int AttackModifier { get; private init; }
 
@@ -24,7 +24,7 @@ namespace Anvil.API.Events
 
     public int AttackType { get; private init; }
 
-    public DamageData<short> DamageData { get; private init; }
+    public DamageData<short> DamageData { get; private init; } = null!;
 
     public bool IsAttackDeflected { get; private init; }
 
@@ -38,20 +38,20 @@ namespace Anvil.API.Events
 
     public SneakAttack SneakAttack { get; private init; }
 
-    public NwGameObject Target { get; private init; }
+    public NwGameObject Target { get; private init; } = null!;
 
     public int TotalDamage { get; private init; }
 
     public WeaponAttackType WeaponAttackType { get; private init; }
 
-    NwObject? IEvent.Context => Attacker;
+    NwObject IEvent.Context => Attacker;
 
-    private CNWSCombatAttackData CombatAttackData { get; init; }
+    private CNWSCombatAttackData CombatAttackData { get; init; } = null!;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook;
-      private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook;
+      private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook = null!;
+      private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook = null!;
 
       private delegate void SignalMeleeDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
@@ -70,9 +70,15 @@ namespace Anvil.API.Events
 
       private static OnCreatureAttack[] GetAttackEvents(void* pCreature, void* pTarget, int nAttacks)
       {
-        CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
-        NwGameObject target = CNWSObject.FromPointer(pTarget).ToNwObject<NwGameObject>();
-        NwCreature nwCreature = creature.ToNwObject<NwCreature>();
+        CNWSCreature? creature = CNWSCreature.FromPointer(pCreature);
+        NwGameObject? target = CNWSObject.FromPointer(pTarget).ToNwObject<NwGameObject>();
+
+        if (creature == null || target == null)
+        {
+          return Array.Empty<OnCreatureAttack>();
+        }
+
+        NwCreature nwCreature = creature.ToNwObject<NwCreature>()!;
 
         // m_nCurrentAttack points to the attack after this flurry.
         int attackNumberOffset = creature.m_pcCombatRound.m_nCurrentAttack - nAttacks;

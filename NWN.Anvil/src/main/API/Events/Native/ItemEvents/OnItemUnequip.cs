@@ -14,12 +14,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the creature who is uneqipping an item.
     /// </summary>
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
     /// Gets the item being unequipped.
     /// </summary>
-    public NwItem Item { get; private init; }
+    public NwItem Item { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets whether this item should be prevented from being unequipped.
@@ -30,7 +30,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<UnequipItemHook> Hook { get; set; }
+      private static FunctionHook<UnequipItemHook> Hook { get; set; } = null!;
 
       private delegate int UnequipItemHook(void* pCreature, uint oidItemToUnequip, uint oidTargetRepository, byte x, byte y, int bMergeIntoRepository, uint oidFeedbackPlayer);
 
@@ -46,8 +46,8 @@ namespace Anvil.API.Events
       {
         OnItemUnequip eventData = ProcessEvent(new OnItemUnequip
         {
-          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Item = oidItemToUnequip.ToNwObject<NwItem>(),
+          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Item = oidItemToUnequip.ToNwObject<NwItem>()!,
         });
 
         return !eventData.PreventUnequip ? Hook.CallOriginal(pCreature, oidItemToUnequip, oidTargetRepository, x, y, bMergeIntoRepository, oidFeedbackPlayer) : false.ToInt();

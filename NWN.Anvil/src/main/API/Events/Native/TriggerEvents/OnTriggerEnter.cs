@@ -14,7 +14,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the object that entered the trigger.
     /// </summary>
-    public NwGameObject EnteredObject { get; private init; }
+    public NwGameObject EnteredObject { get; private init; } = null!;
 
     /// <summary>
     /// Gets if the trigger is considered a trap.
@@ -34,13 +34,13 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the trigger that was entered.
     /// </summary>
-    public NwTrigger Trigger { get; private init; }
+    public NwTrigger Trigger { get; private init; } = null!;
 
     NwObject? IEvent.Context => Trigger;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<TriggerEventHandlerHook> Hook { get; set; }
+      private static FunctionHook<TriggerEventHandlerHook> Hook { get; set; } = null!;
 
       private delegate void TriggerEventHandlerHook(void* pTrigger, uint nEventId, uint nCallerObjectId, void* pScript, uint nCalendarDay, uint nTimeOfDay);
 
@@ -55,8 +55,8 @@ namespace Anvil.API.Events
       {
         OnTriggerEnter eventData = ProcessEvent(new OnTriggerEnter
         {
-          Trigger = trigger.ToNwObject<NwTrigger>(),
-          EnteredObject = scriptEvent.GetObjectID(0).ToNwObject<NwGameObject>(),
+          Trigger = trigger.ToNwObject<NwTrigger>()!,
+          EnteredObject = scriptEvent.GetObjectID(0).ToNwObject<NwGameObject>()!,
           IsTrap = trigger.m_bTrap.ToBool(),
           IsTrapForceSet = scriptEvent.GetInteger(0).ToBool(),
         });

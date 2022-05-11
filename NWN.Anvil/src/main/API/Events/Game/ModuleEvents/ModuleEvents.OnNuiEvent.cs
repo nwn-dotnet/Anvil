@@ -49,7 +49,7 @@ namespace Anvil.API.Events
       /// </summary>
       public int ArrayIndex { get; } = NWScript.NuiGetEventArrayIndex();
 
-      public NwObject Context => Player.ControlledCreature;
+      public NwObject? Context => Player.ControlledCreature;
 
       /// <summary>
       /// Gets the ID of the <see cref="NuiElement"/> that triggered the event.
@@ -82,7 +82,7 @@ namespace Anvil.API.Events
       /// </summary>
       /// <typeparam name="T"></typeparam>
       /// <returns>The payload data, or null if the event has no payload.</returns>
-      public T GetEventPayload<T>()
+      public T? GetEventPayload<T>()
       {
         return JsonUtility.FromJson<T>(eventPayload);
       }

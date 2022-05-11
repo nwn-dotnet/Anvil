@@ -10,7 +10,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellCast : IEvent
   {
-    public NwGameObject Caster { get; private init; }
+    public NwGameObject Caster { get; private init; } = null!;
 
     public int ClassIndex { get; private init; }
 
@@ -18,7 +18,7 @@ namespace Anvil.API.Events
 
     public bool IsInstantSpell { get; private init; }
 
-    public NwItem Item { get; private init; }
+    public NwItem Item { get; private init; } = null!;
 
     public MetaMagic MetaMagic { get; private init; }
 
@@ -26,19 +26,19 @@ namespace Anvil.API.Events
 
     public ProjectilePathType ProjectilePathType { get; private init; }
 
-    public NwSpell Spell { get; private init; }
+    public NwSpell Spell { get; private init; } = null!;
 
     public bool SpellCountered { get; private init; }
 
-    public NwGameObject TargetObject { get; private init; }
+    public NwGameObject TargetObject { get; private init; } = null!;
 
     public Vector3 TargetPosition { get; private init; }
 
-    NwObject? IEvent.Context => Caster;
+    NwObject IEvent.Context => Caster;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SpellCastAndImpactHook> Hook { get; set; }
+      private static FunctionHook<SpellCastAndImpactHook> Hook { get; set; } = null!;
 
       private delegate void SpellCastAndImpactHook(void* pObject, int nSpellId, Vector3 targetPosition, uint oidTarget,
         byte nMultiClass, uint itemObj, int bSpellCountered, int bCounteringSpell, byte projectilePathType, int bInstantSpell);
@@ -56,18 +56,17 @@ namespace Anvil.API.Events
       {
         CNWSObject gameObject = CNWSObject.FromPointer(pObject);
 
-        OnSpellCast eventData = null;
-
+        OnSpellCast eventData = null!;
         VirtualMachine.ExecuteInScriptContext(() =>
         {
           eventData = ProcessEvent(new OnSpellCast
           {
-            Caster = gameObject.ToNwObject<NwGameObject>(),
+            Caster = gameObject.ToNwObject<NwGameObject>()!,
             Spell = NwSpell.FromSpellId(nSpellId),
             TargetPosition = targetPosition,
-            TargetObject = oidTarget.ToNwObject<NwGameObject>(),
+            TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
             ClassIndex = nMultiClass,
-            Item = itemObj.ToNwObject<NwItem>(),
+            Item = itemObj.ToNwObject<NwItem>()!,
             SpellCountered = bSpellCountered.ToBool(),
             CounteringSpell = bCounteringSpell.ToBool(),
             ProjectilePathType = (ProjectilePathType)projectilePathType,

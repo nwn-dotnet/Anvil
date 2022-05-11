@@ -9,9 +9,9 @@ namespace Anvil.API.Events
 {
   public sealed class OnUseFeat : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
-    public NwFeat Feat { get; private init; }
+    public NwFeat Feat { get; private init; } = null!;
     public bool PreventFeatUse { get; set; }
 
     public int SubFeatId { get; private init; }
@@ -26,7 +26,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<CreatureUseFeatHook> Hook { get; set; }
+      private static FunctionHook<CreatureUseFeatHook> Hook { get; set; } = null!;
 
       private delegate int CreatureUseFeatHook(void* pCreature, ushort nFeat, ushort nSubFeat, uint oidTarget, uint oidArea, void* pTargetPos);
 
@@ -44,11 +44,11 @@ namespace Anvil.API.Events
 
         OnUseFeat eventData = ProcessEvent(new OnUseFeat
         {
-          Creature = creature.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>()!,
           Feat = NwFeat.FromFeatId(nFeat),
           SubFeatId = nSubFeat,
-          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
-          TargetArea = oidArea.ToNwObject<NwArea>(),
+          TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
+          TargetArea = oidArea.ToNwObject<NwArea>()!,
           TargetPosition = pTargetPos != null ? Marshal.PtrToStructure<Vector3>((IntPtr)pTargetPos) : Vector3.Zero,
         });
 

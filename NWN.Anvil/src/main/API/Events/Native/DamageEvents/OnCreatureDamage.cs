@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     internal unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<OnApplyDamageHook> Hook { get; set; }
+      private static FunctionHook<OnApplyDamageHook> Hook { get; set; } = null!;
 
       private delegate int OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
@@ -47,8 +47,8 @@ namespace Anvil.API.Events
         {
           ProcessEvent(new OnCreatureDamage
           {
-            DamagedBy = effect.m_oidCreator.ToNwObject<NwObject>(),
-            Target = gameObject.ToNwObject<NwGameObject>(),
+            DamagedBy = effect.m_oidCreator.ToNwObject<NwObject>()!,
+            Target = gameObject.ToNwObject<NwGameObject>()!,
             DamageData = new DamageData<int>(effect.m_nParamInteger),
           });
         }

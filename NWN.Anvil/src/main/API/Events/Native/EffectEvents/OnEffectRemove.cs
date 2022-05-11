@@ -19,7 +19,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the object that the effect was removed from.
     /// </summary>
-    public NwObject Object { get; private init; }
+    public NwObject Object { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets whether this effect should be prevented from being removed.
@@ -30,7 +30,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<EffectRemovedHook> Hook { get; set; }
+      private static FunctionHook<EffectRemovedHook> Hook { get; set; } = null!;
 
       private delegate int EffectRemovedHook(void* pEffectListHandler, void* pObject, void* pEffect);
 
@@ -60,8 +60,8 @@ namespace Anvil.API.Events
 
         OnEffectRemove eventData = ProcessEvent(new OnEffectRemove
         {
-          Object = gameObject.ToNwObject(),
-          Effect = gameEffect.ToEffect(false),
+          Object = gameObject.ToNwObject()!,
+          Effect = gameEffect.ToEffect(false)!,
         });
 
         return eventData.PreventRemove ? false.ToInt() : Hook.CallOriginal(pEffectListHandler, pObject, pEffect);

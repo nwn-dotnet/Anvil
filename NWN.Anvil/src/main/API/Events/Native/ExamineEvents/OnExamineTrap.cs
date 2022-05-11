@@ -18,7 +18,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<TrapExamineHook> Hook { get; set; }
+      private static FunctionHook<TrapExamineHook> Hook { get; set; } = null!;
 
       private delegate void TrapExamineHook(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess);
 
@@ -34,8 +34,8 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnExamineTrap
         {
-          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          ExaminedObject = oidTrap.ToNwObject<NwGameObject>(),
+          ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
+          ExaminedObject = oidTrap.ToNwObject<NwGameObject>()!,
           Success = bSuccess.ToBool(),
         });
 

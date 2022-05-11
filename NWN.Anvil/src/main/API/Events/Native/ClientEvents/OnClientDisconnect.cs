@@ -15,13 +15,13 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the player that disconnected.
     /// </summary>
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     NwObject? IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<RemovePCFromWorldHook> Hook { get; set; }
+      private static FunctionHook<RemovePCFromWorldHook> Hook { get; set; } = null!;
 
       private delegate void RemovePCFromWorldHook(void* pServerExoAppInternal, void* pPlayer);
 
@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnClientDisconnect
         {
-          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
         });
 
         Hook.CallOriginal(pServerExoAppInternal, pPlayer);

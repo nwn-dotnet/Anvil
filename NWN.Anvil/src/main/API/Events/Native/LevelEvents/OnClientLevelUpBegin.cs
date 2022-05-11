@@ -8,17 +8,17 @@ namespace Anvil.API.Events
 {
   public sealed class OnClientLevelUpBegin : IEvent
   {
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     public bool PreventLevelUp { get; set; }
 
-    public Lazy<bool> Result { get; private set; }
+    public Lazy<bool> Result { get; private set; } = null!;
 
     NwObject? IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<HandlePlayerToServerLevelUpMessageHook> Hook { get; set; }
+      private static FunctionHook<HandlePlayerToServerLevelUpMessageHook> Hook { get; set; } = null!;
 
       private delegate int HandlePlayerToServerLevelUpMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
@@ -39,7 +39,7 @@ namespace Anvil.API.Events
 
         OnClientLevelUpBegin eventData = new OnClientLevelUpBegin
         {
-          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventLevelUp && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());

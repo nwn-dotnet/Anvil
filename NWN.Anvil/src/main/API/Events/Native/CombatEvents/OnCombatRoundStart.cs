@@ -8,15 +8,15 @@ namespace Anvil.API.Events
 {
   public sealed class OnCombatRoundStart : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
-    public NwGameObject Target { get; private init; }
+    public NwGameObject Target { get; private init; } = null!;
 
     NwObject? IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<StartCombatRoundHook> Hook { get; set; }
+      private static FunctionHook<StartCombatRoundHook> Hook { get; set; } = null!;
 
       private delegate void StartCombatRoundHook(void* pCombatRound, uint oidTarget);
 
@@ -34,8 +34,8 @@ namespace Anvil.API.Events
 
         ProcessEvent(new OnCombatRoundStart
         {
-          Creature = combatRound.m_pBaseCreature.ToNwObject<NwCreature>(),
-          Target = oidTarget.ToNwObject<NwGameObject>(),
+          Creature = combatRound.m_pBaseCreature.ToNwObject<NwCreature>()!,
+          Target = oidTarget.ToNwObject<NwGameObject>()!,
         });
 
         Hook.CallOriginal(pCombatRound, oidTarget);

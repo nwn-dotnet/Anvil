@@ -8,20 +8,20 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellBroadcast : IEvent
   {
-    public NwCreature Caster { get; private init; }
+    public NwCreature Caster { get; private init; } = null!;
 
     public int ClassIndex { get; private init; }
 
-    public NwFeat Feat { get; private init; }
+    public NwFeat Feat { get; private init; } = null!;
     public bool PreventSpellCast { get; set; }
 
-    public NwSpell Spell { get; private init; }
+    public NwSpell Spell { get; private init; } = null!;
 
     NwObject? IEvent.Context => Caster;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<BroadcastSpellCastHook> Hook { get; set; }
+      private static FunctionHook<BroadcastSpellCastHook> Hook { get; set; } = null!;
 
       private delegate void BroadcastSpellCastHook(void* pCreature, uint nSpellId, byte nMultiClass, ushort nFeat);
 
@@ -39,7 +39,7 @@ namespace Anvil.API.Events
 
         OnSpellBroadcast eventData = ProcessEvent(new OnSpellBroadcast
         {
-          Caster = creature.ToNwObject<NwCreature>(),
+          Caster = creature.ToNwObject<NwCreature>()!,
           Spell = NwSpell.FromSpellId((int)nSpellId),
           ClassIndex = nMultiClass,
           Feat = NwFeat.FromFeatId(nFeat),

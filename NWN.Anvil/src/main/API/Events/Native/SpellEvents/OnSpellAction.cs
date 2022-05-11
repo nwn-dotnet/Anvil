@@ -9,7 +9,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellAction : IEvent
   {
-    public NwCreature Caster { get; private init; }
+    public NwCreature Caster { get; private init; } = null!;
 
     public int CasterLevel { get; private init; }
 
@@ -44,7 +44,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<AddCastSpellActionsHook> Hook { get; set; }
+      private static FunctionHook<AddCastSpellActionsHook> Hook { get; set; } = null!;
 
       private delegate int AddCastSpellActionsHook(void* pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
         int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,
@@ -66,14 +66,14 @@ namespace Anvil.API.Events
 
         OnSpellAction eventData = new OnSpellAction
         {
-          Caster = creature.ToNwObject<NwCreature>(),
+          Caster = creature.ToNwObject<NwCreature>()!,
           Spell = NwSpell.FromSpellId((int)nSpellId),
           ClassIndex = nMultiClass,
           Domain = (Domain)nDomainLevel,
           MetaMagic = (MetaMagic)nMetaType,
           IsSpontaneous = bSpontaneousCast.ToBool(),
           TargetPosition = vTargetLocation,
-          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
+          TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
           IsAreaTarget = bAreaTarget.ToBool(),
           IsFake = bFake.ToBool(),
           ProjectilePath = (ProjectilePathType)nProjectilePathType,

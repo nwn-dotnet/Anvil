@@ -15,7 +15,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<PossessFamiliarHook> Hook { get; set; }
+      private static FunctionHook<PossessFamiliarHook> Hook { get; set; } = null!;
 
       private delegate void PossessFamiliarHook(void* pCreature);
 
@@ -33,8 +33,8 @@ namespace Anvil.API.Events
 
         ProcessEvent(new OnFamiliarPossess
         {
-          Owner = creature.ToNwObject<NwCreature>(),
-          Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>(),
+          Owner = creature.ToNwObject<NwCreature>()!,
+          Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>()!,
         });
 
         Hook.CallOriginal(pCreature);

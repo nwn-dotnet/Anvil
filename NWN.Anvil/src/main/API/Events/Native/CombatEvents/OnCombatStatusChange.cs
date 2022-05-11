@@ -12,13 +12,13 @@ namespace Anvil.API.Events
 
     public CombatStatus CombatStatus { get; private init; }
 
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     NwObject? IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> Hook { get; set; }
+      private static FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> Hook { get; set; } = null!;
 
       private delegate int SendServerToPlayerAmbientBattleMusicPlayHook(void* pMessage, uint nPlayer, int bPlay);
 
@@ -32,7 +32,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerAmbientBattleMusicPlay(void* pMessage, uint nPlayer, int bPlay)
       {
-        NwPlayer player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).AsNWSPlayer().ToNwPlayer();
+        NwPlayer? player = ServerExoApp.GetClientObjectByPlayerId(nPlayer).AsNWSPlayer().ToNwPlayer();
         if (player != null)
         {
           ProcessEvent(new OnCombatStatusChange

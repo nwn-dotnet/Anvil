@@ -15,12 +15,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the note that was set on the map pin.
     /// </summary>
-    public string Note { get; private init; }
+    public string Note { get; private init; } = null!;
 
     /// <summary>
     /// Gets the player that placed the pin.
     /// </summary>
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     /// <summary>
     /// Gets the position that the pin was placed at.
@@ -36,7 +36,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<HandleMapPinSetMapPinAtMessageHook> Hook { get; set; }
+      private static FunctionHook<HandleMapPinSetMapPinAtMessageHook> Hook { get; set; } = null!;
 
       private delegate int HandleMapPinSetMapPinAtMessageHook(void* pMessage, void* pPlayer);
 
@@ -72,7 +72,7 @@ namespace Anvil.API.Events
 
         OnMapPinAddPin eventData = ProcessEvent(new OnMapPinAddPin
         {
-          Player = player.ToNwPlayer(),
+          Player = player.ToNwPlayer()!,
           Position = new Vector3(x, y, z),
           Note = note,
         });

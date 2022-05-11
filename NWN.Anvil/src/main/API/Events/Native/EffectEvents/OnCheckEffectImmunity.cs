@@ -20,18 +20,18 @@ namespace Anvil.API.Events
     /// <summary>
     /// The creature that the effect is being applied to.
     /// </summary>
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
     /// The type of immunity being checked.
     /// </summary>
     public ImmunityType ImmunityType { get; private init; }
 
-    NwObject? IEvent.Context => Creature;
+    NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<GetEffectImmunityHook> Hook { get; set; }
+      private static FunctionHook<GetEffectImmunityHook> Hook { get; set; } = null!;
 
       private delegate int GetEffectImmunityHook(void* pStats, byte nType, void* pVerses, int bConsiderFeats);
 
@@ -53,7 +53,7 @@ namespace Anvil.API.Events
 
         OnCheckEffectImmunity eventData = ProcessEvent(new OnCheckEffectImmunity
         {
-          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>(),
+          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
           ImmunityType = (ImmunityType)nType,
         });
 

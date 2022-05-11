@@ -61,7 +61,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwSkill SkillSelection => NwSkill.FromSkillId(integerEventData);
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject? IEvent.Context => Player.ControlledCreature;
     }
   }
 }

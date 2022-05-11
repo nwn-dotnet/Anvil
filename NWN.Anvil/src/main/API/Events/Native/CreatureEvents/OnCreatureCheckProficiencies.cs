@@ -14,12 +14,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// The creature whose proficiencies are being checked for the item to be equipped.
     /// </summary>
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
     /// The item attempting to be equipped.
     /// </summary>
-    public NwItem Item { get; private init; }
+    public NwItem Item { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets an override result to use for this proficiency check.
@@ -35,7 +35,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<CheckProficienciesHook> Hook { get; set; }
+      private static FunctionHook<CheckProficienciesHook> Hook { get; set; } = null!;
 
       private delegate int CheckProficienciesHook(void* pCreature, void* pItem, uint nEquipToSlot);
 
@@ -49,8 +49,8 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnCheckProficiencies(void* pCreature, void* pItem, uint nEquipToSlot)
       {
-        NwCreature creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>();
-        NwItem item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>();
+        NwCreature? creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>();
+        NwItem? item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>();
 
         if (creature == null || item == null)
         {

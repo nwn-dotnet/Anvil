@@ -8,18 +8,18 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemValidateEquip : IEvent
   {
-    public NwItem Item { get; private init; }
+    public NwItem Item { get; private init; } = null!;
 
     public EquipValidationResult Result { get; set; }
 
     public InventorySlot Slot { get; private init; }
-    public NwCreature UsedBy { get; private init; }
+    public NwCreature UsedBy { get; private init; } = null!;
 
-    NwObject? IEvent.Context => UsedBy;
+    NwObject IEvent.Context => UsedBy;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<CanEquipItemHook> Hook { get; set; }
+      private static FunctionHook<CanEquipItemHook> Hook { get; set; } = null!;
 
       private delegate int CanEquipItemHook(void* pCreature, void* pItem, uint* pEquipToSLot, int bEquipping, int bLoading, int bDisplayFeedback, void* pFeedbackPlayer);
 
@@ -35,8 +35,8 @@ namespace Anvil.API.Events
       {
         OnItemValidateEquip eventData = ProcessEvent(new OnItemValidateEquip
         {
-          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
+          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
           Slot = (InventorySlot)Math.Round(Math.Log2(*pEquipToSLot)),
           Result = (EquipValidationResult)Hook.CallOriginal(pCreature, pItem, pEquipToSLot, bEquipping, bLoading, bDisplayFeedback, pFeedbackPlayer),
         });

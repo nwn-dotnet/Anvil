@@ -16,7 +16,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the player that is being saved.
     /// </summary>
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets a value indicating whether the character should be prevented from being saved.
@@ -27,7 +27,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SaveServerCharacterHook> Hook { get; set; }
+      private static FunctionHook<SaveServerCharacterHook> Hook { get; set; } = null!;
 
       private delegate int SaveServerCharacterHook(void* pPlayer, int bBackupPlayer);
 
@@ -43,7 +43,7 @@ namespace Anvil.API.Events
       {
         OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave
         {
-          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
         });
 
         return !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;

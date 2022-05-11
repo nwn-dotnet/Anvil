@@ -9,7 +9,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemUse : IEvent
   {
-    public NwItem Item { get; private init; }
+    public NwItem Item { get; private init; } = null!;
 
     public int ItemPropertyIndex { get; private init; }
 
@@ -19,20 +19,20 @@ namespace Anvil.API.Events
 
     public bool SuppressCannotUseFeedback { get; set; }
 
-    public NwArea TargetArea { get; private init; }
+    public NwArea TargetArea { get; private init; } = null!;
 
-    public NwGameObject TargetObject { get; private init; }
+    public NwGameObject TargetObject { get; private init; } = null!;
 
     public Vector3 TargetPosition { get; private init; }
 
     public bool UseCharges { get; set; }
-    public NwCreature UsedBy { get; private init; }
+    public NwCreature UsedBy { get; private init; } = null!;
 
-    NwObject? IEvent.Context => UsedBy;
+    NwObject IEvent.Context => UsedBy;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<UseItemHook> Hook { get; set; }
+      private static FunctionHook<UseItemHook> Hook { get; set; } = null!;
 
       private delegate int UseItemHook(void* pCreature, uint oidItem, byte nActivePropertyIndex, byte nSubPropertyIndex, uint oidTarget, Vector3 vTargetPosition, uint oidArea, int bUseCharges);
 
@@ -48,13 +48,13 @@ namespace Anvil.API.Events
       {
         OnItemUse eventData = ProcessEvent(new OnItemUse
         {
-          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Item = oidItem.ToNwObject<NwItem>(),
-          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
+          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Item = oidItem.ToNwObject<NwItem>()!,
+          TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
           ItemPropertyIndex = nActivePropertyIndex,
           ItemSubPropertyIndex = nSubPropertyIndex,
           TargetPosition = vTargetPosition,
-          TargetArea = oidArea.ToNwObject<NwArea>(),
+          TargetArea = oidArea.ToNwObject<NwArea>()!,
           UseCharges = bUseCharges.ToBool(),
         });
 

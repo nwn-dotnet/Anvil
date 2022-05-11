@@ -14,7 +14,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<LevelDownHook> Hook { get; set; }
+      private static FunctionHook<LevelDownHook> Hook { get; set; } = null!;
 
       private delegate void LevelDownHook(void* pCreatureStats, void* pLevelUpStats);
 
@@ -32,7 +32,7 @@ namespace Anvil.API.Events
 
         ProcessEvent(new OnLevelDown
         {
-          Creature = CNWSCreatureStats.FromPointer(pCreatureStats)?.m_pBaseCreature.ToNwObject<NwCreature>(),
+          Creature = CNWSCreatureStats.FromPointer(pCreatureStats).m_pBaseCreature.ToNwObject<NwCreature>()!,
         });
       }
     }

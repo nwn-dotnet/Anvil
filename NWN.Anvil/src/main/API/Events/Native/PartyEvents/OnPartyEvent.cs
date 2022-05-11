@@ -10,18 +10,18 @@ namespace Anvil.API.Events
   {
     public PartyEventType EventType { get; private init; }
 
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
     public bool PreventEvent { get; set; }
 
-    public Lazy<bool> Result { get; private set; }
+    public Lazy<bool> Result { get; private set; } = null!;
 
-    public NwCreature Target { get; private init; }
+    public NwCreature Target { get; private init; } = null!;
 
     NwObject? IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<HandlePartyMessageHook> Hook { get; set; }
+      private static FunctionHook<HandlePartyMessageHook> Hook { get; set; } = null!;
 
       private delegate int HandlePartyMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
@@ -48,8 +48,8 @@ namespace Anvil.API.Events
         OnPartyEvent eventData = new OnPartyEvent
         {
           EventType = eventType,
-          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
-          Target = oidTarget.ToNwObject<NwCreature>(),
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
+          Target = oidTarget.ToNwObject<NwCreature>()!,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventEvent && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());

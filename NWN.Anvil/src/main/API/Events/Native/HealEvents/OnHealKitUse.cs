@@ -50,7 +50,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<AIActionHealHook> Hook { get; set; }
+      private static FunctionHook<AIActionHealHook> Hook { get; set; } = null!;
 
       private delegate uint AIActionHealHook(void* pCreature, void* pNode);
 
@@ -68,9 +68,9 @@ namespace Anvil.API.Events
 
         OnHealKitUse eventData = new OnHealKitUse
         {
-          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Target = ((uint)actionNode.m_pParameter[0].AsULong()).ToNwObject<NwGameObject>(),
-          ItemUsed = ((uint)actionNode.m_pParameter[1].AsULong()).ToNwObject<NwItem>(),
+          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Target = ((uint)actionNode.m_pParameter[0].AsULong()).ToNwObject<NwGameObject>()!,
+          ItemUsed = ((uint)actionNode.m_pParameter[1].AsULong()).ToNwObject<NwItem>()!,
           ItemPropertyIndex = (int)actionNode.m_pParameter[2],
           MoveToTarget = ((int)actionNode.m_pParameter[2]).ToBool(),
         };
