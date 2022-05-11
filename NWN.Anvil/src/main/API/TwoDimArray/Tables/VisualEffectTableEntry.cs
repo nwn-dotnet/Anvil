@@ -2,45 +2,46 @@ namespace Anvil.API
 {
   public sealed class VisualEffectTableEntry : ITwoDimArrayEntry
   {
-    public string CesHeadConNode { get; private set; }
+    public string? CesHeadConNode { get; private set; }
 
-    public string CesImpactNode { get; private set; }
+    public string? CesImpactNode { get; private set; }
 
-    public string CesRootHugeNode { get; private set; }
+    public string? CesRootHugeNode { get; private set; }
 
-    public string CesRootLargeNode { get; private set; }
+    public string? CesRootLargeNode { get; private set; }
 
-    public string CesRootMediumNode { get; private set; }
+    public string? CesRootMediumNode { get; private set; }
 
-    public string CesRootSmallNode { get; private set; }
+    public string? CesRootSmallNode { get; private set; }
 
-    public string ImpHeadConNode { get; private set; }
+    public string? ImpHeadConNode { get; private set; }
 
-    public string ImpImpactNode { get; private set; }
+    public string? ImpImpactNode { get; private set; }
 
-    public string ImpRootHugeNode { get; private set; }
+    public string? ImpRootHugeNode { get; private set; }
 
-    public string ImpRootLargeNode { get; private set; }
+    public string? ImpRootLargeNode { get; private set; }
 
-    public string ImpRootMediumNode { get; private set; }
+    public string? ImpRootMediumNode { get; private set; }
 
-    public string ImpRootSmallNode { get; private set; }
+    public string? ImpRootSmallNode { get; private set; }
 
-    public string Label { get; private set; }
+    public string? Label { get; private set; }
 
-    public string LowQualityVariant { get; private set; }
+    public string? LowQualityVariant { get; private set; }
 
-    public string LowViolenceVariant { get; private set; }
+    public string? LowViolenceVariant { get; private set; }
 
     public bool? OrientWithGround { get; private set; }
 
     public bool? OrientWithObject { get; private set; }
 
-    public ProgrammedEffectTableEntry ProgFxCessastion { get; private set; }
+    public ProgrammedEffectTableEntry? ProgFxCessastion { get; private set; }
 
-    public ProgrammedEffectTableEntry ProgFxDuration { get; private set; }
+    public ProgrammedEffectTableEntry? ProgFxDuration { get; private set; }
 
-    public ProgrammedEffectTableEntry ProgFxImpact { get; private set; }
+    public ProgrammedEffectTableEntry? ProgFxImpact { get; private set; }
+
     public int RowIndex { get; init; }
 
     public float? ShakeDelay { get; private set; }
@@ -49,13 +50,13 @@ namespace Anvil.API
 
     public ShakeType? ShakeType { get; private set; }
 
-    public string SoundCessastion { get; private set; }
+    public string? SoundCessastion { get; private set; }
 
-    public string SoundDuration { get; private set; }
+    public string? SoundDuration { get; private set; }
 
-    public string SoundImpact { get; private set; }
+    public string? SoundImpact { get; private set; }
 
-    public string TypeFd { get; private set; }
+    public string? TypeFd { get; private set; }
 
     void ITwoDimArrayEntry.InterpretEntry(TwoDimArrayEntry entry)
     {

@@ -50,7 +50,7 @@ namespace Anvil.API.Events
           Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
           ClassIndex = nMultiClass,
           SlotIndex = nSpellSlot,
-          Spell = NwSpell.FromSpellId((int)nSpellId),
+          Spell = NwSpell.FromSpellId((int)nSpellId)!,
           Domain = (Domain)nDomainLevel,
           MetaMagic = (MetaMagic)nMetaType,
           FromClient = bFromClient.ToBool(),

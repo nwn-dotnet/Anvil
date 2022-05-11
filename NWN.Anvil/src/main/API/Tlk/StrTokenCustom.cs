@@ -5,7 +5,7 @@ namespace Anvil.API
   public readonly struct StrTokenCustom
   {
     [Inject]
-    private static TlkTable TlkTable { get; set; }
+    private static TlkTable TlkTable { get; set; } = null!;
 
     public readonly int TokenNumber;
 
@@ -23,7 +23,7 @@ namespace Anvil.API
     /// To avoid this, set your custom tokens right before your conversations (do not create new tokens within a conversation, create them all at the beginning of the conversation).<br/>
     /// To use a custom token, place &lt;CUSTOMxxxx&gt; somewhere in your conversation, where xxxx is the value supplied for nCustomTokenNumber. &lt;CUSTOM100&gt; for example.
     /// </remarks>
-    public string Value
+    public string? Value
     {
       get => TlkTable.GetCustomToken(this);
       set => TlkTable.SetCustomToken(this, value);

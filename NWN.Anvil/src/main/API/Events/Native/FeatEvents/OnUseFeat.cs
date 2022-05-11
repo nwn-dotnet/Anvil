@@ -45,7 +45,7 @@ namespace Anvil.API.Events
         OnUseFeat eventData = ProcessEvent(new OnUseFeat
         {
           Creature = creature.ToNwObject<NwCreature>()!,
-          Feat = NwFeat.FromFeatId(nFeat),
+          Feat = NwFeat.FromFeatId(nFeat)!,
           SubFeatId = nSubFeat,
           TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
           TargetArea = oidArea.ToNwObject<NwArea>()!,

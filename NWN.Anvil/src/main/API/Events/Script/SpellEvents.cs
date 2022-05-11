@@ -9,7 +9,7 @@ namespace Anvil.API.Events
       public OnSpellCast()
       {
         Caster = NWScript.OBJECT_SELF.ToNwObject<NwGameObject>();
-        Spell = NwSpell.FromSpellId(NWScript.GetSpellId());
+        Spell = NwSpell.FromSpellId(NWScript.GetSpellId())!;
         Harmful = NWScript.GetLastSpellHarmful().ToBool();
         TargetObject = NWScript.GetSpellTargetObject().ToNwObject<NwGameObject>();
         TargetLocation = NWScript.GetSpellTargetLocation();
@@ -52,7 +52,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the class that the caster cast the spell as.
       /// </summary>
-      public NwClass SpellCastClass { get; }
+      public NwClass? SpellCastClass { get; }
 
       /// <summary>
       /// Gets the targeted location of this spell.

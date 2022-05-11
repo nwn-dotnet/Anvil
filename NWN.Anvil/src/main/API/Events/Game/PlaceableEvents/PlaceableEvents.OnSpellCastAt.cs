@@ -33,7 +33,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="Spell"/> that was cast.
       /// </summary>
-      public NwSpell Spell { get; } = NwSpell.FromSpellId(NWScript.GetLastSpell());
+      public NwSpell Spell { get; } = NwSpell.FromSpellId(NWScript.GetLastSpell())!;
 
       NwObject? IEvent.Context => Placeable;
 

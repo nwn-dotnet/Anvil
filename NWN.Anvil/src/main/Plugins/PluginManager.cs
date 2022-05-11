@@ -24,9 +24,9 @@ namespace Anvil.Plugins
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
     private readonly List<Plugin> plugins = new List<Plugin>();
 
-    internal IReadOnlyCollection<Type> LoadedTypes { get; private set; }
+    internal IReadOnlyCollection<Type>? LoadedTypes { get; private set; }
 
-    internal IReadOnlyCollection<string> ResourcePaths { get; private set; }
+    internal IReadOnlyCollection<string>? ResourcePaths { get; private set; }
 
     /// <summary>
     /// Gets the install directory of the specified plugin.
@@ -34,7 +34,7 @@ namespace Anvil.Plugins
     /// <param name="pluginAssembly">The assembly of the plugin, e.g. typeof(MyService).Assembly</param>
     /// <returns>The install directory for the specified plugin.</returns>
     /// <exception cref="ArgumentException">Thrown if the specified assembly is not a plugin.</exception>
-    public string GetPluginDirectory(Assembly pluginAssembly)
+    public string? GetPluginDirectory(Assembly pluginAssembly)
     {
       if (IsPluginAssembly(pluginAssembly))
       {
@@ -59,9 +59,9 @@ namespace Anvil.Plugins
       return plugins.Any(plugin => plugin.Name.Name == pluginName);
     }
 
-    public Assembly ResolveDependency(string pluginName, AssemblyName dependencyName)
+    public Assembly? ResolveDependency(string pluginName, AssemblyName dependencyName)
     {
-      Assembly assembly = ResolveDependencyFromAnvil(pluginName, dependencyName);
+      Assembly? assembly = ResolveDependencyFromAnvil(pluginName, dependencyName);
       if (assembly == null)
       {
         assembly = ResolveDependencyFromPlugins(pluginName, dependencyName);
@@ -97,7 +97,7 @@ namespace Anvil.Plugins
       foreach (Plugin plugin in plugins)
       {
         Log.Info("Unloading DotNET plugin {PluginName} - {PluginPath}", plugin.Name.Name, plugin.Path);
-        pendingUnloads.Add(plugin.Unload(), plugin.Name.Name);
+        pendingUnloads.Add(plugin.Unload(), plugin.Name.Name!);
       }
 
       plugins.Clear();
@@ -156,7 +156,7 @@ namespace Anvil.Plugins
       {
         if (plugin.HasResourceDirectory)
         {
-          resourcePaths.Add(plugin.ResourcePath);
+          resourcePaths.Add(plugin.ResourcePath!);
         }
       }
 
@@ -172,13 +172,13 @@ namespace Anvil.Plugins
       }
       catch (ReflectionTypeLoadException e)
       {
-        PluginInfoAttribute pluginInfoAttribute = assembly.GetCustomAttribute<PluginInfoAttribute>();
+        PluginInfoAttribute? pluginInfoAttribute = assembly.GetCustomAttribute<PluginInfoAttribute>();
         if (pluginInfoAttribute?.OptionalDependencies == null)
         {
           throw;
         }
 
-        foreach (Exception exception in e.LoaderExceptions)
+        foreach (Exception? exception in e.LoaderExceptions)
         {
           if (exception is FileNotFoundException fileNotFoundException)
           {
@@ -192,7 +192,7 @@ namespace Anvil.Plugins
           throw;
         }
 
-        assemblyTypes = e.Types.Where(type => type != null);
+        assemblyTypes = e.Types.Where(type => type != null)!;
       }
 
       return assemblyTypes;
@@ -272,7 +272,7 @@ namespace Anvil.Plugins
       }
     }
 
-    private Assembly ResolveDependencyFromAnvil(string pluginName, AssemblyName dependencyName)
+    private Assembly? ResolveDependencyFromAnvil(string pluginName, AssemblyName dependencyName)
     {
       foreach (Assembly assembly in Assemblies.AllAssemblies)
       {
@@ -285,7 +285,7 @@ namespace Anvil.Plugins
       return null;
     }
 
-    private Assembly ResolveDependencyFromPlugins(string pluginName, AssemblyName dependencyName)
+    private Assembly? ResolveDependencyFromPlugins(string pluginName, AssemblyName dependencyName)
     {
       foreach (Plugin plugin in plugins)
       {

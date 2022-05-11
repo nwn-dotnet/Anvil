@@ -31,7 +31,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the spell from which the Area Of Effect was created.
     /// </summary>
-    public NwSpell Spell => NwSpell.FromSpellId((int)AreaOfEffect.m_nSpellId);
+    public NwSpell? Spell => NwSpell.FromSpellId((int)AreaOfEffect.m_nSpellId);
 
     public static implicit operator CNWSAreaOfEffectObject?(NwAreaOfEffect? areaOfEffect)
     {

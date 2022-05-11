@@ -6,23 +6,23 @@ namespace Anvil.API
   {
     public bool? HasBodyBag { get; private set; }
 
-    public string Label { get; private set; }
+    public string? Label { get; private set; }
 
-    public LightColorTableEntry LightColor { get; private set; }
+    public LightColorTableEntry? LightColor { get; private set; }
 
     public Vector3? LightOffset { get; private set; }
 
-    public string LowGore { get; private set; }
+    public string? LowGore { get; private set; }
 
-    public string ModelName { get; private set; }
+    public string? ModelName { get; private set; }
 
-    public string Reflection { get; private set; }
+    public string? Reflection { get; private set; }
 
     public int RowIndex { get; init; }
 
     public ShadowSize? ShadowSize { get; private set; }
 
-    public PlaceableSoundTableEntry SoundType { get; private set; }
+    public PlaceableSoundTableEntry? SoundType { get; private set; }
 
     public bool? StaticAllowed { get; private set; }
 

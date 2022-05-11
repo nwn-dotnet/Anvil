@@ -10,17 +10,17 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated feat, if this talent is a feat.
     /// </summary>
-    public NwFeat Feat => NwFeat.FromFeatId(TryGetId(TalentType.Feat));
+    public NwFeat Feat => NwFeat.FromFeatId(TryGetId(TalentType.Feat))!;
 
     /// <summary>
     /// Gets the associated skill, if this talent is a skill.
     /// </summary>
-    public NwSkill Skill => NwSkill.FromSkillId(TryGetId(TalentType.Skill));
+    public NwSkill Skill => NwSkill.FromSkillId(TryGetId(TalentType.Skill))!;
 
     /// <summary>
     /// Gets the associated spell, if this talent is a spell.
     /// </summary>
-    public NwSpell Spell => NwSpell.FromSpellId(TryGetId(TalentType.Spell));
+    public NwSpell Spell => NwSpell.FromSpellId(TryGetId(TalentType.Spell))!;
 
     /// <summary>
     /// Gets the type of this talent (Spell/Feat/Skill).

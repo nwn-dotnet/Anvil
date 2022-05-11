@@ -76,13 +76,13 @@ namespace Anvil.API
     /// <summary>
     /// Gets the leader of this player faction (party).<br/>
     /// </summary>
-    public NwPlayer Leader => faction.GetLeader().ToNwPlayer();
+    public NwPlayer? Leader => faction.GetLeader().ToNwPlayer();
 
     /// <summary>
     /// Gets the most common type of class among the members of this faction/party.<br/>
     /// @note This can be a costly operation when used on large NPC factions.
     /// </summary>
-    public NwClass MostFrequentClass => NwClass.FromClassId(faction.GetMostFrequentClass());
+    public NwClass MostFrequentClass => NwClass.FromClassId(faction.GetMostFrequentClass())!;
 
     /// <summary>
     /// Gets the <see cref="StandardFaction"/> type of this faction.<br/>
@@ -95,7 +95,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="factionId">The id of the faction to resolve.</param>
     /// <returns>The associated <see cref="NwFaction"/> instance. Null if the faction id is invalid.</returns>
-    public static NwFaction FromFactionId(int factionId)
+    public static NwFaction? FromFactionId(int factionId)
     {
       CNWSFaction faction = FactionManager.GetFaction(factionId);
       return faction != null ? new NwFaction(faction) : null;
@@ -106,17 +106,17 @@ namespace Anvil.API
     /// </summary>
     /// <param name="factionType">The faction type to resolve.</param>
     /// <returns>The associated <see cref="NwFaction"/> instance. Null if the faction type is invalid.</returns>
-    public static NwFaction FromStandardFaction(StandardFaction factionType)
+    public static NwFaction? FromStandardFaction(StandardFaction factionType)
     {
       return FromFactionId((int)factionType);
     }
 
-    public static bool operator ==(NwFaction left, NwFaction right)
+    public static bool operator ==(NwFaction? left, NwFaction? right)
     {
       return Equals(left, right);
     }
 
-    public static implicit operator NwFaction(StandardFaction faction)
+    public static implicit operator NwFaction?(StandardFaction faction)
     {
       return FromFactionId((int)faction);
     }
@@ -136,7 +136,7 @@ namespace Anvil.API
       creature.Creature.AdjustReputation(faction.m_nFactionId, adjustment);
     }
 
-    public bool Equals(NwFaction other)
+    public bool Equals(NwFaction? other)
     {
       if (ReferenceEquals(null, other))
       {
@@ -173,9 +173,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the best AC member.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetBestACMember(NwCreature referenceCreature = null, bool visible = false)
+    public NwCreature GetBestACMember(NwCreature? referenceCreature = null, bool visible = false)
     {
-      return faction.GetBestAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      return faction.GetBestAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>()!;
     }
 
     public override int GetHashCode()
@@ -188,9 +188,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="referenceCreature">The reference creature, used to determine visibility.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetLeastDamagedMember(NwCreature referenceCreature = null, bool visible = false)
+    public NwCreature GetLeastDamagedMember(NwCreature? referenceCreature = null, bool visible = false)
     {
-      return faction.GetLeastDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      return faction.GetLeastDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>()!;
     }
 
     /// <summary>
@@ -204,7 +204,7 @@ namespace Anvil.API
 
       for (int i = 0; i < faction.m_listFactionMembers.Count; i++)
       {
-        NwCreature member = faction.m_listFactionMembers[i].ToNwObjectSafe<NwCreature>();
+        NwCreature? member = faction.m_listFactionMembers[i].ToNwObjectSafe<NwCreature>();
         if (member != null)
         {
           members.Add(member);
@@ -219,9 +219,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="referenceCreature">The reference creature, used to determine visibility.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetMostDamagedMember(NwCreature referenceCreature = null, bool visible = false)
+    public NwCreature GetMostDamagedMember(NwCreature? referenceCreature = null, bool visible = false)
     {
-      return faction.GetMostDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      return faction.GetMostDamagedMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>()!;
     }
 
     /// <summary>
@@ -242,9 +242,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the strongest member.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetStrongestMember(NwCreature referenceCreature = null, bool visible = false)
+    public NwCreature GetStrongestMember(NwCreature? referenceCreature = null, bool visible = false)
     {
-      return faction.GetStrongestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      return faction.GetStrongestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>()!;
     }
 
     /// <summary>
@@ -252,9 +252,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the weakest member.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetWeakestMember(NwCreature referenceCreature = null, bool visible = false)
+    public NwCreature GetWeakestMember(NwCreature? referenceCreature = null, bool visible = false)
     {
-      return faction.GetWeakestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      return faction.GetWeakestMember(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>()!;
     }
 
     /// <summary>
@@ -262,9 +262,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="referenceCreature">The reference creature. Bonuses and penalties against the reference creature will be considered when finding the worst AC member.</param>
     /// <param name="visible">Highly recommended to set to "true" on large NPC factions. Includes only creatures visible to referenceCreature.</param>
-    public NwCreature GetWorstACMember(NwCreature referenceCreature = null, bool visible = false)
+    public NwCreature GetWorstACMember(NwCreature? referenceCreature = null, bool visible = false)
     {
-      return faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>();
+      return faction.GetWorstAC(referenceCreature, visible.ToInt()).ToNwObject<NwCreature>()!;
     }
 
     /// <summary>

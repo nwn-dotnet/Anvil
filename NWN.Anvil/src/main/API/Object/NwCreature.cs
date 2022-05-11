@@ -340,10 +340,9 @@ namespace Anvil.API
       get
       {
         NwFeat[] feats = new NwFeat[FeatCount];
-
         for (int i = 0; i < feats.Length; i++)
         {
-          feats[i] = NwFeat.FromFeatId(Creature.m_pStats.m_lstFeats[i]);
+          feats[i] = NwFeat.FromFeatId(Creature.m_pStats.m_lstFeats[i])!;
         }
 
         return feats;
@@ -700,7 +699,7 @@ namespace Anvil.API
     /// </summary>
     public NwRace Race
     {
-      get => NwRace.FromRaceId(Creature.m_pStats.m_nRace);
+      get => NwRace.FromRaceId(Creature.m_pStats.m_nRace)!;
       set => Creature.m_pStats.m_nRace = value.Id;
     }
 
@@ -738,7 +737,7 @@ namespace Anvil.API
         {
           if (ability.m_nSpellId != ~0u)
           {
-            retVal.Add(new SpecialAbility(NwSpell.FromSpellId((int)ability.m_nSpellId), ability.m_nCasterLevel, ability.m_bReadied.ToBool()));
+            retVal.Add(new SpecialAbility(NwSpell.FromSpellId((int)ability.m_nSpellId)!, ability.m_nCasterLevel, ability.m_bReadied.ToBool()));
           }
         }
 
@@ -1495,7 +1494,7 @@ namespace Anvil.API
     /// <returns>An enumeration of this creature's domains.</returns>
     public IEnumerable<Domain> GetClassDomains(NwClass? nwClass = default)
     {
-      nwClass ??= NwClass.FromClassType(ClassType.Cleric);
+      nwClass ??= NwClass.FromClassType(ClassType.Cleric)!;
 
       const int error = (int)Domain.Error;
       int classT = nwClass.Id;
@@ -1714,7 +1713,7 @@ namespace Anvil.API
     /// <returns>The creature's selected spell specialization.</returns>
     public SpellSchool GetSpecialization(NwClass? nwClass = default)
     {
-      nwClass ??= NwClass.FromClassType(ClassType.Wizard);
+      nwClass ??= NwClass.FromClassType(ClassType.Wizard)!;
       return (SpellSchool)NWScript.GetSpecialization(this, nwClass.Id);
     }
 

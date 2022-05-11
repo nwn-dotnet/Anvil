@@ -62,7 +62,7 @@ namespace Anvil.API.Events
           eventData = ProcessEvent(new OnSpellCast
           {
             Caster = gameObject.ToNwObject<NwGameObject>()!,
-            Spell = NwSpell.FromSpellId(nSpellId),
+            Spell = NwSpell.FromSpellId(nSpellId)!,
             TargetPosition = targetPosition,
             TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
             ClassIndex = nMultiClass,

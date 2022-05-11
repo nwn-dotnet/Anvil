@@ -42,7 +42,7 @@ namespace Anvil.API.Events
         {
           DisarmedObject = gameObject.ToNwObject<NwGameObject>()!,
           DisarmedBy = gameEffect.m_oidCreator.ToNwObject<NwGameObject>()!,
-          Feat = gameEffect.GetInteger(0) == 1 ? NwFeat.FromFeatType(API.Feat.ImprovedDisarm) : NwFeat.FromFeatType(API.Feat.Disarm),
+          Feat = gameEffect.GetInteger(0) == 1 ? NwFeat.FromFeatType(API.Feat.ImprovedDisarm)! : NwFeat.FromFeatType(API.Feat.Disarm)!,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventDisarm && Hook.CallOriginal(pEffectHandler, pObject, pEffect, bLoadingGame).ToBool());

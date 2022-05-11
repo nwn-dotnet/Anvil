@@ -18,13 +18,13 @@ namespace Anvil.API
     }
 
     [Obsolete("Use StrTokenCustom.Value instead.")]
-    public string GetCustomToken(uint tokenNumber)
+    public string? GetCustomToken(uint tokenNumber)
     {
       return new StrTokenCustom((int)tokenNumber).Value;
     }
 
     [Obsolete("Use StrRef.ToString() instead.")]
-    public string GetSimpleString(uint strRef)
+    public string? GetSimpleString(uint strRef)
     {
       return new StrRef(strRef).ToString();
     }
@@ -90,7 +90,7 @@ namespace Anvil.API
       return tlkTable.GetSimpleString(strRef.Id).ToString();
     }
 
-    internal void SetCustomToken(StrTokenCustom customToken, string value)
+    internal void SetCustomToken(StrTokenCustom customToken, string? value)
     {
       tlkTable.SetCustomToken(customToken.TokenNumber, value.ToExoString());
     }

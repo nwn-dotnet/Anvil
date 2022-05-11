@@ -16,8 +16,8 @@ namespace Anvil.Plugins
       using StreamReader streamReader = File.OpenText(path);
       while (!streamReader.EndOfStream)
       {
-        string line = streamReader.ReadLine();
-        if (line!.StartsWith("#r"))
+        string? line = streamReader.ReadLine();
+        if (line?.StartsWith("#r") == true)
         {
           ProcessLine(line);
         }

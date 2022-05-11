@@ -12,7 +12,7 @@ namespace Anvil.API
   /// <typeparam name="T">The class type to serialize/deserialize.</typeparam>
   public sealed class LocalVariableStruct<T> : LocalVariable<T>
   {
-    public override T Value
+    public override T? Value
     {
       get => HasValue ? JsonUtility.FromJson<T>(NWScript.GetLocalJson(Object, Name)) : default;
       set => NWScript.SetLocalJson(Object, Name, JsonUtility.ToJsonStructure(value));

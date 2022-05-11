@@ -71,7 +71,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="skillId">The id of the skill to resolve.</param>
     /// <returns>The associated <see cref="NwSkill"/> instance. Null if the skill id is invalid.</returns>
-    public static NwSkill FromSkillId(int skillId)
+    public static NwSkill? FromSkillId(int skillId)
     {
       return NwRuleset.Skills.ElementAtOrDefault(skillId);
     }
@@ -81,12 +81,12 @@ namespace Anvil.API
     /// </summary>
     /// <param name="skillType">The skill type to resolve.</param>
     /// <returns>The associated <see cref="NwSkill"/> instance. Null if the skill type is invalid.</returns>
-    public static NwSkill FromSkillType(Skill skillType)
+    public static NwSkill? FromSkillType(Skill skillType)
     {
       return NwRuleset.Skills.ElementAtOrDefault((int)skillType);
     }
 
-    public static implicit operator NwSkill(Skill skillType)
+    public static implicit operator NwSkill?(Skill skillType)
     {
       return NwRuleset.Skills.ElementAtOrDefault((int)skillType);
     }

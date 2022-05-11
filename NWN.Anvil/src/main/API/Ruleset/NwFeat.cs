@@ -76,7 +76,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the corresponding class the character must have <see cref="MinLevel"/> levels in.
     /// </summary>
-    public NwClass MinLevelClass => NwRuleset.Classes.ElementAtOrDefault(featInfo.m_nMinLevelClass);
+    public NwClass? MinLevelClass => NwRuleset.Classes.ElementAtOrDefault(featInfo.m_nMinLevelClass);
 
     /// <summary>
     /// The minimum spell level a spellcasting character must be able to cast in order to select this feat.<br/>
@@ -96,7 +96,7 @@ namespace Anvil.API
     {
       get
       {
-        return featInfo.m_lstPrereqFeats.Select(FromFeatId).Where(feat => feat != null);
+        return featInfo.m_lstPrereqFeats.Select(FromFeatId).Where(feat => feat != null)!;
       }
     }
 
@@ -108,14 +108,14 @@ namespace Anvil.API
     {
       get
       {
-        return featInfo.m_lstOrPrereqFeats.Select(FromFeatId).Where(feat => feat != null).ToImmutableList();
+        return featInfo.m_lstOrPrereqFeats.Select(FromFeatId).Where(feat => feat != null).ToImmutableList()!;
       }
     }
 
     /// <summary>
     /// Gets the first required skill the character must have to be able to select this feat.
     /// </summary>
-    public NwSkill RequiredSkill1 => NwSkill.FromSkillId(featInfo.m_nRequiredSkill);
+    public NwSkill? RequiredSkill1 => NwSkill.FromSkillId(featInfo.m_nRequiredSkill);
 
     /// <summary>
     /// Gets the number of skill ranks needed for <see cref="RequiredSkill1"/>.
@@ -125,7 +125,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the second required skill the character must have to be able to select this feat.
     /// </summary>
-    public NwSkill RequiredSkill2 => NwSkill.FromSkillId(featInfo.m_nRequiredSkill2);
+    public NwSkill? RequiredSkill2 => NwSkill.FromSkillId(featInfo.m_nRequiredSkill2);
 
     /// <summary>
     /// Gets the number of skill ranks needed for <see cref="RequiredSkill2"/>.
@@ -146,12 +146,12 @@ namespace Anvil.API
     /// <summary>
     /// The Spell associated with this feat.
     /// </summary>
-    public NwSpell Spell => NwSpell.FromSpellId(featInfo.m_nSpellId);
+    public NwSpell? Spell => NwSpell.FromSpellId(featInfo.m_nSpellId);
 
     /// <summary>
     /// Gets the feat which follows this feat. For example, the Disarm feat has Improved Disarm as a successor.
     /// </summary>
-    public NwFeat SuccessorFeat => FromFeatId(featInfo.m_nSuccessor);
+    public NwFeat? SuccessorFeat => FromFeatId(featInfo.m_nSuccessor);
 
     /// <summary>
     /// This determines how the AI treats this feat. It is an ID value in categories.2da.
@@ -180,7 +180,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="featId">The id of the feat to resolve.</param>
     /// <returns>The associated <see cref="NwFeat"/> instance. Null if the feat id is invalid.</returns>
-    public static NwFeat FromFeatId(int featId)
+    public static NwFeat? FromFeatId(int featId)
     {
       return NwRuleset.Feats.ElementAtOrDefault(featId);
     }
@@ -190,12 +190,12 @@ namespace Anvil.API
     /// </summary>
     /// <param name="featType">The feat type to resolve.</param>
     /// <returns>The associated <see cref="NwFeat"/> instance. Null if the feat type is invalid.</returns>
-    public static NwFeat FromFeatType(Feat featType)
+    public static NwFeat? FromFeatType(Feat featType)
     {
       return NwRuleset.Feats.ElementAtOrDefault((int)featType);
     }
 
-    public static implicit operator NwFeat(Feat featType)
+    public static implicit operator NwFeat?(Feat featType)
     {
       return NwRuleset.Feats.ElementAtOrDefault((int)featType);
     }
@@ -219,7 +219,7 @@ namespace Anvil.API
       };
     }
 
-    private static NwFeat FromFeatId(ushort featId)
+    private static NwFeat? FromFeatId(ushort featId)
     {
       return NwRuleset.Feats.ElementAtOrDefault(featId);
     }

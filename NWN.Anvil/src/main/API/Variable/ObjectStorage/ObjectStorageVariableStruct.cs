@@ -5,11 +5,11 @@ namespace Anvil.API
   public abstract class ObjectStorageVariableStruct<T> : ObjectStorageVariable<T>
   {
     [Inject]
-    internal ObjectStorageService ObjectStorageService { private get; init; }
+    internal ObjectStorageService ObjectStorageService { private get; init; } = null!;
 
-    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsString(ObjectStoragePrefix, Key);
+    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage? objectStorage) && objectStorage.ContainsString(ObjectStoragePrefix, Key);
 
-    public sealed override T Value
+    public sealed override T? Value
     {
       get => HasValue ? JsonUtility.FromJson<T>(ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key)) : default;
       set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, JsonUtility.ToJson(value), Persist);

@@ -67,7 +67,7 @@ namespace Anvil.API.Events
         OnSpellAction eventData = new OnSpellAction
         {
           Caster = creature.ToNwObject<NwCreature>()!,
-          Spell = NwSpell.FromSpellId((int)nSpellId),
+          Spell = NwSpell.FromSpellId((int)nSpellId)!,
           ClassIndex = nMultiClass,
           Domain = (Domain)nDomainLevel,
           MetaMagic = (MetaMagic)nMetaType,
@@ -78,7 +78,7 @@ namespace Anvil.API.Events
           IsFake = bFake.ToBool(),
           ProjectilePath = (ProjectilePathType)nProjectilePathType,
           IsInstant = bInstant.ToBool(),
-          Feat = NwFeat.FromFeatId(nFeat),
+          Feat = NwFeat.FromFeatId(nFeat)!,
           CasterLevel = nCasterLevel,
         };
 

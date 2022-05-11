@@ -5,9 +5,9 @@ namespace Anvil.API
   public abstract class ObjectStorageVariableFloat : ObjectStorageVariable<float>
   {
     [Inject]
-    internal ObjectStorageService ObjectStorageService { private get; init; }
+    internal ObjectStorageService ObjectStorageService { private get; init; } = null!;
 
-    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsFloat(ObjectStoragePrefix, Key);
+    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage? objectStorage) && objectStorage.ContainsFloat(ObjectStoragePrefix, Key);
 
     public sealed override float Value
     {

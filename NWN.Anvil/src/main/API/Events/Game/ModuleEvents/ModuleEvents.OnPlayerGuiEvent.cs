@@ -44,7 +44,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the feat that was selected. Only valid in <see cref="GuiEventType.CharacterSheetFeatClick"/> events.
       /// </summary>
-      public NwFeat FeatSelection => NwFeat.FromFeatId(integerEventData);
+      public NwFeat FeatSelection => NwFeat.FromFeatId(integerEventData)!;
 
       /// <summary>
       /// Gets the GUI panel that attempted to be opened. Only valid in <see cref="GuiEventType.DisabledPanelAttemptOpen"/> events.
@@ -59,7 +59,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.
       /// </summary>
-      public NwSkill SkillSelection => NwSkill.FromSkillId(integerEventData);
+      public NwSkill SkillSelection => NwSkill.FromSkillId(integerEventData)!;
 
       NwObject? IEvent.Context => Player.ControlledCreature;
     }

@@ -73,7 +73,7 @@ namespace Anvil.API.Events
         OnUseSkill eventData = ProcessEvent(new OnUseSkill
         {
           Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
-          Skill = NwSkill.FromSkillId(nSkill),
+          Skill = NwSkill.FromSkillId(nSkill)!,
           SubSkill = (SubSkill)nSubSkill,
           Target = oidTarget.ToNwObject<NwGameObject>()!,
           Area = oidArea.ToNwObject<NwArea>()!,

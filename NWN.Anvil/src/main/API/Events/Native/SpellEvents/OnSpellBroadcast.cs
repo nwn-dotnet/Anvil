@@ -40,9 +40,9 @@ namespace Anvil.API.Events
         OnSpellBroadcast eventData = ProcessEvent(new OnSpellBroadcast
         {
           Caster = creature.ToNwObject<NwCreature>()!,
-          Spell = NwSpell.FromSpellId((int)nSpellId),
+          Spell = NwSpell.FromSpellId((int)nSpellId)!,
           ClassIndex = nMultiClass,
-          Feat = NwFeat.FromFeatId(nFeat),
+          Feat = NwFeat.FromFeatId(nFeat)!,
         });
 
         if (!eventData.PreventSpellCast)

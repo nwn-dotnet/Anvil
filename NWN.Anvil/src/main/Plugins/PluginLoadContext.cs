@@ -26,18 +26,23 @@ namespace Anvil.Plugins
 
     public void Dispose()
     {
-      pluginManager = null;
-      plugin = null;
-      resolver = null;
+      pluginManager = null!;
+      plugin = null!;
+      resolver = null!;
       assemblyCache.Clear();
       Unload();
     }
 
-    protected override Assembly Load(AssemblyName assemblyName)
+    protected override Assembly? Load(AssemblyName assemblyName)
     {
-      if (!assemblyCache.TryGetValue(assemblyName.FullName, out WeakReference<Assembly> assemblyRef) || !assemblyRef.TryGetTarget(out Assembly assembly))
+      if (!assemblyCache.TryGetValue(assemblyName.FullName, out WeakReference<Assembly>? assemblyRef) || !assemblyRef.TryGetTarget(out Assembly? assembly))
       {
         assembly = GetAssembly(assemblyName);
+        if (assembly == null)
+        {
+          return assembly;
+        }
+
         assemblyRef = new WeakReference<Assembly>(assembly);
         assemblyCache[assemblyName.FullName] = assemblyRef;
       }
@@ -47,13 +52,13 @@ namespace Anvil.Plugins
 
     protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)
     {
-      string libraryPath = resolver.ResolveUnmanagedDllToPath(unmanagedDllName);
+      string? libraryPath = resolver?.ResolveUnmanagedDllToPath(unmanagedDllName);
       if (libraryPath != null)
       {
         return LoadUnmanagedDllFromPath(libraryPath);
       }
 
-      libraryPath = ResolveUnamangedFromAdditionalPaths(unmanagedDllName);
+      libraryPath = ResolveUnmanagedFromAdditionalPaths(unmanagedDllName);
       if (libraryPath != null)
       {
         return LoadUnmanagedDllFromPath(libraryPath);
@@ -62,8 +67,13 @@ namespace Anvil.Plugins
       return IntPtr.Zero;
     }
 
-    private Assembly GetAssembly(AssemblyName assemblyName)
+    private Assembly? GetAssembly(AssemblyName assemblyName)
     {
+      if (plugin.Name.Name == null)
+      {
+        return null;
+      }
+
       // Resolve this plugin's assembly locally.
       if (assemblyName.Name == plugin.Name.Name)
       {
@@ -71,7 +81,7 @@ namespace Anvil.Plugins
       }
 
       // Resolve the dependency with the bundled assemblies (NWN.Core/Anvil), then check if other plugins can provide the dependency.
-      Assembly assembly = pluginManager.ResolveDependency(plugin.Name.Name, assemblyName);
+      Assembly? assembly = pluginManager?.ResolveDependency(plugin.Name.Name, assemblyName);
       if (assembly != null)
       {
         return assembly;
@@ -88,9 +98,9 @@ namespace Anvil.Plugins
       return ResolveFromAdditionalPaths(assemblyName);
     }
 
-    private Assembly ResolveFromAdditionalPaths(AssemblyName assemblyName)
+    private Assembly? ResolveFromAdditionalPaths(AssemblyName assemblyName)
     {
-      if (plugin.AdditionalAssemblyPaths != null && plugin.AdditionalAssemblyPaths.TryGetValue(assemblyName.Name!, out string assemblyPath))
+      if (plugin?.AdditionalAssemblyPaths != null && plugin.AdditionalAssemblyPaths.TryGetValue(assemblyName.Name!, out string? assemblyPath))
       {
         return LoadFromAssemblyPath(assemblyPath);
       }
@@ -98,20 +108,20 @@ namespace Anvil.Plugins
       return null;
     }
 
-    private Assembly ResolveLocal(AssemblyName assemblyName)
+    private Assembly? ResolveLocal(AssemblyName assemblyName)
     {
-      string assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);
+      string? assemblyPath = resolver?.ResolveAssemblyToPath(assemblyName);
       return assemblyPath != null ? LoadFromAssemblyPath(assemblyPath) : null;
     }
 
-    private string ResolveUnamangedFromAdditionalPaths(string unmanagedDllName)
+    private string? ResolveUnmanagedFromAdditionalPaths(string unmanagedDllName)
     {
-      if (plugin.UnmanagedAssemblyPaths == null)
+      if (plugin?.UnmanagedAssemblyPaths == null)
       {
         return null;
       }
 
-      if (plugin.UnmanagedAssemblyPaths.TryGetValue(unmanagedDllName, out string path))
+      if (plugin.UnmanagedAssemblyPaths.TryGetValue(unmanagedDllName, out string? path))
       {
         return path;
       }

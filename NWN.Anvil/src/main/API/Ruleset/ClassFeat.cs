@@ -11,7 +11,7 @@ namespace Anvil.API
       this.classFeat = classFeat;
     }
 
-    public NwFeat Feat => NwFeat.FromFeatId(classFeat.nFeat);
+    public NwFeat Feat => NwFeat.FromFeatId(classFeat.nFeat)!;
 
     public sbyte LevelGranted => classFeat.nLevelGranted.AsSByte();
 
