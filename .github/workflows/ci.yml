@@ -51,9 +51,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.local/share/JetBrains
-          key: resharper-cache-${{ steps.vars.outputs.sha_short }}
+          key: resharper-${{ steps.vars.outputs.sha_short }}
           restore-keys: |
-            resharper-cache-
+            resharper-
 
       - name: Code Analysis
         run: dotnet tool install -g JetBrains.ReSharper.GlobalTools && jb inspectcode NWN.Anvil.sln -o=results.xml && cat results.xml
