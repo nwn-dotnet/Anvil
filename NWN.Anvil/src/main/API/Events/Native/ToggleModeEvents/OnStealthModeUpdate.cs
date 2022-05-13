@@ -8,7 +8,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnStealthModeUpdate : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets an override behaviour to use if <see cref="EventType"/> is an Enter event.

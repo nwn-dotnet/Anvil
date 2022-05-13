@@ -28,7 +28,7 @@ namespace Anvil.Services
       PropertyInfo[] properties = PropertySelector.Execute(type).ToArray();
       foreach (PropertyInfo propertyInfo in properties)
       {
-        InjectAttribute injectAttribute = propertyInfo.GetCustomAttribute<InjectAttribute>(true);
+        InjectAttribute? injectAttribute = propertyInfo.GetCustomAttribute<InjectAttribute>(true);
 
         if (injectAttribute != null)
         {

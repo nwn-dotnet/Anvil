@@ -5,7 +5,7 @@ namespace Anvil.API
   public sealed class JournalEntry
   {
     public uint CalendarDay { get; set; } = LowLevel.ServerExoApp.GetWorldTimer().GetWorldTimeCalendarDay();
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
     public uint Priority { get; set; }
 
@@ -13,11 +13,11 @@ namespace Anvil.API
 
     public bool QuestDisplayed { get; set; }
 
-    public string QuestTag { get; set; }
+    public string QuestTag { get; set; } = null!;
 
     public uint State { get; set; }
 
-    public string Text { get; set; }
+    public string Text { get; set; } = null!;
 
     public uint TimeOfDay { get; set; } = LowLevel.ServerExoApp.GetWorldTimer().GetWorldTimeTimeOfDay();
 

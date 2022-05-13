@@ -24,10 +24,10 @@ namespace Anvil.Services
       LogFactory = CreateLogHandler,
     };
 
-    private List<ICoreService> coreServices;
-    private List<ILateDisposable> lateDisposableServices;
+    private List<ICoreService> coreServices = null!;
+    private List<ILateDisposable>? lateDisposableServices;
 
-    private PluginManager pluginManager;
+    private PluginManager pluginManager = null!;
 
     private bool shuttingDown;
 
@@ -134,12 +134,12 @@ namespace Anvil.Services
       };
     }
 
-    private static bool IsServiceRequirementsMet(PluginManager pluginManager, ServiceBindingOptionsAttribute options)
+    private static bool IsServiceRequirementsMet(PluginManager pluginManager, ServiceBindingOptionsAttribute? options)
     {
       return options?.PluginDependencies == null || options.PluginDependencies.All(pluginManager.IsPluginLoaded);
     }
 
-    private static void RegisterBindings(ServiceContainer serviceContainer, Type bindToType, IEnumerable<Type> bindFromTypes, ServiceBindingOptionsAttribute options)
+    private static void RegisterBindings(ServiceContainer serviceContainer, Type bindToType, IEnumerable<Type> bindFromTypes, ServiceBindingOptionsAttribute? options)
     {
       string serviceName = bindToType.GetInternalServiceName();
 
@@ -213,7 +213,7 @@ namespace Anvil.Services
         AnvilServiceContainer.RegisterInstance(coreService.GetType(), coreService);
       }
 
-      foreach (Type type in pluginManager.LoadedTypes)
+      foreach (Type type in pluginManager.LoadedTypes!)
       {
         TryRegisterAnvilService(type);
       }
@@ -240,7 +240,7 @@ namespace Anvil.Services
         return;
       }
 
-      ServiceBindingOptionsAttribute options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      ServiceBindingOptionsAttribute? options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
       RegisterBindings(CoreServiceContainer, bindToType, new[] { bindToType, typeof(ICoreService) }, options);
     }
 
@@ -257,7 +257,7 @@ namespace Anvil.Services
         return;
       }
 
-      ServiceBindingOptionsAttribute options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
+      ServiceBindingOptionsAttribute? options = bindToType.GetCustomAttribute<ServiceBindingOptionsAttribute>();
       if (IsServiceRequirementsMet(pluginManager, options))
       {
         RegisterBindings(AnvilServiceContainer, bindToType, bindings.Select(attribute => attribute.BindFrom), options);

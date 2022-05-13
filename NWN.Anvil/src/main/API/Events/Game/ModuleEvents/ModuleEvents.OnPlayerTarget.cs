@@ -29,7 +29,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwObject"/> that has been targeted by <see cref="Player"/>, otherwise the area if a position was selected.
       /// </summary>
-      public NwObject TargetObject { get; internal init; } = NWScript.GetTargetingModeSelectedObject().ToNwObject()!;
+      public NwObject? TargetObject { get; internal init; } = NWScript.GetTargetingModeSelectedObject().ToNwObject()!;
 
       /// <summary>
       /// Gets the position targeted by the <see cref="NwPlayer"/>.

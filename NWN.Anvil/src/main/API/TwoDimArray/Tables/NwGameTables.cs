@@ -8,57 +8,57 @@ namespace Anvil.API
     /// <summary>
     /// Gets the appearance table (appearance.2da)
     /// </summary>
-    public static TwoDimArray<AppearanceTableEntry> AppearanceTable { get; private set; }
+    public static TwoDimArray<AppearanceTableEntry> AppearanceTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the body bag table (bodybag.2da)
     /// </summary>
-    public static TwoDimArray<BodyBagTableEntry> BodyBagTable { get; private set; }
+    public static TwoDimArray<BodyBagTableEntry> BodyBagTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the damage level table (damagelevels.2da
     /// </summary>
-    public static TwoDimArray<DamageLevelEntry> DamageLevelTable { get; private set; }
+    public static TwoDimArray<DamageLevelEntry> DamageLevelTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the environment preset table (environment.2da)
     /// </summary>
-    public static TwoDimArray<EnvironmentPreset> EnvironmentPresetTable { get; private set; }
+    public static TwoDimArray<EnvironmentPreset> EnvironmentPresetTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the experience point/level progression table (exptable.2da)
     /// </summary>
-    public static TwoDimArray<ExpTableEntry> ExpTable { get; private set; }
+    public static TwoDimArray<ExpTableEntry> ExpTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the light color table (lightcolor.2da)
     /// </summary>
-    public static TwoDimArray<LightColorTableEntry> LightColorTable { get; private set; }
+    public static TwoDimArray<LightColorTableEntry> LightColorTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the placeable sound table (placeableobjsnds.2da)
     /// </summary>
-    public static TwoDimArray<PlaceableSoundTableEntry> PlaceableSoundTable { get; private set; }
+    public static TwoDimArray<PlaceableSoundTableEntry> PlaceableSoundTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the placeable table (placeables.2da)
     /// </summary>
-    public static TwoDimArray<PlaceableTableEntry> PlaceableTable { get; private set; }
+    public static TwoDimArray<PlaceableTableEntry> PlaceableTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the programmed effect table (progfx.2da)
     /// </summary>
-    public static TwoDimArray<ProgrammedEffectTableEntry> ProgrammedEffectTable { get; private set; }
+    public static TwoDimArray<ProgrammedEffectTableEntry> ProgrammedEffectTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the item/skill cost table (skillvsitemcost.2da)
     /// </summary>
-    public static TwoDimArray<SkillItemCostTableEntry> SkillItemCostTable { get; private set; }
+    public static TwoDimArray<SkillItemCostTableEntry> SkillItemCostTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the visual effect table (visualeffects.2da)
     /// </summary>
-    public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; }
+    public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; } = null!;
 
     [ServiceBinding(typeof(Factory))]
     [ServiceBindingOptions(InternalBindingPriority.API)]

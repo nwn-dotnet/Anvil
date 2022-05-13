@@ -14,12 +14,12 @@ namespace Anvil.Services
 
     // We hold a reference to the delegate to prevent clean up from the garbage collector.
     [UsedImplicitly]
-    private readonly T handler;
+    private readonly T? handler;
 
     private readonly HookService hookService;
     private readonly IntPtr nativeFuncPtr;
 
-    internal FunctionHook(HookService hookService, IntPtr nativeFuncPtr, T handler = null)
+    internal FunctionHook(HookService hookService, IntPtr nativeFuncPtr, T? handler = null)
     {
       this.hookService = hookService;
       this.nativeFuncPtr = nativeFuncPtr;

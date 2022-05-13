@@ -26,11 +26,6 @@ namespace Anvil.Services
     /// <returns>The instance with injected dependencies.</returns>
     public T Inject<T>(T instance)
     {
-      if (EqualityComparer<T>.Default.Equals(instance, default))
-      {
-        return default;
-      }
-
       serviceManager.AnvilServiceContainer.InjectProperties(instance);
       return instance;
     }

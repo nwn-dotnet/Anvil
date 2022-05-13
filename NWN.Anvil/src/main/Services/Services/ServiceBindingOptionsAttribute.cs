@@ -36,7 +36,7 @@ namespace Anvil.Services
     /// <summary>
     /// An optional list of plugin names that must exist for this service to be loaded.
     /// </summary>
-    public string[] PluginDependencies { get; init; }
+    public string[]? PluginDependencies { get; init; }
 
     internal int Priority { get; private init; }
   }

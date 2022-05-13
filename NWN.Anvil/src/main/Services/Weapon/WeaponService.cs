@@ -54,7 +54,7 @@ namespace Anvil.Services
     private readonly HashSet<uint> weaponUnarmedSet = new HashSet<uint>();
     private bool combatModeEventSubscribed;
 
-    private FunctionHook<MaxAttackRangeHook> maxAttackRangeHook;
+    private FunctionHook<MaxAttackRangeHook>? maxAttackRangeHook;
 
     public WeaponService(HookService hookService, EventService eventService)
     {
@@ -118,7 +118,7 @@ namespace Anvil.Services
     /// <summary>
     /// Called when an attack results in a devastating critical hit. Subscribe and modify the event data to implement custom behaviours.
     /// </summary>
-    public event Action<DevastatingCriticalData> OnDevastatingCriticalHit;
+    public event Action<DevastatingCriticalData>? OnDevastatingCriticalHit;
 
     /// <summary>
     /// Gets or sets whether the "Good Aim" feat should also apply to slings.
@@ -329,7 +329,7 @@ namespace Anvil.Services
       maxAttackRangeHook?.Dispose();
     }
 
-    private CNWSItem GetEquippedWeapon(CNWSCreature creature, bool offHand)
+    private CNWSItem? GetEquippedWeapon(CNWSCreature creature, bool offHand)
     {
       CNWSItem weapon;
 
@@ -371,7 +371,7 @@ namespace Anvil.Services
       return 0;
     }
 
-    private bool IsUnarmedWeapon(CNWSItem weapon)
+    private bool IsUnarmedWeapon(CNWSItem? weapon)
     {
       if (weapon == null || weapon.Pointer == IntPtr.Zero)
       {
@@ -492,11 +492,11 @@ namespace Anvil.Services
 
       uint baseItem = weapon.m_nBaseItem;
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort> types);
+      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -549,15 +549,15 @@ namespace Anvil.Services
       CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
       CNWSCreature creature = stats.m_pBaseCreature;
       bool offHand = bOffHand.ToBool();
-      CNWSItem weapon = GetEquippedWeapon(creature, offHand);
+      CNWSItem? weapon = GetEquippedWeapon(creature, offHand);
 
       uint baseItem = weapon != null ? weapon.m_nBaseItem : (uint)BaseItem.Gloves;
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort> types);
+      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -604,11 +604,11 @@ namespace Anvil.Services
       uint weaponType = weapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = epicWeaponDevastatingCriticalMap.TryGetValue(weaponType, out HashSet<ushort> types);
+      bool applicableFeatExists = epicWeaponDevastatingCriticalMap.TryGetValue(weaponType, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -620,7 +620,7 @@ namespace Anvil.Services
 
       bool canUseFeat = applicableFeatExists && hasApplicableFeat || getEpicWeaponDevastatingCriticalHook.CallOriginal(pStats, pWeapon).ToBool();
 
-      if (canUseFeat && OnDevastatingCriticalHit != null)
+      if (weapon != null && canUseFeat && OnDevastatingCriticalHit != null)
       {
         CNWSCreature creature = stats.m_pBaseCreature;
         CNWSCombatRound combatRound = creature.m_pcCombatRound;
@@ -628,8 +628,8 @@ namespace Anvil.Services
 
         DevastatingCriticalData devastatingCriticalData = new DevastatingCriticalData
         {
-          Weapon = weapon.ToNwObject<NwItem>(),
-          Target = creature.m_oidAttackTarget.ToNwObject<NwGameObject>(),
+          Weapon = weapon.ToNwObject<NwItem>()!,
+          Target = creature.m_oidAttackTarget.ToNwObject<NwGameObject>()!,
           Damage = attackData.GetTotalDamage(1),
         };
 
@@ -650,11 +650,11 @@ namespace Anvil.Services
       uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = epicWeaponFocusMap.TryGetValue(weaponType, out HashSet<ushort> types);
+      bool applicableFeatExists = epicWeaponFocusMap.TryGetValue(weaponType, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool() || feat == (ushort)Feat.EpicWeaponFocus_Creature && stats.HasFeat((ushort)Feat.EpicWeaponFocus_Unarmed).ToBool();
           if (hasApplicableFeat)
@@ -673,11 +673,11 @@ namespace Anvil.Services
       uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = epicWeaponOverwhelmingCriticalMap.TryGetValue(weaponType, out HashSet<ushort> types);
+      bool applicableFeatExists = epicWeaponOverwhelmingCriticalMap.TryGetValue(weaponType, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -696,11 +696,11 @@ namespace Anvil.Services
       uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = epicWeaponSpecializationMap.TryGetValue(weaponType, out HashSet<ushort> types);
+      bool applicableFeatExists = epicWeaponSpecializationMap.TryGetValue(weaponType, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -718,11 +718,11 @@ namespace Anvil.Services
       CNWSCreatureStats stats = CNWSCreatureStats.FromPointer(pStats);
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = weaponOfChoiceMap.TryGetValue(nBaseItem, out HashSet<ushort> types);
+      bool applicableFeatExists = weaponOfChoiceMap.TryGetValue(nBaseItem, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -748,15 +748,15 @@ namespace Anvil.Services
       CNWSCreature creature = stats.m_pBaseCreature;
       bool offHand = bOffHand.ToBool();
 
-      CNWSItem weapon = GetEquippedWeapon(creature, offHand);
+      CNWSItem? weapon = GetEquippedWeapon(creature, offHand);
       uint baseItem = weapon != null ? weapon.m_nBaseItem : (uint)BaseItem.Gloves;
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort> types);
+      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -782,8 +782,7 @@ namespace Anvil.Services
       CNWSCreature creature = stats.m_pBaseCreature;
       bool offHand = bOffHand.ToBool();
 
-      CNWSItem weapon = null;
-
+      CNWSItem? weapon = null;
       if (nCreatureWeaponIndex == 255)
       {
         weapon = GetEquippedWeapon(creature, offHand);
@@ -791,11 +790,11 @@ namespace Anvil.Services
 
       uint baseItem = weapon != null ? weapon.m_nBaseItem : (uint)BaseItem.Gloves;
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort> types);
+      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -832,11 +831,11 @@ namespace Anvil.Services
 
       uint baseItem = weapon.m_nBaseItem;
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort> types);
+      bool applicableFeatExists = greaterWeaponFocusMap.TryGetValue(baseItem, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -873,11 +872,11 @@ namespace Anvil.Services
 
       uint baseItem = weapon.m_nBaseItem;
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort> types);
+      bool applicableFeatExists = greaterWeaponSpecializationMap.TryGetValue(baseItem, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -956,11 +955,11 @@ namespace Anvil.Services
       uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = weaponFocusMap.TryGetValue(weaponType, out HashSet<ushort> types);
+      bool applicableFeatExists = weaponFocusMap.TryGetValue(weaponType, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool() || feat == (ushort)Feat.WeaponFocus_Creature && stats.HasFeat((ushort)Feat.WeaponFocus_UnarmedStrike).ToBool();
           if (hasApplicableFeat)
@@ -979,11 +978,11 @@ namespace Anvil.Services
       uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = weaponImprovedCriticalMap.TryGetValue(weaponType, out HashSet<ushort> types);
+      bool applicableFeatExists = weaponImprovedCriticalMap.TryGetValue(weaponType, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)
@@ -1002,11 +1001,11 @@ namespace Anvil.Services
       uint weaponType = pWeapon == null ? (uint)BaseItem.Gloves : CNWSItem.FromPointer(pWeapon).m_nBaseItem;
 
       bool hasApplicableFeat = false;
-      bool applicableFeatExists = weaponSpecializationMap.TryGetValue(weaponType, out HashSet<ushort> types);
+      bool applicableFeatExists = weaponSpecializationMap.TryGetValue(weaponType, out HashSet<ushort>? types);
 
       if (applicableFeatExists)
       {
-        foreach (ushort feat in types)
+        foreach (ushort feat in types!)
         {
           hasApplicableFeat = stats.HasFeat(feat).ToBool();
           if (hasApplicableFeat)

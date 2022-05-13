@@ -9,7 +9,7 @@ namespace Anvil.Services
 
     private readonly HookService hookService;
 
-    private FunctionHook<LoadModuleInProgressHook> loadModuleInProgressHook;
+    private FunctionHook<LoadModuleInProgressHook> loadModuleInProgressHook = null!;
 
     public ModuleLoadTracker(HookService hookService)
     {
@@ -44,7 +44,7 @@ namespace Anvil.Services
         index--;
       }
 
-      CResRef resRef = node != null ? CResRef.FromPointer(node.pObject) : null;
+      CResRef? resRef = node != null ? CResRef.FromPointer(node.pObject) : null;
       if (resRef != null)
       {
         Log.Debug("Loading area {Area} ({AreaNum}/{AreaCount})", resRef.ToString(), nAreasLoaded + 1, nAreasToLoad);

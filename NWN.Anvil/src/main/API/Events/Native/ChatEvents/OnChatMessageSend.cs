@@ -17,12 +17,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the message to be sent.
     /// </summary>
-    public string Message { get; internal init; }
+    public string Message { get; internal init; } = null!;
 
     /// <summary>
     /// Gets the sender of this message.
     /// </summary>
-    public NwObject Sender { get; internal init; }
+    public NwObject Sender { get; internal init; } = null!;
 
     /// <summary>
     /// Skips this chat message.
@@ -33,9 +33,9 @@ namespace Anvil.API.Events
     /// Gets the target of this message.<br/>
     /// Returns null if there is no target.
     /// </summary>
-    public NwPlayer Target { get; internal init; }
+    public NwPlayer? Target { get; internal init; }
 
-    NwObject? IEvent.Context => Sender;
+    NwObject IEvent.Context => Sender;
   }
 }
 

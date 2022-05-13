@@ -1529,7 +1529,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the override that is set for the creature's damage level.<br/>
     /// </summary>
-    public DamageLevelEntry GetDamageLevelOverride()
+    public DamageLevelEntry? GetDamageLevelOverride()
     {
       return DamageLevelOverrideService.Value.GetDamageLevelOverride(this);
     }

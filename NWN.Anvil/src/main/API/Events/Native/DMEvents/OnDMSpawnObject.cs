@@ -6,26 +6,26 @@ namespace Anvil.API.Events
 {
   public abstract class OnDMSpawnObject : IEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; }
+    public NwPlayer DungeonMaster { get; internal init; } = null!;
 
     NwObject? IEvent.Context => DungeonMaster?.LoginCreature;
   }
 
   public sealed class OnDMSpawnObjectBefore : OnDMSpawnObject
   {
-    public NwArea Area { get; internal init; }
+    public NwArea Area { get; internal init; } = null!;
 
     public ObjectTypes ObjectType { get; internal init; }
 
     public Vector3 Position { get; internal init; }
 
-    public string ResRef { get; internal init; }
+    public string ResRef { get; internal init; } = null!;
     public bool Skip { get; set; }
   }
 
   public sealed class OnDMSpawnObjectAfter : OnDMSpawnObject
   {
-    public NwGameObject SpawnedObject { get; internal init; }
+    public NwGameObject SpawnedObject { get; internal init; } = null!;
   }
 }
 

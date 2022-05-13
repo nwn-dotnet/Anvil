@@ -92,13 +92,13 @@ namespace Anvil.Services
 
     private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
 
-    public event Action<OnELCCustomCheck> OnCustomCheck;
+    public event Action<OnELCCustomCheck>? OnCustomCheck;
 
-    public event Action<OnELCValidationBefore> OnValidationBefore;
+    public event Action<OnELCValidationBefore>? OnValidationBefore;
 
-    public event Action<OnELCValidationFailure> OnValidationFailure;
+    public event Action<OnELCValidationFailure>? OnValidationFailure;
 
-    public event Action<OnELCValidationSuccess> OnValidationSuccess;
+    public event Action<OnELCValidationSuccess>? OnValidationSuccess;
 
     public bool EnforceDefaultEventScripts { get; set; }
     public bool EnforceEmptyDialog { get; set; }
@@ -297,7 +297,7 @@ namespace Anvil.Services
       }
       // **********************************************************************************************************************
 
-      NwPlayer nwPlayer = pPlayer.ToNwPlayer();
+      NwPlayer nwPlayer = pPlayer.ToNwPlayer()!;
       InvokeValidationBeforeEvent(nwPlayer);
 
       // *** Server Restrictions **********************************************************************************************
@@ -409,7 +409,7 @@ namespace Anvil.Services
             if (HandleValidationFailure(out int strRefFailure, new OnELCItemValidationFailure
             {
               Player = nwPlayer,
-              Item = pItem.ToNwObject<NwItem>(),
+              Item = pItem.ToNwObject<NwItem>()!,
               Type = ValidationFailureType.Item,
               SubType = ValidationFailureSubType.UnidentifiedEquippedItem,
               StrRef = StrRefItemLevelRestriction,
@@ -426,7 +426,7 @@ namespace Anvil.Services
             if (HandleValidationFailure(out int strRefFailure, new OnELCItemValidationFailure
             {
               Player = nwPlayer,
-              Item = pItem.ToNwObject<NwItem>(),
+              Item = pItem.ToNwObject<NwItem>()!,
               Type = ValidationFailureType.Item,
               SubType = ValidationFailureSubType.MinEquipLevel,
               StrRef = StrRefItemLevelRestriction,
@@ -505,7 +505,7 @@ namespace Anvil.Services
       }
 
       // Check for non player race
-      CNWRace pRace = pCreatureStats.m_nRace < pRules.m_nNumRaces ? races[pCreatureStats.m_nRace] : null;
+      CNWRace? pRace = pCreatureStats.m_nRace < pRules.m_nNumRaces ? races[pCreatureStats.m_nRace] : null;
 
       if (pRace == null || !pRace.m_bIsPlayerRace.ToBool())
       {
@@ -526,7 +526,7 @@ namespace Anvil.Services
       for (byte nMultiClass = 0; nMultiClass < pCreatureStats.m_nNumMultiClasses; nMultiClass++)
       {
         byte classId = pCreatureStats.GetClassInfo(nMultiClass).m_nClass;
-        CNWClass pClass = classId < pRules.m_nNumClasses ? classes[classId] : null;
+        CNWClass? pClass = classId < pRules.m_nNumClasses ? classes[classId] : null;
 
         if (pClass == null)
         {
@@ -656,7 +656,7 @@ namespace Anvil.Services
 
       // Point Buy System calculation
       int[] nAbilityAtLevel = new int[6];
-      int nPointBuy = pRace.m_nAbilitiesPointBuyNumber;
+      int nPointBuy = pRace?.m_nAbilitiesPointBuyNumber ?? 0;
 
       for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
       {
@@ -855,7 +855,7 @@ namespace Anvil.Services
         for (byte nMultiClass = 0; nMultiClass < NumMultiClass; nMultiClass++)
         {
           byte nClassId = pCreatureStats.GetClass(nMultiClass);
-          CNWClass pClass = nClassId < pRules.m_nNumClasses ? classes[nClassId] : null;
+          CNWClass? pClass = nClassId < pRules.m_nNumClasses ? classes[nClassId] : null;
 
           if (pClass != null)
           {
@@ -905,11 +905,15 @@ namespace Anvil.Services
           }
         }
 
-        int numSkillPoints = pRace.m_nSkillPointModifierAbility >= 0 && pRace.m_nSkillPointModifierAbility <= AbilityMax
+        int numSkillPoints = pRace != null && pRace.m_nSkillPointModifierAbility >= 0 && pRace.m_nSkillPointModifierAbility <= AbilityMax
           ? pCreatureStats.CalcStatModifier((byte)(nAbilityAtLevel[pRace.m_nSkillPointModifierAbility] + GetSkillPointAbilityAdjust()))
           : 0;
 
-        if (nLevel == 1)
+        if (pRace == null)
+        {
+          nSkillPointsRemaining = 0;
+        }
+        else if (nLevel == 1)
         {
           nSkillPointsRemaining += pRace.m_nFirstLevelSkillPointsMultiplier * Math.Max(1, pClassLeveledUpIn.m_nSkillPointBase + numSkillPoints);
           nSkillPointsRemaining += pRace.m_nFirstLevelSkillPointsMultiplier * pRace.m_nExtraSkillPointsPerLevel;
@@ -1062,16 +1066,18 @@ namespace Anvil.Services
         int nNumberNormalFeats = 0;
 
         // First and every nth level gets a normal feat
-        if (nLevel == 1 ||
-          pRace.m_nNormalFeatEveryNthLevel != 0 && nLevel % pRace.m_nNormalFeatEveryNthLevel == 0)
+        if (pRace != null)
         {
-          nNumberNormalFeats = pRace.m_nNumberNormalFeatsEveryNthLevel;
-        }
+          if (nLevel == 1 || pRace.m_nNormalFeatEveryNthLevel != 0 && nLevel % pRace.m_nNormalFeatEveryNthLevel == 0)
+          {
+            nNumberNormalFeats = pRace.m_nNumberNormalFeatsEveryNthLevel;
+          }
 
-        // Add any extra first level feats
-        if (nLevel == 1)
-        {
-          nNumberNormalFeats += pRace.m_nExtraFeatsAtFirstLevel;
+          // Add any extra first level feats
+          if (nLevel == 1)
+          {
+            nNumberNormalFeats += pRace.m_nExtraFeatsAtFirstLevel;
+          }
         }
 
         int nNumberBonusFeats = pClassLeveledUpIn.GetBonusFeats(nMultiClassLevel[nMultiClassLeveledUpIn]);
@@ -1079,7 +1085,7 @@ namespace Anvil.Services
         // Add this level's gained feats to our own list
         foreach (ushort nFeat in pLevelStats.m_lstFeats)
         {
-          CNWFeat feat = nFeat < pRules.m_nNumFeats ? feats[nFeat] : null;
+          CNWFeat? feat = nFeat < pRules.m_nNumFeats ? feats[nFeat] : null;
 
           if (feat == null)
           {
@@ -1100,7 +1106,7 @@ namespace Anvil.Services
           // Check if this is a feat that's automatically granted at first level
           if (nLevel == 1)
           {
-            if (pRace.IsFirstLevelGrantedFeat(nFeat).ToBool())
+            if (pRace?.IsFirstLevelGrantedFeat(nFeat).ToBool() == true)
             {
               listFeats.Add(nFeat);
               bGranted = true;
@@ -1154,7 +1160,7 @@ namespace Anvil.Services
         // Check the requirements of the chosen feats
         foreach (ushort nFeat in listChosenFeats)
         {
-          CNWFeat pFeat = nFeat < pRules.m_nNumFeats ? feats[nFeat] : null;
+          CNWFeat? pFeat = nFeat < pRules.m_nNumFeats ? feats[nFeat] : null;
           if (pFeat == null)
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
@@ -1246,7 +1252,7 @@ namespace Anvil.Services
             }
           }
 
-          if (pFeat.m_nMinSTR > nAbilityAtLevel[(int)Ability.Strength] + pRace.m_nSTRAdjust)
+          if (pFeat.m_nMinSTR > nAbilityAtLevel[(int)Ability.Strength] + (pRace?.m_nSTRAdjust ?? 0))
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
@@ -1260,7 +1266,7 @@ namespace Anvil.Services
             }
           }
 
-          if (pFeat.m_nMinDEX > nAbilityAtLevel[(int)Ability.Dexterity] + pRace.m_nDEXAdjust)
+          if (pFeat.m_nMinDEX > nAbilityAtLevel[(int)Ability.Dexterity] + (pRace?.m_nDEXAdjust ?? 0))
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
@@ -1274,7 +1280,7 @@ namespace Anvil.Services
             }
           }
 
-          if (pFeat.m_nMinINT > nAbilityAtLevel[(int)Ability.Intelligence] + pRace.m_nINTAdjust)
+          if (pFeat.m_nMinINT > nAbilityAtLevel[(int)Ability.Intelligence] + (pRace?.m_nINTAdjust ?? 0))
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
@@ -1288,7 +1294,7 @@ namespace Anvil.Services
             }
           }
 
-          if (pFeat.m_nMinWIS > nAbilityAtLevel[(int)Ability.Wisdom] + pRace.m_nWISAdjust)
+          if (pFeat.m_nMinWIS > nAbilityAtLevel[(int)Ability.Wisdom] + (pRace?.m_nWISAdjust ?? 0))
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
@@ -1302,7 +1308,7 @@ namespace Anvil.Services
             }
           }
 
-          if (pFeat.m_nMinCON > nAbilityAtLevel[(int)Ability.Constitution] + pRace.m_nCONAdjust)
+          if (pFeat.m_nMinCON > nAbilityAtLevel[(int)Ability.Constitution] + (pRace?.m_nCONAdjust ?? 0))
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
@@ -1316,7 +1322,7 @@ namespace Anvil.Services
             }
           }
 
-          if (pFeat.m_nMinCHA > nAbilityAtLevel[(int)Ability.Charisma] + pRace.m_nCHAAdjust)
+          if (pFeat.m_nMinCHA > nAbilityAtLevel[(int)Ability.Charisma] + (pRace?.m_nCHAAdjust ?? 0))
           {
             if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
             {
@@ -1630,7 +1636,7 @@ namespace Anvil.Services
         {
           if (nMultiClassLevel[nMultiClassLeveledUpIn] == 1)
           {
-            nNumberWizardSpellsToAdd = 3 + Math.Max((byte)0, pCreatureStats.CalcStatModifier((byte)(nAbilityAtLevel[(int)Ability.Intelligence] + pRace.m_nINTAdjust)));
+            nNumberWizardSpellsToAdd = 3 + Math.Max((byte)0, pCreatureStats.CalcStatModifier((byte)(nAbilityAtLevel[(int)Ability.Intelligence] + (pRace?.m_nINTAdjust ?? 0))));
           }
           else
           {

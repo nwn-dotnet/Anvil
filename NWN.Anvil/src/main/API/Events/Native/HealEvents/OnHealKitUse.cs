@@ -19,7 +19,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the heal item that was used.
     /// </summary>
-    public NwItem ItemUsed { get; private init; }
+    public NwItem ItemUsed { get; private init; } = null!;
 
     /// <summary>
     /// Gets if the creature had to move to the target to use the heal item.
@@ -34,17 +34,17 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets if the creature successfully used this healing kit.
     /// </summary>
-    public Lazy<ActionState> Result { get; private set; }
+    public Lazy<ActionState> Result { get; private set; } = null!;
 
     /// <summary>
     /// Gets the object that was targetted with this healing item.
     /// </summary>
-    public NwGameObject Target { get; private init; }
+    public NwGameObject Target { get; private init; } = null!;
 
     /// <summary>
     /// Gets the creature that used the heal item.
     /// </summary>
-    public NwCreature UsedBy { get; private init; }
+    public NwCreature UsedBy { get; private init; } = null!;
 
     NwObject? IEvent.Context => UsedBy;
 

@@ -31,7 +31,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the version of the connecting client.
     /// </summary>
-    public Version ClientVersion { get; private init; }
+    public Version ClientVersion { get; private init; } = null!;
 
     /// <summary>
     /// Gets a value indicating whether the client is connecting as a DM (true) or player (false).
@@ -41,17 +41,17 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the IP address of the connecting client.
     /// </summary>
-    public string IP { get; private init; }
+    public string IP { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets the kick message to send to the client if BlockConnection is set to true.
     /// </summary>
-    public string KickMessage { get; set; }
+    public string? KickMessage { get; set; }
 
     /// <summary>
     /// Gets the player name of the connecting client.
     /// </summary>
-    public string PlayerName { get; private init; }
+    public string PlayerName { get; private init; } = null!;
 
     NwObject? IEvent.Context => null;
 

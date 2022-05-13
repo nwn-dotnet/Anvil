@@ -24,10 +24,10 @@ namespace Anvil.API
     private protected static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; private set; } = null!;
 
     [Inject]
-    private protected static ResourceManager ResourceManager { get; private set; }
+    private protected static ResourceManager ResourceManager { get; private set; } = null!;
 
     [Inject]
-    private protected static VirtualMachine VirtualMachine { get; private set; }
+    private protected static VirtualMachine VirtualMachine { get; private set; } = null!;
 
     /// <summary>
     /// The ID of this object instance. Not persistent, changes after every spawn of the object.<br/>

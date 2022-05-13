@@ -9,10 +9,10 @@ namespace Anvil.Services
   {
     // Dependencies
     [Inject]
-    private Lazy<EventService> EventService { get; init; }
+    private Lazy<EventService> EventService { get; init; } = null!;
 
     [Inject]
-    private VirtualMachine VirtualMachine { get; init; }
+    private VirtualMachine VirtualMachine { get; init; } = null!;
 
     private bool isEventHooked;
 
@@ -36,10 +36,9 @@ namespace Anvil.Services
       isEventHooked = false;
     }
 
-    private bool ProcessEvent(ChatChannel chatChannel, string message, NwObject sender, NwPlayer target)
+    private bool ProcessEvent(ChatChannel chatChannel, string message, NwObject sender, NwPlayer? target)
     {
-      OnChatMessageSend eventData = null;
-
+      OnChatMessageSend eventData = null!;
       VirtualMachine.ExecuteInScriptContext(() =>
       {
         eventData = EventService.Value.ProcessEvent(new OnChatMessageSend

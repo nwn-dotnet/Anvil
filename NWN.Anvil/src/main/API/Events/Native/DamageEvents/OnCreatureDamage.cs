@@ -8,10 +8,9 @@ namespace Anvil.API.Events
 {
   public sealed class OnCreatureDamage : IEvent
   {
-    public DamageData<int> DamageData { get; private init; }
-    public NwObject DamagedBy { get; private init; }
-
-    public NwGameObject Target { get; private init; }
+    public DamageData<int> DamageData { get; private init; } = null!;
+    public NwObject DamagedBy { get; private init; } = null!;
+    public NwGameObject Target { get; private init; } = null!;
 
     NwObject? IEvent.Context => DamagedBy;
 

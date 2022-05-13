@@ -8,18 +8,18 @@ namespace Anvil.API.Events
 {
   public sealed class OnExamineObject : IEvent
   {
-    public NwPlayer ExaminedBy { get; private init; }
+    public NwPlayer ExaminedBy { get; private init; } = null!;
 
-    public NwGameObject ExaminedObject { get; private init; }
+    public NwGameObject ExaminedObject { get; private init; } = null!;
 
     NwObject? IEvent.Context => ExaminedBy.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<CreatureExamineHook> creatureExamineHook;
-      private static FunctionHook<DoorExamineHook> doorExamineHook;
-      private static FunctionHook<ItemExamineHook> itemExamineHook;
-      private static FunctionHook<PlaceableExamineHook> placeableExamineHook;
+      private static FunctionHook<CreatureExamineHook> creatureExamineHook = null!;
+      private static FunctionHook<DoorExamineHook> doorExamineHook = null!;
+      private static FunctionHook<ItemExamineHook> itemExamineHook = null!;
+      private static FunctionHook<PlaceableExamineHook> placeableExamineHook = null!;
 
       private delegate void CreatureExamineHook(void* pMessage, void* pPlayer, uint oidCreature);
 

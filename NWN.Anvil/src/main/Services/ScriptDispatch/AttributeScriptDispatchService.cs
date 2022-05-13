@@ -16,7 +16,7 @@ namespace Anvil.Services
 
     // All Services
     [Inject]
-    private Lazy<IEnumerable<object>> Services { get; init; }
+    private Lazy<IEnumerable<object>> Services { get; init; } = null!;
 
     private readonly Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(StartCapacity);
 

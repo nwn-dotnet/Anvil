@@ -5,10 +5,11 @@ namespace Anvil.API.Events
 {
   public abstract class DMGroupTargetEvent : IEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; }
+    public NwPlayer DungeonMaster { get; internal init; } = null!;
 
     public bool Skip { get; set; }
-    public NwObject[] Targets { get; internal init; }
+
+    public NwObject[] Targets { get; internal init; } = null!;
 
     NwObject? IEvent.Context => DungeonMaster?.LoginCreature;
   }

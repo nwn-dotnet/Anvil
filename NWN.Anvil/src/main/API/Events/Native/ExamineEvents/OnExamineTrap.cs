@@ -8,9 +8,9 @@ namespace Anvil.API.Events
 {
   public sealed class OnExamineTrap : IEvent
   {
-    public NwPlayer ExaminedBy { get; private init; }
+    public NwPlayer ExaminedBy { get; private init; } = null!;
 
-    public NwGameObject ExaminedObject { get; private init; }
+    public NwGameObject ExaminedObject { get; private init; } = null!;
 
     public bool Success { get; private init; }
 

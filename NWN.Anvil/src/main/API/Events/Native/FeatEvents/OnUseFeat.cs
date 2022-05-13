@@ -16,9 +16,9 @@ namespace Anvil.API.Events
 
     public int SubFeatId { get; private init; }
 
-    public NwArea TargetArea { get; private init; }
+    public NwArea TargetArea { get; private init; } = null!;
 
-    public NwGameObject TargetObject { get; private init; }
+    public NwGameObject TargetObject { get; private init; } = null!;
 
     public Vector3 TargetPosition { get; private init; }
 

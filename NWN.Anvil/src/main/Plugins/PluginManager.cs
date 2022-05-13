@@ -24,9 +24,9 @@ namespace Anvil.Plugins
     private readonly HashSet<Assembly> loadedAssemblies = new HashSet<Assembly>();
     private readonly List<Plugin> plugins = new List<Plugin>();
 
-    internal IReadOnlyCollection<Type>? LoadedTypes { get; private set; }
+    internal IReadOnlyCollection<Type> LoadedTypes { get; private set; } = null!;
 
-    internal IReadOnlyCollection<string>? ResourcePaths { get; private set; }
+    internal IReadOnlyCollection<string> ResourcePaths { get; private set; } = null!;
 
     /// <summary>
     /// Gets the install directory of the specified plugin.
@@ -89,8 +89,8 @@ namespace Anvil.Plugins
     void ICoreService.Unload()
     {
       loadedAssemblies.Clear();
-      LoadedTypes = null;
-      ResourcePaths = null;
+      LoadedTypes = null!;
+      ResourcePaths = null!;
 
       Log.Info("Unloading plugins...");
       Dictionary<WeakReference, string> pendingUnloads = new Dictionary<WeakReference, string>();

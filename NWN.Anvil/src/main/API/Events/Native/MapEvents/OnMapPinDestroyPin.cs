@@ -19,7 +19,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the player that is changing the map pin.
     /// </summary>
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets if this pin destroy event should be prevented.

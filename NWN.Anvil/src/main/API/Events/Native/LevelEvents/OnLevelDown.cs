@@ -8,7 +8,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnLevelDown : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     NwObject? IEvent.Context => Creature;
 

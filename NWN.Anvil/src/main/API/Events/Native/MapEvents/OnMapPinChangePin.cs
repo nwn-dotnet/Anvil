@@ -20,12 +20,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the note that was set on the map pin.
     /// </summary>
-    public string Note { get; private init; }
+    public string? Note { get; private init; }
 
     /// <summary>
     /// Gets the player that is changing the map pin.
     /// </summary>
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     /// <summary>
     /// Gets the position that the pin was placed at.

@@ -19,7 +19,7 @@ namespace Anvil.Services
     private readonly FunctionHook<SendDialogRepliesHook> sendDialogRepliesHook;
     private readonly Stack<DialogState> stateStack = new Stack<DialogState>();
 
-    private CNWSDialog dialog;
+    private CNWSDialog? dialog;
 
     private uint indexEntry;
     private uint indexReply;
@@ -53,6 +53,11 @@ namespace Anvil.Services
     {
       get
       {
+        if (dialog == null)
+        {
+          return null;
+        }
+
         switch (stateStack.Peek())
         {
           case DialogState.Start:
@@ -92,10 +97,9 @@ namespace Anvil.Services
 
     public ScriptType CurrentScriptType { get; private set; }
 
-    public string GetCurrentNodeText(Language language = Language.English, Gender gender = Gender.Male)
+    public string? GetCurrentNodeText(Language language = Language.English, Gender gender = Gender.Male)
     {
-      CExoLocString locString = GetCurrentNodeLocString();
-
+      CExoLocString? locString = GetCurrentNodeLocString();
       if (locString == null)
       {
         return null;
@@ -108,7 +112,7 @@ namespace Anvil.Services
 
     public void SetCurrentNodeText(string text, Language language = Language.English, Gender gender = Gender.Male)
     {
-      CExoLocString locString = GetCurrentNodeLocString();
+      CExoLocString? locString = GetCurrentNodeLocString();
       if (locString == null)
       {
         return;
@@ -129,10 +133,14 @@ namespace Anvil.Services
       runScriptHook.Dispose();
     }
 
-    private CExoLocString GetCurrentNodeLocString()
+    private CExoLocString? GetCurrentNodeLocString()
     {
-      CExoLocString locString = null;
+      if (dialog == null)
+      {
+        return null;
+      }
 
+      CExoLocString? locString = null;
       switch (stateStack.Peek())
       {
         case DialogState.Start:

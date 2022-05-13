@@ -27,7 +27,7 @@ namespace Anvil.Services
     /// <summary>
     /// Gets the override that is set for the creature's damage level.<br/>
     /// </summary>
-    public DamageLevelEntry GetDamageLevelOverride(NwCreature creature)
+    public DamageLevelEntry? GetDamageLevelOverride(NwCreature creature)
     {
       InternalVariableInt damageLevelOverride = InternalVariables.DamageLevelOverride(creature);
       if (damageLevelOverride.HasValue)
@@ -48,10 +48,10 @@ namespace Anvil.Services
 
     private byte OnGetDamageLevel(void* pObject)
     {
-      NwCreature creature = CNWSObject.FromPointer(pObject).ToNwObject<NwCreature>();
+      NwCreature? creature = CNWSObject.FromPointer(pObject).ToNwObject<NwCreature>();
       if (creature != null)
       {
-        DamageLevelEntry levelOverride = GetDamageLevelOverride(creature);
+        DamageLevelEntry? levelOverride = GetDamageLevelOverride(creature);
         if (levelOverride != null)
         {
           return (byte)levelOverride.RowIndex;

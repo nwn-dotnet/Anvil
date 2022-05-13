@@ -5,7 +5,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnDMChangeDifficulty : IEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; }
+    public NwPlayer DungeonMaster { get; internal init; } = null!;
     public GameDifficulty NewDifficulty { get; internal init; }
 
     public bool Skip { get; set; }

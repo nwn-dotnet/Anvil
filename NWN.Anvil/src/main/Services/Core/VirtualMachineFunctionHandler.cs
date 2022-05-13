@@ -11,10 +11,10 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     [Inject]
-    private static ScriptDispatchService ScriptDispatchService { get; set; }
+    private static ScriptDispatchService ScriptDispatchService { get; set; } = null!;
 
     [Inject]
-    private static ServerUpdateLoopService ServerUpdateLoopService { get; set; }
+    private static ServerUpdateLoopService ServerUpdateLoopService { get; set; } = null!;
 
     private readonly Dictionary<ulong, Action> closures = new Dictionary<ulong, Action>();
     private readonly Stack<uint> scriptContexts = new Stack<uint>();

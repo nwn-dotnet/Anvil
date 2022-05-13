@@ -14,7 +14,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the effect being removed.
     /// </summary>
-    public Effect Effect { get; init; }
+    public Effect Effect { get; init; } = null!;
 
     /// <summary>
     /// Gets the object that the effect was removed from.

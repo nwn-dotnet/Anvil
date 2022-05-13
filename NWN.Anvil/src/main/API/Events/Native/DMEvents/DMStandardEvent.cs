@@ -5,7 +5,7 @@ namespace Anvil.API.Events
 {
   public abstract class DMStandardEvent : IEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; }
+    public NwPlayer DungeonMaster { get; internal init; } = null!;
 
     public bool Skip { get; set; }
 

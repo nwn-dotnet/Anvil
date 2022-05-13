@@ -23,7 +23,7 @@ namespace Anvil.Services
 
     public VisibilityMode GetPersonalOverride(NwPlayer player, NwObject target)
     {
-      return InternalVariables.PlayerVisibilityOverride(player, target);
+      return InternalVariables.PlayerVisibilityOverride(player, target).Value;
     }
 
     public void SetGlobalOverride(NwGameObject target, VisibilityMode visibilityMode)
@@ -40,15 +40,15 @@ namespace Anvil.Services
 
     private int OnTestObjectVisible(void* pMessage, void* pAreaObject, void* pPlayerGameObject)
     {
-      NwGameObject areaObject = CNWSObject.FromPointer(pAreaObject).ToNwObjectSafe<NwGameObject>();
-      NwCreature playerGameObject = CNWSObject.FromPointer(pPlayerGameObject).ToNwObjectSafe<NwCreature>();
+      NwGameObject? areaObject = CNWSObject.FromPointer(pAreaObject).ToNwObjectSafe<NwGameObject>();
+      NwCreature? playerGameObject = CNWSObject.FromPointer(pPlayerGameObject).ToNwObjectSafe<NwCreature>();
+      NwPlayer? controllingPlayer = playerGameObject?.ControllingPlayer;
 
-      if (areaObject == null || playerGameObject == null || areaObject == playerGameObject)
+      if (areaObject == null || controllingPlayer == null || areaObject == playerGameObject)
       {
         return testObjectVisibleHook.CallOriginal(pMessage, pAreaObject, pPlayerGameObject);
       }
 
-      NwPlayer controllingPlayer = playerGameObject.ControllingPlayer;
       VisibilityMode personalOverride = GetPersonalOverride(controllingPlayer, areaObject);
       VisibilityMode globalOverride = GetGlobalOverride(areaObject);
       VisibilityMode visibilityOverride = personalOverride != VisibilityMode.Default ? personalOverride : globalOverride != VisibilityMode.Default ? globalOverride : VisibilityMode.Default;

@@ -14,7 +14,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the effect being applied.
     /// </summary>
-    public Effect Effect { get; init; }
+    public Effect Effect { get; init; } = null!;
 
     /// <summary>
     /// Gets the object that the effect is being applied to.

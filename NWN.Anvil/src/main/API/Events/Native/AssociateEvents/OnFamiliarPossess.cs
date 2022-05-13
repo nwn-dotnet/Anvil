@@ -8,8 +8,8 @@ namespace Anvil.API.Events
 {
   public sealed class OnFamiliarPossess : IEvent
   {
-    public NwCreature Familiar { get; private init; }
-    public NwCreature Owner { get; private init; }
+    public NwCreature Familiar { get; private init; } = null!;
+    public NwCreature Owner { get; private init; } = null!;
 
     NwObject? IEvent.Context => Owner;
 

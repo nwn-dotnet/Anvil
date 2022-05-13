@@ -14,7 +14,7 @@ namespace Anvil.API
     {
       get
       {
-        string stored = ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key);
+        string? stored = ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key);
         return string.IsNullOrEmpty(stored) ? Guid.Empty : Guid.Parse(stored);
       }
       set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, value.ToUUIDString(), true);

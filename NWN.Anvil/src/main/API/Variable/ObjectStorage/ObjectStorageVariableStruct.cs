@@ -11,7 +11,16 @@ namespace Anvil.API
 
     public sealed override T? Value
     {
-      get => HasValue ? JsonUtility.FromJson<T>(ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key)) : default;
+      get
+      {
+        if (ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage? objectStorage))
+        {
+          string? serialized = objectStorage.GetString(ObjectStoragePrefix, Key);
+          return !string.IsNullOrEmpty(serialized) ? JsonUtility.FromJson<T>(serialized) : default;
+        }
+
+        return default;
+      }
       set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, JsonUtility.ToJson(value), Persist);
     }
 

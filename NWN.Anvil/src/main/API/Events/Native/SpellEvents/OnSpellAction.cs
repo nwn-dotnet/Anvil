@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     public Domain Domain { get; private init; }
 
-    public NwFeat Feat { get; private init; }
+    public NwFeat Feat { get; private init; } = null!;
 
     public bool IsAreaTarget { get; private init; }
 
@@ -32,11 +32,11 @@ namespace Anvil.API.Events
 
     public ProjectilePathType ProjectilePath { get; private init; }
 
-    public Lazy<bool> Result { get; private set; }
+    public Lazy<bool> Result { get; private set; } = null!;
 
-    public NwSpell Spell { get; private init; }
+    public NwSpell Spell { get; private init; } = null!;
 
-    public NwGameObject TargetObject { get; private init; }
+    public NwGameObject TargetObject { get; private init; } = null!;
 
     public Vector3 TargetPosition { get; private init; }
 

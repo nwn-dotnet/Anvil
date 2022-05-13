@@ -143,7 +143,8 @@ namespace Anvil.Services
         case ResRefType.NCS:
           return null;
         default:
-          return StringHelper.Cp1252Encoding.GetString(GetStandardResourceData(name, type));
+          byte[]? data = GetStandardResourceData(name, type);
+          return data != null ? StringHelper.Cp1252Encoding.GetString(data) : null;
       }
     }
 
@@ -213,7 +214,7 @@ namespace Anvil.Services
 
     private byte[]? GetStandardResourceData(string name, ResRefType type)
     {
-      if (TryGetNativeResource(name, type, out CRes res))
+      if (TryGetNativeResource(name, type, out CRes? res))
       {
         void* data = res.GetData();
         int size = res.GetSize();

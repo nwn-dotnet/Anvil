@@ -12,7 +12,7 @@ namespace Anvil.Services
   public sealed class ScriptHandleFactory : IScriptDispatcher
   {
     private readonly Dictionary<string, ScriptCallbackHandle> activeHandlers = new Dictionary<string, ScriptCallbackHandle>();
-    public int ExecutionOrder { get; } = 0;
+    public int ExecutionOrder => 0;
 
     /// <summary>
     /// Creates a unique script callback handle for the specified callback method.<br/>
@@ -78,7 +78,7 @@ namespace Anvil.Services
     /// <returns>True if a handler was removed, false if nothing was removed.</returns>
     public bool UnregisterScriptHandler(string scriptName)
     {
-      if (activeHandlers.TryGetValue(scriptName, out ScriptCallbackHandle handle))
+      if (activeHandlers.TryGetValue(scriptName, out ScriptCallbackHandle? handle))
       {
         handle.IsValid = false;
       }
@@ -88,7 +88,7 @@ namespace Anvil.Services
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string scriptName, uint oidSelf)
     {
-      if (activeHandlers.TryGetValue(scriptName, out ScriptCallbackHandle handler))
+      if (activeHandlers.TryGetValue(scriptName, out ScriptCallbackHandle? handler))
       {
         if (handler != null)
         {
