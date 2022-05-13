@@ -17,7 +17,7 @@ namespace NWN.Anvil.Samples
 
     public TriggerHandlerService()
     {
-      NwTrigger trigger = NwObject.FindObjectsWithTag<NwTrigger>("mytrigger").FirstOrDefault();
+      NwTrigger? trigger = NwObject.FindObjectsWithTag<NwTrigger>("mytrigger").FirstOrDefault();
       if (trigger != null)
       {
         trigger.OnEnter += OnTriggerEnter;
@@ -26,7 +26,7 @@ namespace NWN.Anvil.Samples
 
     private void OnTriggerEnter(TriggerEvents.OnEnter obj)
     {
-      if (obj.EnteringObject.IsPlayerControlled(out NwPlayer player))
+      if (obj.EnteringObject.IsPlayerControlled(out NwPlayer? player))
       {
         Log.Info("Player entered trigger: " + player?.PlayerName);
       }

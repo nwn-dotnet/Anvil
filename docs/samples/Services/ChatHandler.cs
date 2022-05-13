@@ -26,7 +26,7 @@ namespace NWN.Anvil.Samples
 
     public void ExecuteCommand(NwPlayer caller)
     {
-      caller.ControlledCreature.GiveGold(Amount);
+      caller.ControlledCreature?.GiveGold(Amount);
     }
   }
 
