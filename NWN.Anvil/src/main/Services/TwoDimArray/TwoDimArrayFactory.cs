@@ -58,7 +58,7 @@ namespace Anvil.Services
       for (int i = 0; i < twoDimArray.m_nNumRows; i++)
       {
         int rowIndex = i;
-        new2da.DeserializeRow(rowIndex, (column) => NWScript.Get2DAString(name, column, rowIndex));
+        new2da.DeserializeRow(rowIndex, column => NWScript.Get2DAString(name, column, rowIndex));
       }
 
       cache[name] = new2da;

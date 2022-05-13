@@ -21,7 +21,7 @@ namespace Anvil.API.Events
 
     public bool Spontaneous { get; private init; }
 
-    NwObject? IEvent.Context => InterruptedCaster;
+    NwObject IEvent.Context => InterruptedCaster;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

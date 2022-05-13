@@ -8,11 +8,6 @@ namespace Anvil.Plugins
   {
     public PluginResourceManager(PluginManager pluginManager, ResourceManager resourceManager)
     {
-      if (pluginManager.ResourcePaths == null)
-      {
-        return;
-      }
-
       foreach (string resourcePath in pluginManager.ResourcePaths)
       {
         resourceManager.CreateResourceDirectory(resourcePath);

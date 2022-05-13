@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
-      NwObject? IEvent.Context => Creature;
+      NwObject IEvent.Context => Creature;
     }
   }
 }

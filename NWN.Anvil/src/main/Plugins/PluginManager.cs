@@ -201,13 +201,13 @@ namespace Anvil.Plugins
     private bool IsUnloadComplete(Dictionary<WeakReference, string> pendingUnloads, int attempt)
     {
       bool retVal = true;
-      foreach (KeyValuePair<WeakReference, string> context in pendingUnloads)
+      foreach ((WeakReference? assemblyReference, string? pluginName) in pendingUnloads)
       {
-        if (context.Key.IsAlive)
+        if (assemblyReference.IsAlive)
         {
           if (attempt > PluginUnloadAttempts)
           {
-            Log.Warn("Plugin {PluginName} is preventing unload", context.Value);
+            Log.Warn("Plugin {PluginName} is preventing unload", pluginName);
           }
 
           retVal = false;

@@ -33,7 +33,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that last equipped <see cref="NwItem"/>.
       /// </summary>
-      public NwCreature Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>()!;
+      public NwCreature? Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
 
       NwObject? IEvent.Context => Player;
     }

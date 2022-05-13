@@ -310,22 +310,22 @@ namespace Anvil.Services
 
     void IDisposable.Dispose()
     {
-      getWeaponFocusHook?.Dispose();
-      getEpicWeaponFocusHook?.Dispose();
-      getWeaponFinesseHook?.Dispose();
-      getWeaponImprovedCriticalHook?.Dispose();
-      getEpicWeaponOverwhelmingCriticalHook?.Dispose();
-      getEpicWeaponDevastatingCriticalHook?.Dispose();
-      getWeaponSpecializationHook?.Dispose();
-      getEpicWeaponSpecializationHook?.Dispose();
-      getIsWeaponOfChoiceHook?.Dispose();
-      getDamageBonusHook?.Dispose();
-      getMeleeDamageBonusHook?.Dispose();
-      getRangedDamageBonusHook?.Dispose();
-      getMeleeAttackBonusHook?.Dispose();
-      getRangedAttackBonusHook?.Dispose();
-      getAttackModifierVersusHook?.Dispose();
-      getUseMonkAttackTablesHook?.Dispose();
+      getWeaponFocusHook.Dispose();
+      getEpicWeaponFocusHook.Dispose();
+      getWeaponFinesseHook.Dispose();
+      getWeaponImprovedCriticalHook.Dispose();
+      getEpicWeaponOverwhelmingCriticalHook.Dispose();
+      getEpicWeaponDevastatingCriticalHook.Dispose();
+      getWeaponSpecializationHook.Dispose();
+      getEpicWeaponSpecializationHook.Dispose();
+      getIsWeaponOfChoiceHook.Dispose();
+      getDamageBonusHook.Dispose();
+      getMeleeDamageBonusHook.Dispose();
+      getRangedDamageBonusHook.Dispose();
+      getMeleeAttackBonusHook.Dispose();
+      getRangedAttackBonusHook.Dispose();
+      getAttackModifierVersusHook.Dispose();
+      getUseMonkAttackTablesHook.Dispose();
       maxAttackRangeHook?.Dispose();
     }
 
@@ -408,7 +408,7 @@ namespace Anvil.Services
       }
 
       int creatureSize = creature.m_nCreatureSize;
-      if (creatureSize < (int)CreatureSize.Tiny || creatureSize > (int)CreatureSize.Huge)
+      if (creatureSize is < (int)CreatureSize.Tiny or > (int)CreatureSize.Huge)
       {
         return false;
       }
@@ -930,7 +930,7 @@ namespace Anvil.Services
       }
 
       uint secondWeaponType = secondWeapon.m_nBaseItem;
-      return (secondWeaponType == (uint)BaseItem.Kama || secondWeaponType == (uint)BaseItem.Torch || monkWeaponSet.Contains(secondWeaponType)).ToInt();
+      return (secondWeaponType is (uint)BaseItem.Kama or (uint)BaseItem.Torch || monkWeaponSet.Contains(secondWeaponType)).ToInt();
     }
 
     private int OnGetWeaponFinesse(void* pStats, void* pWeapon)

@@ -90,15 +90,8 @@ namespace Anvil.Services
     {
       if (activeHandlers.TryGetValue(scriptName, out ScriptCallbackHandle? handler))
       {
-        if (handler != null)
-        {
-          CallInfo callInfo = new CallInfo(scriptName, oidSelf.ToNwObject());
-          return handler.Invoke(callInfo);
-        }
-        else
-        {
-          activeHandlers.Remove(scriptName);
-        }
+        CallInfo callInfo = new CallInfo(scriptName, oidSelf.ToNwObject());
+        return handler.Invoke(callInfo);
       }
 
       return ScriptHandleResult.NotHandled;

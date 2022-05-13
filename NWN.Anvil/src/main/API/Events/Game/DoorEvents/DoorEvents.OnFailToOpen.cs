@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature WhoFailed { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>()!;
 
-      NwObject? IEvent.Context => Door;
+      NwObject IEvent.Context => Door;
     }
   }
 }

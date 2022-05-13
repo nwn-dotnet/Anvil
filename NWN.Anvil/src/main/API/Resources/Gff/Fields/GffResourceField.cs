@@ -167,10 +167,8 @@ namespace Anvil.API
       {
         return (T?)value;
       }
-      else
-      {
-        throw new InvalidOperationException($"Cannot convert {FieldType} to {typeof(T).Name}");
-      }
+
+      throw new InvalidOperationException($"Cannot convert {FieldType} to {typeof(T).Name}");
     }
 
     /// <summary>

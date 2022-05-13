@@ -1464,10 +1464,8 @@ namespace Anvil.API
       {
         return Creature.m_pStats.GetMeleeAttackBonus(isOffHand.ToInt(), includeBaseAttackBonus.ToInt(), isTouchAttack.ToInt());
       }
-      else
-      {
-        return Creature.m_pStats.GetRangedAttackBonus(includeBaseAttackBonus.ToInt(), isTouchAttack.ToInt());
-      }
+
+      return Creature.m_pStats.GetRangedAttackBonus(includeBaseAttackBonus.ToInt(), isTouchAttack.ToInt());
     }
 
     /// <summary>

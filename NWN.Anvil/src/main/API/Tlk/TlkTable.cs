@@ -24,7 +24,7 @@ namespace Anvil.API
     }
 
     [Obsolete("Use StrRef.ToString() instead.")]
-    public string? GetSimpleString(uint strRef)
+    public string GetSimpleString(uint strRef)
     {
       return new StrRef(strRef).ToString();
     }

@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwGameObject OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwGameObject>()!;
 
-      NwObject? IEvent.Context => Door;
+      NwObject IEvent.Context => Door;
     }
   }
 }

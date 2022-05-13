@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature Killer { get; } = NWScript.GetLastKiller().ToNwObject<NwCreature>()!;
 
-      NwObject? IEvent.Context => Door;
+      NwObject IEvent.Context => Door;
     }
   }
 }

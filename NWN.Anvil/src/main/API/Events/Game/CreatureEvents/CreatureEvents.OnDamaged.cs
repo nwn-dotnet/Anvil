@@ -30,7 +30,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwGameObject Damager { get; } = NWScript.GetLastDamager().ToNwObject<NwGameObject>()!;
 
-      NwObject? IEvent.Context => Creature;
+      NwObject IEvent.Context => Creature;
     }
   }
 }

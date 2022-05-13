@@ -238,9 +238,9 @@ namespace Anvil.Services
 
     private void ApplyObserverOverrides(Dictionary<NwPlayer, PlayerNameOverride> nameOverrides, OverrideNameType nameType)
     {
-      foreach (KeyValuePair<NwPlayer, PlayerNameOverride> nameOverride in nameOverrides)
+      foreach ((NwPlayer? targetPlayer, PlayerNameOverride? nameOverride) in nameOverrides)
       {
-        ApplyNameOverride(nameOverride.Key, nameOverride.Value, nameType);
+        ApplyNameOverride(targetPlayer, nameOverride, nameType);
       }
     }
 
@@ -511,9 +511,9 @@ namespace Anvil.Services
 
     private void RestoreObserverOverrides(Dictionary<NwPlayer, PlayerNameOverride> nameOverrides, OverrideNameType nameType)
     {
-      foreach (KeyValuePair<NwPlayer, PlayerNameOverride> nameOverride in nameOverrides)
+      foreach ((NwPlayer? targetPlayer, PlayerNameOverride? nameOverride) in nameOverrides)
       {
-        RestoreNameOverride(nameOverride.Key, nameOverride.Value, nameType);
+        RestoreNameOverride(targetPlayer, nameOverride, nameType);
       }
     }
 

@@ -23,7 +23,7 @@ namespace Anvil.API.Events
 
       public NwGameObject? TargetObject { get; } = NWScript.GetItemActivatedTarget().ToNwObject<NwGameObject>();
 
-      NwObject? IEvent.Context => ItemActivator;
+      NwObject IEvent.Context => ItemActivator;
 
       public static void Signal(NwItem item, Location targetLocation, NwGameObject? targetObject = null)
       {

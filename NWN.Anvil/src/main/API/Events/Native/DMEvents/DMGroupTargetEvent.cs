@@ -11,7 +11,7 @@ namespace Anvil.API.Events
 
     public NwObject[] Targets { get; internal init; } = null!;
 
-    NwObject? IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 
   public sealed class OnDMHeal : DMGroupTargetEvent {}

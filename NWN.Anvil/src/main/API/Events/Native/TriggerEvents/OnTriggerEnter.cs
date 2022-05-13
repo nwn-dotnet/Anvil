@@ -36,7 +36,7 @@ namespace Anvil.API.Events
     /// </summary>
     public NwTrigger Trigger { get; private init; } = null!;
 
-    NwObject? IEvent.Context => Trigger;
+    NwObject IEvent.Context => Trigger;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

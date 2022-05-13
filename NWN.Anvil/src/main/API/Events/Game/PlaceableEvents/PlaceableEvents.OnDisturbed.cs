@@ -35,7 +35,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
-      NwObject? IEvent.Context => Placeable;
+      NwObject IEvent.Context => Placeable;
     }
   }
 }

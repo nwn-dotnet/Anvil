@@ -11,7 +11,7 @@ namespace Anvil.Plugins
     private static readonly string[] NativeLibPrefixes = { "lib" };
     private readonly Dictionary<string, WeakReference<Assembly>> assemblyCache = new Dictionary<string, WeakReference<Assembly>>();
 
-    private Plugin plugin;
+    private Plugin? plugin;
 
     private PluginManager pluginManager;
     private AssemblyDependencyResolver resolver;
@@ -27,8 +27,8 @@ namespace Anvil.Plugins
     public void Dispose()
     {
       pluginManager = null!;
-      plugin = null!;
       resolver = null!;
+      plugin = null;
       assemblyCache.Clear();
       Unload();
     }
@@ -52,7 +52,12 @@ namespace Anvil.Plugins
 
     protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)
     {
-      string? libraryPath = resolver?.ResolveUnmanagedDllToPath(unmanagedDllName);
+      if (plugin == null)
+      {
+        return IntPtr.Zero;
+      }
+
+      string? libraryPath = resolver.ResolveUnmanagedDllToPath(unmanagedDllName);
       if (libraryPath != null)
       {
         return LoadUnmanagedDllFromPath(libraryPath);
@@ -69,7 +74,7 @@ namespace Anvil.Plugins
 
     private Assembly? GetAssembly(AssemblyName assemblyName)
     {
-      if (plugin.Name.Name == null)
+      if (plugin?.Name.Name == null)
       {
         return null;
       }
@@ -81,7 +86,7 @@ namespace Anvil.Plugins
       }
 
       // Resolve the dependency with the bundled assemblies (NWN.Core/Anvil), then check if other plugins can provide the dependency.
-      Assembly? assembly = pluginManager?.ResolveDependency(plugin.Name.Name, assemblyName);
+      Assembly? assembly = pluginManager.ResolveDependency(plugin.Name.Name, assemblyName);
       if (assembly != null)
       {
         return assembly;
@@ -110,7 +115,7 @@ namespace Anvil.Plugins
 
     private Assembly? ResolveLocal(AssemblyName assemblyName)
     {
-      string? assemblyPath = resolver?.ResolveAssemblyToPath(assemblyName);
+      string? assemblyPath = resolver.ResolveAssemblyToPath(assemblyName);
       return assemblyPath != null ? LoadFromAssemblyPath(assemblyPath) : null;
     }
 

@@ -26,7 +26,7 @@ namespace Anvil.Services
 
     public void OnLoop(ulong _)
     {
-      ServerUpdateLoopService?.Update();
+      ServerUpdateLoopService.Update();
     }
 
     void ICoreFunctionHandler.ClosureActionDoCommand(uint obj, Action func)

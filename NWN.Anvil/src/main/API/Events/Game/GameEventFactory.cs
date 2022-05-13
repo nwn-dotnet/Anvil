@@ -22,7 +22,7 @@ namespace Anvil.API.Events
     private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
     private readonly Dictionary<EventKey, string> originalCallLookup = new Dictionary<EventKey, string>();
 
-    public int ExecutionOrder { get; } = -10000;
+    public int ExecutionOrder => -10000;
 
     public void Register<TEvent>(RegistrationData data) where TEvent : IEvent, new()
     {

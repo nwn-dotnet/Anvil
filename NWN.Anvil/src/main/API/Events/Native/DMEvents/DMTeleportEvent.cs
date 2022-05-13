@@ -14,7 +14,7 @@ namespace Anvil.API.Events
 
     public Vector3 TargetPosition { get; internal init; }
 
-    NwObject? IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 
   public sealed class OnDMJumpToPoint : DMTeleportEvent {}

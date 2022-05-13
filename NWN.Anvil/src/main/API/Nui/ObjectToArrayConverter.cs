@@ -95,8 +95,8 @@ namespace Anvil.API
 
         foreach (JsonProperty property in SerializableProperties(contract))
         {
-          object? propertyValue = property?.ValueProvider?.GetValue(value);
-          if (property?.Converter != null && property.Converter.CanWrite)
+          object? propertyValue = property.ValueProvider?.GetValue(value);
+          if (property.Converter != null && property.Converter.CanWrite)
           {
             property.Converter.WriteJson(writer, propertyValue, serializer);
           }

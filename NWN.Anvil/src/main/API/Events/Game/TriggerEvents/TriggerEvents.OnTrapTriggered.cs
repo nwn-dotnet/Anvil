@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwGameObject TriggeredBy { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>()!;
 
-      NwObject? IEvent.Context => Trigger;
+      NwObject IEvent.Context => Trigger;
     }
   }
 }

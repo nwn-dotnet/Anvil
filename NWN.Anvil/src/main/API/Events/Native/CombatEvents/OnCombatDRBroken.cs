@@ -12,7 +12,7 @@ namespace Anvil.API.Events
 
     public DRType Type { get; private init; }
 
-    NwObject? IEvent.Context => Creature;
+    NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

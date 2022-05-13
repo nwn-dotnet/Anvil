@@ -16,7 +16,7 @@ namespace Anvil.API.Events
 
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
-      NwObject? IEvent.Context => Creature;
+      NwObject IEvent.Context => Creature;
 
       public static void Signal(NwCreature creature, int eventId)
       {

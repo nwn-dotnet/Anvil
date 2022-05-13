@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwGameObject ExitingObject { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>()!;
 
-      NwObject? IEvent.Context => Area;
+      NwObject IEvent.Context => Area;
     }
   }
 }

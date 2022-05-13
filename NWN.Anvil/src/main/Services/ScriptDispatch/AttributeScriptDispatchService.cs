@@ -20,7 +20,7 @@ namespace Anvil.Services
 
     private readonly Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(StartCapacity);
 
-    public int ExecutionOrder { get; } = 10000;
+    public int ExecutionOrder => 10000;
 
     void IInitializable.Init()
     {

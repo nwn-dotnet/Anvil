@@ -85,7 +85,7 @@ namespace Anvil.Services
     {
       foreach (ScheduledTask task in scheduledTasks)
       {
-        task?.Dispose();
+        task.Dispose();
       }
 
       scheduledTasks.Clear();

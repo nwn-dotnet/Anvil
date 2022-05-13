@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
-      NwObject? IEvent.Context => Door;
+      NwObject IEvent.Context => Door;
 
       public static void Signal(NwDoor door, int eventId)
       {

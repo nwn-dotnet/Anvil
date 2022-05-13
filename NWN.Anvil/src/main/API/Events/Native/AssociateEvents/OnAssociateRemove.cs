@@ -11,7 +11,7 @@ namespace Anvil.API.Events
     public NwCreature Associate { get; private init; } = null!;
     public NwCreature Owner { get; private init; } = null!;
 
-    NwObject? IEvent.Context => Owner;
+    NwObject IEvent.Context => Owner;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

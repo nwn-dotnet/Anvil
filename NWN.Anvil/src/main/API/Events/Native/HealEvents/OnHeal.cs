@@ -23,7 +23,7 @@ namespace Anvil.API.Events
     /// </summary>
     public NwGameObject Target { get; private init; } = null!;
 
-    NwObject? IEvent.Context => Healer;
+    NwObject IEvent.Context => Healer;
 
     internal sealed unsafe class Factory : HookEventFactory
     {

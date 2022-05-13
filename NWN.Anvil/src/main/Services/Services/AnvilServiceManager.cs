@@ -213,7 +213,7 @@ namespace Anvil.Services
         AnvilServiceContainer.RegisterInstance(coreService.GetType(), coreService);
       }
 
-      foreach (Type type in pluginManager.LoadedTypes!)
+      foreach (Type type in pluginManager.LoadedTypes)
       {
         TryRegisterAnvilService(type);
       }

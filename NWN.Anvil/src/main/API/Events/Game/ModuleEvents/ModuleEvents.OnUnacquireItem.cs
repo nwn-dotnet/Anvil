@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature LostBy { get; } = NWScript.GetModuleItemLostBy().ToNwObject<NwCreature>()!;
 
-      NwObject? IEvent.Context => LostBy;
+      NwObject IEvent.Context => LostBy;
     }
   }
 }

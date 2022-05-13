@@ -35,7 +35,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwSpell Spell { get; } = NwSpell.FromSpellId(NWScript.GetLastSpell())!;
 
-      NwObject? IEvent.Context => Creature;
+      NwObject IEvent.Context => Creature;
 
       public static void Signal(NwObject caster, NwCreature target, NwSpell spell, bool harmful = true)
       {

@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; }
 
-      NwObject? IEvent.Context => Placeable;
+      NwObject IEvent.Context => Placeable;
 
       /// <summary>
       /// Gets the <see cref="ActionMode"/> used to damage <see cref="NwPlaceable"/>.

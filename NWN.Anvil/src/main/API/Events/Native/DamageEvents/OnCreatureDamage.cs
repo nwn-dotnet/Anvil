@@ -12,7 +12,7 @@ namespace Anvil.API.Events
     public NwObject DamagedBy { get; private init; } = null!;
     public NwGameObject Target { get; private init; } = null!;
 
-    NwObject? IEvent.Context => DamagedBy;
+    NwObject IEvent.Context => DamagedBy;
 
     internal unsafe class Factory : HookEventFactory
     {
@@ -29,7 +29,7 @@ namespace Anvil.API.Events
 
       private static bool IsValidObjectTarget(ObjectType objectType)
       {
-        return objectType == ObjectType.Creature || objectType == ObjectType.Placeable;
+        return objectType is ObjectType.Creature or ObjectType.Placeable;
       }
 
       [UnmanagedCallersOnly]

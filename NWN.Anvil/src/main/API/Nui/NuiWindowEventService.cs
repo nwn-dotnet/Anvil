@@ -60,7 +60,7 @@ namespace Anvil.API
       {
         if (playerEventHandlers.TryGetValue(eventData.Token.Token, out Action<ModuleEvents.OnNuiEvent>? eventHandler))
         {
-          eventHandler?.Invoke(eventData);
+          eventHandler.Invoke(eventData);
           if (eventData.EventType == NuiEventType.Close)
           {
             playerEventHandlers.Remove(eventData.Token.Token);

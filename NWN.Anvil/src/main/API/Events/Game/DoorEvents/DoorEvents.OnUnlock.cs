@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature UnlockedBy { get; } = NWScript.GetLastUnlocked().ToNwObject<NwCreature>()!;
 
-      NwObject? IEvent.Context => Door;
+      NwObject IEvent.Context => Door;
     }
   }
 }
