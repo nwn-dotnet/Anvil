@@ -17,7 +17,7 @@ namespace Anvil.API
     /// Toggles if this element is active/interactable, or disabled/greyed out.
     /// </summary>
     [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-    public NuiProperty<bool> Enabled { get; set; }
+    public NuiProperty<bool>? Enabled { get; set; }
 
     /// <summary>
     /// Style the foreground color of this widget.<br/>
@@ -25,7 +25,7 @@ namespace Anvil.API
     /// For example, labels would style their text color; progress bars would style the bar.
     /// </summary>
     [JsonProperty("foreground_color", NullValueHandling = NullValueHandling.Ignore)]
-    public NuiProperty<Color> ForegroundColor { get; set; }
+    public NuiProperty<Color>? ForegroundColor { get; set; }
 
     /// <summary>
     /// The height of this element, in pixels.
@@ -37,7 +37,7 @@ namespace Anvil.API
     /// A unique identifier for this element.
     /// </summary>
     [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// The margin on the widget. The margin is the spacing outside of the widget.
@@ -55,7 +55,7 @@ namespace Anvil.API
     /// A tooltip to show when hovering over this element.
     /// </summary>
     [JsonProperty("tooltip", NullValueHandling = NullValueHandling.Ignore)]
-    public NuiProperty<string> Tooltip { get; set; }
+    public NuiProperty<string>? Tooltip { get; set; }
 
     [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
     public abstract string Type { get; }
@@ -64,7 +64,7 @@ namespace Anvil.API
     /// Toggles if this element should/should not be rendered. Invisible elements still take up layout space, and cannot be clicked through.
     /// </summary>
     [JsonProperty("visible", NullValueHandling = NullValueHandling.Ignore)]
-    public NuiProperty<bool> Visible { get; set; }
+    public NuiProperty<bool>? Visible { get; set; }
 
     /// <summary>
     /// The width of this element, in pixels.

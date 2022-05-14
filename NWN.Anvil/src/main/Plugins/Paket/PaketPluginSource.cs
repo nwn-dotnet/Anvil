@@ -35,7 +35,7 @@ namespace Anvil.Plugins
 
     public IEnumerable<Plugin> Bootstrap()
     {
-      Dependencies dependencies = GetDependencies();
+      Dependencies? dependencies = GetDependencies();
       if (dependencies == null)
       {
         return Enumerable.Empty<Plugin>();
@@ -49,7 +49,7 @@ namespace Anvil.Plugins
 
     private IEnumerable<Plugin> CreatePlugins(Dependencies dependencies)
     {
-      PaketAssemblyLoadFile loadFile = null;
+      PaketAssemblyLoadFile? loadFile = null;
 
       // Our target frameworks are sorted by preference, so we early out once we find a valid link file.
       foreach (string framework in Assemblies.TargetFrameworks)
@@ -81,7 +81,7 @@ namespace Anvil.Plugins
           continue;
         }
 
-        if (!loadFile.AssemblyPaths.TryGetValue(pluginName, out string pluginPath))
+        if (!loadFile.AssemblyPaths.TryGetValue(pluginName, out string? pluginPath))
         {
           Log.Warn("Cannot find path for plugin assembly {Plugin}", pluginName);
           continue;
@@ -105,7 +105,7 @@ namespace Anvil.Plugins
       return plugins;
     }
 
-    private Dependencies GetDependencies()
+    private Dependencies? GetDependencies()
     {
       if (!File.Exists(paketFilePath))
       {

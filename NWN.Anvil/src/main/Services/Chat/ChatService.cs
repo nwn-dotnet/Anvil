@@ -38,7 +38,7 @@ namespace Anvil.Services
     /// <param name="chatChannel">The <see cref="ChatChannel"/> to query.</param>
     public void ClearPlayerChatHearingDistance(NwPlayer player, ChatChannel chatChannel)
     {
-      if (playerHearingDistances.TryGetValue(player, out Dictionary<ChatChannel, float> playerHearingDistance))
+      if (playerHearingDistances.TryGetValue(player, out Dictionary<ChatChannel, float>? playerHearingDistance))
       {
         playerHearingDistance.Remove(chatChannel);
       }
@@ -73,7 +73,7 @@ namespace Anvil.Services
     /// If no override is configured, returns the global configured distance instead.</returns>
     public float GetPlayerChatHearingDistance(NwPlayer player, ChatChannel chatChannel)
     {
-      if (playerHearingDistances.TryGetValue(player, out Dictionary<ChatChannel, float> playerHearingDistance))
+      if (playerHearingDistances.TryGetValue(player, out Dictionary<ChatChannel, float>? playerHearingDistance))
       {
         if (playerHearingDistance.TryGetValue(chatChannel, out float retVal))
         {
@@ -92,7 +92,7 @@ namespace Anvil.Services
     /// <param name="sender">The sender of the message.</param>
     /// <param name="target">The receiver of the message.</param>
     /// <returns>True if the message was sent successfully, otherwise false.</returns>
-    public bool SendMessage(ChatChannel chatChannel, string message, NwCreature sender, NwPlayer target = null)
+    public bool SendMessage(ChatChannel chatChannel, string message, NwCreature sender, NwPlayer? target = null)
     {
       return SendMessage(chatChannel, message, (NwObject)sender, target);
     }
@@ -104,7 +104,7 @@ namespace Anvil.Services
     /// <param name="message">The message to send.</param>
     /// <param name="target">The receiver of the message.</param>
     /// <returns>True if the message was sent successfully, otherwise false.</returns>
-    public bool SendServerMessage(ChatChannel chatChannel, string message, NwPlayer target = null)
+    public bool SendServerMessage(ChatChannel chatChannel, string message, NwPlayer? target = null)
     {
       return SendMessage(chatChannel, message, NwModule.Instance, target);
     }
@@ -128,7 +128,7 @@ namespace Anvil.Services
     /// <param name="distance">The new hearing distance.</param>
     public void SetPlayerChatHearingDistance(NwPlayer player, ChatChannel chatChannel, float distance)
     {
-      if (!playerHearingDistances.TryGetValue(player, out Dictionary<ChatChannel, float> playerHearingDistance))
+      if (!playerHearingDistances.TryGetValue(player, out Dictionary<ChatChannel, float>? playerHearingDistance))
       {
         playerHearingDistance = new Dictionary<ChatChannel, float>();
         playerHearingDistances[player] = playerHearingDistance;
@@ -147,7 +147,7 @@ namespace Anvil.Services
 
       CNWSMessage message = CNWSMessage.FromPointer(pMessage);
       CExoString speakerMessage = CExoString.FromPointer(sSpeakerMessage);
-      NwObject speaker = oidSpeaker.ToNwObject();
+      NwObject speaker = oidSpeaker.ToNwObject()!;
 
       bool skipMessage = ProcessEvent(nChatMessageType, speakerMessage.ToString(), speaker, NwPlayer.FromPlayerId(nTellPlayerId));
       if (skipMessage)
@@ -179,12 +179,12 @@ namespace Anvil.Services
         return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, nChatMessageType, oidSpeaker, sSpeakerMessage, nTellPlayerId, tellName);
       }
 
-      NwGameObject speakerGameObject = speaker as NwGameObject;
-      NwArea speakerArea = speakerGameObject?.Area;
+      NwGameObject? speakerGameObject = speaker as NwGameObject;
+      NwArea? speakerArea = speakerGameObject?.Area;
 
       foreach (NwPlayer player in NwModule.Instance.Players)
       {
-        NwCreature controlledCreature = player.ControlledCreature;
+        NwCreature? controlledCreature = player.ControlledCreature;
 
         if (controlledCreature == null || speakerArea != null && speakerArea != controlledCreature.Area)
         {
@@ -217,7 +217,7 @@ namespace Anvil.Services
       return true.ToInt();
     }
 
-    private bool SendMessage(ChatChannel chatChannel, string message, NwObject speaker, NwPlayer target)
+    private bool SendMessage(ChatChannel chatChannel, string message, NwObject speaker, NwPlayer? target)
     {
       uint playerId = target != null ? target.Player.m_nPlayerID : PlayerIdConstants.AllClients;
       if (playerId == PlayerIdConstants.Invalid)

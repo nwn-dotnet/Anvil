@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -110,7 +111,7 @@ namespace Anvil.API
       return bSuccess.ToBool();
     }
 
-    protected override bool GetValueInternal(out object value, Type requestedType = null)
+    protected override bool GetValueInternal([NotNullWhen(true)] out object? value, Type? requestedType = null)
     {
       switch (FieldType)
       {

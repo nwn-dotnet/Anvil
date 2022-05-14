@@ -9,7 +9,7 @@ namespace Anvil.Tests.Services
   public sealed class ResourceManagerTests
   {
     [Inject]
-    private static ResourceManager ResourceManager { get; set; }
+    private static ResourceManager ResourceManager { get; set; } = null!;
 
     private readonly List<string> createdTempResources = new List<string>();
 

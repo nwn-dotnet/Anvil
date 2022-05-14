@@ -47,13 +47,13 @@ namespace Anvil.Services
           nativeCreature.m_bForcedWalk = (nativeCreature.m_nEncumbranceState != 0).ToInt();
         }
 
-        ((CNWSCreature)creature).m_bForcedWalk = false.ToInt();
+        nativeCreature.m_bForcedWalk = false.ToInt();
       }
     }
 
     private int OnRemoveLimitMovementSpeed(void* pEffectListHandler, void* pObject, void* pEffect)
     {
-      NwObject nwObject = CNWSObject.FromPointer(pObject).ToNwObject();
+      NwObject? nwObject = CNWSObject.FromPointer(pObject).ToNwObject();
       if (nwObject != null && InternalVariables.AlwaysWalk(nwObject))
       {
         return 1;

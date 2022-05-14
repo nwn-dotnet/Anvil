@@ -7,7 +7,7 @@ namespace Anvil.API
   public sealed class ScriptParams
   {
     [Inject]
-    private static VirtualMachine VirtualMachine { get; set; }
+    private static VirtualMachine VirtualMachine { get; set; } = null!;
 
     /// <summary>
     /// Gets the specified parameter value.

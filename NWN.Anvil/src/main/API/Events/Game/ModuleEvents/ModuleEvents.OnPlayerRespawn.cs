@@ -18,9 +18,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that clicked the respawn button on the death screen.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastRespawnButtonPresser().ToNwPlayer();
+      public NwPlayer Player { get; } = NWScript.GetLastRespawnButtonPresser().ToNwPlayer()!;
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject? IEvent.Context => Player.ControlledCreature;
     }
   }
 }

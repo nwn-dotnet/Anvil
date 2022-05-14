@@ -9,7 +9,7 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
-      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
+      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>()!;
 
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
       public static void Signal(NwArea area, int eventId)
       {
-        Event nwEvent = NWScript.EventUserDefined(eventId);
+        Event nwEvent = NWScript.EventUserDefined(eventId)!;
         NWScript.SignalEvent(area, nwEvent);
       }
     }

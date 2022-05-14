@@ -11,12 +11,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the creature that is closing the container.
     /// </summary>
-    public NwCreature ClosedBy { get; private init; }
+    public NwCreature ClosedBy { get; private init; } = null!;
 
     /// <summary>
     /// Gets the container being opened.
     /// </summary>
-    public NwItem Container { get; private init; }
+    public NwItem Container { get; private init; } = null!;
 
     public bool PreventClose { get; set; }
 
@@ -24,7 +24,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<CloseInventoryHook> Hook { get; set; }
+      private static FunctionHook<CloseInventoryHook> Hook { get; set; } = null!;
 
       private delegate void CloseInventoryHook(void* pItem, uint oidCloser, int bUpdatePlayer);
 
@@ -40,8 +40,8 @@ namespace Anvil.API.Events
       {
         OnItemInventoryClose eventData = ProcessEvent(new OnItemInventoryClose
         {
-          ClosedBy = oidCloser.ToNwObject<NwCreature>(),
-          Container = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
+          ClosedBy = oidCloser.ToNwObject<NwCreature>()!,
+          Container = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
         });
 
         if (!eventData.PreventClose)

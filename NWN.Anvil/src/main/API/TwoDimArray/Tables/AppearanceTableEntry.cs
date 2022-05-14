@@ -9,13 +9,13 @@ namespace Anvil.API
 
     public int? AppearanceSoundSet { get; private set; }
 
-    public string BloodColor { get; private set; }
+    public string? BloodColor { get; private set; }
 
-    public BodyBagTableEntry BodyBag { get; private set; }
+    public BodyBagTableEntry? BodyBag { get; private set; }
 
     public float? CreaturePersonalSpace { get; private set; }
 
-    public string EnvironmentMap { get; private set; }
+    public string? EnvironmentMap { get; private set; }
 
     public int? FootstepType { get; private set; }
 
@@ -27,7 +27,7 @@ namespace Anvil.API
 
     public int? HeadArcVertical { get; private set; }
 
-    public string HeadName { get; private set; }
+    public string? HeadName { get; private set; }
 
     public bool? HeadTrack { get; private set; }
 
@@ -39,23 +39,23 @@ namespace Anvil.API
 
     public float? HitDistance { get; private set; }
 
-    public string Label { get; private set; }
+    public string? Label { get; private set; }
 
-    public string ModelType { get; private set; }
+    public string? ModelType { get; private set; }
 
-    public string MovementRate { get; private set; }
+    public string? MovementRate { get; private set; }
 
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     public int? PerceptionDistance { get; private set; }
 
     public float? PersonalSpace { get; private set; }
 
-    public string Portrait { get; private set; }
+    public string? Portrait { get; private set; }
 
     public float? PreferredAttackDistance { get; private set; }
 
-    public string Race { get; private set; }
+    public string? Race { get; private set; }
 
     public int? RacialType { get; private set; }
 
@@ -69,7 +69,7 @@ namespace Anvil.API
 
     public bool? Targetable { get; private set; }
 
-    public string TargetHeight { get; private set; }
+    public string? TargetHeight { get; private set; }
 
     public float? WalkDistance { get; private set; }
 

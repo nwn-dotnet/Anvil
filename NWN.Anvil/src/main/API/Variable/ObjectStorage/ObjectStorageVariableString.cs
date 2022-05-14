@@ -5,14 +5,14 @@ namespace Anvil.API
   public abstract class ObjectStorageVariableString : ObjectStorageVariable<string>
   {
     [Inject]
-    internal ObjectStorageService ObjectStorageService { private get; init; }
+    internal ObjectStorageService ObjectStorageService { private get; init; } = null!;
 
-    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsString(ObjectStoragePrefix, Key);
+    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage? objectStorage) && objectStorage.ContainsString(ObjectStoragePrefix, Key);
 
-    public sealed override string Value
+    public sealed override string? Value
     {
       get => ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key);
-      set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, value, Persist);
+      set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, value ?? string.Empty, Persist);
     }
 
     protected sealed override string VariableTypePrefix => "PERSTR!";

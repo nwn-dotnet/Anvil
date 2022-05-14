@@ -6,7 +6,7 @@ namespace Anvil.Services
   {
     internal sealed class SortedByExecutionTime : IComparer<ScheduledTask>
     {
-      public int Compare(ScheduledTask x, ScheduledTask y)
+      public int Compare(ScheduledTask? x, ScheduledTask? y)
       {
         if (ReferenceEquals(x, y))
         {

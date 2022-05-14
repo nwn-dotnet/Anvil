@@ -5,7 +5,8 @@ namespace Anvil.Services
   public class OnELCValidationFailure
   {
     public bool IgnoreFailure { get; set; }
-    public NwPlayer Player { get; init; }
+
+    public NwPlayer Player { get; init; } = null!;
 
     public StrRef StrRef { get; set; }
 
@@ -16,7 +17,7 @@ namespace Anvil.Services
 
   public sealed class OnELCItemValidationFailure : OnELCValidationFailure
   {
-    public NwItem Item { get; init; }
+    public NwItem Item { get; init; } = null!;
   }
 
   public sealed class OnELCLevelValidationFailure : OnELCValidationFailure
@@ -26,16 +27,16 @@ namespace Anvil.Services
 
   public sealed class OnELCSkillValidationFailure : OnELCValidationFailure
   {
-    public NwSkill Skill { get; init; }
+    public NwSkill? Skill { get; init; }
   }
 
   public sealed class OnELCFeatValidationFailure : OnELCValidationFailure
   {
-    public NwFeat Feat { get; init; }
+    public NwFeat? Feat { get; init; }
   }
 
   public sealed class OnELCSpellValidationFailure : OnELCValidationFailure
   {
-    public NwSpell Spell { get; init; }
+    public NwSpell? Spell { get; init; }
   }
 }

@@ -8,22 +8,22 @@ namespace Anvil.API.Events
 {
   public sealed class OnStoreRequestSell : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
-    public NwItem Item { get; private init; }
+    public NwItem? Item { get; private init; }
     public bool PreventSell { get; set; }
 
     public int Price { get; private init; }
 
-    public Lazy<bool> Result { get; private set; }
+    public Lazy<bool> Result { get; private set; } = null!;
 
-    public NwStore Store { get; private init; }
+    public NwStore? Store { get; private init; }
 
     NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<RequestSellHook> Hook { get; set; }
+      private static FunctionHook<RequestSellHook> Hook { get; set; } = null!;
 
       private delegate int RequestSellHook(void* pCreature, uint oidItemToBuy, uint oidStore);
 
@@ -38,8 +38,8 @@ namespace Anvil.API.Events
       private static int OnRequestSell(void* pCreature, uint oidItemToSell, uint oidStore)
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
-        NwItem item = oidItemToSell.ToNwObject<NwItem>();
-        NwStore store = oidStore.ToNwObject<NwStore>();
+        NwItem? item = oidItemToSell.ToNwObject<NwItem>();
+        NwStore? store = oidStore.ToNwObject<NwStore>();
 
         int price = 0;
 
@@ -50,7 +50,7 @@ namespace Anvil.API.Events
 
         OnStoreRequestSell eventData = new OnStoreRequestSell
         {
-          Creature = creature.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>()!,
           Item = item,
           Store = store,
           Price = price,

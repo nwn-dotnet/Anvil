@@ -22,10 +22,12 @@ namespace Anvil.Tests.API
 
       Assert.That(NWScript.OBJECT_SELF.ToNwObject(), Is.EqualTo(module));
 
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation);
-      createdTestObjects.Add(creature);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation);
+      Assert.That(creature, Is.Not.Null);
 
-      await creature.WaitForObjectContext();
+      createdTestObjects.Add(creature!);
+
+      await creature!.WaitForObjectContext();
 
       Assert.That(NWScript.OBJECT_SELF.ToNwObject(), Is.EqualTo(creature));
     }
@@ -34,11 +36,13 @@ namespace Anvil.Tests.API
     [Timeout(2000)]
     public async Task QueueCreatureActionIsQueued()
     {
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation);
-      createdTestObjects.Add(creature);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation);
+      Assert.That(creature, Is.Not.Null);
+
+      createdTestObjects.Add(creature!);
 
       bool actionExecuted = false;
-      await creature.AddActionToQueue(() =>
+      await creature!.AddActionToQueue(() =>
       {
         actionExecuted = true;
       });

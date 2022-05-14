@@ -21,7 +21,7 @@ namespace Anvil.API
       return new SynchronizationContextAwaiter(this);
     }
 
-    public override void Post(SendOrPostCallback callback, object state)
+    public override void Post(SendOrPostCallback callback, object? state)
     {
       lock (queuedTasks)
       {
@@ -29,7 +29,7 @@ namespace Anvil.API
       }
     }
 
-    public override void Send(SendOrPostCallback callback, object state)
+    public override void Send(SendOrPostCallback callback, object? state)
     {
       lock (queuedTasks)
       {
@@ -65,9 +65,9 @@ namespace Anvil.API
     private readonly struct QueuedTask
     {
       private readonly SendOrPostCallback callback;
-      private readonly object state;
+      private readonly object? state;
 
-      public QueuedTask(SendOrPostCallback callback, object state)
+      public QueuedTask(SendOrPostCallback callback, object? state)
       {
         this.callback = callback;
         this.state = state;

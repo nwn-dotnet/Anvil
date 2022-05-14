@@ -13,6 +13,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
     <NoWarn>1591</NoWarn>
+    <Nullable>enable</Nullable>
 
     <RootNamespace>Anvil.Tests</RootNamespace>
   </PropertyGroup>

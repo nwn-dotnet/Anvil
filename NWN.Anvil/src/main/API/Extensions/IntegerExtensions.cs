@@ -114,9 +114,9 @@ namespace Anvil.API
     /// <typeparam name="T">The expected object type.</typeparam>
     /// <returns>The associated object if it exists, otherwise null.</returns>
     /// <exception cref="InvalidCastException">Thrown if the object associated with the object ID is not of type T.</exception>
-    public static T ToNwObject<T>(this uint objectId) where T : NwObject
+    public static T? ToNwObject<T>(this uint objectId) where T : NwObject
     {
-      return (T)NwObject.CreateInternal(objectId);
+      return (T?)NwObject.CreateInternal(objectId);
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="objectId">The object ID to convert.</param>
     /// <returns>The associated object if it exists, otherwise null.</returns>
-    public static NwObject ToNwObject(this uint objectId)
+    public static NwObject? ToNwObject(this uint objectId)
     {
       return NwObject.CreateInternal(objectId);
     }
@@ -135,7 +135,7 @@ namespace Anvil.API
     /// <param name="objectId">The object ID to convert.</param>
     /// <typeparam name="T">The expected object type.</typeparam>
     /// <returns>The associated object if it exists and is of type T, otherwise null.</returns>
-    public static T ToNwObjectSafe<T>(this uint objectId) where T : NwObject
+    public static T? ToNwObjectSafe<T>(this uint objectId) where T : NwObject
     {
       return NwObject.CreateInternal(objectId) as T;
     }
@@ -146,14 +146,14 @@ namespace Anvil.API
     /// <param name="objectId">The object ID to convert.</param>
     /// <param name="playerSearch">Methods to use to resolve the player.</param>
     /// <returns>The associated player for this object, otherwise null.</returns>
-    public static unsafe NwPlayer ToNwPlayer(this uint objectId, PlayerSearch playerSearch = PlayerSearch.All)
+    public static unsafe NwPlayer? ToNwPlayer(this uint objectId, PlayerSearch playerSearch = PlayerSearch.All)
     {
       if (objectId == NwObject.Invalid)
       {
         return null;
       }
 
-      CNWSPlayer player = null;
+      CNWSPlayer? player = null;
       if (playerSearch.HasFlag(PlayerSearch.Controlled))
       {
         player = LowLevel.ServerExoApp.GetClientObjectByObjectId(objectId);

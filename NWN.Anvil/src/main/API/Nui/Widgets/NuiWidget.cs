@@ -9,9 +9,9 @@ namespace Anvil.API
   public abstract class NuiWidget : NuiElement
   {
     [JsonProperty("draw_list", NullValueHandling = NullValueHandling.Ignore)]
-    public List<NuiDrawListItem> DrawList { get; set; }
+    public List<NuiDrawListItem>? DrawList { get; set; }
 
     [JsonProperty("draw_list_scissor", NullValueHandling = NullValueHandling.Ignore)]
-    public NuiProperty<bool> Scissor { get; set; }
+    public NuiProperty<bool>? Scissor { get; set; }
   }
 }

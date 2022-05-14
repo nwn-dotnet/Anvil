@@ -29,7 +29,7 @@ namespace Anvil.API
     {
       get
       {
-        for (Effect effect = NWScript.GetFirstEffect(this); NWScript.GetIsEffectValid(effect) == true.ToInt(); effect = NWScript.GetNextEffect(this))
+        for (Effect? effect = NWScript.GetFirstEffect(this); effect != null && NWScript.GetIsEffectValid(effect) == true.ToInt(); effect = NWScript.GetNextEffect(this))
         {
           yield return effect;
         }
@@ -39,7 +39,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the area this object is currently in.
     /// </summary>
-    public NwArea Area => GameObject.GetArea().ToNwObject<NwArea>();
+    public NwArea? Area => GameObject.GetArea().ToNwObject<NwArea>();
 
     /// <summary>
     /// Gets or sets the appearance of this creature.
@@ -77,19 +77,30 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the location of this object.
     /// </summary>
-    public virtual Location Location
+    public virtual Location? Location
     {
       get => NWScript.GetLocation(this);
       set
       {
-        if (value.Area == Area)
+        if (value == null)
+        {
+          return;
+        }
+
+        NwArea? area = value.Area;
+        if (area == null)
+        {
+          return;
+        }
+
+        if (area == Area)
         {
           Position = value.Position;
           Rotation = value.Rotation;
         }
         else
         {
-          AddToArea(value.Area, value.Position.X, value.Position.Y, value.Position.Z);
+          AddToArea(area.Area, value.Position.X, value.Position.Y, value.Position.Z);
           Rotation = value.Rotation;
         }
       }
@@ -166,7 +177,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the transition target for this object.
     /// </summary>
-    public NwGameObject TransitionTarget
+    public NwGameObject? TransitionTarget
     {
       get => NWScript.GetTransitionTarget(this).ToNwObject<NwGameObject>();
       set => NWScript.SetTransitionTarget(this, value);
@@ -201,7 +212,7 @@ namespace Anvil.API
     public async Task ActionCastSpellAt(NwSpell spell, NwGameObject target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, int domainLevel = 0, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtObject((int)spell.Id, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtObject(spell.Id, target, (int)metaMagic, cheat.ToInt(), domainLevel, (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -216,7 +227,7 @@ namespace Anvil.API
     public async Task ActionCastSpellAt(NwSpell spell, Location target, MetaMagic metaMagic = MetaMagic.Any, bool cheat = false, ProjectilePathType projectilePathType = ProjectilePathType.Default, bool instant = false)
     {
       await WaitForObjectContext();
-      NWScript.ActionCastSpellAtLocation((int)spell.Id, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
+      NWScript.ActionCastSpellAtLocation(spell.Id, target, (int)metaMagic, cheat.ToInt(), (int)projectilePathType, instant.ToInt());
     }
 
     /// <summary>
@@ -247,7 +258,7 @@ namespace Anvil.API
     /// <param name="newTag">A new tag to assign the cloned object.</param>
     /// <param name="copyLocalState">If true, will clone all local variables, effects, action queue and transition info (triggers, doors) for the object.</param>
     /// <returns>The newly cloned copy of the item.</returns>
-    public abstract NwGameObject Clone(Location location, string newTag = null, bool copyLocalState = true);
+    public abstract NwGameObject Clone(Location location, string? newTag = null, bool copyLocalState = true);
 
     /// <summary>
     /// Destroys this object (irrevocably).
@@ -395,7 +406,7 @@ namespace Anvil.API
           filter3.Key,
           filter3.Value))
       {
-        yield return current.ToNwObject<NwCreature>();
+        yield return current.ToNwObject<NwCreature>()!;
       }
     }
 
@@ -411,7 +422,7 @@ namespace Anvil.API
 
       for (i = 1, current = NWScript.GetNearestObject(objType, this, i); current != Invalid; i++, current = NWScript.GetNearestObject(objType, this, i))
       {
-        T obj = current.ToNwObjectSafe<T>();
+        T? obj = current.ToNwObjectSafe<T>();
         if (obj != null)
         {
           yield return obj;
@@ -547,7 +558,7 @@ namespace Anvil.API
     /// <param name="saveVs">The creature this object is making the save against.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if savingThrow is not Fortitude, Reflex, or Will.</exception>
     /// <returns>The result of the saving throw.</returns>
-    public SavingThrowResult RollSavingThrow(SavingThrow savingThrow, int dc, SavingThrowType saveType, NwGameObject saveVs = null)
+    public SavingThrowResult RollSavingThrow(SavingThrow savingThrow, int dc, SavingThrowType saveType, NwGameObject? saveVs = null)
     {
       return savingThrow switch
       {
@@ -558,7 +569,7 @@ namespace Anvil.API
       };
     }
 
-    public abstract byte[] Serialize();
+    public abstract byte[]? Serialize();
 
     /// <summary>
     /// Sets the color for the specified color channel.
@@ -630,9 +641,9 @@ namespace Anvil.API
 
     private protected abstract void AddToArea(CNWSArea area, float x, float y, float z);
 
-    private protected T CloneInternal<T>(Location location, string newTag, bool copyLocalState) where T : NwGameObject
+    private protected T CloneInternal<T>(Location location, string? newTag, bool copyLocalState) where T : NwGameObject
     {
-      return NWScript.CopyObject(this, location, Invalid, newTag ?? string.Empty, copyLocalState.ToInt()).ToNwObject<T>();
+      return NWScript.CopyObject(this, location, Invalid, newTag ?? string.Empty, copyLocalState.ToInt()).ToNwObject<T>()!;
     }
   }
 }

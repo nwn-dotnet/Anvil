@@ -18,12 +18,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that physically attacked <see cref="NwCreature"/>.
       /// </summary>
-      public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
+      public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that was physically attacked.
       /// </summary>
-      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
       NwObject IEvent.Context => Creature;
     }

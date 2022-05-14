@@ -25,10 +25,10 @@ namespace Anvil.Tests.API
     public void CreatePlaceableIsCreated(string placeableResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
+      NwPlaceable? placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
       Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
-      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable!.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
     }
@@ -48,10 +48,10 @@ namespace Anvil.Tests.API
     public void ClonePlaceableWithLocalStateIsCopied(string placeableResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
+      NwPlaceable? placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
       Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
-      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable!.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
 
@@ -86,10 +86,10 @@ namespace Anvil.Tests.API
     public void ClonePlaceableNoLocalStateIsNotCopied(string placeableResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
+      NwPlaceable? placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
       Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
-      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable!.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
 
@@ -124,10 +124,10 @@ namespace Anvil.Tests.API
     public void ClonePlaceableCustomTagIsApplied(string placeableResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
+      NwPlaceable? placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
       Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
-      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable!.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
 
@@ -157,13 +157,13 @@ namespace Anvil.Tests.API
     public void ClonePlaceableWithoutTagOriginalTagIsCopied(string placeableResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwPlaceable placeable = NwPlaceable.Create(placeableResRef, startLocation);
-      placeable.Tag = "expectedNewTag";
+      NwPlaceable? placeable = NwPlaceable.Create(placeableResRef, startLocation);
 
       Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
-      Assert.That(placeable.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
+      Assert.That(placeable!.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
 
       createdTestObjects.Add(placeable);
+      placeable.Tag = "expectedNewTag";
 
       NwPlaceable clone = placeable.Clone(startLocation, null, false);
 

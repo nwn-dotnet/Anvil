@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Anvil.API;
 using NLog;
 using NWN.Native.API;
@@ -61,7 +62,7 @@ namespace Anvil.Services
 
     public ObjectStorage GetObjectStorage(ICGameObject gameObject)
     {
-      if (!objectStorage.TryGetValue(gameObject.Pointer, out ObjectStorage storage))
+      if (!objectStorage.TryGetValue(gameObject.Pointer, out ObjectStorage? storage))
       {
         storage = new ObjectStorage();
         objectStorage[gameObject.Pointer] = storage;
@@ -70,12 +71,12 @@ namespace Anvil.Services
       return storage;
     }
 
-    public bool TryGetObjectStorage(NwObject gameObject, out ObjectStorage storage)
+    public bool TryGetObjectStorage(NwObject gameObject, [NotNullWhen(true)] out ObjectStorage? storage)
     {
       return TryGetObjectStorage(gameObject.Object, out storage);
     }
 
-    public bool TryGetObjectStorage(ICGameObject gameObject, out ObjectStorage storage)
+    public bool TryGetObjectStorage(ICGameObject gameObject, [NotNullWhen(true)] out ObjectStorage? storage)
     {
       return objectStorage.TryGetValue(gameObject.Pointer, out storage);
     }
@@ -102,8 +103,11 @@ namespace Anvil.Services
         CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
         CNWSPlayerTURD turd = CNWSPlayerTURD.FromPointer(pHead.pObject);
 
-        ICGameObject playerObj = player.m_oidNWSObject.ToNwObject().Object;
-        objectStorage[turd.Pointer] = GetObjectStorage(playerObj).Clone();
+        ICGameObject? playerObj = player.m_oidNWSObject.ToNwObject()?.Object;
+        if (playerObj != null)
+        {
+          objectStorage[turd.Pointer] = GetObjectStorage(playerObj).Clone();
+        }
       }
     }
 
@@ -112,9 +116,12 @@ namespace Anvil.Services
       CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
       CNWSPlayerTURD turd = CNWSPlayerTURD.FromPointer(pTURD);
 
-      ICGameObject playerObj = player.m_oidNWSObject.ToNwObject().Object;
+      ICGameObject? playerObj = player.m_oidNWSObject.ToNwObject()?.Object;
+      if (playerObj != null)
+      {
+        objectStorage[playerObj.Pointer] = GetObjectStorage(turd).Clone();
+      }
 
-      objectStorage[playerObj.Pointer] = GetObjectStorage(turd).Clone();
       eatTURDHook.CallOriginal(pPlayer, pTURD);
     }
 
@@ -175,7 +182,7 @@ namespace Anvil.Services
       CResGFF resGff = CResGFF.FromPointer(pRes);
       CResStruct resStruct = CResStruct.FromPointer(pStruct);
 
-      string serialized = GetObjectStorage(uuid.m_parent).Serialize();
+      string? serialized = GetObjectStorage(uuid.m_parent).Serialize();
       resGff.WriteFieldCExoString(resStruct, serialized.ToExoString(), AnvilGffFieldNamePtr);
 
       saveToGffHook.CallOriginal(pUUID, pRes, pStruct);

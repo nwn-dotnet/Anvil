@@ -17,7 +17,7 @@ namespace Anvil.API.Events
     {
       public OnPhysicalAttacked()
       {
-        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+        Placeable = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
         Attacker = NWScript.GetLastAttacker(Placeable).ToNwObject<NwCreature>();
         AttackType = (SpecialAttack)NWScript.GetLastAttackType(Attacker);
       }
@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that attacked the <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwCreature Attacker { get; }
+      public NwCreature? Attacker { get; }
 
       /// <summary>
       /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwPlaceable"/>.
@@ -50,7 +50,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> used to damage <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwItem WeaponUsed(NwCreature attacker)
+      public NwItem? WeaponUsed(NwCreature attacker)
       {
         return NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
       }

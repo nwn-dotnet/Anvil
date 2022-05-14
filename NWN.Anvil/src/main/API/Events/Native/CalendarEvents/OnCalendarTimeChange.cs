@@ -13,11 +13,11 @@ namespace Anvil.API.Events
     public uint OldValue { get; private init; }
     public TimeChangeType TimeChangeType { get; private init; }
 
-    NwObject IEvent.Context => null;
+    NwObject? IEvent.Context => null;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<UpdateTimeHook> Hook { get; set; }
+      private static FunctionHook<UpdateTimeHook> Hook { get; set; } = null!;
 
       private delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
 

@@ -10,7 +10,7 @@ namespace Anvil.Plugins
   {
     private readonly PluginManager pluginManager;
 
-    private PluginLoadContext pluginLoadContext;
+    private PluginLoadContext? pluginLoadContext;
 
     public Plugin(PluginManager pluginManager, string path)
     {
@@ -19,9 +19,9 @@ namespace Anvil.Plugins
       Name = AssemblyName.GetAssemblyName(path);
     }
 
-    public Dictionary<string, string> AdditionalAssemblyPaths { get; init; }
+    public Dictionary<string, string>? AdditionalAssemblyPaths { get; init; }
 
-    public Assembly Assembly { get; private set; }
+    public Assembly? Assembly { get; private set; }
 
     public bool HasResourceDirectory => ResourcePath != null && Directory.Exists(ResourcePath);
 
@@ -33,9 +33,9 @@ namespace Anvil.Plugins
 
     public string Path { get; }
 
-    public string ResourcePath { get; init; }
+    public string? ResourcePath { get; init; }
 
-    public Dictionary<string, string> UnmanagedAssemblyPaths { get; init; }
+    public Dictionary<string, string>? UnmanagedAssemblyPaths { get; init; }
 
     public void Load()
     {
@@ -58,7 +58,7 @@ namespace Anvil.Plugins
       WeakReference unloadHandle = new WeakReference(pluginLoadContext, true);
       if (EnvironmentConfig.ReloadEnabled)
       {
-        pluginLoadContext.Dispose();
+        pluginLoadContext?.Dispose();
       }
 
       pluginLoadContext = null;

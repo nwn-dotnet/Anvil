@@ -15,7 +15,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated class.
     /// </summary>
-    public NwClass Class => NwClass.FromClassId(classInfo.m_nClass);
+    public NwClass Class => NwClass.FromClassId(classInfo.m_nClass)!;
 
     /// <summary>
     /// Gets the amount of levels in this class.
@@ -68,7 +68,7 @@ namespace Anvil.API
 
       for (byte i = 0; i < spellCount; i++)
       {
-        retVal[i] = NwSpell.FromSpellId((int)classInfo.GetKnownSpell(spellLevel, i));
+        retVal[i] = NwSpell.FromSpellId((int)classInfo.GetKnownSpell(spellLevel, i))!;
       }
 
       return retVal;

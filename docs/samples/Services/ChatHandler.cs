@@ -21,12 +21,12 @@ namespace NWN.Anvil.Samples
   [ServiceBinding(typeof(IChatCommand))]
   public class GpCommand : IChatCommand
   {
-    public string Command { get; } = "!gp";
+    public string Command => "!gp";
     private const int Amount = 10000;
 
     public void ExecuteCommand(NwPlayer caller)
     {
-      caller.ControlledCreature.GiveGold(Amount);
+      caller.ControlledCreature?.GiveGold(Amount);
     }
   }
 
@@ -34,7 +34,7 @@ namespace NWN.Anvil.Samples
   [ServiceBinding(typeof(IChatCommand))]
   public class SaveCommand : IChatCommand
   {
-    public string Command { get; } = "!save";
+    public string Command => "!save";
 
     public void ExecuteCommand(NwPlayer caller)
     {

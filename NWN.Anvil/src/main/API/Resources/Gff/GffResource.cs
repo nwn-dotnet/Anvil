@@ -34,12 +34,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the child <see cref="GffResourceField"/> at the specified index.
     /// </summary>
-    public GffResourceField this[int index] => GffResourceField.Create(resGff, rootStruct, (uint)index);
+    public GffResourceField? this[int index] => GffResourceField.Create(resGff, rootStruct, (uint)index);
 
     /// <summary>
     /// Gets the child <see cref="GffResourceField"/> with the specified key.
     /// </summary>
-    public GffResourceField this[string index] => GffResourceField.Create(resGff, rootStruct, index);
+    public GffResourceField? this[string index] => GffResourceField.Create(resGff, rootStruct, index);
 
     public void Dispose()
     {
@@ -48,8 +48,8 @@ namespace Anvil.API
 
     private void Dispose(bool disposing)
     {
-      resGff?.Dispose();
-      rootStruct?.Dispose();
+      resGff.Dispose();
+      rootStruct.Dispose();
 
       if (disposing)
       {

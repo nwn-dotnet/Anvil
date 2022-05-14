@@ -15,12 +15,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwArea"/> that was entered.
       /// </summary>
-      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
+      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>()!;
 
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that entered the <see cref="NwArea"/>.
       /// </summary>
-      public NwGameObject EnteringObject { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
+      public NwGameObject EnteringObject { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>()!;
 
       NwObject IEvent.Context => Area;
     }

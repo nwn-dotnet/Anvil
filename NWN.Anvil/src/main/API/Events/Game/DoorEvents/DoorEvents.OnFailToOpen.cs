@@ -15,12 +15,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwDoor"/> that failed to open.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that failed to unlock this <see cref="NwDoor"/>.
       /// </summary>
-      public NwCreature WhoFailed { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>();
+      public NwCreature WhoFailed { get; } = NWScript.GetClickingObject().ToNwObject<NwCreature>()!;
 
       NwObject IEvent.Context => Door;
     }

@@ -95,8 +95,8 @@ namespace Anvil.API
     {
       get
       {
-        NwSpell counter1 = FromSpellId((int)spellInfo.m_nCounterSpell1);
-        NwSpell counter2 = FromSpellId((int)spellInfo.m_nCounterSpell2);
+        NwSpell? counter1 = FromSpellId((int)spellInfo.m_nCounterSpell1);
+        NwSpell? counter2 = FromSpellId((int)spellInfo.m_nCounterSpell2);
         List<NwSpell> retVal = new List<NwSpell>();
 
         if (counter1 != null)
@@ -121,7 +121,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated feat if this spell is linked to a feat.
     /// </summary>
-    public NwFeat FeatReference => NwFeat.FromFeatId(spellInfo.m_nFeatId);
+    public NwFeat? FeatReference => NwFeat.FromFeatId(spellInfo.m_nFeatId);
 
     /// <summary>
     /// Gets if this spell fires a projectile once successfully cast.
@@ -158,7 +158,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the parent spell if this spell is a subradial spell. The reverse of RadialSpells.
     /// </summary>
-    public NwSpell MasterSpell => FromSpellId((int)spellInfo.m_nMasterSpell);
+    public NwSpell? MasterSpell => FromSpellId((int)spellInfo.m_nMasterSpell);
 
     /// <summary>
     /// Gets the name of this spell.
@@ -200,7 +200,7 @@ namespace Anvil.API
         NwSpell[] spells = new NwSpell[spellInfo.m_nSubRadialSpellCount];
         for (byte i = 0; i < spells.Length; i++)
         {
-          spells[i] = FromSpellId((int)spellInfo.m_pSubRadialSpell[i]);
+          spells[i] = FromSpellId((int)spellInfo.m_pSubRadialSpell[i])!;
         }
 
         return spells;
@@ -283,7 +283,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellId">The id of the spell to resolve.</param>
     /// <returns>The associated <see cref="NwSpell"/> instance. Null if the spell id is invalid.</returns>
-    public static NwSpell FromSpellId(int spellId)
+    public static NwSpell? FromSpellId(int spellId)
     {
       return NwRuleset.Spells.ElementAtOrDefault(spellId);
     }
@@ -293,12 +293,12 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellType">The spell type to resolve.</param>
     /// <returns>The associated <see cref="NwSpell"/> instance. Null if the spell type is invalid.</returns>
-    public static NwSpell FromSpellType(Spell spellType)
+    public static NwSpell? FromSpellType(Spell spellType)
     {
       return NwRuleset.Spells.ElementAtOrDefault((int)spellType);
     }
 
-    public static implicit operator NwSpell(Spell spellType)
+    public static implicit operator NwSpell?(Spell spellType)
     {
       return NwRuleset.Spells.ElementAtOrDefault((int)spellType);
     }
@@ -308,7 +308,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="gender">The gender of the caster.</param>
     /// <returns>The ResRef of the sound to play for the specified gender.</returns>
-    public string GetConjureSound(Gender gender)
+    public string? GetConjureSound(Gender gender)
     {
       return gender switch
       {

@@ -25,10 +25,10 @@ namespace Anvil.Tests.API
     public void CreateCreatureIsCreated(string creatureResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(creatureResRef, startLocation);
+      NwCreature? creature = NwCreature.Create(creatureResRef, startLocation);
 
       Assert.That(creature, Is.Not.Null, $"Creature {creatureResRef} was null after creation.");
-      Assert.That(creature.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
+      Assert.That(creature!.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
 
       createdTestObjects.Add(creature);
     }
@@ -47,10 +47,10 @@ namespace Anvil.Tests.API
     public void CloneCreatureWithLocalStateIsCopied(string creatureResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(creatureResRef, startLocation);
+      NwCreature? creature = NwCreature.Create(creatureResRef, startLocation);
 
       Assert.That(creature, Is.Not.Null, $"Creature {creatureResRef} was null after creation.");
-      Assert.That(creature.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
+      Assert.That(creature!.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
 
       createdTestObjects.Add(creature);
 
@@ -84,10 +84,10 @@ namespace Anvil.Tests.API
     public void CloneCreatureNoLocalStateIsNotCopied(string creatureResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(creatureResRef, startLocation);
+      NwCreature? creature = NwCreature.Create(creatureResRef, startLocation);
 
       Assert.That(creature, Is.Not.Null, $"Creature {creatureResRef} was null after creation.");
-      Assert.That(creature.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
+      Assert.That(creature!.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
 
       createdTestObjects.Add(creature);
 
@@ -121,10 +121,10 @@ namespace Anvil.Tests.API
     public void CloneCreatureCustomTagIsApplied(string creatureResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(creatureResRef, startLocation);
+      NwCreature? creature = NwCreature.Create(creatureResRef, startLocation);
 
       Assert.That(creature, Is.Not.Null, $"Creature {creatureResRef} was null after creation.");
-      Assert.That(creature.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
+      Assert.That(creature!.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
 
       createdTestObjects.Add(creature);
 
@@ -153,13 +153,13 @@ namespace Anvil.Tests.API
     public void CloneCreatureWithoutTagOriginalTagIsCopied(string creatureResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(creatureResRef, startLocation);
-      creature.Tag = "expectedNewTag";
+      NwCreature? creature = NwCreature.Create(creatureResRef, startLocation);
 
       Assert.That(creature, Is.Not.Null, $"Creature {creatureResRef} was null after creation.");
-      Assert.That(creature.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
+      Assert.That(creature!.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
 
       createdTestObjects.Add(creature);
+      creature.Tag = "expectedNewTag";
 
       NwCreature clone = creature.Clone(startLocation, null, false);
 
@@ -175,28 +175,32 @@ namespace Anvil.Tests.API
     public void GetFeatRemainingUsesReturnsValidValue()
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
 
       Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
-      Assert.That(creature.IsValid, Is.True, "Creature was invalid after creation.");
+      Assert.That(creature!.IsValid, Is.True, "Creature was invalid after creation.");
 
       createdTestObjects.Add(creature);
 
-      Assert.That(creature.GetFeatRemainingUses(NwFeat.FromFeatType(Feat.BarbarianRage)), Is.EqualTo(1));
+      NwFeat? feat = NwFeat.FromFeatType(Feat.BarbarianRage);
+      Assert.That(creature.GetFeatRemainingUses(feat!), Is.EqualTo(1));
     }
 
     [Test(Description = "Querying total feat uses returns a valid value.")]
     public void GetFeatTotalUsesReturnsValidValue()
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
 
       Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
-      Assert.That(creature.IsValid, Is.True, "Creature was invalid after creation.");
+      Assert.That(creature!.IsValid, Is.True, "Creature was invalid after creation.");
 
       createdTestObjects.Add(creature);
 
-      Assert.That(creature.GetFeatTotalUses(NwFeat.FromFeatType(Feat.BarbarianRage)), Is.EqualTo(1));
+      NwFeat? feat = NwFeat.FromFeatType(Feat.BarbarianRage);
+
+      Assert.That(feat, Is.Not.Null, "Could not get feat.");
+      Assert.That(creature.GetFeatTotalUses(feat!), Is.EqualTo(1));
     }
 
     [Test(Description = "Setting remaining feat uses correctly updates the creature.")]
@@ -206,17 +210,20 @@ namespace Anvil.Tests.API
     public void SetFeatRemainingUsesCorrectlyUpdatesState(byte uses)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.tanarukk, startLocation);
 
       Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
-      Assert.That(creature.IsValid, Is.True, "Creature was invalid after creation.");
+      Assert.That(creature!.IsValid, Is.True, "Creature was invalid after creation.");
 
       createdTestObjects.Add(creature);
-      NwFeat feat = NwFeat.FromFeatType(Feat.BarbarianRage);
-      creature.SetFeatRemainingUses(feat, uses);
+      NwFeat? feat = NwFeat.FromFeatType(Feat.BarbarianRage);
 
-      Assert.That(creature.GetFeatRemainingUses(feat), Is.EqualTo(Math.Min(uses, creature.GetFeatTotalUses(feat))), "Remaining feat uses was not updated after being set.");
-      Assert.That(creature.HasFeatPrepared(feat), Is.EqualTo(uses > 0), "Creature incorrectly assumes the feat is/is not available.");
+      Assert.That(feat, Is.Not.Null, "Could not get feat.");
+
+      creature.SetFeatRemainingUses(feat!, uses);
+
+      Assert.That(creature.GetFeatRemainingUses(feat!), Is.EqualTo(Math.Min(uses, creature.GetFeatTotalUses(feat!))), "Remaining feat uses was not updated after being set.");
+      Assert.That(creature.HasFeatPrepared(feat!), Is.EqualTo(uses > 0), "Creature incorrectly assumes the feat is/is not available.");
     }
 
     [TearDown]

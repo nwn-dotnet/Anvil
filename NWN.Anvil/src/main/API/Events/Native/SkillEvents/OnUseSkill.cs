@@ -15,12 +15,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the area that the skill was used.
     /// </summary>
-    public NwArea Area { get; private init; }
+    public NwArea Area { get; private init; } = null!;
 
     /// <summary>
     /// Gets the creature using the skill.
     /// </summary>
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets whether usage of this skill should be prevented.
@@ -30,7 +30,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the skill that is being used.
     /// </summary>
-    public NwSkill Skill { get; private init; }
+    public NwSkill Skill { get; private init; } = null!;
 
     /// <summary>
     /// Gets the SubSkill (if any) that is being used.
@@ -40,7 +40,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the target object for this skill usage.
     /// </summary>
-    public NwGameObject Target { get; private init; }
+    public NwGameObject Target { get; private init; } = null!;
 
     /// <summary>
     /// Gets the target position for this skill usage.
@@ -50,13 +50,13 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the item that is being used, if any.
     /// </summary>
-    public NwItem UsedItem { get; private init; }
+    public NwItem UsedItem { get; private init; } = null!;
 
     NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<UseSkillHook> Hook { get; set; }
+      private static FunctionHook<UseSkillHook> Hook { get; set; } = null!;
 
       private delegate int UseSkillHook(void* pCreature, byte nSkill, byte nSubSkill, uint oidTarget, Vector3 vTargetPosition, uint oidArea, uint oidUsedItem, int nActivePropertyIndex);
 
@@ -72,12 +72,12 @@ namespace Anvil.API.Events
       {
         OnUseSkill eventData = ProcessEvent(new OnUseSkill
         {
-          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Skill = NwSkill.FromSkillId(nSkill),
+          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Skill = NwSkill.FromSkillId(nSkill)!,
           SubSkill = (SubSkill)nSubSkill,
-          Target = oidTarget.ToNwObject<NwGameObject>(),
-          Area = oidArea.ToNwObject<NwArea>(),
-          UsedItem = oidUsedItem.ToNwObject<NwItem>(),
+          Target = oidTarget.ToNwObject<NwGameObject>()!,
+          Area = oidArea.ToNwObject<NwArea>()!,
+          UsedItem = oidUsedItem.ToNwObject<NwItem>()!,
           TargetPosition = vTargetPosition,
         });
 

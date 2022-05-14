@@ -12,6 +12,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
 
     <NoWarn>1591</NoWarn>
+    <Nullable>enable</Nullable>
 
     <RootNamespace>NWN.Anvil.Samples</RootNamespace>
   </PropertyGroup>

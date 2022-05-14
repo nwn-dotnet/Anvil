@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Anvil.Internal;
 using NWN.Core;
@@ -40,7 +41,7 @@ namespace Anvil.API
       {
         for (uint area = NWScript.GetFirstArea(); area != Invalid; area = NWScript.GetNextArea())
         {
-          yield return area.ToNwObject<NwArea>();
+          yield return area.ToNwObject<NwArea>()!;
         }
       }
     }
@@ -104,7 +105,7 @@ namespace Anvil.API
     {
       get
       {
-        return Module.m_aGameObjectsLimbo.Select(objectId => objectId.ToNwObject<NwGameObject>());
+        return Module.m_aGameObjectsLimbo.Select(objectId => objectId.ToNwObject<NwGameObject>()!);
       }
     }
 
@@ -134,7 +135,7 @@ namespace Anvil.API
         for (CExoLinkedListNode node = playerList.GetHeadPos(); node != null; node = node.pNext)
         {
           CNWSPlayer player = playerList.GetAtPos(node).AsNWSPlayer();
-          yield return player.ToNwPlayer();
+          yield return player.ToNwPlayer()!;
         }
       }
     }
@@ -160,7 +161,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the starting location for new players.
     /// </summary>
-    public Location StartingLocation => NWScript.GetStartingLocation();
+    public Location StartingLocation => NWScript.GetStartingLocation()!;
 
     /// <summary>
     /// Gets or sets the XP scale for this module. Must be a value between 0-200.
@@ -173,7 +174,7 @@ namespace Anvil.API
 
     internal override CNWSScriptVarTable ScriptVarTable => Module.m_ScriptVars;
 
-    public static implicit operator CNWSModule(NwModule module)
+    public static implicit operator CNWSModule?(NwModule? module)
     {
       return module?.Module;
     }
@@ -248,13 +249,13 @@ namespace Anvil.API
 
       for (uint objectId = gameObjectArray.m_nNextObjectArrayID[0] - 1; objectId > 0; objectId--)
       {
-        if (TryGetObject(objectId, out NwObject gameObject))
+        if (TryGetObject(objectId, out NwObject? gameObject))
         {
           yield return gameObject;
         }
       }
 
-      unsafe bool TryGetObject(uint objectId, out NwObject gameObject)
+      unsafe bool TryGetObject(uint objectId, [NotNullWhen(true)] out NwObject? gameObject)
       {
         void* pObject;
 
@@ -268,7 +269,7 @@ namespace Anvil.API
     /// <summary>
     /// Finds the specified waypoint with the given tag.
     /// </summary>
-    public NwWaypoint GetWaypointByTag(string tag)
+    public NwWaypoint? GetWaypointByTag(string tag)
     {
       return NWScript.GetWaypointByTag(tag).ToNwObject<NwWaypoint>();
     }

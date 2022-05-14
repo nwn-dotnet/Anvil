@@ -24,10 +24,10 @@ namespace Anvil.Tests.API
     public void CreateSoundIsCreated(string soundResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwSound sound = NwSound.Create(soundResRef, startLocation);
+      NwSound? sound = NwSound.Create(soundResRef, startLocation);
 
       Assert.That(sound, Is.Not.Null, $"Sound {soundResRef} was null after creation.");
-      Assert.That(sound.IsValid, Is.True, $"Sound {soundResRef} was invalid after creation.");
+      Assert.That(sound!.IsValid, Is.True, $"Sound {soundResRef} was invalid after creation.");
 
       createdTestObjects.Add(sound);
     }

@@ -8,16 +8,17 @@ namespace Anvil.API.Events
 {
   public sealed class OnDoSpotDetection : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
-    public NwCreature Target { get; private init; }
+    public NwCreature Target { get; private init; } = null!;
+
     public VisibilityOverride VisibilityOverride { get; set; }
 
     NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<DoSpotDetectionHook> Hook { get; set; }
+      private static FunctionHook<DoSpotDetectionHook> Hook { get; set; } = null!;
 
       private delegate int DoSpotDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
 
@@ -46,8 +47,8 @@ namespace Anvil.API.Events
 
         OnDoSpotDetection eventData = ProcessEvent(new OnDoSpotDetection
         {
-          Creature = creature.ToNwObject<NwCreature>(),
-          Target = target.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>()!,
+          Target = target.ToNwObject<NwCreature>()!,
         });
 
         switch (eventData.VisibilityOverride)

@@ -15,7 +15,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwEncounter"/> that was entered.
       /// </summary>
-      public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
+      public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>()!;
 
       NwObject IEvent.Context => Encounter;
     }

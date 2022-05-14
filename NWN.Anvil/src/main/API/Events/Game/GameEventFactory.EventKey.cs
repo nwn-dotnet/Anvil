@@ -30,7 +30,7 @@ namespace Anvil.API.Events
         return eventScriptType == other.eventScriptType && gameObject == other.gameObject;
       }
 
-      public override bool Equals(object obj)
+      public override bool Equals(object? obj)
       {
         return obj is EventKey other && Equals(other);
       }

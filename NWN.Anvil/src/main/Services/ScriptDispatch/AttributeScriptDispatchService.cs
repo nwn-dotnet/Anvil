@@ -16,11 +16,11 @@ namespace Anvil.Services
 
     // All Services
     [Inject]
-    private Lazy<IEnumerable<object>> Services { get; init; }
+    private Lazy<IEnumerable<object>> Services { get; init; } = null!;
 
     private readonly Dictionary<string, ScriptCallback> scriptHandlers = new Dictionary<string, ScriptCallback>(StartCapacity);
 
-    public int ExecutionOrder { get; } = 10000;
+    public int ExecutionOrder => 10000;
 
     void IInitializable.Init()
     {
@@ -32,7 +32,7 @@ namespace Anvil.Services
 
     ScriptHandleResult IScriptDispatcher.ExecuteScript(string script, uint objectSelf)
     {
-      if (scriptHandlers.TryGetValue(script, out ScriptCallback handler))
+      if (scriptHandlers.TryGetValue(script, out ScriptCallback? handler))
       {
         return handler.ProcessCallbacks(objectSelf);
       }
@@ -52,7 +52,7 @@ namespace Anvil.Services
         return;
       }
 
-      if (!scriptHandlers.TryGetValue(scriptName, out ScriptCallback callback))
+      if (!scriptHandlers.TryGetValue(scriptName, out ScriptCallback? callback))
       {
         callback = new ScriptCallback(scriptName);
         scriptHandlers.Add(scriptName, callback);

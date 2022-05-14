@@ -105,7 +105,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="columnName">The name/label of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public string GetString(string columnName)
+    public string? GetString(string columnName)
     {
       return array.GetString(rowIndex, columnName);
     }
@@ -115,7 +115,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public string GetString(int columnIndex)
+    public string? GetString(int columnIndex)
     {
       return array.GetString(rowIndex, columnIndex);
     }
@@ -147,7 +147,7 @@ namespace Anvil.API
     /// <param name="table">The table that should be used to resolve the value.</param>
     /// <typeparam name="T">The type of table entry.</typeparam>
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
-    public T GetTableEntry<T>(string columnName, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    public T? GetTableEntry<T>(string columnName, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
     {
       return array.GetTableEntry(rowIndex, columnName, table);
     }
@@ -159,7 +159,7 @@ namespace Anvil.API
     /// <param name="table">The table that should be used to resolve the value.</param>
     /// <typeparam name="T">The type of table entry.</typeparam>
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
-    public T GetTableEntry<T>(int columnIndex, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    public T? GetTableEntry<T>(int columnIndex, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
     {
       return array.GetTableEntry(rowIndex, columnIndex, table);
     }

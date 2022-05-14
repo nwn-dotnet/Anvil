@@ -9,7 +9,7 @@ namespace Anvil.API
 
     public float FogClipDistance { get; set; } = 45f;
 
-    public string Label { get; set; }
+    public string? Label { get; set; }
 
     public int? LightningChance { get; set; }
 

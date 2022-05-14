@@ -6,7 +6,7 @@ namespace Anvil.API
 
     public float? Green { get; private set; }
 
-    public string Label { get; private set; }
+    public string? Label { get; private set; }
 
     public float? Red { get; private set; }
 

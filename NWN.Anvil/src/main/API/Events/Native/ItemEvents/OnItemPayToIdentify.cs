@@ -8,18 +8,18 @@ namespace Anvil.API.Events
 {
   public sealed class OnItemPayToIdentify : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
-    public NwItem Item { get; private init; }
+    public NwItem Item { get; private init; } = null!;
     public bool PreventPayToIdentify { get; set; }
 
-    public NwStore Store { get; private init; }
+    public NwStore Store { get; private init; } = null!;
 
     NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<PayToIdentifyItemHook> Hook { get; set; }
+      private static FunctionHook<PayToIdentifyItemHook> Hook { get; set; } = null!;
 
       private delegate void PayToIdentifyItemHook(void* pCreature, uint oidItem, uint oidStore);
 
@@ -35,9 +35,9 @@ namespace Anvil.API.Events
       {
         OnItemPayToIdentify eventData = ProcessEvent(new OnItemPayToIdentify
         {
-          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Item = oidItem.ToNwObject<NwItem>(),
-          Store = oidStore.ToNwObject<NwStore>(),
+          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Item = oidItem.ToNwObject<NwItem>()!,
+          Store = oidStore.ToNwObject<NwStore>()!,
         });
 
         if (!eventData.PreventPayToIdentify)

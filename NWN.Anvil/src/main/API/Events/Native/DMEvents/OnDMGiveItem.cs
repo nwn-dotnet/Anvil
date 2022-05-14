@@ -5,10 +5,10 @@ namespace Anvil.API.Events
 {
   public abstract class OnDMGiveItem : IEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; }
-    public NwGameObject Target { get; internal init; }
+    public NwPlayer DungeonMaster { get; internal init; } = null!;
+    public NwGameObject Target { get; internal init; } = null!;
 
-    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 
   public sealed class OnDMGiveItemBefore : OnDMGiveItem
@@ -18,7 +18,7 @@ namespace Anvil.API.Events
 
   public sealed class OnDMGiveItemAfter : OnDMGiveItem
   {
-    public NwItem Item { get; internal init; }
+    public NwItem Item { get; internal init; } = null!;
   }
 }
 

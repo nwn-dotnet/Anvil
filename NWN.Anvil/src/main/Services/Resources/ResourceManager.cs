@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -74,7 +75,7 @@ namespace Anvil.Services
     /// <param name="name">The resource name to fetch, without any filetype extensions.</param>
     /// <param name="type">The type of the file/resource.</param>
     /// <returns>A <see cref="GffResource"/> representation of the specified resource if it exists, otherwise null.</returns>
-    public GffResource GetGenericFile(string name, ResRefType type)
+    public GffResource? GetGenericFile(string name, ResRefType type)
     {
       CResRef resRef = new CResRef(name);
       if (!ResMan.Exists(resRef, (ushort)type).ToBool())
@@ -91,7 +92,7 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="scriptName">The name of the script to get the contents of.</param>
     /// <returns>The script file contents or "" on error.</returns>
-    public string GetNSSContents(CExoString scriptName)
+    public string? GetNSSContents(CExoString scriptName)
     {
       CScriptSourceFile scriptSourceFile = new CScriptSourceFile();
       byte* data;
@@ -113,12 +114,12 @@ namespace Anvil.Services
     /// <param name="name">The resource name to retrieve.</param>
     /// <param name="type">The type of resource to retrieve.</param>
     /// <returns>The raw data of the associated resource, otherwise null if the resource does not exist.</returns>
-    public byte[] GetResourceData(string name, ResRefType type)
+    public byte[]? GetResourceData(string name, ResRefType type)
     {
       switch (type)
       {
         case ResRefType.NSS:
-          string source = GetNSSContents(name.ToExoString());
+          string? source = GetNSSContents(name.ToExoString());
           return source != null ? StringHelper.Cp1252Encoding.GetBytes(source) : null;
         case ResRefType.NCS:
           return null;
@@ -133,7 +134,7 @@ namespace Anvil.Services
     /// <param name="name">The resource name to retrieve.</param>
     /// <param name="type">The type of resource to retrieve.</param>
     /// <returns>The raw text of the associated resource, otherwise null if the resource does not exist.</returns>
-    public string GetResourceText(string name, ResRefType type)
+    public string? GetResourceText(string name, ResRefType type)
     {
       switch (type)
       {
@@ -142,7 +143,8 @@ namespace Anvil.Services
         case ResRefType.NCS:
           return null;
         default:
-          return StringHelper.Cp1252Encoding.GetString(GetStandardResourceData(name, type));
+          byte[]? data = GetStandardResourceData(name, type);
+          return data != null ? StringHelper.Cp1252Encoding.GetString(data) : null;
       }
     }
 
@@ -210,9 +212,9 @@ namespace Anvil.Services
       return alias;
     }
 
-    private byte[] GetStandardResourceData(string name, ResRefType type)
+    private byte[]? GetStandardResourceData(string name, ResRefType type)
     {
-      if (TryGetNativeResource(name, type, out CRes res))
+      if (TryGetNativeResource(name, type, out CRes? res))
       {
         void* data = res.GetData();
         int size = res.GetSize();
@@ -239,7 +241,7 @@ namespace Anvil.Services
       }
     }
 
-    private bool TryGetNativeResource(string name, ResRefType type, out CRes res)
+    private bool TryGetNativeResource(string name, ResRefType type, [NotNullWhen(true)] out CRes? res)
     {
       res = default;
       CResRef resRef = new CResRef(name);

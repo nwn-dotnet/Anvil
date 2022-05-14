@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NWN.Native.API;
 
@@ -107,7 +108,7 @@ namespace Anvil.API
       return field.Value<double>();
     }
 
-    public static explicit operator string(GffResourceField field)
+    public static explicit operator string?(GffResourceField field)
     {
       return field.Value<string>();
     }
@@ -122,9 +123,9 @@ namespace Anvil.API
       return false;
     }
 
-    public sealed override string ToString()
+    public sealed override string? ToString()
     {
-      return Value().ToString();
+      return Value()?.ToString();
     }
 
     /// <summary>
@@ -133,7 +134,7 @@ namespace Anvil.API
     /// <param name="key">The key of the value to get./</param>
     /// <param name="value">If the method runs successfully (returns true), this output parameter will contain the associated value.</param>
     /// <returns>True if the field is a <see cref="GffResourceFieldStruct"/> and the key exists. Otherwise, false.</returns>
-    public virtual bool TryGetValue(string key, out GffResourceField value)
+    public virtual bool TryGetValue(string key, [NotNullWhen(true)] out GffResourceField? value)
     {
       value = default;
       return false;
@@ -144,9 +145,9 @@ namespace Anvil.API
     /// </summary>
     /// <returns>The value associated with this <see cref="GffResourceField"/>.</returns>
     /// <exception cref="InvalidOperationException">Thrown if this field is not a standard value type.</exception>
-    public object Value()
+    public object? Value()
     {
-      if (GetValueInternal(out object value))
+      if (GetValueInternal(out object? value))
       {
         return value;
       }
@@ -160,44 +161,42 @@ namespace Anvil.API
     /// <typeparam name="T">The field value type.</typeparam>
     /// <returns>The value associated with this <see cref="GffResourceField"/>.</returns>
     /// <exception cref="InvalidOperationException">Thrown if this field is not a standard value type, or an invalid generic type was specified..</exception>
-    public T Value<T>()
+    public T? Value<T>()
     {
-      if (GetValueInternal(out object value, typeof(T)))
+      if (GetValueInternal(out object? value, typeof(T)))
       {
-        return (T)value;
+        return (T?)value;
       }
-      else
-      {
-        throw new InvalidOperationException($"Cannot convert {FieldType} to {typeof(T).Name}");
-      }
+
+      throw new InvalidOperationException($"Cannot convert {FieldType} to {typeof(T).Name}");
     }
 
     /// <summary>
     /// Gets the value of this field.
     /// </summary>
     /// <returns>The value associated with this <see cref="GffResourceField"/>. Returns null if the value is a list or struct.</returns>
-    public object ValueOrDefault()
+    public object? ValueOrDefault()
     {
-      return GetValueInternal(out object value) ? value : default;
+      return GetValueInternal(out object? value) ? value : default;
     }
 
     /// <summary>
     /// Gets the value of this field.
     /// </summary>
     /// <returns>The value associated with this <see cref="GffResourceField"/>. Returns null if the value is a list or struct, or does not match the specified type.</returns>
-    public T ValueOrDefault<T>()
+    public T? ValueOrDefault<T>()
     {
-      return GetValueInternal(out object value, typeof(T)) ? (T)value : default;
+      return GetValueInternal(out object? value, typeof(T)) ? (T?)value : default;
     }
 
-    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, string fieldId)
+    internal static GffResourceField? Create(CResGFF resGff, CResStruct resStruct, string fieldId)
     {
       byte* fieldIdPtr = fieldId.GetNullTerminatedString();
       uint index = resGff.GetFieldByLabel(resStruct, fieldIdPtr);
       return Create(resGff, resStruct, index, fieldIdPtr);
     }
 
-    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, uint fieldIndex)
+    internal static GffResourceField? Create(CResGFF resGff, CResStruct resStruct, uint fieldIndex)
     {
       byte* fieldId = resGff.GetFieldStringID(resStruct, fieldIndex);
       if (fieldId == null)
@@ -208,7 +207,7 @@ namespace Anvil.API
       return Create(resGff, resStruct, fieldIndex, fieldId);
     }
 
-    internal static GffResourceField Create(CResGFF resGff, CResStruct resStruct, uint fieldIndex, byte* fieldId)
+    internal static GffResourceField? Create(CResGFF resGff, CResStruct resStruct, uint fieldIndex, byte* fieldId)
     {
       GffResourceFieldType fieldType = (GffResourceFieldType)resGff.GetFieldType(resStruct, fieldId, fieldIndex);
       if (!Enum.IsDefined(fieldType)) // User specified struct type.
@@ -241,7 +240,7 @@ namespace Anvil.API
       return null;
     }
 
-    protected virtual bool GetValueInternal(out object value, Type requestedType = null)
+    protected virtual bool GetValueInternal(out object? value, Type? requestedType = null)
     {
       value = null;
       return false;

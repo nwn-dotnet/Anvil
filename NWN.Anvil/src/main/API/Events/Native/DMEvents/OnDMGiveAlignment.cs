@@ -9,13 +9,13 @@ namespace Anvil.API.Events
 
     public int Amount { get; internal init; }
 
-    public NwPlayer DungeonMaster { get; internal init; }
+    public NwPlayer DungeonMaster { get; internal init; } = null!;
 
     public bool Skip { get; set; }
 
-    public NwObject Target { get; internal init; }
+    public NwObject Target { get; internal init; } = null!;
 
-    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 }
 

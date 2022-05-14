@@ -18,7 +18,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> associated with the heartbeat event.
       /// </summary>
-      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
       NwObject IEvent.Context => Creature;
     }

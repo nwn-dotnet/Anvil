@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using NWN.Native.API;
@@ -55,17 +56,17 @@ namespace Anvil.API
     /// </summary>
     public int RowCount => array.m_nNumRows;
 
-    public static bool operator ==(TwoDimArray left, TwoDimArray right)
+    public static bool operator ==(TwoDimArray? left, TwoDimArray? right)
     {
       return Equals(left, right);
     }
 
-    public static bool operator !=(TwoDimArray left, TwoDimArray right)
+    public static bool operator !=(TwoDimArray? left, TwoDimArray? right)
     {
       return !Equals(left, right);
     }
 
-    public bool Equals(TwoDimArray other)
+    public bool Equals(TwoDimArray? other)
     {
       if (ReferenceEquals(null, other))
       {
@@ -80,7 +81,7 @@ namespace Anvil.API
       return array.Equals(other.array);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       return ReferenceEquals(this, obj) || obj is TwoDimArray other && Equals(other);
     }
@@ -227,7 +228,7 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnName">The name/label of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public string GetString(int rowIndex, string columnName)
+    public string? GetString(int rowIndex, string columnName)
     {
       int columnIndex = GetColumnIndex(columnName);
       return columnIndex >= 0 ? GetString(rowIndex, columnIndex) : null;
@@ -239,7 +240,7 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public string GetString(int rowIndex, int columnIndex)
+    public string? GetString(int rowIndex, int columnIndex)
     {
       using CExoString retVal = new CExoString();
       if (array.GetCExoStringEntry(rowIndex, columnIndex, retVal).ToBool())
@@ -287,7 +288,7 @@ namespace Anvil.API
     /// <param name="table">The table that should be used to resolve the value.</param>
     /// <typeparam name="T">The type of table entry.</typeparam>
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
-    public T GetTableEntry<T>(int rowIndex, string columnName, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    public T? GetTableEntry<T>(int rowIndex, string columnName, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
     {
       int columnIndex = GetColumnIndex(columnName);
       return GetTableEntry(rowIndex, columnIndex, table);
@@ -301,7 +302,7 @@ namespace Anvil.API
     /// <param name="table">The table that should be used to resolve the value.</param>
     /// <typeparam name="T">The type of table entry.</typeparam>
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
-    public unsafe T GetTableEntry<T>(int rowIndex, int columnIndex, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    public unsafe T? GetTableEntry<T>(int rowIndex, int columnIndex, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
     {
       int index;
       if (array.GetINTEntry(rowIndex, columnIndex, &index).ToBool() && index < table.RowCount)
@@ -353,6 +354,7 @@ namespace Anvil.API
       return null;
     }
 
+    [MemberNotNull(nameof(Columns))]
     private void Init()
     {
       CExoStringArray columnArray = CExoStringArray.FromPointer(array.m_pColumnLabel);

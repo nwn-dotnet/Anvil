@@ -35,7 +35,7 @@ namespace Anvil.API
 
         for (int i = 0; i < feats.Length; i++)
         {
-          feats[i] = NwFeat.FromFeatId(levelStats.m_lstFeats[i]);
+          feats[i] = NwFeat.FromFeatId(levelStats.m_lstFeats[i])!;
         }
 
         return feats;

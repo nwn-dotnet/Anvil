@@ -39,7 +39,7 @@ namespace Anvil.Services
     private uint OnAIActionRest(void* pCreature, void* pNode)
     {
       CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
-      NwCreature nwCreature = creature.ToNwObject<NwCreature>();
+      NwCreature? nwCreature = creature.ToNwObject<NwCreature>();
 
       if (nwCreature != null && restDurationOverrides.TryGetValue(nwCreature, out int durationOverride))
       {

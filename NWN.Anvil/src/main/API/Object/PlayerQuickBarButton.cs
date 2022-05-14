@@ -23,16 +23,16 @@ namespace Anvil.API
       Associate = button.m_oidAssociate.ToNwObject();
     }
 
-    public NwObject Associate { get; set; }
+    public NwObject? Associate { get; set; }
 
     public int AssociateType { get; set; }
 
-    public string CommandLabel { get; set; }
+    public string? CommandLabel { get; set; }
 
-    public string CommandLine { get; set; }
+    public string? CommandLine { get; set; }
 
     public byte DomainLevel { get; set; }
-    public NwObject Item { get; set; }
+    public NwObject? Item { get; set; }
 
     public byte MetaType { get; set; }
 
@@ -42,11 +42,11 @@ namespace Anvil.API
 
     public int Param1 { get; set; }
 
-    public string ResRef { get; set; }
+    public string? ResRef { get; set; }
 
-    public NwObject SecondaryItem { get; set; }
+    public NwObject? SecondaryItem { get; set; }
 
-    public string ToolTip { get; set; }
+    public string? ToolTip { get; set; }
 
     internal unsafe void ApplyToNativeStructure(CNWSQuickbarButton button)
     {

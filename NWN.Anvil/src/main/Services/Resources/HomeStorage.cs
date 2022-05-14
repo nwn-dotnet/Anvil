@@ -25,7 +25,7 @@ namespace Anvil.Services
       // If a normal file exists on the path, we should still throw the exception.
       if (!File.Exists(folderPath) || (File.GetAttributes(folderPath) & FileAttributes.ReparsePoint) == 0)
       {
-        Directory.CreateDirectory(folderPath!);
+        Directory.CreateDirectory(folderPath);
       }
     }
 

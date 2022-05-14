@@ -15,7 +15,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that attacked the <see cref="NwDoor"/>.
       /// </summary>
-      public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>();
+      public NwCreature Attacker { get; } = NWScript.GetLastAttacker().ToNwObject<NwCreature>()!;
 
       /// <summary>
       /// Gets the <see cref="SpecialAttack"/> used to damage <see cref="NwDoor"/>.
@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwDoor"/> that was physically attacked.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       NwObject IEvent.Context => Door;
 
@@ -42,7 +42,7 @@ namespace Anvil.API.Events
       /// </summary>
       public NwItem WeaponUsed(NwCreature attacker)
       {
-        return NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>();
+        return NWScript.GetLastWeaponUsed(attacker).ToNwObject<NwItem>()!;
       }
     }
   }

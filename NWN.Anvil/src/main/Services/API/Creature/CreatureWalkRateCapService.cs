@@ -37,7 +37,7 @@ namespace Anvil.Services
 
     private float OnGetWalkRate(void* pCreature)
     {
-      NwCreature creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>();
+      NwCreature? creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>();
       if (creature == null)
       {
         return walkRateHook.CallOriginal(pCreature);

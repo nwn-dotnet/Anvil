@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Anvil.API.Events;
 using NWN.Core;
@@ -11,7 +12,7 @@ namespace Anvil.API
   {
     private static readonly ScriptParams CachedScriptParams = new ScriptParams();
 
-    public CallInfo(string scriptName, NwObject objSelf)
+    public CallInfo(string scriptName, NwObject? objSelf)
     {
       ScriptName = scriptName;
       ObjectSelf = objSelf;
@@ -21,7 +22,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the object that is currently running on this script.
     /// </summary>
-    public NwObject ObjectSelf { get; }
+    public NwObject? ObjectSelf { get; }
 
     /// <summary>
     /// Gets the name of the script that is being executing.
@@ -45,9 +46,9 @@ namespace Anvil.API
     /// <param name="eventData">When this method returns, contains the created event if the current event is a TEvent. Otherwise, returns the default value for TEvent.</param>
     /// <typeparam name="TEvent">The expected event type. Only events attributed with <see cref="GameEventAttribute"/> are supported.</typeparam>
     /// <returns>true if the current running script is a TEvent, otherwise false.</returns>
-    public bool TryGetEvent<TEvent>(out TEvent eventData) where TEvent : IEvent, new()
+    public bool TryGetEvent<TEvent>([NotNullWhen(true)] out TEvent? eventData) where TEvent : IEvent, new()
     {
-      GameEventAttribute gameEventAttribute = typeof(TEvent).GetCustomAttribute<GameEventAttribute>();
+      GameEventAttribute? gameEventAttribute = typeof(TEvent).GetCustomAttribute<GameEventAttribute>();
       if (gameEventAttribute?.EventScriptType == ScriptType)
       {
         eventData = new TEvent();

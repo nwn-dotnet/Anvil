@@ -10,10 +10,10 @@ namespace Anvil.API
   /// </summary>
   public readonly partial struct NuiWindowToken : IEquatable<NuiWindowToken>
   {
-    public static NuiWindowToken Invalid = new NuiWindowToken(null, -1);
+    public static NuiWindowToken Invalid = new NuiWindowToken(null!, -1);
 
     [Inject]
-    private static NuiWindowEventService NuiWindowEventService { get; set; }
+    private static NuiWindowEventService NuiWindowEventService { get; set; } = null!;
 
     internal NuiWindowToken(NwPlayer player, int token)
     {
@@ -68,7 +68,7 @@ namespace Anvil.API
       return Player.Equals(other.Player) && Token == other.Token;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       return obj is NuiWindowToken other && Equals(other);
     }
@@ -79,7 +79,7 @@ namespace Anvil.API
     /// <param name="bind">The bind value to query.</param>
     /// <typeparam name="T">The value type of the bind.</typeparam>
     /// <returns>The current assigned value of the bind, otherwise the default value of T.</returns>
-    public T GetBindValue<T>(NuiBind<T> bind)
+    public T? GetBindValue<T>(NuiBind<T> bind)
     {
       return bind.GetBindValue(Player, Token);
     }
@@ -90,7 +90,7 @@ namespace Anvil.API
     /// <param name="bind">The bind value to query.</param>
     /// <typeparam name="T">The value type of the bind.</typeparam>
     /// <returns>The current assigned value of the bind, otherwise the default value of T.</returns>
-    public List<T> GetBindValues<T>(NuiBind<T> bind)
+    public List<T>? GetBindValues<T>(NuiBind<T> bind)
     {
       return bind.GetBindValues(Player, Token);
     }
@@ -105,7 +105,7 @@ namespace Anvil.API
     /// </summary>
     /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
-    public T GetUserData<T>()
+    public T? GetUserData<T>()
     {
       return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(Player.ControlledCreature, Token));
     }

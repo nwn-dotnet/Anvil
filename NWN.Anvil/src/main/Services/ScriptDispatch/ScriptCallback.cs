@@ -11,11 +11,12 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly string scriptName;
-    private Func<bool> conditionalHandler;
-    private Func<CallInfo, bool> conditionalWithMetaHandler;
 
-    private Action scriptHandler;
-    private Action<CallInfo> scriptHandlerWithMetaHandler;
+    private Func<bool>? conditionalHandler;
+    private Func<CallInfo, bool>? conditionalWithMetaHandler;
+
+    private Action? scriptHandler;
+    private Action<CallInfo>? scriptHandlerWithMetaHandler;
 
     public ScriptCallback(string scriptName)
     {
@@ -82,7 +83,7 @@ namespace Anvil.Services
     public ScriptHandleResult ProcessCallbacks(uint objSelfId)
     {
       ScriptHandleResult result = ScriptHandleResult.NotHandled;
-      NwObject objSelf = null;
+      NwObject? objSelf = null;
 
       if (scriptHandler != null)
       {

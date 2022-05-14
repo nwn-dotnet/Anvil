@@ -15,7 +15,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwDoor"/> that is running a user defined event.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       /// <summary>
       /// Gets the specific event number used to trigger this user-defined event.
@@ -26,7 +26,7 @@ namespace Anvil.API.Events
 
       public static void Signal(NwDoor door, int eventId)
       {
-        Event nwEvent = NWScript.EventUserDefined(eventId);
+        Event nwEvent = NWScript.EventUserDefined(eventId)!;
         NWScript.SignalEvent(door, nwEvent);
       }
     }

@@ -15,7 +15,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwDoor"/> that had a heartbeat.
       /// </summary>
-      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>();
+      public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
       NwObject IEvent.Context => Door;
     }

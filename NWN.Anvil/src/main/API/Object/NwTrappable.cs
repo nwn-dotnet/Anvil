@@ -48,7 +48,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the player that created this trap. If the trap was placed in the toolset, this returns null.
     /// </summary>
-    public NwPlayer TrapCreator => NWScript.GetTrapCreator(this).ToNwPlayer();
+    public NwPlayer? TrapCreator => NWScript.GetTrapCreator(this).ToNwPlayer();
 
     /// <summary>
     /// Gets or sets a value indicating whether this trap can be detected.
@@ -115,7 +115,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the creature who last disarmed the trap on this object.
     /// </summary>
-    public async Task<NwCreature> GetLastDisarmedBy()
+    public async Task<NwCreature?> GetLastDisarmedBy()
     {
       await WaitForObjectContext();
       return NWScript.GetLastDisarmed().ToNwObject<NwCreature>();

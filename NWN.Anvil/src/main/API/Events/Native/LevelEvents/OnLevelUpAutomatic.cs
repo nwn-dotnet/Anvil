@@ -8,13 +8,13 @@ namespace Anvil.API.Events
 {
   public sealed class OnLevelUpAutomatic : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<LevelUpAutomaticHook> Hook { get; set; }
+      private static FunctionHook<LevelUpAutomaticHook> Hook { get; set; } = null!;
 
       private delegate void LevelUpAutomaticHook(void* pCreatureStats, byte nClass, int bReadyAllSpells, byte nPackage);
 
@@ -34,7 +34,7 @@ namespace Anvil.API.Events
 
         ProcessEvent(new OnLevelUpAutomatic
         {
-          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>(),
+          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
         });
       }
     }

@@ -5,12 +5,12 @@ namespace Anvil.API.Events
 {
   public sealed class OnDMPlayerDMLogin : IEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; }
-    public string Password { get; internal init; }
+    public NwPlayer DungeonMaster { get; internal init; } = null!;
+    public string Password { get; internal init; } = null!;
 
     public bool Skip { get; set; }
 
-    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 }
 

@@ -10,7 +10,7 @@ namespace Anvil.API
   public abstract class ObjectVariable
   {
     [Inject]
-    private static Lazy<InjectionService> InjectionService { get; set; }
+    private static Lazy<InjectionService> InjectionService { get; set; } = null!;
 
     /// <summary>
     /// Gets a value indicating whether this variable has no value.
@@ -22,9 +22,9 @@ namespace Anvil.API
     /// </summary>
     public abstract bool HasValue { get; }
 
-    public string Name { get; private init; }
+    public string Name { get; private init; } = null!;
 
-    public NwObject Object { get; private init; }
+    public NwObject Object { get; private init; } = null!;
 
     /// <summary>
     /// Deletes the value of this variable.
@@ -46,7 +46,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the current value of this variable. Returns the default value of T if unassigned (null or 0).
     /// </summary>
-    public abstract T Value { get; set; }
+    public abstract T? Value { get; set; }
 
     public static bool operator ==(ObjectVariable<T> left, ObjectVariable<T> right)
     {
@@ -56,7 +56,7 @@ namespace Anvil.API
     /// <summary>
     /// Implicit conversion of the value of this variable.
     /// </summary>
-    public static implicit operator T(ObjectVariable<T> value)
+    public static implicit operator T?(ObjectVariable<T> value)
     {
       return value.Value;
     }
@@ -66,7 +66,7 @@ namespace Anvil.API
       return !Equals(left, right);
     }
 
-    public bool Equals(ObjectVariable<T> other)
+    public bool Equals(ObjectVariable<T>? other)
     {
       if (ReferenceEquals(null, other))
       {
@@ -81,7 +81,7 @@ namespace Anvil.API
       return EqualityComparer<T>.Default.Equals(Value, other.Value);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       if (ReferenceEquals(null, obj))
       {
@@ -103,7 +103,8 @@ namespace Anvil.API
 
     public override int GetHashCode()
     {
-      return EqualityComparer<T>.Default.GetHashCode(Value);
+      T? value = Value;
+      return value is not null ? EqualityComparer<T>.Default.GetHashCode(value) : 0;
     }
   }
 }

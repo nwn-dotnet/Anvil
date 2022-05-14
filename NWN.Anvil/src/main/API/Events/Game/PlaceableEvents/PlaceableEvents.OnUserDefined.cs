@@ -20,13 +20,13 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that is running a user defined event.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
       NwObject IEvent.Context => Placeable;
 
       public static void Signal(NwPlaceable placeable, int eventId)
       {
-        Event nwEvent = NWScript.EventUserDefined(eventId);
+        Event nwEvent = NWScript.EventUserDefined(eventId)!;
         NWScript.SignalEvent(placeable, nwEvent);
       }
     }

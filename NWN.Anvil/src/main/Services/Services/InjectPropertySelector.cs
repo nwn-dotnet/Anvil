@@ -25,7 +25,7 @@ namespace Anvil.Services
     /// <returns><b>true</b> if the property is injectable, otherwise <b>false</b>.</returns>
     protected override bool IsInjectable(PropertyInfo propertyInfo)
     {
-      InjectAttribute injectAttribute = propertyInfo.SafeGetCustomAttribute<InjectAttribute>();
+      InjectAttribute? injectAttribute = propertyInfo.SafeGetCustomAttribute<InjectAttribute>();
       if (injectAttribute == null)
       {
         return false;
@@ -33,19 +33,18 @@ namespace Anvil.Services
 
       try
       {
-        MethodInfo setMethod = propertyInfo.SetMethod;
-        bool isValid = setMethod != null && propertyInfo.GetIndexParameters().Length == 0;
+        MethodInfo? setMethod = propertyInfo.SetMethod;
 
-        if (!isValid)
+        if (setMethod != null && propertyInfo.GetIndexParameters().Length == 0)
         {
-          throw new ArgumentException("Cannot inject property as it does not have set/init accessor defined, or is an unsupported property type", propertyInfo.GetFullName());
+          return IsValidPropertyType(setMethod);
         }
 
-        return IsValidPropertyType(setMethod);
+        throw new ArgumentException("Cannot inject property as it does not have set/init accessor defined, or is an unsupported property type", propertyInfo.GetFullName());
       }
       catch (FileNotFoundException e)
       {
-        AssemblyName assemblyName = e.FileName != null ? new AssemblyName(e.FileName) : null;
+        AssemblyName? assemblyName = e.FileName != null ? new AssemblyName(e.FileName) : null;
         bool optional = injectAttribute.Optional || assemblyName != null && propertyInfo.ReflectedType?.GetCustomAttribute<ServiceBindingOptionsAttribute>()?.PluginDependencies?.Contains(assemblyName.Name) == true;
 
         if (optional)

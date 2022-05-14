@@ -15,12 +15,12 @@ namespace Anvil.API
     public bool Border { get; set; } = true;
 
     [JsonIgnore]
-    public NuiLayout Layout { get; set; }
+    public NuiLayout? Layout { get; set; }
 
     [JsonProperty("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
 
-    public override string Type { get; } = "group";
+    public override string Type => "group";
 
     protected override IEnumerable<NuiElement> SerializedChildren => Layout.SafeYield();
 

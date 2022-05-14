@@ -8,9 +8,9 @@ namespace Anvil.API
     private readonly float?[] floatParamValues = new float?[ParamCount];
     private readonly int?[] intParamValues = new int?[ParamCount];
 
-    private readonly string[] stringParamValues = new string[ParamCount];
+    private readonly string?[] stringParamValues = new string[ParamCount];
 
-    public string Label { get; private set; }
+    public string? Label { get; private set; }
     public int RowIndex { get; init; }
 
     public ProgFxType? Type { get; private set; }
@@ -25,7 +25,7 @@ namespace Anvil.API
       return intParamValues[param - 1];
     }
 
-    public string GetParamString(int param)
+    public string? GetParamString(int param)
     {
       return stringParamValues[param - 1];
     }

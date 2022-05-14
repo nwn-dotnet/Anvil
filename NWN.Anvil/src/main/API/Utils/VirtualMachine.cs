@@ -17,7 +17,7 @@ namespace Anvil.API
 
     private readonly int mainThreadId = Thread.CurrentThread.ManagedThreadId;
 
-    private CVirtualMachine virtualMachine;
+    private CVirtualMachine virtualMachine = null!;
 
     /// <summary>
     /// Gets or sets the current running script event.
@@ -70,7 +70,7 @@ namespace Anvil.API
     /// Executes the specified NWN script.
     /// If scriptName does not specify a compiled script, nothing happens.
     /// </summary>
-    public void Execute(string scriptName, NwObject target, params (string ParamName, string ParamValue)[] scriptParams)
+    public void Execute(string scriptName, NwObject? target, params (string ParamName, string ParamValue)[] scriptParams)
     {
       foreach ((string paramName, string paramValue) in scriptParams)
       {
@@ -130,7 +130,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="depth">depth to seek the executing script.</param>
     /// <returns>The name of the currently executing script.</returns>
-    public string GetCurrentScriptName(int depth = 0)
+    public string? GetCurrentScriptName(int depth = 0)
     {
       if (virtualMachine.m_nRecursionLevel >= 0 && virtualMachine.m_nRecursionLevel >= depth)
       {

@@ -18,12 +18,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was used.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that used <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwCreature UsedBy { get; } = NWScript.GetLastUsedBy().ToNwObject<NwCreature>();
+      public NwCreature UsedBy { get; } = NWScript.GetLastUsedBy().ToNwObject<NwCreature>()!;
 
       NwObject IEvent.Context => Placeable;
     }

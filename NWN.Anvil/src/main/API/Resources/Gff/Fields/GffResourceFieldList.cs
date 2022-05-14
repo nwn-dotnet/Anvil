@@ -16,8 +16,11 @@ namespace Anvil.API
       for (uint i = 0; i < count; i++)
       {
         CResStruct resStruct = new CResStruct();
-        GffResourceFieldStruct childField = ResGff.GetListElement(resStruct, list, i).ToBool() ? new GffResourceFieldStruct(ResGff, resStruct) : null;
-        children.Add(childField);
+        GffResourceFieldStruct? childField = ResGff.GetListElement(resStruct, list, i).ToBool() ? new GffResourceFieldStruct(ResGff, resStruct) : null;
+        if (childField != null)
+        {
+          children.Add(childField);
+        }
       }
     }
 

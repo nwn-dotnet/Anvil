@@ -18,7 +18,7 @@ namespace Anvil.API
     }
 
     [Obsolete("Use StrTokenCustom.Value instead.")]
-    public string GetCustomToken(uint tokenNumber)
+    public string? GetCustomToken(uint tokenNumber)
     {
       return new StrTokenCustom((int)tokenNumber).Value;
     }
@@ -47,7 +47,7 @@ namespace Anvil.API
       };
     }
 
-    internal string GetCustomToken(StrTokenCustom customToken)
+    internal string? GetCustomToken(StrTokenCustom customToken)
     {
       int numTokens = (int)tlkTable.m_nTokensCustom;
 
@@ -64,7 +64,7 @@ namespace Anvil.API
       return retVal.ToString();
     }
 
-    internal string GetTlkOverride(StrRef strRef)
+    internal string? GetTlkOverride(StrRef strRef)
     {
       if (tlkTable.m_overrides.TryGetValue(strRef.Id, out CExoString retVal))
       {
@@ -74,7 +74,7 @@ namespace Anvil.API
       return null;
     }
 
-    internal string ResolveParsedStringFromStrRef(StrRef strRef)
+    internal string? ResolveParsedStringFromStrRef(StrRef strRef)
     {
       CExoString rawString = tlkTable.GetSimpleString(strRef.Id);
       if (rawString != null)
@@ -90,12 +90,12 @@ namespace Anvil.API
       return tlkTable.GetSimpleString(strRef.Id).ToString();
     }
 
-    internal void SetCustomToken(StrTokenCustom customToken, string value)
+    internal void SetCustomToken(StrTokenCustom customToken, string? value)
     {
       tlkTable.SetCustomToken(customToken.TokenNumber, value.ToExoString());
     }
 
-    internal void SetTlkOverride(StrRef strRef, string value)
+    internal void SetTlkOverride(StrRef strRef, string? value)
     {
       tlkTable.SetOverride(strRef.Id, value.ToExoString());
     }

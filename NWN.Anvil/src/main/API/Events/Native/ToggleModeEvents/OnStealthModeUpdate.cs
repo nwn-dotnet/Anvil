@@ -8,7 +8,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnStealthModeUpdate : IEvent
   {
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets an override behaviour to use if <see cref="EventType"/> is an Enter event.
@@ -26,7 +26,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SetStealthModeHook> Hook { get; set; }
+      private static FunctionHook<SetStealthModeHook> Hook { get; set; } = null!;
 
       private delegate void SetStealthModeHook(void* pCreature, byte nStealthMode);
 
@@ -58,7 +58,7 @@ namespace Anvil.API.Events
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
-          Creature = creature.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>()!,
           EventType = ToggleModeEventType.Enter,
         });
 
@@ -83,7 +83,7 @@ namespace Anvil.API.Events
       {
         OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
         {
-          Creature = creature.ToNwObject<NwCreature>(),
+          Creature = creature.ToNwObject<NwCreature>()!,
           EventType = ToggleModeEventType.Exit,
         });
 

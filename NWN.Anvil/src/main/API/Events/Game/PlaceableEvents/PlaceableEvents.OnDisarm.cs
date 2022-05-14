@@ -18,7 +18,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was disarmed.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
       NwObject IEvent.Context => Placeable;
     }
