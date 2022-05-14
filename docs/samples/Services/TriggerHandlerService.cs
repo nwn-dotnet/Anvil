@@ -28,7 +28,7 @@ namespace NWN.Anvil.Samples
     {
       if (obj.EnteringObject.IsPlayerControlled(out NwPlayer? player))
       {
-        Log.Info("Player entered trigger: " + player?.PlayerName);
+        Log.Info("Player entered trigger: " + player.PlayerName);
       }
     }
   }

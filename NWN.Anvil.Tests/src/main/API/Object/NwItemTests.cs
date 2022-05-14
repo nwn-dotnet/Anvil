@@ -50,10 +50,10 @@ namespace Anvil.Tests.API
     public void CreateItemIsCreated(string itemResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwItem item = NwItem.Create(itemResRef, startLocation);
+      NwItem? item = NwItem.Create(itemResRef, startLocation);
 
       Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
-      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
+      Assert.That(item!.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
     }
@@ -98,10 +98,10 @@ namespace Anvil.Tests.API
     public void CloneItemWithLocalStateIsCopied(string itemResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwItem item = NwItem.Create(itemResRef, startLocation);
+      NwItem? item = NwItem.Create(itemResRef, startLocation);
 
       Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
-      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
+      Assert.That(item!.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
 
@@ -161,10 +161,10 @@ namespace Anvil.Tests.API
     public void CloneItemNoLocalStateIsNotCopied(string itemResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwItem item = NwItem.Create(itemResRef, startLocation);
+      NwItem? item = NwItem.Create(itemResRef, startLocation);
 
       Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
-      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
+      Assert.That(item!.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
 
@@ -224,10 +224,10 @@ namespace Anvil.Tests.API
     public void CloneItemCustomTagIsApplied(string itemResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwItem item = NwItem.Create(itemResRef, startLocation);
+      NwItem? item = NwItem.Create(itemResRef, startLocation);
 
       Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
-      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
+      Assert.That(item!.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
 
@@ -282,13 +282,13 @@ namespace Anvil.Tests.API
     public void CloneItemWithoutTagOriginalTagIsCopied(string itemResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwItem item = NwItem.Create(itemResRef, startLocation);
-      item.Tag = "expectedNewTag";
+      NwItem? item = NwItem.Create(itemResRef, startLocation);
 
       Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
-      Assert.That(item.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
+      Assert.That(item!.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
 
       createdTestObjects.Add(item);
+      item.Tag = "expectedNewTag";
 
       NwItem clone = item.Clone(startLocation, null, false);
 

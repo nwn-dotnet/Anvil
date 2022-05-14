@@ -21,12 +21,12 @@ namespace Anvil.Tests.API
     public void GetMissingLocalVariablePropertiesValid(string variableName)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
 
       Assert.That(creature, Is.Not.Null);
-      createdTestObjects.Add(creature);
+      createdTestObjects.Add(creature!);
 
-      VariableAssert(false, default, creature.GetObjectVariable<LocalVariableBool>(variableName + "bool"));
+      VariableAssert(false, default, creature!.GetObjectVariable<LocalVariableBool>(variableName + "bool"));
       VariableAssert(false, default, creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum"));
       VariableAssert(false, default, creature.GetObjectVariable<LocalVariableFloat>(variableName + "float"));
       VariableAssert(false, default, creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid"));
@@ -43,12 +43,12 @@ namespace Anvil.Tests.API
     public void GetValidLocalVariablePropertiesValid(string variableName)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
 
       Assert.That(creature, Is.Not.Null);
-      createdTestObjects.Add(creature);
+      createdTestObjects.Add(creature!);
 
-      creature.GetObjectVariable<LocalVariableBool>(variableName + "bool").Value = true;
+      creature!.GetObjectVariable<LocalVariableBool>(variableName + "bool").Value = true;
       creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum").Value = ValidEnum.TestA;
       creature.GetObjectVariable<LocalVariableFloat>(variableName + "float").Value = 999f;
       creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid").Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
@@ -78,12 +78,12 @@ namespace Anvil.Tests.API
     public void DeleteLocalVariablePropertiesValid(string variableName)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
 
       Assert.That(creature, Is.Not.Null);
-      createdTestObjects.Add(creature);
+      createdTestObjects.Add(creature!);
 
-      creature.GetObjectVariable<LocalVariableBool>(variableName + "bool").Value = true;
+      creature!.GetObjectVariable<LocalVariableBool>(variableName + "bool").Value = true;
       creature.GetObjectVariable<LocalVariableEnum<ValidEnum>>(variableName + "enum").Value = ValidEnum.TestA;
       creature.GetObjectVariable<LocalVariableFloat>(variableName + "float").Value = 999f;
       creature.GetObjectVariable<LocalVariableGuid>(variableName + "guid").Value = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
@@ -121,23 +121,23 @@ namespace Anvil.Tests.API
     public void GetInvalidEnumVariableThrowsException(string variableName)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, startLocation);
 
       Assert.That(creature, Is.Not.Null);
-      createdTestObjects.Add(creature);
+      createdTestObjects.Add(creature!);
 
       Assert.That(() =>
       {
-        creature.GetObjectVariable<LocalVariableEnum<InvalidEnumA>>(variableName + "enum").Value = InvalidEnumA.TestA;
+        creature!.GetObjectVariable<LocalVariableEnum<InvalidEnumA>>(variableName + "enum").Value = InvalidEnumA.TestA;
       }, Throws.TypeOf<TargetInvocationException>());
 
       Assert.That(() =>
       {
-        creature.GetObjectVariable<LocalVariableEnum<InvalidEnumB>>(variableName + "enum").Value = InvalidEnumB.TestB;
+        creature!.GetObjectVariable<LocalVariableEnum<InvalidEnumB>>(variableName + "enum").Value = InvalidEnumB.TestB;
       }, Throws.TypeOf<TargetInvocationException>());
     }
 
-    private void VariableAssert<T>(bool expectHasValue, T expectedValue, ObjectVariable<T> variable)
+    private void VariableAssert<T>(bool expectHasValue, T? expectedValue, ObjectVariable<T> variable)
     {
       Assert.That(variable, Is.Not.Null, "Created variable was null.");
 
@@ -180,7 +180,7 @@ namespace Anvil.Tests.API
     private record ExampleSerializable
     {
       public int Value { get; set; }
-      public string Value2 { get; set; }
+      public string? Value2 { get; set; }
     }
 
     [TearDown]

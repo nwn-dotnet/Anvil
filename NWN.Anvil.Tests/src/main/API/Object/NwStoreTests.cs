@@ -27,10 +27,10 @@ namespace Anvil.Tests.API
     public void CreateStoreIsCreated(string storeResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwStore store = NwStore.Create(storeResRef, startLocation);
+      NwStore? store = NwStore.Create(storeResRef, startLocation);
 
       Assert.That(store, Is.Not.Null, $"Store {storeResRef} was null after creation.");
-      Assert.That(store.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
+      Assert.That(store!.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
 
       createdTestObjects.Add(store);
     }
@@ -52,10 +52,10 @@ namespace Anvil.Tests.API
     public void CloneStoreWithLocalStateIsCopied(string storeResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwStore store = NwStore.Create(storeResRef, startLocation);
+      NwStore? store = NwStore.Create(storeResRef, startLocation);
 
       Assert.That(store, Is.Not.Null, $"Store {storeResRef} was null after creation.");
-      Assert.That(store.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
+      Assert.That(store!.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
 
       createdTestObjects.Add(store);
 
@@ -92,10 +92,10 @@ namespace Anvil.Tests.API
     public void CloneStoreNoLocalStateIsNotCopied(string storeResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwStore store = NwStore.Create(storeResRef, startLocation);
+      NwStore? store = NwStore.Create(storeResRef, startLocation);
 
       Assert.That(store, Is.Not.Null, $"Store {storeResRef} was null after creation.");
-      Assert.That(store.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
+      Assert.That(store!.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
 
       createdTestObjects.Add(store);
 
@@ -132,10 +132,10 @@ namespace Anvil.Tests.API
     public void CloneStoreCustomTagIsApplied(string storeResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwStore store = NwStore.Create(storeResRef, startLocation);
+      NwStore? store = NwStore.Create(storeResRef, startLocation);
 
       Assert.That(store, Is.Not.Null, $"Store {storeResRef} was null after creation.");
-      Assert.That(store.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
+      Assert.That(store!.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
 
       createdTestObjects.Add(store);
 
@@ -167,13 +167,13 @@ namespace Anvil.Tests.API
     public void CloneStoreWithoutTagOriginalTagIsCopied(string storeResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwStore store = NwStore.Create(storeResRef, startLocation);
-      store.Tag = "expectedNewTag";
+      NwStore? store = NwStore.Create(storeResRef, startLocation);
 
       Assert.That(store, Is.Not.Null, $"Store {storeResRef} was null after creation.");
-      Assert.That(store.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
+      Assert.That(store!.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
 
       createdTestObjects.Add(store);
+      store.Tag = "expectedNewTag";
 
       NwStore clone = store.Clone(startLocation, null, false);
 

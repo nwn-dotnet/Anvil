@@ -9,7 +9,7 @@ namespace Anvil.Tests
   public sealed class TestRunnerTests
   {
     [Inject]
-    private static VirtualMachine VirtualMachine { get; set; }
+    private static VirtualMachine VirtualMachine { get; set; } = null!;
 
     [OneTimeSetUp]
     public void OneTimeSetupRunsInScriptContext()

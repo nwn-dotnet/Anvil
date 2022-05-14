@@ -23,15 +23,15 @@ namespace Anvil.Tests.API
     [Test(Description = "Deerializing a NuiBind<string> creates a valid JSON structure.")]
     public void DeserializeNuiBindStringReturnsValidJsonStructure()
     {
-      NuiBind<string> test = JsonUtility.FromJson<NuiBind<string>>(@"{""bind"":""test""}");
-      Assert.That(test.Key, Is.EqualTo("test"));
+      NuiBind<string>? test = JsonUtility.FromJson<NuiBind<string>>(@"{""bind"":""test""}");
+      Assert.That(test?.Key, Is.EqualTo("test"));
     }
 
     [Test(Description = "Deerializing a NuiBind<NuiRect> creates a valid JSON structure.")]
     public void DeserializeNuiBindNuiRectReturnsValidJsonStructure()
     {
-      NuiBind<NuiRect> test = JsonUtility.FromJson<NuiBind<NuiRect>>(@"{""bind"":""test""}");
-      Assert.That(test.Key, Is.EqualTo("test"));
+      NuiBind<NuiRect>? test = JsonUtility.FromJson<NuiBind<NuiRect>>(@"{""bind"":""test""}");
+      Assert.That(test?.Key, Is.EqualTo("test"));
     }
   }
 }

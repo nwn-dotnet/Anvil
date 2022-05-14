@@ -27,10 +27,10 @@ namespace Anvil.Tests.API
     public void CreateWaypointIsCreated(string waypointResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
+      NwWaypoint? waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
       Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint!.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
     }
@@ -52,10 +52,10 @@ namespace Anvil.Tests.API
     public void CloneWaypointWithLocalStateIsCopied(string waypointResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
+      NwWaypoint? waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
       Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint!.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
 
@@ -92,10 +92,10 @@ namespace Anvil.Tests.API
     public void CloneWaypointNoLocalStateIsNotCopied(string waypointResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
+      NwWaypoint? waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
       Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint!.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
 
@@ -132,10 +132,10 @@ namespace Anvil.Tests.API
     public void CloneWaypointCustomTagIsApplied(string waypointResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
+      NwWaypoint? waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
       Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint!.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
 
@@ -167,13 +167,13 @@ namespace Anvil.Tests.API
     public void CloneWaypointWithoutTagOriginalTagIsCopied(string waypointResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwWaypoint waypoint = NwWaypoint.Create(waypointResRef, startLocation);
-      waypoint.Tag = "expectedNewTag";
+      NwWaypoint? waypoint = NwWaypoint.Create(waypointResRef, startLocation);
 
       Assert.That(waypoint, Is.Not.Null, $"Waypoint {waypointResRef} was null after creation.");
-      Assert.That(waypoint.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
+      Assert.That(waypoint!.IsValid, Is.True, $"Waypoint {waypointResRef} was invalid after creation.");
 
       createdTestObjects.Add(waypoint);
+      waypoint.Tag = "expectedNewTag";
 
       NwWaypoint clone = waypoint.Clone(startLocation, null, false);
 

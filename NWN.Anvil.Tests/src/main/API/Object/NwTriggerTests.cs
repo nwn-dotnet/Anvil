@@ -24,10 +24,10 @@ namespace Anvil.Tests.API
     public void CreateTriggerIsCreated(string triggerResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwTrigger trigger = NwTrigger.Create(triggerResRef, startLocation);
+      NwTrigger? trigger = NwTrigger.Create(triggerResRef, startLocation);
 
       Assert.That(trigger, Is.Not.Null, $"Trigger {triggerResRef} was null after creation.");
-      Assert.That(trigger.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
+      Assert.That(trigger!.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
 
       createdTestObjects.Add(trigger);
     }
@@ -46,10 +46,10 @@ namespace Anvil.Tests.API
     public void CloneTriggerWithLocalStateIsCopied(string triggerResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwTrigger trigger = NwTrigger.Create(triggerResRef, startLocation);
+      NwTrigger? trigger = NwTrigger.Create(triggerResRef, startLocation);
 
       Assert.That(trigger, Is.Not.Null, $"Trigger {triggerResRef} was null after creation.");
-      Assert.That(trigger.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
+      Assert.That(trigger!.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
 
       createdTestObjects.Add(trigger);
 
@@ -83,10 +83,10 @@ namespace Anvil.Tests.API
     public void CloneTriggerNoLocalStateIsNotCopied(string triggerResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwTrigger trigger = NwTrigger.Create(triggerResRef, startLocation);
+      NwTrigger? trigger = NwTrigger.Create(triggerResRef, startLocation);
 
       Assert.That(trigger, Is.Not.Null, $"Trigger {triggerResRef} was null after creation.");
-      Assert.That(trigger.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
+      Assert.That(trigger!.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
 
       createdTestObjects.Add(trigger);
 
@@ -120,10 +120,10 @@ namespace Anvil.Tests.API
     public void CloneTriggerCustomTagIsApplied(string triggerResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwTrigger trigger = NwTrigger.Create(triggerResRef, startLocation);
+      NwTrigger? trigger = NwTrigger.Create(triggerResRef, startLocation);
 
       Assert.That(trigger, Is.Not.Null, $"Trigger {triggerResRef} was null after creation.");
-      Assert.That(trigger.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
+      Assert.That(trigger!.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
 
       createdTestObjects.Add(trigger);
 
@@ -152,13 +152,13 @@ namespace Anvil.Tests.API
     public void CloneTriggerWithoutTagOriginalTagIsCopied(string triggerResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwTrigger trigger = NwTrigger.Create(triggerResRef, startLocation);
-      trigger.Tag = "expectedNewTag";
+      NwTrigger? trigger = NwTrigger.Create(triggerResRef, startLocation);
 
       Assert.That(trigger, Is.Not.Null, $"Trigger {triggerResRef} was null after creation.");
-      Assert.That(trigger.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
+      Assert.That(trigger!.IsValid, Is.True, $"Trigger {triggerResRef} was invalid after creation.");
 
       createdTestObjects.Add(trigger);
+      trigger.Tag = "expectedNewTag";
 
       NwTrigger clone = trigger.Clone(startLocation, null, false);
 

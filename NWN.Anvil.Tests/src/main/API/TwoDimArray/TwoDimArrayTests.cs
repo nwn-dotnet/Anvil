@@ -11,7 +11,7 @@ namespace Anvil.Tests.API
   public sealed class TwoDimArrayTests
   {
     [Inject]
-    private static ResourceManager ResourceManager { get; set; }
+    private static ResourceManager ResourceManager { get; set; } = null!;
 
     private readonly List<string> createdTempResources = new List<string>();
 

@@ -76,7 +76,7 @@ namespace Anvil.Tests.API
     private sealed class TestClass
     {
       public int TestI { get; set; }
-      public string TestS { get; set; }
+      public string? TestS { get; set; }
       public float TestF { get; set; }
       public bool TestB { get; set; }
     }
@@ -84,7 +84,7 @@ namespace Anvil.Tests.API
     private sealed record TestRecord
     {
       public int TestI { get; set; }
-      public string TestS { get; set; }
+      public string? TestS { get; set; }
       public float TestF { get; set; }
       public bool TestB { get; set; }
     }

@@ -32,10 +32,10 @@ namespace Anvil.Tests.API
     public void CreateDoorIsCreated(string doorResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwDoor door = NwDoor.Create(doorResRef, startLocation);
+      NwDoor? door = NwDoor.Create(doorResRef, startLocation);
 
       Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
-      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door!.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
     }
@@ -62,10 +62,10 @@ namespace Anvil.Tests.API
     public void CloneDoorWithLocalStateIsCopied(string doorResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwDoor door = NwDoor.Create(doorResRef, startLocation);
+      NwDoor? door = NwDoor.Create(doorResRef, startLocation);
 
       Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
-      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door!.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
 
@@ -107,10 +107,10 @@ namespace Anvil.Tests.API
     public void CloneDoorNoLocalStateIsNotCopied(string doorResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwDoor door = NwDoor.Create(doorResRef, startLocation);
+      NwDoor? door = NwDoor.Create(doorResRef, startLocation);
 
       Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
-      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door!.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
 
@@ -152,10 +152,10 @@ namespace Anvil.Tests.API
     public void CloneDoorCustomTagIsApplied(string doorResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwDoor door = NwDoor.Create(doorResRef, startLocation);
+      NwDoor? door = NwDoor.Create(doorResRef, startLocation);
 
       Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
-      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door!.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
 
@@ -192,13 +192,13 @@ namespace Anvil.Tests.API
     public void CloneDoorWithoutTagOriginalTagIsCopied(string doorResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwDoor door = NwDoor.Create(doorResRef, startLocation);
-      door.Tag = "expectedNewTag";
+      NwDoor? door = NwDoor.Create(doorResRef, startLocation);
 
       Assert.That(door, Is.Not.Null, $"Door {doorResRef} was null after creation.");
-      Assert.That(door.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
+      Assert.That(door!.IsValid, Is.True, $"Door {doorResRef} was invalid after creation.");
 
       createdTestObjects.Add(door);
+      door.Tag = "expectedNewTag";
 
       NwDoor clone = door.Clone(startLocation, null, false);
 

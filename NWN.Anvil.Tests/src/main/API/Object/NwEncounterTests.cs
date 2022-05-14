@@ -24,10 +24,10 @@ namespace Anvil.Tests.API
     public void CreateEncounterIsCreated(string encounterResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwEncounter encounter = NwEncounter.Create(encounterResRef, startLocation);
+      NwEncounter? encounter = NwEncounter.Create(encounterResRef, startLocation);
 
       Assert.That(encounter, Is.Not.Null, $"Encounter {encounterResRef} was null after creation.");
-      Assert.That(encounter.IsValid, Is.True, $"Encounter {encounterResRef} was invalid after creation.");
+      Assert.That(encounter!.IsValid, Is.True, $"Encounter {encounterResRef} was invalid after creation.");
 
       createdTestObjects.Add(encounter);
     }
@@ -46,10 +46,10 @@ namespace Anvil.Tests.API
     public void DestroyEncounterIsDestroyed(string encounterResRef)
     {
       Location startLocation = NwModule.Instance.StartingLocation;
-      NwEncounter encounter = NwEncounter.Create(encounterResRef, startLocation);
+      NwEncounter? encounter = NwEncounter.Create(encounterResRef, startLocation);
 
       Assert.That(encounter, Is.Not.Null, $"Encounter {encounterResRef} was null after creation.");
-      Assert.That(encounter.IsValid, Is.True, $"Encounter {encounterResRef} was invalid after creation.");
+      Assert.That(encounter!.IsValid, Is.True, $"Encounter {encounterResRef} was invalid after creation.");
 
       encounter.Destroy();
       Assert.That(encounter.IsValid, Is.False, $"Encounter {encounterResRef} was still valid after deletion.");
