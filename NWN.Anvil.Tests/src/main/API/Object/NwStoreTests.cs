@@ -10,6 +10,44 @@ namespace Anvil.Tests.API
   {
     private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
 
+    [Test(Description = "Serializing and deserializing a store generates valid gff data, and a new valid store.")]
+    [TestCase(StandardResRef.Store.nw_storethief001)]
+    [TestCase(StandardResRef.Store.x2_merc_dye)]
+    [TestCase(StandardResRef.Store.nw_storgenral001)]
+    [TestCase(StandardResRef.Store.x2_storegenl001)]
+    [TestCase(StandardResRef.Store.nw_storemagic001)]
+    [TestCase(StandardResRef.Store.x2_storemage001)]
+    [TestCase(StandardResRef.Store.nw_storenatu001)]
+    [TestCase(StandardResRef.Store.nw_lostitems)]
+    [TestCase(StandardResRef.Store.nw_storespec001)]
+    [TestCase(StandardResRef.Store.nw_storebar01)]
+    [TestCase(StandardResRef.Store.nw_storetmple001)]
+    [TestCase(StandardResRef.Store.x2_genie)]
+    [TestCase(StandardResRef.Store.nw_storeweap001)]
+    public void SerializeStoreCreatesValidData(string storeResRef)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwStore? store = NwStore.Create(storeResRef, startLocation);
+
+      Assert.That(store, Is.Not.Null, $"Store {storeResRef} was null after creation.");
+      Assert.That(store!.IsValid, Is.True, $"Store {storeResRef} was invalid after creation.");
+
+      createdTestObjects.Add(store);
+
+      byte[]? storeData = store.Serialize();
+
+      Assert.That(storeData, Is.Not.Null);
+      Assert.That(storeData, Has.Length.GreaterThan(0));
+
+      NwStore? store2 = NwStore.Deserialize(storeData!);
+      Assert.That(store2, Is.Not.Null);
+      Assert.That(store2!.IsValid, Is.True);
+
+      createdTestObjects.Add(store2);
+
+      Assert.That(store2.Area, Is.Null);
+    }
+
     [Test(Description = "Creating a store with a valid ResRef creates a valid store.")]
     [TestCase(StandardResRef.Store.nw_storethief001)]
     [TestCase(StandardResRef.Store.x2_merc_dye)]
