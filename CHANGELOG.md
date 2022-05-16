@@ -13,7 +13,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 - NuiWindowToken: Added `Get/SetUserData()`
 
 ### Package Updates
-- N/A
+- NWNX 4842f60 -> 95e700a
+- NWN.Native 8193.34.3 -> 8193.34.4
 
 ### Changed
 - N/A
@@ -32,6 +33,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 - Fixed `NwGameObject.Location` setter not working for newly deserialized game objects.
 - Fixed a crash when an equipped item was sent to limbo with `NwModule.MoveObjectToLimbo`.
 - Fixed `NuiWindowToken.WindowId` returning an empty string from events.
+- Speculative fix for a rare native crash when fetching 2da strings.
 
 ## 8193.34.10
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...v8193.34.10

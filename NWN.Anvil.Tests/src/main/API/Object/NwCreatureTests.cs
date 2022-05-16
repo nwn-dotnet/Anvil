@@ -11,6 +11,41 @@ namespace Anvil.Tests.API
   {
     private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
 
+    [Test(Description = "Serializing and deserializing a creature generates valid gff data, and a new valid creature.")]
+    [TestCase(StandardResRef.Creature.nw_bandit001)]
+    [TestCase(StandardResRef.Creature.nw_bandit002)]
+    [TestCase(StandardResRef.Creature.nw_bandit003)]
+    [TestCase(StandardResRef.Creature.nw_shopkeep)]
+    [TestCase(StandardResRef.Creature.nw_bartender)]
+    [TestCase(StandardResRef.Creature.nw_drgblack001)]
+    [TestCase(StandardResRef.Creature.nw_drgblue002)]
+    [TestCase(StandardResRef.Creature.nw_drggold003)]
+    [TestCase(StandardResRef.Creature.nw_drgred003)]
+    [TestCase(StandardResRef.Creature.x2_beholder001)]
+    public void SerializeCreatureCreatesValidData(string creatureResRef)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwCreature? creature = NwCreature.Create(creatureResRef, startLocation);
+
+      Assert.That(creature, Is.Not.Null, $"Creature {creatureResRef} was null after creation.");
+      Assert.That(creature!.IsValid, Is.True, $"Creature {creatureResRef} was invalid after creation.");
+
+      createdTestObjects.Add(creature);
+
+      byte[]? creatureData = creature.Serialize();
+
+      Assert.That(creatureData, Is.Not.Null);
+      Assert.That(creatureData, Has.Length.GreaterThan(0));
+
+      NwCreature? creature2 = NwCreature.Deserialize(creatureData!);
+      Assert.That(creature2, Is.Not.Null);
+      Assert.That(creature2!.IsValid, Is.True);
+
+      createdTestObjects.Add(creature2);
+
+      Assert.That(creature2.Area, Is.Null);
+    }
+
     [Test(Description = "Creating a creature with a valid ResRef creates a valid creature.")]
     [TestCase(StandardResRef.Creature.nw_bandit001)]
     [TestCase(StandardResRef.Creature.nw_bandit002)]

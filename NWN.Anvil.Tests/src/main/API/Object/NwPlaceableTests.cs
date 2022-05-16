@@ -10,6 +10,42 @@ namespace Anvil.Tests.API
   {
     private readonly List<NwGameObject> createdTestObjects = new List<NwGameObject>();
 
+    [Test(Description = "Serializing and deserializing a placeable generates valid gff data, and a new valid placeable.")]
+    [TestCase(StandardResRef.Placeable.plc_arrowcorpse)]
+    [TestCase(StandardResRef.Placeable.plc_rubble)]
+    [TestCase(StandardResRef.Placeable.x3_plc_balc012)]
+    [TestCase(StandardResRef.Placeable.x3_plc_banner1)]
+    [TestCase(StandardResRef.Placeable.x3_plc_chim001)]
+    [TestCase(StandardResRef.Placeable.x3_plc_flagbane2)]
+    [TestCase(StandardResRef.Placeable.plc_armoire)]
+    [TestCase(StandardResRef.Placeable.plc_barrel)]
+    [TestCase(StandardResRef.Placeable.nw_plc_chestburd)]
+    [TestCase(StandardResRef.Placeable.plc_corpse1)]
+    [TestCase(StandardResRef.Placeable.x0_golempartsbon)]
+    public void SerializePlaceableCreatesValidData(string placeableResRef)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwPlaceable? placeable = NwPlaceable.Create(placeableResRef, startLocation);
+
+      Assert.That(placeable, Is.Not.Null, $"Placeable {placeableResRef} was null after creation.");
+      Assert.That(placeable!.IsValid, Is.True, $"Placeable {placeableResRef} was invalid after creation.");
+
+      createdTestObjects.Add(placeable);
+
+      byte[]? placeableData = placeable.Serialize();
+
+      Assert.That(placeableData, Is.Not.Null);
+      Assert.That(placeableData, Has.Length.GreaterThan(0));
+
+      NwPlaceable? placeable2 = NwPlaceable.Deserialize(placeableData!);
+      Assert.That(placeable2, Is.Not.Null);
+      Assert.That(placeable2!.IsValid, Is.True);
+
+      createdTestObjects.Add(placeable2);
+
+      Assert.That(placeable2.Area, Is.Null);
+    }
+
     [Test(Description = "Creating a placeable with a valid ResRef creates a valid placeable.")]
     [TestCase(StandardResRef.Placeable.plc_arrowcorpse)]
     [TestCase(StandardResRef.Placeable.plc_rubble)]
