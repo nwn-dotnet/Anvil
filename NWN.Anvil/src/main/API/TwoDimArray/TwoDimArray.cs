@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using Anvil.Native;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -240,15 +241,24 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public string? GetString(int rowIndex, int columnIndex)
+    public unsafe string? GetString(int rowIndex, int columnIndex)
     {
-      using CExoString retVal = new CExoString();
-      if (array.GetCExoStringEntry(rowIndex, columnIndex, retVal).ToBool())
-      {
-        return retVal.ToString();
-      }
+      CExoStringData exoStringData;
+      CExoString exoString = CExoString.FromPointer(&exoStringData);
 
-      return null;
+      try
+      {
+        if (array.GetCExoStringEntry(rowIndex, columnIndex, exoString).ToBool())
+        {
+          return exoString.ToString();
+        }
+
+        return null;
+      }
+      finally
+      {
+        exoString._Destructor();
+      }
     }
 
     /// <summary>

@@ -39,7 +39,7 @@ namespace Anvil.Services
 
     private delegate int SendServerToPlayerCCMessageHook(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData);
 
-    private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString);
+    private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString);
 
     public FilterMode CombatMessageFilterMode
     {
@@ -201,7 +201,7 @@ namespace Anvil.Services
       return sendServerToPlayerCCMessageHook!.CallOriginal(pMessage, nPlayerId, nMinor, pMessageData, pAttackData);
     }
 
-    private int OnSendServerToPlayerJournalUpdated(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString)
+    private int OnSendServerToPlayerJournalUpdated(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString)
     {
       CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
       if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.m_oidPCObject, FeedbackMessage.JournalUpdated, FeedbackMessageFilterMode))
