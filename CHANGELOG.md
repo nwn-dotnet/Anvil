@@ -11,6 +11,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 - NwCreature: Added `RunEquip(item, EquipmentSlots)`
 - ItemAppearance: Added `ChangeAppearance`
 - NuiWindowToken: Added `Get/SetUserData()`
+- Effect: Added `SkillIncreaseAll`, `SkillDecreaseAll`
 
 ### Package Updates
 - NWNX 4842f60 -> 95e700a
