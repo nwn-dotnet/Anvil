@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Anvil.Native;
 using Anvil.Services;
 using NLog;
 using NWN.Native.API;
@@ -90,10 +91,18 @@ namespace Anvil.API
 
     public static string ExtractLocString(this CExoLocString locStr, int nID = 0, byte gender = 0)
     {
-      CExoString str = new CExoString();
-      locStr.GetStringLoc(nID, str, gender);
+      CExoStringData exoStringData;
+      CExoString exoString = CExoString.FromPointer(&exoStringData);
 
-      return str.ToString();
+      try
+      {
+        locStr.GetStringLoc(nID, exoString, gender);
+        return exoString.ToString();
+      }
+      finally
+      {
+        exoString._Destructor();
+      }
     }
 
     public static bool IsValidGff(this CResGFF resGff, string expectedFileType, string expectedVersion = DefaultGffVersion)
