@@ -10,8 +10,8 @@ var classAnvil_1_1API_1_1IntegerExtensions =
     [ "AsUShort", "classAnvil_1_1API_1_1IntegerExtensions.html#a4afd55cdc250361ebf427498e11c06c1", null ],
     [ "ToBool", "classAnvil_1_1API_1_1IntegerExtensions.html#a8ad459b9de1d99c93d26522d55facf67", null ],
     [ "ToInt", "classAnvil_1_1API_1_1IntegerExtensions.html#a8391c3e4e45c0b44735cad931eccedd0", null ],
-    [ "ToNwObject", "classAnvil_1_1API_1_1IntegerExtensions.html#aa451cd9cda491e80894ef14d17bd6d52", null ],
-    [ "ToNwObject< T >", "classAnvil_1_1API_1_1IntegerExtensions.html#aba5510897a1cbf162d29c3a0173e899e", null ],
-    [ "ToNwObjectSafe< T >", "classAnvil_1_1API_1_1IntegerExtensions.html#a92ca844f005c7a2b1935071883d0c560", null ],
-    [ "ToNwPlayer", "classAnvil_1_1API_1_1IntegerExtensions.html#ad14bdcb621168894bbeb7f2e68de716e", null ]
+    [ "ToNwObject", "classAnvil_1_1API_1_1IntegerExtensions.html#ae8a93d630749b4b6c1aa4a42e0ed6406", null ],
+    [ "ToNwObject< T >", "classAnvil_1_1API_1_1IntegerExtensions.html#abb3b5006540f32fccd0b2e395f602142", null ],
+    [ "ToNwObjectSafe< T >", "classAnvil_1_1API_1_1IntegerExtensions.html#a490a6aa9aec727342bda5e5c1228fb46", null ],
+    [ "ToNwPlayer", "classAnvil_1_1API_1_1IntegerExtensions.html#a3fbc9a512088ad1ead4f14859c63ea86", null ]
 ];

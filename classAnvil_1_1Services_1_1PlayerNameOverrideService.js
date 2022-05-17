@@ -4,7 +4,7 @@ var classAnvil_1_1Services_1_1PlayerNameOverrideService =
     [ "ClearPlayerNameOverride", "classAnvil_1_1Services_1_1PlayerNameOverrideService.html#a6baebc0d40f0385575129d24898caf01", null ],
     [ "ClearPlayerNameOverride", "classAnvil_1_1Services_1_1PlayerNameOverrideService.html#a0ab9f19cd5f58a1daa9898fe87517e9d", null ],
     [ "GetOverridesForObserver", "classAnvil_1_1Services_1_1PlayerNameOverrideService.html#a2d05ca63fb0125979df2adfb52fd4814", null ],
-    [ "GetPlayerNameOverride", "classAnvil_1_1Services_1_1PlayerNameOverrideService.html#af6f4db4622230c99aeb0fa85d995fe1c", null ],
+    [ "GetPlayerNameOverride", "classAnvil_1_1Services_1_1PlayerNameOverrideService.html#abe507cd1d16dd5a4a60cf2bb2625b0c0", null ],
     [ "SetPlayerNameOverride", "classAnvil_1_1Services_1_1PlayerNameOverrideService.html#a0aeb877a558f9d3cfe476b1accbe0fce", null ],
     [ "SetPlayerNameOverride", "classAnvil_1_1Services_1_1PlayerNameOverrideService.html#a125fbf4d7830cd92afce218cbc79d022", null ],
     [ "OverwriteDisplayName", "classAnvil_1_1Services_1_1PlayerNameOverrideService.html#a1dee48f9340cd1bd12bf3f66113eae41", null ],

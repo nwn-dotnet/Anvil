@@ -1,10 +1,10 @@
 var classAnvil_1_1API_1_1NativeObjectExtensions =
 [
-    [ "ToEffect", "classAnvil_1_1API_1_1NativeObjectExtensions.html#acd9dc73ff416c877c38630337b4d248d", null ],
-    [ "ToItemProperty", "classAnvil_1_1API_1_1NativeObjectExtensions.html#a85861ef931eba664cbcc93c4828a9900", null ],
-    [ "ToNwObject", "classAnvil_1_1API_1_1NativeObjectExtensions.html#a14c9b78f31d5bbf252bd32fbdffd17d9", null ],
-    [ "ToNwObject< T >", "classAnvil_1_1API_1_1NativeObjectExtensions.html#a9d006dc5a74f002e19c0c1c81c9de665", null ],
-    [ "ToNwObjectLazy", "classAnvil_1_1API_1_1NativeObjectExtensions.html#a9c10ba9fb549deac40bf9c71a2f0a9e6", null ],
-    [ "ToNwObjectSafe< T >", "classAnvil_1_1API_1_1NativeObjectExtensions.html#ac1d37b56ccd96394378a5ba834f2dfb2", null ],
-    [ "ToNwPlayer", "classAnvil_1_1API_1_1NativeObjectExtensions.html#ae1acf45942e24274735103b0963a8392", null ]
+    [ "ToEffect", "classAnvil_1_1API_1_1NativeObjectExtensions.html#ae7a664447fc8a19f15a371e832e348d3", null ],
+    [ "ToItemProperty", "classAnvil_1_1API_1_1NativeObjectExtensions.html#ad67dbadb8514e4b9a48382d0bb2b899c", null ],
+    [ "ToNwObject", "classAnvil_1_1API_1_1NativeObjectExtensions.html#a8265e770f69f5b6922a599f035fe9194", null ],
+    [ "ToNwObject< T >", "classAnvil_1_1API_1_1NativeObjectExtensions.html#a8c10329e64b11bca3c12ff70756a5bd6", null ],
+    [ "ToNwObjectLazy", "classAnvil_1_1API_1_1NativeObjectExtensions.html#ab22311ce5745881bc4036e7a37d5affe", null ],
+    [ "ToNwObjectSafe< T >", "classAnvil_1_1API_1_1NativeObjectExtensions.html#add78c76a3d34b72056835b8ae331bc16", null ],
+    [ "ToNwPlayer", "classAnvil_1_1API_1_1NativeObjectExtensions.html#af48047b559815d26591add1496f67422", null ]
 ];

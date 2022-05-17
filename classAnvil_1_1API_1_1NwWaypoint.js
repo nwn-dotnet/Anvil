@@ -1,10 +1,10 @@
 var classAnvil_1_1API_1_1NwWaypoint =
 [
     [ "AddToArea", "classAnvil_1_1API_1_1NwWaypoint.html#a0e3d1c8e1bcd6e57eb3fe7410747afe6", null ],
-    [ "Clone", "classAnvil_1_1API_1_1NwWaypoint.html#a3e4b122d9893158cbad03887b1c6a2c6", null ],
-    [ "Create", "classAnvil_1_1API_1_1NwWaypoint.html#a64df7ac8f447ff16c3fbab9132203c63", null ],
-    [ "Create", "classAnvil_1_1API_1_1NwWaypoint.html#a546f62e6f85f58050d3f35dec234e8a2", null ],
-    [ "Deserialize", "classAnvil_1_1API_1_1NwWaypoint.html#a0d7fefc4785547ab7736e27fd792c661", null ],
-    [ "operator CNWSWaypoint", "classAnvil_1_1API_1_1NwWaypoint.html#aacc5ee209a844e0842219d2f52c0a17a", null ],
-    [ "Serialize", "classAnvil_1_1API_1_1NwWaypoint.html#a2cdaf346ff2ca5ba5df7c64e160c5bac", null ]
+    [ "Clone", "classAnvil_1_1API_1_1NwWaypoint.html#a3a281ccf612d5188a38d8f54e6bc791b", null ],
+    [ "Create", "classAnvil_1_1API_1_1NwWaypoint.html#a5589919d9d45ab009550ddf8769a73ab", null ],
+    [ "Create", "classAnvil_1_1API_1_1NwWaypoint.html#af2817f1b2145450403c9701f6ae3872a", null ],
+    [ "Deserialize", "classAnvil_1_1API_1_1NwWaypoint.html#ac29d0488eb56defa08951cbca8f00fa6", null ],
+    [ "operator CNWSWaypoint?", "classAnvil_1_1API_1_1NwWaypoint.html#a920a5e4c3d56ac71785667859fd1e66b", null ],
+    [ "Serialize", "classAnvil_1_1API_1_1NwWaypoint.html#a55bf93c585e6fd19092727507f8a8ef7", null ]
 ];

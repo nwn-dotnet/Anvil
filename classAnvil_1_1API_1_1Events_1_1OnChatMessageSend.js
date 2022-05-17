@@ -5,5 +5,5 @@ var classAnvil_1_1API_1_1Events_1_1OnChatMessageSend =
     [ "Message", "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#ad28917b0c2ac54ce82e34320cfef2c29", null ],
     [ "Sender", "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a75af1ce98f64f256e240bcb5f1cc3dbd", null ],
     [ "Skip", "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a8715d5323f9060779fd0d749f177228a", null ],
-    [ "Target", "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a4f21d05239001b62fd26cb5dae0b861b", null ]
+    [ "Target", "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a1a454a6a2230e13687b6697de694ea78", null ]
 ];

@@ -1,10 +1,10 @@
 var classAnvil_1_1API_1_1NwClass =
 [
-    [ "FromClassId", "classAnvil_1_1API_1_1NwClass.html#a90a4b9e646e56d592657867f0b7c734f", null ],
-    [ "FromClassType", "classAnvil_1_1API_1_1NwClass.html#a1ec2c133c69694c351c32ed7840b3880", null ],
+    [ "FromClassId", "classAnvil_1_1API_1_1NwClass.html#a2c3ba3981594699d6623d0132faedfbd", null ],
+    [ "FromClassType", "classAnvil_1_1API_1_1NwClass.html#acb5fed94a188cd618fd17992c2791a70", null ],
     [ "GetRecommendedAbilityScore", "classAnvil_1_1API_1_1NwClass.html#a12996339cdd0e111e9dda8b919f2c9c2", null ],
     [ "GetSavingThrowTable", "classAnvil_1_1API_1_1NwClass.html#a159da3a5fbf5d649e7b9661941e8554a", null ],
-    [ "operator NwClass", "classAnvil_1_1API_1_1NwClass.html#aa63798d518032115d3d61d2026cd2a12", null ],
+    [ "operator NwClass?", "classAnvil_1_1API_1_1NwClass.html#a3b39687e49d075b0231c3dbbea56e53f", null ],
     [ "AbilityGainTable", "classAnvil_1_1API_1_1NwClass.html#ac022ac9e8b4c86a4593e382bf2111209", null ],
     [ "ArcaneSpellUsePerDayLevel", "classAnvil_1_1API_1_1NwClass.html#ad8758bc9aeb2d54f149aa3c9f4d80a00", null ],
     [ "AttackBonusTable", "classAnvil_1_1API_1_1NwClass.html#a6d76cc1fb58753a91dded351d1481665", null ],

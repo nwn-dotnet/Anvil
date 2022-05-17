@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('interfaceAnvil_1_1Services_1_1ITwoDimA
 </div><!--header-->
 <div class="contents">
 
-<p>Implement this interface to use the class as a deserialization target for <a class="el" href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#a2ac4899aaaee0584093e46904940668d" title="Deserializes the given 2da using the specified format.">TwoDimArrayFactory.Get2DA&lt;T&gt;</a>.  
+<p>Implement this interface to use the class as a deserialization target for <a class="el" href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#ad7baf243eb8d928e4935573e94554fdc" title="Deserializes the given 2da using the specified format.">TwoDimArrayFactory.Get2DA&lt;T&gt;</a>.  
  <a href="interfaceAnvil_1_1Services_1_1ITwoDimArray.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -99,7 +99,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeRow</b> (i
 <tr class="separator:ae9496ade88d228c4db6cd49d30ad5641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implement this interface to use the class as a deserialization target for <a class="el" href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#a2ac4899aaaee0584093e46904940668d" title="Deserializes the given 2da using the specified format.">TwoDimArrayFactory.Get2DA&lt;T&gt;</a>. </p>
+<div class="textblock"><p>Implement this interface to use the class as a deserialization target for <a class="el" href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#ad7baf243eb8d928e4935573e94554fdc" title="Deserializes the given 2da using the specified format.">TwoDimArrayFactory.Get2DA&lt;T&gt;</a>. </p>
 <h2>Examples</h2>
 <div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment"> * Define a implementation to deserialize &quot;xptable.2da&quot;, and use this class to determine how much XP is remaining until the next level.</span></div>
@@ -146,13 +146,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeRow</b> (i
 <div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)</div>
 <div class="line">    {</div>
 <div class="line">      NwPlayer player = onClientEnter.Player;</div>
-<div class="line">      <span class="keywordtype">int</span> nextLevel = GetLevelFromXp(player.ControlledCreature.Xp) + 1;</div>
+<div class="line">      NwCreature? creature = player.ControlledCreature;</div>
+<div class="line">      <span class="keywordflow">if</span> (creature == <span class="keyword">null</span>)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">return</span>;</div>
+<div class="line">      }</div>
+<div class="line"> </div>
+<div class="line">      <span class="keywordtype">int</span> nextLevel = GetLevelFromXp(creature.Xp) + 1;</div>
 <div class="line">      <span class="keywordflow">if</span> (nextLevel &gt; MaxLevel)</div>
 <div class="line">      {</div>
 <div class="line">        <span class="keywordflow">return</span>;</div>
 <div class="line">      }</div>
 <div class="line"> </div>
-<div class="line">      player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}&quot;</span>);</div>
+<div class="line">      player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {GetXpForLevel(nextLevel) - creature.Xp}&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> MaxLevel =&gt; expTable[^1].Level;</div>

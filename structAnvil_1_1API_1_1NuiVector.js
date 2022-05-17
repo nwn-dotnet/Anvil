@@ -2,7 +2,7 @@ var structAnvil_1_1API_1_1NuiVector =
 [
     [ "NuiVector", "structAnvil_1_1API_1_1NuiVector.html#a3bde5121a2fb43e764edf21959a7578a", null ],
     [ "Equals", "structAnvil_1_1API_1_1NuiVector.html#a88eb8ee812d4529aceef31f58b5eb9ea", null ],
-    [ "Equals", "structAnvil_1_1API_1_1NuiVector.html#a82084e7025518da1dea26734922bb385", null ],
+    [ "Equals", "structAnvil_1_1API_1_1NuiVector.html#a10868d03702de63ddc5d1d60b45a3c39", null ],
     [ "GetHashCode", "structAnvil_1_1API_1_1NuiVector.html#ac3cf7d281831350a98689621cfeca836", null ],
     [ "operator NuiVector", "structAnvil_1_1API_1_1NuiVector.html#a89f6cb3929bbaabec01ad7436d508a9f", null ],
     [ "operator Vector2", "structAnvil_1_1API_1_1NuiVector.html#ac88452e1ad6b7d0e08dfd005f59d9024", null ],

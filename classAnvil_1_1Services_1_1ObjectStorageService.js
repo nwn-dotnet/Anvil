@@ -5,6 +5,6 @@ var classAnvil_1_1Services_1_1ObjectStorageService =
     [ "DestroyObjectStorage", "classAnvil_1_1Services_1_1ObjectStorageService.html#a93b0eeb52aa6a8d999cebbaa26bfda25", null ],
     [ "GetObjectStorage", "classAnvil_1_1Services_1_1ObjectStorageService.html#a60675cfb1f85d9cac80f3c9a3865bc49", null ],
     [ "GetObjectStorage", "classAnvil_1_1Services_1_1ObjectStorageService.html#a729985c33544ba7a26a978b190ae7c4e", null ],
-    [ "TryGetObjectStorage", "classAnvil_1_1Services_1_1ObjectStorageService.html#ad2febfd9487c397f9fa6547c0dac8cd9", null ],
-    [ "TryGetObjectStorage", "classAnvil_1_1Services_1_1ObjectStorageService.html#ade8bb9e8241f3aa7c8bbb28d1467195d", null ]
+    [ "TryGetObjectStorage", "classAnvil_1_1Services_1_1ObjectStorageService.html#a67ed1796076a279c20ed898ac3e4ec43", null ],
+    [ "TryGetObjectStorage", "classAnvil_1_1Services_1_1ObjectStorageService.html#a11eca6bf09bc160eab14033dd0880cc1", null ]
 ];

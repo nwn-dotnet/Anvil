@@ -102,23 +102,23 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6761eb545597f8e867b13cb0b919da5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries if a certain value exists in a mutable lookup table<br  />
  (E.g. Dictionary&lt;Key,List&lt;Value&gt;&gt;)  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#a6761eb545597f8e867b13cb0b919da5d">More...</a><br /></td></tr>
 <tr class="separator:a6761eb545597f8e867b13cb0b919da5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a747408b12932f3186b76b0aedbe4c5f4"><td class="memItemLeft" align="right" valign="top"><a id="a747408b12932f3186b76b0aedbe4c5f4"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>DisposeAll</b> (this IEnumerable&lt; IDisposable &gt; disposables)</td></tr>
-<tr class="separator:a747408b12932f3186b76b0aedbe4c5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc2ddef22cf0f18e40e5243c67b70de0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#afc2ddef22cf0f18e40e5243c67b70de0">InsertOrdered&lt; T &gt;</a> (this List&lt; T &gt; sortedList, T item, IComparer&lt; T &gt; comparer=null)</td></tr>
-<tr class="memdesc:afc2ddef22cf0f18e40e5243c67b70de0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts an item into an already sorted list.  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#afc2ddef22cf0f18e40e5243c67b70de0">More...</a><br /></td></tr>
-<tr class="separator:afc2ddef22cf0f18e40e5243c67b70de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad26ab48549c69bb713059335dece9662"><td class="memItemLeft" align="right" valign="top"><a id="ad26ab48549c69bb713059335dece9662"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>DisposeAll</b> (this IEnumerable&lt; IDisposable?&gt;? disposables)</td></tr>
+<tr class="separator:ad26ab48549c69bb713059335dece9662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67ae6e106db29fd3b5d4c6fc5909c2e0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#a67ae6e106db29fd3b5d4c6fc5909c2e0">InsertOrdered&lt; T &gt;</a> (this List&lt; T &gt; sortedList, T item, IComparer&lt; T &gt;? comparer=null)</td></tr>
+<tr class="memdesc:a67ae6e106db29fd3b5d4c6fc5909c2e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts an item into an already sorted list.  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#a67ae6e106db29fd3b5d4c6fc5909c2e0">More...</a><br /></td></tr>
+<tr class="separator:a67ae6e106db29fd3b5d4c6fc5909c2e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29cd0ac2d05dc187cb616a141919aedd"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#a29cd0ac2d05dc187cb616a141919aedd">RemoveElement&lt; TKey, TValue, TCollection &gt;</a> (this IDictionary&lt; TKey, TCollection &gt; mutableLookup, TKey key, TValue value)</td></tr>
 <tr class="memdesc:a29cd0ac2d05dc187cb616a141919aedd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an element from a mutable lookup table<br  />
  (E.g. Dictionary&lt;Key,List&lt;Value&gt;&gt;)  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#a29cd0ac2d05dc187cb616a141919aedd">More...</a><br /></td></tr>
 <tr class="separator:a29cd0ac2d05dc187cb616a141919aedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe8c202b01b0e88f783568cb567d43de"><td class="memItemLeft" align="right" valign="top"><a id="afe8c202b01b0e88f783568cb567d43de"></a>
-static TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt; TKey, TValue &gt;</b> (this IDictionary&lt; TKey, TValue &gt; dictionary, TKey key)</td></tr>
-<tr class="separator:afe8c202b01b0e88f783568cb567d43de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2befc9f396bcaced72ba46f05cf22fef"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#a2befc9f396bcaced72ba46f05cf22fef">SafeYield&lt; T &gt;</a> (this T item)</td></tr>
-<tr class="memdesc:a2befc9f396bcaced72ba46f05cf22fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps this object instance into an IEnumerable&lt;T&gt; consisting of a single item.<br  />
- If the item is null, returns an empty enumerable instead.  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#a2befc9f396bcaced72ba46f05cf22fef">More...</a><br /></td></tr>
-<tr class="separator:a2befc9f396bcaced72ba46f05cf22fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87bf76707fec365061ea718b9f904f66"><td class="memItemLeft" align="right" valign="top"><a id="a87bf76707fec365061ea718b9f904f66"></a>
+static ? TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt; TKey, TValue &gt;</b> (this IDictionary&lt; TKey, TValue &gt; dictionary, TKey key)</td></tr>
+<tr class="separator:a87bf76707fec365061ea718b9f904f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa49b7958db469566c034a3f13c454b30"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#aa49b7958db469566c034a3f13c454b30">SafeYield&lt; T &gt;</a> (this T? item)</td></tr>
+<tr class="memdesc:aa49b7958db469566c034a3f13c454b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps this object instance into an IEnumerable&lt;T&gt; consisting of a single item.<br  />
+ If the item is null, returns an empty enumerable instead.  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#aa49b7958db469566c034a3f13c454b30">More...</a><br /></td></tr>
+<tr class="separator:aa49b7958db469566c034a3f13c454b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1424a1a150a021786cb4f94453a80c2"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#ad1424a1a150a021786cb4f94453a80c2">Yield&lt; T &gt;</a> (this T item)</td></tr>
 <tr class="memdesc:ad1424a1a150a021786cb4f94453a80c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps this object instance into an IEnumerable&lt;T&gt; consisting of a single item.  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#ad1424a1a150a021786cb4f94453a80c2">More...</a><br /></td></tr>
 <tr class="separator:ad1424a1a150a021786cb4f94453a80c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -249,8 +249,8 @@ static TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt; 
 
 </div>
 </div>
-<a id="afc2ddef22cf0f18e40e5243c67b70de0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc2ddef22cf0f18e40e5243c67b70de0">&#9670;&nbsp;</a></span>InsertOrdered&lt; T &gt;()</h2>
+<a id="a67ae6e106db29fd3b5d4c6fc5909c2e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67ae6e106db29fd3b5d4c6fc5909c2e0">&#9670;&nbsp;</a></span>InsertOrdered&lt; T &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -273,7 +273,7 @@ static TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt; 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IComparer&lt; T &gt;&#160;</td>
+          <td class="paramtype">IComparer&lt; T &gt;?&#160;</td>
           <td class="paramname"><em>comparer</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
@@ -369,8 +369,8 @@ static TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt; 
 
 </div>
 </div>
-<a id="a2befc9f396bcaced72ba46f05cf22fef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2befc9f396bcaced72ba46f05cf22fef">&#9670;&nbsp;</a></span>SafeYield&lt; T &gt;()</h2>
+<a id="aa49b7958db469566c034a3f13c454b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa49b7958db469566c034a3f13c454b30">&#9670;&nbsp;</a></span>SafeYield&lt; T &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -381,7 +381,7 @@ static TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt; 
         <tr>
           <td class="memname">static IEnumerable&lt;T&gt; Anvil.API.CollectionExtensions.SafeYield&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">this T&#160;</td>
+          <td class="paramtype">this T?&#160;</td>
           <td class="paramname"><em>item</em></td><td>)</td>
           <td></td>
         </tr>

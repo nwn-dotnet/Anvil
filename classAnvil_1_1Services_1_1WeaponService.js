@@ -19,5 +19,5 @@ var classAnvil_1_1Services_1_1WeaponService =
     [ "EnableSlingGoodAimFeat", "classAnvil_1_1Services_1_1WeaponService.html#aebe9c7fef487fd702fbf468c16c1ac74", null ],
     [ "GreaterWeaponFocusAttackBonus", "classAnvil_1_1Services_1_1WeaponService.html#a18d4449662bd023e9316cc635c7d6c87", null ],
     [ "GreaterWeaponSpecializationDamageBonus", "classAnvil_1_1Services_1_1WeaponService.html#adc2d197609dbda690f93d63c43512b17", null ],
-    [ "OnDevastatingCriticalHit", "classAnvil_1_1Services_1_1WeaponService.html#a77b17e1b55110903708f847355bac6f9", null ]
+    [ "OnDevastatingCriticalHit", "classAnvil_1_1Services_1_1WeaponService.html#ad967a77434b23bad0028a3d020ab6f06", null ]
 ];

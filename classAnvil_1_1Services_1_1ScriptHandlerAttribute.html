@@ -155,7 +155,7 @@ readonly string&#160;</td><td class="memItemRight" valign="bottom"><b>ScriptName
 <div class="line">    [ScriptHandler(<span class="stringliteral">&quot;test_nwscript&quot;</span>)]</div>
 <div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OnScriptCalled(CallInfo callInfo)</div>
 <div class="line">    {</div>
-<div class="line">      Log.Info($<span class="stringliteral">&quot;test_nwscript called by {callInfo.ObjectSelf.Name}&quot;</span>);</div>
+<div class="line">      Log.Info($<span class="stringliteral">&quot;test_nwscript called by {callInfo.ObjectSelf?.Name}&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">}</div>

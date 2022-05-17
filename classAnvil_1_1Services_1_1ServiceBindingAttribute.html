@@ -200,7 +200,7 @@ readonly Type&#160;</td><td class="memItemRight" valign="bottom"><b>BindFrom</b>
 <div class="line">    [ScriptHandler(<span class="stringliteral">&quot;test_nwscript&quot;</span>)]</div>
 <div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OnScriptCalled(CallInfo callInfo)</div>
 <div class="line">    {</div>
-<div class="line">      Log.Info($<span class="stringliteral">&quot;test_nwscript called by {callInfo.ObjectSelf.Name}&quot;</span>);</div>
+<div class="line">      Log.Info($<span class="stringliteral">&quot;test_nwscript called by {callInfo.ObjectSelf?.Name}&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">}</div>
@@ -223,7 +223,7 @@ readonly Type&#160;</td><td class="memItemRight" valign="bottom"><b>BindFrom</b>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">public</span> TriggerHandlerService()</div>
 <div class="line">    {</div>
-<div class="line">      NwTrigger trigger = NwObject.FindObjectsWithTag&lt;NwTrigger&gt;(<span class="stringliteral">&quot;mytrigger&quot;</span>).FirstOrDefault();</div>
+<div class="line">      NwTrigger? trigger = NwObject.FindObjectsWithTag&lt;NwTrigger&gt;(<span class="stringliteral">&quot;mytrigger&quot;</span>).FirstOrDefault();</div>
 <div class="line">      <span class="keywordflow">if</span> (trigger != <span class="keyword">null</span>)</div>
 <div class="line">      {</div>
 <div class="line">        trigger.OnEnter += OnTriggerEnter;</div>
@@ -232,9 +232,9 @@ readonly Type&#160;</td><td class="memItemRight" valign="bottom"><b>BindFrom</b>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OnTriggerEnter(TriggerEvents.OnEnter obj)</div>
 <div class="line">    {</div>
-<div class="line">      <span class="keywordflow">if</span> (obj.EnteringObject.IsPlayerControlled(out NwPlayer player))</div>
+<div class="line">      <span class="keywordflow">if</span> (obj.EnteringObject.IsPlayerControlled(out NwPlayer? player))</div>
 <div class="line">      {</div>
-<div class="line">        Log.Info(<span class="stringliteral">&quot;Player entered trigger: &quot;</span> + player?.PlayerName);</div>
+<div class="line">        Log.Info(<span class="stringliteral">&quot;Player entered trigger: &quot;</span> + player.PlayerName);</div>
 <div class="line">      }</div>
 <div class="line">    }</div>
 <div class="line">  }</div>
@@ -262,19 +262,19 @@ readonly Type&#160;</td><td class="memItemRight" valign="bottom"><b>BindFrom</b>
 <div class="line">  [ServiceBinding(typeof(IChatCommand))]</div>
 <div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>GpCommand : IChatCommand</div>
 <div class="line">  {</div>
-<div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> Command { <span class="keyword">get</span>; } = <span class="stringliteral">&quot;!gp&quot;</span>;</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> Command =&gt; <span class="stringliteral">&quot;!gp&quot;</span>;</div>
 <div class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keywordtype">int</span> Amount = 10000;</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">public</span> <span class="keywordtype">void</span> ExecuteCommand(NwPlayer caller)</div>
 <div class="line">    {</div>
-<div class="line">      caller.ControlledCreature.GiveGold(Amount);</div>
+<div class="line">      caller.ControlledCreature?.GiveGold(Amount);</div>
 <div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  [ServiceBinding(typeof(IChatCommand))]</div>
 <div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>SaveCommand : IChatCommand</div>
 <div class="line">  {</div>
-<div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> Command { <span class="keyword">get</span>; } = <span class="stringliteral">&quot;!save&quot;</span>;</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> Command =&gt; <span class="stringliteral">&quot;!save&quot;</span>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">public</span> <span class="keywordtype">void</span> ExecuteCommand(NwPlayer caller)</div>
 <div class="line">    {</div>

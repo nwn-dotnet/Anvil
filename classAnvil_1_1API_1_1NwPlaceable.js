@@ -2,15 +2,15 @@ var classAnvil_1_1API_1_1NwPlaceable =
 [
     [ "AcquireItem", "classAnvil_1_1API_1_1NwPlaceable.html#ab6ddcd61d8826ee529bd08a64a52a87a", null ],
     [ "AddToArea", "classAnvil_1_1API_1_1NwPlaceable.html#ac5acadad9e0f9cb2660e38736828797d", null ],
-    [ "Clone", "classAnvil_1_1API_1_1NwPlaceable.html#aea14e1e57aca0e8d0a4f1e3b9216c6d4", null ],
-    [ "Create", "classAnvil_1_1API_1_1NwPlaceable.html#ab8ff80a616d68b7508afc0e1f9f780b9", null ],
-    [ "Deserialize", "classAnvil_1_1API_1_1NwPlaceable.html#a7cb6c182df89740bcde72f734dd4229a", null ],
+    [ "Clone", "classAnvil_1_1API_1_1NwPlaceable.html#a6c746f2ff9eb1908ac41a475f6dbce83", null ],
+    [ "Create", "classAnvil_1_1API_1_1NwPlaceable.html#aecce2bfadbfb4e4a07a309923c0b3851", null ],
+    [ "Deserialize", "classAnvil_1_1API_1_1NwPlaceable.html#ae1be6fbc723c1d448791b7976d4ebbd3", null ],
     [ "GetBaseSavingThrow", "classAnvil_1_1API_1_1NwPlaceable.html#a57933104cc89dce16e1ed70cea61aa84", null ],
     [ "GiveItem", "classAnvil_1_1API_1_1NwPlaceable.html#a1c9ec356ddd1ca95427b531d066096a2", null ],
     [ "GiveItem", "classAnvil_1_1API_1_1NwPlaceable.html#a3add379f4e87a3a4cc2d8349af752e3c", null ],
     [ "IsPlaceableActionPossible", "classAnvil_1_1API_1_1NwPlaceable.html#afc679be05f145c308f9b4ea925c6a617", null ],
-    [ "operator CNWSPlaceable", "classAnvil_1_1API_1_1NwPlaceable.html#a95ccb838e84cbf38683f3033630a74e7", null ],
-    [ "Serialize", "classAnvil_1_1API_1_1NwPlaceable.html#a25d8d1b13951b75074b8c7e5b11cbd70", null ],
+    [ "operator CNWSPlaceable?", "classAnvil_1_1API_1_1NwPlaceable.html#ae6ba3eb820287418d8f4b869194c6d89", null ],
+    [ "Serialize", "classAnvil_1_1API_1_1NwPlaceable.html#ade634620fa33a4ebcfb0acaf92f31978", null ],
     [ "SetBaseSavingThrow", "classAnvil_1_1API_1_1NwPlaceable.html#aba1e9ab57b0b6316df480c27ecd6a9fd", null ],
     [ "Appearance", "classAnvil_1_1API_1_1NwPlaceable.html#a885f5996e42b828c2a98f874fe0adb31", null ],
     [ "DialogResRef", "classAnvil_1_1API_1_1NwPlaceable.html#ae116e8ad8c7086e02f9e66303622818f", null ],
@@ -39,6 +39,6 @@ var classAnvil_1_1API_1_1NwPlaceable =
     [ "OnUsed", "classAnvil_1_1API_1_1NwPlaceable.html#aa2ceb339cc94995c48f9f2f5e40ba9de", null ],
     [ "OnUserDefined", "classAnvil_1_1API_1_1NwPlaceable.html#a87d7958e365c10b27bcc334b23d4ac22", null ],
     [ "Rotation", "classAnvil_1_1API_1_1NwPlaceable.html#a77e6b128f26825abacc90b8d7eb8b07b", null ],
-    [ "SittingCreature", "classAnvil_1_1API_1_1NwPlaceable.html#a56daddd01da11ea8bbbd8095ea96b6e2", null ],
+    [ "SittingCreature", "classAnvil_1_1API_1_1NwPlaceable.html#ab5c29da9aa4d6400d09303923cc22e05", null ],
     [ "Useable", "classAnvil_1_1API_1_1NwPlaceable.html#a390f08bf0206a2eafd94c42961e0829b", null ]
 ];

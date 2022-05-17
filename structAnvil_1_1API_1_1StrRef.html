@@ -109,14 +109,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a24b48d6b4beed146f0dfab613f22bd42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#a24b48d6b4beed146f0dfab613f22bd42">ClearPlayerOverride</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> player, bool restoreGlobal=true)</td></tr>
 <tr class="memdesc:a24b48d6b4beed146f0dfab613f22bd42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the string override for the specified player, optionally restoring the global override.  <a href="structAnvil_1_1API_1_1StrRef.html#a24b48d6b4beed146f0dfab613f22bd42">More...</a><br /></td></tr>
 <tr class="separator:a24b48d6b4beed146f0dfab613f22bd42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a125b3224287ec9855e7aa258bbea3033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#a125b3224287ec9855e7aa258bbea3033">SetPlayerOverride</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> player, string value)</td></tr>
-<tr class="memdesc:a125b3224287ec9855e7aa258bbea3033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides the string for the specified player only.<br  />
- Overrides will not persist through re-logging.  <a href="structAnvil_1_1API_1_1StrRef.html#a125b3224287ec9855e7aa258bbea3033">More...</a><br /></td></tr>
-<tr class="separator:a125b3224287ec9855e7aa258bbea3033"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40f6ab0f0d23c336adc8b06fd26d69a5"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#a40f6ab0f0d23c336adc8b06fd26d69a5">ToParsedString</a> ()</td></tr>
-<tr class="memdesc:a40f6ab0f0d23c336adc8b06fd26d69a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the formatted string associated with this string reference/token number.<br  />
- This will parse any tokens (e.g. &lt;CUSTOM0&gt;) as their current set token values.  <a href="structAnvil_1_1API_1_1StrRef.html#a40f6ab0f0d23c336adc8b06fd26d69a5">More...</a><br /></td></tr>
-<tr class="separator:a40f6ab0f0d23c336adc8b06fd26d69a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f272dd76b09bcd95b07c1ec4ba032c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#a62f272dd76b09bcd95b07c1ec4ba032c">SetPlayerOverride</a> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> player, string? value)</td></tr>
+<tr class="memdesc:a62f272dd76b09bcd95b07c1ec4ba032c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides the string for the specified player only.<br  />
+ Overrides will not persist through re-logging.  <a href="structAnvil_1_1API_1_1StrRef.html#a62f272dd76b09bcd95b07c1ec4ba032c">More...</a><br /></td></tr>
+<tr class="separator:a62f272dd76b09bcd95b07c1ec4ba032c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf590519f332391844edea45f1ac853a"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#acf590519f332391844edea45f1ac853a">ToParsedString</a> ()</td></tr>
+<tr class="memdesc:acf590519f332391844edea45f1ac853a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the formatted string associated with this string reference/token number.<br  />
+ This will parse any tokens (e.g. &lt;CUSTOM0&gt;) as their current set token values.  <a href="structAnvil_1_1API_1_1StrRef.html#acf590519f332391844edea45f1ac853a">More...</a><br /></td></tr>
+<tr class="separator:acf590519f332391844edea45f1ac853a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a062d3d4b7be38fe3320add211e3f34c5"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#a062d3d4b7be38fe3320add211e3f34c5">ToString</a> ()</td></tr>
 <tr class="memdesc:a062d3d4b7be38fe3320add211e3f34c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw string associated with this string reference/token number.  <a href="structAnvil_1_1API_1_1StrRef.html#a062d3d4b7be38fe3320add211e3f34c5">More...</a><br /></td></tr>
 <tr class="separator:a062d3d4b7be38fe3320add211e3f34c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,9 +139,9 @@ Properties</h2></td></tr>
 <tr class="memitem:ab612ed19744735993283d6037115fd83"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#ab612ed19744735993283d6037115fd83">CustomId</a><code> [get]</code></td></tr>
 <tr class="memdesc:ab612ed19744735993283d6037115fd83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the index/key for this <a class="el" href="structAnvil_1_1API_1_1StrRef.html" title="A talk table (tlk) string reference.">StrRef</a> relative to the module's custom talk table. (-16777216)  <a href="structAnvil_1_1API_1_1StrRef.html#ab612ed19744735993283d6037115fd83">More...</a><br /></td></tr>
 <tr class="separator:ab612ed19744735993283d6037115fd83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2a1115f332737714bdd809afd0705a3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#ac2a1115f332737714bdd809afd0705a3">Override</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ac2a1115f332737714bdd809afd0705a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a string override that this <a class="el" href="structAnvil_1_1API_1_1StrRef.html" title="A talk table (tlk) string reference.">StrRef</a> should return instead of the tlk file definition.  <a href="structAnvil_1_1API_1_1StrRef.html#ac2a1115f332737714bdd809afd0705a3">More...</a><br /></td></tr>
-<tr class="separator:ac2a1115f332737714bdd809afd0705a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bdf3836b192dd592b37b21c17c39158"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAnvil_1_1API_1_1StrRef.html#a3bdf3836b192dd592b37b21c17c39158">Override</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3bdf3836b192dd592b37b21c17c39158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a string override that this <a class="el" href="structAnvil_1_1API_1_1StrRef.html" title="A talk table (tlk) string reference.">StrRef</a> should return instead of the tlk file definition.  <a href="structAnvil_1_1API_1_1StrRef.html#a3bdf3836b192dd592b37b21c17c39158">More...</a><br /></td></tr>
+<tr class="separator:a3bdf3836b192dd592b37b21c17c39158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A talk table (tlk) string reference. </p>
@@ -211,7 +211,7 @@ Properties</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">player</td><td>The player to clear the override from.</td></tr>
-    <tr><td class="paramname">restoreGlobal</td><td>If true, restores <a class="el" href="structAnvil_1_1API_1_1StrRef.html#ac2a1115f332737714bdd809afd0705a3" title="Gets or sets a string override that this StrRef should return instead of the tlk file definition.">Override</a> as the string value.</td></tr>
+    <tr><td class="paramname">restoreGlobal</td><td>If true, restores <a class="el" href="structAnvil_1_1API_1_1StrRef.html#a3bdf3836b192dd592b37b21c17c39158" title="Gets or sets a string override that this StrRef should return instead of the tlk file definition.">Override</a> as the string value.</td></tr>
   </table>
   </dd>
 </dl>
@@ -254,8 +254,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a125b3224287ec9855e7aa258bbea3033"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a125b3224287ec9855e7aa258bbea3033">&#9670;&nbsp;</a></span>SetPlayerOverride()</h2>
+<a id="a62f272dd76b09bcd95b07c1ec4ba032c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62f272dd76b09bcd95b07c1ec4ba032c">&#9670;&nbsp;</a></span>SetPlayerOverride()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -272,7 +272,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
+          <td class="paramtype">string?&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -300,8 +300,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a40f6ab0f0d23c336adc8b06fd26d69a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40f6ab0f0d23c336adc8b06fd26d69a5">&#9670;&nbsp;</a></span>ToParsedString()</h2>
+<a id="acf590519f332391844edea45f1ac853a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf590519f332391844edea45f1ac853a">&#9670;&nbsp;</a></span>ToParsedString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -310,7 +310,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Anvil.API.StrRef.ToParsedString </td>
+          <td class="memname">string? Anvil.API.StrRef.ToParsedString </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -399,8 +399,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="ac2a1115f332737714bdd809afd0705a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2a1115f332737714bdd809afd0705a3">&#9670;&nbsp;</a></span>Override</h2>
+<a id="a3bdf3836b192dd592b37b21c17c39158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bdf3836b192dd592b37b21c17c39158">&#9670;&nbsp;</a></span>Override</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -409,7 +409,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Anvil.API.StrRef.Override</td>
+          <td class="memname">string? Anvil.API.StrRef.Override</td>
         </tr>
       </table>
   </td>

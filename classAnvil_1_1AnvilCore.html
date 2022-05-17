@@ -90,17 +90,17 @@ $(document).ready(function(){initNavTree('classAnvil_1_1AnvilCore.html',''); ini
 <div class="contents">
 
 <p>Handles bootstrap and interop between NWN, NWN.Core and the Anvil API. The entry point of the implementing module should point to this class.<br  />
- Until <a class="el" href="classAnvil_1_1AnvilCore.html#a3a22229b4790bd403c6965f7f7277f96" title="Entrypoint to start Anvil.">Init(IntPtr, int, IServiceManager)</a> is called, all APIs are unavailable for usage.  
+ Until Init(IntPtr, int, IServiceManager) is called, all APIs are unavailable for usage.  
  <a href="classAnvil_1_1AnvilCore.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a312be7548db9a3321d07af2a76b3bbd1"><td class="memItemLeft" align="right" valign="top"><a id="a312be7548db9a3321d07af2a76b3bbd1"></a>
-static T&#160;</td><td class="memItemRight" valign="bottom"><b>GetService&lt; T &gt;</b> ()</td></tr>
-<tr class="separator:a312be7548db9a3321d07af2a76b3bbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a22229b4790bd403c6965f7f7277f96"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1AnvilCore.html#a3a22229b4790bd403c6965f7f7277f96">Init</a> (IntPtr arg, int argLength, <a class="el" href="interfaceAnvil_1_1Services_1_1IServiceManager.html">IServiceManager</a> serviceManager=default)</td></tr>
-<tr class="memdesc:a3a22229b4790bd403c6965f7f7277f96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entrypoint to start <a class="el" href="namespaceAnvil.html">Anvil</a>.  <a href="classAnvil_1_1AnvilCore.html#a3a22229b4790bd403c6965f7f7277f96">More...</a><br /></td></tr>
-<tr class="separator:a3a22229b4790bd403c6965f7f7277f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d6f6708c6414d26d90ead3724a4f94f"><td class="memItemLeft" align="right" valign="top"><a id="a5d6f6708c6414d26d90ead3724a4f94f"></a>
+static ? T&#160;</td><td class="memItemRight" valign="bottom"><b>GetService&lt; T &gt;</b> ()</td></tr>
+<tr class="separator:a5d6f6708c6414d26d90ead3724a4f94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afccd268d91b3ab88e6d31cd44e600862"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1AnvilCore.html#afccd268d91b3ab88e6d31cd44e600862">Init</a> (IntPtr arg, int argLength, <a class="el" href="interfaceAnvil_1_1Services_1_1IServiceManager.html">IServiceManager</a>? serviceManager=default)</td></tr>
+<tr class="memdesc:afccd268d91b3ab88e6d31cd44e600862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entrypoint to start <a class="el" href="namespaceAnvil.html">Anvil</a>.  <a href="classAnvil_1_1AnvilCore.html#afccd268d91b3ab88e6d31cd44e600862">More...</a><br /></td></tr>
+<tr class="separator:afccd268d91b3ab88e6d31cd44e600862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2889a3f54ab1dd7ed09da444124d0fdd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1AnvilCore.html#a2889a3f54ab1dd7ed09da444124d0fdd">Reload</a> ()</td></tr>
 <tr class="memdesc:a2889a3f54ab1dd7ed09da444124d0fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates a complete reload of plugins and <a class="el" href="namespaceAnvil.html">Anvil</a> services.<br  />
  This will reload all plugins.  <a href="classAnvil_1_1AnvilCore.html#a2889a3f54ab1dd7ed09da444124d0fdd">More...</a><br /></td></tr>
@@ -108,10 +108,10 @@ static T&#160;</td><td class="memItemRight" valign="bottom"><b>GetService&lt; T 
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles bootstrap and interop between NWN, NWN.Core and the Anvil API. The entry point of the implementing module should point to this class.<br  />
- Until <a class="el" href="classAnvil_1_1AnvilCore.html#a3a22229b4790bd403c6965f7f7277f96" title="Entrypoint to start Anvil.">Init(IntPtr, int, IServiceManager)</a> is called, all APIs are unavailable for usage. </p>
+ Until Init(IntPtr, int, IServiceManager) is called, all APIs are unavailable for usage. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3a22229b4790bd403c6965f7f7277f96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a22229b4790bd403c6965f7f7277f96">&#9670;&nbsp;</a></span>Init()</h2>
+<a id="afccd268d91b3ab88e6d31cd44e600862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afccd268d91b3ab88e6d31cd44e600862">&#9670;&nbsp;</a></span>Init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,7 +134,7 @@ static T&#160;</td><td class="memItemRight" valign="bottom"><b>GetService&lt; T 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="interfaceAnvil_1_1Services_1_1IServiceManager.html">IServiceManager</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="interfaceAnvil_1_1Services_1_1IServiceManager.html">IServiceManager</a>?&#160;</td>
           <td class="paramname"><em>serviceManager</em> = <code>default</code>&#160;</td>
         </tr>
         <tr>

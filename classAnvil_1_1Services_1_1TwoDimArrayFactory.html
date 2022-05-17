@@ -97,9 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b924a944d91d1f11a13d078d0105f56"><td class="memItemLeft" align="right" valign="top"><a id="a7b924a944d91d1f11a13d078d0105f56"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>TwoDimArrayFactory</b> (<a class="el" href="classAnvil_1_1Services_1_1InjectionService.html">InjectionService</a> injectionService)</td></tr>
 <tr class="separator:a7b924a944d91d1f11a13d078d0105f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ac4899aaaee0584093e46904940668d"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#a2ac4899aaaee0584093e46904940668d">Get2DA&lt; T &gt;</a> (string name, bool forceRefresh=false)</td></tr>
-<tr class="memdesc:a2ac4899aaaee0584093e46904940668d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes the given 2da using the specified format.  <a href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#a2ac4899aaaee0584093e46904940668d">More...</a><br /></td></tr>
-<tr class="separator:a2ac4899aaaee0584093e46904940668d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7baf243eb8d928e4935573e94554fdc"><td class="memItemLeft" align="right" valign="top">T?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#ad7baf243eb8d928e4935573e94554fdc">Get2DA&lt; T &gt;</a> (string name, bool forceRefresh=false)</td></tr>
+<tr class="memdesc:ad7baf243eb8d928e4935573e94554fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes the given 2da using the specified format.  <a href="classAnvil_1_1Services_1_1TwoDimArrayFactory.html#ad7baf243eb8d928e4935573e94554fdc">More...</a><br /></td></tr>
+<tr class="separator:ad7baf243eb8d928e4935573e94554fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Creates a deserialized 2da structure using a <a class="el" href="interfaceAnvil_1_1Services_1_1ITwoDimArray.html" title="Implement this interface to use the class as a deserialization target for TwoDimArrayFactory....">ITwoDimArray</a> converter. </p>
@@ -149,13 +149,19 @@ Public Member Functions</h2></td></tr>
 <div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)</div>
 <div class="line">    {</div>
 <div class="line">      NwPlayer player = onClientEnter.Player;</div>
-<div class="line">      <span class="keywordtype">int</span> nextLevel = GetLevelFromXp(player.ControlledCreature.Xp) + 1;</div>
+<div class="line">      NwCreature? creature = player.ControlledCreature;</div>
+<div class="line">      <span class="keywordflow">if</span> (creature == <span class="keyword">null</span>)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">return</span>;</div>
+<div class="line">      }</div>
+<div class="line"> </div>
+<div class="line">      <span class="keywordtype">int</span> nextLevel = GetLevelFromXp(creature.Xp) + 1;</div>
 <div class="line">      <span class="keywordflow">if</span> (nextLevel &gt; MaxLevel)</div>
 <div class="line">      {</div>
 <div class="line">        <span class="keywordflow">return</span>;</div>
 <div class="line">      }</div>
 <div class="line"> </div>
-<div class="line">      player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}&quot;</span>);</div>
+<div class="line">      player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {GetXpForLevel(nextLevel) - creature.Xp}&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> MaxLevel =&gt; expTable[^1].Level;</div>
@@ -183,8 +189,8 @@ Public Member Functions</h2></td></tr>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --></div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2ac4899aaaee0584093e46904940668d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ac4899aaaee0584093e46904940668d">&#9670;&nbsp;</a></span>Get2DA&lt; T &gt;()</h2>
+<a id="ad7baf243eb8d928e4935573e94554fdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7baf243eb8d928e4935573e94554fdc">&#9670;&nbsp;</a></span>Get2DA&lt; T &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +199,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">T Anvil.Services.TwoDimArrayFactory.Get2DA&lt; T &gt; </td>
+          <td class="memname">T? Anvil.Services.TwoDimArrayFactory.Get2DA&lt; T &gt; </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>name</em>, </td>

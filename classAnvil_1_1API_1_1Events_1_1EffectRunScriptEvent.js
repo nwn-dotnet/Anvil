@@ -1,8 +1,8 @@
 var classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent =
 [
     [ "EffectRunScriptEvent", "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#ab3a3bc315cae4ba44c157e97fbc78c01", null ],
-    [ "Context", "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#ada8af257e86594ab6946596bc54f307a", null ],
-    [ "Effect", "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#a0878b23469e8d193e601283bbf838728", null ],
-    [ "EffectTarget", "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#a7482f381f462e898657936114e355a57", null ],
+    [ "Context", "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#a162bbcb87c3dfcff189b42d947feb735", null ],
+    [ "Effect", "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#a985d1fbc6d9802965a55fb96ce31a2fe", null ],
+    [ "EffectTarget", "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#a10e78e39653d0877b4252fcc3f145b1e", null ],
     [ "EventType", "classAnvil_1_1API_1_1Events_1_1EffectRunScriptEvent.html#aa655839ef40dba3b2400969fcd5141f7", null ]
 ];

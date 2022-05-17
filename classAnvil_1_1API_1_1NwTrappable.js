@@ -1,7 +1,7 @@
 var classAnvil_1_1API_1_1NwTrappable =
 [
     [ "DisableTrap", "classAnvil_1_1API_1_1NwTrappable.html#acde74cf02ff64b1141094f18ca1c7be1", null ],
-    [ "GetLastDisarmedBy", "classAnvil_1_1API_1_1NwTrappable.html#aaf3af2186346060978d7626062984db0", null ],
+    [ "GetLastDisarmedBy", "classAnvil_1_1API_1_1NwTrappable.html#aa1357bb54bb3b2472898914900872431", null ],
     [ "IsTrapDetectedBy", "classAnvil_1_1API_1_1NwTrappable.html#ac355984d40ce92329634c93e4bac63bd", null ],
     [ "SetTrapDetectedBy", "classAnvil_1_1API_1_1NwTrappable.html#a52978918afa50496d79ef3a6bd3b83ba", null ],
     [ "IsTrapFlagged", "classAnvil_1_1API_1_1NwTrappable.html#aaac7027ebb89bdaab3a26ce3888f61f6", null ],
@@ -9,7 +9,7 @@ var classAnvil_1_1API_1_1NwTrappable =
     [ "OneShotTrap", "classAnvil_1_1API_1_1NwTrappable.html#a992192b6399ef1d7c5e95fe54b73a5d1", null ],
     [ "TrapActive", "classAnvil_1_1API_1_1NwTrappable.html#aea841e00f6b49e2a4d6221cba7091589", null ],
     [ "TrapBaseType", "classAnvil_1_1API_1_1NwTrappable.html#a170af7ab12ed99a6e04954fcfcab0683", null ],
-    [ "TrapCreator", "classAnvil_1_1API_1_1NwTrappable.html#a6031f6a6b91610a6e28c101c64a5101e", null ],
+    [ "TrapCreator", "classAnvil_1_1API_1_1NwTrappable.html#a7ee0c9ffacc39bceabc107640e8de804", null ],
     [ "TrapDetectable", "classAnvil_1_1API_1_1NwTrappable.html#a1657b6756f874ea48a79f7ef9765db48", null ],
     [ "TrapDetectDC", "classAnvil_1_1API_1_1NwTrappable.html#abc7617bad1dc336e1be8fe81cdac7a89", null ],
     [ "TrapDisarmable", "classAnvil_1_1API_1_1NwTrappable.html#a48e9ecae36793fc68f64958c1a13bfbd", null ],

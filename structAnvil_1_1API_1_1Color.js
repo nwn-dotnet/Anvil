@@ -3,7 +3,7 @@ var structAnvil_1_1API_1_1Color =
     [ "Color", "structAnvil_1_1API_1_1Color.html#a93cd13f944014f511b6c6fecefba4568", null ],
     [ "Color", "structAnvil_1_1API_1_1Color.html#a490c68ccf68f4f62fc7df37b42e331ec", null ],
     [ "Equals", "structAnvil_1_1API_1_1Color.html#abf256ee3d2a926ff549741c26297eede", null ],
-    [ "Equals", "structAnvil_1_1API_1_1Color.html#ae847d3c1006fb341900b16462fdb735f", null ],
+    [ "Equals", "structAnvil_1_1API_1_1Color.html#acce010f2bb0628f318e3e1415103fcfb", null ],
     [ "FromRGBA", "structAnvil_1_1API_1_1Color.html#a9143ded54f9257ae7e568579bccd2536", null ],
     [ "FromRGBA", "structAnvil_1_1API_1_1Color.html#a14c2c056de09c94bc117689b1169f8fc", null ],
     [ "FromRGBA", "structAnvil_1_1API_1_1Color.html#add7f13f77bd4570ad87a5563f8c9e1c5", null ],

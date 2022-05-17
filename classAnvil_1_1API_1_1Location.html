@@ -161,9 +161,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a54248d315e483381e75d75698b7a8fc4"><td class="memItemLeft" align="right" valign="top"><a id="a54248d315e483381e75d75698b7a8fc4"></a>
 static <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Create</b> (<a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> area, Vector3 position, float orientation)</td></tr>
 <tr class="separator:a54248d315e483381e75d75698b7a8fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11561bb42ad01c54ad30c7101102025b"><td class="memItemLeft" align="right" valign="top"><a id="a11561bb42ad01c54ad30c7101102025b"></a>
-static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator Location</b> (IntPtr intPtr)</td></tr>
-<tr class="separator:a11561bb42ad01c54ad30c7101102025b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af692cb62dcf54efa037cc5d215c3511b"><td class="memItemLeft" align="right" valign="top"><a id="af692cb62dcf54efa037cc5d215c3511b"></a>
+static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator Location?</b> (IntPtr intPtr)</td></tr>
+<tr class="separator:af692cb62dcf54efa037cc5d215c3511b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_classAnvil_1_1API_1_1EngineStructure"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classAnvil_1_1API_1_1EngineStructure')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classAnvil_1_1API_1_1EngineStructure.html">Anvil.API.EngineStructure</a></td></tr>
 <tr class="memitem:a7c2776d88b6d22c7ec93d419ece4a324 inherit pub_static_methods_classAnvil_1_1API_1_1EngineStructure"><td class="memItemLeft" align="right" valign="top"><a id="a7c2776d88b6d22c7ec93d419ece4a324"></a>
 static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator IntPtr</b> (<a class="el" href="classAnvil_1_1API_1_1EngineStructure.html">EngineStructure</a> engineStructure)</td></tr>
@@ -171,9 +171,9 @@ static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator I
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a424b1331a9e9dbfe3293c76816442f32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#a424b1331a9e9dbfe3293c76816442f32">Area</a><code> [get]</code></td></tr>
-<tr class="memdesc:a424b1331a9e9dbfe3293c76816442f32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the associated Area of this location.  <a href="classAnvil_1_1API_1_1Location.html#a424b1331a9e9dbfe3293c76816442f32">More...</a><br /></td></tr>
-<tr class="separator:a424b1331a9e9dbfe3293c76816442f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b2c3e8369ab35f41dcf36e7e744edf4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#a1b2c3e8369ab35f41dcf36e7e744edf4">Area</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1b2c3e8369ab35f41dcf36e7e744edf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the associated Area of this location.  <a href="classAnvil_1_1API_1_1Location.html#a1b2c3e8369ab35f41dcf36e7e744edf4">More...</a><br /></td></tr>
+<tr class="separator:a1b2c3e8369ab35f41dcf36e7e744edf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad826aa63fee4d6aba035fbc01a213fd7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#ad826aa63fee4d6aba035fbc01a213fd7">FlippedRotation</a><code> [get]</code></td></tr>
 <tr class="memdesc:ad826aa63fee4d6aba035fbc01a213fd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the inverted rotation value of this location (placeables).  <a href="classAnvil_1_1API_1_1Location.html#ad826aa63fee4d6aba035fbc01a213fd7">More...</a><br /></td></tr>
 <tr class="separator:ad826aa63fee4d6aba035fbc01a213fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -414,8 +414,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a id="a424b1331a9e9dbfe3293c76816442f32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a424b1331a9e9dbfe3293c76816442f32">&#9670;&nbsp;</a></span>Area</h2>
+<a id="a1b2c3e8369ab35f41dcf36e7e744edf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b2c3e8369ab35f41dcf36e7e744edf4">&#9670;&nbsp;</a></span>Area</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -424,7 +424,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a> Anvil.API.Location.Area</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwArea.html">NwArea</a>? Anvil.API.Location.Area</td>
         </tr>
       </table>
   </td>

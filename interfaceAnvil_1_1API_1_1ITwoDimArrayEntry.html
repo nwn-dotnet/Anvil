@@ -174,13 +174,19 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>RowIndex</b><code> [ge
 <div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)</div>
 <div class="line">    {</div>
 <div class="line">      NwPlayer player = onClientEnter.Player;</div>
-<div class="line">      <span class="keywordtype">int</span> nextLevel = GetLevelFromXp(player.ControlledCreature.Xp) + 1;</div>
+<div class="line">      NwCreature? creature = player.ControlledCreature;</div>
+<div class="line">      <span class="keywordflow">if</span> (creature == <span class="keyword">null</span>)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">return</span>;</div>
+<div class="line">      }</div>
+<div class="line"> </div>
+<div class="line">      <span class="keywordtype">int</span> nextLevel = GetLevelFromXp(creature.Xp) + 1;</div>
 <div class="line">      <span class="keywordflow">if</span> (nextLevel &gt; MaxLevel)</div>
 <div class="line">      {</div>
 <div class="line">        <span class="keywordflow">return</span>;</div>
 <div class="line">      }</div>
 <div class="line"> </div>
-<div class="line">      player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}&quot;</span>);</div>
+<div class="line">      player.SendServerMessage($<span class="stringliteral">&quot;Next level up: {GetXpForLevel(nextLevel) - creature.Xp}&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">public</span> <span class="keywordtype">int</span> MaxLevel =&gt; expTable[^1].Level;</div>

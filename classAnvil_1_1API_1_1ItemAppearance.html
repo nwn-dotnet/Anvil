@@ -91,8 +91,16 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1ItemAppearance.ht
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a39839399e98f13d2fdcfb653d2a1b5ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#a39839399e98f13d2fdcfb653d2a1b5ea">ClearArmorPieceColor</a> (ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)</td></tr>
-<tr class="memdesc:a39839399e98f13d2fdcfb653d2a1b5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any per-part color overrides set for the specified part slot.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#a39839399e98f13d2fdcfb653d2a1b5ea">More...</a><br /></td></tr>
+<tr class="memitem:aa238124f418f2766c32d505fe1b2a0e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#aa238124f418f2766c32d505fe1b2a0e4">ChangeAppearance</a> (Action&lt; <a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html">ItemAppearance</a> &gt; changes)</td></tr>
+<tr class="memdesc:aa238124f418f2766c32d505fe1b2a0e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new item with the specified appearance changes.<br  />
+ The existing item is destroyed and replaced with the new item.<br  />
+ If the item was equipped, it is restored to the original equipment slot.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#aa238124f418f2766c32d505fe1b2a0e4">More...</a><br /></td></tr>
+<tr class="separator:aa238124f418f2766c32d505fe1b2a0e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c06c86dea3cee6bdcfdd7ef2fda11c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#ae0c06c86dea3cee6bdcfdd7ef2fda11c">ClearArmorPieceColor</a> (CreaturePart modelSlot, ItemAppearanceArmorColor colorSlot)</td></tr>
+<tr class="memdesc:ae0c06c86dea3cee6bdcfdd7ef2fda11c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears any per-part color overrides set for the specified part slot.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#ae0c06c86dea3cee6bdcfdd7ef2fda11c">More...</a><br /></td></tr>
+<tr class="separator:ae0c06c86dea3cee6bdcfdd7ef2fda11c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39839399e98f13d2fdcfb653d2a1b5ea"><td class="memItemLeft" align="right" valign="top"><a id="a39839399e98f13d2fdcfb653d2a1b5ea"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearArmorPieceColor</b> (ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)</td></tr>
 <tr class="separator:a39839399e98f13d2fdcfb653d2a1b5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad60c5d2d41eef7f5feaf5d0771c8bf15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#ad60c5d2d41eef7f5feaf5d0771c8bf15">CopyTo</a> (<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a> otherItem)</td></tr>
 <tr class="memdesc:ad60c5d2d41eef7f5feaf5d0771c8bf15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies this item appearance to another item. </p><dl class="params"><dt>Parameters</dt><dd>
@@ -109,11 +117,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa14d9714e519814d5a1a792ffd42eb92"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#aa14d9714e519814d5a1a792ffd42eb92">GetArmorColor</a> (ItemAppearanceArmorColor slot)</td></tr>
 <tr class="memdesc:aa14d9714e519814d5a1a792ffd42eb92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the armor color of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#aa14d9714e519814d5a1a792ffd42eb92">More...</a><br /></td></tr>
 <tr class="separator:aa14d9714e519814d5a1a792ffd42eb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fd28c33ee06052d9be28d32c46350e5"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#a3fd28c33ee06052d9be28d32c46350e5">GetArmorModel</a> (ItemAppearanceArmorModel slot)</td></tr>
-<tr class="memdesc:a3fd28c33ee06052d9be28d32c46350e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the armor model of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#a3fd28c33ee06052d9be28d32c46350e5">More...</a><br /></td></tr>
+<tr class="memitem:ac36994e81ab13767a92f7e62621aa81c"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#ac36994e81ab13767a92f7e62621aa81c">GetArmorModel</a> (CreaturePart slot)</td></tr>
+<tr class="memdesc:ac36994e81ab13767a92f7e62621aa81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the armor model of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#ac36994e81ab13767a92f7e62621aa81c">More...</a><br /></td></tr>
+<tr class="separator:ac36994e81ab13767a92f7e62621aa81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fd28c33ee06052d9be28d32c46350e5"><td class="memItemLeft" align="right" valign="top"><a id="a3fd28c33ee06052d9be28d32c46350e5"></a>
+byte&#160;</td><td class="memItemRight" valign="bottom"><b>GetArmorModel</b> (ItemAppearanceArmorModel slot)</td></tr>
 <tr class="separator:a3fd28c33ee06052d9be28d32c46350e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85b78d070f5b1fefde0a32353d303603"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#a85b78d070f5b1fefde0a32353d303603">GetArmorPieceColor</a> (ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)</td></tr>
-<tr class="memdesc:a85b78d070f5b1fefde0a32353d303603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the armor color for a piece of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#a85b78d070f5b1fefde0a32353d303603">More...</a><br /></td></tr>
+<tr class="memitem:ac53a18c891e5c677a5317169f0114e1b"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#ac53a18c891e5c677a5317169f0114e1b">GetArmorPieceColor</a> (CreaturePart modelSlot, ItemAppearanceArmorColor colorSlot)</td></tr>
+<tr class="memdesc:ac53a18c891e5c677a5317169f0114e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the armor color for a piece of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#ac53a18c891e5c677a5317169f0114e1b">More...</a><br /></td></tr>
+<tr class="separator:ac53a18c891e5c677a5317169f0114e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85b78d070f5b1fefde0a32353d303603"><td class="memItemLeft" align="right" valign="top"><a id="a85b78d070f5b1fefde0a32353d303603"></a>
+byte&#160;</td><td class="memItemRight" valign="bottom"><b>GetArmorPieceColor</b> (ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)</td></tr>
 <tr class="separator:a85b78d070f5b1fefde0a32353d303603"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a521f5afb814c26af1ba9451bdbead0bd"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#a521f5afb814c26af1ba9451bdbead0bd">GetSimpleModel</a> ()</td></tr>
 <tr class="memdesc:a521f5afb814c26af1ba9451bdbead0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the base model of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#a521f5afb814c26af1ba9451bdbead0bd">More...</a><br /></td></tr>
@@ -130,11 +144,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6c1b50ffacf7ab55644d581e62cba282"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#a6c1b50ffacf7ab55644d581e62cba282">SetArmorColor</a> (ItemAppearanceArmorColor slot, byte value)</td></tr>
 <tr class="memdesc:a6c1b50ffacf7ab55644d581e62cba282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the armor color of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#a6c1b50ffacf7ab55644d581e62cba282">More...</a><br /></td></tr>
 <tr class="separator:a6c1b50ffacf7ab55644d581e62cba282"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed5405b7bea0043f62c3d5b8f341a2aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#aed5405b7bea0043f62c3d5b8f341a2aa">SetArmorModel</a> (ItemAppearanceArmorModel slot, byte value)</td></tr>
-<tr class="memdesc:aed5405b7bea0043f62c3d5b8f341a2aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the armor model of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#aed5405b7bea0043f62c3d5b8f341a2aa">More...</a><br /></td></tr>
+<tr class="memitem:a913588b66f5531be4b163661319fe876"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#a913588b66f5531be4b163661319fe876">SetArmorModel</a> (CreaturePart slot, byte value)</td></tr>
+<tr class="memdesc:a913588b66f5531be4b163661319fe876"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the armor model of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#a913588b66f5531be4b163661319fe876">More...</a><br /></td></tr>
+<tr class="separator:a913588b66f5531be4b163661319fe876"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed5405b7bea0043f62c3d5b8f341a2aa"><td class="memItemLeft" align="right" valign="top"><a id="aed5405b7bea0043f62c3d5b8f341a2aa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetArmorModel</b> (ItemAppearanceArmorModel slot, byte value)</td></tr>
 <tr class="separator:aed5405b7bea0043f62c3d5b8f341a2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53eace57ee3725a44bbfcc8510bfec51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#a53eace57ee3725a44bbfcc8510bfec51">SetArmorPieceColor</a> (ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot, byte value)</td></tr>
-<tr class="memdesc:a53eace57ee3725a44bbfcc8510bfec51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the armor color for a piece of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#a53eace57ee3725a44bbfcc8510bfec51">More...</a><br /></td></tr>
+<tr class="memitem:acf1f2d2c4c3fc57d9333b920418d5c36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#acf1f2d2c4c3fc57d9333b920418d5c36">SetArmorPieceColor</a> (CreaturePart modelSlot, ItemAppearanceArmorColor colorSlot, byte value)</td></tr>
+<tr class="memdesc:acf1f2d2c4c3fc57d9333b920418d5c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the armor color for a piece of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#acf1f2d2c4c3fc57d9333b920418d5c36">More...</a><br /></td></tr>
+<tr class="separator:acf1f2d2c4c3fc57d9333b920418d5c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53eace57ee3725a44bbfcc8510bfec51"><td class="memItemLeft" align="right" valign="top"><a id="a53eace57ee3725a44bbfcc8510bfec51"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetArmorPieceColor</b> (ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot, byte value)</td></tr>
 <tr class="separator:a53eace57ee3725a44bbfcc8510bfec51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23f574ceded015c4e85c78b379fb7a41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html#a23f574ceded015c4e85c78b379fb7a41">SetSimpleModel</a> (byte value)</td></tr>
 <tr class="memdesc:a23f574ceded015c4e85c78b379fb7a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the base model of this item.  <a href="classAnvil_1_1API_1_1ItemAppearance.html#a23f574ceded015c4e85c78b379fb7a41">More...</a><br /></td></tr>
@@ -147,8 +167,45 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0f64e5a69cd8684f47a74be84f61bd9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a39839399e98f13d2fdcfb653d2a1b5ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39839399e98f13d2fdcfb653d2a1b5ea">&#9670;&nbsp;</a></span>ClearArmorPieceColor()</h2>
+<a id="aa238124f418f2766c32d505fe1b2a0e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa238124f418f2766c32d505fe1b2a0e4">&#9670;&nbsp;</a></span>ChangeAppearance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a> Anvil.API.ItemAppearance.ChangeAppearance </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; <a class="el" href="classAnvil_1_1API_1_1ItemAppearance.html">ItemAppearance</a> &gt;&#160;</td>
+          <td class="paramname"><em>changes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new item with the specified appearance changes.<br  />
+ The existing item is destroyed and replaced with the new item.<br  />
+ If the item was equipped, it is restored to the original equipment slot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">changes</td><td>The appearance changes to apply.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new item with the updated appearance.</dd></dl>
+
+</div>
+</div>
+<a id="ae0c06c86dea3cee6bdcfdd7ef2fda11c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c06c86dea3cee6bdcfdd7ef2fda11c">&#9670;&nbsp;</a></span>ClearArmorPieceColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +216,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Anvil.API.ItemAppearance.ClearArmorPieceColor </td>
           <td>(</td>
-          <td class="paramtype">ItemAppearanceArmorModel&#160;</td>
+          <td class="paramtype">CreaturePart&#160;</td>
           <td class="paramname"><em>modelSlot</em>, </td>
         </tr>
         <tr>
@@ -300,8 +357,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3fd28c33ee06052d9be28d32c46350e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3fd28c33ee06052d9be28d32c46350e5">&#9670;&nbsp;</a></span>GetArmorModel()</h2>
+<a id="ac36994e81ab13767a92f7e62621aa81c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac36994e81ab13767a92f7e62621aa81c">&#9670;&nbsp;</a></span>GetArmorModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -312,7 +369,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">byte Anvil.API.ItemAppearance.GetArmorModel </td>
           <td>(</td>
-          <td class="paramtype">ItemAppearanceArmorModel&#160;</td>
+          <td class="paramtype">CreaturePart&#160;</td>
           <td class="paramname"><em>slot</em></td><td>)</td>
           <td></td>
         </tr>
@@ -334,8 +391,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a85b78d070f5b1fefde0a32353d303603"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85b78d070f5b1fefde0a32353d303603">&#9670;&nbsp;</a></span>GetArmorPieceColor()</h2>
+<a id="ac53a18c891e5c677a5317169f0114e1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac53a18c891e5c677a5317169f0114e1b">&#9670;&nbsp;</a></span>GetArmorPieceColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,7 +403,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">byte Anvil.API.ItemAppearance.GetArmorPieceColor </td>
           <td>(</td>
-          <td class="paramtype">ItemAppearanceArmorModel&#160;</td>
+          <td class="paramtype">CreaturePart&#160;</td>
           <td class="paramname"><em>modelSlot</em>, </td>
         </tr>
         <tr>
@@ -547,8 +604,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aed5405b7bea0043f62c3d5b8f341a2aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed5405b7bea0043f62c3d5b8f341a2aa">&#9670;&nbsp;</a></span>SetArmorModel()</h2>
+<a id="a913588b66f5531be4b163661319fe876"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a913588b66f5531be4b163661319fe876">&#9670;&nbsp;</a></span>SetArmorModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -559,7 +616,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Anvil.API.ItemAppearance.SetArmorModel </td>
           <td>(</td>
-          <td class="paramtype">ItemAppearanceArmorModel&#160;</td>
+          <td class="paramtype">CreaturePart&#160;</td>
           <td class="paramname"><em>slot</em>, </td>
         </tr>
         <tr>
@@ -592,8 +649,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a53eace57ee3725a44bbfcc8510bfec51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53eace57ee3725a44bbfcc8510bfec51">&#9670;&nbsp;</a></span>SetArmorPieceColor()</h2>
+<a id="acf1f2d2c4c3fc57d9333b920418d5c36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf1f2d2c4c3fc57d9333b920418d5c36">&#9670;&nbsp;</a></span>SetArmorPieceColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -604,7 +661,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Anvil.API.ItemAppearance.SetArmorPieceColor </td>
           <td>(</td>
-          <td class="paramtype">ItemAppearanceArmorModel&#160;</td>
+          <td class="paramtype">CreaturePart&#160;</td>
           <td class="paramname"><em>modelSlot</em>, </td>
         </tr>
         <tr>

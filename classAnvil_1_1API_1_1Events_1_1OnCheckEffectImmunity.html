@@ -121,16 +121,16 @@ Properties</h2></td></tr>
 <tr class="memitem:a8c7b6d9c2762a81fae9d9e2e6ab8ad75"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html#a8c7b6d9c2762a81fae9d9e2e6ab8ad75">Bypass</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a8c7b6d9c2762a81fae9d9e2e6ab8ad75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether the specified immunity should be ignored, and the effect applied regardless.  <a href="classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html#a8c7b6d9c2762a81fae9d9e2e6ab8ad75">More...</a><br /></td></tr>
 <tr class="separator:a8c7b6d9c2762a81fae9d9e2e6ab8ad75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac70d119dac115e2047a5de36c2d6e936"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html#ac70d119dac115e2047a5de36c2d6e936">Creature</a><code> [get]</code></td></tr>
+<tr class="memitem:ac70d119dac115e2047a5de36c2d6e936"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html#ac70d119dac115e2047a5de36c2d6e936">Creature</a> = null!<code> [get]</code></td></tr>
 <tr class="memdesc:ac70d119dac115e2047a5de36c2d6e936"><td class="mdescLeft">&#160;</td><td class="mdescRight">The creature that the effect is being applied to.  <a href="classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html#ac70d119dac115e2047a5de36c2d6e936">More...</a><br /></td></tr>
 <tr class="separator:ac70d119dac115e2047a5de36c2d6e936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f3245598fab96fe9a4bc31c9169b18"><td class="memItemLeft" align="right" valign="top">ImmunityType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html#a55f3245598fab96fe9a4bc31c9169b18">ImmunityType</a><code> [get]</code></td></tr>
 <tr class="memdesc:a55f3245598fab96fe9a4bc31c9169b18"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of immunity being checked.  <a href="classAnvil_1_1API_1_1Events_1_1OnCheckEffectImmunity.html#a55f3245598fab96fe9a4bc31c9169b18">More...</a><br /></td></tr>
 <tr class="separator:a55f3245598fab96fe9a4bc31c9169b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent"><td colspan="2" onclick="javascript:toggleInherit('properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interfaceAnvil_1_1API_1_1Events_1_1IEvent.html">Anvil.API.Events.IEvent</a></td></tr>
-<tr class="memitem:a0668cfb37675ad3276c1ac6c548ae562 inherit properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent"><td class="memItemLeft" align="right" valign="top"><a id="a0668cfb37675ad3276c1ac6c548ae562"></a>
-<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Context</b><code> [get]</code></td></tr>
-<tr class="separator:a0668cfb37675ad3276c1ac6c548ae562 inherit properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b6abeb5698b2f711bd6373b906f9715 inherit properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent"><td class="memItemLeft" align="right" valign="top"><a id="a5b6abeb5698b2f711bd6373b906f9715"></a>
+<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>Context</b><code> [get]</code></td></tr>
+<tr class="separator:a5b6abeb5698b2f711bd6373b906f9715 inherit properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Called when an effect is checking for creature immunities.<br  />
@@ -170,7 +170,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> Anvil.API.Events.OnCheckEffectImmunity.Creature</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> Anvil.API.Events.OnCheckEffectImmunity.Creature = null!</td>
         </tr>
       </table>
   </td>
