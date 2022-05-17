@@ -48,7 +48,7 @@ namespace Anvil.API
 
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = new EncounterListEntry(this, cEncounterList.GetItem(i));
+          retVal[i] = new EncounterListEntry(Encounter, cEncounterList.GetItem(i));
         }
 
         return retVal;
@@ -69,7 +69,7 @@ namespace Anvil.API
     /// </summary>
     public NwFaction Faction
     {
-      get => NwFaction.FromFactionId(Encounter.m_nFactionId);
+      get => NwFaction.FromFactionId(Encounter.m_nFactionId)!;
       set => Encounter.m_nFactionId = value.Id;
     }
 
@@ -143,9 +143,9 @@ namespace Anvil.API
       set => NWScript.SetEncounterSpawnsCurrent(value, this);
     }
 
-    public static NwEncounter Create(string template, Location location, string newTag = null)
+    public static NwEncounter? Create(string template, Location location, string? newTag = null)
     {
-      if (string.IsNullOrEmpty(template))
+      if (string.IsNullOrEmpty(template) || location.Area == null)
       {
         return default;
       }
@@ -154,7 +154,7 @@ namespace Anvil.API
       Vector position = location.Position.ToNativeVector();
       Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
 
-      CNWSEncounter encounter = null;
+      CNWSEncounter? encounter = null;
       bool result = NativeUtils.CreateFromResRef(ResRefType.UTE, template, (resGff, resStruct) =>
       {
         encounter = new CNWSEncounter();
@@ -178,10 +178,9 @@ namespace Anvil.API
       return result && encounter != null ? encounter.ToNwObject<NwEncounter>() : null;
     }
 
-    public static NwEncounter Deserialize(byte[] serialized)
+    public static NwEncounter? Deserialize(byte[] serialized)
     {
-      CNWSEncounter encounter = null;
-
+      CNWSEncounter? encounter = null;
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTE"))
@@ -193,6 +192,7 @@ namespace Anvil.API
         if (encounter.LoadEncounter(resGff, resStruct).ToBool())
         {
           encounter.LoadObjectState(resGff, resStruct);
+          encounter.m_oidArea = Invalid;
           GC.SuppressFinalize(encounter);
           return true;
         }
@@ -204,12 +204,12 @@ namespace Anvil.API
       return result && encounter != null ? encounter.ToNwObject<NwEncounter>() : null;
     }
 
-    public static implicit operator CNWSEncounter(NwEncounter encounter)
+    public static implicit operator CNWSEncounter?(NwEncounter? encounter)
     {
       return encounter?.Encounter;
     }
 
-    public override NwEncounter Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwEncounter Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       throw new NotSupportedException("Encounter objects may not be cloned.");
     }
@@ -231,7 +231,7 @@ namespace Anvil.API
       int objType = (int)GetObjectType<T>();
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
-        yield return obj.ToNwObject<T>();
+        yield return obj.ToNwObject<T>()!;
       }
     }
 
@@ -245,11 +245,11 @@ namespace Anvil.API
       int objType = (int)objectTypes;
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
-        yield return obj.ToNwObject<NwGameObject>();
+        yield return obj.ToNwObject<NwGameObject>()!;
       }
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTE", (resGff, resStruct) =>
       {

@@ -8,20 +8,20 @@ namespace Anvil.API.Events
 {
   public sealed class OnServerSendArea : IEvent
   {
-    public NwArea Area { get; private init; }
+    public NwArea Area { get; private init; } = null!;
 
     /// <summary>
     /// Gets a value indicating whether this is the player's first time logging in to the server since a restart.
     /// </summary>
     public bool IsPlayerNewToModule { get; private init; }
 
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
-    NwObject IEvent.Context => Player.ControlledCreature;
+    NwObject? IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SendServerToPlayerAreaClientAreaHook> Hook { get; set; }
+      private static FunctionHook<SendServerToPlayerAreaClientAreaHook> Hook { get; set; } = null!;
 
       private delegate int SendServerToPlayerAreaClientAreaHook(void* pMessage, void* pPlayer, void* pArea, float fX, float fY, float fZ, void* vNewOrientation, int bPlayerIsNewToModule);
 
@@ -37,8 +37,8 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnServerSendArea
         {
-          Area = CNWSArea.FromPointer(pArea).ToNwObject<NwArea>(),
-          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer(),
+          Area = CNWSArea.FromPointer(pArea).ToNwObject<NwArea>()!,
+          Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
           IsPlayerNewToModule = bPlayerIsNewToModule.ToBool(),
         });
 

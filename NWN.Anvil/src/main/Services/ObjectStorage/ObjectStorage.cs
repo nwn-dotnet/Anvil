@@ -12,8 +12,8 @@ namespace Anvil.Services
     private const string FloatStorageKey = "FLTMAP";
     private const string IntStorageKey = "INTMAP";
     private const string StringStorageKey = "STRMAP";
-    private Dictionary<string, ObjectStorageValue<float>> floatMap = new Dictionary<string, ObjectStorageValue<float>>();
 
+    private Dictionary<string, ObjectStorageValue<float>> floatMap = new Dictionary<string, ObjectStorageValue<float>>();
     private Dictionary<string, ObjectStorageValue<int>> intMap = new Dictionary<string, ObjectStorageValue<int>>();
     private Dictionary<string, ObjectStorageValue<string>> stringMap = new Dictionary<string, ObjectStorageValue<string>>();
 
@@ -83,7 +83,7 @@ namespace Anvil.Services
     /// <param name="prefix">The storage prefix/group.</param>
     /// <param name="key">The storage key.</param>
     /// <returns>The string stored with the specified key, otherwise null if the key has no value populated.</returns>
-    public string GetString(string prefix, string key)
+    public string? GetString(string prefix, string key)
     {
       string fullKey = prefix + "!" + key;
       return stringMap.TryGetValue(fullKey, out ObjectStorageValue<string> value) ? value.Value : null;
@@ -235,7 +235,7 @@ namespace Anvil.Services
       }
     }
 
-    internal string Serialize(bool persistentDataOnly = true)
+    internal string? Serialize(bool persistentDataOnly = true)
     {
       List<KeyValuePair<string, ObjectStorageValue<int>>> intData = GetValuesToSerialize(intMap, persistentDataOnly);
       List<KeyValuePair<string, ObjectStorageValue<float>>> floatData = GetValuesToSerialize(floatMap, persistentDataOnly);
@@ -267,7 +267,7 @@ namespace Anvil.Services
               }
               else
               {
-                string valueAsString = value.Value.ToString();
+                string? valueAsString = value.Value?.ToString();
                 stringBuilder.Append($"<{key.Length}>{key} = <{valueAsString?.Length ?? 0}>{valueAsString};");
               }
             }

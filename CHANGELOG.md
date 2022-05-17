@@ -3,6 +3,35 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.11
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...v8193.34.11
+
+### Added
+- NwCreature: Added `GetSlotFromItem`
+- NwCreature: Added `RunEquip(item, EquipmentSlots)`
+- ItemAppearance: Added `ChangeAppearance`
+- NuiWindowToken: Added `Get/SetUserData()`
+- Effect: Added `SkillIncreaseAll`, `SkillDecreaseAll`
+
+### Package Updates
+- NWNX 4842f60 -> 95e700a
+- NWN.Native 8193.34.3 -> 8193.34.4
+- NWN.Core 8193.34.4 -> 8193.34.5
+- NLog 4.7.15 -> 5.0.0
+
+### Deprecated
+- `ItemAppearanceArmorModel` enum. Use `CreaturePart` instead.
+- `NwPlayer.NuiDestroy`. Use `NuiWindowToken.Close` instead.
+- `NwPlayer.NuiGetUserData`. Use `NuiWindowToken.NuiGetUserData` instead.
+- `NwPlayer.NuiSetUserData`. Use `NuiWindowToken.NuiSetUserData` instead.
+- `NwPlayer.NuiGetWindowId`. Use `NuiWindowToken.NuiGetWindowId` instead.
+
+### Fixed
+- Fixed `NwGameObject.Location` setter not working for newly deserialized game objects.
+- Fixed a crash when an equipped item was sent to limbo with `NwModule.MoveObjectToLimbo`.
+- Fixed `NuiWindowToken.WindowId` returning an empty string from events.
+- Speculative fix for a rare native crash when fetching 2da strings.
+
 ## 8193.34.10
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.9...v8193.34.10
 

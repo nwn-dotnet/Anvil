@@ -19,18 +19,18 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the player that is changing the map pin.
     /// </summary>
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets if this pin destroy event should be prevented.
     /// </summary>
     public bool PreventPinDestroy { get; set; }
 
-    NwObject IEvent.Context => Player.ControlledCreature;
+    NwObject? IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<HandleMapPinDestroyMapPinMessageHook> Hook { get; set; }
+      private static FunctionHook<HandleMapPinDestroyMapPinMessageHook> Hook { get; set; } = null!;
 
       private delegate int HandleMapPinDestroyMapPinMessageHook(void* pMessage, void* pPlayer);
 
@@ -57,7 +57,7 @@ namespace Anvil.API.Events
 
         OnMapPinDestroyPin eventData = ProcessEvent(new OnMapPinDestroyPin
         {
-          Player = player.ToNwPlayer(),
+          Player = player.ToNwPlayer()!,
           Id = id,
         });
 

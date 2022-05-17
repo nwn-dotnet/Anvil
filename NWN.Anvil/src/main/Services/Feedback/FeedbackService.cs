@@ -26,9 +26,9 @@ namespace Anvil.Services
 
     private FilterMode feedbackMessageFilterMode;
 
-    private FunctionHook<SendFeedbackMessageHook> sendFeedbackMessageHook;
-    private FunctionHook<SendServerToPlayerCCMessageHook> sendServerToPlayerCCMessageHook;
-    private FunctionHook<SendServerToPlayerJournalUpdatedHook> sendServerToPlayerJournalUpdatedHook;
+    private FunctionHook<SendFeedbackMessageHook>? sendFeedbackMessageHook;
+    private FunctionHook<SendServerToPlayerCCMessageHook>? sendServerToPlayerCCMessageHook;
+    private FunctionHook<SendServerToPlayerJournalUpdatedHook>? sendServerToPlayerJournalUpdatedHook;
 
     public FeedbackService(HookService hookService)
     {
@@ -39,7 +39,7 @@ namespace Anvil.Services
 
     private delegate int SendServerToPlayerCCMessageHook(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData);
 
-    private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString);
+    private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString);
 
     public FilterMode CombatMessageFilterMode
     {
@@ -187,7 +187,7 @@ namespace Anvil.Services
         return;
       }
 
-      sendFeedbackMessageHook.CallOriginal(pCreature, nFeedbackId, pMessageData, pFeedbackPlayer);
+      sendFeedbackMessageHook!.CallOriginal(pCreature, nFeedbackId, pMessageData, pFeedbackPlayer);
     }
 
     private int OnSendServerToPlayerCCMessage(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData)
@@ -198,10 +198,10 @@ namespace Anvil.Services
         return false.ToInt();
       }
 
-      return sendServerToPlayerCCMessageHook.CallOriginal(pMessage, nPlayerId, nMinor, pMessageData, pAttackData);
+      return sendServerToPlayerCCMessageHook!.CallOriginal(pMessage, nPlayerId, nMinor, pMessageData, pAttackData);
     }
 
-    private int OnSendServerToPlayerJournalUpdated(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringStruct cExoLocString)
+    private int OnSendServerToPlayerJournalUpdated(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString)
     {
       CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
       if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.m_oidPCObject, FeedbackMessage.JournalUpdated, FeedbackMessageFilterMode))
@@ -209,7 +209,7 @@ namespace Anvil.Services
         return false.ToInt();
       }
 
-      return sendServerToPlayerJournalUpdatedHook.CallOriginal(pMessage, pPlayer, bQuest, bCompleted, cExoLocString);
+      return sendServerToPlayerJournalUpdatedHook!.CallOriginal(pMessage, pPlayer, bQuest, bCompleted, cExoLocString);
     }
   }
 }

@@ -15,7 +15,7 @@ namespace Anvil.Tests.Generators
     private readonly string standardPaletteResRef;
 
     [Inject]
-    public ResourceManager ResourceManager { private get; init; }
+    public ResourceManager ResourceManager { private get; init; } = null!;
 
     private readonly List<PaletteEntry> blueprints = new List<PaletteEntry>();
 
@@ -33,7 +33,7 @@ namespace Anvil.Tests.Generators
 
     private void TryLoadPalette(string resRef, string rootPath)
     {
-      using GffResource palette = ResourceManager.GetGenericFile(resRef, ResRefType.ITP);
+      using GffResource? palette = ResourceManager.GetGenericFile(resRef, ResRefType.ITP);
       if (palette == null)
       {
         Log.Error("Failed to load palette {Palette}", resRef);
@@ -50,44 +50,50 @@ namespace Anvil.Tests.Generators
       }
     }
 
-    private void ProcessList(GffResourceField field, string path)
+    private void ProcessList(GffResourceField? field, string path)
     {
-      foreach (GffResourceField child in field.Values)
+      if (field != null)
       {
-        ProcessStruct(child, path);
+        foreach (GffResourceField child in field.Values)
+        {
+          ProcessStruct(child, path);
+        }
       }
     }
 
     private void ProcessStruct(GffResourceField field, string path)
     {
-      if (field.TryGetValue("RESREF", out GffResourceField resRefField))
+      if (field.TryGetValue("RESREF", out GffResourceField? resRefField))
       {
-        string resRef = resRefField.Value<string>();
-        string name = "Unknown";
+        string? resRef = resRefField.Value<string>();
+        string? name = "Unknown";
 
-        if (field.TryGetValue("NAME", out GffResourceField creatureNameField))
+        if (field.TryGetValue("NAME", out GffResourceField? creatureNameField))
         {
           name = creatureNameField.Value<string>();
         }
-        else if (field.TryGetValue("STRREF", out GffResourceField creatureNameStrRefField))
+        else if (field.TryGetValue("STRREF", out GffResourceField? creatureNameStrRefField))
         {
           name = new StrRef(creatureNameStrRefField.Value<uint>()).ToString();
         }
 
-        blueprints.Add(new PaletteEntry
+        if (resRef != null)
         {
-          ResRef = resRef,
-          Name = path + "/" + name,
-        });
+          blueprints.Add(new PaletteEntry
+          {
+            ResRef = resRef,
+            Name = path + "/" + name,
+          });
+        }
       }
       else
       {
-        if (field.TryGetValue("STRREF", out GffResourceField groupStrRef))
+        if (field.TryGetValue("STRREF", out GffResourceField? groupStrRef))
         {
           path = Path.Combine(path, new StrRef(groupStrRef.Value<uint>()).ToString());
         }
 
-        if (field.TryGetValue("LIST", out GffResourceField list))
+        if (field.TryGetValue("LIST", out GffResourceField? list))
         {
           ProcessList(list, path);
         }

@@ -49,7 +49,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the favoured class for this race, for the purposes of multi-classing.
     /// </summary>
-    public NwClass FavoredClass => NwClass.FromClassId(raceInfo.m_nFavoredClass);
+    public NwClass? FavoredClass => NwClass.FromClassId(raceInfo.m_nFavoredClass);
 
     /// <summary>
     /// Gets the initial muliplier for skill points given at first level.
@@ -101,7 +101,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="raceId">The associated race id.</param>
     /// <returns>The associated <see cref="NwRace"/> structure, or null if the race has no matching entry.</returns>
-    public static NwRace FromRaceId(ushort raceId)
+    public static NwRace? FromRaceId(ushort raceId)
     {
       return raceId != IntegerExtensions.AsUShort(-1) ? FromRaceId((int)raceId) : null;
     }
@@ -111,7 +111,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="raceId">The id of the race to resolve.</param>
     /// <returns>The associated <see cref="NwRace"/> instance. Null if the race id is invalid.</returns>
-    public static NwRace FromRaceId(int raceId)
+    public static NwRace? FromRaceId(int raceId)
     {
       return NwRuleset.Races.ElementAtOrDefault(raceId);
     }
@@ -121,12 +121,12 @@ namespace Anvil.API
     /// </summary>
     /// <param name="racialType">The racial type to resolve.</param>
     /// <returns>The associated <see cref="NwRace"/> instance. Null if the racial type is invalid.</returns>
-    public static NwRace FromRacialType(RacialType racialType)
+    public static NwRace? FromRacialType(RacialType racialType)
     {
       return NwRuleset.Races.ElementAtOrDefault((int)racialType);
     }
 
-    public static implicit operator NwRace(RacialType racialType)
+    public static implicit operator NwRace?(RacialType racialType)
     {
       return NwRuleset.Races.ElementAtOrDefault((int)racialType);
     }

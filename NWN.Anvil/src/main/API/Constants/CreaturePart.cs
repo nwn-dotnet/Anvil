@@ -22,6 +22,7 @@ namespace Anvil.API
     LeftShoulder = NWScript.CREATURE_PART_LEFT_SHOULDER,
     RightHand = NWScript.CREATURE_PART_RIGHT_HAND,
     LeftHand = NWScript.CREATURE_PART_LEFT_HAND,
+    Robe = NWScript.ITEM_APPR_ARMOR_MODEL_ROBE,
     Head = NWScript.CREATURE_PART_HEAD,
   }
 }

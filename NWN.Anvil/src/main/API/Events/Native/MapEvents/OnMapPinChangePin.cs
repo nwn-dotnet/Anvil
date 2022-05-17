@@ -20,12 +20,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the note that was set on the map pin.
     /// </summary>
-    public string Note { get; private init; }
+    public string? Note { get; private init; }
 
     /// <summary>
     /// Gets the player that is changing the map pin.
     /// </summary>
-    public NwPlayer Player { get; private init; }
+    public NwPlayer Player { get; private init; } = null!;
 
     /// <summary>
     /// Gets the position that the pin was placed at.
@@ -37,11 +37,11 @@ namespace Anvil.API.Events
     /// </summary>
     public bool PreventPinChange { get; set; }
 
-    NwObject IEvent.Context => Player.ControlledCreature;
+    NwObject? IEvent.Context => Player.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<HandleMapPinChangePinMessageHook> Hook { get; set; }
+      private static FunctionHook<HandleMapPinChangePinMessageHook> Hook { get; set; } = null!;
 
       private delegate int HandleMapPinChangePinMessageHook(void* pMessage, void* pPlayer);
 
@@ -81,7 +81,7 @@ namespace Anvil.API.Events
 
         OnMapPinChangePin eventData = ProcessEvent(new OnMapPinChangePin
         {
-          Player = player.ToNwPlayer(),
+          Player = player.ToNwPlayer()!,
           Position = new Vector3(x, y, z),
           Note = note,
           Id = id,

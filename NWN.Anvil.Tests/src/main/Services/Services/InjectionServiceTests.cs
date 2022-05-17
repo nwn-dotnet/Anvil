@@ -8,13 +8,13 @@ namespace Anvil.Tests.Services
   public sealed class InjectionServiceTests
   {
     [Inject]
-    private static InjectionService InjectionService { get; set; }
+    private static InjectionService? InjectionService { get; set; }
 
     [Inject]
-    private static HookService StaticHookService { get; set; }
+    private static HookService? StaticHookService { get; set; }
 
     [Inject]
-    private static InjectionTestService StaticInjectionTestService { get; set; }
+    private static InjectionTestService? StaticInjectionTestService { get; set; }
 
     [Test(Description = "Anvil services are injected on static properties.")]
     public void InjectionServiceInjectsServicesOnStaticProperties()
@@ -32,7 +32,7 @@ namespace Anvil.Tests.Services
       Assert.That(injectionTest.HookService, Is.Null);
       Assert.That(injectionTest.InjectionTestService, Is.Null);
 
-      InjectionService.Inject(injectionTest);
+      InjectionService!.Inject(injectionTest);
 
       Assert.That(injectionTest.EventService, Is.Not.Null);
       Assert.That(injectionTest.HookService, Is.Not.Null);
@@ -42,41 +42,41 @@ namespace Anvil.Tests.Services
     [Test(Description = "Services with inject properties are implicitly injected.")]
     public void InjectionServiceInjectsServiceDependencies()
     {
-      Assert.That(StaticInjectionTestService.NwServer, Is.Not.Null, "A constructor dependency was not injected.");
-      Assert.That(StaticInjectionTestService.ResourceManager, Is.Not.Null, "A constructor dependency was not injected.");
-      Assert.That(StaticInjectionTestService.ChatService, Is.Null, "A property was injected when it shouldn't have.");
-      Assert.That(StaticInjectionTestService.EventService, Is.Not.Null, "A property dependency was not injected.");
-      Assert.That(StaticInjectionTestService.HookService, Is.Not.Null, "A property dependency was not injected.");
+      Assert.That(StaticInjectionTestService?.NwServer, Is.Not.Null, "A constructor dependency was not injected.");
+      Assert.That(StaticInjectionTestService?.ResourceManager, Is.Not.Null, "A constructor dependency was not injected.");
+      Assert.That(StaticInjectionTestService?.ChatService, Is.Null, "A property was injected when it shouldn't have.");
+      Assert.That(StaticInjectionTestService?.EventService, Is.Not.Null, "A property dependency was not injected.");
+      Assert.That(StaticInjectionTestService?.HookService, Is.Not.Null, "A property dependency was not injected.");
     }
 
     private sealed class InjectionTest
     {
       [Inject]
-      internal EventService EventService { get; init; }
+      internal EventService? EventService { get; init; }
 
       [Inject]
-      internal HookService HookService { get; init; }
+      internal HookService? HookService { get; init; }
 
       [Inject]
-      internal InjectionTestService InjectionTestService { get; init; }
+      internal InjectionTestService? InjectionTestService { get; init; }
     }
 
     [ServiceBinding(typeof(InjectionTestService))]
     internal sealed class InjectionTestService
     {
-      public NwServer NwServer { get; }
+      public NwServer? NwServer { get; }
 
-      public ResourceManager ResourceManager { get; }
+      public ResourceManager? ResourceManager { get; }
 
       // Not injected with attribute or initialized from constructor, expected to be null.
       // ReSharper disable once UnassignedGetOnlyAutoProperty
-      public ChatService ChatService { get; }
+      public ChatService? ChatService { get; }
 
       [Inject]
-      internal EventService EventService { get; init; }
+      internal EventService? EventService { get; init; }
 
       [Inject]
-      internal HookService HookService { get; init; }
+      internal HookService? HookService { get; init; }
 
       public InjectionTestService(NwServer nwServer, ResourceManager resourceManager)
       {

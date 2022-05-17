@@ -8,14 +8,14 @@ namespace Anvil.API.Events
 {
   public sealed class OnAssociateRemove : IEvent
   {
-    public NwCreature Associate { get; private init; }
-    public NwCreature Owner { get; private init; }
+    public NwCreature Associate { get; private init; } = null!;
+    public NwCreature Owner { get; private init; } = null!;
 
     NwObject IEvent.Context => Owner;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<RemoveAssociateHook> Hook { get; set; }
+      private static FunctionHook<RemoveAssociateHook> Hook { get; set; } = null!;
 
       private delegate void RemoveAssociateHook(void* pCreature, uint oidAssociate);
 
@@ -31,8 +31,8 @@ namespace Anvil.API.Events
       {
         ProcessEvent(new OnAssociateRemove
         {
-          Owner = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Associate = oidAssociate.ToNwObject<NwCreature>(),
+          Owner = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Associate = oidAssociate.ToNwObject<NwCreature>()!,
         });
 
         Hook.CallOriginal(pCreature, oidAssociate);

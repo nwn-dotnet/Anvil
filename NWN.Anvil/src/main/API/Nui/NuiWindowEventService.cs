@@ -18,7 +18,7 @@ namespace Anvil.API
 
     public void Subscribe(NuiWindowToken token, Action<ModuleEvents.OnNuiEvent> handler)
     {
-      if (!eventHandlers.TryGetValue(token.Player, out Dictionary<int, Action<ModuleEvents.OnNuiEvent>> playerHandlers))
+      if (!eventHandlers.TryGetValue(token.Player, out Dictionary<int, Action<ModuleEvents.OnNuiEvent>>? playerHandlers))
       {
         playerHandlers = new Dictionary<int, Action<ModuleEvents.OnNuiEvent>>();
         eventHandlers[token.Player] = playerHandlers;
@@ -36,17 +36,15 @@ namespace Anvil.API
 
     public void Unsubscribe(NuiWindowToken token, Action<ModuleEvents.OnNuiEvent> handler)
     {
-      if (!eventHandlers.TryGetValue(token.Player, out Dictionary<int, Action<ModuleEvents.OnNuiEvent>> playerHandlers))
+      if (eventHandlers.TryGetValue(token.Player, out Dictionary<int, Action<ModuleEvents.OnNuiEvent>>? playerHandlers))
       {
-        return;
-      }
-
-      if (playerHandlers.ContainsKey(token.Token))
-      {
-        playerHandlers[token.Token] -= handler;
-        if (playerHandlers[token.Token] == null)
+        if (playerHandlers.TryGetValue(token.Token, out Action<ModuleEvents.OnNuiEvent>? existingHandler))
         {
-          playerHandlers.Remove(token.Token);
+          existingHandler -= handler;
+          if (existingHandler == null)
+          {
+            playerHandlers.Remove(token.Token);
+          }
         }
       }
     }
@@ -58,11 +56,11 @@ namespace Anvil.API
 
     private void OnNuiEvent(ModuleEvents.OnNuiEvent eventData)
     {
-      if (eventHandlers.TryGetValue(eventData.Player, out Dictionary<int, Action<ModuleEvents.OnNuiEvent>> playerEventHandlers))
+      if (eventHandlers.TryGetValue(eventData.Player, out Dictionary<int, Action<ModuleEvents.OnNuiEvent>>? playerEventHandlers))
       {
-        if (playerEventHandlers.TryGetValue(eventData.Token.Token, out Action<ModuleEvents.OnNuiEvent> eventHandler))
+        if (playerEventHandlers.TryGetValue(eventData.Token.Token, out Action<ModuleEvents.OnNuiEvent>? eventHandler))
         {
-          eventHandler?.Invoke(eventData);
+          eventHandler.Invoke(eventData);
           if (eventData.EventType == NuiEventType.Close)
           {
             playerEventHandlers.Remove(eventData.Token.Token);

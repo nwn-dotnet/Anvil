@@ -14,32 +14,32 @@ namespace Anvil.API
     /// <summary>
     /// Gets a list of all base item types defined in the module's ruleset.
     /// </summary>
-    public static IReadOnlyList<NwBaseItem> BaseItems { get; private set; }
+    public static IReadOnlyList<NwBaseItem> BaseItems { get; private set; } = null!;
 
     /// <summary>
     /// Gets a list of all classes defined in the module's ruleset.
     /// </summary>
-    public static IReadOnlyList<NwClass> Classes { get; private set; }
+    public static IReadOnlyList<NwClass> Classes { get; private set; } = null!;
 
     /// <summary>
     /// Gets a list of all feats defined in the module's ruleset.
     /// </summary>
-    public static IReadOnlyList<NwFeat> Feats { get; private set; }
+    public static IReadOnlyList<NwFeat> Feats { get; private set; } = null!;
 
     /// <summary>
     /// Gets a list of all races defined in the module's ruleset.
     /// </summary>
-    public static IReadOnlyList<NwRace> Races { get; private set; }
+    public static IReadOnlyList<NwRace> Races { get; private set; } = null!;
 
     /// <summary>
     /// Gets a list of all skills defined in the module's ruleset.
     /// </summary>
-    public static IReadOnlyList<NwSkill> Skills { get; private set; }
+    public static IReadOnlyList<NwSkill> Skills { get; private set; } = null!;
 
     /// <summary>
     /// Gets a list of all spells defined in the module's ruleset.
     /// </summary>
-    public static IReadOnlyList<NwSpell> Spells { get; private set; }
+    public static IReadOnlyList<NwSpell> Spells { get; private set; } = null!;
 
     /// <summary>
     /// Reloads all game rules (2da stuff, etc).<br/>
@@ -54,7 +54,7 @@ namespace Anvil.API
     [ServiceBindingOptions(InternalBindingPriority.API)]
     internal sealed unsafe class Factory : IDisposable
     {
-      private FunctionHook<ReloadAllHook> reloadAllHook;
+      private FunctionHook<ReloadAllHook>? reloadAllHook;
 
       public Factory(HookService hookService)
       {

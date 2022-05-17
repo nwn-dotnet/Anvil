@@ -16,7 +16,7 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOfEffectOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
-      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
+      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
 
       NwObject IEvent.Context => Effect;
     }

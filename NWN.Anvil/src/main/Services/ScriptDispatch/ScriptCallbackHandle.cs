@@ -9,7 +9,7 @@ namespace Anvil.Services
   public sealed class ScriptCallbackHandle : IDisposable
   {
     [Inject]
-    private static ScriptHandleFactory ScriptHandleFactory { get; set; }
+    private static ScriptHandleFactory ScriptHandleFactory { get; set; } = null!;
 
     public readonly string ScriptName;
 

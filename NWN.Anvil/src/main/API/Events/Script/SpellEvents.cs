@@ -9,7 +9,7 @@ namespace Anvil.API.Events
       public OnSpellCast()
       {
         Caster = NWScript.OBJECT_SELF.ToNwObject<NwGameObject>();
-        Spell = NwSpell.FromSpellId(NWScript.GetSpellId());
+        Spell = NwSpell.FromSpellId(NWScript.GetSpellId())!;
         Harmful = NWScript.GetLastSpellHarmful().ToBool();
         TargetObject = NWScript.GetSpellTargetObject().ToNwObject<NwGameObject>();
         TargetLocation = NWScript.GetSpellTargetLocation();
@@ -22,7 +22,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the caster of this spell.
       /// </summary>
-      public NwGameObject Caster { get; }
+      public NwGameObject? Caster { get; }
 
       /// <summary>
       /// Gets a value indicating whether this spell is considered harmful.
@@ -32,7 +32,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the item that was used to cast the spell. Returns null if no item was used to cast this spell.
       /// </summary>
-      public NwItem Item { get; }
+      public NwItem? Item { get; }
 
       /// <summary>
       /// Gets the type of metamagic used on the last spell.
@@ -52,19 +52,19 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the class that the caster cast the spell as.
       /// </summary>
-      public NwClass SpellCastClass { get; }
+      public NwClass? SpellCastClass { get; }
 
       /// <summary>
       /// Gets the targeted location of this spell.
       /// </summary>
-      public Location TargetLocation { get; }
+      public Location? TargetLocation { get; }
 
       /// <summary>
       /// Gets the object being targeted by this spell, otherwise returns null if the caster targeted the ground.
       /// </summary>
-      public NwGameObject TargetObject { get; }
+      public NwGameObject? TargetObject { get; }
 
-      NwObject IEvent.Context => Caster;
+      NwObject? IEvent.Context => Caster;
     }
   }
 }

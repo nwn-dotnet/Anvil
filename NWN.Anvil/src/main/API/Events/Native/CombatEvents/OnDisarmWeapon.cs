@@ -8,20 +8,20 @@ namespace Anvil.API.Events
 {
   public sealed class OnDisarmWeapon : IEvent
   {
-    public NwGameObject DisarmedBy { get; private init; }
+    public NwGameObject DisarmedBy { get; private init; } = null!;
 
-    public NwGameObject DisarmedObject { get; private init; }
+    public NwGameObject DisarmedObject { get; private init; } = null!;
 
-    public NwFeat Feat { get; private init; }
+    public NwFeat Feat { get; private init; } = null!;
     public bool PreventDisarm { get; set; }
 
-    public Lazy<bool> Result { get; private set; }
+    public Lazy<bool> Result { get; private set; } = null!;
 
     NwObject IEvent.Context => DisarmedObject;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<ApplyDisarmHook> Hook { get; set; }
+      private static FunctionHook<ApplyDisarmHook> Hook { get; set; } = null!;
 
       private delegate int ApplyDisarmHook(void* pEffectHandler, void* pObject, void* pEffect, int bLoadingGame);
 
@@ -40,9 +40,9 @@ namespace Anvil.API.Events
 
         OnDisarmWeapon eventData = new OnDisarmWeapon
         {
-          DisarmedObject = gameObject.ToNwObject<NwGameObject>(),
-          DisarmedBy = gameEffect.m_oidCreator.ToNwObject<NwGameObject>(),
-          Feat = gameEffect.GetInteger(0) == 1 ? NwFeat.FromFeatType(API.Feat.ImprovedDisarm) : NwFeat.FromFeatType(API.Feat.Disarm),
+          DisarmedObject = gameObject.ToNwObject<NwGameObject>()!,
+          DisarmedBy = gameEffect.m_oidCreator.ToNwObject<NwGameObject>()!,
+          Feat = gameEffect.GetInteger(0) == 1 ? NwFeat.FromFeatType(API.Feat.ImprovedDisarm)! : NwFeat.FromFeatType(API.Feat.Disarm)!,
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventDisarm && Hook.CallOriginal(pEffectHandler, pObject, pEffect, bLoadingGame).ToBool());

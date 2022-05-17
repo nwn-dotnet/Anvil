@@ -11,10 +11,10 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     [Inject]
-    private static ScriptDispatchService ScriptDispatchService { get; set; }
+    private static ScriptDispatchService? ScriptDispatchService { get; set; }
 
     [Inject]
-    private static ServerUpdateLoopService ServerUpdateLoopService { get; set; }
+    private static ServerUpdateLoopService? ServerUpdateLoopService { get; set; }
 
     private readonly Dictionary<ulong, Action> closures = new Dictionary<ulong, Action>();
     private readonly Stack<uint> scriptContexts = new Stack<uint>();
@@ -89,7 +89,10 @@ namespace Anvil.Services
 
       try
       {
-        retVal = (int)ScriptDispatchService.TryExecuteScript(script, oidSelf);
+        if (ScriptDispatchService != null)
+        {
+          retVal = (int)ScriptDispatchService.TryExecuteScript(script, oidSelf);
+        }
       }
       catch (Exception e)
       {

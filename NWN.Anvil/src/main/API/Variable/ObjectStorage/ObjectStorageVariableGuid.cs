@@ -6,15 +6,15 @@ namespace Anvil.API
   public abstract class ObjectStorageVariableGuid : ObjectStorageVariable<Guid>
   {
     [Inject]
-    internal ObjectStorageService ObjectStorageService { private get; init; }
+    internal ObjectStorageService ObjectStorageService { private get; init; } = null!;
 
-    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage objectStorage) && objectStorage.ContainsString(ObjectStoragePrefix, Key);
+    public sealed override bool HasValue => ObjectStorageService.TryGetObjectStorage(Object, out ObjectStorage? objectStorage) && objectStorage.ContainsString(ObjectStoragePrefix, Key);
 
     public sealed override Guid Value
     {
       get
       {
-        string stored = ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key);
+        string? stored = ObjectStorageService.GetObjectStorage(Object).GetString(ObjectStoragePrefix, Key);
         return string.IsNullOrEmpty(stored) ? Guid.Empty : Guid.Parse(stored);
       }
       set => ObjectStorageService.GetObjectStorage(Object).Set(ObjectStoragePrefix, Key, value.ToUUIDString(), true);

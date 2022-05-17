@@ -18,12 +18,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> that triggered the disturb event on <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwItem DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
+      public NwItem? DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that disturbed <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwCreature Disturber { get; } = NWScript.GetLastDisturbed().ToNwObject<NwCreature>();
+      public NwCreature? Disturber { get; } = NWScript.GetLastDisturbed().ToNwObject<NwCreature>();
 
       /// <summary>
       /// Gets the <see cref="InventoryDisturbType"/>.
@@ -33,7 +33,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was disturbed.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
       NwObject IEvent.Context => Placeable;
     }

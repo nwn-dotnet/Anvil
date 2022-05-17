@@ -18,9 +18,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that has triggered the event.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwPlayer();
+      public NwPlayer Player { get; } = NWScript.GetPCLevellingUp().ToNwPlayer()!;
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject? IEvent.Context => Player.ControlledCreature;
     }
   }
 }

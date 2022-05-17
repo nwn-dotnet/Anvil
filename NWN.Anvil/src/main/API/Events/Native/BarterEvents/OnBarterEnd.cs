@@ -12,21 +12,20 @@ namespace Anvil.API.Events
   public sealed class OnBarterEnd : IEvent
   {
     public bool Complete { get; private init; }
-    public NwPlayer Initiator { get; private init; }
+    public NwPlayer Initiator { get; private init; } = null!;
 
-    public IReadOnlyList<NwItem> InitiatorItems { get; private init; }
+    public IReadOnlyList<NwItem> InitiatorItems { get; private init; } = null!;
 
-    public NwPlayer Target { get; private init; }
+    public NwPlayer Target { get; private init; } = null!;
 
-    public IReadOnlyList<NwItem> TargetItems { get; private init; }
+    public IReadOnlyList<NwItem> TargetItems { get; private init; } = null!;
 
-    NwObject IEvent.Context => Initiator.ControlledCreature;
+    NwObject? IEvent.Context => Initiator.ControlledCreature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SendServerToPlayerBarterCloseBarterHook> sendServerToPlayerBarterCloseBarterHook;
-
-      private static FunctionHook<SetListAcceptedHook> setListAcceptedHook;
+      private static FunctionHook<SendServerToPlayerBarterCloseBarterHook> sendServerToPlayerBarterCloseBarterHook = null!;
+      private static FunctionHook<SetListAcceptedHook> setListAcceptedHook = null!;
 
       private delegate int SendServerToPlayerBarterCloseBarterHook(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
 
@@ -43,7 +42,7 @@ namespace Anvil.API.Events
         return new IDisposable[] { setListAcceptedHook, sendServerToPlayerBarterCloseBarterHook };
       }
 
-      private static OnBarterEnd GetBarterAcceptedEventData(CNWSBarter other, CNWSBarter initiator, CNWSBarter target)
+      private static OnBarterEnd? GetBarterAcceptedEventData(CNWSBarter other, CNWSBarter initiator, CNWSBarter target)
       {
         // We only handle a completed barter when the other player has already accepted
         if (!other.m_bListAccepted.ToBool())
@@ -53,8 +52,8 @@ namespace Anvil.API.Events
 
         return new OnBarterEnd
         {
-          Initiator = initiator.m_pOwner.m_idSelf.ToNwPlayer(),
-          Target = target.m_pOwner.m_idSelf.ToNwPlayer(),
+          Initiator = initiator.m_pOwner.m_idSelf.ToNwPlayer()!,
+          Target = target.m_pOwner.m_idSelf.ToNwPlayer()!,
           Complete = true,
           InitiatorItems = GetBarterItems(initiator),
           TargetItems = GetBarterItems(target),
@@ -65,17 +64,17 @@ namespace Anvil.API.Events
       {
         return new OnBarterEnd
         {
-          Initiator = initiator.m_pOwner.m_idSelf.ToNwPlayer(),
-          Target = target.m_pOwner.m_idSelf.ToNwPlayer(),
+          Initiator = initiator.m_pOwner.m_idSelf.ToNwPlayer()!,
+          Target = target.m_pOwner.m_idSelf.ToNwPlayer()!,
           Complete = false,
           InitiatorItems = ImmutableArray<NwItem>.Empty,
           TargetItems = ImmutableArray<NwItem>.Empty,
         };
       }
 
-      private static OnBarterEnd GetBarterEventData(CNWSBarter barter, bool accepted)
+      private static OnBarterEnd? GetBarterEventData(CNWSBarter barter, bool accepted)
       {
-        NwCreature other = barter.m_oidBarrator.ToNwObject<NwCreature>();
+        NwCreature? other = barter.m_oidBarrator.ToNwObject<NwCreature>();
         if (other == null)
         {
           return null;
@@ -99,7 +98,7 @@ namespace Anvil.API.Events
         CExoLinkedListInternal itemList = barter.m_pBarterList.m_oidItems.m_pcExoLinkedListInternal;
         for (CExoLinkedListNode node = itemList.pHead; node != null; node = node.pNext)
         {
-          NwItem item = (*(uint*)node.pObject).ToNwObject<NwItem>();
+          NwItem? item = (*(uint*)node.pObject).ToNwObject<NwItem>();
           if (item != null)
           {
             items.Add(item);
@@ -112,19 +111,18 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerBarterCloseBarter(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted)
       {
-        NwPlayer player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer().ToNwPlayer();
+        NwPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(nInitiatorId).AsNWSPlayer().ToNwPlayer();
         if (player == null)
         {
           return sendServerToPlayerBarterCloseBarterHook.CallOriginal(pMessage, nInitiatorId, nRecipientId, bAccepted);
         }
 
-        CNWSBarter barter = player.ControlledCreature?.Creature?.GetBarterInfo(0);
+        CNWSBarter? barter = player.ControlledCreature?.Creature.GetBarterInfo(0);
 
         // We only need to run the END on a CANCEL BARTER for the initiator
         if (barter != null && barter.m_bInitiator.ToBool() && !bAccepted.ToBool())
         {
-          OnBarterEnd eventData = GetBarterEventData(barter, bAccepted.ToBool());
-
+          OnBarterEnd? eventData = GetBarterEventData(barter, bAccepted.ToBool());
           if (eventData != null)
           {
             ProcessEvent(eventData);
@@ -139,8 +137,7 @@ namespace Anvil.API.Events
       {
         if (pBarter != null && bAccepted.ToBool())
         {
-          OnBarterEnd eventData = GetBarterEventData(CNWSBarter.FromPointer(pBarter), bAccepted.ToBool());
-
+          OnBarterEnd? eventData = GetBarterEventData(CNWSBarter.FromPointer(pBarter), bAccepted.ToBool());
           if (eventData != null)
           {
             ProcessEvent(eventData);

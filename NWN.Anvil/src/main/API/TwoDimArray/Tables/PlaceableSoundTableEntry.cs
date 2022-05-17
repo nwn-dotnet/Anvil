@@ -2,21 +2,21 @@ namespace Anvil.API
 {
   public sealed class PlaceableSoundTableEntry : ITwoDimArrayEntry
   {
-    public string ArmorType { get; private set; }
+    public string? ArmorType { get; private set; }
 
-    public string Closed { get; private set; }
+    public string? Closed { get; private set; }
 
-    public string Destroyed { get; private set; }
+    public string? Destroyed { get; private set; }
 
-    public string Label { get; private set; }
+    public string? Label { get; private set; }
 
-    public string Locked { get; private set; }
+    public string? Locked { get; private set; }
 
-    public string Opened { get; private set; }
+    public string? Opened { get; private set; }
 
     public int RowIndex { get; init; }
 
-    public string Used { get; private set; }
+    public string? Used { get; private set; }
 
     void ITwoDimArrayEntry.InterpretEntry(TwoDimArrayEntry entry)
     {

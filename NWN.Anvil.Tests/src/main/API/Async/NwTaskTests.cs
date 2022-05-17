@@ -11,7 +11,7 @@ namespace Anvil.Tests.API
   public sealed class NwTaskTests
   {
     [Inject]
-    private static VirtualMachine VirtualMachine { get; set; }
+    private static VirtualMachine VirtualMachine { get; set; } = null!;
 
     [Test(Description = "Starts an async task, then attempts to switch back to the main thread & script context.")]
     [Timeout(2000)]

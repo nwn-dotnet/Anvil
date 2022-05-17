@@ -22,7 +22,7 @@ namespace Anvil.API
       {
         for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(currentArea))
         {
-          T obj = currentObj.ToNwObjectSafe<T>();
+          T? obj = currentObj.ToNwObjectSafe<T>();
           if (obj != null)
           {
             yield return obj;
@@ -56,7 +56,7 @@ namespace Anvil.API
 
         for (i = 0, current = NWScript.GetObjectByTag(tag, i); current != Invalid; i++, current = NWScript.GetObjectByTag(tag, i))
         {
-          T obj = current.ToNwObjectSafe<T>();
+          T? obj = current.ToNwObjectSafe<T>();
           if (obj != null)
           {
             yield return obj;
@@ -65,18 +65,18 @@ namespace Anvil.API
       }
     }
 
-    internal static NwObject CreateInternal(Guid uuid)
+    internal static NwObject? CreateInternal(Guid uuid)
     {
       return uuid == Guid.Empty ? null : CreateInternal(NWScript.GetObjectByUUID(uuid.ToUUIDString()));
     }
 
-    internal static T CreateInternal<T>(string template, Location location, bool useAppearAnim, string newTag) where T : NwGameObject
+    internal static T? CreateInternal<T>(string template, Location location, bool useAppearAnim, string? newTag) where T : NwGameObject
     {
       ObjectTypes objectType = GetObjectType<T>();
-      return NWScript.CreateObject((int)objectType, template, location, useAppearAnim.ToInt(), newTag).ToNwObject<T>();
+      return NWScript.CreateObject((int)objectType, template, location, useAppearAnim.ToInt(), newTag ?? string.Empty).ToNwObject<T>();
     }
 
-    internal static NwObject CreateInternal(uint objectId)
+    internal static NwObject? CreateInternal(uint objectId)
     {
       // Not a valid object
       if (objectId == Invalid)
@@ -93,7 +93,7 @@ namespace Anvil.API
       return CreateInternal(LowLevel.ServerExoApp.GetGameObject(objectId));
     }
 
-    internal static NwObject CreateInternal(ICGameObject gameObject)
+    internal static NwObject? CreateInternal(ICGameObject? gameObject)
     {
       if (gameObject == null)
       {
@@ -130,7 +130,7 @@ namespace Anvil.API
       return GetNativeObjectInfo(typeof(T)).ObjectType;
     }
 
-    private static NwObject CreateFromVirtualType(ICGameObject gameObject)
+    private static NwObject? CreateFromVirtualType(ICGameObject gameObject)
     {
       return (ObjectType)gameObject.m_nObjectType switch
       {
@@ -152,10 +152,13 @@ namespace Anvil.API
 
     private static NativeObjectInfoAttribute GetNativeObjectInfo(Type type)
     {
-      if (!CachedTypeInfo.TryGetValue(type, out NativeObjectInfoAttribute nativeInfo))
+      if (!CachedTypeInfo.TryGetValue(type, out NativeObjectInfoAttribute? nativeInfo))
       {
         nativeInfo = type.GetCustomAttribute<NativeObjectInfoAttribute>();
-        CachedTypeInfo[type] = nativeInfo;
+        if (nativeInfo != null)
+        {
+          CachedTypeInfo[type] = nativeInfo;
+        }
       }
 
       if (nativeInfo == null)

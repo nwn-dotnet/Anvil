@@ -12,7 +12,7 @@ namespace Anvil.API
     private const uint CustomTlkOffset = 0x1000000;
 
     [Inject]
-    private static TlkTable TlkTable { get; set; }
+    private static TlkTable TlkTable { get; set; } = null!;
 
     /// <summary>
     /// Gets the index/key for this StrRef.
@@ -34,7 +34,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets a string override that this StrRef should return instead of the tlk file definition.
     /// </summary>
-    public string Override
+    public string? Override
     {
       get => TlkTable.GetTlkOverride(this);
       set => TlkTable.SetTlkOverride(this, value);
@@ -66,7 +66,7 @@ namespace Anvil.API
     /// <param name="restoreGlobal">If true, restores <see cref="Override"/> as the string value.</param>
     public void ClearPlayerOverride(NwPlayer player, bool restoreGlobal = true)
     {
-      string strOverride = null;
+      string? strOverride = null;
       if (restoreGlobal)
       {
         strOverride = Override;
@@ -81,7 +81,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="player">The player who should see the different string.</param>
     /// <param name="value">The override string to show.</param>
-    public void SetPlayerOverride(NwPlayer player, string value)
+    public void SetPlayerOverride(NwPlayer player, string? value)
     {
       CNWSMessage message = LowLevel.ServerExoApp.GetNWSMessage();
       message?.SendServerToPlayerSetTlkOverride(player.Player.m_nPlayerID, (int)Id, value.ToExoString());
@@ -92,7 +92,7 @@ namespace Anvil.API
     /// This will parse any tokens (e.g. &lt;CUSTOM0&gt;) as their current set token values.
     /// </summary>
     /// <returns></returns>
-    public string ToParsedString()
+    public string? ToParsedString()
     {
       return TlkTable.ResolveParsedStringFromStrRef(this);
     }

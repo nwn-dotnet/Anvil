@@ -23,7 +23,7 @@ namespace NWN.Anvil.Samples
     [ScriptHandler("test_nwscript")]
     private void OnScriptCalled(CallInfo callInfo)
     {
-      Log.Info($"test_nwscript called by {callInfo.ObjectSelf.Name}");
+      Log.Info($"test_nwscript called by {callInfo.ObjectSelf?.Name}");
     }
   }
 }

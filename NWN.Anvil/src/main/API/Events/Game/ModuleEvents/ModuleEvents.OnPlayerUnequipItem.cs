@@ -18,12 +18,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> that was last unequipped.
       /// </summary>
-      public NwItem Item { get; } = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>();
+      public NwItem Item { get; } = NWScript.GetPCItemLastUnequipped().ToNwObject<NwItem>()!;
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that triggered the event.
       /// </summary>
-      public NwCreature UnequippedBy { get; } = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>();
+      public NwCreature UnequippedBy { get; } = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>()!;
 
       NwObject IEvent.Context => UnequippedBy;
     }

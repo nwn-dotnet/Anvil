@@ -5,13 +5,13 @@ namespace Anvil.API.Events
 {
   public sealed class OnDMSpawnTrapOnObject : IEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; }
+    public NwPlayer DungeonMaster { get; internal init; } = null!;
 
     public bool Skip { get; set; }
 
-    public NwStationary Target { get; internal init; }
+    public NwStationary Target { get; internal init; } = null!;
 
-    NwObject IEvent.Context => DungeonMaster?.LoginCreature;
+    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 }
 

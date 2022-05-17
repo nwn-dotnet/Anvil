@@ -15,13 +15,13 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwEncounter"/> associated with this user defined event.
       /// </summary>
-      public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>();
+      public NwEncounter Encounter { get; } = NWScript.OBJECT_SELF.ToNwObject<NwEncounter>()!;
 
       NwObject IEvent.Context => Encounter;
 
       public static void Signal(NwEncounter encounter, int eventId)
       {
-        Event nwEvent = NWScript.EventUserDefined(eventId);
+        Event nwEvent = NWScript.EventUserDefined(eventId)!;
         NWScript.SignalEvent(encounter, nwEvent);
       }
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Anvil.API;
 using Anvil.API.Events;
 using NLog;
@@ -23,7 +24,7 @@ namespace Anvil.Services
       }
     }
 
-    public void ClearObjectSubscriptions(NwObject nwObject)
+    public void ClearObjectSubscriptions(NwObject? nwObject)
     {
       if (ReferenceEquals(nwObject, null))
       {
@@ -39,7 +40,7 @@ namespace Anvil.Services
     public TEvent ProcessEvent<TEvent>(TEvent eventData)
       where TEvent : IEvent
     {
-      if (!eventHandlers.TryGetValue(eventData.GetType(), out EventHandler handler))
+      if (!eventHandlers.TryGetValue(eventData.GetType(), out EventHandler? handler))
       {
         return eventData;
       }
@@ -48,14 +49,14 @@ namespace Anvil.Services
       return eventData;
     }
 
-    public void Subscribe<TEvent, TFactory>(NwObject nwObject, Action<TEvent> handler)
+    public void Subscribe<TEvent, TFactory>(NwObject? nwObject, Action<TEvent> handler)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory<NullRegistrationData>
     {
       Subscribe<TEvent, TFactory, NullRegistrationData>(nwObject, default, handler);
     }
 
-    public void Subscribe<TEvent, TFactory, TRegData>(NwObject nwObject, TRegData registrationData, Action<TEvent> handler)
+    public void Subscribe<TEvent, TFactory, TRegData>(NwObject? nwObject, TRegData registrationData, Action<TEvent> handler)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory<TRegData>
     {
@@ -65,8 +66,8 @@ namespace Anvil.Services
       }
 
       AddObjectHandler(nwObject, handler);
-      TFactory factory = GetEventFactory<TFactory>();
-      factory.Register<TEvent>(registrationData);
+      TFactory? factory = GetEventFactory<TFactory>();
+      factory?.Register<TEvent>(registrationData);
     }
 
     public void SubscribeAll<TEvent, TFactory>(Action<TEvent> handler)
@@ -81,11 +82,11 @@ namespace Anvil.Services
       where TFactory : IEventFactory<TRegData>
     {
       AddGlobalHandler(handler);
-      TFactory factory = GetEventFactory<TFactory>();
-      factory.Register<TEvent>(registrationData);
+      TFactory? factory = GetEventFactory<TFactory>();
+      factory?.Register<TEvent>(registrationData);
     }
 
-    public void Unsubscribe<TEvent, TFactory>(NwObject nwObject, Action<TEvent> handler)
+    public void Unsubscribe<TEvent, TFactory>(NwObject? nwObject, Action<TEvent> handler)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory
     {
@@ -120,11 +121,11 @@ namespace Anvil.Services
       eventHandler.Subscribe(nwObject, handler);
     }
 
-    private TFactory GetEventFactory<TFactory>() where TFactory : IEventFactory
+    private TFactory? GetEventFactory<TFactory>() where TFactory : IEventFactory
     {
       Type factoryType = typeof(TFactory);
 
-      if (!eventFactories.TryGetValue(factoryType, out IEventFactory factory))
+      if (!eventFactories.TryGetValue(factoryType, out IEventFactory? factory))
       {
         Log.Error("Cannot find event factory of type {EventFactory}. Are you missing a ServiceBinding?", factoryType.GetFullName());
         return default;
@@ -133,28 +134,28 @@ namespace Anvil.Services
       return (TFactory)factory;
     }
 
-    private EventHandler<TEvent> GetEventHandler<TEvent>(bool createMissing) where TEvent : IEvent
+    private EventHandler<TEvent>? GetEventHandler<TEvent>([DoesNotReturnIf(true)] bool createMissing) where TEvent : IEvent
     {
-      if (!eventHandlers.TryGetValue(typeof(TEvent), out EventHandler handler) && createMissing)
+      if (!eventHandlers.TryGetValue(typeof(TEvent), out EventHandler? handler) && createMissing)
       {
         handler = new EventHandler<TEvent>();
         eventHandlers[typeof(TEvent)] = handler;
       }
 
-      return (EventHandler<TEvent>)handler;
+      return (EventHandler<TEvent>?)handler;
     }
 
     private void RemoveGlobalHandler<TEvent>(Action<TEvent> handler)
       where TEvent : IEvent
     {
-      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
+      EventHandler<TEvent>? eventHandler = GetEventHandler<TEvent>(false);
       eventHandler?.UnsubscribeAll(handler);
     }
 
     private void RemoveObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler)
       where TEvent : IEvent
     {
-      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
+      EventHandler<TEvent>? eventHandler = GetEventHandler<TEvent>(false);
       eventHandler?.Unsubscribe(nwObject, handler);
     }
 
@@ -162,7 +163,7 @@ namespace Anvil.Services
       where TEvent : IEvent, new()
       where TFactory : IEventFactory
     {
-      EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(false);
+      EventHandler<TEvent>? eventHandler = GetEventHandler<TEvent>(false);
       if (eventHandler != null)
       {
         if (eventHandler.HasSubscribers)
@@ -173,8 +174,8 @@ namespace Anvil.Services
         eventHandlers.Remove(typeof(TEvent));
       }
 
-      TFactory factory = GetEventFactory<TFactory>();
-      factory.Unregister<TEvent>();
+      TFactory? factory = GetEventFactory<TFactory>();
+      factory?.Unregister<TEvent>();
     }
   }
 }

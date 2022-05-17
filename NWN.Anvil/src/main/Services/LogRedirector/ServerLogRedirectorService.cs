@@ -14,10 +14,10 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly bool callOriginal;
-    private readonly FunctionHook<ExecuteCommandPrintStringHook> executeCommandPrintStringHook;
-    private readonly FunctionHook<WriteToErrorFileHook> writeToErrorFileHook;
+    private readonly FunctionHook<ExecuteCommandPrintStringHook>? executeCommandPrintStringHook;
+    private readonly FunctionHook<WriteToErrorFileHook>? writeToErrorFileHook;
 
-    private readonly FunctionHook<WriteToLogFileHook> writeToLogFileHook;
+    private readonly FunctionHook<WriteToLogFileHook>? writeToLogFileHook;
     private bool printString;
 
     public ServerLogRedirectorService(HookService hookService)
@@ -55,7 +55,7 @@ namespace Anvil.Services
     private int OnExecuteCommandPrintString(void* pVirtualMachineCommands, int nCommandId, int nParameters)
     {
       printString = true;
-      int retVal = executeCommandPrintStringHook.CallOriginal(pVirtualMachineCommands, nCommandId, nParameters);
+      int retVal = executeCommandPrintStringHook!.CallOriginal(pVirtualMachineCommands, nCommandId, nParameters);
       printString = false;
       return retVal;
     }
@@ -67,7 +67,7 @@ namespace Anvil.Services
 
       if (callOriginal)
       {
-        writeToErrorFileHook.CallOriginal(pExoDebugInternal, pMessage);
+        writeToErrorFileHook!.CallOriginal(pExoDebugInternal, pMessage);
       }
     }
 
@@ -78,7 +78,7 @@ namespace Anvil.Services
 
       if (callOriginal)
       {
-        writeToLogFileHook.CallOriginal(pExoDebugInternal, pMessage);
+        writeToLogFileHook!.CallOriginal(pExoDebugInternal, pMessage);
       }
     }
 

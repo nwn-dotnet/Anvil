@@ -57,9 +57,9 @@ namespace Anvil.API
       return new Effect(itemProperty, true);
     }
 
-    public static implicit operator Effect(IntPtr intPtr)
+    public static implicit operator Effect?(IntPtr intPtr)
     {
-      return new Effect(CGameEffect.FromPointer(intPtr), true);
+      return intPtr != IntPtr.Zero ? new Effect(CGameEffect.FromPointer(intPtr), true) : null;
     }
 
     /// <summary>

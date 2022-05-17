@@ -25,7 +25,7 @@ namespace Anvil.API
     /// <param name="player">The player to query.</param>
     /// <param name="uiToken">The associated UI token.</param>
     /// <returns>The current value of the binding.</returns>
-    public T GetBindValue(NwPlayer player, int uiToken)
+    public T? GetBindValue(NwPlayer player, int uiToken)
     {
       return JsonUtility.FromJson<T>(NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key));
     }
@@ -36,7 +36,7 @@ namespace Anvil.API
     /// <param name="player">The player to query.</param>
     /// <param name="uiToken">The associated UI token.</param>
     /// <returns>The current values of the binding.</returns>
-    public List<T> GetBindValues(NwPlayer player, int uiToken)
+    public List<T>? GetBindValues(NwPlayer player, int uiToken)
     {
       return JsonUtility.FromJson<List<T>>(NWScript.NuiGetBind(player.ControlledCreature, uiToken, Key));
     }

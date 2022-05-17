@@ -15,12 +15,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwTrigger"/> that was triggered.
       /// </summary>
-      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>();
+      public NwTrigger Trigger { get; } = NWScript.OBJECT_SELF.ToNwObject<NwTrigger>()!;
 
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that triggered this <see cref="NwTrigger"/>.
       /// </summary>
-      public NwGameObject TriggeredBy { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
+      public NwGameObject TriggeredBy { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>()!;
 
       NwObject IEvent.Context => Trigger;
     }

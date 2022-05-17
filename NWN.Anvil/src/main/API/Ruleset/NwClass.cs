@@ -327,7 +327,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="classId">The id of the class to resolve.</param>
     /// <returns>The associated <see cref="NwClass"/> instance. Null if the class id is invalid.</returns>
-    public static NwClass FromClassId(int classId)
+    public static NwClass? FromClassId(int classId)
     {
       return NwRuleset.Classes.ElementAtOrDefault(classId);
     }
@@ -337,12 +337,12 @@ namespace Anvil.API
     /// </summary>
     /// <param name="classType">The class type to resolve.</param>
     /// <returns>The associated <see cref="NwClass"/> instance. Null if the class type is invalid.</returns>
-    public static NwClass FromClassType(ClassType classType)
+    public static NwClass? FromClassType(ClassType classType)
     {
       return NwRuleset.Classes.ElementAtOrDefault((int)classType);
     }
 
-    public static implicit operator NwClass(ClassType classType)
+    public static implicit operator NwClass?(ClassType classType)
     {
       return NwRuleset.Classes.ElementAtOrDefault((int)classType);
     }

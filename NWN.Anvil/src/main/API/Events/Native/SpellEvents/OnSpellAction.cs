@@ -9,7 +9,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellAction : IEvent
   {
-    public NwCreature Caster { get; private init; }
+    public NwCreature Caster { get; private init; } = null!;
 
     public int CasterLevel { get; private init; }
 
@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     public Domain Domain { get; private init; }
 
-    public NwFeat Feat { get; private init; }
+    public NwFeat Feat { get; private init; } = null!;
 
     public bool IsAreaTarget { get; private init; }
 
@@ -32,11 +32,11 @@ namespace Anvil.API.Events
 
     public ProjectilePathType ProjectilePath { get; private init; }
 
-    public Lazy<bool> Result { get; private set; }
+    public Lazy<bool> Result { get; private set; } = null!;
 
-    public NwSpell Spell { get; private init; }
+    public NwSpell Spell { get; private init; } = null!;
 
-    public NwGameObject TargetObject { get; private init; }
+    public NwGameObject TargetObject { get; private init; } = null!;
 
     public Vector3 TargetPosition { get; private init; }
 
@@ -44,7 +44,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<AddCastSpellActionsHook> Hook { get; set; }
+      private static FunctionHook<AddCastSpellActionsHook> Hook { get; set; } = null!;
 
       private delegate int AddCastSpellActionsHook(void* pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
         int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,
@@ -66,19 +66,19 @@ namespace Anvil.API.Events
 
         OnSpellAction eventData = new OnSpellAction
         {
-          Caster = creature.ToNwObject<NwCreature>(),
-          Spell = NwSpell.FromSpellId((int)nSpellId),
+          Caster = creature.ToNwObject<NwCreature>()!,
+          Spell = NwSpell.FromSpellId((int)nSpellId)!,
           ClassIndex = nMultiClass,
           Domain = (Domain)nDomainLevel,
           MetaMagic = (MetaMagic)nMetaType,
           IsSpontaneous = bSpontaneousCast.ToBool(),
           TargetPosition = vTargetLocation,
-          TargetObject = oidTarget.ToNwObject<NwGameObject>(),
+          TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
           IsAreaTarget = bAreaTarget.ToBool(),
           IsFake = bFake.ToBool(),
           ProjectilePath = (ProjectilePathType)nProjectilePathType,
           IsInstant = bInstant.ToBool(),
-          Feat = NwFeat.FromFeatId(nFeat),
+          Feat = NwFeat.FromFeatId(nFeat)!,
           CasterLevel = nCasterLevel,
         };
 

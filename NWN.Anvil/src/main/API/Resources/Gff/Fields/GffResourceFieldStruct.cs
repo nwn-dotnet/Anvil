@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -22,7 +23,12 @@ namespace Anvil.API
       {
         byte* fieldIdPtr = ResGff.GetFieldLabel(resStruct, i);
         string key = StringHelper.ReadNullTerminatedString(fieldIdPtr);
-        GffResourceField value = Create(resGff, resStruct, i, fieldIdPtr);
+        GffResourceField? value = Create(resGff, resStruct, i, fieldIdPtr);
+
+        if (value == null)
+        {
+          continue;
+        }
 
         keys.Add(key);
         values.Add(value);
@@ -57,7 +63,7 @@ namespace Anvil.API
       return EntrySet.GetEnumerator();
     }
 
-    public override bool TryGetValue(string key, out GffResourceField value)
+    public override bool TryGetValue(string key, [NotNullWhen(true)] out GffResourceField? value)
     {
       return fieldLookup.TryGetValue(key, out value);
     }

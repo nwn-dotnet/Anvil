@@ -10,14 +10,14 @@ namespace Anvil.API.Events
   {
     public bool CanUse { get; set; }
 
-    public NwItem Item { get; private init; }
-    public NwCreature UsedBy { get; private init; }
+    public NwItem Item { get; private init; } = null!;
+    public NwCreature UsedBy { get; private init; } = null!;
 
     NwObject IEvent.Context => UsedBy;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<CanUseItemHook> Hook { get; set; }
+      private static FunctionHook<CanUseItemHook> Hook { get; set; } = null!;
 
       private delegate int CanUseItemHook(void* pCreature, void* pItem, int bIgnoreIdentifiedFlag);
 
@@ -33,8 +33,8 @@ namespace Anvil.API.Events
       {
         OnItemValidateUse eventData = ProcessEvent(new OnItemValidateUse
         {
-          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
+          UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
           CanUse = Hook.CallOriginal(pCreature, pItem, bIgnoreIdentifiedFlag).ToBool(),
         });
 

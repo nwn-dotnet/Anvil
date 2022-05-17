@@ -113,22 +113,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets the character feat that allows devastating criticals to be performed with this item.
     /// </summary>
-    public NwFeat EpicDevastatingCriticalFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponDevastatingCriticalFeat);
+    public NwFeat? EpicDevastatingCriticalFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponDevastatingCriticalFeat);
 
     /// <summary>
     /// Gets the character feat that allows overwhelming criticals to be performed with this item.
     /// </summary>
-    public NwFeat EpicOverwhelmingCriticalFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponOverwhelmingCriticalFeat);
+    public NwFeat? EpicOverwhelmingCriticalFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponOverwhelmingCriticalFeat);
 
     /// <summary>
     /// Gets the character feat that provides epic weapon focus for this item.
     /// </summary>
-    public NwFeat EpicWeaponFocusFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponFocusFeat);
+    public NwFeat? EpicWeaponFocusFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponFocusFeat);
 
     /// <summary>
     /// Gets the character feat that provides epic weapon specialization for this item.
     /// </summary>
-    public NwFeat EpicWeaponSpecializationFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponSpecializationFeat);
+    public NwFeat? EpicWeaponSpecializationFeat => NwFeat.FromFeatId(BaseItemInfo.m_nEpicWeaponSpecializationFeat);
 
     /// <summary>
     /// Gets the inventory slots that this item may be equipped in.
@@ -148,7 +148,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the character feat that allows improved criticals to be performed with this item.
     /// </summary>
-    public NwFeat ImprovedCriticalFeat => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponImprovedCriticalFeat);
+    public NwFeat? ImprovedCriticalFeat => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponImprovedCriticalFeat);
 
     /// <summary>
     /// Gets the size/number of inventory slots that this base item occupies.
@@ -189,7 +189,7 @@ namespace Anvil.API
     /// Gets the ResRef of the item's model, or the base part of the resref.<br/>
     /// This property is dependent on <see cref="ModelType"/>. See https://nwn.wiki/display/NWN1/baseitems.2da for more info.
     /// </summary>
-    public string ItemClass => BaseItemInfo.m_ItemClassResRefChunk.ToString();
+    public string? ItemClass => BaseItemInfo.m_ItemClassResRefChunk.ToString();
 
     /// <summary>
     /// Gets the maximum number of "cast spell" properties items of this type can be given when designed in the Toolset.
@@ -257,7 +257,7 @@ namespace Anvil.API
         NwFeat[] retVal = new NwFeat[BaseItemInfo.m_nRequiredFeatCount];
         for (int i = 0; i < retVal.Length; i++)
         {
-          retVal[i] = NwFeat.FromFeatId(BaseItemInfo.m_pRequiredFeats[i]);
+          retVal[i] = NwFeat.FromFeatId(BaseItemInfo.m_pRequiredFeats[i])!;
         }
 
         return retVal;
@@ -297,7 +297,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the character feat that provides weapon focus for this item.
     /// </summary>
-    public NwFeat WeaponFocusFeat => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponFocusFeat);
+    public NwFeat? WeaponFocusFeat => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponFocusFeat);
 
     /// <summary>
     /// Gets an index into weaponsounds.2da indicating what sounds this weapon (item) makes when it hits an opponent.
@@ -307,7 +307,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the character feat that identifies this item as a weapon of choice.
     /// </summary>
-    public NwFeat WeaponOfChoiceFeat => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponOfChoiceFeat);
+    public NwFeat? WeaponOfChoiceFeat => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponOfChoiceFeat);
 
     /// <summary>
     /// Gets the <see cref="WeaponSize"/> of this base item if the item is a weapon.
@@ -317,7 +317,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the character feat that provides weapon specialization for this item.
     /// </summary>
-    public NwFeat WeaponSpecializationFeat => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponSpecializationFeat);
+    public NwFeat? WeaponSpecializationFeat => NwFeat.FromFeatId(BaseItemInfo.m_nWeaponSpecializationFeat);
 
     /// <summary>
     /// Gets the type/s of damage inflicted by this weapon (item).
@@ -360,7 +360,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="itemId">The item id to resolve.</param>
     /// <returns>The associated <see cref="NwBaseItem"/> instance. Null if the base item id is invalid.</returns>
-    public static NwBaseItem FromItemId(int itemId)
+    public static NwBaseItem? FromItemId(int itemId)
     {
       return NwRuleset.BaseItems.ElementAtOrDefault(itemId);
     }
@@ -370,12 +370,12 @@ namespace Anvil.API
     /// </summary>
     /// <param name="itemType">The item type to resolve.</param>
     /// <returns>The associated <see cref="NwBaseItem"/> instance. Null if the base item type is invalid.</returns>
-    public static NwBaseItem FromItemType(BaseItemType itemType)
+    public static NwBaseItem? FromItemType(BaseItemType itemType)
     {
       return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
     }
 
-    public static implicit operator NwBaseItem(BaseItemType itemType)
+    public static implicit operator NwBaseItem?(BaseItemType itemType)
     {
       return NwRuleset.BaseItems.ElementAtOrDefault((int)itemType);
     }

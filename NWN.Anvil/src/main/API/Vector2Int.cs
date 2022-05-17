@@ -41,7 +41,7 @@ namespace Anvil.API
       return X == other.X && Y == other.Y;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       return obj is Vector2Int other && Equals(other);
     }

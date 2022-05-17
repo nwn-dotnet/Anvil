@@ -18,7 +18,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> is resting.
       /// </summary>
-      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
       NwObject IEvent.Context => Creature;
     }

@@ -8,16 +8,16 @@ namespace Anvil.API.Events
   public abstract class HookEventFactory : IEventFactory<NullRegistrationData>, IDisposable
   {
     [Inject]
-    protected static Lazy<EventService> EventService { get; private set; }
+    protected static Lazy<EventService> EventService { get; private set; } = null!;
 
     [Inject]
-    protected static HookService HookService { get; private set; }
+    protected static HookService HookService { get; private set; } = null!;
 
     [Inject]
-    protected static VirtualMachine VirtualMachine { get; private set; }
+    protected static VirtualMachine VirtualMachine { get; private set; } = null!;
 
     private readonly HashSet<Type> activeEvents = new HashSet<Type>();
-    private IDisposable[] hooks;
+    private IDisposable[]? hooks;
 
     public void Dispose()
     {

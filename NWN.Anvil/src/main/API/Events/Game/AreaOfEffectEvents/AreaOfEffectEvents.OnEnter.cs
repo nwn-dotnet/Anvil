@@ -15,9 +15,9 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOfEffectOnObjectEnter)]
     public sealed class OnEnter : IEvent
     {
-      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>();
+      public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
 
-      public NwGameObject Entering { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>();
+      public NwGameObject Entering { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>()!;
 
       NwObject IEvent.Context => Effect;
     }

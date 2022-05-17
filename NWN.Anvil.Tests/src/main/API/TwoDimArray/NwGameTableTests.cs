@@ -273,6 +273,10 @@ namespace Anvil.Tests.API
       Assert.That(row.LightOffset?.Z, Is.EqualTo(lightOffsetZ));
       Assert.That(row.SoundType?.RowIndex, Is.EqualTo(soundAppType));
       Assert.That(row.ShadowSize, Is.EqualTo(shadowSize));
+      Assert.That(row.HasBodyBag, Is.EqualTo(bodyBag));
+      Assert.That(row.LowGore, Is.EqualTo(lowGore));
+      Assert.That(row.Reflection, Is.EqualTo(reflection));
+      Assert.That(row.StaticAllowed, Is.EqualTo(staticAllowed));
     }
 
     [Test(Description = "Visual effect table entries return valid data")]

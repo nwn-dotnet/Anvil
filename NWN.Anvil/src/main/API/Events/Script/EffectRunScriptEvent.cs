@@ -11,11 +11,11 @@ namespace Anvil.API.Events
       EventType = (EffectRunScriptType)NWScript.GetLastRunScriptEffectScriptType();
     }
 
-    public Effect Effect { get; }
-    public NwObject EffectTarget { get; }
+    public Effect? Effect { get; }
+    public NwObject? EffectTarget { get; }
 
     public EffectRunScriptType EventType { get; }
 
-    NwObject IEvent.Context => EffectTarget;
+    NwObject? IEvent.Context => EffectTarget;
   }
 }

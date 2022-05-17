@@ -16,19 +16,19 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the creature/object currently speaking.
       /// </summary>
-      public NwGameObject CurrentSpeaker { get; }
+      public NwGameObject? CurrentSpeaker { get; }
 
       /// <summary>
       /// Gets the last creature/object that spoke in this conversation.
       /// </summary>
-      public NwGameObject LastSpeaker { get; }
+      public NwGameObject? LastSpeaker { get; }
 
       /// <summary>
       /// Gets the player speaker in this conversation.
       /// </summary>
-      public NwPlayer PlayerSpeaker { get; }
+      public NwPlayer? PlayerSpeaker { get; }
 
-      NwObject IEvent.Context => CurrentSpeaker;
+      NwObject? IEvent.Context => CurrentSpeaker;
 
       public void PauseConversation()
       {
@@ -53,19 +53,19 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the creature/object currently speaking.
       /// </summary>
-      public NwGameObject CurrentSpeaker { get; }
+      public NwGameObject? CurrentSpeaker { get; }
 
       /// <summary>
       /// Gets the last creature/object that spoke in this conversation.
       /// </summary>
-      public NwGameObject LastSpeaker { get; }
+      public NwGameObject? LastSpeaker { get; }
 
       /// <summary>
       /// Gets the player speaker in this conversation.
       /// </summary>
-      public NwPlayer PlayerSpeaker { get; }
+      public NwPlayer? PlayerSpeaker { get; }
 
-      NwObject IEvent.Context => CurrentSpeaker;
+      NwObject? IEvent.Context => CurrentSpeaker;
     }
   }
 }

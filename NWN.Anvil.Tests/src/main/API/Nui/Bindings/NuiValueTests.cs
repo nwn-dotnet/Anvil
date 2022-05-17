@@ -97,8 +97,8 @@ namespace Anvil.Tests.API
     [TestCase("", @"""""")]
     public void DeserializeNuiValueStringReturnsValidJsonStructure(string expected, string serialized)
     {
-      NuiValue<string> test = JsonUtility.FromJson<NuiValue<string>>(serialized);
-      Assert.That(test.Value, Is.EqualTo(expected));
+      NuiValue<string>? test = JsonUtility.FromJson<NuiValue<string>>(serialized);
+      Assert.That(test?.Value, Is.EqualTo(expected));
     }
 
     [Test(Description = "Deerializing a NuiValue<int> creates a valid JSON structure.")]
@@ -110,8 +110,8 @@ namespace Anvil.Tests.API
     [TestCase(int.MinValue, @"-2147483648")]
     public void DeserializeNuiValueIntReturnsValidJsonStructure(int expected, string serialized)
     {
-      NuiValue<int> test = JsonUtility.FromJson<NuiValue<int>>(serialized);
-      Assert.That(test.Value, Is.EqualTo(expected));
+      NuiValue<int>? test = JsonUtility.FromJson<NuiValue<int>>(serialized);
+      Assert.That(test?.Value, Is.EqualTo(expected));
     }
 
     [Test(Description = "Deerializing a NuiValue<int?> creates a valid JSON structure.")]
@@ -124,8 +124,8 @@ namespace Anvil.Tests.API
     [TestCase(int.MinValue, @"-2147483648")]
     public void DeserializeNuiValueNullableIntReturnsValidJsonStructure(int? expected, string serialized)
     {
-      NuiValue<int?> test = JsonUtility.FromJson<NuiValue<int?>>(serialized);
-      Assert.That(test.Value, Is.EqualTo(expected));
+      NuiValue<int?>? test = JsonUtility.FromJson<NuiValue<int?>>(serialized);
+      Assert.That(test?.Value, Is.EqualTo(expected));
     }
 
     [Test(Description = "Deerializing a NuiValue<float> creates a valid JSON structure.")]
@@ -140,8 +140,8 @@ namespace Anvil.Tests.API
     [TestCase(float.PositiveInfinity, @"""Infinity""")]
     public void DeserializeNuiValueFloatReturnsValidJsonStructure(float expected, string serialized)
     {
-      NuiValue<float> test = JsonUtility.FromJson<NuiValue<float>>(serialized);
-      Assert.That(test.Value, Is.EqualTo(expected));
+      NuiValue<float>? test = JsonUtility.FromJson<NuiValue<float>>(serialized);
+      Assert.That(test?.Value, Is.EqualTo(expected));
     }
 
     [Test(Description = "Deerializing a NuiValue<float?> creates a valid JSON structure.")]
@@ -157,26 +157,26 @@ namespace Anvil.Tests.API
     [TestCase(float.PositiveInfinity, @"""Infinity""")]
     public void DeserializeNuiValueFloatNullableReturnsValidJsonStructure(float? expected, string serialized)
     {
-      NuiValue<float?> test = JsonUtility.FromJson<NuiValue<float?>>(serialized);
-      Assert.That(test.Value, Is.EqualTo(expected));
+      NuiValue<float?>? test = JsonUtility.FromJson<NuiValue<float?>>(serialized);
+      Assert.That(test?.Value, Is.EqualTo(expected));
     }
 
     [Test(Description = "Deerializing a NuiValue<NuiRect> creates a valid JSON structure.")]
     public void DeserializeNuiValueNuiRectReturnsValidJsonStructure()
     {
-      NuiValue<NuiRect> test = JsonUtility.FromJson<NuiValue<NuiRect>>(@"{""h"":20.0,""w"":30.11,""x"":100.0,""y"":50.251}");
+      NuiValue<NuiRect>? test = JsonUtility.FromJson<NuiValue<NuiRect>>(@"{""h"":20.0,""w"":30.11,""x"":100.0,""y"":50.251}");
       NuiRect expected = new NuiRect(100.0f, 50.251f, 30.11f, 20.0f);
 
-      Assert.That(test.Value, Is.EqualTo(expected));
+      Assert.That(test?.Value, Is.EqualTo(expected));
     }
 
     [Test(Description = "Deserializing a NuiValue<List<int>> creates a valid JSON structure.")]
     public void DeserializeNuiValueIntListReturnsValidJsonStructure()
     {
-      NuiValue<List<int>> test = JsonUtility.FromJson<NuiValue<List<int>>>(@"[1,2,3]");
+      NuiValue<List<int>>? test = JsonUtility.FromJson<NuiValue<List<int>>>(@"[1,2,3]");
       List<int> expected = new List<int> { 1, 2, 3 };
 
-      Assert.That(test.Value, Is.EqualTo(expected));
+      Assert.That(test?.Value, Is.EqualTo(expected));
     }
   }
 }

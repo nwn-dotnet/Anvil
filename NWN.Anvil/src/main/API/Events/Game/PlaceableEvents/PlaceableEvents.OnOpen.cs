@@ -18,12 +18,12 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that opened the <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwCreature OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
+      public NwCreature? OpenedBy { get; } = NWScript.GetLastOpenedBy().ToNwObject<NwCreature>();
 
       /// <summary>
       /// Gets the <see cref="NwPlaceable"/> that was opened.
       /// </summary>
-      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>();
+      public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
       NwObject IEvent.Context => Placeable;
     }

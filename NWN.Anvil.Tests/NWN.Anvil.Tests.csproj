@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>9.0</LangVersion>
+    <TargetFramework>net6.0</TargetFramework>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
@@ -14,6 +13,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
     <NoWarn>1591</NoWarn>
+    <Nullable>enable</Nullable>
 
     <RootNamespace>Anvil.Tests</RootNamespace>
   </PropertyGroup>
@@ -42,8 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NWN.Native" Version="8193.34.3" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Core" Version="8193.34.4" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.34.4" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Core" Version="8193.34.5" PrivateAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>

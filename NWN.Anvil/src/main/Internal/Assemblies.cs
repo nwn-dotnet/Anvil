@@ -24,11 +24,11 @@ namespace Anvil.Internal
 
     public static readonly List<string> ReservedNames = AllAssemblies
       .Select(assembly => assembly.GetName().Name)
-      .ToList();
+      .ToList()!;
 
-    internal static readonly string AssemblyDir = Path.GetDirectoryName(Anvil.Location);
+    internal static readonly string AssemblyDir = Path.GetDirectoryName(Anvil.Location)!;
 
-    internal static readonly string[] TargetFrameworks = { "net6.0", "net5.0" };
+    internal static readonly string[] TargetFrameworks = { "net6.0" };
 
     public static bool IsReservedName(string name)
     {

@@ -21,7 +21,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the public CD Key of the connecting client.
     /// </summary>
-    public string CDKey { get; private init; }
+    public string CDKey { get; private init; } = null!;
 
     /// <summary>
     /// Gets the platform of the connecting client.
@@ -31,7 +31,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the version of the connecting client.
     /// </summary>
-    public Version ClientVersion { get; private init; }
+    public Version ClientVersion { get; private init; } = null!;
 
     /// <summary>
     /// Gets a value indicating whether the client is connecting as a DM (true) or player (false).
@@ -41,25 +41,25 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the IP address of the connecting client.
     /// </summary>
-    public string IP { get; private init; }
+    public string IP { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets the kick message to send to the client if BlockConnection is set to true.
     /// </summary>
-    public string KickMessage { get; set; }
+    public string? KickMessage { get; set; }
 
     /// <summary>
     /// Gets the player name of the connecting client.
     /// </summary>
-    public string PlayerName { get; private init; }
+    public string PlayerName { get; private init; } = null!;
 
-    NwObject IEvent.Context => null;
+    NwObject? IEvent.Context => null;
 
     internal sealed class Factory : HookEventFactory
     {
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
-      private static FunctionHook<SendServerToPlayerCharListHook> Hook { get; set; }
+      private static FunctionHook<SendServerToPlayerCharListHook> Hook { get; set; } = null!;
 
       internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
 

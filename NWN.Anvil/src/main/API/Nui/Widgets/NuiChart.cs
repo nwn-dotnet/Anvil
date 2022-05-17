@@ -9,7 +9,7 @@ namespace Anvil.API
   public sealed class NuiChart : NuiWidget
   {
     [JsonProperty("value")]
-    public List<NuiChartSlot> ChartSlots { get; set; }
+    public List<NuiChartSlot>? ChartSlots { get; set; }
 
     public override string Type => "chart";
   }

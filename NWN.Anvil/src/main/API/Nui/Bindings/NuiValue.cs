@@ -19,9 +19,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets the value of this property.
     /// </summary>
-    public T Value { get; init; }
+    public T? Value { get; init; }
 
-    public static implicit operator T(NuiValue<T> value)
+    public static implicit operator T?(NuiValue<T>? value)
     {
       return value != null ? value.Value : default;
     }

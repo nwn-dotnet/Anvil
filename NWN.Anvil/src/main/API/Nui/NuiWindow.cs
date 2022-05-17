@@ -32,7 +32,7 @@ namespace Anvil.API
     /// Use a static value to force the popup into a collapsed/unfolded state.
     /// </summary>
     [JsonProperty("collapsed")]
-    public NuiProperty<bool> Collapsed { get; set; }
+    public NuiProperty<bool>? Collapsed { get; set; }
 
     /// <summary>
     /// Gets or sets the geometry and bounds of this window.<br/>
@@ -45,7 +45,7 @@ namespace Anvil.API
     /// Gets or sets the element ID for this window.
     /// </summary>
     [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     /// <summary>
     /// Gets or sets whether this window can be resized.

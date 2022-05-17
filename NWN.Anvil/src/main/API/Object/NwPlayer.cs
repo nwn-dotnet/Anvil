@@ -22,22 +22,22 @@ namespace Anvil.API
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     [Inject]
-    private static CursorTargetService CursorTargetService { get; set; }
+    private static CursorTargetService CursorTargetService { get; set; } = null!;
 
     [Inject]
-    private static EventService EventService { get; set; }
+    private static EventService EventService { get; set; } = null!;
 
     [Inject]
-    private static NwServer NwServer { get; set; }
+    private static NwServer NwServer { get; set; } = null!;
 
     [Inject]
-    private static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; set; }
+    private static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; set; } = null!;
 
     [Inject]
-    private static Lazy<PlayerNameOverrideService> PlayerNameOverrideService { get; set; }
+    private static Lazy<PlayerNameOverrideService> PlayerNameOverrideService { get; set; } = null!;
 
     [Inject]
-    private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; }
+    private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; } = null!;
 
     internal readonly CNWSPlayer Player;
 
@@ -74,7 +74,7 @@ namespace Anvil.API
     /// Gets the creature this player is currently controlling.<br/>
     /// This will return the player's current possessed creature (familiar, DM possession), otherwise their player character if they are currently not possessing a creature.
     /// </summary>
-    public NwCreature ControlledCreature => Player.m_oidNWSObject.ToNwObject<NwCreature>();
+    public NwCreature? ControlledCreature => Player.m_oidNWSObject.ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets or sets the movement rate factor for the cutscene camera following ControlledCreature 'camera man'.
@@ -103,7 +103,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether the player is a Dungeon Master.
     /// </summary>
-    public bool IsDM => ControlledCreature.Creature.m_pStats.GetIsDM().ToBool();
+    public bool IsDM => ControlledCreature?.Creature.m_pStats.GetIsDM().ToBool() == true;
 
     /// <summary>
     /// Gets if this player is in cursor targeting mode.<br/>
@@ -161,7 +161,7 @@ namespace Anvil.API
           playerInfo.m_bGameMasterIsPlayerLogin = true.ToInt();
           message.SendServerToPlayerDungeonMasterLoginState(Player, true.ToInt(), true.ToInt());
 
-          NwCreature creature = ControlledCreature;
+          NwCreature? creature = ControlledCreature;
           if (creature != null)
           {
             creature.Creature.m_pStats.m_bDMManifested = true.ToInt();
@@ -184,7 +184,7 @@ namespace Anvil.API
           playerInfo.m_bGameMasterIsPlayerLogin = false.ToInt();
           message.SendServerToPlayerDungeonMasterLoginState(Player, false.ToInt(), true.ToInt());
 
-          NwCreature creature = ControlledCreature;
+          NwCreature? creature = ControlledCreature;
           if (creature != null)
           {
             creature.Creature.m_pStats.m_bDMManifested = true.ToInt();
@@ -221,7 +221,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the original creature that this player logged in with.
     /// </summary>
-    public NwCreature LoginCreature => Player.m_oidPCObject.ToNwObject<NwCreature>();
+    public NwCreature? LoginCreature => Player.m_oidPCObject.ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets all players in this player's party (including themself).<br/>
@@ -231,9 +231,15 @@ namespace Anvil.API
     {
       get
       {
-        foreach (NwCreature member in LoginCreature.Faction.GetMembers())
+        NwCreature? creature = LoginCreature;
+        if (creature == null)
         {
-          if (member.IsLoginPlayerCharacter(out NwPlayer player))
+          yield break;
+        }
+
+        foreach (NwCreature member in creature.Faction.GetMembers())
+        {
+          if (member.IsLoginPlayerCharacter(out NwPlayer? player))
           {
             yield return player;
           }
@@ -262,9 +268,14 @@ namespace Anvil.API
     /// </summary>
     public TimeSpan? RestDurationOverride
     {
-      get => PlayerRestDurationOverrideService.GetDurationOverride(LoginCreature);
+      get => LoginCreature != null ? PlayerRestDurationOverrideService.GetDurationOverride(LoginCreature) : null;
       set
       {
+        if (LoginCreature == null)
+        {
+          return;
+        }
+
         if (value.HasValue)
         {
           PlayerRestDurationOverrideService.SetDurationOverride(LoginCreature, value.Value);
@@ -279,7 +290,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the location that this player will spawn at when logging in to the server.
     /// </summary>
-    public Location SpawnLocation
+    public Location? SpawnLocation
     {
       get
       {
@@ -289,11 +300,13 @@ namespace Anvil.API
         }
 
         CNWSCreature creature = LoginCreature.Creature;
-        return Location.Create(creature.m_oidDesiredArea.ToNwObject<NwArea>(), creature.m_vDesiredAreaLocation.ToManagedVector(), LoginCreature.Rotation);
+        NwArea? area = creature.m_oidDesiredArea.ToNwObject<NwArea>();
+
+        return area != null ? Location.Create(area, creature.m_vDesiredAreaLocation.ToManagedVector(), LoginCreature.Rotation) : null;
       }
       set
       {
-        if (LoginCreature == null)
+        if (value == null || LoginCreature == null)
         {
           return;
         }
@@ -308,17 +321,17 @@ namespace Anvil.API
       }
     }
 
-    public static bool operator ==(NwPlayer left, NwPlayer right)
+    public static bool operator ==(NwPlayer? left, NwPlayer? right)
     {
       return Equals(left, right);
     }
 
-    public static implicit operator CNWSPlayer(NwPlayer player)
+    public static implicit operator CNWSPlayer?(NwPlayer? player)
     {
       return player?.Player;
     }
 
-    public static bool operator !=(NwPlayer left, NwPlayer right)
+    public static bool operator !=(NwPlayer? left, NwPlayer? right)
     {
       return !Equals(left, right);
     }
@@ -329,7 +342,13 @@ namespace Anvil.API
     /// <param name="target">The target to examine.</param>
     public async Task ActionExamine(NwGameObject target)
     {
-      await ControlledCreature.WaitForObjectContext();
+      NwCreature? creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      await creature.WaitForObjectContext();
       NWScript.ActionExamine(target);
     }
 
@@ -342,7 +361,13 @@ namespace Anvil.API
     /// <param name="playHello">Whether the hello/greeting should be played once the dialogue starts.</param>
     public async Task ActionStartConversation(NwGameObject converseWith, string dialogResRef = "", bool isPrivate = false, bool playHello = true)
     {
-      await ControlledCreature.WaitForObjectContext();
+      NwCreature? creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      await creature.WaitForObjectContext();
       NWScript.ActionStartConversation(converseWith, dialogResRef, isPrivate.ToInt(), playHello.ToInt());
     }
 
@@ -356,7 +381,7 @@ namespace Anvil.API
     {
       int retVal = -1;
 
-      NwCreature creature = ControlledCreature;
+      NwCreature? creature = ControlledCreature;
       if (creature == null)
       {
         return retVal;
@@ -537,10 +562,16 @@ namespace Anvil.API
     /// <param name="preserveBackup">If true, instead of being deleted it will be renamed to be hidden from the character list, but remain in the vault directory.</param>
     public async Task Delete(string kickMessage, bool preserveBackup = true)
     {
+      NwCreature? creature = LoginCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
       string bicName = BicFileName;
       string serverVault = NwServer.GetAliasPath("SERVERVAULT");
       string playerDir = NwServer.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
-      string characterName = LoginCreature.Name;
+      string characterName = creature.Name;
       string playerName = PlayerName;
 
       string fileName = $"{serverVault}{playerDir}/{bicName}.bic";
@@ -669,7 +700,7 @@ namespace Anvil.API
       CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
     }
 
-    public bool Equals(NwPlayer other)
+    public bool Equals(NwPlayer? other)
     {
       if (ReferenceEquals(null, other))
       {
@@ -684,7 +715,7 @@ namespace Anvil.API
       return Player.Pointer.Equals(other.Player.Pointer);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       return ReferenceEquals(this, obj) || obj is NwPlayer other && Equals(other);
     }
@@ -753,15 +784,19 @@ namespace Anvil.API
     /// </summary>
     public void ForceAreaReload()
     {
-      NwCreature creature = ControlledCreature;
+      NwCreature? creature = ControlledCreature;
       if (creature == null)
       {
         return;
       }
 
-      CNWSCreature cCreature = creature.Creature;
+      NwArea? area = creature.Area;
+      if (area == null) // Already loading an area.
+      {
+        return;
+      }
 
-      NwArea area = creature.Area;
+      CNWSCreature cCreature = creature.Creature;
       Vector3 position = creature.Position;
 
       cCreature.m_oidDesiredArea = area.ObjectId;
@@ -814,9 +849,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="area">The area to query.</param>
     /// <returns>A byte array representing the tiles explored for the area.</returns>
-    public unsafe byte[] GetAreaExplorationState(NwArea area)
+    public unsafe byte[]? GetAreaExplorationState(NwArea? area)
     {
-      NwCreature creature = LoginCreature;
+      NwCreature? creature = LoginCreature;
       if (area == null || creature == null)
       {
         return null;
@@ -880,9 +915,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="questTag">The quest tag you wish to get the journal entry for.</param>
     /// <returns>A <see cref="JournalEntry"/> structure containing the journal entry data, null if an entry with the specified tag cannot be found.</returns>
-    public JournalEntry GetJournalEntry(string questTag)
+    public JournalEntry? GetJournalEntry(string questTag)
     {
-      NwCreature creature = ControlledCreature;
+      NwCreature? creature = ControlledCreature;
       if (creature == null)
       {
         return null;
@@ -937,7 +972,7 @@ namespace Anvil.API
     /// Gets the current name override for the specified player.
     /// </summary>
     /// <param name="observer">The specific observer.</param>
-    public PlayerNameOverride GetPlayerNameOverride(NwPlayer observer = null)
+    public PlayerNameOverride? GetPlayerNameOverride(NwPlayer? observer = null)
     {
       return PlayerNameOverrideService.Value.GetPlayerNameOverride(this, observer);
     }
@@ -994,6 +1029,7 @@ namespace Anvil.API
     ///  The client will close the window asynchronously.
     /// </summary>
     /// <param name="uiToken">The token of the window to destroy.</param>
+    [Obsolete("Use NuiWindowToken.Close()/Dispose() instead.")]
     public void NuiDestroy(int uiToken)
     {
       NWScript.NuiDestroy(ControlledCreature, uiToken);
@@ -1005,7 +1041,8 @@ namespace Anvil.API
     /// <param name="uiToken">The token for the window to query.</param>
     /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
     /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
-    public T NuiGetUserData<T>(int uiToken)
+    [Obsolete("Use NuiWindowToken.GetUserData instead.")]
+    public T? NuiGetUserData<T>(int uiToken)
     {
       return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(ControlledCreature, uiToken));
     }
@@ -1015,6 +1052,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="uiToken">The token to query.</param>
     /// <returns>The ID of the window if assigned, otherwise an empty string.</returns>
+    [Obsolete("Use NuiWindowToken.WindowId instead.")]
     public string NuiGetWindowId(int uiToken)
     {
       return NWScript.NuiGetWindowId(ControlledCreature, uiToken);
@@ -1029,6 +1067,7 @@ namespace Anvil.API
     /// <param name="uiToken">The token to associate the data with.</param>
     /// <param name="userData">The data to store.</param>
     /// <typeparam name="T">The type of data to store. Must be serializable to JSON.</typeparam>
+    [Obsolete("Use NuiWindowToken.SetUserData instead.")]
     public void NuiSetUserData<T>(int uiToken, T userData)
     {
       NWScript.NuiSetUserData(ControlledCreature, uiToken, JsonUtility.ToJsonStructure(userData));
@@ -1069,7 +1108,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="sound">The sound resref.</param>
     /// <param name="target">The target object for the sound to originate. Defaults to the location of the player.</param>
-    public void PlaySound(string sound, NwGameObject target = null)
+    public void PlaySound(string sound, NwGameObject? target = null)
     {
       if (target == null)
       {
@@ -1152,7 +1191,13 @@ namespace Anvil.API
     /// </summary>
     public async Task RestoreCameraFacing()
     {
-      await ControlledCreature.WaitForObjectContext();
+      NwCreature? creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      await creature.WaitForObjectContext();
       NWScript.RestoreCameraFacing();
     }
 
@@ -1184,24 +1229,30 @@ namespace Anvil.API
       NWScript.ActivatePortal(ControlledCreature, ipAddress, password, waypointTag, seamless.ToInt());
     }
 
-    public byte[] Serialize(bool stripPCFlags = false)
+    public byte[]? Serialize(bool stripPCFlags = false)
     {
-      if (!stripPCFlags)
+      NwCreature? creature = LoginCreature;
+      if (creature == null)
       {
-        return ControlledCreature.Serialize();
+        return null;
       }
 
-      ControlledCreature.Creature.m_bPlayerCharacter = (!ControlledCreature.Creature.m_bPlayerCharacter.ToBool()).ToInt();
-      ControlledCreature.Creature.m_pStats.m_bIsPC = (!ControlledCreature.Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
+      if (!stripPCFlags)
+      {
+        return creature.Serialize();
+      }
+
+      creature.Creature.m_bPlayerCharacter = (!creature.Creature.m_bPlayerCharacter.ToBool()).ToInt();
+      creature.Creature.m_pStats.m_bIsPC = (!creature.Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
 
       try
       {
-        return ControlledCreature.Serialize();
+        return creature.Serialize();
       }
       finally
       {
-        ControlledCreature.Creature.m_bPlayerCharacter = (!ControlledCreature.Creature.m_bPlayerCharacter.ToBool()).ToInt();
-        ControlledCreature.Creature.m_pStats.m_bIsPC = (!ControlledCreature.Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
+        creature.Creature.m_bPlayerCharacter = (!creature.Creature.m_bPlayerCharacter.ToBool()).ToInt();
+        creature.Creature.m_pStats.m_bIsPC = (!creature.Creature.m_pStats.m_bIsPC.ToBool()).ToInt();
       }
     }
 
@@ -1222,8 +1273,8 @@ namespace Anvil.API
     /// <param name="newState">A byte array representing the tiles explored for the area, as returned by <see cref="GetAreaExplorationState"/>.</param>
     public unsafe void SetAreaExplorationState(NwArea area, byte[] newState)
     {
-      NwCreature creature = LoginCreature;
-      if (area == null || creature == null || newState == null)
+      NwCreature? creature = LoginCreature;
+      if (creature == null)
       {
         return;
       }
@@ -1255,7 +1306,13 @@ namespace Anvil.API
     /// <param name="transitionType">The transition to use for moving the camera.</param>
     public async Task SetCameraFacing(float direction, float pitch = -1.0f, float distance = -1.0f, CameraTransitionType transitionType = CameraTransitionType.Snap)
     {
-      await ControlledCreature.WaitForObjectContext();
+      NwCreature? creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      await creature.WaitForObjectContext();
       NWScript.SetCameraFacing(direction, distance, pitch, (int)transitionType);
     }
 
@@ -1371,7 +1428,13 @@ namespace Anvil.API
     /// </summary>
     public async Task StoreCameraFacing()
     {
-      await ControlledCreature.WaitForObjectContext();
+      NwCreature? creature = ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      await creature.WaitForObjectContext();
       NWScript.StoreCameraFacing();
     }
 
@@ -1400,7 +1463,7 @@ namespace Anvil.API
     public bool TryCreateNuiWindow(NuiWindow window, out NuiWindowToken token, string windowId = "")
     {
       int tokenId = NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
-      token = tokenId != 0 ? new NuiWindowToken(this, tokenId, windowId) : NuiWindowToken.Invalid;
+      token = tokenId != 0 ? new NuiWindowToken(this, tokenId) : NuiWindowToken.Invalid;
 
       return tokenId != 0;
     }
@@ -1456,9 +1519,9 @@ namespace Anvil.API
       NWScript.Vibrate(ControlledCreature, (int)motor, strength, (float)duration.TotalSeconds);
     }
 
-    internal static NwPlayer FromPlayerId(uint playerId)
+    internal static NwPlayer? FromPlayerId(uint playerId)
     {
-      CNWSPlayer player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId, 0)?.AsNWSPlayer();
+      CNWSPlayer? player = LowLevel.ServerExoApp.GetClientObjectByPlayerId(playerId, 0)?.AsNWSPlayer();
       return player != null ? new NwPlayer(player) : null;
     }
   }

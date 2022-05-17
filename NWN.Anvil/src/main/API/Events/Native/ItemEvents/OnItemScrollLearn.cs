@@ -14,7 +14,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the creature learning the scroll.
     /// </summary>
-    public NwCreature Creature { get; private init; }
+    public NwCreature Creature { get; private init; } = null!;
 
     /// <summary>
     /// Gets or sets whether this scroll should be prevented from being learned.
@@ -24,13 +24,13 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the scroll that is being learnt.
     /// </summary>
-    public NwItem Scroll { get; private init; }
+    public NwItem Scroll { get; private init; } = null!;
 
     NwObject IEvent.Context => Creature;
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<LearnScrollHook> Hook { get; set; }
+      private static FunctionHook<LearnScrollHook> Hook { get; set; } = null!;
 
       private delegate int LearnScrollHook(void* pCreature, uint oidScrollToLearn);
 
@@ -46,8 +46,8 @@ namespace Anvil.API.Events
       {
         OnItemScrollLearn eventData = ProcessEvent(new OnItemScrollLearn
         {
-          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>(),
-          Scroll = oidScrollToLearn.ToNwObject<NwItem>(),
+          Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
+          Scroll = oidScrollToLearn.ToNwObject<NwItem>()!,
         });
 
         return !eventData.PreventLearnScroll ? Hook.CallOriginal(pCreature, oidScrollToLearn) : false.ToInt();

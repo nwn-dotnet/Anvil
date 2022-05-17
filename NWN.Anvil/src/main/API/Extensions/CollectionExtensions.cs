@@ -18,7 +18,7 @@ namespace Anvil.API
     /// <param name="value">The value that should be added.</param>
     public static void AddElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>, new()
     {
-      if (!mutableLookup.TryGetValue(key, out TCollection values))
+      if (!mutableLookup.TryGetValue(key, out TCollection? values))
       {
         values = new TCollection();
         mutableLookup[key] = values;
@@ -36,17 +36,17 @@ namespace Anvil.API
     /// <param name="value">The value to be searched.</param>
     public static bool ContainsElement<TKey, TValue, TCollection>(this IDictionary<TKey, TCollection> mutableLookup, TKey key, TValue value) where TCollection : ICollection<TValue>
     {
-      return mutableLookup.TryGetValue(key, out TCollection values) && values.Contains(value);
+      return mutableLookup.TryGetValue(key, out TCollection? values) && values.Contains(value);
     }
 
-    public static void DisposeAll(this IEnumerable<IDisposable> disposables)
+    public static void DisposeAll(this IEnumerable<IDisposable?>? disposables)
     {
       if (disposables == null)
       {
         return;
       }
 
-      foreach (IDisposable disposable in disposables)
+      foreach (IDisposable? disposable in disposables)
       {
         disposable?.Dispose();
       }
@@ -59,7 +59,7 @@ namespace Anvil.API
     /// <param name="item">The item to insert.</param>
     /// <param name="comparer">A custom comparer to use when comparing the item against elements in the collection.</param>
     /// <typeparam name="T">The type of item to insert.</typeparam>
-    public static void InsertOrdered<T>(this List<T> sortedList, T item, IComparer<T> comparer = null)
+    public static void InsertOrdered<T>(this List<T> sortedList, T item, IComparer<T>? comparer = null)
     {
       int binaryIndex = sortedList.BinarySearch(item, comparer);
       int index = binaryIndex < 0 ? ~binaryIndex : binaryIndex;
@@ -77,7 +77,7 @@ namespace Anvil.API
     {
       bool retVal = false;
 
-      if (mutableLookup.TryGetValue(key, out TCollection values))
+      if (mutableLookup.TryGetValue(key, out TCollection? values))
       {
         retVal = values.Remove(value);
         if (values.Any())
@@ -89,9 +89,9 @@ namespace Anvil.API
       return retVal;
     }
 
-    public static TValue SafeGet<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+    public static TValue? SafeGet<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
     {
-      return dictionary.TryGetValue(key, out TValue retVal) ? retVal : default;
+      return dictionary.TryGetValue(key, out TValue? retVal) ? retVal : default;
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ namespace Anvil.API
     /// <typeparam name="T">Type of the object.</typeparam>
     /// <param name="item">The instance that will be wrapped.</param>
     /// <returns>An IEnumerable&lt;T&gt; consisting of a single item. </returns>
-    public static IEnumerable<T> SafeYield<T>(this T item)
+    public static IEnumerable<T> SafeYield<T>(this T? item)
     {
       return item is not null ? item.Yield() : Enumerable.Empty<T>();
     }

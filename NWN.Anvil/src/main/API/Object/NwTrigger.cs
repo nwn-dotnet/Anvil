@@ -18,18 +18,23 @@ namespace Anvil.API
       Trigger = trigger;
     }
 
-    public static NwTrigger Create(string template, Location location, float size = 2.0f, string newTag = null)
+    public static NwTrigger? Create(string template, Location location, float size = 2.0f, string? newTag = null)
     {
       if (string.IsNullOrEmpty(template))
       {
         return default;
       }
 
-      CNWSArea area = location.Area.Area;
+      CNWSArea? area = location.Area?.Area;
+      if (area == null)
+      {
+        return default;
+      }
+
       Vector position = location.Position.ToNativeVector();
       Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
 
-      CNWSTrigger trigger = null;
+      CNWSTrigger? trigger = null;
       bool result = NativeUtils.CreateFromResRef(ResRefType.UTT, template, (resGff, resStruct) =>
       {
         trigger = new CNWSTrigger();
@@ -54,10 +59,9 @@ namespace Anvil.API
       return result && trigger != null ? trigger.ToNwObject<NwTrigger>() : null;
     }
 
-    public static NwTrigger Deserialize(byte[] serialized)
+    public static NwTrigger? Deserialize(byte[] serialized)
     {
-      CNWSTrigger trigger = null;
-
+      CNWSTrigger? trigger = null;
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTT"))
@@ -69,6 +73,7 @@ namespace Anvil.API
         if (trigger.LoadTrigger(resGff, resStruct).ToBool())
         {
           trigger.LoadObjectState(resGff, resStruct);
+          trigger.m_oidArea = Invalid;
           GC.SuppressFinalize(trigger);
           return true;
         }
@@ -80,12 +85,12 @@ namespace Anvil.API
       return result && trigger != null ? trigger.ToNwObject<NwTrigger>() : null;
     }
 
-    public static implicit operator CNWSTrigger(NwTrigger trigger)
+    public static implicit operator CNWSTrigger?(NwTrigger? trigger)
     {
       return trigger?.Trigger;
     }
 
-    public override NwTrigger Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwTrigger Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwTrigger>(location, newTag, copyLocalState);
     }
@@ -100,7 +105,7 @@ namespace Anvil.API
       int objType = (int)GetObjectType<T>();
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
-        yield return obj.ToNwObject<T>();
+        yield return obj.ToNwObject<T>()!;
       }
     }
 
@@ -114,11 +119,11 @@ namespace Anvil.API
       int objType = (int)objectTypes;
       for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
       {
-        yield return obj.ToNwObject<NwGameObject>();
+        yield return obj.ToNwObject<NwGameObject>()!;
       }
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTT", (resGff, resStruct) =>
       {
@@ -131,7 +136,7 @@ namespace Anvil.API
     {
       if (IsTrapped)
       {
-        Area.Area.m_pTrapList.Remove(this);
+        Area?.Area.m_pTrapList.Remove(this);
       }
 
       Trigger.RemoveFromArea();

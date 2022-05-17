@@ -39,9 +39,9 @@ namespace Anvil.API
     /// <param name="template">The door resref template from the toolset palette.</param>
     /// <param name="location">The location where this door will spawn.</param>
     /// <param name="newTag">The new tag to assign this door. Leave uninitialized/as null to use the template's tag.</param>
-    public static NwDoor Create(string template, Location location, string newTag = null)
+    public static NwDoor? Create(string template, Location location, string? newTag = null)
     {
-      if (string.IsNullOrEmpty(template))
+      if (string.IsNullOrEmpty(template) || location.Area == null)
       {
         return default;
       }
@@ -50,7 +50,7 @@ namespace Anvil.API
       Vector position = location.Position.ToNativeVector();
       Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
 
-      CNWSDoor door = null;
+      CNWSDoor? door = null;
       bool result = NativeUtils.CreateFromResRef(ResRefType.UTD, template, (resGff, resStruct) =>
       {
         door = new CNWSDoor();
@@ -75,10 +75,9 @@ namespace Anvil.API
       return result && door != null ? door.ToNwObject<NwDoor>() : null;
     }
 
-    public static NwDoor Deserialize(byte[] serialized)
+    public static NwDoor? Deserialize(byte[] serialized)
     {
-      CNWSDoor door = null;
-
+      CNWSDoor? door = null;
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
         if (!resGff.IsValidGff("UTD"))
@@ -90,6 +89,7 @@ namespace Anvil.API
         if (door.LoadDoor(resGff, resStruct).ToBool())
         {
           door.LoadObjectState(resGff, resStruct);
+          door.m_oidArea = Invalid;
           GC.SuppressFinalize(door);
           return true;
         }
@@ -101,14 +101,14 @@ namespace Anvil.API
       return result && door != null ? door.ToNwObject<NwDoor>() : null;
     }
 
-    public static implicit operator CNWSDoor(NwDoor door)
+    public static implicit operator CNWSDoor?(NwDoor? door)
     {
       return door?.Door;
     }
 
-    public override NwDoor Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwDoor Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
-      return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty, bCopyLocalState: copyLocalState.ToInt()).ToNwObject<NwDoor>();
+      return NWScript.CopyObject(this, location, sNewTag: newTag ?? string.Empty, bCopyLocalState: copyLocalState.ToInt()).ToNwObject<NwDoor>()!;
     }
 
     /// <summary>
@@ -156,7 +156,7 @@ namespace Anvil.API
       NWScript.ActionOpenDoor(this);
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTD", (resGff, resStruct) =>
       {

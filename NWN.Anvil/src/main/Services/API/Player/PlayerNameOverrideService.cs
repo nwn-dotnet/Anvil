@@ -109,7 +109,7 @@ namespace Anvil.Services
     /// <param name="observer">The observer whose overriden name of target is being cleared.</param>
     public void ClearPlayerNameOverride(NwPlayer target, NwPlayer observer)
     {
-      if (perPlayerOverrides.TryGetValue(target, out Dictionary<NwPlayer, PlayerNameOverride> playerOverrides))
+      if (perPlayerOverrides.TryGetValue(target, out Dictionary<NwPlayer, PlayerNameOverride>? playerOverrides))
       {
         playerOverrides.Remove(observer);
       }
@@ -128,7 +128,7 @@ namespace Anvil.Services
       Dictionary<NwPlayer, PlayerNameOverride> nameOverrides = includeGlobal ? new Dictionary<NwPlayer, PlayerNameOverride>(globalNameOverrides) : new Dictionary<NwPlayer, PlayerNameOverride>();
       foreach ((NwPlayer key, Dictionary<NwPlayer, PlayerNameOverride> value) in perPlayerOverrides)
       {
-        if (value.TryGetValue(observer, out PlayerNameOverride nameOverride))
+        if (value.TryGetValue(observer, out PlayerNameOverride? nameOverride))
         {
           nameOverrides[key] = nameOverride;
         }
@@ -142,14 +142,14 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="target">The player whose name to query.</param>
     /// <param name="observer">The specific observer.</param>
-    public PlayerNameOverride GetPlayerNameOverride(NwPlayer target, NwPlayer observer = null)
+    public PlayerNameOverride? GetPlayerNameOverride(NwPlayer? target, NwPlayer? observer = null)
     {
       if (target == null)
       {
         return null;
       }
 
-      if (observer != null && perPlayerOverrides.TryGetValue(target, out Dictionary<NwPlayer, PlayerNameOverride> playerOverrides) && playerOverrides.TryGetValue(observer, out PlayerNameOverride retVal))
+      if (observer != null && perPlayerOverrides.TryGetValue(target, out Dictionary<NwPlayer, PlayerNameOverride>? playerOverrides) && playerOverrides.TryGetValue(observer, out PlayerNameOverride? retVal))
       {
         return retVal;
       }
@@ -192,7 +192,7 @@ namespace Anvil.Services
     /// <param name="observer">The observer to see the new names.</param>
     public void SetPlayerNameOverride(NwPlayer target, PlayerNameOverride nameOverride, NwPlayer observer)
     {
-      if (!perPlayerOverrides.TryGetValue(target, out Dictionary<NwPlayer, PlayerNameOverride> playerOverrides))
+      if (!perPlayerOverrides.TryGetValue(target, out Dictionary<NwPlayer, PlayerNameOverride>? playerOverrides))
       {
         playerOverrides = new Dictionary<NwPlayer, PlayerNameOverride>();
         perPlayerOverrides[target] = playerOverrides;
@@ -213,14 +213,14 @@ namespace Anvil.Services
       SendNameUpdate(target, observer);
     }
 
-    private void ApplyNameOverride(NwPlayer targetPlayer, PlayerNameOverride nameOverride, OverrideNameType nameType)
+    private void ApplyNameOverride(NwPlayer? targetPlayer, PlayerNameOverride? nameOverride, OverrideNameType nameType)
     {
       if (nameOverride == null || targetPlayer == null || !IsValidCreature(targetPlayer.ControlledCreature))
       {
         return;
       }
 
-      CNWSCreature targetCreature = targetPlayer.ControlledCreature;
+      CNWSCreature targetCreature = targetPlayer.ControlledCreature!;
       switch (nameType)
       {
         case OverrideNameType.Character:
@@ -238,9 +238,9 @@ namespace Anvil.Services
 
     private void ApplyObserverOverrides(Dictionary<NwPlayer, PlayerNameOverride> nameOverrides, OverrideNameType nameType)
     {
-      foreach (KeyValuePair<NwPlayer, PlayerNameOverride> nameOverride in nameOverrides)
+      foreach ((NwPlayer? targetPlayer, PlayerNameOverride? nameOverride) in nameOverrides)
       {
-        ApplyNameOverride(nameOverride.Key, nameOverride.Value, nameType);
+        ApplyNameOverride(targetPlayer, nameOverride, nameType);
       }
     }
 
@@ -251,14 +251,17 @@ namespace Anvil.Services
         return;
       }
 
-      CNWSPlayer nwPlayer = player;
-      CNWSCreature nwCreature = player.LoginCreature;
+      CNWSCreature? creature = player.LoginCreature?.Creature;
+      if (creature == null)
+      {
+        return;
+      }
 
       OriginalNames originalNames = new OriginalNames
       {
-        FirstName = nwCreature.m_pStats.m_lsFirstName,
-        LastName = nwCreature.m_pStats.m_lsLastName,
-        PlayerName = LowLevel.ServerExoApp.GetNetLayer().GetPlayerInfo(nwPlayer.m_nPlayerID).m_sPlayerName,
+        FirstName = creature.m_pStats.m_lsFirstName,
+        LastName = creature.m_pStats.m_lsLastName,
+        PlayerName = LowLevel.ServerExoApp.GetNetLayer().GetPlayerInfo(player.Player.m_nPlayerID).m_sPlayerName,
       };
 
       renameOriginalNames[player] = originalNames;
@@ -266,8 +269,7 @@ namespace Anvil.Services
 
     private bool IsCreatureInLastUpdateObjectList(NwPlayer observer, NwPlayer target)
     {
-      CNWSPlayer nwPlayer = observer;
-
+      CNWSPlayer nwPlayer = observer.Player;
       CLastUpdateObject lastUpdateObj = nwPlayer.GetLastUpdateObject(target.ControlledCreature);
       if (lastUpdateObj != null)
       {
@@ -283,7 +285,7 @@ namespace Anvil.Services
       for (CExoLinkedListNode head = partyObjectsList.pHead; head != null; head = head.pNext)
       {
         CLastUpdatePartyObject partyMember = CLastUpdatePartyObject.FromPointer(head.pObject);
-        if (partyMember != null && partyMember.m_nPlayerId == target.ControlledCreature.ObjectId)
+        if (partyMember != null && partyMember.m_nPlayerId == target.ControlledCreature?.ObjectId)
         {
           return true;
         }
@@ -292,7 +294,7 @@ namespace Anvil.Services
       return false;
     }
 
-    private bool IsValidCreature(CNWSCreature creature)
+    private bool IsValidCreature(CNWSCreature? creature)
     {
       return creature != null && creature.m_pStats != null && (ShowOverridesToDM ||
         !creature.m_pStats.GetIsDM().ToBool() &&
@@ -309,9 +311,9 @@ namespace Anvil.Services
 
     private int OnSendServerToPlayerChatParty(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage)
     {
-      NwPlayer targetPlayer = oidSpeaker.ToNwPlayer(PlayerSearch.Controlled);
-      NwPlayer observerPlayer = NwPlayer.FromPlayerId(nPlayerId);
-      PlayerNameOverride nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
+      NwPlayer? targetPlayer = oidSpeaker.ToNwPlayer(PlayerSearch.Controlled);
+      NwPlayer? observerPlayer = NwPlayer.FromPlayerId(nPlayerId);
+      PlayerNameOverride? nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
 
       ApplyNameOverride(targetPlayer, nameOverride, OverrideNameType.Original);
       int retVal = sendServerToPlayerChatPartyHook.CallOriginal(pMessage, nPlayerId, oidSpeaker, sSpeakerMessage);
@@ -322,9 +324,9 @@ namespace Anvil.Services
 
     private int OnSendServerToPlayerChatShout(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage)
     {
-      NwPlayer targetPlayer = oidSpeaker.ToNwPlayer(PlayerSearch.Controlled);
-      NwPlayer observerPlayer = NwPlayer.FromPlayerId(nPlayerId);
-      PlayerNameOverride nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
+      NwPlayer? targetPlayer = oidSpeaker.ToNwPlayer(PlayerSearch.Controlled);
+      NwPlayer? observerPlayer = NwPlayer.FromPlayerId(nPlayerId);
+      PlayerNameOverride? nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
 
       ApplyNameOverride(targetPlayer, nameOverride, OverrideNameType.Original);
       int retVal = sendServerToPlayerChatShoutHook.CallOriginal(pMessage, nPlayerId, oidSpeaker, sSpeakerMessage);
@@ -335,9 +337,9 @@ namespace Anvil.Services
 
     private int OnSendServerToPlayerChatTell(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage)
     {
-      NwPlayer targetPlayer = oidSpeaker.ToNwPlayer(PlayerSearch.Controlled);
-      NwPlayer observerPlayer = NwPlayer.FromPlayerId(nPlayerId);
-      PlayerNameOverride nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
+      NwPlayer? targetPlayer = oidSpeaker.ToNwPlayer(PlayerSearch.Controlled);
+      NwPlayer? observerPlayer = NwPlayer.FromPlayerId(nPlayerId);
+      PlayerNameOverride? nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
 
       ApplyNameOverride(targetPlayer, nameOverride, OverrideNameType.Original);
       int retVal = sendServerToPlayerChatTellHook.CallOriginal(pMessage, nPlayerId, oidSpeaker, sSpeakerMessage);
@@ -348,7 +350,12 @@ namespace Anvil.Services
 
     private int OnSendServerToPlayerDungeonMasterUpdatePartyList(void* pMessage, uint nPlayerID)
     {
-      NwPlayer observer = NwPlayer.FromPlayerId(nPlayerID);
+      NwPlayer? observer = NwPlayer.FromPlayerId(nPlayerID);
+      if (observer == null)
+      {
+        return sendServerToPlayerDungeonMasterUpdatePartyListHook.CallOriginal(pMessage, nPlayerID);
+      }
+
       Dictionary<NwPlayer, PlayerNameOverride> nameOverrides = GetOverridesForObserver(observer, true);
 
       ApplyObserverOverrides(nameOverrides, PlayerListNameType);
@@ -360,9 +367,9 @@ namespace Anvil.Services
 
     private int OnSendServerToPlayerExamineGuiCreatureData(void* pMessage, void* pPlayer, uint oidCreatureID)
     {
-      NwPlayer targetPlayer = oidCreatureID.ToNwPlayer(PlayerSearch.Controlled);
-      NwPlayer observerPlayer = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer();
-      PlayerNameOverride nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
+      NwPlayer? targetPlayer = oidCreatureID.ToNwPlayer(PlayerSearch.Controlled);
+      NwPlayer? observerPlayer = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer();
+      PlayerNameOverride? nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
 
       ApplyNameOverride(targetPlayer, nameOverride, OverrideNameType.Original);
       int retVal = sendServerToPlayerExamineGuiCreatureDataHook.CallOriginal(pMessage, pPlayer, oidCreatureID);
@@ -382,10 +389,15 @@ namespace Anvil.Services
         return sendServerToPlayerPlayerListAddHook.CallOriginal(pMessage, nPlayerId, pNewPlayer);
       }
 
-      NwPlayer observer = NwPlayer.FromPlayerId(nPlayerId);
-      NwPlayer target = CNWSPlayer.FromPointer(pNewPlayer).ToNwPlayer();
+      NwPlayer? observer = NwPlayer.FromPlayerId(nPlayerId);
+      NwPlayer? target = CNWSPlayer.FromPointer(pNewPlayer).ToNwPlayer();
 
-      PlayerNameOverride nameOverride = GetPlayerNameOverride(target, observer);
+      if (target == null)
+      {
+        return sendServerToPlayerPlayerListAddHook.CallOriginal(pMessage, nPlayerId, pNewPlayer);
+      }
+
+      PlayerNameOverride? nameOverride = GetPlayerNameOverride(target, observer);
 
       ApplyNameOverride(target, nameOverride, PlayerListNameType);
       int retVal = sendServerToPlayerPlayerListAddHook.CallOriginal(pMessage, nPlayerId, pNewPlayer);
@@ -402,7 +414,12 @@ namespace Anvil.Services
         return sendServerToPlayerPlayerListAllHook.CallOriginal(pMessage, pPlayer);
       }
 
-      NwPlayer observer = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer();
+      NwPlayer? observer = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer();
+      if (observer == null)
+      {
+        return sendServerToPlayerPlayerListAllHook.CallOriginal(pMessage, pPlayer);
+      }
+
       Dictionary<NwPlayer, PlayerNameOverride> nameOverrides = GetOverridesForObserver(observer, true);
 
       ApplyObserverOverrides(nameOverrides, PlayerListNameType);
@@ -424,8 +441,11 @@ namespace Anvil.Services
         return sendServerToPlayerPlayerListDeleteHook.CallOriginal(pMessage, nPlayerId, pNewPlayer);
       }
 
-      NwPlayer newPlayer = CNWSPlayer.FromPointer(pNewPlayer).ToNwPlayer();
-      renameAddedToPlayerList.Remove(newPlayer);
+      NwPlayer? newPlayer = CNWSPlayer.FromPointer(pNewPlayer).ToNwPlayer();
+      if (newPlayer != null)
+      {
+        renameAddedToPlayerList.Remove(newPlayer);
+      }
 
       return sendServerToPlayerPlayerListDeleteHook.CallOriginal(pMessage, nPlayerId, pNewPlayer);
     }
@@ -434,13 +454,13 @@ namespace Anvil.Services
     {
       if (nGuiPanel == 1) // Party invite popup
       {
-        CNWSCreature observerCreature = LowLevel.ServerExoApp.GetCreatureByGameObjectID(observerOid);
-        NwPlayer observerPlayer = observerCreature?.ToNwObject<NwCreature>()?.ControllingPlayer;
-        NwPlayer targetPlayer = observerCreature?.m_oidInvitedToPartyBy.ToNwPlayer();
+        CNWSCreature? observerCreature = LowLevel.ServerExoApp.GetCreatureByGameObjectID(observerOid);
+        NwPlayer? observerPlayer = observerCreature?.ToNwObject<NwCreature>()?.ControllingPlayer;
+        NwPlayer? targetPlayer = observerCreature?.m_oidInvitedToPartyBy.ToNwPlayer();
 
         if (targetPlayer != null)
         {
-          PlayerNameOverride name = GetPlayerNameOverride(targetPlayer, observerPlayer);
+          PlayerNameOverride? name = GetPlayerNameOverride(targetPlayer, observerPlayer);
           if (name != null)
           {
             *psStringReference = (void*)name.CharacterNameInternal.Pointer;
@@ -455,24 +475,29 @@ namespace Anvil.Services
     {
       CNWSObject areaObject = CNWSObject.FromPointer(pAreaObject);
 
-      NwPlayer targetPlayer = areaObject.m_idSelf.ToNwPlayer(PlayerSearch.Controlled);
-      NwPlayer observerPlayer = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer();
-      PlayerNameOverride nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
+      NwPlayer? targetPlayer = areaObject.m_idSelf.ToNwPlayer(PlayerSearch.Controlled);
+      NwPlayer? observerPlayer = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer();
+      PlayerNameOverride? nameOverride = GetPlayerNameOverride(targetPlayer, observerPlayer);
 
       ApplyNameOverride(targetPlayer, nameOverride, OverrideNameType.Original);
       writeGameObjUpdateUpdateObjectHook.CallOriginal(pMessage, pPlayer, pAreaObject, pLastUpdateObject, nObjectUpdatesRequired, nObjectAppearanceUpdatesRequired);
       RestoreNameOverride(targetPlayer, nameOverride, OverrideNameType.Original);
     }
 
-    private void RestoreNameOverride(NwPlayer targetPlayer, PlayerNameOverride nameOverride, OverrideNameType nameType)
+    private void RestoreNameOverride(NwPlayer? targetPlayer, PlayerNameOverride? nameOverride, OverrideNameType nameType)
     {
       if (nameOverride == null || targetPlayer == null || !IsValidCreature(targetPlayer.ControlledCreature))
       {
         return;
       }
 
-      CNWSCreature targetCreature = targetPlayer.ControlledCreature;
-      if (renameOriginalNames.TryGetValue(targetPlayer, out OriginalNames originalName))
+      CNWSCreature? targetCreature = targetPlayer.ControlledCreature;
+      if (targetCreature == null)
+      {
+        return;
+      }
+
+      if (renameOriginalNames.TryGetValue(targetPlayer, out OriginalNames? originalName))
       {
         if (nameType != OverrideNameType.Original)
         {
@@ -486,9 +511,9 @@ namespace Anvil.Services
 
     private void RestoreObserverOverrides(Dictionary<NwPlayer, PlayerNameOverride> nameOverrides, OverrideNameType nameType)
     {
-      foreach (KeyValuePair<NwPlayer, PlayerNameOverride> nameOverride in nameOverrides)
+      foreach ((NwPlayer? targetPlayer, PlayerNameOverride? nameOverride) in nameOverrides)
       {
-        RestoreNameOverride(nameOverride.Key, nameOverride.Value, nameType);
+        RestoreNameOverride(targetPlayer, nameOverride, nameType);
       }
     }
 
@@ -539,7 +564,7 @@ namespace Anvil.Services
 
     private void SendNameUpdateToAllPlayers(NwPlayer targetPlayer)
     {
-      Dictionary<NwPlayer, PlayerNameOverride> playerOverrides = perPlayerOverrides.TryGetValue(targetPlayer, out playerOverrides) ? playerOverrides : null;
+      Dictionary<NwPlayer, PlayerNameOverride>? playerOverrides = perPlayerOverrides.TryGetValue(targetPlayer, out playerOverrides) ? playerOverrides : null;
       foreach (NwPlayer observerPlayer in NwModule.Instance.Players)
       {
         // If the observer has a personal override of the target's name then skip

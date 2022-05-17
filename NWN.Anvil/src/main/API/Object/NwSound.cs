@@ -25,18 +25,23 @@ namespace Anvil.API
       set => NWScript.SoundObjectSetVolume(this, value);
     }
 
-    public static NwSound Create(string template, Location location, string newTag = null)
+    public static NwSound? Create(string template, Location location, string? newTag = null)
     {
       if (string.IsNullOrEmpty(template))
       {
         return default;
       }
 
-      CNWSArea area = location.Area.Area;
+      CNWSArea? area = location.Area?.Area;
+      if (area == null)
+      {
+        return default;
+      }
+
       Vector position = location.Position.ToNativeVector();
       Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
 
-      CNWSSoundObject soundObject = null;
+      CNWSSoundObject? soundObject = null;
       bool result = NativeUtils.CreateFromResRef(ResRefType.UTS, template, (resGff, resStruct) =>
       {
         soundObject = new CNWSSoundObject();
@@ -61,9 +66,9 @@ namespace Anvil.API
       return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
     }
 
-    public static NwSound Deserialize(byte[] serialized)
+    public static NwSound? Deserialize(byte[] serialized)
     {
-      CNWSSoundObject soundObject = null;
+      CNWSSoundObject? soundObject = null;
 
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
@@ -76,6 +81,7 @@ namespace Anvil.API
         if (soundObject.Load(resGff, resStruct).ToBool())
         {
           soundObject.LoadObjectState(resGff, resStruct);
+          soundObject.m_oidArea = Invalid;
           GC.SuppressFinalize(soundObject);
           return true;
         }
@@ -87,12 +93,12 @@ namespace Anvil.API
       return result && soundObject != null ? soundObject.ToNwObject<NwSound>() : null;
     }
 
-    public static implicit operator CNWSSoundObject(NwSound sound)
+    public static implicit operator CNWSSoundObject?(NwSound? sound)
     {
       return sound?.SoundObject;
     }
 
-    public override NwGameObject Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwGameObject Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       throw new NotSupportedException("Sound objects may not be cloned.");
     }
@@ -105,7 +111,7 @@ namespace Anvil.API
       NWScript.SoundObjectPlay(this);
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTS", (resGff, resStruct) =>
       {

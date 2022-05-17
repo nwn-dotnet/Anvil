@@ -13,6 +13,6 @@ namespace Anvil.API
 
     public bool IsClassSkill => skill.bClassSkill.ToBool();
 
-    public NwSkill Skill => NwSkill.FromSkillId(skill.nSkill);
+    public NwSkill Skill => NwSkill.FromSkillId(skill.nSkill)!;
   }
 }

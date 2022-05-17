@@ -16,7 +16,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="location">The location for the object to be spawned at.</param>
     /// <returns>The created object.</returns>
-    public T GetValue(Location location)
+    public T? GetValue(Location location)
     {
       return NWScript.RetrieveCampaignObject(Campaign, Name, location, NwObject.Invalid, Player?.ControlledCreature).ToNwObject<T>();
     }
@@ -27,9 +27,15 @@ namespace Anvil.API
     /// </summary>
     /// <param name="owner">The owner who should receive the spawned object.</param>
     /// <returns>The created object.</returns>
-    public T GetValue(NwGameObject owner)
+    public T? GetValue(NwGameObject owner)
     {
-      return NWScript.RetrieveCampaignObject(Campaign, Name, owner.Location, owner, Player?.ControlledCreature).ToNwObject<T>();
+      Location? location = owner.Location;
+      if (location == null || location.Area == null)
+      {
+        return null;
+      }
+
+      return NWScript.RetrieveCampaignObject(Campaign, Name, location, owner, Player?.ControlledCreature).ToNwObject<T>();
     }
   }
 }

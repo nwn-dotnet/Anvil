@@ -18,14 +18,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that triggered the event.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastPCRested().ToNwPlayer();
+      public NwPlayer Player { get; } = NWScript.GetLastPCRested().ToNwPlayer()!;
 
       /// <summary>
       /// Gets the <see cref="RestEventType"/> that was triggered.
       /// </summary>
       public RestEventType RestEventType { get; } = (RestEventType)NWScript.GetLastRestEventType();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject? IEvent.Context => Player.ControlledCreature;
     }
   }
 }

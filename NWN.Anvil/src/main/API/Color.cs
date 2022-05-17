@@ -135,7 +135,7 @@ namespace Anvil.API
       return Alpha == other.Alpha && Blue == other.Blue && Green == other.Green && Red == other.Red;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
       return obj is Color other && Equals(other);
     }

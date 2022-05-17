@@ -8,7 +8,7 @@ namespace Anvil.Services
 
     public int Damage { get; set; }
 
-    public NwGameObject Target { get; init; }
-    public NwItem Weapon { get; init; }
+    public NwGameObject Target { get; init; } = null!;
+    public NwItem Weapon { get; init; } = null!;
   }
 }

@@ -13,7 +13,7 @@ namespace Anvil.API
     /// <param name="json">The JSON to deserialize.</param>
     /// <typeparam name="T">The type to deserialize to.</typeparam>
     /// <returns>The deserialized object.</returns>
-    public static T FromJson<T>(string json)
+    public static T? FromJson<T>(string json)
     {
       return JsonConvert.DeserializeObject<T>(json);
     }
@@ -35,7 +35,7 @@ namespace Anvil.API
     /// <param name="json">The json to deserialize.</param>
     /// <typeparam name="T">The type to deserialize to.</typeparam>
     /// <returns>The deserialized object.</returns>
-    internal static T FromJson<T>(Json json)
+    internal static T? FromJson<T>(Json json)
     {
       return JsonConvert.DeserializeObject<T>(json.Dump());
     }

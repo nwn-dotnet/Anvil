@@ -20,13 +20,13 @@ namespace Anvil
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private static AnvilCore instance;
+    private static AnvilCore instance = null!;
 
     [Inject]
-    private NwServer NwServer { get; init; }
+    private NwServer NwServer { get; init; } = null!;
 
     [Inject]
-    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; }
+    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; } = null!;
 
     private readonly IServiceManager serviceManager;
 
@@ -37,7 +37,7 @@ namespace Anvil
       this.serviceManager.CoreServiceContainer.InjectProperties(this);
     }
 
-    public static T GetService<T>()
+    public static T? GetService<T>()
     {
       return instance.serviceManager.AnvilServiceContainer.GetInstance<T>();
     }
@@ -50,7 +50,7 @@ namespace Anvil
     /// <param name="serviceManager">A custom service manager to use instead of the default <see cref="AnvilServiceManager"/>. For advanced users only.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IServiceManager serviceManager = default)
+    public static int Init(IntPtr arg, int argLength, IServiceManager? serviceManager = default)
     {
       serviceManager ??= new AnvilServiceManager();
       instance = new AnvilCore(serviceManager);

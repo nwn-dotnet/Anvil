@@ -8,16 +8,15 @@ namespace Anvil.API.Events
 {
   public sealed class OnCreatureDamage : IEvent
   {
-    public DamageData<int> DamageData { get; private init; }
-    public NwObject DamagedBy { get; private init; }
-
-    public NwGameObject Target { get; private init; }
+    public DamageData<int> DamageData { get; private init; } = null!;
+    public NwObject DamagedBy { get; private init; } = null!;
+    public NwGameObject Target { get; private init; } = null!;
 
     NwObject IEvent.Context => DamagedBy;
 
     internal unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<OnApplyDamageHook> Hook { get; set; }
+      private static FunctionHook<OnApplyDamageHook> Hook { get; set; } = null!;
 
       private delegate int OnApplyDamageHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
@@ -30,7 +29,7 @@ namespace Anvil.API.Events
 
       private static bool IsValidObjectTarget(ObjectType objectType)
       {
-        return objectType == ObjectType.Creature || objectType == ObjectType.Placeable;
+        return objectType is ObjectType.Creature or ObjectType.Placeable;
       }
 
       [UnmanagedCallersOnly]
@@ -47,8 +46,8 @@ namespace Anvil.API.Events
         {
           ProcessEvent(new OnCreatureDamage
           {
-            DamagedBy = effect.m_oidCreator.ToNwObject<NwObject>(),
-            Target = gameObject.ToNwObject<NwGameObject>(),
+            DamagedBy = effect.m_oidCreator.ToNwObject<NwObject>()!,
+            Target = gameObject.ToNwObject<NwGameObject>()!,
             DamageData = new DamageData<int>(effect.m_nParamInteger),
           });
         }

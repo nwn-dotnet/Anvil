@@ -25,7 +25,7 @@ namespace Anvil.Tests.API
       CGameEffect gameEffect = effect;
       Assert.That(gameEffect, Is.Not.Null, "Native effect was not valid after implicit cast.");
 
-      Effect softReference = gameEffect.ToEffect(false);
+      Effect softReference = gameEffect.ToEffect(false)!;
       softReference.Dispose();
       Assert.That(softReference.IsValid, Is.True, "The soft reference disposed the memory of the original effect.");
     }

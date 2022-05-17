@@ -24,14 +24,14 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwPlayer"/> that performed a tile action.
       /// </summary>
-      public NwPlayer Player { get; } = NWScript.GetLastPlayerToDoTileAction().ToNwPlayer();
+      public NwPlayer Player { get; } = NWScript.GetLastPlayerToDoTileAction().ToNwPlayer()!;
 
       /// <summary>
       /// Gets the position that was clicked.
       /// </summary>
       public Vector3 TargetPosition { get; } = NWScript.GetLastTileActionPosition();
 
-      NwObject IEvent.Context => Player.ControlledCreature;
+      NwObject? IEvent.Context => Player.ControlledCreature;
     }
   }
 }

@@ -1,7 +1,9 @@
+using System;
 using NWN.Core;
 
 namespace Anvil.API
 {
+  [Obsolete("Use CreaturePart instead.")]
   public enum ItemAppearanceArmorModel
   {
     RightFoot = NWScript.ITEM_APPR_ARMOR_MODEL_RFOOT,

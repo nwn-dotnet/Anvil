@@ -33,11 +33,11 @@ namespace Anvil.Services
     /// <param name="forceRefresh">If true, always reloads the 2DA instead of using a cached version.</param>
     /// <typeparam name="T">The <see cref="ITwoDimArray"/> type to use to deserialize.</typeparam>
     /// <returns>The deserialized 2DA.</returns>
-    public T Get2DA<T>(string name, bool forceRefresh = false) where T : ITwoDimArray, new()
+    public T? Get2DA<T>(string name, bool forceRefresh = false) where T : ITwoDimArray, new()
     {
       name = name.Replace(".2da", string.Empty);
 
-      if (!forceRefresh && cache.TryGetValue(name, out ITwoDimArray value))
+      if (!forceRefresh && cache.TryGetValue(name, out ITwoDimArray? value))
       {
         return (T)value;
       }
@@ -45,11 +45,11 @@ namespace Anvil.Services
       return Load2DAToCache<T>(name);
     }
 
-    private T Load2DAToCache<T>(string name) where T : ITwoDimArray, new()
+    private T? Load2DAToCache<T>(string name) where T : ITwoDimArray, new()
     {
       T new2da = injectionService.Inject(new T());
+      C2DA? twoDimArray = twoDimArrays.GetCached2DA(name.ToExoString(), true.ToInt());
 
-      C2DA twoDimArray = twoDimArrays.GetCached2DA(name.ToExoString(), true.ToInt());
       if (twoDimArray == null)
       {
         return default;
@@ -58,7 +58,7 @@ namespace Anvil.Services
       for (int i = 0; i < twoDimArray.m_nNumRows; i++)
       {
         int rowIndex = i;
-        new2da.DeserializeRow(rowIndex, (column) => NWScript.Get2DAString(name, column, rowIndex));
+        new2da.DeserializeRow(rowIndex, column => NWScript.Get2DAString(name, column, rowIndex));
       }
 
       cache[name] = new2da;

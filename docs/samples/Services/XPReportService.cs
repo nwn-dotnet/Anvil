@@ -43,13 +43,19 @@ namespace NWN.Anvil.Samples
     private void OnClientEnter(ModuleEvents.OnClientEnter onClientEnter)
     {
       NwPlayer player = onClientEnter.Player;
-      int nextLevel = GetLevelFromXp(player.ControlledCreature.Xp) + 1;
+      NwCreature? creature = player.ControlledCreature;
+      if (creature == null)
+      {
+        return;
+      }
+
+      int nextLevel = GetLevelFromXp(creature.Xp) + 1;
       if (nextLevel > MaxLevel)
       {
         return;
       }
 
-      player.SendServerMessage($"Next level up: {GetXpForLevel(nextLevel) - player.ControlledCreature.Xp}");
+      player.SendServerMessage($"Next level up: {GetXpForLevel(nextLevel) - creature.Xp}");
     }
 
     /// <summary>

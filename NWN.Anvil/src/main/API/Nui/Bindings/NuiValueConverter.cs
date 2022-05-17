@@ -11,15 +11,15 @@ namespace Anvil.API
       return objectType.GetGenericTypeDefinition() == typeof(NuiValue<>);
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
-      object retVal = Activator.CreateInstance(objectType, true);
+      object? retVal = Activator.CreateInstance(objectType, true);
       if (retVal == null)
       {
         return null;
       }
 
-      PropertyInfo propertyInfo = objectType.GetProperty(nameof(NuiValue<object>.Value));
+      PropertyInfo? propertyInfo = objectType.GetProperty(nameof(NuiValue<object>.Value));
       if (propertyInfo == null)
       {
         return null;
@@ -31,7 +31,7 @@ namespace Anvil.API
       return retVal;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
       if (value == null)
       {
@@ -40,7 +40,7 @@ namespace Anvil.API
       }
 
       Type type = value.GetType();
-      PropertyInfo propertyInfo = type.GetProperty(nameof(NuiValue<object>.Value));
+      PropertyInfo? propertyInfo = type.GetProperty(nameof(NuiValue<object>.Value));
 
       if (propertyInfo == null)
       {

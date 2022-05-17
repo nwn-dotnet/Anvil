@@ -12,14 +12,15 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.CreatureOnUserDefinedEvent)]
     public sealed class OnUserDefined : IEvent
     {
-      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
+
       public int EventNumber { get; } = NWScript.GetUserDefinedEventNumber();
 
       NwObject IEvent.Context => Creature;
 
       public static void Signal(NwCreature creature, int eventId)
       {
-        Event nwEvent = NWScript.EventUserDefined(eventId);
+        Event nwEvent = NWScript.EventUserDefined(eventId)!;
         NWScript.SignalEvent(creature, nwEvent);
       }
     }

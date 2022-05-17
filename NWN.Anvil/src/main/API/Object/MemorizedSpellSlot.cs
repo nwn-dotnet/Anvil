@@ -37,7 +37,7 @@ namespace Anvil.API
 
     public NwSpell Spell
     {
-      get => NwSpell.FromSpellId((int)classInfo.GetMemorizedSpellInSlot(spellLevel, spellSlot));
+      get => NwSpell.FromSpellId((int)classInfo.GetMemorizedSpellInSlot(spellLevel, spellSlot))!;
       set => classInfo.SetMemorizedSpellSlot(spellLevel, spellSlot, value.Id.AsUInt(), IsDomainSpell.ToInt(), (byte)MetaMagic);
     }
 

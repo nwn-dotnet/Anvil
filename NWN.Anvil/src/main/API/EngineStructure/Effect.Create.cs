@@ -14,7 +14,7 @@ namespace Anvil.API
     /// <param name="amount">The amount to increase the ability by.</param>
     public static Effect AbilityDecrease(Ability ability, int amount)
     {
-      return NWScript.EffectAbilityDecrease((int)ability, amount);
+      return NWScript.EffectAbilityDecrease((int)ability, amount)!;
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ namespace Anvil.API
     /// <param name="amount">The amount to increase the ability by.</param>
     public static Effect AbilityIncrease(Ability ability, int amount)
     {
-      return NWScript.EffectAbilityIncrease((int)ability, amount);
+      return NWScript.EffectAbilityIncrease((int)ability, amount)!;
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ namespace Anvil.API
     /// <param name="acType">The type of AC to decrease (Dodge).</param>
     public static Effect ACDecrease(int amount, ACBonus acType = ACBonus.Dodge)
     {
-      return NWScript.EffectACDecrease(amount, (int)acType);
+      return NWScript.EffectACDecrease(amount, (int)acType)!;
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace Anvil.API
     /// <param name="acType">The AC type of the AC bonus.</param>
     public static Effect ACIncrease(int amount, ACBonus acType = ACBonus.Dodge)
     {
-      return NWScript.EffectACIncrease(amount, (int)acType);
+      return NWScript.EffectACIncrease(amount, (int)acType)!;
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Appear()
     {
-      return NWScript.EffectAppear();
+      return NWScript.EffectAppear()!;
     }
 
     /// <summary>
@@ -63,13 +63,13 @@ namespace Anvil.API
     /// <param name="heartbeatHandle">The callback to invoke when something is inside the area of effect during a heartbeat (~6 seconds)</param>
     /// <param name="onExitHandle">The callback to invoke when something leaves this area of effect.</param>
     /// <returns>The created effect.</returns>
-    public static Effect AreaOfEffect(PersistentVfxType vfxType, ScriptCallbackHandle onEnterHandle = null, ScriptCallbackHandle heartbeatHandle = null, ScriptCallbackHandle onExitHandle = null)
+    public static Effect AreaOfEffect(PersistentVfxType vfxType, ScriptCallbackHandle? onEnterHandle = null, ScriptCallbackHandle? heartbeatHandle = null, ScriptCallbackHandle? onExitHandle = null)
     {
       onEnterHandle?.AssertValid();
       heartbeatHandle?.AssertValid();
       onExitHandle?.AssertValid();
 
-      return NWScript.EffectAreaOfEffect((int)vfxType, onEnterHandle?.ScriptName ?? string.Empty, heartbeatHandle?.ScriptName ?? string.Empty, onExitHandle?.ScriptName ?? string.Empty);
+      return NWScript.EffectAreaOfEffect((int)vfxType, onEnterHandle?.ScriptName ?? string.Empty, heartbeatHandle?.ScriptName ?? string.Empty, onExitHandle?.ScriptName ?? string.Empty)!;
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ namespace Anvil.API
     /// <param name="penaltyType">The weapon slot this penalty should be applied to.</param>
     public static Effect AttackDecrease(int amount, AttackBonus penaltyType = AttackBonus.Misc)
     {
-      return NWScript.EffectAttackDecrease(amount, (int)penaltyType);
+      return NWScript.EffectAttackDecrease(amount, (int)penaltyType)!;
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ namespace Anvil.API
     /// <param name="bonusType">The weapon slot this bonus should be applied to.</param>
     public static Effect AttackIncrease(int amount, AttackBonus bonusType = AttackBonus.Misc)
     {
-      return NWScript.EffectAttackIncrease(amount, (int)bonusType);
+      return NWScript.EffectAttackIncrease(amount, (int)bonusType)!;
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ namespace Anvil.API
     /// <param name="missTarget">If true, the beam will hit a random position near or past the applied target to indicate a miss.</param>
     public static Effect Beam(VfxType fxType, NwGameObject emitter, BodyNode origin, bool missTarget = false)
     {
-      return NWScript.EffectBeam((int)fxType, emitter, (int)origin, missTarget.ToInt());
+      return NWScript.EffectBeam((int)fxType, emitter, (int)origin, missTarget.ToInt())!;
     }
 
     /// <summary>
@@ -109,7 +109,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Blindness()
     {
-      return NWScript.EffectBlindness();
+      return NWScript.EffectBlindness()!;
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Charmed()
     {
-      return NWScript.EffectCharmed();
+      return NWScript.EffectCharmed()!;
     }
 
     /// <summary>
@@ -127,7 +127,7 @@ namespace Anvil.API
     /// <param name="missChanceType">The type of attack to apply this concealment against.</param>
     public static Effect Concealment(int percentage, MissChanceType missChanceType = MissChanceType.Normal)
     {
-      return NWScript.EffectConcealment(percentage, (int)missChanceType);
+      return NWScript.EffectConcealment(percentage, (int)missChanceType)!;
     }
 
     /// <summary>
@@ -135,7 +135,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Confused()
     {
-      return NWScript.EffectConfused();
+      return NWScript.EffectConfused()!;
     }
 
     /// <summary>
@@ -149,7 +149,7 @@ namespace Anvil.API
     /// <param name="chaMod">The penalty to Charisma.</param>
     public static Effect Curse(int strMod = 1, int dexMod = 1, int conMod = 1, int intMod = 1, int wisMod = 1, int chaMod = 1)
     {
-      return NWScript.EffectCurse(strMod, dexMod, conMod, intMod, wisMod, chaMod);
+      return NWScript.EffectCurse(strMod, dexMod, conMod, intMod, wisMod, chaMod)!;
     }
 
     /// <summary>
@@ -157,7 +157,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect CutsceneDominated()
     {
-      return NWScript.EffectCutsceneDominated();
+      return NWScript.EffectCutsceneDominated()!;
     }
 
     /// <summary>
@@ -165,7 +165,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect CutsceneGhost()
     {
-      return NWScript.EffectCutsceneGhost();
+      return NWScript.EffectCutsceneGhost()!;
     }
 
     /// <summary>
@@ -174,7 +174,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect CutsceneImmobilize()
     {
-      return NWScript.EffectCutsceneImmobilize();
+      return NWScript.EffectCutsceneImmobilize()!;
     }
 
     /// <summary>
@@ -182,7 +182,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect CutsceneParalyze()
     {
-      return NWScript.EffectCutsceneParalyze();
+      return NWScript.EffectCutsceneParalyze()!;
     }
 
     /// <summary>
@@ -192,7 +192,7 @@ namespace Anvil.API
     /// <param name="damageType">The damage type to apply.</param>
     public static Effect Damage(int amount, DamageType damageType = DamageType.Magical)
     {
-      return NWScript.EffectDamage(amount, (int)damageType);
+      return NWScript.EffectDamage(amount, (int)damageType)!;
     }
 
     /// <summary>
@@ -202,7 +202,7 @@ namespace Anvil.API
     /// <param name="damageType">The damage type to apply the penalty to.</param>
     public static Effect DamageDecrease(int penalty, DamageType damageType = DamageType.Magical)
     {
-      return NWScript.EffectDamageDecrease(penalty, (int)damageType);
+      return NWScript.EffectDamageDecrease(penalty, (int)damageType)!;
     }
 
     /// <summary>
@@ -213,7 +213,7 @@ namespace Anvil.API
     /// <param name="pctImmunity">The percentage decrease (1-100).</param>
     public static Effect DamageImmunityDecrease(DamageType damageType, int pctImmunity)
     {
-      return NWScript.EffectDamageImmunityDecrease((int)damageType, pctImmunity);
+      return NWScript.EffectDamageImmunityDecrease((int)damageType, pctImmunity)!;
     }
 
     /// <summary>
@@ -223,7 +223,7 @@ namespace Anvil.API
     /// <param name="pctImmunity">The percentage increase (1-100).</param>
     public static Effect DamageImmunityIncrease(DamageType damageType, int pctImmunity)
     {
-      return NWScript.EffectDamageImmunityIncrease((int)damageType, pctImmunity);
+      return NWScript.EffectDamageImmunityIncrease((int)damageType, pctImmunity)!;
     }
 
     /// <summary>
@@ -233,7 +233,7 @@ namespace Anvil.API
     /// <param name="damageType">The damage type to apply the bonus to.</param>
     public static Effect DamageIncrease(int bonus, DamageType damageType = DamageType.Magical)
     {
-      return NWScript.EffectDamageIncrease(bonus, (int)damageType);
+      return NWScript.EffectDamageIncrease(bonus, (int)damageType)!;
     }
 
     /// <summary>
@@ -244,7 +244,7 @@ namespace Anvil.API
     /// <param name="totalAbsorb">The total amount of damage to absorb, before the effect is removed (0 = infinite).</param>
     public static Effect DamageReduction(int amount, DamagePower damagePower, int totalAbsorb = 0)
     {
-      return NWScript.EffectDamageReduction(amount, (int)damagePower, totalAbsorb);
+      return NWScript.EffectDamageReduction(amount, (int)damagePower, totalAbsorb)!;
     }
 
     /// <summary>
@@ -255,7 +255,7 @@ namespace Anvil.API
     /// <param name="totalAbsorb">The total amount of damage to absorb, before the effect is removed (0 = infinite).</param>
     public static Effect DamageResistance(DamageType damageType, int amount, int totalAbsorb = 0)
     {
-      return NWScript.EffectDamageResistance((int)damageType, amount, totalAbsorb);
+      return NWScript.EffectDamageResistance((int)damageType, amount, totalAbsorb)!;
     }
 
     /// <summary>
@@ -266,7 +266,7 @@ namespace Anvil.API
     /// <param name="damageType">The type of the damage reflected to the attacker.</param>
     public static Effect DamageShield(int damageAmount, DamageBonus randomAmount, DamageType damageType)
     {
-      return NWScript.EffectDamageShield(damageAmount, (int)randomAmount, (int)damageType);
+      return NWScript.EffectDamageShield(damageAmount, (int)randomAmount, (int)damageType)!;
     }
 
     /// <summary>
@@ -275,7 +275,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Darkness()
     {
-      return NWScript.EffectDarkness();
+      return NWScript.EffectDarkness()!;
     }
 
     /// <summary>
@@ -283,7 +283,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Dazed()
     {
-      return NWScript.EffectDazed();
+      return NWScript.EffectDazed()!;
     }
 
     /// <summary>
@@ -291,7 +291,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Deaf()
     {
-      return NWScript.EffectDeaf();
+      return NWScript.EffectDeaf()!;
     }
 
     /// <summary>
@@ -301,7 +301,7 @@ namespace Anvil.API
     /// <param name="feedback">If false, excludes the "XXX: Dead" feedback message.</param>
     public static Effect Death(bool spectacularDeath = false, bool feedback = true)
     {
-      return NWScript.EffectDeath(spectacularDeath.ToInt(), feedback.ToInt());
+      return NWScript.EffectDeath(spectacularDeath.ToInt(), feedback.ToInt())!;
     }
 
     /// <summary>
@@ -310,7 +310,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Disappear()
     {
-      return NWScript.EffectDisappear();
+      return NWScript.EffectDisappear()!;
     }
 
     /// <summary>
@@ -320,7 +320,7 @@ namespace Anvil.API
     /// <param name="animationType">The appear/disappear animation nto use.</param>
     public static Effect DisappearAppear(Location location, int animationType = 1)
     {
-      return NWScript.EffectDisappearAppear(location, animationType);
+      return NWScript.EffectDisappearAppear(location, animationType)!;
     }
 
     /// <summary>
@@ -329,7 +329,7 @@ namespace Anvil.API
     /// <param name="diseaseType">The type of disease to apply.</param>
     public static Effect Disease(DiseaseType diseaseType)
     {
-      return NWScript.EffectDisease((int)diseaseType);
+      return NWScript.EffectDisease((int)diseaseType)!;
     }
 
     /// <summary>
@@ -339,7 +339,7 @@ namespace Anvil.API
     /// <param name="casterLevel">The max (inclusive) caster level of spell to dispel.</param>
     public static Effect DispelMagicAll(int casterLevel)
     {
-      return NWScript.EffectDispelMagicAll(casterLevel);
+      return NWScript.EffectDispelMagicAll(casterLevel)!;
     }
 
     /// <summary>
@@ -348,7 +348,7 @@ namespace Anvil.API
     /// <param name="casterLevel">The max (inclusive) caster level of spell to dispel.</param>
     public static Effect DispelMagicBest(int casterLevel)
     {
-      return NWScript.EffectDispelMagicBest(casterLevel);
+      return NWScript.EffectDispelMagicBest(casterLevel)!;
     }
 
     /// <summary>
@@ -357,7 +357,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Dominated()
     {
-      return NWScript.EffectDominated();
+      return NWScript.EffectDominated()!;
     }
 
     /// <summary>
@@ -365,7 +365,7 @@ namespace Anvil.API
     /// </summary>
     public static Effect Entangle()
     {
-      return NWScript.EffectEntangle();
+      return NWScript.EffectEntangle()!;
     }
 
     /// <summary>
@@ -374,47 +374,47 @@ namespace Anvil.API
     /// </summary>
     public static Effect Ethereal()
     {
-      return NWScript.EffectEthereal();
+      return NWScript.EffectEthereal()!;
     }
 
     public static Effect Frightened()
     {
-      return NWScript.EffectFrightened();
+      return NWScript.EffectFrightened()!;
     }
 
     public static Effect Haste()
     {
-      return NWScript.EffectHaste();
+      return NWScript.EffectHaste()!;
     }
 
     public static Effect Heal(int damageToHeal)
     {
-      return NWScript.EffectHeal(damageToHeal);
+      return NWScript.EffectHeal(damageToHeal)!;
     }
 
     public static Effect HitPointChangeWhenDying(float hpChangePerRound)
     {
-      return NWScript.EffectHitPointChangeWhenDying(hpChangePerRound);
+      return NWScript.EffectHitPointChangeWhenDying(hpChangePerRound)!;
     }
 
     public static Effect Icon(EffectIcon icon)
     {
-      return NWScript.EffectIcon((int)icon);
+      return NWScript.EffectIcon((int)icon)!;
     }
 
     public static Effect Immunity(ImmunityType immunityType)
     {
-      return NWScript.EffectImmunity((int)immunityType);
+      return NWScript.EffectImmunity((int)immunityType)!;
     }
 
     public static Effect Invisibility(InvisibilityType invisibilityType)
     {
-      return NWScript.EffectInvisibility((int)invisibilityType);
+      return NWScript.EffectInvisibility((int)invisibilityType)!;
     }
 
     public static Effect Knockdown()
     {
-      return NWScript.EffectKnockdown();
+      return NWScript.EffectKnockdown()!;
     }
 
     /// <summary>
@@ -435,7 +435,7 @@ namespace Anvil.API
       Effect current = baseEffect;
       foreach (Effect effect in effects)
       {
-        current = NWScript.EffectLinkEffects(effect, current);
+        current = NWScript.EffectLinkEffects(effect, current)!;
       }
 
       return current;
@@ -443,57 +443,57 @@ namespace Anvil.API
 
     public static Effect MissChance(int missPct, MissChanceType missChanceType = MissChanceType.Normal)
     {
-      return NWScript.EffectMissChance(missPct, (int)missChanceType);
+      return NWScript.EffectMissChance(missPct, (int)missChanceType)!;
     }
 
     public static Effect ModifyAttacks(int numAttacks)
     {
-      return NWScript.EffectModifyAttacks(numAttacks);
+      return NWScript.EffectModifyAttacks(numAttacks)!;
     }
 
     public static Effect MovementSpeedDecrease(int pctChange)
     {
-      return NWScript.EffectMovementSpeedDecrease(pctChange);
+      return NWScript.EffectMovementSpeedDecrease(pctChange)!;
     }
 
     public static Effect MovementSpeedIncrease(int pctChange)
     {
-      return NWScript.EffectMovementSpeedIncrease(pctChange);
+      return NWScript.EffectMovementSpeedIncrease(pctChange)!;
     }
 
     public static Effect NegativeLevel(int numLevels)
     {
-      return NWScript.EffectNegativeLevel(numLevels);
+      return NWScript.EffectNegativeLevel(numLevels)!;
     }
 
     public static Effect Paralyze()
     {
-      return NWScript.EffectParalyze();
+      return NWScript.EffectParalyze()!;
     }
 
     public static Effect Petrify()
     {
-      return NWScript.EffectPetrify();
+      return NWScript.EffectPetrify()!;
     }
 
     public static Effect Poison(PoisonType poisonType)
     {
-      return NWScript.EffectPoison((int)poisonType);
+      return NWScript.EffectPoison((int)poisonType)!;
     }
 
     public static Effect Polymorph(PolymorphType polymorphType, bool locked = false)
     {
-      return NWScript.EffectPolymorph((int)polymorphType, locked.ToInt());
+      return NWScript.EffectPolymorph((int)polymorphType, locked.ToInt())!;
     }
 
     public static Effect Regenerate(int amountPerInterval, TimeSpan interval)
     {
-      return NWScript.EffectRegenerate(amountPerInterval, (float)interval.TotalSeconds);
+      return NWScript.EffectRegenerate(amountPerInterval, (float)interval.TotalSeconds)!;
     }
 
     public static Effect Resurrection()
     {
-      return NWScript.EffectResurrection();
+      return NWScript.EffectResurrection()!;
     }
 
     /// <summary>
@@ -505,138 +505,148 @@ namespace Anvil.API
     /// <param name="interval">The interval in which to call onIntervalHandle.</param>
     /// <param name="data">Optional string of data saved with the effect, retrievable with Effect.StringParams[0].</param>
     /// <returns>The created effect.</returns>
-    public static Effect RunAction(ScriptCallbackHandle onAppliedHandle = null, ScriptCallbackHandle onRemovedHandle = null, ScriptCallbackHandle onIntervalHandle = null, TimeSpan interval = default, string data = "")
+    public static Effect RunAction(ScriptCallbackHandle? onAppliedHandle = null, ScriptCallbackHandle? onRemovedHandle = null, ScriptCallbackHandle? onIntervalHandle = null, TimeSpan interval = default, string data = "")
     {
       onAppliedHandle?.AssertValid();
       onRemovedHandle?.AssertValid();
       onIntervalHandle?.AssertValid();
 
-      return NWScript.EffectRunScript(onAppliedHandle?.ScriptName ?? string.Empty, onRemovedHandle?.ScriptName ?? string.Empty, onIntervalHandle?.ScriptName ?? string.Empty, (float)interval.TotalSeconds, data);
+      return NWScript.EffectRunScript(onAppliedHandle?.ScriptName ?? string.Empty, onRemovedHandle?.ScriptName ?? string.Empty, onIntervalHandle?.ScriptName ?? string.Empty, (float)interval.TotalSeconds, data)!;
     }
 
     public static Effect Sanctuary(int difficultyClass)
     {
-      return NWScript.EffectSanctuary(difficultyClass);
+      return NWScript.EffectSanctuary(difficultyClass)!;
     }
 
     public static Effect SavingThrowDecrease(SavingThrow savingThrow, int amount, SavingThrowType savingThrowType = SavingThrowType.All)
     {
-      return NWScript.EffectSavingThrowDecrease((int)savingThrow, amount, (int)savingThrowType);
+      return NWScript.EffectSavingThrowDecrease((int)savingThrow, amount, (int)savingThrowType)!;
     }
 
     public static Effect SavingThrowIncrease(SavingThrow savingThrow, int amount, SavingThrowType savingThrowType = SavingThrowType.All)
     {
-      return NWScript.EffectSavingThrowIncrease((int)savingThrow, amount, (int)savingThrowType);
+      return NWScript.EffectSavingThrowIncrease((int)savingThrow, amount, (int)savingThrowType)!;
     }
 
     public static Effect SeeInvisible()
     {
-      return NWScript.EffectSeeInvisible();
+      return NWScript.EffectSeeInvisible()!;
     }
 
     public static Effect Silence()
     {
-      return NWScript.EffectSilence();
+      return NWScript.EffectSilence()!;
     }
 
     public static Effect SkillDecrease(NwSkill skill, int amount)
     {
-      return NWScript.EffectSkillDecrease(skill.Id, amount);
+      return NWScript.EffectSkillDecrease(skill.Id, amount)!;
+    }
+
+    public static Effect SkillDecreaseAll(int amount)
+    {
+      return NWScript.EffectSkillDecrease((int)Skill.AllSkills, amount)!;
     }
 
     public static Effect SkillIncrease(NwSkill skill, int amount)
     {
-      return NWScript.EffectSkillIncrease(skill.Id, amount);
+      return NWScript.EffectSkillIncrease(skill.Id, amount)!;
+    }
+
+    public static Effect SkillIncreaseAll(int amount)
+    {
+      return NWScript.EffectSkillIncrease((int)Skill.AllSkills, amount)!;
     }
 
     public static Effect Sleep()
     {
-      return NWScript.EffectSleep();
+      return NWScript.EffectSleep()!;
     }
 
     public static Effect Slow()
     {
-      return NWScript.EffectSlow();
+      return NWScript.EffectSlow()!;
     }
 
     public static Effect SpellFailure(int failPct, SpellSchool spellSchool = SpellSchool.General)
     {
-      return NWScript.EffectSpellFailure(failPct, (int)spellSchool);
+      return NWScript.EffectSpellFailure(failPct, (int)spellSchool)!;
     }
 
     public static Effect SpellImmunity(Spell spell = API.Spell.AllSpells)
     {
-      return NWScript.EffectSpellImmunity((int)spell);
+      return NWScript.EffectSpellImmunity((int)spell)!;
     }
 
     public static Effect SpellLevelAbsorption(int maxSpellLevel, int totalSpellsAbsorbed = 0, SpellSchool spellSchool = SpellSchool.General)
     {
-      return NWScript.EffectSpellLevelAbsorption(maxSpellLevel, totalSpellsAbsorbed, (int)spellSchool);
+      return NWScript.EffectSpellLevelAbsorption(maxSpellLevel, totalSpellsAbsorbed, (int)spellSchool)!;
     }
 
     public static Effect SpellResistanceDecrease(int amount)
     {
-      return NWScript.EffectSpellResistanceDecrease(amount);
+      return NWScript.EffectSpellResistanceDecrease(amount)!;
     }
 
     public static Effect SpellResistanceIncrease(int amount)
     {
-      return NWScript.EffectSpellResistanceIncrease(amount);
+      return NWScript.EffectSpellResistanceIncrease(amount)!;
     }
 
     public static Effect Stunned()
     {
-      return NWScript.EffectStunned();
+      return NWScript.EffectStunned()!;
     }
 
     public static Effect SummonCreature(string creatureResRef, VfxType vfxType, TimeSpan delay = default, int appearType = 0)
     {
-      return NWScript.EffectSummonCreature(creatureResRef, (int)vfxType, (float)delay.TotalSeconds, appearType);
+      return NWScript.EffectSummonCreature(creatureResRef, (int)vfxType, (float)delay.TotalSeconds, appearType)!;
     }
 
     public static Effect Swarm(bool loop, string creatureTemplate1, string creatureTemplate2 = "", string creatureTemplate3 = "", string creatureTemplate4 = "")
     {
-      return NWScript.EffectSwarm(loop.ToInt(), creatureTemplate1, creatureTemplate2, creatureTemplate3, creatureTemplate4);
+      return NWScript.EffectSwarm(loop.ToInt(), creatureTemplate1, creatureTemplate2, creatureTemplate3, creatureTemplate4)!;
     }
 
     public static Effect TemporaryHitpoints(int hitPoints)
     {
-      return NWScript.EffectTemporaryHitpoints(hitPoints);
+      return NWScript.EffectTemporaryHitpoints(hitPoints)!;
     }
 
     public static Effect TimeStop()
     {
-      return NWScript.EffectTimeStop();
+      return NWScript.EffectTimeStop()!;
     }
 
     public static Effect TrueSeeing()
     {
-      return NWScript.EffectTrueSeeing();
+      return NWScript.EffectTrueSeeing()!;
     }
 
     public static Effect Turned()
     {
-      return NWScript.EffectTurned();
+      return NWScript.EffectTurned()!;
     }
 
     public static Effect TurnResistanceDecrease(int hitDiceDecrease)
     {
-      return NWScript.EffectTurnResistanceDecrease(hitDiceDecrease);
+      return NWScript.EffectTurnResistanceDecrease(hitDiceDecrease)!;
     }
 
     public static Effect TurnResistanceIncrease(int hitDiceIncrease)
     {
-      return NWScript.EffectTurnResistanceIncrease(hitDiceIncrease);
+      return NWScript.EffectTurnResistanceIncrease(hitDiceIncrease)!;
     }
 
     public static Effect Ultravision()
     {
-      return NWScript.EffectUltravision();
+      return NWScript.EffectUltravision()!;
     }
 
     public static Effect VisualEffect(VfxType visualEffectId, bool missEffect = false, float fScale = 1.0f, System.Numerics.Vector3 vTranslate = default, System.Numerics.Vector3 vRotate = default)
     {
-      return NWScript.EffectVisualEffect((int)visualEffectId, missEffect.ToInt(), fScale, vTranslate, vRotate);
+      return NWScript.EffectVisualEffect((int)visualEffectId, missEffect.ToInt(), fScale, vTranslate, vRotate)!;
     }
   }
 }

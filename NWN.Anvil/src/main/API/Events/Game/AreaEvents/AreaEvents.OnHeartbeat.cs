@@ -12,7 +12,7 @@ namespace Anvil.API.Events
     [GameEvent(EventScriptType.AreaOnHeartbeat)]
     public sealed class OnHeartbeat : IEvent
     {
-      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>();
+      public NwArea Area { get; } = NWScript.OBJECT_SELF.ToNwObject<NwArea>()!;
 
       NwObject IEvent.Context => Area;
     }

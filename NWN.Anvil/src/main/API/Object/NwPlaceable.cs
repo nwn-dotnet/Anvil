@@ -86,7 +86,7 @@ namespace Anvil.API
       }
     }
 
-    public NwCreature SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
+    public NwCreature? SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
 
     /// <summary>
     /// Gets or sets a value indicating whether this placeable should be useable (clickable).
@@ -97,15 +97,15 @@ namespace Anvil.API
       set => NWScript.SetUseableFlag(this, value.ToInt());
     }
 
-    public static NwPlaceable Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
+    public static NwPlaceable? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      location = Location.Create(location.Area, location.Position, location.FlippedRotation);
+      location = Location.Create(location.Area!, location.Position, location.FlippedRotation);
       return CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
 
-    public static NwPlaceable Deserialize(byte[] serialized)
+    public static NwPlaceable? Deserialize(byte[] serialized)
     {
-      CNWSPlaceable placeable = null;
+      CNWSPlaceable? placeable = null;
 
       bool result = NativeUtils.DeserializeGff(serialized, (resGff, resStruct) =>
       {
@@ -118,6 +118,7 @@ namespace Anvil.API
         if (placeable.LoadPlaceable(resGff, resStruct, false.ToInt(), null).ToBool())
         {
           placeable.LoadObjectState(resGff, resStruct);
+          placeable.m_oidArea = Invalid;
           GC.SuppressFinalize(placeable);
           return true;
         }
@@ -129,7 +130,7 @@ namespace Anvil.API
       return result && placeable != null ? placeable.ToNwObject<NwPlaceable>() : null;
     }
 
-    public static implicit operator CNWSPlaceable(NwPlaceable placeable)
+    public static implicit operator CNWSPlaceable?(NwPlaceable? placeable)
     {
       return placeable?.Placeable;
     }
@@ -145,7 +146,7 @@ namespace Anvil.API
       Placeable.AcquireItem(&pItem, Invalid, 0xFF, 0xFF, displayFeedback.ToInt());
     }
 
-    public override NwPlaceable Clone(Location location, string newTag = null, bool copyLocalState = true)
+    public override NwPlaceable Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwPlaceable>(location, newTag, copyLocalState);
     }
@@ -180,7 +181,7 @@ namespace Anvil.API
       }
       else
       {
-        assignTarget = item.Area;
+        assignTarget = item.Area!;
       }
 
       if (assignTarget != this)
@@ -223,7 +224,7 @@ namespace Anvil.API
       return NWScript.GetIsPlaceableObjectActionPossible(this, (int)action).ToBool();
     }
 
-    public override byte[] Serialize()
+    public override byte[]? Serialize()
     {
       return NativeUtils.SerializeGff("UTP", (resGff, resStruct) =>
       {
@@ -260,7 +261,7 @@ namespace Anvil.API
     {
       if (IsTrapped)
       {
-        Area.Area.m_pTrapList.Remove(this);
+        Area?.Area.m_pTrapList.Remove(this);
       }
 
       Placeable.RemoveFromArea();

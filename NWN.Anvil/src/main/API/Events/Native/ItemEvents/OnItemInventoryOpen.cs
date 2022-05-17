@@ -11,12 +11,12 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the container being opened.
     /// </summary>
-    public NwItem Container { get; private init; }
+    public NwItem Container { get; private init; } = null!;
 
     /// <summary>
     /// Gets the creature that is opening the container.
     /// </summary>
-    public NwCreature OpenedBy { get; private init; }
+    public NwCreature OpenedBy { get; private init; } = null!;
 
     public bool PreventOpen { get; set; }
 
@@ -24,7 +24,7 @@ namespace Anvil.API.Events
 
     internal sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<OpenInventoryHook> Hook { get; set; }
+      private static FunctionHook<OpenInventoryHook> Hook { get; set; } = null!;
 
       private delegate void OpenInventoryHook(void* pItem, uint oidOpener);
 
@@ -40,8 +40,8 @@ namespace Anvil.API.Events
       {
         OnItemInventoryOpen eventData = ProcessEvent(new OnItemInventoryOpen
         {
-          OpenedBy = oidOpener.ToNwObject<NwCreature>(),
-          Container = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>(),
+          OpenedBy = oidOpener.ToNwObject<NwCreature>()!,
+          Container = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
         });
 
         if (!eventData.PreventOpen)

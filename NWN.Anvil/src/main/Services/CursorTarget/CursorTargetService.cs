@@ -60,7 +60,7 @@ namespace Anvil.Services
       void InvokeEventHandlerOnce(ModuleEvents.OnPlayerTarget eventData)
       {
         UnregisterHandlerForPlayer(eventData.Player, false);
-        handler?.Invoke(eventData);
+        handler.Invoke(eventData);
       }
 
       Action<ModuleEvents.OnPlayerTarget> eventCallback = InvokeEventHandlerOnce;
@@ -71,7 +71,7 @@ namespace Anvil.Services
 
     private void UnregisterHandlerForPlayer(NwPlayer player, bool cancelled)
     {
-      if (activeHandlers.Remove(player, out Action<ModuleEvents.OnPlayerTarget> eventCallback))
+      if (activeHandlers.Remove(player, out Action<ModuleEvents.OnPlayerTarget>? eventCallback))
       {
         player.OnPlayerTarget -= eventCallback;
         if (cancelled)

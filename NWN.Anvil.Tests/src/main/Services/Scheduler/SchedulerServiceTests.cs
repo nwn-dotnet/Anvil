@@ -11,7 +11,7 @@ namespace Anvil.Tests.Services
   public sealed class SchedulerServiceTests
   {
     [Inject]
-    private static SchedulerService SchedulerService { get; set; }
+    private static SchedulerService SchedulerService { get; set; } = null!;
 
     [Test(Description = "Scheduling a task correctly schedules and runs the task with the specified delay.")]
     [Timeout(10000)]
@@ -83,7 +83,7 @@ namespace Anvil.Tests.Services
     {
       TimeSpan interval = TimeSpan.FromMilliseconds(delayMs);
 
-      ScheduledTask scheduledTask = null;
+      ScheduledTask? scheduledTask = null;
       int executionCount = 0;
 
       scheduledTask = SchedulerService.ScheduleRepeating(() =>
