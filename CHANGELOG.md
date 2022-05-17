@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.11...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.34.11
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...v8193.34.11
 
 ### Added
 - NwCreature: Added `GetSlotFromItem`
@@ -19,18 +40,12 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 - NWN.Core 8193.34.4 -> 8193.34.5
 - NLog 4.7.15 -> 5.0.0
 
-### Changed
-- N/A
-
 ### Deprecated
 - `ItemAppearanceArmorModel` enum. Use `CreaturePart` instead.
 - `NwPlayer.NuiDestroy`. Use `NuiWindowToken.Close` instead.
 - `NwPlayer.NuiGetUserData`. Use `NuiWindowToken.NuiGetUserData` instead.
 - `NwPlayer.NuiSetUserData`. Use `NuiWindowToken.NuiSetUserData` instead.
 - `NwPlayer.NuiGetWindowId`. Use `NuiWindowToken.NuiGetWindowId` instead.
-
-### Removed
-- N/A
 
 ### Fixed
 - Fixed `NwGameObject.Location` setter not working for newly deserialized game objects.
