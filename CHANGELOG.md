@@ -16,6 +16,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...HEAD
 ### Package Updates
 - NWNX 4842f60 -> 95e700a
 - NWN.Native 8193.34.3 -> 8193.34.4
+- NWN.Core 8193.34.4 -> 8193.34.5
+- NLog 4.7.15 -> 5.0.0
 
 ### Changed
 - N/A
