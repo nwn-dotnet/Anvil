@@ -7,7 +7,7 @@ namespace Anvil.Services
   /// Indicates a property as a service dependency to be injected.
   /// </summary>
   [AttributeUsage(AttributeTargets.Property)]
-  [MeansImplicitUse]
+  [MeansImplicitUse(ImplicitUseKindFlags.Assign)]
   public sealed class InjectAttribute : Attribute
   {
     /// <summary>
