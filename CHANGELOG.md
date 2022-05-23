@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.12
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.11...v8193.34.12
+
+### Added
+- NwGameTables: Exposed armor (armor.2da) and parts (parts_*.2da) tables.
+
 ## 8193.34.11
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.10...v8193.34.11
 
