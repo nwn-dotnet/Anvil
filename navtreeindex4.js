@@ -1,5 +1,16 @@
 var NAVTREEINDEX4 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#af2175a70d26da850af2044843786ae4c":[0,0,0,0,93,3],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html":[0,0,0,0,94],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a011d2fb726a995b481058d8877e4953f":[0,0,0,0,94,1],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a488f96a9aeb00fd066c24adc1b502b00":[0,0,0,0,94,0],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a575b27d1ee4c31d7c2d9a791663a8160":[0,0,0,0,94,3],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a74b2476532151e7a4ddf7e3648460ce0":[0,0,0,0,94,2],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#add68c77450d5d4baccf09d17bdf53490":[0,0,0,0,94,4],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemRemove.html":[0,0,0,0,95],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemRemove.html#a27da5343312d4e8c28dd690951a97563":[0,0,0,0,95,1],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemRemove.html#ab0cb8785ff40ebbd8df6683b60a60e0a":[0,0,0,0,95,0],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryItemRemove.html#adb34256d6799d2044c1d3b0e77d44153":[0,0,0,0,95,2],
 "classAnvil_1_1API_1_1Events_1_1OnItemEquip.html":[0,0,0,0,96],
 "classAnvil_1_1API_1_1Events_1_1OnItemEquip.html#a2c93a11bbcbb49cffce91757fb2391a3":[0,0,0,0,96,1],
 "classAnvil_1_1API_1_1Events_1_1OnItemEquip.html#a5803cfad7214eb3ad6090bd0094e6c1a":[0,0,0,0,96,2],
@@ -238,16 +249,5 @@ var NAVTREEINDEX4 =
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a1e5a6be765a2fb609f873e39e105b2ce":[0,0,0,0,126,5,2],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a3e4740c89d45b26f004c508d501fbbba":[0,0,0,0,126,5,0],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a6bb687d1673a63ee1ee026d45458f743":[0,0,0,0,126,5,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#aefa1c204622291362a4fe69c6ba98266":[0,0,0,0,126,5,3],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html":[0,0,0,0,126,6],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html#a01af057ee169298ca63df2e0ac57328b":[0,0,0,0,126,6,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html#af3e24df0a85b671502b7b472cf719e1b":[0,0,0,0,126,6,0],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLeftClick.html":[0,0,0,0,126,7],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLeftClick.html#a3311cf22c4d272060bf7bc9d06430ce1":[0,0,0,0,126,7,0],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLeftClick.html#ab0b26a7df964c4d18e533d03bf303659":[0,0,0,0,126,7,2],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLeftClick.html#ab4202e8149a846e18b1358f81cdb23ef":[0,0,0,0,126,7,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html":[0,0,0,0,126,8],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a014de75b76aabdddbe803821e4805c74":[0,0,0,0,126,8,0],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#a88e213ae46590759ef0484cf0ed46a9a":[0,0,0,0,126,8,2],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnLock.html#af0563daede948068a8b3c6e9d594f9e3":[0,0,0,0,126,8,1]
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#aefa1c204622291362a4fe69c6ba98266":[0,0,0,0,126,5,3]
 };

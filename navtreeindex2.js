@@ -1,5 +1,16 @@
 var NAVTREEINDEX2 =
 {
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#a5aacca013215076d007612930824bbc3":[0,0,0,0,3,1],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#a78b3cb423d4407162f8adf360e972f2a":[0,0,0,0,3,5],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#a7cc98ef5a6077c283172331a750a3d6f":[0,0,0,0,3,12],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#a9664ec9b733143a3237a12b3bd73decf":[0,0,0,0,3,3],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#aa761872911a8998131a6c1403b53cc49":[0,0,0,0,3,10],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#aa78cecba0669ac0db89f25a45c5ff8a0":[0,0,0,0,3,6],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#ab133dbe2e42195aa47242a3ed5f77cbb":[0,0,0,0,3,0],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#ac63e68bf907cb98ab42da53b3559c42b":[0,0,0,0,3,11],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#ad04e47c033cb02072a2b372ab264d11d":[0,0,0,0,3,8],
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#adae5fc66473fb747a227763883ef1c87":[0,0,0,0,3,14],
+"classAnvil_1_1API_1_1Events_1_1DialogEvents.html":[0,0,0,0,4],
 "classAnvil_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html":[0,0,0,0,4,0],
 "classAnvil_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a07b5db7b88bbc7058a7d5e5e68803787":[0,0,0,0,4,0,6],
 "classAnvil_1_1API_1_1Events_1_1DialogEvents_1_1ActionTaken.html#a386dbe3988f90e5d25365ea437f2046b":[0,0,0,0,4,0,0],
@@ -238,16 +249,5 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a332409092f27f21497dbf6a00d57584a":[0,0,0,0,23,5],
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a477ca2d0aef980a99ace5752e0f408b7":[0,0,0,0,23,4],
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a74faac1ccf3ddbf841ed2c810f2a6db7":[0,0,0,0,23,1],
-"classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a790ede0386e2c10edc42bc8a6cb76013":[0,0,0,0,23,3],
-"classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a9f47e13b11fd0c780f0b12548e74c2a6":[0,0,0,0,23,0],
-"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html":[0,0,0,0,24],
-"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#a1208f1270d1b447f0c77cbc87f86bca1":[0,0,0,0,24,1],
-"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#aa51b31617ebe0558c8572e334f1d4a53":[0,0,0,0,24,2],
-"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#ae0320f49755d8ea8bb62d6e587e3cef7":[0,0,0,0,24,0],
-"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html":[0,0,0,0,25],
-"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a18d7c772febe169fa8f44a35f9c4d23b":[0,0,0,0,25,0],
-"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a1a9c085189507b5e4f57d2bdbaeccf58":[0,0,0,0,25,3],
-"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a5e4649d770edeccecf7384d0fa1b91eb":[0,0,0,0,25,1],
-"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a8672f3795388c7d6eebad628ad000a7f":[0,0,0,0,25,2],
-"classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html":[0,0,0,0,26]
+"classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a790ede0386e2c10edc42bc8a6cb76013":[0,0,0,0,23,3]
 };

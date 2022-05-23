@@ -1,5 +1,16 @@
 var NAVTREEINDEX3 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a9f47e13b11fd0c780f0b12548e74c2a6":[0,0,0,0,23,0],
+"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html":[0,0,0,0,24],
+"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#a1208f1270d1b447f0c77cbc87f86bca1":[0,0,0,0,24,1],
+"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#aa51b31617ebe0558c8572e334f1d4a53":[0,0,0,0,24,2],
+"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#ae0320f49755d8ea8bb62d6e587e3cef7":[0,0,0,0,24,0],
+"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html":[0,0,0,0,25],
+"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a18d7c772febe169fa8f44a35f9c4d23b":[0,0,0,0,25,0],
+"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a1a9c085189507b5e4f57d2bdbaeccf58":[0,0,0,0,25,3],
+"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a5e4649d770edeccecf7384d0fa1b91eb":[0,0,0,0,25,1],
+"classAnvil_1_1API_1_1Events_1_1OnCalendarTimeChange.html#a8672f3795388c7d6eebad628ad000a7f":[0,0,0,0,25,2],
+"classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html":[0,0,0,0,26],
 "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a0aff9a248332e45499d7f1a2274ab48d":[0,0,0,0,26,1],
 "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a1a454a6a2230e13687b6697de694ea78":[0,0,0,0,26,5],
 "classAnvil_1_1API_1_1Events_1_1OnChatMessageSend.html#a75af1ce98f64f256e240bcb5f1cc3dbd":[0,0,0,0,26,3],
@@ -238,16 +249,5 @@ var NAVTREEINDEX3 =
 "classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html":[0,0,0,0,93],
 "classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#a87353d5312550bce4e10b62b0aff4f98":[0,0,0,0,93,2],
 "classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#ae0937f76030f24a1d11b9202dfd791d3":[0,0,0,0,93,1],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#ae833b351a4aa0eb4bdc959814181d12a":[0,0,0,0,93,0],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#af2175a70d26da850af2044843786ae4c":[0,0,0,0,93,3],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html":[0,0,0,0,94],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a011d2fb726a995b481058d8877e4953f":[0,0,0,0,94,1],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a488f96a9aeb00fd066c24adc1b502b00":[0,0,0,0,94,0],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a575b27d1ee4c31d7c2d9a791663a8160":[0,0,0,0,94,3],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a74b2476532151e7a4ddf7e3648460ce0":[0,0,0,0,94,2],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#add68c77450d5d4baccf09d17bdf53490":[0,0,0,0,94,4],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemRemove.html":[0,0,0,0,95],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemRemove.html#a27da5343312d4e8c28dd690951a97563":[0,0,0,0,95,1],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemRemove.html#ab0cb8785ff40ebbd8df6683b60a60e0a":[0,0,0,0,95,0],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryItemRemove.html#adb34256d6799d2044c1d3b0e77d44153":[0,0,0,0,95,2]
+"classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#ae833b351a4aa0eb4bdc959814181d12a":[0,0,0,0,93,0]
 };

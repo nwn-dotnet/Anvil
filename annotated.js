@@ -215,6 +215,7 @@ var annotated =
           ] ]
         ] ],
         [ "AppearanceTableEntry", "classAnvil_1_1API_1_1AppearanceTableEntry.html", "classAnvil_1_1API_1_1AppearanceTableEntry" ],
+        [ "ArmorTableEntry", "classAnvil_1_1API_1_1ArmorTableEntry.html", "classAnvil_1_1API_1_1ArmorTableEntry" ],
         [ "BodyBagTableEntry", "classAnvil_1_1API_1_1BodyBagTableEntry.html", "classAnvil_1_1API_1_1BodyBagTableEntry" ],
         [ "CallInfo", "classAnvil_1_1API_1_1CallInfo.html", "classAnvil_1_1API_1_1CallInfo" ],
         [ "CampaignVariable", "classAnvil_1_1API_1_1CampaignVariable.html", "classAnvil_1_1API_1_1CampaignVariable" ],
@@ -373,6 +374,7 @@ var annotated =
         [ "ObjectStorageVariableString", "classAnvil_1_1API_1_1ObjectStorageVariableString.html", "classAnvil_1_1API_1_1ObjectStorageVariableString" ],
         [ "ObjectStorageVariableStruct", "classAnvil_1_1API_1_1ObjectStorageVariableStruct.html", "classAnvil_1_1API_1_1ObjectStorageVariableStruct" ],
         [ "ObjectVariable", "classAnvil_1_1API_1_1ObjectVariable.html", "classAnvil_1_1API_1_1ObjectVariable" ],
+        [ "PartsTableEntry", "classAnvil_1_1API_1_1PartsTableEntry.html", "classAnvil_1_1API_1_1PartsTableEntry" ],
         [ "PersistentVariableBool", "classAnvil_1_1API_1_1PersistentVariableBool.html", "classAnvil_1_1API_1_1PersistentVariableBool" ],
         [ "PersistentVariableEnum", "classAnvil_1_1API_1_1PersistentVariableEnum.html", "classAnvil_1_1API_1_1PersistentVariableEnum" ],
         [ "PersistentVariableFloat", "classAnvil_1_1API_1_1PersistentVariableFloat.html", "classAnvil_1_1API_1_1PersistentVariableFloat" ],
