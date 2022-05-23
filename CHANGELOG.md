@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.11...HEAD
 
 ### Added
-- N/A
+- NwGameTables: Exposed armor (armor.2da) and parts (parts_*.2da) tables.
 
 ### Package Updates
 - N/A

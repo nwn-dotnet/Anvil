@@ -509,5 +509,48 @@ namespace Anvil.Tests.API
       Assert.That(row.RaceSkillRequirement, Is.EqualTo(skillReqRace));
       Assert.That(row.AlignmentSkillRequirement, Is.EqualTo(skillReqAlign));
     }
+
+    [Test(Description = "Part table entries return valid data")]
+    [TestCase(0, 0, null, null)]
+    [TestCase(1, 0, 0f, 0)]
+    [TestCase(2, 0, null, null)]
+    [TestCase(3, 0, 0f, 0)]
+    [TestCase(4, 0, 4.0f, 4)]
+    public void PartsTableReturnsValidData(int rowIndex, int? costModifier, float? acBonus, int? armorTableEntry)
+    {
+      TwoDimArray<PartsTableEntry> table = NwGameTables.PartsChestTable;
+      PartsTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
+      Assert.That(row.CostModifier, Is.EqualTo(costModifier));
+      Assert.That(row.ACBonus, Is.EqualTo(acBonus));
+      Assert.That(row.ArmorTableEntry?.RowIndex, Is.EqualTo(armorTableEntry));
+    }
+
+    [Test(Description = "Armor table entries return valid data")]
+    [TestCase(0, 0, 100, 0, 0, 10, 1, 1727, 5411)]
+    [TestCase(1, 1, 8, 0, 5, 50, 5, 1728, 5432)]
+    [TestCase(2, 2, 6, 0, 10, 100, 10, 1729, 5435)]
+    [TestCase(3, 3, 4, -1, 20, 150, 15, 1730, 5436)]
+    [TestCase(4, 4, 4, -2, 20, 300, 100, 1731, 5437)]
+    [TestCase(5, 5, 2, -5, 30, 400, 150, 1732, 5438)]
+    [TestCase(6, 6, 1, -7, 40, 450, 200, 1733, 5439)]
+    [TestCase(7, 7, 1, -7, 40, 500, 600, 1734, 5440)]
+    [TestCase(8, 8, 1, -8, 45, 500, 1500, 1736, 5441)]
+    public void ArmorTableReturnsValidData(int rowIndex, int? acBonus, int? dexBonus, int? acCheck, int? arcaneFailurePct, int? weight, int? cost, int? descriptionStrRef, int? baseItemStatsStrRef)
+    {
+      TwoDimArray<ArmorTableEntry> table = NwGameTables.ArmorTable;
+      ArmorTableEntry row = table.GetRow(rowIndex);
+
+      Assert.That(row.RowIndex, Is.EqualTo(rowIndex));
+      Assert.That(row.ACBonus, Is.EqualTo(acBonus));
+      Assert.That(row.DexBonus, Is.EqualTo(dexBonus));
+      Assert.That(row.ACCheck, Is.EqualTo(acCheck));
+      Assert.That(row.ArcaneFailurePct, Is.EqualTo(arcaneFailurePct));
+      Assert.That(row.Weight, Is.EqualTo(weight));
+      Assert.That(row.Cost, Is.EqualTo(cost));
+      Assert.That(row.Description?.Id, Is.EqualTo(descriptionStrRef));
+      Assert.That(row.BaseItemStats?.Id, Is.EqualTo(baseItemStatsStrRef));
+    }
   }
 }
