@@ -14,7 +14,7 @@ namespace Anvil.Services
   /// Each class flagged with a <see cref="ServiceBindingAttribute"/> will be automatically constructed on startup, and any services specified in the constructor will be injected as dependencies.
   /// </summary>
   [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-  [MeansImplicitUse]
+  [MeansImplicitUse(ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
   public sealed class ServiceBindingAttribute : Attribute
   {
     public readonly Type BindFrom;
