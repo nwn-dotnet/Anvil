@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Anvil.API
@@ -71,5 +72,11 @@ namespace Anvil.API
     /// </summary>
     [JsonProperty("width", NullValueHandling = NullValueHandling.Ignore)]
     public float? Width { get; set; }
+
+    [JsonProperty("draw_list", NullValueHandling = NullValueHandling.Ignore)]
+    public List<NuiDrawListItem>? DrawList { get; set; }
+
+    [JsonProperty("draw_list_scissor", NullValueHandling = NullValueHandling.Ignore)]
+    public NuiProperty<bool>? Scissor { get; set; }
   }
 }

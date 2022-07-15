@@ -13,7 +13,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.12...HEAD
 - N/A
 
 ### Changed
-- N/A
+- NUI: DrawList is now supported on all NUI elements, instead of just layout elements.
+- NUI: NuiGroup now supports a non-layout element.
 
 ### Deprecated
 - N/A
