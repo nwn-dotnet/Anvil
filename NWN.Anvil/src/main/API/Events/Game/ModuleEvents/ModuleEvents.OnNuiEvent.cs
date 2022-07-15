@@ -1,6 +1,5 @@
 using System;
 using Anvil.API.Events;
-using Anvil.Services;
 using NWN.Core;
 
 namespace Anvil.API.Events
@@ -10,9 +9,6 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class ModuleEvents
   {
-    [Inject]
-    private static NuiWindowEventService NuiWindowEventService { get; set; } = null!;
-
     /// <summary>
     /// Called when a player triggers an event in the NUI system.
     /// </summary>

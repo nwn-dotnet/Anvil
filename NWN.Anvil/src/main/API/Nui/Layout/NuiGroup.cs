@@ -15,14 +15,21 @@ namespace Anvil.API
     public bool Border { get; set; } = true;
 
     [JsonIgnore]
-    public NuiLayout? Layout { get; set; }
+    public NuiLayout? Layout
+    {
+      get => Element as NuiLayout;
+      set => Element = value;
+    }
+
+    [JsonIgnore]
+    public NuiElement? Element { get; set; }
 
     [JsonProperty("scrollbars")]
     public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
 
     public override string Type => "group";
 
-    protected override IEnumerable<NuiElement> SerializedChildren => Layout.SafeYield();
+    protected override IEnumerable<NuiElement> SerializedChildren => Element.SafeYield();
 
     /// <summary>
     /// Sets the group layout for a specific player + window token (override/partial update).<br/>
