@@ -31,13 +31,13 @@ namespace NWN.Anvil.Samples
     // but since "ServiceA" is specified as a parameter (dependency), it will only be started after "ServiceA" has loaded.
     public ServiceB(ServiceA serviceA)
     {
-      Log.Info("Service B Loaded!");
+      Log.Info($"Service B Loaded after {serviceA.GetType().Name}!");
     }
   }
 
   // Checking in the console, or "logs.0/anvil.log", the output should look like this:
   /*
 [ServiceA] Service A Loaded!
-[ServiceB] Service B Loaded!
+[ServiceB] Service B Loaded after ServiceA!
 */
 }
