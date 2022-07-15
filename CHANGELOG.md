@@ -10,7 +10,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.12...HEAD
 - N/A
 
 ### Package Updates
-- N/A
+- NLog 5.0.0 -> 5.0.1
 
 ### Changed
 - NUI: DrawList is now supported on all NUI elements, instead of just layout elements.
