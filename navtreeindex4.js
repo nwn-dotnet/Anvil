@@ -1,6 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#af2175a70d26da850af2044843786ae4c":[0,0,0,0,93,3],
 "classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html":[0,0,0,0,94],
 "classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a011d2fb726a995b481058d8877e4953f":[0,0,0,0,94,1],
 "classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html#a488f96a9aeb00fd066c24adc1b502b00":[0,0,0,0,94,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX4 =
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a1e5a6be765a2fb609f873e39e105b2ce":[0,0,0,0,126,5,2],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a3e4740c89d45b26f004c508d501fbbba":[0,0,0,0,126,5,0],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#a6bb687d1673a63ee1ee026d45458f743":[0,0,0,0,126,5,1],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#aefa1c204622291362a4fe69c6ba98266":[0,0,0,0,126,5,3]
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDisturbed.html#aefa1c204622291362a4fe69c6ba98266":[0,0,0,0,126,5,3],
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html":[0,0,0,0,126,6]
 };

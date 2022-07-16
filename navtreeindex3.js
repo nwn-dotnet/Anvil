@@ -1,6 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a9f47e13b11fd0c780f0b12548e74c2a6":[0,0,0,0,23,0],
 "classAnvil_1_1API_1_1Events_1_1OnBarterStart.html":[0,0,0,0,24],
 "classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#a1208f1270d1b447f0c77cbc87f86bca1":[0,0,0,0,24,1],
 "classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#aa51b31617ebe0558c8572e334f1d4a53":[0,0,0,0,24,2],
@@ -249,5 +248,6 @@ var NAVTREEINDEX3 =
 "classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html":[0,0,0,0,93],
 "classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#a87353d5312550bce4e10b62b0aff4f98":[0,0,0,0,93,2],
 "classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#ae0937f76030f24a1d11b9202dfd791d3":[0,0,0,0,93,1],
-"classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#ae833b351a4aa0eb4bdc959814181d12a":[0,0,0,0,93,0]
+"classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#ae833b351a4aa0eb4bdc959814181d12a":[0,0,0,0,93,0],
+"classAnvil_1_1API_1_1Events_1_1OnInventoryGoldRemove.html#af2175a70d26da850af2044843786ae4c":[0,0,0,0,93,3]
 };

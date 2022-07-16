@@ -165,14 +165,14 @@ readonly Type&#160;</td><td class="memItemRight" valign="bottom"><b>BindFrom</b>
 <div class="line">    <span class="comment">// but since &quot;ServiceA&quot; is specified as a parameter (dependency), it will only be started after &quot;ServiceA&quot; has loaded.</span></div>
 <div class="line">    <span class="keyword">public</span> ServiceB(ServiceA serviceA)</div>
 <div class="line">    {</div>
-<div class="line">      Log.Info(<span class="stringliteral">&quot;Service B Loaded!&quot;</span>);</div>
+<div class="line">      Log.Info($<span class="stringliteral">&quot;Service B Loaded after {serviceA.GetType().Name}!&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Checking in the console, or &quot;logs.0/anvil.log&quot;, the output should look like this:</span></div>
 <div class="line">  <span class="comment">/*</span></div>
 <div class="line"><span class="comment">[ServiceA] Service A Loaded!</span></div>
-<div class="line"><span class="comment">[ServiceB] Service B Loaded!</span></div>
+<div class="line"><span class="comment">[ServiceB] Service B Loaded after ServiceA!</span></div>
 <div class="line"><span class="comment">*/</span></div>
 <div class="line">}</div>
 </div><!-- fragment --> <div class="fragment"><div class="line"><span class="comment">/*</span></div>

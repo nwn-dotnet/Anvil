@@ -134,7 +134,6 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1HookEventFactory.html#aee97cf0a15380c59886674e3ab28061d":[0,0,0,0,15,2],
 "classAnvil_1_1API_1_1Events_1_1HookEventFactory.html#af23a737880c3c3e0b3b92f767d180225":[0,0,0,0,15,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents.html":[0,0,0,0,19],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents.html#a7fa2b748b9e54ea2ffed08ec6820c837":[0,0,0,0,19,22],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html":[0,0,0,0,19,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a22cfe8e92b6ab3ed4a13df04b8ad5082":[0,0,0,0,19,0,0],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a5af2b6f4cf22932d1cbd1f22c6d9c464":[0,0,0,0,19,0,5],
@@ -249,5 +248,6 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a332409092f27f21497dbf6a00d57584a":[0,0,0,0,23,5],
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a477ca2d0aef980a99ace5752e0f408b7":[0,0,0,0,23,4],
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a74faac1ccf3ddbf841ed2c810f2a6db7":[0,0,0,0,23,1],
-"classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a790ede0386e2c10edc42bc8a6cb76013":[0,0,0,0,23,3]
+"classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a790ede0386e2c10edc42bc8a6cb76013":[0,0,0,0,23,3],
+"classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a9f47e13b11fd0c780f0b12548e74c2a6":[0,0,0,0,23,0]
 };
