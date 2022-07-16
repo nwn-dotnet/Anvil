@@ -4,19 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.12...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...HEAD
 
 ### Added
 - N/A
 
 ### Package Updates
-- NLog 5.0.0 -> 5.0.1
-- NWN.Core 8193.34.5 -> 8193.34.6
-- NWNX 95e700a -> 5ade7de
+- N/A
 
 ### Changed
-- NUI: DrawList is now supported on all NUI elements, instead of just layout elements.
-- NUI: NuiGroup now supports a non-layout element.
+- N/A
 
 ### Deprecated
 - N/A
@@ -26,6 +23,18 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.12...HEAD
 
 ### Fixed
 - N/A
+
+## 8193.34.13
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.12...v8193.34.13
+
+### Package Updates
+- NLog 5.0.0 -> 5.0.1
+- NWN.Core 8193.34.5 -> 8193.34.6
+- NWNX 95e700a -> 5ade7de
+
+### Changed
+- NUI: DrawList is now supported on all NUI elements, instead of just layout elements.
+- NUI: NuiGroup now supports a non-layout element.
 
 ## 8193.34.12
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.11...v8193.34.12
