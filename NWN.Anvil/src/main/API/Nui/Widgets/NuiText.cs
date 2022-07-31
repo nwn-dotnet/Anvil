@@ -16,6 +16,12 @@ namespace Anvil.API
     [JsonProperty("value")]
     public NuiProperty<string> Text { get; set; }
 
+    [JsonProperty("border")]
+    public bool Border { get; set; } = true;
+
+    [JsonProperty("scrollbars")]
+    public NuiScrollbars Scrollbars { get; set; } = NuiScrollbars.Auto;
+
     public override string Type => "text";
   }
 }
