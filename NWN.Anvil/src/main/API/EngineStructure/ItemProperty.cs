@@ -9,23 +9,38 @@ namespace Anvil.API
     internal ItemProperty(CGameEffect effect, bool memoryOwn) : base(effect, memoryOwn) {}
 
     /// <summary>
-    /// Gets or sets the cost table to use for this item property.<br/>
-    /// See "iprp_costtable.2da" for a list of available tables.
+    /// Gets the cost table used by this item property.
     /// </summary>
-    public int CostTable
+    public TwoDimArray<ItemPropertyCostTableEntry>? CostTable
     {
-      get => Effect.GetInteger(2);
-      set => Effect.SetInteger(2, value);
+      get
+      {
+        int tableIndex = Effect.GetInteger(2);
+        if (tableIndex >= 0 && tableIndex < NwGameTables.ItemPropertyCostTables.Count)
+        {
+          return NwGameTables.ItemPropertyCostTables[tableIndex].Table;
+        }
+
+        return null;
+      }
     }
 
     /// <summary>
-    /// Gets or sets the cost table entry to use for this item property.<br/>
-    /// This is the row index inside the set <see cref="CostTable"/>.
+    /// Gets the cost table entry that is set for this item property.<br/>
     /// </summary>
-    public int CostTableValue
+    public ItemPropertyCostTableEntry? CostTableValue
     {
-      get => Effect.GetInteger(3);
-      set => Effect.SetInteger(3, value);
+      get
+      {
+        int tableIndex = Effect.GetInteger(3);
+        TwoDimArray<ItemPropertyCostTableEntry>? table = CostTable;
+        if (tableIndex >= 0 && table != null && tableIndex < table.Count)
+        {
+          return table[tableIndex];
+        }
+
+        return null;
+      }
     }
 
     /// <summary>
@@ -38,33 +53,48 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the "param1" table to use for this item property.<br/>
-    /// See "iprp_paramtable.2da" for a list of available tables.
+    /// Gets the #1 param table used by this item property.
     /// </summary>
-    public int Param1Table
+    public TwoDimArray<ItemPropertyParamTableEntry>? Param1Table
     {
-      get => Effect.GetInteger(4);
-      set => Effect.SetInteger(4, value);
+      get
+      {
+        int tableIndex = Effect.GetInteger(4);
+        if (tableIndex >= 0 && tableIndex < NwGameTables.ItemPropertyParamTables.Count)
+        {
+          return NwGameTables.ItemPropertyParamTables[tableIndex].Table;
+        }
+
+        return null;
+      }
     }
 
     /// <summary>
-    /// Gets or sets the "param1" table entry to use for this item property.<br/>
-    /// This is the row index inside the set <see cref="Param1Table"/>.
+    /// Gets the #1 param table entry that is set for this item property.<br/>
     /// </summary>
-    public int Param1TableValue
+    public ItemPropertyParamTableEntry? Param1TableValue
     {
-      get => Effect.GetInteger(5);
-      set => Effect.SetInteger(5, value);
+      get
+      {
+        int tableIndex = Effect.GetInteger(5);
+        TwoDimArray<ItemPropertyParamTableEntry>? table = Param1Table;
+
+        if (tableIndex >= 0 && table != null && tableIndex < table.Count)
+        {
+          return table[tableIndex];
+        }
+
+        return null;
+      }
     }
 
+    [Obsolete("Use Property.PropertyType instead.")]
+    public ItemPropertyType PropertyType => Property.PropertyType;
+
     /// <summary>
-    /// Gets or sets the type of this item property (as defined in itempropdef.2da).
+    /// Gets the base item property used to create this item property.
     /// </summary>
-    public ItemPropertyType PropertyType
-    {
-      get => (ItemPropertyType)Effect.GetInteger(0);
-      set => Effect.SetInteger(0, (int)value);
-    }
+    public ItemPropertyTableEntry Property => NwGameTables.ItemPropertyTable[Effect.GetInteger(0)];
 
     /// <summary>
     /// Gets the remaining duration until the item property expires (if this item property is temporary). Otherwise, returns <see cref="TimeSpan.Zero"/>.
