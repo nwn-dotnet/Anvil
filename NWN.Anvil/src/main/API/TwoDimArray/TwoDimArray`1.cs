@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -12,7 +11,7 @@ namespace Anvil.API
   /// <typeparam name="T">The row/entry type to decode the array.</typeparam>
   public sealed class TwoDimArray<T> : TwoDimArray, IReadOnlyList<T> where T : class, ITwoDimArrayEntry, new()
   {
-    private T?[] cachedRows;
+    private readonly T?[] cachedRows;
 
     internal TwoDimArray(C2DA array) : base(array)
     {
@@ -73,12 +72,6 @@ namespace Anvil.API
       cachedRows[rowIndex] = retVal;
 
       return retVal;
-    }
-
-    [MemberNotNull(nameof(cachedRows))]
-    private void Init()
-    {
-      cachedRows = new T[RowCount];
     }
 
     IEnumerator IEnumerable.GetEnumerator()

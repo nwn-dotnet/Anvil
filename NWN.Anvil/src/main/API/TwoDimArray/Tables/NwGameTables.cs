@@ -121,6 +121,5 @@ namespace Anvil.API
     /// Gets the visual effect table (visualeffects.2da)
     /// </summary>
     public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; } = null!;
-
   }
 }
