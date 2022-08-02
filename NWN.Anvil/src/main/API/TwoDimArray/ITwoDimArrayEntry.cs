@@ -4,7 +4,7 @@ namespace Anvil.API
   //! @include XPReportService.cs
 
   /// <summary>
-  /// Implement to decode <see cref="TwoDimArrayEntry"/> into a type using <see cref="TwoDimArray{T}(string)"/>.
+  /// Implement to decode <see cref="TwoDimArrayEntry"/> into a type using <see cref="NwGameTables.GetTable{T}(string, bool, bool)"/>.
   /// </summary>
   public interface ITwoDimArrayEntry
   {
