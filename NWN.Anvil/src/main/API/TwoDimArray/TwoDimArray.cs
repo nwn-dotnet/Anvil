@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Anvil.Native;
@@ -81,13 +82,7 @@ namespace Anvil.API
     /// <returns>The associated value. null if no value is set.</returns>
     public bool? GetBool(int rowIndex, int columnIndex)
     {
-      string? data = arrayData[rowIndex, columnIndex];
-      if (int.TryParse(data, out int retVal))
-      {
-        return retVal.ToBool();
-      }
-
-      return null;
+      return GetInt(rowIndex, columnIndex)?.ToBool();
     }
 
     /// <summary>
@@ -125,10 +120,11 @@ namespace Anvil.API
         throw new ArgumentOutOfRangeException(nameof(T), "Specified enum must be backed by a signed int32 (int)");
       }
 
-      string? data = arrayData[rowIndex, columnIndex];
-      if (int.TryParse(data, out int retVal))
+      int? rawValue = GetInt(rowIndex, columnIndex);
+      if (rawValue != null)
       {
-        return Unsafe.As<int, T>(ref retVal);
+        int value = rawValue.Value;
+        return Unsafe.As<int, T>(ref value);
       }
 
       return null;
@@ -155,7 +151,15 @@ namespace Anvil.API
     public float? GetFloat(int rowIndex, int columnIndex)
     {
       string? data = arrayData[rowIndex, columnIndex];
-      if (float.TryParse(data, out float retVal))
+      NumberStyles numberStyles = NumberStyles.Float | NumberStyles.AllowThousands;
+
+      if (data != null && data.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+      {
+        data = data[2..];
+        numberStyles |= NumberStyles.HexNumber;
+      }
+
+      if (float.TryParse(data, numberStyles, NumberFormatInfo.CurrentInfo, out float retVal))
       {
         return retVal;
       }
@@ -184,7 +188,15 @@ namespace Anvil.API
     public int? GetInt(int rowIndex, int columnIndex)
     {
       string? data = arrayData[rowIndex, columnIndex];
-      if (int.TryParse(data, out int retVal))
+      NumberStyles numberStyles = NumberStyles.Integer;
+
+      if (data != null && data.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+      {
+        data = data[2..];
+        numberStyles |= NumberStyles.HexNumber;
+      }
+
+      if (int.TryParse(data, numberStyles, NumberFormatInfo.CurrentInfo, out int retVal))
       {
         return retVal;
       }
@@ -235,10 +247,10 @@ namespace Anvil.API
     /// <returns>The associated value. null if no value is set.</returns>
     public StrRef? GetStrRef(int rowIndex, int columnIndex)
     {
-      string? data = arrayData[rowIndex, columnIndex];
-      if (int.TryParse(data, out int retVal))
+      int? value = GetInt(rowIndex, columnIndex);
+      if (value != null)
       {
-        return new StrRef(retVal);
+        return new StrRef(value.Value);
       }
 
       return null;
@@ -268,13 +280,13 @@ namespace Anvil.API
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
     public T? GetTableEntry<T>(int rowIndex, int columnIndex, TwoDimArray<T> table) where T : class, ITwoDimArrayEntry, new()
     {
-      string? data = arrayData[rowIndex, columnIndex];
-      if (int.TryParse(data, out int index) && index < table.RowCount)
+      int? value = GetInt(rowIndex, columnIndex);
+      if (value != null && value < table.RowCount)
       {
-        return table[index];
+        return table[value.Value];
       }
 
-      return default;
+      return null;
     }
 
     /// <summary>
@@ -330,15 +342,13 @@ namespace Anvil.API
     /// <returns>The associated value. null if no value is set.</returns>
     public Vector3? GetVector3(int rowIndex, int columnIndexX, int columnIndexY, int columnIndexZ)
     {
-      string? xData = arrayData[rowIndex, columnIndexX];
-      string? yData = arrayData[rowIndex, columnIndexY];
-      string? zData = arrayData[rowIndex, columnIndexZ];
+      float? x = GetFloat(rowIndex, columnIndexX);
+      float? y = GetFloat(rowIndex, columnIndexY);
+      float? z = GetFloat(rowIndex, columnIndexZ);
 
-      if (float.TryParse(xData, out float xVal) &&
-        float.TryParse(yData, out float yVal) &&
-        float.TryParse(zData, out float zVal))
+      if (x != null && y != null && z != null)
       {
-        return new Vector3(xVal, yVal, zVal);
+        return new Vector3(x.Value, y.Value, z.Value);
       }
 
       return null;
