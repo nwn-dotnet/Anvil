@@ -156,7 +156,7 @@ namespace Anvil.API
       if (data != null && data.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
       {
         data = data[2..];
-        numberStyles |= NumberStyles.HexNumber;
+        numberStyles = NumberStyles.HexNumber;
       }
 
       if (float.TryParse(data, numberStyles, NumberFormatInfo.CurrentInfo, out float retVal))
@@ -193,7 +193,7 @@ namespace Anvil.API
       if (data != null && data.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
       {
         data = data[2..];
-        numberStyles |= NumberStyles.HexNumber;
+        numberStyles = NumberStyles.HexNumber;
       }
 
       if (int.TryParse(data, numberStyles, NumberFormatInfo.CurrentInfo, out int retVal))
