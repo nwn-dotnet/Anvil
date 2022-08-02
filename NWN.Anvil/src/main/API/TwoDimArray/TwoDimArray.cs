@@ -153,10 +153,17 @@ namespace Anvil.API
       string? data = arrayData[rowIndex, columnIndex];
       NumberStyles numberStyles = NumberStyles.Float | NumberStyles.AllowThousands;
 
-      if (data != null && data.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+      if (data != null)
       {
-        data = data[2..];
-        numberStyles = NumberStyles.HexNumber;
+        if (data.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+        {
+          data = data[2..];
+          numberStyles = NumberStyles.HexNumber;
+        }
+        else if (data.EndsWith("f", StringComparison.OrdinalIgnoreCase))
+        {
+          data = data[..1];
+        }
       }
 
       if (float.TryParse(data, numberStyles, NumberFormatInfo.InvariantInfo, out float retVal))
