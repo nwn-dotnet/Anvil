@@ -121,5 +121,25 @@ namespace Anvil.API
     /// Gets the visual effect table (visualeffects.2da)
     /// </summary>
     public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the item property item mapping table (itemprops.2da)
+    /// </summary>
+    public static TwoDimArray<ItemPropertyItemMapTableEntry> ItemPropertyItemMapTable { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the item property table. (itempropdef.2da)
+    /// </summary>
+    public static TwoDimArray<ItemPropertyTableEntry> ItemPropertyTable { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the item property cost tables. (iprp_costtable.2da)
+    /// </summary>
+    public static TwoDimArray<ItemPropertyCostTablesEntry> ItemPropertyCostTables { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the item property param tables. (iprp_paramtable.2da)
+    /// </summary>
+    public static TwoDimArray<ItemPropertyParamTablesEntry> ItemPropertyParamTables { get; private set; } = null!;
   }
 }
