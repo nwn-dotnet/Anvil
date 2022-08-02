@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Anvil.Native;
@@ -15,76 +13,53 @@ namespace Anvil.API
   /// <summary>
   /// A two dimensional array data resource.
   /// </summary>
-  public class TwoDimArray : IEquatable<TwoDimArray>
+  public class TwoDimArray
   {
-    private readonly C2DA array;
+    private readonly string?[,] arrayData;
 
-    public TwoDimArray(string resRef)
+    /// <summary>
+    /// Gets the number of columns in this 2da.
+    /// </summary>
+    public int ColumnCount { get; }
+
+    /// <summary>
+    /// Gets the column labels/names for this 2da.
+    /// </summary>
+    public string[] Columns { get; }
+
+    /// <summary>
+    /// Gets the number of rows in this 2da.
+    /// </summary>
+    public int RowCount { get; }
+
+    internal unsafe TwoDimArray(C2DA array)
     {
-      resRef = resRef.Replace(".2da", string.Empty);
-      array = NWNXLib.Rules().m_p2DArrays.GetCached2DA(resRef.ToExoString(), true.ToInt());
-      if (array == null)
-      {
-        throw new ArgumentException("Invalid 2DA ResRef.", nameof(resRef));
-      }
-
-      Init();
-    }
-
-    internal TwoDimArray(C2DA array)
-    {
-      this.array = array;
       if (array == null)
       {
         throw new ArgumentNullException(nameof(array));
       }
 
-      Init();
-    }
+      RowCount = array.m_nNumRows;
+      ColumnCount = array.m_nNumColumns;
 
-    /// <summary>
-    /// Gets the number of columns in this 2da.
-    /// </summary>
-    public int ColumnCount => array.m_nNumColumns;
+      CExoStringArray columnArray = CExoStringArray.FromPointer(array.m_pColumnLabel);
+      Columns = new string[array.m_nNumColumns];
 
-    /// <summary>
-    /// Gets the column labels/names for this 2da.
-    /// </summary>
-    public string[] Columns { get; private set; }
-
-    /// <summary>
-    /// Gets the number of rows in this 2da.
-    /// </summary>
-    public int RowCount => array.m_nNumRows;
-
-    public static bool operator ==(TwoDimArray? left, TwoDimArray? right)
-    {
-      return Equals(left, right);
-    }
-
-    public static bool operator !=(TwoDimArray? left, TwoDimArray? right)
-    {
-      return !Equals(left, right);
-    }
-
-    public bool Equals(TwoDimArray? other)
-    {
-      if (ReferenceEquals(null, other))
+      for (int i = 0; i < array.m_nNumColumns; i++)
       {
-        return false;
+        string columnName = columnArray.GetItem(i).ToString();
+        Columns[i] = columnName;
       }
 
-      if (ReferenceEquals(this, other))
+      arrayData = new string[RowCount, ColumnCount];
+      for (int i = 0; i < RowCount; i++)
       {
-        return true;
+        for (int j = 0; j < ColumnCount; j++)
+        {
+          CExoStringData data = ((CExoStringData**)array.m_pArrayData)[i][j];
+          arrayData[i, j] = data.ToString();
+        }
       }
-
-      return array.Equals(other.array);
-    }
-
-    public override bool Equals(object? obj)
-    {
-      return ReferenceEquals(this, obj) || obj is TwoDimArray other && Equals(other);
     }
 
     /// <summary>
@@ -105,15 +80,9 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public unsafe bool? GetBool(int rowIndex, int columnIndex)
+    public bool? GetBool(int rowIndex, int columnIndex)
     {
-      int retVal;
-      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
-      {
-        return retVal.ToBool();
-      }
-
-      return null;
+      return GetInt(rowIndex, columnIndex)?.ToBool();
     }
 
     /// <summary>
@@ -144,17 +113,18 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public unsafe T? GetEnum<T>(int rowIndex, int columnIndex) where T : struct, Enum
+    public T? GetEnum<T>(int rowIndex, int columnIndex) where T : struct, Enum
     {
       if (Unsafe.SizeOf<T>() != Unsafe.SizeOf<int>())
       {
         throw new ArgumentOutOfRangeException(nameof(T), "Specified enum must be backed by a signed int32 (int)");
       }
 
-      int retVal;
-      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      int? rawValue = GetInt(rowIndex, columnIndex);
+      if (rawValue != null)
       {
-        return Unsafe.As<int, T>(ref retVal);
+        int value = rawValue.Value;
+        return Unsafe.As<int, T>(ref value);
       }
 
       return null;
@@ -178,20 +148,30 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public unsafe float? GetFloat(int rowIndex, int columnIndex)
+    public float? GetFloat(int rowIndex, int columnIndex)
     {
-      float retVal;
-      if (array.GetFLOATEntry(rowIndex, columnIndex, &retVal).ToBool())
+      string? data = arrayData[rowIndex, columnIndex];
+      NumberStyles numberStyles = NumberStyles.Float | NumberStyles.AllowThousands;
+
+      if (data != null)
+      {
+        if (data.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+        {
+          data = data[2..];
+          numberStyles = NumberStyles.HexNumber;
+        }
+        else if (data.EndsWith("f", StringComparison.OrdinalIgnoreCase))
+        {
+          data = data[..1];
+        }
+      }
+
+      if (float.TryParse(data, numberStyles, NumberFormatInfo.InvariantInfo, out float retVal))
       {
         return retVal;
       }
 
       return null;
-    }
-
-    public override int GetHashCode()
-    {
-      return array.GetHashCode();
     }
 
     /// <summary>
@@ -212,10 +192,18 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public unsafe int? GetInt(int rowIndex, int columnIndex)
+    public int? GetInt(int rowIndex, int columnIndex)
     {
-      int retVal;
-      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      string? data = arrayData[rowIndex, columnIndex];
+      NumberStyles numberStyles = NumberStyles.Integer;
+
+      if (data != null && data.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+      {
+        data = data[2..];
+        numberStyles = NumberStyles.HexNumber;
+      }
+
+      if (int.TryParse(data, numberStyles, NumberFormatInfo.InvariantInfo, out int retVal))
       {
         return retVal;
       }
@@ -241,24 +229,9 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public unsafe string? GetString(int rowIndex, int columnIndex)
+    public string? GetString(int rowIndex, int columnIndex)
     {
-      CExoStringData exoStringData;
-      CExoString exoString = CExoString.FromPointer(&exoStringData);
-
-      try
-      {
-        if (array.GetCExoStringEntry(rowIndex, columnIndex, exoString).ToBool())
-        {
-          return exoString.ToString();
-        }
-
-        return null;
-      }
-      finally
-      {
-        exoString._Destructor();
-      }
+      return arrayData[rowIndex, columnIndex];
     }
 
     /// <summary>
@@ -279,12 +252,12 @@ namespace Anvil.API
     /// <param name="rowIndex">The index of the row to query.</param>
     /// <param name="columnIndex">The index of the column to query.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public unsafe StrRef? GetStrRef(int rowIndex, int columnIndex)
+    public StrRef? GetStrRef(int rowIndex, int columnIndex)
     {
-      int retVal;
-      if (array.GetINTEntry(rowIndex, columnIndex, &retVal).ToBool())
+      int? value = GetInt(rowIndex, columnIndex);
+      if (value != null)
       {
-        return new StrRef(retVal);
+        return new StrRef(value.Value);
       }
 
       return null;
@@ -298,10 +271,10 @@ namespace Anvil.API
     /// <param name="table">The table that should be used to resolve the value.</param>
     /// <typeparam name="T">The type of table entry.</typeparam>
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
-    public T? GetTableEntry<T>(int rowIndex, string columnName, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    public T? GetTableEntry<T>(int rowIndex, string columnName, TwoDimArray<T> table) where T : class, ITwoDimArrayEntry, new()
     {
       int columnIndex = GetColumnIndex(columnName);
-      return GetTableEntry(rowIndex, columnIndex, table);
+      return columnIndex >= 0 ? GetTableEntry(rowIndex, columnIndex, table) : null;
     }
 
     /// <summary>
@@ -312,15 +285,41 @@ namespace Anvil.API
     /// <param name="table">The table that should be used to resolve the value.</param>
     /// <typeparam name="T">The type of table entry.</typeparam>
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
-    public unsafe T? GetTableEntry<T>(int rowIndex, int columnIndex, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    public T? GetTableEntry<T>(int rowIndex, int columnIndex, TwoDimArray<T> table) where T : class, ITwoDimArrayEntry, new()
     {
-      int index;
-      if (array.GetINTEntry(rowIndex, columnIndex, &index).ToBool() && index < table.RowCount)
+      int? value = GetInt(rowIndex, columnIndex);
+      if (value != null && value < table.RowCount)
       {
-        return table[index];
+        return table[value.Value];
       }
 
-      return default;
+      return null;
+    }
+
+    /// <summary>
+    /// Interprets the specified value as a table name, and returns the associated table.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <typeparam name="T">The type of table entry.</typeparam>
+    /// <returns>The associated value, otherwise null.</returns>
+    public TwoDimArray<T>? GetTable<T>(int rowIndex, string columnName) where T : class, ITwoDimArrayEntry, new()
+    {
+      int columnIndex = GetColumnIndex(columnName);
+      return columnIndex >= 0 ? GetTable<T>(rowIndex, columnIndex) : null;
+    }
+
+    /// <summary>
+    /// Interprets the specified value as a table name, and returns the associated table.
+    /// </summary>
+    /// <param name="rowIndex">The index of the row to query.</param>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <typeparam name="T">The type of table entry.</typeparam>
+    /// <returns>The associated value, otherwise null.</returns>
+    public TwoDimArray<T>? GetTable<T>(int rowIndex, int columnIndex) where T : class, ITwoDimArrayEntry, new()
+    {
+      string? tableName = GetString(rowIndex, columnIndex);
+      return string.IsNullOrEmpty(tableName) ? null : NwGameTables.GetTable<T>(tableName, true, false);
     }
 
     /// <summary>
@@ -348,97 +347,18 @@ namespace Anvil.API
     /// <param name="columnIndexY">The index of the column containing the y component of the vector.</param>
     /// <param name="columnIndexZ">The index of the column containing the z component of the vector.</param>
     /// <returns>The associated value. null if no value is set.</returns>
-    public unsafe Vector3? GetVector3(int rowIndex, int columnIndexX, int columnIndexY, int columnIndexZ)
+    public Vector3? GetVector3(int rowIndex, int columnIndexX, int columnIndexY, int columnIndexZ)
     {
-      float xVal;
-      float yVal;
-      float zVal;
+      float? x = GetFloat(rowIndex, columnIndexX);
+      float? y = GetFloat(rowIndex, columnIndexY);
+      float? z = GetFloat(rowIndex, columnIndexZ);
 
-      if (array.GetFLOATEntry(rowIndex, columnIndexX, &xVal).ToBool() &&
-        array.GetFLOATEntry(rowIndex, columnIndexY, &yVal).ToBool() &&
-        array.GetFLOATEntry(rowIndex, columnIndexZ, &zVal).ToBool())
+      if (x != null && y != null && z != null)
       {
-        return new Vector3(xVal, yVal, zVal);
+        return new Vector3(x.Value, y.Value, z.Value);
       }
 
       return null;
-    }
-
-    [MemberNotNull(nameof(Columns))]
-    private void Init()
-    {
-      CExoStringArray columnArray = CExoStringArray.FromPointer(array.m_pColumnLabel);
-      Columns = new string[array.m_nNumColumns];
-
-      for (int i = 0; i < array.m_nNumColumns; i++)
-      {
-        string columnName = columnArray.GetItem(i).ToString();
-        Columns[i] = columnName;
-      }
-    }
-  }
-
-  /// <summary>
-  /// A two dimensional array resource, with a decoded row type.
-  /// </summary>
-  /// <typeparam name="T">The row/entry type to decode the array.</typeparam>
-  public sealed class TwoDimArray<T> : TwoDimArray, IReadOnlyList<T> where T : ITwoDimArrayEntry, new()
-  {
-    public TwoDimArray(string resRef) : base(resRef) {}
-    internal TwoDimArray(C2DA array) : base(array) {}
-
-    /// <inheritdoc cref="TwoDimArray.RowCount"/>
-    public int Count => RowCount;
-
-    /// <summary>
-    /// Gets a read-only list of all rows in this 2da.
-    /// </summary>
-    public IReadOnlyList<T> Rows
-    {
-      get
-      {
-        T[] retVal = new T[RowCount];
-        for (int i = 0; i < RowCount; i++)
-        {
-          retVal[i] = GetRow(i);
-        }
-
-        return retVal;
-      }
-    }
-
-    /// <inheritdoc cref="GetRow"/>
-    public T this[int rowIndex] => GetRow(rowIndex);
-
-    public IEnumerator<T> GetEnumerator()
-    {
-      return Rows.GetEnumerator();
-    }
-
-    /// <summary>
-    /// Gets the row at the specified index.
-    /// </summary>
-    /// <param name="rowIndex">The row index.</param>
-    public T GetRow(int rowIndex)
-    {
-      if (rowIndex < 0 || rowIndex >= RowCount)
-      {
-        throw new ArgumentOutOfRangeException(nameof(rowIndex), "Row index was out of range. Must be non-negative and less than the size of the array.");
-      }
-
-      TwoDimArrayEntry entry = new TwoDimArrayEntry(this, rowIndex);
-      T retVal = new T
-      {
-        RowIndex = rowIndex,
-      };
-      retVal.InterpretEntry(entry);
-
-      return retVal;
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return GetEnumerator();
     }
   }
 }

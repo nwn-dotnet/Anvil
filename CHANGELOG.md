@@ -7,13 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...HEAD
 
 ### Added
-- N/A
+- NuiText: Added `Border` and `Scrollbars` properties.
 
 ### Package Updates
 - N/A
 
 ### Changed
-- N/A
+- **BREAKING CHANGE:** TwoDimArrays must now be initialized via `NwGameTables.GetTable`.
 
 ### Deprecated
 - N/A
@@ -22,7 +22,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed a server crash when using TwoDimArray after the native array structure was evicted from the 2da cache. 
 
 ## 8193.34.13
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.12...v8193.34.13
