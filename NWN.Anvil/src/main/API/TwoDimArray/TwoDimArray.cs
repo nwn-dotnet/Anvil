@@ -159,7 +159,7 @@ namespace Anvil.API
         numberStyles = NumberStyles.HexNumber;
       }
 
-      if (float.TryParse(data, numberStyles, NumberFormatInfo.CurrentInfo, out float retVal))
+      if (float.TryParse(data, numberStyles, NumberFormatInfo.InvariantInfo, out float retVal))
       {
         return retVal;
       }
@@ -196,7 +196,7 @@ namespace Anvil.API
         numberStyles = NumberStyles.HexNumber;
       }
 
-      if (int.TryParse(data, numberStyles, NumberFormatInfo.CurrentInfo, out int retVal))
+      if (int.TryParse(data, numberStyles, NumberFormatInfo.InvariantInfo, out int retVal))
       {
         return retVal;
       }
