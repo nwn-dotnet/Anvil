@@ -8,6 +8,9 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...HEAD
 
 ### Added
 - NuiText: Added `Border` and `Scrollbars` properties.
+- ItemProperty: Added properties for referencing 2da data.
+- ItemProperty: Added Create() factory method overload using the new table class types.
+- NwGameTables: Added `ItemPropertyTable`, `ItemPropertyItemMapTable`, `ItemPropertyCostTables`, `ItemPropertyParamTables`
 
 ### Package Updates
 - N/A
