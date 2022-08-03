@@ -22,7 +22,10 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the sender of this message.
     /// </summary>
-    public NwObject Sender { get; internal init; } = null!;
+    /// <remarks>
+    /// May be null when the message is sent by the server, e.g. with the nwscript function SendMessageToAllDMs.
+    /// </remarks>
+    public NwObject? Sender { get; internal init; } = null;
 
     /// <summary>
     /// Skips this chat message.
@@ -35,7 +38,7 @@ namespace Anvil.API.Events
     /// </summary>
     public NwPlayer? Target { get; internal init; }
 
-    NwObject IEvent.Context => Sender;
+    NwObject? IEvent.Context => Sender;
   }
 }
 
