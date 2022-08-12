@@ -19,7 +19,7 @@ namespace Anvil.API.Events
       {
         // Patch player reference due to a reference bug during client enter context
         // See https://github.com/Beamdog/nwn-issues/issues/367
-        if (Player is null && Item.Possessor is NwCreature creature)
+        if (Player is null && Item?.Possessor is NwCreature creature)
         {
           Player = creature;
         }
@@ -28,7 +28,11 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the last equipped <see cref="NwItem"/> that triggered the event.
       /// </summary>
-      public NwItem Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>()!;
+      /// <remarks>
+      /// Nullable because of an edge case where the item is invalid on logout while polymorphed.
+      /// See https://github.com/Beamdog/nwn-issues/issues/464
+      /// </remarks>
+      public NwItem? Item { get; } = NWScript.GetPCItemLastEquipped().ToNwObject<NwItem>();
 
       /// <summary>
       /// Gets the <see cref="NwCreature"/> that last equipped <see cref="NwItem"/>.
