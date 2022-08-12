@@ -25,7 +25,7 @@ namespace Anvil.API.Events
     /// <remarks>
     /// May be null when the message is sent by the server, e.g. with the nwscript function SendMessageToAllDMs.
     /// </remarks>
-    public NwObject? Sender { get; internal init; } = null;
+    public NwObject? Sender { get; internal init; }
 
     /// <summary>
     /// Skips this chat message.
