@@ -26,7 +26,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the cost table entry that is set for this item property.<br/>
+    /// Gets or sets the cost table entry that is set for this item property.<br/>
     /// </summary>
     public ItemPropertyCostTableEntry? CostTableValue
     {
@@ -41,6 +41,7 @@ namespace Anvil.API
 
         return null;
       }
+      set => Effect.SetInteger(3, value?.RowIndex ?? -1);
     }
 
     /// <summary>
@@ -70,7 +71,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the #1 param table entry that is set for this item property.<br/>
+    /// Gets or sets the #1 param table entry that is set for this item property.<br/>
     /// </summary>
     public ItemPropertyParamTableEntry? Param1TableValue
     {
@@ -86,6 +87,7 @@ namespace Anvil.API
 
         return null;
       }
+      set => Effect.SetInteger(5, value?.RowIndex ?? -1);
     }
 
     [Obsolete("Use Property.PropertyType instead.")]
@@ -102,13 +104,23 @@ namespace Anvil.API
     public TimeSpan RemainingDuration => TimeSpan.FromSeconds(NWScript.GetItemPropertyDurationRemaining(this));
 
     /// <summary>
-    /// Gets or sets the SubType index for this item property.<br/>
-    /// The mapping of this value can be found by first finding the 2da name in itempropdef.2da under the "SubTypeResRef" column, then locating the index of the subtype in the specified 2da.
+    /// Gets or sets the sub type that is set on this item property.
     /// </summary>
-    public int SubType
+    public ItemPropertySubTypeTableEntry? SubType
     {
-      get => Effect.GetInteger(1);
-      set => Effect.SetInteger(1, value);
+      get
+      {
+        int tableIndex = Effect.GetInteger(1);
+        TwoDimArray<ItemPropertySubTypeTableEntry>? table = Property.SubTypeTable;
+
+        if (tableIndex >= 0 && table != null && tableIndex < table.Count)
+        {
+          return table[tableIndex];
+        }
+
+        return null;
+      }
+      set => Effect.SetInteger(1, value?.RowIndex ?? -1);
     }
 
     /// <summary>
