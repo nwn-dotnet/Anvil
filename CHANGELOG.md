@@ -25,7 +25,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...HEAD
 - N/A
 
 ### Fixed
-- Fixed a server crash when using TwoDimArray after the native array structure was evicted from the 2da cache. 
+- Fixed a server crash when using TwoDimArray after the native array structure was evicted from the 2da cache.
+- Fixed updating the weight of a equipped itme with ```NwItem.Weight``` not correctly updating creature weight and encumbrance.
 
 ## 8193.34.13
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.12...v8193.34.13
