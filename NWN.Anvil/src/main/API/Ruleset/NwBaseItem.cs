@@ -50,7 +50,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the armor check penalty inherent to this item. Not used for armor which uses armor.2da
     /// </summary>
-    public byte ArmorCheckPenalty => BaseItemInfo.m_nArmorCheckPenalty;
+    public sbyte ArmorCheckPenalty => BaseItemInfo.m_nArmorCheckPenalty.AsSByte();
 
     /// <summary>
     /// Gets the armor class value of this shield (before enchantments). Not used for armor.
