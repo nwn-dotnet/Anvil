@@ -188,7 +188,7 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerDying.html#af48cc2781bd7fb5df694e7b0e5fdcb66":[0,0,0,0,19,11,1],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html":[0,0,0,0,19,12],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html#a02e17e31c908cf7e3b412cc6803c6e0b":[0,0,0,0,19,12,0],
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html#aabad92b0d40ad8579d0e583696ef9747":[0,0,0,0,19,12,2],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html#a993269000e304575553db080eff62abd":[0,0,0,0,19,12,2],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html#ab08809cf924096fc9a57e167adf72d3a":[0,0,0,0,19,12,1],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerEquipItem.html#ad0091a616937e25d490d07492cc2f404":[0,0,0,0,19,12,3],
 "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html":[0,0,0,0,19,13],

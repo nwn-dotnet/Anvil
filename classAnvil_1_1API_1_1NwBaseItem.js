@@ -10,7 +10,7 @@ var classAnvil_1_1API_1_1NwBaseItem =
     [ "AnimSlashR", "classAnvil_1_1API_1_1NwBaseItem.html#a5410066f58e04e9d6aef57f32dd3cd95", null ],
     [ "AnimSlashS", "classAnvil_1_1API_1_1NwBaseItem.html#a094be56fe80996c8e028d324d7ea5312", null ],
     [ "ArcaneSpellFailure", "classAnvil_1_1API_1_1NwBaseItem.html#a7067ebc0668e7d4c2cd113cddbdb7995", null ],
-    [ "ArmorCheckPenalty", "classAnvil_1_1API_1_1NwBaseItem.html#a4507769bb4e3bdd64b0eac16b06a22a2", null ],
+    [ "ArmorCheckPenalty", "classAnvil_1_1API_1_1NwBaseItem.html#a38f02ec3d26264919e6c85429d602e6f", null ],
     [ "BaseAC", "classAnvil_1_1API_1_1NwBaseItem.html#a9a392a78582e12e1eddd6271fd88d4f6", null ],
     [ "BaseCost", "classAnvil_1_1API_1_1NwBaseItem.html#ab9a2972f6f864bffadddb6d79dc8ce6b", null ],
     [ "BaseItemStatsText", "classAnvil_1_1API_1_1NwBaseItem.html#a454e90ab66335fefb8ac7ce4cafcdeab", null ],

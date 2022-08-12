@@ -181,6 +181,9 @@ static <a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty<
 <tr class="memitem:ad036ae81329c0b6fbe932c25d5366ce3"><td class="memItemLeft" align="right" valign="top"><a id="ad036ae81329c0b6fbe932c25d5366ce3"></a>
 static <a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Custom</b> (int type, int subType=-1, int costTableValue=-1, int param1Value=-1)</td></tr>
 <tr class="separator:ad036ae81329c0b6fbe932c25d5366ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea3aa6dc110af0a4ce04376e2a87c089"><td class="memItemLeft" align="right" valign="top"><a id="aea3aa6dc110af0a4ce04376e2a87c089"></a>
+static <a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Custom</b> (<a class="el" href="classAnvil_1_1API_1_1ItemPropertyTableEntry.html">ItemPropertyTableEntry</a> property, <a class="el" href="classAnvil_1_1API_1_1ItemPropertySubTypeTableEntry.html">ItemPropertySubTypeTableEntry</a>? subType=null, <a class="el" href="classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html">ItemPropertyCostTableEntry</a>? costTableValue=null, <a class="el" href="classAnvil_1_1API_1_1ItemPropertyParamTableEntry.html">ItemPropertyParamTableEntry</a>? paramTableValue=null)</td></tr>
+<tr class="separator:aea3aa6dc110af0a4ce04376e2a87c089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94f0ba620435fa687195541fc8c03f2e"><td class="memItemLeft" align="right" valign="top"><a id="a94f0ba620435fa687195541fc8c03f2e"></a>
 static <a class="el" href="classAnvil_1_1API_1_1ItemProperty.html">ItemProperty</a>&#160;</td><td class="memItemRight" valign="bottom"><b>DamageBonus</b> (IPDamageType damageType, IPDamageBonus damageBonus)</td></tr>
 <tr class="separator:a94f0ba620435fa687195541fc8c03f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -372,27 +375,28 @@ static implicit&#160;</td><td class="memItemRight" valign="bottom"><b>operator I
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a61bd851cd4c21c68bbd848502be71f33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a61bd851cd4c21c68bbd848502be71f33">CostTable</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a61bd851cd4c21c68bbd848502be71f33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the cost table to use for this item property.<br  />
- See "iprp_costtable.2da" for a list of available tables.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a61bd851cd4c21c68bbd848502be71f33">More...</a><br /></td></tr>
-<tr class="separator:a61bd851cd4c21c68bbd848502be71f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a808427f9a8707a20758c8f53dc42e354"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a808427f9a8707a20758c8f53dc42e354">CostTableValue</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a808427f9a8707a20758c8f53dc42e354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the cost table entry to use for this item property.<br  />
- This is the row index inside the set <a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a61bd851cd4c21c68bbd848502be71f33" title="Gets or sets the cost table to use for this item property.  See &quot;iprp_costtable.2da&quot; for a list of av...">CostTable</a>.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a808427f9a8707a20758c8f53dc42e354">More...</a><br /></td></tr>
-<tr class="separator:a808427f9a8707a20758c8f53dc42e354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4269e6b7f20700e4878d5783af5776b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a>&lt; <a class="el" href="classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html">ItemPropertyCostTableEntry</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a4269e6b7f20700e4878d5783af5776b0">CostTable</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4269e6b7f20700e4878d5783af5776b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the cost table used by this item property.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a4269e6b7f20700e4878d5783af5776b0">More...</a><br /></td></tr>
+<tr class="separator:a4269e6b7f20700e4878d5783af5776b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96f73adbc6fdd3b8df2e2eaf7279ea7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html">ItemPropertyCostTableEntry</a>?????&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a96f73adbc6fdd3b8df2e2eaf7279ea7d">CostTableValue</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a96f73adbc6fdd3b8df2e2eaf7279ea7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the cost table entry that is set for this item property.<br  />
+  <a href="classAnvil_1_1API_1_1ItemProperty.html#a96f73adbc6fdd3b8df2e2eaf7279ea7d">More...</a><br /></td></tr>
+<tr class="separator:a96f73adbc6fdd3b8df2e2eaf7279ea7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a264e49741805dffea27205adf08cc940"><td class="memItemLeft" align="right" valign="top">EffectDuration&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a264e49741805dffea27205adf08cc940">DurationType</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a264e49741805dffea27205adf08cc940"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets whether this item property is a permanent or temporary effect.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a264e49741805dffea27205adf08cc940">More...</a><br /></td></tr>
 <tr class="separator:a264e49741805dffea27205adf08cc940"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a438ea9bdad61e6664875a40500606658"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a438ea9bdad61e6664875a40500606658">Param1Table</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a438ea9bdad61e6664875a40500606658"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the "param1" table to use for this item property.<br  />
- See "iprp_paramtable.2da" for a list of available tables.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a438ea9bdad61e6664875a40500606658">More...</a><br /></td></tr>
-<tr class="separator:a438ea9bdad61e6664875a40500606658"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf34550beddfbcc7d9419b2112a21ea8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#aaf34550beddfbcc7d9419b2112a21ea8">Param1TableValue</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aaf34550beddfbcc7d9419b2112a21ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the "param1" table entry to use for this item property.<br  />
- This is the row index inside the set <a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a438ea9bdad61e6664875a40500606658" title="Gets or sets the &quot;param1&quot; table to use for this item property.  See &quot;iprp_paramtable....">Param1Table</a>.  <a href="classAnvil_1_1API_1_1ItemProperty.html#aaf34550beddfbcc7d9419b2112a21ea8">More...</a><br /></td></tr>
-<tr class="separator:aaf34550beddfbcc7d9419b2112a21ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6d24a59cc7b4692493e700161158fe3"><td class="memItemLeft" align="right" valign="top">ItemPropertyType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#ac6d24a59cc7b4692493e700161158fe3">PropertyType</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ac6d24a59cc7b4692493e700161158fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the type of this item property (as defined in itempropdef.2da).  <a href="classAnvil_1_1API_1_1ItemProperty.html#ac6d24a59cc7b4692493e700161158fe3">More...</a><br /></td></tr>
+<tr class="memitem:a3d9cdb2b58b29a28d66cc55f995ac98a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a>&lt; <a class="el" href="classAnvil_1_1API_1_1ItemPropertyParamTableEntry.html">ItemPropertyParamTableEntry</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a3d9cdb2b58b29a28d66cc55f995ac98a">Param1Table</a><code> [get]</code></td></tr>
+<tr class="memdesc:a3d9cdb2b58b29a28d66cc55f995ac98a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the #1 param table used by this item property.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a3d9cdb2b58b29a28d66cc55f995ac98a">More...</a><br /></td></tr>
+<tr class="separator:a3d9cdb2b58b29a28d66cc55f995ac98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae9a1fc68400bed4eb09358508ba94d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1ItemPropertyParamTableEntry.html">ItemPropertyParamTableEntry</a>?????&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#acae9a1fc68400bed4eb09358508ba94d">Param1TableValue</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:acae9a1fc68400bed4eb09358508ba94d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the #1 param table entry that is set for this item property.<br  />
+  <a href="classAnvil_1_1API_1_1ItemProperty.html#acae9a1fc68400bed4eb09358508ba94d">More...</a><br /></td></tr>
+<tr class="separator:acae9a1fc68400bed4eb09358508ba94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cd1772adfa569fca68d43982559b70c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1ItemPropertyTableEntry.html">ItemPropertyTableEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a2cd1772adfa569fca68d43982559b70c">Property</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2cd1772adfa569fca68d43982559b70c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the base item property used to create this item property.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a2cd1772adfa569fca68d43982559b70c">More...</a><br /></td></tr>
+<tr class="separator:a2cd1772adfa569fca68d43982559b70c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6d24a59cc7b4692493e700161158fe3"><td class="memItemLeft" align="right" valign="top"><a id="ac6d24a59cc7b4692493e700161158fe3"></a>
+ItemPropertyType&#160;</td><td class="memItemRight" valign="bottom"><b>PropertyType</b><code> [get]</code></td></tr>
 <tr class="separator:ac6d24a59cc7b4692493e700161158fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2011e8b4326c15ed8ef7d651be68dad3"><td class="memItemLeft" align="right" valign="top">TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a2011e8b4326c15ed8ef7d651be68dad3">RemainingDuration</a><code> [get]</code></td></tr>
 <tr class="memdesc:a2011e8b4326c15ed8ef7d651be68dad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the remaining duration until the item property expires (if this item property is temporary). Otherwise, returns TimeSpan.Zero.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a2011e8b4326c15ed8ef7d651be68dad3">More...</a><br /></td></tr>
@@ -400,10 +404,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a2d7c0ce1361a2f95af942a2b3bc60233"><td class="memItemLeft" align="right" valign="top"><a id="a2d7c0ce1361a2f95af942a2b3bc60233"></a>
 override int&#160;</td><td class="memItemRight" valign="bottom"><b>StructureId</b><code> [get]</code></td></tr>
 <tr class="separator:a2d7c0ce1361a2f95af942a2b3bc60233"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d7a758455fef24b8b27e84b43898f23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a8d7a758455fef24b8b27e84b43898f23">SubType</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a8d7a758455fef24b8b27e84b43898f23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the SubType index for this item property.<br  />
- The mapping of this value can be found by first finding the 2da name in itempropdef.2da under the "SubTypeResRef" column, then locating the index of the subtype in the specified 2da.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a8d7a758455fef24b8b27e84b43898f23">More...</a><br /></td></tr>
-<tr class="separator:a8d7a758455fef24b8b27e84b43898f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e2d603efaa16438c7c74d9dc82185d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1ItemPropertySubTypeTableEntry.html">ItemPropertySubTypeTableEntry</a>?????&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a2e2d603efaa16438c7c74d9dc82185d6">SubType</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2e2d603efaa16438c7c74d9dc82185d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the sub type that is set on this item property.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a2e2d603efaa16438c7c74d9dc82185d6">More...</a><br /></td></tr>
+<tr class="separator:a2e2d603efaa16438c7c74d9dc82185d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a667aff062b6bf9f665d10b6af6ea00d7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a667aff062b6bf9f665d10b6af6ea00d7">Tag</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a667aff062b6bf9f665d10b6af6ea00d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the tag for this item property.  <a href="classAnvil_1_1API_1_1ItemProperty.html#a667aff062b6bf9f665d10b6af6ea00d7">More...</a><br /></td></tr>
 <tr class="separator:a667aff062b6bf9f665d10b6af6ea00d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -478,8 +481,8 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 <tr class="separator:a249c0d233d87e5e11de469ecb78f9c8e inherit pro_attribs_classAnvil_1_1API_1_1EffectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Property Documentation</h2>
-<a id="a61bd851cd4c21c68bbd848502be71f33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61bd851cd4c21c68bbd848502be71f33">&#9670;&nbsp;</a></span>CostTable</h2>
+<a id="a4269e6b7f20700e4878d5783af5776b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4269e6b7f20700e4878d5783af5776b0">&#9670;&nbsp;</a></span>CostTable</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -488,7 +491,31 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Anvil.API.ItemProperty.CostTable</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a>&lt;<a class="el" href="classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html">ItemPropertyCostTableEntry</a>&gt;? Anvil.API.ItemProperty.CostTable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the cost table used by this item property. </p>
+
+</div>
+</div>
+<a id="a96f73adbc6fdd3b8df2e2eaf7279ea7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96f73adbc6fdd3b8df2e2eaf7279ea7d">&#9670;&nbsp;</a></span>CostTableValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html">ItemPropertyCostTableEntry</a>????? Anvil.API.ItemProperty.CostTableValue</td>
         </tr>
       </table>
   </td>
@@ -498,33 +525,8 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets the cost table to use for this item property.<br  />
- See "iprp_costtable.2da" for a list of available tables. </p>
-
-</div>
-</div>
-<a id="a808427f9a8707a20758c8f53dc42e354"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a808427f9a8707a20758c8f53dc42e354">&#9670;&nbsp;</a></span>CostTableValue</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Anvil.API.ItemProperty.CostTableValue</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets or sets the cost table entry to use for this item property.<br  />
- This is the row index inside the set <a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a61bd851cd4c21c68bbd848502be71f33" title="Gets or sets the cost table to use for this item property.  See &quot;iprp_costtable.2da&quot; for a list of av...">CostTable</a>. </p>
+<p>Gets or sets the cost table entry that is set for this item property.<br  />
+ </p>
 
 </div>
 </div>
@@ -552,8 +554,8 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 
 </div>
 </div>
-<a id="a438ea9bdad61e6664875a40500606658"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a438ea9bdad61e6664875a40500606658">&#9670;&nbsp;</a></span>Param1Table</h2>
+<a id="a3d9cdb2b58b29a28d66cc55f995ac98a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d9cdb2b58b29a28d66cc55f995ac98a">&#9670;&nbsp;</a></span>Param1Table</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -562,7 +564,31 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Anvil.API.ItemProperty.Param1Table</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a>&lt;<a class="el" href="classAnvil_1_1API_1_1ItemPropertyParamTableEntry.html">ItemPropertyParamTableEntry</a>&gt;? Anvil.API.ItemProperty.Param1Table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the #1 param table used by this item property. </p>
+
+</div>
+</div>
+<a id="acae9a1fc68400bed4eb09358508ba94d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acae9a1fc68400bed4eb09358508ba94d">&#9670;&nbsp;</a></span>Param1TableValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1ItemPropertyParamTableEntry.html">ItemPropertyParamTableEntry</a>????? Anvil.API.ItemProperty.Param1TableValue</td>
         </tr>
       </table>
   </td>
@@ -572,13 +598,13 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets the "param1" table to use for this item property.<br  />
- See "iprp_paramtable.2da" for a list of available tables. </p>
+<p>Gets or sets the #1 param table entry that is set for this item property.<br  />
+ </p>
 
 </div>
 </div>
-<a id="aaf34550beddfbcc7d9419b2112a21ea8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf34550beddfbcc7d9419b2112a21ea8">&#9670;&nbsp;</a></span>Param1TableValue</h2>
+<a id="a2cd1772adfa569fca68d43982559b70c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cd1772adfa569fca68d43982559b70c">&#9670;&nbsp;</a></span>Property</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -587,42 +613,17 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Anvil.API.ItemProperty.Param1TableValue</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1ItemPropertyTableEntry.html">ItemPropertyTableEntry</a> Anvil.API.ItemProperty.Property</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets the "param1" table entry to use for this item property.<br  />
- This is the row index inside the set <a class="el" href="classAnvil_1_1API_1_1ItemProperty.html#a438ea9bdad61e6664875a40500606658" title="Gets or sets the &quot;param1&quot; table to use for this item property.  See &quot;iprp_paramtable....">Param1Table</a>. </p>
-
-</div>
-</div>
-<a id="ac6d24a59cc7b4692493e700161158fe3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6d24a59cc7b4692493e700161158fe3">&#9670;&nbsp;</a></span>PropertyType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">ItemPropertyType Anvil.API.ItemProperty.PropertyType</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets or sets the type of this item property (as defined in itempropdef.2da). </p>
+<p>Gets the base item property used to create this item property. </p>
 
 </div>
 </div>
@@ -650,8 +651,8 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 
 </div>
 </div>
-<a id="a8d7a758455fef24b8b27e84b43898f23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d7a758455fef24b8b27e84b43898f23">&#9670;&nbsp;</a></span>SubType</h2>
+<a id="a2e2d603efaa16438c7c74d9dc82185d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e2d603efaa16438c7c74d9dc82185d6">&#9670;&nbsp;</a></span>SubType</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -660,7 +661,7 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Anvil.API.ItemProperty.SubType</td>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1ItemPropertySubTypeTableEntry.html">ItemPropertySubTypeTableEntry</a>????? Anvil.API.ItemProperty.SubType</td>
         </tr>
       </table>
   </td>
@@ -670,8 +671,7 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets the SubType index for this item property.<br  />
- The mapping of this value can be found by first finding the 2da name in itempropdef.2da under the "SubTypeResRef" column, then locating the index of the subtype in the specified 2da. </p>
+<p>Gets or sets the sub type that is set on this item property. </p>
 
 </div>
 </div>

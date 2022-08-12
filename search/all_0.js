@@ -112,7 +112,7 @@ var searchData=
   ['areaofeffect_109',['AreaOfEffect',['../classAnvil_1_1API_1_1Effect.html#a54325f52eaf26cfd410d913e3cd625a2',1,'Anvil::API::Effect']]],
   ['areaofeffectevents_110',['AreaOfEffectEvents',['../classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents.html',1,'Anvil::API::Events']]],
   ['areas_111',['Areas',['../classAnvil_1_1API_1_1NwModule.html#a54d41038a92261167c3c3e96b08125c0',1,'Anvil::API::NwModule']]],
-  ['armorcheckpenalty_112',['ArmorCheckPenalty',['../classAnvil_1_1API_1_1NwBaseItem.html#a4507769bb4e3bdd64b0eac16b06a22a2',1,'Anvil.API.NwBaseItem.ArmorCheckPenalty()'],['../classAnvil_1_1API_1_1NwSkill.html#a0efe543da74dcdbd13bca93d7db1127a',1,'Anvil.API.NwSkill.ArmorCheckPenalty()']]],
+  ['armorcheckpenalty_112',['ArmorCheckPenalty',['../classAnvil_1_1API_1_1NwBaseItem.html#a38f02ec3d26264919e6c85429d602e6f',1,'Anvil.API.NwBaseItem.ArmorCheckPenalty()'],['../classAnvil_1_1API_1_1NwSkill.html#a0efe543da74dcdbd13bca93d7db1127a',1,'Anvil.API.NwSkill.ArmorCheckPenalty()']]],
   ['armortable_113',['ArmorTable',['../classAnvil_1_1API_1_1NwGameTables.html#a9d7e70a9010655a5d9adf235011aeb39',1,'Anvil::API::NwGameTables']]],
   ['armortableentry_114',['ArmorTableEntry',['../classAnvil_1_1API_1_1ArmorTableEntry.html',1,'Anvil::API']]],
   ['arrayindex_115',['ArrayIndex',['../classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnNuiEvent.html#a3a7870b3a6e63a816fc75b3562d23b1a',1,'Anvil::API::Events::ModuleEvents::OnNuiEvent']]],

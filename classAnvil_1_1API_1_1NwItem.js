@@ -37,8 +37,9 @@ var classAnvil_1_1API_1_1NwItem =
     [ "OriginalUnidentifiedDescription", "classAnvil_1_1API_1_1NwItem.html#afba6970cde26820acf6b125feae49d44", null ],
     [ "Pickpocketable", "classAnvil_1_1API_1_1NwItem.html#a9571e70f43859d3c5b14b530ec94eb3a", null ],
     [ "Possessor", "classAnvil_1_1API_1_1NwItem.html#ac3a8917675e9fc88fdf73f9a3ad3fe3f", null ],
+    [ "RootPossessor", "classAnvil_1_1API_1_1NwItem.html#ae51fc12f302e1cb6d175d42277be1ff6", null ],
     [ "StackSize", "classAnvil_1_1API_1_1NwItem.html#a6cb26bd19689afa24a2087e59ad87bc9", null ],
     [ "Stolen", "classAnvil_1_1API_1_1NwItem.html#aa5e71e4bf72a57ac9413cf8768b18d73", null ],
     [ "UnidentifiedDescription", "classAnvil_1_1API_1_1NwItem.html#ad51c8ccb747a32496baefbb048af27c0", null ],
-    [ "Weight", "classAnvil_1_1API_1_1NwItem.html#aa82fac5bdd6bd380d24d27a80c164983", null ]
+    [ "Weight", "classAnvil_1_1API_1_1NwItem.html#a5bba799d16a4901421f013e0d9432ce6", null ]
 ];

@@ -37,17 +37,18 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1Events_1_1OnBarterStart.html",
 "classAnvil_1_1API_1_1Events_1_1OnInventoryItemAdd.html",
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnHeartbeat.html#a01af057ee169298ca63df2e0ac57328b",
-"classAnvil_1_1API_1_1ItemProperty.html#a2ff3ee2882445e7fa1a435898a8cc85e",
-"classAnvil_1_1API_1_1NuiComboEntry.html#a7272f8c90575c64481b7b6f9210df824",
-"classAnvil_1_1API_1_1NwAreaOfEffect.html#a7853b481e840e6885d8212ea35783625",
-"classAnvil_1_1API_1_1NwCreature.html#a7cd999e0b7bb27c72c0e1cd1909eee33",
-"classAnvil_1_1API_1_1NwFeat.html#a6da965c8f6c011499cc4372f6dd6576c",
-"classAnvil_1_1API_1_1NwModule.html#a8a28d366495f17925bcea14529197ab0",
-"classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98",
-"classAnvil_1_1API_1_1NwTask.html#a234579ed231f686e10554e52f51c6c6a",
-"classAnvil_1_1API_1_1RadiusSize.html#addb75ef5a0f967f8f7e688a9419accc4",
-"classAnvil_1_1API_1_1WorldTimer.html#a7f18e643622f3d95d91ad319f7295273",
-"interfaceAnvil_1_1API_1_1Events_1_1IEventFactory.html#a7047c98007c3af9e5ea8176d0de2a889"
+"classAnvil_1_1API_1_1ItemProperty.html#a2ead82fc5c186689dd93adac69aab1fe",
+"classAnvil_1_1API_1_1NuiBind.html#a71eaea419bd7bebe24ea0862c4e33730",
+"classAnvil_1_1API_1_1NwArea.html#a7c9692156b4526f4e044ea89312878b1",
+"classAnvil_1_1API_1_1NwCreature.html#a54b2d71ae9395864f1a8ad5e373b22ef",
+"classAnvil_1_1API_1_1NwEncounter.html#abf5278e186508657ea80e36ad511c46a",
+"classAnvil_1_1API_1_1NwModule.html#a2ff3cebfd3febe59deb4cbc6bad315e0",
+"classAnvil_1_1API_1_1NwPlayer.html#a31e644aa2e286c410411061f468a9fc7",
+"classAnvil_1_1API_1_1NwSpell.html#aa2b6e1c704fd8bc8008ec9a17c0e14b8",
+"classAnvil_1_1API_1_1PlayOptions.html#a730ff138affd05c46e9944b70daf00e8",
+"classAnvil_1_1API_1_1TwoDimArrayEntry.html#af59dd4bb85401a7052b82f29d477856a",
+"classAnvil_1_1Services_1_1SchedulerService.html",
+"structAnvil_1_1API_1_1StrTokenCustom.html#a864498185be32292ed3462bf6b8091cd"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
