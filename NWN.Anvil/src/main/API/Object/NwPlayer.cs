@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Numerics;
 using System.Runtime.InteropServices;
@@ -93,6 +94,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets if this player is connected and playing (true), or if this player is still on character selection or connecting (false).
     /// </summary>
+    [MemberNotNullWhen(true, nameof(LoginCreature), nameof(ControlledCreature))]
     public bool IsConnected => Player.m_oidPCObject != NwObject.Invalid;
 
     /// <summary>

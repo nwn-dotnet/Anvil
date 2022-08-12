@@ -3,6 +3,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.14
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...v8193.34.14
+
+### Added
+- NuiText: Added `Border` and `Scrollbars` properties.
+- ItemProperty: Added properties for referencing 2da data.
+- ItemProperty: Added Create() factory method overload using the new table class types.
+- NwGameTables: Added `ItemPropertyTable`, `ItemPropertyItemMapTable`, `ItemPropertyCostTables`, `ItemPropertyParamTables`
+
+### Changed
+- **BREAKING CHANGE:** TwoDimArrays must now be initialized via `NwGameTables.GetTable`.
+
+### Fixed
+- Fixed a server crash when using TwoDimArray after the native array structure was evicted from the 2da cache.
+- Fixed updating the weight of a equipped item with `NwItem.Weight` not correctly updating creature weight and encumbrance.
+- Fixed `NwBaseItem.ArmorCheckPenalty` returning an unsigned integer.
+
 ## 8193.34.13
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.12...v8193.34.13
 

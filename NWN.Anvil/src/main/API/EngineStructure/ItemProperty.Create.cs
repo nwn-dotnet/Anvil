@@ -109,6 +109,11 @@ namespace Anvil.API
       return NWScript.ItemPropertyCustom(type, subType, costTableValue, param1Value)!;
     }
 
+    public static ItemProperty Custom(ItemPropertyTableEntry property, ItemPropertySubTypeTableEntry? subType = null, ItemPropertyCostTableEntry? costTableValue = null, ItemPropertyParamTableEntry? paramTableValue = null)
+    {
+      return NWScript.ItemPropertyCustom(property.RowIndex, subType?.RowIndex ?? -1, costTableValue?.RowIndex ?? -1, paramTableValue?.RowIndex ?? -1)!;
+    }
+
     public static ItemProperty DamageBonus(IPDamageType damageType, IPDamageBonus damageBonus)
     {
       return NWScript.ItemPropertyDamageBonus((int)damageType, (int)damageBonus)!;

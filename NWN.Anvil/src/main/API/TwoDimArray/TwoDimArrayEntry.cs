@@ -14,6 +14,16 @@ namespace Anvil.API
     private readonly TwoDimArray array;
     private readonly int rowIndex;
 
+    /// <summary>
+    /// Gets the number of columns in this row.
+    /// </summary>
+    public int ColumnCount => array.ColumnCount;
+
+    /// <summary>
+    /// Gets the column labels/names for this row.
+    /// </summary>
+    public string[] Columns => array.Columns;
+
     internal TwoDimArrayEntry(TwoDimArray array, int rowIndex)
     {
       this.array = array;
@@ -147,7 +157,7 @@ namespace Anvil.API
     /// <param name="table">The table that should be used to resolve the value.</param>
     /// <typeparam name="T">The type of table entry.</typeparam>
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
-    public T? GetTableEntry<T>(string columnName, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    public T? GetTableEntry<T>(string columnName, TwoDimArray<T> table) where T : class, ITwoDimArrayEntry, new()
     {
       return array.GetTableEntry(rowIndex, columnName, table);
     }
@@ -159,9 +169,31 @@ namespace Anvil.API
     /// <param name="table">The table that should be used to resolve the value.</param>
     /// <typeparam name="T">The type of table entry.</typeparam>
     /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
-    public T? GetTableEntry<T>(int columnIndex, TwoDimArray<T> table) where T : ITwoDimArrayEntry, new()
+    public T? GetTableEntry<T>(int columnIndex, TwoDimArray<T> table) where T : class, ITwoDimArrayEntry, new()
     {
       return array.GetTableEntry(rowIndex, columnIndex, table);
+    }
+
+    /// <summary>
+    /// Interprets the specified value as a table index, and returns the associated table entry.
+    /// </summary>
+    /// <param name="columnName">The name/label of the column to query.</param>
+    /// <typeparam name="T">The type of table entry.</typeparam>
+    /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
+    public TwoDimArray<T>? GetTable<T>(string columnName) where T : class, ITwoDimArrayEntry, new()
+    {
+      return array.GetTable<T>(rowIndex, columnName);
+    }
+
+    /// <summary>
+    /// Interprets the specified value as a table index, and returns the associated table entry.
+    /// </summary>
+    /// <param name="columnIndex">The index of the column to query.</param>
+    /// <typeparam name="T">The type of table entry.</typeparam>
+    /// <returns>The associated value, otherwise the default array entry value (typically null)</returns>
+    public TwoDimArray<T>? GetTable<T>(int columnIndex) where T : class, ITwoDimArrayEntry, new()
+    {
+      return array.GetTable<T>(rowIndex, columnIndex);
     }
 
     /// <summary>

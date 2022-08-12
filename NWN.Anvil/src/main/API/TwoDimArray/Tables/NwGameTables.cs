@@ -1,9 +1,6 @@
-using Anvil.Services;
-using NWN.Native.API;
-
 namespace Anvil.API
 {
-  public static class NwGameTables
+  public static partial class NwGameTables
   {
     /// <summary>
     /// Gets the appearance table (appearance.2da)
@@ -125,55 +122,24 @@ namespace Anvil.API
     /// </summary>
     public static TwoDimArray<VisualEffectTableEntry> VisualEffectTable { get; private set; } = null!;
 
-    [ServiceBinding(typeof(Factory))]
-    [ServiceBindingOptions(InternalBindingPriority.API)]
-    internal sealed unsafe class Factory
-    {
-      private readonly FunctionHook<ReloadAllHook> reloadAllHook;
+    /// <summary>
+    /// Gets the item property item mapping table (itemprops.2da)
+    /// </summary>
+    public static TwoDimArray<ItemPropertyItemMapTableEntry> ItemPropertyItemMapTable { get; private set; } = null!;
 
-      public Factory(HookService hookService)
-      {
-        reloadAllHook = hookService.RequestHook<ReloadAllHook>(OnReloadAll, FunctionsLinux._ZN8CNWRules9ReloadAllEv, HookOrder.Latest);
-        LoadTables();
-      }
+    /// <summary>
+    /// Gets the item property table. (itempropdef.2da)
+    /// </summary>
+    public static TwoDimArray<ItemPropertyTableEntry> ItemPropertyTable { get; private set; } = null!;
 
-      private delegate void ReloadAllHook(void* pRules);
+    /// <summary>
+    /// Gets the item property cost tables. (iprp_costtable.2da)
+    /// </summary>
+    public static TwoDimArray<ItemPropertyCostTablesEntry> ItemPropertyCostTables { get; private set; } = null!;
 
-      private static void LoadTables()
-      {
-        CTwoDimArrays arrays = NWNXLib.Rules().m_p2DArrays;
-
-        AppearanceTable = new TwoDimArray<AppearanceTableEntry>(arrays.m_pAppearanceTable);
-        ArmorTable = new TwoDimArray<ArmorTableEntry>(arrays.m_pArmorTable);
-        BodyBagTable = new TwoDimArray<BodyBagTableEntry>(arrays.m_pBodyBagTable);
-        EnvironmentPresetTable = new TwoDimArray<EnvironmentPreset>("environment.2da");
-        LightColorTable = new TwoDimArray<LightColorTableEntry>(arrays.m_pLightColorTable);
-        PartsBeltTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsBelt);
-        PartsBicepTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsBicep);
-        PartsChestTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsChest);
-        PartsFootTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsFoot);
-        PartsForearmTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsForearm);
-        PartsHandTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsHand);
-        PartsLegTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsLegs);
-        PartsNeckTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsNeck);
-        PartsPelvisTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsPelvis);
-        PartsRobeTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsRobe);
-        PartsShinTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsShin);
-        PartsShoulderTable = new TwoDimArray<PartsTableEntry>(arrays.m_pPartsShoulder);
-        PlaceableSoundTable = new TwoDimArray<PlaceableSoundTableEntry>("placeableobjsnds.2da"); // arrays.m_pPlaceableSoundsTable does not exist in nwserver.
-        PlaceableTable = new TwoDimArray<PlaceableTableEntry>(arrays.m_pPlaceablesTable);
-        VisualEffectTable = new TwoDimArray<VisualEffectTableEntry>(arrays.m_pVisualEffectTable);
-        ProgrammedEffectTable = new TwoDimArray<ProgrammedEffectTableEntry>("progfx.2da"); // arrays.m_pProgFxTable does not exist in nwserver.
-        DamageLevelTable = new TwoDimArray<DamageLevelEntry>("damagelevels.2da"); // arrays.m_pDamageLevelTable does not exist in nwserver.
-        ExpTable = new TwoDimArray<ExpTableEntry>("exptable.2da");
-        SkillItemCostTable = new TwoDimArray<SkillItemCostTableEntry>(arrays.m_pSkillVsItemCostTable);
-      }
-
-      private void OnReloadAll(void* pRules)
-      {
-        reloadAllHook.CallOriginal(pRules);
-        LoadTables();
-      }
-    }
+    /// <summary>
+    /// Gets the item property param tables. (iprp_paramtable.2da)
+    /// </summary>
+    public static TwoDimArray<ItemPropertyParamTablesEntry> ItemPropertyParamTables { get; private set; } = null!;
   }
 }

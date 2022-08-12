@@ -33,7 +33,7 @@ namespace NWN.Anvil.Samples
   {
     // The TwoDimArray is created here.
     // ExpTableEntry (the type above) is passed in as a type parameter to be used to create our row data from exptable.2da.
-    private readonly TwoDimArray<ExpTableEntry> expTable = new TwoDimArray<ExpTableEntry>("exptable.2da");
+    private readonly TwoDimArray<ExpTableEntry> expTable = NwGameTables.GetTable<ExpTableEntry>("exptable.2da");
 
     public XPReportService()
     {
