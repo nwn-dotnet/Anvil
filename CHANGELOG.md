@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.14...HEAD
 
 ### Added
-- N/A
+- ItemProperty: Added `SubTypeTable`.
 
 ### Package Updates
 - N/A
@@ -22,7 +22,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.14...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed `CalculateValidItemsForProperty` returning false for base items using column 0.
 
 ## 8193.34.14
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...v8193.34.14

@@ -64,7 +64,7 @@ namespace Anvil.API
       Dictionary<NwBaseItem, bool> retVal = new Dictionary<NwBaseItem, bool>();
       foreach (NwBaseItem item in NwRuleset.BaseItems)
       {
-        if (item.ItemPropertyColumnId > 0 && item.ItemPropertyColumnId < isValid.Length)
+        if (item.ItemPropertyColumnId < isValid.Length)
         {
           retVal[item] = isValid[item.ItemPropertyColumnId];
         }
