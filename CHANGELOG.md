@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.14...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.34.14
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...v8193.34.14
 
 ### Added
 - NuiText: Added `Border` and `Scrollbars` properties.
@@ -12,17 +33,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.13...HEAD
 - ItemProperty: Added Create() factory method overload using the new table class types.
 - NwGameTables: Added `ItemPropertyTable`, `ItemPropertyItemMapTable`, `ItemPropertyCostTables`, `ItemPropertyParamTables`
 
-### Package Updates
-- N/A
-
 ### Changed
 - **BREAKING CHANGE:** TwoDimArrays must now be initialized via `NwGameTables.GetTable`.
-
-### Deprecated
-- N/A
-
-### Removed
-- N/A
 
 ### Fixed
 - Fixed a server crash when using TwoDimArray after the native array structure was evicted from the 2da cache.
