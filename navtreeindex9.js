@@ -1,5 +1,6 @@
 var NAVTREEINDEX9 =
 {
+"classAnvil_1_1API_1_1NwCreature.html#a54095d1fd30770109dde23bfec451606":[0,0,0,130,277],
 "classAnvil_1_1API_1_1NwCreature.html#a54b2d71ae9395864f1a8ad5e373b22ef":[0,0,0,130,104],
 "classAnvil_1_1API_1_1NwCreature.html#a54b848fe65edc148f15a98834914c27e":[0,0,0,130,28],
 "classAnvil_1_1API_1_1NwCreature.html#a54cc0d4c86ab11c2d4bb3a685efe177a":[0,0,0,130,136],
@@ -248,6 +249,5 @@ var NAVTREEINDEX9 =
 "classAnvil_1_1API_1_1NwEncounter.html#aa4f88ddf8ce26f66d54da3c462f2322a":[0,0,0,133,12],
 "classAnvil_1_1API_1_1NwEncounter.html#aa68aeb0c7b12ba007ba0de31d863029d":[0,0,0,133,19],
 "classAnvil_1_1API_1_1NwEncounter.html#aac6101d639e1f4b787382a920bc8f42e":[0,0,0,133,5],
-"classAnvil_1_1API_1_1NwEncounter.html#aaeab8b19ddd694cedc6ff9af54b9a58c":[0,0,0,133,9],
-"classAnvil_1_1API_1_1NwEncounter.html#abbc3cdd59a4a53804e54bbb474cf17ad":[0,0,0,133,0]
+"classAnvil_1_1API_1_1NwEncounter.html#aaeab8b19ddd694cedc6ff9af54b9a58c":[0,0,0,133,9]
 };

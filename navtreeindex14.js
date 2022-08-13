@@ -1,5 +1,6 @@
 var NAVTREEINDEX14 =
 {
+"classAnvil_1_1API_1_1PlayOptions.html#a65d70f32773f3120dcf59d0f335448f9":[0,0,0,182,2],
 "classAnvil_1_1API_1_1PlayOptions.html#a730ff138affd05c46e9944b70daf00e8":[0,0,0,182,0],
 "classAnvil_1_1API_1_1PlayOptions.html#a769688b0d21e0171ad73597ba7f3fd9c":[0,0,0,182,1],
 "classAnvil_1_1API_1_1PlayOptions.html#a7957b4f0b6986a76b1c918bedc0bb4a0":[0,0,0,182,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX14 =
 "classAnvil_1_1API_1_1TwoDimArrayEntry.html#a96c6a1b4672c78c0bb0e4ede78c2682e":[0,0,0,205,10],
 "classAnvil_1_1API_1_1TwoDimArrayEntry.html#abccf86bef9fd49e19c78db761e16fa6a":[0,0,0,205,13],
 "classAnvil_1_1API_1_1TwoDimArrayEntry.html#ac1b320064843031d9e707a359728bec0":[0,0,0,205,18],
-"classAnvil_1_1API_1_1TwoDimArrayEntry.html#ade21d1ca82b510c70530d736f04cb778":[0,0,0,205,11],
-"classAnvil_1_1API_1_1TwoDimArrayEntry.html#af138d1c0b6aa0f0f4fe1b6889486a8a7":[0,0,0,205,15]
+"classAnvil_1_1API_1_1TwoDimArrayEntry.html#ade21d1ca82b510c70530d736f04cb778":[0,0,0,205,11]
 };

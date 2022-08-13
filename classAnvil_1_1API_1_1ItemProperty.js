@@ -92,6 +92,7 @@ var classAnvil_1_1API_1_1ItemProperty =
     [ "RemainingDuration", "classAnvil_1_1API_1_1ItemProperty.html#a2011e8b4326c15ed8ef7d651be68dad3", null ],
     [ "StructureId", "classAnvil_1_1API_1_1ItemProperty.html#a2d7c0ce1361a2f95af942a2b3bc60233", null ],
     [ "SubType", "classAnvil_1_1API_1_1ItemProperty.html#a2e2d603efaa16438c7c74d9dc82185d6", null ],
+    [ "SubTypeTable", "classAnvil_1_1API_1_1ItemProperty.html#af464c10677aa7c198ea4752d85c8381d", null ],
     [ "Tag", "classAnvil_1_1API_1_1ItemProperty.html#a667aff062b6bf9f665d10b6af6ea00d7", null ],
     [ "TotalDuration", "classAnvil_1_1API_1_1ItemProperty.html#a695a72bcc988a0d4277bcc7afd9eb342", null ],
     [ "Usable", "classAnvil_1_1API_1_1ItemProperty.html#af664c54ff7f835d56a9fcf1cc1ef2122", null ],

@@ -155,7 +155,7 @@ var searchData=
   ['subrace_1654',['SubRace',['../classAnvil_1_1API_1_1NwCreature.html#a51d55c92a27a884d1f54aef48c988b38',1,'Anvil::API::NwCreature']]],
   ['subskill_1655',['SubSkill',['../classAnvil_1_1API_1_1Events_1_1OnUseSkill.html#ad22bdce07674f17d29e1a25fe290576c',1,'Anvil::API::Events::OnUseSkill']]],
   ['subtype_1656',['SubType',['../classAnvil_1_1API_1_1Effect.html#ad39076673e6f3b8861ac812b711f92d3',1,'Anvil.API.Effect.SubType()'],['../classAnvil_1_1API_1_1ItemProperty.html#a2e2d603efaa16438c7c74d9dc82185d6',1,'Anvil.API.ItemProperty.SubType()']]],
-  ['subtypetable_1657',['SubTypeTable',['../classAnvil_1_1API_1_1ItemPropertyTableEntry.html#a91baf1d5be33332675dfe283697a5e58',1,'Anvil::API::ItemPropertyTableEntry']]],
+  ['subtypetable_1657',['SubTypeTable',['../classAnvil_1_1API_1_1ItemPropertyTableEntry.html#a91baf1d5be33332675dfe283697a5e58',1,'Anvil.API.ItemPropertyTableEntry.SubTypeTable()'],['../classAnvil_1_1API_1_1ItemProperty.html#af464c10677aa7c198ea4752d85c8381d',1,'Anvil.API.ItemProperty.SubTypeTable()']]],
   ['successorfeat_1658',['SuccessorFeat',['../classAnvil_1_1API_1_1NwFeat.html#a5d484b6c3e5a264b67dcc5f63b2ba790',1,'Anvil::API::NwFeat']]],
   ['suggestvalue_1659',['SuggestValue',['../classAnvil_1_1API_1_1Cassowary.html#a3c0bc3fa10b4d969bad86e05e766b4bc',1,'Anvil::API::Cassowary']]],
   ['summonanimalcompanion_1660',['SummonAnimalCompanion',['../classAnvil_1_1API_1_1NwCreature.html#a837316543ad60d73b7c1ef7995acc02c',1,'Anvil::API::NwCreature']]],
