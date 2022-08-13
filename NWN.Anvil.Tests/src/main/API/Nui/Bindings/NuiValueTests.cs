@@ -21,9 +21,9 @@ namespace Anvil.Tests.API
     [TestCase(0, @"{""strref"":0}")]
     [TestCase(null, @"null")]
     [TestCase(1000, @"{""strref"":1000}")]
-    public void SerializeNuiValueStrRefReturnsValidJsonStructure(string value, string expected)
+    public void SerializeNuiValueStrRefReturnsValidJsonStructure(uint? value, string expected)
     {
-      NuiValue<string> test = new NuiValue<string>(value);
+      NuiValueStrRef test = new NuiValueStrRef(value != null ? new StrRef(value.Value) : null);
       Assert.That(JsonUtility.ToJson(test), Is.EqualTo(expected));
     }
 
