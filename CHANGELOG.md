@@ -4,10 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.14...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...HEAD
 
 ### Added
-- ItemProperty: Added `SubTypeTable`.
+- N/A
 
 ### Package Updates
 - N/A
@@ -20,6 +20,15 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.14...HEAD
 
 ### Removed
 - N/A
+
+### Fixed
+- N/A
+
+## 8193.34.15
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.14...v8193.34.15
+
+### Added
+- ItemProperty: Added `SubTypeTable`.
 
 ### Fixed
 - Fixed `CalculateValidItemsForProperty` returning false for base items using column 0.
