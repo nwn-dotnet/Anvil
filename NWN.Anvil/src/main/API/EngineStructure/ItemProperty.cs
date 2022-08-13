@@ -106,10 +106,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the sub type table used by this item property.
     /// </summary>
-    public TwoDimArray<ItemPropertySubTypeTableEntry>? SubTypeTable
-    {
-      get => Property?.SubTypeTable;
-    }
+    public TwoDimArray<ItemPropertySubTypeTableEntry>? SubTypeTable => Property.SubTypeTable;
 
     /// <summary>
     /// Gets or sets the sub type that is set on this item property.
