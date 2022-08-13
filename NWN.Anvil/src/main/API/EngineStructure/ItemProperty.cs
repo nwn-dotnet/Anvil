@@ -104,6 +104,11 @@ namespace Anvil.API
     public TimeSpan RemainingDuration => TimeSpan.FromSeconds(NWScript.GetItemPropertyDurationRemaining(this));
 
     /// <summary>
+    /// Gets the sub type table used by this item property.
+    /// </summary>
+    public TwoDimArray<ItemPropertySubTypeTableEntry>? SubTypeTable => Property.SubTypeTable;
+
+    /// <summary>
     /// Gets or sets the sub type that is set on this item property.
     /// </summary>
     public ItemPropertySubTypeTableEntry? SubType
