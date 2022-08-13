@@ -18,9 +18,9 @@ namespace Anvil.Tests.API
     }
 
     [Test(Description = "Serializing a NuiValueStrRef creates a valid JSON structure.")]
-    [TestCase(0, @"{""strref"":0}")]
+    [TestCase(0u, @"{""strref"":0}")]
     [TestCase(null, @"null")]
-    [TestCase(1000, @"{""strref"":1000}")]
+    [TestCase(1000u, @"{""strref"":1000}")]
     public void SerializeNuiValueStrRefReturnsValidJsonStructure(uint? value, string expected)
     {
       NuiValueStrRef test = new NuiValueStrRef(value != null ? new StrRef(value.Value) : null);
