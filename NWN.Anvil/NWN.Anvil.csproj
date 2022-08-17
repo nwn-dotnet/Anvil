@@ -57,7 +57,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LightInject" Version="6.4.1" />
+    <PackageReference Include="LightInject" Version="6.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NLog" Version="5.0.1" />
     <PackageReference Include="Paket.Core" Version="7.1.5" PrivateAssets="all" />
