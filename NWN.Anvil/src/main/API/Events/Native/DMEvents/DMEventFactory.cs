@@ -8,7 +8,7 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
-  public sealed unsafe class DMEventFactory : HookEventFactory
+  internal sealed unsafe class DMEventFactory : HookEventFactory
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
