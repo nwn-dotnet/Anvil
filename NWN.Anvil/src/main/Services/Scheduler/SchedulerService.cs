@@ -23,8 +23,7 @@ namespace Anvil.Services
     /// </summary>
     public static readonly TimeSpan NextUpdate = TimeSpan.Zero;
 
-    private readonly IComparer<ScheduledTask> comparer = new ScheduledTask.SortedByExecutionTime();
-    private readonly List<ScheduledTask> scheduledTasks = new List<ScheduledTask>(1024);
+    private readonly PriorityQueue<ScheduledTask, TimeSpan> scheduledTasks = new PriorityQueue<ScheduledTask, TimeSpan>();
 
     /// <summary>
     /// Schedules the specified action to be invoked after the given delay.
@@ -48,7 +47,7 @@ namespace Anvil.Services
 
       Log.Debug("Scheduled Future Task {TaskName}", action.Method.GetFullName());
       ScheduledTask task = new ScheduledTask(action, Time.TimeSinceStartup + delay);
-      scheduledTasks.InsertOrdered(task, comparer);
+      scheduledTasks.Enqueue(task, task.ExecutionTime);
 
       return task;
     }
@@ -76,16 +75,16 @@ namespace Anvil.Services
 
       Log.Debug("Scheduled Repeating Task: {TaskName}", action.Method.GetFullName());
       ScheduledTask task = new ScheduledTask(action, Time.TimeSinceStartup + delay + schedule, schedule);
-      scheduledTasks.InsertOrdered(task, comparer);
+      scheduledTasks.Enqueue(task, task.ExecutionTime);
 
       return task;
     }
 
     void IDisposable.Dispose()
     {
-      foreach (ScheduledTask task in scheduledTasks)
+      while (scheduledTasks.Count > 0)
       {
-        task.Dispose();
+        scheduledTasks.Dequeue().Dispose();
       }
 
       scheduledTasks.Clear();
@@ -94,15 +93,9 @@ namespace Anvil.Services
 
     void IUpdateable.Update()
     {
-      int i;
-      for (i = 0; i < scheduledTasks.Count; i++)
+      while (scheduledTasks.Count > 0 && scheduledTasks.Peek().ExecutionTime <= Time.TimeSinceStartup)
       {
-        ScheduledTask task = scheduledTasks[i];
-        if (Time.TimeSinceStartup < task.ExecutionTime)
-        {
-          break;
-        }
-
+        ScheduledTask task = scheduledTasks.Dequeue();
         if (task.IsCancelled)
         {
           continue;
@@ -125,21 +118,8 @@ namespace Anvil.Services
         }
 
         task.ExecutionTime = Time.TimeSinceStartup + task.Schedule;
-
-        scheduledTasks.RemoveAt(i);
-        scheduledTasks.InsertOrdered(task, comparer);
-        i--;
+        scheduledTasks.Enqueue(task, task.ExecutionTime);
       }
-
-      if (i > 0 && i <= scheduledTasks.Count)
-      {
-        scheduledTasks.RemoveRange(0, i);
-      }
-    }
-
-    internal void Unschedule(ScheduledTask scheduledTask)
-    {
-      scheduledTasks.Remove(scheduledTask);
     }
   }
 }
