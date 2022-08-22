@@ -94,7 +94,7 @@ namespace Anvil.API.Events
     {
       int offset = 0;
 
-      uint target = (message.PeekMessage<uint>(offset) & 0x7FFFFFFF);
+      uint target = message.PeekMessage<uint>(offset) & 0x7FFFFFFF;
       offset += sizeof(uint);
 
       ushort visualEffect = message.PeekMessage<ushort>(offset);
