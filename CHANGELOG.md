@@ -13,7 +13,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...HEAD
 - N/A
 
 ### Changed
-- N/A
+- SchedulerService: Use `PriorityQueue` to improve main server loop performance.
 
 ### Deprecated
 - N/A
