@@ -15,6 +15,11 @@ namespace Anvil.API.Events
     public VisualEffectTableEntry Effect { get; internal init; } = null!;
 
     /// <summary>
+    /// Gets the player attempting to spawn the visual effect.
+    /// </summary>
+    public NwPlayer? Player { get; internal init; }
+
+    /// <summary>
     /// Gets the object/area target of the visual effect.
     /// </summary>
     public NwObject? TargetObject { get; internal init; }
@@ -34,7 +39,7 @@ namespace Anvil.API.Events
     /// </summary>
     public bool Skip { get; set; }
 
-    NwObject? IEvent.Context => TargetObject;
+    NwObject? IEvent.Context => Player?.ControlledCreature;
   }
 }
 

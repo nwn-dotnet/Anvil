@@ -56,6 +56,7 @@ namespace Anvil.API.Events
 
       OnDebugRunScript eventData = new OnDebugRunScript
       {
+        Player = player,
         ScriptName = scriptName,
         Target = (oidTarget & 0x7FFFFFFF).ToNwObject(),
       };
@@ -80,6 +81,7 @@ namespace Anvil.API.Events
 
       OnDebugRunScriptChunk eventData = ProcessEvent(new OnDebugRunScriptChunk
       {
+        Player = player,
         ScriptChunk = scriptChunk,
         Target = (oidTarget & 0x7FFFFFFF).ToNwObject(),
         WrapIntoMain = wrapIntoMain,
@@ -105,6 +107,7 @@ namespace Anvil.API.Events
 
       OnDebugPlayVisualEffect eventData = new OnDebugPlayVisualEffect
       {
+        Player = player,
         TargetObject = target.ToNwObject(),
         Effect = NwGameTables.VisualEffectTable[visualEffect],
         Duration = TimeSpan.FromSeconds(duration),

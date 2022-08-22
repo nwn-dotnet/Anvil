@@ -9,6 +9,11 @@ namespace Anvil.API.Events
   public sealed class OnDebugRunScriptChunk : IEvent
   {
     /// <summary>
+    /// Gets the player attempting to spawn the visual effect.
+    /// </summary>
+    public NwPlayer? Player { get; internal init; }
+
+    /// <summary>
     /// Gets the raw script chunk that is attempted to be executed.
     /// </summary>
     public string ScriptChunk { get; internal init; } = null!;
@@ -28,7 +33,7 @@ namespace Anvil.API.Events
     /// </summary>
     public bool Skip { get; set; }
 
-    NwObject? IEvent.Context => Target;
+    NwObject? IEvent.Context => Player?.ControlledCreature;
   }
 }
 
