@@ -10,7 +10,10 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...HEAD
 - Events: Added `OnDebugPlayVisualEffect`, `OnDebugRunScript`, `OnDebugRunScriptChunk` events.
 
 ### Package Updates
-- N/A
+- NWN.Core 8193.34.6 -> 8193.34.7
+- LightInject 6.4.1 -> 6.5.0
+- NLog 5.0.1 -> 5.0.2
+- NWNX 5ade7de -> 8faa9d4
 
 ### Changed
 - SchedulerService: Use `PriorityQueue` to improve main server loop performance.
