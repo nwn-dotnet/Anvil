@@ -221,7 +221,7 @@ namespace Anvil.API
       get
       {
         CNWSClient client = LowLevel.ServerExoApp.GetClientObjectByPlayerId(PlayerId);
-        return client != null && client.AsNWSPlayer() == Player;
+        return client != null && client.AsNWSPlayer() == player;
       }
     }
 
