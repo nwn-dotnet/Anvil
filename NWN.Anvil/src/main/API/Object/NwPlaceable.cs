@@ -12,11 +12,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.Placeable, ObjectType.Placeable)]
   public sealed partial class NwPlaceable : NwStationary
   {
-    internal readonly CNWSPlaceable Placeable;
+    private readonly CNWSPlaceable placeable;
+
+    internal CNWSPlaceable Placeable
+    {
+      get
+      {
+        AssertObjectValid();
+        return placeable;
+      }
+    }
 
     internal NwPlaceable(CNWSPlaceable placeable) : base(placeable)
     {
-      Placeable = placeable;
+      this.placeable = placeable;
       Inventory = new Inventory(this, placeable.m_pcItemRepository);
     }
 

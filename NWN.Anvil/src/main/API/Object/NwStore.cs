@@ -11,11 +11,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
   public sealed partial class NwStore : NwGameObject
   {
-    internal readonly CNWSStore Store;
+    private readonly CNWSStore store;
+
+    internal CNWSStore Store
+    {
+      get
+      {
+        AssertObjectValid();
+        return store;
+      }
+    }
 
     internal NwStore(CNWSStore store) : base(store)
     {
-      Store = store;
+      this.store = store;
     }
 
     /// <summary>

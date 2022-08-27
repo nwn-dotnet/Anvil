@@ -11,11 +11,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.Encounter, ObjectType.Encounter)]
   public sealed partial class NwEncounter : NwGameObject
   {
-    internal readonly CNWSEncounter Encounter;
+    private readonly CNWSEncounter encounter;
+
+    internal CNWSEncounter Encounter
+    {
+      get
+      {
+        AssertObjectValid();
+        return encounter;
+      }
+    }
 
     internal NwEncounter(CNWSEncounter encounter) : base(encounter)
     {
-      Encounter = encounter;
+      this.encounter = encounter;
     }
 
     /// <summary>

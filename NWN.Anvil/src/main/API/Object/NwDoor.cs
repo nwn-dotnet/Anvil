@@ -11,11 +11,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.Door, ObjectType.Door)]
   public sealed partial class NwDoor : NwStationary
   {
-    internal readonly CNWSDoor Door;
+    private readonly CNWSDoor door;
+
+    internal CNWSDoor Door
+    {
+      get
+      {
+        AssertObjectValid();
+        return door;
+      }
+    }
 
     internal NwDoor(CNWSDoor door) : base(door)
     {
-      Door = door;
+      this.door = door;
     }
 
     /// <summary>
