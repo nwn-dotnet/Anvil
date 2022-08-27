@@ -10,7 +10,7 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
   public sealed class NwSound : NwGameObject
   {
-    private CNWSSoundObject soundObject;
+    private readonly CNWSSoundObject soundObject;
 
     internal CNWSSoundObject SoundObject
     {
