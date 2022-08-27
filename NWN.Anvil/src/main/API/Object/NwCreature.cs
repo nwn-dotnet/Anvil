@@ -28,13 +28,21 @@ namespace Anvil.API
     [Inject]
     private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; } = null!;
 
-    internal readonly CNWSCreature Creature;
-
+    private readonly CNWSCreature creature;
     private NwFaction faction;
+
+    internal CNWSCreature Creature
+    {
+      get
+      {
+        AssertObjectValid();
+        return creature;
+      }
+    }
 
     internal NwCreature(CNWSCreature creature) : base(creature)
     {
-      Creature = creature;
+      this.creature = creature;
       faction = new NwFaction(creature.GetFaction());
       Inventory = new Inventory(this, Creature.m_pcItemRepository);
     }

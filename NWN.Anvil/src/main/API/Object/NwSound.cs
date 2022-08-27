@@ -10,11 +10,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
   public sealed class NwSound : NwGameObject
   {
-    internal readonly CNWSSoundObject SoundObject;
+    private CNWSSoundObject soundObject;
+
+    internal CNWSSoundObject SoundObject
+    {
+      get
+      {
+        AssertObjectValid();
+        return soundObject;
+      }
+    }
 
     public NwSound(CNWSSoundObject soundObject) : base(soundObject)
     {
-      SoundObject = soundObject;
+      this.soundObject = soundObject;
     }
 
     /// <summary>

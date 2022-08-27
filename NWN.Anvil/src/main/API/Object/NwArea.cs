@@ -14,11 +14,20 @@ namespace Anvil.API
   [NativeObjectInfo(0, ObjectType.Area)]
   public sealed partial class NwArea : NwObject
   {
-    internal readonly CNWSArea Area;
+    private readonly CNWSArea area;
+
+    internal CNWSArea Area
+    {
+      get
+      {
+        AssertObjectValid();
+        return area;
+      }
+    }
 
     internal NwArea(CNWSArea area) : base(area)
     {
-      Area = area;
+      this.area = area;
     }
 
     /// <summary>

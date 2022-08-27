@@ -13,11 +13,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.Item, ObjectType.Item)]
   public sealed partial class NwItem : NwGameObject
   {
-    internal readonly CNWSItem Item;
+    private readonly CNWSItem item;
+
+    internal CNWSItem Item
+    {
+      get
+      {
+        AssertObjectValid();
+        return item;
+      }
+    }
 
     internal NwItem(CNWSItem item) : base(item)
     {
-      Item = item;
+      this.item = item;
       Inventory = new Inventory(this, item.m_pItemRepository);
       Appearance = new ItemAppearance(this);
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Anvil.API.Events;
@@ -40,11 +41,20 @@ namespace Anvil.API
     [Inject]
     private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; } = null!;
 
-    internal readonly CNWSPlayer Player;
+    private readonly CNWSPlayer player;
+
+    internal CNWSPlayer Player
+    {
+      get
+      {
+        AssertPlayerValid();
+        return player;
+      }
+    }
 
     internal NwPlayer(CNWSPlayer player)
     {
-      Player = player;
+      this.player = player;
       PlayerId = player.m_nPlayerID;
     }
 
@@ -1519,6 +1529,15 @@ namespace Anvil.API
     public void Vibrate(VibratorMotor motor, float strength, TimeSpan duration)
     {
       NWScript.Vibrate(ControlledCreature, (int)motor, strength, (float)duration.TotalSeconds);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    private void AssertPlayerValid()
+    {
+      if (!IsValid)
+      {
+        throw new InvalidOperationException("Player is not valid.");
+      }
     }
 
     internal static NwPlayer? FromPlayerId(uint playerId)

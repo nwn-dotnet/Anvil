@@ -11,11 +11,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.Trigger, ObjectType.Trigger)]
   public sealed partial class NwTrigger : NwTrappable
   {
-    internal readonly CNWSTrigger Trigger;
+    private readonly CNWSTrigger trigger;
+
+    internal CNWSTrigger Trigger
+    {
+      get
+      {
+        AssertObjectValid();
+        return trigger;
+      }
+    }
 
     internal NwTrigger(CNWSTrigger trigger) : base(trigger)
     {
-      Trigger = trigger;
+      this.trigger = trigger;
     }
 
     public static NwTrigger? Create(string template, Location location, float size = 2.0f, string? newTag = null)

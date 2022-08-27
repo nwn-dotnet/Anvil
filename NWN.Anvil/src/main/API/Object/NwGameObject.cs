@@ -14,11 +14,20 @@ namespace Anvil.API
   /// </summary>
   public abstract partial class NwGameObject : NwObject
   {
-    internal readonly CNWSObject GameObject;
+    private readonly CNWSObject gameObject;
+
+    internal CNWSObject GameObject
+    {
+      get
+      {
+        AssertObjectValid();
+        return gameObject;
+      }
+    }
 
     internal NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
-      GameObject = gameObject;
+      this.gameObject = gameObject;
       VisualTransform = new VisualTransform(this);
     }
 
