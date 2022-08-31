@@ -9,6 +9,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...HEAD
 ### Added
 - Events: Added `OnDebugPlayVisualEffect`, `OnDebugRunScript`, `OnDebugRunScriptChunk` events.
 - NwGameObject: Added `AnimationState`.
+- Effect: Added `Effect.VisualEffect(VisualEffectTableEntry, bool, float, Vector3, Vector3)` overload.
 
 ### Package Updates
 - NWN.Core 8193.34.6 -> 8193.34.7
