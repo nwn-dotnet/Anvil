@@ -648,5 +648,10 @@ namespace Anvil.API
     {
       return NWScript.EffectVisualEffect((int)visualEffectId, missEffect.ToInt(), fScale, vTranslate, vRotate)!;
     }
+
+    public static Effect VisualEffect(VisualEffectTableEntry visualEffect, bool missEffect = false, float fScale = 1.0f, System.Numerics.Vector3 vTranslate = default, System.Numerics.Vector3 vRotate = default)
+    {
+      return NWScript.EffectVisualEffect(visualEffect.RowIndex, missEffect.ToInt(), fScale, vTranslate, vRotate)!;
+    }
   }
 }
