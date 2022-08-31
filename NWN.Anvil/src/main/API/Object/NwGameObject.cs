@@ -46,6 +46,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the current animation state of this object.
+    /// </summary>
+    public AnimationState AnimationState
+    {
+      get => (AnimationState)gameObject.m_nAnimation;
+    }
+
+    /// <summary>
     /// Gets the area this object is currently in.
     /// </summary>
     public NwArea? Area => GameObject.GetArea().ToNwObject<NwArea>();
