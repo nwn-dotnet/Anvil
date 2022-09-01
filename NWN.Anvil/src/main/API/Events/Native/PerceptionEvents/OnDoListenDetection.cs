@@ -49,7 +49,7 @@ namespace Anvil.API.Events
         {
           VisibilityOverride.Visible => true.ToInt(),
           VisibilityOverride.NotVisible => false.ToInt(),
-          _ => Hook.CallOriginal(pCreature, pTarget, bTargetInvisible)
+          _ => Hook.CallOriginal(pCreature, pTarget, bTargetInvisible),
         };
 
         ProcessEvent(EventCallbackType.After, eventData);

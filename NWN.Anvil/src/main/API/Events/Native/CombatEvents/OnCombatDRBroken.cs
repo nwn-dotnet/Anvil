@@ -43,7 +43,7 @@ namespace Anvil.API.Events
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
         CNWCCMessageData messageData = CNWCCMessageData.FromPointer(pMessageData);
 
-        if ((nFeedbackId != resistanceId && nFeedbackId != reductionId) ||
+        if (nFeedbackId != resistanceId && nFeedbackId != reductionId ||
           creature.m_idSelf != messageData.GetObjectID(0) ||
           messageData.GetInteger(remainingDRIndex) != 0)
         {
