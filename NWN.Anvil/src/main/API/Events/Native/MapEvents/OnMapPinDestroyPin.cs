@@ -55,13 +55,16 @@ namespace Anvil.API.Events
         // Id
         int id = message.PeekMessage<int>(0);
 
-        OnMapPinDestroyPin eventData = ProcessEvent(new OnMapPinDestroyPin
+        OnMapPinDestroyPin eventData = ProcessEvent(EventCallbackType.Before, new OnMapPinDestroyPin
         {
           Player = player.ToNwPlayer()!,
           Id = id,
         });
 
-        return eventData.PreventPinDestroy ? false.ToInt() : Hook.CallOriginal(pMessage, pPlayer);
+        int retVal = eventData.PreventPinDestroy ? false.ToInt() : Hook.CallOriginal(pMessage, pPlayer);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

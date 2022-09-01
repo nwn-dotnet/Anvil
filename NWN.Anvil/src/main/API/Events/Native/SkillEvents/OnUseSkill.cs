@@ -70,7 +70,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnUseSkill(void* pCreature, byte nSkill, byte nSubSkill, uint oidTarget, Vector3 vTargetPosition, uint oidArea, uint oidUsedItem, int nActivePropertyIndex)
       {
-        OnUseSkill eventData = ProcessEvent(new OnUseSkill
+        OnUseSkill eventData = ProcessEvent(EventCallbackType.Before, new OnUseSkill
         {
           Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Skill = NwSkill.FromSkillId(nSkill)!,
@@ -81,7 +81,10 @@ namespace Anvil.API.Events
           TargetPosition = vTargetPosition,
         });
 
-        return !eventData.PreventSkillUse ? Hook.CallOriginal(pCreature, nSkill, nSubSkill, oidTarget, vTargetPosition, oidArea, oidUsedItem, nActivePropertyIndex) : false.ToInt();
+        int retVal = !eventData.PreventSkillUse ? Hook.CallOriginal(pCreature, nSkill, nSubSkill, oidTarget, vTargetPosition, oidArea, oidUsedItem, nActivePropertyIndex) : false.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

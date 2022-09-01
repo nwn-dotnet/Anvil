@@ -34,7 +34,7 @@ namespace Anvil.API.Events
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
-        OnInventoryGoldAdd eventData = ProcessEvent(new OnInventoryGoldAdd
+        OnInventoryGoldAdd eventData = ProcessEvent(EventCallbackType.Before, new OnInventoryGoldAdd
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           Gold = nGold,
@@ -44,6 +44,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pCreature, nGold, bDisplayFeedback);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

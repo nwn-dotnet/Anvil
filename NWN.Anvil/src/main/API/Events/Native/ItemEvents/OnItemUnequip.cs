@@ -44,13 +44,16 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnUnequipItem(void* pCreature, uint oidItemToUnequip, uint oidTargetRepository, byte x, byte y, int bMergeIntoRepository, uint oidFeedbackPlayer)
       {
-        OnItemUnequip eventData = ProcessEvent(new OnItemUnequip
+        OnItemUnequip eventData = ProcessEvent(EventCallbackType.Before, new OnItemUnequip
         {
           Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Item = oidItemToUnequip.ToNwObject<NwItem>()!,
         });
 
-        return !eventData.PreventUnequip ? Hook.CallOriginal(pCreature, oidItemToUnequip, oidTargetRepository, x, y, bMergeIntoRepository, oidFeedbackPlayer) : false.ToInt();
+        int retVal = !eventData.PreventUnequip ? Hook.CallOriginal(pCreature, oidItemToUnequip, oidTargetRepository, x, y, bMergeIntoRepository, oidFeedbackPlayer) : false.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

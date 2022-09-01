@@ -29,20 +29,31 @@ namespace Anvil.API.Events
       }
 
       NwPlayer? player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer();
+      int retVal;
+
       switch ((MessageCheatMinor)nMinor)
       {
         case MessageCheatMinor.RunScript:
-          return HandleRunScriptEvent(message, player) ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          OnDebugRunScript runScriptEventData = HandleRunScriptEvent(message, player);
+          retVal = !runScriptEventData.Skip ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          ProcessEvent(EventCallbackType.After, runScriptEventData);
+          return retVal;
         case MessageCheatMinor.RunScriptChunk:
-          return HandleRunScriptChunkEvent(message, player) ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          OnDebugRunScriptChunk runScriptChunkEventData = HandleRunScriptChunkEvent(message, player);
+          retVal = !runScriptChunkEventData.Skip ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          ProcessEvent(EventCallbackType.After, runScriptChunkEventData);
+          return retVal;
         case MessageCheatMinor.PlayVisualEffect:
-          return HandleVisualEffectEvent(message, player) ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          OnDebugPlayVisualEffect playVisualEffectEventData = HandleVisualEffectEvent(message, player);
+          retVal = !playVisualEffectEventData.Skip ? Hook.CallOriginal(pMessage, pPlayer, nMinor) : false.ToInt();
+          ProcessEvent(EventCallbackType.After, playVisualEffectEventData);
+          return retVal;
         default:
           return Hook.CallOriginal(pMessage, pPlayer, nMinor);
       }
     }
 
-    private static bool HandleRunScriptEvent(CNWSMessage message, NwPlayer? player)
+    private static OnDebugRunScript HandleRunScriptEvent(CNWSMessage message, NwPlayer? player)
     {
       int offset = 0;
       string scriptName = message.PeekMessageString(offset);
@@ -54,17 +65,17 @@ namespace Anvil.API.Events
         oidTarget = player?.ControlledCreature;
       }
 
-      OnDebugRunScript eventData = new OnDebugRunScript
+      OnDebugRunScript eventData = ProcessEvent(EventCallbackType.Before, new OnDebugRunScript
       {
         Player = player,
         ScriptName = scriptName,
         Target = (oidTarget & 0x7FFFFFFF).ToNwObject(),
-      };
+      });
 
-      return !eventData.Skip;
+      return eventData;
     }
 
-    private static bool HandleRunScriptChunkEvent(CNWSMessage message, NwPlayer? player)
+    private static OnDebugRunScriptChunk HandleRunScriptChunkEvent(CNWSMessage message, NwPlayer? player)
     {
       int offset = 0;
       string scriptChunk = message.PeekMessageString(offset);
@@ -79,7 +90,7 @@ namespace Anvil.API.Events
       offset += sizeof(uint);
       bool wrapIntoMain = (message.PeekMessage<int>(offset) & 0x10).ToBool();
 
-      OnDebugRunScriptChunk eventData = ProcessEvent(new OnDebugRunScriptChunk
+      OnDebugRunScriptChunk eventData = ProcessEvent(EventCallbackType.Before, new OnDebugRunScriptChunk
       {
         Player = player,
         ScriptChunk = scriptChunk,
@@ -87,10 +98,10 @@ namespace Anvil.API.Events
         WrapIntoMain = wrapIntoMain,
       });
 
-      return !eventData.Skip;
+      return eventData;
     }
 
-    private static bool HandleVisualEffectEvent(CNWSMessage message, NwPlayer? player)
+    private static OnDebugPlayVisualEffect HandleVisualEffectEvent(CNWSMessage message, NwPlayer? player)
     {
       int offset = 0;
 
@@ -105,16 +116,16 @@ namespace Anvil.API.Events
 
       Vector3 position = message.PeekMessage<Vector3>(offset);
 
-      OnDebugPlayVisualEffect eventData = new OnDebugPlayVisualEffect
+      OnDebugPlayVisualEffect eventData = ProcessEvent(EventCallbackType.Before, new OnDebugPlayVisualEffect
       {
         Player = player,
         TargetObject = target.ToNwObject(),
         Effect = NwGameTables.VisualEffectTable[visualEffect],
         Duration = TimeSpan.FromSeconds(duration),
         TargetPosition = position,
-      };
+      });
 
-      return !eventData.Skip;
+      return eventData;
     }
   }
 }

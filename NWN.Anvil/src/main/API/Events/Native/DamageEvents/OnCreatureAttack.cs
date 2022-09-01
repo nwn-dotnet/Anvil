@@ -131,10 +131,15 @@ namespace Anvil.API.Events
         OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
         foreach (OnCreatureAttack eventData in attackEvents)
         {
-          ProcessEvent(eventData);
+          ProcessEvent(EventCallbackType.Before, eventData);
         }
 
         signalMeleeDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
+
+        foreach (OnCreatureAttack eventData in attackEvents)
+        {
+          ProcessEvent(EventCallbackType.After, eventData);
+        }
       }
 
       [UnmanagedCallersOnly]
@@ -149,10 +154,15 @@ namespace Anvil.API.Events
         OnCreatureAttack[] attackEvents = GetAttackEvents(pCreature, pTarget, nAttacks);
         foreach (OnCreatureAttack eventData in attackEvents)
         {
-          ProcessEvent(eventData);
+          ProcessEvent(EventCallbackType.Before, eventData);
         }
 
         signalRangedDamageHook.CallOriginal(pCreature, pTarget, nAttacks);
+
+        foreach (OnCreatureAttack eventData in attackEvents)
+        {
+          ProcessEvent(EventCallbackType.After, eventData);
+        }
       }
     }
   }

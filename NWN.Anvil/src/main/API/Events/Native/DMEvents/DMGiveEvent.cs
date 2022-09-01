@@ -3,17 +3,11 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public abstract class DMGiveEvent : IEvent
+  public abstract class DMGiveEvent : DMEvent
   {
     public int Amount { get; internal init; }
 
-    public NwPlayer DungeonMaster { get; internal init; } = null!;
-
-    public bool Skip { get; set; }
-
     public NwGameObject Target { get; internal init; } = null!;
-
-    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 
   public sealed class OnDMGiveXP : DMGiveEvent {}

@@ -31,13 +31,14 @@ namespace Anvil.API.Events
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
-        ProcessEvent(new OnFamiliarUnpossess
+        OnFamiliarUnpossess eventData = ProcessEvent(EventCallbackType.Before, new OnFamiliarUnpossess
         {
           Owner = creature.ToNwObject<NwCreature>()!,
           Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>()!,
         });
 
         Hook.CallOriginal(pCreature);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

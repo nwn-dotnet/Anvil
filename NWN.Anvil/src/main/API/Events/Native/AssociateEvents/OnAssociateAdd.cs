@@ -32,7 +32,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnAddAssociate(void* pCreature, uint oidAssociate, ushort associateType)
       {
-        ProcessEvent(new OnAssociateAdd
+        OnAssociateAdd eventData = ProcessEvent(EventCallbackType.Before, new OnAssociateAdd
         {
           Owner = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Associate = oidAssociate.ToNwObject<NwCreature>()!,
@@ -40,6 +40,7 @@ namespace Anvil.API.Events
         });
 
         Hook.CallOriginal(pCreature, oidAssociate, associateType);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

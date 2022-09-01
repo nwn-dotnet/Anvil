@@ -3,14 +3,9 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public sealed class OnDMChangeDifficulty : IEvent
+  public sealed class OnDMChangeDifficulty : DMEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; } = null!;
     public GameDifficulty NewDifficulty { get; internal init; }
-
-    public bool Skip { get; set; }
-
-    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 }
 

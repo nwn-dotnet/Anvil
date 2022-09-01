@@ -28,12 +28,13 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnLevelDown(void* pCreatureStats, void* pLevelUpStats)
       {
-        Hook.CallOriginal(pCreatureStats, pLevelUpStats);
-
-        ProcessEvent(new OnLevelDown
+        OnLevelDown eventData = ProcessEvent(EventCallbackType.Before, new OnLevelDown
         {
           Creature = CNWSCreatureStats.FromPointer(pCreatureStats).m_pBaseCreature.ToNwObject<NwCreature>()!,
         });
+
+        Hook.CallOriginal(pCreatureStats, pLevelUpStats);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

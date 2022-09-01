@@ -41,12 +41,15 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnSaveServerCharacter(void* pPlayer, int bBackupPlayer)
       {
-        OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave
+        OnServerCharacterSave eventData = ProcessEvent(EventCallbackType.Before, new OnServerCharacterSave
         {
           Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
         });
 
-        return !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;
+        int retVal = !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

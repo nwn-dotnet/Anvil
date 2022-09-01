@@ -59,7 +59,7 @@ namespace Anvil.API.Events
         OnSpellCast eventData = null!;
         VirtualMachine.ExecuteInScriptContext(() =>
         {
-          eventData = ProcessEvent(new OnSpellCast
+          eventData = ProcessEvent(EventCallbackType.Before, new OnSpellCast
           {
             Caster = gameObject.ToNwObject<NwGameObject>()!,
             Spell = NwSpell.FromSpellId(nSpellId)!,
@@ -83,6 +83,8 @@ namespace Anvil.API.Events
         {
           gameObject.m_bLastSpellCast = true.ToInt();
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

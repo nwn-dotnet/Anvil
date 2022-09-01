@@ -51,13 +51,16 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pStats, nType, pVerses, bConsiderFeats);
         }
 
-        OnCheckEffectImmunity eventData = ProcessEvent(new OnCheckEffectImmunity
+        OnCheckEffectImmunity eventData = ProcessEvent(EventCallbackType.Before, new OnCheckEffectImmunity
         {
           Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
           ImmunityType = (ImmunityType)nType,
         });
 
-        return eventData.Bypass ? false.ToInt() : Hook.CallOriginal(pStats, nType, pVerses, bConsiderFeats);
+        int retVal = eventData.Bypass ? false.ToInt() : Hook.CallOriginal(pStats, nType, pVerses, bConsiderFeats);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

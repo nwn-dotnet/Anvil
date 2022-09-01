@@ -58,13 +58,16 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect);
         }
 
-        OnEffectRemove eventData = ProcessEvent(new OnEffectRemove
+        OnEffectRemove eventData = ProcessEvent(EventCallbackType.Before, new OnEffectRemove
         {
           Object = gameObject.ToNwObject()!,
           Effect = gameEffect.ToEffect(false)!,
         });
 
-        return eventData.PreventRemove ? false.ToInt() : Hook.CallOriginal(pEffectListHandler, pObject, pEffect);
+        int retVal = eventData.PreventRemove ? false.ToInt() : Hook.CallOriginal(pEffectListHandler, pObject, pEffect);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

@@ -3,38 +3,29 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public abstract class DMStandardEvent : IEvent
-  {
-    public NwPlayer DungeonMaster { get; internal init; } = null!;
+  public sealed class OnDMAppear : DMEvent {}
 
-    public bool Skip { get; set; }
+  public sealed class OnDMDisappear : DMEvent {}
 
-    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
-  }
+  public sealed class OnDMSetFaction : DMEvent {}
 
-  public sealed class OnDMAppear : DMStandardEvent {}
+  public sealed class OnDMTakeItem : DMEvent {}
 
-  public sealed class OnDMDisappear : DMStandardEvent {}
+  public sealed class OnDMSetStat : DMEvent {}
 
-  public sealed class OnDMSetFaction : DMStandardEvent {}
+  public sealed class OnDMGetVariable : DMEvent {}
 
-  public sealed class OnDMTakeItem : DMStandardEvent {}
+  public sealed class OnDMSetVariable : DMEvent {}
 
-  public sealed class OnDMSetStat : DMStandardEvent {}
+  public sealed class OnDMSetTime : DMEvent {}
 
-  public sealed class OnDMGetVariable : DMStandardEvent {}
+  public sealed class OnDMSetDate : DMEvent {}
 
-  public sealed class OnDMSetVariable : DMStandardEvent {}
+  public sealed class OnDMSetFactionReputation : DMEvent {}
 
-  public sealed class OnDMSetTime : DMStandardEvent {}
+  public sealed class OnDMGetFactionReputation : DMEvent {}
 
-  public sealed class OnDMSetDate : DMStandardEvent {}
-
-  public sealed class OnDMSetFactionReputation : DMStandardEvent {}
-
-  public sealed class OnDMGetFactionReputation : DMStandardEvent {}
-
-  public sealed class OnDMPlayerDMLogout : DMStandardEvent {}
+  public sealed class OnDMPlayerDMLogout : DMEvent {}
 }
 
 namespace Anvil.API

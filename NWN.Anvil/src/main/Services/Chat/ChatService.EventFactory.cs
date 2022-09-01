@@ -36,21 +36,22 @@ namespace Anvil.Services
       isEventHooked = false;
     }
 
-    private bool ProcessEvent(ChatChannel chatChannel, string message, NwObject sender, NwPlayer? target)
+    private OnChatMessageSend ProcessEvent(ChatChannel chatChannel, string message, NwObject sender, NwPlayer? target)
     {
-      OnChatMessageSend eventData = null!;
-      VirtualMachine.ExecuteInScriptContext(() =>
+      OnChatMessageSend eventData = ProcessEvent(EventCallbackType.Before, new OnChatMessageSend
       {
-        eventData = EventService.Value.ProcessEvent(new OnChatMessageSend
-        {
-          ChatChannel = chatChannel,
-          Message = message,
-          Sender = sender,
-          Target = target,
-        });
+        ChatChannel = chatChannel,
+        Message = message,
+        Sender = sender,
+        Target = target,
       });
 
-      return eventData.Skip;
+      return eventData;
+    }
+
+    private OnChatMessageSend ProcessEvent(EventCallbackType callbackType, OnChatMessageSend eventData)
+    {
+      return VirtualMachine.ExecuteInScriptContext(() => EventService.Value.ProcessEvent(callbackType, eventData));
     }
   }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Anvil.API;
+using Anvil.API.Events;
 using Anvil.Internal;
 using NWN.Native.API;
 
@@ -149,15 +150,19 @@ namespace Anvil.Services
       CExoString speakerMessage = CExoString.FromPointer(sSpeakerMessage);
       NwObject speaker = oidSpeaker.ToNwObject()!;
 
-      bool skipMessage = ProcessEvent(nChatMessageType, speakerMessage.ToString(), speaker, NwPlayer.FromPlayerId(nTellPlayerId));
-      if (skipMessage)
+      OnChatMessageSend eventData = ProcessEvent(nChatMessageType, speakerMessage.ToString(), speaker, NwPlayer.FromPlayerId(nTellPlayerId));
+
+      if (eventData.Skip)
       {
+        EventService.Value.ProcessEvent(EventCallbackType.After, eventData);
         return false.ToInt();
       }
 
       if (!customHearingDistances)
       {
-        return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, nChatMessageType, oidSpeaker, sSpeakerMessage, nTellPlayerId, tellName);
+        int retVal = sendServerToPlayerChatMessageHook.CallOriginal(pMessage, nChatMessageType, oidSpeaker, sSpeakerMessage, nTellPlayerId, tellName);
+        EventService.Value.ProcessEvent(EventCallbackType.After, eventData);
+        return retVal;
       }
 
       CExoLinkedListInternal playerList = LowLevel.ServerExoApp.m_pcExoAppInternal.m_pNWSPlayerList.m_pcExoLinkedListInternal;
@@ -176,7 +181,9 @@ namespace Anvil.Services
         nChatMessageType != ChatChannel.DmTalk &&
         nChatMessageType != ChatChannel.DmWhisper)
       {
-        return sendServerToPlayerChatMessageHook.CallOriginal(pMessage, nChatMessageType, oidSpeaker, sSpeakerMessage, nTellPlayerId, tellName);
+        int retVal = sendServerToPlayerChatMessageHook.CallOriginal(pMessage, nChatMessageType, oidSpeaker, sSpeakerMessage, nTellPlayerId, tellName);
+        EventService.Value.ProcessEvent(EventCallbackType.After, eventData);
+        return retVal;
       }
 
       NwGameObject? speakerGameObject = speaker as NwGameObject;
@@ -214,6 +221,7 @@ namespace Anvil.Services
         }
       }
 
+      EventService.Value.ProcessEvent(EventCallbackType.After, eventData);
       return true.ToInt();
     }
 

@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
-        OnSpellBroadcast eventData = ProcessEvent(new OnSpellBroadcast
+        OnSpellBroadcast eventData = ProcessEvent(EventCallbackType.Before, new OnSpellBroadcast
         {
           Caster = creature.ToNwObject<NwCreature>()!,
           Spell = NwSpell.FromSpellId((int)nSpellId)!,
@@ -49,6 +49,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pCreature, nSpellId, nMultiClass, nFeat);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

@@ -76,9 +76,12 @@ namespace Anvil.API.Events
         };
 
         eventData.Result = new Lazy<ActionState>(() => !eventData.PreventUse ? (ActionState)Hook.CallOriginal(pCreature, pNode) : ActionState.Failed);
-        ProcessEvent(eventData);
 
-        return (uint)eventData.Result.Value;
+        ProcessEvent(EventCallbackType.Before, eventData);
+        uint retVal = (uint)eventData.Result.Value;
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

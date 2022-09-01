@@ -87,9 +87,11 @@ namespace Anvil.API.Events
             nMetaType, bSpontaneousCast, vTargetLocation, oidTarget, bAreaTarget, bAddToFront,
             bFake, nProjectilePathType, bInstant, bAllowPolymorphedCast, nFeat, nCasterLevel).ToBool());
 
-        ProcessEvent(eventData);
+        ProcessEvent(EventCallbackType.Before, eventData);
+        int retVal = eventData.Result.Value.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
 
-        return eventData.Result.Value.ToInt();
+        return retVal;
       }
     }
   }

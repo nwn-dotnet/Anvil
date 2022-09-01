@@ -38,7 +38,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnCloseInventory(void* pItem, uint oidCloser, int bUpdatePlayer)
       {
-        OnItemInventoryClose eventData = ProcessEvent(new OnItemInventoryClose
+        OnItemInventoryClose eventData = ProcessEvent(EventCallbackType.Before, new OnItemInventoryClose
         {
           ClosedBy = oidCloser.ToNwObject<NwCreature>()!,
           Container = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
@@ -48,6 +48,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pItem, oidCloser, bUpdatePlayer);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

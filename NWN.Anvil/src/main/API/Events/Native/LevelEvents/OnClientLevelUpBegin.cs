@@ -43,9 +43,12 @@ namespace Anvil.API.Events
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventLevelUp && Hook.CallOriginal(pMessage, pPlayer, nMinor).ToBool());
-        ProcessEvent(eventData);
+        ProcessEvent(EventCallbackType.Before, eventData);
 
-        return eventData.Result.Value.ToInt();
+        int retVal = eventData.Result.Value.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

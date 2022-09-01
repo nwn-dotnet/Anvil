@@ -32,13 +32,14 @@ namespace Anvil.API.Events
       {
         CNWSMessage message = CNWSMessage.FromPointer(pMessage);
 
-        ProcessEvent(new OnBarterStart
+        OnBarterStart eventData = ProcessEvent(EventCallbackType.Before, new OnBarterStart
         {
           Initiator = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
           Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwPlayer()!,
         });
 
         Hook.CallOriginal(pMessage, pPlayer);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }
