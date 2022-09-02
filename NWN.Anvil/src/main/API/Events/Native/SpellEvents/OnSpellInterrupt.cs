@@ -23,7 +23,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => InterruptedCaster;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<OnEffectAppliedHook> Hook { get; set; } = null!;
 
@@ -53,7 +53,7 @@ namespace Anvil.API.Events
 
         CNWSObject gameObject = CNWSObject.FromPointer(pObject);
 
-        ProcessEvent(new OnSpellInterrupt
+        OnSpellInterrupt eventData = ProcessEvent(EventCallbackType.Before, new OnSpellInterrupt
         {
           InterruptedCaster = gameObject.ToNwObject<NwGameObject>()!,
           Spell = NwSpell.FromSpellId((int)gameObject.m_nLastSpellId)!,
@@ -64,7 +64,10 @@ namespace Anvil.API.Events
           MetaMagic = (MetaMagic)gameObject.m_nLastSpellCastMetaType,
         });
 
-        return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
+        int retVal = Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

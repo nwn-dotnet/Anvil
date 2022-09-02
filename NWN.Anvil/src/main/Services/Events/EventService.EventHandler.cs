@@ -10,42 +10,54 @@ namespace Anvil.Services
     private abstract class EventHandler
     {
       public abstract void ClearObjectSubscriptions(NwObject gameObject);
-      public abstract void ProcessEvent(IEvent eventData);
+      public abstract void ProcessEvent(IEvent eventData, EventCallbackType eventCallbackType);
     }
 
     private sealed class EventHandler<T> : EventHandler where T : IEvent
     {
-      private readonly Dictionary<NwObject, Action<T>> filteredCallbacks = new Dictionary<NwObject, Action<T>>();
+      private readonly CallbackList beforeCallbackList = new CallbackList();
+      private readonly CallbackList afterCallbackList = new CallbackList();
 
-      private Action<T>? globalCallback;
+      private sealed class CallbackList
+      {
+        public readonly Dictionary<NwObject, Action<T>> FilteredCallbacks = new Dictionary<NwObject, Action<T>>();
+        public Action<T>? GlobalCallback;
+      }
 
-      public bool HasSubscribers => globalCallback != null || filteredCallbacks.Count > 0;
+      public bool HasSubscribers => beforeCallbackList.GlobalCallback != null ||
+        beforeCallbackList.FilteredCallbacks.Count > 0 ||
+        afterCallbackList.GlobalCallback != null ||
+        afterCallbackList.FilteredCallbacks.Count > 0;
 
       public override void ClearObjectSubscriptions(NwObject gameObject)
       {
-        filteredCallbacks.Remove(gameObject);
+        beforeCallbackList.FilteredCallbacks.Remove(gameObject);
+        afterCallbackList.FilteredCallbacks.Remove(gameObject);
       }
 
-      public override void ProcessEvent(IEvent eventData)
+      public override void ProcessEvent(IEvent eventData, EventCallbackType eventCallbackType)
       {
-        ProcessEvent((T)eventData);
+        ProcessEvent((T)eventData, eventCallbackType);
       }
 
-      public void Subscribe(NwObject obj, Action<T> newHandler)
+      public void Subscribe(NwObject obj, Action<T> newHandler, EventCallbackType eventCallbackType)
       {
-        filteredCallbacks.TryGetValue(obj, out Action<T>? handler);
+        CallbackList callbackList = GetCallbackList(eventCallbackType);
+
+        callbackList.FilteredCallbacks.TryGetValue(obj, out Action<T>? handler);
         handler += newHandler;
-        filteredCallbacks[obj] = handler;
+        callbackList.FilteredCallbacks[obj] = handler;
       }
 
-      public void SubscribeAll(Action<T> newHandler)
+      public void SubscribeAll(Action<T> newHandler, EventCallbackType eventCallbackType)
       {
-        globalCallback += newHandler;
+        GetCallbackList(eventCallbackType).GlobalCallback += newHandler;
       }
 
-      public void Unsubscribe(NwObject obj, Action<T> handlerToRemove)
+      public void Unsubscribe(NwObject obj, Action<T> handlerToRemove, EventCallbackType eventCallbackType)
       {
-        if (!filteredCallbacks.TryGetValue(obj, out Action<T>? handler))
+        CallbackList callbackList = GetCallbackList(eventCallbackType);
+        if (!callbackList.FilteredCallbacks.TryGetValue(obj, out Action<T>? handler))
         {
           return;
         }
@@ -53,17 +65,17 @@ namespace Anvil.Services
         handler -= handlerToRemove;
         if (handler == null)
         {
-          filteredCallbacks.Remove(obj);
+          callbackList.FilteredCallbacks.Remove(obj);
         }
         else
         {
-          filteredCallbacks[obj] = handler;
+          callbackList.FilteredCallbacks[obj] = handler;
         }
       }
 
-      public void UnsubscribeAll(Action<T> handlerToRemove)
+      public void UnsubscribeAll(Action<T> handlerToRemove, EventCallbackType eventCallbackType)
       {
-        globalCallback -= handlerToRemove;
+        GetCallbackList(eventCallbackType).GlobalCallback -= handlerToRemove;
       }
 
       private static void TryInvoke(T eventData, Action<T>? callback)
@@ -90,13 +102,25 @@ namespace Anvil.Services
         }
       }
 
-      private void ProcessEvent(T eventData)
+      private void ProcessEvent(T eventData, EventCallbackType eventCallbackType)
       {
-        TryInvoke(eventData, globalCallback);
-        if (eventData.Context != null && filteredCallbacks.TryGetValue(eventData.Context, out Action<T>? callback))
+        CallbackList callbackList = GetCallbackList(eventCallbackType);
+
+        TryInvoke(eventData, callbackList.GlobalCallback);
+        if (eventData.Context != null && callbackList.FilteredCallbacks.TryGetValue(eventData.Context, out Action<T>? callback))
         {
           TryInvoke(eventData, callback);
         }
+      }
+
+      private CallbackList GetCallbackList(EventCallbackType eventCallbackType)
+      {
+        return eventCallbackType switch
+        {
+          EventCallbackType.Before => beforeCallbackList,
+          EventCallbackType.After => afterCallbackList,
+          _ => throw new ArgumentOutOfRangeException(nameof(eventCallbackType), eventCallbackType, null),
+        };
       }
     }
   }

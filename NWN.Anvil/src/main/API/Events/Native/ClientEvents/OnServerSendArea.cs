@@ -19,7 +19,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => Player.ControlledCreature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SendServerToPlayerAreaClientAreaHook> Hook { get; set; } = null!;
 
@@ -35,14 +35,17 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnSendServerToPlayerAreaClientArea(void* pMessage, void* pPlayer, void* pArea, float fX, float fY, float fZ, void* vNewOrientation, int bPlayerIsNewToModule)
       {
-        ProcessEvent(new OnServerSendArea
+        OnServerSendArea eventData = ProcessEvent(EventCallbackType.Before, new OnServerSendArea
         {
           Area = CNWSArea.FromPointer(pArea).ToNwObject<NwArea>()!,
           Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
           IsPlayerNewToModule = bPlayerIsNewToModule.ToBool(),
         });
 
-        return Hook.CallOriginal(pMessage, pPlayer, pArea, fX, fY, fZ, vNewOrientation, bPlayerIsNewToModule);
+        int retVal = Hook.CallOriginal(pMessage, pPlayer, pArea, fX, fY, fZ, vNewOrientation, bPlayerIsNewToModule);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

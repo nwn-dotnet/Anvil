@@ -48,7 +48,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => UsedBy;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<AIActionHealHook> Hook { get; set; } = null!;
 
@@ -76,9 +76,12 @@ namespace Anvil.API.Events
         };
 
         eventData.Result = new Lazy<ActionState>(() => !eventData.PreventUse ? (ActionState)Hook.CallOriginal(pCreature, pNode) : ActionState.Failed);
-        ProcessEvent(eventData);
 
-        return (uint)eventData.Result.Value;
+        ProcessEvent(EventCallbackType.Before, eventData);
+        uint retVal = (uint)eventData.Result.Value;
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

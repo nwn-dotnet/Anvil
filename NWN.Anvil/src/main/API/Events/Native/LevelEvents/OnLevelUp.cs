@@ -12,7 +12,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<LevelUpHook> Hook { get; set; } = null!;
 
@@ -28,14 +28,13 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnLevelUp(void* pCreatureStats, void* pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool, int bAddStatsToList)
       {
-        Hook.CallOriginal(pCreatureStats, pLevelUpStats, nDomain1, nDomain2, nSchool, bAddStatsToList);
-
-        CNWSCreatureStats creatureStats = CNWSCreatureStats.FromPointer(pCreatureStats);
-
-        ProcessEvent(new OnLevelUp
+        OnLevelUp eventData = ProcessEvent(EventCallbackType.Before, new OnLevelUp
         {
-          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
+          Creature = CNWSCreatureStats.FromPointer(pCreatureStats).m_pBaseCreature.ToNwObject<NwCreature>()!,
         });
+
+        Hook.CallOriginal(pCreatureStats, pLevelUpStats, nDomain1, nDomain2, nSchool, bAddStatsToList);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

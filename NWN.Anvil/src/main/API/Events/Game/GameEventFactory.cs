@@ -54,7 +54,7 @@ namespace Anvil.API.Events
           NWScript.ExecuteScript(scriptName, oidSelf);
         }
 
-        EventService.Value.ProcessEvent(value.Invoke());
+        EventService.Value.ProcessEvent(EventCallbackType.Before, value.Invoke());
         return ScriptHandleResult.Handled;
       }
 

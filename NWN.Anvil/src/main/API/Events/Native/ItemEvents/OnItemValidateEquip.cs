@@ -17,7 +17,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => UsedBy;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<CanEquipItemHook> Hook { get; set; } = null!;
 
@@ -33,7 +33,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnCanEquipItem(void* pCreature, void* pItem, uint* pEquipToSLot, int bEquipping, int bLoading, int bDisplayFeedback, void* pFeedbackPlayer)
       {
-        OnItemValidateEquip eventData = ProcessEvent(new OnItemValidateEquip
+        OnItemValidateEquip eventData = ProcessEvent(EventCallbackType.Before, new OnItemValidateEquip
         {
           UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
@@ -41,7 +41,10 @@ namespace Anvil.API.Events
           Result = (EquipValidationResult)Hook.CallOriginal(pCreature, pItem, pEquipToSLot, bEquipping, bLoading, bDisplayFeedback, pFeedbackPlayer),
         });
 
-        return (int)eventData.Result;
+        int retVal = (int)eventData.Result;
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

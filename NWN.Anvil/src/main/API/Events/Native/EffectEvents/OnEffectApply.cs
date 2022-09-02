@@ -28,7 +28,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Object;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<EffectAppliedHook> Hook { get; set; } = null!;
 
@@ -58,7 +58,7 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
         }
 
-        OnEffectApply eventData = ProcessEvent(new OnEffectApply
+        OnEffectApply eventData = ProcessEvent(EventCallbackType.Before, new OnEffectApply
         {
           Object = gameObject.ToNwObject()!,
           Effect = gameEffect.ToEffect(false)!,

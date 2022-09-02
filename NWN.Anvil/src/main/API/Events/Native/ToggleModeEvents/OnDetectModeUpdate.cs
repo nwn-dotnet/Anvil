@@ -19,7 +19,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SetDetectModeHook> Hook { get; set; } = null!;
 
@@ -34,7 +34,7 @@ namespace Anvil.API.Events
 
       private static void HandleEnter(CNWSCreature creature, byte nDetectMode)
       {
-        OnDetectModeUpdate eventData = ProcessEvent(new OnDetectModeUpdate
+        OnDetectModeUpdate eventData = ProcessEvent(EventCallbackType.Before, new OnDetectModeUpdate
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           EventType = ToggleModeEventType.Enter,
@@ -48,11 +48,13 @@ namespace Anvil.API.Events
         {
           creature.ClearActivities(0);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
 
       private static void HandleExit(CNWSCreature creature, byte nDetectMode)
       {
-        OnDetectModeUpdate eventData = ProcessEvent(new OnDetectModeUpdate
+        OnDetectModeUpdate eventData = ProcessEvent(EventCallbackType.Before, new OnDetectModeUpdate
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           EventType = ToggleModeEventType.Exit,
@@ -66,6 +68,8 @@ namespace Anvil.API.Events
         {
           creature.SetActivity(0, true.ToInt());
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
 
       [UnmanagedCallersOnly]

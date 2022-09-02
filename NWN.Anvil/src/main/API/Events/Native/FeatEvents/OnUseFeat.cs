@@ -24,7 +24,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<CreatureUseFeatHook> Hook { get; set; } = null!;
 
@@ -42,7 +42,7 @@ namespace Anvil.API.Events
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
-        OnUseFeat eventData = ProcessEvent(new OnUseFeat
+        OnUseFeat eventData = ProcessEvent(EventCallbackType.Before, new OnUseFeat
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           Feat = NwFeat.FromFeatId(nFeat)!,
@@ -52,7 +52,10 @@ namespace Anvil.API.Events
           TargetPosition = pTargetPos != null ? Marshal.PtrToStructure<Vector3>((IntPtr)pTargetPos) : Vector3.Zero,
         });
 
-        return !eventData.PreventFeatUse ? Hook.CallOriginal(pCreature, nFeat, nSubFeat, oidTarget, oidArea, pTargetPos) : false.ToInt();
+        int retVal = !eventData.PreventFeatUse ? Hook.CallOriginal(pCreature, nFeat, nSubFeat, oidTarget, oidArea, pTargetPos) : false.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

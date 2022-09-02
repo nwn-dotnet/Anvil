@@ -25,7 +25,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Healer;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<OnApplyHealHook> Hook { get; set; } = null!;
 
@@ -44,7 +44,7 @@ namespace Anvil.API.Events
         CGameEffect gameEffect = CGameEffect.FromPointer(pGameEffect);
         CNWSObject target = CNWSObject.FromPointer(pObject);
 
-        OnHeal eventData = ProcessEvent(new OnHeal
+        OnHeal eventData = ProcessEvent(EventCallbackType.Before, new OnHeal
         {
           Healer = gameEffect.m_oidCreator.ToNwObject<NwObject>()!,
           Target = target.ToNwObject<NwGameObject>()!,
@@ -52,7 +52,11 @@ namespace Anvil.API.Events
         });
 
         gameEffect.SetInteger(0, eventData.HealAmount);
-        return Hook.CallOriginal(pEffectListHandler, pObject, pGameEffect, bLoadingGame);
+
+        int retVal = Hook.CallOriginal(pEffectListHandler, pObject, pGameEffect, bLoadingGame);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

@@ -36,7 +36,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SpellCastAndImpactHook> Hook { get; set; } = null!;
 
@@ -59,7 +59,7 @@ namespace Anvil.API.Events
         OnSpellCast eventData = null!;
         VirtualMachine.ExecuteInScriptContext(() =>
         {
-          eventData = ProcessEvent(new OnSpellCast
+          eventData = ProcessEvent(EventCallbackType.Before, new OnSpellCast
           {
             Caster = gameObject.ToNwObject<NwGameObject>()!,
             Spell = NwSpell.FromSpellId(nSpellId)!,
@@ -83,6 +83,8 @@ namespace Anvil.API.Events
         {
           gameObject.m_bLastSpellCast = true.ToInt();
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

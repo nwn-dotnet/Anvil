@@ -22,7 +22,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => OpenedBy;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<OpenInventoryHook> Hook { get; set; } = null!;
 
@@ -38,7 +38,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnOpenInventory(void* pItem, uint oidOpener)
       {
-        OnItemInventoryOpen eventData = ProcessEvent(new OnItemInventoryOpen
+        OnItemInventoryOpen eventData = ProcessEvent(EventCallbackType.Before, new OnItemInventoryOpen
         {
           OpenedBy = oidOpener.ToNwObject<NwCreature>()!,
           Container = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
@@ -48,6 +48,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pItem, oidOpener);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

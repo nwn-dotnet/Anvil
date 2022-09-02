@@ -16,7 +16,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => null;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<RemoveGoldHook> Hook { get; set; } = null!;
 
@@ -34,7 +34,7 @@ namespace Anvil.API.Events
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
-        OnInventoryGoldRemove eventData = ProcessEvent(new OnInventoryGoldRemove
+        OnInventoryGoldRemove eventData = ProcessEvent(EventCallbackType.Before, new OnInventoryGoldRemove
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           Gold = nGold,
@@ -44,6 +44,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pCreature, nGold, bDisplayFeedback);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

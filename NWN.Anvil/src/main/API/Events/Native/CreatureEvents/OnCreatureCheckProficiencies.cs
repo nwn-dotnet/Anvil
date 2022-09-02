@@ -33,7 +33,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<CheckProficienciesHook> Hook { get; set; } = null!;
 
@@ -57,19 +57,22 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pCreature, pItem, nEquipToSlot);
         }
 
-        OnCreatureCheckProficiencies eventData = ProcessEvent(new OnCreatureCheckProficiencies
+        OnCreatureCheckProficiencies eventData = ProcessEvent(EventCallbackType.Before, new OnCreatureCheckProficiencies
         {
           Creature = creature,
           Item = item,
           TargetSlot = (EquipmentSlots)nEquipToSlot,
         });
 
-        return eventData.ResultOverride switch
+        int retVal = eventData.ResultOverride switch
         {
           CheckProficiencyOverride.HasProficiency => true.ToInt(),
           CheckProficiencyOverride.NoProficiency => false.ToInt(),
           _ => Hook.CallOriginal(pCreature, pItem, nEquipToSlot),
         };
+
+        ProcessEvent(EventCallbackType.After, eventData);
+        return retVal;
       }
     }
   }

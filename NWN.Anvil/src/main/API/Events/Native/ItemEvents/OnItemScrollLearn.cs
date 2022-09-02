@@ -28,7 +28,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<LearnScrollHook> Hook { get; set; } = null!;
 
@@ -44,13 +44,16 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnLearnScroll(void* pCreature, uint oidScrollToLearn)
       {
-        OnItemScrollLearn eventData = ProcessEvent(new OnItemScrollLearn
+        OnItemScrollLearn eventData = ProcessEvent(EventCallbackType.Before, new OnItemScrollLearn
         {
           Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Scroll = oidScrollToLearn.ToNwObject<NwItem>()!,
         });
 
-        return !eventData.PreventLearnScroll ? Hook.CallOriginal(pCreature, oidScrollToLearn) : false.ToInt();
+        int retVal = !eventData.PreventLearnScroll ? Hook.CallOriginal(pCreature, oidScrollToLearn) : false.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

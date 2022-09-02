@@ -34,7 +34,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => Player.ControlledCreature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<HandleMapPinSetMapPinAtMessageHook> Hook { get; set; } = null!;
 
@@ -70,14 +70,17 @@ namespace Anvil.API.Events
         // Note
         string note = message.PeekMessageString(offset);
 
-        OnMapPinAddPin eventData = ProcessEvent(new OnMapPinAddPin
+        OnMapPinAddPin eventData = ProcessEvent(EventCallbackType.Before, new OnMapPinAddPin
         {
           Player = player.ToNwPlayer()!,
           Position = new Vector3(x, y, z),
           Note = note,
         });
 
-        return eventData.PreventPinAdd ? false.ToInt() : Hook.CallOriginal(pMessage, pPlayer);
+        int retVal = eventData.PreventPinAdd ? false.ToInt() : Hook.CallOriginal(pMessage, pPlayer);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

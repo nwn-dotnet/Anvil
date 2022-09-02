@@ -20,7 +20,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SetCombatModeHook> Hook { get; set; } = null!;
 
@@ -43,7 +43,7 @@ namespace Anvil.API.Events
           return;
         }
 
-        OnCombatModeToggle eventData = ProcessEvent(new OnCombatModeToggle
+        OnCombatModeToggle eventData = ProcessEvent(EventCallbackType.Before, new OnCombatModeToggle
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           NewMode = (CombatMode)nNewMode,
@@ -61,6 +61,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pCreature, (byte)eventData.NewMode, bForceNewMode);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

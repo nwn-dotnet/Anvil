@@ -3,22 +3,10 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public abstract class OnDMGiveItem : IEvent
+  public sealed class OnDMGiveItem : DMEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; } = null!;
     public NwGameObject Target { get; internal init; } = null!;
-
-    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
-  }
-
-  public sealed class OnDMGiveItemBefore : OnDMGiveItem
-  {
-    public bool Skip { get; set; }
-  }
-
-  public sealed class OnDMGiveItemAfter : OnDMGiveItem
-  {
-    public NwItem Item { get; internal init; } = null!;
+    public NwItem? Item { get; internal set; }
   }
 }
 
@@ -26,35 +14,21 @@ namespace Anvil.API
 {
   public sealed partial class NwPlayer
   {
-    /// <inheritdoc cref="Events.OnDMGiveItemAfter"/>
-    public event Action<OnDMGiveItemAfter> OnDMGiveItemAfter
+    /// <inheritdoc cref="Events.OnDMGiveItem"/>
+    public event Action<OnDMGiveItem> OnDMGiveItem
     {
-      add => EventService.Subscribe<OnDMGiveItemAfter, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMGiveItemAfter, DMEventFactory>(LoginCreature, value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMGiveItemBefore"/>
-    public event Action<OnDMGiveItemBefore> OnDMGiveItemBefore
-    {
-      add => EventService.Subscribe<OnDMGiveItemBefore, DMEventFactory>(LoginCreature, value);
-      remove => EventService.Unsubscribe<OnDMGiveItemBefore, DMEventFactory>(LoginCreature, value);
+      add => EventService.Subscribe<OnDMGiveItem, DMEventFactory>(LoginCreature, value);
+      remove => EventService.Unsubscribe<OnDMGiveItem, DMEventFactory>(LoginCreature, value);
     }
   }
 
   public sealed partial class NwModule
   {
-    /// <inheritdoc cref="Events.OnDMGiveItemAfter"/>
-    public event Action<OnDMGiveItemAfter> OnDMGiveItemAfter
+    /// <inheritdoc cref="Events.OnDMGiveItem"/>
+    public event Action<OnDMGiveItem> OnDMGiveItem
     {
-      add => EventService.SubscribeAll<OnDMGiveItemAfter, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMGiveItemAfter, DMEventFactory>(value);
-    }
-
-    /// <inheritdoc cref="Events.OnDMGiveItemBefore"/>
-    public event Action<OnDMGiveItemBefore> OnDMGiveItemBefore
-    {
-      add => EventService.SubscribeAll<OnDMGiveItemBefore, DMEventFactory>(value);
-      remove => EventService.UnsubscribeAll<OnDMGiveItemBefore, DMEventFactory>(value);
+      add => EventService.SubscribeAll<OnDMGiveItem, DMEventFactory>(value);
+      remove => EventService.UnsubscribeAll<OnDMGiveItem, DMEventFactory>(value);
     }
   }
 }

@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Anvil.Internal;
 using Anvil.Services;
-using JetBrains.Annotations;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -35,12 +36,20 @@ namespace Anvil.API
     /// </summary>
     public readonly uint ObjectId;
 
-    [UsedImplicitly]
-    internal readonly ICGameObject Object;
+    private readonly ICGameObject gameObject;
+
+    internal ICGameObject Object
+    {
+      get
+      {
+        AssertObjectValid();
+        return gameObject;
+      }
+    }
 
     protected NwObject(ICGameObject gameObject)
     {
-      Object = gameObject;
+      this.gameObject = gameObject;
       ObjectId = gameObject.m_idSelf;
     }
 
@@ -61,7 +70,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether this is a valid object.
     /// </summary>
-    public bool IsValid => NWScript.GetIsObjectValid(this).ToBool();
+    public bool IsValid => LowLevel.ServerExoApp.GetGameObject(ObjectId) != null;
 
     /// <summary>
     /// Gets all local variables assigned on this object.
@@ -337,15 +346,21 @@ namespace Anvil.API
         return;
       }
 
-      if (!IsValid)
-      {
-        throw new InvalidOperationException("Cannot wait for the context of an invalid object.");
-      }
+      AssertObjectValid();
 
       TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
       NWScript.AssignCommand(this, () => { tcs.SetResult(true); });
 
       await tcs.Task;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+    protected void AssertObjectValid()
+    {
+      if (LowLevel.ServerExoApp.GetGameObject(ObjectId) == null)
+      {
+        throw new InvalidOperationException("Object is not valid.");
+      }
     }
   }
 }

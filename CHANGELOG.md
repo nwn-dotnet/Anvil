@@ -3,6 +3,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.16
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...v8193.34.16
+
+### Added
+- Events: Added `OnDebugPlayVisualEffect`, `OnDebugRunScript`, `OnDebugRunScriptChunk` events.
+- NwGameObject: Added `AnimationState`.
+- Effect: Added `Effect.VisualEffect(VisualEffectTableEntry, bool, float, Vector3, Vector3)` overload.
+
+### Package Updates
+- NWN.Core 8193.34.6 -> 8193.34.7
+- LightInject 6.4.1 -> 6.5.1
+- NLog 5.0.1 -> 5.0.4
+- NWNX 5ade7de -> 8faa9d4
+
+### Changed
+- SchedulerService: Use `PriorityQueue` to improve main server loop performance.
+
 ## 8193.34.15
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.14...v8193.34.15
 

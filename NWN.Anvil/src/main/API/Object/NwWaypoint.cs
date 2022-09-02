@@ -9,11 +9,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.Waypoint, ObjectType.Waypoint)]
   public sealed class NwWaypoint : NwGameObject
   {
-    internal readonly CNWSWaypoint Waypoint;
+    private readonly CNWSWaypoint waypoint;
+
+    internal CNWSWaypoint Waypoint
+    {
+      get
+      {
+        AssertObjectValid();
+        return waypoint;
+      }
+    }
 
     internal NwWaypoint(CNWSWaypoint waypoint) : base(waypoint)
     {
-      Waypoint = waypoint;
+      this.waypoint = waypoint;
     }
 
     public static NwWaypoint? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")

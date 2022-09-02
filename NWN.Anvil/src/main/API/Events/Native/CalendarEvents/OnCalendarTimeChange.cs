@@ -15,7 +15,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => null;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<UpdateTimeHook> Hook { get; set; } = null!;
 
@@ -42,52 +42,62 @@ namespace Anvil.API.Events
 
         if (hour != module.m_nCurrentHour)
         {
-          ProcessEvent(new OnCalendarTimeChange
+          OnCalendarTimeChange eventData = ProcessEvent(EventCallbackType.Before, new OnCalendarTimeChange
           {
             TimeChangeType = TimeChangeType.Hour,
             OldValue = hour,
             NewValue = module.m_nCurrentHour,
           });
+
+          ProcessEvent(EventCallbackType.After, eventData);
         }
 
         if (day != module.m_nCurrentDay)
         {
-          ProcessEvent(new OnCalendarTimeChange
+          OnCalendarTimeChange eventData = ProcessEvent(EventCallbackType.Before, new OnCalendarTimeChange
           {
             TimeChangeType = TimeChangeType.Day,
             OldValue = day,
             NewValue = module.m_nCurrentDay,
           });
+
+          ProcessEvent(EventCallbackType.After, eventData);
         }
 
         if (month != module.m_nCurrentMonth)
         {
-          ProcessEvent(new OnCalendarTimeChange
+          OnCalendarTimeChange eventData = ProcessEvent(EventCallbackType.Before, new OnCalendarTimeChange
           {
             TimeChangeType = TimeChangeType.Month,
             OldValue = month,
             NewValue = module.m_nCurrentMonth,
           });
+
+          ProcessEvent(EventCallbackType.After, eventData);
         }
 
         if (year != module.m_nCurrentYear)
         {
-          ProcessEvent(new OnCalendarTimeChange
+          OnCalendarTimeChange eventData = ProcessEvent(EventCallbackType.Before, new OnCalendarTimeChange
           {
             TimeChangeType = TimeChangeType.Year,
             OldValue = year,
             NewValue = module.m_nCurrentYear,
           });
+
+          ProcessEvent(EventCallbackType.After, eventData);
         }
 
         if (dayState != module.m_nTimeOfDayState)
         {
-          ProcessEvent(new OnCalendarTimeChange
+          OnCalendarTimeChange eventData = ProcessEvent(EventCallbackType.Before, new OnCalendarTimeChange
           {
             TimeChangeType = TimeChangeType.TimeOfDay,
             OldValue = dayState,
             NewValue = module.m_nTimeOfDayState,
           });
+
+          ProcessEvent(EventCallbackType.After, eventData);
         }
       }
     }

@@ -55,7 +55,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => null;
 
-    internal sealed class Factory : HookEventFactory
+    public sealed class Factory : HookEventFactory
     {
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
@@ -95,7 +95,7 @@ namespace Anvil.API.Events
         CNetLayerPlayerInfo playerInfo = NetLayer.GetPlayerInfo(playerId);
         string ipAddress = NetLayer.GetPlayerAddress(playerId).ToString();
 
-        OnClientConnect eventData = ProcessEvent(new OnClientConnect
+        OnClientConnect eventData = ProcessEvent(EventCallbackType.Before, new OnClientConnect
         {
           PlayerName = playerInfo.m_sPlayerName.ToString(),
           ClientVersion = new Version(playerInfo.m_nBuildVersion, playerInfo.m_nPatchRevision),
@@ -112,7 +112,11 @@ namespace Anvil.API.Events
 
         string kickMessage = eventData.KickMessage ?? string.Empty;
         DelayDisconnectPlayer(playerId, kickMessage);
-        return Hook.CallOriginal(pMessage, pPlayer);
+
+        int retVal = Hook.CallOriginal(pMessage, pPlayer);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

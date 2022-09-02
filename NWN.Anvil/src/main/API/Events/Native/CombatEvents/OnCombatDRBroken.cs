@@ -14,7 +14,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SendFeedbackMessageHook> Hook { get; set; } = null!;
 
@@ -43,8 +43,7 @@ namespace Anvil.API.Events
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
         CNWCCMessageData messageData = CNWCCMessageData.FromPointer(pMessageData);
 
-        if (nFeedbackId != resistanceId &&
-          nFeedbackId != reductionId ||
+        if (nFeedbackId != resistanceId && nFeedbackId != reductionId ||
           creature.m_idSelf != messageData.GetObjectID(0) ||
           messageData.GetInteger(remainingDRIndex) != 0)
         {
@@ -52,13 +51,14 @@ namespace Anvil.API.Events
           return;
         }
 
-        ProcessEvent(new OnCombatDRBroken
+        OnCombatDRBroken eventData = ProcessEvent(EventCallbackType.Before, new OnCombatDRBroken
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           Type = nFeedbackId == resistanceId ? DRType.DamageResistance : DRType.DamageReduction,
         });
 
         Hook.CallOriginal(pCreature, nFeedbackId, pMessageData, pFeedbackPlayer);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

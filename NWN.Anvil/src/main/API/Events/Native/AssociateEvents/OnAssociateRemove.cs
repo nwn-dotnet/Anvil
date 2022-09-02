@@ -13,7 +13,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<RemoveAssociateHook> Hook { get; set; } = null!;
 
@@ -29,13 +29,14 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnRemoveAssociate(void* pCreature, uint oidAssociate)
       {
-        ProcessEvent(new OnAssociateRemove
+        OnAssociateRemove eventData = ProcessEvent(EventCallbackType.Before, new OnAssociateRemove
         {
           Owner = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Associate = oidAssociate.ToNwObject<NwCreature>()!,
         });
 
         Hook.CallOriginal(pCreature, oidAssociate);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

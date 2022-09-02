@@ -19,7 +19,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Caster;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<BroadcastSpellCastHook> Hook { get; set; } = null!;
 
@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
-        OnSpellBroadcast eventData = ProcessEvent(new OnSpellBroadcast
+        OnSpellBroadcast eventData = ProcessEvent(EventCallbackType.Before, new OnSpellBroadcast
         {
           Caster = creature.ToNwObject<NwCreature>()!,
           Spell = NwSpell.FromSpellId((int)nSpellId)!,
@@ -49,6 +49,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pCreature, nSpellId, nMultiClass, nFeat);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

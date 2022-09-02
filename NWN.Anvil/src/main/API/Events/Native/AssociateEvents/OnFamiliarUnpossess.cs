@@ -13,7 +13,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<UnpossessFamiliarHook> Hook { get; set; } = null!;
 
@@ -31,13 +31,14 @@ namespace Anvil.API.Events
       {
         CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
 
-        ProcessEvent(new OnFamiliarUnpossess
+        OnFamiliarUnpossess eventData = ProcessEvent(EventCallbackType.Before, new OnFamiliarUnpossess
         {
           Owner = creature.ToNwObject<NwCreature>()!,
           Familiar = creature.GetAssociateId((ushort)AssociateType.Familiar).ToNwObject<NwCreature>()!,
         });
 
         Hook.CallOriginal(pCreature);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

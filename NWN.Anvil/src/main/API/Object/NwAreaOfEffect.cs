@@ -11,11 +11,20 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.AreaOfEffect, ObjectType.AreaOfEffect)]
   public sealed partial class NwAreaOfEffect : NwGameObject
   {
-    internal readonly CNWSAreaOfEffectObject AreaOfEffect;
+    private readonly CNWSAreaOfEffectObject areaOfEffect;
 
-    internal NwAreaOfEffect(CNWSAreaOfEffectObject areaOfEffectObject) : base(areaOfEffectObject)
+    internal CNWSAreaOfEffectObject AreaOfEffect
     {
-      AreaOfEffect = areaOfEffectObject;
+      get
+      {
+        AssertObjectValid();
+        return areaOfEffect;
+      }
+    }
+
+    internal NwAreaOfEffect(CNWSAreaOfEffectObject areaOfEffect) : base(areaOfEffect)
+    {
+      this.areaOfEffect = areaOfEffect;
     }
 
     /// <summary>

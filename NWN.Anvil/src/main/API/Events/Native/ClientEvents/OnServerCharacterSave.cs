@@ -25,7 +25,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => Player.ControlledCreature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SaveServerCharacterHook> Hook { get; set; } = null!;
 
@@ -41,12 +41,15 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnSaveServerCharacter(void* pPlayer, int bBackupPlayer)
       {
-        OnServerCharacterSave eventData = ProcessEvent(new OnServerCharacterSave
+        OnServerCharacterSave eventData = ProcessEvent(EventCallbackType.Before, new OnServerCharacterSave
         {
           Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
         });
 
-        return !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;
+        int retVal = !eventData.PreventSave ? Hook.CallOriginal(pPlayer, bBackupPlayer) : 0;
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

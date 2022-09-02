@@ -14,7 +14,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => DamagedBy;
 
-    internal unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<OnApplyDamageHook> Hook { get; set; } = null!;
 
@@ -42,9 +42,10 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
         }
 
+        OnCreatureDamage? eventData = null;
         if (IsValidObjectTarget((ObjectType)gameObject.m_nObjectType))
         {
-          ProcessEvent(new OnCreatureDamage
+          eventData = ProcessEvent(EventCallbackType.Before, new OnCreatureDamage
           {
             DamagedBy = effect.m_oidCreator.ToNwObject<NwObject>()!,
             Target = gameObject.ToNwObject<NwGameObject>()!,
@@ -52,7 +53,10 @@ namespace Anvil.API.Events
           });
         }
 
-        return Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
+        int retVal = Hook.CallOriginal(pEffectListHandler, pObject, pEffect, bLoadingGame);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

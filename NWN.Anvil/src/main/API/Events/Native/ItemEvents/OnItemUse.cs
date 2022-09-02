@@ -30,7 +30,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => UsedBy;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<UseItemHook> Hook { get; set; } = null!;
 
@@ -46,7 +46,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static int OnUseItem(void* pCreature, uint oidItem, byte nActivePropertyIndex, byte nSubPropertyIndex, uint oidTarget, Vector3 vTargetPosition, uint oidArea, int bUseCharges)
       {
-        OnItemUse eventData = ProcessEvent(new OnItemUse
+        OnItemUse eventData = ProcessEvent(EventCallbackType.Before, new OnItemUse
         {
           UsedBy = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Item = oidItem.ToNwObject<NwItem>()!,
@@ -64,7 +64,10 @@ namespace Anvil.API.Events
         }
 
         int result = Hook.CallOriginal(pCreature, oidItem, nActivePropertyIndex, nSubPropertyIndex, oidTarget, vTargetPosition, oidArea, eventData.UseCharges.ToInt());
-        return result == 1 || eventData.SuppressCannotUseFeedback ? 1 : 0;
+        int retVal = result == 1 || eventData.SuppressCannotUseFeedback ? 1 : 0;
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

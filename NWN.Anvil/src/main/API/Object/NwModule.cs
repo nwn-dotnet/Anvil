@@ -16,11 +16,20 @@ namespace Anvil.API
   {
     public static readonly NwModule Instance = new NwModule(LowLevel.ServerExoApp.GetModule());
 
-    internal readonly CNWSModule Module;
+    private readonly CNWSModule module;
+
+    internal CNWSModule Module
+    {
+      get
+      {
+        AssertObjectValid();
+        return module;
+      }
+    }
 
     internal NwModule(CNWSModule module) : base(module)
     {
-      Module = module;
+      this.module = module;
     }
 
     /// <summary>

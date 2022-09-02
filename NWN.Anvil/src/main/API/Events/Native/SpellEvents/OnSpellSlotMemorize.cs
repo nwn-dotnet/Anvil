@@ -25,7 +25,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<SetMemorizedSpellSlotHook> Hook { get; set; } = null!;
 
@@ -45,7 +45,7 @@ namespace Anvil.API.Events
       {
         CNWSCreatureStats creatureStats = CNWSCreatureStats.FromPointer(pCreatureStats);
 
-        OnSpellSlotMemorize eventData = ProcessEvent(new OnSpellSlotMemorize
+        OnSpellSlotMemorize eventData = ProcessEvent(EventCallbackType.Before, new OnSpellSlotMemorize
         {
           Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
           ClassIndex = nMultiClass,
@@ -56,12 +56,14 @@ namespace Anvil.API.Events
           FromClient = bFromClient.ToBool(),
         });
 
+        int retVal = false.ToInt();
         if (!eventData.PreventMemorize)
         {
-          return Hook.CallOriginal(pCreatureStats, nMultiClass, nSpellSlot, nSpellId, nDomainLevel, nMetaType, bFromClient);
+          retVal = Hook.CallOriginal(pCreatureStats, nMultiClass, nSpellSlot, nSpellId, nDomainLevel, nMetaType, bFromClient);
         }
 
-        return false.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
+        return retVal;
       }
     }
   }

@@ -21,7 +21,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Creature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<RequestBuyHook> Hook { get; set; } = null!;
 
@@ -57,9 +57,12 @@ namespace Anvil.API.Events
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventBuy && Hook.CallOriginal(pCreature, oidItemToBuy, oidStore, oidDesiredRepository).ToBool());
-        ProcessEvent(eventData);
+        ProcessEvent(EventCallbackType.Before, eventData);
 
-        return eventData.Result.Value.ToInt();
+        int retVal = eventData.Result.Value.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }
