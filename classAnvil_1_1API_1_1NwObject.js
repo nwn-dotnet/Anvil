@@ -2,6 +2,7 @@ var classAnvil_1_1API_1_1NwObject =
 [
     [ "NwObject", "classAnvil_1_1API_1_1NwObject.html#acf4da19f27875fba7da44a4c563bc673", null ],
     [ "AddActionToQueue", "classAnvil_1_1API_1_1NwObject.html#a5dc663d7d0328f18a9e13a358ff6c6fb", null ],
+    [ "AssertObjectValid", "classAnvil_1_1API_1_1NwObject.html#ae162e1eccf6684073bae88db2ad98d77", null ],
     [ "ClearActionQueue", "classAnvil_1_1API_1_1NwObject.html#a5575382adba57f20f4b1ad233a68d3c8", null ],
     [ "ClearEventSubscriptions", "classAnvil_1_1API_1_1NwObject.html#a59df06c4862bb50ce62798b090e49fc3", null ],
     [ "Equals", "classAnvil_1_1API_1_1NwObject.html#aae61e13cfe45a0f81ed71d24480af169", null ],
@@ -29,6 +30,7 @@ var classAnvil_1_1API_1_1NwObject =
     [ "IsValid", "classAnvil_1_1API_1_1NwObject.html#a55d6fa2ef762491e726138e5f43df85e", null ],
     [ "LocalVariables", "classAnvil_1_1API_1_1NwObject.html#ad2cedc189329ef4272dc7e088a536e94", null ],
     [ "Name", "classAnvil_1_1API_1_1NwObject.html#ab370d5ce40fcc71a94f6236500775b56", null ],
+    [ "Object", "classAnvil_1_1API_1_1NwObject.html#ac605549e7d7a401bbc01bdc89247830c", null ],
     [ "ObjectVisibilityService", "classAnvil_1_1API_1_1NwObject.html#a1d66d3d37f2533731e55b48b42a7d4c3", null ],
     [ "OriginalDescription", "classAnvil_1_1API_1_1NwObject.html#abef323f5f1eed8bf9581487eed5ef2d9", null ],
     [ "ResourceManager", "classAnvil_1_1API_1_1NwObject.html#afe6c7725f56d3c3e5106635b7aa3b678", null ],

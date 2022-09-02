@@ -15,5 +15,6 @@ var classAnvil_1_1API_1_1NwTrigger =
     [ "OnExit", "classAnvil_1_1API_1_1NwTrigger.html#abddfc504f2594e391cdad2ed962dd21c", null ],
     [ "OnHeartbeat", "classAnvil_1_1API_1_1NwTrigger.html#aff7fde66a4df947b3267f6a5da8fc5c3", null ],
     [ "OnTrapTriggered", "classAnvil_1_1API_1_1NwTrigger.html#a3fd5e0615951e2ea4b795c6840c01887", null ],
-    [ "OnUserDefined", "classAnvil_1_1API_1_1NwTrigger.html#a6b1f7dccb4a2406183983b252259f28d", null ]
+    [ "OnUserDefined", "classAnvil_1_1API_1_1NwTrigger.html#a6b1f7dccb4a2406183983b252259f28d", null ],
+    [ "Trigger", "classAnvil_1_1API_1_1NwTrigger.html#ab6824e2b24f3a406358dcb723eb689c4", null ]
 ];

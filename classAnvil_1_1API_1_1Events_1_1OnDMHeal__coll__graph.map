@@ -1,5 +1,6 @@
 <map id="Anvil.API.Events.OnDMHeal" name="Anvil.API.Events.OnDMHeal">
-<area shape="rect" id="node1" title=" " alt="" coords="5,155,192,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMGroupTargetEvent.html" title=" " alt="" coords="25,80,172,107"/>
-<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="69,5,128,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,192,256"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMGroupTargetEvent.html" title=" " alt="" coords="25,155,172,181"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="61,80,136,107"/>
+<area shape="rect" id="node4" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="69,5,128,32"/>
 </map>

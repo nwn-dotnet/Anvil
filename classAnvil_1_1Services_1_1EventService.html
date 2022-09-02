@@ -98,27 +98,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac9eb68befb027511893d5554b83d0d25"><td class="memItemLeft" align="right" valign="top"><a id="ac9eb68befb027511893d5554b83d0d25"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearObjectSubscriptions</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? nwObject)</td></tr>
 <tr class="separator:ac9eb68befb027511893d5554b83d0d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed3850de5d4778749d89915c6c76045f"><td class="memItemLeft" align="right" valign="top"><a id="aed3850de5d4778749d89915c6c76045f"></a>
-TEvent&#160;</td><td class="memItemRight" valign="bottom"><b>ProcessEvent&lt; TEvent &gt;</b> (TEvent eventData)</td></tr>
-<tr class="separator:aed3850de5d4778749d89915c6c76045f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a140e989d2688bc0c39804bcf27bbbf34"><td class="memItemLeft" align="right" valign="top"><a id="a140e989d2688bc0c39804bcf27bbbf34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Subscribe&lt; TEvent, TFactory &gt;</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? nwObject, Action&lt; TEvent &gt; handler)</td></tr>
-<tr class="separator:a140e989d2688bc0c39804bcf27bbbf34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a208c2af79a3a41010557c50a947592c7"><td class="memItemLeft" align="right" valign="top"><a id="a208c2af79a3a41010557c50a947592c7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Subscribe&lt; TEvent, TFactory, TRegData &gt;</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? nwObject, TRegData registrationData, Action&lt; TEvent &gt; handler)</td></tr>
-<tr class="separator:a208c2af79a3a41010557c50a947592c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30da9d49a6762e09deb8f9724cb2e6dd"><td class="memItemLeft" align="right" valign="top"><a id="a30da9d49a6762e09deb8f9724cb2e6dd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SubscribeAll&lt; TEvent, TFactory &gt;</b> (Action&lt; TEvent &gt; handler)</td></tr>
-<tr class="separator:a30da9d49a6762e09deb8f9724cb2e6dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e988a834bf8c47acd060068104b516b"><td class="memItemLeft" align="right" valign="top"><a id="a9e988a834bf8c47acd060068104b516b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SubscribeAll&lt; TEvent, TFactory, TRegData &gt;</b> (TRegData registrationData, Action&lt; TEvent &gt; handler)</td></tr>
-<tr class="separator:a9e988a834bf8c47acd060068104b516b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeae4b8a54e816b3484cbf0e1cc073202"><td class="memItemLeft" align="right" valign="top"><a id="aeae4b8a54e816b3484cbf0e1cc073202"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Unsubscribe&lt; TEvent, TFactory &gt;</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? nwObject, Action&lt; TEvent &gt; handler)</td></tr>
-<tr class="separator:aeae4b8a54e816b3484cbf0e1cc073202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1be2aac920d0bc149b268b03b120317e"><td class="memItemLeft" align="right" valign="top"><a id="a1be2aac920d0bc149b268b03b120317e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UnsubscribeAll&lt; TEvent, TFactory &gt;</b> (Action&lt; TEvent &gt; handler)</td></tr>
-<tr class="separator:a1be2aac920d0bc149b268b03b120317e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523d4d425d13eeaa4f99e7985da99ab9"><td class="memItemLeft" align="right" valign="top"><a id="a523d4d425d13eeaa4f99e7985da99ab9"></a>
+TEvent&#160;</td><td class="memItemRight" valign="bottom"><b>ProcessEvent&lt; TEvent &gt;</b> (EventCallbackType eventCallbackType, TEvent eventData)</td></tr>
+<tr class="separator:a523d4d425d13eeaa4f99e7985da99ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace3b40b72d147e38d24d021a2eea2a65"><td class="memItemLeft" align="right" valign="top"><a id="ace3b40b72d147e38d24d021a2eea2a65"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Subscribe&lt; TEvent, TFactory &gt;</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? nwObject, Action&lt; TEvent &gt; handler, EventCallbackType eventCallbackType=EventCallbackType.Before)</td></tr>
+<tr class="separator:ace3b40b72d147e38d24d021a2eea2a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc0623caa72b9c7c6c8562db34cd97d1"><td class="memItemLeft" align="right" valign="top"><a id="acc0623caa72b9c7c6c8562db34cd97d1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Subscribe&lt; TEvent, TFactory, TRegData &gt;</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? nwObject, TRegData registrationData, Action&lt; TEvent &gt; handler, EventCallbackType eventCallbackType=EventCallbackType.Before)</td></tr>
+<tr class="separator:acc0623caa72b9c7c6c8562db34cd97d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d93d08df9a833062a8f43e4587b8158"><td class="memItemLeft" align="right" valign="top"><a id="a4d93d08df9a833062a8f43e4587b8158"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SubscribeAll&lt; TEvent, TFactory &gt;</b> (Action&lt; TEvent &gt; handler, EventCallbackType eventCallbackType=EventCallbackType.Before)</td></tr>
+<tr class="separator:a4d93d08df9a833062a8f43e4587b8158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ffeade105a2b37a45d22f26411cb24c"><td class="memItemLeft" align="right" valign="top"><a id="a2ffeade105a2b37a45d22f26411cb24c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SubscribeAll&lt; TEvent, TFactory, TRegData &gt;</b> (TRegData registrationData, Action&lt; TEvent &gt; handler, EventCallbackType eventCallbackType=EventCallbackType.Before)</td></tr>
+<tr class="separator:a2ffeade105a2b37a45d22f26411cb24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa40a9e9dfcc1656075b80f2c5c396a1"><td class="memItemLeft" align="right" valign="top"><a id="afa40a9e9dfcc1656075b80f2c5c396a1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Unsubscribe&lt; TEvent, TFactory &gt;</b> (<a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? nwObject, Action&lt; TEvent &gt; handler, EventCallbackType eventCallbackType=EventCallbackType.Before)</td></tr>
+<tr class="separator:afa40a9e9dfcc1656075b80f2c5c396a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa08f757ae1b1abff0abacd63e1208624"><td class="memItemLeft" align="right" valign="top"><a id="aa08f757ae1b1abff0abacd63e1208624"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>UnsubscribeAll&lt; TEvent, TFactory &gt;</b> (Action&lt; TEvent &gt; handler, EventCallbackType eventCallbackType=EventCallbackType.Before)</td></tr>
+<tr class="separator:aa08f757ae1b1abff0abacd63e1208624"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>NWN.Anvil/src/main/Services/Events/EventService.cs</li>

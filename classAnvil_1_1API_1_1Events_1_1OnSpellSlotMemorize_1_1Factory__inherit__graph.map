@@ -1,0 +1,6 @@
+<map id="Anvil.API.Events.OnSpellSlotMemorize.Factory" name="Anvil.API.Events.OnSpellSlotMemorize.Factory">
+<area shape="rect" id="node1" title=" " alt="" coords="109,169,277,211"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1HookEventFactory.html" title=" " alt="" coords="129,95,258,121"/>
+<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEventFactory.html" title=" " alt="" coords="5,5,211,47"/>
+<area shape="rect" id="node4" title=" " alt="" coords="235,13,325,39"/>
+</map>

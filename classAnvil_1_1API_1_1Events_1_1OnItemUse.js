@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnItemUse =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnItemUse_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnItemUse_1_1Factory" ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnItemUse.html#ad1d514b8786d04ab20bd539891abfe0e", null ],
     [ "Item", "classAnvil_1_1API_1_1Events_1_1OnItemUse.html#ad928fce3c8c9d9370a10a0e5bc3f06fa", null ],
     [ "ItemPropertyIndex", "classAnvil_1_1API_1_1Events_1_1OnItemUse.html#a3909f44c39fd976ec3a6a5792421ea6d", null ],

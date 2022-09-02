@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnClientConnect =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnClientConnect_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnClientConnect_1_1Factory" ],
     [ "BlockConnection", "classAnvil_1_1API_1_1Events_1_1OnClientConnect.html#ab68b999e184c2a35a94b912b60dc207f", null ],
     [ "CDKey", "classAnvil_1_1API_1_1Events_1_1OnClientConnect.html#ad110294153f8d8c48fd30859bcb6a82b", null ],
     [ "ClientPlatform", "classAnvil_1_1API_1_1Events_1_1OnClientConnect.html#afa87542d352a546bfe5ecaf79df66edd", null ],

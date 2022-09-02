@@ -38,6 +38,7 @@ var classAnvil_1_1API_1_1NwPlaceable =
     [ "OnUnlock", "classAnvil_1_1API_1_1NwPlaceable.html#a5e3bd3bc51a59c1db342ac7005eef2eb", null ],
     [ "OnUsed", "classAnvil_1_1API_1_1NwPlaceable.html#aa2ceb339cc94995c48f9f2f5e40ba9de", null ],
     [ "OnUserDefined", "classAnvil_1_1API_1_1NwPlaceable.html#a87d7958e365c10b27bcc334b23d4ac22", null ],
+    [ "Placeable", "classAnvil_1_1API_1_1NwPlaceable.html#aaf6d273133b1ac46fb3cf7f14b14e74b", null ],
     [ "Rotation", "classAnvil_1_1API_1_1NwPlaceable.html#a77e6b128f26825abacc90b8d7eb8b07b", null ],
     [ "SittingCreature", "classAnvil_1_1API_1_1NwPlaceable.html#ab5c29da9aa4d6400d09303923cc22e05", null ],
     [ "Useable", "classAnvil_1_1API_1_1NwPlaceable.html#a390f08bf0206a2eafd94c42961e0829b", null ]

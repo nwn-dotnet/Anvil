@@ -15,5 +15,6 @@ var classAnvil_1_1API_1_1NwStore =
     [ "MaxBuyPrice", "classAnvil_1_1API_1_1NwStore.html#ab3f69caad7bca34d8f3cd7c14fad5976", null ],
     [ "OnClose", "classAnvil_1_1API_1_1NwStore.html#ad667d9ee294f8df3cbed04204f3bf8f7", null ],
     [ "OnOpen", "classAnvil_1_1API_1_1NwStore.html#ac03e2689fe39cc9246209fdbd32b0c22", null ],
+    [ "Store", "classAnvil_1_1API_1_1NwStore.html#a25527acd046445c2c58d90584294dc61", null ],
     [ "StoreGold", "classAnvil_1_1API_1_1NwStore.html#a1f3ef3169eb5943356362e2b1890e8ed", null ]
 ];

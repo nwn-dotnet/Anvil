@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnSpellInterrupt =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnSpellInterrupt_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnSpellInterrupt_1_1Factory" ],
     [ "ClassIndex", "classAnvil_1_1API_1_1Events_1_1OnSpellInterrupt.html#ae95342c746fdb1b6581ad8914f9585ad", null ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnSpellInterrupt.html#a3c86a1af5a75f2806be35297734fc9aa", null ],
     [ "Domain", "classAnvil_1_1API_1_1Events_1_1OnSpellInterrupt.html#a1d71922b71248c6b2d8b7255b37a0d1b", null ],

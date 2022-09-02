@@ -29,6 +29,7 @@ var classAnvil_1_1API_1_1NwItem =
     [ "Infinite", "classAnvil_1_1API_1_1NwItem.html#a5c80c5dea59eca549e14f784b9bea8ab", null ],
     [ "Inventory", "classAnvil_1_1API_1_1NwItem.html#a22a4f59b9989a20430c27687dc7d1188", null ],
     [ "IsRangedWeapon", "classAnvil_1_1API_1_1NwItem.html#a4345a4b948547afc9033ce7d8fe02d94", null ],
+    [ "Item", "classAnvil_1_1API_1_1NwItem.html#aca85b76368ec62a0714638cef30a1097", null ],
     [ "ItemCharges", "classAnvil_1_1API_1_1NwItem.html#a46a767944407026c43337b5b6e9136b3", null ],
     [ "ItemProperties", "classAnvil_1_1API_1_1NwItem.html#ac67f4a48bcafb0fcb67f328999f1aa13", null ],
     [ "MinEquipLevel", "classAnvil_1_1API_1_1NwItem.html#a6c02d80b471fcb4db3ae1f2573fa0625", null ],

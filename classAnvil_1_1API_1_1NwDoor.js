@@ -12,6 +12,7 @@ var classAnvil_1_1API_1_1NwDoor =
     [ "Serialize", "classAnvil_1_1API_1_1NwDoor.html#a4b6fc70d2defbb5a2ea87111e1ac000e", null ],
     [ "SetBaseSavingThrow", "classAnvil_1_1API_1_1NwDoor.html#a7afa63008b131dcfc127f5c8bff81a96", null ],
     [ "DialogResRef", "classAnvil_1_1API_1_1NwDoor.html#a69488fdc808c170a024dad8e5981304d", null ],
+    [ "Door", "classAnvil_1_1API_1_1NwDoor.html#a1fd5f046f41b723721629867ad1979d0", null ],
     [ "KeyAutoRemoved", "classAnvil_1_1API_1_1NwDoor.html#a53c62807ea7af22b0f43e38a06b9fdf9", null ],
     [ "OnAreaTransitionClick", "classAnvil_1_1API_1_1NwDoor.html#a4b87b5226f3fff02fe02fdbd3a78b2da", null ],
     [ "OnClose", "classAnvil_1_1API_1_1NwDoor.html#a38bcfc82c3cbb0ecc30b4442bc04cabe", null ],

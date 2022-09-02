@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon_1_1Factory" ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#adc9c8728252c5239e9ad3b8d3dc69155", null ],
     [ "DisarmedBy", "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a29469c2ea749caa90dbcb12b8ae20007", null ],
     [ "DisarmedObject", "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a82a44b2e67a82c9a67183ef72a1efdba", null ],

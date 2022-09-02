@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnSpellAction =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnSpellAction_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnSpellAction_1_1Factory" ],
     [ "Caster", "classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a70f89e9c9c64f321c2a9619c50752725", null ],
     [ "CasterLevel", "classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a43a2a641a6440efac1efe8f75abcc7df", null ],
     [ "ClassIndex", "classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a8a67b42769bbd64d5c18d669a32f6580", null ],

@@ -156,6 +156,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "Commandable", "classAnvil_1_1API_1_1NwCreature.html#aaabc876db62edb34803823a86d2ce32d", null ],
     [ "ControllingPlayer", "classAnvil_1_1API_1_1NwCreature.html#aa5fc339b2501374312fda2356bb13f9f", null ],
     [ "CorpseDecayTime", "classAnvil_1_1API_1_1NwCreature.html#a706f361a1aeba80a71fda1a5b77d439e", null ],
+    [ "Creature", "classAnvil_1_1API_1_1NwCreature.html#a2777708de6e23819bf77e2a07b580dee", null ],
     [ "CreatureForceWalkService", "classAnvil_1_1API_1_1NwCreature.html#a865988b3987b9b3b22269ff5ab10ef39", null ],
     [ "CreatureWalkRateCapService", "classAnvil_1_1API_1_1NwCreature.html#a06672b996f9940349fe191adf164a3e4", null ],
     [ "CurrentAction", "classAnvil_1_1API_1_1NwCreature.html#ae3fa9e08b360717bfe4c5e2b72c7e6e4", null ],

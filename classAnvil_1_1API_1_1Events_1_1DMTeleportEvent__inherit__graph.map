@@ -1,6 +1,7 @@
 <map id="Anvil.API.Events.DMTeleportEvent" name="Anvil.API.Events.DMTeleportEvent">
-<area shape="rect" id="node1" title=" " alt="" coords="113,80,302,121"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Events_1_1OnDMJumpAllPlayersToPoint.html" title=" " alt="" coords="5,169,196,211"/>
-<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1Events_1_1OnDMJumpToPoint.html" title=" " alt="" coords="220,169,411,211"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="178,5,237,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="113,155,302,196"/>
+<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1Events_1_1OnDMJumpAllPlayersToPoint.html" title=" " alt="" coords="5,244,196,285"/>
+<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Events_1_1OnDMJumpToPoint.html" title=" " alt="" coords="220,244,411,285"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="170,80,245,107"/>
+<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="178,5,237,32"/>
 </map>

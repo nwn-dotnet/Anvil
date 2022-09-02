@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate_1_1Factory" ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate.html#a81412c6fbac5d0a8b2a9cf824ce88d9a", null ],
     [ "Creature", "classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate.html#a2be3386e1313f90e036011d771447b14", null ],
     [ "EnterOverride", "classAnvil_1_1API_1_1Events_1_1OnStealthModeUpdate.html#aaed64a41ea49a9de0cae096e437b766e", null ],

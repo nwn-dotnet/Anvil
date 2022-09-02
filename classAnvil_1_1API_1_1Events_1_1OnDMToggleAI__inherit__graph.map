@@ -1,5 +1,6 @@
 <map id="Anvil.API.Events.OnDMToggleAI" name="Anvil.API.Events.OnDMToggleAI">
-<area shape="rect" id="node1" title=" " alt="" coords="5,155,216,181"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMGroupTargetEvent.html" title=" " alt="" coords="37,80,184,107"/>
-<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="81,5,140,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,216,256"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMGroupTargetEvent.html" title=" " alt="" coords="37,155,184,181"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="73,80,148,107"/>
+<area shape="rect" id="node4" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="81,5,140,32"/>
 </map>

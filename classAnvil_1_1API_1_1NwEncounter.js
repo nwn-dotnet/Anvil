@@ -13,6 +13,7 @@ var classAnvil_1_1API_1_1NwEncounter =
     [ "CanReset", "classAnvil_1_1API_1_1NwEncounter.html#ae7f8f56510001f66ca4043e83285e52f", null ],
     [ "CreatureList", "classAnvil_1_1API_1_1NwEncounter.html#a46118e0efdadb10a6d805cb0961c9609", null ],
     [ "Difficulty", "classAnvil_1_1API_1_1NwEncounter.html#aa4f88ddf8ce26f66d54da3c462f2322a", null ],
+    [ "Encounter", "classAnvil_1_1API_1_1NwEncounter.html#a59dd1fd9f21fabf8e80d3e1e10904877", null ],
     [ "Faction", "classAnvil_1_1API_1_1NwEncounter.html#a474aef0fa9391f29d138d13842fc4287", null ],
     [ "MaxSpawnedCreatures", "classAnvil_1_1API_1_1NwEncounter.html#a772934dcaa654f176d40083d3a0cbf39", null ],
     [ "MaxSpawns", "classAnvil_1_1API_1_1NwEncounter.html#a02087794f25219aaa05dd2569f34a023", null ],

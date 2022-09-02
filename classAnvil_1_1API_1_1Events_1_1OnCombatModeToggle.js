@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnCombatModeToggle =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnCombatModeToggle_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnCombatModeToggle_1_1Factory" ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnCombatModeToggle.html#ae996ae200bb76af66432350355f92dd4", null ],
     [ "Creature", "classAnvil_1_1API_1_1Events_1_1OnCombatModeToggle.html#ada2593f5943a9a37d905497cb916b626", null ],
     [ "ForceNewMode", "classAnvil_1_1API_1_1Events_1_1OnCombatModeToggle.html#a4593ef7a77fed1a29cd4d14a023606d1", null ],

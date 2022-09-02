@@ -1,4 +1,5 @@
 <map id="Anvil.API.Events.OnDMJumpTargetToPoint" name="Anvil.API.Events.OnDMJumpTargetToPoint">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,196,121"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="71,5,130,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,155,196,196"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="63,80,138,107"/>
+<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="71,5,130,32"/>
 </map>

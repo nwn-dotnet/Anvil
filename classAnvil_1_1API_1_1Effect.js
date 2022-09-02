@@ -90,6 +90,7 @@ var classAnvil_1_1API_1_1Effect =
     [ "TurnResistanceIncrease", "classAnvil_1_1API_1_1Effect.html#aefdf9f6fb69690625e4c6d836ff26a04", null ],
     [ "Ultravision", "classAnvil_1_1API_1_1Effect.html#a5044c4f008cdb63f28588fafcd805311", null ],
     [ "VisualEffect", "classAnvil_1_1API_1_1Effect.html#a82ce8998ee7c40a84e81cd2d590298d6", null ],
+    [ "VisualEffect", "classAnvil_1_1API_1_1Effect.html#a918a45ca4d9356c320fc6595f798a045", null ],
     [ "DurationRemaining", "classAnvil_1_1API_1_1Effect.html#ae26ed0277c809d94b51f1bd6e124a6f2", null ],
     [ "DurationType", "classAnvil_1_1API_1_1Effect.html#a2b46e79fd198199fc0d11e37cfddd920", null ],
     [ "EffectType", "classAnvil_1_1API_1_1Effect.html#a982263f51ba5cb67fcd40ba5e2e17720", null ],

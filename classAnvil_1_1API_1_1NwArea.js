@@ -29,6 +29,7 @@ var classAnvil_1_1API_1_1NwArea =
     [ "AmbientDayVolume", "classAnvil_1_1API_1_1NwArea.html#af9fc47c1ce9284047020b56044afe5a4", null ],
     [ "AmbientNightTrack", "classAnvil_1_1API_1_1NwArea.html#ad2b42e124c8144030aa0eb1b5456bd2e", null ],
     [ "AmbientNightVolume", "classAnvil_1_1API_1_1NwArea.html#aee72d42a6d9be7c63d76ec93391985d9", null ],
+    [ "Area", "classAnvil_1_1API_1_1NwArea.html#abb73a908486c4b0126e56b2ab74c6911", null ],
     [ "AreaFlags", "classAnvil_1_1API_1_1NwArea.html#a4ba2d2f13f420fcc2fe731543cd8ba8c", null ],
     [ "DayNightMode", "classAnvil_1_1API_1_1NwArea.html#a2ef95bc8dfee1b10cb58b7507977eeec", null ],
     [ "FogClipDistance", "classAnvil_1_1API_1_1NwArea.html#a940991567b58008bee4a676d9f60b43c", null ],

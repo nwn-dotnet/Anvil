@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnCreatureAttack =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnCreatureAttack_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnCreatureAttack_1_1Factory" ],
     [ "Attacker", "classAnvil_1_1API_1_1Events_1_1OnCreatureAttack.html#aa2cc0dc8d49481679ee1480410d38c2b", null ],
     [ "AttackModifier", "classAnvil_1_1API_1_1Events_1_1OnCreatureAttack.html#ab9a45e21d0c604c52265423350105b84", null ],
     [ "AttackNumber", "classAnvil_1_1API_1_1Events_1_1OnCreatureAttack.html#a164b4f4957516c2ef833dd11565c1fd8", null ],

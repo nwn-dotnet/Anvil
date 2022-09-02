@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnSpellSlotClear =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnSpellSlotClear_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnSpellSlotClear_1_1Factory" ],
     [ "ClassIndex", "classAnvil_1_1API_1_1Events_1_1OnSpellSlotClear.html#ae766b3234294949c6b686d29c776a6df", null ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnSpellSlotClear.html#a2b11462b269d8192c21566d7816b6633", null ],
     [ "Creature", "classAnvil_1_1API_1_1Events_1_1OnSpellSlotClear.html#a79de7f97b1e117aa91d37c4785d79d62", null ],

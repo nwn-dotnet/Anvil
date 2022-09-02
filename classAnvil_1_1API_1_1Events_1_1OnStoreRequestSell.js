@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnStoreRequestSell =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestSell_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestSell_1_1Factory" ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestSell.html#a19f6149d214e75be18b1bc4f19cf6d5a", null ],
     [ "Creature", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestSell.html#add3871a95ee8066dfce555163feff705", null ],
     [ "Item", "classAnvil_1_1API_1_1Events_1_1OnStoreRequestSell.html#a2e7ee95d78bda9a2549e878742b72edd", null ],

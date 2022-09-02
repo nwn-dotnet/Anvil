@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnUseFeat =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnUseFeat_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnUseFeat_1_1Factory" ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnUseFeat.html#a95a21a4b1d212d4e3417f03140220eee", null ],
     [ "Creature", "classAnvil_1_1API_1_1Events_1_1OnUseFeat.html#a030761ca424c043fc13ddade2f1d7bc2", null ],
     [ "Feat", "classAnvil_1_1API_1_1Events_1_1OnUseFeat.html#a847b4acfbdedec689e2237a62a53c681", null ],

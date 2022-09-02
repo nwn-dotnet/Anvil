@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Events_1_1OnEffectApply =
 [
+    [ "Factory", "classAnvil_1_1API_1_1Events_1_1OnEffectApply_1_1Factory.html", "classAnvil_1_1API_1_1Events_1_1OnEffectApply_1_1Factory" ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1OnEffectApply.html#acb0f699a53f9f72c7a33c5b693a46d49", null ],
     [ "Effect", "classAnvil_1_1API_1_1Events_1_1OnEffectApply.html#acfb44656b61c56cecf99412df0cddf02", null ],
     [ "Object", "classAnvil_1_1API_1_1Events_1_1OnEffectApply.html#a402ecdb90506b6daf9681f2c86d51539", null ],

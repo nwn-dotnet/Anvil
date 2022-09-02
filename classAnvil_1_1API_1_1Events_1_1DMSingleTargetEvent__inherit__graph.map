@@ -1,9 +1,10 @@
 <map id="Anvil.API.Events.DMSingleTargetEvent" name="Anvil.API.Events.DMSingleTargetEvent">
-<area shape="rect" id="node1" title=" " alt="" coords="112,99,291,141"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Events_1_1OnDMDisableTrap.html" title=" " alt="" coords="339,5,567,32"/>
-<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1Events_1_1OnDMGoTo.html" title=" " alt="" coords="357,56,548,83"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Events_1_1OnDMPossess.html" title=" " alt="" coords="347,107,558,133"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1Events_1_1OnDMPossessFullPower.html" title=" " alt="" coords="347,158,558,199"/>
-<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1Events_1_1OnDMToggleLock.html" title=" " alt="" coords="339,224,566,251"/>
-<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="5,107,64,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="235,99,413,141"/>
+<area shape="rect" id="node4" href="$classAnvil_1_1API_1_1Events_1_1OnDMDisableTrap.html" title=" " alt="" coords="461,5,689,32"/>
+<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Events_1_1OnDMGoTo.html" title=" " alt="" coords="480,56,671,83"/>
+<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1Events_1_1OnDMPossess.html" title=" " alt="" coords="470,107,681,133"/>
+<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1Events_1_1OnDMPossessFullPower.html" title=" " alt="" coords="470,158,681,199"/>
+<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1Events_1_1OnDMToggleLock.html" title=" " alt="" coords="462,224,689,251"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1Events_1_1DMEvent.html" title=" " alt="" coords="112,107,187,133"/>
+<area shape="rect" id="node3" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="5,107,64,133"/>
 </map>
