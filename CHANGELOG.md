@@ -14,7 +14,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...HEAD
 ### Package Updates
 - NWN.Core 8193.34.6 -> 8193.34.7
 - LightInject 6.4.1 -> 6.5.1
-- NLog 5.0.1 -> 5.0.2
+- NLog 5.0.1 -> 5.0.4
 - NWNX 5ade7de -> 8faa9d4
 
 ### Changed
