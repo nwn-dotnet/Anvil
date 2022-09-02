@@ -20,7 +20,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => EquippedBy;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<RunEquipHook> Hook { get; set; } = null!;
 

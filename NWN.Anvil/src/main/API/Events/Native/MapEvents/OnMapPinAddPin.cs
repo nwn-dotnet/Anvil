@@ -34,7 +34,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => Player.ControlledCreature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<HandleMapPinSetMapPinAtMessageHook> Hook { get; set; } = null!;
 

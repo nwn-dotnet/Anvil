@@ -16,7 +16,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => null;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<RemoveGoldHook> Hook { get; set; } = null!;
 

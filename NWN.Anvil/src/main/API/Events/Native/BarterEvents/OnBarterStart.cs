@@ -14,7 +14,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => Initiator.ControlledCreature;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<StartBarterHook> Hook { get; set; } = null!;
 

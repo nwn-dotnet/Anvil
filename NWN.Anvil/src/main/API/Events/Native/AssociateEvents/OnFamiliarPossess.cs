@@ -13,7 +13,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Owner;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<PossessFamiliarHook> Hook { get; set; } = null!;
 

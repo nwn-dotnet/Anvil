@@ -19,7 +19,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => DisarmedObject;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<ApplyDisarmHook> Hook { get; set; } = null!;
 

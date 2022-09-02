@@ -28,7 +28,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Object;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<EffectAppliedHook> Hook { get; set; } = null!;
 

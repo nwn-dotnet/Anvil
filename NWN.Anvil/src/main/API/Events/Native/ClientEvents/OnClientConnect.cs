@@ -55,7 +55,7 @@ namespace Anvil.API.Events
 
     NwObject? IEvent.Context => null;
 
-    internal sealed class Factory : HookEventFactory
+    public sealed class Factory : HookEventFactory
     {
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
