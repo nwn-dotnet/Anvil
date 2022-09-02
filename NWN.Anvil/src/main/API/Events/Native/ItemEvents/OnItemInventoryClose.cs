@@ -22,7 +22,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => ClosedBy;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<CloseInventoryHook> Hook { get; set; } = null!;
 

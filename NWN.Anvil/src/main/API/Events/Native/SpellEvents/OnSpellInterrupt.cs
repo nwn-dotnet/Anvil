@@ -23,7 +23,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => InterruptedCaster;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<OnEffectAppliedHook> Hook { get; set; } = null!;
 

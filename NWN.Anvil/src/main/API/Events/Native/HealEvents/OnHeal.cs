@@ -25,7 +25,7 @@ namespace Anvil.API.Events
 
     NwObject IEvent.Context => Healer;
 
-    internal sealed unsafe class Factory : HookEventFactory
+    public sealed unsafe class Factory : HookEventFactory
     {
       private static FunctionHook<OnApplyHealHook> Hook { get; set; } = null!;
 

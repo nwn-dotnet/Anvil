@@ -6,7 +6,7 @@ using NWN.Native.API;
 
 namespace Anvil.API.Events
 {
-  internal sealed unsafe class DebugEventFactory : HookEventFactory
+  public sealed unsafe class DebugEventFactory : HookEventFactory
   {
     private static FunctionHook<HandlePlayerToServerCheatMessageHook> Hook { get; set; } = null!;
 
