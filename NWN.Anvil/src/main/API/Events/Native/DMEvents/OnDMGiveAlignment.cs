@@ -3,19 +3,13 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public sealed class OnDMGiveAlignment : IEvent
+  public sealed class OnDMGiveAlignment : DMEvent
   {
     public Alignment Alignment { get; internal init; }
 
     public int Amount { get; internal init; }
 
-    public NwPlayer DungeonMaster { get; internal init; } = null!;
-
-    public bool Skip { get; set; }
-
     public NwObject Target { get; internal init; } = null!;
-
-    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 }
 

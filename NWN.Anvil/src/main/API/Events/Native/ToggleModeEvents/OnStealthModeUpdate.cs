@@ -56,7 +56,7 @@ namespace Anvil.API.Events
 
       private static void HandleEnterStealth(CNWSCreature creature, byte nStealthMode)
       {
-        OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
+        OnStealthModeUpdate eventData = ProcessEvent(EventCallbackType.Before, new OnStealthModeUpdate
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           EventType = ToggleModeEventType.Enter,
@@ -77,11 +77,13 @@ namespace Anvil.API.Events
             Hook.CallOriginal(creature, nStealthMode);
             break;
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
 
       private static void HandleExitStealth(CNWSCreature creature, byte nStealthMode)
       {
-        OnStealthModeUpdate eventData = ProcessEvent(new OnStealthModeUpdate
+        OnStealthModeUpdate eventData = ProcessEvent(EventCallbackType.Before, new OnStealthModeUpdate
         {
           Creature = creature.ToNwObject<NwCreature>()!,
           EventType = ToggleModeEventType.Exit,
@@ -95,6 +97,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(creature, nStealthMode);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
 
       [UnmanagedCallersOnly]

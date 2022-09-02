@@ -38,13 +38,16 @@ namespace Anvil.API.Events
           return Hook.CallOriginal(pItemRepository, pItem);
         }
 
-        ProcessEvent(new OnInventoryItemRemove
+        OnInventoryItemRemove eventData = ProcessEvent(EventCallbackType.Before, new OnInventoryItemRemove
         {
           RemovedFrom = parent,
           Item = CNWSItem.FromPointer(pItem).ToNwObject<NwItem>()!,
         });
 
-        return Hook.CallOriginal(pItemRepository, pItem);
+        int retVal = Hook.CallOriginal(pItemRepository, pItem);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

@@ -37,7 +37,7 @@ namespace Anvil.Services
       }
     }
 
-    public TEvent ProcessEvent<TEvent>(TEvent eventData)
+    public TEvent ProcessEvent<TEvent>(EventCallbackType eventCallbackType, TEvent eventData)
       where TEvent : IEvent
     {
       if (!eventHandlers.TryGetValue(eventData.GetType(), out EventHandler? handler))
@@ -45,18 +45,18 @@ namespace Anvil.Services
         return eventData;
       }
 
-      handler.ProcessEvent(eventData);
+      handler.ProcessEvent(eventData, eventCallbackType);
       return eventData;
     }
 
-    public void Subscribe<TEvent, TFactory>(NwObject? nwObject, Action<TEvent> handler)
+    public void Subscribe<TEvent, TFactory>(NwObject? nwObject, Action<TEvent> handler, EventCallbackType eventCallbackType = EventCallbackType.Before)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory<NullRegistrationData>
     {
-      Subscribe<TEvent, TFactory, NullRegistrationData>(nwObject, default, handler);
+      Subscribe<TEvent, TFactory, NullRegistrationData>(nwObject, default, handler, eventCallbackType);
     }
 
-    public void Subscribe<TEvent, TFactory, TRegData>(NwObject? nwObject, TRegData registrationData, Action<TEvent> handler)
+    public void Subscribe<TEvent, TFactory, TRegData>(NwObject? nwObject, TRegData registrationData, Action<TEvent> handler, EventCallbackType eventCallbackType = EventCallbackType.Before)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory<TRegData>
     {
@@ -65,28 +65,28 @@ namespace Anvil.Services
         return;
       }
 
-      AddObjectHandler(nwObject, handler);
+      AddObjectHandler(nwObject, handler, eventCallbackType);
       TFactory? factory = GetEventFactory<TFactory>();
       factory?.Register<TEvent>(registrationData);
     }
 
-    public void SubscribeAll<TEvent, TFactory>(Action<TEvent> handler)
+    public void SubscribeAll<TEvent, TFactory>(Action<TEvent> handler, EventCallbackType eventCallbackType = EventCallbackType.Before)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory<NullRegistrationData>
     {
-      SubscribeAll<TEvent, TFactory, NullRegistrationData>(default, handler);
+      SubscribeAll<TEvent, TFactory, NullRegistrationData>(default, handler, eventCallbackType);
     }
 
-    public void SubscribeAll<TEvent, TFactory, TRegData>(TRegData registrationData, Action<TEvent> handler)
+    public void SubscribeAll<TEvent, TFactory, TRegData>(TRegData registrationData, Action<TEvent> handler, EventCallbackType eventCallbackType = EventCallbackType.Before)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory<TRegData>
     {
-      AddGlobalHandler(handler);
+      AddGlobalHandler(handler, eventCallbackType);
       TFactory? factory = GetEventFactory<TFactory>();
       factory?.Register<TEvent>(registrationData);
     }
 
-    public void Unsubscribe<TEvent, TFactory>(NwObject? nwObject, Action<TEvent> handler)
+    public void Unsubscribe<TEvent, TFactory>(NwObject? nwObject, Action<TEvent> handler, EventCallbackType eventCallbackType = EventCallbackType.Before)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory
     {
@@ -95,30 +95,30 @@ namespace Anvil.Services
         return;
       }
 
-      RemoveObjectHandler(nwObject, handler);
+      RemoveObjectHandler(nwObject, handler, eventCallbackType);
       TryCleanupHandler<TEvent, TFactory>();
     }
 
-    public void UnsubscribeAll<TEvent, TFactory>(Action<TEvent> handler)
+    public void UnsubscribeAll<TEvent, TFactory>(Action<TEvent> handler, EventCallbackType eventCallbackType = EventCallbackType.Before)
       where TEvent : IEvent, new()
       where TFactory : IEventFactory
     {
-      RemoveGlobalHandler(handler);
+      RemoveGlobalHandler(handler, eventCallbackType);
       TryCleanupHandler<TEvent, TFactory>();
     }
 
-    private void AddGlobalHandler<TEvent>(Action<TEvent> handler)
+    private void AddGlobalHandler<TEvent>(Action<TEvent> handler, EventCallbackType eventCallbackType)
       where TEvent : IEvent
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
-      eventHandler.SubscribeAll(handler);
+      eventHandler.SubscribeAll(handler, eventCallbackType);
     }
 
-    private void AddObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler)
+    private void AddObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler, EventCallbackType eventCallbackType)
       where TEvent : IEvent
     {
       EventHandler<TEvent> eventHandler = GetEventHandler<TEvent>(true);
-      eventHandler.Subscribe(nwObject, handler);
+      eventHandler.Subscribe(nwObject, handler, eventCallbackType);
     }
 
     private TFactory? GetEventFactory<TFactory>() where TFactory : IEventFactory
@@ -145,18 +145,18 @@ namespace Anvil.Services
       return (EventHandler<TEvent>?)handler;
     }
 
-    private void RemoveGlobalHandler<TEvent>(Action<TEvent> handler)
+    private void RemoveGlobalHandler<TEvent>(Action<TEvent> handler, EventCallbackType eventCallbackType)
       where TEvent : IEvent
     {
       EventHandler<TEvent>? eventHandler = GetEventHandler<TEvent>(false);
-      eventHandler?.UnsubscribeAll(handler);
+      eventHandler?.UnsubscribeAll(handler, eventCallbackType);
     }
 
-    private void RemoveObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler)
+    private void RemoveObjectHandler<TEvent>(NwObject nwObject, Action<TEvent> handler, EventCallbackType eventCallbackType)
       where TEvent : IEvent
     {
       EventHandler<TEvent>? eventHandler = GetEventHandler<TEvent>(false);
-      eventHandler?.Unsubscribe(nwObject, handler);
+      eventHandler?.Unsubscribe(nwObject, handler, eventCallbackType);
     }
 
     private void TryCleanupHandler<TEvent, TFactory>()

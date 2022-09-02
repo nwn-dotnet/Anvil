@@ -28,14 +28,13 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnLevelUpAutomatic(void* pCreatureStats, byte nClass, int bReadyAllSpells, byte nPackage)
       {
-        Hook.CallOriginal(pCreatureStats, nClass, bReadyAllSpells, nPackage);
-
-        CNWSCreatureStats creatureStats = CNWSCreatureStats.FromPointer(pCreatureStats);
-
-        ProcessEvent(new OnLevelUpAutomatic
+        OnLevelUpAutomatic eventData = ProcessEvent(EventCallbackType.Before, new OnLevelUpAutomatic
         {
-          Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
+          Creature = CNWSCreatureStats.FromPointer(pCreatureStats).m_pBaseCreature.ToNwObject<NwCreature>()!,
         });
+
+        Hook.CallOriginal(pCreatureStats, nClass, bReadyAllSpells, nPackage);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

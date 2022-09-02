@@ -3,15 +3,9 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public abstract class DMSingleTargetEvent : IEvent
+  public abstract class DMSingleTargetEvent : DMEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; } = null!;
-
-    public bool Skip { get; set; }
-
     public NwObject Target { get; internal init; } = null!;
-
-    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 
   public sealed class OnDMGoTo : DMSingleTargetEvent {}

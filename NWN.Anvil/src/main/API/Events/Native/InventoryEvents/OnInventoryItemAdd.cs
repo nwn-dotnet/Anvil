@@ -55,9 +55,12 @@ namespace Anvil.API.Events
         };
 
         eventData.Result = new Lazy<bool>(() => !eventData.PreventItemAdd && Hook.CallOriginal(pItemRepository, ppItem, x, y, z, bAllowEncumbrance, bMergeItem).ToBool());
-        ProcessEvent(eventData);
+        ProcessEvent(EventCallbackType.Before, eventData);
 
-        return eventData.Result.Value.ToInt();
+        int retVal = eventData.Result.Value.ToInt();
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

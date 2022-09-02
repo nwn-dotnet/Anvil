@@ -3,15 +3,9 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public sealed class OnDMSpawnTrapOnObject : IEvent
+  public sealed class OnDMSpawnTrapOnObject : DMEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; } = null!;
-
-    public bool Skip { get; set; }
-
     public NwStationary Target { get; internal init; } = null!;
-
-    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 }
 

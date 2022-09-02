@@ -32,7 +32,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnExamineTrap(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess)
       {
-        ProcessEvent(new OnExamineTrap
+        OnExamineTrap eventData = ProcessEvent(EventCallbackType.Before, new OnExamineTrap
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
           ExaminedObject = oidTrap.ToNwObject<NwGameObject>()!,
@@ -40,6 +40,7 @@ namespace Anvil.API.Events
         });
 
         Hook.CallOriginal(pMessage, pPlayer, oidTrap, pCreature, bSuccess);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

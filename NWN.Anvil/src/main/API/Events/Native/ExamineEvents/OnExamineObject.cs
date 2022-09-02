@@ -49,49 +49,53 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnCreatureExamine(void* pMessage, void* pPlayer, uint oidCreature)
       {
-        ProcessEvent(new OnExamineObject
+        OnExamineObject eventData = ProcessEvent(EventCallbackType.Before, new OnExamineObject
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
           ExaminedObject = oidCreature.ToNwObject<NwCreature>()!,
         });
 
         creatureExamineHook.CallOriginal(pMessage, pPlayer, oidCreature);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
 
       [UnmanagedCallersOnly]
       private static void OnDoorExamine(void* pMessage, void* pPlayer, uint oidDoor)
       {
-        ProcessEvent(new OnExamineObject
+        OnExamineObject eventData = ProcessEvent(EventCallbackType.Before, new OnExamineObject
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
           ExaminedObject = oidDoor.ToNwObject<NwDoor>()!,
         });
 
         doorExamineHook.CallOriginal(pMessage, pPlayer, oidDoor);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
 
       [UnmanagedCallersOnly]
       private static void OnItemExamine(void* pMessage, void* pPlayer, uint oidItem)
       {
-        ProcessEvent(new OnExamineObject
+        OnExamineObject eventData = ProcessEvent(EventCallbackType.Before, new OnExamineObject
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
           ExaminedObject = oidItem.ToNwObject<NwItem>()!,
         });
 
         itemExamineHook.CallOriginal(pMessage, pPlayer, oidItem);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
 
       [UnmanagedCallersOnly]
       private static void OnPlaceableExamine(void* pMessage, void* pPlayer, uint oidPlaceable)
       {
-        ProcessEvent(new OnExamineObject
+        OnExamineObject eventData = ProcessEvent(EventCallbackType.Before, new OnExamineObject
         {
           ExaminedBy = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
           ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>()!,
         });
 
         placeableExamineHook.CallOriginal(pMessage, pPlayer, oidPlaceable);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

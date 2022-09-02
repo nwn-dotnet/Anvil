@@ -37,7 +37,7 @@ namespace Anvil.API.Events
       {
         CNWSCreatureStats creatureStats = CNWSCreatureStats.FromPointer(pCreatureStats);
 
-        OnSpellSlotClear eventData = ProcessEvent(new OnSpellSlotClear
+        OnSpellSlotClear eventData = ProcessEvent(EventCallbackType.Before, new OnSpellSlotClear
         {
           Creature = creatureStats.m_pBaseCreature.ToNwObject<NwCreature>()!,
           ClassIndex = nMultiClass,
@@ -49,6 +49,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pCreatureStats, nMultiClass, nSpellLevel, nSpellSlot);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

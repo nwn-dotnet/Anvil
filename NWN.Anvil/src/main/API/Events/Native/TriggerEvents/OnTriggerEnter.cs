@@ -51,9 +51,9 @@ namespace Anvil.API.Events
         return new IDisposable[] { Hook };
       }
 
-      private static bool HandleEnter(CNWSTrigger trigger, CScriptEvent scriptEvent)
+      private static OnTriggerEnter HandleEnter(CNWSTrigger trigger, CScriptEvent scriptEvent)
       {
-        OnTriggerEnter eventData = ProcessEvent(new OnTriggerEnter
+        OnTriggerEnter eventData = ProcessEvent(EventCallbackType.Before, new OnTriggerEnter
         {
           Trigger = trigger.ToNwObject<NwTrigger>()!,
           EnteredObject = scriptEvent.GetObjectID(0).ToNwObject<NwGameObject>()!,
@@ -61,12 +61,13 @@ namespace Anvil.API.Events
           IsTrapForceSet = scriptEvent.GetInteger(0).ToBool(),
         });
 
-        return eventData.Skip;
+        return eventData;
       }
 
       [UnmanagedCallersOnly]
       private static void OnTriggerEventHandler(void* pTrigger, uint nEventId, uint nCallerObjectId, void* pScript, uint nCalendarDay, uint nTimeOfDay)
       {
+        OnTriggerEnter? eventData = null;
         if (nEventId == (uint)AIMasterEvent.SignalEvent)
         {
           CNWSTrigger trigger = CNWSTrigger.FromPointer(pTrigger);
@@ -75,10 +76,12 @@ namespace Anvil.API.Events
           switch ((ScriptEvent)scriptEvent.m_nType)
           {
             case ScriptEvent.OnObjectEnter:
-              if (HandleEnter(trigger, scriptEvent))
+              eventData = HandleEnter(trigger, scriptEvent);
+              if (eventData.Skip)
               {
                 scriptEvent = CScriptEvent.FromPointer(pScript, true);
                 scriptEvent.Dispose();
+                ProcessEvent(EventCallbackType.After, eventData);
                 return;
               }
 
@@ -87,6 +90,7 @@ namespace Anvil.API.Events
         }
 
         Hook.CallOriginal(pTrigger, nEventId, nCallerObjectId, pScript, nCalendarDay, nTimeOfDay);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

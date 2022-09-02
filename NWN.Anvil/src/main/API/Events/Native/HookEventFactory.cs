@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Anvil.Services;
 
 namespace Anvil.API.Events
@@ -40,15 +41,24 @@ namespace Anvil.API.Events
       }
     }
 
-    protected static TEvent ProcessEvent<TEvent>(TEvent eventData, bool executeInScriptContext = true) where TEvent : IEvent
+    [return: NotNullIfNotNull("eventData")]
+    protected static TEvent? ProcessEvent<TEvent>(EventCallbackType eventType, TEvent? eventData, bool executeInScriptContext = true) where TEvent : class, IEvent
     {
+      if (eventData == null)
+      {
+        return null;
+      }
+
       if (executeInScriptContext)
       {
-        VirtualMachine.ExecuteInScriptContext(() => { eventData = EventService.Value.ProcessEvent(eventData); }, eventData.Context);
+        VirtualMachine.ExecuteInScriptContext(() =>
+        {
+          eventData = EventService.Value.ProcessEvent(eventType, eventData);
+        }, eventData.Context);
       }
       else
       {
-        EventService.Value.ProcessEvent(eventData);
+        EventService.Value.ProcessEvent(eventType, eventData);
       }
 
       return eventData;

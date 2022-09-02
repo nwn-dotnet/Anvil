@@ -35,12 +35,13 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnRemovePCFromWorld(void* pServerExoAppInternal, void* pPlayer)
       {
-        ProcessEvent(new OnClientDisconnect
+        OnClientDisconnect eventData = ProcessEvent(EventCallbackType.Before, new OnClientDisconnect
         {
           Player = CNWSPlayer.FromPointer(pPlayer).ToNwPlayer()!,
         });
 
         Hook.CallOriginal(pServerExoAppInternal, pPlayer);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

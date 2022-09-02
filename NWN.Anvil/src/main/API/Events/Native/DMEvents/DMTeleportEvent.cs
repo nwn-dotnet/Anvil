@@ -4,17 +4,11 @@ using Anvil.API.Events;
 
 namespace Anvil.API.Events
 {
-  public abstract class DMTeleportEvent : IEvent
+  public abstract class DMTeleportEvent : DMEvent
   {
-    public NwPlayer DungeonMaster { get; internal init; } = null!;
-
-    public bool Skip { get; set; }
-
     public NwArea TargetArea { get; internal init; } = null!;
 
     public Vector3 TargetPosition { get; internal init; }
-
-    NwObject? IEvent.Context => DungeonMaster.LoginCreature;
   }
 
   public sealed class OnDMJumpToPoint : DMTeleportEvent {}

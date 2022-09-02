@@ -29,13 +29,14 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnRemoveAssociate(void* pCreature, uint oidAssociate)
       {
-        ProcessEvent(new OnAssociateRemove
+        OnAssociateRemove eventData = ProcessEvent(EventCallbackType.Before, new OnAssociateRemove
         {
           Owner = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Associate = oidAssociate.ToNwObject<NwCreature>()!,
         });
 
         Hook.CallOriginal(pCreature, oidAssociate);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

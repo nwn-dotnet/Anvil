@@ -32,13 +32,14 @@ namespace Anvil.API.Events
       {
         CNWSCombatRound combatRound = CNWSCombatRound.FromPointer(pCombatRound);
 
-        ProcessEvent(new OnCombatRoundStart
+        OnCombatRoundStart eventData = ProcessEvent(EventCallbackType.Before, new OnCombatRoundStart
         {
           Creature = combatRound.m_pBaseCreature.ToNwObject<NwCreature>()!,
           Target = oidTarget.ToNwObject<NwGameObject>()!,
         });
 
         Hook.CallOriginal(pCombatRound, oidTarget);
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }

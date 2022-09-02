@@ -120,31 +120,33 @@ namespace Anvil.API.Events
         CNWSBarter? barter = player.ControlledCreature?.Creature.GetBarterInfo(0);
 
         // We only need to run the END on a CANCEL BARTER for the initiator
+        OnBarterEnd? eventData = null;
         if (barter != null && barter.m_bInitiator.ToBool() && !bAccepted.ToBool())
         {
-          OnBarterEnd? eventData = GetBarterEventData(barter, bAccepted.ToBool());
-          if (eventData != null)
-          {
-            ProcessEvent(eventData);
-          }
+          eventData = GetBarterEventData(barter, bAccepted.ToBool());
         }
 
-        return sendServerToPlayerBarterCloseBarterHook.CallOriginal(pMessage, nInitiatorId, nRecipientId, bAccepted);
+        ProcessEvent(EventCallbackType.Before, eventData);
+        int retVal = sendServerToPlayerBarterCloseBarterHook.CallOriginal(pMessage, nInitiatorId, nRecipientId, bAccepted);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
 
       [UnmanagedCallersOnly]
       private static int OnSetListAccepted(void* pBarter, int bAccepted)
       {
+        OnBarterEnd? eventData = null;
         if (pBarter != null && bAccepted.ToBool())
         {
-          OnBarterEnd? eventData = GetBarterEventData(CNWSBarter.FromPointer(pBarter), bAccepted.ToBool());
-          if (eventData != null)
-          {
-            ProcessEvent(eventData);
-          }
+          eventData = GetBarterEventData(CNWSBarter.FromPointer(pBarter), bAccepted.ToBool());
         }
 
-        return setListAcceptedHook.CallOriginal(pBarter, bAccepted);
+        ProcessEvent(EventCallbackType.Before, eventData);
+        int retVal = setListAcceptedHook.CallOriginal(pBarter, bAccepted);
+        ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

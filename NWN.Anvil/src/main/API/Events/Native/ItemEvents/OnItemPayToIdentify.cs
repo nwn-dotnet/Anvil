@@ -33,7 +33,7 @@ namespace Anvil.API.Events
       [UnmanagedCallersOnly]
       private static void OnPayToIdentifyItem(void* pCreature, uint oidItem, uint oidStore)
       {
-        OnItemPayToIdentify eventData = ProcessEvent(new OnItemPayToIdentify
+        OnItemPayToIdentify eventData = ProcessEvent(EventCallbackType.Before, new OnItemPayToIdentify
         {
           Creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>()!,
           Item = oidItem.ToNwObject<NwItem>()!,
@@ -44,6 +44,8 @@ namespace Anvil.API.Events
         {
           Hook.CallOriginal(pCreature, oidItem, oidStore);
         }
+
+        ProcessEvent(EventCallbackType.After, eventData);
       }
     }
   }
