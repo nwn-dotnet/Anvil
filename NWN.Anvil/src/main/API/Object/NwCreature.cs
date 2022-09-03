@@ -714,6 +714,11 @@ namespace Anvil.API
     public sbyte ShieldCheckPenalty => (sbyte)Creature.m_pStats.m_nShieldCheckPenalty;
 
     /// <summary>
+    /// Gets the placeable object (if any) that this creature is currently sitting in.
+    /// </summary>
+    public NwPlaceable? SittingObject => Creature.m_oidSittingObject.ToNwObject<NwPlaceable>();
+
+    /// <summary>
     /// Gets or sets the size of this creature.
     /// </summary>
     public CreatureSize Size
