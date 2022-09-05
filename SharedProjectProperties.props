@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!--When changing target frameworks, make sure to update Anvil.Internal.Assemblies.TargetFrameworks-->
+    <TargetFramework>net6.0</TargetFramework>
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <SourceControlInformationFeatureSupported>true</SourceControlInformationFeatureSupported>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NWN.Core" Version="8193.34.7" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.34.4" PrivateAssets="compile" />
+  </ItemGroup>
+</Project>

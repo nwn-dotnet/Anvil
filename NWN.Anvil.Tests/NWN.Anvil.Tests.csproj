@@ -1,21 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <!--Shared Project Properties-->
+  <Import Project="$(ProjectDir)../SharedProjectProperties.props"/>
+
+  <!--Build-->
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-
-    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-
     <NoWarn>1591</NoWarn>
-    <Nullable>enable</Nullable>
-
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <RootNamespace>Anvil.Tests</RootNamespace>
+
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -39,11 +33,6 @@
       <Private>false</Private>
       <ExcludeAssets>runtime</ExcludeAssets>
     </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NWN.Native" Version="8193.34.4" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Core" Version="8193.34.7" PrivateAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>

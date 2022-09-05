@@ -1,20 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <!--Shared Project Properties-->
+  <Import Project="$(ProjectDir)../SharedProjectProperties.props"/>
+
+  <!--Build-->
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-
-    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
-
     <NoWarn>1591</NoWarn>
-
     <RootNamespace>Anvil.TestRunner</RootNamespace>
   </PropertyGroup>
 
+  <!--Package-->
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 

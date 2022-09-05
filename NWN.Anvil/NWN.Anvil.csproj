@@ -1,27 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <!--Shared Project Properties-->
+  <Import Project="$(ProjectDir)../SharedProjectProperties.props"/>
+
   <!--Build-->
   <PropertyGroup>
-    <!--When changing target frameworks, make sure to update Anvil.Internal.Assemblies.TargetFrameworks-->
-    <TargetFramework>net6.0</TargetFramework>
-    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-
-    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <SourceControlInformationFeatureSupported>true</SourceControlInformationFeatureSupported>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-
     <NoWarn>1591</NoWarn>
-    <Nullable>enable</Nullable>
-
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Configurations>Debug;Release</Configurations>
-    <Platforms>AnyCPU</Platforms>
-
     <RootNamespace>Anvil</RootNamespace>
+
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <!--Package-->
@@ -61,8 +49,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NLog" Version="5.0.4" />
     <PackageReference Include="Paket.Core" Version="7.1.5" PrivateAssets="all" />
-    <PackageReference Include="NWN.Core" Version="8193.34.7" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.34.4" PrivateAssets="compile" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
   </ItemGroup>
 
