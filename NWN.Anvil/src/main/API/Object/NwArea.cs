@@ -435,6 +435,15 @@ namespace Anvil.API
       set => Area.m_nWindAmount = value;
     }
 
+    /// <summary>
+    /// Gets or sets the loadscreen for this area.<br/>
+    /// </summary>
+    public ushort LoadScreen
+    {
+      get => Area.m_nLoadScreenID;
+      set => Area.m_nLoadScreenID = value;
+    }
+
     internal override CNWSScriptVarTable ScriptVarTable => Area.m_ScriptVars;
 
     /// <summary>
