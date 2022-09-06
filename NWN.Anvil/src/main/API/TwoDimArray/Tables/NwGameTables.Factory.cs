@@ -102,6 +102,7 @@ namespace Anvil.API
         BodyBagTable = GetTable<BodyBagTableEntry>(arrays.m_pBodyBagTable);
         EnvironmentPresetTable = GetTable<EnvironmentPreset>("environment.2da");
         LightColorTable = GetTable<LightColorTableEntry>(arrays.m_pLightColorTable);
+        LoadScreenTable = GetTable<LoadScreenTableEntry>("loadscreens.2da");
         ItemPropertyCostTables = GetTable<ItemPropertyCostTablesEntry>("iprp_costtable.2da");
         ItemPropertyParamTables = GetTable<ItemPropertyParamTablesEntry>("iprp_paramtable.2da");
         ItemPropertyItemMapTable = GetTable<ItemPropertyItemMapTableEntry>(arrays.m_pItemPropsTable);
