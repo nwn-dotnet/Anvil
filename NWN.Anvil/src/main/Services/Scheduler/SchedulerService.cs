@@ -65,7 +65,7 @@ namespace Anvil.Services
     {
       if (schedule <= TimeSpan.Zero)
       {
-        throw new ArgumentOutOfRangeException(nameof(delay), $"{nameof(delay)} cannot be <= zero.");
+        throw new ArgumentOutOfRangeException(nameof(schedule), $"{nameof(schedule)} cannot be <= zero.");
       }
 
       if (action == null)
