@@ -189,7 +189,7 @@ namespace Anvil.API
     /// Gets the ResRef of the item's model, or the base part of the resref.<br/>
     /// This property is dependent on <see cref="ModelType"/>. See https://nwn.wiki/display/NWN1/baseitems.2da for more info.
     /// </summary>
-    public string? ItemClass => BaseItemInfo.m_ItemClassResRefChunk.ToString();
+    public string? ItemClass => BaseItemInfo.m_ItemClassResRefChunk.ReadFixedLengthString();
 
     /// <summary>
     /// Gets the maximum number of "cast spell" properties items of this type can be given when designed in the Toolset.
