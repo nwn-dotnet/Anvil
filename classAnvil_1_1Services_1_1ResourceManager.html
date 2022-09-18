@@ -114,6 +114,9 @@ $(document).ready(function(){initNavTree('classAnvil_1_1Services_1_1ResourceMana
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a8a6b7f5ccd9f2a6a91b0609f030cd86f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#a8a6b7f5ccd9f2a6a91b0609f030cd86f">CreateResourceDirectory</a> (string path, bool detectChanges=true)</td></tr>
+<tr class="memdesc:a8a6b7f5ccd9f2a6a91b0609f030cd86f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the specified folder as a valid resource directory for all ResMan requests.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#a8a6b7f5ccd9f2a6a91b0609f030cd86f">More...</a><br /></td></tr>
+<tr class="separator:a8a6b7f5ccd9f2a6a91b0609f030cd86f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31caabdff125e3a5318170b565c0520d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html#a31caabdff125e3a5318170b565c0520d">DeleteTempResource</a> (string resourceName)</td></tr>
 <tr class="memdesc:a31caabdff125e3a5318170b565c0520d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the temporary resource with the specified name.  <a href="classAnvil_1_1Services_1_1ResourceManager.html#a31caabdff125e3a5318170b565c0520d">More...</a><br /></td></tr>
 <tr class="separator:a31caabdff125e3a5318170b565c0520d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,6 +152,58 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>MaxNameLength</b
 <tr class="separator:a1a5b0817e29de64345e8e52a20f57eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8a6b7f5ccd9f2a6a91b0609f030cd86f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a6b7f5ccd9f2a6a91b0609f030cd86f">&#9670;&nbsp;</a></span>CreateResourceDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Anvil.Services.ResourceManager.CreateResourceDirectory </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>detectChanges</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds the specified folder as a valid resource directory for all ResMan requests. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path to add.</td></tr>
+    <tr><td class="paramname">detectChanges</td><td>True if changes to the folder contents should be tracked for updates.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The assigned resman alias for the resource directory.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentOutOfRangeException</td><td>Thrown if the specified directory does not exist.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a31caabdff125e3a5318170b565c0520d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31caabdff125e3a5318170b565c0520d">&#9670;&nbsp;</a></span>DeleteTempResource()</h2>
 

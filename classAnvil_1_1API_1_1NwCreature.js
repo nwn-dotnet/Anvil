@@ -266,6 +266,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "Position", "classAnvil_1_1API_1_1NwCreature.html#a8c3c8650c8daa2018d3637c696f538b2", null ],
     [ "Race", "classAnvil_1_1API_1_1NwCreature.html#a34e880887bf89a2e6aa73933d03fbac3", null ],
     [ "ShieldCheckPenalty", "classAnvil_1_1API_1_1NwCreature.html#a8a8f6bca7bb3aeceb60a8befa710f84b", null ],
+    [ "SittingObject", "classAnvil_1_1API_1_1NwCreature.html#a78ac33c7bb19affd037219e0b1336574", null ],
     [ "Size", "classAnvil_1_1API_1_1NwCreature.html#af3fce6670ae3fc42a04467211b5ee204", null ],
     [ "SoundSet", "classAnvil_1_1API_1_1NwCreature.html#a4e5ae43237b6316f54479bbe7a47f792", null ],
     [ "SpecialAbilities", "classAnvil_1_1API_1_1NwCreature.html#a22cea93bda99269e2d75852161b5e360", null ],

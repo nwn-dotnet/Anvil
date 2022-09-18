@@ -13,6 +13,7 @@ var classAnvil_1_1API_1_1NwGameTables =
     [ "ItemPropertyParamTables", "classAnvil_1_1API_1_1NwGameTables.html#a1744657485a791b475bd108737855911", null ],
     [ "ItemPropertyTable", "classAnvil_1_1API_1_1NwGameTables.html#a2587074d9ea03147c7520ec4de87e6ba", null ],
     [ "LightColorTable", "classAnvil_1_1API_1_1NwGameTables.html#ab945b1e4f1a098891a4938966cb9ccb3", null ],
+    [ "LoadScreenTable", "classAnvil_1_1API_1_1NwGameTables.html#ab0a16e6737236751f7e35e638b030165", null ],
     [ "PartsBeltTable", "classAnvil_1_1API_1_1NwGameTables.html#a3399b2f704eaa213e1a7af0fdbf0b89d", null ],
     [ "PartsBicepTable", "classAnvil_1_1API_1_1NwGameTables.html#a8960630ddc9883766599261ebacbb44b", null ],
     [ "PartsChestTable", "classAnvil_1_1API_1_1NwGameTables.html#a92e6cc49e9db5967d1633d55808a0d52", null ],

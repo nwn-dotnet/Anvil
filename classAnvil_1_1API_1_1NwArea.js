@@ -45,6 +45,7 @@ var classAnvil_1_1API_1_1NwArea =
     [ "LastLeft", "classAnvil_1_1API_1_1NwArea.html#a5359b66bbcecc3f02dd59509040ba899", null ],
     [ "LightningChance", "classAnvil_1_1API_1_1NwArea.html#ad86773d5ccea1daf8faf74baa6a39845", null ],
     [ "ListenModifier", "classAnvil_1_1API_1_1NwArea.html#a3a27fbd60b4a5c386765507c2aa2f631", null ],
+    [ "LoadScreen", "classAnvil_1_1API_1_1NwArea.html#a0076eb082777a202b772f395d91a2fa1", null ],
     [ "MoonAmbientColor", "classAnvil_1_1API_1_1NwArea.html#a786b91c143c6f394ffd15125e04f3ade", null ],
     [ "MoonDiffuseColor", "classAnvil_1_1API_1_1NwArea.html#a248459eea265df372780c38b7a6c32f2", null ],
     [ "MoonFogAmount", "classAnvil_1_1API_1_1NwArea.html#a10cee8e86c878504d4717ff71c8b4d5b", null ],

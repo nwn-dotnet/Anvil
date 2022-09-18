@@ -1,6 +1,7 @@
 var classAnvil_1_1Services_1_1ResourceManager =
 [
     [ "ResourceManager", "classAnvil_1_1Services_1_1ResourceManager.html#aa404a95a9342b701153141cc34a0cb0f", null ],
+    [ "CreateResourceDirectory", "classAnvil_1_1Services_1_1ResourceManager.html#a8a6b7f5ccd9f2a6a91b0609f030cd86f", null ],
     [ "DeleteTempResource", "classAnvil_1_1Services_1_1ResourceManager.html#a31caabdff125e3a5318170b565c0520d", null ],
     [ "FindResourcesOfType", "classAnvil_1_1Services_1_1ResourceManager.html#ad4086368358594abf06b9901a16bf352", null ],
     [ "GetGenericFile", "classAnvil_1_1Services_1_1ResourceManager.html#abc32925fdd9ca50b787f584aa22413fb", null ],

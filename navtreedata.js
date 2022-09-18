@@ -40,15 +40,15 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnExit.html#aad5ae846a2371e3a65392333512dee25",
 "classAnvil_1_1API_1_1ItemPropertyCostTablesEntry.html#a446abdf09c5137bcfe401a8042e3b9be",
 "classAnvil_1_1API_1_1NuiDrawListPolyLine.html#ae791447f84a81a4a8aaac7b94f01ec68",
-"classAnvil_1_1API_1_1NwBaseItem.html#a7067ebc0668e7d4c2cd113cddbdb7995",
-"classAnvil_1_1API_1_1NwCreature.html#a98a0d24a89f8b2ba9a1f95c8fb2f6b07",
-"classAnvil_1_1API_1_1NwGameObject.html#a14ce3ca8f63d806ba369e86bf63f410a",
-"classAnvil_1_1API_1_1NwModule.html#a9e46e6ed846f81acee4cf98cc4798e65",
-"classAnvil_1_1API_1_1NwPlayer.html#a9ef99816680a5da4a37563e70bdd18e4",
-"classAnvil_1_1API_1_1NwTask.html#aff27e6293853b3693783ac8bf84c8ff1",
-"classAnvil_1_1API_1_1SQLQuery.html",
-"classAnvil_1_1Internal_1_1EnvironmentConfig.html#a98cb4a05ddff6aee908e9933c0a0de1f",
-"interfaceAnvil_1_1Services_1_1IInitializable.html#ac1033f8b2884bcb786e3b3dafec0e388"
+"classAnvil_1_1API_1_1NwBaseItem.html#a6d42bfd2acd92b576d98ac11ce310d14",
+"classAnvil_1_1API_1_1NwCreature.html#a9805035bd60e27a3354c6228cf8de945",
+"classAnvil_1_1API_1_1NwGameObject.html#a0b80ffa72cb2f757f20af71e2def03ab",
+"classAnvil_1_1API_1_1NwModule.html#a9b5c3c25bf308e4d87c39abf721ebbdb",
+"classAnvil_1_1API_1_1NwPlayer.html#a9d929551e8399f7914b85414afec5f38",
+"classAnvil_1_1API_1_1NwTask.html#ad45c19d3a354907c76b19dcbd8593f44",
+"classAnvil_1_1API_1_1ReflectionExtensions.html#a723e245e2ed0c54c05c9654e321c4ddf",
+"classAnvil_1_1Internal_1_1EnvironmentConfig.html#a5997fd9261f78cc32764f0f19c258c4d",
+"interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
