@@ -22,7 +22,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.17...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fix an InvalidOperationException being thrown when checking player for equality.
 
 ## 8193.34.17
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.16...v8193.34.17
