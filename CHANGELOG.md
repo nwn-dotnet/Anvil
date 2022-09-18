@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.18
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.17...v8193.34.18
+
+### Fixed
+- Fix an InvalidOperationException being thrown when checking player for equality.
+
 ## 8193.34.17
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.16...v8193.34.17
 

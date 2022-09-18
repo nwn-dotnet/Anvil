@@ -724,7 +724,7 @@ namespace Anvil.API
         return true;
       }
 
-      return Player.Pointer.Equals(other.Player.Pointer);
+      return player.Pointer.Equals(other.player.Pointer);
     }
 
     public override bool Equals(object? obj)
