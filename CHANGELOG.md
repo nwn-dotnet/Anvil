@@ -8,6 +8,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.16...HEAD
 
 ### Added
 - NwCreature: Added `SittingObject` property.
+- NwArea: Added `LoadScreen` property.
+- ResourceManager: Added `CreateResourceDirectory`.
 
 ### Package Updates
 - N/A
@@ -22,7 +24,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.16...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- NwBaseItem: Fixed `ItemClass` returning a type name instead of the item class name.
+- Fixed a rare compile issue when using `ToNwObject` caused by exposed native types.
 
 ## 8193.34.16
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...v8193.34.16
