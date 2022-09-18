@@ -38,6 +38,11 @@ namespace Anvil.API
     public static TwoDimArray<LightColorTableEntry> LightColorTable { get; private set; } = null!;
 
     /// <summary>
+    /// Gets the loading screen table (loadscreens.2da)
+    /// </summary>
+    public static TwoDimArray<LoadScreenTableEntry> LoadScreenTable { get; private set; } = null!;
+
+    /// <summary>
     /// Gets the belt parts table (parts_belt.2da)
     /// </summary>
     public static TwoDimArray<PartsTableEntry> PartsBeltTable { get; private set; } = null!;

@@ -41,6 +41,36 @@ namespace Anvil.Services
     }
 
     /// <summary>
+    /// Adds the specified folder as a valid resource directory for all ResMan requests.
+    /// </summary>
+    /// <param name="path">The path to add.</param>
+    /// <param name="detectChanges">True if changes to the folder contents should be tracked for updates.</param>
+    /// <returns>The assigned resman alias for the resource directory.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified directory does not exist.</exception>
+    public string CreateResourceDirectory(string path, bool detectChanges = true)
+    {
+      if (string.IsNullOrEmpty(path))
+      {
+        throw new ArgumentOutOfRangeException(nameof(path), "Path must not be empty or null.");
+      }
+
+      string alias = AliasBaseName + currentIndex + AliasSuffix;
+      uint priority = BasePriority + currentIndex;
+      CExoString exoAlias = alias.ToExoString();
+
+      Log.Info("Setting up resource directory: {Alias}:{Path} (Priority: {Priority})", alias, path, priority);
+
+      ExoBase.m_pcExoAliasList.Add(exoAlias, path.ToExoString());
+      ResMan.CreateDirectory(exoAlias);
+      ResMan.AddResourceDirectory(exoAlias, priority, detectChanges.ToInt());
+      ResMan.UpdateResourceDirectory(exoAlias);
+
+      currentIndex++;
+
+      return alias;
+    }
+
+    /// <summary>
     /// Deletes the temporary resource with the specified name.
     /// </summary>
     /// <param name="resourceName">The resource to delete.</param>
@@ -187,29 +217,6 @@ namespace Anvil.Services
       {
         Directory.Delete(HomeStorage.ResourceTemp, true);
       }
-    }
-
-    internal string CreateResourceDirectory(string path)
-    {
-      if (string.IsNullOrEmpty(path))
-      {
-        throw new ArgumentOutOfRangeException(nameof(path), "Path must not be empty or null.");
-      }
-
-      string alias = AliasBaseName + currentIndex + AliasSuffix;
-      uint priority = BasePriority + currentIndex;
-      CExoString exoAlias = alias.ToExoString();
-
-      Log.Info("Setting up resource directory: {Alias}:{Path} (Priority: {Priority})", alias, path, priority);
-
-      ExoBase.m_pcExoAliasList.Add(exoAlias, path.ToExoString());
-      ResMan.CreateDirectory(exoAlias);
-      ResMan.AddResourceDirectory(exoAlias, priority, true.ToInt());
-      ResMan.UpdateResourceDirectory(exoAlias);
-
-      currentIndex++;
-
-      return alias;
     }
 
     private byte[]? GetStandardResourceData(string name, ResRefType type)

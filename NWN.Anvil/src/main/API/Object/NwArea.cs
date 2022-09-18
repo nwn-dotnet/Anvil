@@ -204,6 +204,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the load screen for this area.
+    /// </summary>
+    public LoadScreenTableEntry LoadScreen
+    {
+      get => NwGameTables.LoadScreenTable[Area.m_nLoadScreenID];
+      set => Area.m_nLoadScreenID = (ushort)value.RowIndex;
+    }
+
+    /// <summary>
     /// Gets or sets the area ambient color during night time.
     /// </summary>
     public Color MoonAmbientColor

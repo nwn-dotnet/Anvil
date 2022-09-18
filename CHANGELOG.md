@@ -3,6 +3,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.17
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.16...v8193.34.17
+
+### Added
+- NwCreature: Added `SittingObject` property.
+- NwArea: Added `LoadScreen` property.
+- ResourceManager: Added `CreateResourceDirectory`.
+
+### Fixed
+- NwBaseItem: Fixed `ItemClass` returning a type name instead of the item class name.
+- Fixed a rare compile issue when using `ToNwObject` caused by exposed native types.
+
 ## 8193.34.16
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...v8193.34.16
 
