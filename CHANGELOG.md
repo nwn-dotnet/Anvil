@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.19
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.18...v8193.34.19
+
+### Added
+- Events: Added `OnLoadCharacterFinish` event.
+
 ## 8193.34.18
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.17...v8193.34.18
 
