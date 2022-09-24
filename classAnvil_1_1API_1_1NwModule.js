@@ -122,6 +122,7 @@ var classAnvil_1_1API_1_1NwModule =
     [ "OnLevelDown", "classAnvil_1_1API_1_1NwModule.html#a7ce6f229a016fca1f44a032aac0c79eb", null ],
     [ "OnLevelUp", "classAnvil_1_1API_1_1NwModule.html#acd54acac28886a9fd68e7daf3d325538", null ],
     [ "OnLevelUpAutomatic", "classAnvil_1_1API_1_1NwModule.html#a3c2809523c684448b4a9bb75bb3c25c9", null ],
+    [ "OnLoadCharacterFinish", "classAnvil_1_1API_1_1NwModule.html#ab12bd5eb4c826c39334b288dfbfed37a", null ],
     [ "OnMapPinAddPin", "classAnvil_1_1API_1_1NwModule.html#ac182a481c029a5a187ae5dbb8732e776", null ],
     [ "OnMapPinChangePin", "classAnvil_1_1API_1_1NwModule.html#a5187e0b916ef25838243d827eb43778f", null ],
     [ "OnMapPinDestroyPin", "classAnvil_1_1API_1_1NwModule.html#aaed4412f7263d18b85db7f7a4d9cf136", null ],

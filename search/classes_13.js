@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['weaponservice_2359',['WeaponService',['../classAnvil_1_1Services_1_1WeaponService.html',1,'Anvil::Services']]],
-  ['worldtimer_2360',['WorldTimer',['../classAnvil_1_1API_1_1WorldTimer.html',1,'Anvil::API']]]
+  ['weaponservice_2361',['WeaponService',['../classAnvil_1_1Services_1_1WeaponService.html',1,'Anvil::Services']]],
+  ['worldtimer_2362',['WorldTimer',['../classAnvil_1_1API_1_1WorldTimer.html',1,'Anvil::API']]]
 ];

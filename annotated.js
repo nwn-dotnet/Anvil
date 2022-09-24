@@ -183,6 +183,7 @@ var annotated =
           [ "OnLevelDown", "classAnvil_1_1API_1_1Events_1_1OnLevelDown.html", "classAnvil_1_1API_1_1Events_1_1OnLevelDown" ],
           [ "OnLevelUp", "classAnvil_1_1API_1_1Events_1_1OnLevelUp.html", "classAnvil_1_1API_1_1Events_1_1OnLevelUp" ],
           [ "OnLevelUpAutomatic", "classAnvil_1_1API_1_1Events_1_1OnLevelUpAutomatic.html", "classAnvil_1_1API_1_1Events_1_1OnLevelUpAutomatic" ],
+          [ "OnLoadCharacterFinish", "classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish.html", "classAnvil_1_1API_1_1Events_1_1OnLoadCharacterFinish" ],
           [ "OnMapPinAddPin", "classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin.html", "classAnvil_1_1API_1_1Events_1_1OnMapPinAddPin" ],
           [ "OnMapPinChangePin", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin.html", "classAnvil_1_1API_1_1Events_1_1OnMapPinChangePin" ],
           [ "OnMapPinDestroyPin", "classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin.html", "classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin" ],

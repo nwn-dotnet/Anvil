@@ -1,5 +1,12 @@
 var NAVTREEINDEX17 =
 {
+"interfaceAnvil_1_1API_1_1Events_1_1IEventSkippable.html":[0,0,0,0,19],
+"interfaceAnvil_1_1API_1_1Events_1_1IEventSkippable.html#a04f252c470d998482b75123771295318":[0,0,0,0,19,0],
+"interfaceAnvil_1_1API_1_1IAwaitable.html":[0,0,0,49],
+"interfaceAnvil_1_1API_1_1IAwaitable.html#a23c84fe6ceea10c450fd5443c90e5e10":[0,0,0,49,0],
+"interfaceAnvil_1_1API_1_1IAwaiter.html":[0,0,0,50],
+"interfaceAnvil_1_1API_1_1IAwaiter.html#a7eccef27e9e093b50916ed233285df2d":[0,0,0,50,1],
+"interfaceAnvil_1_1API_1_1IAwaiter.html#ae25d116a82a89d073b60f0212207a64f":[0,0,0,50,0],
 "interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html":[0,0,0,62],
 "interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html#a27b6611b0fdf6aded1e80a9a580a9ea9":[0,0,0,62,0],
 "interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html#a77a808dbb4fc7799c655b1f1fbddb2a0":[0,0,0,62,1],
