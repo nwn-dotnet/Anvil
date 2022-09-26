@@ -22,7 +22,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.19...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- VirtualMachine: Fixed an issue where ObjectSelf would not be correctly assigned.
 
 ## 8193.34.19
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.18...v8193.34.19
