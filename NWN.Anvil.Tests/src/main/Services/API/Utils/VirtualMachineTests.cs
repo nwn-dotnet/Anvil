@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Anvil.API;
 using Anvil.Services;
 using NUnit.Framework;
-using NWN.Core;
 
 namespace Anvil.Tests.Services.API.Utils
 {
