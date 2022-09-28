@@ -440,6 +440,11 @@ namespace Anvil.API
     public Inventory Inventory { get; }
 
     /// <summary>
+    /// Gets a value indicating whether this creature is currently bartering.
+    /// </summary>
+    public bool IsBartering => Creature.m_pBarterInfo?.m_bWindowOpen.ToBool() == true;
+
+    /// <summary>
     /// Gets a value indicating whether this creature is a dead NPC, dead PC, or dying PC.
     /// </summary>
     public bool IsDead => NWScript.GetIsDead(this).ToBool();
