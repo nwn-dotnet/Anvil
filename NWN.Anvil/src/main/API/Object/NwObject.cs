@@ -335,6 +335,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Serializes this game object to a json representation
+    /// </summary>
+    public Json SerializeToJson(bool saveObjectState)
+    {
+      return NWScript.ObjectToJson(this, saveObjectState.ToInt());
+    }
+
+    /// <summary>
     /// Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators).<br/>
     /// If the current active object is already this object, then the code runs immediately. Otherwise, it will be run with all other closures.<br/>
     /// This is the async equivalent of AssignCommand in NWScript.

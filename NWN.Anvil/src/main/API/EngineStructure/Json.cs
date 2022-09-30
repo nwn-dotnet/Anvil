@@ -3,7 +3,7 @@ using NWN.Core;
 
 namespace Anvil.API
 {
-  internal sealed class Json : EngineStructure
+  public sealed class Json : EngineStructure
   {
     internal Json(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
@@ -22,6 +22,16 @@ namespace Anvil.API
     public string Dump()
     {
       return NWScript.JsonDump(this);
+    }
+
+    public NwObject? ToNwObject(Location location, NwGameObject? owner = null, bool loadObjectState = true)
+    {
+      return NWScript.JsonToObject(this, location, owner, loadObjectState.ToInt()).ToNwObject();
+    }
+
+    public T? ToNwObject<T>(Location location, NwGameObject? owner = null, bool loadObjectState = true) where T : NwObject
+    {
+      return NWScript.JsonToObject(this, location, owner, loadObjectState.ToInt()).ToNwObject<T>();
     }
   }
 }
