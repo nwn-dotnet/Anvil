@@ -39,6 +39,27 @@ namespace Anvil.API
       return mutableLookup.TryGetValue(key, out TCollection? values) && values.Contains(value);
     }
 
+    /// <summary>
+    /// Adds a range of values to the specified IList.
+    /// </summary>
+    /// <param name="list">The list to update.</param>
+    /// <param name="values">The elements to add to the list.</param>
+    /// <typeparam name="T">The list element type.</typeparam>
+    public static void AddRange<T>(this IList<T> list, IEnumerable<T> values)
+    {
+      if (list is List<T> genericList)
+      {
+        genericList.AddRange(values);
+      }
+      else
+      {
+        foreach (T value in values)
+        {
+          list.Add(value);
+        }
+      }
+    }
+
     public static void DisposeAll(this IEnumerable<IDisposable?>? disposables)
     {
       if (disposables == null)
