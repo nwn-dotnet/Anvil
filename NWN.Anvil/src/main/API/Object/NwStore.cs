@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -25,6 +26,15 @@ namespace Anvil.API
     internal NwStore(CNWSStore store) : base(store)
     {
       this.store = store;
+    }
+
+    /// <summary>
+    /// Gets or sets if this store purchases stolen goods.
+    /// </summary>
+    public bool BuyStolenGoods
+    {
+      get => Store.m_bBlackMarket.ToBool();
+      set => Store.m_bBlackMarket = value.ToInt();
     }
 
     /// <summary>
@@ -55,10 +65,14 @@ namespace Anvil.API
     /// </summary>
     public int CustomerCount => Store.m_aCurrentCustomers.Count;
 
+    /// <summary>
+    /// Gets or sets the amount this store charges to identify an item.<br/>
+    /// Returns -1 if the store does not identify items.
+    /// </summary>
     public int IdentifyCost
     {
-      get => NWScript.GetStoreIdentifyCost(this);
-      set => NWScript.SetStoreIdentifyCost(this, value);
+      get => Store.m_iIdentifyCost;
+      set => Store.m_iIdentifyCost = value;
     }
 
     /// <summary>
@@ -75,16 +89,71 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Gets or sets the base markdown price for items sold to this store.
+    /// </summary>
+    public int MarkDown
+    {
+      get => Store.m_nMarkDown;
+      set => Store.m_nMarkDown = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the base markdown price for stolen items sold to this store.
+    /// </summary>
+    public int MarkDownStolen
+    {
+      get => Store.m_nBlackMarketMarkDown;
+      set => Store.m_nBlackMarketMarkDown = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the base markup price for items in the store's inventory.
+    /// </summary>
+    public int MarkUp
+    {
+      get => Store.m_nMarkUp;
+      set => Store.m_nMarkUp = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the maximum price this store will pay for an item.<br/>
+    /// Returns -1 if the store has no limit.
+    /// </summary>
     public int MaxBuyPrice
     {
-      get => NWScript.GetStoreMaxBuyPrice(this);
-      set => NWScript.SetStoreMaxBuyPrice(this, value);
+      get => Store.m_iMaxBuyPrice;
+      set => Store.m_iMaxBuyPrice = value;
     }
 
     public int StoreGold
     {
-      get => NWScript.GetStoreGold(this);
-      set => NWScript.SetStoreGold(this, value);
+      get => Store.m_iGold;
+      set => Store.m_iGold = value;
+    }
+
+    /// <summary>
+    /// Gets the list of base item types that this store will not buy.<br/>
+    /// Has precedence over <see cref="WillOnlyBuyItems"/>.
+    /// </summary>
+    public IList<NwBaseItem?> WillNotBuyItems
+    {
+      get
+      {
+        return new ListWrapper<int, NwBaseItem?>(Store.m_lstWillNotBuy, NwBaseItem.FromItemId, item => (int)(item?.Id ?? 0));
+      }
+    }
+
+    /// <summary>
+    /// Gets the list of base item types that this store will only buy.<br/>
+    /// Does nothing if <see cref="WillNotBuyItems"/> is populated.
+    /// </summary>
+    public IList<NwBaseItem?> WillOnlyBuyItems
+    {
+      get
+      {
+        return new ListWrapper<int, NwBaseItem?>(Store.m_lstWillOnlyBuy, NwBaseItem.FromItemId, item => (int)(item?.Id ?? 0));
+      }
     }
 
     public static NwStore? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
@@ -124,13 +193,12 @@ namespace Anvil.API
       return store?.Store;
     }
 
+    /// <summary>
+    /// Adds the specified item to this store's inventory.
+    /// </summary>
+    /// <param name="item">The item to add.</param>
     public void AcquireItem(NwItem item)
     {
-      if (item == null)
-      {
-        throw new ArgumentNullException(nameof(item), "Item cannot be null.");
-      }
-
       Store.AcquireItem(item.Item, true.ToInt(), 0xFF, 0xFF);
     }
 
