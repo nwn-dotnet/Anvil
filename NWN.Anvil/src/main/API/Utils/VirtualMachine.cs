@@ -77,7 +77,7 @@ namespace Anvil.API
         NWScript.SetScriptParam(paramName, paramValue);
       }
 
-      NWScript.ExecuteScript(scriptName, target);
+      virtualMachine.RunScript(scriptName.ToExoString(), target);
     }
 
     /// <summary>

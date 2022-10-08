@@ -142,23 +142,26 @@ namespace Anvil.API
     /// <summary>
     /// Gets the globally unique identifier for this object.
     /// </summary>
+    /// <remarks>
+    /// If the UUID conflicts with an existing object, a new one will be generated.<br/>
+    /// Use <see cref="TryGetUUID"/> to control this behaviour.
+    /// </remarks>
     public Guid UUID
     {
       get
       {
-        if (this == Invalid)
+        if (!IsValid)
         {
           return Guid.Empty;
         }
 
-        string uid = NWScript.GetObjectUUID(this);
-        if (string.IsNullOrEmpty(uid))
+        if (!TryGetUUID(out Guid uid))
         {
           ForceRefreshUUID();
-          uid = NWScript.GetObjectUUID(this);
+          TryGetUUID(out uid);
         }
 
-        return Guid.TryParse(uid, out Guid guid) ? guid : Guid.Empty;
+        return uid;
       }
     }
 
@@ -332,6 +335,34 @@ namespace Anvil.API
     public override string ToString()
     {
       return ObjectId.ToString("x");
+    }
+
+    /// <summary>
+    /// Attempts to get the UUID for this object, assigning a new ID if it does not already exist.<br/>
+    /// </summary>
+    /// <remarks>See <see cref="PeekUUID"/> to check if the object has an existing UUID, without creating a new one.<br/>
+    /// This function will return false if the UUID is not globally unique, and conflicts with an existing object.
+    /// </remarks>
+    /// <param name="uid">The object's UUID.</param>
+    /// <returns>True if the object has a valid unique identifier, otherwise false.</returns>
+    public bool TryGetUUID(out Guid uid)
+    {
+      string uidString = NWScript.GetObjectUUID(this);
+      if (!string.IsNullOrEmpty(uidString))
+      {
+        return Guid.TryParse(uidString, out uid);
+      }
+
+      uid = Guid.Empty;
+      return false;
+    }
+
+    /// <summary>
+    /// Serializes this game object to a json representation
+    /// </summary>
+    public Json SerializeToJson(bool saveObjectState)
+    {
+      return NWScript.ObjectToJson(this, saveObjectState.ToInt());
     }
 
     /// <summary>
