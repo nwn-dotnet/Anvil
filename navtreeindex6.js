@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a1c086a3b82234260dc8ae1bb2381bc45":[0,0,0,0,131,1,0],
 "classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html":[0,0,0,0,131,2],
 "classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a48f3c556c7a8e4a38a8ce7102031c7bf":[0,0,0,0,131,2,1],
 "classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html#a5da988555cd8ac4b6186c15d453a9c43":[0,0,0,0,131,2,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "classAnvil_1_1API_1_1ItemProperty.html#afc30168bc65b0a885f447d2aaa12d946":[0,0,0,54,43],
 "classAnvil_1_1API_1_1ItemProperty.html#afdb85235eb710e28a2db1b06f867b5ea":[0,0,0,54,81],
 "classAnvil_1_1API_1_1ItemProperty.html#affd0f4ee0da5570457ae704955f50b53":[0,0,0,54,97],
-"classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html":[0,0,0,55],
-"classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html#a03e21a689fed78d7b21d29fdbdcb0f33":[0,0,0,55,3]
+"classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html":[0,0,0,55]
 };

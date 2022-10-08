@@ -32,23 +32,23 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1Effect.html#a790aab1f9dbdac589b5d59c751ab942b",
-"classAnvil_1_1API_1_1Events_1_1DebugEventFactory.html#a30bd97f184178b9b9628502ce754a097",
-"classAnvil_1_1API_1_1Events_1_1OnBarterStart.html",
-"classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html#a9b4ca883cb834a7ed7170b2c8a4c6de1",
-"classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a4a5bc61163caddc4b6666bd0b681202a",
-"classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnEnter.html",
-"classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html#a43f8a859d3ebc76f1a46747723c84b71",
-"classAnvil_1_1API_1_1NuiDrawListItem.html#ad9d8ae0755e2dadbee99ba00c70b4cda",
-"classAnvil_1_1API_1_1NwBaseItem.html#a4d518a8c0e137ac853e9464b87e72109",
-"classAnvil_1_1API_1_1NwCreature.html#a91cf2ea34b6f529c78dad9a2e40adec3",
-"classAnvil_1_1API_1_1NwGameObject.html#a01b08a96ec3218849d22feadc68fe129",
-"classAnvil_1_1API_1_1NwModule.html#a954e28f779ba02a941aab6b3f4ccdf3b",
-"classAnvil_1_1API_1_1NwPlayer.html#a93b93804b55586c0adf394e91f7e0a11",
-"classAnvil_1_1API_1_1NwTask.html#a66aaee968dcabd97171fdd69930c2e46",
-"classAnvil_1_1API_1_1RadiusSize.html#aed933c832c3c9d695302cc4dec652e07",
-"classAnvil_1_1AnvilCore.html#a2889a3f54ab1dd7ed09da444124d0fdd",
-"interfaceAnvil_1_1API_1_1Events_1_1IEventSkippable.html"
+"classAnvil_1_1API_1_1Effect.html#a70af5f30be620af5f949c964d121ee62",
+"classAnvil_1_1API_1_1Events_1_1DebugEventFactory.html",
+"classAnvil_1_1API_1_1Events_1_1OnBarterEnd_1_1Factory.html#a05f53d58810db9720e089dd260d1390b",
+"classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html#a4be6c26d4aca387200b6ec41508150ac",
+"classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a43a2a641a6440efac1efe8f75abcc7df",
+"classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a1c086a3b82234260dc8ae1bb2381bc45",
+"classAnvil_1_1API_1_1ItemPropertyCostTableEntry.html#a03e21a689fed78d7b21d29fdbdcb0f33",
+"classAnvil_1_1API_1_1NuiDrawListImage.html#a7eca568d44aaf64e100036d968a3359b",
+"classAnvil_1_1API_1_1NwBaseItem.html#a2543ef91a43d094f6bbe8ec81178fb66",
+"classAnvil_1_1API_1_1NwCreature.html#a8bc391c044a484b5b7e1223d9b0019f8",
+"classAnvil_1_1API_1_1NwFeat.html#aa97f653ce6ffb04d2e7608a293f39e53",
+"classAnvil_1_1API_1_1NwModule.html#a862a1b111fb58232f78bf07f5c3d0f04",
+"classAnvil_1_1API_1_1NwPlayer.html#a81ef4852d1c0a4fb67fc4353a10454ef",
+"classAnvil_1_1API_1_1NwStore.html#aa07718b3d86614068bed901bf2c84dd0",
+"classAnvil_1_1API_1_1PlayerQuickBarButton.html#ad774d89351dfb4c5c08dbaad767cfcfd",
+"classAnvil_1_1API_1_1VisualEffectTableEntry.html#afe67badc2c67fd0bebcde7720054cc96",
+"classAnvil_1_1Services_1_1WeaponService.html#aa94dbf232d6e933e27fbbe6256d77579"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

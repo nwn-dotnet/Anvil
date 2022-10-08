@@ -302,6 +302,7 @@ var annotated =
         [ "ITwoDimArrayEntry", "interfaceAnvil_1_1API_1_1ITwoDimArrayEntry.html", "interfaceAnvil_1_1API_1_1ITwoDimArrayEntry" ],
         [ "JoiningRestrictions", "classAnvil_1_1API_1_1JoiningRestrictions.html", "classAnvil_1_1API_1_1JoiningRestrictions" ],
         [ "JournalEntry", "classAnvil_1_1API_1_1JournalEntry.html", "classAnvil_1_1API_1_1JournalEntry" ],
+        [ "Json", "classAnvil_1_1API_1_1Json.html", "classAnvil_1_1API_1_1Json" ],
         [ "JsonUtility", "classAnvil_1_1API_1_1JsonUtility.html", "classAnvil_1_1API_1_1JsonUtility" ],
         [ "LightColorTableEntry", "classAnvil_1_1API_1_1LightColorTableEntry.html", "classAnvil_1_1API_1_1LightColorTableEntry" ],
         [ "LoadScreenTableEntry", "classAnvil_1_1API_1_1LoadScreenTableEntry.html", "classAnvil_1_1API_1_1LoadScreenTableEntry" ],

@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnBarterEnd_1_1Factory.html#a05f53d58810db9720e089dd260d1390b":[0,0,0,0,24,0,0],
 "classAnvil_1_1API_1_1Events_1_1OnBarterStart.html":[0,0,0,0,25],
 "classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#a1208f1270d1b447f0c77cbc87f86bca1":[0,0,0,0,25,2],
 "classAnvil_1_1API_1_1Events_1_1OnBarterStart.html#aa51b31617ebe0558c8572e334f1d4a53":[0,0,0,0,25,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "classAnvil_1_1API_1_1Events_1_1OnEffectApply_1_1Factory.html#a3497d6e93c496f8152a3252cb07567b1":[0,0,0,0,84,0,1],
 "classAnvil_1_1API_1_1Events_1_1OnEffectApply_1_1Factory.html#a6aa6e1062635af20af893f910ade3997":[0,0,0,0,84,0,0],
 "classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html":[0,0,0,0,85],
-"classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html#a45f57dfb24749686158e2395ae2ded6b":[0,0,0,0,85,1],
-"classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html#a4be6c26d4aca387200b6ec41508150ac":[0,0,0,0,85,4]
+"classAnvil_1_1API_1_1Events_1_1OnEffectRemove.html#a45f57dfb24749686158e2395ae2ded6b":[0,0,0,0,85,1]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classAnvil_1_1API_1_1Effect.html#a70af5f30be620af5f949c964d121ee62":[0,0,0,32,47],
 "classAnvil_1_1API_1_1Effect.html#a790aab1f9dbdac589b5d59c751ab942b":[0,0,0,32,80],
 "classAnvil_1_1API_1_1Effect.html#a7af0494a129c30a335bdacd2027e2bbc":[0,0,0,32,41],
 "classAnvil_1_1API_1_1Effect.html#a7c9ffa26f57c3931f4c5b901e54e5345":[0,0,0,32,72],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1Events_1_1DamageData.html#ab133dbe2e42195aa47242a3ed5f77cbb":[0,0,0,0,3,0],
 "classAnvil_1_1API_1_1Events_1_1DamageData.html#ac63e68bf907cb98ab42da53b3559c42b":[0,0,0,0,3,11],
 "classAnvil_1_1API_1_1Events_1_1DamageData.html#ad04e47c033cb02072a2b372ab264d11d":[0,0,0,0,3,8],
-"classAnvil_1_1API_1_1Events_1_1DamageData.html#adae5fc66473fb747a227763883ef1c87":[0,0,0,0,3,14],
-"classAnvil_1_1API_1_1Events_1_1DebugEventFactory.html":[0,0,0,0,4]
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#adae5fc66473fb747a227763883ef1c87":[0,0,0,0,3,14]
 };

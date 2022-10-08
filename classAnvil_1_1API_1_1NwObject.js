@@ -19,9 +19,11 @@ var classAnvil_1_1API_1_1NwObject =
     [ "operator!=", "classAnvil_1_1API_1_1NwObject.html#af923d82047c26c53aa5a82c566ac8f63", null ],
     [ "operator==", "classAnvil_1_1API_1_1NwObject.html#acff0e8b7ec78ef10e4d81c9eee4b68c1", null ],
     [ "PeekUUID", "classAnvil_1_1API_1_1NwObject.html#a780fff75d9c00100d73a58c05d62fec9", null ],
+    [ "SerializeToJson", "classAnvil_1_1API_1_1NwObject.html#a2d1f416e535f46eeb8ecef62324b014b", null ],
     [ "SetEventScript", "classAnvil_1_1API_1_1NwObject.html#a0ef8f554567003e247d5d45bde5fa58d", null ],
     [ "SpeakString", "classAnvil_1_1API_1_1NwObject.html#a9915aec1b67b91cce65af577a9ff125c", null ],
     [ "ToString", "classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730", null ],
+    [ "TryGetUUID", "classAnvil_1_1API_1_1NwObject.html#af08511989511cd0ce6c19f622321d17b", null ],
     [ "WaitForObjectContext", "classAnvil_1_1API_1_1NwObject.html#afbb94a19d2c70f6fcd0bd9401b5c5505", null ],
     [ "ObjectId", "classAnvil_1_1API_1_1NwObject.html#a5945eebf67518e945b212596768ab7ba", null ],
     [ "Description", "classAnvil_1_1API_1_1NwObject.html#a007208e6d5419094476c1bf4e30eeddd", null ],
@@ -37,6 +39,6 @@ var classAnvil_1_1API_1_1NwObject =
     [ "ResRef", "classAnvil_1_1API_1_1NwObject.html#a361cf7b02756b21cab0d37128e94a82f", null ],
     [ "ScriptVarTable", "classAnvil_1_1API_1_1NwObject.html#a6ee9f4cb4a183a39602c28f75d53dc7f", null ],
     [ "Tag", "classAnvil_1_1API_1_1NwObject.html#a3a1d9ef0d20566a740b15d52f4cf2224", null ],
-    [ "UUID", "classAnvil_1_1API_1_1NwObject.html#ae3571cdf0a4723852aba21eed594476e", null ],
+    [ "UUID", "classAnvil_1_1API_1_1NwObject.html#a3d63878b8436eb2d1fbee5ca0b42e37a", null ],
     [ "VirtualMachine", "classAnvil_1_1API_1_1NwObject.html#aa8532f90be4152dfdd19506eb8c7e753", null ]
 ];

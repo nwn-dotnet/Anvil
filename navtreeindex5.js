@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a43a2a641a6440efac1efe8f75abcc7df":[0,0,0,0,115,2],
 "classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a4a5bc61163caddc4b6666bd0b681202a":[0,0,0,0,115,7],
 "classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a5aa4513ddc96e7a4ae1188bfd13efec2":[0,0,0,0,115,11],
 "classAnvil_1_1API_1_1Events_1_1OnSpellAction.html#a5e33ef88bf504ec3b4c01a2b60f620fa":[0,0,0,0,115,16],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnClicked.html#ab53148be814b6576f101d9941e447a79":[0,0,0,0,131,0,0],
 "classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html":[0,0,0,0,131,1],
 "classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a0eede78ea9e53beed7968e4e281473d6":[0,0,0,0,131,1,2],
-"classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a172bdfd5f0b4f939f8fed577b44c9db3":[0,0,0,0,131,1,1],
-"classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a1c086a3b82234260dc8ae1bb2381bc45":[0,0,0,0,131,1,0]
+"classAnvil_1_1API_1_1Events_1_1TriggerEvents_1_1OnDisarmed.html#a172bdfd5f0b4f939f8fed577b44c9db3":[0,0,0,0,131,1,1]
 };

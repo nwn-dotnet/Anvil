@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classAnvil_1_1API_1_1Events_1_1DebugEventFactory.html":[0,0,0,0,4],
 "classAnvil_1_1API_1_1Events_1_1DebugEventFactory.html#a30bd97f184178b9b9628502ce754a097":[0,0,0,0,4,0],
 "classAnvil_1_1API_1_1Events_1_1DebugEventFactory.html#aed4e7e954477259172b8f9764493a186":[0,0,0,0,4,1],
 "classAnvil_1_1API_1_1Events_1_1DialogEvents.html":[0,0,0,0,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a74faac1ccf3ddbf841ed2c810f2a6db7":[0,0,0,0,24,2],
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a790ede0386e2c10edc42bc8a6cb76013":[0,0,0,0,24,4],
 "classAnvil_1_1API_1_1Events_1_1OnBarterEnd.html#a9f47e13b11fd0c780f0b12548e74c2a6":[0,0,0,0,24,1],
-"classAnvil_1_1API_1_1Events_1_1OnBarterEnd_1_1Factory.html":[0,0,0,0,24,0],
-"classAnvil_1_1API_1_1Events_1_1OnBarterEnd_1_1Factory.html#a05f53d58810db9720e089dd260d1390b":[0,0,0,0,24,0,0]
+"classAnvil_1_1API_1_1Events_1_1OnBarterEnd_1_1Factory.html":[0,0,0,0,24,0]
 };

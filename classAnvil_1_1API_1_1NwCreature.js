@@ -183,6 +183,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "Henchmen", "classAnvil_1_1API_1_1NwCreature.html#a6c15f397bd20a319f30c8a43ea119cc5", null ],
     [ "Immortal", "classAnvil_1_1API_1_1NwCreature.html#a79292435a0fcf50c076658d210f49e82", null ],
     [ "Inventory", "classAnvil_1_1API_1_1NwCreature.html#a1c8b9177184206715ab59f0e16a24028", null ],
+    [ "IsBartering", "classAnvil_1_1API_1_1NwCreature.html#a5079b187e03631a7c973a856298bda31", null ],
     [ "IsDead", "classAnvil_1_1API_1_1NwCreature.html#a3bc8669e18f71e73bed112ff4182a360", null ],
     [ "IsDMPossessed", "classAnvil_1_1API_1_1NwCreature.html#a23162530a8233c62291c6c65e72c9e0b", null ],
     [ "IsEncounterCreature", "classAnvil_1_1API_1_1NwCreature.html#a78d2fa5dab631c24894b7eaab82ff8ea", null ],

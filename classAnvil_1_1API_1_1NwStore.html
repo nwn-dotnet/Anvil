@@ -123,8 +123,8 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1NwStore.html','')
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa07718b3d86614068bed901bf2c84dd0"><td class="memItemLeft" align="right" valign="top"><a id="aa07718b3d86614068bed901bf2c84dd0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AcquireItem</b> (<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a> item)</td></tr>
+<tr class="memitem:aa07718b3d86614068bed901bf2c84dd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#aa07718b3d86614068bed901bf2c84dd0">AcquireItem</a> (<a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a> item)</td></tr>
+<tr class="memdesc:aa07718b3d86614068bed901bf2c84dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the specified item to this store's inventory.  <a href="classAnvil_1_1API_1_1NwStore.html#aa07718b3d86614068bed901bf2c84dd0">More...</a><br /></td></tr>
 <tr class="separator:aa07718b3d86614068bed901bf2c84dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e759fe17666f64b7184f6e13a1ffb4e"><td class="memItemLeft" align="right" valign="top">override <a class="el" href="classAnvil_1_1API_1_1NwStore.html">NwStore</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a7e759fe17666f64b7184f6e13a1ffb4e">Clone</a> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location, string? newTag=null, bool copyLocalState=true)</td></tr>
 <tr class="memdesc:a7e759fe17666f64b7184f6e13a1ffb4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of this game object.  <a href="classAnvil_1_1API_1_1NwStore.html#a7e759fe17666f64b7184f6e13a1ffb4e">More...</a><br /></td></tr>
@@ -291,6 +291,9 @@ override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</
 <tr class="memitem:a212604b56345ec280319908fe3b796eb inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a212604b56345ec280319908fe3b796eb">IsEventLocked</a> (EventScriptType eventType)</td></tr>
 <tr class="memdesc:a212604b56345ec280319908fe3b796eb inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether the event script can be modified for the specified event.  <a href="classAnvil_1_1API_1_1NwObject.html#a212604b56345ec280319908fe3b796eb">More...</a><br /></td></tr>
 <tr class="separator:a212604b56345ec280319908fe3b796eb inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d1f416e535f46eeb8ecef62324b014b inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1Json.html">Json</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a2d1f416e535f46eeb8ecef62324b014b">SerializeToJson</a> (bool saveObjectState)</td></tr>
+<tr class="memdesc:a2d1f416e535f46eeb8ecef62324b014b inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes this game object to a json representation  <a href="classAnvil_1_1API_1_1NwObject.html#a2d1f416e535f46eeb8ecef62324b014b">More...</a><br /></td></tr>
+<tr class="separator:a2d1f416e535f46eeb8ecef62324b014b inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ef8f554567003e247d5d45bde5fa58d inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a0ef8f554567003e247d5d45bde5fa58d">SetEventScript</a> (EventScriptType eventType, string script)</td></tr>
 <tr class="memdesc:a0ef8f554567003e247d5d45bde5fa58d inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the script to be run on the specified object event.  <a href="classAnvil_1_1API_1_1NwObject.html#a0ef8f554567003e247d5d45bde5fa58d">More...</a><br /></td></tr>
 <tr class="separator:a0ef8f554567003e247d5d45bde5fa58d inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -299,8 +302,12 @@ override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</
 <tr class="separator:a9915aec1b67b91cce65af577a9ff125c inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0548b4638c788a8922972a7613593730 inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730">ToString</a> ()</td></tr>
 <tr class="memdesc:a0548b4638c788a8922972a7613593730 inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID of this object as a string. Can be used in <a class="el" href="classAnvil_1_1API_1_1StringExtensions.html#abfb43776cfc7baedd112ee87031e871b" title="Resolves the specified GameObject ID string to an object.  This is the temporary ID created from NwOb...">StringExtensions.ParseObject</a> while the object is alive.<br  />
- This cannot be used across server restarts. See <a class="el" href="classAnvil_1_1API_1_1NwObject.html#ae3571cdf0a4723852aba21eed594476e" title="Gets the globally unique identifier for this object.">UUID</a> for a persistent unique identifier.  <a href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730">More...</a><br /></td></tr>
+ This cannot be used across server restarts. See <a class="el" href="classAnvil_1_1API_1_1NwObject.html#a3d63878b8436eb2d1fbee5ca0b42e37a" title="Gets the globally unique identifier for this object.">UUID</a> for a persistent unique identifier.  <a href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730">More...</a><br /></td></tr>
 <tr class="separator:a0548b4638c788a8922972a7613593730 inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08511989511cd0ce6c19f622321d17b inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#af08511989511cd0ce6c19f622321d17b">TryGetUUID</a> (out Guid uid)</td></tr>
+<tr class="memdesc:af08511989511cd0ce6c19f622321d17b inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get the UUID for this object, assigning a new ID if it does not already exist.<br  />
+  <a href="classAnvil_1_1API_1_1NwObject.html#af08511989511cd0ce6c19f622321d17b">More...</a><br /></td></tr>
+<tr class="separator:af08511989511cd0ce6c19f622321d17b inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbb94a19d2c70f6fcd0bd9401b5c5505 inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#afbb94a19d2c70f6fcd0bd9401b5c5505">WaitForObjectContext</a> ()</td></tr>
 <tr class="memdesc:afbb94a19d2c70f6fcd0bd9401b5c5505 inherit pub_methods_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies then awaits for this object to become the current active object for the purpose of implicitly assigned values (e.g. effect creators).<br  />
  If the current active object is already this object, then the code runs immediately. Otherwise, it will be run with all other closures.<br  />
@@ -357,20 +364,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:abeab3ae19e8bacb5960f1ae43d30c6ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#abeab3ae19e8bacb5960f1ae43d30c6ac">BuyStolenGoods</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:abeab3ae19e8bacb5960f1ae43d30c6ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets if this store purchases stolen goods.  <a href="classAnvil_1_1API_1_1NwStore.html#abeab3ae19e8bacb5960f1ae43d30c6ac">More...</a><br /></td></tr>
+<tr class="separator:abeab3ae19e8bacb5960f1ae43d30c6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a080faa49a0eebfddbd36113551e67616"><td class="memItemLeft" align="right" valign="top">IReadOnlyList&lt; <a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a080faa49a0eebfddbd36113551e67616">CurrentCustomers</a><code> [get]</code></td></tr>
 <tr class="memdesc:a080faa49a0eebfddbd36113551e67616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current customers of this store.  <a href="classAnvil_1_1API_1_1NwStore.html#a080faa49a0eebfddbd36113551e67616">More...</a><br /></td></tr>
 <tr class="separator:a080faa49a0eebfddbd36113551e67616"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cc1039aab00ee15121c5fd90bee8484"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a4cc1039aab00ee15121c5fd90bee8484">CustomerCount</a><code> [get]</code></td></tr>
 <tr class="memdesc:a4cc1039aab00ee15121c5fd90bee8484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of current customers using this store.  <a href="classAnvil_1_1API_1_1NwStore.html#a4cc1039aab00ee15121c5fd90bee8484">More...</a><br /></td></tr>
 <tr class="separator:a4cc1039aab00ee15121c5fd90bee8484"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe8bc53562a48e015469882435026c9d"><td class="memItemLeft" align="right" valign="top"><a id="abe8bc53562a48e015469882435026c9d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>IdentifyCost</b><code> [get, set]</code></td></tr>
+<tr class="memitem:abe8bc53562a48e015469882435026c9d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#abe8bc53562a48e015469882435026c9d">IdentifyCost</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:abe8bc53562a48e015469882435026c9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the amount this store charges to identify an item.<br  />
+ Returns -1 if the store does not identify items.  <a href="classAnvil_1_1API_1_1NwStore.html#abe8bc53562a48e015469882435026c9d">More...</a><br /></td></tr>
 <tr class="separator:abe8bc53562a48e015469882435026c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a749596b983a4eb5c27954930a92f62a1"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a749596b983a4eb5c27954930a92f62a1">Items</a><code> [get]</code></td></tr>
 <tr class="memdesc:a749596b983a4eb5c27954930a92f62a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all items belonging to this store's inventory.  <a href="classAnvil_1_1API_1_1NwStore.html#a749596b983a4eb5c27954930a92f62a1">More...</a><br /></td></tr>
 <tr class="separator:a749596b983a4eb5c27954930a92f62a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3f69caad7bca34d8f3cd7c14fad5976"><td class="memItemLeft" align="right" valign="top"><a id="ab3f69caad7bca34d8f3cd7c14fad5976"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>MaxBuyPrice</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a4ccc7f8b69150ead49805a6ff5ad360c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a4ccc7f8b69150ead49805a6ff5ad360c">MarkDown</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a4ccc7f8b69150ead49805a6ff5ad360c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the base markdown price for items sold to this store.  <a href="classAnvil_1_1API_1_1NwStore.html#a4ccc7f8b69150ead49805a6ff5ad360c">More...</a><br /></td></tr>
+<tr class="separator:a4ccc7f8b69150ead49805a6ff5ad360c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5638f10dd187a1397869bf4cac9897a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#ae5638f10dd187a1397869bf4cac9897a">MarkDownStolen</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae5638f10dd187a1397869bf4cac9897a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the base markdown price for stolen items sold to this store.  <a href="classAnvil_1_1API_1_1NwStore.html#ae5638f10dd187a1397869bf4cac9897a">More...</a><br /></td></tr>
+<tr class="separator:ae5638f10dd187a1397869bf4cac9897a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b6eae045d9f7e8f136ce767975a5a26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a1b6eae045d9f7e8f136ce767975a5a26">MarkUp</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a1b6eae045d9f7e8f136ce767975a5a26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the base markup price for items in the store's inventory.  <a href="classAnvil_1_1API_1_1NwStore.html#a1b6eae045d9f7e8f136ce767975a5a26">More...</a><br /></td></tr>
+<tr class="separator:a1b6eae045d9f7e8f136ce767975a5a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3f69caad7bca34d8f3cd7c14fad5976"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#ab3f69caad7bca34d8f3cd7c14fad5976">MaxBuyPrice</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab3f69caad7bca34d8f3cd7c14fad5976"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the maximum price this store will pay for an item.<br  />
+ Returns -1 if the store has no limit.  <a href="classAnvil_1_1API_1_1NwStore.html#ab3f69caad7bca34d8f3cd7c14fad5976">More...</a><br /></td></tr>
 <tr class="separator:ab3f69caad7bca34d8f3cd7c14fad5976"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad667d9ee294f8df3cbed04204f3bf8f7"><td class="memItemLeft" align="right" valign="top"><a id="ad667d9ee294f8df3cbed04204f3bf8f7"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1StoreEvents_1_1OnClose.html">StoreEvents.OnClose</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#ad667d9ee294f8df3cbed04204f3bf8f7">OnClose</a></td></tr>
@@ -381,6 +402,14 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1StoreEvents_1_1OnO
 <tr class="memitem:a1f3ef3169eb5943356362e2b1890e8ed"><td class="memItemLeft" align="right" valign="top"><a id="a1f3ef3169eb5943356362e2b1890e8ed"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>StoreGold</b><code> [get, set]</code></td></tr>
 <tr class="separator:a1f3ef3169eb5943356362e2b1890e8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bb7d1a225e49bd5371b13ead463fed5"><td class="memItemLeft" align="right" valign="top">IList&lt; <a class="el" href="classAnvil_1_1API_1_1NwBaseItem.html">NwBaseItem</a>?&gt;????&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a2bb7d1a225e49bd5371b13ead463fed5">WillNotBuyItems</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2bb7d1a225e49bd5371b13ead463fed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of base item types that this store will not buy.<br  />
+ Has precedence over <a class="el" href="classAnvil_1_1API_1_1NwStore.html#a97417df87ef0856d2708871504d24d4a" title="Gets the list of base item types that this store will only buy.  Does nothing if WillNotBuyItems is p...">WillOnlyBuyItems</a>.  <a href="classAnvil_1_1API_1_1NwStore.html#a2bb7d1a225e49bd5371b13ead463fed5">More...</a><br /></td></tr>
+<tr class="separator:a2bb7d1a225e49bd5371b13ead463fed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97417df87ef0856d2708871504d24d4a"><td class="memItemLeft" align="right" valign="top">IList&lt; <a class="el" href="classAnvil_1_1API_1_1NwBaseItem.html">NwBaseItem</a>?&gt;????&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwStore.html#a97417df87ef0856d2708871504d24d4a">WillOnlyBuyItems</a><code> [get]</code></td></tr>
+<tr class="memdesc:a97417df87ef0856d2708871504d24d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of base item types that this store will only buy.<br  />
+ Does nothing if <a class="el" href="classAnvil_1_1API_1_1NwStore.html#a2bb7d1a225e49bd5371b13ead463fed5" title="Gets the list of base item types that this store will not buy.  Has precedence over WillOnlyBuyItems.">WillNotBuyItems</a> is populated.  <a href="classAnvil_1_1API_1_1NwStore.html#a97417df87ef0856d2708871504d24d4a">More...</a><br /></td></tr>
+<tr class="separator:a97417df87ef0856d2708871504d24d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classAnvil_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('properties_classAnvil_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">Anvil.API.NwGameObject</a></td></tr>
 <tr class="memitem:a4c6e7244d5d4998baa85da93e94593f1 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a4c6e7244d5d4998baa85da93e94593f1">ActiveEffects</a><code> [get]</code></td></tr>
 <tr class="memdesc:a4c6e7244d5d4998baa85da93e94593f1 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all effects (permanent and temporary) that are active on this game object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a4c6e7244d5d4998baa85da93e94593f1">More...</a><br /></td></tr>
@@ -500,9 +529,9 @@ static <a class="el" href="classAnvil_1_1Services_1_1ResourceManager.html">Resou
 <tr class="memitem:a3a1d9ef0d20566a740b15d52f4cf2224 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a3a1d9ef0d20566a740b15d52f4cf2224">Tag</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a3a1d9ef0d20566a740b15d52f4cf2224 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the tag for this object.  <a href="classAnvil_1_1API_1_1NwObject.html#a3a1d9ef0d20566a740b15d52f4cf2224">More...</a><br /></td></tr>
 <tr class="separator:a3a1d9ef0d20566a740b15d52f4cf2224 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3571cdf0a4723852aba21eed594476e inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">Guid?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#ae3571cdf0a4723852aba21eed594476e">UUID</a><code> [get]</code></td></tr>
-<tr class="memdesc:ae3571cdf0a4723852aba21eed594476e inherit properties_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the globally unique identifier for this object.  <a href="classAnvil_1_1API_1_1NwObject.html#ae3571cdf0a4723852aba21eed594476e">More...</a><br /></td></tr>
-<tr class="separator:ae3571cdf0a4723852aba21eed594476e inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d63878b8436eb2d1fbee5ca0b42e37a inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">Guid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a3d63878b8436eb2d1fbee5ca0b42e37a">UUID</a><code> [get]</code></td></tr>
+<tr class="memdesc:a3d63878b8436eb2d1fbee5ca0b42e37a inherit properties_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the globally unique identifier for this object.  <a href="classAnvil_1_1API_1_1NwObject.html#a3d63878b8436eb2d1fbee5ca0b42e37a">More...</a><br /></td></tr>
+<tr class="separator:a3d63878b8436eb2d1fbee5ca0b42e37a inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8532f90be4152dfdd19506eb8c7e753 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top"><a id="aa8532f90be4152dfdd19506eb8c7e753"></a>
 static <a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html">VirtualMachine</a>&#160;</td><td class="memItemRight" valign="bottom"><b>VirtualMachine</b> = null!<code> [get]</code></td></tr>
 <tr class="separator:aa8532f90be4152dfdd19506eb8c7e753 inherit properties_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -512,12 +541,46 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_attribs_classAnvil_1_1API_1_1NwObject"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classAnvil_1_1API_1_1NwObject')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classAnvil_1_1API_1_1NwObject.html">Anvil.API.NwObject</a></td></tr>
 <tr class="memitem:a5945eebf67518e945b212596768ab7ba inherit pub_attribs_classAnvil_1_1API_1_1NwObject"><td class="memItemLeft" align="right" valign="top">readonly uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwObject.html#a5945eebf67518e945b212596768ab7ba">ObjectId</a></td></tr>
 <tr class="memdesc:a5945eebf67518e945b212596768ab7ba inherit pub_attribs_classAnvil_1_1API_1_1NwObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID of this object instance. Not persistent, changes after every spawn of the object.<br  />
- See <a class="el" href="classAnvil_1_1API_1_1NwObject.html#ae3571cdf0a4723852aba21eed594476e" title="Gets the globally unique identifier for this object.">UUID</a> for a persistent unique ID for objects.  <a href="classAnvil_1_1API_1_1NwObject.html#a5945eebf67518e945b212596768ab7ba">More...</a><br /></td></tr>
+ See <a class="el" href="classAnvil_1_1API_1_1NwObject.html#a3d63878b8436eb2d1fbee5ca0b42e37a" title="Gets the globally unique identifier for this object.">UUID</a> for a persistent unique ID for objects.  <a href="classAnvil_1_1API_1_1NwObject.html#a5945eebf67518e945b212596768ab7ba">More...</a><br /></td></tr>
 <tr class="separator:a5945eebf67518e945b212596768ab7ba inherit pub_attribs_classAnvil_1_1API_1_1NwObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A store object for bartering, and items to purchase. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa07718b3d86614068bed901bf2c84dd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa07718b3d86614068bed901bf2c84dd0">&#9670;&nbsp;</a></span>AcquireItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwStore.AcquireItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwItem.html">NwItem</a>&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds the specified item to this store's inventory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>The item to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a7e759fe17666f64b7184f6e13a1ffb4e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7e759fe17666f64b7184f6e13a1ffb4e">&#9670;&nbsp;</a></span>Clone()</h2>
 
@@ -629,6 +692,30 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
+<a id="abeab3ae19e8bacb5960f1ae43d30c6ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeab3ae19e8bacb5960f1ae43d30c6ac">&#9670;&nbsp;</a></span>BuyStolenGoods</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwStore.BuyStolenGoods</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets if this store purchases stolen goods. </p>
+
+</div>
+</div>
 <a id="a080faa49a0eebfddbd36113551e67616"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a080faa49a0eebfddbd36113551e67616">&#9670;&nbsp;</a></span>CurrentCustomers</h2>
 
@@ -677,6 +764,31 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="abe8bc53562a48e015469882435026c9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe8bc53562a48e015469882435026c9d">&#9670;&nbsp;</a></span>IdentifyCost</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwStore.IdentifyCost</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the amount this store charges to identify an item.<br  />
+ Returns -1 if the store does not identify items. </p>
+
+</div>
+</div>
 <a id="a749596b983a4eb5c27954930a92f62a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a749596b983a4eb5c27954930a92f62a1">&#9670;&nbsp;</a></span>Items</h2>
 
@@ -698,6 +810,153 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets all items belonging to this store's inventory. </p>
+
+</div>
+</div>
+<a id="a4ccc7f8b69150ead49805a6ff5ad360c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ccc7f8b69150ead49805a6ff5ad360c">&#9670;&nbsp;</a></span>MarkDown</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwStore.MarkDown</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the base markdown price for items sold to this store. </p>
+
+</div>
+</div>
+<a id="ae5638f10dd187a1397869bf4cac9897a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5638f10dd187a1397869bf4cac9897a">&#9670;&nbsp;</a></span>MarkDownStolen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwStore.MarkDownStolen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the base markdown price for stolen items sold to this store. </p>
+
+</div>
+</div>
+<a id="a1b6eae045d9f7e8f136ce767975a5a26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b6eae045d9f7e8f136ce767975a5a26">&#9670;&nbsp;</a></span>MarkUp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwStore.MarkUp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the base markup price for items in the store's inventory. </p>
+
+</div>
+</div>
+<a id="ab3f69caad7bca34d8f3cd7c14fad5976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3f69caad7bca34d8f3cd7c14fad5976">&#9670;&nbsp;</a></span>MaxBuyPrice</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.NwStore.MaxBuyPrice</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the maximum price this store will pay for an item.<br  />
+ Returns -1 if the store has no limit. </p>
+
+</div>
+</div>
+<a id="a2bb7d1a225e49bd5371b13ead463fed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bb7d1a225e49bd5371b13ead463fed5">&#9670;&nbsp;</a></span>WillNotBuyItems</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IList&lt;<a class="el" href="classAnvil_1_1API_1_1NwBaseItem.html">NwBaseItem</a>?&gt;???? Anvil.API.NwStore.WillNotBuyItems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the list of base item types that this store will not buy.<br  />
+ Has precedence over <a class="el" href="classAnvil_1_1API_1_1NwStore.html#a97417df87ef0856d2708871504d24d4a" title="Gets the list of base item types that this store will only buy.  Does nothing if WillNotBuyItems is p...">WillOnlyBuyItems</a>. </p>
+
+</div>
+</div>
+<a id="a97417df87ef0856d2708871504d24d4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97417df87ef0856d2708871504d24d4a">&#9670;&nbsp;</a></span>WillOnlyBuyItems</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IList&lt;<a class="el" href="classAnvil_1_1API_1_1NwBaseItem.html">NwBaseItem</a>?&gt;???? Anvil.API.NwStore.WillOnlyBuyItems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the list of base item types that this store will only buy.<br  />
+ Does nothing if <a class="el" href="classAnvil_1_1API_1_1NwStore.html#a2bb7d1a225e49bd5371b13ead463fed5" title="Gets the list of base item types that this store will not buy.  Has precedence over WillOnlyBuyItems.">WillNotBuyItems</a> is populated. </p>
 
 </div>
 </div>

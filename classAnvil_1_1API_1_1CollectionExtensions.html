@@ -98,6 +98,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad7717ab1c06bf70da6f110a49c4551d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an element to a mutable lookup table<br  />
  (E.g. Dictionary&lt;Key,List&lt;Value&gt;&gt;)  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#ad7717ab1c06bf70da6f110a49c4551d5">More...</a><br /></td></tr>
 <tr class="separator:ad7717ab1c06bf70da6f110a49c4551d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d1ff4158820979ae99917cc45e2f570"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#a3d1ff4158820979ae99917cc45e2f570">AddRange&lt; T &gt;</a> (this IList&lt; T &gt; list, IEnumerable&lt; T &gt; values)</td></tr>
+<tr class="memdesc:a3d1ff4158820979ae99917cc45e2f570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a range of values to the specified IList.  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#a3d1ff4158820979ae99917cc45e2f570">More...</a><br /></td></tr>
+<tr class="separator:a3d1ff4158820979ae99917cc45e2f570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6761eb545597f8e867b13cb0b919da5d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CollectionExtensions.html#a6761eb545597f8e867b13cb0b919da5d">ContainsElement&lt; TKey, TValue, TCollection &gt;</a> (this IDictionary&lt; TKey, TCollection &gt; mutableLookup, TKey key, TValue value)</td></tr>
 <tr class="memdesc:a6761eb545597f8e867b13cb0b919da5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries if a certain value exists in a mutable lookup table<br  />
  (E.g. Dictionary&lt;Key,List&lt;Value&gt;&gt;)  <a href="classAnvil_1_1API_1_1CollectionExtensions.html#a6761eb545597f8e867b13cb0b919da5d">More...</a><br /></td></tr>
@@ -185,6 +188,57 @@ static ? TValue&#160;</td><td class="memItemRight" valign="bottom"><b>SafeGet&lt
 </dd>
 </dl>
 </div>
+
+</div>
+</div>
+<a id="a3d1ff4158820979ae99917cc45e2f570"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d1ff4158820979ae99917cc45e2f570">&#9670;&nbsp;</a></span>AddRange&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Anvil.API.CollectionExtensions.AddRange&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IList&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>values</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a range of values to the specified IList. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>The list to update.</td></tr>
+    <tr><td class="paramname">values</td><td>The elements to add to the list.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The list element type.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
