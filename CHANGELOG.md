@@ -7,13 +7,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.19...HEAD
 
 ### Added
-- N/A
+- CollectionExtensions: Added IList `AddRange` extension.
+- NwCreature: Added `IsBartering` property.
+- NwObject: Added `TryGetUUID` method.
+- NwObject: Added `SerializeToJson` method.
+- NwStore: Added `BuyStolenGoods`, `MarkDown`, `MarkDownStolen`, `MarkUp`, `WillNotBuyItems`, `WillOnlyBuyItems` properties.
 
 ### Package Updates
-- N/A
+- LightInject: 6.5.1 -> 6.6.1
 
 ### Changed
-- N/A
+- Exposed Json engine structure.
 
 ### Deprecated
 - N/A
