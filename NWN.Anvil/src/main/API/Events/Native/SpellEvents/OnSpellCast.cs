@@ -10,7 +10,7 @@ namespace Anvil.API.Events
 {
   public sealed class OnSpellCast : IEvent
   {
-    public NwGameObject Caster { get; private init; } = null!;
+    public NwObject Caster { get; private init; } = null!;
 
     public int ClassIndex { get; private init; }
 
@@ -30,7 +30,7 @@ namespace Anvil.API.Events
 
     public bool SpellCountered { get; private init; }
 
-    public NwGameObject TargetObject { get; private init; } = null!;
+    public NwObject TargetObject { get; private init; } = null!;
 
     public Vector3 TargetPosition { get; private init; }
 
@@ -61,10 +61,10 @@ namespace Anvil.API.Events
         {
           eventData = ProcessEvent(EventCallbackType.Before, new OnSpellCast
           {
-            Caster = gameObject.ToNwObject<NwGameObject>()!,
+            Caster = gameObject.ToNwObject()!,
             Spell = NwSpell.FromSpellId(nSpellId)!,
             TargetPosition = targetPosition,
-            TargetObject = oidTarget.ToNwObject<NwGameObject>()!,
+            TargetObject = oidTarget.ToNwObject()!,
             ClassIndex = nMultiClass,
             Item = itemObj.ToNwObject<NwItem>()!,
             SpellCountered = bSpellCountered.ToBool(),
