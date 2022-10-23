@@ -94,18 +94,18 @@ namespace Anvil.API
     /// <para>At times a PC may get stuck in a permanent crash loop when attempting to login. This function allows administrators to delete their Temporary User
     /// Resource Data where the PC's current location is stored allowing them to log into the starting area.</para>
     /// </summary>
-    /// <param name="playerName">The community (login name).</param>
+    /// <param name="playerId">The community (login name) of the player. If CD Key TURDs are enabled (NWNX_TWEAKS_TURD_BY_CDKEY), this is the player's CD key.</param>
     /// <param name="characterName">The character name.</param>
     /// <returns>true if the TURD was successfully deleted.</returns>
-    public bool DeletePlayerTURD(string playerName, string characterName)
+    public bool DeletePlayerTURD(string playerId, string characterName)
     {
-      if (string.IsNullOrEmpty(playerName) || string.IsNullOrEmpty(characterName))
+      if (string.IsNullOrEmpty(playerId) || string.IsNullOrEmpty(characterName))
       {
         return false;
       }
 
       CExoLinkedListInternal turds = NwModule.Instance.Module.m_lstTURDList.m_pcExoLinkedListInternal;
-      CExoLinkedListNode? node = FindTURD(turds, playerName, characterName);
+      CExoLinkedListNode? node = FindTURD(turds, playerId, characterName);
       if (node == null)
       {
         return false;
