@@ -7,13 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.20...HEAD
 
 ### Added
-- N/A
+- NwAreaOfEffect: Added `Radius` property.
 
 ### Package Updates
-- N/A
+- NWNX 8faa9d4 -> fe195ec
 
 ### Changed
-- N/A
+- OnSpellCast: `Caster` and `TargetObject` now correctly use `NwObject` as the event data type.
 
 ### Deprecated
 - N/A
@@ -22,7 +22,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.20...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed a server crash when a module or area attempted to cast a spell.
+- Fixed an edge case where a deleted player's TURD would not be deleted.
 
 ## 8193.34.20
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.19...v8193.34.20
