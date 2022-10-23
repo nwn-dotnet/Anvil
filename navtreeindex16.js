@@ -1,5 +1,6 @@
 var NAVTREEINDEX16 =
 {
+"classAnvil_1_1API_1_1VisualEffectTableEntry.html#af6c7a679a51040617d1e3ba2f18bdcd5":[0,0,0,209,8],
 "classAnvil_1_1API_1_1VisualEffectTableEntry.html#afe67badc2c67fd0bebcde7720054cc96":[0,0,0,209,9],
 "classAnvil_1_1API_1_1VisualTransform.html":[0,0,0,210],
 "classAnvil_1_1API_1_1VisualTransform.html#a0e31ba4a669354af59d18829da9bba68":[0,0,0,210,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX16 =
 "classAnvil_1_1Services_1_1WeaponService.html#a7e623e9edc87155361cd9baf31e3a72a":[0,0,3,43,9],
 "classAnvil_1_1Services_1_1WeaponService.html#a812da7e1f1e8226cdb2fa4152124ba6b":[0,0,3,43,6],
 "classAnvil_1_1Services_1_1WeaponService.html#a99f83eab2256891a16a88eee746031a2":[0,0,3,43,4],
-"classAnvil_1_1Services_1_1WeaponService.html#a9a43c005e9f6b18b404eebd898f4a9d6":[0,0,3,43,11],
-"classAnvil_1_1Services_1_1WeaponService.html#a9c07ebaa91e7be628bba58577b075e1c":[0,0,3,43,14]
+"classAnvil_1_1Services_1_1WeaponService.html#a9a43c005e9f6b18b404eebd898f4a9d6":[0,0,3,43,11]
 };

@@ -226,15 +226,16 @@ var NAVTREEINDEX8 =
 "classAnvil_1_1API_1_1NwAreaOfEffect.html":[0,0,0,128],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a028d931ffb214e05dd35b1acd2a20c7d":[0,0,0,128,1],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a0e82f78ef0ac66e0d0cc59d292402456":[0,0,0,128,10],
-"classAnvil_1_1API_1_1NwAreaOfEffect.html#a1262060ce49b6a738e3f5b3a6889523e":[0,0,0,128,13],
+"classAnvil_1_1API_1_1NwAreaOfEffect.html#a1262060ce49b6a738e3f5b3a6889523e":[0,0,0,128,14],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a169d8c1fcc60c905d03b171be267255d":[0,0,0,128,4],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a2d75e451837000549d7bb20049ae9892":[0,0,0,128,2],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a674eb7ec3f00765daa6f65bfb6bea510":[0,0,0,128,11],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a69cf0a2c45b8e4a37383da30d945d34a":[0,0,0,128,6],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a69fd7e1511f35a5193e401d9cf01cd79":[0,0,0,128,7],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a7853b481e840e6885d8212ea35783625":[0,0,0,128,3],
-"classAnvil_1_1API_1_1NwAreaOfEffect.html#a82d511031f34bbe84838b7854e36b99f":[0,0,0,128,12],
+"classAnvil_1_1API_1_1NwAreaOfEffect.html#a82d511031f34bbe84838b7854e36b99f":[0,0,0,128,13],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#a90be602cb288a4ae3dcfc39ffdec8f5d":[0,0,0,128,9],
+"classAnvil_1_1API_1_1NwAreaOfEffect.html#aaa0553019a5b38e1489e56a93c4184c5":[0,0,0,128,12],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#ac0272c48ca29d465c2c43635174bb508":[0,0,0,128,0],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#aec4b3bca0f850f7704e3417e7b68dcd6":[0,0,0,128,5],
 "classAnvil_1_1API_1_1NwAreaOfEffect.html#afadc0a4b77bfc002fc19c6bf0298a756":[0,0,0,128,8],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "classAnvil_1_1API_1_1NwBaseItem.html#a13abf8701fcee243cf562148e54c4926":[0,0,0,129,62],
 "classAnvil_1_1API_1_1NwBaseItem.html#a14b1ea23ea4ff7681edd6dea284f2b03":[0,0,0,129,41],
 "classAnvil_1_1API_1_1NwBaseItem.html#a1924be31ae8cd527f196bd5ab672ac95":[0,0,0,129,52],
-"classAnvil_1_1API_1_1NwBaseItem.html#a1d988ed60e3c04e6c186c7217403e146":[0,0,0,129,31],
-"classAnvil_1_1API_1_1NwBaseItem.html#a2095134b396694e77cab26e32ea682ef":[0,0,0,129,54]
+"classAnvil_1_1API_1_1NwBaseItem.html#a1d988ed60e3c04e6c186c7217403e146":[0,0,0,129,31]
 };

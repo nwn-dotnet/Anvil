@@ -4,7 +4,7 @@ var classAnvil_1_1API_1_1NwServer =
     [ "AddBannedCDKey", "classAnvil_1_1API_1_1NwServer.html#adb9bf4470a72c9d79f248cab4c503c2f", null ],
     [ "AddBannedIP", "classAnvil_1_1API_1_1NwServer.html#a2bbd0c9969311075468431ac27bb90b2", null ],
     [ "AddBannedPlayerName", "classAnvil_1_1API_1_1NwServer.html#adbb31d5caa134e7ef556eb7afd3f655b", null ],
-    [ "DeletePlayerTURD", "classAnvil_1_1API_1_1NwServer.html#a9481181eda6490ab5cfeab1abc45150e", null ],
+    [ "DeletePlayerTURD", "classAnvil_1_1API_1_1NwServer.html#aaf30fd5512862f2814227f67fd16f5ec", null ],
     [ "GetAliasPath", "classAnvil_1_1API_1_1NwServer.html#af81797a86f70029a9e46a543d6c6d1e1", null ],
     [ "ReloadRules", "classAnvil_1_1API_1_1NwServer.html#a9e9197aad35bafbce74112eff3a58fc6", null ],
     [ "RemoveBannedCDKey", "classAnvil_1_1API_1_1NwServer.html#aa930926e59cf91ec6bde4b5ec1bf604e", null ],

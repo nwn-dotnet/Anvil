@@ -1,5 +1,6 @@
 var NAVTREEINDEX17 =
 {
+"classAnvil_1_1Services_1_1WeaponService.html#a9c07ebaa91e7be628bba58577b075e1c":[0,0,3,43,14],
 "classAnvil_1_1Services_1_1WeaponService.html#aa94dbf232d6e933e27fbbe6256d77579":[0,0,3,43,15],
 "classAnvil_1_1Services_1_1WeaponService.html#aab4b82bfd07354ab250f3aa81a4d4310":[0,0,3,43,2],
 "classAnvil_1_1Services_1_1WeaponService.html#ab51a84f3689b3be3993d498f66b401f7":[0,0,3,43,1],
