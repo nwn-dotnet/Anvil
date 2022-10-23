@@ -33,6 +33,11 @@ namespace Anvil.API
     public NwGameObject? Creator => NWScript.GetAreaOfEffectCreator(this).ToNwObject<NwGameObject>();
 
     /// <summary>
+    /// Gets the radius of this area of effect.
+    /// </summary>
+    public float Radius => AreaOfEffect.m_fRadius;
+
+    /// <summary>
     /// Gets the Area Of Effect duration.
     /// </summary>
     public TimeSpan RemainingDuration => TimeSpan.FromMilliseconds(AreaOfEffect.m_nDuration);
