@@ -3,7 +3,7 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public static class NativeObjectExtensions
+  internal static class NativeObjectExtensions
   {
     public static Effect? ToEffect(this CGameEffect? effect, bool memoryOwn)
     {

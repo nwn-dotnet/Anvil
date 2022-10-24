@@ -4,10 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.16...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.21...HEAD
 
 ### Added
-- NwCreature: Added `SittingObject` property.
+- N/A
 
 ### Package Updates
 - N/A
@@ -23,6 +23,65 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.16...HEAD
 
 ### Fixed
 - N/A
+
+## 8193.34.21
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.20...v8193.34.21
+
+### Added
+- NwAreaOfEffect: Added `Radius` property.
+
+### Package Updates
+- NWNX 8faa9d4 -> fe195ec
+
+### Changed
+- OnSpellCast: `Caster` and `TargetObject` now correctly use `NwObject` as the event data type.
+
+### Fixed
+- Fixed a server crash when a module or area attempted to cast a spell.
+- Fixed an edge case where a deleted player's TURD would not be deleted.
+
+## 8193.34.20
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.19...v8193.34.20
+
+### Added
+- CollectionExtensions: Added IList `AddRange` extension.
+- NwCreature: Added `IsBartering` property.
+- NwObject: Added `TryGetUUID` method.
+- NwObject: Added `SerializeToJson` method.
+- NwStore: Added `BuyStolenGoods`, `MarkDown`, `MarkDownStolen`, `MarkUp`, `WillNotBuyItems`, `WillOnlyBuyItems` properties.
+
+### Package Updates
+- LightInject: 6.5.1 -> 6.6.1
+
+### Changed
+- Exposed Json engine structure.
+
+### Fixed
+- VirtualMachine: Fixed an issue where ObjectSelf would not be correctly assigned.
+
+## 8193.34.19
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.18...v8193.34.19
+
+### Added
+- Events: Added `OnLoadCharacterFinish` event.
+
+## 8193.34.18
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.17...v8193.34.18
+
+### Fixed
+- Fix an InvalidOperationException being thrown when checking player for equality.
+
+## 8193.34.17
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.16...v8193.34.17
+
+### Added
+- NwCreature: Added `SittingObject` property.
+- NwArea: Added `LoadScreen` property.
+- ResourceManager: Added `CreateResourceDirectory`.
+
+### Fixed
+- NwBaseItem: Fixed `ItemClass` returning a type name instead of the item class name.
+- Fixed a rare compile issue when using `ToNwObject` caused by exposed native types.
 
 ## 8193.34.16
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.15...v8193.34.16

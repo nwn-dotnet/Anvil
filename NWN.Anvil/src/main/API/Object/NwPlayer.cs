@@ -604,6 +604,12 @@ namespace Anvil.API
       bool turdDeleted = NwServer.DeletePlayerTURD(playerName, characterName);
       if (!turdDeleted)
       {
+        // Server may be using TURDs by CD Key.
+        turdDeleted = NwServer.DeletePlayerTURD(playerDir, characterName);
+      }
+
+      if (!turdDeleted)
+      {
         Log.Warn("Could not delete the TURD for deleted character {Character}", characterName);
       }
 
@@ -724,7 +730,7 @@ namespace Anvil.API
         return true;
       }
 
-      return Player.Pointer.Equals(other.Player.Pointer);
+      return player.Pointer.Equals(other.player.Pointer);
     }
 
     public override bool Equals(object? obj)
