@@ -18,7 +18,7 @@ namespace Anvil.API.Events
 
     public bool IsInstantSpell { get; private init; }
 
-    public NwItem Item { get; private init; } = null!;
+    public NwItem? Item { get; private init; }
 
     public MetaMagic MetaMagic { get; private init; }
 
@@ -26,11 +26,11 @@ namespace Anvil.API.Events
 
     public ProjectilePathType ProjectilePathType { get; private init; }
 
-    public NwSpell Spell { get; private init; } = null!;
+    public NwSpell? Spell { get; private init; }
 
     public bool SpellCountered { get; private init; }
 
-    public NwObject TargetObject { get; private init; } = null!;
+    public NwObject? TargetObject { get; private init; }
 
     public Vector3 TargetPosition { get; private init; }
 
