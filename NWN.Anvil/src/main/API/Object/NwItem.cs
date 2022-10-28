@@ -354,8 +354,9 @@ namespace Anvil.API
     /// <param name="targetInventory">The target inventory to create the cloned item.</param>
     /// <param name="newTag">A new tag to assign the cloned item.</param>
     /// <param name="copyLocalState">If true, local variables on the item are copied.</param>
+    /// <param name="preserveDropFlag">If true, preserves the <see cref="Droppable"/> state of the item.</param>
     /// <returns>The newly cloned copy of the item.</returns>
-    public NwItem Clone(NwGameObject targetInventory, string? newTag = null, bool copyLocalState = true)
+    public NwItem Clone(NwGameObject targetInventory, string? newTag = null, bool copyLocalState = true, bool preserveDropFlag = true)
     {
       NwItem clone = NWScript.CopyItem(this, targetInventory, copyLocalState.ToInt()).ToNwObject<NwItem>()!;
       if (newTag != null)
@@ -363,15 +364,38 @@ namespace Anvil.API
         clone.Tag = newTag;
       }
 
+      if (preserveDropFlag)
+      {
+        clone.Droppable = Droppable;
+      }
+
       return clone;
     }
 
     public override NwItem Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
+      return Clone(location, true, newTag, copyLocalState);
+    }
+
+    /// <summary>
+    /// Creates a copy of this item.
+    /// </summary>
+    /// <param name="location">The location for the copied item.</param>
+    /// <param name="preserveDropFlag">If true, preserves the <see cref="Droppable"/> state of the item.</param>
+    /// <param name="newTag">A new tag to assign the cloned item.</param>
+    /// <param name="copyLocalState">If true, local variables on the item are copied.</param>
+    /// <returns>The newly cloned copy of the item.</returns>
+    public NwItem Clone(Location location, bool preserveDropFlag, string? newTag = null, bool copyLocalState = true)
+    {
       NwItem clone = CloneInternal<NwItem>(location, newTag, copyLocalState);
       if (!copyLocalState)
       {
         CleanLocalVariables(clone);
+      }
+
+      if (preserveDropFlag)
+      {
+        clone.Droppable = Droppable;
       }
 
       return clone;
