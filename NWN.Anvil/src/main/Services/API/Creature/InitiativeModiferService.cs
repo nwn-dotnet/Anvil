@@ -32,8 +32,8 @@ namespace Anvil.Services
     /// </summary>
     public int? GetInitiativeModifier(NwCreature creature)
     {
-      InternalVariableInt initiativeModifer = InternalVariables.InitiativeMod(creature);
-      if (initiativeModifer.HasValue)
+      InternalVariableInt initiativeModifier = InternalVariables.InitiativeMod(creature);
+      if (initiativeModifier.HasValue)
       {
         return InternalVariables.InitiativeMod(creature);
       }
