@@ -10,14 +10,14 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   public sealed unsafe class InitiativeModifierService
   {
-    private readonly FunctionHook<GetInitiativeModifer> initiativeModiferHook;
+    private readonly FunctionHook<InitiativeModifier> initiativeModiferHook;
 
     public InitiativeModifierService(HookService hookService)
     {
-      initiativeModiferHook = hookService.RequestHook<GetInitiativeModifer>(OnResolveInitiative, FunctionsLinux._ZN12CNWSCreature17ResolveInitiativeEv, HookOrder.Late);
+      initiativeModiferHook = hookService.RequestHook<InitiativeModifier>(OnResolveInitiative, FunctionsLinux._ZN12CNWSCreature17ResolveInitiativeEv, HookOrder.Late);
     }
 
-    private delegate void GetInitiativeModifer(void* pObject);
+    private delegate void InitiativeModifier(void* pObject);
 
     /// <summary>
     /// Clears any modifier that is set for the creature's initiative.<br/>
