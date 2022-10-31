@@ -6,13 +6,13 @@ using Feat = Anvil.API.Feat;
 
 namespace Anvil.Services
 {
-  [ServiceBinding(typeof(InitiativeModiferService))]
+  [ServiceBinding(typeof(InitiativeModifierService))]
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
-  public sealed unsafe class InitiativeModiferService
+  public sealed unsafe class InitiativeModifierService
   {
     private readonly FunctionHook<GetInitiativeModifer> initiativeModiferHook;
 
-    public InitiativeModiferService(HookService hookService)
+    public InitiativeModifierService(HookService hookService)
     {
       initiativeModiferHook = hookService.RequestHook<GetInitiativeModifer>(OnResolveInitiative, FunctionsLinux._ZN12CNWSCreature17ResolveInitiativeEv, HookOrder.Late);
     }
@@ -22,7 +22,7 @@ namespace Anvil.Services
     /// <summary>
     /// Clears any modifier that is set for the creature's initiative.<br/>
     /// </summary>
-    public void ClearInitiativeModifer(NwCreature creature)
+    public void ClearInitiativeModifier(NwCreature creature)
     {
       InternalVariables.InitiativeMod(creature).Delete();
     }
@@ -44,7 +44,7 @@ namespace Anvil.Services
     /// <summary>
     /// Sets the modifier that is set for the creature's initiative.<br/>
     /// </summary>
-    public void SetInitiativeModifer(NwCreature creature, Int32 mod)
+    public void SetInitiativeModifier(NwCreature creature, Int32 mod)
     {
       InternalVariables.InitiativeMod(creature).Value = mod;
     }

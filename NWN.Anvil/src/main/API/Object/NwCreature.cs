@@ -25,7 +25,7 @@ namespace Anvil.API
     [Inject]
     private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; } = null!;
     [Inject]
-    private static Lazy<InitiativeModiferService> InitiativeModiferService { get; set; } = null!;
+    private static Lazy<InitiativeModifierService> InitiativeModifierService { get; set; } = null!;
 
     [Inject]
     private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; } = null!;
@@ -1340,7 +1340,7 @@ namespace Anvil.API
     /// </summary>
     public void ClearInitiativeModifier()
     {
-      InitiativeModiferService.Value.ClearInitiativeModifer(this);
+      InitiativeModifierService.Value.ClearInitiativeModifier(this);
     }
 
 
@@ -1603,9 +1603,9 @@ namespace Anvil.API
     /// <summary>
     /// Gets the modifier that is set for the creature's initiative.<br/>
     /// </summary>
-    public int? GetInitiativeModifer()
+    public int? GetInitiativeModifier()
     {
-      return InitiativeModiferService.Value.GetInitiativeModifier(this);
+      return InitiativeModifierService.Value.GetInitiativeModifier(this);
     }
 
     /// <summary>
@@ -2236,9 +2236,9 @@ namespace Anvil.API
     /// <summary>
     /// Sets the modifier that is set for the creature's initiative.<br/>
     /// </summary>
-    public void SetInitiativeModifer(int modifier)
+    public void SetInitiativeModifier(int modifier)
     {
-      InitiativeModiferService.Value.SetInitiativeModifer(this, modifier);
+      InitiativeModifierService.Value.SetInitiativeModifier(this, modifier);
     }
  
 
