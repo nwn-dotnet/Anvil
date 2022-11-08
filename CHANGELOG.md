@@ -10,10 +10,11 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.21...HEAD
 - N/A
 
 ### Package Updates
-- N/A
+- NLog: 5.0.4 -> 5.0.5
 
 ### Changed
-- N/A
+- OnSpellCast: Item, Spell and TargetObject can be null.
+- NwItem: `Clone()` now preserves the item's `Droppable` flag. An optional parameter is provided to keep the old behaviour. 
 
 ### Deprecated
 - N/A
@@ -31,7 +32,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.20...v8193.34.21
 - NwAreaOfEffect: Added `Radius` property.
 
 ### Package Updates
-- NWNX 8faa9d4 -> fe195ec
+- NWNX: 8faa9d4 -> fe195ec
 
 ### Changed
 - OnSpellCast: `Caster` and `TargetObject` now correctly use `NwObject` as the event data type.
