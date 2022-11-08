@@ -1,5 +1,6 @@
 var NAVTREEINDEX14 =
 {
+"classAnvil_1_1API_1_1NwStore.html#a7e759fe17666f64b7184f6e13a1ffb4e":[0,0,0,153,2],
 "classAnvil_1_1API_1_1NwStore.html#a97417df87ef0856d2708871504d24d4a":[0,0,0,153,22],
 "classAnvil_1_1API_1_1NwStore.html#aa07718b3d86614068bed901bf2c84dd0":[0,0,0,153,0],
 "classAnvil_1_1API_1_1NwStore.html#aa405e561f7c2c5c645805d432fa85c75":[0,0,0,153,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX14 =
 "classAnvil_1_1API_1_1PlayerQuickBarButton.html#aaaff6c4e9848871af83e23850f245cd7":[0,0,0,182,12],
 "classAnvil_1_1API_1_1PlayerQuickBarButton.html#ac144a3bf7b19ccb90ac789924905c6ad":[0,0,0,182,13],
 "classAnvil_1_1API_1_1PlayerQuickBarButton.html#ac52919ae805691b4fa2d8d821559af2c":[0,0,0,182,2],
-"classAnvil_1_1API_1_1PlayerQuickBarButton.html#accd6bd6666cfab402c9dab932e2a6589":[0,0,0,182,8],
-"classAnvil_1_1API_1_1PlayerQuickBarButton.html#acdb41c764aa29c7c241dc2fc8c06b1d7":[0,0,0,182,5]
+"classAnvil_1_1API_1_1PlayerQuickBarButton.html#accd6bd6666cfab402c9dab932e2a6589":[0,0,0,182,8]
 };

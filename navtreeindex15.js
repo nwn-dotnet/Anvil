@@ -1,5 +1,6 @@
 var NAVTREEINDEX15 =
 {
+"classAnvil_1_1API_1_1PlayerQuickBarButton.html#acdb41c764aa29c7c241dc2fc8c06b1d7":[0,0,0,182,5],
 "classAnvil_1_1API_1_1PlayerQuickBarButton.html#ad2846aaa5e6532a70598d2333f8b2e0b":[0,0,0,182,4],
 "classAnvil_1_1API_1_1PlayerQuickBarButton.html#ad774d89351dfb4c5c08dbaad767cfcfd":[0,0,0,182,14],
 "classAnvil_1_1API_1_1PlayerQuickBarButton.html#adafc5cf7922a186ac272679567e46082":[0,0,0,182,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX15 =
 "classAnvil_1_1API_1_1VisualEffectTableEntry.html#aad1c26a011cad9befaa9775c838a1ef8":[0,0,0,209,23],
 "classAnvil_1_1API_1_1VisualEffectTableEntry.html#ab5106b576c0a0e19b476f737122583c3":[0,0,0,209,11],
 "classAnvil_1_1API_1_1VisualEffectTableEntry.html#ab5c0593a3420b58e66de3913df90eafe":[0,0,0,209,7],
-"classAnvil_1_1API_1_1VisualEffectTableEntry.html#ad64281420052a88ff57399b81b9ce78d":[0,0,0,209,3],
-"classAnvil_1_1API_1_1VisualEffectTableEntry.html#ada1f07563d5431ba2b77e9f67858aace":[0,0,0,209,5]
+"classAnvil_1_1API_1_1VisualEffectTableEntry.html#ad64281420052a88ff57399b81b9ce78d":[0,0,0,209,3]
 };

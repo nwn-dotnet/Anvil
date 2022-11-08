@@ -43,12 +43,12 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1NwBaseItem.html#a2095134b396694e77cab26e32ea682ef",
 "classAnvil_1_1API_1_1NwCreature.html#a8b606720645551457cb9c4fcce623d0f",
 "classAnvil_1_1API_1_1NwFeat.html#aa68b6ed95522e690d326344a538708f8",
-"classAnvil_1_1API_1_1NwModule.html#a85ec3c9b9fbe64b2b77efa736e63c0cb",
-"classAnvil_1_1API_1_1NwPlayer.html#a81a8043ce1cef018978e98207149fd71",
-"classAnvil_1_1API_1_1NwStore.html#a97417df87ef0856d2708871504d24d4a",
-"classAnvil_1_1API_1_1PlayerQuickBarButton.html#ad2846aaa5e6532a70598d2333f8b2e0b",
-"classAnvil_1_1API_1_1VisualEffectTableEntry.html#af6c7a679a51040617d1e3ba2f18bdcd5",
-"classAnvil_1_1Services_1_1WeaponService.html#a9c07ebaa91e7be628bba58577b075e1c"
+"classAnvil_1_1API_1_1NwModule.html#a836df432fd5ccfecfca6805785eaebf6",
+"classAnvil_1_1API_1_1NwPlayer.html#a7f700700da0442b77b4e3b46dfe7f164",
+"classAnvil_1_1API_1_1NwStore.html#a7e759fe17666f64b7184f6e13a1ffb4e",
+"classAnvil_1_1API_1_1PlayerQuickBarButton.html#acdb41c764aa29c7c241dc2fc8c06b1d7",
+"classAnvil_1_1API_1_1VisualEffectTableEntry.html#ada1f07563d5431ba2b77e9f67858aace",
+"classAnvil_1_1Services_1_1WeaponService.html#a9a43c005e9f6b18b404eebd898f4a9d6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
