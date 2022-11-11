@@ -1508,7 +1508,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="nwClass">The class with domains. Defaults to <see cref="ClassType.Cleric"/> if not specified.</param>
     /// <returns>An enumeration of this creature's domains.</returns>
-    public IEnumerable<Domain> GetClassDomains(NwClass? nwClass = default)
+    public IEnumerable<NwDomain> GetClassDomains(NwClass? nwClass = default)
     {
       nwClass ??= NwClass.FromClassType(ClassType.Cleric)!;
 
@@ -1520,7 +1520,7 @@ namespace Anvil.API
 
       for (i = 1, current = NWScript.GetDomain(this, i, classT); current != error; i++, current = NWScript.GetDomain(this, i, classT))
       {
-        yield return (Domain)current;
+        yield return NwDomain.FromDomainId(current)!;
       }
     }
 

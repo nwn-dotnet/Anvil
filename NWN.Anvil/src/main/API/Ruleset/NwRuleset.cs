@@ -22,6 +22,11 @@ namespace Anvil.API
     public static IReadOnlyList<NwClass> Classes { get; private set; } = null!;
 
     /// <summary>
+    /// Gets a list of all domains defined in the module's ruleset.
+    /// </summary>
+    public static IReadOnlyList<NwDomain> Domains { get; private set; } = null!;
+
+    /// <summary>
     /// Gets a list of all feats defined in the module's ruleset.
     /// </summary>
     public static IReadOnlyList<NwFeat> Feats { get; private set; } = null!;
@@ -125,6 +130,7 @@ namespace Anvil.API
         Feats = LoadFeats(CNWFeatArray.FromPointer(rules.m_lstFeats), rules.m_nNumFeats);
         BaseItems = LoadBaseItems(rules.m_pBaseItemArray);
         Spells = LoadSpells(rules.m_pSpellArray);
+        Domains = LoadDomains(CNWDomainArray.FromPointer(rules.m_lstDomains), rules.m_nNumDomains);
       }
 
       private static IReadOnlyList<NwSkill> LoadSkills(CNWSkillArray skillArray, int count)
@@ -144,6 +150,17 @@ namespace Anvil.API
         for (int i = 0; i < retVal.Length; i++)
         {
           retVal[i] = new NwSpell(i, spellArray.GetSpell(i));
+        }
+
+        return retVal;
+      }
+
+      private static IReadOnlyList<NwDomain> LoadDomains(CNWDomainArray domainArray, int count)
+      {
+        NwDomain[] retVal = new NwDomain[count];
+        for (int i = 0; i < retVal.Length; i++)
+        {
+          retVal[i] = new NwDomain((byte)i, domainArray.GetItem(i));
         }
 
         return retVal;

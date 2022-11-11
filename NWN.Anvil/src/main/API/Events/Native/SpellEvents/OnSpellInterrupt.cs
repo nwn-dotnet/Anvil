@@ -10,9 +10,9 @@ namespace Anvil.API.Events
   {
     public int ClassIndex { get; private init; }
 
-    public Domain Domain { get; private init; }
+    public NwDomain? Domain { get; private init; }
 
-    public NwFeat Feat { get; private init; } = null!;
+    public NwFeat? Feat { get; private init; } = null!;
     public NwGameObject InterruptedCaster { get; private init; } = null!;
 
     public MetaMagic MetaMagic { get; private init; }
@@ -58,8 +58,8 @@ namespace Anvil.API.Events
           InterruptedCaster = gameObject.ToNwObject<NwGameObject>()!,
           Spell = NwSpell.FromSpellId((int)gameObject.m_nLastSpellId)!,
           ClassIndex = gameObject.m_nLastSpellCastMulticlass,
-          Feat = NwFeat.FromFeatId(gameObject.m_nLastSpellCastFeat)!,
-          Domain = (Domain)gameObject.m_nLastDomainLevel,
+          Feat = NwFeat.FromFeatId(gameObject.m_nLastSpellCastFeat),
+          Domain = NwDomain.FromDomainId(gameObject.m_nLastDomainLevel),
           Spontaneous = gameObject.m_bLastSpellCastSpontaneous.ToBool(),
           MetaMagic = (MetaMagic)gameObject.m_nLastSpellCastMetaType,
         });
