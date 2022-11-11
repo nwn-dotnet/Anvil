@@ -52,6 +52,9 @@ namespace Anvil.API
     /// </summary>
     public bool IsValidDomain => domainInfo.m_bValidDomain.ToBool();
 
+    /// <summary>
+    /// Gets the name of this domain.
+    /// </summary>
     public StrRef Name => new StrRef(domainInfo.m_nNameStrref);
 
     /// <summary>

@@ -12,7 +12,8 @@ namespace Anvil.API.Events
 
     public NwDomain? Domain { get; private init; }
 
-    public NwFeat? Feat { get; private init; } = null!;
+    public NwFeat? Feat { get; private init; }
+
     public NwGameObject InterruptedCaster { get; private init; } = null!;
 
     public MetaMagic MetaMagic { get; private init; }
