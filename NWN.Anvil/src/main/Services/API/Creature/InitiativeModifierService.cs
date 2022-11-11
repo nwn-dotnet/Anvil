@@ -35,7 +35,7 @@ namespace Anvil.Services
       InternalVariableInt initiativeModifier = InternalVariables.InitiativeMod(creature);
       if (initiativeModifier.HasValue)
       {
-        return InternalVariables.InitiativeMod(creature);
+        return initiativeModifier.Value;
       }
 
       return null;
@@ -67,7 +67,7 @@ namespace Anvil.Services
 
       CNWSCreature cCreature = creature.Creature;
 
-      if (cCreature.m_bInitiativeExpired == 1)
+      if (cCreature.m_bInitiativeExpired.ToBool())
       {
         CNWSCreatureStats? pStats = cCreature.m_pStats;
         CNWRules rules = NWNXLib.Rules()!;
@@ -111,7 +111,7 @@ namespace Anvil.Services
           }
         }
 
-        cCreature.m_bInitiativeExpired = 0;
+        cCreature.m_bInitiativeExpired = false.ToInt();
       }
     }
   }
