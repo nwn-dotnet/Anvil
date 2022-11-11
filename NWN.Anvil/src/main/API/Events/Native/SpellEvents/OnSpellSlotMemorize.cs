@@ -12,7 +12,7 @@ namespace Anvil.API.Events
 
     public NwCreature Creature { get; private init; } = null!;
 
-    public Domain Domain { get; private init; }
+    public NwDomain? Domain { get; private init; }
 
     public bool FromClient { get; private init; }
 
@@ -51,7 +51,7 @@ namespace Anvil.API.Events
           ClassIndex = nMultiClass,
           SlotIndex = nSpellSlot,
           Spell = NwSpell.FromSpellId((int)nSpellId)!,
-          Domain = (Domain)nDomainLevel,
+          Domain = NwDomain.FromDomainId(nDomainLevel),
           MetaMagic = (MetaMagic)nMetaType,
           FromClient = bFromClient.ToBool(),
         });
