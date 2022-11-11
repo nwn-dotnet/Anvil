@@ -44,7 +44,7 @@ namespace Anvil.Services
     /// <summary>
     /// Sets the modifier that is set for the creature's initiative.<br/>
     /// </summary>
-    public void SetInitiativeModifier(NwCreature creature, Int32 mod)
+    public void SetInitiativeModifier(NwCreature creature, int mod)
     {
       InternalVariables.InitiativeMod(creature).Value = mod;
     }
@@ -58,12 +58,13 @@ namespace Anvil.Services
         return;
       }
 
-      int? initMod = InternalVariables.InitiativeMod(creature);
-      if (initMod == null)
+      InternalVariableInt initMod = InternalVariables.InitiativeMod(creature);
+      if (initMod.HasNothing)
       {
         initiativeModiferHook.CallOriginal(pCreature);
         return;
       }
+
       CNWSCreature cCreature = creature.Creature;
 
       if (cCreature.m_bInitiativeExpired == 1)
@@ -109,6 +110,7 @@ namespace Anvil.Services
             message.SendServerToPlayerCCMessage(player.Player.m_nPlayerID, (byte)MessageClientSideMsgMinor.Initiative, messageData, null);
           }
         }
+
         cCreature.m_bInitiativeExpired = 0;
       }
     }

@@ -24,6 +24,7 @@ namespace Anvil.API
 
     [Inject]
     private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; } = null!;
+
     [Inject]
     private static Lazy<InitiativeModifierService> InitiativeModifierService { get; set; } = null!;
 
@@ -1343,7 +1344,6 @@ namespace Anvil.API
       InitiativeModifierService.Value.ClearInitiativeModifier(this);
     }
 
-
     public override NwCreature Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwCreature>(location, newTag, copyLocalState);
@@ -2241,8 +2241,6 @@ namespace Anvil.API
       InitiativeModifierService.Value.SetInitiativeModifier(this, modifier);
     }
  
-
-
     /// <summary>
     /// Sets the remaining uses available for the specified feat.<br/>
     /// Cannot exceed the creature's total/max uses of the feat.
