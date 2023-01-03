@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -106,6 +107,42 @@ namespace Anvil.API
     public static T? ParseObject<T>(this string objectIdString) where T : NwObject
     {
       return uint.Parse(objectIdString, NumberStyles.HexNumber).ToNwObject<T>();
+    }
+
+    /// <summary>
+    /// Tries to resolve the specified GameObject ID string to an object. A return value
+    /// indicates whether the conversion succeeded or failed.<br/>
+    /// This is the temporary ID created from <see cref="NwObject.ToString"/>. See <see cref="GuidExtensions.ToNwObject"/> to parse persistent UUIDs.
+    /// </summary>
+    /// <param name="objectIdString">The object ID string to parse.</param>
+    /// <param name="result">When this method returns, contains the object referenced by
+    /// the number contained in objectIdString, if the conversion succeeded, or null if
+    /// the conversion failed. The conversion fails if the s parameter is null or System.String.Empty,
+    /// is not in a format compliant with style, or represents an invalid object reference.</param>
+    /// <returns>true if objectIdString was converted successfully; otherwise, false.</returns>
+    public static bool TryParseObject(this string objectIdString, [NotNullWhen(true)] out NwObject? result)
+    {
+      if (uint.TryParse(objectIdString, NumberStyles.HexNumber, null, out uint res) && res.ToNwObject() is {} obj)
+      {
+        result = obj;
+        return true;
+      }
+
+      result = null;
+      return false;
+    }
+
+    /// <inheritdoc cref="TryParseObject"/>
+    public static bool TryParseObject<T>(this string objectIdString, [NotNullWhen(true)] out T? result) where T : NwObject
+    {
+      if (uint.TryParse(objectIdString, NumberStyles.HexNumber, null, out uint res) && res.ToNwObject<T>() is {} obj)
+      {
+        result = obj;
+        return true;
+      }
+
+      result = null;
+      return false;
     }
 
     public static string ReadBlock(this StringReader stringReader, int length)
