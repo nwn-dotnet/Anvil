@@ -26,7 +26,7 @@ namespace Anvil.API.Events
     /// </summary>
     public bool PreventObjectUse { get; set; }
 
-    NwObject? IEvent.Context => UsedBy;
+    NwObject IEvent.Context => UsedBy;
 
     public sealed unsafe class Factory : HookEventFactory
     {
