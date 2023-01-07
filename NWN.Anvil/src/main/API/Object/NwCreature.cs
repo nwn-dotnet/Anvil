@@ -1923,6 +1923,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets if this creature is flanking the specified target.
+    /// </summary>
+    /// <param name="target">The target creature to check for flanking status.</param>
+    /// <returns>True if the creature is flanking the target, otherwise false.</returns>
+    public bool IsFlanking(NwCreature target)
+    {
+      return Creature.GetFlanked(target.Creature).ToBool();
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this creature considers the target as a enemy.
     /// </summary>
     /// <param name="target">The target creature.</param>
