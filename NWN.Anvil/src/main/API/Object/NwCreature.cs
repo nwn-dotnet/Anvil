@@ -2250,7 +2250,7 @@ namespace Anvil.API
     {
       InitiativeModifierService.Value.SetInitiativeModifier(this, modifier);
     }
- 
+
     /// <summary>
     /// Sets the remaining uses available for the specified feat.<br/>
     /// Cannot exceed the creature's total/max uses of the feat.
