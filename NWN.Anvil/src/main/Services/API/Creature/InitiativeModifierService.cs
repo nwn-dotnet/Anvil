@@ -9,11 +9,11 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   public sealed unsafe class InitiativeModifierService
   {
-    private readonly FunctionHook<InitiativeModifier> initiativeModiferHook;
+    private readonly FunctionHook<InitiativeModifier> initiativeModifierHook;
 
     public InitiativeModifierService(HookService hookService)
     {
-      initiativeModiferHook = hookService.RequestHook<InitiativeModifier>(OnResolveInitiative, FunctionsLinux._ZN12CNWSCreature17ResolveInitiativeEv, HookOrder.Late);
+      initiativeModifierHook = hookService.RequestHook<InitiativeModifier>(OnResolveInitiative, FunctionsLinux._ZN12CNWSCreature17ResolveInitiativeEv, HookOrder.Late);
     }
 
     private delegate void InitiativeModifier(void* pObject);
@@ -53,14 +53,14 @@ namespace Anvil.Services
       NwCreature? creature = CNWSCreature.FromPointer(pCreature).ToNwObject<NwCreature>();
       if (creature == null)
       {
-        initiativeModiferHook.CallOriginal(pCreature);
+        initiativeModifierHook.CallOriginal(pCreature);
         return;
       }
 
       InternalVariableInt initMod = InternalVariables.InitiativeMod(creature);
       if (initMod.HasNothing)
       {
-        initiativeModiferHook.CallOriginal(pCreature);
+        initiativeModifierHook.CallOriginal(pCreature);
         return;
       }
 
