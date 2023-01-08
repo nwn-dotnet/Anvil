@@ -26,6 +26,9 @@ namespace Anvil.API
     private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; } = null!;
 
     [Inject]
+    private static Lazy<InitiativeModifierService> InitiativeModifierService { get; set; } = null!;
+
+    [Inject]
     private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; } = null!;
 
     private readonly CNWSCreature creature;
@@ -1333,6 +1336,14 @@ namespace Anvil.API
       DamageLevelOverrideService.Value.ClearDamageLevelOverride(this);
     }
 
+    /// <summary>
+    /// Clears the modifier that is set for the creature's initiative.<br/>
+    /// </summary>
+    public void ClearInitiativeModifier()
+    {
+      InitiativeModifierService.Value.ClearInitiativeModifier(this);
+    }
+
     public override NwCreature Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwCreature>(location, newTag, copyLocalState);
@@ -1587,6 +1598,14 @@ namespace Anvil.API
     public byte GetFeatTotalUses(NwFeat feat)
     {
       return Creature.m_pStats.GetFeatTotalUses(feat.Id);
+    }
+
+    /// <summary>
+    /// Gets the modifier that is set for the creature's initiative.<br/>
+    /// </summary>
+    public int? GetInitiativeModifier()
+    {
+      return InitiativeModifierService.Value.GetInitiativeModifier(this);
     }
 
     /// <summary>
@@ -2222,6 +2241,14 @@ namespace Anvil.API
     public void SetDamageLevelOverride(DamageLevelEntry damageLevel)
     {
       DamageLevelOverrideService.Value.SetDamageLevelOverride(this, damageLevel);
+    }
+
+    /// <summary>
+    /// Sets the modifier that is set for the creature's initiative.<br/>
+    /// </summary>
+    public void SetInitiativeModifier(int modifier)
+    {
+      InitiativeModifierService.Value.SetInitiativeModifier(this, modifier);
     }
 
     /// <summary>
