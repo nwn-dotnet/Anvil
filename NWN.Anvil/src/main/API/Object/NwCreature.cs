@@ -458,6 +458,12 @@ namespace Anvil.API
     public bool IsDMPossessed => NWScript.GetIsDMPossessed(this).ToBool();
 
     /// <summary>
+    /// Gets a value indicating whether this creature is a DM avatar character.<br/>
+    /// This returns false for NPC creatures possessed by DMs.
+    /// </summary>
+    public bool IsDMAvatar => Creature.m_pStats.GetIsDM().ToBool();
+
+    /// <summary>
     /// Gets a value indicating whether this creature was spawned from an encounter.
     /// </summary>
     public bool IsEncounterCreature => NWScript.GetIsEncounterCreature(this).ToBool();
