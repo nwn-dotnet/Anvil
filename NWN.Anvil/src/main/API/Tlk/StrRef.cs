@@ -1,5 +1,6 @@
 using Anvil.Internal;
 using Anvil.Services;
+using Newtonsoft.Json;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -17,8 +18,10 @@ namespace Anvil.API
     /// <summary>
     /// Gets the index/key for this StrRef.
     /// </summary>
+    [JsonProperty("strref")]
     public readonly uint Id;
 
+    [JsonConstructor]
     public StrRef(uint stringId)
     {
       Id = stringId;
@@ -29,11 +32,13 @@ namespace Anvil.API
     /// <summary>
     /// Gets the index/key for this StrRef relative to the module's custom talk table. (-16777216)
     /// </summary>
+    [JsonIgnore]
     public uint CustomId => Id - CustomTlkOffset;
 
     /// <summary>
     /// Gets or sets a string override that this StrRef should return instead of the tlk file definition.
     /// </summary>
+    [JsonIgnore]
     public string? Override
     {
       get => TlkTable.GetTlkOverride(this);
