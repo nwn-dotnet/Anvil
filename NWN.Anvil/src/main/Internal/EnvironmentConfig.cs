@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Anvil.Services;
 
 namespace Anvil.Internal
@@ -10,7 +11,8 @@ namespace Anvil.Internal
   {
     private static readonly string[] VariablePrefixes = { "ANVIL_", "NWM_" };
 
-    public static readonly string AnvilHome = GetAnvilVariableString("HOME", "./anvil")!;
+    public static readonly string AnvilHome = GetAnvilVariableString("HOME", "./anvil");
+    public static readonly string Encoding = GetAnvilVariableString("ENCODING", "windows-1252")!;
     public static readonly LogMode LogMode = GetAnvilVariableEnum("LOG_MODE", LogMode.Default);
     public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
     public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
@@ -34,6 +36,7 @@ namespace Anvil.Internal
       return Enum.TryParse(value, out T result) ? result : defaultValue;
     }
 
+    [return: NotNullIfNotNull("defaultValue")]
     private static string? GetAnvilVariableString(string key, string? defaultValue = null)
     {
       foreach (string prefix in VariablePrefixes)
