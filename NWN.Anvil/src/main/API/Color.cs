@@ -154,7 +154,7 @@ namespace Anvil.API
     {
       const byte tokenMinVal = 1;
       ReadOnlySpan<byte> tokenBytes = stackalloc[] { Math.Max(Red, tokenMinVal), Math.Max(Green, tokenMinVal), Math.Max(Blue, tokenMinVal) };
-      return StringHelper.Cp1252Encoding.GetString(tokenBytes);
+      return StringHelper.Encoding.GetString(tokenBytes);
     }
 
     [Obsolete("Use Color.ToRGBA() instead.")]
