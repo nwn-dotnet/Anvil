@@ -925,7 +925,7 @@ namespace Anvil.API
 
     public override int GetHashCode()
     {
-      return Player.Pointer.GetHashCode();
+      return player.Pointer.GetHashCode();
     }
 
     /// <summary>
