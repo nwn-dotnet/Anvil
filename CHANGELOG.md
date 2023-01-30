@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.22...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.23...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.34.23
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.22...v8193.34.23
 
 ### Added
 - Added `ANVIL_ENCODING` environment variable for specifying a custom encoding when converting native strings from nwserver.
@@ -36,12 +57,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.22...HEAD
 - Events: `OnSpellInterrupt` Domain and Feat is now nullable.
 - Events: `OnSpellSlotMemorize` Domain is now nullable.
 - `System.Random` usages now use the `System.Random.Shared` instance, instead of individual instances.
-
-### Deprecated
-- N/A
-
-### Removed
-- N/A
 
 ### Fixed
 - Fixed an issue where a GameObject or Player could become stuck in a hash-based collection when it became invalid.
