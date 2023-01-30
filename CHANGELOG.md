@@ -7,13 +7,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.22...HEAD
 
 ### Added
-- N/A
+- Added `ANVIL_ENCODING` environment variable for specifying a custom encoding when converting native strings from nwserver.
+- Added `EncodingService` for changing the server encoding at runtime.
+- NUI: Added StrRef support with `NuiBindStrRef` and `NuiValueStrRef` types.
+- Events: Added `OnDoorSetOpenState` event.
+- Events: Added `OnObjectUse` event.
+- Extensions: Added `TryParseObject` extension for parsing object ID strings.
+- NwCreature: Added `GetInitiativeModifier`,`SetInitiativeModifier`,`ClearInitiativeModifier` methods.
+- NwCreature: Added `IsDMAvatar` property.
+- NwCreature: Added `IsFlanking` method.
+- NwDoor: Added `DoorOpenState` property.
+- NwRuleset: Added NwDomain ruleset table and replaced constant usages with table references.
+- NwServer: Added `IsActivePaused` property.
+- NwServer: Added `IsTimestopPaused` property.
 
 ### Package Updates
-- N/A
+- Microsoft.CodeAnalysis.CSharp: 4.3.1 -> 4.4.0
+- NWN.Core: 8193.34.7 -> 8193.34.10
+- NWN.Native: 8193.34.4 -> 8193.34.5
+- LightInject: 6.6.1 -> 6.6.3
+- Newtonsoft.Json: 13.0.1 -> 13.0.2
+- NLog: 5.0.5 -> 5.1.1
+- Paket.Core: 7.1.5 -> 7.2.0
+- NWNX: fe195ec -> 2692ecb
 
 ### Changed
-- N/A
+- Events: `OnSpellAction` Domain and Feat is now nullable.
+- Events: `OnSpellInterrupt` Domain and Feat is now nullable.
+- Events: `OnSpellSlotMemorize` Domain is now nullable.
+- `System.Random` usages now use the `System.Random.Shared` instance, instead of individual instances.
 
 ### Deprecated
 - N/A
@@ -22,7 +44,8 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.22...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- Fixed an issue where a GameObject or Player could become stuck in a hash-based collection when it became invalid.
+- NwPlayer: `IsDM` now correctly returns true when a DM is possessing a creature. Use `ControlledCreature.IsDM` for the prior behaviour.
 
 ## 8193.34.22
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.21...v8193.34.22
