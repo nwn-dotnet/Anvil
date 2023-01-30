@@ -43,6 +43,17 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the open state for this door.
+    /// </summary>
+    /// <remarks>Changing this property will not fire the door's OnOpen/OnClose event.<br/>
+    /// Use the OnDoorSetOpenState event to handle state changes to the door.</remarks>
+    public DoorOpenState DoorOpenState
+    {
+      get => (DoorOpenState)Door.GetOpenState();
+      set => Door.SetOpenState((byte)value);
+    }
+
+    /// <summary>
     /// Creates a door at the specified location.
     /// </summary>
     /// <param name="template">The door resref template from the toolset palette.</param>
