@@ -20,5 +20,7 @@ var classAnvil_1_1API_1_1StringExtensions =
     [ "ToByteArray", "classAnvil_1_1API_1_1StringExtensions.html#a98b24d5b2b3fb55917b3cb3714aeb629", null ],
     [ "TryParseFloat", "classAnvil_1_1API_1_1StringExtensions.html#a405b531be3e5672b14e3f6739272c4a9", null ],
     [ "TryParseInt", "classAnvil_1_1API_1_1StringExtensions.html#a0c0fefba6ed9ecd625d8d7b3ee5e9529", null ],
-    [ "TryParseIntBool", "classAnvil_1_1API_1_1StringExtensions.html#a40de2d22c1ed1057900fb746c8a15eab", null ]
+    [ "TryParseIntBool", "classAnvil_1_1API_1_1StringExtensions.html#a40de2d22c1ed1057900fb746c8a15eab", null ],
+    [ "TryParseObject", "classAnvil_1_1API_1_1StringExtensions.html#a2df5023ab1ce7881db44612c2c667bed", null ],
+    [ "TryParseObject< T >", "classAnvil_1_1API_1_1StringExtensions.html#a29cd1c3cdbcc18f34904e074f9d7049a", null ]
 ];

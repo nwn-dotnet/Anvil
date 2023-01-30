@@ -401,6 +401,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a69488fdc808c170a024dad8e5981304d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwDoor.html#a69488fdc808c170a024dad8e5981304d">DialogResRef</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a69488fdc808c170a024dad8e5981304d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the dialog ResRef for this door.  <a href="classAnvil_1_1API_1_1NwDoor.html#a69488fdc808c170a024dad8e5981304d">More...</a><br /></td></tr>
 <tr class="separator:a69488fdc808c170a024dad8e5981304d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a631cc3c904618b69ee1c530e5c01a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceAnvil_1_1API.html#abb4c20347d06c89a2519219e26fb0ef3">DoorOpenState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwDoor.html#a6a631cc3c904618b69ee1c530e5c01a6">DoorOpenState</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6a631cc3c904618b69ee1c530e5c01a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the open state for this door.  <a href="classAnvil_1_1API_1_1NwDoor.html#a6a631cc3c904618b69ee1c530e5c01a6">More...</a><br /></td></tr>
+<tr class="separator:a6a631cc3c904618b69ee1c530e5c01a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53c62807ea7af22b0f43e38a06b9fdf9"><td class="memItemLeft" align="right" valign="top"><a id="a53c62807ea7af22b0f43e38a06b9fdf9"></a>
 override bool&#160;</td><td class="memItemRight" valign="bottom"><b>KeyAutoRemoved</b><code> [get, set]</code></td></tr>
 <tr class="separator:a53c62807ea7af22b0f43e38a06b9fdf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -422,6 +425,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnDi
 <tr class="memitem:a0cd886f62198d232ee58654edba78ccf"><td class="memItemLeft" align="right" valign="top"><a id="a0cd886f62198d232ee58654edba78ccf"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnDisarm.html">DoorEvents.OnDisarm</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwDoor.html#a0cd886f62198d232ee58654edba78ccf">OnDisarm</a></td></tr>
 <tr class="separator:a0cd886f62198d232ee58654edba78ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa82caf0fc06a43148ddc0426c26e7ad1"><td class="memItemLeft" align="right" valign="top"><a id="aa82caf0fc06a43148ddc0426c26e7ad1"></a>
+Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnDoorSetOpenState.html">OnDoorSetOpenState</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwDoor.html#aa82caf0fc06a43148ddc0426c26e7ad1">OnDoorSetOpenState</a></td></tr>
+<tr class="separator:aa82caf0fc06a43148ddc0426c26e7ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa26bffeb6d69d6916d0f2be7a9d7a0e5"><td class="memItemLeft" align="right" valign="top"><a id="aa26bffeb6d69d6916d0f2be7a9d7a0e5"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnFailToOpen.html">DoorEvents.OnFailToOpen</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwDoor.html#aa26bffeb6d69d6916d0f2be7a9d7a0e5">OnFailToOpen</a></td></tr>
 <tr class="separator:aa26bffeb6d69d6916d0f2be7a9d7a0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -970,6 +976,32 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a6a631cc3c904618b69ee1c530e5c01a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a631cc3c904618b69ee1c530e5c01a6">&#9670;&nbsp;</a></span>DoorOpenState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceAnvil_1_1API.html#abb4c20347d06c89a2519219e26fb0ef3">DoorOpenState</a> Anvil.API.NwDoor.DoorOpenState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the open state for this door. </p>
+<p>Changing this property will not fire the door's OnOpen/OnClose event.<br  />
+ Use the OnDoorSetOpenState event to handle state changes to the door.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>NWN.Anvil/src/main/API/Events/Game/DoorEvents/DoorEvents.OnAreaTransitionClick.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Game/DoorEvents/DoorEvents.OnClose.cs</li>
@@ -986,6 +1018,7 @@ Additional Inherited Members</h2></td></tr>
 <li>NWN.Anvil/src/main/API/Events/Game/DoorEvents/DoorEvents.OnTrapTriggered.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Game/DoorEvents/DoorEvents.OnUnlock.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Game/DoorEvents/DoorEvents.OnUserDefined.cs</li>
+<li>NWN.Anvil/src/main/API/Events/Native/ObjectEvents/OnDoorSetOpenState.cs</li>
 <li>NWN.Anvil/src/main/API/Object/NwDoor.cs</li>
 </ul>
 </div><!-- contents -->

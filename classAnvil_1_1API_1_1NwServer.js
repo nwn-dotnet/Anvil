@@ -14,6 +14,8 @@ var classAnvil_1_1API_1_1NwServer =
     [ "BannedList", "classAnvil_1_1API_1_1NwServer.html#aecf000abb551be734d04971f64a0c43c", null ],
     [ "DMPassword", "classAnvil_1_1API_1_1NwServer.html#ad44259566abe38515009366edca368a0", null ],
     [ "Instance", "classAnvil_1_1API_1_1NwServer.html#abb54c36730b9ee4519851661bb57cb17", null ],
+    [ "IsActivePaused", "classAnvil_1_1API_1_1NwServer.html#ae17459caf066f8d1bc3a521ffeecb9b9", null ],
+    [ "IsTimestopPaused", "classAnvil_1_1API_1_1NwServer.html#a493021e5deb16b309f9277dbfc09353a", null ],
     [ "PlayerPassword", "classAnvil_1_1API_1_1NwServer.html#a49e03f447d5e84515c40edd5443a551e", null ],
     [ "ServerInfo", "classAnvil_1_1API_1_1NwServer.html#a6ec3608241cd82bfd2b44062ec194e38", null ],
     [ "ServerVersion", "classAnvil_1_1API_1_1NwServer.html#afdab58cb8e6edb9eb18506efa29526c3", null ],

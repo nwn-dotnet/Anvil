@@ -155,6 +155,13 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>TryParseInt</b
 <tr class="memitem:a40de2d22c1ed1057900fb746c8a15eab"><td class="memItemLeft" align="right" valign="top"><a id="a40de2d22c1ed1057900fb746c8a15eab"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>TryParseIntBool</b> (this string intBoolString, out bool result)</td></tr>
 <tr class="separator:a40de2d22c1ed1057900fb746c8a15eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df5023ab1ce7881db44612c2c667bed"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1StringExtensions.html#a2df5023ab1ce7881db44612c2c667bed">TryParseObject</a> (this string objectIdString, [NotNullWhen(true)] out <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>? result)</td></tr>
+<tr class="memdesc:a2df5023ab1ce7881db44612c2c667bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to resolve the specified GameObject ID string to an object. A return value indicates whether the conversion succeeded or failed.<br  />
+ This is the temporary ID created from <a class="el" href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730" title="The ID of this object as a string. Can be used in StringExtensions.ParseObject while the object is al...">NwObject.ToString</a>. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs.  <a href="classAnvil_1_1API_1_1StringExtensions.html#a2df5023ab1ce7881db44612c2c667bed">More...</a><br /></td></tr>
+<tr class="separator:a2df5023ab1ce7881db44612c2c667bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29cd1c3cdbcc18f34904e074f9d7049a"><td class="memItemLeft" align="right" valign="top"><a id="a29cd1c3cdbcc18f34904e074f9d7049a"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1StringExtensions.html#a29cd1c3cdbcc18f34904e074f9d7049a">TryParseObject&lt; T &gt;</a> (this string objectIdString, [NotNullWhen(true)] out T? result)</td></tr>
+<tr class="separator:a29cd1c3cdbcc18f34904e074f9d7049a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8dc395da09962ea224e1d66450de4e66"></a>
@@ -360,6 +367,53 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>TryParseIntBoo
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new string without any color codes.</dd></dl>
+
+</div>
+</div>
+<a id="a2df5023ab1ce7881db44612c2c667bed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df5023ab1ce7881db44612c2c667bed">&#9670;&nbsp;</a></span>TryParseObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Anvil.API.StringExtensions.TryParseObject </td>
+          <td>(</td>
+          <td class="paramtype">this string&#160;</td>
+          <td class="paramname"><em>objectIdString</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[NotNullWhen(true)] out <a class="el" href="classAnvil_1_1API_1_1NwObject.html">NwObject</a>?&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tries to resolve the specified GameObject ID string to an object. A return value indicates whether the conversion succeeded or failed.<br  />
+ This is the temporary ID created from <a class="el" href="classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730" title="The ID of this object as a string. Can be used in StringExtensions.ParseObject while the object is al...">NwObject.ToString</a>. See <a class="el" href="classAnvil_1_1API_1_1GuidExtensions.html#a8f1bff2d2548b326c2dde8266c87f521" title="Attempts to resolve a living active game object from the specified UUID.">GuidExtensions.ToNwObject</a> to parse persistent UUIDs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">objectIdString</td><td>The object ID string to parse.</td></tr>
+    <tr><td class="paramname">result</td><td>When this method returns, contains the object referenced by the number contained in objectIdString, if the conversion succeeded, or null if the conversion failed. The conversion fails if the s parameter is null or System.String.Empty, is not in a format compliant with style, or represents an invalid object reference.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if objectIdString was converted successfully; otherwise, false.</dd></dl>
 
 </div>
 </div>

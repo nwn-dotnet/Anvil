@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['polymorph_2964',['Polymorph',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182a047b16cc218ad61c9e42c84c36ef9982',1,'Anvil::Services']]]
+  ['openbackward_3021',['OpenBackward',['../namespaceAnvil_1_1API.html#abb4c20347d06c89a2519219e26fb0ef3a17b444470103d0b6361cccaf88ff1f47',1,'Anvil::API']]],
+  ['openforward_3022',['OpenForward',['../namespaceAnvil_1_1API.html#abb4c20347d06c89a2519219e26fb0ef3ab639b2927892fe859029e3159266b992',1,'Anvil::API']]]
 ];
