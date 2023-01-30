@@ -150,7 +150,7 @@ namespace Anvil.Services
       {
         case ResRefType.NSS:
           string? source = GetNSSContents(name.ToExoString());
-          return source != null ? StringHelper.Cp1252Encoding.GetBytes(source) : null;
+          return source != null ? StringHelper.Encoding.GetBytes(source) : null;
         case ResRefType.NCS:
           return null;
         default:
@@ -174,7 +174,7 @@ namespace Anvil.Services
           return null;
         default:
           byte[]? data = GetStandardResourceData(name, type);
-          return data != null ? StringHelper.Cp1252Encoding.GetString(data) : null;
+          return data != null ? StringHelper.Encoding.GetString(data) : null;
       }
     }
 
@@ -208,7 +208,7 @@ namespace Anvil.Services
     /// <param name="text">The text to populate in the resource.</param>
     public void WriteTempResource(string resourceName, string text)
     {
-      WriteTempResource(resourceName, StringHelper.Cp1252Encoding.GetBytes(text));
+      WriteTempResource(resourceName, StringHelper.Encoding.GetBytes(text));
     }
 
     void IDisposable.Dispose()

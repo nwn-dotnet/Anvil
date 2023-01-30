@@ -15,9 +15,9 @@ namespace Anvil.API.Events
 
     public int ClassIndex { get; private init; }
 
-    public Domain Domain { get; private init; }
+    public NwDomain? Domain { get; private init; }
 
-    public NwFeat Feat { get; private init; } = null!;
+    public NwFeat? Feat { get; private init; }
 
     public bool IsAreaTarget { get; private init; }
 
@@ -69,7 +69,7 @@ namespace Anvil.API.Events
           Caster = creature.ToNwObject<NwCreature>()!,
           Spell = NwSpell.FromSpellId((int)nSpellId)!,
           ClassIndex = nMultiClass,
-          Domain = (Domain)nDomainLevel,
+          Domain = NwDomain.FromDomainId(nDomainLevel),
           MetaMagic = (MetaMagic)nMetaType,
           IsSpontaneous = bSpontaneousCast.ToBool(),
           TargetPosition = vTargetLocation,
@@ -78,7 +78,7 @@ namespace Anvil.API.Events
           IsFake = bFake.ToBool(),
           ProjectilePath = (ProjectilePathType)nProjectilePathType,
           IsInstant = bInstant.ToBool(),
-          Feat = NwFeat.FromFeatId(nFeat)!,
+          Feat = NwFeat.FromFeatId(nFeat),
           CasterLevel = nCasterLevel,
         };
 

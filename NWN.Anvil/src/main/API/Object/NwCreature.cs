@@ -26,6 +26,9 @@ namespace Anvil.API
     private static Lazy<CreatureWalkRateCapService> CreatureWalkRateCapService { get; set; } = null!;
 
     [Inject]
+    private static Lazy<InitiativeModifierService> InitiativeModifierService { get; set; } = null!;
+
+    [Inject]
     private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; } = null!;
 
     private readonly CNWSCreature creature;
@@ -453,6 +456,12 @@ namespace Anvil.API
     /// Gets a value indicating whether this creature is currently possessed by a DM avatar.
     /// </summary>
     public bool IsDMPossessed => NWScript.GetIsDMPossessed(this).ToBool();
+
+    /// <summary>
+    /// Gets a value indicating whether this creature is a DM avatar character.<br/>
+    /// This returns false for NPC creatures possessed by DMs.
+    /// </summary>
+    public bool IsDMAvatar => Creature.m_pStats.GetIsDM().ToBool();
 
     /// <summary>
     /// Gets a value indicating whether this creature was spawned from an encounter.
@@ -1333,6 +1342,14 @@ namespace Anvil.API
       DamageLevelOverrideService.Value.ClearDamageLevelOverride(this);
     }
 
+    /// <summary>
+    /// Clears the modifier that is set for the creature's initiative.<br/>
+    /// </summary>
+    public void ClearInitiativeModifier()
+    {
+      InitiativeModifierService.Value.ClearInitiativeModifier(this);
+    }
+
     public override NwCreature Clone(Location location, string? newTag = null, bool copyLocalState = true)
     {
       return CloneInternal<NwCreature>(location, newTag, copyLocalState);
@@ -1508,7 +1525,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="nwClass">The class with domains. Defaults to <see cref="ClassType.Cleric"/> if not specified.</param>
     /// <returns>An enumeration of this creature's domains.</returns>
-    public IEnumerable<Domain> GetClassDomains(NwClass? nwClass = default)
+    public IEnumerable<NwDomain> GetClassDomains(NwClass? nwClass = default)
     {
       nwClass ??= NwClass.FromClassType(ClassType.Cleric)!;
 
@@ -1520,7 +1537,7 @@ namespace Anvil.API
 
       for (i = 1, current = NWScript.GetDomain(this, i, classT); current != error; i++, current = NWScript.GetDomain(this, i, classT))
       {
-        yield return (Domain)current;
+        yield return NwDomain.FromDomainId(current)!;
       }
     }
 
@@ -1587,6 +1604,14 @@ namespace Anvil.API
     public byte GetFeatTotalUses(NwFeat feat)
     {
       return Creature.m_pStats.GetFeatTotalUses(feat.Id);
+    }
+
+    /// <summary>
+    /// Gets the modifier that is set for the creature's initiative.<br/>
+    /// </summary>
+    public int? GetInitiativeModifier()
+    {
+      return InitiativeModifierService.Value.GetInitiativeModifier(this);
     }
 
     /// <summary>
@@ -1904,6 +1929,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets if this creature is flanking the specified target.
+    /// </summary>
+    /// <param name="target">The target creature to check for flanking status.</param>
+    /// <returns>True if the creature is flanking the target, otherwise false.</returns>
+    public bool IsFlanking(NwCreature target)
+    {
+      return Creature.GetFlanked(target.Creature).ToBool();
+    }
+
+    /// <summary>
     /// Gets a value indicating whether this creature considers the target as a enemy.
     /// </summary>
     /// <param name="target">The target creature.</param>
@@ -2212,6 +2247,14 @@ namespace Anvil.API
     public void SetDamageLevelOverride(DamageLevelEntry damageLevel)
     {
       DamageLevelOverrideService.Value.SetDamageLevelOverride(this, damageLevel);
+    }
+
+    /// <summary>
+    /// Sets the modifier that is set for the creature's initiative.<br/>
+    /// </summary>
+    public void SetInitiativeModifier(int modifier)
+    {
+      InitiativeModifierService.Value.SetInitiativeModifier(this, modifier);
     }
 
     /// <summary>

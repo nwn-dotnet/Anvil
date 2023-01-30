@@ -260,7 +260,7 @@ namespace Anvil.API
 
     public override int GetHashCode()
     {
-      return (int)ObjectId;
+      return unchecked((int)ObjectId);
     }
 
     /// <summary>

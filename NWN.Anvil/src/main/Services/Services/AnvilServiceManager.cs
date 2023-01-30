@@ -230,6 +230,7 @@ namespace Anvil.Services
       RegisterCoreService<HookService>();
       RegisterCoreService<VirtualMachine>();
       RegisterCoreService<PluginManager>();
+      RegisterCoreService<EncodingService>();
     }
 
     private void RegisterCoreService<T>() where T : ICoreService

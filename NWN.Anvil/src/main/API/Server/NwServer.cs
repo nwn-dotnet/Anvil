@@ -33,6 +33,20 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets if the server is "active" paused - same as if a player requested pause.
+    /// </summary>
+    public bool IsActivePaused
+    {
+      get => server.GetPauseState(2).ToBool();
+      set => server.SetPauseState(2, value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets if the server is paused as a result of <see cref="Effect.TimeStop"/>.
+    /// </summary>
+    public bool IsTimestopPaused => server.GetPauseState(1).ToBool();
+
+    /// <summary>
     /// Gets or sets the current player password.
     /// </summary>
     public string PlayerPassword

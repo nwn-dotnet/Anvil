@@ -115,7 +115,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a value indicating whether the player is a Dungeon Master.
     /// </summary>
-    public bool IsDM => ControlledCreature?.Creature.m_pStats.GetIsDM().ToBool() == true;
+    public bool IsDM => player.GetIsDM().ToBool();
 
     /// <summary>
     /// Gets if this player is in cursor targeting mode.<br/>
@@ -925,7 +925,7 @@ namespace Anvil.API
 
     public override int GetHashCode()
     {
-      return Player.Pointer.GetHashCode();
+      return player.Pointer.GetHashCode();
     }
 
     /// <summary>
