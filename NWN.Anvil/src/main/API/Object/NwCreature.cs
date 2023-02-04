@@ -742,6 +742,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets wether this creature is flanking the target creature.
+    /// </summary>
+    public bool IsFlanking(NwCreature target)
+    {
+      return Creature.GetFlanked(target).ToBool();
+    }
+
+    /// <summary>
     /// Gets the special abilities available to this creature.
     /// </summary>
     public IReadOnlyList<SpecialAbility> SpecialAbilities
