@@ -17,6 +17,11 @@ namespace Anvil.API.Events
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
+      /// <summary>
+      /// Gets the listen pattern that matched the message sent to this door.
+      /// </summary>
+      public int ListenPattern { get; } = NWScript.GetListenPatternNumber();
+
       NwObject IEvent.Context => Door;
     }
   }

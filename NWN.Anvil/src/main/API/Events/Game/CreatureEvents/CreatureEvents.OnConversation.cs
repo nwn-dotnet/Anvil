@@ -30,6 +30,16 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlayer? PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
 
+      /// <summary>
+      /// Gets the listen pattern that matched the message sent to this creature.
+      /// </summary>
+      public int ListenPattern { get; } = NWScript.GetListenPatternNumber();
+
+      /// <summary>
+      /// Gets the associate command that matched the message sent to this creature.
+      /// </summary>
+      public AssociateCommand AssociateCommand => (AssociateCommand)ListenPattern;
+
       NwObject? IEvent.Context => CurrentSpeaker;
 
       public static void Signal(NwCreature creature)
