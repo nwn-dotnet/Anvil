@@ -2,6 +2,8 @@ using System;
 using Anvil.API.Events;
 using NWN.Core;
 
+#pragma warning disable CS0618
+
 namespace Anvil.API.Events
 {
   /// <summary>
@@ -9,6 +11,7 @@ namespace Anvil.API.Events
   /// </summary>
   public static partial class DoorEvents
   {
+    [Obsolete("Use OnConversation instead.")]
     [GameEvent(EventScriptType.DoorOnDialogue)]
     public sealed class OnDialogue : IEvent
     {
@@ -32,6 +35,7 @@ namespace Anvil.API
   public sealed partial class NwDoor
   {
     /// <inheritdoc cref="DoorEvents.OnDialogue"/>
+    [Obsolete("Use OnConversation instead.")]
     public event Action<DoorEvents.OnDialogue> OnDialogue
     {
       add => EventService.Subscribe<DoorEvents.OnDialogue, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
