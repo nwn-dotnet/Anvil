@@ -20,6 +20,11 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
+      /// <summary>
+      /// Gets the listen pattern that matched the message sent to this placeable.
+      /// </summary>
+      public int ListenPattern { get; } = NWScript.GetListenPatternNumber();
+
       NwObject IEvent.Context => Placeable;
     }
   }

@@ -121,6 +121,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets if this object should be listening for chat patterns, via the listen pattern system.
+    /// </summary>
+    public bool IsListening
+    {
+      get => NWScript.GetIsListening(this).ToBool();
+      set => NWScript.SetListening(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets or sets the maximum HP for this object. Returns 0 if this object has no defined HP.
     /// </summary>
     public int MaxHP
@@ -616,6 +625,31 @@ namespace Anvil.API
     {
       await WaitForObjectContext();
       NWScript.SetIsDestroyable(destroyable.ToInt(), raiseable.ToInt(), selectableWhenDead.ToInt());
+    }
+
+    /// <summary>
+    /// Sets a listen pattern for this object, assigning a pattern number that is accessible from the related object's OnConversation event.
+    /// </summary>
+    /// <param name="pattern">The pattern to match the message against. This is not regex, but a custom pattern format. See the remarks for more info.</param>
+    /// <param name="patternNumber">The pattern number to assign, on a successful match.</param>
+    /// <remarks>
+    /// Pattern Format:<br/>
+    /// ** will match zero or more characters<br/>
+    /// *w one or more whitespace<br/>
+    /// *n one or more numeric<br/>
+    /// *p one or more punctuation<br/>
+    /// *a one or more alphabetic<br/>
+    /// | is or<br/>
+    /// ( and ) can be used for block.<br/>
+    /// <example>
+    /// Setting a creature to listen for "**" will match any string<br/>
+    /// Telling him to listen for "**funk**" will match any string that contains the word "funk".<br/>
+    /// "**(bash|open|unlock)**(chest|door)**" will match strings like "open the door please" or "he just bashed that chest!"
+    /// </example>
+    /// </remarks>
+    public void SetListenPattern(string pattern, int patternNumber)
+    {
+      NWScript.SetListenPattern(this, pattern, patternNumber);
     }
 
     /// <summary>
