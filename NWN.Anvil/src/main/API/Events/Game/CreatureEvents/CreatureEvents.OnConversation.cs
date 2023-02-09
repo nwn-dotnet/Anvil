@@ -10,14 +10,20 @@ namespace Anvil.API.Events
   public static partial class CreatureEvents
   {
     /// <summary>
-    /// Triggered when <see cref="NwCreature"/> begins a conversation.
+    /// Called when this creature starts a conversation, or hears a message they are listening for.
     /// </summary>
     [GameEvent(EventScriptType.CreatureOnDialogue)]
     public sealed class OnConversation : IEvent
     {
       /// <summary>
+      /// Gets the creature attached to this conversation.
+      /// </summary>
+      public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
+
+      /// <summary>
       /// Gets the <see cref="NwCreature"/> currently speaking.
       /// </summary>
+      [Obsolete("Use the Creature property instead.")]
       public NwCreature? CurrentSpeaker { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
 
       /// <summary>
@@ -40,7 +46,7 @@ namespace Anvil.API.Events
       /// </summary>
       public AssociateCommand AssociateCommand => (AssociateCommand)ListenPattern;
 
-      NwObject? IEvent.Context => CurrentSpeaker;
+      NwObject IEvent.Context => Creature;
 
       public static void Signal(NwCreature creature)
       {

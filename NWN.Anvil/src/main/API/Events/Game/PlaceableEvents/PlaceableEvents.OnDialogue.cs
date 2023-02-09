@@ -2,6 +2,8 @@ using System;
 using Anvil.API.Events;
 using NWN.Core;
 
+#pragma warning disable CS0618
+
 namespace Anvil.API.Events
 {
   /// <summary>
@@ -12,6 +14,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Called when <see cref="NwPlaceable"/> starts a conversation.
     /// </summary>
+    [Obsolete("Use OnConversation instead.")]
     [GameEvent(EventScriptType.PlaceableOnDialogue)]
     public sealed class OnDialogue : IEvent
     {
@@ -35,6 +38,7 @@ namespace Anvil.API
   public sealed partial class NwPlaceable
   {
     /// <inheritdoc cref="PlaceableEvents.OnDialogue"/>
+    [Obsolete("Use OnConversation instead.")]
     public event Action<PlaceableEvents.OnDialogue> OnDialogue
     {
       add => EventService.Subscribe<PlaceableEvents.OnDialogue, GameEventFactory, GameEventFactory.RegistrationData>(this, new GameEventFactory.RegistrationData(this), value);
