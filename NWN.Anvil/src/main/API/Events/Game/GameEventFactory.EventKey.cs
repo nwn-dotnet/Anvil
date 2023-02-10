@@ -11,8 +11,8 @@ namespace Anvil.API.Events
 
       public EventKey(EventScriptType eventScriptType, uint gameObject)
       {
-        this.EventScriptType = eventScriptType;
-        this.GameObject = gameObject;
+        EventScriptType = eventScriptType;
+        GameObject = gameObject;
       }
 
       public static bool operator ==(EventKey left, EventKey right)
