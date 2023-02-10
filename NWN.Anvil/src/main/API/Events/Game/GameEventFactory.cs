@@ -9,7 +9,7 @@ namespace Anvil.API.Events
 {
   [ServiceBinding(typeof(IEventFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
-  public sealed partial class GameEventFactory : IEventFactory<GameEventFactory.RegistrationData>, IScriptDispatcher
+  public sealed partial class GameEventFactory : IEventFactory<GameEventFactory.RegistrationData>, IScriptDispatcher, IDisposable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -114,6 +114,15 @@ namespace Anvil.API.Events
       if (callOriginal && !string.IsNullOrWhiteSpace(existingScript))
       {
         originalCallLookup[new EventKey(eventType, nwObject)] = existingScript;
+      }
+    }
+
+    public void Dispose()
+    {
+      // Restore the original event scripts for subscribed objects.
+      foreach ((EventKey key, string script) in originalCallLookup)
+      {
+        NWScript.SetEventScript(key.GameObject, (int)key.EventScriptType, script);
       }
     }
   }
