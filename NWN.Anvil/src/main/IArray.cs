@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Anvil.Native
+namespace Anvil
 {
   /// <summary>
   /// Represents a collection of elements that can be accessed and modified by index, but may not be resized.
