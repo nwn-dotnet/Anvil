@@ -115,6 +115,7 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "Serialize", "classAnvil_1_1API_1_1NwCreature.html#ab7a19e7164eb40a235dcc4e3ed7dcee6", null ],
     [ "SerializeQuickbar", "classAnvil_1_1API_1_1NwCreature.html#aa47b78e1df8907b1c8a07ad68315d952", null ],
     [ "SetActionMode", "classAnvil_1_1API_1_1NwCreature.html#ab24a4c3716fa455deb2f9b6da4f8f349", null ],
+    [ "SetAssociateListenPatterns", "classAnvil_1_1API_1_1NwCreature.html#aa2ba66383ba7ff9405ea1641d26c946a", null ],
     [ "SetBaseSavingThrow", "classAnvil_1_1API_1_1NwCreature.html#a78fd0165eff89727e6cbe0dd9a6c03bd", null ],
     [ "SetCreatureBodyPart", "classAnvil_1_1API_1_1NwCreature.html#a3caf0715f2d4e10ebb09ce41280811de", null ],
     [ "SetDamageLevelOverride", "classAnvil_1_1API_1_1NwCreature.html#add94f0b2d1c42caa843ba6040c17bb22", null ],

@@ -1,0 +1,4 @@
+<map id="Anvil.API.Events.DoorEvents.OnConversation" name="Anvil.API.Events.DoorEvents.OnConversation">
+<area shape="rect" id="node1" title="Called when this door starts a conversation, or hears a message they are listening for." alt="" coords="5,80,197,121"/>
+<area shape="rect" id="node2" href="$interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="72,5,131,32"/>
+</map>

@@ -17,6 +17,7 @@ var classAnvil_1_1API_1_1NwDoor =
     [ "KeyAutoRemoved", "classAnvil_1_1API_1_1NwDoor.html#a53c62807ea7af22b0f43e38a06b9fdf9", null ],
     [ "OnAreaTransitionClick", "classAnvil_1_1API_1_1NwDoor.html#a4b87b5226f3fff02fe02fdbd3a78b2da", null ],
     [ "OnClose", "classAnvil_1_1API_1_1NwDoor.html#a38bcfc82c3cbb0ecc30b4442bc04cabe", null ],
+    [ "OnConversation", "classAnvil_1_1API_1_1NwDoor.html#a3e9bc844c0bc9fd87ffb52a0d0e4f9a0", null ],
     [ "OnDamaged", "classAnvil_1_1API_1_1NwDoor.html#ab63b6389bc0a01185d2d7b3a5f3d0191", null ],
     [ "OnDeath", "classAnvil_1_1API_1_1NwDoor.html#a35ec4137ec160263e41d14740d1b153d", null ],
     [ "OnDialogue", "classAnvil_1_1API_1_1NwDoor.html#a66fe23cd069bd1166c0ab11488e59e1f", null ],

@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1Events_1_1Creatur
 </div><!--header-->
 <div class="contents">
 
-<p>Triggered when <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar">NwCreature</a> begins a conversation.  
+<p>Called when this creature starts a conversation, or hears a message they are listening for.  
  <a href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.Events.CreatureEvents.OnConversation:</div>
@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1Events_1_1Creatur
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation__inherit__graph.png" border="0" usemap="#aAnvil_8API_8Events_8CreatureEvents_8OnConversation_inherit__map" alt="Inheritance graph"/></div>
 <map name="aAnvil_8API_8Events_8CreatureEvents_8OnConversation_inherit__map" id="aAnvil_8API_8Events_8CreatureEvents_8OnConversation_inherit__map">
-<area shape="rect" title="Triggered when NwCreature begins a conversation." alt="" coords="5,80,176,121"/>
+<area shape="rect" title="Called when this creature starts a conversation, or hears a message they are listening for." alt="" coords="5,80,176,121"/>
 <area shape="rect" href="interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="61,5,120,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('classAnvil_1_1API_1_1Events_1_1Creatur
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation__coll__graph.png" border="0" usemap="#aAnvil_8API_8Events_8CreatureEvents_8OnConversation_coll__map" alt="Collaboration graph"/></div>
 <map name="aAnvil_8API_8Events_8CreatureEvents_8OnConversation_coll__map" id="aAnvil_8API_8Events_8CreatureEvents_8OnConversation_coll__map">
-<area shape="rect" title="Triggered when NwCreature begins a conversation." alt="" coords="5,80,176,121"/>
+<area shape="rect" title="Called when this creature starts a conversation, or hears a message they are listening for." alt="" coords="5,80,176,121"/>
 <area shape="rect" href="interfaceAnvil_1_1API_1_1Events_1_1IEvent.html" title=" " alt="" coords="61,5,120,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -133,12 +133,21 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>Signal</b> (<a
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:af9f3702be522a129ed50bf3d481d1b93"><td class="memItemLeft" align="right" valign="top">AssociateCommand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#af9f3702be522a129ed50bf3d481d1b93">AssociateCommand</a><code> [get]</code></td></tr>
+<tr class="memdesc:af9f3702be522a129ed50bf3d481d1b93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the associate command that matched the message sent to this creature.  <a href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#af9f3702be522a129ed50bf3d481d1b93">More...</a><br /></td></tr>
+<tr class="separator:af9f3702be522a129ed50bf3d481d1b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3a6ff2f91e84f8cbd8af482c7893ae9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ad3a6ff2f91e84f8cbd8af482c7893ae9">Creature</a> = NWScript.OBJECT_SELF.ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&gt;()!<code> [get]</code></td></tr>
+<tr class="memdesc:ad3a6ff2f91e84f8cbd8af482c7893ae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creature attached to this conversation.  <a href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ad3a6ff2f91e84f8cbd8af482c7893ae9">More...</a><br /></td></tr>
+<tr class="separator:ad3a6ff2f91e84f8cbd8af482c7893ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac011480eceaccf1adddf5b222137447d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ac011480eceaccf1adddf5b222137447d">CurrentSpeaker</a> = NWScript.OBJECT_SELF.ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&gt;()<code> [get]</code></td></tr>
 <tr class="memdesc:ac011480eceaccf1adddf5b222137447d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar">NwCreature</a> currently speaking.  <a href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ac011480eceaccf1adddf5b222137447d">More...</a><br /></td></tr>
 <tr class="separator:ac011480eceaccf1adddf5b222137447d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bb5fd3ea612e04149088c98ced8fede"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#a3bb5fd3ea612e04149088c98ced8fede">LastSpeaker</a> = NWScript.GetLastSpeaker().ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&gt;()<code> [get]</code></td></tr>
 <tr class="memdesc:a3bb5fd3ea612e04149088c98ced8fede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the last <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas.">NwGameObject</a> that spoke in this conversation.  <a href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#a3bb5fd3ea612e04149088c98ced8fede">More...</a><br /></td></tr>
 <tr class="separator:a3bb5fd3ea612e04149088c98ced8fede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7177dcce2e4d808c13cb6463ad2a91b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#aa7177dcce2e4d808c13cb6463ad2a91b">ListenPattern</a> = NWScript.GetListenPatternNumber()<code> [get]</code></td></tr>
+<tr class="memdesc:aa7177dcce2e4d808c13cb6463ad2a91b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the listen pattern that matched the message sent to this creature.  <a href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#aa7177dcce2e4d808c13cb6463ad2a91b">More...</a><br /></td></tr>
+<tr class="separator:aa7177dcce2e4d808c13cb6463ad2a91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf1a64223fe231ad479c58e0221d1ee6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#abf1a64223fe231ad479c58e0221d1ee6">PlayerSpeaker</a> = NWScript.GetPCSpeaker().ToNwPlayer()<code> [get]</code></td></tr>
 <tr class="memdesc:abf1a64223fe231ad479c58e0221d1ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html" title="A player client connected to the server.">NwPlayer</a> speaker in this conversation.  <a href="classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#abf1a64223fe231ad479c58e0221d1ee6">More...</a><br /></td></tr>
 <tr class="separator:abf1a64223fe231ad479c58e0221d1ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,8 +157,56 @@ Properties</h2></td></tr>
 <tr class="separator:a5b6abeb5698b2f711bd6373b906f9715 inherit properties_interfaceAnvil_1_1API_1_1Events_1_1IEvent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Triggered when <a class="el" href="classAnvil_1_1API_1_1NwCreature.html" title="A monster, NPC, player character or DM avatar">NwCreature</a> begins a conversation. </p>
+<div class="textblock"><p>Called when this creature starts a conversation, or hears a message they are listening for. </p>
 </div><h2 class="groupheader">Property Documentation</h2>
+<a id="af9f3702be522a129ed50bf3d481d1b93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9f3702be522a129ed50bf3d481d1b93">&#9670;&nbsp;</a></span>AssociateCommand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AssociateCommand Anvil.API.Events.CreatureEvents.OnConversation.AssociateCommand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the associate command that matched the message sent to this creature. </p>
+
+</div>
+</div>
+<a id="ad3a6ff2f91e84f8cbd8af482c7893ae9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3a6ff2f91e84f8cbd8af482c7893ae9">&#9670;&nbsp;</a></span>Creature</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a> Anvil.API.Events.CreatureEvents.OnConversation.Creature = NWScript.OBJECT_SELF.ToNwObject&lt;<a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>&gt;()!</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the creature attached to this conversation. </p>
+
+</div>
+</div>
 <a id="ac011480eceaccf1adddf5b222137447d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac011480eceaccf1adddf5b222137447d">&#9670;&nbsp;</a></span>CurrentSpeaker</h2>
 
@@ -195,6 +252,30 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the last <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html" title="Base class for all entities in areas.">NwGameObject</a> that spoke in this conversation. </p>
+
+</div>
+</div>
+<a id="aa7177dcce2e4d808c13cb6463ad2a91b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7177dcce2e4d808c13cb6463ad2a91b">&#9670;&nbsp;</a></span>ListenPattern</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.Events.CreatureEvents.OnConversation.ListenPattern = NWScript.GetListenPatternNumber()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the listen pattern that matched the message sent to this creature. </p>
 
 </div>
 </div>

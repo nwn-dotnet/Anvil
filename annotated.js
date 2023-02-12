@@ -45,6 +45,7 @@ var annotated =
           [ "DoorEvents", "classAnvil_1_1API_1_1Events_1_1DoorEvents.html", [
             [ "OnAreaTransitionClick", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick.html", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnAreaTransitionClick" ],
             [ "OnClose", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnClose.html", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnClose" ],
+            [ "OnConversation", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnConversation.html", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnConversation" ],
             [ "OnDamaged", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnDamaged.html", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnDamaged" ],
             [ "OnDeath", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnDeath.html", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnDeath" ],
             [ "OnDialogue", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnDialogue.html", "classAnvil_1_1API_1_1Events_1_1DoorEvents_1_1OnDialogue" ],
@@ -206,6 +207,7 @@ var annotated =
           [ "OnUseSkill", "classAnvil_1_1API_1_1Events_1_1OnUseSkill.html", "classAnvil_1_1API_1_1Events_1_1OnUseSkill" ],
           [ "PlaceableEvents", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents.html", [
             [ "OnClose", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose.html", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnClose" ],
+            [ "OnConversation", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnConversation.html", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnConversation" ],
             [ "OnDamaged", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged.html", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDamaged" ],
             [ "OnDeath", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath.html", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDeath" ],
             [ "OnDialogue", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue.html", "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnDialogue" ],
@@ -512,6 +514,7 @@ var annotated =
         [ "TwoDimArrayFactory", "classAnvil_1_1Services_1_1TwoDimArrayFactory.html", "classAnvil_1_1Services_1_1TwoDimArrayFactory" ],
         [ "WeaponService", "classAnvil_1_1Services_1_1WeaponService.html", "classAnvil_1_1Services_1_1WeaponService" ]
       ] ],
-      [ "AnvilCore", "classAnvil_1_1AnvilCore.html", "classAnvil_1_1AnvilCore" ]
+      [ "AnvilCore", "classAnvil_1_1AnvilCore.html", "classAnvil_1_1AnvilCore" ],
+      [ "IArray", "interfaceAnvil_1_1IArray.html", "interfaceAnvil_1_1IArray" ]
     ] ]
 ];

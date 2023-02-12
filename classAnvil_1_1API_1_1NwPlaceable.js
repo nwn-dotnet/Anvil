@@ -21,6 +21,7 @@ var classAnvil_1_1API_1_1NwPlaceable =
     [ "KeyAutoRemoved", "classAnvil_1_1API_1_1NwPlaceable.html#aef61b2e960ce1a5689293b037142b173", null ],
     [ "Occupied", "classAnvil_1_1API_1_1NwPlaceable.html#a35c551195f1fb27a0fa7e35d1c875789", null ],
     [ "OnClose", "classAnvil_1_1API_1_1NwPlaceable.html#ab169443c3d7cb3672c3fbe07eb44afb8", null ],
+    [ "OnConversation", "classAnvil_1_1API_1_1NwPlaceable.html#a840b215b607e9e5b62b958a328a2d8e1", null ],
     [ "OnDamaged", "classAnvil_1_1API_1_1NwPlaceable.html#aa82131ad393e653c6341595ad769498c", null ],
     [ "OnDeath", "classAnvil_1_1API_1_1NwPlaceable.html#a8f6f7fea7778f00097668e7642df7d72", null ],
     [ "OnDialogue", "classAnvil_1_1API_1_1NwPlaceable.html#af0428563c5fc6fece4586180e0ef38f6", null ],

@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classAnvil_1_1API_1_1Effect.html#a704380652a799a2d295bb17b017b8d13":[0,0,0,32,16],
 "classAnvil_1_1API_1_1Effect.html#a70af5f30be620af5f949c964d121ee62":[0,0,0,32,47],
 "classAnvil_1_1API_1_1Effect.html#a790aab1f9dbdac589b5d59c751ab942b":[0,0,0,32,80],
 "classAnvil_1_1API_1_1Effect.html#a7af0494a129c30a335bdacd2027e2bbc":[0,0,0,32,41],
@@ -165,12 +166,15 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnCombatRoundEnd.html#ac91b80fbb0cb1f8ed00d4b1e358a16d6":[0,0,0,0,2,1,1],
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html":[0,0,0,0,2,2],
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#a0b04a7fc683abbf1815a16ea83999193":[0,0,0,0,2,2,1],
-"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#a22fe595298de23b0e9d98b22a8b64ee5":[0,0,0,0,2,2,3],
-"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#a3bb5fd3ea612e04149088c98ced8fede":[0,0,0,0,2,2,5],
-"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#abf1a64223fe231ad479c58e0221d1ee6":[0,0,0,0,2,2,6],
-"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ac011480eceaccf1adddf5b222137447d":[0,0,0,0,2,2,4],
+"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#a3bb5fd3ea612e04149088c98ced8fede":[0,0,0,0,2,2,7],
+"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#aa7177dcce2e4d808c13cb6463ad2a91b":[0,0,0,0,2,2,8],
+"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#abf1a64223fe231ad479c58e0221d1ee6":[0,0,0,0,2,2,9],
+"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ac011480eceaccf1adddf5b222137447d":[0,0,0,0,2,2,6],
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ac5cd1e12c4d41bcb46461b462b8d6be5":[0,0,0,0,2,2,0],
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ace66bf31c3041ff4f2463eae3209a99a":[0,0,0,0,2,2,2],
+"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#ad3a6ff2f91e84f8cbd8af482c7893ae9":[0,0,0,0,2,2,5],
+"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#af851c1a443c74ce23d39a5b8bc933ec0":[0,0,0,0,2,2,4],
+"classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnConversation.html#af9f3702be522a129ed50bf3d481d1b93":[0,0,0,0,2,2,3],
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnDamaged.html":[0,0,0,0,2,3],
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnDamaged.html#a09988e1762740beb62f25b2ff48b4362":[0,0,0,0,2,3,2],
 "classAnvil_1_1API_1_1Events_1_1CreatureEvents_1_1OnDamaged.html#a41782b072b11e4d4221f3195a737a42d":[0,0,0,0,2,3,3],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1Events_1_1DamageData.html#a7cc98ef5a6077c283172331a750a3d6f":[0,0,0,0,3,12],
 "classAnvil_1_1API_1_1Events_1_1DamageData.html#a9664ec9b733143a3237a12b3bd73decf":[0,0,0,0,3,3],
 "classAnvil_1_1API_1_1Events_1_1DamageData.html#aa761872911a8998131a6c1403b53cc49":[0,0,0,0,3,10],
-"classAnvil_1_1API_1_1Events_1_1DamageData.html#aa78cecba0669ac0db89f25a45c5ff8a0":[0,0,0,0,3,6],
-"classAnvil_1_1API_1_1Events_1_1DamageData.html#ab133dbe2e42195aa47242a3ed5f77cbb":[0,0,0,0,3,0],
-"classAnvil_1_1API_1_1Events_1_1DamageData.html#ac63e68bf907cb98ab42da53b3559c42b":[0,0,0,0,3,11],
-"classAnvil_1_1API_1_1Events_1_1DamageData.html#ad04e47c033cb02072a2b372ab264d11d":[0,0,0,0,3,8],
-"classAnvil_1_1API_1_1Events_1_1DamageData.html#adae5fc66473fb747a227763883ef1c87":[0,0,0,0,3,14]
+"classAnvil_1_1API_1_1Events_1_1DamageData.html#aa78cecba0669ac0db89f25a45c5ff8a0":[0,0,0,0,3,6]
 };

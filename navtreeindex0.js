@@ -166,16 +166,17 @@ var NAVTREEINDEX0 =
 "classAnvil_1_1API_1_1ColorConstants.html#af45ec6d7a6771f0e4536285c4720f6a7":[0,0,0,24,4],
 "classAnvil_1_1API_1_1ColorConstants.html#af519106e1058ac0d2f1e0c5bd103909c":[0,0,0,24,17],
 "classAnvil_1_1API_1_1CreatureClassInfo.html":[0,0,0,25],
-"classAnvil_1_1API_1_1CreatureClassInfo.html#a04bfd9ecbbd872a33daf5a51042bfc85":[0,0,0,25,11],
+"classAnvil_1_1API_1_1CreatureClassInfo.html#a04bfd9ecbbd872a33daf5a51042bfc85":[0,0,0,25,12],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#a0960ec70b6cf9d1a924a6815fe898a3f":[0,0,0,25,8],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#a2a8f9377c1ed0fb343ff3e78febf6039":[0,0,0,25,1],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#a317b163907d82722b030d3536f00d057":[0,0,0,25,2],
-"classAnvil_1_1API_1_1CreatureClassInfo.html#a48f8863d0e5b1abc937d12aad073cf43":[0,0,0,25,10],
+"classAnvil_1_1API_1_1CreatureClassInfo.html#a48f8863d0e5b1abc937d12aad073cf43":[0,0,0,25,11],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#a504616832bea620737da000a1113ccd9":[0,0,0,25,3],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#a65c77b48fcaba126056832b5afe39777":[0,0,0,25,5],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#a85c13c4bf4178dae18fa705b80a3ab9e":[0,0,0,25,0],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#aa0c49753db86fed2ea2b4f9ccd1fb868":[0,0,0,25,7],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#ac23d2cf3d7ae566349aca88012677775":[0,0,0,25,9],
+"classAnvil_1_1API_1_1CreatureClassInfo.html#aeea3dc339a4e6e3232c49f2299388e8c":[0,0,0,25,10],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#af25b1cddbb923c685a5e4432a7405ea3":[0,0,0,25,4],
 "classAnvil_1_1API_1_1CreatureClassInfo.html#af69218021666e608bd7dc42f35d5cd78":[0,0,0,25,6],
 "classAnvil_1_1API_1_1CreatureLevelInfo.html":[0,0,0,26],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classAnvil_1_1API_1_1Effect.html#a6e7048d873d64d4ec43e9795e97dec41":[0,0,0,32,94],
 "classAnvil_1_1API_1_1Effect.html#a6eb6c68d339f7c3cbae3dcecbbc5eb36":[0,0,0,32,73],
 "classAnvil_1_1API_1_1Effect.html#a6fffe8c6eedc21799df9cf92c4d08e76":[0,0,0,32,71],
-"classAnvil_1_1API_1_1Effect.html#a701bcda2517329d09a02ccff468c2fe6":[0,0,0,32,69],
-"classAnvil_1_1API_1_1Effect.html#a704380652a799a2d295bb17b017b8d13":[0,0,0,32,16]
+"classAnvil_1_1API_1_1Effect.html#a701bcda2517329d09a02ccff468c2fe6":[0,0,0,32,69]
 };

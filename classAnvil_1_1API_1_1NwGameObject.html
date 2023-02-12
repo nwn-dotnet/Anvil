@@ -251,6 +251,9 @@ abstract ? byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serializ
 <tr class="memitem:ac80665a4d380b4bb815afbade50d4aec"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ac80665a4d380b4bb815afbade50d4aec">SetIsDestroyable</a> (bool destroyable, bool raiseable=true, bool selectableWhenDead=false)</td></tr>
 <tr class="memdesc:ac80665a4d380b4bb815afbade50d4aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether this object is destroyable.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ac80665a4d380b4bb815afbade50d4aec">More...</a><br /></td></tr>
 <tr class="separator:ac80665a4d380b4bb815afbade50d4aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f9aabdcf1d8e875507e6b11f3512731"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a1f9aabdcf1d8e875507e6b11f3512731">SetListenPattern</a> (string pattern, int patternNumber)</td></tr>
+<tr class="memdesc:a1f9aabdcf1d8e875507e6b11f3512731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a listen pattern for this object, assigning a pattern number that is accessible from the related object's OnConversation event.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a1f9aabdcf1d8e875507e6b11f3512731">More...</a><br /></td></tr>
+<tr class="separator:a1f9aabdcf1d8e875507e6b11f3512731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9ebc4f77bb2d792c4471bb56eeee0b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ae9ebc4f77bb2d792c4471bb56eeee0b6">SetMaterialShaderUniform</a> (string material, string param, float value)</td></tr>
 <tr class="memdesc:ae9ebc4f77bb2d792c4471bb56eeee0b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a material shader uniform override.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ae9ebc4f77bb2d792c4471bb56eeee0b6">More...</a><br /></td></tr>
 <tr class="separator:ae9ebc4f77bb2d792c4471bb56eeee0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -353,6 +356,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a478d56e63a35511352191a81c421683d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a478d56e63a35511352191a81c421683d">IsInConversation</a><code> [get]</code></td></tr>
 <tr class="memdesc:a478d56e63a35511352191a81c421683d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this object is in a conversation.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a478d56e63a35511352191a81c421683d">More...</a><br /></td></tr>
 <tr class="separator:a478d56e63a35511352191a81c421683d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae581c0b15cd437914fae51e313d63686"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686">IsListening</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae581c0b15cd437914fae51e313d63686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets if this object should be listening for chat patterns, via the listen pattern system.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686">More...</a><br /></td></tr>
+<tr class="separator:ae581c0b15cd437914fae51e313d63686"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09e893cc9da147901a921bc3f7ed9cdb"><td class="memItemLeft" align="right" valign="top">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb">Location</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a09e893cc9da147901a921bc3f7ed9cdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb">More...</a><br /></td></tr>
 <tr class="separator:a09e893cc9da147901a921bc3f7ed9cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1838,6 +1844,63 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
 
 </div>
 </div>
+<a id="a1f9aabdcf1d8e875507e6b11f3512731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f9aabdcf1d8e875507e6b11f3512731">&#9670;&nbsp;</a></span>SetListenPattern()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwGameObject.SetListenPattern </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>pattern</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>patternNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a listen pattern for this object, assigning a pattern number that is accessible from the related object's OnConversation event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pattern</td><td>The pattern to match the message against. This is not regex, but a custom pattern format. See the remarks for more info.</td></tr>
+    <tr><td class="paramname">patternNumber</td><td>The pattern number to assign, on a successful match.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Pattern Format:<br  />
+ ** will match zero or more characters<br  />
+ *w one or more whitespace<br  />
+ *n one or more numeric<br  />
+ *p one or more punctuation<br  />
+ *a one or more alphabetic<br  />
+ | is or<br  />
+ ( and ) can be used for block.<br  />
+ </p>
+<p>Setting a creature to listen for "**" will match any string<br  />
+ Telling him to listen for "**funk**" will match any string that contains the word "funk".<br  />
+ "**(bash|open|unlock)**(chest|door)**" will match strings like "open the door please" or "he just bashed that chest!" </p>
+
+</div>
+</div>
 <a id="ae9ebc4f77bb2d792c4471bb56eeee0b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae9ebc4f77bb2d792c4471bb56eeee0b6">&#9670;&nbsp;</a></span>SetMaterialShaderUniform() <span class="overload">[1/3]</span></h2>
 
@@ -2160,6 +2223,30 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
 </div><div class="memdoc">
 
 <p>Gets a value indicating whether this object is in a conversation. </p>
+
+</div>
+</div>
+<a id="ae581c0b15cd437914fae51e313d63686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae581c0b15cd437914fae51e313d63686">&#9670;&nbsp;</a></span>IsListening</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwGameObject.IsListening</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets if this object should be listening for chat patterns, via the listen pattern system. </p>
 
 </div>
 </div>
