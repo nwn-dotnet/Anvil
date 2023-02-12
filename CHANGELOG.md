@@ -3,6 +3,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.24
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.23...v8193.34.24
+
+### Added
+- Implemented AI message and listen system.
+  - NwGameObject: Added `IsListening` property.
+  - NwGameObject: Added `SetListenPattern` method.
+  - NwCreature: Added `SetAssociateListenPatterns` method.
+  - OnConversation events: Added `ListenPattern`, `AssociateCommand` properties.
+- OnTrapTriggered: Added `TriggeredBy` property to door/placeable traps.
+- CreatureClassInfo: Added `Domains` array for reading/modifying creature domains.
+
+### Package Updates
+- NWN.Core: 8193.34.10 -> 8193.34.12
+
+### Deprecated
+- `DoorEvents.OnDialogue` - use `DoorEvents.OnConversation` instead.
+- `PlaceableEvents.OnDialogue` - use `PlaceableEvents.OnConversation` instead.
+
+### Fixed
+- Fixed an issue with events that caused script handlers not to be called after reloading anvil.
+
 ## 8193.34.23
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.22...v8193.34.23
 

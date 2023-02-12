@@ -17,6 +17,11 @@ namespace Anvil.API.Events
       /// </summary>
       public NwDoor Door { get; } = NWScript.OBJECT_SELF.ToNwObject<NwDoor>()!;
 
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that triggered this trap.
+      /// </summary>
+      public NwGameObject TriggeredBy { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>()!;
+
       NwObject IEvent.Context => Door;
     }
   }

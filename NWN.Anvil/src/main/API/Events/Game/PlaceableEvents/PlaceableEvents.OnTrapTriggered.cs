@@ -20,6 +20,11 @@ namespace Anvil.API.Events
       /// </summary>
       public NwPlaceable Placeable { get; } = NWScript.OBJECT_SELF.ToNwObject<NwPlaceable>()!;
 
+      /// <summary>
+      /// Gets the <see cref="NwGameObject"/> that triggered this trap.
+      /// </summary>
+      public NwGameObject TriggeredBy { get; } = NWScript.GetEnteringObject().ToNwObject<NwGameObject>()!;
+
       NwObject IEvent.Context => Placeable;
     }
   }

@@ -2268,6 +2268,16 @@ namespace Anvil.API
       Creature.m_pStats.SetFeatRemainingUses(feat.Id, remainingUses);
     }
 
+    /// <summary>
+    /// Initialises this creature to listen for the standard <see cref="AssociateCommand"/> messages.<br/>
+    /// These are the messages sent by the standard party UI.
+    /// </summary>
+    /// <remarks>This method is automatically invoked when calling <see cref="NwPlayer.AddHenchmen"/>, and does not need to be called again.</remarks>
+    public void SetAssociateListenPatterns()
+    {
+      NWScript.SetAssociateListenPatterns(this);
+    }
+
     public void SetQuickBarButton(byte index, PlayerQuickBarButton data)
     {
       if (index >= QuickBarButtonCount)

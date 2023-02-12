@@ -6,13 +6,13 @@ namespace Anvil.API.Events
   {
     private readonly struct EventKey : IEquatable<EventKey>
     {
-      private readonly EventScriptType eventScriptType;
-      private readonly uint gameObject;
+      public readonly EventScriptType EventScriptType;
+      public readonly uint GameObject;
 
       public EventKey(EventScriptType eventScriptType, uint gameObject)
       {
-        this.eventScriptType = eventScriptType;
-        this.gameObject = gameObject;
+        EventScriptType = eventScriptType;
+        GameObject = gameObject;
       }
 
       public static bool operator ==(EventKey left, EventKey right)
@@ -27,7 +27,7 @@ namespace Anvil.API.Events
 
       public bool Equals(EventKey other)
       {
-        return eventScriptType == other.eventScriptType && gameObject == other.gameObject;
+        return EventScriptType == other.EventScriptType && GameObject == other.GameObject;
       }
 
       public override bool Equals(object? obj)
@@ -37,7 +37,7 @@ namespace Anvil.API.Events
 
       public override int GetHashCode()
       {
-        return HashCode.Combine((int)eventScriptType, gameObject);
+        return HashCode.Combine((int)EventScriptType, GameObject);
       }
     }
   }

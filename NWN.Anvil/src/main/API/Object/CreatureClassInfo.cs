@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Anvil.Native;
 using NWN.Native.API;
 
 namespace Anvil.API
@@ -16,6 +17,19 @@ namespace Anvil.API
     /// Gets the associated class.
     /// </summary>
     public NwClass Class => NwClass.FromClassId(classInfo.m_nClass)!;
+
+    /// <summary>
+    /// Gets the 2 domains set for this class.<br/>
+    /// Domains can be modified by editing the contents of this array.
+    /// </summary>
+    /// <remarks>By default, a non-domain class will be populated with <see cref="Domain.Air"/> and <see cref="Domain.Animal"/> (index 0 and 1 respectively).</remarks>
+    public IArray<NwDomain?> Domains
+    {
+      get
+      {
+        return new ArrayWrapper<byte, NwDomain?>(classInfo.m_nDomain, id => NwDomain.FromDomainId(id), domain => domain?.Id ?? 0);
+      }
+    }
 
     /// <summary>
     /// Gets the amount of levels in this class.
