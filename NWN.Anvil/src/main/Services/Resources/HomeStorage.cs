@@ -4,18 +4,39 @@ using Anvil.Internal;
 
 namespace Anvil.Services
 {
-  internal static class HomeStorage
+  /// <summary>
+  /// Full directory paths for the anvil home directory.
+  /// </summary>
+  public static class HomeStorage
   {
+    /// <summary>
+    /// The base anvil home directory.
+    /// </summary>
     private static readonly string AnvilHome = Path.GetFullPath(EnvironmentConfig.AnvilHome, NwServer.Instance.UserDirectory);
 
+    /// <summary>
+    /// The NLog config directory.
+    /// </summary>
     public static string NLogConfig => ResolveFilePath("nlog.config");
 
+    /// <summary>
+    /// The root folder for Paket configuration and package cache.
+    /// </summary>
     public static string Paket => ResolveDirectoryPath("Paket");
 
+    /// <summary>
+    /// The root plugin data directory. Each plugin is assigned a unique directory in this folder.
+    /// </summary>
     public static string PluginData => ResolveDirectoryPath("PluginData");
 
+    /// <summary>
+    /// The root plugin directory. Each plugin is assigned a unique directory in this folder.
+    /// </summary>
     public static string Plugins => ResolveDirectoryPath("Plugins");
 
+    /// <summary>
+    /// The temporary resources directory. Used by some Anvil APIs for ephemeral resources to be visible by ResMan.
+    /// </summary>
     public static string ResourceTemp => ResolveDirectoryPath("ResourceTemp", false);
 
     private static void CreateDirectory(string folderPath)
