@@ -15,7 +15,7 @@ namespace Anvil.API
     /// <summary>
     /// Creates a new Cassowary solver.
     /// </summary>
-    public Cassowary() : base(CreateNew(), false) {}
+    public Cassowary() : base(CreateNew(), true) {}
 
     /// <summary>
     /// Gets a printable debug state of this solver, which may help you debug complex systems.
