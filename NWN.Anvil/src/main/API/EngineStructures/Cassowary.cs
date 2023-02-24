@@ -75,7 +75,7 @@ namespace Anvil.API
       NWScript.CassowarySuggestValue(this, varName, value, strength);
     }
 
-    internal static IntPtr CreateNew()
+    private static IntPtr CreateNew()
     {
       IntPtr cassowary = NWScript.GetLocalCassowary(NwModule.Instance, string.Empty);
       NWScript.CassowaryReset(cassowary);
