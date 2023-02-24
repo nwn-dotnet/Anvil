@@ -1,11 +1,21 @@
 using System;
 using NWN.Core;
+using NWN.Native.API;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Represents a Cassowary engine structure.<br/>
+  /// A Cassowary is a type of solver. NWN uses them internally to resize the newer GUI window.
+  /// </summary>
   public sealed class Cassowary : EngineStructure
   {
     internal Cassowary(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
+
+    /// <summary>
+    /// Creates a new Cassowary solver.
+    /// </summary>
+    public Cassowary() : base(CreateNew(), false) {}
 
     /// <summary>
     /// Gets a printable debug state of this solver, which may help you debug complex systems.
@@ -64,6 +74,14 @@ namespace Anvil.API
     public void SuggestValue(string varName, float value, float strength = CassowaryStrength.Strong)
     {
       NWScript.CassowarySuggestValue(this, varName, value, strength);
+    }
+
+    internal static IntPtr CreateNew()
+    {
+      CassowarySolverEngineStructure structure = new CassowarySolverEngineStructure();
+      GC.SuppressFinalize(structure);
+
+      return structure.Pointer;
     }
   }
 }
