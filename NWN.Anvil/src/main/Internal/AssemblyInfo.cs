@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("NWN.Anvil.TestRunner")]
 [assembly: InternalsVisibleTo("NWN.Anvil.Tests")]
 
 namespace Anvil.Internal
