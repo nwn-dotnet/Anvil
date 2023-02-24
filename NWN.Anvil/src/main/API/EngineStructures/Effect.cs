@@ -4,6 +4,12 @@ using NWN.Native.API;
 
 namespace Anvil.API
 {
+  //! ## Examples
+  //! @import EffectExamples.cs
+
+  /// <summary>
+  /// Represents an effect engine structure.
+  /// </summary>
   public sealed partial class Effect : EffectBase
   {
     internal Effect(CGameEffect effect, bool memoryOwn) : base(effect, memoryOwn) {}
