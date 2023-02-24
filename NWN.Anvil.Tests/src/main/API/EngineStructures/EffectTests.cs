@@ -17,7 +17,7 @@ namespace Anvil.Tests.API
     }
 
     [Test(Description = "A soft effect reference created from a native object does not cause the original effect to be deleted.")]
-    public void CreateSoftEffectReferencAndDisposeDoesNotFreeMemory()
+    public void CreateSoftEffectReferenceAndDisposeDoesNotFreeMemory()
     {
       Effect effect = Effect.Blindness();
       Assert.That(effect.IsValid, Is.True, "Effect was not valid after creation.");

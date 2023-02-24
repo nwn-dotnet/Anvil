@@ -3,6 +3,7 @@
  */
 
 using System;
+using System.Linq;
 using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Services;
@@ -23,6 +24,13 @@ namespace NWN.Anvil.Samples
 
       // Register methods to listen for the player/client enter event.
       NwModule.Instance.OnClientEnter += RatSummonExample;
+
+      // When entering a specific area, remove all blindness effects:
+      NwArea? area = NwObject.FindObjectsWithTag<NwArea>("clear_blind").FirstOrDefault();
+      if (area != null)
+      {
+        area.OnEnter += RemoveBlindnessExample;
+      }
 
       // Register methods to listen for the creature damage event.
       NwModule.Instance.OnCreatureDamage += BloodVfxExample;
@@ -67,6 +75,27 @@ namespace NWN.Anvil.Samples
       {
         // ...Apply our blindness effect for 5 seconds.
         eventData.Target.ApplyEffect(EffectDuration.Temporary, blindnessEffect, TimeSpan.FromSeconds(5));
+      }
+    }
+
+    /// <summary>
+    /// Removes any blindness effect still active once a creature enters the area.
+    /// </summary>
+    private void RemoveBlindnessExample(AreaEvents.OnEnter eventData)
+    {
+      // If the object entering is not a creature, early return.
+      if (eventData.EnteringObject is not NwCreature creature)
+      {
+        return;
+      }
+
+      // Loop through all active effects on the creature, and remove any with the blindness type.
+      foreach (Effect effect in creature.ActiveEffects)
+      {
+        if (effect.EffectType == EffectType.Blindness)
+        {
+          creature.RemoveEffect(effect);
+        }
       }
     }
   }
