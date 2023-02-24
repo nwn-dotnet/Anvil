@@ -1,8 +1,5 @@
-using System;
-using System.Runtime.CompilerServices;
 using Anvil.API;
 using NUnit.Framework;
-using NWN.Core;
 using NWN.Native.API;
 
 namespace Anvil.Tests.API
