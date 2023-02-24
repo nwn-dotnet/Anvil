@@ -2,7 +2,7 @@ using System.Threading;
 
 namespace Anvil.API
 {
-  public readonly struct SynchronizationContextAwaiter : IAwaiter
+  internal readonly struct SynchronizationContextAwaiter : IAwaiter
   {
     private static readonly SendOrPostCallback PostCallback = state => ((System.Action?)state)?.Invoke();
 

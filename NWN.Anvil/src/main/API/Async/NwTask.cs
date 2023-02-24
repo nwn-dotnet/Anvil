@@ -20,7 +20,7 @@ namespace Anvil.API
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     [Inject]
-    public static MainThreadSynchronizationContext MainThreadSynchronizationContext { get; private set; } = null!;
+    private static MainThreadSynchronizationContext MainThreadSynchronizationContext { get; set; } = null!;
 
     /// <summary>
     /// Waits until the specified amount of time has passed.
