@@ -52,11 +52,6 @@ namespace Anvil.API
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_EFFECT;
 
-    public static explicit operator Effect(ItemProperty itemProperty)
-    {
-      return new Effect(itemProperty, true);
-    }
-
     public static implicit operator Effect?(IntPtr intPtr)
     {
       return intPtr != IntPtr.Zero ? new Effect(CGameEffect.FromPointer(intPtr), true) : null;

@@ -8,7 +8,7 @@ namespace Anvil.Tests.API
   public sealed class EffectTests
   {
     [Test(Description = "Creating an effect and disposing the effect explicitly frees the associated memory.")]
-    public void CreateAndDisposeEffectValidPropertyUpdated()
+    public void CreateAndDisposeEffectFreesNativeStructure()
     {
       Effect effect = Effect.CutsceneParalyze();
       Assert.That(effect.IsValid, Is.True, "Effect was not valid after creation.");

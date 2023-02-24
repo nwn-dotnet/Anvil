@@ -11,22 +11,6 @@ namespace Anvil.API
     private IntPtr handle;
     private bool memoryOwn;
 
-    private protected EngineStructure(IntPtr handle, bool memoryOwn)
-    {
-      this.handle = handle;
-      this.memoryOwn = memoryOwn;
-
-      if (memoryOwn)
-      {
-        GC.SuppressFinalize(this);
-      }
-    }
-
-    ~EngineStructure()
-    {
-      ReleaseUnmanagedResources();
-    }
-
     /// <summary>
     /// Gets if this object is valid.
     /// </summary>
@@ -34,14 +18,15 @@ namespace Anvil.API
 
     protected abstract int StructureId { get; }
 
-    public static implicit operator IntPtr(EngineStructure engineStructure)
+    private protected EngineStructure(IntPtr handle, bool memoryOwn)
     {
-      if (engineStructure == null || !engineStructure.IsValid)
-      {
-        throw new InvalidOperationException("Engine structure is not valid.");
-      }
+      this.handle = handle;
+      this.memoryOwn = memoryOwn;
+    }
 
-      return engineStructure.handle;
+    ~EngineStructure()
+    {
+      ReleaseUnmanagedResources();
     }
 
     public void Dispose()
@@ -58,6 +43,16 @@ namespace Anvil.API
         VM.FreeGameDefinedStructure(StructureId, handle);
         handle = IntPtr.Zero;
       }
+    }
+
+    public static implicit operator IntPtr(EngineStructure engineStructure)
+    {
+      if (engineStructure == null || !engineStructure.IsValid)
+      {
+        throw new InvalidOperationException("Engine structure is not valid.");
+      }
+
+      return engineStructure.handle;
     }
   }
 }
