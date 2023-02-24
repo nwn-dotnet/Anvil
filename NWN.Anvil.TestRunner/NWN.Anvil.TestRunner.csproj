@@ -69,6 +69,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NWN.Core" Version="8193.34.12" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.34.5" PrivateAssets="compile" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="src\lib\nunit\CONTRIBUTING.md" />
     <None Remove="src\lib\nunit\CODE_OF_CONDUCT.md" />
     <None Remove="src\lib\nunit\CHANGES.md" />
