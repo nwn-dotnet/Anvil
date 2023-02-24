@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using NWN.Native.API;
 
@@ -26,6 +27,12 @@ namespace Anvil.API
       ObjectParams = new EffectParams<NwObject>(effect.m_oidParamObjectID.Length,
         i => effect.m_oidParamObjectID[i].ToNwObject(),
         (i, value) => effect.m_oidParamObjectID[i] = value);
+
+      // If we claim ownership of the memory, specifically ensure that the CGameEffect wrapper does not try to double free.
+      if (memoryOwn)
+      {
+        GC.SuppressFinalize(effect);
+      }
     }
 
     /// <summary>
