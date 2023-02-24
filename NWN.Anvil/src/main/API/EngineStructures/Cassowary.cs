@@ -1,6 +1,5 @@
 using System;
 using NWN.Core;
-using NWN.Native.API;
 
 namespace Anvil.API
 {
@@ -78,10 +77,10 @@ namespace Anvil.API
 
     internal static IntPtr CreateNew()
     {
-      CassowarySolverEngineStructure structure = new CassowarySolverEngineStructure();
-      GC.SuppressFinalize(structure);
+      IntPtr cassowary = NWScript.GetLocalCassowary(NwModule.Instance, string.Empty);
+      NWScript.CassowaryReset(cassowary);
 
-      return structure.Pointer;
+      return cassowary;
     }
   }
 }
