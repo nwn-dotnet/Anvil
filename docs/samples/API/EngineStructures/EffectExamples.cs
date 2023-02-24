@@ -10,7 +10,7 @@ using Anvil.Services;
 namespace NWN.Anvil.Samples
 {
   [ServiceBinding(typeof(EffectExamples))]
-  public sealed class EffectExamples
+  public class EffectExamples
   {
     // Some effects can be declared as fields. This allows you to reuse effects, rather than creating them every time.
     private readonly Effect blindnessEffect = Effect.Blindness();
