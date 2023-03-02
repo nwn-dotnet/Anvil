@@ -15,7 +15,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that drains the specified ability score on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that drains the specified ability score on a successful hit.
     /// </summary>
     /// <param name="ability">The ability score to drain.</param>
     /// <returns>The created HitEffect.</returns>
@@ -25,7 +25,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a blind effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a blind effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -35,7 +35,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a confusion effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a confusion effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -45,7 +45,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a daze effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a daze effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -55,7 +55,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a deafness effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a deafness effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -65,7 +65,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a disease effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a disease effect on a successful hit.
     /// </summary>
     /// <param name="diseaseType">The disease type to apply.</param>
     /// <returns>The created HitEffect.</returns>
@@ -75,7 +75,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that dispels magical effects on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that dispels magical effects on a successful hit.
     /// </summary>
     /// <returns>The created HitEffect.</returns>
     public static HitEffect DispelMagic()
@@ -84,7 +84,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a doom effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a doom effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -94,7 +94,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a fear effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a fear effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -104,7 +104,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that dispels magical effects on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that dispels magical effects on a successful hit.
     /// </summary>
     /// <returns>The created HitEffect.</returns>
     public static HitEffect GreaterDispel()
@@ -113,7 +113,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a hold effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a hold effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -123,7 +123,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a poison effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a poison effect on a successful hit.
     /// </summary>
     /// <param name="poisonType">The poison type to apply.</param>
     /// <returns>The created HitEffect.</returns>
@@ -133,7 +133,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a knock effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a knock effect on a successful hit.
     /// </summary>
     /// <returns>The created HitEffect.</returns>
     public static HitEffect Knock()
@@ -142,7 +142,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that dispels magical effects on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that dispels magical effects on a successful hit.
     /// </summary>
     /// <returns>The created HitEffect.</returns>
     public static HitEffect LesserDispel()
@@ -151,7 +151,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a level drain effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a level drain effect on a successful hit.
     /// </summary>
     /// <param name="levelDrain">The amount of levels to drain per hit.</param>
     /// <returns>The created HitEffect.</returns>
@@ -161,7 +161,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that dispels magical effects on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that dispels magical effects on a successful hit.
     /// </summary>
     /// <returns>The created HitEffect.</returns>
     public static HitEffect MordsDisjunction()
@@ -170,7 +170,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a silence effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a silence effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -180,7 +180,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that instantly kills a creature of the specified alignment on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that instantly kills a creature of the specified alignment on a successful hit.
     /// </summary>
     /// <param name="alignment">The alignment that will be slain.</param>
     /// <returns>The created HitEffect.</returns>
@@ -190,7 +190,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that instantly kills a creature of the specified alignment group on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that instantly kills a creature of the specified alignment group on a successful hit.
     /// </summary>
     /// <param name="alignmentGroup">The alignment group that will be slain.</param>
     /// <returns>The created HitEffect.</returns>
@@ -200,7 +200,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that instantly kills a creature of the specified race on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that instantly kills a creature of the specified race on a successful hit.
     /// </summary>
     /// <param name="racialType">The racial type that will be slain.</param>
     /// <returns>The created HitEffect.</returns>
@@ -210,7 +210,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a sleep effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a sleep effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -220,7 +220,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a slow effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a slow effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -230,7 +230,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a stun effect on a successful hit.
+    /// Creates a <see cref="HitEffect"/> property that applies a stun effect on a successful hit.
     /// </summary>
     /// <param name="duration">The duration of the effect.</param>
     /// <returns>The created HitEffect.</returns>
@@ -240,7 +240,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that instantly kills a creature on a critical hit.
+    /// Creates a <see cref="HitEffect"/> property that instantly kills a creature on a critical hit.
     /// </summary>
     /// <returns>The created HitEffect.</returns>
     public static HitEffect Vorpal()
@@ -249,7 +249,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Creates a HitEffect property that applies a bleeding damage over time effect until the creature is healed.
+    /// Creates a <see cref="HitEffect"/> property that applies a bleeding damage over time effect until the creature is healed.
     /// </summary>
     /// <param name="bleedDamage">The damage to apply per round.</param>
     /// <returns>The created HitEffect.</returns>
