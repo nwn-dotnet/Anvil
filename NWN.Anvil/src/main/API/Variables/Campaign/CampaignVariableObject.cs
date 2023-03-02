@@ -30,7 +30,7 @@ namespace Anvil.API
     public T? GetValue(NwGameObject owner)
     {
       Location? location = owner.Location;
-      if (location == null || location.Area == null)
+      if (location == null)
       {
         return null;
       }

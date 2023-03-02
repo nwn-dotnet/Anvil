@@ -101,12 +101,7 @@ namespace Anvil.API
           return;
         }
 
-        NwArea? area = value.Area;
-        if (area == null)
-        {
-          return;
-        }
-
+        NwArea area = value.Area;
         if (area == Area)
         {
           Position = value.Position;

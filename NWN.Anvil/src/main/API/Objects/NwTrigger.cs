@@ -34,12 +34,7 @@ namespace Anvil.API
         return default;
       }
 
-      CNWSArea? area = location.Area?.Area;
-      if (area == null)
-      {
-        return default;
-      }
-
+      CNWSArea area = location.Area.Area;
       Vector position = location.Position.ToNativeVector();
       Vector orientation = location.Rotation.ToVectorOrientation().ToNativeVector();
 
