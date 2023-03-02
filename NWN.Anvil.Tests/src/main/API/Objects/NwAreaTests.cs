@@ -38,7 +38,7 @@ namespace Anvil.Tests.API
     {
       EnvironmentPreset preset = NwGameTables.EnvironmentPresetTable.GetRow(presetRowIndex);
 
-      NwArea area = NwModule.Instance.StartingLocation.Area!;
+      NwArea area = NwModule.Instance.StartingLocation.Area;
       area.ApplyEnvironmentPreset(preset);
 
       Assert.That(area.DayNightMode, Is.EqualTo(preset.DayNightMode));
@@ -66,7 +66,7 @@ namespace Anvil.Tests.API
     [TestCase(AreaFlags.UnderGround)]
     public void ChangeAreaFlagsUpdatesAreaFlags(AreaFlags flag)
     {
-      NwArea area = NwModule.Instance.StartingLocation.Area!;
+      NwArea area = NwModule.Instance.StartingLocation.Area;
       area.AreaFlags |= flag;
       Assert.That(area.AreaFlags.HasFlag(flag), Is.EqualTo(true));
       area.AreaFlags &= ~flag;
@@ -76,7 +76,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Changing the IsInterior value correctly updates the area flag.")]
     public void ChangeAreaInteriorUpdatesAreaFlags()
     {
-      NwArea area = NwModule.Instance.StartingLocation.Area!;
+      NwArea area = NwModule.Instance.StartingLocation.Area;
       area.IsInterior = true;
       area.IsAboveGround = true; // NWScript.GetIsAreaInterior() always returns true if this flag is set to false.
 
@@ -95,7 +95,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Changing the IsExterior value correctly updates the area flag.")]
     public void ChangeAreaExteriorUpdatesAreaFlags()
     {
-      NwArea area = NwModule.Instance.StartingLocation.Area!;
+      NwArea area = NwModule.Instance.StartingLocation.Area;
       area.IsExterior = true;
       area.IsAboveGround = true; // NWScript.GetIsAreaInterior() always returns true if this flag is set to false.
 
@@ -114,7 +114,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Changing the IsNatural value correctly updates the area flag.")]
     public void ChangeAreaNaturalUpdatesAreaFlags()
     {
-      NwArea area = NwModule.Instance.StartingLocation.Area!;
+      NwArea area = NwModule.Instance.StartingLocation.Area;
 
       area.IsNatural = true;
       Assert.That(area.IsNatural, Is.EqualTo(true));
@@ -132,7 +132,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Changing the IsUrban value correctly updates the area flag.")]
     public void ChangeAreaUrbanUpdatesAreaFlags()
     {
-      NwArea area = NwModule.Instance.StartingLocation.Area!;
+      NwArea area = NwModule.Instance.StartingLocation.Area;
 
       area.IsUrban = true;
       Assert.That(area.IsUrban, Is.EqualTo(true));
@@ -150,7 +150,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Changing the IsAboveGround value correctly updates the area flag.")]
     public void ChangeAreaAboveGroundUpdatesAreaFlags()
     {
-      NwArea area = NwModule.Instance.StartingLocation.Area!;
+      NwArea area = NwModule.Instance.StartingLocation.Area;
 
       area.IsAboveGround = true;
       Assert.That(area.IsAboveGround, Is.EqualTo(true));
@@ -168,7 +168,7 @@ namespace Anvil.Tests.API
     [Test(Description = "Changing the IsUnderGround value correctly updates the area flag.")]
     public void ChangeAreaUnderGroundUpdatesAreaFlags()
     {
-      NwArea area = NwModule.Instance.StartingLocation.Area!;
+      NwArea area = NwModule.Instance.StartingLocation.Area;
 
       area.IsUnderGround = true;
       Assert.That(area.IsUnderGround, Is.EqualTo(true));

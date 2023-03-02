@@ -11,7 +11,7 @@ namespace NWN.Anvil.Samples
 {
   // This is the deserialization class for this specific type of 2da.
   // We can implement our own helper functions here that operate on the 2da data, and cache it.
-  public class ExpTableEntry : ITwoDimArrayEntry
+  public sealed class ExpTableEntry : ITwoDimArrayEntry
   {
     public int Level { get; private set; }
 

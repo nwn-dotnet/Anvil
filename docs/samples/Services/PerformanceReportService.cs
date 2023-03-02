@@ -2,7 +2,6 @@
  * Report the current tick rate every server loop.
  */
 
-using System;
 using Anvil.API;
 using Anvil.Services;
 using NLog;
