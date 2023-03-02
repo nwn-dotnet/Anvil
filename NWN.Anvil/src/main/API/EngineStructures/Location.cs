@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using NWN.Core;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// A location in the module, represented by area, position and orientation.
+  /// </summary>
   public sealed class Location : EngineStructure
   {
     internal Location(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
@@ -12,7 +16,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the associated Area of this location.
     /// </summary>
-    public NwArea? Area => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>();
+    public NwArea Area => NWScript.GetAreaFromLocation(this).ToNwObject<NwArea>()!;
 
     /// <summary>
     /// Gets the inverted rotation value of this location (placeables).
@@ -71,9 +75,17 @@ namespace Anvil.API
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
 
-    public static Location Create(NwArea area, Vector3 position, float orientation)
+    /// <summary>
+    /// Create a new location from the specified area, position and orientation
+    /// </summary>
+    /// <param name="area">The area of the location.</param>
+    /// <param name="position">The position of the location.</param>
+    /// <param name="orientation">The rotation of the location.</param>
+    /// <returns>The created location.</returns>
+    [return: NotNullIfNotNull("area")]
+    public static Location? Create(NwArea area, Vector3 position, float orientation)
     {
-      return NWScript.Location(area, position, orientation)!;
+      return NWScript.Location(area, position, orientation);
     }
 
     public static implicit operator Location?(IntPtr intPtr)
@@ -136,21 +148,39 @@ namespace Anvil.API
       return Vector3.DistanceSquared(target.Position, Position);
     }
 
+    /// <summary>
+    /// Gets all creatures near this location, ordered by distance.
+    /// </summary>
     public IEnumerable<NwCreature> GetNearestCreatures()
     {
       return GetNearestCreatures(CreatureTypeFilter.None, CreatureTypeFilter.None, CreatureTypeFilter.None);
     }
 
+    /// <summary>
+    /// Gets all creatures near this location, ordered by distance.
+    /// </summary>
+    /// <param name="filter1">A filter for the returned creatures.</param>
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1)
     {
       return GetNearestCreatures(filter1, CreatureTypeFilter.None, CreatureTypeFilter.None);
     }
 
+    /// <summary>
+    /// Gets all creatures near this location, ordered by distance.
+    /// </summary>
+    /// <param name="filter1">A filter for the returned creatures.</param>
+    /// <param name="filter2">A 2nd filter for the returned creatures.</param>
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2)
     {
       return GetNearestCreatures(filter1, filter2, CreatureTypeFilter.None);
     }
 
+    /// <summary>
+    /// Gets all creatures near this location, ordered by distance.
+    /// </summary>
+    /// <param name="filter1">A filter for the returned creatures.</param>
+    /// <param name="filter2">A 2nd filter for the returned creatures.</param>
+    /// <param name="filter3">A 3rd filter for the returned creatures.</param>
     public IEnumerable<NwCreature> GetNearestCreatures(CreatureTypeFilter filter1, CreatureTypeFilter filter2, CreatureTypeFilter filter3)
     {
       int i;
@@ -184,6 +214,9 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Gets all objects near this location, ordered by distance.
+    /// </summary>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
       int objType = (int)NwObject.GetObjectType<T>();
@@ -199,6 +232,9 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Gets all objects in a shape at this location.
+    /// </summary>
     public IEnumerable<NwGameObject> GetObjectsInShape(Shape shape, float size, bool losCheck, ObjectTypes objTypes = ObjectTypes.Creature, Vector3 origin = default)
     {
       int typeFilter = (int)objTypes;
@@ -216,6 +252,9 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Gets all objects in a shape at this location of the specified type.
+    /// </summary>
     public IEnumerable<T> GetObjectsInShapeByType<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
       int typeFilter = (int)NwObject.GetObjectType<T>();

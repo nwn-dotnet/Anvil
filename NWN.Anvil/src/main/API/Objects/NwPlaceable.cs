@@ -108,7 +108,7 @@ namespace Anvil.API
 
     public static NwPlaceable? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
-      location = Location.Create(location.Area!, location.Position, location.FlippedRotation);
+      location = Location.Create(location.Area, location.Position, location.FlippedRotation);
       return CreateInternal<NwPlaceable>(template, location, useAppearAnim, newTag);
     }
 
