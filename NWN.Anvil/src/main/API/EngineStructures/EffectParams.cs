@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Represents an array of <see cref="Effect"/> parameters.
+  /// </summary>
+  /// <typeparam name="T">The parameter type.</typeparam>
   public sealed class EffectParams<T> : IReadOnlyList<T?>
   {
     private readonly Func<int, T?> get;
