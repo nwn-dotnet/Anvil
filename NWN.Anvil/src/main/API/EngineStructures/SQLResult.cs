@@ -3,6 +3,9 @@ using NWN.Core;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Represents a row returned in an SQL result. See <see cref="SQLQuery.Result"/>/<see cref="SQLQuery.Results"/>.
+  /// </summary>
   public sealed class SQLResult
   {
     private readonly SQLQuery query;
