@@ -3,6 +3,9 @@ using NWN.Core;
 
 namespace Anvil.API
 {
+  //! ## Examples
+  //! @import CassowaryExamples.cs
+
   /// <summary>
   /// Represents a Cassowary engine structure.<br/>
   /// A Cassowary is a type of solver. NWN uses them internally to resize the newer GUI window.

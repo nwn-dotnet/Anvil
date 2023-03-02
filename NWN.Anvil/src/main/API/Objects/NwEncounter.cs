@@ -154,7 +154,7 @@ namespace Anvil.API
 
     public static NwEncounter? Create(string template, Location location, string? newTag = null)
     {
-      if (string.IsNullOrEmpty(template) || location.Area == null)
+      if (string.IsNullOrEmpty(template))
       {
         return default;
       }

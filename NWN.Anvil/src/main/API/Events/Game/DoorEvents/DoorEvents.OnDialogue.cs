@@ -7,7 +7,7 @@ using NWN.Core;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Events for door objects.
+  /// Built-in events associated with a specific door.
   /// </summary>
   public static partial class DoorEvents
   {

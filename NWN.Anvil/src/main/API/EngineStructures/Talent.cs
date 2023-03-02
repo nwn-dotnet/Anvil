@@ -3,6 +3,9 @@ using NWN.Core;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// Represents a talent structure. A talent is a feat, skill or spell possessed by a creature.
+  /// </summary>
   public sealed partial class Talent : EngineStructure
   {
     internal Talent(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}

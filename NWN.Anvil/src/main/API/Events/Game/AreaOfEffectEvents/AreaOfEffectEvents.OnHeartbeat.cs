@@ -1,12 +1,11 @@
 using System;
 using Anvil.API.Events;
-using Anvil.Services;
 using NWN.Core;
 
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Events for effects created with <see cref="Effect.AreaOfEffect(PersistentVfxType,ScriptCallbackHandle,ScriptCallbackHandle,ScriptCallbackHandle)"/>.
+  /// Built-in events for effects created with <see cref="Effect.AreaOfEffect(Anvil.API.PersistentVfxType,Anvil.Services.ScriptCallbackHandle,Anvil.Services.ScriptCallbackHandle,Anvil.Services.ScriptCallbackHandle)"/>.
   /// </summary>
   public static partial class AreaOfEffectEvents
   {

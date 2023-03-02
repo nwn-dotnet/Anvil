@@ -7,6 +7,9 @@ using NWN.Core;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Event factory for built-in game events.
+  /// </summary>
   [ServiceBinding(typeof(IEventFactory))]
   [ServiceBinding(typeof(IScriptDispatcher))]
   public sealed partial class GameEventFactory : IEventFactory<GameEventFactory.RegistrationData>, IScriptDispatcher, IDisposable

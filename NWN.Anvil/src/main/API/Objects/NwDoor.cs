@@ -61,7 +61,7 @@ namespace Anvil.API
     /// <param name="newTag">The new tag to assign this door. Leave uninitialized/as null to use the template's tag.</param>
     public static NwDoor? Create(string template, Location location, string? newTag = null)
     {
-      if (string.IsNullOrEmpty(template) || location.Area == null)
+      if (string.IsNullOrEmpty(template))
       {
         return default;
       }

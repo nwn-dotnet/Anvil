@@ -7,7 +7,7 @@ using NWN.Core;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Events for <see cref="NwPlaceable"/>.
+  /// Built-in events associated with a specific placeable.
   /// </summary>
   public static partial class PlaceableEvents
   {

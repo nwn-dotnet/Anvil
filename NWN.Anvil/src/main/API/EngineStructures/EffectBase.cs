@@ -74,6 +74,9 @@ namespace Anvil.API
     /// </summary>
     public EffectParams<NwObject> ObjectParams { get; }
 
+    /// <summary>
+    /// Gets or sets if this effect should show an icon in the top right and in the character sheet and examine panels.
+    /// </summary>
     public bool ShowIcon
     {
       get => Effect.m_bShowIcon.ToBool();

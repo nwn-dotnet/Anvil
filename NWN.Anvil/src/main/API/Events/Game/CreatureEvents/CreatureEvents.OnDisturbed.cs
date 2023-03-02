@@ -5,7 +5,7 @@ using NWN.Core;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Events for <see cref="NwCreature"/>.
+  /// Built-in events associated with a specific creature.
   /// </summary>
   public static partial class CreatureEvents
   {

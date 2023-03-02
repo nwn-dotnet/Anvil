@@ -37,6 +37,11 @@ namespace Anvil
       this.serviceManager.CoreServiceContainer.InjectProperties(this);
     }
 
+    /// <summary>
+    /// Gets the specified anvil service instance.
+    /// </summary>
+    /// <typeparam name="T">The service type to get.</typeparam>
+    /// <returns>The associated anvil service instance.</returns>
     public static T? GetService<T>()
     {
       return instance.serviceManager.AnvilServiceContainer.GetInstance<T>();

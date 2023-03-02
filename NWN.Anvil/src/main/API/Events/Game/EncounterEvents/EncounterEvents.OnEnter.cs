@@ -5,7 +5,7 @@ using NWN.Core;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Events for <see cref="NwEncounter"/> triggers.
+  /// Built-in events associated with a specific encounter.
   /// </summary>
   public static partial class EncounterEvents
   {
