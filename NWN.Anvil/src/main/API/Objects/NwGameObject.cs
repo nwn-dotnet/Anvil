@@ -249,6 +249,17 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Jumps this object to the specified location.<br/>
+    /// Unlike the <see cref="Location"/> setter, this method will compute a safe location when teleporting, and may not equal the location specified.
+    /// </summary>
+    /// <param name="location">The location to attempt to jump to.</param>
+    public async Task ActionJumpToLocation(Location location)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionJumpToLocation(location);
+    }
+
+    /// <summary>
     /// Instructs this object to do nothing for the specified duration, before continuing with the next item in the action queue.
     /// </summary>
     /// <param name="duration">The time to wait.</param>
