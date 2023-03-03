@@ -1,5 +1,5 @@
 <map id="Anvil.API.Location" name="Anvil.API.Location">
-<area shape="rect" id="node1" title=" " alt="" coords="5,155,135,181"/>
+<area shape="rect" id="node1" title="A location in the module, represented by area, position and orientation." alt="" coords="5,155,135,181"/>
 <area shape="rect" id="node2" href="$classAnvil_1_1API_1_1EngineStructure.html" title="A pointer&#45;type VM structure." alt="" coords="13,80,127,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="25,5,115,32"/>
 </map>

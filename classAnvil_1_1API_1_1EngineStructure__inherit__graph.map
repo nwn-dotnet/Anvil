@@ -1,12 +1,12 @@
 <map id="Anvil.API.EngineStructure" name="Anvil.API.EngineStructure">
 <area shape="rect" id="node1" title="A pointer&#45;type VM structure." alt="" coords="144,132,315,159"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Cassowary.html" title=" " alt="" coords="363,5,505,32"/>
+<area shape="rect" id="node3" href="$classAnvil_1_1API_1_1Cassowary.html" title="Represents a Cassowary engine structure. &#160;A Cassowary is a type of solver. NWN uses them internally t..." alt="" coords="363,5,505,32"/>
 <area shape="rect" id="node4" href="$classAnvil_1_1API_1_1EffectBase.html" title=" " alt="" coords="363,56,505,83"/>
-<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1Json.html" title=" " alt="" coords="381,107,487,133"/>
-<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1Location.html" title=" " alt="" coords="369,157,499,184"/>
+<area shape="rect" id="node7" href="$classAnvil_1_1API_1_1Json.html" title="Represents a json engine structure." alt="" coords="381,107,487,133"/>
+<area shape="rect" id="node8" href="$classAnvil_1_1API_1_1Location.html" title="A location in the module, represented by area, position and orientation." alt="" coords="369,157,499,184"/>
 <area shape="rect" id="node9" href="$classAnvil_1_1API_1_1SQLQuery.html" title="A SQL Query." alt="" coords="364,208,504,235"/>
-<area shape="rect" id="node10" href="$classAnvil_1_1API_1_1Talent.html" title=" " alt="" coords="377,259,491,285"/>
+<area shape="rect" id="node10" href="$classAnvil_1_1API_1_1Talent.html" title="Represents a talent structure. A talent is a feat, skill or spell possessed by a creature." alt="" coords="377,259,491,285"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,132,96,159"/>
-<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Effect.html" title=" " alt="" coords="574,31,686,57"/>
-<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1ItemProperty.html" title=" " alt="" coords="553,81,707,108"/>
+<area shape="rect" id="node5" href="$classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure." alt="" coords="574,31,686,57"/>
+<area shape="rect" id="node6" href="$classAnvil_1_1API_1_1ItemProperty.html" title="Represents an item property effect engine structure." alt="" coords="553,81,707,108"/>
 </map>

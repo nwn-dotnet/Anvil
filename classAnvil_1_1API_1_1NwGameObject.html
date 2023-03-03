@@ -138,6 +138,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6a48483963da2672de72af60d6f61037"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a6a48483963da2672de72af60d6f61037">ActionCastSpellAt</a> (<a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> spell, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target, MetaMagic metaMagic=MetaMagic.Any, bool cheat=false, int domainLevel=0, ProjectilePathType projectilePathType=ProjectilePathType.Default, bool instant=false)</td></tr>
 <tr class="memdesc:a6a48483963da2672de72af60d6f61037"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts a spell at an object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a6a48483963da2672de72af60d6f61037">More...</a><br /></td></tr>
 <tr class="separator:a6a48483963da2672de72af60d6f61037"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac575746edb9ddbfd0650fbcddb85e2b3"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ac575746edb9ddbfd0650fbcddb85e2b3">ActionJumpToLocation</a> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location)</td></tr>
+<tr class="memdesc:ac575746edb9ddbfd0650fbcddb85e2b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jumps this object to the specified location.<br  />
+ Unlike the <a class="el" href="classAnvil_1_1API_1_1Location.html" title="A location in the module, represented by area, position and orientation.">Location</a> setter, this method will compute a safe location when teleporting, and may not equal the location specified.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ac575746edb9ddbfd0650fbcddb85e2b3">More...</a><br /></td></tr>
+<tr class="separator:ac575746edb9ddbfd0650fbcddb85e2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28ca31adfb67c90cd39e3945228dd638"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638">ActionWait</a> (TimeSpan duration)</td></tr>
 <tr class="memdesc:a28ca31adfb67c90cd39e3945228dd638"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this object to do nothing for the specified duration, before continuing with the next item in the action queue.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638">More...</a><br /></td></tr>
 <tr class="separator:a28ca31adfb67c90cd39e3945228dd638"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -359,9 +363,9 @@ Properties</h2></td></tr>
 <tr class="memitem:ae581c0b15cd437914fae51e313d63686"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686">IsListening</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ae581c0b15cd437914fae51e313d63686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets if this object should be listening for chat patterns, via the listen pattern system.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686">More...</a><br /></td></tr>
 <tr class="separator:ae581c0b15cd437914fae51e313d63686"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e893cc9da147901a921bc3f7ed9cdb"><td class="memItemLeft" align="right" valign="top">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb">Location</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a09e893cc9da147901a921bc3f7ed9cdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb">More...</a><br /></td></tr>
-<tr class="separator:a09e893cc9da147901a921bc3f7ed9cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a1f71f281ba32fb29953478d9b0a5f"><td class="memItemLeft" align="right" valign="top">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a65a1f71f281ba32fb29953478d9b0a5f">Location</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a65a1f71f281ba32fb29953478d9b0a5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a65a1f71f281ba32fb29953478d9b0a5f">More...</a><br /></td></tr>
+<tr class="separator:a65a1f71f281ba32fb29953478d9b0a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59956fc894fb082f038616beac3653ea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a59956fc894fb082f038616beac3653ea">MaxHP</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a59956fc894fb082f038616beac3653ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the maximum HP for this object. Returns 0 if this object has no defined HP.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a59956fc894fb082f038616beac3653ea">More...</a><br /></td></tr>
 <tr class="separator:a59956fc894fb082f038616beac3653ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -640,6 +644,41 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
     <tr><td class="paramname">domainLevel</td><td>Specifies the spell level if the spell is to be cast as a domain spell.</td></tr>
     <tr><td class="paramname">projectilePathType</td><td>The type of projectile path to use for this spell.</td></tr>
     <tr><td class="paramname">instant</td><td>If true, the spell is cast immediately.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac575746edb9ddbfd0650fbcddb85e2b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac575746edb9ddbfd0650fbcddb85e2b3">&#9670;&nbsp;</a></span>ActionJumpToLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task Anvil.API.NwGameObject.ActionJumpToLocation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>&#160;</td>
+          <td class="paramname"><em>location</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Jumps this object to the specified location.<br  />
+ Unlike the <a class="el" href="classAnvil_1_1API_1_1Location.html" title="A location in the module, represented by area, position and orientation.">Location</a> setter, this method will compute a safe location when teleporting, and may not equal the location specified. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">location</td><td>The location to attempt to jump to.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2250,8 +2289,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
 
 </div>
 </div>
-<a id="a09e893cc9da147901a921bc3f7ed9cdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09e893cc9da147901a921bc3f7ed9cdb">&#9670;&nbsp;</a></span>Location</h2>
+<a id="a65a1f71f281ba32fb29953478d9b0a5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65a1f71f281ba32fb29953478d9b0a5f">&#9670;&nbsp;</a></span>Location</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2260,7 +2299,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>? Anvil.API.NwGameObject.Location</td>
+          <td class="memname">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> Anvil.API.NwGameObject.Location</td>
         </tr>
       </table>
   </td>
@@ -2525,7 +2564,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b>
 <li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnSpellBroadcast.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnSpellCast.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/SpellEvents/OnSpellInterrupt.cs</li>
-<li>NWN.Anvil/src/main/API/Object/NwGameObject.cs</li>
+<li>NWN.Anvil/src/main/API/Objects/NwGameObject.cs</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

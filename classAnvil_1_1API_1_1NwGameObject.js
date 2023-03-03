@@ -2,6 +2,7 @@ var classAnvil_1_1API_1_1NwGameObject =
 [
     [ "ActionCastSpellAt", "classAnvil_1_1API_1_1NwGameObject.html#abc478994a082486081964a2a83facf70", null ],
     [ "ActionCastSpellAt", "classAnvil_1_1API_1_1NwGameObject.html#a6a48483963da2672de72af60d6f61037", null ],
+    [ "ActionJumpToLocation", "classAnvil_1_1API_1_1NwGameObject.html#ac575746edb9ddbfd0650fbcddb85e2b3", null ],
     [ "ActionWait", "classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638", null ],
     [ "AddToArea", "classAnvil_1_1API_1_1NwGameObject.html#a6bbd1c4042addbe9cc62610c84b834fc", null ],
     [ "ApplyEffect", "classAnvil_1_1API_1_1NwGameObject.html#a49f3df80e23f87e48b83ab66387764d2", null ],
@@ -49,7 +50,7 @@ var classAnvil_1_1API_1_1NwGameObject =
     [ "HP", "classAnvil_1_1API_1_1NwGameObject.html#a17365e46cca5b03c807ad48e7c1975da", null ],
     [ "IsInConversation", "classAnvil_1_1API_1_1NwGameObject.html#a478d56e63a35511352191a81c421683d", null ],
     [ "IsListening", "classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686", null ],
-    [ "Location", "classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb", null ],
+    [ "Location", "classAnvil_1_1API_1_1NwGameObject.html#a65a1f71f281ba32fb29953478d9b0a5f", null ],
     [ "MaxHP", "classAnvil_1_1API_1_1NwGameObject.html#a59956fc894fb082f038616beac3653ea", null ],
     [ "MouseCursor", "classAnvil_1_1API_1_1NwGameObject.html#a4b3c6f7bf3d81cf0b314d8ba812d98ad", null ],
     [ "OnAcquireItem", "classAnvil_1_1API_1_1NwGameObject.html#aa0e605177bb15f1197c9890eb3df55dc", null ],

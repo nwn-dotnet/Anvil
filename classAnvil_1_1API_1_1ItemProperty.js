@@ -63,7 +63,6 @@ var classAnvil_1_1API_1_1ItemProperty =
     [ "OnHitCastSpell", "classAnvil_1_1API_1_1ItemProperty.html#a47395a6800a96e28927baa74ed5fa602", null ],
     [ "OnHitEffect", "classAnvil_1_1API_1_1ItemProperty.html#a82270b66225f881b4e5bdbbdd2c26c77", null ],
     [ "OnMonsterHitProperties", "classAnvil_1_1API_1_1ItemProperty.html#ad587c251e11dc037615da659ea29e466", null ],
-    [ "operator ItemProperty", "classAnvil_1_1API_1_1ItemProperty.html#af56db86945d6e495e7685ffed89fdbb5", null ],
     [ "operator ItemProperty?", "classAnvil_1_1API_1_1ItemProperty.html#a7aab3ee63e2e9a3446769304bf3363cc", null ],
     [ "Quality", "classAnvil_1_1API_1_1ItemProperty.html#ad0a95c45d90712a400958150662f3a32", null ],
     [ "ReducedSavingThrow", "classAnvil_1_1API_1_1ItemProperty.html#a517c9c6e6f8eca417800ae6dbf998937", null ],

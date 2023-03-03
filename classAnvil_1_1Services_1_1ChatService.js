@@ -1,6 +1,6 @@
 var classAnvil_1_1Services_1_1ChatService =
 [
-    [ "ChatService", "classAnvil_1_1Services_1_1ChatService.html#ad58e77ceab717c9867fb98b55506266e", null ],
+    [ "ChatService", "classAnvil_1_1Services_1_1ChatService.html#a98143d4727762b16e7b5eda223eaa708", null ],
     [ "ClearPlayerChatHearingDistance", "classAnvil_1_1Services_1_1ChatService.html#aea2356fbbcb9c958170844b068029d01", null ],
     [ "ClearPlayerChatHearingDistance", "classAnvil_1_1Services_1_1ChatService.html#abf1a0cf2e6468da9d7513a88e7a205ab", null ],
     [ "GetChatHearingDistance", "classAnvil_1_1Services_1_1ChatService.html#ad01638d6326e6fcc1cd6564e33777e8a", null ],

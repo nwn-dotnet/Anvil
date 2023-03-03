@@ -1,5 +1,4 @@
-<map id="Anvil.API.IAwaiter" name="Anvil.API.IAwaiter">
-<area shape="rect" id="node1" title=" " alt="" coords="27,80,154,107"/>
-<area shape="rect" id="node3" href="$structAnvil_1_1API_1_1SynchronizationContextAwaiter.html" title=" " alt="" coords="5,155,176,196"/>
-<area shape="rect" id="node2" title=" " alt="" coords="28,5,153,32"/>
+<map id="Anvil.API.IAwaiter&lt; out out TResult &gt;" name="Anvil.API.IAwaiter&lt; out out TResult &gt;">
+<area shape="rect" id="node1" title="Explicit interface for an awaiter. An awaiter is a system that will run an async operation and schedu..." alt="" coords="5,80,136,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="8,5,133,32"/>
 </map>

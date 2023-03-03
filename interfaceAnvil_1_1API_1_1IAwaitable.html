@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Anvil: Anvil.API.IAwaitable Interface Reference</title>
+<title>Anvil: Anvil.API.IAwaitable&lt; out out TResult &gt; Interface Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,28 +85,31 @@ $(document).ready(function(){initNavTree('interfaceAnvil_1_1API_1_1IAwaitable.ht
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="interfaceAnvil_1_1API_1_1IAwaitable-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Anvil.API.IAwaitable Interface Reference</div>  </div>
+<div class="title">Anvil.API.IAwaitable&lt; out out TResult &gt; Interface Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Anvil.API.IAwaitable:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="interfaceAnvil_1_1API_1_1IAwaitable__inherit__graph.png" border="0" usemap="#aAnvil_8API_8IAwaitable_inherit__map" alt="Inheritance graph"/></div>
-<map name="aAnvil_8API_8IAwaitable_inherit__map" id="aAnvil_8API_8IAwaitable_inherit__map">
-<area shape="rect" title=" " alt="" coords="55,5,195,32"/>
-<area shape="rect" href="classAnvil_1_1API_1_1MainThreadSynchronizationContext.html" title=" " alt="" coords="5,80,244,121"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+
+<p>Explicit interface to support the compiling of async/await.  
+ <a href="interfaceAnvil_1_1API_1_1IAwaitable.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a23c84fe6ceea10c450fd5443c90e5e10"><td class="memItemLeft" align="right" valign="top"><a id="a23c84fe6ceea10c450fd5443c90e5e10"></a>
+<tr class="memitem:aec4f6b603e0bd51807902acd8497506b"><td class="memItemLeft" align="right" valign="top"><a id="aec4f6b603e0bd51807902acd8497506b"></a>
 <a class="el" href="interfaceAnvil_1_1API_1_1IAwaiter.html">IAwaiter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetAwaiter</b> ()</td></tr>
-<tr class="separator:a23c84fe6ceea10c450fd5443c90e5e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aec4f6b603e0bd51807902acd8497506b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaadd44233ce1ab1c6629b4dd27357c6d"><td class="memItemLeft" align="right" valign="top"><a id="aaadd44233ce1ab1c6629b4dd27357c6d"></a>
+<a class="el" href="interfaceAnvil_1_1API_1_1IAwaiter.html">IAwaiter</a>&lt; TResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAwaiter</b> ()</td></tr>
+<tr class="separator:aaadd44233ce1ab1c6629b4dd27357c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this interface was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Explicit interface to support the compiling of async/await. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TResult</td><td>The awaiter return value type.</td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>The documentation for this interface was generated from the following file:<ul>
 <li>NWN.Anvil/src/main/API/Async/Awaiters/IAwaitable.cs</li>
 </ul>
 </div><!-- contents -->

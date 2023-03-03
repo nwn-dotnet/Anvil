@@ -1,6 +1,0 @@
-<map id="Anvil.API.MainThreadSynchronizationContext" name="Anvil.API.MainThreadSynchronizationContext">
-<area shape="rect" id="node1" title=" " alt="" coords="114,80,353,121"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,163,32"/>
-<area shape="rect" id="node3" href="$interfaceAnvil_1_1Services_1_1IUpdateable.html" title="Implement this interface in your service to get a callback each server loop." alt="" coords="187,5,279,32"/>
-<area shape="rect" id="node4" href="$interfaceAnvil_1_1API_1_1IAwaitable.html" title=" " alt="" coords="304,5,387,32"/>
-</map>

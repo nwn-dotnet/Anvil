@@ -95,8 +95,8 @@ $(document).ready(function(){initNavTree('classAnvil_1_1AnvilCore.html',''); ini
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a5d6f6708c6414d26d90ead3724a4f94f"><td class="memItemLeft" align="right" valign="top"><a id="a5d6f6708c6414d26d90ead3724a4f94f"></a>
-static ? T&#160;</td><td class="memItemRight" valign="bottom"><b>GetService&lt; T &gt;</b> ()</td></tr>
+<tr class="memitem:a5d6f6708c6414d26d90ead3724a4f94f"><td class="memItemLeft" align="right" valign="top">static ? T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1AnvilCore.html#a5d6f6708c6414d26d90ead3724a4f94f">GetService&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:a5d6f6708c6414d26d90ead3724a4f94f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified anvil service instance.  <a href="classAnvil_1_1AnvilCore.html#a5d6f6708c6414d26d90ead3724a4f94f">More...</a><br /></td></tr>
 <tr class="separator:a5d6f6708c6414d26d90ead3724a4f94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afccd268d91b3ab88e6d31cd44e600862"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1AnvilCore.html#afccd268d91b3ab88e6d31cd44e600862">Init</a> (IntPtr arg, int argLength, <a class="el" href="interfaceAnvil_1_1Services_1_1IServiceManager.html">IServiceManager</a>? serviceManager=default)</td></tr>
 <tr class="memdesc:afccd268d91b3ab88e6d31cd44e600862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entrypoint to start <a class="el" href="namespaceAnvil.html">Anvil</a>.  <a href="classAnvil_1_1AnvilCore.html#afccd268d91b3ab88e6d31cd44e600862">More...</a><br /></td></tr>
@@ -110,6 +110,40 @@ static ? T&#160;</td><td class="memItemRight" valign="bottom"><b>GetService&lt; 
 <div class="textblock"><p>Handles bootstrap and interop between NWN, NWN.Core and the Anvil API. The entry point of the implementing module should point to this class.<br  />
  Until Init(IntPtr, int, IServiceManager) is called, all APIs are unavailable for usage. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5d6f6708c6414d26d90ead3724a4f94f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d6f6708c6414d26d90ead3724a4f94f">&#9670;&nbsp;</a></span>GetService&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ? T Anvil.AnvilCore.GetService&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the specified anvil service instance. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The service type to get.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The associated anvil service instance.</dd></dl>
+
+</div>
+</div>
 <a id="afccd268d91b3ab88e6d31cd44e600862"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afccd268d91b3ab88e6d31cd44e600862">&#9670;&nbsp;</a></span>Init()</h2>
 

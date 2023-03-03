@@ -1,5 +1,4 @@
 <map id="Anvil.Services.IUpdateable" name="Anvil.Services.IUpdateable">
-<area shape="rect" id="node1" title="Implement this interface in your service to get a callback each server loop." alt="" coords="149,5,327,32"/>
-<area shape="rect" id="node2" href="$classAnvil_1_1API_1_1MainThreadSynchronizationContext.html" title=" " alt="" coords="5,80,244,121"/>
-<area shape="rect" id="node3" href="$classAnvil_1_1Services_1_1SchedulerService.html" title="A service for scheduling tasks to run with a timed delay and/or repeat with a regular interval." alt="" coords="268,80,435,121"/>
+<area shape="rect" id="node1" title="Implement this interface in your service to get a callback each server loop." alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node2" href="$classAnvil_1_1Services_1_1SchedulerService.html" title="A service for scheduling tasks to run with a timed delay and/or repeat with a regular interval." alt="" coords="11,80,178,121"/>
 </map>

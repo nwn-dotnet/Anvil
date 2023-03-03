@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1Cassowary =
 [
+    [ "Cassowary", "classAnvil_1_1API_1_1Cassowary.html#a3522ad3a863ce13943984ecaddc73a86", null ],
     [ "AddConstraint", "classAnvil_1_1API_1_1Cassowary.html#a247fedc194852a706162921b6215a644", null ],
     [ "GetValue", "classAnvil_1_1API_1_1Cassowary.html#ac1fa447681245856bd1532510cadf230", null ],
     [ "operator Cassowary?", "classAnvil_1_1API_1_1Cassowary.html#a31adc2ced8eb00c7e423a580d41d9134", null ],

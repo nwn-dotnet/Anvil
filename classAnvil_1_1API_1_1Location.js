@@ -1,7 +1,7 @@
 var classAnvil_1_1API_1_1Location =
 [
     [ "ApplyEffect", "classAnvil_1_1API_1_1Location.html#a90df4c7feac5a983770f3f2ce62b3834", null ],
-    [ "Create", "classAnvil_1_1API_1_1Location.html#a54248d315e483381e75d75698b7a8fc4", null ],
+    [ "Create", "classAnvil_1_1API_1_1Location.html#aa823c640e459f8d5cc335502c6184dbf", null ],
     [ "CreateTrap", "classAnvil_1_1API_1_1Location.html#a8c8a93834714b2535299589f1210a706", null ],
     [ "Distance", "classAnvil_1_1API_1_1Location.html#a3cbbdf9f494fdad1da6641b4d513f1a6", null ],
     [ "DistanceSquared", "classAnvil_1_1API_1_1Location.html#ad772c7d00b86c2d0b4957dc0c41afaf0", null ],
@@ -13,7 +13,7 @@ var classAnvil_1_1API_1_1Location =
     [ "GetObjectsInShape", "classAnvil_1_1API_1_1Location.html#afe7e48a5f12c9415bf705f958916a66d", null ],
     [ "GetObjectsInShapeByType< T >", "classAnvil_1_1API_1_1Location.html#abc91101c771c944617c2d06b542efb3e", null ],
     [ "operator Location?", "classAnvil_1_1API_1_1Location.html#af692cb62dcf54efa037cc5d215c3511b", null ],
-    [ "Area", "classAnvil_1_1API_1_1Location.html#a1b2c3e8369ab35f41dcf36e7e744edf4", null ],
+    [ "Area", "classAnvil_1_1API_1_1Location.html#a424b1331a9e9dbfe3293c76816442f32", null ],
     [ "FlippedRotation", "classAnvil_1_1API_1_1Location.html#ad826aa63fee4d6aba035fbc01a213fd7", null ],
     [ "GroundHeight", "classAnvil_1_1API_1_1Location.html#a669da02cd227248d0ec72aba33daa7ef", null ],
     [ "IsWalkable", "classAnvil_1_1API_1_1Location.html#a9b35f8feac57ceadaf75560b9d8f396b", null ],

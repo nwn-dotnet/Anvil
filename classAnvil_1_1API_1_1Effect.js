@@ -54,7 +54,6 @@ var classAnvil_1_1API_1_1Effect =
     [ "MovementSpeedDecrease", "classAnvil_1_1API_1_1Effect.html#ae73f8223d85c6be13c22d9873e2ab59d", null ],
     [ "MovementSpeedIncrease", "classAnvil_1_1API_1_1Effect.html#af22e533ced529edfd38b10ddab2a8c69", null ],
     [ "NegativeLevel", "classAnvil_1_1API_1_1Effect.html#a1d223aa08f1fd97a9d794376cfbd701e", null ],
-    [ "operator Effect", "classAnvil_1_1API_1_1Effect.html#a92f3f3a8b9297a67dae93f7ec07fb8d9", null ],
     [ "operator Effect?", "classAnvil_1_1API_1_1Effect.html#af1b1c26aa2cb55c095b425a6713be8c6", null ],
     [ "Paralyze", "classAnvil_1_1API_1_1Effect.html#aad3af82fa07e5d4652c3fe73b4f4f5f7", null ],
     [ "Petrify", "classAnvil_1_1API_1_1Effect.html#adbf3e46cc5739172339649e0e4fd4c67", null ],

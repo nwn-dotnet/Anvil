@@ -142,6 +142,10 @@ override byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize<
 <tr class="memitem:a6a48483963da2672de72af60d6f61037 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a6a48483963da2672de72af60d6f61037">ActionCastSpellAt</a> (<a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> spell, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target, MetaMagic metaMagic=MetaMagic.Any, bool cheat=false, int domainLevel=0, ProjectilePathType projectilePathType=ProjectilePathType.Default, bool instant=false)</td></tr>
 <tr class="memdesc:a6a48483963da2672de72af60d6f61037 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts a spell at an object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a6a48483963da2672de72af60d6f61037">More...</a><br /></td></tr>
 <tr class="separator:a6a48483963da2672de72af60d6f61037 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac575746edb9ddbfd0650fbcddb85e2b3 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ac575746edb9ddbfd0650fbcddb85e2b3">ActionJumpToLocation</a> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location)</td></tr>
+<tr class="memdesc:ac575746edb9ddbfd0650fbcddb85e2b3 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jumps this object to the specified location.<br  />
+ Unlike the <a class="el" href="classAnvil_1_1API_1_1Location.html" title="A location in the module, represented by area, position and orientation.">Location</a> setter, this method will compute a safe location when teleporting, and may not equal the location specified.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ac575746edb9ddbfd0650fbcddb85e2b3">More...</a><br /></td></tr>
+<tr class="separator:ac575746edb9ddbfd0650fbcddb85e2b3 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28ca31adfb67c90cd39e3945228dd638 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638">ActionWait</a> (TimeSpan duration)</td></tr>
 <tr class="memdesc:a28ca31adfb67c90cd39e3945228dd638 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this object to do nothing for the specified duration, before continuing with the next item in the action queue.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638">More...</a><br /></td></tr>
 <tr class="separator:a28ca31adfb67c90cd39e3945228dd638 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -360,7 +364,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a69fd7e1511f35a5193e401d9cf01cd79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a69fd7e1511f35a5193e401d9cf01cd79">Creator</a><code> [get]</code></td></tr>
-<tr class="memdesc:a69fd7e1511f35a5193e401d9cf01cd79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creator of this Area of <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>.  <a href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a69fd7e1511f35a5193e401d9cf01cd79">More...</a><br /></td></tr>
+<tr class="memdesc:a69fd7e1511f35a5193e401d9cf01cd79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creator of this Area of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a>.  <a href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a69fd7e1511f35a5193e401d9cf01cd79">More...</a><br /></td></tr>
 <tr class="separator:a69fd7e1511f35a5193e401d9cf01cd79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afadc0a4b77bfc002fc19c6bf0298a756"><td class="memItemLeft" align="right" valign="top"><a id="afadc0a4b77bfc002fc19c6bf0298a756"></a>
 Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents_1_1OnEnter.html">AreaOfEffectEvents.OnEnter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwAreaOfEffect.html#afadc0a4b77bfc002fc19c6bf0298a756">OnEnter</a></td></tr>
@@ -378,10 +382,10 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents
 <tr class="memdesc:aaa0553019a5b38e1489e56a93c4184c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the radius of this area of effect.  <a href="classAnvil_1_1API_1_1NwAreaOfEffect.html#aaa0553019a5b38e1489e56a93c4184c5">More...</a><br /></td></tr>
 <tr class="separator:aaa0553019a5b38e1489e56a93c4184c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82d511031f34bbe84838b7854e36b99f"><td class="memItemLeft" align="right" valign="top">TimeSpan&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a82d511031f34bbe84838b7854e36b99f">RemainingDuration</a><code> [get]</code></td></tr>
-<tr class="memdesc:a82d511031f34bbe84838b7854e36b99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> duration.  <a href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a82d511031f34bbe84838b7854e36b99f">More...</a><br /></td></tr>
+<tr class="memdesc:a82d511031f34bbe84838b7854e36b99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a> duration.  <a href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a82d511031f34bbe84838b7854e36b99f">More...</a><br /></td></tr>
 <tr class="separator:a82d511031f34bbe84838b7854e36b99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1262060ce49b6a738e3f5b3a6889523e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a1262060ce49b6a738e3f5b3a6889523e">Spell</a><code> [get]</code></td></tr>
-<tr class="memdesc:a1262060ce49b6a738e3f5b3a6889523e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the spell from which the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> was created.  <a href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a1262060ce49b6a738e3f5b3a6889523e">More...</a><br /></td></tr>
+<tr class="memdesc:a1262060ce49b6a738e3f5b3a6889523e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the spell from which the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a> was created.  <a href="classAnvil_1_1API_1_1NwAreaOfEffect.html#a1262060ce49b6a738e3f5b3a6889523e">More...</a><br /></td></tr>
 <tr class="separator:a1262060ce49b6a738e3f5b3a6889523e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_classAnvil_1_1API_1_1NwGameObject"><td colspan="2" onclick="javascript:toggleInherit('properties_classAnvil_1_1API_1_1NwGameObject')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">Anvil.API.NwGameObject</a></td></tr>
 <tr class="memitem:a4c6e7244d5d4998baa85da93e94593f1 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a4c6e7244d5d4998baa85da93e94593f1">ActiveEffects</a><code> [get]</code></td></tr>
@@ -408,9 +412,9 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1AreaOfEffectEvents
 <tr class="memitem:ae581c0b15cd437914fae51e313d63686 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686">IsListening</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ae581c0b15cd437914fae51e313d63686 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets if this object should be listening for chat patterns, via the listen pattern system.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686">More...</a><br /></td></tr>
 <tr class="separator:ae581c0b15cd437914fae51e313d63686 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e893cc9da147901a921bc3f7ed9cdb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb">Location</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a09e893cc9da147901a921bc3f7ed9cdb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb">More...</a><br /></td></tr>
-<tr class="separator:a09e893cc9da147901a921bc3f7ed9cdb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a1f71f281ba32fb29953478d9b0a5f inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a65a1f71f281ba32fb29953478d9b0a5f">Location</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a65a1f71f281ba32fb29953478d9b0a5f inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a65a1f71f281ba32fb29953478d9b0a5f">More...</a><br /></td></tr>
+<tr class="separator:a65a1f71f281ba32fb29953478d9b0a5f inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59956fc894fb082f038616beac3653ea inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a59956fc894fb082f038616beac3653ea">MaxHP</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a59956fc894fb082f038616beac3653ea inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the maximum HP for this object. Returns 0 if this object has no defined HP.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a59956fc894fb082f038616beac3653ea">More...</a><br /></td></tr>
 <tr class="separator:a59956fc894fb082f038616beac3653ea inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -676,7 +680,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the creator of this Area of <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>. </p>
+<p>Gets the creator of this Area of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a>. </p>
 
 </div>
 </div>
@@ -724,7 +728,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> duration. </p>
+<p>Gets the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a> duration. </p>
 
 </div>
 </div>
@@ -748,7 +752,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the spell from which the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> was created. </p>
+<p>Gets the spell from which the Area Of <a class="el" href="classAnvil_1_1API_1_1Effect.html" title="Represents an effect engine structure.">Effect</a> was created. </p>
 
 </div>
 </div>
@@ -757,7 +761,7 @@ Additional Inherited Members</h2></td></tr>
 <li>NWN.Anvil/src/main/API/Events/Game/AreaOfEffectEvents/AreaOfEffectEvents.OnExit.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Game/AreaOfEffectEvents/AreaOfEffectEvents.OnHeartbeat.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Game/AreaOfEffectEvents/AreaOfEffectEvents.OnUserDefined.cs</li>
-<li>NWN.Anvil/src/main/API/Object/NwAreaOfEffect.cs</li>
+<li>NWN.Anvil/src/main/API/Objects/NwAreaOfEffect.cs</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

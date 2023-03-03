@@ -138,6 +138,7 @@ var classAnvil_1_1API_1_1NwModule =
     [ "OnPlayerEquipItem", "classAnvil_1_1API_1_1NwModule.html#a6cdb226918b2a1dbbfb50bdf7a816733", null ],
     [ "OnPlayerGuiEvent", "classAnvil_1_1API_1_1NwModule.html#a027b2f08ef8877e16fdafd85792ca86b", null ],
     [ "OnPlayerLevelUp", "classAnvil_1_1API_1_1NwModule.html#afa476ddcf3d8c09342a372b776580dba", null ],
+    [ "OnPlayerQuickChat", "classAnvil_1_1API_1_1NwModule.html#ad86e516e40300a2f327dd875c11710e9", null ],
     [ "OnPlayerRespawn", "classAnvil_1_1API_1_1NwModule.html#a81cb941ace53b92541e77dd83cb1fc8e", null ],
     [ "OnPlayerRest", "classAnvil_1_1API_1_1NwModule.html#ad886cd3903979b2f7fe0dbb26249d05b", null ],
     [ "OnPlayerTarget", "classAnvil_1_1API_1_1NwModule.html#ac95c70c6f781dcd61bac599f7d3cdeb7", null ],

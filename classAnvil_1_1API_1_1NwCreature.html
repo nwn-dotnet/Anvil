@@ -433,6 +433,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeQuickbar</
 <tr class="memitem:a234aa02a0da244a18d91fc1c10ba0975"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a234aa02a0da244a18d91fc1c10ba0975">KnowsFeat</a> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat)</td></tr>
 <tr class="memdesc:a234aa02a0da244a18d91fc1c10ba0975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this creature knows the specified feat.  <a href="classAnvil_1_1API_1_1NwCreature.html#a234aa02a0da244a18d91fc1c10ba0975">More...</a><br /></td></tr>
 <tr class="separator:a234aa02a0da244a18d91fc1c10ba0975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a838532daa600001e5ea51d81640d1d4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a838532daa600001e5ea51d81640d1d4c">LevelUp</a> (<a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a> nwClass, int count)</td></tr>
+<tr class="memdesc:a838532daa600001e5ea51d81640d1d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds levels of the specified class to a creature, bypassing all validation.  <a href="classAnvil_1_1API_1_1NwCreature.html#a838532daa600001e5ea51d81640d1d4c">More...</a><br /></td></tr>
+<tr class="separator:a838532daa600001e5ea51d81640d1d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0e79359617e91ee45ec78b758bb739e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#ad0e79359617e91ee45ec78b758bb739e">LevelUpHenchman</a> (<a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a> nwClass, PackageType package, bool spellsReady=false)</td></tr>
 <tr class="memdesc:ad0e79359617e91ee45ec78b758bb739e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Levels up this creature using the default settings.<br  />
  You can assign a new class to level up <br  />
@@ -441,8 +444,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeserializeQuickbar</
  If package is omitted it will use the starting package assigned to that class or just the class package.<br  />
   <a href="classAnvil_1_1API_1_1NwCreature.html#ad0e79359617e91ee45ec78b758bb739e">More...</a><br /></td></tr>
 <tr class="separator:ad0e79359617e91ee45ec78b758bb739e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6afdd76ee578978c86c6d190992101de"><td class="memItemLeft" align="right" valign="top"><a id="a6afdd76ee578978c86c6d190992101de"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>MeetsFeatRequirements</b> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat)</td></tr>
+<tr class="memitem:a6afdd76ee578978c86c6d190992101de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#a6afdd76ee578978c86c6d190992101de">MeetsFeatRequirements</a> (<a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a> feat)</td></tr>
+<tr class="memdesc:a6afdd76ee578978c86c6d190992101de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this creature meets the requirements to take the specified feat.  <a href="classAnvil_1_1API_1_1NwCreature.html#a6afdd76ee578978c86c6d190992101de">More...</a><br /></td></tr>
 <tr class="separator:a6afdd76ee578978c86c6d190992101de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af38bc7663509ec14c02b6425d5f6b727"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html#af38bc7663509ec14c02b6425d5f6b727">PlayVoiceChat</a> (VoiceChatType voiceChatType)</td></tr>
 <tr class="memdesc:af38bc7663509ec14c02b6425d5f6b727"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this creature to speak/play the specified voice chat.  <a href="classAnvil_1_1API_1_1NwCreature.html#af38bc7663509ec14c02b6425d5f6b727">More...</a><br /></td></tr>
@@ -561,6 +564,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetQuickBarButtons</b
 <tr class="memitem:a6a48483963da2672de72af60d6f61037 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a6a48483963da2672de72af60d6f61037">ActionCastSpellAt</a> (<a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> spell, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target, MetaMagic metaMagic=MetaMagic.Any, bool cheat=false, int domainLevel=0, ProjectilePathType projectilePathType=ProjectilePathType.Default, bool instant=false)</td></tr>
 <tr class="memdesc:a6a48483963da2672de72af60d6f61037 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts a spell at an object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a6a48483963da2672de72af60d6f61037">More...</a><br /></td></tr>
 <tr class="separator:a6a48483963da2672de72af60d6f61037 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac575746edb9ddbfd0650fbcddb85e2b3 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ac575746edb9ddbfd0650fbcddb85e2b3">ActionJumpToLocation</a> (<a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a> location)</td></tr>
+<tr class="memdesc:ac575746edb9ddbfd0650fbcddb85e2b3 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jumps this object to the specified location.<br  />
+ Unlike the <a class="el" href="classAnvil_1_1API_1_1Location.html" title="A location in the module, represented by area, position and orientation.">Location</a> setter, this method will compute a safe location when teleporting, and may not equal the location specified.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ac575746edb9ddbfd0650fbcddb85e2b3">More...</a><br /></td></tr>
+<tr class="separator:ac575746edb9ddbfd0650fbcddb85e2b3 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28ca31adfb67c90cd39e3945228dd638 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638">ActionWait</a> (TimeSpan duration)</td></tr>
 <tr class="memdesc:a28ca31adfb67c90cd39e3945228dd638 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs this object to do nothing for the specified duration, before continuing with the next item in the action queue.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a28ca31adfb67c90cd39e3945228dd638">More...</a><br /></td></tr>
 <tr class="separator:a28ca31adfb67c90cd39e3945228dd638 inherit pub_methods_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1276,9 +1283,9 @@ sbyte&#160;</td><td class="memItemRight" valign="bottom"><b>ShieldCheckPenalty</
 <tr class="memitem:ae581c0b15cd437914fae51e313d63686 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686">IsListening</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ae581c0b15cd437914fae51e313d63686 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets if this object should be listening for chat patterns, via the listen pattern system.  <a href="classAnvil_1_1API_1_1NwGameObject.html#ae581c0b15cd437914fae51e313d63686">More...</a><br /></td></tr>
 <tr class="separator:ae581c0b15cd437914fae51e313d63686 inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e893cc9da147901a921bc3f7ed9cdb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb">Location</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a09e893cc9da147901a921bc3f7ed9cdb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a09e893cc9da147901a921bc3f7ed9cdb">More...</a><br /></td></tr>
-<tr class="separator:a09e893cc9da147901a921bc3f7ed9cdb inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a1f71f281ba32fb29953478d9b0a5f inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">virtual ? <a class="el" href="classAnvil_1_1API_1_1Location.html">Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a65a1f71f281ba32fb29953478d9b0a5f">Location</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a65a1f71f281ba32fb29953478d9b0a5f inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the location of this object.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a65a1f71f281ba32fb29953478d9b0a5f">More...</a><br /></td></tr>
+<tr class="separator:a65a1f71f281ba32fb29953478d9b0a5f inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59956fc894fb082f038616beac3653ea inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html#a59956fc894fb082f038616beac3653ea">MaxHP</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a59956fc894fb082f038616beac3653ea inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the maximum HP for this object. Returns 0 if this object has no defined HP.  <a href="classAnvil_1_1API_1_1NwGameObject.html#a59956fc894fb082f038616beac3653ea">More...</a><br /></td></tr>
 <tr class="separator:a59956fc894fb082f038616beac3653ea inherit properties_classAnvil_1_1API_1_1NwGameObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -5118,6 +5125,57 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a838532daa600001e5ea51d81640d1d4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a838532daa600001e5ea51d81640d1d4c">&#9670;&nbsp;</a></span>LevelUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwCreature.LevelUp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwClass.html">NwClass</a>&#160;</td>
+          <td class="paramname"><em>nwClass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds levels of the specified class to a creature, bypassing all validation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nwClass</td><td>The class to add.</td></tr>
+    <tr><td class="paramname">count</td><td>The number of levels to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">NotSupportedException</td><td>Thrown if this creature is a player character.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad0e79359617e91ee45ec78b758bb739e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0e79359617e91ee45ec78b758bb739e">&#9670;&nbsp;</a></span>LevelUpHenchman()</h2>
 
@@ -5173,6 +5231,40 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the new level if successful, or 0 if the function fails.</dd></dl>
+
+</div>
+</div>
+<a id="a6afdd76ee578978c86c6d190992101de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6afdd76ee578978c86c6d190992101de">&#9670;&nbsp;</a></span>MeetsFeatRequirements()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Anvil.API.NwCreature.MeetsFeatRequirements </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwFeat.html">NwFeat</a>&#160;</td>
+          <td class="paramname"><em>feat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets if this creature meets the requirements to take the specified feat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">feat</td><td>The feat to query.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -8676,7 +8768,7 @@ Additional Inherited Members</h2></td></tr>
 <li>NWN.Anvil/src/main/API/Events/Native/StoreEvents/OnStoreRequestSell.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/ToggleModeEvents/OnDetectModeUpdate.cs</li>
 <li>NWN.Anvil/src/main/API/Events/Native/ToggleModeEvents/OnStealthModeUpdate.cs</li>
-<li>NWN.Anvil/src/main/API/Object/NwCreature.cs</li>
+<li>NWN.Anvil/src/main/API/Objects/NwCreature.cs</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
