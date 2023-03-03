@@ -17,8 +17,8 @@ namespace Anvil.Services
 
     public BypassLevelUpValidationService(HookService hookService)
     {
-      canLevelUpHook = hookService.RequestHook<CanLevelUpHook>(OnCanLevelUp, FunctionsLinux._ZN17CNWSCreatureStats10CanLevelUpEv);
-      validateLevelUpHook = hookService.RequestHook<ValidateLevelUpHook>(OnValidateLevelUp, FunctionsLinux._ZN17CNWSCreatureStats15ValidateLevelUpEP13CNWLevelStatshhh);
+      canLevelUpHook = hookService.RequestHook<CanLevelUpHook>(OnCanLevelUp, FunctionsLinux._ZN17CNWSCreatureStats10CanLevelUpEv, HookOrder.Late);
+      validateLevelUpHook = hookService.RequestHook<ValidateLevelUpHook>(OnValidateLevelUp, FunctionsLinux._ZN17CNWSCreatureStats15ValidateLevelUpEP13CNWLevelStatshhh, HookOrder.Late);
     }
 
     private uint OnValidateLevelUp(void* pCreatureStats, void* pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool)
