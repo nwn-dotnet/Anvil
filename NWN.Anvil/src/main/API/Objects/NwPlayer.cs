@@ -38,6 +38,9 @@ namespace Anvil.API
     [Inject]
     private static Lazy<PlayerRestDurationOverrideService> PlayerRestDurationOverrideService { get; set; } = null!;
 
+    [Inject]
+    private static Lazy<PlayerObjectNameOverrideService> PlayerObjectNameOverrideService { get; set; } = null!;
+
     private readonly CNWSPlayer player;
 
     internal CNWSPlayer Player
@@ -535,6 +538,15 @@ namespace Anvil.API
     public void ClearPlayerNameOverride(NwPlayer observer)
     {
       PlayerNameOverrideService.Value.ClearPlayerNameOverride(this, observer);
+    }
+
+    /// <summary>
+    /// Clears an override name for the specified object.
+    /// </summary>
+    /// <param name="gameObject">The object whose overriden name will be cleared.</param>
+    public void ClearObjectNameOverride(NwGameObject gameObject)
+    {
+      PlayerObjectNameOverrideService.Value.ClearObjectNameOverride(this, gameObject);
     }
 
     /// <summary>
@@ -1395,6 +1407,16 @@ namespace Anvil.API
     public void SetPlayerNameOverride(PlayerNameOverride nameOverride, NwPlayer observer)
     {
       PlayerNameOverrideService.Value.SetPlayerNameOverride(this, nameOverride, observer);
+    }
+
+    /// <summary>
+    /// Sets an override name for a specific game object, as visible from this player.
+    /// </summary>
+    /// <param name="gameObject">The game object to set a new name for.</param>
+    /// <param name="name">The new name of the object.</param>
+    public void SetObjectNameOverride(NwGameObject gameObject, string name)
+    {
+      PlayerObjectNameOverrideService.Value.SetObjectNameOverride(this, gameObject, name);
     }
 
     /// <summary>
