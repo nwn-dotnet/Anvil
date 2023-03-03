@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Internal;
 using Anvil.Services;
+using NLog;
 using NWN.Core;
 using NWN.Native.API;
 using ObjectType = NWN.Native.API.ObjectType;
@@ -17,6 +18,8 @@ namespace Anvil.API
   [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
   public sealed partial class NwCreature : NwGameObject
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private const byte QuickBarButtonCount = 36;
 
     [Inject]
@@ -30,6 +33,9 @@ namespace Anvil.API
 
     [Inject]
     private static Lazy<DamageLevelOverrideService> DamageLevelOverrideService { get; set; } = null!;
+
+    [Inject]
+    private static Lazy<BypassLevelUpValidationService> BypassLevelUpValidationService { get; set; } = null!;
 
     private readonly CNWSCreature creature;
     private NwFaction faction;
@@ -2046,6 +2052,37 @@ namespace Anvil.API
       return NWScript.LevelUpHenchman(this, nwClass.Id, (int)package, spellsReady.ToInt());
     }
 
+    /// <summary>
+    /// Adds levels of the specified class to a creature, bypassing all validation.
+    /// </summary>
+    /// <param name="nwClass">The class to add.</param>
+    /// <param name="count">The number of levels to add.</param>
+    /// <exception cref="NotSupportedException">Thrown if this creature is a player character.</exception>
+    public void LevelUp(NwClass nwClass, int count)
+    {
+      if (IsLoginPlayerCharacter)
+      {
+        throw new NotSupportedException("LevelUp may not be used on player characters.");
+      }
+
+      BypassLevelUpValidationService.Value.DisableValidation = true;
+
+      for (int i = 0; i < count; i++)
+      {
+        if (!Creature.m_pStats.LevelUpAutomatic(nwClass.Id, true.ToInt(), (byte)PackageType.Invalid).ToBool())
+        {
+          Log.Error($"Failed to add level of class {nwClass.Name} ({nwClass.Id}), aborting.");
+          break;
+        }
+      }
+
+      BypassLevelUpValidationService.Value.DisableValidation = false;
+    }
+
+    /// <summary>
+    /// Gets if this creature meets the requirements to take the specified feat.
+    /// </summary>
+    /// <param name="feat">The feat to query.</param>
     public bool MeetsFeatRequirements(NwFeat feat)
     {
       using CExoArrayListUInt16 unused = new CExoArrayListUInt16();

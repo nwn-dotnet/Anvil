@@ -261,6 +261,57 @@ namespace Anvil.Tests.API
       Assert.That(creature.HasFeatPrepared(feat!), Is.EqualTo(uses > 0), "Creature incorrectly assumes the feat is/is not available.");
     }
 
+    [TestCase(ClassType.Barbarian, 1)]
+    [TestCase(ClassType.Bard, 1)]
+    [TestCase(ClassType.Cleric, 1)]
+    [TestCase(ClassType.Druid, 1)]
+    [TestCase(ClassType.Fighter, 1)]
+    [TestCase(ClassType.Ranger, 1)]
+    [TestCase(ClassType.Rogue, 1)]
+    [TestCase(ClassType.Sorcerer, 1)]
+    [TestCase(ClassType.Wizard, 1)]
+    [TestCase(ClassType.Aberration, 2)]
+    [TestCase(ClassType.Animal, 2)]
+    [TestCase(ClassType.Construct, 2)]
+    [TestCase(ClassType.Humanoid, 2)]
+    [TestCase(ClassType.Monstrous, 2)]
+    [TestCase(ClassType.Elemental, 2)]
+    [TestCase(ClassType.Fey, 2)]
+    [TestCase(ClassType.Dragon, 2)]
+    [TestCase(ClassType.Undead, 2)]
+    [TestCase(ClassType.Commoner, 2)]
+    [TestCase(ClassType.Beast, 2)]
+    [TestCase(ClassType.Giant, 2)]
+    [TestCase(ClassType.MagicalBeast, 2)]
+    [TestCase(ClassType.Outsider, 2)]
+    [TestCase(ClassType.Shapechanger, 2)]
+    [TestCase(ClassType.Vermin, 2)]
+    public void LevelUpCreatureUpdatesStats(ClassType classType, int levels)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwCreature? creature = NwCreature.Create(StandardResRef.Creature.nw_bandit002, startLocation);
+      NwClass? nwClass = NwClass.FromClassType(classType);
+
+      Assert.That(creature, Is.Not.Null, "Creature was null after creation.");
+      Assert.That(nwClass, Is.Not.Null, "Class was null after creation.");
+      Assert.That(creature!.IsValid, Is.True, "Creature was invalid after creation.");
+
+      createdTestObjects.Add(creature);
+      CreatureClassInfo? classInfoBefore = creature.GetClassInfo(nwClass);
+      int classLevels = 0;
+
+      if (classInfoBefore != null)
+      {
+        classLevels = classInfoBefore.Level;
+      }
+
+      creature.LevelUp(nwClass!, levels);
+
+      CreatureClassInfo? classInfo = creature.GetClassInfo(nwClass);
+      Assert.That(classInfo, Is.Not.Null, "Creature did not have class after level up.");
+      Assert.That(classInfo!.Level, Is.EqualTo(classLevels + levels), "Creature did not receive the correct amount of levels.");
+    }
+
     [TearDown]
     public void CleanupTestObjects()
     {
