@@ -16,5 +16,6 @@ namespace Anvil.API
     public static InternalVariableEnum<VisibilityMode> GlobalVisibilityOverride(NwObject gameObject) => gameObject.GetObjectVariable<InternalVariableEnum<VisibilityMode>>("VISIBILITY_OVERRIDE");
     public static InternalVariableEnum<VisibilityMode> PlayerVisibilityOverride(NwPlayer player, NwObject targetGameObject) => player.ControlledCreature!.GetObjectVariable<InternalVariableEnum<VisibilityMode>>("VISIBILITY_OVERRIDE" + targetGameObject.ObjectId);
     public static InternalVariableFloat WalkRateCap(NwObject creature) => creature.GetObjectVariable<InternalVariableFloat>("WALK_RATE_CAP");
+    public static InternalVariableString ObjectNameOverride(NwPlayer player, NwGameObject gameObject) => gameObject.GetObjectVariable<InternalVariableString>("PLCNO_" + player.LoginCreature!.ObjectId);
   }
 }
