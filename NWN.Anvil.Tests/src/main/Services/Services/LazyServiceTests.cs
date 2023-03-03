@@ -62,7 +62,7 @@ namespace Anvil.Tests.Services
     [ServiceBindingOptions(Lazy = true)]
     internal sealed class LazyServiceProperty
     {
-      public static bool Created = false;
+      public static bool Created;
 
       public LazyServiceProperty()
       {
@@ -74,7 +74,7 @@ namespace Anvil.Tests.Services
     [ServiceBindingOptions(Lazy = true)]
     internal sealed class LazyServicePropertyStatic
     {
-      public static bool Created = false;
+      public static bool Created;
 
       public LazyServicePropertyStatic()
       {
@@ -86,7 +86,7 @@ namespace Anvil.Tests.Services
     [ServiceBindingOptions(Lazy = true)]
     internal sealed class LazyServiceConstructor
     {
-      public static bool Created = false;
+      public static bool Created;
 
       public LazyServiceConstructor()
       {
