@@ -21,6 +21,12 @@ namespace Anvil.Services
       computeGameObjectUpdateForObjectHook = hookService.RequestHook<ComputeGameObjectUpdateForObjectHook>(OnComputeGameObjectUpdateForObject, FunctionsLinux._ZN11CNWSMessage32ComputeGameObjectUpdateForObjectEP10CNWSPlayerP10CNWSObjectP16CGameObjectArrayj, HookOrder.Early);
     }
 
+    public string? GetObjectNameOverride(NwPlayer player, NwGameObject gameObject)
+    {
+      InternalVariableString nameOverride = InternalVariables.ObjectNameOverride(player, gameObject);
+      return nameOverride.HasValue ? nameOverride.Value : null;
+    }
+
     public void SetObjectNameOverride(NwPlayer player, NwGameObject gameObject, string name)
     {
       if (!IsSupportedObjectType(gameObject))

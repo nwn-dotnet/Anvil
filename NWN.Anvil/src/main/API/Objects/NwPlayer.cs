@@ -41,6 +41,9 @@ namespace Anvil.API
     [Inject]
     private static Lazy<PlayerObjectNameOverrideService> PlayerObjectNameOverrideService { get; set; } = null!;
 
+    [Inject]
+    private static Lazy<PlayerLoopingVisualEffectService> PlayerLoopingVisualEffectService { get; set; } = null!;
+
     private readonly CNWSPlayer player;
 
     internal CNWSPlayer Player
@@ -466,6 +469,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Adds the specified visual effect to an object, but only visible to this player.
+    /// </summary>
+    /// <param name="gameObject">The game object to apply the effect to.</param>
+    /// <param name="visualEffect">The visual effect to apply.</param>
+    public void AddLoopingVisualEffect(NwGameObject gameObject, VisualEffectTableEntry visualEffect)
+    {
+      PlayerLoopingVisualEffectService.Value.AddLoopingVisualEffect(this, gameObject, visualEffect);
+    }
+
+    /// <summary>
     /// Attaches the specified creature to the player as a henchmen.
     /// </summary>
     /// <param name="henchmen">The henchmen to attach to the player.</param>
@@ -520,6 +533,15 @@ namespace Anvil.API
     public void BootPlayer(string reason = "")
     {
       NWScript.BootPC(ControlledCreature, reason);
+    }
+
+    /// <summary>
+    /// Clears looping visual effects on the specified object visible only to this player.
+    /// </summary>
+    /// <param name="gameObject">The object to clear visual effects form.</param>
+    public void ClearLoopingVisualEffects(NwGameObject gameObject)
+    {
+      PlayerLoopingVisualEffectService.Value.ClearLoopingVisualEffects(this, gameObject);
     }
 
     /// <summary>
@@ -996,12 +1018,30 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the current name override for the specified player.
+    /// Gets a list of visual effects for the specified object visible only to this player.
+    /// </summary>
+    /// <param name="gameObject">The game object containing the visual effects.</param>
+    public List<VisualEffectTableEntry>? GetLoopingVisualEffects(NwGameObject gameObject)
+    {
+      return PlayerLoopingVisualEffectService.Value.GetLoopingVisualEffects(this, gameObject);
+    }
+
+    /// <summary>
+    /// Gets the current name override set for the specified player.
     /// </summary>
     /// <param name="observer">The specific observer.</param>
     public PlayerNameOverride? GetPlayerNameOverride(NwPlayer? observer = null)
     {
       return PlayerNameOverrideService.Value.GetPlayerNameOverride(this, observer);
+    }
+
+    /// <summary>
+    /// Gets the current name override set for the specified object.
+    /// </summary>
+    /// <param name="gameObject">The game object that has an override name.</param>
+    public string? GetObjectNameOverride(NwGameObject gameObject)
+    {
+      return PlayerObjectNameOverrideService.Value.GetObjectNameOverride(this, gameObject);
     }
 
     /// <summary>
