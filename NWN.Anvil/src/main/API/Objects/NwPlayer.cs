@@ -30,16 +30,13 @@ namespace Anvil.API
     private static EventService EventService { get; set; } = null!;
 
     [Inject]
-    private static NwServer NwServer { get; set; } = null!;
-
-    [Inject]
     private static Lazy<ObjectVisibilityService> ObjectVisibilityService { get; set; } = null!;
 
     [Inject]
     private static Lazy<PlayerNameOverrideService> PlayerNameOverrideService { get; set; } = null!;
 
     [Inject]
-    private static PlayerRestDurationOverrideService PlayerRestDurationOverrideService { get; set; } = null!;
+    private static Lazy<PlayerRestDurationOverrideService> PlayerRestDurationOverrideService { get; set; } = null!;
 
     private readonly CNWSPlayer player;
 
@@ -280,7 +277,7 @@ namespace Anvil.API
     /// </summary>
     public TimeSpan? RestDurationOverride
     {
-      get => LoginCreature != null ? PlayerRestDurationOverrideService.GetDurationOverride(LoginCreature) : null;
+      get => LoginCreature != null ? PlayerRestDurationOverrideService.Value.GetDurationOverride(LoginCreature) : null;
       set
       {
         if (LoginCreature == null)
@@ -290,11 +287,11 @@ namespace Anvil.API
 
         if (value.HasValue)
         {
-          PlayerRestDurationOverrideService.SetDurationOverride(LoginCreature, value.Value);
+          PlayerRestDurationOverrideService.Value.SetDurationOverride(LoginCreature, value.Value);
         }
         else
         {
-          PlayerRestDurationOverrideService.ClearDurationOverride(LoginCreature);
+          PlayerRestDurationOverrideService.Value.ClearDurationOverride(LoginCreature);
         }
       }
     }
@@ -581,8 +578,8 @@ namespace Anvil.API
       }
 
       string bicName = BicFileName;
-      string serverVault = NwServer.GetAliasPath("SERVERVAULT");
-      string playerDir = NwServer.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
+      string serverVault = NwServer.Instance.GetAliasPath("SERVERVAULT");
+      string playerDir = NwServer.Instance.ServerInfo.PersistentWorldOptions.ServerVaultByPlayerName ? PlayerName : CDKey;
       string characterName = creature.Name;
       string playerName = PlayerName;
 
@@ -601,11 +598,11 @@ namespace Anvil.API
       await NwTask.NextFrame();
 
       // Delete their character's TURD
-      bool turdDeleted = NwServer.DeletePlayerTURD(playerName, characterName);
+      bool turdDeleted = NwServer.Instance.DeletePlayerTURD(playerName, characterName);
       if (!turdDeleted)
       {
         // Server may be using TURDs by CD Key.
-        turdDeleted = NwServer.DeletePlayerTURD(playerDir, characterName);
+        turdDeleted = NwServer.Instance.DeletePlayerTURD(playerDir, characterName);
       }
 
       if (!turdDeleted)

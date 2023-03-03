@@ -1,16 +1,20 @@
 using Anvil.API;
+using NLog;
 using NWN.Native.API;
 
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(DamageLevelOverrideService))]
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
-  public sealed unsafe class DamageLevelOverrideService
+  internal sealed unsafe class DamageLevelOverrideService
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private readonly FunctionHook<GetDamageLevel> damageLevelHook;
 
     public DamageLevelOverrideService(HookService hookService)
     {
+      Log.Info($"Initialising optional service {nameof(DamageLevelOverrideService)}");
       damageLevelHook = hookService.RequestHook<GetDamageLevel>(OnGetDamageLevel, FunctionsLinux._ZN10CNWSObject14GetDamageLevelEv, HookOrder.Late);
     }
 
