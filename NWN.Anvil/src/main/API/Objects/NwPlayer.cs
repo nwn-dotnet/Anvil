@@ -1410,10 +1410,12 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Sets an override name for a specific game object, as visible from this player.
+    /// Sets an override name for a specific game object, as visible from this player.<br/>
+    /// Supports placeables, doors, items and creatures.
     /// </summary>
     /// <param name="gameObject">The game object to set a new name for.</param>
     /// <param name="name">The new name of the object.</param>
+    /// <exception cref="ArgumentException">Thrown if gameObject is not a placeable, door, item or creature.</exception>
     public void SetObjectNameOverride(NwGameObject gameObject, string name)
     {
       PlayerObjectNameOverrideService.Value.SetObjectNameOverride(this, gameObject, name);
