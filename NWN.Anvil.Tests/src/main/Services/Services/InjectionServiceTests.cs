@@ -1,4 +1,3 @@
-using Anvil.API;
 using Anvil.Services;
 using NUnit.Framework;
 
@@ -42,7 +41,6 @@ namespace Anvil.Tests.Services
     [Test(Description = "Services with inject properties are implicitly injected.")]
     public void InjectionServiceInjectsServiceDependencies()
     {
-      Assert.That(StaticInjectionTestService?.NwServer, Is.Not.Null, "A constructor dependency was not injected.");
       Assert.That(StaticInjectionTestService?.ResourceManager, Is.Not.Null, "A constructor dependency was not injected.");
       Assert.That(StaticInjectionTestService?.ChatService, Is.Null, "A property was injected when it shouldn't have.");
       Assert.That(StaticInjectionTestService?.EventService, Is.Not.Null, "A property dependency was not injected.");
@@ -64,8 +62,6 @@ namespace Anvil.Tests.Services
     [ServiceBinding(typeof(InjectionTestService))]
     internal sealed class InjectionTestService
     {
-      public NwServer? NwServer { get; }
-
       public ResourceManager? ResourceManager { get; }
 
       // Not injected with attribute or initialized from constructor, expected to be null.
@@ -78,9 +74,8 @@ namespace Anvil.Tests.Services
       [Inject]
       internal HookService? HookService { get; init; }
 
-      public InjectionTestService(NwServer nwServer, ResourceManager resourceManager)
+      public InjectionTestService(ResourceManager resourceManager)
       {
-        NwServer = nwServer;
         ResourceManager = resourceManager;
       }
     }

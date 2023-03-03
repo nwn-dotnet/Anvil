@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using Anvil.API;
+using NLog;
 using NWN.Native.API;
 
 namespace Anvil.Services
 {
   [ServiceBinding(typeof(PlayerRestDurationOverrideService))]
-  [ServiceBindingOptions(InternalBindingPriority.API)]
+  [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   internal sealed unsafe class PlayerRestDurationOverrideService
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private static readonly CExoString DurationTableKey = "Duration".ToExoString();
 
     private readonly FunctionHook<AIActionRestHook> aiActionRestHook;
@@ -16,6 +19,7 @@ namespace Anvil.Services
 
     public PlayerRestDurationOverrideService(HookService hookService)
     {
+      Log.Info($"Initialising optional service {nameof(PlayerRestDurationOverrideService)}");
       aiActionRestHook = hookService.RequestHook<AIActionRestHook>(OnAIActionRest, FunctionsLinux._ZN12CNWSCreature12AIActionRestEP20CNWSObjectActionNode, HookOrder.Late);
     }
 
