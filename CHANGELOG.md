@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.24...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.34.25
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.24...v8193.34.25
 
 ### Added
 - Exposed `HomeStorage` class for accessing paths in anvil home.
@@ -21,12 +42,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.24...HEAD
 
 ### Changed
 - Optional anvil services will now log a message when they are used.
-
-### Deprecated
-- N/A
-
-### Removed
-- N/A
 
 ### Fixed
 - !! Fixed a memory leak when not using `Dispose()` on engine structures. (Effect, Location, ItemProperty, Json, SQLQuery, Talent)
