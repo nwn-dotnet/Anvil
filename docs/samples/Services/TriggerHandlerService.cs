@@ -13,6 +13,7 @@ namespace NWN.Anvil.Samples
   [ServiceBinding(typeof(TriggerHandlerService))]
   public class TriggerHandlerService
   {
+    // Gets the server log. By default, this reports to "anvil.log"
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     public TriggerHandlerService()

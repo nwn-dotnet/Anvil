@@ -1,5 +1,6 @@
 using System.Linq;
 using Anvil.API;
+using NLog;
 using NWN.Native.API;
 
 namespace Anvil.Services
@@ -8,10 +9,13 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   internal sealed unsafe class CreatureForceWalkService
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private readonly FunctionHook<RemoveLimitMovementSpeedHook> removeLimitMovementSpeedHook;
 
     public CreatureForceWalkService(HookService hookService)
     {
+      Log.Info($"Initialising optional service {nameof(CreatureForceWalkService)}");
       removeLimitMovementSpeedHook = hookService.RequestHook<RemoveLimitMovementSpeedHook>(OnRemoveLimitMovementSpeed, FunctionsLinux._ZN21CNWSEffectListHandler26OnRemoveLimitMovementSpeedEP10CNWSObjectP11CGameEffect, HookOrder.Late);
     }
 

@@ -5,7 +5,7 @@ using NWN.Core;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Events for drawn, world-placed triggers.
+  /// Built-in events associated with a specific trigger.
   /// </summary>
   public static partial class TriggerEvents
   {

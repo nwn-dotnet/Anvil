@@ -6,10 +6,15 @@ using NLog;
 
 namespace Anvil.API
 {
+  /// <summary>
+  /// This synchronization context is invoked by the NWN server main loop.<br/>
+  /// Using <see cref="SynchronizationContextAwaiter"/>, it allows async code to return to a valid script context by using await with this class.<br/>
+  /// Async tasks are queued into a list, before being flushed on the next loop update.
+  /// </summary>
   [ServiceBinding(typeof(MainThreadSynchronizationContext))]
   [ServiceBinding(typeof(IUpdateable))]
   [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed class MainThreadSynchronizationContext : SynchronizationContext, IUpdateable, IAwaitable
+  internal sealed class MainThreadSynchronizationContext : SynchronizationContext, IUpdateable, IAwaitable
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 

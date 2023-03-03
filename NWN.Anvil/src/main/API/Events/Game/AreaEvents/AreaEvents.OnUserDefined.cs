@@ -4,6 +4,9 @@ using NWN.Core;
 
 namespace Anvil.API.Events
 {
+  /// <summary>
+  /// Built-in events associated with a specific area.
+  /// </summary>
   public static partial class AreaEvents
   {
     [GameEvent(EventScriptType.AreaOnUserDefinedEvent)]

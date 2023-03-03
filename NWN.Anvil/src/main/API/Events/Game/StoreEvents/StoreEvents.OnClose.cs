@@ -5,7 +5,7 @@ using NWN.Core;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Events for Merchant/Store objects.
+  /// Built-in events associated with a specific store.
   /// </summary>
   public static partial class StoreEvents
   {

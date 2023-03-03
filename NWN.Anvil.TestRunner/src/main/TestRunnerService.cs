@@ -20,16 +20,16 @@ namespace Anvil.TestRunner
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly NwServer nwServer;
+    private readonly MainThreadSynchronizationContext mainThreadSynchronizationContext;
 
     private readonly Queue<Assembly> testAssemblyQueue = new Queue<Assembly>();
     private readonly string outputDir;
 
     private Thread testWorkerThread;
 
-    public TestRunnerService(PluginStorageService pluginStorageService, NwServer nwServer)
+    public TestRunnerService(MainThreadSynchronizationContext mainThreadSynchronizationContext, PluginStorageService pluginStorageService)
     {
-      this.nwServer = nwServer;
+      this.mainThreadSynchronizationContext = mainThreadSynchronizationContext;
 
       outputDir = pluginStorageService.GetPluginStoragePath(typeof(TestRunnerService).Assembly);
       NwModule.Instance.OnModuleLoad += OnModuleLoad;
@@ -49,7 +49,7 @@ namespace Anvil.TestRunner
 
     private void OnModuleLoad(ModuleEvents.OnModuleLoad eventData)
     {
-      TestCommand.DefaultSynchronizationContext = NwTask.MainThreadSynchronizationContext;
+      TestCommand.DefaultSynchronizationContext = mainThreadSynchronizationContext;
       testWorkerThread = new Thread(RunTests);
       testWorkerThread.Start();
     }
@@ -72,7 +72,7 @@ namespace Anvil.TestRunner
     {
       testWorkerThread = null;
       await NwTask.SwitchToMainThread();
-      nwServer.ShutdownServer();
+      NwServer.Instance.ShutdownServer();
     }
 
     private string[] GetRunnerArguments(Assembly assembly)

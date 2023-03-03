@@ -13,12 +13,8 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
     private static readonly SimpleLayout DefaultLayout = new SimpleLayout("${level:format=FirstCharacter} [${date}] [${logger}] ${message}${onexception:${newline}${exception:format=ToString}}");
 
-    private readonly NwServer nwServer;
-
-    public LoggerManager(NwServer nwServer)
+    public LoggerManager()
     {
-      this.nwServer = nwServer;
-
       LogManager.AutoShutdown = false;
       LogManager.Configuration = null;
       LogManager.ThrowConfigExceptions = true;
@@ -45,7 +41,7 @@ namespace Anvil.Services
         Log.Info("Using default configuration");
       }
 
-      LogManager.Configuration.Variables["nwn_home"] = nwServer.UserDirectory;
+      LogManager.Configuration.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
     }
 
     void ICoreService.Load() {}
@@ -89,7 +85,7 @@ namespace Anvil.Services
     private LoggingConfiguration GetConfigFromFile(string path)
     {
       LoggingConfiguration config = new XmlLoggingConfiguration(path);
-      config.Variables["nwn_home"] = nwServer.UserDirectory;
+      config.Variables["nwn_home"] = NwServer.Instance.UserDirectory;
 
       return config;
     }

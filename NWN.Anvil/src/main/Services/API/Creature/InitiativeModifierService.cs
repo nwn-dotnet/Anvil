@@ -1,5 +1,6 @@
 using Anvil.API;
 using Anvil.Internal;
+using NLog;
 using NWN.Native.API;
 using Feat = Anvil.API.Feat;
 
@@ -7,12 +8,15 @@ namespace Anvil.Services
 {
   [ServiceBinding(typeof(InitiativeModifierService))]
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
-  public sealed unsafe class InitiativeModifierService
+  internal sealed unsafe class InitiativeModifierService
   {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
     private readonly FunctionHook<InitiativeModifier> initiativeModifierHook;
 
     public InitiativeModifierService(HookService hookService)
     {
+      Log.Info($"Initialising optional service {nameof(InitiativeModifierService)}");
       initiativeModifierHook = hookService.RequestHook<InitiativeModifier>(OnResolveInitiative, FunctionsLinux._ZN12CNWSCreature17ResolveInitiativeEv, HookOrder.Late);
     }
 

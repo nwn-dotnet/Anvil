@@ -3,6 +3,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.25
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.24...v8193.34.25
+
+### Added
+- Exposed `HomeStorage` class for accessing paths in anvil home.
+- Added support for creating `Cassowary` solvers through `new Cassowary()`
+- NwGameObject: Added `ActionJumpToLocation` method.
+- Events: Added `OnPlayerQuickChat` event.
+- NwPlayer: Added object name override support (SetObjectNameOverride)
+- NwPlayer: Added player-specific looping vfx support (AddLoopingVisualEffect)
+- NwCreature: Added `LevelUp` method that bypasses validation.
+
+### Package Updates
+- NLog: 5.1.1 -> 5.1.2
+- Microsoft.CodeAnalysis.CSharp: 4.4.0 -> 4.5.0
+
+### Changed
+- Optional anvil services will now log a message when they are used.
+
+### Fixed
+- !! Fixed a memory leak when not using `Dispose()` on engine structures. (Effect, Location, ItemProperty, Json, SQLQuery, Talent)
+
 ## 8193.34.24
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.23...v8193.34.24
 

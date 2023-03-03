@@ -13,14 +13,14 @@ namespace Anvil.API
   //! @import NwTaskExamples.cs
 
   /// <summary>
-  /// Awaiters for running NWN code in an async context.
+  /// Asynchronous tasks and helpers for running NWN APIs in an async context.
   /// </summary>
   public static class NwTask
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     [Inject]
-    public static MainThreadSynchronizationContext MainThreadSynchronizationContext { get; private set; } = null!;
+    private static MainThreadSynchronizationContext MainThreadSynchronizationContext { get; set; } = null!;
 
     /// <summary>
     /// Waits until the specified amount of time has passed.

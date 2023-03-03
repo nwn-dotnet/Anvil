@@ -23,9 +23,6 @@ namespace Anvil
     private static AnvilCore instance = null!;
 
     [Inject]
-    private NwServer NwServer { get; init; } = null!;
-
-    [Inject]
     private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; } = null!;
 
     private readonly IServiceManager serviceManager;
@@ -37,6 +34,11 @@ namespace Anvil
       this.serviceManager.CoreServiceContainer.InjectProperties(this);
     }
 
+    /// <summary>
+    /// Gets the specified anvil service instance.
+    /// </summary>
+    /// <typeparam name="T">The service type to get.</typeparam>
+    /// <returns>The associated anvil service instance.</returns>
     public static T? GetService<T>()
     {
       return instance.serviceManager.AnvilServiceContainer.GetInstance<T>();
@@ -88,7 +90,7 @@ namespace Anvil
     private void CheckServerVersion()
     {
       AssemblyName assemblyName = Assemblies.Anvil.GetName();
-      Version serverVersion = NwServer.ServerVersion;
+      Version serverVersion = NwServer.Instance.ServerVersion;
 
       if (assemblyName.Version?.Major != serverVersion.Major || assemblyName.Version.Minor != serverVersion.Minor)
       {
