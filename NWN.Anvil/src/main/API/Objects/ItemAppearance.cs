@@ -214,7 +214,7 @@ namespace Anvil.API
     /// Gets the armor model of this item.
     /// </summary>
     /// <param name="slot">The armor model slot index to query.</param>
-    public byte GetArmorModel(CreaturePart slot)
+    public ushort GetArmorModel(CreaturePart slot)
     {
       int index = (int)slot;
 
@@ -227,7 +227,7 @@ namespace Anvil.API
     }
 
     [Obsolete("Use the CreaturePart overload instead.")]
-    public byte GetArmorModel(ItemAppearanceArmorModel slot)
+    public ushort GetArmorModel(ItemAppearanceArmorModel slot)
     {
       return GetArmorModel((CreaturePart)slot);
     }
@@ -253,7 +253,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the base model of this item.
     /// </summary>
-    public byte GetSimpleModel()
+    public ushort GetSimpleModel()
     {
       return item.Item.m_nModelPart[0];
     }
@@ -278,7 +278,7 @@ namespace Anvil.API
     /// Gets the weapon model of this item.
     /// </summary>
     /// <param name="slot">The weapon model index to query.</param>
-    public byte GetWeaponModel(ItemAppearanceWeaponModel slot)
+    public ushort GetWeaponModel(ItemAppearanceWeaponModel slot)
     {
       int index = (int)slot;
 
