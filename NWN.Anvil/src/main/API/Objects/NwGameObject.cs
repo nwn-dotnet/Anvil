@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
 using Vector3 = System.Numerics.Vector3;
+using Vector4 = System.Numerics.Vector4;
 
 namespace Anvil.API
 {
