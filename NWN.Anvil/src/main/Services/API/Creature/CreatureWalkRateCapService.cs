@@ -15,9 +15,10 @@ namespace Anvil.Services
     public CreatureWalkRateCapService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(CreatureWalkRateCapService)}");
-      walkRateHook = hookService.RequestHook<GetWalkRateHook>(OnGetWalkRate, FunctionsLinux._ZN12CNWSCreature11GetWalkRateEv, HookOrder.Late);
+      walkRateHook = hookService.RequestHook<GetWalkRateHook>(OnGetWalkRate, HookOrder.Late);
     }
 
+    [NativeFunction("_ZN12CNWSCreature11GetWalkRateEv", "")]
     private delegate float GetWalkRateHook(void* pCreature);
 
     public float? GetWalkRateCap(NwCreature creature)

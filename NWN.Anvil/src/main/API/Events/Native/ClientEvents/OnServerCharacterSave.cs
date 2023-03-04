@@ -29,12 +29,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<SaveServerCharacterHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN10CNWSPlayer19SaveServerCharacterEi", "")]
       private delegate int SaveServerCharacterHook(void* pPlayer, int bBackupPlayer);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, int, int> pHook = &OnSaveServerCharacter;
-        Hook = HookService.RequestHook<SaveServerCharacterHook>(pHook, FunctionsLinux._ZN10CNWSPlayer19SaveServerCharacterEi, HookOrder.Early);
+        Hook = HookService.RequestHook<SaveServerCharacterHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

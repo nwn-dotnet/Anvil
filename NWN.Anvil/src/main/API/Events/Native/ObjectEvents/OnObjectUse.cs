@@ -32,12 +32,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<AddUseObjectActionHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN10CNWSObject18AddUseObjectActionEj", "")]
       private delegate int AddUseObjectActionHook(void* pObject, uint oidObjectToUse);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int> pHook = &OnAddUseObjectAction;
-        Hook = HookService.RequestHook<AddUseObjectActionHook>(pHook, FunctionsLinux._ZN10CNWSObject18AddUseObjectActionEj, HookOrder.Early);
+        Hook = HookService.RequestHook<AddUseObjectActionHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

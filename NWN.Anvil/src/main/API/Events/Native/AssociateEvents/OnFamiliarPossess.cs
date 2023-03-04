@@ -17,12 +17,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<PossessFamiliarHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature15PossessFamiliarEv", "")]
       private delegate void PossessFamiliarHook(void* pCreature);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void> pHook = &OnPossessFamiliar;
-        Hook = HookService.RequestHook<PossessFamiliarHook>(pHook, FunctionsLinux._ZN12CNWSCreature15PossessFamiliarEv, HookOrder.Earliest);
+        Hook = HookService.RequestHook<PossessFamiliarHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

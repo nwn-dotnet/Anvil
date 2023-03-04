@@ -20,12 +20,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<TrapExamineHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN11CNWSMessage37SendServerToPlayerExamineGui_TrapDataEP10CNWSPlayerjP12CNWSCreaturei", "")]
       private delegate void TrapExamineHook(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, uint, void*, int, void> pHook = &OnExamineTrap;
-        Hook = HookService.RequestHook<TrapExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_TrapDataEP10CNWSPlayerjP12CNWSCreaturei, HookOrder.Earliest);
+        Hook = HookService.RequestHook<TrapExamineHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

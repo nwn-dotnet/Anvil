@@ -32,12 +32,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<LearnScrollHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature11LearnScrollEj", "")]
       private delegate int LearnScrollHook(void* pCreature, uint oidScrollToLearn);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int> pHook = &OnLearnScroll;
-        Hook = HookService.RequestHook<LearnScrollHook>(pHook, FunctionsLinux._ZN12CNWSCreature11LearnScrollEj, HookOrder.Early);
+        Hook = HookService.RequestHook<LearnScrollHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

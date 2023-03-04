@@ -32,12 +32,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<UnequipItemHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature10RunUnequipEjjhhij", "")]
       private delegate int UnequipItemHook(void* pCreature, uint oidItemToUnequip, uint oidTargetRepository, byte x, byte y, int bMergeIntoRepository, uint oidFeedbackPlayer);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, byte, byte, int, uint, int> pHook = &OnUnequipItem;
-        Hook = HookService.RequestHook<UnequipItemHook>(pHook, FunctionsLinux._ZN12CNWSCreature10RunUnequipEjjhhij, HookOrder.Early);
+        Hook = HookService.RequestHook<UnequipItemHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

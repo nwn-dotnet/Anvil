@@ -18,12 +18,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<StartCombatRoundHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN15CNWSCombatRound16StartCombatRoundEj", "")]
       private delegate void StartCombatRoundHook(void* pCombatRound, uint oidTarget);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, void> pHook = &OnStartCombatRound;
-        Hook = HookService.RequestHook<StartCombatRoundHook>(pHook, FunctionsLinux._ZN15CNWSCombatRound16StartCombatRoundEj, HookOrder.Earliest);
+        Hook = HookService.RequestHook<StartCombatRoundHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

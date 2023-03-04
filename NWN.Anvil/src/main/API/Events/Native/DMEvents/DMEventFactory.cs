@@ -14,12 +14,13 @@ namespace Anvil.API.Events
 
     private static FunctionHook<HandleDMMessageHook> Hook { get; set; } = null!;
 
-    public delegate int HandleDMMessageHook(void* pMessage, void* pPlayer, byte nMinor, int bGroup);
+    [NativeFunction("_ZN11CNWSMessage40HandlePlayerToServerDungeonMasterMessageEP10CNWSPlayerhi", "")]
+    private delegate int HandleDMMessageHook(void* pMessage, void* pPlayer, byte nMinor, int bGroup);
 
     protected override IDisposable[] RequestHooks()
     {
       delegate* unmanaged<void*, void*, byte, int, int> pHook = &OnHandleDMMessage;
-      Hook = HookService.RequestHook<HandleDMMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage40HandlePlayerToServerDungeonMasterMessageEP10CNWSPlayerhi, HookOrder.Early);
+      Hook = HookService.RequestHook<HandleDMMessageHook>(pHook, HookOrder.Early);
       return new IDisposable[] { Hook };
     }
 

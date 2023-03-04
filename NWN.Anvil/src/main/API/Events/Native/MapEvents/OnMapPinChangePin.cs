@@ -43,12 +43,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<HandleMapPinChangePinMessageHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN11CNWSMessage35HandlePlayerToServerMapPinChangePinEP10CNWSPlayer", "")]
       private delegate int HandleMapPinChangePinMessageHook(void* pMessage, void* pPlayer);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnHandleMapPinChangePinMessage;
-        Hook = HookService.RequestHook<HandleMapPinChangePinMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage35HandlePlayerToServerMapPinChangePinEP10CNWSPlayer, HookOrder.Early);
+        Hook = HookService.RequestHook<HandleMapPinChangePinMessageHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

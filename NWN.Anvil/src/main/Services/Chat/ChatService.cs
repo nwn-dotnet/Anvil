@@ -24,9 +24,10 @@ namespace Anvil.Services
 
     public ChatService(HookService hookService)
     {
-      sendServerToPlayerChatMessageHook = hookService.RequestHook<SendServerToPlayerChatMessageHook>(OnSendServerToPlayerChatMessage, FunctionsLinux._ZN11CNWSMessage29SendServerToPlayerChatMessageEhj10CExoStringjRKS0_, HookOrder.Late);
+      sendServerToPlayerChatMessageHook = hookService.RequestHook<SendServerToPlayerChatMessageHook>(OnSendServerToPlayerChatMessage, HookOrder.Late);
     }
 
+    [NativeFunction("_ZN11CNWSMessage29SendServerToPlayerChatMessageEhj10CExoStringjRKS0_", "")]
     private delegate int SendServerToPlayerChatMessageHook(void* pMessage, ChatChannel nChatMessageType, uint oidSpeaker, void* sSpeakerMessage, uint nTellPlayerId, void* tellName);
 
     /// <summary>

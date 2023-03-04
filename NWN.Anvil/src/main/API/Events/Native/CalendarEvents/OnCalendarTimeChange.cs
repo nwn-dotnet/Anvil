@@ -19,12 +19,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<UpdateTimeHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN10CNWSModule10UpdateTimeEjjj", "")]
       private delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, uint, void> pHook = &OnUpdateTime;
-        Hook = HookService.RequestHook<UpdateTimeHook>(pHook, FunctionsLinux._ZN10CNWSModule10UpdateTimeEjjj, HookOrder.Earliest);
+        Hook = HookService.RequestHook<UpdateTimeHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

@@ -20,12 +20,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<RemoveGoldHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature10RemoveGoldEii", "")]
       private delegate void RemoveGoldHook(void* pCreature, int nGold, int bDisplayFeedback);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, int, int, void> pHook = &OnRemoveGold;
-        Hook = HookService.RequestHook<RemoveGoldHook>(pHook, FunctionsLinux._ZN12CNWSCreature10RemoveGoldEii, HookOrder.Early);
+        Hook = HookService.RequestHook<RemoveGoldHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

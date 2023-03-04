@@ -16,11 +16,12 @@ namespace Anvil.Services
       this.hookService = hookService;
     }
 
+    [NativeFunction("_ZN10CNWSModule20LoadModuleInProgressEii", "")]
     private delegate uint LoadModuleInProgressHook(void* pModule, int nAreasLoaded, int nAreasToLoad);
 
     void ICoreService.Init()
     {
-      loadModuleInProgressHook = hookService.RequestHook<LoadModuleInProgressHook>(OnModuleLoadProgressChange, FunctionsLinux._ZN10CNWSModule20LoadModuleInProgressEii, HookOrder.Earliest);
+      loadModuleInProgressHook = hookService.RequestHook<LoadModuleInProgressHook>(OnModuleLoadProgressChange, HookOrder.Earliest);
     }
 
     void ICoreService.Load() {}

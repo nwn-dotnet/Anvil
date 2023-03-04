@@ -53,17 +53,19 @@ namespace Anvil.API.Events
       private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook = null!;
       private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook = null!;
 
+      [NativeFunction("_ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti", "")]
       private delegate void SignalMeleeDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
+      [NativeFunction("_ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti", "")]
       private delegate void SignalRangedDamageHook(void* pCreature, void* pTarget, int nAttacks);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int, void> pSignalMeleeDamageHook = &OnSignalMeleeDamage;
-        signalMeleeDamageHook = HookService.RequestHook<SignalMeleeDamageHook>(pSignalMeleeDamageHook, FunctionsLinux._ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti, HookOrder.Late);
+        signalMeleeDamageHook = HookService.RequestHook<SignalMeleeDamageHook>(pSignalMeleeDamageHook, HookOrder.Late);
 
         delegate* unmanaged<void*, void*, int, void> pSignalRangedDamageHook = &OnSignalRangedDamage;
-        signalRangedDamageHook = HookService.RequestHook<SignalRangedDamageHook>(pSignalRangedDamageHook, FunctionsLinux._ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti, HookOrder.Late);
+        signalRangedDamageHook = HookService.RequestHook<SignalRangedDamageHook>(pSignalRangedDamageHook, HookOrder.Late);
 
         return new IDisposable[] { signalMeleeDamageHook, signalRangedDamageHook };
       }

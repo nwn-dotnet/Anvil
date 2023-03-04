@@ -18,12 +18,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<SendFeedbackMessageHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer", "")]
       private delegate void SendFeedbackMessageHook(void* pCreature, ushort nFeedbackId, void* pMessageData, void* pFeedbackPlayer);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, ushort, void*, void*, void> pHook = &OnSendFeedbackMessage;
-        Hook = HookService.RequestHook<SendFeedbackMessageHook>(pHook, FunctionsLinux._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Earliest);
+        Hook = HookService.RequestHook<SendFeedbackMessageHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

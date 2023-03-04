@@ -19,12 +19,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<LoadCharacterFinishHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN21CServerExoAppInternal19LoadCharacterFinishEP10CNWSPlayerii", "")]
       private delegate int LoadCharacterFinishHook(void* pServerExoAppInternl, void* pPlayer, int bUseSaveGameCharacter, int bUseStateDataInSaveGame);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int, int, int> pHook = &OnLoadCharacterFinish;
-        Hook = HookService.RequestHook<LoadCharacterFinishHook>(pHook, FunctionsLinux._ZN21CServerExoAppInternal19LoadCharacterFinishEP10CNWSPlayerii, HookOrder.Early);
+        Hook = HookService.RequestHook<LoadCharacterFinishHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

@@ -10,13 +10,13 @@ namespace Anvil.Services
   public sealed unsafe class DialogService : IDisposable
   {
     private readonly FunctionHook<CheckScriptHook> checkScriptHook;
-
     private readonly FunctionHook<GetStartEntryHook> getStartEntryHook;
     private readonly FunctionHook<GetStartEntryOneLinerHook> getStartEntryOneLinerHook;
     private readonly FunctionHook<HandleReplyHook> handleReplyHook;
     private readonly FunctionHook<RunScriptHook> runScriptHook;
     private readonly FunctionHook<SendDialogEntryHook> sendDialogEntryHook;
     private readonly FunctionHook<SendDialogRepliesHook> sendDialogRepliesHook;
+
     private readonly Stack<DialogState> stateStack = new Stack<DialogState>();
 
     private CNWSDialog? dialog;
@@ -26,27 +26,34 @@ namespace Anvil.Services
 
     public DialogService(HookService hookService)
     {
-      getStartEntryHook = hookService.RequestHook<GetStartEntryHook>(OnGetStartEntry, FunctionsLinux._ZN10CNWSDialog13GetStartEntryEP10CNWSObject, HookOrder.Early);
-      getStartEntryOneLinerHook = hookService.RequestHook<GetStartEntryOneLinerHook>(OnGetStartEntryOneLiner, FunctionsLinux._ZN10CNWSDialog21GetStartEntryOneLinerEP10CNWSObjectR13CExoLocStringR7CResRefS5_R13CExoArrayListI11ScriptParamE, HookOrder.Early);
-      sendDialogEntryHook = hookService.RequestHook<SendDialogEntryHook>(OnSendDialogEntry, FunctionsLinux._ZN10CNWSDialog15SendDialogEntryEP10CNWSObjectjji, HookOrder.Early);
-      sendDialogRepliesHook = hookService.RequestHook<SendDialogRepliesHook>(OnSendDialogReplies, FunctionsLinux._ZN10CNWSDialog17SendDialogRepliesEP10CNWSObjectj, HookOrder.Early);
-      handleReplyHook = hookService.RequestHook<HandleReplyHook>(OnHandleReply, FunctionsLinux._ZN10CNWSDialog11HandleReplyEjP10CNWSObjectjij, HookOrder.Early);
-      checkScriptHook = hookService.RequestHook<CheckScriptHook>(OnCheckScript, FunctionsLinux._ZN10CNWSDialog11CheckScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, HookOrder.Early);
-      runScriptHook = hookService.RequestHook<RunScriptHook>(OnRunScript, FunctionsLinux._ZN10CNWSDialog9RunScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE, HookOrder.Early);
+      getStartEntryHook = hookService.RequestHook<GetStartEntryHook>(OnGetStartEntry, HookOrder.Early);
+      getStartEntryOneLinerHook = hookService.RequestHook<GetStartEntryOneLinerHook>(OnGetStartEntryOneLiner, HookOrder.Early);
+      sendDialogEntryHook = hookService.RequestHook<SendDialogEntryHook>(OnSendDialogEntry, HookOrder.Early);
+      sendDialogRepliesHook = hookService.RequestHook<SendDialogRepliesHook>(OnSendDialogReplies, HookOrder.Early);
+      handleReplyHook = hookService.RequestHook<HandleReplyHook>(OnHandleReply, HookOrder.Early);
+      checkScriptHook = hookService.RequestHook<CheckScriptHook>(OnCheckScript, HookOrder.Early);
+      runScriptHook = hookService.RequestHook<RunScriptHook>(OnRunScript, HookOrder.Early);
     }
 
+    [NativeFunction("_ZN10CNWSDialog11CheckScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE", "")]
     private delegate int CheckScriptHook(void* pDialog, void* pNWSObjectOwner, void* sActive, void* scriptParams);
 
+    [NativeFunction("_ZN10CNWSDialog13GetStartEntryEP10CNWSObject", "")]
     private delegate uint GetStartEntryHook(void* pDialog, void* pNWSObjectOwner);
 
+    [NativeFunction("_ZN10CNWSDialog21GetStartEntryOneLinerEP10CNWSObjectR13CExoLocStringR7CResRefS5_R13CExoArrayListI11ScriptParamE", "")]
     private delegate int GetStartEntryOneLinerHook(void* pDialog, void* pNWSObjectOwner, void* sOneLiner, void* sSound, void* sScript, void* scriptParams);
 
+    [NativeFunction("_ZN10CNWSDialog11HandleReplyEjP10CNWSObjectjij", "")]
     private delegate int HandleReplyHook(void* pDialog, uint nPlayerID, void* pNWSObjectOwner, uint nReplyIndex, int bEscapeDialog, uint currentEntryIndex);
 
+    [NativeFunction("_ZN10CNWSDialog9RunScriptEP10CNWSObjectRK7CResRefRK13CExoArrayListI11ScriptParamE", "")]
     private delegate void RunScriptHook(void* pDialog, void* pNWSObjectOwner, void* sScript, void* scriptParams);
 
+    [NativeFunction("_ZN10CNWSDialog15SendDialogEntryEP10CNWSObjectjji", "")]
     private delegate int SendDialogEntryHook(void* pDialog, void* pNWSObjectOwner, uint nPlayerIdGUIOnly, uint iEntry, int bPlayHelloSound);
 
+    [NativeFunction("_ZN10CNWSDialog17SendDialogRepliesEP10CNWSObjectj", "")]
     private delegate int SendDialogRepliesHook(void* pDialog, void* pNWSObjectOwner, uint nPlayerIdGUIOnly);
 
     public uint? CurrentNodeId

@@ -32,12 +32,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<HandlePlayerToServerQuickChatMessageHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN11CNWSMessage36HandlePlayerToServerQuickChatMessageEP10CNWSPlayerh", "")]
       private delegate int HandlePlayerToServerQuickChatMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePlayerToServerQuickChatMessage;
-        Hook = HookService.RequestHook<HandlePlayerToServerQuickChatMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage36HandlePlayerToServerQuickChatMessageEP10CNWSPlayerh, HookOrder.Early);
+        Hook = HookService.RequestHook<HandlePlayerToServerQuickChatMessageHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

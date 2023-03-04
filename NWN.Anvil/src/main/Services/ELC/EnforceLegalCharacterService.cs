@@ -74,7 +74,7 @@ namespace Anvil.Services
     public EnforceLegalCharacterService(VirtualMachine virtualMachine, HookService hookService)
     {
       this.virtualMachine = virtualMachine;
-      validateCharacterHook = hookService.RequestHook<ValidateCharacterHook>(OnValidateCharacter, FunctionsLinux._ZN10CNWSPlayer17ValidateCharacterEPi, HookOrder.Final);
+      validateCharacterHook = hookService.RequestHook<ValidateCharacterHook>(OnValidateCharacter, HookOrder.Final);
 
       pRules = NWNXLib.Rules();
       races = CNWRaceArray.FromPointer(pRules.m_lstRaces);
@@ -90,6 +90,7 @@ namespace Anvil.Services
       skillMaxLevel1Bonus = pRules.GetRulesetIntEntry("CHARGEN_SKILL_MAX_LEVEL_1_BONUS".ToExoString(), 3);
     }
 
+    [NativeFunction("_ZN10CNWSPlayer17ValidateCharacterEPi", "")]
     private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
 
     public event Action<OnELCCustomCheck>? OnCustomCheck;

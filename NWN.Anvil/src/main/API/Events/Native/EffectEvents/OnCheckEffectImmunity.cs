@@ -33,12 +33,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<GetEffectImmunityHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN17CNWSCreatureStats17GetEffectImmunityEhP12CNWSCreaturei", "")]
       private delegate int GetEffectImmunityHook(void* pStats, byte nType, void* pVerses, int bConsiderFeats);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte, void*, int, int> pHook = &OnGetEffectImmunity;
-        Hook = HookService.RequestHook<GetEffectImmunityHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats17GetEffectImmunityEhP12CNWSCreaturei, HookOrder.Late);
+        Hook = HookService.RequestHook<GetEffectImmunityHook>(pHook, HookOrder.Late);
         return new IDisposable[] { Hook };
       }
 

@@ -20,9 +20,10 @@ namespace Anvil.Services
     public PlayerRestDurationOverrideService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(PlayerRestDurationOverrideService)}");
-      aiActionRestHook = hookService.RequestHook<AIActionRestHook>(OnAIActionRest, FunctionsLinux._ZN12CNWSCreature12AIActionRestEP20CNWSObjectActionNode, HookOrder.Late);
+      aiActionRestHook = hookService.RequestHook<AIActionRestHook>(OnAIActionRest, HookOrder.Late);
     }
 
+    [NativeFunction("_ZN12CNWSCreature12AIActionRestEP20CNWSObjectActionNode", "")]
     private delegate uint AIActionRestHook(void* pCreature, void* pNode);
 
     public void ClearDurationOverride(NwCreature creature)

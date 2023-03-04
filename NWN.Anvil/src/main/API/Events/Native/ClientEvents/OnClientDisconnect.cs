@@ -23,12 +23,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<RemovePCFromWorldHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer", "")]
       private delegate void RemovePCFromWorldHook(void* pServerExoAppInternal, void* pPlayer);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void> pHook = &OnRemovePCFromWorld;
-        Hook = HookService.RequestHook<RemovePCFromWorldHook>(pHook, FunctionsLinux._ZN21CServerExoAppInternal17RemovePCFromWorldEP10CNWSPlayer, HookOrder.Earliest);
+        Hook = HookService.RequestHook<RemovePCFromWorldHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

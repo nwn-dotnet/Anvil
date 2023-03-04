@@ -11,9 +11,10 @@ namespace Anvil.Services
 
     public ObjectVisibilityService(HookService hookService)
     {
-      testObjectVisibleHook = hookService.RequestHook<TestObjectVisibleHook>(OnTestObjectVisible, FunctionsLinux._ZN11CNWSMessage17TestObjectVisibleEP10CNWSObjectS1_, HookOrder.Late);
+      testObjectVisibleHook = hookService.RequestHook<TestObjectVisibleHook>(OnTestObjectVisible, HookOrder.Late);
     }
 
+    [NativeFunction("_ZN11CNWSMessage17TestObjectVisibleEP10CNWSObjectS1_", "")]
     private delegate int TestObjectVisibleHook(void* pMessage, void* pAreaObject, void* pPlayerGameObject);
 
     public VisibilityMode GetGlobalOverride(NwGameObject target)

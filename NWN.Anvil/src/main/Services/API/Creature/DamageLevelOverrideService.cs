@@ -15,9 +15,10 @@ namespace Anvil.Services
     public DamageLevelOverrideService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(DamageLevelOverrideService)}");
-      damageLevelHook = hookService.RequestHook<GetDamageLevel>(OnGetDamageLevel, FunctionsLinux._ZN10CNWSObject14GetDamageLevelEv, HookOrder.Late);
+      damageLevelHook = hookService.RequestHook<GetDamageLevel>(OnGetDamageLevel, HookOrder.Late);
     }
 
+    [NativeFunction("_ZN10CNWSObject14GetDamageLevelEv", "")]
     private delegate byte GetDamageLevel(void* pObject);
 
     /// <summary>

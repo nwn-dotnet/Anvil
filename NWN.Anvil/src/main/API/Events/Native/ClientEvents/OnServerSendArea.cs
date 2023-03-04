@@ -23,12 +23,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<SendServerToPlayerAreaClientAreaHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN11CNWSMessage33SendServerToPlayerArea_ClientAreaEP10CNWSPlayerP8CNWSAreafffRK6Vectori", "")]
       private delegate int SendServerToPlayerAreaClientAreaHook(void* pMessage, void* pPlayer, void* pArea, float fX, float fY, float fZ, void* vNewOrientation, int bPlayerIsNewToModule);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void*, float, float, float, void*, int, int> pHook = &OnSendServerToPlayerAreaClientArea;
-        Hook = HookService.RequestHook<SendServerToPlayerAreaClientAreaHook>(pHook, FunctionsLinux._ZN11CNWSMessage33SendServerToPlayerArea_ClientAreaEP10CNWSPlayerP8CNWSAreafffRK6Vectori, HookOrder.Earliest);
+        Hook = HookService.RequestHook<SendServerToPlayerAreaClientAreaHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

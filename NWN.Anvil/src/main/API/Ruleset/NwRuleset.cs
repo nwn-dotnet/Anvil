@@ -63,10 +63,11 @@ namespace Anvil.API
 
       public Factory(HookService hookService)
       {
-        reloadAllHook = hookService.RequestHook<ReloadAllHook>(OnReloadAll, FunctionsLinux._ZN8CNWRules9ReloadAllEv, HookOrder.Latest);
+        reloadAllHook = hookService.RequestHook<ReloadAllHook>(OnReloadAll, HookOrder.Latest);
         LoadRules();
       }
 
+      [NativeFunction("_ZN8CNWRules9ReloadAllEv", "")]
       private delegate void ReloadAllHook(void* pRules);
 
       void IDisposable.Dispose()

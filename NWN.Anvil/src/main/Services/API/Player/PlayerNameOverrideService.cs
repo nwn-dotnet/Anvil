@@ -34,39 +34,49 @@ namespace Anvil.Services
     {
       NwModule.Instance.OnClientLeave += OnClientLeave;
 
-      writeGameObjUpdateUpdateObjectHook = hookService.RequestHook<WriteGameObjUpdateUpdateObjectHook>(OnWriteGameObjUpdateUpdateObject, FunctionsLinux._ZN11CNWSMessage31WriteGameObjUpdate_UpdateObjectEP10CNWSPlayerP10CNWSObjectP17CLastUpdateObjectjj, HookOrder.Early);
-      sendServerToPlayerExamineGuiCreatureDataHook = hookService.RequestHook<SendServerToPlayerExamineGuiCreatureDataHook>(OnSendServerToPlayerExamineGuiCreatureData, FunctionsLinux._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj, HookOrder.Early);
+      writeGameObjUpdateUpdateObjectHook = hookService.RequestHook<WriteGameObjUpdateUpdateObjectHook>(OnWriteGameObjUpdateUpdateObject, HookOrder.Early);
+      sendServerToPlayerExamineGuiCreatureDataHook = hookService.RequestHook<SendServerToPlayerExamineGuiCreatureDataHook>(OnSendServerToPlayerExamineGuiCreatureData, HookOrder.Early);
 
-      sendServerToPlayerPlayerListAllHook = hookService.RequestHook<SendServerToPlayerPlayerListAllHook>(OnSendServerToPlayerPlayerListAll, FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerPlayerList_AllEP10CNWSPlayer, HookOrder.Early);
-      sendServerToPlayerPlayerListAddHook = hookService.RequestHook<SendServerToPlayerPlayerListAddHook>(OnSendServerToPlayerPlayerListAdd, FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerPlayerList_AddEjP10CNWSPlayer, HookOrder.Early);
-      sendServerToPlayerPlayerListDeleteHook = hookService.RequestHook<SendServerToPlayerPlayerListDeleteHook>(OnSendServerToPlayerPlayerListDelete, FunctionsLinux._ZN11CNWSMessage35SendServerToPlayerPlayerList_DeleteEjP10CNWSPlayer, HookOrder.Early);
+      sendServerToPlayerPlayerListAllHook = hookService.RequestHook<SendServerToPlayerPlayerListAllHook>(OnSendServerToPlayerPlayerListAll, HookOrder.Early);
+      sendServerToPlayerPlayerListAddHook = hookService.RequestHook<SendServerToPlayerPlayerListAddHook>(OnSendServerToPlayerPlayerListAdd, HookOrder.Early);
+      sendServerToPlayerPlayerListDeleteHook = hookService.RequestHook<SendServerToPlayerPlayerListDeleteHook>(OnSendServerToPlayerPlayerListDelete, HookOrder.Early);
 
-      sendServerToPlayerDungeonMasterUpdatePartyListHook = hookService.RequestHook<SendServerToPlayerDungeonMasterUpdatePartyListHook>(OnSendServerToPlayerDungeonMasterUpdatePartyList, FunctionsLinux._ZN11CNWSMessage46SendServerToPlayerDungeonMasterUpdatePartyListEj, HookOrder.Early);
-      sendServerToPlayerPopUpGUIPanelHook = hookService.RequestHook<SendServerToPlayerPopUpGUIPanelHook>(OnSendServerToPlayerPopUpGUIPanel, FunctionsLinux._ZN11CNWSMessage31SendServerToPlayerPopUpGUIPanelEjiiii10CExoString, HookOrder.Early);
+      sendServerToPlayerDungeonMasterUpdatePartyListHook = hookService.RequestHook<SendServerToPlayerDungeonMasterUpdatePartyListHook>(OnSendServerToPlayerDungeonMasterUpdatePartyList, HookOrder.Early);
+      sendServerToPlayerPopUpGUIPanelHook = hookService.RequestHook<SendServerToPlayerPopUpGUIPanelHook>(OnSendServerToPlayerPopUpGUIPanel, HookOrder.Early);
 
-      sendServerToPlayerChatPartyHook = hookService.RequestHook<SendServerToPlayerChatPartyHook>(OnSendServerToPlayerChatParty, FunctionsLinux._ZN11CNWSMessage28SendServerToPlayerChat_PartyEjj10CExoString, HookOrder.Early);
-      sendServerToPlayerChatShoutHook = hookService.RequestHook<SendServerToPlayerChatShoutHook>(OnSendServerToPlayerChatShout, FunctionsLinux._ZN11CNWSMessage28SendServerToPlayerChat_ShoutEjj10CExoString, HookOrder.Early);
-      sendServerToPlayerChatTellHook = hookService.RequestHook<SendServerToPlayerChatTellHook>(OnSendServerToPlayerChatTell, FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerChat_TellEjj10CExoString, HookOrder.Early);
+      sendServerToPlayerChatPartyHook = hookService.RequestHook<SendServerToPlayerChatPartyHook>(OnSendServerToPlayerChatParty, HookOrder.Early);
+      sendServerToPlayerChatShoutHook = hookService.RequestHook<SendServerToPlayerChatShoutHook>(OnSendServerToPlayerChatShout, HookOrder.Early);
+      sendServerToPlayerChatTellHook = hookService.RequestHook<SendServerToPlayerChatTellHook>(OnSendServerToPlayerChatTell, HookOrder.Early);
     }
 
+    [NativeFunction("_ZN11CNWSMessage28SendServerToPlayerChat_PartyEjj10CExoString", "")]
     private delegate int SendServerToPlayerChatPartyHook(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage);
 
+    [NativeFunction("_ZN11CNWSMessage28SendServerToPlayerChat_ShoutEjj10CExoString", "")]
     private delegate int SendServerToPlayerChatShoutHook(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage);
 
+    [NativeFunction("_ZN11CNWSMessage27SendServerToPlayerChat_TellEjj10CExoString", "")]
     private delegate int SendServerToPlayerChatTellHook(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage);
 
+    [NativeFunction("_ZN11CNWSMessage46SendServerToPlayerDungeonMasterUpdatePartyListEj", "")]
     private delegate int SendServerToPlayerDungeonMasterUpdatePartyListHook(void* pMessage, uint nPlayerID);
 
+    [NativeFunction("_ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj", "")]
     private delegate int SendServerToPlayerExamineGuiCreatureDataHook(void* pMessage, void* pPlayer, uint oidCreatureID);
 
+    [NativeFunction("_ZN11CNWSMessage32SendServerToPlayerPlayerList_AddEjP10CNWSPlayer", "")]
     private delegate int SendServerToPlayerPlayerListAddHook(void* pMessage, uint nPlayerId, void* pNewPlayer);
 
+    [NativeFunction("_ZN11CNWSMessage32SendServerToPlayerPlayerList_AllEP10CNWSPlayer", "")]
     private delegate int SendServerToPlayerPlayerListAllHook(void* pMessage, void* pPlayer);
 
+    [NativeFunction("_ZN11CNWSMessage35SendServerToPlayerPlayerList_DeleteEjP10CNWSPlayer", "")]
     private delegate int SendServerToPlayerPlayerListDeleteHook(void* pMessage, uint nPlayerId, void* pNewPlayer);
 
+    [NativeFunction("_ZN11CNWSMessage31SendServerToPlayerPopUpGUIPanelEjiiii10CExoString", "")]
     private delegate int SendServerToPlayerPopUpGUIPanelHook(void* pMessage, uint observerOid, int nGuiPanel, int bGUIOption1, int bGUIOption2, int nStringReference, void** psStringReference);
 
+    [NativeFunction("_ZN11CNWSMessage31WriteGameObjUpdate_UpdateObjectEP10CNWSPlayerP10CNWSObjectP17CLastUpdateObjectjj", "")]
     private delegate void WriteGameObjUpdateUpdateObjectHook(void* pMessage, void* pPlayer, void* pAreaObject, void* pLastUpdateObject, uint nObjectUpdatesRequired, uint nObjectAppearanceUpdatesRequired);
 
     /// <summary>

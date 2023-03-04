@@ -23,12 +23,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<BroadcastSpellCastHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature18BroadcastSpellCastEjht", "")]
       private delegate void BroadcastSpellCastHook(void* pCreature, uint nSpellId, byte nMultiClass, ushort nFeat);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, byte, ushort, void> pHook = &OnBroadcastSpellCast;
-        Hook = HookService.RequestHook<BroadcastSpellCastHook>(pHook, FunctionsLinux._ZN12CNWSCreature18BroadcastSpellCastEjht, HookOrder.Early);
+        Hook = HookService.RequestHook<BroadcastSpellCastHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

@@ -10,12 +10,13 @@ namespace Anvil.API.Events
   {
     private static FunctionHook<HandlePlayerToServerCheatMessageHook> Hook { get; set; } = null!;
 
+    [NativeFunction("_ZN11CNWSMessage32HandlePlayerToServerCheatMessageEP10CNWSPlayerh", "")]
     private delegate int HandlePlayerToServerCheatMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
     protected override IDisposable[] RequestHooks()
     {
       delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePlayerToServerCheatMessage;
-      Hook = HookService.RequestHook<HandlePlayerToServerCheatMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage32HandlePlayerToServerCheatMessageEP10CNWSPlayerh, HookOrder.Early);
+      Hook = HookService.RequestHook<HandlePlayerToServerCheatMessageHook>(pHook, HookOrder.Early);
       return new IDisposable[] { Hook };
     }
 

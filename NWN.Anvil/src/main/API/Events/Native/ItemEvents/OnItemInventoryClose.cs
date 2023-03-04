@@ -26,12 +26,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<CloseInventoryHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN8CNWSItem14CloseInventoryEji", "")]
       private delegate void CloseInventoryHook(void* pItem, uint oidCloser, int bUpdatePlayer);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int, void> pHook = &OnCloseInventory;
-        Hook = HookService.RequestHook<CloseInventoryHook>(pHook, FunctionsLinux._ZN8CNWSItem14CloseInventoryEji, HookOrder.Early);
+        Hook = HookService.RequestHook<CloseInventoryHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

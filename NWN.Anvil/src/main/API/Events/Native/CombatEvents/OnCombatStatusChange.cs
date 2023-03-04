@@ -20,12 +20,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<SendServerToPlayerAmbientBattleMusicPlayHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN11CNWSMessage40SendServerToPlayerAmbientBattleMusicPlayEji", "")]
       private delegate int SendServerToPlayerAmbientBattleMusicPlayHook(void* pMessage, uint nPlayer, int bPlay);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int, int> pHook = &OnSendServerToPlayerAmbientBattleMusicPlay;
-        Hook = HookService.RequestHook<SendServerToPlayerAmbientBattleMusicPlayHook>(pHook, FunctionsLinux._ZN11CNWSMessage40SendServerToPlayerAmbientBattleMusicPlayEji, HookOrder.Earliest);
+        Hook = HookService.RequestHook<SendServerToPlayerAmbientBattleMusicPlayHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

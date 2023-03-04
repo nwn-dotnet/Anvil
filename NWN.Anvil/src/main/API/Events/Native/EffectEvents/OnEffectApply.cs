@@ -32,12 +32,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<EffectAppliedHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN21CNWSEffectListHandler15OnEffectAppliedEP10CNWSObjectP11CGameEffecti", "")]
       private delegate int EffectAppliedHook(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnEffectApplied;
-        Hook = HookService.RequestHook<EffectAppliedHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler15OnEffectAppliedEP10CNWSObjectP11CGameEffecti, HookOrder.Earliest);
+        Hook = HookService.RequestHook<EffectAppliedHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

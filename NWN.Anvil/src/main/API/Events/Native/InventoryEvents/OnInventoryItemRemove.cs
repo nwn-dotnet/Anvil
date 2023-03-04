@@ -17,12 +17,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<RemoveItemHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN15CItemRepository10RemoveItemEP8CNWSItem", "")]
       private delegate int RemoveItemHook(void* pItemRepository, void* pItem);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnRemoveItem;
-        Hook = HookService.RequestHook<RemoveItemHook>(pHook, FunctionsLinux._ZN15CItemRepository10RemoveItemEP8CNWSItem, HookOrder.Earliest);
+        Hook = HookService.RequestHook<RemoveItemHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

@@ -27,17 +27,19 @@ namespace Anvil.API.Events
       private static FunctionHook<SendServerToPlayerBarterCloseBarterHook> sendServerToPlayerBarterCloseBarterHook = null!;
       private static FunctionHook<SetListAcceptedHook> setListAcceptedHook = null!;
 
+      [NativeFunction("_ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji", "")]
       private delegate int SendServerToPlayerBarterCloseBarterHook(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
 
+      [NativeFunction("_ZN10CNWSBarter15SetListAcceptedEi", "")]
       private delegate int SetListAcceptedHook(void* pBarter, int bAccepted);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, int, int> pSetListAcceptedHook = &OnSetListAccepted;
-        setListAcceptedHook = HookService.RequestHook<SetListAcceptedHook>(pSetListAcceptedHook, FunctionsLinux._ZN10CNWSBarter15SetListAcceptedEi, HookOrder.Earliest);
+        setListAcceptedHook = HookService.RequestHook<SetListAcceptedHook>(pSetListAcceptedHook, HookOrder.Earliest);
 
         delegate* unmanaged<void*, uint, uint, int, int> pSendServerToPlayerBarterCloseBarterHook = &OnSendServerToPlayerBarterCloseBarter;
-        sendServerToPlayerBarterCloseBarterHook = HookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(pSendServerToPlayerBarterCloseBarterHook, FunctionsLinux._ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji, HookOrder.Earliest);
+        sendServerToPlayerBarterCloseBarterHook = HookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(pSendServerToPlayerBarterCloseBarterHook, HookOrder.Earliest);
 
         return new IDisposable[] { setListAcceptedHook, sendServerToPlayerBarterCloseBarterHook };
       }

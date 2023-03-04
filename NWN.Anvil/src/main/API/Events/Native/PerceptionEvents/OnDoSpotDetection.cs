@@ -20,12 +20,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<DoSpotDetectionHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature15DoSpotDetectionEPS_i", "")]
       private delegate int DoSpotDetectionHook(void* pCreature, void* pTarget, int bTargetInvisible);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int, int> pHook = &OnDoSpotDetection;
-        Hook = HookService.RequestHook<DoSpotDetectionHook>(pHook, FunctionsLinux._ZN12CNWSCreature15DoSpotDetectionEPS_i, HookOrder.Early);
+        Hook = HookService.RequestHook<DoSpotDetectionHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

@@ -52,12 +52,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<AIActionHealHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature12AIActionHealEP20CNWSObjectActionNode", "")]
       private delegate uint AIActionHealHook(void* pCreature, void* pNode);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, uint> pHook = &OnAIActionHeal;
-        Hook = HookService.RequestHook<AIActionHealHook>(pHook, FunctionsLinux._ZN12CNWSCreature12AIActionHealEP20CNWSObjectActionNode, HookOrder.Early);
+        Hook = HookService.RequestHook<AIActionHealHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

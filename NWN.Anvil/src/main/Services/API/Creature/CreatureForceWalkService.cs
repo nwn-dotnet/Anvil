@@ -16,9 +16,10 @@ namespace Anvil.Services
     public CreatureForceWalkService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(CreatureForceWalkService)}");
-      removeLimitMovementSpeedHook = hookService.RequestHook<RemoveLimitMovementSpeedHook>(OnRemoveLimitMovementSpeed, FunctionsLinux._ZN21CNWSEffectListHandler26OnRemoveLimitMovementSpeedEP10CNWSObjectP11CGameEffect, HookOrder.Late);
+      removeLimitMovementSpeedHook = hookService.RequestHook<RemoveLimitMovementSpeedHook>(OnRemoveLimitMovementSpeed, HookOrder.Late);
     }
 
+    [NativeFunction("_ZN21CNWSEffectListHandler26OnRemoveLimitMovementSpeedEP10CNWSObjectP11CGameEffect", "")]
     private delegate int RemoveLimitMovementSpeedHook(void* pEffectListHandler, void* pObject, void* pEffect);
 
     public bool GetAlwaysWalk(NwCreature creature)

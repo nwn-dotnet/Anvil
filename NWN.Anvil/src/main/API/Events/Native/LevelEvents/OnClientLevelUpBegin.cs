@@ -20,12 +20,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<HandlePlayerToServerLevelUpMessageHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN11CNWSMessage34HandlePlayerToServerLevelUpMessageEP10CNWSPlayerh", "")]
       private delegate int HandlePlayerToServerLevelUpMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePlayerToServerLevelUpMessage;
-        Hook = HookService.RequestHook<HandlePlayerToServerLevelUpMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage34HandlePlayerToServerLevelUpMessageEP10CNWSPlayerh, HookOrder.Early);
+        Hook = HookService.RequestHook<HandlePlayerToServerLevelUpMessageHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

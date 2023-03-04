@@ -23,12 +23,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<ApplyDisarmHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti", "")]
       private delegate int ApplyDisarmHook(void* pEffectHandler, void* pObject, void* pEffect, int bLoadingGame);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void*, int, int> pHook = &OnApplyDisarm;
-        Hook = HookService.RequestHook<ApplyDisarmHook>(pHook, FunctionsLinux._ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti, HookOrder.Early);
+        Hook = HookService.RequestHook<ApplyDisarmHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

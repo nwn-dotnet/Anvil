@@ -61,12 +61,13 @@ namespace Anvil.API.Events
 
       private static FunctionHook<SendServerToPlayerCharListHook> Hook { get; set; } = null!;
 
-      internal unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
+      [NativeFunction("_ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer", "")]
+      private unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
 
       protected override unsafe IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
-        Hook = HookService.RequestHook<SendServerToPlayerCharListHook>(pHook, FunctionsLinux._ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer, HookOrder.Early);
+        Hook = HookService.RequestHook<SendServerToPlayerCharListHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

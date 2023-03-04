@@ -42,12 +42,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<TriggerEventHandlerHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN11CNWSTrigger12EventHandlerEjjPvjj", "")]
       private delegate void TriggerEventHandlerHook(void* pTrigger, uint nEventId, uint nCallerObjectId, void* pScript, uint nCalendarDay, uint nTimeOfDay);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, void*, uint, uint, void> pHook = &OnTriggerEventHandler;
-        Hook = HookService.RequestHook<TriggerEventHandlerHook>(pHook, FunctionsLinux._ZN11CNWSTrigger12EventHandlerEjjPvjj, HookOrder.Late);
+        Hook = HookService.RequestHook<TriggerEventHandlerHook>(pHook, HookOrder.Late);
         return new IDisposable[] { Hook };
       }
 

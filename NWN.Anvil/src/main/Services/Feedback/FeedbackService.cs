@@ -35,10 +35,13 @@ namespace Anvil.Services
       this.hookService = hookService;
     }
 
+    [NativeFunction("_ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer", "")]
     private delegate void SendFeedbackMessageHook(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer);
 
+    [NativeFunction("_ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData", "")]
     private delegate int SendServerToPlayerCCMessageHook(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData);
 
+    [NativeFunction("_ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString", "")]
     private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString);
 
     public FilterMode CombatMessageFilterMode
@@ -50,7 +53,7 @@ namespace Anvil.Services
         if (value == FilterMode.Whitelist)
         {
           sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
-            FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
+            HookOrder.Late);
         }
       }
     }
@@ -64,10 +67,10 @@ namespace Anvil.Services
         if (value == FilterMode.Whitelist)
         {
           sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
-            FunctionsLinux._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
+            HookOrder.Late);
 
           sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
-            FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
+            HookOrder.Late);
         }
       }
     }
@@ -75,7 +78,7 @@ namespace Anvil.Services
     public void AddCombatLogMessageFilter(CombatLogMessage message)
     {
       sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
-        FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
+        HookOrder.Late);
 
       globalFilterListCombatMessage.Add(message);
     }
@@ -83,7 +86,7 @@ namespace Anvil.Services
     public void AddCombatLogMessageFilter(CombatLogMessage message, NwPlayer player)
     {
       sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
-        FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData, HookOrder.Late);
+        HookOrder.Late);
 
       playerFilterListCombatMessage.AddElement(player.ControlledCreature, message);
     }
@@ -93,12 +96,12 @@ namespace Anvil.Services
       if (message == FeedbackMessage.JournalUpdated)
       {
         sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
-          FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
+          HookOrder.Late);
       }
       else
       {
         sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
-          FunctionsLinux._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
+          HookOrder.Late);
       }
 
       globalFilterListFeedbackMessage.Add(message);
@@ -109,12 +112,12 @@ namespace Anvil.Services
       if (message == FeedbackMessage.JournalUpdated)
       {
         sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
-          FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString, HookOrder.Late);
+          HookOrder.Late);
       }
       else
       {
         sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
-          FunctionsLinux._ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer, HookOrder.Late);
+          HookOrder.Late);
       }
 
       playerFilterListFeedbackMessage.AddElement(player.ControlledCreature, message);

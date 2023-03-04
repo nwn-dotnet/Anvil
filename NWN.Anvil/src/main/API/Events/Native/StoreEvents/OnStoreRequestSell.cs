@@ -25,12 +25,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<RequestSellHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature11RequestSellEjj", "")]
       private delegate int RequestSellHook(void* pCreature, uint oidItemToBuy, uint oidStore);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, int> pHook = &OnRequestSell;
-        Hook = HookService.RequestHook<RequestSellHook>(pHook, FunctionsLinux._ZN12CNWSCreature11RequestSellEjj, HookOrder.Early);
+        Hook = HookService.RequestHook<RequestSellHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

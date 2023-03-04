@@ -32,12 +32,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<SetOpenStateHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN8CNWSDoor12SetOpenStateEh", "")]
       private delegate void SetOpenStateHook(void* pDoor, byte nOpenState);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetOpenState;
-        Hook = HookService.RequestHook<SetOpenStateHook>(pHook, FunctionsLinux._ZN8CNWSDoor12SetOpenStateEh, HookOrder.Early);
+        Hook = HookService.RequestHook<SetOpenStateHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

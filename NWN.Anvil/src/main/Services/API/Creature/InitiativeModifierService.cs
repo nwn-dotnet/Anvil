@@ -17,9 +17,10 @@ namespace Anvil.Services
     public InitiativeModifierService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(InitiativeModifierService)}");
-      initiativeModifierHook = hookService.RequestHook<InitiativeModifier>(OnResolveInitiative, FunctionsLinux._ZN12CNWSCreature17ResolveInitiativeEv, HookOrder.Late);
+      initiativeModifierHook = hookService.RequestHook<InitiativeModifier>(OnResolveInitiative, HookOrder.Late);
     }
 
+    [NativeFunction("_ZN12CNWSCreature17ResolveInitiativeEv", "")]
     private delegate void InitiativeModifier(void* pObject);
 
     /// <summary>

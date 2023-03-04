@@ -28,12 +28,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<SetStealthModeHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature14SetStealthModeEh", "")]
       private delegate void SetStealthModeHook(void* pCreature, byte nStealthMode);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte, void> pHook = &OnSetStealthMode;
-        Hook = HookService.RequestHook<SetStealthModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature14SetStealthModeEh, HookOrder.Early);
+        Hook = HookService.RequestHook<SetStealthModeHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

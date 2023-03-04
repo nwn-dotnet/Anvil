@@ -24,12 +24,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<SetCombatModeHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature13SetCombatModeEhi", "")]
       private delegate void SetCombatModeHook(void* pCreature, byte nNewMode, int bForceNewMode);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte, int, void> pHook = &OnSetCombatMode;
-        Hook = HookService.RequestHook<SetCombatModeHook>(pHook, FunctionsLinux._ZN12CNWSCreature13SetCombatModeEhi, HookOrder.Early);
+        Hook = HookService.RequestHook<SetCombatModeHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

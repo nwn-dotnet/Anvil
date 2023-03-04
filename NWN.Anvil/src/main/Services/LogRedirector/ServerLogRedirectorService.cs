@@ -34,15 +34,18 @@ namespace Anvil.Services
           break;
       }
 
-      writeToLogFileHook = hookService.RequestHook<WriteToLogFileHook>(OnWriteToLogFile, FunctionsLinux._ZN17CExoDebugInternal14WriteToLogFileERK10CExoString, HookOrder.VeryEarly);
-      writeToErrorFileHook = hookService.RequestHook<WriteToErrorFileHook>(OnWriteToErrorFile, FunctionsLinux._ZN17CExoDebugInternal16WriteToErrorFileERK10CExoString, HookOrder.VeryEarly);
-      executeCommandPrintStringHook = hookService.RequestHook<ExecuteCommandPrintStringHook>(OnExecuteCommandPrintString, FunctionsLinux._ZN25CNWVirtualMachineCommands25ExecuteCommandPrintStringEii, HookOrder.VeryEarly);
+      writeToLogFileHook = hookService.RequestHook<WriteToLogFileHook>(OnWriteToLogFile, HookOrder.VeryEarly);
+      writeToErrorFileHook = hookService.RequestHook<WriteToErrorFileHook>(OnWriteToErrorFile, HookOrder.VeryEarly);
+      executeCommandPrintStringHook = hookService.RequestHook<ExecuteCommandPrintStringHook>(OnExecuteCommandPrintString, HookOrder.VeryEarly);
     }
 
+    [NativeFunction("_ZN25CNWVirtualMachineCommands25ExecuteCommandPrintStringEii", "")]
     private delegate int ExecuteCommandPrintStringHook(void* pVirtualMachineCommands, int nCommandId, int nParameters);
 
+    [NativeFunction("_ZN17CExoDebugInternal16WriteToErrorFileERK10CExoString", "")]
     private delegate void WriteToErrorFileHook(void* pExoDebugInternal, void* pMessage);
 
+    [NativeFunction("_ZN17CExoDebugInternal14WriteToLogFileERK10CExoString", "")]
     private delegate void WriteToLogFileHook(void* pExoDebugInternal, void* pMessage);
 
     public void Dispose()

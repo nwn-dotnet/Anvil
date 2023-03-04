@@ -23,12 +23,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<ClearMemorizedSpellSlotHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN17CNWSCreatureStats23ClearMemorizedSpellSlotEhhh", "")]
       private delegate void ClearMemorizedSpellSlotHook(void* pCreatureStats, byte nMultiClass, byte nSpellLevel, byte nSpellSlot);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, byte, byte, byte, void> pHook = &OnClearMemorizedSpellSlot;
-        Hook = HookService.RequestHook<ClearMemorizedSpellSlotHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats23ClearMemorizedSpellSlotEhhh, HookOrder.Early);
+        Hook = HookService.RequestHook<ClearMemorizedSpellSlotHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

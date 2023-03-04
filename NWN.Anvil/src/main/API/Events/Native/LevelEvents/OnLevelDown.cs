@@ -16,12 +16,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<LevelDownHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN17CNWSCreatureStats9LevelDownEP13CNWLevelStats", "")]
       private delegate void LevelDownHook(void* pCreatureStats, void* pLevelUpStats);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void> pHook = &OnLevelDown;
-        Hook = HookService.RequestHook<LevelDownHook>(pHook, FunctionsLinux._ZN17CNWSCreatureStats9LevelDownEP13CNWLevelStats, HookOrder.Earliest);
+        Hook = HookService.RequestHook<LevelDownHook>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

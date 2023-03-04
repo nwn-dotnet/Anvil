@@ -37,12 +37,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<CheckProficienciesHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN12CNWSCreature18CheckProficienciesEP8CNWSItemj", "")]
       private delegate int CheckProficienciesHook(void* pCreature, void* pItem, uint nEquipToSlot);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, uint, int> pHook = &OnCheckProficiencies;
-        Hook = HookService.RequestHook<CheckProficienciesHook>(pHook, FunctionsLinux._ZN12CNWSCreature18CheckProficienciesEP8CNWSItemj, HookOrder.Early);
+        Hook = HookService.RequestHook<CheckProficienciesHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

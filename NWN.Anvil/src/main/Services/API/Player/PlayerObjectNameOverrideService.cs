@@ -11,6 +11,7 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
+    [NativeFunction("_ZN11CNWSMessage32ComputeGameObjectUpdateForObjectEP10CNWSPlayerP10CNWSObjectP16CGameObjectArrayj", "")]
     private delegate void ComputeGameObjectUpdateForObjectHook(void* pMessage, void* pPlayer, void* pPlayerGameObject, void* pGameObjectArray, uint oidObjectToUpdate);
 
     private readonly FunctionHook<ComputeGameObjectUpdateForObjectHook> computeGameObjectUpdateForObjectHook;
@@ -18,7 +19,7 @@ namespace Anvil.Services
     public PlayerObjectNameOverrideService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(PlayerObjectNameOverrideService)}");
-      computeGameObjectUpdateForObjectHook = hookService.RequestHook<ComputeGameObjectUpdateForObjectHook>(OnComputeGameObjectUpdateForObject, FunctionsLinux._ZN11CNWSMessage32ComputeGameObjectUpdateForObjectEP10CNWSPlayerP10CNWSObjectP16CGameObjectArrayj, HookOrder.Early);
+      computeGameObjectUpdateForObjectHook = hookService.RequestHook<ComputeGameObjectUpdateForObjectHook>(OnComputeGameObjectUpdateForObject, HookOrder.Early);
     }
 
     public string? GetObjectNameOverride(NwPlayer player, NwGameObject gameObject)

@@ -22,12 +22,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<AddItemHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN15CItemRepository7AddItemEPP8CNWSItemhhii", "")]
       private delegate int AddItemHook(void* pItemRepository, void** ppItem, byte x, byte y, byte z, int bAllowEncumbrance, int bMergeItem);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void**, byte, byte, byte, int, int, int> pHook = &OnAddItem;
-        Hook = HookService.RequestHook<AddItemHook>(pHook, FunctionsLinux._ZN15CItemRepository7AddItemEPP8CNWSItemhhii, HookOrder.Early);
+        Hook = HookService.RequestHook<AddItemHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

@@ -23,12 +23,13 @@ namespace Anvil.API.Events
     {
       private static FunctionHook<HandlePartyMessageHook> Hook { get; set; } = null!;
 
+      [NativeFunction("_ZN11CNWSMessage25HandlePlayerToServerPartyEP10CNWSPlayerh", "")]
       private delegate int HandlePartyMessageHook(void* pMessage, void* pPlayer, byte nMinor);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePartyMessage;
-        Hook = HookService.RequestHook<HandlePartyMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage25HandlePlayerToServerPartyEP10CNWSPlayerh, HookOrder.Early);
+        Hook = HookService.RequestHook<HandlePartyMessageHook>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

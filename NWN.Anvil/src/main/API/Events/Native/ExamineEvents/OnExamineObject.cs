@@ -21,27 +21,31 @@ namespace Anvil.API.Events
       private static FunctionHook<ItemExamineHook> itemExamineHook = null!;
       private static FunctionHook<PlaceableExamineHook> placeableExamineHook = null!;
 
+      [NativeFunction("_ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj", "")]
       private delegate void CreatureExamineHook(void* pMessage, void* pPlayer, uint oidCreature);
 
+      [NativeFunction("_ZN11CNWSMessage37SendServerToPlayerExamineGui_DoorDataEP10CNWSPlayerj", "")]
       private delegate void DoorExamineHook(void* pMessage, void* pPlayer, uint oidDoor);
 
+      [NativeFunction("_ZN11CNWSMessage37SendServerToPlayerExamineGui_ItemDataEP10CNWSPlayerj", "")]
       private delegate void ItemExamineHook(void* pMessage, void* pPlayer, uint oidItem);
 
+      [NativeFunction("_ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj", "")]
       private delegate void PlaceableExamineHook(void* pMessage, void* pPlayer, uint oidPlaceable);
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, uint, void> pCreatureExamineHook = &OnCreatureExamine;
-        creatureExamineHook = HookService.RequestHook<CreatureExamineHook>(pCreatureExamineHook, FunctionsLinux._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj, HookOrder.Earliest);
+        creatureExamineHook = HookService.RequestHook<CreatureExamineHook>(pCreatureExamineHook, HookOrder.Earliest);
 
         delegate* unmanaged<void*, void*, uint, void> pDoorExamineHook = &OnDoorExamine;
-        doorExamineHook = HookService.RequestHook<DoorExamineHook>(pDoorExamineHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_DoorDataEP10CNWSPlayerj, HookOrder.Earliest);
+        doorExamineHook = HookService.RequestHook<DoorExamineHook>(pDoorExamineHook, HookOrder.Earliest);
 
         delegate* unmanaged<void*, void*, uint, void> pItemExamineHook = &OnItemExamine;
-        itemExamineHook = HookService.RequestHook<ItemExamineHook>(pItemExamineHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_ItemDataEP10CNWSPlayerj, HookOrder.Earliest);
+        itemExamineHook = HookService.RequestHook<ItemExamineHook>(pItemExamineHook, HookOrder.Earliest);
 
         delegate* unmanaged<void*, void*, uint, void> pPlaceableExamineHook = &OnPlaceableExamine;
-        placeableExamineHook = HookService.RequestHook<PlaceableExamineHook>(pPlaceableExamineHook, FunctionsLinux._ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj, HookOrder.Earliest);
+        placeableExamineHook = HookService.RequestHook<PlaceableExamineHook>(pPlaceableExamineHook, HookOrder.Earliest);
 
         return new IDisposable[] { creatureExamineHook, doorExamineHook, itemExamineHook, placeableExamineHook };
       }
