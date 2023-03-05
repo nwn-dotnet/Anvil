@@ -203,6 +203,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether this object should be useable (clickable).
+    /// </summary>
+    public bool Useable
+    {
+      get => NWScript.GetUseableFlag(this).ToBool();
+      set => NWScript.SetUseableFlag(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets or sets the global visiblity override for this object.
     /// </summary>
     public VisibilityMode VisibilityOverride

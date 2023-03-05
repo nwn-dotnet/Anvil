@@ -98,15 +98,6 @@ namespace Anvil.API
 
     public NwCreature? SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
 
-    /// <summary>
-    /// Gets or sets a value indicating whether this placeable should be useable (clickable).
-    /// </summary>
-    public bool Useable
-    {
-      get => NWScript.GetUseableFlag(this).ToBool();
-      set => NWScript.SetUseableFlag(this, value.ToInt());
-    }
-
     public static NwPlaceable? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {
       location = Location.Create(location.Area, location.Position, location.FlippedRotation);
