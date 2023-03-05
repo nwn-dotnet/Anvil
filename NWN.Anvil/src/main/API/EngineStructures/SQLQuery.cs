@@ -15,7 +15,8 @@ namespace Anvil.API
     internal SQLQuery(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
     /// <summary>
-    /// Returns "" if the last Sql command succeeded; or a human-readable error otherwise.
+    /// Returns "" if the last Sql command succeeded; or a human-readable error otherwise.<br/>
+    /// Additionally, all SQL errors are sent to all connected players.
     /// </summary>
     public string Error
     {
