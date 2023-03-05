@@ -29,7 +29,6 @@ namespace Anvil.API
     internal NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
       this.gameObject = gameObject;
-      VisualTransform = new VisualTransform(this);
     }
 
     /// <summary>
@@ -221,9 +220,13 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the visual transform for this object.
+    /// Gets the base visual transform for this object.<br/>
+    /// Use <see cref="GetVisualTransform"/> to get the visual transform for other scopes for this object.
     /// </summary>
-    public VisualTransform VisualTransform { get; }
+    public VisualTransform VisualTransform
+    {
+      get => new VisualTransform(this, ObjectVisualTransformDataScope.Base);
+    }
 
     internal override CNWSScriptVarTable ScriptVarTable => GameObject.m_ScriptVars;
 
@@ -467,6 +470,15 @@ namespace Anvil.API
           yield return obj;
         }
       }
+    }
+
+    /// <summary>
+    /// Gets the visual transform of this object for the specified scope.
+    /// </summary>
+    /// <param name="scope">The transform scope to get.</param>
+    public VisualTransform GetVisualTransform(ObjectVisualTransformDataScope scope)
+    {
+      return new VisualTransform(this, scope);
     }
 
     /// <summary>

@@ -7,11 +7,13 @@ namespace Anvil.API
   public sealed class VisualTransform
   {
     private readonly NwGameObject gameObject;
+    private readonly ObjectVisualTransformDataScope scope;
     private VisualTransformLerpSettings? activeLerpSettings;
 
-    internal VisualTransform(NwGameObject gameObject)
+    internal VisualTransform(NwGameObject gameObject, ObjectVisualTransformDataScope scope)
     {
       this.gameObject = gameObject;
+      this.scope = scope;
     }
 
     private enum VisualTransformProperty
@@ -109,21 +111,21 @@ namespace Anvil.API
     {
       if (activeLerpSettings != null)
       {
-        return NWScript.GetObjectVisualTransform(gameObject, (int)property, (!activeLerpSettings.ReturnDestinationTransform).ToInt());
+        return NWScript.GetObjectVisualTransform(gameObject, (int)property, (!activeLerpSettings.ReturnDestinationTransform).ToInt(), (int)scope);
       }
 
-      return NWScript.GetObjectVisualTransform(gameObject, (int)property, false.ToInt());
+      return NWScript.GetObjectVisualTransform(gameObject, (int)property, false.ToInt(), (int)scope);
     }
 
     private void SetValue(VisualTransformProperty property, float value)
     {
       if (activeLerpSettings != null)
       {
-        NWScript.SetObjectVisualTransform(gameObject, (int)property, value, (int)activeLerpSettings.LerpType, (float)activeLerpSettings.Duration.TotalSeconds, activeLerpSettings.PauseWithGame.ToInt());
+        NWScript.SetObjectVisualTransform(gameObject, (int)property, value, (int)activeLerpSettings.LerpType, (float)activeLerpSettings.Duration.TotalSeconds, activeLerpSettings.PauseWithGame.ToInt(), (int)scope);
       }
       else
       {
-        NWScript.SetObjectVisualTransform(gameObject, (int)property, value);
+        NWScript.SetObjectVisualTransform(gameObject, (int)property, value, (int)scope);
       }
     }
   }
