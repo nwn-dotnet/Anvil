@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using Anvil.API.Events;
 using NWN.Core;
 
@@ -60,6 +61,11 @@ namespace Anvil.API.Events
       /// Gets the skill that was selected. Only valid in <see cref="GuiEventType.CharacterSheetSkillClick"/> events.
       /// </summary>
       public NwSkill SkillSelection => NwSkill.FromSkillId(integerEventData)!;
+
+      /// <summary>
+      /// Gets the vector payload included in this gui event. Only valid in <see cref="GuiEventType.RadialOpen"/> events.
+      /// </summary>
+      public Vector3 Vector => NWScript.GetLastGuiEventVector();
 
       NwObject? IEvent.Context => Player.ControlledCreature;
     }

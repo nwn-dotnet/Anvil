@@ -158,6 +158,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Makes this creature controllable by the specified player, if player party control is enabled.
+    /// </summary>
+    public NwPlayer CommandingPlayer
+    {
+      set => NWScript.SetCommandingPlayer(this, value.ControlledCreature);
+    }
+
+    /// <summary>
     /// Gets or sets the current base armor arcane spell failure factor for this creature (global ASF is automatically recalculated).
     /// </summary>
     public byte BaseArmorArcaneSpellFailure

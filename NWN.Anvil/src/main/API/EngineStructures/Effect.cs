@@ -52,6 +52,11 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the link id of this effect, if it is a linked effect. There is no guarantees about this identifier other than it is unique and the same for all effects linked to it.
+    /// </summary>
+    public string LinkId => NWScript.GetEffectLinkId(this);
+
+    /// <summary>
     /// Gets or sets if this effect should ignore immunities.
     /// </summary>
     public bool IgnoreImmunity

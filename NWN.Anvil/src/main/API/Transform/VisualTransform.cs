@@ -107,6 +107,14 @@ namespace Anvil.API
       }
     }
 
+    /// <summary>
+    /// Immediately unsets any transforms.
+    /// </summary>
+    public void Clear()
+    {
+      NWScript.ClearObjectVisualTransform(gameObject, (int)scope);
+    }
+
     private float GetValue(VisualTransformProperty property)
     {
       if (activeLerpSettings != null)

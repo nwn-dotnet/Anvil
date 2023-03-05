@@ -76,14 +76,27 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Sets camera settings that override any client configuration settings.
+    /// </summary>
+    public CameraFlag CameraFlags
+    {
+      set => NWScript.SetCameraFlags(ControlledCreature, (int)value);
+    }
+
+    /// <summary>
     /// Gets the public part of the CD key that the player used when logging in.
     /// </summary>
     public string CDKey => NWScript.GetPCPublicCDKey(ControlledCreature, true.ToInt());
 
     /// <summary>
-    /// Gets the player's client version (Major + Minor).
+    /// Gets the player's client version (Major + Minor + Build).
     /// </summary>
-    public Version ClientVersion => new Version(NWScript.GetPlayerBuildVersionMajor(ControlledCreature), NWScript.GetPlayerBuildVersionMinor(ControlledCreature));
+    public Version ClientVersion => new Version(NWScript.GetPlayerBuildVersionMajor(ControlledCreature), NWScript.GetPlayerBuildVersionMinor(ControlledCreature), NWScript.GetPlayerBuildVersionPostfix(ControlledCreature));
+
+    /// <summary>
+    /// Gets the player's client version, as a Sha1 commit hash.
+    /// </summary>
+    public string ClientVersionCommitSha1 => NWScript.GetPlayerBuildVersionCommitSha1(ControlledCreature);
 
     /// <summary>
     /// Gets the creature this player is currently controlling.<br/>
@@ -525,6 +538,16 @@ namespace Anvil.API
       Vector vTargetPosition = new Vector();
       message.SendServerToPlayerGameObjUpdateVisEffect(Player, (ushort)visualEffect, target, NwModule.Instance,
         0, 0, vTargetPosition, 0.0f);
+    }
+
+    /// <summary>
+    /// Attaches this player's camera to the specified game object. The object must be in the same area, and within visible distance.
+    /// </summary>
+    /// <param name="target">The target object.</param>
+    /// <param name="findCleanView">If true, the client will attempt to find a camera position where the target is in view.</param>
+    public void AttachCamera(NwGameObject target, bool findCleanView = false)
+    {
+      NWScript.AttachCamera(ControlledCreature, target, findCleanView.ToInt());
     }
 
     /// <summary>
@@ -1379,6 +1402,15 @@ namespace Anvil.API
 
       await creature.WaitForObjectContext();
       NWScript.SetCameraFacing(direction, distance, pitch, (int)transitionType);
+    }
+
+    /// <summary>
+    /// Sets camera limits that override any client configuration.<br/>
+    /// A value of -1 means to use the client limits.
+    /// </summary>
+    public void SetCameraLimits(float minPitch = -1.0f, float maxPitch = -1.0f, float minDist = -1.0f, float maxDist = -1.0f)
+    {
+      NWScript.SetCameraLimits(ControlledCreature, minPitch, maxPitch, minDist, maxDist);
     }
 
     /// <summary>

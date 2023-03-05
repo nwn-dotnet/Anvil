@@ -517,6 +517,14 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Creates an effect that pacifies a creature, making them unable to do attacks.
+    /// </summary>
+    public static Effect Pacified()
+    {
+      return NWScript.EffectPacified()!;
+    }
+
+    /// <summary>
     /// Creates a paralyze effect.
     /// </summary>
     /// <remarks>

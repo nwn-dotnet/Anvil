@@ -220,12 +220,28 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the distance that this object will become visible to clients (default 45.0).<br/>
+    /// This is still subject to other limitations, such as perception ranges for creatures.
+    /// </summary>
+    public float VisibleDistance
+    {
+      get => NWScript.GetObjectVisibleDistance(this);
+      set => NWScript.SetObjectVisibleDistance(this, value);
+    }
+
+    /// <summary>
     /// Gets the base visual transform for this object.<br/>
     /// Use <see cref="GetVisualTransform"/> to get the visual transform for other scopes for this object.
     /// </summary>
-    public VisualTransform VisualTransform
+    public VisualTransform VisualTransform => new VisualTransform(this, ObjectVisualTransformDataScope.Base);
+
+    /// <summary>
+    /// Gets or sets flags for controlling Ui discovery of this object.
+    /// </summary>
+    public ObjectUiDiscovery UiDiscoveryFlags
     {
-      get => new VisualTransform(this, ObjectVisualTransformDataScope.Base);
+      get => (ObjectUiDiscovery)NWScript.GetObjectUiDiscoveryMask(this);
+      set => NWScript.SetObjectUiDiscoveryMask(this, (int)value);
     }
 
     internal override CNWSScriptVarTable ScriptVarTable => GameObject.m_ScriptVars;
@@ -564,6 +580,26 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Replaces the specified animation with an override.<br/>
+    /// Use <see cref="ClearObjectAnimationOverride"/> to clear the override.
+    /// </summary>
+    /// <param name="anim">The animation to replace.</param>
+    /// <param name="newAnim">The replacement animation.</param>
+    public void ReplaceObjectAnimation(string anim, string newAnim)
+    {
+      NWScript.ReplaceObjectAnimation(this, anim, newAnim);
+    }
+
+    /// <summary>
+    /// Clears the specified animation override, restoring the original.
+    /// </summary>
+    /// <param name="anim">The name of the original animation to clear.</param>
+    public void ClearObjectAnimationOverride(string anim)
+    {
+      NWScript.ReplaceObjectAnimation(this, anim);
+    }
+
+    /// <summary>
     /// Replaces the specified texture with a new texture on this object only.
     /// </summary>
     /// <param name="texture">The texture to be replaced.</param>
@@ -711,6 +747,16 @@ namespace Anvil.API
     public void SetMaterialShaderUniform(string material, string param, float value)
     {
       NWScript.SetMaterialShaderUniformVec4(this, material, param, value);
+    }
+
+    /// <summary>
+    /// Sets a text override for the hover/tab-highlight text of this object.
+    /// </summary>
+    /// <param name="mode">How the text should be applied.</param>
+    /// <param name="text">The text override.</param>
+    public void SetTextBubbleOverride(ObjectUiTextBubbleOverride mode, string text)
+    {
+      NWScript.SetObjectTextBubbleOverride(this, (int)mode, text);
     }
 
     internal abstract void RemoveFromArea();

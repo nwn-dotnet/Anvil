@@ -4,6 +4,7 @@ namespace Anvil.API
 {
   public enum ObjectVisualTransformDataScope
   {
+    AllScopes = -1,
     Base = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_BASE,
     CreatureHead = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_CREATURE_HEAD,
     CreatureTail = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_CREATURE_TAIL,
