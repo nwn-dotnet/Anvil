@@ -1479,6 +1479,45 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Sets a global shader uniform for this player.<br/>
+    /// These uniforms are not used by the base game and are reserved for module-specific scripting.<br/>
+    /// You need to add custom shaders that will make use of them.<br/>
+    /// In multiplayer, these need to be reapplied when a player rejoins.
+    /// </summary>
+    /// <param name="uniform">The uniform to set.</param>
+    /// <param name="value">The value to set for the uniform.</param>
+    public void SetShaderUniform(ShaderUniform uniform, float value)
+    {
+      NWScript.SetShaderUniformFloat(ControlledCreature, (int)uniform, value);
+    }
+
+    /// <summary>
+    /// Sets a global shader uniform for this player.<br/>
+    /// These uniforms are not used by the base game and are reserved for module-specific scripting.<br/>
+    /// You need to add custom shaders that will make use of them.<br/>
+    /// In multiplayer, these need to be reapplied when a player rejoins.
+    /// </summary>
+    /// <param name="uniform">The uniform to set.</param>
+    /// <param name="value">The value to set for the uniform.</param>
+    public void SetShaderUniform(ShaderUniform uniform, int value)
+    {
+      NWScript.SetShaderUniformInt(ControlledCreature, (int)uniform, value);
+    }
+
+    /// <summary>
+    /// Sets a global shader uniform for this player.<br/>
+    /// These uniforms are not used by the base game and are reserved for module-specific scripting.<br/>
+    /// You need to add custom shaders that will make use of them.<br/>
+    /// In multiplayer, these need to be reapplied when a player rejoins.
+    /// </summary>
+    /// <param name="uniform">The uniform to set.</param>
+    /// <param name="value">The value to set for the uniform.</param>
+    public void SetShaderUniform(ShaderUniform uniform, Vector4 value)
+    {
+      NWScript.SetShaderUniformVec(ControlledCreature, (int)uniform, value.X, value.Y, value.Z, value.W);
+    }
+
+    /// <summary>
     /// Plays the specified VFX at the target position in the current area for this player only.
     /// </summary>
     /// <param name="effectType">The effect to play.</param>
