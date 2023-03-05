@@ -13,6 +13,7 @@ using NLog;
 using NWN.Core;
 using NWN.Native.API;
 using Vector = NWN.Native.API.Vector;
+using Vector4 = System.Numerics.Vector4;
 
 namespace Anvil.API
 {
@@ -737,16 +738,13 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br/>
-    /// If the player is already in targeting mode, the existing handler will be cleared. See <see cref="TryEnterTargetMode"/> to handle this.
+    /// Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.
     /// </summary>
     /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
-    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
-    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
-    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
-    public void EnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    /// <param name="settings">Display and behaviour options for the target mode.</param>
+    public void EnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, TargetModeSettings? settings = null)
     {
-      CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
+      CursorTargetService.EnterTargetMode(this, handler, settings);
     }
 
     public bool Equals(NwPlayer? other)
@@ -1518,6 +1516,21 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Sets a spell targeting data override for this player.
+    /// </summary>
+    /// <param name="data">The override to apply.</param>
+    /// <exception cref="ArgumentNullException">Thrown if data.Spell is not specified.</exception>
+    public void SetSpellTargetingData(TargetingData data)
+    {
+      if (data.Spell == null)
+      {
+        throw new ArgumentNullException(nameof(data), "data.Spell must not be null.");
+      }
+
+      NWScript.SetSpellTargetingData(ControlledCreature, data.Spell.Id, (int)data.Shape, data.Size.X, data.Size.Y, (int)data.Flags);
+    }
+
+    /// <summary>
     /// Plays the specified VFX at the target position in the current area for this player only.
     /// </summary>
     /// <param name="effectType">The effect to play.</param>
@@ -1592,18 +1605,16 @@ namespace Anvil.API
     /// If the player is already in targeting mode, the existing handler will not be cleared.
     /// </summary>
     /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
-    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
-    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
-    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
+    /// <param name="settings">Display and behaviour options for the target mode.</param>
     /// <returns>True if the player successfully entered target mode, otherwise false.</returns>
-    public bool TryEnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    public bool TryEnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, TargetModeSettings? settings = null)
     {
       if (IsInCursorTargetMode)
       {
         return false;
       }
 
-      CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
+      CursorTargetService.EnterTargetMode(this, handler, settings);
       return true;
     }
 
