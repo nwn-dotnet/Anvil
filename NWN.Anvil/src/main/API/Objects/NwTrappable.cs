@@ -7,6 +7,7 @@ namespace Anvil.API
   /// <summary>
   /// A trappable game object/entity.
   /// </summary>
+  [ObjectFilter(ObjectTypes.Trigger | ObjectTypes.Door | ObjectTypes.Placeable)]
   public abstract class NwTrappable : NwGameObject
   {
     internal NwTrappable(CNWSObject gameObject) : base(gameObject) {}

@@ -8,14 +8,14 @@ using Anvil.Services;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
-using ObjectType = NWN.Native.API.ObjectType;
 
 namespace Anvil.API
 {
   /// <summary>
   /// A monster, NPC, player character or DM avatar
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
+  [ObjectType(ObjectTypes.Creature)]
+  [ObjectFilter(ObjectTypes.Creature)]
   public sealed partial class NwCreature : NwGameObject
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

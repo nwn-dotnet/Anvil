@@ -11,7 +11,7 @@ namespace Anvil.API
   /// <summary>
   /// An environment/game level.
   /// </summary>
-  [NativeObjectInfo(0, ObjectType.Area)]
+  [ObjectType(0)]
   public sealed partial class NwArea : NwObject
   {
     private readonly CNWSArea area;
@@ -557,7 +557,9 @@ namespace Anvil.API
     /// <returns>An enumeration containing all objects of the specified type.</returns>
     public IEnumerable<T> FindObjectsOfTypeInArea<T>() where T : NwObject
     {
-      for (uint currentObj = NWScript.GetFirstObjectInArea(this); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(this))
+      int typeFilter = (int)GetObjectFilter<T>();
+
+      for (uint currentObj = NWScript.GetFirstObjectInArea(this, typeFilter); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(this, typeFilter))
       {
         T? obj = currentObj.ToNwObjectSafe<T>();
         if (obj != null)

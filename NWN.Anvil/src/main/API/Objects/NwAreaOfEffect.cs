@@ -8,7 +8,8 @@ namespace Anvil.API
   /// <summary>
   /// The area/region of an ongoing spell effect or ability.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.AreaOfEffect, ObjectType.AreaOfEffect)]
+  [ObjectType(ObjectTypes.AreaOfEffect)]
+  [ObjectFilter(ObjectTypes.AreaOfEffect)]
   public sealed partial class NwAreaOfEffect : NwGameObject
   {
     private readonly CNWSAreaOfEffectObject areaOfEffect;
@@ -64,8 +65,8 @@ namespace Anvil.API
     /// <returns>An enumerable containing all objects currently in the effect area.</returns>
     public IEnumerable<T> GetObjectsInEffectArea<T>() where T : NwGameObject
     {
-      int objType = (int)GetObjectType<T>();
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int typeFilter = (int)GetObjectFilter<T>();
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, typeFilter); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, typeFilter))
       {
         T? gameObject = obj.ToNwObjectSafe<T>();
         if (gameObject != null)

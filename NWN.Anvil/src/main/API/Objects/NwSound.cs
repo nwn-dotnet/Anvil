@@ -7,7 +7,8 @@ namespace Anvil.API
   /// <summary>
   /// A configurable sound object in an area.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.All, ObjectType.Sound)]
+  [ObjectType(ObjectTypes.All)]
+  [ObjectFilter(ObjectTypes.All)]
   public sealed class NwSound : NwGameObject
   {
     private readonly CNWSSoundObject soundObject;

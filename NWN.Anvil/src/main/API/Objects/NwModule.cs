@@ -11,7 +11,7 @@ namespace Anvil.API
   /// <summary>
   /// The root container object for all areas and module entities.
   /// </summary>
-  [NativeObjectInfo(0, ObjectType.Module)]
+  [ObjectType(0)]
   public sealed partial class NwModule : NwObject
   {
     public static readonly NwModule Instance = new NwModule(LowLevel.ServerExoApp.GetModule());

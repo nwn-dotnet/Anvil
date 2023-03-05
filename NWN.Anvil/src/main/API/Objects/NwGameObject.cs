@@ -12,6 +12,7 @@ namespace Anvil.API
   /// <summary>
   /// Base class for all entities in areas.
   /// </summary>
+  [ObjectFilter(ObjectTypes.All)]
   public abstract partial class NwGameObject : NwObject
   {
     private readonly CNWSObject gameObject;
@@ -445,11 +446,11 @@ namespace Anvil.API
     /// <typeparam name="T">The type of object to search.</typeparam>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int)GetObjectType<T>();
+      int typeFilter = (int)GetObjectFilter<T>();
       int i;
       uint current;
 
-      for (i = 1, current = NWScript.GetNearestObject(objType, this, i); current != Invalid; i++, current = NWScript.GetNearestObject(objType, this, i))
+      for (i = 1, current = NWScript.GetNearestObject(typeFilter, this, i); current != Invalid; i++, current = NWScript.GetNearestObject(typeFilter, this, i))
       {
         T? obj = current.ToNwObjectSafe<T>();
         if (obj != null)

@@ -14,6 +14,7 @@ namespace Anvil.API
   /// Base class for all world entities (game objects) and containers (modules, areas).
   /// </summary>
   [DebuggerDisplay("{" + nameof(Name) + "}")]
+  [ObjectFilter(ObjectTypes.All)]
   public abstract partial class NwObject : IEquatable<NwObject>
   {
     internal const uint Invalid = NWScript.OBJECT_INVALID;

@@ -219,10 +219,10 @@ namespace Anvil.API
     /// </summary>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int)NwObject.GetObjectType<T>();
+      int typeFilter = (int)NwObject.GetObjectFilter<T>();
       int i;
       uint next;
-      for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.Invalid; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
+      for (i = 1, next = NWScript.GetNearestObjectToLocation(typeFilter, this, i); next != NwObject.Invalid; i++, next = NWScript.GetNearestObjectToLocation(typeFilter, this, i))
       {
         T? obj = next.ToNwObjectSafe<T>();
         if (obj != null)
@@ -257,7 +257,7 @@ namespace Anvil.API
     /// </summary>
     public IEnumerable<T> GetObjectsInShapeByType<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
-      int typeFilter = (int)NwObject.GetObjectType<T>();
+      int typeFilter = (int)NwObject.GetObjectFilter<T>();
       int nShape = (int)shape;
 
       for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);

@@ -8,7 +8,8 @@ namespace Anvil.API
   /// <summary>
   /// A trigger volume entity.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Trigger, ObjectType.Trigger)]
+  [ObjectType(ObjectTypes.Trigger)]
+  [ObjectFilter(ObjectTypes.Trigger)]
   public sealed partial class NwTrigger : NwTrappable
   {
     private readonly CNWSTrigger trigger;
@@ -106,8 +107,8 @@ namespace Anvil.API
     /// <returns>An enumerable containing all objects currently in the trigger.</returns>
     public IEnumerable<T> GetObjectsInTrigger<T>() where T : NwGameObject
     {
-      int objType = (int)GetObjectType<T>();
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int typeFilter = (int)GetObjectFilter<T>();
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, typeFilter); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, typeFilter))
       {
         yield return obj.ToNwObject<T>()!;
       }

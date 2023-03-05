@@ -9,7 +9,8 @@ namespace Anvil.API
   /// <summary>
   /// A static world object that is optionally interactable or destroyable.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Placeable, ObjectType.Placeable)]
+  [ObjectType(ObjectTypes.Placeable)]
+  [ObjectFilter(ObjectTypes.Placeable)]
   public sealed partial class NwPlaceable : NwStationary
   {
     private readonly CNWSPlaceable placeable;
