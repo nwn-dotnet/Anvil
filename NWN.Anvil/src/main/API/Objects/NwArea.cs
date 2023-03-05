@@ -929,9 +929,9 @@ namespace Anvil.API
     /// <summary>
     /// Sets the fog color for this area, at the specified time of day.
     /// </summary>
-    public void SetFogColor(FogType fogType, FogColor fogColor)
+    public void SetFogColor(FogType fogType, FogColor fogColor, TimeSpan fadeTime)
     {
-      NWScript.SetFogColor((int)fogType, (int)fogColor, this);
+      NWScript.SetFogColor((int)fogType, (int)fogColor, this, (float)fadeTime.TotalSeconds);
     }
 
     /// <summary>
