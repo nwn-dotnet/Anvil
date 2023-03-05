@@ -52,6 +52,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets if this effect should ignore immunities.
+    /// </summary>
+    public bool IgnoreImmunity
+    {
+      get => Effect.m_bIgnoreImmunity.ToBool();
+      set => Effect.m_bIgnoreImmunity = value.ToInt();
+    }
+
+    /// <summary>
     /// Gets the total duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
     /// </summary>
     public float TotalDuration => NWScript.GetEffectDuration(this);
