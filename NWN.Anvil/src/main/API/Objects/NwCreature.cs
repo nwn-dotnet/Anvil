@@ -1765,6 +1765,19 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the number of remaining uses for a specific spell for this creature.
+    /// </summary>
+    /// <param name="nwClass">The spell caster class.</param>
+    /// <param name="spell">The spell to check for remaining uses.</param>
+    /// <param name="metaMagic">The metamagic for the spell.</param>
+    /// <param name="domain">The domain level, if it is a domain level spell.</param>
+    /// <returns>The number of spell uses remaining.</returns>
+    public int GetSpellUsesLeft(NwClass nwClass, NwSpell spell, MetaMagic metaMagic = MetaMagic.None, int domain = 0)
+    {
+      return NWScript.GetSpellUsesLeft(this, nwClass.Id, spell.Id, (int)metaMagic, domain);
+    }
+
+    /// <summary>
     /// Gets whether the given area tile is visible on the map for this creature.<br/>
     /// Tile exploration also controls object visibility in areas and the fog of war for interior and underground areas.
     /// </summary>
