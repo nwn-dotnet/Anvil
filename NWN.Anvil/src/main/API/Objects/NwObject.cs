@@ -295,17 +295,23 @@ namespace Anvil.API
     /// </summary>
     /// <param name="eventType">The event to be assigned.</param>
     /// <param name="script">The new script to assign to this event.</param>
-    /// <exception cref="InvalidOperationException">Thrown if this event is locked as a service has subscribed to this event. See <see cref="IsEventLocked"/> to determine if an event script can be changed.</exception>
-    public void SetEventScript(EventScriptType eventType, string script)
+    /// <exception cref="InvalidOperationException">Thrown if setting the event script failed. This can be from an invalid event script type, or this event is locked as a service has subscribed to this event. See <see cref="IsEventLocked"/> to determine if an event script can be changed.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified script name is invalid.</exception>
+    public void SetEventScript(EventScriptType eventType, string? script)
     {
       if (IsEventLocked(eventType))
       {
         throw new InvalidOperationException("The specified event has already been subscribed by an event handler and cannot be modified.");
       }
 
-      if (script.IsValidScriptName())
+      if (!script.IsValidScriptName(true))
       {
-        NWScript.SetEventScript(this, (int)eventType, script);
+        throw new ArgumentOutOfRangeException(nameof(script), $"The specified script name '{script}' is invalid.");
+      }
+
+      if (!NWScript.SetEventScript(this, (int)eventType, script!).ToBool())
+      {
+        throw new InvalidOperationException("The event script failed to apply. Are you using the correct script type?");
       }
     }
 

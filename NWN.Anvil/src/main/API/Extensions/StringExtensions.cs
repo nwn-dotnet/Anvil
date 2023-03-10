@@ -33,15 +33,27 @@ namespace Anvil.API
       return lowerName is ScriptConstants.GameEventScriptName or ScriptConstants.NWNXEventScriptName;
     }
 
-    public static bool IsValidScriptName(this string scriptName)
+    public static bool IsValidScriptName(this string? scriptName, bool allowEmpty)
     {
       if (string.IsNullOrEmpty(scriptName))
+      {
+        return allowEmpty;
+      }
+
+      if (scriptName.Length > 16)
       {
         return false;
       }
 
-      string lowerName = scriptName.ToLower();
-      return lowerName != ScriptConstants.GameEventScriptName && lowerName != ScriptConstants.NWNXEventScriptName;
+      foreach (char c in scriptName)
+      {
+        if (!char.IsLetterOrDigit(c) && c != '_' && c != '-')
+        {
+          return false;
+        }
+      }
+
+      return !scriptName.Equals(ScriptConstants.GameEventScriptName, StringComparison.OrdinalIgnoreCase) && !scriptName.Equals(ScriptConstants.NWNXEventScriptName, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <inheritdoc cref="ParseFloat(string,float)"/>
