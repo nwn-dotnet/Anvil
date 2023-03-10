@@ -64,7 +64,15 @@ namespace Anvil.Tests.API
       createdTestObjects.Add(creature);
 
       creature.SetEventScript(EventScriptType.CreatureOnSpawnIn, script);
-      Assert.That(creature.GetEventScript(EventScriptType.CreatureOnSpawnIn), Is.EqualTo(script));
+
+      if (script == null)
+      {
+        Assert.That(creature.GetEventScript(EventScriptType.CreatureOnSpawnIn), Is.EqualTo(string.Empty));
+      }
+      else
+      {
+        Assert.That(creature.GetEventScript(EventScriptType.CreatureOnSpawnIn), Is.EqualTo(script));
+      }
     }
 
     [Test(Description = "Tests if assigning an invalid event script correctly throws an exception")]
