@@ -64,7 +64,7 @@ namespace Anvil.Tests.API
 
     [Test(Description = "Tests if assigning an invalid event script correctly throws an exception")]
     [TestCase("reallylongscriptname")]
-    [TestCase("@&^name with invalid chars")]
+    [TestCase("@&^/*7")]
     [TestCase(ScriptConstants.GameEventScriptName)]
     [TestCase(ScriptConstants.NWNXEventScriptName)]
     public void SetInvalidEventScriptCorrectlyThrowsException(string? script)
