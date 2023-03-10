@@ -40,6 +40,11 @@ namespace Anvil.API
         return allowEmpty;
       }
 
+      if (scriptName.Length > 16)
+      {
+        return false;
+      }
+
       foreach (char c in scriptName)
       {
         if (!char.IsLetterOrDigit(c) && c != '_' && c != '-')
