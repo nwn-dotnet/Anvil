@@ -69,7 +69,7 @@ namespace Anvil.Tests.API
     [TestCase(ScriptConstants.NWNXEventScriptName)]
     public void SetInvalidEventScriptCorrectlyThrowsException(string? script)
     {
-      Assert.Throws<InvalidOperationException>(() =>
+      Assert.Throws<ArgumentOutOfRangeException>(() =>
       {
         NwModule.Instance.SetEventScript(EventScriptType.ModuleOnModuleStart, script);
       });
@@ -82,6 +82,15 @@ namespace Anvil.Tests.API
       Assert.Throws<InvalidOperationException>(() =>
       {
         NwModule.Instance.SetEventScript(EventScriptType.ModuleOnModuleStart, null);
+      });
+    }
+
+    [Test(Description = "Tests if attempting to set an invalid event type correctly throws an exception.")]
+    public void SetInvalidEventScriptCorrectlyThrowsException()
+    {
+      Assert.Throws<InvalidOperationException>(() =>
+      {
+        NwModule.Instance.SetEventScript(EventScriptType.CreatureOnSpawnIn, null);
       });
     }
 
