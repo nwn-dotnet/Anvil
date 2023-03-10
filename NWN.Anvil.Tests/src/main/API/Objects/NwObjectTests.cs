@@ -58,8 +58,13 @@ namespace Anvil.Tests.API
     [TestCase(null)]
     public void SetValidEventScriptCorrectlyUpdatesEventScript(string? script)
     {
-      NwModule.Instance.SetEventScript(EventScriptType.ModuleOnModuleStart, script);
-      Assert.That(NwModule.Instance.GetEventScript(EventScriptType.ModuleOnModuleStart), Is.EqualTo(script));
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation)!;
+      Assert.That(creature, Is.Not.Null);
+
+      createdTestObjects.Add(creature);
+
+      creature.SetEventScript(EventScriptType.CreatureOnSpawnIn, script);
+      Assert.That(creature.GetEventScript(EventScriptType.CreatureOnSpawnIn), Is.EqualTo(script));
     }
 
     [Test(Description = "Tests if assigning an invalid event script correctly throws an exception")]
@@ -69,28 +74,43 @@ namespace Anvil.Tests.API
     [TestCase(ScriptConstants.NWNXEventScriptName)]
     public void SetInvalidEventScriptCorrectlyThrowsException(string? script)
     {
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation)!;
+      Assert.That(creature, Is.Not.Null);
+
+      createdTestObjects.Add(creature);
+
       Assert.Throws<ArgumentOutOfRangeException>(() =>
       {
-        NwModule.Instance.SetEventScript(EventScriptType.ModuleOnModuleStart, script);
+        creature.SetEventScript(EventScriptType.CreatureOnSpawnIn, script);
       });
     }
 
     [Test(Description = "Tests if attempting to set an event script after subscribing correctly throws an exception.")]
     public void SetEventScriptAfterSubscribeCorrectlyThrowsException()
     {
-      NwModule.Instance.OnModuleStart += _ => {};
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation)!;
+      Assert.That(creature, Is.Not.Null);
+
+      createdTestObjects.Add(creature);
+      creature.OnSpawn += _ => {};
+
       Assert.Throws<InvalidOperationException>(() =>
       {
-        NwModule.Instance.SetEventScript(EventScriptType.ModuleOnModuleStart, null);
+        creature.SetEventScript(EventScriptType.CreatureOnSpawnIn, null);
       });
     }
 
     [Test(Description = "Tests if attempting to set an invalid event type correctly throws an exception.")]
     public void SetInvalidEventScriptCorrectlyThrowsException()
     {
+      NwCreature creature = NwCreature.Create(StandardResRef.Creature.nw_bandit001, NwModule.Instance.StartingLocation)!;
+      Assert.That(creature, Is.Not.Null);
+
+      createdTestObjects.Add(creature);
+
       Assert.Throws<InvalidOperationException>(() =>
       {
-        NwModule.Instance.SetEventScript(EventScriptType.CreatureOnSpawnIn, null);
+        creature.SetEventScript(EventScriptType.ModuleOnClientEnter, null);
       });
     }
 
