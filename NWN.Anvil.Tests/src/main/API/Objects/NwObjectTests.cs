@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Anvil.API;
@@ -49,6 +50,39 @@ namespace Anvil.Tests.API
 
       await NwTask.WaitUntil(() => actionExecuted);
       Assert.That(actionExecuted, Is.EqualTo(true));
+    }
+
+    [Test(Description = "Tests if assigning a valid event script correctly updates the event script.")]
+    [TestCase("my_event")]
+    [TestCase("")]
+    [TestCase(null)]
+    public void SetValidEventScriptCorrectlyUpdatesEventScript(string? script)
+    {
+      NwModule.Instance.SetEventScript(EventScriptType.ModuleOnModuleStart, script);
+      Assert.That(NwModule.Instance.GetEventScript(EventScriptType.ModuleOnModuleStart), Is.EqualTo(script));
+    }
+
+    [Test(Description = "Tests if assigning an invalid event script correctly throws an exception")]
+    [TestCase("reallylongscriptname")]
+    [TestCase("@&^name with invalid chars")]
+    [TestCase(ScriptConstants.GameEventScriptName)]
+    [TestCase(ScriptConstants.NWNXEventScriptName)]
+    public void SetInvalidEventScriptCorrectlyThrowsException(string? script)
+    {
+      Assert.Throws<InvalidOperationException>(() =>
+      {
+        NwModule.Instance.SetEventScript(EventScriptType.ModuleOnModuleStart, script);
+      });
+    }
+
+    [Test(Description = "Tests if attempting to set an event script after subscribing correctly throws an exception.")]
+    public void SetEventScriptAfterSubscribeCorrectlyThrowsException()
+    {
+      NwModule.Instance.OnModuleStart += _ => {};
+      Assert.Throws<InvalidOperationException>(() =>
+      {
+        NwModule.Instance.SetEventScript(EventScriptType.ModuleOnModuleStart, null);
+      });
     }
 
     [TearDown]
