@@ -42,7 +42,7 @@ namespace Anvil.Services
 
     private void RegisterMethod(object service, MethodInfo method, string scriptName)
     {
-      if (!scriptName.IsValidScriptName())
+      if (!scriptName.IsValidScriptName(false))
       {
         Log.Warn("Script Handler {ScriptName} - name exceeds character limit ({MaxScriptSize}) and will be ignored\n" +
           "Method: {Method}",

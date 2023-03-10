@@ -296,16 +296,16 @@ namespace Anvil.API
     /// <param name="eventType">The event to be assigned.</param>
     /// <param name="script">The new script to assign to this event.</param>
     /// <exception cref="InvalidOperationException">Thrown if this event is locked as a service has subscribed to this event. See <see cref="IsEventLocked"/> to determine if an event script can be changed.</exception>
-    public void SetEventScript(EventScriptType eventType, string script)
+    public void SetEventScript(EventScriptType eventType, string? script)
     {
       if (IsEventLocked(eventType))
       {
         throw new InvalidOperationException("The specified event has already been subscribed by an event handler and cannot be modified.");
       }
 
-      if (script.IsValidScriptName())
+      if (script.IsValidScriptName(true))
       {
-        NWScript.SetEventScript(this, (int)eventType, script);
+        NWScript.SetEventScript(this, (int)eventType, script!);
       }
     }
 

@@ -33,11 +33,11 @@ namespace Anvil.API
       return lowerName is ScriptConstants.GameEventScriptName or ScriptConstants.NWNXEventScriptName;
     }
 
-    public static bool IsValidScriptName(this string scriptName)
+    public static bool IsValidScriptName(this string? scriptName, bool allowEmpty)
     {
       if (string.IsNullOrEmpty(scriptName))
       {
-        return false;
+        return allowEmpty;
       }
 
       string lowerName = scriptName.ToLower();
