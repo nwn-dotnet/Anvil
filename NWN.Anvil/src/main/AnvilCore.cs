@@ -159,7 +159,7 @@ namespace Anvil
     private void OnAssertFail(string message, string nativeStackTrace)
     {
       StackTrace stackTrace = new StackTrace(true);
-      Log.Error($"An assertion failure occurred in native code.\n" +
+      Log.Error("An assertion failure occurred in native code.\n" +
         $"{message}{nativeStackTrace}\n" +
         $"{stackTrace}");
     }
