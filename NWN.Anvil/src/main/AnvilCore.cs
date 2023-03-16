@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -63,6 +64,7 @@ namespace Anvil
         RunScript = instance.VirtualMachineFunctionHandler.OnRunScript,
         Closure = instance.VirtualMachineFunctionHandler.OnClosure,
         MainLoop = instance.VirtualMachineFunctionHandler.OnLoop,
+        AssertFail = instance.OnAssertFail,
       };
 
       return NWNCore.Init(arg, argLength, instance.VirtualMachineFunctionHandler, eventHandles);
@@ -152,6 +154,14 @@ namespace Anvil
           Shutdown();
           break;
       }
+    }
+
+    private void OnAssertFail(string message, string nativeStackTrace)
+    {
+      StackTrace stackTrace = new StackTrace(true);
+      Log.Error($"An assertion failure occurred in native code.\n" +
+        $"{message}{nativeStackTrace}\n" +
+        $"{stackTrace}");
     }
 
     private void PrelinkNative()
