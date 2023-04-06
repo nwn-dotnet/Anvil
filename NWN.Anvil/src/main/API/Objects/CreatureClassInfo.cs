@@ -33,7 +33,9 @@ namespace Anvil.API
     /// Gets a mutable list of known spells.<br/>
     /// The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc.
     /// </summary>
-    /// <remarks>When used on players, you also need to update <see cref="CreatureLevelInfo.AddedKnownSpells"/> and <see cref="CreatureLevelInfo.RemovedKnownSpells"/> on the relevant level taken in this class, otherwise players will fail ELC checks.</remarks>
+    /// <remarks>
+    /// When used on players, you also need to update <see cref="CreatureLevelInfo.AddedKnownSpells"/> and <see cref="CreatureLevelInfo.RemovedKnownSpells"/> on the relevant level taken in this class, otherwise players will fail ELC checks.
+    /// </remarks>
     public IReadOnlyList<IList<NwSpell>> KnownSpells
     {
       get
