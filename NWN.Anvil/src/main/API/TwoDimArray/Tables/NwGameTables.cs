@@ -18,9 +18,14 @@ namespace Anvil.API
     public static TwoDimArray<BodyBagTableEntry> BodyBagTable { get; private set; } = null!;
 
     /// <summary>
-    /// Gets the damage level table (damagelevels.2da
+    /// Gets the damage level table (damagelevels.2da)
     /// </summary>
     public static TwoDimArray<DamageLevelEntry> DamageLevelTable { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the effect icon table (effecticons.2da)
+    /// </summary>
+    public static TwoDimArray<EffectIconTableEntry> EffectIconTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the environment preset table (environment.2da)
