@@ -21,9 +21,9 @@ namespace Anvil.API.Events
       public NwItem? DisturbedItem { get; } = NWScript.GetInventoryDisturbItem().ToNwObject<NwItem>();
 
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> that disturbed <see cref="NwPlaceable"/>.
+      /// Gets the object that disturbed <see cref="NwPlaceable"/>.
       /// </summary>
-      public NwCreature? Disturber { get; } = NWScript.GetLastDisturbed().ToNwObject<NwCreature>();
+      public NwGameObject? Disturber { get; } = NWScript.GetLastDisturbed().ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the <see cref="InventoryDisturbType"/>.
