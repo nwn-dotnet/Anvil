@@ -101,6 +101,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a3987b331c13774ed0c81a830b65ca248"><td class="memItemLeft" align="right" valign="top">IReadOnlyList&lt; IList&lt; <a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> &gt; &gt;?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CreatureLevelInfo.html#a3987b331c13774ed0c81a830b65ca248">AddedKnownSpells</a><code> [get]</code></td></tr>
+<tr class="memdesc:a3987b331c13774ed0c81a830b65ca248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a mutable list of known spells added at this level.<br  />
+ The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc.  <a href="classAnvil_1_1API_1_1CreatureLevelInfo.html#a3987b331c13774ed0c81a830b65ca248">More...</a><br /></td></tr>
+<tr class="separator:a3987b331c13774ed0c81a830b65ca248"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9ccf1508d4c0340789c5490f48dee9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1CreatureClassInfo.html">CreatureClassInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CreatureLevelInfo.html#aa9ccf1508d4c0340789c5490f48dee9b">ClassInfo</a><code> [get]</code></td></tr>
 <tr class="memdesc:aa9ccf1508d4c0340789c5490f48dee9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the class chosen at this level.  <a href="classAnvil_1_1API_1_1CreatureLevelInfo.html#aa9ccf1508d4c0340789c5490f48dee9b">More...</a><br /></td></tr>
 <tr class="separator:aa9ccf1508d4c0340789c5490f48dee9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,6 +117,10 @@ Properties</h2></td></tr>
 <tr class="memitem:a26b14fb8c06fc9ea1313db4b1546812c"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CreatureLevelInfo.html#a26b14fb8c06fc9ea1313db4b1546812c">HitDie</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a26b14fb8c06fc9ea1313db4b1546812c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the hitpoints gained by this creature for this level.  <a href="classAnvil_1_1API_1_1CreatureLevelInfo.html#a26b14fb8c06fc9ea1313db4b1546812c">More...</a><br /></td></tr>
 <tr class="separator:a26b14fb8c06fc9ea1313db4b1546812c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeeaa262c53e1cbca99cf958c700bfa8"><td class="memItemLeft" align="right" valign="top">IReadOnlyList&lt; IList&lt; <a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CreatureLevelInfo.html#abeeaa262c53e1cbca99cf958c700bfa8">RemovedKnownSpells</a><code> [get]</code></td></tr>
+<tr class="memdesc:abeeaa262c53e1cbca99cf958c700bfa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a mutable list of known spells removed at this level.<br  />
+ The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc.  <a href="classAnvil_1_1API_1_1CreatureLevelInfo.html#abeeaa262c53e1cbca99cf958c700bfa8">More...</a><br /></td></tr>
+<tr class="separator:abeeaa262c53e1cbca99cf958c700bfa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa64d0b2e382c261379189e3f852af92e"><td class="memItemLeft" align="right" valign="top">ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1CreatureLevelInfo.html#aa64d0b2e382c261379189e3f852af92e">SkillPointsRemaining</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aa64d0b2e382c261379189e3f852af92e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the amount of skill points unspent at this level.  <a href="classAnvil_1_1API_1_1CreatureLevelInfo.html#aa64d0b2e382c261379189e3f852af92e">More...</a><br /></td></tr>
 <tr class="separator:aa64d0b2e382c261379189e3f852af92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,6 +207,31 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
+<a id="a3987b331c13774ed0c81a830b65ca248"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3987b331c13774ed0c81a830b65ca248">&#9670;&nbsp;</a></span>AddedKnownSpells</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IReadOnlyList&lt;IList&lt;<a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a>&gt; &gt;? Anvil.API.CreatureLevelInfo.AddedKnownSpells</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a mutable list of known spells added at this level.<br  />
+ The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc. </p>
+
+</div>
+</div>
 <a id="aa9ccf1508d4c0340789c5490f48dee9b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa9ccf1508d4c0340789c5490f48dee9b">&#9670;&nbsp;</a></span>ClassInfo</h2>
 
@@ -292,6 +325,31 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets or sets the hitpoints gained by this creature for this level. </p>
+
+</div>
+</div>
+<a id="abeeaa262c53e1cbca99cf958c700bfa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeeaa262c53e1cbca99cf958c700bfa8">&#9670;&nbsp;</a></span>RemovedKnownSpells</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IReadOnlyList&lt;IList&lt;<a class="el" href="classAnvil_1_1API_1_1NwSpell.html">NwSpell</a>&gt; &gt; Anvil.API.CreatureLevelInfo.RemovedKnownSpells</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a mutable list of known spells removed at this level.<br  />
+ The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc. </p>
 
 </div>
 </div>

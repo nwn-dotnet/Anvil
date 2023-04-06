@@ -44,6 +44,7 @@ var classAnvil_1_1API_1_1Effect =
     [ "Heal", "classAnvil_1_1API_1_1Effect.html#a7af0494a129c30a335bdacd2027e2bbc", null ],
     [ "HitPointChangeWhenDying", "classAnvil_1_1API_1_1Effect.html#ab65def05c007f053bfa5cf08ef61e641", null ],
     [ "Icon", "classAnvil_1_1API_1_1Effect.html#ad6295630623c412f40a6b74a594d5338", null ],
+    [ "Icon", "classAnvil_1_1API_1_1Effect.html#aab9439b6cc4b8e6353fda366ea660c87", null ],
     [ "Immunity", "classAnvil_1_1API_1_1Effect.html#afe6f89adee3ae07c8dc42d1646575950", null ],
     [ "Invisibility", "classAnvil_1_1API_1_1Effect.html#a1e96869c234f45e2ba7660ddeda9b5bf", null ],
     [ "Knockdown", "classAnvil_1_1API_1_1Effect.html#a44e5288ff16777f1f673d843389ed16d", null ],

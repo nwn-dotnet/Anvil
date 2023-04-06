@@ -148,8 +148,93 @@ static async Task&lt; Task&lt; TResult &gt; &gt;&#160;</td><td class="memItemRig
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Asynchronous tasks and helpers for running <a class="el" href="namespaceNWN.html">NWN</a> APIs in an async context. </p>
 <h2>Examples</h2>
-<p>@import NwTaskExamples.cs</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Example usages of all Async APIs.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> System;</div>
+<div class="line"><span class="keyword">using</span> System.Linq;</div>
+<div class="line"><span class="keyword">using</span> System.Threading;</div>
+<div class="line"><span class="keyword">using</span> System.Threading.Tasks;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1Services.html">Services</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span>NWN.Anvil.Samples</div>
+<div class="line">{</div>
+<div class="line">  [ServiceBinding(typeof(NwTaskExamples))]</div>
+<div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>NwTaskExamples</div>
+<div class="line">  {</div>
+<div class="line">    <span class="keyword">public</span> NwTaskExamples()</div>
+<div class="line">    {</div>
+<div class="line">      DoAsyncStuff();</div>
+<div class="line">      CancellationTokenExample();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> async <span class="keywordtype">void</span> DoAsyncStuff()</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// Do some heavy work on another thread using a standard task, then return to a safe script context.</span></div>
+<div class="line">      await Task.Run(() =&gt; Thread.Sleep(1000));</div>
+<div class="line">      await NwTask.SwitchToMainThread();</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Wait for a frame, or a certain amount of frames to pass.</span></div>
+<div class="line">      await NwTask.NextFrame();</div>
+<div class="line">      await NwTask.DelayFrame(100);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Wait for 30 seconds to pass. (DelayCommand replacement)</span></div>
+<div class="line">      await NwTask.Delay(TimeSpan.FromSeconds(30));</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Wait for a certain game period to pass.</span></div>
+<div class="line">      await NwTask.Delay(NwTimeSpan.FromRounds(2));</div>
+<div class="line">      await NwTask.Delay(NwTimeSpan.FromTurns(3));</div>
+<div class="line">      await NwTask.Delay(NwTimeSpan.FromHours(1));</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Wait for an expression to evaluate to true</span></div>
+<div class="line">      await NwTask.WaitUntil(() =&gt; NwModule.Instance.Players.Count() &gt; 5);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Wait for a value to change.</span></div>
+<div class="line">      await NwTask.WaitUntilValueChanged(() =&gt; NwModule.Instance.Players.Count());</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Start some tasks.</span></div>
+<div class="line">      Task task1 = Task.Run(() =&gt; <span class="keyword">true</span>); <span class="comment">// Executed in the thread pool, you cannot use NWN APIs here.</span></div>
+<div class="line"> </div>
+<div class="line">      Task task2 = Task.Run(async () =&gt;</div>
+<div class="line">      {</div>
+<div class="line">        <span class="comment">// Executed in the thread pool, you cannot use NWN APIs here.</span></div>
+<div class="line">        await Task.Delay(TimeSpan.FromSeconds(5));</div>
+<div class="line">        <span class="keywordflow">return</span> 20;</div>
+<div class="line">      });</div>
+<div class="line"> </div>
+<div class="line">      Task task3 = NwTask.Run(async () =&gt;</div>
+<div class="line">      {</div>
+<div class="line">        <span class="comment">// Executed in the server thread, you can use NWN APIs here.</span></div>
+<div class="line">        await NwTask.Delay(NwTimeSpan.FromRounds(5));</div>
+<div class="line">        NwModule.Instance.SendMessageToAllDMs(<span class="stringliteral">&quot;5 rounds elapsed!&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> 20;</div>
+<div class="line">      });</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// ...wait for any of them to complete. The others will still keep running in the background!</span></div>
+<div class="line">      await NwTask.WhenAny(task1, task2, task3);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// ...wait for all of them to complete.</span></div>
+<div class="line">      await NwTask.WhenAll(task1, task2, task3);</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> async <span class="keywordtype">void</span> CancellationTokenExample()</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// Create a token that will be used to cancel the other tasks.</span></div>
+<div class="line">      CancellationTokenSource tokenSource = <span class="keyword">new</span> CancellationTokenSource();</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Start some tasks</span></div>
+<div class="line">      Task task1 = NwTask.WaitUntil(() =&gt; NwModule.Instance.Players.Any(), tokenSource.Token);</div>
+<div class="line">      Task task2 = NwTask.Delay(TimeSpan.FromSeconds(10), tokenSource.Token);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// When any of them complete, cancel the other tasks.</span></div>
+<div class="line">      await NwTask.WhenAny(task1, task2);</div>
+<div class="line">      tokenSource.Cancel();</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --></div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="acd4136685843ef7babb804889a0b0078"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd4136685843ef7babb804889a0b0078">&#9670;&nbsp;</a></span>Delay()</h2>
 

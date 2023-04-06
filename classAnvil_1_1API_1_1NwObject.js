@@ -20,7 +20,7 @@ var classAnvil_1_1API_1_1NwObject =
     [ "operator==", "classAnvil_1_1API_1_1NwObject.html#acff0e8b7ec78ef10e4d81c9eee4b68c1", null ],
     [ "PeekUUID", "classAnvil_1_1API_1_1NwObject.html#a780fff75d9c00100d73a58c05d62fec9", null ],
     [ "SerializeToJson", "classAnvil_1_1API_1_1NwObject.html#a2d1f416e535f46eeb8ecef62324b014b", null ],
-    [ "SetEventScript", "classAnvil_1_1API_1_1NwObject.html#a0ef8f554567003e247d5d45bde5fa58d", null ],
+    [ "SetEventScript", "classAnvil_1_1API_1_1NwObject.html#ae3b89c137bb71d1febc1b49d0e099bd2", null ],
     [ "SpeakString", "classAnvil_1_1API_1_1NwObject.html#a9915aec1b67b91cce65af577a9ff125c", null ],
     [ "ToString", "classAnvil_1_1API_1_1NwObject.html#a0548b4638c788a8922972a7613593730", null ],
     [ "TryGetUUID", "classAnvil_1_1API_1_1NwObject.html#af08511989511cd0ce6c19f622321d17b", null ],

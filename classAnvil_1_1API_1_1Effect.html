@@ -266,9 +266,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ab65def05c007f053bfa5cf08ef61e641"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#ab65def05c007f053bfa5cf08ef61e641">HitPointChangeWhenDying</a> (float hpChangePerRound)</td></tr>
 <tr class="memdesc:ab65def05c007f053bfa5cf08ef61e641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a special effect for healing/damaging dying players.  <a href="classAnvil_1_1API_1_1Effect.html#ab65def05c007f053bfa5cf08ef61e641">More...</a><br /></td></tr>
 <tr class="separator:ab65def05c007f053bfa5cf08ef61e641"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6295630623c412f40a6b74a594d5338"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#ad6295630623c412f40a6b74a594d5338">Icon</a> (EffectIcon icon)</td></tr>
-<tr class="memdesc:ad6295630623c412f40a6b74a594d5338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an icon effect. Icons appear in the top right and in the character sheet and examine panels.  <a href="classAnvil_1_1API_1_1Effect.html#ad6295630623c412f40a6b74a594d5338">More...</a><br /></td></tr>
+<tr class="memitem:ad6295630623c412f40a6b74a594d5338"><td class="memItemLeft" align="right" valign="top"><a id="ad6295630623c412f40a6b74a594d5338"></a>
+static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Icon</b> (EffectIcon icon)</td></tr>
 <tr class="separator:ad6295630623c412f40a6b74a594d5338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab9439b6cc4b8e6353fda366ea660c87"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#aab9439b6cc4b8e6353fda366ea660c87">Icon</a> (<a class="el" href="classAnvil_1_1API_1_1EffectIconTableEntry.html">EffectIconTableEntry</a> icon)</td></tr>
+<tr class="memdesc:aab9439b6cc4b8e6353fda366ea660c87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an icon effect. Icons appear in the top right and in the character sheet and examine panels.  <a href="classAnvil_1_1API_1_1Effect.html#aab9439b6cc4b8e6353fda366ea660c87">More...</a><br /></td></tr>
+<tr class="separator:aab9439b6cc4b8e6353fda366ea660c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe6f89adee3ae07c8dc42d1646575950"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Effect.html#afe6f89adee3ae07c8dc42d1646575950">Immunity</a> (ImmunityType immunityType)</td></tr>
 <tr class="memdesc:afe6f89adee3ae07c8dc42d1646575950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an immunity effect. This provides immunity to a specific effect type.  <a href="classAnvil_1_1API_1_1Effect.html#afe6f89adee3ae07c8dc42d1646575950">More...</a><br /></td></tr>
 <tr class="separator:afe6f89adee3ae07c8dc42d1646575950"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -502,8 +505,97 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents an effect engine structure. </p>
 <h2>Examples</h2>
-<p>@import EffectExamples.cs</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Examples for creating and applying effects to objects and locations.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> System;</div>
+<div class="line"><span class="keyword">using</span> System.Linq;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>.<a class="code" href="namespaceAnvil_1_1API_1_1Events.html">Events</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1Services.html">Services</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span>NWN.Anvil.Samples</div>
+<div class="line">{</div>
+<div class="line">  [ServiceBinding(typeof(EffectExamples))]</div>
+<div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>EffectExamples</div>
+<div class="line">  {</div>
+<div class="line">    <span class="comment">// Some effects can be declared as fields. This allows you to reuse effects, rather than creating them every time.</span></div>
+<div class="line">    <span class="keyword">private</span> readonly Effect blindnessEffect = Effect.Blindness();</div>
+<div class="line">    <span class="keyword">private</span> readonly Effect bloodVfx = Effect.VisualEffect(VfxType.ComBloodCrtRed);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> EffectExamples()</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// Make our blindness effect a supernatural effect.</span></div>
+<div class="line">      blindnessEffect.SubType = EffectSubType.Supernatural;</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Register methods to listen for the player/client enter event.</span></div>
+<div class="line">      NwModule.Instance.OnClientEnter += RatSummonExample;</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// When entering a specific area, remove all blindness effects:</span></div>
+<div class="line">      NwArea? area = NwObject.FindObjectsWithTag&lt;NwArea&gt;(<span class="stringliteral">&quot;clear_blind&quot;</span>).FirstOrDefault();</div>
+<div class="line">      <span class="keywordflow">if</span> (area != <span class="keyword">null</span>)</div>
+<div class="line">      {</div>
+<div class="line">        area.OnEnter += RemoveBlindnessExample;</div>
+<div class="line">      }</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Register methods to listen for the creature damage event.</span></div>
+<div class="line">      NwModule.Instance.OnCreatureDamage += BloodVfxExample;</div>
+<div class="line">      NwModule.Instance.OnCreatureDamage += BlindnessExample;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> async <span class="keywordtype">void</span> RatSummonExample(ModuleEvents.OnClientEnter eventData)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// Create the summon effect.</span></div>
+<div class="line">      <span class="comment">// Some effects require a &quot;caster&quot; for the effect, and must be made within the caster&#39;s context.</span></div>
+<div class="line">      await eventData.Player.ControlledCreature!.WaitForObjectContext();</div>
+<div class="line">      Effect summon = Effect.SummonCreature(<span class="stringliteral">&quot;nw_rat001&quot;</span>, VfxType.ImpUnsummon);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Spawn the summon at the module&#39;s starting location</span></div>
+<div class="line">      Location spawnLocation = NwModule.Instance.StartingLocation;</div>
+<div class="line">      spawnLocation.ApplyEffect(EffectDuration.Temporary, summon, TimeSpan.FromMinutes(5));</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> BloodVfxExample(OnCreatureDamage eventData)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// If the target is a creature, and the attack does more than 50 slashing damage...</span></div>
+<div class="line">      <span class="keywordflow">if</span> (eventData.Target is NwCreature &amp;&amp; eventData.DamageData.Slash &gt; 50)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="comment">// ...Apply our blood effect to the creature</span></div>
+<div class="line">        eventData.Target.ApplyEffect(EffectDuration.Instant, bloodVfx);</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> BlindnessExample(OnCreatureDamage eventData)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// If the target is a creature, and the attack does more than 100 bludgeoning damage...</span></div>
+<div class="line">      <span class="keywordflow">if</span> (eventData.Target is NwCreature &amp;&amp; eventData.DamageData.Bludgeoning &gt; 100)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="comment">// ...Apply our blindness effect for 5 seconds.</span></div>
+<div class="line">        eventData.Target.ApplyEffect(EffectDuration.Temporary, blindnessEffect, TimeSpan.FromSeconds(5));</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> RemoveBlindnessExample(AreaEvents.OnEnter eventData)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// If the object entering is not a creature, early return.</span></div>
+<div class="line">      <span class="keywordflow">if</span> (eventData.EnteringObject is not NwCreature creature)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">return</span>;</div>
+<div class="line">      }</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Loop through all active effects on the creature, and remove any with the blindness type.</span></div>
+<div class="line">      <span class="keywordflow">foreach</span> (Effect effect <span class="keywordflow">in</span> creature.ActiveEffects)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">if</span> (effect.EffectType == <a class="code" href="classAnvil_1_1API_1_1Effect.html#a982263f51ba5cb67fcd40ba5e2e17720" title="Gets the type of this effect.">EffectType</a>.Blindness)</div>
+<div class="line">        {</div>
+<div class="line">          creature.RemoveEffect(effect);</div>
+<div class="line">        }</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --></div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a644ea0f8e8e92e25de50d82446eb4cac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a644ea0f8e8e92e25de50d82446eb4cac">&#9670;&nbsp;</a></span>AbilityDecrease()</h2>
 
@@ -2145,8 +2237,8 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 
 </div>
 </div>
-<a id="ad6295630623c412f40a6b74a594d5338"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6295630623c412f40a6b74a594d5338">&#9670;&nbsp;</a></span>Icon()</h2>
+<a id="aab9439b6cc4b8e6353fda366ea660c87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab9439b6cc4b8e6353fda366ea660c87">&#9670;&nbsp;</a></span>Icon()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2157,7 +2249,7 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
         <tr>
           <td class="memname">static <a class="el" href="classAnvil_1_1API_1_1Effect.html">Effect</a> Anvil.API.Effect.Icon </td>
           <td>(</td>
-          <td class="paramtype">EffectIcon&#160;</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1EffectIconTableEntry.html">EffectIconTableEntry</a>&#160;</td>
           <td class="paramname"><em>icon</em></td><td>)</td>
           <td></td>
         </tr>

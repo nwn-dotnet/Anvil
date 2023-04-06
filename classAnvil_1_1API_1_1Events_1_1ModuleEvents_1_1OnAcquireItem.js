@@ -5,5 +5,5 @@ var classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem =
     [ "AcquiredFrom", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#aa362e514c1041ff8782d3dd95d19a1dc", null ],
     [ "AmountAcquired", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a6613269b3eeb5d191329888c201ebfdf", null ],
     [ "Context", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a741a7206ec36363b810c0df5c9df2011", null ],
-    [ "Item", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a5af2b6f4cf22932d1cbd1f22c6d9c464", null ]
+    [ "Item", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnAcquireItem.html#a00d0adf16594e62bfc24380bb8422085", null ]
 ];

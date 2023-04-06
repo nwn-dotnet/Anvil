@@ -10,7 +10,9 @@ var classAnvil_1_1API_1_1CreatureClassInfo =
     [ "RemoveKnownSpell", "classAnvil_1_1API_1_1CreatureClassInfo.html#aa0c49753db86fed2ea2b4f9ccd1fb868", null ],
     [ "SetRemainingSpellSlots", "classAnvil_1_1API_1_1CreatureClassInfo.html#a0960ec70b6cf9d1a924a6815fe898a3f", null ],
     [ "Class", "classAnvil_1_1API_1_1CreatureClassInfo.html#ac23d2cf3d7ae566349aca88012677775", null ],
-    [ "Domains", "classAnvil_1_1API_1_1CreatureClassInfo.html#aeea3dc339a4e6e3232c49f2299388e8c", null ],
+    [ "Domains", "classAnvil_1_1API_1_1CreatureClassInfo.html#a1ab787e615256713a0132e295595cef7", null ],
+    [ "KnownSpells", "classAnvil_1_1API_1_1CreatureClassInfo.html#aab5b8da7b31860ab59bb627ef2921c7e", null ],
     [ "Level", "classAnvil_1_1API_1_1CreatureClassInfo.html#a48f8863d0e5b1abc937d12aad073cf43", null ],
-    [ "NegativeLevels", "classAnvil_1_1API_1_1CreatureClassInfo.html#a04bfd9ecbbd872a33daf5a51042bfc85", null ]
+    [ "NegativeLevels", "classAnvil_1_1API_1_1CreatureClassInfo.html#a04bfd9ecbbd872a33daf5a51042bfc85", null ],
+    [ "School", "classAnvil_1_1API_1_1CreatureClassInfo.html#a462ed11835e66f2cb8ee00e2c1ed8b7b", null ]
 ];

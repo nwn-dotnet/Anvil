@@ -3,7 +3,7 @@ var classAnvil_1_1API_1_1StringExtensions =
     [ "AppendColored", "classAnvil_1_1API_1_1StringExtensions.html#aff103410814247b0da91e615fcf2d642", null ],
     [ "ColorString", "classAnvil_1_1API_1_1StringExtensions.html#a38a1b29161fd3c55881d5b963e517b68", null ],
     [ "IsReservedScriptName", "classAnvil_1_1API_1_1StringExtensions.html#a35d58c20fdf12c14fa3cff7f3456fd17", null ],
-    [ "IsValidScriptName", "classAnvil_1_1API_1_1StringExtensions.html#a2852eb6a75d4d02ed8b540c00e907f12", null ],
+    [ "IsValidScriptName", "classAnvil_1_1API_1_1StringExtensions.html#ae723dd35e8a5e7971b277deae614d637", null ],
     [ "ParseFloat", "classAnvil_1_1API_1_1StringExtensions.html#a8f4d23896d8fe2b9cfd63edd23319bb9", null ],
     [ "ParseFloat", "classAnvil_1_1API_1_1StringExtensions.html#a8dc395da09962ea224e1d66450de4e66", null ],
     [ "ParseInt", "classAnvil_1_1API_1_1StringExtensions.html#a7f38f4980d885b80e45e72f7c8752416", null ],

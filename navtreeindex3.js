@@ -1,5 +1,16 @@
 var NAVTREEINDEX3 =
 {
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html":[0,0,0,0,20,21],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html#a8377d201f85f38d023b087610dee11fe":[0,0,0,0,20,21,0],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html#abc10b79f6c40ff1119c9fb50f2de2c8f":[0,0,0,0,20,21,2],
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html#aee54743c2936d026bfd9fe4cd682a5a2":[0,0,0,0,20,21,1],
+"classAnvil_1_1API_1_1Events_1_1OnAssociateAdd.html":[0,0,0,0,22],
+"classAnvil_1_1API_1_1Events_1_1OnAssociateAdd.html#a18e8f3679077720418c99d14f70942db":[0,0,0,0,22,2],
+"classAnvil_1_1API_1_1Events_1_1OnAssociateAdd.html#a2235a1c3c5d7c37b52ad8388e7fd6b03":[0,0,0,0,22,3],
+"classAnvil_1_1API_1_1Events_1_1OnAssociateAdd.html#a58dd34b822ecd07d434fb4438192c40d":[0,0,0,0,22,4],
+"classAnvil_1_1API_1_1Events_1_1OnAssociateAdd.html#ae2233503d81dd1c16d45f6d7821c6169":[0,0,0,0,22,1],
+"classAnvil_1_1API_1_1Events_1_1OnAssociateAdd_1_1Factory.html":[0,0,0,0,22,0],
+"classAnvil_1_1API_1_1Events_1_1OnAssociateAdd_1_1Factory.html#a7063b2cc64d626de606f119e9216591d":[0,0,0,0,22,0,1],
 "classAnvil_1_1API_1_1Events_1_1OnAssociateAdd_1_1Factory.html#ad5c665519c614d597e26da051c50b17b":[0,0,0,0,22,0,0],
 "classAnvil_1_1API_1_1Events_1_1OnAssociateRemove.html":[0,0,0,0,23],
 "classAnvil_1_1API_1_1Events_1_1OnAssociateRemove.html#a03cdf20c0509e4436c2838282f1cdb95":[0,0,0,0,23,3],
@@ -238,16 +249,5 @@ var NAVTREEINDEX3 =
 "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#a82a44b2e67a82c9a67183ef72a1efdba":[0,0,0,0,43,3],
 "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon.html#adc9c8728252c5239e9ad3b8d3dc69155":[0,0,0,0,43,1],
 "classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon_1_1Factory.html":[0,0,0,0,43,0],
-"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon_1_1Factory.html#acdf0438337d2167ac0b6abcfc113b785":[0,0,0,0,43,0,0],
-"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon_1_1Factory.html#adb6c92463f77c88cb518e5b86cefc9e8":[0,0,0,0,43,0,1],
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html":[0,0,0,0,82],
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html#a0bace4918a6d31bc618bddd3a8cdeb53":[0,0,0,0,82,4],
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html#a3dc7d8b537894df2aab81093007f45d3":[0,0,0,0,82,1],
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html#a743b23e87d73813328dba0a7d5375aa2":[0,0,0,0,82,3],
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection.html#aa2bef9608ae8e2be2f188fb2ade51ff6":[0,0,0,0,82,2],
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection_1_1Factory.html":[0,0,0,0,82,0],
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection_1_1Factory.html#a0d787cddb7a04789af40c3ad673f9720":[0,0,0,0,82,0,0],
-"classAnvil_1_1API_1_1Events_1_1OnDoListenDetection_1_1Factory.html#adb60231a0440ada636fc0ca32f3c778a":[0,0,0,0,82,0,1],
-"classAnvil_1_1API_1_1Events_1_1OnDoSpotDetection.html":[0,0,0,0,84],
-"classAnvil_1_1API_1_1Events_1_1OnDoSpotDetection.html#a602283d000f86bc58612cf6d191a31c1":[0,0,0,0,84,1]
+"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon_1_1Factory.html#acdf0438337d2167ac0b6abcfc113b785":[0,0,0,0,43,0,0]
 };

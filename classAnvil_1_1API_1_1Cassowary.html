@@ -182,8 +182,46 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>Represents a <a class="el" href="classAnvil_1_1API_1_1Cassowary.html" title="Represents a Cassowary engine structure.  A Cassowary is a type of solver. NWN uses them internally t...">Cassowary</a> engine structure.<br  />
  A <a class="el" href="classAnvil_1_1API_1_1Cassowary.html" title="Represents a Cassowary engine structure.  A Cassowary is a type of solver. NWN uses them internally t...">Cassowary</a> is a type of solver. <a class="el" href="namespaceNWN.html">NWN</a> uses them internally to resize the newer GUI window. </p>
 <h2>Examples</h2>
-<p>@import CassowaryExamples.cs</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Examples for creating and using Cassowary solvers.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1Services.html">Services</a>;</div>
+<div class="line"><span class="keyword">using</span> NLog;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span>NWN.Anvil.Samples</div>
+<div class="line">{</div>
+<div class="line">  [ServiceBinding(typeof(CassowaryExamples))]</div>
+<div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>CassowaryExamples</div>
+<div class="line">  {</div>
+<div class="line">    <span class="comment">// Gets the server log. By default, this reports to &quot;anvil.log&quot;</span></div>
+<div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> readonly Logger Log = LogManager.GetCurrentClassLogger();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Based on https://nwnlexicon.com/index.php?title=Cassowary &amp; https://cassowary.readthedocs.io/en/latest/topics/theory.html</span></div>
+<div class="line">    <span class="keyword">public</span> CassowaryExamples()</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// Create an empty cassowary solver.</span></div>
+<div class="line">      <a class="code" href="classAnvil_1_1API_1_1Cassowary.html#a3522ad3a863ce13943984ecaddc73a86" title="Creates a new Cassowary solver.">Cassowary</a> cTest = <span class="keyword">new</span> <a class="code" href="classAnvil_1_1API_1_1Cassowary.html#a3522ad3a863ce13943984ecaddc73a86" title="Creates a new Cassowary solver.">Cassowary</a>();</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Add some constraints</span></div>
+<div class="line">      cTest.AddConstraint(<span class="stringliteral">&quot;middle == (left + right) / 2&quot;</span>);</div>
+<div class="line">      cTest.AddConstraint(<span class="stringliteral">&quot;right == left + 10&quot;</span>);</div>
+<div class="line">      cTest.AddConstraint(<span class="stringliteral">&quot;right &lt;= 100&quot;</span>);</div>
+<div class="line">      cTest.AddConstraint(<span class="stringliteral">&quot;left &gt;= 0&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Results should be 90, 95 and 100</span></div>
+<div class="line">      Log.Info($<span class="stringliteral">&quot;Solution 1: Left: {cTest.GetValue(&quot;</span>left<span class="stringliteral">&quot;)}, Middle: {cTest.GetValue(&quot;</span>middle<span class="stringliteral">&quot;)}, Right: {cTest.GetValue(&quot;</span>right<span class="stringliteral">&quot;)}&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Suggest middle is 45</span></div>
+<div class="line">      cTest.SuggestValue(<span class="stringliteral">&quot;middle&quot;</span>, 45f);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Results should now be 40, 45 and 50</span></div>
+<div class="line">      Log.Info($<span class="stringliteral">&quot;Solution 2: Left: {cTest.GetValue(&quot;</span>left<span class="stringliteral">&quot;)}, Middle: {cTest.GetValue(&quot;</span>middle<span class="stringliteral">&quot;)}, Right: {cTest.GetValue(&quot;</span>right<span class="stringliteral">&quot;)}&quot;</span>);</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3522ad3a863ce13943984ecaddc73a86"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3522ad3a863ce13943984ecaddc73a86">&#9670;&nbsp;</a></span>Cassowary()</h2>
 

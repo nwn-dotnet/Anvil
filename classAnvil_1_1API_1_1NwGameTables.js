@@ -6,6 +6,7 @@ var classAnvil_1_1API_1_1NwGameTables =
     [ "ArmorTable", "classAnvil_1_1API_1_1NwGameTables.html#a9d7e70a9010655a5d9adf235011aeb39", null ],
     [ "BodyBagTable", "classAnvil_1_1API_1_1NwGameTables.html#a55a0473ab4bb90b27e636e573a016402", null ],
     [ "DamageLevelTable", "classAnvil_1_1API_1_1NwGameTables.html#acf1c1c92a83181ba1cc0fbe1a019ba89", null ],
+    [ "EffectIconTable", "classAnvil_1_1API_1_1NwGameTables.html#a8b23885758af02d58c72fca464155d9c", null ],
     [ "EnvironmentPresetTable", "classAnvil_1_1API_1_1NwGameTables.html#a5f1dcc153ee15df5c2f2e463f0e37373", null ],
     [ "ExpTable", "classAnvil_1_1API_1_1NwGameTables.html#a9d2b7147cc5c61bf949b13d74047220d", null ],
     [ "ItemPropertyCostTables", "classAnvil_1_1API_1_1NwGameTables.html#ae1b82d0a952b205e0e45f7d4b457b611", null ],

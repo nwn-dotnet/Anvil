@@ -486,8 +486,61 @@ readonly CGameEffect&#160;</td><td class="memItemRight" valign="bottom"><b>Effec
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents an item property effect engine structure. </p>
 <h2>Examples</h2>
-<p>@import ItemPropertyExamples.cs</p>
-</div><h2 class="groupheader">Property Documentation</h2>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Examples for creating, applying and removing item properties.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1API.html">API</a>.<a class="code" href="namespaceAnvil_1_1API_1_1Events.html">Events</a>;</div>
+<div class="line"><span class="keyword">using</span> <a class="code" href="namespaceAnvil.html">Anvil</a>.<a class="code" href="namespaceAnvil_1_1Services.html">Services</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span>NWN.Anvil.Samples</div>
+<div class="line">{</div>
+<div class="line">  [ServiceBinding(typeof(ItemPropertyExamples))]</div>
+<div class="line">  <span class="keyword">public</span> <span class="keyword">class </span>ItemPropertyExamples</div>
+<div class="line">  {</div>
+<div class="line">    <span class="comment">// Most item properties can be declared as fields. This allows you to reuse effects, rather than creating them every time.</span></div>
+<div class="line">    <span class="keyword">private</span> readonly ItemProperty hasteProperty = ItemProperty.Haste();</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> ItemPropertyExamples()</div>
+<div class="line">    {</div>
+<div class="line">      NwModule.Instance.OnItemEquip += TemporaryHasteExample;</div>
+<div class="line">      NwModule.Instance.OnClientEnter += RemoveItemPropertyExample;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> TemporaryHasteExample(OnItemEquip eventData)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// Check if the tag matches the item that was equipped.</span></div>
+<div class="line">      <span class="keywordflow">if</span> (eventData.Item.Tag == <span class="stringliteral">&quot;temp_haste&quot;</span>)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="comment">// Apply the haste item property.</span></div>
+<div class="line">        eventData.Item.AddItemProperty(hasteProperty, EffectDuration.Temporary, NwTimeSpan.FromRounds(5));</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keywordtype">void</span> RemoveItemPropertyExample(ModuleEvents.OnClientEnter eventData)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="comment">// Find an item in the player&#39;s inventory with the tag &quot;sword_special&quot;</span></div>
+<div class="line">      NwItem? item = eventData.Player.ControlledCreature!.FindItemWithTag(<span class="stringliteral">&quot;sword_special&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// If they don&#39;t have the item, early return.</span></div>
+<div class="line">      <span class="keywordflow">if</span> (item == <span class="keyword">null</span>)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">return</span>;</div>
+<div class="line">      }</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Loop over the item&#39;s properties. Remove any that have a matching tag.</span></div>
+<div class="line">      <span class="keywordflow">foreach</span> (ItemProperty property <span class="keywordflow">in</span> item.ItemProperties)</div>
+<div class="line">      {</div>
+<div class="line">        <span class="keywordflow">if</span> (property.Tag == <span class="stringliteral">&quot;special_temp&quot;</span>)</div>
+<div class="line">        {</div>
+<div class="line">          item.RemoveItemProperty(property);</div>
+<div class="line">        }</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --></div><h2 class="groupheader">Property Documentation</h2>
 <a id="a4269e6b7f20700e4878d5783af5776b0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4269e6b7f20700e4878d5783af5776b0">&#9670;&nbsp;</a></span>CostTable</h2>
 

@@ -276,6 +276,7 @@ var annotated =
         [ "Direction", "classAnvil_1_1API_1_1Direction.html", "classAnvil_1_1API_1_1Direction" ],
         [ "Effect", "classAnvil_1_1API_1_1Effect.html", "classAnvil_1_1API_1_1Effect" ],
         [ "EffectBase", "classAnvil_1_1API_1_1EffectBase.html", "classAnvil_1_1API_1_1EffectBase" ],
+        [ "EffectIconTableEntry", "classAnvil_1_1API_1_1EffectIconTableEntry.html", "classAnvil_1_1API_1_1EffectIconTableEntry" ],
         [ "EffectParams", "classAnvil_1_1API_1_1EffectParams.html", "classAnvil_1_1API_1_1EffectParams" ],
         [ "EncounterListEntry", "classAnvil_1_1API_1_1EncounterListEntry.html", "classAnvil_1_1API_1_1EncounterListEntry" ],
         [ "EncounterSpawnPoint", "classAnvil_1_1API_1_1EncounterSpawnPoint.html", "classAnvil_1_1API_1_1EncounterSpawnPoint" ],
