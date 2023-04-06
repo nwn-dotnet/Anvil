@@ -5,7 +5,7 @@ using NWN.Native.API;
 namespace Anvil.API
 {
   //! ## Examples
-  //! @import EffectExamples.cs
+  //! @include EffectExamples.cs
 
   /// <summary>
   /// Represents an effect engine structure.

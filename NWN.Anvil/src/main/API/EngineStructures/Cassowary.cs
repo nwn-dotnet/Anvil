@@ -4,7 +4,7 @@ using NWN.Core;
 namespace Anvil.API
 {
   //! ## Examples
-  //! @import CassowaryExamples.cs
+  //! @include CassowaryExamples.cs
 
   /// <summary>
   /// Represents a Cassowary engine structure.<br/>

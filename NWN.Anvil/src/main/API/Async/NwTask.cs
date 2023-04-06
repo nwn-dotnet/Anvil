@@ -10,7 +10,7 @@ using NLog;
 namespace Anvil.API
 {
   //! ## Examples
-  //! @import NwTaskExamples.cs
+  //! @include NwTaskExamples.cs
 
   /// <summary>
   /// Asynchronous tasks and helpers for running NWN APIs in an async context.

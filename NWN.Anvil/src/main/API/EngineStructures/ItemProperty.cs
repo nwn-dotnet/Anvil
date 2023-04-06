@@ -5,7 +5,7 @@ using NWN.Native.API;
 namespace Anvil.API
 {
   //! ## Examples
-  //! @import ItemPropertyExamples.cs
+  //! @include ItemPropertyExamples.cs
 
   /// <summary>
   /// Represents an item property effect engine structure.
