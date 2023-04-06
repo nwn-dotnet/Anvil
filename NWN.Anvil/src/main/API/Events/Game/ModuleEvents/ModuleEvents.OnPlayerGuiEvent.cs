@@ -25,7 +25,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the effect icon that was selected. Only valid in <see cref="GuiEventType.EffectIconClick"/> events.
       /// </summary>
-      public EffectIcon EffectIcon => (EffectIcon)integerEventData;
+      public EffectIconTableEntry EffectIcon => NwGameTables.EffectIconTable[integerEventData];
 
       /// <summary>
       /// Gets the object data associated with this GUI event.

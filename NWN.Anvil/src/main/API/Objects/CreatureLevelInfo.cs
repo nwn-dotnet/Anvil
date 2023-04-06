@@ -1,10 +1,16 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Anvil.Native;
 using NWN.Native.API;
 
 namespace Anvil.API
 {
   public sealed unsafe class CreatureLevelInfo
   {
+    private const int KnownSpellArraySize = 10; // Cantrips + 9 spell levels
+    private static readonly int KnownSpellArrayListStructSize = sizeof(IntPtr) + sizeof(int) + sizeof(int);
+
     private readonly NwCreature creature;
     private readonly CNWLevelStats levelStats;
 
@@ -17,7 +23,14 @@ namespace Anvil.API
     /// <summary>
     /// Gets the class chosen at this level.
     /// </summary>
-    public CreatureClassInfo ClassInfo => creature.Classes[levelStats.m_nClass - 1];
+    public CreatureClassInfo ClassInfo
+    {
+      get
+      {
+        byte classId = levelStats.m_nClass;
+        return creature.Classes.First(info => info.Class.Id == classId);
+      }
+    }
 
     /// <summary>
     /// Gets the number of feats gained at this level.
@@ -32,13 +45,54 @@ namespace Anvil.API
       get
       {
         NwFeat[] feats = new NwFeat[FeatCount];
-
         for (int i = 0; i < feats.Length; i++)
         {
           feats[i] = NwFeat.FromFeatId(levelStats.m_lstFeats[i])!;
         }
 
         return feats;
+      }
+    }
+
+    /// <summary>
+    /// Gets a mutable list of known spells added at this level.<br/>
+    /// The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc.
+    /// </summary>
+    public IReadOnlyList<IList<NwSpell>> AddedKnownSpells
+    {
+      get
+      {
+        IList<NwSpell>[] spells = new IList<NwSpell>[KnownSpellArraySize];
+        IntPtr ptr = levelStats.m_pAddedKnownSpellList.Pointer;
+
+        for (int i = 0; i < spells.Length; i++)
+        {
+          CExoArrayListUInt32? spellList = CExoArrayListUInt32.FromPointer(ptr + i * KnownSpellArrayListStructSize);
+          spells[i] = new ListWrapper<uint, NwSpell>(spellList, spellId => NwSpell.FromSpellId((int)spellId)!, spell => (uint)spell.Id);
+        }
+
+        return spells;
+      }
+    }
+
+    /// <summary>
+    /// Gets a mutable list of known spells removed at this level.<br/>
+    /// The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc.
+    /// </summary>
+    public IReadOnlyList<IList<NwSpell>> RemovedKnownSpells
+    {
+      get
+      {
+        IList<NwSpell>[] spells = new IList<NwSpell>[KnownSpellArraySize];
+        IntPtr ptr = levelStats.m_pRemovedKnownSpellList.Pointer;
+
+        for (int i = 0; i < spells.Length; i++)
+        {
+          CExoArrayListUInt32 spellList = CExoArrayListUInt32.FromPointer(ptr + i * KnownSpellArrayListStructSize);
+          spells[i] = new ListWrapper<uint, NwSpell>(spellList, spellId => NwSpell.FromSpellId((int)spellId)!, spell => (uint)spell.Id);
+        }
+
+        return spells;
       }
     }
 

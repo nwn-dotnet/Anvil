@@ -55,7 +55,7 @@ namespace Anvil.API
       for (int i = 0; i < entry.Columns.Length; i++)
       {
         string column = entry.Columns[i];
-        if (column is not "StringRef" or "Label")
+        if (column != "StringRef" && column != "Label")
         {
           isValid[i] = entry.GetBool(i) == true;
         }
