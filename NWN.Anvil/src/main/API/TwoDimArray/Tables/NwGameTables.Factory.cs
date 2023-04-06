@@ -100,7 +100,7 @@ namespace Anvil.API
         AppearanceTable = GetTable<AppearanceTableEntry>(arrays.m_pAppearanceTable);
         ArmorTable = GetTable<ArmorTableEntry>(arrays.m_pArmorTable);
         BodyBagTable = GetTable<BodyBagTableEntry>(arrays.m_pBodyBagTable);
-        EffectIconTable = GetTable<EffectIconTableEntry>(arrays.m_pEffectIconsTable);
+        EffectIconTable = GetTable<EffectIconTableEntry>("effecticons.2da");
         EnvironmentPresetTable = GetTable<EnvironmentPreset>("environment.2da");
         LightColorTable = GetTable<LightColorTableEntry>(arrays.m_pLightColorTable);
         LoadScreenTable = GetTable<LoadScreenTableEntry>("loadscreens.2da");
