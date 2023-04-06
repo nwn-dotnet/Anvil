@@ -80,11 +80,13 @@ namespace Anvil.API
     /// <param name="item">The item to insert.</param>
     /// <param name="comparer">A custom comparer to use when comparing the item against elements in the collection.</param>
     /// <typeparam name="T">The type of item to insert.</typeparam>
-    public static void InsertOrdered<T>(this List<T> sortedList, T item, IComparer<T>? comparer = null)
+    public static int InsertOrdered<T>(this List<T> sortedList, T item, IComparer<T>? comparer = null)
     {
       int binaryIndex = sortedList.BinarySearch(item, comparer);
       int index = binaryIndex < 0 ? ~binaryIndex : binaryIndex;
       sortedList.Insert(index, item);
+
+      return index;
     }
 
     /// <summary>
