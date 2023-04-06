@@ -10,7 +10,7 @@ Builders can add functionality like opening a store from a dialogue with a few l
 - [Changelog](https://github.com/nwn-dotnet/Anvil/blob/main/CHANGELOG.md) ([Development](https://github.com/nwn-dotnet/Anvil/blob/development/CHANGELOG.md))
 - View the [API Reference](https://nwn-dotnet.github.io/Anvil/annotated.html)
 - View [Community Submitted Plugins](https://github.com/nwn-dotnet/Anvil/discussions/categories/plugins)
-- Join the community: [![Discord](https://img.shields.io/discord/714927668826472600?color=7289DA&label=Discord&logo=discord&logoColor=7289DA)](https://discord.gg/gKt495UBgS)
+- Join the community: [![Discord](https://img.shields.io/discord/382306806866771978?color=7289DA&label=Discord&logo=discord&logoColor=7289DA)](https://discord.gg/CukSHZq)
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ To run tests locally, install the plugins in the anvil home directory as documen
 ## Contributions
 All contributions are welcome!
 
-Join the discussion on [Discord](https://discord.gg/gKt495UBgS), and also see our [contribution guidelines](https://github.com/nwn-dotnet/Anvil/blob/development/CONTRIBUTING.md). 
+Join the discussion on the NWN Developer Discord [Discord](https://discord.gg/CukSHZq), and also see our [contribution guidelines](https://github.com/nwn-dotnet/Anvil/blob/development/CONTRIBUTING.md). 
 
 ## Credits
 The Anvil Framework builds heavily on the foundations of the [NWNX:EE DotNET plugin](https://github.com/nwnxee/unified/tree/master/Plugins/DotNET) that was written by [Milos Tijanic](https://github.com/mtijanic "Milos Tijanic"), and derives several service implementations from plugins developed by the NWNX:EE team and its contributors.
