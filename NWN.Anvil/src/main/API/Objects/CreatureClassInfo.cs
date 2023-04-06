@@ -61,6 +61,9 @@ namespace Anvil.API
     /// </summary>
     public byte NegativeLevels => classInfo.m_nNegativeLevels;
 
+    /// <summary>
+    /// Gets the spell school for this class.
+    /// </summary>
     public SpellSchool School => (SpellSchool)classInfo.m_nSchool;
 
     /// <summary>
