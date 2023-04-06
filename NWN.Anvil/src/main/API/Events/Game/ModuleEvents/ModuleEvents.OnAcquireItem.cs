@@ -12,6 +12,10 @@ namespace Anvil.API.Events
     /// <summary>
     /// Triggered whenever an <see cref="NwItem"/> is added to <see cref="NwGameObject"/> inventory.
     /// </summary>
+    /// <remarks>
+    /// This event fires for all items when a player connects to the server, in addition to item/inventory interactions while playing.<br/>
+    /// It will also fire for characters failing ELC. In this case, it is recommended to do an early return in your event handler by checking if <see cref="Item"/> is null.
+    /// </remarks>
     [GameEvent(EventScriptType.ModuleOnAcquireItem)]
     public sealed class OnAcquireItem : IEvent
     {
@@ -19,7 +23,7 @@ namespace Anvil.API.Events
       {
         // Patch player reference due to a reference bug during client enter context
         // See https://github.com/Beamdog/nwn-issues/issues/367
-        if (AcquiredBy is null && Item.Possessor is NwCreature creature)
+        if (AcquiredBy is null && Item?.Possessor is NwCreature creature)
         {
           AcquiredBy = creature;
         }
@@ -43,7 +47,8 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> that triggered the event.
       /// </summary>
-      public NwItem Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>()!;
+      /// <remarks>This property will return null when a character fails ELC. It is recommended to do an early exit if this is null.</remarks>
+      public NwItem? Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
 
       NwObject? IEvent.Context => AcquiredBy;
     }
