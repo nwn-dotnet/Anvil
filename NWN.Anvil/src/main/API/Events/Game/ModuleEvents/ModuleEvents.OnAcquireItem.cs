@@ -47,7 +47,9 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwItem"/> that triggered the event.
       /// </summary>
-      /// <remarks>This property will return null when a character fails ELC. It is recommended to do an early exit if this is null.</remarks>
+      /// <remarks>
+      /// This property will return null when a character fails ELC. It is recommended to do an early exit if this is null.
+      /// </remarks>
       public NwItem? Item { get; } = NWScript.GetModuleItemAcquired().ToNwObject<NwItem>();
 
       NwObject? IEvent.Context => AcquiredBy;
