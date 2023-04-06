@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.26...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A 
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.34.26
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...v8193.34.26
 
 ### Added
 - NwGameTables: Added `EffectIconTable`.
@@ -21,7 +42,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...HEAD
 
 ### Changed
 - CollectionExtensions: `InsertOrdered` now returns the index in which the item was inserted.
-- Anvil will now log a managed stack trace during an assertion failure. We're hoping this will help track down issues where the nwscript VM reports an invalid stack state.  
+- Anvil will now log a managed stack trace during an assertion failure. We're hoping this will help track down issues where the nwscript VM reports an invalid stack state.
 
 ### Deprecated
 - `CreatureClassInfo.AddKnownSpell` - use `CreatureClassInfo.KnownSpells[].Add` instead.
@@ -29,14 +50,11 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...HEAD
 - `CreatureClassInfo.GetKnownSpellCountByLevel` - use `CreatureClassInfo.KnownSpells[].Count` instead.
 - `CreatureClassInfo.GetKnownSpells` - use `CreatureClassInfo.KnownSpells` instead.
 
-### Removed
-- N/A
-
 ### Fixed
 - Fixed null/empty script names not clearing object event scripts.
 - Fixed an issue where an invalid script name could be assigned to an object event.
 - Fixed a NRE in the `ModuleEvents.OnAcquireItem` event caused by characters failing ELC.
-- Fixed a cast exception in the `PlaceableEvents.OnDisturbed` event when the last inventory event was not caused by a creature. 
+- Fixed a cast exception in the `PlaceableEvents.OnDisturbed` event when the last inventory event was not caused by a creature.
 - NwStore: Fixed `WillNotBuyItems`, `WillOnlyBuyItems` lists not removing items, and LINQ functions (ToList/ToArray) not working.
 - CreatureLevelInfo: `ClassInfo` now returns the correct creature class.
 - ItemPropertyItemMapTable: Fixed some item property values returning valid when they shouldn't be.
