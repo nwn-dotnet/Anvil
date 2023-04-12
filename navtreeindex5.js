@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin.html#a0a7516e004ac2f512f332e1e92a9ad5a":[0,0,0,0,112,2],
+"classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin.html#a0f2877709d0f2393baa1f628a6104ee4":[0,0,0,0,112,3],
 "classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin.html#aa3993867e64344a6ac2f22fdbcf970d3":[0,0,0,0,112,4],
 "classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin.html#af23a347b299d03479bd819a3582713bf":[0,0,0,0,112,1],
 "classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin_1_1Factory.html":[0,0,0,0,112,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html#a4141a92369eef9040054d91cf9a90fdc":[0,0,0,0,130,10,2],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html#a9416c1bbce9663bd6d134730bddb9b2e":[0,0,0,0,130,10,1],
 "classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnOpen.html#ab58a9b66b669ed25c1cc9ce9cc565277":[0,0,0,0,130,10,0],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html":[0,0,0,0,130,11],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a3478d16c44ba6a94f3cecfe42fa51dfa":[0,0,0,0,130,11,4],
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a6563de4f632fcf7639143cf5e5e83a22":[0,0,0,0,130,11,3]
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html":[0,0,0,0,130,11]
 };

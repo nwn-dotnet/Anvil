@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classAnvil_1_1API_1_1Effect.html#a681d39c987e689c797f695b23bbc2796":[0,0,0,32,11],
 "classAnvil_1_1API_1_1Effect.html#a6b9e903d7997a5e787310acd39420dda":[0,0,0,32,7],
 "classAnvil_1_1API_1_1Effect.html#a6e7048d873d64d4ec43e9795e97dec41":[0,0,0,32,94],
 "classAnvil_1_1API_1_1Effect.html#a6eb6c68d339f7c3cbae3dcecbbc5eb36":[0,0,0,32,73],
@@ -76,11 +77,12 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1EffectBase.html#addce3f936b9fe283c96cfb68ad3a6b8b":[0,0,0,33,12],
 "classAnvil_1_1API_1_1EffectBase.html#adf4cd5081e0b203ab3143fba7502b1f5":[0,0,0,33,6],
 "classAnvil_1_1API_1_1EffectIconTableEntry.html":[0,0,0,34],
-"classAnvil_1_1API_1_1EffectIconTableEntry.html#a748d01665eda16776222301dc24a2dfe":[0,0,0,34,3],
-"classAnvil_1_1API_1_1EffectIconTableEntry.html#aa3395abb461b192f9cf86b09e034d9cc":[0,0,0,34,2],
+"classAnvil_1_1API_1_1EffectIconTableEntry.html#a61f2e595d686b29d4d0a8da0711ac4b4":[0,0,0,34,1],
+"classAnvil_1_1API_1_1EffectIconTableEntry.html#a748d01665eda16776222301dc24a2dfe":[0,0,0,34,4],
+"classAnvil_1_1API_1_1EffectIconTableEntry.html#aa3395abb461b192f9cf86b09e034d9cc":[0,0,0,34,3],
 "classAnvil_1_1API_1_1EffectIconTableEntry.html#afb121666340784bd42ef9e2f79cd4ee9":[0,0,0,34,0],
-"classAnvil_1_1API_1_1EffectIconTableEntry.html#afb1be29c0913c6066aa21abb9d893b0c":[0,0,0,34,1],
-"classAnvil_1_1API_1_1EffectIconTableEntry.html#aff7b1f63a77c11f65841047764431721":[0,0,0,34,4],
+"classAnvil_1_1API_1_1EffectIconTableEntry.html#afb1be29c0913c6066aa21abb9d893b0c":[0,0,0,34,2],
+"classAnvil_1_1API_1_1EffectIconTableEntry.html#aff7b1f63a77c11f65841047764431721":[0,0,0,34,5],
 "classAnvil_1_1API_1_1EffectParams.html":[0,0,0,35],
 "classAnvil_1_1API_1_1EffectParams.html#a598a0d5d3b9a3928515e72c9d4a5199b":[0,0,0,35,1],
 "classAnvil_1_1API_1_1EffectParams.html#a83c23f8d0b7621f957d3a94f297ce1f3":[0,0,0,35,2],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "classAnvil_1_1API_1_1Events_1_1DMSingleTargetEvent.html":[0,0,0,0,10],
 "classAnvil_1_1API_1_1Events_1_1DMSingleTargetEvent.html#ad4891ee30bbaed5dcfc8069074b4efa8":[0,0,0,0,10,0],
 "classAnvil_1_1API_1_1Events_1_1DMTeleportEvent.html":[0,0,0,0,11],
-"classAnvil_1_1API_1_1Events_1_1DMTeleportEvent.html#a029ca0b0628871167d917646119854e3":[0,0,0,0,11,0],
-"classAnvil_1_1API_1_1Events_1_1DMTeleportEvent.html#a10cac6296a671e3fc730a5500676990a":[0,0,0,0,11,1],
-"classAnvil_1_1API_1_1Events_1_1DamageData.html":[0,0,0,0,3]
+"classAnvil_1_1API_1_1Events_1_1DMTeleportEvent.html#a029ca0b0628871167d917646119854e3":[0,0,0,0,11,0]
 };

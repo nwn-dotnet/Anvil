@@ -32,24 +32,24 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classAnvil_1_1API_1_1Effect.html#a6b9e903d7997a5e787310acd39420dda",
-"classAnvil_1_1API_1_1Events_1_1DamageData.html#a0e419433c147105da937766bc4c0087e",
-"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUserDefined.html",
-"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon_1_1Factory.html#adb6c92463f77c88cb518e5b86cefc9e8",
-"classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin.html#aa3993867e64344a6ac2f22fdbcf970d3",
-"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a72d474b0fbf72b0aa6d3c01e3db46855",
-"classAnvil_1_1API_1_1ItemProperty.html#a50308949957dd88b45338e8b398a4d96",
-"classAnvil_1_1API_1_1NuiButton.html",
-"classAnvil_1_1API_1_1NwArea.html#a722f26bf50872846cfb2974e80994101",
-"classAnvil_1_1API_1_1NwCreature.html#a4e5731ad847f894015db23af2bcbfb49",
-"classAnvil_1_1API_1_1NwDoor.html#a7afa63008b131dcfc127f5c8bff81a96",
-"classAnvil_1_1API_1_1NwItem.html#ad229eb7402b981a3a6068ecb1228b504",
-"classAnvil_1_1API_1_1NwPlaceable.html#a97d90ba496c202370b46344525ac46cd",
-"classAnvil_1_1API_1_1NwServer.html#a49e03f447d5e84515c40edd5443a551e",
-"classAnvil_1_1API_1_1ObjectVariable.html#a20b987a159be4ea61f54efe9c9af9fa2",
-"classAnvil_1_1API_1_1TilesetResRef.html#a69eb4672edcb02be0e250b526520010e",
-"classAnvil_1_1Services_1_1ObjectStorage.html",
-"structAnvil_1_1API_1_1NuiRect.html#a283aa94fd897d3cba42a1ab95b399cbd"
+"classAnvil_1_1API_1_1Effect.html#a681d39c987e689c797f695b23bbc2796",
+"classAnvil_1_1API_1_1Events_1_1DMTeleportEvent.html#a10cac6296a671e3fc730a5500676990a",
+"classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnUnacquireItem.html#a278fd3772654505ae0ef3f99af4c60b7",
+"classAnvil_1_1API_1_1Events_1_1OnDisarmWeapon_1_1Factory.html",
+"classAnvil_1_1API_1_1Events_1_1OnMapPinDestroyPin.html#a0a7516e004ac2f512f332e1e92a9ad5a",
+"classAnvil_1_1API_1_1Events_1_1PlaceableEvents_1_1OnPhysicalAttacked.html#a3478d16c44ba6a94f3cecfe42fa51dfa",
+"classAnvil_1_1API_1_1ItemProperty.html#a4958c4c5d812f81fc940a0f15ec87d5d",
+"classAnvil_1_1API_1_1NuiBindStrRef.html#a969ba703ece988c00fde72d2374b5c62",
+"classAnvil_1_1API_1_1NwArea.html#a64924bb949bdb5c253ff31b56e5d829a",
+"classAnvil_1_1API_1_1NwCreature.html#a49542283d5ea2d64e83f881fc7d34f90",
+"classAnvil_1_1API_1_1NwDoor.html#a62c7acd750c68af39cc7298b04b131ba",
+"classAnvil_1_1API_1_1NwItem.html#ac3a8917675e9fc88fdf73f9a3ad3fe3f",
+"classAnvil_1_1API_1_1NwPlaceable.html#a77e6b128f26825abacc90b8d7eb8b07b",
+"classAnvil_1_1API_1_1NwRuleset.html#aba1ed16993a06b011fbd27e4defb9f85",
+"classAnvil_1_1API_1_1ObjectStorageVariableStruct.html#aeab03803de9c96b4c745c813008e6e58",
+"classAnvil_1_1API_1_1TilesetResRef.html#a28bd85d37ffd058b9343d5a027977422",
+"classAnvil_1_1Services_1_1InjectAttribute.html",
+"structAnvil_1_1API_1_1MonsterHitEffect.html#aa3ccc061ab2b11c50ec61e85b4fe1ba3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

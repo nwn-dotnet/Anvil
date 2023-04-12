@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1AppearanceTableEntry =
 [
+    [ "operator AppearanceTableEntry?", "classAnvil_1_1API_1_1AppearanceTableEntry.html#a57c2534400a34e75c82538ceb7438e13", null ],
     [ "AbortOnParry", "classAnvil_1_1API_1_1AppearanceTableEntry.html#ac8e74d5b5952e5887f23000a6b0ff508", null ],
     [ "AppearanceSoundSet", "classAnvil_1_1API_1_1AppearanceTableEntry.html#a374845bd11b3138de4f68219d76b002d", null ],
     [ "BloodColor", "classAnvil_1_1API_1_1AppearanceTableEntry.html#ab97e7dd4cc9cb05941a15e3bc44f36ff", null ],

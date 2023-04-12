@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1ItemPropertyTableEntry =
 [
+    [ "operator ItemPropertyTableEntry?", "classAnvil_1_1API_1_1ItemPropertyTableEntry.html#a1d0d14548d1f08d229d6a1b4d6eac371", null ],
     [ "Cost", "classAnvil_1_1API_1_1ItemPropertyTableEntry.html#ad2c3190753704af20ccf88f5fbc45543", null ],
     [ "CostTable", "classAnvil_1_1API_1_1ItemPropertyTableEntry.html#af9e8f40dbc4ce279e7823c9f0270590e", null ],
     [ "Description", "classAnvil_1_1API_1_1ItemPropertyTableEntry.html#af1d26d9df85db2ab6680de7b2814b8b9", null ],

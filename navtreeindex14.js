@@ -1,5 +1,11 @@
 var NAVTREEINDEX14 =
 {
+"classAnvil_1_1API_1_1NwRuleset.html#aba1ed16993a06b011fbd27e4defb9f85":[0,0,0,151,1],
+"classAnvil_1_1API_1_1NwServer.html":[0,0,0,152],
+"classAnvil_1_1API_1_1NwServer.html#a0cdb1b695caab2970ade21c021d8b858":[0,0,0,152,8],
+"classAnvil_1_1API_1_1NwServer.html#a2bbd0c9969311075468431ac27bb90b2":[0,0,0,152,2],
+"classAnvil_1_1API_1_1NwServer.html#a350b678c3eceeea32fa242fc216abee9":[0,0,0,152,0],
+"classAnvil_1_1API_1_1NwServer.html#a493021e5deb16b309f9277dbfc09353a":[0,0,0,152,15],
 "classAnvil_1_1API_1_1NwServer.html#a49e03f447d5e84515c40edd5443a551e":[0,0,0,152,16],
 "classAnvil_1_1API_1_1NwServer.html#a6ec3608241cd82bfd2b44062ec194e38":[0,0,0,152,17],
 "classAnvil_1_1API_1_1NwServer.html#a9e9197aad35bafbce74112eff3a58fc6":[0,0,0,152,6],
@@ -243,11 +249,5 @@ var NAVTREEINDEX14 =
 "classAnvil_1_1API_1_1ObjectStorageVariableStruct.html":[0,0,0,171],
 "classAnvil_1_1API_1_1ObjectStorageVariableStruct.html#a6b5fbf67b610e282f684c152d5a1b4cb":[0,0,0,171,0],
 "classAnvil_1_1API_1_1ObjectStorageVariableStruct.html#aaa1daee2b2094e3a7b5a6d346f087453":[0,0,0,171,2],
-"classAnvil_1_1API_1_1ObjectStorageVariableStruct.html#ae532cd4fd7ab4a059a76213fddcf4469":[0,0,0,171,1],
-"classAnvil_1_1API_1_1ObjectStorageVariableStruct.html#aeab03803de9c96b4c745c813008e6e58":[0,0,0,171,3],
-"classAnvil_1_1API_1_1ObjectStorageVariableStruct.html#af6fea384dbe52348133e694662c72a5f":[0,0,0,171,4],
-"classAnvil_1_1API_1_1ObjectVariable.html":[0,0,0,172],
-"classAnvil_1_1API_1_1ObjectVariable.html#a017ede11bcdff291aabda79f1baf4508":[0,0,0,172,5],
-"classAnvil_1_1API_1_1ObjectVariable.html#a13d4d2d4a29253de6d57d094831cc3cd":[0,0,0,172,0],
-"classAnvil_1_1API_1_1ObjectVariable.html#a157fcdff32daeeb90174a28c958be815":[0,0,0,172,12]
+"classAnvil_1_1API_1_1ObjectStorageVariableStruct.html#ae532cd4fd7ab4a059a76213fddcf4469":[0,0,0,171,1]
 };

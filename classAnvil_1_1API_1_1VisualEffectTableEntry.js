@@ -1,5 +1,6 @@
 var classAnvil_1_1API_1_1VisualEffectTableEntry =
 [
+    [ "operator VisualEffectTableEntry?", "classAnvil_1_1API_1_1VisualEffectTableEntry.html#a1e4c4b6ede60607cd336f0960471b3c0", null ],
     [ "CesHeadConNode", "classAnvil_1_1API_1_1VisualEffectTableEntry.html#aa614b0918c793185bb10c24d19ab5385", null ],
     [ "CesImpactNode", "classAnvil_1_1API_1_1VisualEffectTableEntry.html#a60469ee8a317899102d2c08a513081ea", null ],
     [ "CesRootHugeNode", "classAnvil_1_1API_1_1VisualEffectTableEntry.html#a617c0c71ca57b7a894eb831d77038e1e", null ],

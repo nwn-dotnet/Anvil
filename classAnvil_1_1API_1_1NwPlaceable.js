@@ -17,6 +17,7 @@ var classAnvil_1_1API_1_1NwPlaceable =
     [ "HasInventory", "classAnvil_1_1API_1_1NwPlaceable.html#a9785bb786ee15c46df434d9d00e10a37", null ],
     [ "Illumination", "classAnvil_1_1API_1_1NwPlaceable.html#afe4da32b5703e025d863c79cfb7d81d4", null ],
     [ "Inventory", "classAnvil_1_1API_1_1NwPlaceable.html#aa112684dad0c48aaa7c16e4d0a9fdc98", null ],
+    [ "IsBodyBag", "classAnvil_1_1API_1_1NwPlaceable.html#a0781bc1c1da0aef77a04664a5fc69732", null ],
     [ "IsStatic", "classAnvil_1_1API_1_1NwPlaceable.html#af40b4dde4daeb2ffd2163d16b813bdda", null ],
     [ "KeyAutoRemoved", "classAnvil_1_1API_1_1NwPlaceable.html#aef61b2e960ce1a5689293b037142b173", null ],
     [ "Occupied", "classAnvil_1_1API_1_1NwPlaceable.html#a35c551195f1fb27a0fa7e35d1c875789", null ],

@@ -1,5 +1,13 @@
 var NAVTREEINDEX17 =
 {
+"classAnvil_1_1Services_1_1InjectAttribute.html":[0,0,3,13],
+"classAnvil_1_1Services_1_1InjectAttribute.html#a0136dc3a79fd0e7e045dcb1f169872c1":[0,0,3,13,2],
+"classAnvil_1_1Services_1_1InjectAttribute.html#a81a5650d0e910218158a57a08440ff38":[0,0,3,13,3],
+"classAnvil_1_1Services_1_1InjectAttribute.html#a82466598af4e6fae49846321b0d87aec":[0,0,3,13,1],
+"classAnvil_1_1Services_1_1InjectAttribute.html#a9588569f490b8b7a53752a0b0ff52a21":[0,0,3,13,0],
+"classAnvil_1_1Services_1_1InjectionService.html":[0,0,3,14],
+"classAnvil_1_1Services_1_1InjectionService.html#a4f0e3a3732df29b6a0f1eb7f4ed4ff4f":[0,0,3,14,0],
+"classAnvil_1_1Services_1_1InjectionService.html#ab36846870a2939f4990f5be57eb1b1ab":[0,0,3,14,1],
 "classAnvil_1_1Services_1_1ObjectStorage.html":[0,0,3,20],
 "classAnvil_1_1Services_1_1ObjectStorage.html#a048fe1a6a48cc765e51a67c1be0690fe":[0,0,3,20,1],
 "classAnvil_1_1Services_1_1ObjectStorage.html#a059926f0f1580ed93df0d8e3d3f8d63f":[0,0,3,20,9],
@@ -241,13 +249,5 @@ var NAVTREEINDEX17 =
 "structAnvil_1_1API_1_1MonsterHitEffect.html#a2712286045e8af39f34f73612ee0f765":[0,0,0,83,4],
 "structAnvil_1_1API_1_1MonsterHitEffect.html#a7522b8ba6adf900ac1366d354f15feb4":[0,0,0,83,8],
 "structAnvil_1_1API_1_1MonsterHitEffect.html#a78ce76aa13ca5a502905a909ea9dbef4":[0,0,0,83,7],
-"structAnvil_1_1API_1_1MonsterHitEffect.html#a7c2c3ad3393304b9afada8192653e4b4":[0,0,0,83,5],
-"structAnvil_1_1API_1_1MonsterHitEffect.html#aa3ccc061ab2b11c50ec61e85b4fe1ba3":[0,0,0,83,2],
-"structAnvil_1_1API_1_1MonsterHitEffect.html#ac1983ec53164b44d79c34a1bf27873f5":[0,0,0,83,9],
-"structAnvil_1_1API_1_1MonsterHitEffect.html#ac85a385977bf055392fdffa1151f77c1":[0,0,0,83,6],
-"structAnvil_1_1API_1_1MonsterHitEffect.html#ad37aeaba55c4f29dbcec76cb1e53a296":[0,0,0,83,1],
-"structAnvil_1_1API_1_1MonsterHitEffect.html#ae2ebadf04446d49a71c9137211d76771":[0,0,0,83,3],
-"structAnvil_1_1API_1_1NuiRect.html":[0,0,0,114],
-"structAnvil_1_1API_1_1NuiRect.html#a0294196850514b7393957c9bf0896b2e":[0,0,0,114,2],
-"structAnvil_1_1API_1_1NuiRect.html#a04ddbd96a86cecece941c20fbd309c13":[0,0,0,114,1]
+"structAnvil_1_1API_1_1MonsterHitEffect.html#a7c2c3ad3393304b9afada8192653e4b4":[0,0,0,83,5]
 };

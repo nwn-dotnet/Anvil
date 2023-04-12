@@ -156,6 +156,8 @@ var classAnvil_1_1API_1_1NwCreature =
     [ "BaseAttackBonus", "classAnvil_1_1API_1_1NwCreature.html#a338abe262fffc8e50cbf436f4a07b78a", null ],
     [ "BaseAttackCount", "classAnvil_1_1API_1_1NwCreature.html#a0b17c491405f55d6220d18bcf7f5e515", null ],
     [ "BaseShieldArcaneSpellFailure", "classAnvil_1_1API_1_1NwCreature.html#aff3e6f15d3f7747d2c4be4e0afdda12b", null ],
+    [ "BodyBag", "classAnvil_1_1API_1_1NwCreature.html#a49542283d5ea2d64e83f881fc7d34f90", null ],
+    [ "BodyBagTemplate", "classAnvil_1_1API_1_1NwCreature.html#a59825ce356e166d73ed95ab1aaf50259", null ],
     [ "BypassLevelUpValidationService", "classAnvil_1_1API_1_1NwCreature.html#a5b43ad35b927cea87bfaff58054e4c2a", null ],
     [ "ChallengeRating", "classAnvil_1_1API_1_1NwCreature.html#afb1b71d22d7dcb10412f36a78cbc1b1c", null ],
     [ "Classes", "classAnvil_1_1API_1_1NwCreature.html#a782a6024dad14b78c89b2c06f79d1517", null ],

@@ -1,5 +1,13 @@
 var NAVTREEINDEX18 =
 {
+"structAnvil_1_1API_1_1MonsterHitEffect.html#aa3ccc061ab2b11c50ec61e85b4fe1ba3":[0,0,0,83,2],
+"structAnvil_1_1API_1_1MonsterHitEffect.html#ac1983ec53164b44d79c34a1bf27873f5":[0,0,0,83,9],
+"structAnvil_1_1API_1_1MonsterHitEffect.html#ac85a385977bf055392fdffa1151f77c1":[0,0,0,83,6],
+"structAnvil_1_1API_1_1MonsterHitEffect.html#ad37aeaba55c4f29dbcec76cb1e53a296":[0,0,0,83,1],
+"structAnvil_1_1API_1_1MonsterHitEffect.html#ae2ebadf04446d49a71c9137211d76771":[0,0,0,83,3],
+"structAnvil_1_1API_1_1NuiRect.html":[0,0,0,114],
+"structAnvil_1_1API_1_1NuiRect.html#a0294196850514b7393957c9bf0896b2e":[0,0,0,114,2],
+"structAnvil_1_1API_1_1NuiRect.html#a04ddbd96a86cecece941c20fbd309c13":[0,0,0,114,1],
 "structAnvil_1_1API_1_1NuiRect.html#a283aa94fd897d3cba42a1ab95b399cbd":[0,0,0,114,0],
 "structAnvil_1_1API_1_1NuiRect.html#a58ed3ac99c5ca0e33e9350bf4689bddb":[0,0,0,114,4],
 "structAnvil_1_1API_1_1NuiRect.html#acd07dc97b25281e8b0244190d9d595e5":[0,0,0,114,3],
