@@ -52,7 +52,7 @@ namespace Anvil.API
     internal NwCreature(CNWSCreature creature) : base(creature)
     {
       this.creature = creature;
-      faction = new NwFaction(creature.GetFaction());
+      faction = new NwFaction(Creature.GetFaction());
       Inventory = new Inventory(this, Creature.m_pcItemRepository);
     }
 
@@ -195,6 +195,20 @@ namespace Anvil.API
     {
       get => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure;
       set => Creature.m_pStats.m_nBaseShieldArcaneSpellFailure = value;
+    }
+
+    /// <summary>
+    /// Gets the body bag assigned to this creature as a result of its death.
+    /// </summary>
+    public NwPlaceable? BodyBag => Creature.m_oidBodyBag.ToNwObject<NwPlaceable>();
+
+    /// <summary>
+    /// Gets or sets the body bag template to use when this creature dies.
+    /// </summary>
+    public BodyBagTableEntry BodyBagTemplate
+    {
+      get => NwGameTables.BodyBagTable[Creature.m_nBodyBag];
+      set => Creature.m_nBodyBag = (byte)value.RowIndex;
     }
 
     /// <summary>
@@ -2529,16 +2543,23 @@ namespace Anvil.API
       NWScript.ActionUnlockObject(target);
     }
 
-    private IEnumerable<NwCreature> GetAssociates(AssociateType associateType)
+    private List<NwCreature> GetAssociates(AssociateType associateType)
     {
-      int i;
-      uint current;
+      List<NwCreature> associates = new List<NwCreature>();
       int type = (int)associateType;
 
-      for (i = 1, current = NWScript.GetAssociate(type, this, i); current != Invalid; i++, current = NWScript.GetAssociate(type, this, i))
+      for (int i = 0;; i++)
       {
-        yield return current.ToNwObject<NwCreature>()!;
+        NwCreature? associate = NWScript.GetAssociate(type, this, i).ToNwObject<NwCreature>();
+        if (associate == null || associates.Contains(associate))
+        {
+          break;
+        }
+
+        associates.Add(associate);
       }
+
+      return associates;
     }
 
     private PlayerQuickBarButton InternalGetQuickBarButton(byte index)

@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Anvil.API
 {
   public sealed class PartsTableEntry : ITwoDimArrayEntry
@@ -14,7 +16,7 @@ namespace Anvil.API
     {
       CostModifier = entry.GetInt("COSTMODIFIER");
       ACBonus = entry.GetFloat("ACBONUS");
-      ArmorTableEntry = ACBonus.HasValue ? NwGameTables.ArmorTable[(int)ACBonus.Value] : null;
+      ArmorTableEntry = ACBonus.HasValue ? NwGameTables.ArmorTable.ElementAtOrDefault((int)ACBonus.Value) : null;
     }
   }
 }

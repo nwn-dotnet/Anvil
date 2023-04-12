@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Anvil.API.Events;
 using NWN.Core;
 
@@ -25,7 +26,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the effect icon that was selected. Only valid in <see cref="GuiEventType.EffectIconClick"/> events.
       /// </summary>
-      public EffectIconTableEntry EffectIcon => NwGameTables.EffectIconTable[integerEventData];
+      public EffectIconTableEntry? EffectIcon => NwGameTables.EffectIconTable.ElementAtOrDefault(integerEventData);
 
       /// <summary>
       /// Gets the object data associated with this GUI event.

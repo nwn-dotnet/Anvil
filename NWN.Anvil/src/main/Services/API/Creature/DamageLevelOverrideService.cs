@@ -1,3 +1,4 @@
+using System.Linq;
 using Anvil.API;
 using NLog;
 using NWN.Native.API;
@@ -36,7 +37,7 @@ namespace Anvil.Services
       InternalVariableInt damageLevelOverride = InternalVariables.DamageLevelOverride(creature);
       if (damageLevelOverride.HasValue)
       {
-        return NwGameTables.DamageLevelTable[damageLevelOverride.Value];
+        return NwGameTables.DamageLevelTable.ElementAtOrDefault(damageLevelOverride.Value);
       }
 
       return null;

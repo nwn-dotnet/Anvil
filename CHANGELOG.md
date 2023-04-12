@@ -3,6 +3,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.27
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.26...v8193.34.27
+
+### Added
+- NwCreature: Added `BodyBag`, `BodyBagTemplate` properties.
+- NwPlaceable: Added `IsBodyBag` property.
+
+### Changed
+- OnPlayerGuiEvent: `EffectIcon` property is now nullable.
+- OnDebugPlayVisualEffect: `Effect` property is now nullable.
+- APIs that accept a `TableEntry` parameter now have implicit casts (e.g. `EffectIconTableEntry` & `EffectIcon`).
+
+### Fixed
+- NwCreature: Fixed an infinite loop caused by the `Associates` property when having dominated creature associates.
+- Added some index/range checks for some usages of game table data.
+
 ## 8193.34.26
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...v8193.34.26
 
