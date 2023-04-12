@@ -70,6 +70,11 @@ namespace Anvil.API
     /// </summary>
     public Inventory Inventory { get; }
 
+    /// <summary>
+    /// Gets if this is a body bag placeable, spawned from a creature's death.
+    /// </summary>
+    public bool IsBodyBag => placeable.m_bIsBodyBag.ToBool();
+
     public bool IsStatic
     {
       get => Placeable.m_bStaticObject.ToBool();
