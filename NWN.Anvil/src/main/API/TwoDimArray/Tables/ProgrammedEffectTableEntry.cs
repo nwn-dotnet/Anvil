@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Anvil.API
 {
   public sealed class ProgrammedEffectTableEntry : ITwoDimArrayEntry
@@ -42,6 +44,11 @@ namespace Anvil.API
         floatParamValues[i] = entry.GetFloat(columnName);
         intParamValues[i] = entry.GetInt(columnName);
       }
+    }
+
+    public static implicit operator ProgrammedEffectTableEntry?(ProgFxType fxType)
+    {
+      return NwGameTables.ProgrammedEffectTable.ElementAtOrDefault((int)fxType);
     }
   }
 }

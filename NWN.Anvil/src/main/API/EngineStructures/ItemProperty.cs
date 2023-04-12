@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -17,19 +18,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the cost table used by this item property.
     /// </summary>
-    public TwoDimArray<ItemPropertyCostTableEntry>? CostTable
-    {
-      get
-      {
-        int tableIndex = Effect.GetInteger(2);
-        if (tableIndex >= 0 && tableIndex < NwGameTables.ItemPropertyCostTables.Count)
-        {
-          return NwGameTables.ItemPropertyCostTables[tableIndex].Table;
-        }
-
-        return null;
-      }
-    }
+    public TwoDimArray<ItemPropertyCostTableEntry>? CostTable => NwGameTables.ItemPropertyCostTables.ElementAtOrDefault(Effect.GetInteger(2))?.Table;
 
     /// <summary>
     /// Gets or sets the cost table entry that is set for this item property.<br/>
@@ -62,19 +51,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the #1 param table used by this item property.
     /// </summary>
-    public TwoDimArray<ItemPropertyParamTableEntry>? Param1Table
-    {
-      get
-      {
-        int tableIndex = Effect.GetInteger(4);
-        if (tableIndex >= 0 && tableIndex < NwGameTables.ItemPropertyParamTables.Count)
-        {
-          return NwGameTables.ItemPropertyParamTables[tableIndex].Table;
-        }
-
-        return null;
-      }
-    }
+    public TwoDimArray<ItemPropertyParamTableEntry>? Param1Table => NwGameTables.ItemPropertyParamTables.ElementAtOrDefault(Effect.GetInteger(4))?.Table;
 
     /// <summary>
     /// Gets or sets the #1 param table entry that is set for this item property.<br/>
@@ -119,18 +96,7 @@ namespace Anvil.API
     /// </summary>
     public ItemPropertySubTypeTableEntry? SubType
     {
-      get
-      {
-        int tableIndex = Effect.GetInteger(1);
-        TwoDimArray<ItemPropertySubTypeTableEntry>? table = Property.SubTypeTable;
-
-        if (tableIndex >= 0 && table != null && tableIndex < table.Count)
-        {
-          return table[tableIndex];
-        }
-
-        return null;
-      }
+      get => Property.SubTypeTable?.ElementAtOrDefault(Effect.GetInteger(1));
       set => Effect.SetInteger(1, value?.RowIndex ?? -1);
     }
 
