@@ -52,7 +52,7 @@ namespace Anvil.API
     internal NwCreature(CNWSCreature creature) : base(creature)
     {
       this.creature = creature;
-      faction = new NwFaction(creature.GetFaction());
+      faction = new NwFaction(Creature.GetFaction());
       Inventory = new Inventory(this, Creature.m_pcItemRepository);
     }
 
