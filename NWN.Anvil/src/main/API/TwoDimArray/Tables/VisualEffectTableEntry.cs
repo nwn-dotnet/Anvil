@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Anvil.API
 {
   public sealed class VisualEffectTableEntry : ITwoDimArrayEntry
@@ -87,6 +89,11 @@ namespace Anvil.API
       LowViolenceVariant = entry.GetString("LowViolence");
       LowQualityVariant = entry.GetString("LowQuality");
       OrientWithObject = entry.GetBool("OrientWithObject");
+    }
+
+    public static implicit operator VisualEffectTableEntry?(VfxType vfxType)
+    {
+      return NwGameTables.VisualEffectTable.ElementAtOrDefault((int)vfxType);
     }
   }
 }

@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Anvil.API
 {
   public sealed class ItemPropertyTableEntry : ITwoDimArrayEntry
@@ -53,7 +55,7 @@ namespace Anvil.API
 
     void ITwoDimArrayEntry.InterpretEntry(TwoDimArrayEntry entry)
     {
-      ItemMap = NwGameTables.ItemPropertyItemMapTable.GetRow(RowIndex);
+      ItemMap = NwGameTables.ItemPropertyItemMapTable.ElementAtOrDefault(RowIndex);
       Name = entry.GetStrRef("Name");
       Label = entry.GetString("Label");
       SubTypeTable = entry.GetTable<ItemPropertySubTypeTableEntry>("SubTypeResRef");
@@ -62,6 +64,11 @@ namespace Anvil.API
       Param1Table = entry.GetTableEntry("Param1ResRef", NwGameTables.ItemPropertyParamTables)?.Table;
       GameStrRef = entry.GetStrRef("GameStrRef");
       Description = entry.GetStrRef("Description");
+    }
+
+    public static implicit operator ItemPropertyTableEntry?(ItemPropertyType propertyType)
+    {
+      return NwGameTables.ItemPropertyTable.ElementAtOrDefault((int)propertyType);
     }
   }
 }

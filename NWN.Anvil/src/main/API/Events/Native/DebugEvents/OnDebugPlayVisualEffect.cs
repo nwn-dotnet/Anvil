@@ -12,7 +12,7 @@ namespace Anvil.API.Events
     /// <summary>
     /// Gets the effect that is attempting to be played.
     /// </summary>
-    public VisualEffectTableEntry Effect { get; internal init; } = null!;
+    public VisualEffectTableEntry? Effect { get; internal init; }
 
     /// <summary>
     /// Gets the player attempting to spawn the visual effect.

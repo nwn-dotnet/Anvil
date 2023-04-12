@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Anvil.API
 {
   /// <summary>
@@ -27,6 +29,11 @@ namespace Anvil.API
       Label = entry.GetString("Label");
       Icon = entry.GetString("Icon");
       StrRef = entry.GetStrRef("StrRef");
+    }
+
+    public static implicit operator EffectIconTableEntry?(EffectIcon effectIcon)
+    {
+      return NwGameTables.EffectIconTable.ElementAtOrDefault((int)effectIcon);
     }
   }
 }
