@@ -198,6 +198,20 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the body bag assigned to this creature as a result of its death.
+    /// </summary>
+    public NwPlaceable? BodyBag => Creature.m_oidBodyBag.ToNwObject<NwPlaceable>();
+
+    /// <summary>
+    /// Gets or sets the body bag template to use when this creature dies.
+    /// </summary>
+    public BodyBagTableEntry BodyBagTemplate
+    {
+      get => NwGameTables.BodyBagTable[Creature.m_nBodyBag];
+      set => Creature.m_nBodyBag = (byte)value.RowIndex;
+    }
+
+    /// <summary>
     /// Gets or sets the calculated challenge rating for this creature.
     /// </summary>
     public float ChallengeRating
