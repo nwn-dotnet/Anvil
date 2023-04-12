@@ -2543,16 +2543,23 @@ namespace Anvil.API
       NWScript.ActionUnlockObject(target);
     }
 
-    private IEnumerable<NwCreature> GetAssociates(AssociateType associateType)
+    private List<NwCreature> GetAssociates(AssociateType associateType)
     {
-      int i;
-      uint current;
+      List<NwCreature> associates = new List<NwCreature>();
       int type = (int)associateType;
 
-      for (i = 1, current = NWScript.GetAssociate(type, this, i); current != Invalid; i++, current = NWScript.GetAssociate(type, this, i))
+      for (int i = 0;; i++)
       {
-        yield return current.ToNwObject<NwCreature>()!;
+        NwCreature? associate = NWScript.GetAssociate(type, this, i).ToNwObject<NwCreature>();
+        if (associate == null || associates.Contains(associate))
+        {
+          break;
+        }
+
+        associates.Add(associate);
       }
+
+      return associates;
     }
 
     private PlayerQuickBarButton InternalGetQuickBarButton(byte index)
