@@ -44,7 +44,7 @@ namespace Anvil.API.Events
         return ScriptHandleResult.NotHandled;
       }
 
-      EventScriptType eventScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent();
+      EventScriptType eventScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent(false.ToInt());
       if (eventScriptType == EventScriptType.None)
       {
         return ScriptHandleResult.NotHandled;

@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.27...HEAD
 
 ### Added
 - N/A
@@ -23,6 +23,57 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...HEAD
 
 ### Fixed
 - N/A
+
+## 8193.34.27
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.26...v8193.34.27
+
+### Added
+- NwCreature: Added `BodyBag`, `BodyBagTemplate` properties.
+- NwPlaceable: Added `IsBodyBag` property.
+
+### Changed
+- OnPlayerGuiEvent: `EffectIcon` property is now nullable.
+- OnDebugPlayVisualEffect: `Effect` property is now nullable.
+- APIs that accept a `TableEntry` parameter now have implicit casts (e.g. `EffectIconTableEntry` & `EffectIcon`).
+
+### Fixed
+- NwCreature: Fixed an infinite loop caused by the `Associates` property when having dominated creature associates.
+- Added some index/range checks for some usages of game table data.
+
+## 8193.34.26
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.25...v8193.34.26
+
+### Added
+- NwGameTables: Added `EffectIconTable`.
+- CreatureClassInfo: Added `School`, `KnownSpells` properties.
+- CreatureLevelInfo: Added `AddedKnownSpells`, `RemovedKnownSpells` properties.
+
+### Package Updates
+- NWNX: 2692ecb -> d44d373
+- NWN.Core: 8193.34.12 -> 8193.34.15
+- NWN.Native: 8193.34.5 -> 8193.34.7
+- Newtonsoft.Json: 13.0.2 -> 13.0.3
+- NLog: 5.1.2 -> 5.1.3
+- Paket.Core: 7.2.0 -> 7.2.1
+
+### Changed
+- CollectionExtensions: `InsertOrdered` now returns the index in which the item was inserted.
+- Anvil will now log a managed stack trace during an assertion failure. We're hoping this will help track down issues where the nwscript VM reports an invalid stack state.
+
+### Deprecated
+- `CreatureClassInfo.AddKnownSpell` - use `CreatureClassInfo.KnownSpells[].Add` instead.
+- `CreatureClassInfo.RemoveKnownSpell` - use `CreatureClassInfo.KnownSpells[].Remove` instead.
+- `CreatureClassInfo.GetKnownSpellCountByLevel` - use `CreatureClassInfo.KnownSpells[].Count` instead.
+- `CreatureClassInfo.GetKnownSpells` - use `CreatureClassInfo.KnownSpells` instead.
+
+### Fixed
+- Fixed null/empty script names not clearing object event scripts.
+- Fixed an issue where an invalid script name could be assigned to an object event.
+- Fixed a NRE in the `ModuleEvents.OnAcquireItem` event caused by characters failing ELC.
+- Fixed a cast exception in the `PlaceableEvents.OnDisturbed` event when the last inventory event was not caused by a creature.
+- NwStore: Fixed `WillNotBuyItems`, `WillOnlyBuyItems` lists not removing items, and LINQ functions (ToList/ToArray) not working.
+- CreatureLevelInfo: `ClassInfo` now returns the correct creature class.
+- ItemPropertyItemMapTable: Fixed some item property values returning valid when they shouldn't be.
 
 ## 8193.34.25
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.24...v8193.34.25

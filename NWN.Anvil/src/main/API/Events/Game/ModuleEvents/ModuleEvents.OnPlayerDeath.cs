@@ -17,8 +17,8 @@ namespace Anvil.API.Events
     {
       public OnPlayerDeath()
       {
-        Killer = NWScript.GetLastHostileActor(DeadPlayer.ControlledCreature).ToNwObject<NwGameObject>()
-          ?? NWScript.GetLastDamager(DeadPlayer.ControlledCreature).ToNwObject<NwGameObject>();
+        Killer = NWScript.GetLastHostileActor(DeadPlayer.ControlledCreature).ToNwObject()
+          ?? NWScript.GetLastDamager(DeadPlayer.ControlledCreature).ToNwObject();
       }
 
       /// <summary>
@@ -29,7 +29,7 @@ namespace Anvil.API.Events
       /// <summary>
       /// Gets the <see cref="NwGameObject"/> that caused <see cref="NwPlayer"/> to trigger the event.
       /// </summary>
-      public NwGameObject? Killer { get; }
+      public NwObject? Killer { get; }
 
       NwObject? IEvent.Context => DeadPlayer.ControlledCreature;
     }

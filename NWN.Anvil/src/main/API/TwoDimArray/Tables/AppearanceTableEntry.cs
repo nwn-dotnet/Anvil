@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Anvil.API
 {
   /// <summary>
@@ -114,6 +116,11 @@ namespace Anvil.API
       HeadName = entry.GetString("HEAD_NAME");
       BodyBag = entry.GetTableEntry("BODY_BAG", NwGameTables.BodyBagTable);
       Targetable = entry.GetBool("TARGETABLE");
+    }
+
+    public static implicit operator AppearanceTableEntry?(AppearanceType appearanceType)
+    {
+      return NwGameTables.AppearanceTable.ElementAtOrDefault((int)appearanceType);
     }
   }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Anvil.Services;
@@ -121,7 +122,7 @@ namespace Anvil.API.Events
       {
         Player = player,
         TargetObject = target.ToNwObject(),
-        Effect = NwGameTables.VisualEffectTable[visualEffect],
+        Effect = NwGameTables.VisualEffectTable.ElementAtOrDefault(visualEffect),
         Duration = TimeSpan.FromSeconds(duration),
         TargetPosition = position,
       });

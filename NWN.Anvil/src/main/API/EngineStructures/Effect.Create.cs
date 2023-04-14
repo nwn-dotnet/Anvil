@@ -411,13 +411,19 @@ namespace Anvil.API
       return NWScript.EffectHitPointChangeWhenDying(hpChangePerRound)!;
     }
 
+    [Obsolete("Use the EffectIconTableEntry overload instead.")]
+    public static Effect Icon(EffectIcon icon)
+    {
+      return NWScript.EffectIcon((int)icon)!;
+    }
+
     /// <summary>
     /// Creates an icon effect. Icons appear in the top right and in the character sheet and examine panels.
     /// </summary>
     /// <param name="icon">The icon to display.</param>
-    public static Effect Icon(EffectIcon icon)
+    public static Effect Icon(EffectIconTableEntry icon)
     {
-      return NWScript.EffectIcon((int)icon)!;
+      return NWScript.EffectIcon(icon.RowIndex)!;
     }
 
     /// <summary>

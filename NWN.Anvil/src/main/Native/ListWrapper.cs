@@ -52,17 +52,31 @@ namespace Anvil.Native
 
     public void CopyTo(T2[] array, int arrayIndex)
     {
-      T1[] values = new T1[array.Length];
-      for (int i = 0; i < array.Length; i++)
+      if (array == null)
       {
-        values[i] = set(array[i]);
+        throw new NullReferenceException("array is null");
+      }
+
+      if (arrayIndex < 0)
+      {
+        throw new ArgumentOutOfRangeException(nameof(arrayIndex), "arrayIndex is less than 0.");
+      }
+
+      if (array.Length < Count - arrayIndex)
+      {
+        throw new ArgumentException("Copy would exceed size of target array.");
+      }
+
+      for (int i = arrayIndex; i < Count; i++)
+      {
+        array[i] = get(list[i]);
       }
     }
 
     public bool Remove(T2 item)
     {
       T1 value = set(item);
-      return list.Contains(value);
+      return list.Remove(value);
     }
 
     public int IndexOf(T2 item)

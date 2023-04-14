@@ -1,11 +1,15 @@
+using System;
 using System.Collections.Generic;
 using Anvil.Native;
 using NWN.Native.API;
 
 namespace Anvil.API
 {
-  public sealed class CreatureClassInfo
+  public sealed unsafe class CreatureClassInfo
   {
+    private const int KnownSpellArraySize = 10; // Cantrips + 9 spell levels
+    private static readonly int KnownSpellArrayListStructSize = sizeof(IntPtr) + sizeof(int) + sizeof(int);
+
     private readonly CNWSCreatureStats_ClassInfo classInfo;
 
     internal CreatureClassInfo(CNWSCreatureStats_ClassInfo classInfo)
@@ -23,11 +27,29 @@ namespace Anvil.API
     /// Domains can be modified by editing the contents of this array.
     /// </summary>
     /// <remarks>By default, a non-domain class will be populated with <see cref="Domain.Air"/> and <see cref="Domain.Animal"/> (index 0 and 1 respectively).</remarks>
-    public IArray<NwDomain?> Domains
+    public IArray<NwDomain?> Domains => new ArrayWrapper<byte, NwDomain?>(classInfo.m_nDomain, id => NwDomain.FromDomainId(id), domain => domain?.Id ?? 0);
+
+    /// <summary>
+    /// Gets a mutable list of known spells.<br/>
+    /// The returned array is indexed by spell level, 0 = cantrips, 1 = level 1 spells, etc.
+    /// </summary>
+    /// <remarks>
+    /// When used on players, you also need to update <see cref="CreatureLevelInfo.AddedKnownSpells"/> and <see cref="CreatureLevelInfo.RemovedKnownSpells"/> on the relevant level taken in this class, otherwise players will fail ELC checks.
+    /// </remarks>
+    public IReadOnlyList<IList<NwSpell>> KnownSpells
     {
       get
       {
-        return new ArrayWrapper<byte, NwDomain?>(classInfo.m_nDomain, id => NwDomain.FromDomainId(id), domain => domain?.Id ?? 0);
+        IList<NwSpell>[] spells = new IList<NwSpell>[KnownSpellArraySize];
+        IntPtr ptr = classInfo.m_pKnownSpellList.Pointer;
+
+        for (int i = 0; i < spells.Length; i++)
+        {
+          CExoArrayListUInt32 spellList = CExoArrayListUInt32.FromPointer(ptr + i * KnownSpellArrayListStructSize);
+          spells[i] = new ListWrapper<uint, NwSpell>(spellList, spellId => NwSpell.FromSpellId((int)spellId)!, spell => (uint)spell.Id);
+        }
+
+        return spells;
       }
     }
 
@@ -42,10 +64,16 @@ namespace Anvil.API
     public byte NegativeLevels => classInfo.m_nNegativeLevels;
 
     /// <summary>
+    /// Gets the spell school for this class.
+    /// </summary>
+    public SpellSchool School => (SpellSchool)classInfo.m_nSchool;
+
+    /// <summary>
     /// Adds the specified spell as a known spell at the specified spell level.
     /// </summary>
     /// <param name="spell">The spell to be added.</param>
     /// <param name="spellLevel">The spell level for the spell to be added.</param>
+    [Obsolete("Use the KnownSpells property instead.")]
     public void AddKnownSpell(NwSpell spell, byte spellLevel)
     {
       classInfo.AddKnownSpell(spellLevel, spell.Id.AsUInt());
@@ -65,6 +93,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
     /// <returns>An integer representing the number of spells known.</returns>
+    [Obsolete("Use the KnownSpells property instead.")]
     public ushort GetKnownSpellCountByLevel(byte spellLevel)
     {
       return classInfo.GetNumberKnownSpells(spellLevel);
@@ -75,6 +104,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
     /// <returns>A list containing the creatures known spells.</returns>
+    [Obsolete("Use the KnownSpells property instead.")]
     public IReadOnlyList<NwSpell> GetKnownSpells(byte spellLevel)
     {
       int spellCount = GetKnownSpellCountByLevel(spellLevel);
@@ -131,6 +161,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellLevel">The spell level to query.</param>
     /// <param name="spell">The spell to remove.</param>
+    [Obsolete("Use the KnownSpells property instead.")]
     public void RemoveKnownSpell(byte spellLevel, NwSpell spell)
     {
       classInfo.RemoveKnownSpell(spellLevel, spell.Id.AsUInt());
