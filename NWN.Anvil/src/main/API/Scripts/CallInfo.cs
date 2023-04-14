@@ -16,7 +16,7 @@ namespace Anvil.API
     {
       ScriptName = scriptName;
       ObjectSelf = objSelf;
-      ScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent();
+      ScriptType = (EventScriptType)NWScript.GetCurrentlyRunningEvent(false.ToInt());
     }
 
     /// <summary>
