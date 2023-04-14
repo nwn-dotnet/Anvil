@@ -198,7 +198,10 @@ namespace Anvil.API
       virtualMachine.m_oidObjectRunScript[virtualMachine.m_nRecursionLevel] = oid;
       virtualMachine.m_bValidObjectRunScript[virtualMachine.m_nRecursionLevel] = valid.ToInt();
 
-      virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel].m_nScriptEventID = scriptEventId;
+      CVirtualMachineScript script = virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel];
+      script.m_nScriptEventID = scriptEventId;
+
+      virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel] = script;
       cmd.m_oidObjectRunScript = virtualMachine.m_oidObjectRunScript[virtualMachine.m_nRecursionLevel];
       cmd.m_bValidObjectRunScript = virtualMachine.m_bValidObjectRunScript[virtualMachine.m_nRecursionLevel];
 
