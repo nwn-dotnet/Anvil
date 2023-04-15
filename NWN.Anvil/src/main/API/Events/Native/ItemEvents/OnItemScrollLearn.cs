@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -30,15 +31,12 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<LearnScrollHook> Hook { get; set; } = null!;
-
-      [NativeFunction("_ZN12CNWSCreature11LearnScrollEj", "")]
-      private delegate int LearnScrollHook(void* pCreature, uint oidScrollToLearn);
+      private static FunctionHook<Functions.CNWSCreature.LearnScroll> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int> pHook = &OnLearnScroll;
-        Hook = HookService.RequestHook<LearnScrollHook>(pHook, HookOrder.Early);
+        Hook = HookService.RequestHook<Functions.CNWSCreature.LearnScroll>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

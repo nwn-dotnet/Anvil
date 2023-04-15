@@ -10,7 +10,7 @@ namespace Anvil.Services
   /// Allows combat log, feedback and journal update messages to be hidden globally or per player.
   /// </summary>
   [ServiceBinding(typeof(FeedbackService))]
-  public sealed class FeedbackService : IDisposable
+  public sealed unsafe class FeedbackService : IDisposable
   {
     private static readonly CServerExoApp ServerExoApp = NWNXLib.AppManager().m_pServerExoApp;
 
@@ -26,7 +26,7 @@ namespace Anvil.Services
 
     private FilterMode feedbackMessageFilterMode;
 
-    private FunctionHook<SendFeedbackMessageHook>? sendFeedbackMessageHook;
+    private FunctionHook<Functions.CNWSCreature.SendFeedbackMessage>? sendFeedbackMessageHook;
     private FunctionHook<SendServerToPlayerCCMessageHook>? sendServerToPlayerCCMessageHook;
     private FunctionHook<SendServerToPlayerJournalUpdatedHook>? sendServerToPlayerJournalUpdatedHook;
 
@@ -34,9 +34,6 @@ namespace Anvil.Services
     {
       this.hookService = hookService;
     }
-
-    [NativeFunction("_ZN12CNWSCreature19SendFeedbackMessageEtP16CNWCCMessageDataP10CNWSPlayer", "")]
-    private delegate void SendFeedbackMessageHook(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer);
 
     [NativeFunction("_ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData", "")]
     private delegate int SendServerToPlayerCCMessageHook(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData);
@@ -66,7 +63,7 @@ namespace Anvil.Services
         feedbackMessageFilterMode = value;
         if (value == FilterMode.Whitelist)
         {
-          sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
+          sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage,
             HookOrder.Late);
 
           sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
@@ -100,7 +97,7 @@ namespace Anvil.Services
       }
       else
       {
-        sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
+        sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage,
           HookOrder.Late);
       }
 
@@ -116,7 +113,7 @@ namespace Anvil.Services
       }
       else
       {
-        sendFeedbackMessageHook ??= hookService.RequestHook<SendFeedbackMessageHook>(OnSendFeedbackMessage,
+        sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage,
           HookOrder.Late);
       }
 
@@ -182,7 +179,7 @@ namespace Anvil.Services
       return filterMode == FilterMode.Blacklist ? hasFilter : !hasFilter;
     }
 
-    private void OnSendFeedbackMessage(IntPtr pCreature, ushort nFeedbackId, IntPtr pMessageData, IntPtr pFeedbackPlayer)
+    private void OnSendFeedbackMessage(void* pCreature, ushort nFeedbackId, void* pMessageData, void* pFeedbackPlayer)
     {
       CNWSCreature creature = CNWSCreature.FromPointer(pCreature);
       if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, creature.m_idSelf, (FeedbackMessage)nFeedbackId, FeedbackMessageFilterMode))

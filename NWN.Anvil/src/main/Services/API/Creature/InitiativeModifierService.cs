@@ -1,5 +1,6 @@
 using Anvil.API;
 using Anvil.Internal;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 using Feat = Anvil.API.Feat;
@@ -12,16 +13,13 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly FunctionHook<InitiativeModifier> initiativeModifierHook;
+    private readonly FunctionHook<Functions.CNWSCreature.ResolveInitiative> initiativeModifierHook;
 
     public InitiativeModifierService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(InitiativeModifierService)}");
-      initiativeModifierHook = hookService.RequestHook<InitiativeModifier>(OnResolveInitiative, HookOrder.Late);
+      initiativeModifierHook = hookService.RequestHook<Functions.CNWSCreature.ResolveInitiative>(OnResolveInitiative, HookOrder.Late);
     }
-
-    [NativeFunction("_ZN12CNWSCreature17ResolveInitiativeEv", "")]
-    private delegate void InitiativeModifier(void* pObject);
 
     /// <summary>
     /// Clears any modifier that is set for the creature's initiative.<br/>

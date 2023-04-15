@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -50,22 +51,16 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SignalMeleeDamageHook> signalMeleeDamageHook = null!;
-      private static FunctionHook<SignalRangedDamageHook> signalRangedDamageHook = null!;
-
-      [NativeFunction("_ZN12CNWSCreature17SignalMeleeDamageEP10CNWSObjecti", "")]
-      private delegate void SignalMeleeDamageHook(void* pCreature, void* pTarget, int nAttacks);
-
-      [NativeFunction("_ZN12CNWSCreature18SignalRangedDamageEP10CNWSObjecti", "")]
-      private delegate void SignalRangedDamageHook(void* pCreature, void* pTarget, int nAttacks);
+      private static FunctionHook<Functions.CNWSCreature.SignalMeleeDamage> signalMeleeDamageHook = null!;
+      private static FunctionHook<Functions.CNWSCreature.SignalRangedDamage> signalRangedDamageHook = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int, void> pSignalMeleeDamageHook = &OnSignalMeleeDamage;
-        signalMeleeDamageHook = HookService.RequestHook<SignalMeleeDamageHook>(pSignalMeleeDamageHook, HookOrder.Late);
+        signalMeleeDamageHook = HookService.RequestHook<Functions.CNWSCreature.SignalMeleeDamage>(pSignalMeleeDamageHook, HookOrder.Late);
 
         delegate* unmanaged<void*, void*, int, void> pSignalRangedDamageHook = &OnSignalRangedDamage;
-        signalRangedDamageHook = HookService.RequestHook<SignalRangedDamageHook>(pSignalRangedDamageHook, HookOrder.Late);
+        signalRangedDamageHook = HookService.RequestHook<Functions.CNWSCreature.SignalRangedDamage>(pSignalRangedDamageHook, HookOrder.Late);
 
         return new IDisposable[] { signalMeleeDamageHook, signalRangedDamageHook };
       }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Anvil.API;
 using Anvil.API.Events;
+using Anvil.Native;
 using NWN.Native.API;
 using ClassType = NWN.Native.API.ClassType;
 using CombatMode = Anvil.API.CombatMode;
@@ -54,7 +55,7 @@ namespace Anvil.Services
     private readonly HashSet<uint> weaponUnarmedSet = new HashSet<uint>();
     private bool combatModeEventSubscribed;
 
-    private FunctionHook<MaxAttackRangeHook>? maxAttackRangeHook;
+    private FunctionHook<Functions.CNWSCreature.MaxAttackRange>? maxAttackRangeHook;
 
     public WeaponService(HookService hookService, EventService eventService)
     {
@@ -128,9 +129,6 @@ namespace Anvil.Services
 
     [NativeFunction("_ZN17CNWSCreatureStats23GetWeaponSpecializationEP8CNWSItem", "")]
     private delegate int GetWeaponSpecializationHook(void* pStats, void* pWeapon);
-
-    [NativeFunction("_ZN12CNWSCreature14MaxAttackRangeEjii", "")]
-    private delegate float MaxAttackRangeHook(void* pCreature, uint oidTarget, int bBaseValue, int bPassiveRange);
 
     /// <summary>
     /// Called when an attack results in a devastating critical hit. Subscribe and modify the event data to implement custom behaviours.
@@ -288,7 +286,7 @@ namespace Anvil.Services
       overrideData.MaxRangedPassiveAttackDistance = maxPassive;
 
       maxRangedAttackDistanceOverrideMap[baseItem.Id] = overrideData;
-      maxAttackRangeHook ??= hookService.RequestHook<MaxAttackRangeHook>(OnMaxAttackRange, HookOrder.Final);
+      maxAttackRangeHook ??= hookService.RequestHook<Functions.CNWSCreature.MaxAttackRange>(OnMaxAttackRange, HookOrder.Final);
     }
 
     /// <summary>

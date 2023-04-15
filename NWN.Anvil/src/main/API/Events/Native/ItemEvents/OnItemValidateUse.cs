@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -17,15 +18,12 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<CanUseItemHook> Hook { get; set; } = null!;
-
-      [NativeFunction("_ZN12CNWSCreature10CanUseItemEP8CNWSItemi", "")]
-      private delegate int CanUseItemHook(void* pCreature, void* pItem, int bIgnoreIdentifiedFlag);
+      private static FunctionHook<Functions.CNWSCreature.CanUseItem> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int, int> pHook = &OnCanUseItem;
-        Hook = HookService.RequestHook<CanUseItemHook>(pHook, HookOrder.Early);
+        Hook = HookService.RequestHook<Functions.CNWSCreature.CanUseItem>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

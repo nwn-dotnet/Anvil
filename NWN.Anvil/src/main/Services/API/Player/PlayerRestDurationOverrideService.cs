@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Anvil.API;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -14,17 +15,14 @@ namespace Anvil.Services
 
     private static readonly CExoString DurationTableKey = "Duration".ToExoString();
 
-    private readonly FunctionHook<AIActionRestHook> aiActionRestHook;
+    private readonly FunctionHook<Functions.CNWSCreature.AIActionRest> aiActionRestHook;
     private readonly Dictionary<NwCreature, int> restDurationOverrides = new Dictionary<NwCreature, int>();
 
     public PlayerRestDurationOverrideService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(PlayerRestDurationOverrideService)}");
-      aiActionRestHook = hookService.RequestHook<AIActionRestHook>(OnAIActionRest, HookOrder.Late);
+      aiActionRestHook = hookService.RequestHook<Functions.CNWSCreature.AIActionRest>(OnAIActionRest, HookOrder.Late);
     }
-
-    [NativeFunction("_ZN12CNWSCreature12AIActionRestEP20CNWSObjectActionNode", "")]
-    private delegate uint AIActionRestHook(void* pCreature, void* pNode);
 
     public void ClearDurationOverride(NwCreature creature)
     {
