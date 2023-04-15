@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Anvil.Services;
 
 namespace Anvil.Native
 {
+  [SuppressMessage("ReSharper", "InconsistentNaming")]
   internal static unsafe partial class Functions
   {
     public static class CNWSCreature
