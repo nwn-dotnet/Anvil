@@ -7,7 +7,7 @@ namespace Anvil.Native
   {
     public static class CNWRules
     {
-      [NativeFunction("_ZN8CNWRules9ReloadAllEv", "")]
+      [NativeFunction("_ZN8CNWRules9ReloadAllEv", "?ReloadAll@CNWRules@@QEAAXXZ")]
       public delegate void ReloadAll(void* pRules);
     }
   }

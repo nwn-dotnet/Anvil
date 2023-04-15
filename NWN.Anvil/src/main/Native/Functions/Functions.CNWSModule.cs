@@ -7,10 +7,10 @@ namespace Anvil.Native
   {
     public static class CNWSModule
     {
-      [NativeFunction("_ZN10CNWSModule20LoadModuleInProgressEii", "")]
+      [NativeFunction("_ZN10CNWSModule20LoadModuleInProgressEii", "?LoadModuleInProgress@CNWSModule@@QEAAIHH@Z")]
       public delegate uint LoadModuleInProgress(void* pModule, int nAreasLoaded, int nAreasToLoad);
 
-      [NativeFunction("_ZN10CNWSModule10UpdateTimeEjjj", "")]
+      [NativeFunction("_ZN10CNWSModule10UpdateTimeEjjj", "?UpdateTime@CNWSModule@@QEAAXIII@Z")]
       public delegate void UpdateTime(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
     }
   }

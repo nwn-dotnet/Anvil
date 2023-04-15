@@ -7,7 +7,7 @@ namespace Anvil.Native
   {
     public static class CNWSBarter
     {
-      [NativeFunction("_ZN10CNWSBarter15SetListAcceptedEi", "")]
+      [NativeFunction("_ZN10CNWSBarter15SetListAcceptedEi", "?SetListAccepted@CNWSBarter@@QEAAHH@Z")]
       public delegate int SetListAccepted(void* pBarter, int bAccepted);
     }
   }

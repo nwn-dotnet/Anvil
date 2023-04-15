@@ -7,10 +7,10 @@ namespace Anvil.Native
   {
     public static class CNWSItem
     {
-      [NativeFunction("_ZN8CNWSItem14CloseInventoryEji", "")]
+      [NativeFunction("_ZN8CNWSItem14CloseInventoryEji", "?CloseInventory@CNWSItem@@QEAAXIH@Z")]
       public delegate void CloseInventory(void* pItem, uint oidCloser, int bUpdatePlayer);
 
-      [NativeFunction("_ZN8CNWSItem13OpenInventoryEj", "")]
+      [NativeFunction("_ZN8CNWSItem13OpenInventoryEj", "?OpenInventory@CNWSItem@@QEAAXI@Z")]
       public delegate void OpenInventory(void* pItem, uint oidOpener);
     }
   }

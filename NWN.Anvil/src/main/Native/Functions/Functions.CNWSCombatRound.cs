@@ -7,7 +7,7 @@ namespace Anvil.Native
   {
     public static class CNWSCombatRound
     {
-      [NativeFunction("_ZN15CNWSCombatRound16StartCombatRoundEj", "")]
+      [NativeFunction("_ZN15CNWSCombatRound16StartCombatRoundEj", "?StartCombatRound@CNWSCombatRound@@QEAAXI@Z")]
       public delegate void StartCombatRound(void* pCombatRound, uint oidTarget);
     }
   }

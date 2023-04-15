@@ -7,7 +7,7 @@ namespace Anvil.Native
   {
     public static class CNWSArea
     {
-      [NativeFunction("_ZN8CNWSAreaD1Ev", "")]
+      [NativeFunction("_ZN8CNWSAreaD1Ev", "??1CNWSArea@@UEAA@XZ")]
       public delegate void Destructor(void* pArea);
     }
   }

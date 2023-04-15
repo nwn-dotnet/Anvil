@@ -7,7 +7,7 @@ namespace Anvil.Native
   {
     public static class CNWVirtualMachineCommands
     {
-      [NativeFunction("_ZN25CNWVirtualMachineCommands25ExecuteCommandPrintStringEii", "")]
+      [NativeFunction("_ZN25CNWVirtualMachineCommands25ExecuteCommandPrintStringEii", "?ExecuteCommandPrintString@CNWVirtualMachineCommands@@QEAAHHH@Z")]
       public delegate int ExecuteCommandPrintString(void* pVirtualMachineCommands, int nCommandId, int nParameters);
     }
   }
