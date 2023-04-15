@@ -38,7 +38,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '7.0.x'
 
       - name: Build
         run: dotnet build --configuration Debug
@@ -79,7 +79,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '7.0.x'
 
       - name: Build
         run: dotnet build --configuration Release
@@ -136,7 +136,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '7.0.x'
 
       - name: Tag Commit
         if: github.event.inputs.tag != ''
@@ -241,7 +241,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1.9.0
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '7.0.x'
 
       - name: Download Release Artifacts
         uses: actions/download-artifact@v2
