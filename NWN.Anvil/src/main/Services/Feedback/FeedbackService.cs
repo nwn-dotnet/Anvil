@@ -27,19 +27,13 @@ namespace Anvil.Services
     private FilterMode feedbackMessageFilterMode;
 
     private FunctionHook<Functions.CNWSCreature.SendFeedbackMessage>? sendFeedbackMessageHook;
-    private FunctionHook<SendServerToPlayerCCMessageHook>? sendServerToPlayerCCMessageHook;
-    private FunctionHook<SendServerToPlayerJournalUpdatedHook>? sendServerToPlayerJournalUpdatedHook;
+    private FunctionHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>? sendServerToPlayerCCMessageHook;
+    private FunctionHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>? sendServerToPlayerJournalUpdatedHook;
 
     public FeedbackService(HookService hookService)
     {
       this.hookService = hookService;
     }
-
-    [NativeFunction("_ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData", "")]
-    private delegate int SendServerToPlayerCCMessageHook(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData);
-
-    [NativeFunction("_ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString", "")]
-    private delegate int SendServerToPlayerJournalUpdatedHook(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString);
 
     public FilterMode CombatMessageFilterMode
     {
@@ -49,7 +43,7 @@ namespace Anvil.Services
         combatMessageFilterMode = value;
         if (value == FilterMode.Whitelist)
         {
-          sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
+          sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage,
             HookOrder.Late);
         }
       }
@@ -66,7 +60,7 @@ namespace Anvil.Services
           sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage,
             HookOrder.Late);
 
-          sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
+          sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated,
             HookOrder.Late);
         }
       }
@@ -74,7 +68,7 @@ namespace Anvil.Services
 
     public void AddCombatLogMessageFilter(CombatLogMessage message)
     {
-      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
+      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage,
         HookOrder.Late);
 
       globalFilterListCombatMessage.Add(message);
@@ -82,7 +76,7 @@ namespace Anvil.Services
 
     public void AddCombatLogMessageFilter(CombatLogMessage message, NwPlayer player)
     {
-      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<SendServerToPlayerCCMessageHook>(OnSendServerToPlayerCCMessage,
+      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage,
         HookOrder.Late);
 
       playerFilterListCombatMessage.AddElement(player.ControlledCreature, message);
@@ -92,7 +86,7 @@ namespace Anvil.Services
     {
       if (message == FeedbackMessage.JournalUpdated)
       {
-        sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
+        sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated,
           HookOrder.Late);
       }
       else
@@ -108,7 +102,7 @@ namespace Anvil.Services
     {
       if (message == FeedbackMessage.JournalUpdated)
       {
-        sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<SendServerToPlayerJournalUpdatedHook>(OnSendServerToPlayerJournalUpdated,
+        sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated,
           HookOrder.Late);
       }
       else

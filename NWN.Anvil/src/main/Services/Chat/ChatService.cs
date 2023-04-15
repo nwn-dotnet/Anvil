@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Internal;
+using Anvil.Native;
 using NWN.Native.API;
 
 namespace Anvil.Services
@@ -18,17 +19,14 @@ namespace Anvil.Services
     };
 
     private readonly Dictionary<NwPlayer, Dictionary<ChatChannel, float>> playerHearingDistances = new Dictionary<NwPlayer, Dictionary<ChatChannel, float>>();
-    private readonly FunctionHook<SendServerToPlayerChatMessageHook> sendServerToPlayerChatMessageHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerChatMessage> sendServerToPlayerChatMessageHook;
 
     private bool customHearingDistances;
 
     public ChatService(HookService hookService)
     {
-      sendServerToPlayerChatMessageHook = hookService.RequestHook<SendServerToPlayerChatMessageHook>(OnSendServerToPlayerChatMessage, HookOrder.Late);
+      sendServerToPlayerChatMessageHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerChatMessage>(OnSendServerToPlayerChatMessage, HookOrder.Late);
     }
-
-    [NativeFunction("_ZN11CNWSMessage29SendServerToPlayerChatMessageEhj10CExoStringjRKS0_", "")]
-    private delegate int SendServerToPlayerChatMessageHook(void* pMessage, ChatChannel nChatMessageType, uint oidSpeaker, void* sSpeakerMessage, uint nTellPlayerId, void* tellName);
 
     /// <summary>
     /// Clears the hearing distance override for the specified <see cref="NwPlayer"/> and <see cref="ChatChannel"/>.

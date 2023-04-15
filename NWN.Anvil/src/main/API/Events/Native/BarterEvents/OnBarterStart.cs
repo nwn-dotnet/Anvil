@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -16,20 +17,17 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<StartBarterHook> Hook { get; set; } = null!;
-
-      [NativeFunction("_ZN11CNWSMessage38HandlePlayerToServerBarter_StartBarterEP10CNWSPlayer", "")]
-      private delegate void StartBarterHook(void* pMessage, void* pPlayer);
+      private static FunctionHook<Functions.CNWSMessage.HandlePlayerToServerBarter_StartBarter> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
-        delegate* unmanaged<void*, void*, void> pHook = &OnStartBarter;
-        Hook = HookService.RequestHook<StartBarterHook>(pHook, HookOrder.Earliest);
+        delegate* unmanaged<void*, void*, int> pHook = &OnStartBarter;
+        Hook = HookService.RequestHook<Functions.CNWSMessage.HandlePlayerToServerBarter_StartBarter>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]
-      private static void OnStartBarter(void* pMessage, void* pPlayer)
+      private static int OnStartBarter(void* pMessage, void* pPlayer)
       {
         CNWSMessage message = CNWSMessage.FromPointer(pMessage);
 
@@ -39,8 +37,10 @@ namespace Anvil.API.Events
           Target = (message.PeekMessage<uint>(0) & 0x7FFFFFFF).ToNwPlayer()!,
         });
 
-        Hook.CallOriginal(pMessage, pPlayer);
+        int retVal = Hook.CallOriginal(pMessage, pPlayer);
         ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -21,15 +22,12 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SendServerToPlayerAreaClientAreaHook> Hook { get; set; } = null!;
-
-      [NativeFunction("_ZN11CNWSMessage33SendServerToPlayerArea_ClientAreaEP10CNWSPlayerP8CNWSAreafffRK6Vectori", "")]
-      private delegate int SendServerToPlayerAreaClientAreaHook(void* pMessage, void* pPlayer, void* pArea, float fX, float fY, float fZ, void* vNewOrientation, int bPlayerIsNewToModule);
+      private static FunctionHook<Functions.CNWSMessage.SendServerToPlayerArea_ClientArea> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, void*, float, float, float, void*, int, int> pHook = &OnSendServerToPlayerAreaClientArea;
-        Hook = HookService.RequestHook<SendServerToPlayerAreaClientAreaHook>(pHook, HookOrder.Earliest);
+        Hook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerArea_ClientArea>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

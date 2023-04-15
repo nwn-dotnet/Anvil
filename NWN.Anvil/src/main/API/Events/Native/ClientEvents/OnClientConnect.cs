@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
 using Anvil.Internal;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -59,15 +60,12 @@ namespace Anvil.API.Events
     {
       private static readonly CNetLayer NetLayer = LowLevel.ServerExoApp.GetNetLayer();
 
-      private static FunctionHook<SendServerToPlayerCharListHook> Hook { get; set; } = null!;
-
-      [NativeFunction("_ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer", "")]
-      private unsafe delegate int SendServerToPlayerCharListHook(void* pMessage, void* pPlayer);
+      private static FunctionHook<Functions.CNWSMessage.SendServerToPlayerCharList> Hook { get; set; } = null!;
 
       protected override unsafe IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, void*, int> pHook = &OnSendServerToPlayerCharList;
-        Hook = HookService.RequestHook<SendServerToPlayerCharListHook>(pHook, HookOrder.Early);
+        Hook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCharList>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

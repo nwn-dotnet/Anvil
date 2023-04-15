@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -9,15 +10,12 @@ namespace Anvil.API.Events
 {
   public sealed unsafe class DebugEventFactory : HookEventFactory
   {
-    private static FunctionHook<HandlePlayerToServerCheatMessageHook> Hook { get; set; } = null!;
-
-    [NativeFunction("_ZN11CNWSMessage32HandlePlayerToServerCheatMessageEP10CNWSPlayerh", "")]
-    private delegate int HandlePlayerToServerCheatMessageHook(void* pMessage, void* pPlayer, byte nMinor);
+    private static FunctionHook<Functions.CNWSMessage.HandlePlayerToServerCheatMessage> Hook { get; set; } = null!;
 
     protected override IDisposable[] RequestHooks()
     {
       delegate* unmanaged<void*, void*, byte, int> pHook = &OnHandlePlayerToServerCheatMessage;
-      Hook = HookService.RequestHook<HandlePlayerToServerCheatMessageHook>(pHook, HookOrder.Early);
+      Hook = HookService.RequestHook<Functions.CNWSMessage.HandlePlayerToServerCheatMessage>(pHook, HookOrder.Early);
       return new IDisposable[] { Hook };
     }
 
