@@ -1,5 +1,6 @@
 using System;
 using Anvil.Internal;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -14,10 +15,10 @@ namespace Anvil.Services
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private readonly bool callOriginal;
-    private readonly FunctionHook<ExecuteCommandPrintStringHook>? executeCommandPrintStringHook;
-    private readonly FunctionHook<WriteToErrorFileHook>? writeToErrorFileHook;
+    private readonly FunctionHook<Functions.CNWVirtualMachineCommands.ExecuteCommandPrintString>? executeCommandPrintStringHook;
+    private readonly FunctionHook<Functions.CExoDebugInternal.WriteToErrorFile>? writeToErrorFileHook;
 
-    private readonly FunctionHook<WriteToLogFileHook>? writeToLogFileHook;
+    private readonly FunctionHook<Functions.CExoDebugInternal.WriteToLogFile>? writeToLogFileHook;
     private bool printString;
 
     public ServerLogRedirectorService(HookService hookService)
@@ -34,19 +35,10 @@ namespace Anvil.Services
           break;
       }
 
-      writeToLogFileHook = hookService.RequestHook<WriteToLogFileHook>(OnWriteToLogFile, HookOrder.VeryEarly);
-      writeToErrorFileHook = hookService.RequestHook<WriteToErrorFileHook>(OnWriteToErrorFile, HookOrder.VeryEarly);
-      executeCommandPrintStringHook = hookService.RequestHook<ExecuteCommandPrintStringHook>(OnExecuteCommandPrintString, HookOrder.VeryEarly);
+      writeToLogFileHook = hookService.RequestHook<Functions.CExoDebugInternal.WriteToLogFile>(OnWriteToLogFile, HookOrder.VeryEarly);
+      writeToErrorFileHook = hookService.RequestHook<Functions.CExoDebugInternal.WriteToErrorFile>(OnWriteToErrorFile, HookOrder.VeryEarly);
+      executeCommandPrintStringHook = hookService.RequestHook<Functions.CNWVirtualMachineCommands.ExecuteCommandPrintString>(OnExecuteCommandPrintString, HookOrder.VeryEarly);
     }
-
-    [NativeFunction("_ZN25CNWVirtualMachineCommands25ExecuteCommandPrintStringEii", "")]
-    private delegate int ExecuteCommandPrintStringHook(void* pVirtualMachineCommands, int nCommandId, int nParameters);
-
-    [NativeFunction("_ZN17CExoDebugInternal16WriteToErrorFileERK10CExoString", "")]
-    private delegate void WriteToErrorFileHook(void* pExoDebugInternal, void* pMessage);
-
-    [NativeFunction("_ZN17CExoDebugInternal14WriteToLogFileERK10CExoString", "")]
-    private delegate void WriteToLogFileHook(void* pExoDebugInternal, void* pMessage);
 
     public void Dispose()
     {

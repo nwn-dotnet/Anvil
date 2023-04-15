@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -59,16 +60,13 @@ namespace Anvil.API
     [ServiceBindingOptions(InternalBindingPriority.API)]
     internal sealed unsafe class Factory : IDisposable
     {
-      private FunctionHook<ReloadAllHook>? reloadAllHook;
+      private FunctionHook<Functions.CNWRules.ReloadAll>? reloadAllHook;
 
       public Factory(HookService hookService)
       {
-        reloadAllHook = hookService.RequestHook<ReloadAllHook>(OnReloadAll, HookOrder.Latest);
+        reloadAllHook = hookService.RequestHook<Functions.CNWRules.ReloadAll>(OnReloadAll, HookOrder.Latest);
         LoadRules();
       }
-
-      [NativeFunction("_ZN8CNWRules9ReloadAllEv", "")]
-      private delegate void ReloadAllHook(void* pRules);
 
       void IDisposable.Dispose()
       {

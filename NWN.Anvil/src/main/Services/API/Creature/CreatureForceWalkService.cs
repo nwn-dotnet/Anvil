@@ -1,5 +1,6 @@
 using System.Linq;
 using Anvil.API;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -11,16 +12,13 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly FunctionHook<RemoveLimitMovementSpeedHook> removeLimitMovementSpeedHook;
+    private readonly FunctionHook<Functions.CNWSEffectListHandler.OnRemoveLimitMovementSpeed> removeLimitMovementSpeedHook;
 
     public CreatureForceWalkService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(CreatureForceWalkService)}");
-      removeLimitMovementSpeedHook = hookService.RequestHook<RemoveLimitMovementSpeedHook>(OnRemoveLimitMovementSpeed, HookOrder.Late);
+      removeLimitMovementSpeedHook = hookService.RequestHook<Functions.CNWSEffectListHandler.OnRemoveLimitMovementSpeed>(OnRemoveLimitMovementSpeed, HookOrder.Late);
     }
-
-    [NativeFunction("_ZN21CNWSEffectListHandler26OnRemoveLimitMovementSpeedEP10CNWSObjectP11CGameEffect", "")]
-    private delegate int RemoveLimitMovementSpeedHook(void* pEffectListHandler, void* pObject, void* pEffect);
 
     public bool GetAlwaysWalk(NwCreature creature)
     {

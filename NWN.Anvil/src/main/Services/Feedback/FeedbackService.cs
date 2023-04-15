@@ -23,7 +23,6 @@ namespace Anvil.Services
     private readonly Dictionary<uint, HashSet<FeedbackMessage>> playerFilterListFeedbackMessage = new Dictionary<uint, HashSet<FeedbackMessage>>();
 
     private FilterMode combatMessageFilterMode;
-
     private FilterMode feedbackMessageFilterMode;
 
     private FunctionHook<Functions.CNWSCreature.SendFeedbackMessage>? sendFeedbackMessageHook;
@@ -43,8 +42,7 @@ namespace Anvil.Services
         combatMessageFilterMode = value;
         if (value == FilterMode.Whitelist)
         {
-          sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage,
-            HookOrder.Late);
+          sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage, HookOrder.Late);
         }
       }
     }
@@ -57,28 +55,21 @@ namespace Anvil.Services
         feedbackMessageFilterMode = value;
         if (value == FilterMode.Whitelist)
         {
-          sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage,
-            HookOrder.Late);
-
-          sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated,
-            HookOrder.Late);
+          sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage, HookOrder.Late);
+          sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated, HookOrder.Late);
         }
       }
     }
 
     public void AddCombatLogMessageFilter(CombatLogMessage message)
     {
-      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage,
-        HookOrder.Late);
-
+      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage, HookOrder.Late);
       globalFilterListCombatMessage.Add(message);
     }
 
     public void AddCombatLogMessageFilter(CombatLogMessage message, NwPlayer player)
     {
-      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage,
-        HookOrder.Late);
-
+      sendServerToPlayerCCMessageHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerCCMessage>(OnSendServerToPlayerCCMessage, HookOrder.Late);
       playerFilterListCombatMessage.AddElement(player.ControlledCreature, message);
     }
 
@@ -86,13 +77,11 @@ namespace Anvil.Services
     {
       if (message == FeedbackMessage.JournalUpdated)
       {
-        sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated,
-          HookOrder.Late);
+        sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated, HookOrder.Late);
       }
       else
       {
-        sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage,
-          HookOrder.Late);
+        sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage, HookOrder.Late);
       }
 
       globalFilterListFeedbackMessage.Add(message);
@@ -102,13 +91,11 @@ namespace Anvil.Services
     {
       if (message == FeedbackMessage.JournalUpdated)
       {
-        sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated,
-          HookOrder.Late);
+        sendServerToPlayerJournalUpdatedHook ??= hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerJournalUpdated>(OnSendServerToPlayerJournalUpdated, HookOrder.Late);
       }
       else
       {
-        sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage,
-          HookOrder.Late);
+        sendFeedbackMessageHook ??= hookService.RequestHook<Functions.CNWSCreature.SendFeedbackMessage>(OnSendFeedbackMessage, HookOrder.Late);
       }
 
       playerFilterListFeedbackMessage.AddElement(player.ControlledCreature, message);
@@ -184,7 +171,7 @@ namespace Anvil.Services
       sendFeedbackMessageHook!.CallOriginal(pCreature, nFeedbackId, pMessageData, pFeedbackPlayer);
     }
 
-    private int OnSendServerToPlayerCCMessage(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData)
+    private int OnSendServerToPlayerCCMessage(void* pMessage, uint nPlayerId, byte nMinor, void* pMessageData, void* pAttackData)
     {
       CNWSPlayer player = ServerExoApp.GetClientObjectByPlayerId(nPlayerId, 0).AsNWSPlayer();
       if (IsMessageHidden(globalFilterListCombatMessage, playerFilterListCombatMessage, player.m_oidPCObject, (CombatLogMessage)nMinor, CombatMessageFilterMode))
@@ -195,7 +182,7 @@ namespace Anvil.Services
       return sendServerToPlayerCCMessageHook!.CallOriginal(pMessage, nPlayerId, nMinor, pMessageData, pAttackData);
     }
 
-    private int OnSendServerToPlayerJournalUpdated(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString)
+    private int OnSendServerToPlayerJournalUpdated(void* pMessage, void* pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString)
     {
       CNWSPlayer player = CNWSPlayer.FromPointer(pPlayer);
       if (IsMessageHidden(globalFilterListFeedbackMessage, playerFilterListFeedbackMessage, player.m_oidPCObject, FeedbackMessage.JournalUpdated, FeedbackMessageFilterMode))

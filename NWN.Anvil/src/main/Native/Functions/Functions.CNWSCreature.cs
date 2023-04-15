@@ -1,10 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Anvil.Services;
 
+// ReSharper disable InconsistentNaming
 namespace Anvil.Native
 {
-  [SuppressMessage("ReSharper", "InconsistentNaming")]
   internal static unsafe partial class Functions
   {
     public static class CNWSCreature
@@ -72,7 +71,7 @@ namespace Anvil.Native
       public delegate int RequestSell(void* pCreature, uint oidItemToBuy, uint oidStore);
 
       [NativeFunction("_ZN12CNWSCreature17ResolveInitiativeEv", "")]
-      public delegate void ResolveInitiative(void* pObject);
+      public delegate void ResolveInitiative(void* pCreature);
 
       [NativeFunction("_ZN12CNWSCreature8RunEquipEjjj", "")]
       public delegate int RunEquip(void* pCreature, uint oidItemToEquip, uint nInventorySlot, uint oidFeedbackPlayer);

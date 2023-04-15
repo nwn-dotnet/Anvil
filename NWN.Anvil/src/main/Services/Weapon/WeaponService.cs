@@ -22,23 +22,23 @@ namespace Anvil.Services
     private readonly Dictionary<uint, HashSet<ushort>> epicWeaponOverwhelmingCriticalMap = new Dictionary<uint, HashSet<ushort>>();
     private readonly Dictionary<uint, HashSet<ushort>> epicWeaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
     private readonly EventService eventService;
-    private readonly FunctionHook<GetAttackModifierVersusHook> getAttackModifierVersusHook;
-    private readonly FunctionHook<GetDamageBonusHook> getDamageBonusHook;
-    private readonly FunctionHook<GetEpicWeaponDevastatingCriticalHook> getEpicWeaponDevastatingCriticalHook;
-    private readonly FunctionHook<GetEpicWeaponFocusHook> getEpicWeaponFocusHook;
-    private readonly FunctionHook<GetEpicWeaponOverwhelmingCriticalHook> getEpicWeaponOverwhelmingCriticalHook;
-    private readonly FunctionHook<GetEpicWeaponSpecializationHook> getEpicWeaponSpecializationHook;
-    private readonly FunctionHook<GetIsWeaponOfChoiceHook> getIsWeaponOfChoiceHook;
-    private readonly FunctionHook<GetMeleeAttackBonusHook> getMeleeAttackBonusHook;
-    private readonly FunctionHook<GetMeleeDamageBonusHook> getMeleeDamageBonusHook;
-    private readonly FunctionHook<GetRangedAttackBonusHook> getRangedAttackBonusHook;
-    private readonly FunctionHook<GetRangedDamageBonusHook> getRangedDamageBonusHook;
-    private readonly FunctionHook<GetUseMonkAttackTablesHook> getUseMonkAttackTablesHook;
-    private readonly FunctionHook<GetWeaponFinesseHook> getWeaponFinesseHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetAttackModifierVersus> getAttackModifierVersusHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetDamageBonus> getDamageBonusHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetEpicWeaponDevastatingCritical> getEpicWeaponDevastatingCriticalHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetEpicWeaponFocus> getEpicWeaponFocusHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetEpicWeaponOverwhelmingCritical> getEpicWeaponOverwhelmingCriticalHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetEpicWeaponSpecialization> getEpicWeaponSpecializationHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetIsWeaponOfChoice> getIsWeaponOfChoiceHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetMeleeAttackBonus> getMeleeAttackBonusHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetMeleeDamageBonus> getMeleeDamageBonusHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetRangedAttackBonus> getRangedAttackBonusHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetRangedDamageBonus> getRangedDamageBonusHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetUseMonkAttackTables> getUseMonkAttackTablesHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetWeaponFinesse> getWeaponFinesseHook;
 
-    private readonly FunctionHook<GetWeaponFocusHook> getWeaponFocusHook;
-    private readonly FunctionHook<GetWeaponImprovedCriticalHook> getWeaponImprovedCriticalHook;
-    private readonly FunctionHook<GetWeaponSpecializationHook> getWeaponSpecializationHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetWeaponFocus> getWeaponFocusHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetWeaponImprovedCritical> getWeaponImprovedCriticalHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.GetWeaponSpecialization> getWeaponSpecializationHook;
     private readonly Dictionary<uint, HashSet<ushort>> greaterWeaponFocusMap = new Dictionary<uint, HashSet<ushort>>();
     private readonly Dictionary<uint, HashSet<ushort>> greaterWeaponSpecializationMap = new Dictionary<uint, HashSet<ushort>>();
     private readonly HookService hookService;
@@ -62,73 +62,25 @@ namespace Anvil.Services
       this.hookService = hookService;
       this.eventService = eventService;
 
-      getWeaponFocusHook = hookService.RequestHook<GetWeaponFocusHook>(OnGetWeaponFocus, HookOrder.Late);
-      getEpicWeaponFocusHook = hookService.RequestHook<GetEpicWeaponFocusHook>(OnGetEpicWeaponFocus, HookOrder.Late);
-      getWeaponFinesseHook = hookService.RequestHook<GetWeaponFinesseHook>(OnGetWeaponFinesse, HookOrder.Final);
-      getWeaponImprovedCriticalHook = hookService.RequestHook<GetWeaponImprovedCriticalHook>(OnGetWeaponImprovedCritical, HookOrder.Late);
-      getEpicWeaponOverwhelmingCriticalHook = hookService.RequestHook<GetEpicWeaponOverwhelmingCriticalHook>(OnGetEpicWeaponOverwhelmingCritical, HookOrder.Late);
-      getEpicWeaponDevastatingCriticalHook = hookService.RequestHook<GetEpicWeaponDevastatingCriticalHook>(OnGetEpicWeaponDevastatingCritical, HookOrder.Late);
-      getWeaponSpecializationHook = hookService.RequestHook<GetWeaponSpecializationHook>(OnGetWeaponSpecialization, HookOrder.Late);
-      getEpicWeaponSpecializationHook = hookService.RequestHook<GetEpicWeaponSpecializationHook>(OnGetEpicWeaponSpecialization, HookOrder.Late);
-      getIsWeaponOfChoiceHook = hookService.RequestHook<GetIsWeaponOfChoiceHook>(OnGetIsWeaponOfChoice, HookOrder.Late);
-      getDamageBonusHook = hookService.RequestHook<GetDamageBonusHook>(OnGetDamageBonus, HookOrder.Late);
-      getMeleeDamageBonusHook = hookService.RequestHook<GetMeleeDamageBonusHook>(OnGetMeleeDamageBonus, HookOrder.Late);
-      getRangedDamageBonusHook = hookService.RequestHook<GetRangedDamageBonusHook>(OnGetRangedDamageBonus, HookOrder.Late);
-      getMeleeAttackBonusHook = hookService.RequestHook<GetMeleeAttackBonusHook>(OnGetMeleeAttackBonus, HookOrder.Late);
-      getRangedAttackBonusHook = hookService.RequestHook<GetRangedAttackBonusHook>(OnGetRangedAttackBonus, HookOrder.Late);
-      getAttackModifierVersusHook = hookService.RequestHook<GetAttackModifierVersusHook>(OnGetAttackModifierVersus, HookOrder.Late);
-      getUseMonkAttackTablesHook = hookService.RequestHook<GetUseMonkAttackTablesHook>(OnGetUseMonkAttackTables, HookOrder.Final);
+      getWeaponFocusHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetWeaponFocus>(OnGetWeaponFocus, HookOrder.Late);
+      getEpicWeaponFocusHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetEpicWeaponFocus>(OnGetEpicWeaponFocus, HookOrder.Late);
+      getWeaponFinesseHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetWeaponFinesse>(OnGetWeaponFinesse, HookOrder.Final);
+      getWeaponImprovedCriticalHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetWeaponImprovedCritical>(OnGetWeaponImprovedCritical, HookOrder.Late);
+      getEpicWeaponOverwhelmingCriticalHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetEpicWeaponOverwhelmingCritical>(OnGetEpicWeaponOverwhelmingCritical, HookOrder.Late);
+      getEpicWeaponDevastatingCriticalHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetEpicWeaponDevastatingCritical>(OnGetEpicWeaponDevastatingCritical, HookOrder.Late);
+      getWeaponSpecializationHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetWeaponSpecialization>(OnGetWeaponSpecialization, HookOrder.Late);
+      getEpicWeaponSpecializationHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetEpicWeaponSpecialization>(OnGetEpicWeaponSpecialization, HookOrder.Late);
+      getIsWeaponOfChoiceHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetIsWeaponOfChoice>(OnGetIsWeaponOfChoice, HookOrder.Late);
+      getDamageBonusHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetDamageBonus>(OnGetDamageBonus, HookOrder.Late);
+      getMeleeDamageBonusHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetMeleeDamageBonus>(OnGetMeleeDamageBonus, HookOrder.Late);
+      getRangedDamageBonusHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetRangedDamageBonus>(OnGetRangedDamageBonus, HookOrder.Late);
+      getMeleeAttackBonusHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetMeleeAttackBonus>(OnGetMeleeAttackBonus, HookOrder.Late);
+      getRangedAttackBonusHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetRangedAttackBonus>(OnGetRangedAttackBonus, HookOrder.Late);
+      getAttackModifierVersusHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetAttackModifierVersus>(OnGetAttackModifierVersus, HookOrder.Late);
+      getUseMonkAttackTablesHook = hookService.RequestHook<Functions.CNWSCreatureStats.GetUseMonkAttackTables>(OnGetUseMonkAttackTables, HookOrder.Final);
 
       weaponFinesseSizeMap[(uint)BaseItem.Rapier] = (byte)CreatureSize.Medium;
     }
-
-    [NativeFunction("_ZN17CNWSCreatureStats23GetAttackModifierVersusEP12CNWSCreature", "")]
-    private delegate int GetAttackModifierVersusHook(void* pStats, void* pCreature);
-
-    [NativeFunction("_ZN17CNWSCreatureStats14GetDamageBonusEP12CNWSCreaturei", "")]
-    private delegate int GetDamageBonusHook(void* pStats, void* pCreature, int bOffHand);
-
-    [NativeFunction("_ZN17CNWSCreatureStats32GetEpicWeaponDevastatingCriticalEP8CNWSItem", "")]
-    private delegate int GetEpicWeaponDevastatingCriticalHook(void* pStats, void* pWeapon);
-
-    [NativeFunction("_ZN17CNWSCreatureStats18GetEpicWeaponFocusEP8CNWSItem", "")]
-    private delegate int GetEpicWeaponFocusHook(void* pStats, void* pWeapon);
-
-    [NativeFunction("_ZN17CNWSCreatureStats33GetEpicWeaponOverwhelmingCriticalEP8CNWSItem", "")]
-    private delegate int GetEpicWeaponOverwhelmingCriticalHook(void* pStats, void* pWeapon);
-
-    [NativeFunction("_ZN17CNWSCreatureStats27GetEpicWeaponSpecializationEP8CNWSItem", "")]
-    private delegate int GetEpicWeaponSpecializationHook(void* pStats, void* pWeapon);
-
-    [NativeFunction("_ZN17CNWSCreatureStats19GetIsWeaponOfChoiceEj", "")]
-    private delegate int GetIsWeaponOfChoiceHook(void* pStats, uint nBaseItem);
-
-    [NativeFunction("_ZN17CNWSCreatureStats19GetMeleeAttackBonusEiii", "")]
-    private delegate int GetMeleeAttackBonusHook(void* pStats, int bOffHand, int bIncludeBase, int bTouchAttack);
-
-    [NativeFunction("_ZN17CNWSCreatureStats19GetMeleeDamageBonusEih", "")]
-    private delegate int GetMeleeDamageBonusHook(void* pStats, int bOffHand, byte nCreatureWeaponIndex);
-
-    [NativeFunction("_ZN17CNWSCreatureStats20GetRangedAttackBonusEii", "")]
-    private delegate int GetRangedAttackBonusHook(void* pStats, int bIncludeBase, int bTouchAttack);
-
-    [NativeFunction("_ZN17CNWSCreatureStats20GetRangedDamageBonusEv", "")]
-    private delegate int GetRangedDamageBonusHook(void* pStats);
-
-    [NativeFunction("_ZN17CNWSCreatureStats22GetUseMonkAttackTablesEi", "")]
-    private delegate int GetUseMonkAttackTablesHook(void* pStats, int bForceUnarmed);
-
-    [NativeFunction("_ZN17CNWSCreatureStats16GetWeaponFinesseEP8CNWSItem", "")]
-    private delegate int GetWeaponFinesseHook(void* pStats, void* pWeapon);
-
-    [NativeFunction("_ZN17CNWSCreatureStats14GetWeaponFocusEP8CNWSItem", "")]
-    private delegate int GetWeaponFocusHook(void* pStats, void* pWeapon);
-
-    [NativeFunction("_ZN17CNWSCreatureStats25GetWeaponImprovedCriticalEP8CNWSItem", "")]
-    private delegate int GetWeaponImprovedCriticalHook(void* pStats, void* pWeapon);
-
-    [NativeFunction("_ZN17CNWSCreatureStats23GetWeaponSpecializationEP8CNWSItem", "")]
-    private delegate int GetWeaponSpecializationHook(void* pStats, void* pWeapon);
 
     /// <summary>
     /// Called when an attack results in a devastating critical hit. Subscribe and modify the event data to implement custom behaviours.

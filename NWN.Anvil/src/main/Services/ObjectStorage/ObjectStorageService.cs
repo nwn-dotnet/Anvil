@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Anvil.API;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -15,41 +16,23 @@ namespace Anvil.Services
     private static readonly byte* AnvilGffFieldNamePtr = "ANVIL_POS".GetNullTerminatedString();
     private static readonly byte* NWNXGffFieldNamePtr = "NWNX_POS".GetNullTerminatedString();
 
-    private readonly FunctionHook<AreaDestructorHook> areaDestructorHook;
-    private readonly FunctionHook<DropTURDHook> dropTURDHook;
-    private readonly FunctionHook<EatTURDHook> eatTURDHook;
-    private readonly FunctionHook<LoadFromGffHook> loadFromGffHook;
-    private readonly FunctionHook<ObjectDestructorHook> objectDestructorHook;
+    private readonly FunctionHook<Functions.CNWSArea.Destructor> areaDestructorHook;
+    private readonly FunctionHook<Functions.CNWSPlayer.DropTURD> dropTURDHook;
+    private readonly FunctionHook<Functions.CNWSPlayer.EatTURD> eatTURDHook;
+    private readonly FunctionHook<Functions.CNWSUUID.LoadFromGff> loadFromGffHook;
+    private readonly FunctionHook<Functions.CNWSObject.Destructor> objectDestructorHook;
     private readonly Dictionary<IntPtr, ObjectStorage> objectStorage = new Dictionary<IntPtr, ObjectStorage>();
-    private readonly FunctionHook<SaveToGffHook> saveToGffHook;
+    private readonly FunctionHook<Functions.CNWSUUID.SaveToGff> saveToGffHook;
 
     public ObjectStorageService(HookService hookService)
     {
-      objectDestructorHook = hookService.RequestHook<ObjectDestructorHook>(OnObjectDestructor, HookOrder.VeryEarly);
-      areaDestructorHook = hookService.RequestHook<AreaDestructorHook>(OnAreaDestructor, HookOrder.VeryEarly);
-      eatTURDHook = hookService.RequestHook<EatTURDHook>(OnEatTURD, HookOrder.VeryEarly);
-      dropTURDHook = hookService.RequestHook<DropTURDHook>(OnDropTURD, HookOrder.VeryEarly);
-      saveToGffHook = hookService.RequestHook<SaveToGffHook>(OnSaveToGff, HookOrder.VeryEarly);
-      loadFromGffHook = hookService.RequestHook<LoadFromGffHook>(OnLoadFromGff, HookOrder.VeryEarly);
+      objectDestructorHook = hookService.RequestHook<Functions.CNWSObject.Destructor>(OnObjectDestructor, HookOrder.VeryEarly);
+      areaDestructorHook = hookService.RequestHook<Functions.CNWSArea.Destructor>(OnAreaDestructor, HookOrder.VeryEarly);
+      eatTURDHook = hookService.RequestHook<Functions.CNWSPlayer.EatTURD>(OnEatTURD, HookOrder.VeryEarly);
+      dropTURDHook = hookService.RequestHook<Functions.CNWSPlayer.DropTURD>(OnDropTURD, HookOrder.VeryEarly);
+      saveToGffHook = hookService.RequestHook<Functions.CNWSUUID.SaveToGff>(OnSaveToGff, HookOrder.VeryEarly);
+      loadFromGffHook = hookService.RequestHook<Functions.CNWSUUID.LoadFromGff>(OnLoadFromGff, HookOrder.VeryEarly);
     }
-
-    [NativeFunction("_ZN8CNWSAreaD1Ev", "")]
-    private delegate void AreaDestructorHook(void* pArea);
-
-    [NativeFunction("_ZN10CNWSPlayer8DropTURDEv", "")]
-    private delegate void DropTURDHook(void* pPlayer);
-
-    [NativeFunction("_ZN10CNWSPlayer7EatTURDEP14CNWSPlayerTURD", "")]
-    private delegate void EatTURDHook(void* pPlayer, void* pTURD);
-
-    [NativeFunction("_ZN8CNWSUUID11LoadFromGffEP7CResGFFP10CResStruct", "")]
-    private delegate int LoadFromGffHook(void* pUUID, void* pRes, void* pStruct);
-
-    [NativeFunction("_ZN10CNWSObjectD1Ev", "")]
-    private delegate void ObjectDestructorHook(void* pObject);
-
-    [NativeFunction("_ZN8CNWSUUID9SaveToGffEP7CResGFFP10CResStruct", "")]
-    private delegate void SaveToGffHook(void* pUUID, void* pRes, void* pStruct);
 
     public void DestroyObjectStorage(NwObject gameObject)
     {

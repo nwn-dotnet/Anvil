@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -17,15 +18,12 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<UpdateTimeHook> Hook { get; set; } = null!;
-
-      [NativeFunction("_ZN10CNWSModule10UpdateTimeEjjj", "")]
-      private delegate void UpdateTimeHook(void* pModule, uint nCalendarDay, uint nTimeOfDay, uint nUpdateDifference);
+      private static FunctionHook<Functions.CNWSModule.UpdateTime> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, uint, uint, void> pHook = &OnUpdateTime;
-        Hook = HookService.RequestHook<UpdateTimeHook>(pHook, HookOrder.Earliest);
+        Hook = HookService.RequestHook<Functions.CNWSModule.UpdateTime>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 

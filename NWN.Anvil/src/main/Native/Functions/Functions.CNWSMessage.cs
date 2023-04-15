@@ -1,10 +1,9 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Anvil.Services;
 
+// ReSharper disable InconsistentNaming
 namespace Anvil.Native
 {
-  [SuppressMessage("ReSharper", "InconsistentNaming")]
   internal static unsafe partial class Functions
   {
     public static class CNWSMessage
@@ -49,7 +48,7 @@ namespace Anvil.Native
       public delegate int SendServerToPlayerBarterCloseBarter(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
 
       [NativeFunction("_ZN11CNWSMessage27SendServerToPlayerCCMessageEjhP16CNWCCMessageDataP20CNWSCombatAttackData", "")]
-      public delegate int SendServerToPlayerCCMessage(IntPtr pMessage, uint nPlayerId, byte nMinor, IntPtr pMessageData, IntPtr pAttackData);
+      public delegate int SendServerToPlayerCCMessage(void* pMessage, uint nPlayerId, byte nMinor, void* pMessageData, void* pAttackData);
 
       [NativeFunction("_ZN11CNWSMessage26SendServerToPlayerCharListEP10CNWSPlayer", "")]
       public delegate int SendServerToPlayerCharList(void* pMessage, void* pPlayer);
@@ -85,7 +84,7 @@ namespace Anvil.Native
       public delegate int SendServerToPlayerExamineGui_TrapData(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess);
 
       [NativeFunction("_ZN11CNWSMessage32SendServerToPlayerJournalUpdatedEP10CNWSPlayerii13CExoLocString", "")]
-      public delegate int SendServerToPlayerJournalUpdated(IntPtr pMessage, IntPtr pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString);
+      public delegate int SendServerToPlayerJournalUpdated(void* pMessage, void* pPlayer, int bQuest, int bCompleted, CExoLocStringData cExoLocString);
 
       [NativeFunction("_ZN11CNWSMessage32SendServerToPlayerPlayerList_AddEjP10CNWSPlayer", "")]
       public delegate int SendServerToPlayerPlayerList_Add(void* pMessage, uint nPlayerId, void* pNewPlayer);
