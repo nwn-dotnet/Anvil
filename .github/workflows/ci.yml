@@ -297,7 +297,7 @@ jobs:
           push: true
           build-args: |
               NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }}
-              BINARY_PATH=/binaries/net6.0
+              BINARY_PATH=/binaries/net7.0
           labels: |
               org.opencontainers.image.title=Anvil
               org.opencontainers.image.description=Anvil is a C# library that attempts to wrap Neverwinter Script with C# niceties and contexts, instead of a collection of functions. This image contains a NWNX server configured to use Anvil.
