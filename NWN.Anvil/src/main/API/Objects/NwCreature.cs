@@ -1227,11 +1227,25 @@ namespace Anvil.API
     /// </summary>
     /// <remarks>This action cannot be used on PCs.</remarks>
     /// <param name="feat">The feat to use.</param>
+    /// <param name="subFeat">For some specific feats, the subtype to use. E.g. Wild shape</param>
     /// <param name="target">The target object for the feat.</param>
-    public async Task ActionUseFeat(NwFeat feat, NwGameObject target)
+    public async Task ActionUseFeat(NwFeat feat, NwGameObject target, Subfeat subFeat = Subfeat.None)
     {
       await WaitForObjectContext();
       NWScript.ActionUseFeat(feat.Id, target);
+    }
+
+    /// <summary>
+    /// Instructs this creature to use the specified feat at the target location.
+    /// </summary>
+    /// <remarks>This action cannot be used on PCs.</remarks>
+    /// <param name="feat">The feat to use.</param>
+    /// <param name="target">The target location for the feat.</param>
+    /// <param name="subFeat">For some specific feats, the subtype to use. E.g. Wild shape</param>
+    public async Task ActionUseFeat(NwFeat feat, Location target, Subfeat subFeat = Subfeat.None)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUseFeat(feat.Id, lTarget: target);
     }
 
     /// <summary>

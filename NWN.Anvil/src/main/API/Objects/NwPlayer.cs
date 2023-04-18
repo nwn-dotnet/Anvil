@@ -1431,7 +1431,7 @@ namespace Anvil.API
     /// <param name="panel">The panel type to disable.</param>
     /// <param name="disabled">True to disable the panel, false to re-enable the panel.</param>
     /// <param name="targetObject">The target object (e.g. examined object) where this panel should be disabled.</param>
-    public void SetGuiPanelDisabled(GUIPanel panel, bool disabled, NwGameObject targetObject)
+    public void SetGuiPanelDisabled(GUIPanel panel, bool disabled, NwGameObject? targetObject = null)
     {
       NWScript.SetGuiPanelDisabled(ControlledCreature, (int)panel, disabled.ToInt(), targetObject);
     }

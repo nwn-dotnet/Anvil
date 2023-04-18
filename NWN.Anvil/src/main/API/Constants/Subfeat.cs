@@ -4,6 +4,7 @@ namespace Anvil.API
 {
   public enum Subfeat
   {
+    None = 0,
     CalledShotLeg = NWScript.SUBFEAT_CALLED_SHOT_LEG,
     CalledShotArms = NWScript.SUBFEAT_CALLED_SHOT_ARMS,
     ElementalShapeEarth = NWScript.SUBFEAT_ELEMENTAL_SHAPE_EARTH,
