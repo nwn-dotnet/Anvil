@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -18,19 +19,17 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<TrapExamineHook> Hook { get; set; } = null!;
-
-      private delegate void TrapExamineHook(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess);
+      private static FunctionHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_TrapData> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
-        delegate* unmanaged<void*, void*, uint, void*, int, void> pHook = &OnExamineTrap;
-        Hook = HookService.RequestHook<TrapExamineHook>(pHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_TrapDataEP10CNWSPlayerjP12CNWSCreaturei, HookOrder.Earliest);
+        delegate* unmanaged<void*, void*, uint, void*, int, int> pHook = &OnExamineTrap;
+        Hook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_TrapData>(pHook, HookOrder.Earliest);
         return new IDisposable[] { Hook };
       }
 
       [UnmanagedCallersOnly]
-      private static void OnExamineTrap(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess)
+      private static int OnExamineTrap(void* pMessage, void* pPlayer, uint oidTrap, void* pCreature, int bSuccess)
       {
         OnExamineTrap eventData = ProcessEvent(EventCallbackType.Before, new OnExamineTrap
         {
@@ -39,8 +38,10 @@ namespace Anvil.API.Events
           Success = bSuccess.ToBool(),
         });
 
-        Hook.CallOriginal(pMessage, pPlayer, oidTrap, pCreature, bSuccess);
+        int retVal = Hook.CallOriginal(pMessage, pPlayer, oidTrap, pCreature, bSuccess);
         ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

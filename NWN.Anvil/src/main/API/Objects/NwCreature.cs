@@ -8,14 +8,14 @@ using Anvil.Services;
 using NLog;
 using NWN.Core;
 using NWN.Native.API;
-using ObjectType = NWN.Native.API.ObjectType;
 
 namespace Anvil.API
 {
   /// <summary>
   /// A monster, NPC, player character or DM avatar
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Creature, ObjectType.Creature)]
+  [ObjectType(ObjectTypes.Creature)]
+  [ObjectFilter(ObjectTypes.Creature)]
   public sealed partial class NwCreature : NwGameObject
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
@@ -155,6 +155,14 @@ namespace Anvil.API
     {
       get => Creature.m_pStats.m_nACNaturalBase.AsSByte();
       set => Creature.m_pStats.m_nACNaturalBase = value.AsByte();
+    }
+
+    /// <summary>
+    /// Makes this creature controllable by the specified player, if player party control is enabled.
+    /// </summary>
+    public NwPlayer CommandingPlayer
+    {
+      set => NWScript.SetCommandingPlayer(this, value.ControlledCreature);
     }
 
     /// <summary>
@@ -1219,11 +1227,25 @@ namespace Anvil.API
     /// </summary>
     /// <remarks>This action cannot be used on PCs.</remarks>
     /// <param name="feat">The feat to use.</param>
+    /// <param name="subFeat">For some specific feats, the subtype to use. E.g. Wild shape</param>
     /// <param name="target">The target object for the feat.</param>
-    public async Task ActionUseFeat(NwFeat feat, NwGameObject target)
+    public async Task ActionUseFeat(NwFeat feat, NwGameObject target, Subfeat subFeat = Subfeat.None)
     {
       await WaitForObjectContext();
       NWScript.ActionUseFeat(feat.Id, target);
+    }
+
+    /// <summary>
+    /// Instructs this creature to use the specified feat at the target location.
+    /// </summary>
+    /// <remarks>This action cannot be used on PCs.</remarks>
+    /// <param name="feat">The feat to use.</param>
+    /// <param name="target">The target location for the feat.</param>
+    /// <param name="subFeat">For some specific feats, the subtype to use. E.g. Wild shape</param>
+    public async Task ActionUseFeat(NwFeat feat, Location target, Subfeat subFeat = Subfeat.None)
+    {
+      await WaitForObjectContext();
+      NWScript.ActionUseFeat(feat.Id, lTarget: target);
     }
 
     /// <summary>
@@ -1779,6 +1801,19 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the number of remaining uses for a specific spell for this creature.
+    /// </summary>
+    /// <param name="nwClass">The spell caster class.</param>
+    /// <param name="spell">The spell to check for remaining uses.</param>
+    /// <param name="metaMagic">The metamagic for the spell.</param>
+    /// <param name="domain">The domain level, if it is a domain level spell.</param>
+    /// <returns>The number of spell uses remaining.</returns>
+    public int GetSpellUsesLeft(NwClass nwClass, NwSpell spell, MetaMagic metaMagic = MetaMagic.None, int domain = 0)
+    {
+      return NWScript.GetSpellUsesLeft(this, nwClass.Id, spell.Id, (int)metaMagic, domain);
+    }
+
+    /// <summary>
     /// Gets whether the given area tile is visible on the map for this creature.<br/>
     /// Tile exploration also controls object visibility in areas and the fog of war for interior and underground areas.
     /// </summary>
@@ -2298,6 +2333,20 @@ namespace Anvil.API
     public void SetDamageLevelOverride(DamageLevelEntry damageLevel)
     {
       DamageLevelOverrideService.Value.SetDamageLevelOverride(this, damageLevel);
+    }
+
+    /// <summary>
+    /// Sets whether the specified effect icon should be flashing in the creature's GUI icon bar.
+    /// </summary>
+    /// <remarks>
+    /// If the creature does not have the icon specified active in their GUI, nothing happens.<br/>
+    /// This function will not add icons to the icon bar.
+    /// </remarks>
+    /// <param name="effectIcon">The icon to start/stop flashing.</param>
+    /// <param name="flashing">The new flashing state.</param>
+    public void SetEffectIconFlashing(EffectIconTableEntry effectIcon, bool flashing)
+    {
+      NWScript.SetEffectIconFlashing(this, effectIcon.RowIndex, flashing.ToInt());
     }
 
     /// <summary>

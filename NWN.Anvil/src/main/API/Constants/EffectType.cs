@@ -82,5 +82,9 @@ namespace Anvil.API
     CutsceneImmobilize = NWScript.EFFECT_TYPE_CUTSCENEIMMOBILIZE,
     RunScript = NWScript.EFFECT_TYPE_RUNSCRIPT,
     Icon = NWScript.EFFECT_TYPE_ICON,
+    Pacify = NWScript.EFFECT_TYPE_PACIFY,
+    BonusFeat = NWScript.EFFECT_TYPE_BONUS_FEAT,
+    TimeStopImmunity = NWScript.EFFECT_TYPE_TIMESTOP_IMMUNITY,
+    ForceWalk = NWScript.EFFECT_TYPE_FORCE_WALK,
   }
 }

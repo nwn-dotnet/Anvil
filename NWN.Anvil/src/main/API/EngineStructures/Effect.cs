@@ -52,6 +52,20 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets the link id of this effect, if it is a linked effect. There is no guarantees about this identifier other than it is unique and the same for all effects linked to it.
+    /// </summary>
+    public string LinkId => NWScript.GetEffectLinkId(this);
+
+    /// <summary>
+    /// Gets or sets if this effect should ignore immunities.
+    /// </summary>
+    public bool IgnoreImmunity
+    {
+      get => Effect.m_bIgnoreImmunity.ToBool();
+      set => Effect.m_bIgnoreImmunity = value.ToInt();
+    }
+
+    /// <summary>
     /// Gets the total duration of this effect in seconds. Returns 0 if the duration type is not <see cref="EffectDuration.Temporary"/>.
     /// </summary>
     public float TotalDuration => NWScript.GetEffectDuration(this);

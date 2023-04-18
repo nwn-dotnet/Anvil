@@ -9,7 +9,8 @@ namespace Anvil.API
 {
   public abstract partial class NwObject
   {
-    private static readonly Dictionary<Type, NativeObjectInfoAttribute> CachedTypeInfo = new Dictionary<Type, NativeObjectInfoAttribute>();
+    private static readonly Dictionary<Type, ObjectTypes> CachedTypeInfo = new Dictionary<Type, ObjectTypes>();
+    private static readonly Dictionary<Type, ObjectTypes> CachedFilterInfo = new Dictionary<Type, ObjectTypes>();
 
     /// <summary>
     /// Locates all objects of the specified type.
@@ -18,9 +19,10 @@ namespace Anvil.API
     /// <returns>An enumeration containing all objects of the specified type.</returns>
     public static IEnumerable<T> FindObjectsOfType<T>() where T : NwObject
     {
+      int typeFilter = (int)GetObjectFilter<T>();
       for (uint currentArea = NWScript.GetFirstArea(); currentArea != Invalid; currentArea = NWScript.GetNextArea())
       {
-        for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(currentArea))
+        for (uint currentObj = NWScript.GetFirstObjectInArea(currentArea, typeFilter); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(currentArea, typeFilter))
         {
           T? obj = currentObj.ToNwObjectSafe<T>();
           if (obj != null)
@@ -120,16 +122,6 @@ namespace Anvil.API
       };
     }
 
-    internal static ObjectType GetNativeObjectType<T>() where T : NwObject
-    {
-      return GetNativeObjectInfo(typeof(T)).NativeObjectType;
-    }
-
-    internal static ObjectTypes GetObjectType<T>() where T : NwObject
-    {
-      return GetNativeObjectInfo(typeof(T)).ObjectType;
-    }
-
     private static NwObject? CreateFromVirtualType(ICGameObject gameObject)
     {
       return (ObjectType)gameObject.m_nObjectType switch
@@ -150,23 +142,36 @@ namespace Anvil.API
       };
     }
 
-    private static NativeObjectInfoAttribute GetNativeObjectInfo(Type type)
+    internal static ObjectTypes GetObjectFilter<T>() where T : NwObject
     {
-      if (!CachedTypeInfo.TryGetValue(type, out NativeObjectInfoAttribute? nativeInfo))
+      Type type = typeof(T);
+      if (!CachedFilterInfo.TryGetValue(type, out ObjectTypes objectFilter))
       {
-        nativeInfo = type.GetCustomAttribute<NativeObjectInfoAttribute>();
-        if (nativeInfo != null)
-        {
-          CachedTypeInfo[type] = nativeInfo;
-        }
+        ObjectFilterAttribute? nativeInfo = type.GetCustomAttribute<ObjectFilterAttribute>();
+        objectFilter = nativeInfo?.ObjectFilter ?? ObjectTypes.All;
+        CachedFilterInfo[type] = objectFilter;
       }
 
+      return objectFilter;
+    }
+
+    internal static ObjectTypes GetObjectType<T>() where T : NwObject
+    {
+      Type type = typeof(T);
+
+      if (CachedTypeInfo.TryGetValue(type, out ObjectTypes objectType))
+      {
+        return objectType;
+      }
+
+      ObjectTypeAttribute? nativeInfo = type.GetCustomAttribute<ObjectTypeAttribute>();
       if (nativeInfo == null)
       {
         throw new InvalidOperationException($"Type \"{type.FullName}\" does not have a mapped native object!");
       }
 
-      return nativeInfo;
+      CachedTypeInfo[type] = nativeInfo.ObjectType;
+      return nativeInfo.ObjectType;
     }
   }
 }

@@ -11,7 +11,7 @@ namespace Anvil.API
   /// <summary>
   /// An environment/game level.
   /// </summary>
-  [NativeObjectInfo(0, ObjectType.Area)]
+  [ObjectType(0)]
   public sealed partial class NwArea : NwObject
   {
     private readonly CNWSArea area;
@@ -557,7 +557,9 @@ namespace Anvil.API
     /// <returns>An enumeration containing all objects of the specified type.</returns>
     public IEnumerable<T> FindObjectsOfTypeInArea<T>() where T : NwObject
     {
-      for (uint currentObj = NWScript.GetFirstObjectInArea(this); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(this))
+      int typeFilter = (int)GetObjectFilter<T>();
+
+      for (uint currentObj = NWScript.GetFirstObjectInArea(this, typeFilter); currentObj != Invalid; currentObj = NWScript.GetNextObjectInArea(this, typeFilter))
       {
         T? obj = currentObj.ToNwObjectSafe<T>();
         if (obj != null)
@@ -642,13 +644,42 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Notifies all clients in this area to recompute static lighting.
-    /// This can be used to update the lighting after changing any tile lights
-    /// or if placeables with lights have been added/deleted.
+    /// Notifies all clients in this area to recompute static lighting.<br/>
+    /// This can be used to update the lighting after changing any tile lights or if placeables with lights have been added/deleted.
     /// </summary>
     public void RecomputeStaticLighting()
     {
       NWScript.RecomputeStaticLighting(this);
+    }
+
+    /// <summary>
+    /// Notifies all clients in this area to recalculate grass.<br/>
+    /// This can be used to update the grass of an area after changing a tile with SetTile() that will have or used to have grass.
+    /// </summary>
+    public void ReloadAreaGrass()
+    {
+      NWScript.ReloadAreaGrass(this);
+    }
+
+    /// <summary>
+    /// Notifies all clients in this area to reload the inaccesible border tiles.<br/>
+    /// This can be used to update the edge tiles after changing a tile with SetTile().
+    /// </summary>
+    public void ReloadAreaBorder()
+    {
+      NWScript.ReloadAreaBorder(this);
+    }
+
+    /// <summary>
+    /// Bulk change a set of tiles in this area.
+    /// </summary>
+    /// <param name="data">The updated tile data.</param>
+    /// <param name="flags">Flags/behaviours to apply once the tiles have been set.</param>
+    /// <param name="tileSet">If specified, also changes the area's tileset. Warning: only use this if you really know what you're doing, it's very easy to break things badly.</param>
+    public void SetTiles(List<TileData> data, SettleFlags flags = SettleFlags.RecomputeLighting, string tileSet = "")
+    {
+      Json tileData = JsonUtility.ToJsonStructure(data);
+      NWScript.SetTileJson(this, tileData, (int)flags, tileSet);
     }
 
     public unsafe byte[]? SerializeARE(string? areaName = null, string? resRef = null)
@@ -899,6 +930,48 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets a light color in this area.
+    /// </summary>
+    /// <param name="colorType">The color type to get.</param>
+    public int GetAreaLightColor(AreaLightColor colorType)
+    {
+      return NWScript.GetAreaLightColor((int)colorType, this);
+    }
+
+    /// <summary>
+    /// Sets a light color in this area.
+    /// </summary>
+    /// <param name="colorType">The type of color to set.</param>
+    /// <param name="color">The new color to set.</param>
+    /// <param name="fadeTime">The time to fade the new color.</param>
+    public void SetAreaLightColor(AreaLightColor colorType, int color, TimeSpan fadeTime = default)
+    {
+      NWScript.SetAreaLightColor((int)colorType, color, this, (float)fadeTime.TotalSeconds);
+    }
+
+    /// <summary>
+    /// Gets the light direction for the specified light type.
+    /// </summary>
+    /// <param name="lightType">The type of light to get the direction from.</param>
+    /// <returns>A <see cref="Vector3"/> representing the light direction.</returns>
+    public Vector3 GetAreaLightDirection(AreaLightDirection lightType)
+    {
+      return NWScript.GetAreaLightDirection((int)lightType, this);
+    }
+
+    /// <summary>
+    /// Sets the light direction for the specified light type.
+    /// </summary>
+    /// <param name="lightType">The type of light to get the direction from.</param>
+    /// <param name="direction">The new direction for the light.</param>
+    /// <param name="fadeTime">The time to fade in the new light direction.</param>
+    /// <returns>A <see cref="Vector3"/> representing the light direction.</returns>
+    public void SetAreaLightDirection(AreaLightDirection lightType, Vector3 direction, TimeSpan fadeTime = default)
+    {
+      NWScript.SetAreaLightDirection((int)lightType, direction, this, (float)fadeTime.TotalSeconds);
+    }
+
+    /// <summary>
     /// Sets the detailed wind data for this area.
     /// </summary>
     /// <remarks>
@@ -927,9 +1000,9 @@ namespace Anvil.API
     /// <summary>
     /// Sets the fog color for this area, at the specified time of day.
     /// </summary>
-    public void SetFogColor(FogType fogType, FogColor fogColor)
+    public void SetFogColor(FogType fogType, FogColor fogColor, TimeSpan fadeTime = default)
     {
-      NWScript.SetFogColor((int)fogType, (int)fogColor, this);
+      NWScript.SetFogColor((int)fogType, (int)fogColor, this, (float)fadeTime.TotalSeconds);
     }
 
     /// <summary>

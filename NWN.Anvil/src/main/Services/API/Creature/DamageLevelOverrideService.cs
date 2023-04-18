@@ -1,5 +1,6 @@
 using System.Linq;
 using Anvil.API;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -11,15 +12,13 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly FunctionHook<GetDamageLevel> damageLevelHook;
+    private readonly FunctionHook<Functions.CNWSObject.GetDamageLevel> damageLevelHook;
 
     public DamageLevelOverrideService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(DamageLevelOverrideService)}");
-      damageLevelHook = hookService.RequestHook<GetDamageLevel>(OnGetDamageLevel, FunctionsLinux._ZN10CNWSObject14GetDamageLevelEv, HookOrder.Late);
+      damageLevelHook = hookService.RequestHook<Functions.CNWSObject.GetDamageLevel>(OnGetDamageLevel, HookOrder.Late);
     }
-
-    private delegate byte GetDamageLevel(void* pObject);
 
     /// <summary>
     /// Clears any override that is set for the creature's damage level.<br/>

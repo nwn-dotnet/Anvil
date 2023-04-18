@@ -1,5 +1,6 @@
 using System;
 using Anvil.API;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -11,14 +12,12 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private delegate void ComputeGameObjectUpdateForObjectHook(void* pMessage, void* pPlayer, void* pPlayerGameObject, void* pGameObjectArray, uint oidObjectToUpdate);
-
-    private readonly FunctionHook<ComputeGameObjectUpdateForObjectHook> computeGameObjectUpdateForObjectHook;
+    private readonly FunctionHook<Functions.CNWSMessage.ComputeGameObjectUpdateForObject> computeGameObjectUpdateForObjectHook;
 
     public PlayerObjectNameOverrideService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(PlayerObjectNameOverrideService)}");
-      computeGameObjectUpdateForObjectHook = hookService.RequestHook<ComputeGameObjectUpdateForObjectHook>(OnComputeGameObjectUpdateForObject, FunctionsLinux._ZN11CNWSMessage32ComputeGameObjectUpdateForObjectEP10CNWSPlayerP10CNWSObjectP16CGameObjectArrayj, HookOrder.Early);
+      computeGameObjectUpdateForObjectHook = hookService.RequestHook<Functions.CNWSMessage.ComputeGameObjectUpdateForObject>(OnComputeGameObjectUpdateForObject, HookOrder.Early);
     }
 
     public string? GetObjectNameOverride(NwPlayer player, NwGameObject gameObject)

@@ -9,7 +9,8 @@ namespace Anvil.API
   /// <summary>
   /// A store object for bartering, and items to purchase.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Store, ObjectType.Store)]
+  [ObjectType(ObjectTypes.Store)]
+  [ObjectFilter(ObjectTypes.Store)]
   public sealed partial class NwStore : NwGameObject
   {
     private readonly CNWSStore store;

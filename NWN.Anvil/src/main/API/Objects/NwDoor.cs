@@ -8,7 +8,8 @@ namespace Anvil.API
   /// <summary>
   /// A tile-based door.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Door, ObjectType.Door)]
+  [ObjectType(ObjectTypes.Door)]
+  [ObjectFilter(ObjectTypes.Door)]
   public sealed partial class NwDoor : NwStationary
   {
     private readonly CNWSDoor door;

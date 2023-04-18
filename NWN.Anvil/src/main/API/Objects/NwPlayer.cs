@@ -13,6 +13,7 @@ using NLog;
 using NWN.Core;
 using NWN.Native.API;
 using Vector = NWN.Native.API.Vector;
+using Vector4 = System.Numerics.Vector4;
 
 namespace Anvil.API
 {
@@ -75,14 +76,27 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Sets camera settings that override any client configuration settings.
+    /// </summary>
+    public CameraFlag CameraFlags
+    {
+      set => NWScript.SetCameraFlags(ControlledCreature, (int)value);
+    }
+
+    /// <summary>
     /// Gets the public part of the CD key that the player used when logging in.
     /// </summary>
     public string CDKey => NWScript.GetPCPublicCDKey(ControlledCreature, true.ToInt());
 
     /// <summary>
-    /// Gets the player's client version (Major + Minor).
+    /// Gets the player's client version (Major + Minor + Build).
     /// </summary>
-    public Version ClientVersion => new Version(NWScript.GetPlayerBuildVersionMajor(ControlledCreature), NWScript.GetPlayerBuildVersionMinor(ControlledCreature));
+    public Version ClientVersion => new Version(NWScript.GetPlayerBuildVersionMajor(ControlledCreature), NWScript.GetPlayerBuildVersionMinor(ControlledCreature), NWScript.GetPlayerBuildVersionPostfix(ControlledCreature));
+
+    /// <summary>
+    /// Gets the player's client version, as a Sha1 commit hash.
+    /// </summary>
+    public string ClientVersionCommitSha1 => NWScript.GetPlayerBuildVersionCommitSha1(ControlledCreature);
 
     /// <summary>
     /// Gets the creature this player is currently controlling.<br/>
@@ -527,6 +541,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Attaches this player's camera to the specified game object. The object must be in the same area, and within visible distance.
+    /// </summary>
+    /// <param name="target">The target object.</param>
+    /// <param name="findCleanView">If true, the client will attempt to find a camera position where the target is in view.</param>
+    public void AttachCamera(NwGameObject target, bool findCleanView = false)
+    {
+      NWScript.AttachCamera(ControlledCreature, target, findCleanView.ToInt());
+    }
+
+    /// <summary>
     /// Boots the player from the server.
     /// </summary>
     /// <param name="reason">An optional message to show to the player.</param>
@@ -737,16 +761,13 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br/>
-    /// If the player is already in targeting mode, the existing handler will be cleared. See <see cref="TryEnterTargetMode"/> to handle this.
+    /// Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.
     /// </summary>
     /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
-    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
-    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
-    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
-    public void EnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    /// <param name="settings">Display and behaviour options for the target mode.</param>
+    public void EnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, TargetModeSettings? settings = null)
     {
-      CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
+      CursorTargetService.EnterTargetMode(this, handler, settings);
     }
 
     public bool Equals(NwPlayer? other)
@@ -1384,6 +1405,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Sets camera limits that override any client configuration.<br/>
+    /// A value of -1 means to use the client limits.
+    /// </summary>
+    public void SetCameraLimits(float minPitch = -1.0f, float maxPitch = -1.0f, float minDist = -1.0f, float maxDist = -1.0f)
+    {
+      NWScript.SetCameraLimits(ControlledCreature, minPitch, maxPitch, minDist, maxDist);
+    }
+
+    /// <summary>
     /// Toggles the CutsceneMode state for the player.
     /// </summary>
     /// <param name="inCutscene">True if cutscene mode should be enabled, otherwise false.</param>
@@ -1400,9 +1430,10 @@ namespace Anvil.API
     /// </summary>
     /// <param name="panel">The panel type to disable.</param>
     /// <param name="disabled">True to disable the panel, false to re-enable the panel.</param>
-    public void SetGuiPanelDisabled(GUIPanel panel, bool disabled)
+    /// <param name="targetObject">The target object (e.g. examined object) where this panel should be disabled.</param>
+    public void SetGuiPanelDisabled(GUIPanel panel, bool disabled, NwGameObject? targetObject = null)
     {
-      NWScript.SetGuiPanelDisabled(ControlledCreature, (int)panel, disabled.ToInt());
+      NWScript.SetGuiPanelDisabled(ControlledCreature, (int)panel, disabled.ToInt(), targetObject);
     }
 
     /// <summary>
@@ -1475,6 +1506,60 @@ namespace Anvil.API
     public void SetTlkOverride(int strRef, string value)
     {
       new StrRef(strRef).SetPlayerOverride(this, value);
+    }
+
+    /// <summary>
+    /// Sets a global shader uniform for this player.<br/>
+    /// These uniforms are not used by the base game and are reserved for module-specific scripting.<br/>
+    /// You need to add custom shaders that will make use of them.<br/>
+    /// In multiplayer, these need to be reapplied when a player rejoins.
+    /// </summary>
+    /// <param name="uniform">The uniform to set.</param>
+    /// <param name="value">The value to set for the uniform.</param>
+    public void SetShaderUniform(ShaderUniform uniform, float value)
+    {
+      NWScript.SetShaderUniformFloat(ControlledCreature, (int)uniform, value);
+    }
+
+    /// <summary>
+    /// Sets a global shader uniform for this player.<br/>
+    /// These uniforms are not used by the base game and are reserved for module-specific scripting.<br/>
+    /// You need to add custom shaders that will make use of them.<br/>
+    /// In multiplayer, these need to be reapplied when a player rejoins.
+    /// </summary>
+    /// <param name="uniform">The uniform to set.</param>
+    /// <param name="value">The value to set for the uniform.</param>
+    public void SetShaderUniform(ShaderUniform uniform, int value)
+    {
+      NWScript.SetShaderUniformInt(ControlledCreature, (int)uniform, value);
+    }
+
+    /// <summary>
+    /// Sets a global shader uniform for this player.<br/>
+    /// These uniforms are not used by the base game and are reserved for module-specific scripting.<br/>
+    /// You need to add custom shaders that will make use of them.<br/>
+    /// In multiplayer, these need to be reapplied when a player rejoins.
+    /// </summary>
+    /// <param name="uniform">The uniform to set.</param>
+    /// <param name="value">The value to set for the uniform.</param>
+    public void SetShaderUniform(ShaderUniform uniform, Vector4 value)
+    {
+      NWScript.SetShaderUniformVec(ControlledCreature, (int)uniform, value.X, value.Y, value.Z, value.W);
+    }
+
+    /// <summary>
+    /// Sets a spell targeting data override for this player.
+    /// </summary>
+    /// <param name="data">The override to apply.</param>
+    /// <exception cref="ArgumentNullException">Thrown if data.Spell is not specified.</exception>
+    public void SetSpellTargetingData(TargetingData data)
+    {
+      if (data.Spell == null)
+      {
+        throw new ArgumentNullException(nameof(data), "data.Spell must not be null.");
+      }
+
+      NWScript.SetSpellTargetingData(ControlledCreature, data.Spell.Id, (int)data.Shape, data.Size.X, data.Size.Y, (int)data.Flags);
     }
 
     /// <summary>
@@ -1552,18 +1637,16 @@ namespace Anvil.API
     /// If the player is already in targeting mode, the existing handler will not be cleared.
     /// </summary>
     /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
-    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
-    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
-    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
+    /// <param name="settings">Display and behaviour options for the target mode.</param>
     /// <returns>True if the player successfully entered target mode, otherwise false.</returns>
-    public bool TryEnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    public bool TryEnterTargetMode(Action<ModuleEvents.OnPlayerTarget> handler, TargetModeSettings? settings = null)
     {
       if (IsInCursorTargetMode)
       {
         return false;
       }
 
-      CursorTargetService.EnterTargetMode(this, handler, validTargets, cursorType, badTargetCursor);
+      CursorTargetService.EnterTargetMode(this, handler, settings);
       return true;
     }
 

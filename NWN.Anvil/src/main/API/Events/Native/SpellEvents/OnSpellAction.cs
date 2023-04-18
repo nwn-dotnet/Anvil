@@ -2,6 +2,7 @@ using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -44,16 +45,12 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<AddCastSpellActionsHook> Hook { get; set; } = null!;
-
-      private delegate int AddCastSpellActionsHook(void* pCreature, uint nSpellId, int nMultiClass, int nDomainLevel,
-        int nMetaType, int bSpontaneousCast, Vector3 vTargetLocation, uint oidTarget, int bAreaTarget, int bAddToFront,
-        int bFake, byte nProjectilePathType, int bInstant, int bAllowPolymorphedCast, int nFeat, byte nCasterLevel);
+      private static FunctionHook<Functions.CNWSCreature.AddCastSpellActions> Hook { get; set; } = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, uint, int, int, int, int, Vector3, uint, int, int, int, byte, int, int, int, byte, int> pHook = &OnAddCastSpellActions;
-        Hook = HookService.RequestHook<AddCastSpellActionsHook>(pHook, FunctionsLinux._ZN12CNWSCreature19AddCastSpellActionsEjiiii6Vectorjiiihiiih, HookOrder.Early);
+        Hook = HookService.RequestHook<Functions.CNWSCreature.AddCastSpellActions>(pHook, HookOrder.Early);
         return new IDisposable[] { Hook };
       }
 

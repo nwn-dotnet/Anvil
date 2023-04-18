@@ -2,6 +2,7 @@ using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Anvil.Internal;
+using Anvil.Native;
 using Anvil.Services;
 using NLog;
 using NWN.Native.API;
@@ -12,14 +13,12 @@ namespace Anvil.API.Events
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private static FunctionHook<HandleDMMessageHook> Hook { get; set; } = null!;
-
-    public delegate int HandleDMMessageHook(void* pMessage, void* pPlayer, byte nMinor, int bGroup);
+    private static FunctionHook<Functions.CNWSMessage.HandlePlayerToServerDungeonMasterMessage> Hook { get; set; } = null!;
 
     protected override IDisposable[] RequestHooks()
     {
       delegate* unmanaged<void*, void*, byte, int, int> pHook = &OnHandleDMMessage;
-      Hook = HookService.RequestHook<HandleDMMessageHook>(pHook, FunctionsLinux._ZN11CNWSMessage40HandlePlayerToServerDungeonMasterMessageEP10CNWSPlayerhi, HookOrder.Early);
+      Hook = HookService.RequestHook<Functions.CNWSMessage.HandlePlayerToServerDungeonMasterMessage>(pHook, HookOrder.Early);
       return new IDisposable[] { Hook };
     }
 

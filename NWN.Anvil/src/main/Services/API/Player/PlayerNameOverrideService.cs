@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Anvil.API;
 using Anvil.API.Events;
 using Anvil.Internal;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -18,56 +19,36 @@ namespace Anvil.Services
     private readonly HashSet<NwPlayer> renameAddedToPlayerList = new HashSet<NwPlayer>();
     private readonly Dictionary<NwPlayer, OriginalNames> renameOriginalNames = new Dictionary<NwPlayer, OriginalNames>();
 
-    private readonly FunctionHook<SendServerToPlayerChatPartyHook> sendServerToPlayerChatPartyHook;
-    private readonly FunctionHook<SendServerToPlayerChatShoutHook> sendServerToPlayerChatShoutHook;
-    private readonly FunctionHook<SendServerToPlayerChatTellHook> sendServerToPlayerChatTellHook;
-    private readonly FunctionHook<SendServerToPlayerDungeonMasterUpdatePartyListHook> sendServerToPlayerDungeonMasterUpdatePartyListHook;
-    private readonly FunctionHook<SendServerToPlayerExamineGuiCreatureDataHook> sendServerToPlayerExamineGuiCreatureDataHook;
-    private readonly FunctionHook<SendServerToPlayerPlayerListAddHook> sendServerToPlayerPlayerListAddHook;
-    private readonly FunctionHook<SendServerToPlayerPlayerListAllHook> sendServerToPlayerPlayerListAllHook;
-    private readonly FunctionHook<SendServerToPlayerPlayerListDeleteHook> sendServerToPlayerPlayerListDeleteHook;
-    private readonly FunctionHook<SendServerToPlayerPopUpGUIPanelHook> sendServerToPlayerPopUpGUIPanelHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerChat_Party> sendServerToPlayerChatPartyHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerChat_Shout> sendServerToPlayerChatShoutHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerChat_Tell> sendServerToPlayerChatTellHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerDungeonMasterUpdatePartyList> sendServerToPlayerDungeonMasterUpdatePartyListHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_CreatureData> sendServerToPlayerExamineGuiCreatureDataHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerPlayerList_Add> sendServerToPlayerPlayerListAddHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerPlayerList_All> sendServerToPlayerPlayerListAllHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerPlayerList_Delete> sendServerToPlayerPlayerListDeleteHook;
+    private readonly FunctionHook<Functions.CNWSMessage.SendServerToPlayerPopUpGUIPanel> sendServerToPlayerPopUpGUIPanelHook;
 
-    private readonly FunctionHook<WriteGameObjUpdateUpdateObjectHook> writeGameObjUpdateUpdateObjectHook;
+    private readonly FunctionHook<Functions.CNWSMessage.WriteGameObjUpdate_UpdateObject> writeGameObjUpdateUpdateObjectHook;
 
     public PlayerNameOverrideService(HookService hookService)
     {
       NwModule.Instance.OnClientLeave += OnClientLeave;
 
-      writeGameObjUpdateUpdateObjectHook = hookService.RequestHook<WriteGameObjUpdateUpdateObjectHook>(OnWriteGameObjUpdateUpdateObject, FunctionsLinux._ZN11CNWSMessage31WriteGameObjUpdate_UpdateObjectEP10CNWSPlayerP10CNWSObjectP17CLastUpdateObjectjj, HookOrder.Early);
-      sendServerToPlayerExamineGuiCreatureDataHook = hookService.RequestHook<SendServerToPlayerExamineGuiCreatureDataHook>(OnSendServerToPlayerExamineGuiCreatureData, FunctionsLinux._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj, HookOrder.Early);
+      writeGameObjUpdateUpdateObjectHook = hookService.RequestHook<Functions.CNWSMessage.WriteGameObjUpdate_UpdateObject>(OnWriteGameObjUpdateUpdateObject, HookOrder.Early);
+      sendServerToPlayerExamineGuiCreatureDataHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_CreatureData>(OnSendServerToPlayerExamineGuiCreatureData, HookOrder.Early);
 
-      sendServerToPlayerPlayerListAllHook = hookService.RequestHook<SendServerToPlayerPlayerListAllHook>(OnSendServerToPlayerPlayerListAll, FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerPlayerList_AllEP10CNWSPlayer, HookOrder.Early);
-      sendServerToPlayerPlayerListAddHook = hookService.RequestHook<SendServerToPlayerPlayerListAddHook>(OnSendServerToPlayerPlayerListAdd, FunctionsLinux._ZN11CNWSMessage32SendServerToPlayerPlayerList_AddEjP10CNWSPlayer, HookOrder.Early);
-      sendServerToPlayerPlayerListDeleteHook = hookService.RequestHook<SendServerToPlayerPlayerListDeleteHook>(OnSendServerToPlayerPlayerListDelete, FunctionsLinux._ZN11CNWSMessage35SendServerToPlayerPlayerList_DeleteEjP10CNWSPlayer, HookOrder.Early);
+      sendServerToPlayerPlayerListAllHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerPlayerList_All>(OnSendServerToPlayerPlayerListAll, HookOrder.Early);
+      sendServerToPlayerPlayerListAddHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerPlayerList_Add>(OnSendServerToPlayerPlayerListAdd, HookOrder.Early);
+      sendServerToPlayerPlayerListDeleteHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerPlayerList_Delete>(OnSendServerToPlayerPlayerListDelete, HookOrder.Early);
 
-      sendServerToPlayerDungeonMasterUpdatePartyListHook = hookService.RequestHook<SendServerToPlayerDungeonMasterUpdatePartyListHook>(OnSendServerToPlayerDungeonMasterUpdatePartyList, FunctionsLinux._ZN11CNWSMessage46SendServerToPlayerDungeonMasterUpdatePartyListEj, HookOrder.Early);
-      sendServerToPlayerPopUpGUIPanelHook = hookService.RequestHook<SendServerToPlayerPopUpGUIPanelHook>(OnSendServerToPlayerPopUpGUIPanel, FunctionsLinux._ZN11CNWSMessage31SendServerToPlayerPopUpGUIPanelEjiiii10CExoString, HookOrder.Early);
+      sendServerToPlayerDungeonMasterUpdatePartyListHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerDungeonMasterUpdatePartyList>(OnSendServerToPlayerDungeonMasterUpdatePartyList, HookOrder.Early);
+      sendServerToPlayerPopUpGUIPanelHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerPopUpGUIPanel>(OnSendServerToPlayerPopUpGUIPanel, HookOrder.Early);
 
-      sendServerToPlayerChatPartyHook = hookService.RequestHook<SendServerToPlayerChatPartyHook>(OnSendServerToPlayerChatParty, FunctionsLinux._ZN11CNWSMessage28SendServerToPlayerChat_PartyEjj10CExoString, HookOrder.Early);
-      sendServerToPlayerChatShoutHook = hookService.RequestHook<SendServerToPlayerChatShoutHook>(OnSendServerToPlayerChatShout, FunctionsLinux._ZN11CNWSMessage28SendServerToPlayerChat_ShoutEjj10CExoString, HookOrder.Early);
-      sendServerToPlayerChatTellHook = hookService.RequestHook<SendServerToPlayerChatTellHook>(OnSendServerToPlayerChatTell, FunctionsLinux._ZN11CNWSMessage27SendServerToPlayerChat_TellEjj10CExoString, HookOrder.Early);
+      sendServerToPlayerChatPartyHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerChat_Party>(OnSendServerToPlayerChatParty, HookOrder.Early);
+      sendServerToPlayerChatShoutHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerChat_Shout>(OnSendServerToPlayerChatShout, HookOrder.Early);
+      sendServerToPlayerChatTellHook = hookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerChat_Tell>(OnSendServerToPlayerChatTell, HookOrder.Early);
     }
-
-    private delegate int SendServerToPlayerChatPartyHook(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage);
-
-    private delegate int SendServerToPlayerChatShoutHook(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage);
-
-    private delegate int SendServerToPlayerChatTellHook(void* pMessage, uint nPlayerId, uint oidSpeaker, void* sSpeakerMessage);
-
-    private delegate int SendServerToPlayerDungeonMasterUpdatePartyListHook(void* pMessage, uint nPlayerID);
-
-    private delegate int SendServerToPlayerExamineGuiCreatureDataHook(void* pMessage, void* pPlayer, uint oidCreatureID);
-
-    private delegate int SendServerToPlayerPlayerListAddHook(void* pMessage, uint nPlayerId, void* pNewPlayer);
-
-    private delegate int SendServerToPlayerPlayerListAllHook(void* pMessage, void* pPlayer);
-
-    private delegate int SendServerToPlayerPlayerListDeleteHook(void* pMessage, uint nPlayerId, void* pNewPlayer);
-
-    private delegate int SendServerToPlayerPopUpGUIPanelHook(void* pMessage, uint observerOid, int nGuiPanel, int bGUIOption1, int bGUIOption2, int nStringReference, void** psStringReference);
-
-    private delegate void WriteGameObjUpdateUpdateObjectHook(void* pMessage, void* pPlayer, void* pAreaObject, void* pLastUpdateObject, uint nObjectUpdatesRequired, uint nObjectAppearanceUpdatesRequired);
 
     /// <summary>
     /// Gets or sets if global overrides change the underlying display name value. This applies the name change globally to scripts, and DMs.<br/>

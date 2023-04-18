@@ -1,3 +1,4 @@
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -9,18 +10,16 @@ namespace Anvil.Services
 
     private readonly HookService hookService;
 
-    private FunctionHook<LoadModuleInProgressHook> loadModuleInProgressHook = null!;
+    private FunctionHook<Functions.CNWSModule.LoadModuleInProgress> loadModuleInProgressHook = null!;
 
     public ModuleLoadTracker(HookService hookService)
     {
       this.hookService = hookService;
     }
 
-    private delegate uint LoadModuleInProgressHook(void* pModule, int nAreasLoaded, int nAreasToLoad);
-
     void ICoreService.Init()
     {
-      loadModuleInProgressHook = hookService.RequestHook<LoadModuleInProgressHook>(OnModuleLoadProgressChange, FunctionsLinux._ZN10CNWSModule20LoadModuleInProgressEii, HookOrder.Earliest);
+      loadModuleInProgressHook = hookService.RequestHook<Functions.CNWSModule.LoadModuleInProgress>(OnModuleLoadProgressChange, HookOrder.Earliest);
     }
 
     void ICoreService.Load() {}

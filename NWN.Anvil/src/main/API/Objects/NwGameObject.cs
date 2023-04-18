@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
 using Vector3 = System.Numerics.Vector3;
+using Vector4 = System.Numerics.Vector4;
 
 namespace Anvil.API
 {
   /// <summary>
   /// Base class for all entities in areas.
   /// </summary>
+  [ObjectFilter(ObjectTypes.All)]
   public abstract partial class NwGameObject : NwObject
   {
     private readonly CNWSObject gameObject;
@@ -28,7 +29,6 @@ namespace Anvil.API
     internal NwGameObject(CNWSObject gameObject) : base(gameObject)
     {
       this.gameObject = gameObject;
-      VisualTransform = new VisualTransform(this);
     }
 
     /// <summary>
@@ -202,6 +202,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether this object should be useable (clickable).
+    /// </summary>
+    public bool Useable
+    {
+      get => NWScript.GetUseableFlag(this).ToBool();
+      set => NWScript.SetUseableFlag(this, value.ToInt());
+    }
+
+    /// <summary>
     /// Gets or sets the global visiblity override for this object.
     /// </summary>
     public VisibilityMode VisibilityOverride
@@ -211,9 +220,29 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the visual transform for this object.
+    /// Gets or sets the distance that this object will become visible to clients (default 45.0).<br/>
+    /// This is still subject to other limitations, such as perception ranges for creatures.
     /// </summary>
-    public VisualTransform VisualTransform { get; }
+    public float VisibleDistance
+    {
+      get => NWScript.GetObjectVisibleDistance(this);
+      set => NWScript.SetObjectVisibleDistance(this, value);
+    }
+
+    /// <summary>
+    /// Gets the base visual transform for this object.<br/>
+    /// Use <see cref="GetVisualTransform"/> to get the visual transform for other scopes for this object.
+    /// </summary>
+    public VisualTransform VisualTransform => new VisualTransform(this, ObjectVisualTransformDataScope.Base);
+
+    /// <summary>
+    /// Gets or sets flags for controlling Ui discovery of this object.
+    /// </summary>
+    public ObjectUiDiscovery UiDiscoveryFlags
+    {
+      get => (ObjectUiDiscovery)NWScript.GetObjectUiDiscoveryMask(this);
+      set => NWScript.SetObjectUiDiscoveryMask(this, (int)value);
+    }
 
     internal override CNWSScriptVarTable ScriptVarTable => GameObject.m_ScriptVars;
 
@@ -445,11 +474,11 @@ namespace Anvil.API
     /// <typeparam name="T">The type of object to search.</typeparam>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int)GetObjectType<T>();
+      int typeFilter = (int)GetObjectFilter<T>();
       int i;
       uint current;
 
-      for (i = 1, current = NWScript.GetNearestObject(objType, this, i); current != Invalid; i++, current = NWScript.GetNearestObject(objType, this, i))
+      for (i = 1, current = NWScript.GetNearestObject(typeFilter, this, i); current != Invalid; i++, current = NWScript.GetNearestObject(typeFilter, this, i))
       {
         T? obj = current.ToNwObjectSafe<T>();
         if (obj != null)
@@ -457,6 +486,15 @@ namespace Anvil.API
           yield return obj;
         }
       }
+    }
+
+    /// <summary>
+    /// Gets the visual transform of this object for the specified scope.
+    /// </summary>
+    /// <param name="scope">The transform scope to get.</param>
+    public VisualTransform GetVisualTransform(ObjectVisualTransformDataScope scope)
+    {
+      return new VisualTransform(this, scope);
     }
 
     /// <summary>
@@ -539,6 +577,26 @@ namespace Anvil.API
     public void RemoveEffect(Effect effect)
     {
       NWScript.RemoveEffect(this, effect);
+    }
+
+    /// <summary>
+    /// Replaces the specified animation with an override.<br/>
+    /// Use <see cref="ClearObjectAnimationOverride"/> to clear the override.
+    /// </summary>
+    /// <param name="anim">The animation to replace.</param>
+    /// <param name="newAnim">The replacement animation.</param>
+    public void ReplaceObjectAnimation(string anim, string newAnim)
+    {
+      NWScript.ReplaceObjectAnimation(this, anim, newAnim);
+    }
+
+    /// <summary>
+    /// Clears the specified animation override, restoring the original.
+    /// </summary>
+    /// <param name="anim">The name of the original animation to clear.</param>
+    public void ClearObjectAnimationOverride(string anim)
+    {
+      NWScript.ReplaceObjectAnimation(this, anim);
     }
 
     /// <summary>
@@ -689,6 +747,16 @@ namespace Anvil.API
     public void SetMaterialShaderUniform(string material, string param, float value)
     {
       NWScript.SetMaterialShaderUniformVec4(this, material, param, value);
+    }
+
+    /// <summary>
+    /// Sets a text override for the hover/tab-highlight text of this object.
+    /// </summary>
+    /// <param name="mode">How the text should be applied.</param>
+    /// <param name="text">The text override.</param>
+    public void SetTextBubbleOverride(ObjectUiTextBubbleOverride mode, string text)
+    {
+      NWScript.SetObjectTextBubbleOverride(this, (int)mode, text);
     }
 
     internal abstract void RemoveFromArea();
