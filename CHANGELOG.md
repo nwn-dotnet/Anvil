@@ -22,7 +22,10 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.27...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- NwCreature: Fixed an issue where GetAssociates would return an empty list for certain associate types.
+- VirtualMachine: Fix an issue where the context object would be incorrectly flagged as invalid.
+- Creature.OnDeath: Support Area/Module as the killer of the creature.
+- EventService: More reliable handling of game events.
 
 ## 8193.34.27
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.26...v8193.34.27
