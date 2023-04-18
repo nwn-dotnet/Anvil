@@ -112,6 +112,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Creates an effect that grants a bonus feat, similar to <see cref="ItemProperty.BonusFeat"/>.
+    /// </summary>
+    /// <param name="feat">The feat to grant.</param>
+    public static Effect BonusFeat(NwFeat feat)
+    {
+      return NWScript.EffectBonusFeat(feat.Id)!;
+    }
+
+    /// <summary>
     /// Creates an effect that increases the personal reputation to the target by 50 points.
     /// </summary>
     public static Effect Charmed()
@@ -382,6 +391,14 @@ namespace Anvil.API
     public static Effect Frightened()
     {
       return NWScript.EffectFrightened()!;
+    }
+
+    /// <summary>
+    /// Creates an effect that forces creatures to always walk.
+    /// </summary>
+    public static Effect ForceWalk()
+    {
+      return NWScript.EffectForceWalk()!;
     }
 
     /// <summary>
@@ -806,6 +823,15 @@ namespace Anvil.API
     public static Effect TimeStop()
     {
       return NWScript.EffectTimeStop()!;
+    }
+
+    /// <summary>
+    /// Creates a time stop immunity effect.<br/>
+    /// Immunity allows objects to continue taking actions during an active time stop effect.
+    /// </summary>
+    public static Effect TimeStopImmunity()
+    {
+      return NWScript.EffectTimeStopImmunity()!;
     }
 
     /// <summary>

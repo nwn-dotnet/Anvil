@@ -39,6 +39,11 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature? Player { get; } = NWScript.GetPCItemLastEquippedBy().ToNwObject<NwCreature>();
 
+      /// <summary>
+      /// Gets the updated slot for the equipped item.
+      /// </summary>
+      public InventorySlot Slot { get; } = (InventorySlot)NWScript.GetPCItemLastEquippedSlot();
+
       NwObject? IEvent.Context => Player;
     }
   }

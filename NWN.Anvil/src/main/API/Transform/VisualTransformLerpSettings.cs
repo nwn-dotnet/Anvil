@@ -10,5 +10,9 @@ namespace Anvil.API
     public bool PauseWithGame { get; set; } = true;
 
     public bool ReturnDestinationTransform { get; set; } = false;
+
+    public ObjectVisualTransformBehavior BehaviorFlags { get; set; } = ObjectVisualTransformBehavior.Default;
+
+    public int Repeats { get; set; } = 0;
   }
 }

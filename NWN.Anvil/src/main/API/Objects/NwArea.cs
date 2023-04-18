@@ -670,6 +670,18 @@ namespace Anvil.API
       NWScript.ReloadAreaBorder(this);
     }
 
+    /// <summary>
+    /// Bulk change a set of tiles in this area.
+    /// </summary>
+    /// <param name="data">The updated tile data.</param>
+    /// <param name="flags">Flags/behaviours to apply once the tiles have been set.</param>
+    /// <param name="tileSet">If specified, also changes the area's tileset. Warning: only use this if you really know what you're doing, it's very easy to break things badly.</param>
+    public void SetTiles(List<TileData> data, SettleFlags flags = SettleFlags.RecomputeLighting, string tileSet = "")
+    {
+      Json tileData = JsonUtility.ToJsonStructure(data);
+      NWScript.SetTileJson(this, tileData, (int)flags, tileSet);
+    }
+
     public unsafe byte[]? SerializeARE(string? areaName = null, string? resRef = null)
     {
       areaName ??= Name;

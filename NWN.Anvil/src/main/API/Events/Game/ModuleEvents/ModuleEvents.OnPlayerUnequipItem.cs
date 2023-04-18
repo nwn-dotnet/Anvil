@@ -25,6 +25,11 @@ namespace Anvil.API.Events
       /// </summary>
       public NwCreature UnequippedBy { get; } = NWScript.GetPCItemLastUnequippedBy().ToNwObject<NwCreature>()!;
 
+      /// <summary>
+      /// Gets the slot that this item was taken from.
+      /// </summary>
+      public InventorySlot Slot { get; } = (InventorySlot)NWScript.GetPCItemLastUnequippedSlot();
+
       NwObject IEvent.Context => UnequippedBy;
     }
   }

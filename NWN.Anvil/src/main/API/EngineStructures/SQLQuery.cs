@@ -136,6 +136,21 @@ namespace Anvil.API
       executed = true;
     }
 
+    /// <summary>
+    /// Reset this sqlquery, readying it for re-execution after results have been fetched.<br/>
+    /// Existing BindParam values are kept, unless the clearBinds argument is set to true.
+    /// </summary>
+    /// <remarks>
+    /// This command only works on successfully-prepared queries that have not errored out.
+    /// </remarks>
+    /// <param name="clearBinds">True if existing bind parameters should be cleared, false if they should be kept.</param>
+    public void Reset(bool clearBinds = false)
+    {
+      AssertQueryExecuted(true);
+      NWScript.SqlResetQuery(this, clearBinds.ToInt());
+      executed = false;
+    }
+
     private void AssertQueryExecuted(bool expected)
     {
       if (executed != expected)

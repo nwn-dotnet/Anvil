@@ -129,7 +129,7 @@ namespace Anvil.API
     {
       if (activeLerpSettings != null)
       {
-        NWScript.SetObjectVisualTransform(gameObject, (int)property, value, (int)activeLerpSettings.LerpType, (float)activeLerpSettings.Duration.TotalSeconds, activeLerpSettings.PauseWithGame.ToInt(), (int)scope);
+        NWScript.SetObjectVisualTransform(gameObject, (int)property, value, (int)activeLerpSettings.LerpType, (float)activeLerpSettings.Duration.TotalSeconds, activeLerpSettings.PauseWithGame.ToInt(), (int)scope, (int)activeLerpSettings.BehaviorFlags, activeLerpSettings.Repeats);
       }
       else
       {

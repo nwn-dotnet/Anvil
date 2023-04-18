@@ -2322,6 +2322,20 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Sets whether the specified effect icon should be flashing in the creature's GUI icon bar.
+    /// </summary>
+    /// <remarks>
+    /// If the creature does not have the icon specified active in their GUI, nothing happens.<br/>
+    /// This function will not add icons to the icon bar.
+    /// </remarks>
+    /// <param name="effectIcon">The icon to start/stop flashing.</param>
+    /// <param name="flashing">The new flashing state.</param>
+    public void SetEffectIconFlashing(EffectIconTableEntry effectIcon, bool flashing)
+    {
+      NWScript.SetEffectIconFlashing(this, effectIcon.RowIndex, flashing.ToInt());
+    }
+
+    /// <summary>
     /// Sets the modifier that is set for the creature's initiative.<br/>
     /// </summary>
     public void SetInitiativeModifier(int modifier)
