@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.27...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.28...HEAD
 
 ### Added
 - N/A
@@ -20,6 +20,12 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.27...HEAD
 
 ### Removed
 - N/A
+
+### Fixed
+- N/A
+
+## 8193.34.28
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.27...v8193.34.28
 
 ### Fixed
 - NwCreature: Fixed an issue where GetAssociates would return an empty list for certain associate types.
