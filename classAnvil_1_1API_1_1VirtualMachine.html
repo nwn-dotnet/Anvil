@@ -123,12 +123,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aacb9c482941f7d932ada0342bb04b8c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#aacb9c482941f7d932ada0342bb04b8c6">Execute</a> (string scriptName, params(string ParamName, string ParamValue)[] scriptParams)</td></tr>
 <tr class="memdesc:aacb9c482941f7d932ada0342bb04b8c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the specified <a class="el" href="namespaceNWN.html">NWN</a> script. If scriptName does not specify a compiled script, nothing happens.  <a href="classAnvil_1_1API_1_1VirtualMachine.html#aacb9c482941f7d932ada0342bb04b8c6">More...</a><br /></td></tr>
 <tr class="separator:aacb9c482941f7d932ada0342bb04b8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53867500b8f58ec4b775fa303377708b"><td class="memItemLeft" align="right" valign="top"><a id="a53867500b8f58ec4b775fa303377708b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext</b> (System.Action action, uint objectId=NwObject.Invalid, int scriptEventId=0, bool valid=false)</td></tr>
-<tr class="separator:a53867500b8f58ec4b775fa303377708b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e3ba3b70422747295675a4fffdf137f"><td class="memItemLeft" align="right" valign="top"><a id="a3e3ba3b70422747295675a4fffdf137f"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext&lt; T &gt;</b> (System.Func&lt; T &gt; action, uint objectId=NwObject.Invalid, int scriptEventId=0, bool valid=false)</td></tr>
-<tr class="separator:a3e3ba3b70422747295675a4fffdf137f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a100bbba3cc0dc6d891ebbd03ef9b0e"><td class="memItemLeft" align="right" valign="top"><a id="a0a100bbba3cc0dc6d891ebbd03ef9b0e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext</b> (System.Action action, uint objectId=NwObject.Invalid, int scriptEventId=0)</td></tr>
+<tr class="separator:a0a100bbba3cc0dc6d891ebbd03ef9b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b98e113ced7c4996e76b5deeaeff65"><td class="memItemLeft" align="right" valign="top"><a id="a91b98e113ced7c4996e76b5deeaeff65"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteInScriptContext&lt; T &gt;</b> (System.Func&lt; T &gt; action, uint objectId=NwObject.Invalid, int scriptEventId=0)</td></tr>
+<tr class="separator:a91b98e113ced7c4996e76b5deeaeff65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9be59d013253e3f939dedd9bbb27d243"><td class="memItemLeft" align="right" valign="top">string?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1VirtualMachine.html#a9be59d013253e3f939dedd9bbb27d243">GetCurrentScriptName</a> (int depth=0)</td></tr>
 <tr class="memdesc:a9be59d013253e3f939dedd9bbb27d243"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the currently executing script.<br  />
  If depth is &gt; 0, it will return the name of the script that called this one via ExecuteScript().  <a href="classAnvil_1_1API_1_1VirtualMachine.html#a9be59d013253e3f939dedd9bbb27d243">More...</a><br /></td></tr>
