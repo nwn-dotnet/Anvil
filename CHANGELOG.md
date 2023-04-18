@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.34.28
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.27...v8193.34.28
+
+### Fixed
+- NwCreature: Fixed an issue where GetAssociates would return an empty list for certain associate types.
+- VirtualMachine: Fix an issue where the context object would be incorrectly flagged as invalid.
+- Creature.OnDeath: Support Area/Module as the killer of the creature.
+- EventService: More reliable handling of game events.
+
 ## 8193.34.27
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.26...v8193.34.27
 

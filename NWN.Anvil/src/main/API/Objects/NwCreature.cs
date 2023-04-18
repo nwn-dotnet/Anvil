@@ -2548,7 +2548,7 @@ namespace Anvil.API
       List<NwCreature> associates = new List<NwCreature>();
       int type = (int)associateType;
 
-      for (int i = 0;; i++)
+      for (int i = 1;; i++)
       {
         NwCreature? associate = NWScript.GetAssociate(type, this, i).ToNwObject<NwCreature>();
         if (associate == null || associates.Contains(associate))

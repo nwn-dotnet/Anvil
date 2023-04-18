@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Anvil.Internal;
 using Anvil.Services;
 using NLog;
 using NWN.Core;
@@ -89,9 +90,9 @@ namespace Anvil.API
       Execute(scriptName, null, scriptParams);
     }
 
-    public void ExecuteInScriptContext(System.Action action, uint objectId = NwObject.Invalid, int scriptEventId = 0, bool valid = false)
+    public void ExecuteInScriptContext(System.Action action, uint objectId = NwObject.Invalid, int scriptEventId = 0)
     {
-      int spBefore = PushScriptContext(objectId, scriptEventId, valid);
+      int spBefore = PushScriptContext(objectId, scriptEventId);
       try
       {
         action();
@@ -106,9 +107,9 @@ namespace Anvil.API
       }
     }
 
-    public T ExecuteInScriptContext<T>(System.Func<T> action, uint objectId = NwObject.Invalid, int scriptEventId = 0, bool valid = false)
+    public T ExecuteInScriptContext<T>(System.Func<T> action, uint objectId = NwObject.Invalid, int scriptEventId = 0)
     {
-      int spBefore = PushScriptContext(objectId, scriptEventId, valid);
+      int spBefore = PushScriptContext(objectId, scriptEventId);
 
       try
       {
@@ -181,9 +182,10 @@ namespace Anvil.API
       return virtualMachine.m_cRunTimeStack.GetStackPointer();
     }
 
-    private int PushScriptContext(uint oid, int scriptEventId, bool valid)
+    private int PushScriptContext(uint oid, int scriptEventId)
     {
       CNWVirtualMachineCommands cmd = CNWVirtualMachineCommands.FromPointer(virtualMachine.m_pCmdImplementer.Pointer);
+      bool valid = LowLevel.ServerExoApp.GetGameObject(oid) != null;
 
       if (virtualMachine.m_nRecursionLevel++ == -1)
       {
@@ -196,7 +198,10 @@ namespace Anvil.API
       virtualMachine.m_oidObjectRunScript[virtualMachine.m_nRecursionLevel] = oid;
       virtualMachine.m_bValidObjectRunScript[virtualMachine.m_nRecursionLevel] = valid.ToInt();
 
-      virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel].m_nScriptEventID = scriptEventId;
+      CVirtualMachineScript script = virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel];
+      script.m_nScriptEventID = scriptEventId;
+
+      virtualMachine.m_pVirtualMachineScript[virtualMachine.m_nRecursionLevel] = script;
       cmd.m_oidObjectRunScript = virtualMachine.m_oidObjectRunScript[virtualMachine.m_nRecursionLevel];
       cmd.m_bValidObjectRunScript = virtualMachine.m_bValidObjectRunScript[virtualMachine.m_nRecursionLevel];
 
