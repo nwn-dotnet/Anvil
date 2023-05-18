@@ -43,7 +43,7 @@
 
   <ItemGroup>
     <PackageReference Include="NWN.Core" Version="8193.35.2" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.35.1" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.35.4" PrivateAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>
