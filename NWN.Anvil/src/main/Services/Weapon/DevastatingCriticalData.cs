@@ -4,7 +4,7 @@ namespace Anvil.Services
 {
   public sealed class DevastatingCriticalData
   {
-    public NwCreature Attacker { get; set; }
+    public NwCreature Attacker { get; init; } = null!;
 
     public bool Bypass { get; set; }
 
