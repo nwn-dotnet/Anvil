@@ -595,6 +595,7 @@ namespace Anvil.Services
 
         DevastatingCriticalData devastatingCriticalData = new DevastatingCriticalData
         {
+          Attacker = creature.ToNwObject<NwCreature>()!,
           Weapon = weapon.ToNwObject<NwItem>()!,
           Target = creature.m_oidAttackTarget.ToNwObject<NwGameObject>()!,
           Damage = attackData.GetTotalDamage(1),
