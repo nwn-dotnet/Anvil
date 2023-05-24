@@ -158,14 +158,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Makes this creature controllable by the specified player, if player party control is enabled.
-    /// </summary>
-    public NwPlayer CommandingPlayer
-    {
-      set => NWScript.SetCommandingPlayer(this, value.ControlledCreature);
-    }
-
-    /// <summary>
     /// Gets or sets the current base armor arcane spell failure factor for this creature (global ASF is automatically recalculated).
     /// </summary>
     public byte BaseArmorArcaneSpellFailure
@@ -269,12 +261,17 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the player currently controlling this creature.<br/>
+    /// Gets or sets the player currently controlling this creature.<br/>
     /// If this creature is a possessed familiar or is DM possessed, this will return the player or DM controlling this creature.<br/>
     /// If this creature is a player creature (the creature a played logged in with), but the player is possessing another creature, this returns null.<br/>
-    /// If no player is controlling this creature, this returns null.
+    /// If no player is controlling this creature, this returns null.<br/>
+    /// The setter makes this this creature controllable by the specified player, if player party control is enabled.
     /// </summary>
-    public NwPlayer? ControllingPlayer => ObjectId.ToNwPlayer(PlayerSearch.Controlled);
+    public NwPlayer? ControllingPlayer
+    {
+      get => ObjectId.ToNwPlayer(PlayerSearch.Controlled);
+      set => NWScript.SetCommandingPlayer(this, value?.ControlledCreature);
+    }
 
     /// <summary>
     /// Gets or sets the corpse decay time for this creature.
