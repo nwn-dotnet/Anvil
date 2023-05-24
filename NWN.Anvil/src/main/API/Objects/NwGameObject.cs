@@ -56,16 +56,6 @@ namespace Anvil.API
     public NwArea? Area => GameObject.GetArea().ToNwObject<NwArea>();
 
     /// <summary>
-    /// Gets or sets the appearance of this creature.
-    /// </summary>
-    [Obsolete("Use NwCreature.Appearance instead.")]
-    public AppearanceType CreatureAppearanceType
-    {
-      get => (AppearanceType)NWScript.GetAppearanceType(this);
-      set => NWScript.SetCreatureAppearanceType(this, (int)value);
-    }
-
-    /// <summary>
     /// Gets or sets the highlight color of this object.
     /// </summary>
     public Color HighlightColor
@@ -321,16 +311,6 @@ namespace Anvil.API
     /// <summary>
     /// Destroys this object (irrevocably).
     /// </summary>
-    /// <param name="delay">Time in seconds until this object should be destroyed.</param>
-    [Obsolete("Use the non-delay overload instead, in combination with the scheduler service or async/await.")]
-    public void Destroy(float delay)
-    {
-      NWScript.DestroyObject(this, delay);
-    }
-
-    /// <summary>
-    /// Destroys this object (irrevocably).
-    /// </summary>
     public virtual void Destroy()
     {
       NWScript.DestroyObject(this);
@@ -548,12 +528,6 @@ namespace Anvil.API
     {
       await WaitForObjectContext();
       NWScript.PlaySound(soundName);
-    }
-
-    [Obsolete("Use the StrRef overload instead.")]
-    public async Task PlaySoundByStrRef(int strRef, bool runAsAction = true)
-    {
-      await PlaySoundByStrRef(new StrRef(strRef), runAsAction);
     }
 
     /// <summary>

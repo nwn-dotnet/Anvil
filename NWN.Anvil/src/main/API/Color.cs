@@ -157,12 +157,6 @@ namespace Anvil.API
       return StringHelper.Encoding.GetString(tokenBytes);
     }
 
-    [Obsolete("Use Color.ToRGBA() instead.")]
-    public int ToInt()
-    {
-      return ToRGBA();
-    }
-
     /// <summary>
     /// Gets the 32-bit RGBA value of this Color structure.
     /// </summary>

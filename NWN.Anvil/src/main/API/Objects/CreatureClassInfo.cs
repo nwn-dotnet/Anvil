@@ -69,53 +69,12 @@ namespace Anvil.API
     public SpellSchool School => (SpellSchool)classInfo.m_nSchool;
 
     /// <summary>
-    /// Adds the specified spell as a known spell at the specified spell level.
-    /// </summary>
-    /// <param name="spell">The spell to be added.</param>
-    /// <param name="spellLevel">The spell level for the spell to be added.</param>
-    [Obsolete("Use the KnownSpells property instead.")]
-    public void AddKnownSpell(NwSpell spell, byte spellLevel)
-    {
-      classInfo.AddKnownSpell(spellLevel, spell.Id.AsUInt());
-    }
-
-    /// <summary>
     /// Clears the specified spell from the creature's spellbook.
     /// </summary>
     /// <param name="spell">The spell to clear.</param>
     public void ClearMemorizedKnownSpells(NwSpell spell)
     {
       classInfo.ClearMemorizedKnownSpells(spell.Id.AsUInt());
-    }
-
-    /// <summary>
-    /// Gets the number of spells known by this creature at the specified level.
-    /// </summary>
-    /// <param name="spellLevel">The spell level to query.</param>
-    /// <returns>An integer representing the number of spells known.</returns>
-    [Obsolete("Use the KnownSpells property instead.")]
-    public ushort GetKnownSpellCountByLevel(byte spellLevel)
-    {
-      return classInfo.GetNumberKnownSpells(spellLevel);
-    }
-
-    /// <summary>
-    /// Gets this creature's known spells for the specified spell level.
-    /// </summary>
-    /// <param name="spellLevel">The spell level to query.</param>
-    /// <returns>A list containing the creatures known spells.</returns>
-    [Obsolete("Use the KnownSpells property instead.")]
-    public IReadOnlyList<NwSpell> GetKnownSpells(byte spellLevel)
-    {
-      int spellCount = GetKnownSpellCountByLevel(spellLevel);
-      NwSpell[] retVal = new NwSpell[spellCount];
-
-      for (byte i = 0; i < spellCount; i++)
-      {
-        retVal[i] = NwSpell.FromSpellId((int)classInfo.GetKnownSpell(spellLevel, i))!;
-      }
-
-      return retVal;
     }
 
     /// <summary>
@@ -154,17 +113,6 @@ namespace Anvil.API
     public byte GetRemainingSpellSlots(byte spellLevel)
     {
       return classInfo.GetSpellsPerDayLeft(spellLevel);
-    }
-
-    /// <summary>
-    /// Removes the known spell at the specified level with the specified index, as returned by <see cref="GetKnownSpells"/>.
-    /// </summary>
-    /// <param name="spellLevel">The spell level to query.</param>
-    /// <param name="spell">The spell to remove.</param>
-    [Obsolete("Use the KnownSpells property instead.")]
-    public void RemoveKnownSpell(byte spellLevel, NwSpell spell)
-    {
-      classInfo.RemoveKnownSpell(spellLevel, spell.Id.AsUInt());
     }
 
     /// <summary>

@@ -21,12 +21,6 @@ namespace Anvil.API.Events
       public NwCreature Creature { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>()!;
 
       /// <summary>
-      /// Gets the <see cref="NwCreature"/> currently speaking.
-      /// </summary>
-      [Obsolete("Use the Creature property instead.")]
-      public NwCreature? CurrentSpeaker { get; } = NWScript.OBJECT_SELF.ToNwObject<NwCreature>();
-
-      /// <summary>
       /// Gets the last <see cref="NwGameObject"/> that spoke in this conversation.
       /// </summary>
       public NwGameObject? LastSpeaker { get; } = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
