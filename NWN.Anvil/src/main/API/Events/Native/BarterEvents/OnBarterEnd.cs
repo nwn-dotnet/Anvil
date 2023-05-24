@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
 using Anvil.Internal;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -24,20 +25,16 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<SendServerToPlayerBarterCloseBarterHook> sendServerToPlayerBarterCloseBarterHook = null!;
-      private static FunctionHook<SetListAcceptedHook> setListAcceptedHook = null!;
-
-      private delegate int SendServerToPlayerBarterCloseBarterHook(void* pMessage, uint nInitiatorId, uint nRecipientId, int bAccepted);
-
-      private delegate int SetListAcceptedHook(void* pBarter, int bAccepted);
+      private static FunctionHook<Functions.CNWSMessage.SendServerToPlayerBarterCloseBarter> sendServerToPlayerBarterCloseBarterHook = null!;
+      private static FunctionHook<Functions.CNWSBarter.SetListAccepted> setListAcceptedHook = null!;
 
       protected override IDisposable[] RequestHooks()
       {
         delegate* unmanaged<void*, int, int> pSetListAcceptedHook = &OnSetListAccepted;
-        setListAcceptedHook = HookService.RequestHook<SetListAcceptedHook>(pSetListAcceptedHook, FunctionsLinux._ZN10CNWSBarter15SetListAcceptedEi, HookOrder.Earliest);
+        setListAcceptedHook = HookService.RequestHook<Functions.CNWSBarter.SetListAccepted>(pSetListAcceptedHook, HookOrder.Earliest);
 
         delegate* unmanaged<void*, uint, uint, int, int> pSendServerToPlayerBarterCloseBarterHook = &OnSendServerToPlayerBarterCloseBarter;
-        sendServerToPlayerBarterCloseBarterHook = HookService.RequestHook<SendServerToPlayerBarterCloseBarterHook>(pSendServerToPlayerBarterCloseBarterHook, FunctionsLinux._ZN11CNWSMessage35SendServerToPlayerBarterCloseBarterEjji, HookOrder.Earliest);
+        sendServerToPlayerBarterCloseBarterHook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerBarterCloseBarter>(pSendServerToPlayerBarterCloseBarterHook, HookOrder.Earliest);
 
         return new IDisposable[] { setListAcceptedHook, sendServerToPlayerBarterCloseBarterHook };
       }

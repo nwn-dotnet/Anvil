@@ -19,5 +19,12 @@ namespace Anvil.API
     ExamineItem = NWScript.GUI_PANEL_EXAMINE_ITEM,
     ExaminePlaceable = NWScript.GUI_PANEL_EXAMINE_PLACEABLE,
     ExamineDoor = NWScript.GUI_PANEL_EXAMINE_DOOR,
+    Tile = NWScript.GUI_PANEL_RADIAL_TILE,
+    Trigger = NWScript.GUI_PANEL_RADIAL_TRIGGER,
+    Creature = NWScript.GUI_PANEL_RADIAL_CREATURE,
+    Item = NWScript.GUI_PANEL_RADIAL_ITEM,
+    Placeable = NWScript.GUI_PANEL_RADIAL_PLACEABLE,
+    Door = NWScript.GUI_PANEL_RADIAL_DOOR,
+    Quickbar = NWScript.GUI_PANEL_RADIAL_QUICKBAR,
   }
 }

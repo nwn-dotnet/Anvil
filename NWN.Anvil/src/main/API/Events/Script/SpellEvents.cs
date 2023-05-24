@@ -14,8 +14,10 @@ namespace Anvil.API.Events
         TargetObject = NWScript.GetSpellTargetObject().ToNwObject<NwGameObject>();
         TargetLocation = NWScript.GetSpellTargetLocation();
         SpellCastClass = NwClass.FromClassId(NWScript.GetLastSpellCastClass());
+        IsSpontaneousCast = NWScript.GetSpellCastSpontaneously().ToBool();
         Item = NWScript.GetSpellCastItem().ToNwObject<NwItem>();
         SaveDC = NWScript.GetSpellSaveDC();
+        SpellLevel = NWScript.GetLastSpellLevel();
         MetaMagicFeat = (MetaMagic)NWScript.GetMetaMagicFeat();
       }
 
@@ -53,6 +55,16 @@ namespace Anvil.API.Events
       /// Gets the class that the caster cast the spell as.
       /// </summary>
       public NwClass? SpellCastClass { get; }
+
+      /// <summary>
+      /// Gets the level of the spell that was cast.
+      /// </summary>
+      public int SpellLevel { get; }
+
+      /// <summary>
+      /// Gets if this spell was cast spontaneously.
+      /// </summary>
+      public bool IsSpontaneousCast { get; }
 
       /// <summary>
       /// Gets the targeted location of this spell.

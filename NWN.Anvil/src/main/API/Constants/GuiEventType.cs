@@ -29,5 +29,6 @@ namespace Anvil.API
     ExamineObject = NWScript.GUIEVENT_EXAMINE_OBJECT,
     OptionsOpen = NWScript.GUIEVENT_OPTIONS_OPEN,
     OptionsClose = NWScript.GUIEVENT_OPTIONS_CLOSE,
+    RadialOpen = NWScript.GUIEVENT_RADIAL_OPEN,
   }
 }

@@ -6,7 +6,8 @@ namespace Anvil.API
   /// <summary>
   /// A waypoint entity that uniquely identifies a location in the module.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Waypoint, ObjectType.Waypoint)]
+  [ObjectType(ObjectTypes.Waypoint)]
+  [ObjectFilter(ObjectTypes.Waypoint)]
   public sealed class NwWaypoint : NwGameObject
   {
     private readonly CNWSWaypoint waypoint;

@@ -73,6 +73,21 @@ namespace Anvil.API
     /// <returns>A <see cref="TileSourceLightColor"/> value representing the second light source color of the specified tile.</returns>
     public TileSourceLightColor TileSourceLightColorTwo => (TileSourceLightColor)NWScript.GetTileSourceLight2Color(this);
 
+    /// <summary>
+    /// Gets the id of the tile set at this location.
+    /// </summary>
+    public int TileId => NWScript.GetTileID(this);
+
+    /// <summary>
+    /// Gets the rotation of the tile set at this location.
+    /// </summary>
+    public TileRotation TileRotation => (TileRotation)NWScript.GetTileOrientation(this);
+
+    /// <summary>
+    /// Gets the height of the tile set at this location.
+    /// </summary>
+    public int TileHeight => NWScript.GetTileHeight(this);
+
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
 
     /// <summary>
@@ -219,10 +234,10 @@ namespace Anvil.API
     /// </summary>
     public IEnumerable<T> GetNearestObjectsByType<T>() where T : NwGameObject
     {
-      int objType = (int)NwObject.GetObjectType<T>();
+      int typeFilter = (int)NwObject.GetObjectFilter<T>();
       int i;
       uint next;
-      for (i = 1, next = NWScript.GetNearestObjectToLocation(objType, this, i); next != NwObject.Invalid; i++, next = NWScript.GetNearestObjectToLocation(objType, this, i))
+      for (i = 1, next = NWScript.GetNearestObjectToLocation(typeFilter, this, i); next != NwObject.Invalid; i++, next = NWScript.GetNearestObjectToLocation(typeFilter, this, i))
       {
         T? obj = next.ToNwObjectSafe<T>();
         if (obj != null)
@@ -257,7 +272,7 @@ namespace Anvil.API
     /// </summary>
     public IEnumerable<T> GetObjectsInShapeByType<T>(Shape shape, float size, bool losCheck, Vector3 origin = default) where T : NwGameObject
     {
-      int typeFilter = (int)NwObject.GetObjectType<T>();
+      int typeFilter = (int)NwObject.GetObjectFilter<T>();
       int nShape = (int)shape;
 
       for (uint obj = NWScript.GetFirstObjectInShape(nShape, size, this, losCheck.ToInt(), typeFilter, origin);
@@ -270,6 +285,26 @@ namespace Anvil.API
           yield return gameObject;
         }
       }
+    }
+
+    /// <summary>
+    /// Changes the tile at this location to a new tile.
+    /// </summary>
+    /// <param name="tileId">The new tile to apply.</param>
+    /// <param name="rotation">How the tile should be rotated.</param>
+    /// <param name="height">The height of the tile.</param>
+    /// <param name="flags">Additional flags/behaviours to run after the tile is updated.</param>
+    public void SetTile(int tileId, TileRotation rotation, int height = 0, SettleFlags flags = SettleFlags.RecomputeLighting)
+    {
+      NWScript.SetTile(this, tileId, (int)rotation, height, (int)flags);
+    }
+
+    /// <summary>
+    /// Sets the state of the animation loops of the tile at this location.
+    /// </summary>
+    public void SetTileAnimationLoops(bool animLoop1, bool animLoop2, bool animLoop3)
+    {
+      NWScript.SetTileAnimationLoops(this, animLoop1.ToInt(), animLoop2.ToInt(), animLoop3.ToInt());
     }
   }
 }

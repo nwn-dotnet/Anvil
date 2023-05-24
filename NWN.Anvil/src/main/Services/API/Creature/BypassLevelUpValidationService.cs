@@ -1,4 +1,5 @@
 using Anvil.API;
+using Anvil.Native;
 using NWN.Native.API;
 
 namespace Anvil.Services
@@ -7,18 +8,15 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   internal sealed unsafe class BypassLevelUpValidationService
   {
-    private delegate int CanLevelUpHook(void* pCreatureStats);
-    private delegate uint ValidateLevelUpHook(void* pCreatureStats, void* pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool);
-
-    private readonly FunctionHook<CanLevelUpHook> canLevelUpHook;
-    private readonly FunctionHook<ValidateLevelUpHook> validateLevelUpHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.CanLevelUp> canLevelUpHook;
+    private readonly FunctionHook<Functions.CNWSCreatureStats.ValidateLevelUp> validateLevelUpHook;
 
     public bool DisableValidation { get; set; }
 
     public BypassLevelUpValidationService(HookService hookService)
     {
-      canLevelUpHook = hookService.RequestHook<CanLevelUpHook>(OnCanLevelUp, FunctionsLinux._ZN17CNWSCreatureStats10CanLevelUpEv, HookOrder.Late);
-      validateLevelUpHook = hookService.RequestHook<ValidateLevelUpHook>(OnValidateLevelUp, FunctionsLinux._ZN17CNWSCreatureStats15ValidateLevelUpEP13CNWLevelStatshhh, HookOrder.Late);
+      canLevelUpHook = hookService.RequestHook<Functions.CNWSCreatureStats.CanLevelUp>(OnCanLevelUp, HookOrder.Late);
+      validateLevelUpHook = hookService.RequestHook<Functions.CNWSCreatureStats.ValidateLevelUp>(OnValidateLevelUp, HookOrder.Late);
     }
 
     private uint OnValidateLevelUp(void* pCreatureStats, void* pLevelUpStats, byte nDomain1, byte nDomain2, byte nSchool)

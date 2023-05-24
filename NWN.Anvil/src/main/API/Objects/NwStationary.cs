@@ -9,6 +9,7 @@ namespace Anvil.API
   /// <summary>
   /// A stationary game object entity.
   /// </summary>
+  [ObjectFilter(ObjectTypes.Door | ObjectTypes.Placeable)]
   public abstract class NwStationary : NwTrappable
   {
     internal NwStationary(CNWSObject gameObject) : base(gameObject) {}

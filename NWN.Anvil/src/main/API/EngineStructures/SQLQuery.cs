@@ -15,7 +15,8 @@ namespace Anvil.API
     internal SQLQuery(IntPtr handle, bool memoryOwn) : base(handle, memoryOwn) {}
 
     /// <summary>
-    /// Returns "" if the last Sql command succeeded; or a human-readable error otherwise.
+    /// Returns "" if the last Sql command succeeded; or a human-readable error otherwise.<br/>
+    /// Additionally, all SQL errors are sent to all connected players.
     /// </summary>
     public string Error
     {
@@ -133,6 +134,21 @@ namespace Anvil.API
       AssertQueryExecuted(false);
       hasResult = NWScript.SqlStep(this).ToBool();
       executed = true;
+    }
+
+    /// <summary>
+    /// Reset this sqlquery, readying it for re-execution after results have been fetched.<br/>
+    /// Existing BindParam values are kept, unless the clearBinds argument is set to true.
+    /// </summary>
+    /// <remarks>
+    /// This command only works on successfully-prepared queries that have not errored out.
+    /// </remarks>
+    /// <param name="clearBinds">True if existing bind parameters should be cleared, false if they should be kept.</param>
+    public void Reset(bool clearBinds = false)
+    {
+      AssertQueryExecuted(true);
+      NWScript.SqlResetQuery(this, clearBinds.ToInt());
+      executed = false;
     }
 
     private void AssertQueryExecuted(bool expected)

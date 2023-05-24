@@ -25,14 +25,20 @@ namespace Anvil.Services
     /// </summary>
     /// <param name="player">The player who should enter selection mode.</param>
     /// <param name="handler">The lamda/method to invoke once this player selects something.</param>
-    /// <param name="validTargets">The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</param>
-    /// <param name="cursorType">The type of cursor to show if the player is hovering over a valid target.</param>
-    /// <param name="badTargetCursor">The type of cursor to show if the player is hovering over an invalid target.</param>
-    internal void EnterTargetMode(NwPlayer player, Action<ModuleEvents.OnPlayerTarget> handler, ObjectTypes validTargets = ObjectTypes.All, MouseCursor cursorType = MouseCursor.Magic, MouseCursor badTargetCursor = MouseCursor.NoMagic)
+    /// <param name="settings">Display and behaviour options for the target mode.</param>
+    internal void EnterTargetMode(NwPlayer player, Action<ModuleEvents.OnPlayerTarget> handler, TargetModeSettings? settings = default)
     {
       UnregisterHandlerForPlayer(player, true);
       RegisterHandlerForPlayer(player, handler);
-      NWScript.EnterTargetingMode(player.ControlledCreature, (int)validTargets, (int)cursorType, (int)badTargetCursor);
+      settings ??= new TargetModeSettings();
+
+      if (settings.TargetingData != null)
+      {
+        TargetingData data = settings.TargetingData;
+        NWScript.SetEnterTargetingModeData(player.ControlledCreature, (int)data.Shape, data.Size.X, data.Size.Y, (int)data.Flags, data.Range, data.Spell?.Id ?? -1, data.Feat?.Id ?? -1);
+      }
+
+      NWScript.EnterTargetingMode(player.ControlledCreature, (int)settings.ValidTargets, (int)settings.CursorType, (int)settings.BadCursorType);
     }
 
     internal bool IsInTargetMode(NwPlayer player)

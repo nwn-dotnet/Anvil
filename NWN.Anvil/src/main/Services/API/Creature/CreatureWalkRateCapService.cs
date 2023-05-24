@@ -1,4 +1,5 @@
 using Anvil.API;
+using Anvil.Native;
 using NLog;
 using NWN.Native.API;
 
@@ -10,15 +11,13 @@ namespace Anvil.Services
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private readonly FunctionHook<GetWalkRateHook> walkRateHook;
+    private readonly FunctionHook<Functions.CNWSCreature.GetWalkRate> walkRateHook;
 
     public CreatureWalkRateCapService(HookService hookService)
     {
       Log.Info($"Initialising optional service {nameof(CreatureWalkRateCapService)}");
-      walkRateHook = hookService.RequestHook<GetWalkRateHook>(OnGetWalkRate, FunctionsLinux._ZN12CNWSCreature11GetWalkRateEv, HookOrder.Late);
+      walkRateHook = hookService.RequestHook<Functions.CNWSCreature.GetWalkRate>(OnGetWalkRate, HookOrder.Late);
     }
-
-    private delegate float GetWalkRateHook(void* pCreature);
 
     public float? GetWalkRateCap(NwCreature creature)
     {

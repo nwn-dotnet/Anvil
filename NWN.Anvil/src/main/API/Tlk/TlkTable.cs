@@ -1,51 +1,12 @@
-using System;
 using Anvil.Services;
 using NWN.Native.API;
 
 namespace Anvil.API
 {
   [ServiceBinding(typeof(TlkTable))]
-  [ServiceBindingOptions(InternalBindingPriority.API)]
-  public sealed class TlkTable
+  internal sealed class TlkTable
   {
     private readonly CTlkTable tlkTable = NWNXLib.TlkTable();
-
-    [Obsolete("Use StrRef.ClearOverride instead.")]
-    public void ClearTlkOverride(uint strId)
-    {
-      StrRef strRef = new StrRef(strId);
-      strRef.ClearOverride();
-    }
-
-    [Obsolete("Use StrTokenCustom.Value instead.")]
-    public string? GetCustomToken(uint tokenNumber)
-    {
-      return new StrTokenCustom((int)tokenNumber).Value;
-    }
-
-    [Obsolete("Use StrRef.ToString() instead.")]
-    public string GetSimpleString(uint strRef)
-    {
-      return new StrRef(strRef).ToString();
-    }
-
-    [Obsolete("Use StrToken.Value instead.")]
-    public void SetCustomToken(uint tokenNumber, string tokenValue)
-    {
-      StrTokenCustom _ = new StrTokenCustom((int)tokenNumber)
-      {
-        Value = tokenValue,
-      };
-    }
-
-    [Obsolete("Use StrRef.Override instead.")]
-    public void SetTlkOverride(uint strId, string value)
-    {
-      StrRef _ = new StrRef(strId)
-      {
-        Override = value,
-      };
-    }
 
     internal string? GetCustomToken(StrTokenCustom customToken)
     {

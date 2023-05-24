@@ -9,7 +9,8 @@ namespace Anvil.API
   /// <summary>
   /// A static world object that is optionally interactable or destroyable.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Placeable, ObjectType.Placeable)]
+  [ObjectType(ObjectTypes.Placeable)]
+  [ObjectFilter(ObjectTypes.Placeable)]
   public sealed partial class NwPlaceable : NwStationary
   {
     private readonly CNWSPlaceable placeable;
@@ -101,15 +102,6 @@ namespace Anvil.API
     }
 
     public NwCreature? SittingCreature => NWScript.GetSittingCreature(this).ToNwObject<NwCreature>();
-
-    /// <summary>
-    /// Gets or sets a value indicating whether this placeable should be useable (clickable).
-    /// </summary>
-    public bool Useable
-    {
-      get => NWScript.GetUseableFlag(this).ToBool();
-      set => NWScript.SetUseableFlag(this, value.ToInt());
-    }
 
     public static NwPlaceable? Create(string template, Location location, bool useAppearAnim = false, string newTag = "")
     {

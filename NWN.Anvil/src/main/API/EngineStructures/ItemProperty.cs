@@ -73,9 +73,6 @@ namespace Anvil.API
       set => Effect.SetInteger(5, value?.RowIndex ?? -1);
     }
 
-    [Obsolete("Use Property.PropertyType instead.")]
-    public ItemPropertyType PropertyType => Property.PropertyType;
-
     /// <summary>
     /// Gets the base item property used to create this item property.
     /// </summary>

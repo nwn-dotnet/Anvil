@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Anvil.API.Events;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Native.API;
 
@@ -16,38 +17,30 @@ namespace Anvil.API.Events
 
     public sealed unsafe class Factory : HookEventFactory
     {
-      private static FunctionHook<CreatureExamineHook> creatureExamineHook = null!;
-      private static FunctionHook<DoorExamineHook> doorExamineHook = null!;
-      private static FunctionHook<ItemExamineHook> itemExamineHook = null!;
-      private static FunctionHook<PlaceableExamineHook> placeableExamineHook = null!;
-
-      private delegate void CreatureExamineHook(void* pMessage, void* pPlayer, uint oidCreature);
-
-      private delegate void DoorExamineHook(void* pMessage, void* pPlayer, uint oidDoor);
-
-      private delegate void ItemExamineHook(void* pMessage, void* pPlayer, uint oidItem);
-
-      private delegate void PlaceableExamineHook(void* pMessage, void* pPlayer, uint oidPlaceable);
+      private static FunctionHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_CreatureData> creatureExamineHook = null!;
+      private static FunctionHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_DoorData> doorExamineHook = null!;
+      private static FunctionHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_ItemData> itemExamineHook = null!;
+      private static FunctionHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_PlaceableData> placeableExamineHook = null!;
 
       protected override IDisposable[] RequestHooks()
       {
-        delegate* unmanaged<void*, void*, uint, void> pCreatureExamineHook = &OnCreatureExamine;
-        creatureExamineHook = HookService.RequestHook<CreatureExamineHook>(pCreatureExamineHook, FunctionsLinux._ZN11CNWSMessage41SendServerToPlayerExamineGui_CreatureDataEP10CNWSPlayerj, HookOrder.Earliest);
+        delegate* unmanaged<void*, void*, uint, int> pCreatureExamineHook = &OnCreatureExamine;
+        creatureExamineHook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_CreatureData>(pCreatureExamineHook, HookOrder.Earliest);
 
-        delegate* unmanaged<void*, void*, uint, void> pDoorExamineHook = &OnDoorExamine;
-        doorExamineHook = HookService.RequestHook<DoorExamineHook>(pDoorExamineHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_DoorDataEP10CNWSPlayerj, HookOrder.Earliest);
+        delegate* unmanaged<void*, void*, uint, int> pDoorExamineHook = &OnDoorExamine;
+        doorExamineHook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_DoorData>(pDoorExamineHook, HookOrder.Earliest);
 
-        delegate* unmanaged<void*, void*, uint, void> pItemExamineHook = &OnItemExamine;
-        itemExamineHook = HookService.RequestHook<ItemExamineHook>(pItemExamineHook, FunctionsLinux._ZN11CNWSMessage37SendServerToPlayerExamineGui_ItemDataEP10CNWSPlayerj, HookOrder.Earliest);
+        delegate* unmanaged<void*, void*, uint, int> pItemExamineHook = &OnItemExamine;
+        itemExamineHook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_ItemData>(pItemExamineHook, HookOrder.Earliest);
 
-        delegate* unmanaged<void*, void*, uint, void> pPlaceableExamineHook = &OnPlaceableExamine;
-        placeableExamineHook = HookService.RequestHook<PlaceableExamineHook>(pPlaceableExamineHook, FunctionsLinux._ZN11CNWSMessage42SendServerToPlayerExamineGui_PlaceableDataEP10CNWSPlayerj, HookOrder.Earliest);
+        delegate* unmanaged<void*, void*, uint, int> pPlaceableExamineHook = &OnPlaceableExamine;
+        placeableExamineHook = HookService.RequestHook<Functions.CNWSMessage.SendServerToPlayerExamineGui_PlaceableData>(pPlaceableExamineHook, HookOrder.Earliest);
 
         return new IDisposable[] { creatureExamineHook, doorExamineHook, itemExamineHook, placeableExamineHook };
       }
 
       [UnmanagedCallersOnly]
-      private static void OnCreatureExamine(void* pMessage, void* pPlayer, uint oidCreature)
+      private static int OnCreatureExamine(void* pMessage, void* pPlayer, uint oidCreature)
       {
         OnExamineObject eventData = ProcessEvent(EventCallbackType.Before, new OnExamineObject
         {
@@ -55,12 +48,14 @@ namespace Anvil.API.Events
           ExaminedObject = oidCreature.ToNwObject<NwCreature>()!,
         });
 
-        creatureExamineHook.CallOriginal(pMessage, pPlayer, oidCreature);
+        int retVal = creatureExamineHook.CallOriginal(pMessage, pPlayer, oidCreature);
         ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
 
       [UnmanagedCallersOnly]
-      private static void OnDoorExamine(void* pMessage, void* pPlayer, uint oidDoor)
+      private static int OnDoorExamine(void* pMessage, void* pPlayer, uint oidDoor)
       {
         OnExamineObject eventData = ProcessEvent(EventCallbackType.Before, new OnExamineObject
         {
@@ -68,12 +63,14 @@ namespace Anvil.API.Events
           ExaminedObject = oidDoor.ToNwObject<NwDoor>()!,
         });
 
-        doorExamineHook.CallOriginal(pMessage, pPlayer, oidDoor);
+        int retVal = doorExamineHook.CallOriginal(pMessage, pPlayer, oidDoor);
         ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
 
       [UnmanagedCallersOnly]
-      private static void OnItemExamine(void* pMessage, void* pPlayer, uint oidItem)
+      private static int OnItemExamine(void* pMessage, void* pPlayer, uint oidItem)
       {
         OnExamineObject eventData = ProcessEvent(EventCallbackType.Before, new OnExamineObject
         {
@@ -81,12 +78,14 @@ namespace Anvil.API.Events
           ExaminedObject = oidItem.ToNwObject<NwItem>()!,
         });
 
-        itemExamineHook.CallOriginal(pMessage, pPlayer, oidItem);
+        int retVal = itemExamineHook.CallOriginal(pMessage, pPlayer, oidItem);
         ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
 
       [UnmanagedCallersOnly]
-      private static void OnPlaceableExamine(void* pMessage, void* pPlayer, uint oidPlaceable)
+      private static int OnPlaceableExamine(void* pMessage, void* pPlayer, uint oidPlaceable)
       {
         OnExamineObject eventData = ProcessEvent(EventCallbackType.Before, new OnExamineObject
         {
@@ -94,8 +93,10 @@ namespace Anvil.API.Events
           ExaminedObject = oidPlaceable.ToNwObject<NwPlaceable>()!,
         });
 
-        placeableExamineHook.CallOriginal(pMessage, pPlayer, oidPlaceable);
+        int retVal = placeableExamineHook.CallOriginal(pMessage, pPlayer, oidPlaceable);
         ProcessEvent(EventCallbackType.After, eventData);
+
+        return retVal;
       }
     }
   }

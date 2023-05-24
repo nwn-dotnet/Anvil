@@ -7,5 +7,6 @@ namespace Anvil.API
     Magical = NWScript.SUBTYPE_MAGICAL,
     Supernatural = NWScript.SUBTYPE_SUPERNATURAL,
     Extraordinary = NWScript.SUBTYPE_EXTRAORDINARY,
+    Unyielding = NWScript.SUBTYPE_UNYIELDING,
   }
 }

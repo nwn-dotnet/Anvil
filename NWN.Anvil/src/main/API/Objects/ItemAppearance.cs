@@ -101,12 +101,6 @@ namespace Anvil.API
       SetArmorPieceColor(modelSlot, colorSlot, 255);
     }
 
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public void ClearArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
-    {
-      ClearArmorPieceColor((CreaturePart)modelSlot, colorSlot);
-    }
-
     /// <summary>
     /// Copies this item appearance to another item.
     /// <param name="otherItem">The item to copy this appearance to.</param>
@@ -214,7 +208,7 @@ namespace Anvil.API
     /// Gets the armor model of this item.
     /// </summary>
     /// <param name="slot">The armor model slot index to query.</param>
-    public byte GetArmorModel(CreaturePart slot)
+    public ushort GetArmorModel(CreaturePart slot)
     {
       int index = (int)slot;
 
@@ -224,12 +218,6 @@ namespace Anvil.API
       }
 
       return 0;
-    }
-
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public byte GetArmorModel(ItemAppearanceArmorModel slot)
-    {
-      return GetArmorModel((CreaturePart)slot);
     }
 
     /// <summary>
@@ -244,16 +232,10 @@ namespace Anvil.API
       return GetArmorColor((ItemAppearanceArmorColor)index);
     }
 
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public byte GetArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
-    {
-      return GetArmorPieceColor((CreaturePart)modelSlot, colorSlot);
-    }
-
     /// <summary>
     /// Gets the base model of this item.
     /// </summary>
-    public byte GetSimpleModel()
+    public ushort GetSimpleModel()
     {
       return item.Item.m_nModelPart[0];
     }
@@ -278,7 +260,7 @@ namespace Anvil.API
     /// Gets the weapon model of this item.
     /// </summary>
     /// <param name="slot">The weapon model index to query.</param>
-    public byte GetWeaponModel(ItemAppearanceWeaponModel slot)
+    public ushort GetWeaponModel(ItemAppearanceWeaponModel slot)
     {
       int index = (int)slot;
 
@@ -368,12 +350,6 @@ namespace Anvil.API
       }
     }
 
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public void SetArmorModel(ItemAppearanceArmorModel slot, byte value)
-    {
-      SetArmorModel((CreaturePart)slot, value);
-    }
-
     /// <summary>
     /// Sets the armor color for a piece of this item.
     /// </summary>
@@ -385,12 +361,6 @@ namespace Anvil.API
       const int numColors = NWScript.ITEM_APPR_ARMOR_NUM_COLORS;
       int index = numColors + (int)modelSlot * numColors + (int)colorSlot;
       SetArmorColor((ItemAppearanceArmorColor)index, value);
-    }
-
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public void SetArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot, byte value)
-    {
-      SetArmorPieceColor((CreaturePart)modelSlot, colorSlot, value);
     }
 
     /// <summary>

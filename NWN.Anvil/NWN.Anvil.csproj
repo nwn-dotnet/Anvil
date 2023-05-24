@@ -1,8 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!--Build-->
   <PropertyGroup>
-    <!--When changing target frameworks, make sure to update Anvil.Internal.Assemblies.TargetFrameworks-->
-    <TargetFramework>net6.0</TargetFramework>
+    <!--When changing target frameworks, make sure to update:
+    - Class: Anvil.Internal.Assemblies.TargetFrameworks
+    - ci.yml: BINARY_PATH
+    - NWN.Anvil.Tests/docker-compose.yml
+    -->
+    <TargetFramework>net7.0</TargetFramework>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
@@ -57,12 +61,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LightInject" Version="6.6.3" />
+    <PackageReference Include="LightInject" Version="6.6.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NLog" Version="5.1.3" />
+    <PackageReference Include="NLog" Version="5.1.4" />
     <PackageReference Include="Paket.Core" Version="7.2.1" PrivateAssets="all" />
-    <PackageReference Include="NWN.Core" Version="8193.34.15" PrivateAssets="compile" />
-    <PackageReference Include="NWN.Native" Version="8193.34.7" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Core" Version="8193.35.6" PrivateAssets="compile" />
+    <PackageReference Include="NWN.Native" Version="8193.35.6" PrivateAssets="compile" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 using Anvil.API;
+using Anvil.Native;
 using NWN.Native.API;
 
 namespace Anvil.Services
@@ -7,14 +8,12 @@ namespace Anvil.Services
   [ServiceBindingOptions(InternalBindingPriority.API, Lazy = true)]
   internal sealed unsafe class ObjectVisibilityService
   {
-    private readonly FunctionHook<TestObjectVisibleHook> testObjectVisibleHook;
+    private readonly FunctionHook<Functions.CNWSMessage.TestObjectVisible> testObjectVisibleHook;
 
     public ObjectVisibilityService(HookService hookService)
     {
-      testObjectVisibleHook = hookService.RequestHook<TestObjectVisibleHook>(OnTestObjectVisible, FunctionsLinux._ZN11CNWSMessage17TestObjectVisibleEP10CNWSObjectS1_, HookOrder.Late);
+      testObjectVisibleHook = hookService.RequestHook<Functions.CNWSMessage.TestObjectVisible>(OnTestObjectVisible, HookOrder.Late);
     }
-
-    private delegate int TestObjectVisibleHook(void* pMessage, void* pAreaObject, void* pPlayerGameObject);
 
     public VisibilityMode GetGlobalOverride(NwGameObject target)
     {

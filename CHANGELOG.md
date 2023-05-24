@@ -3,6 +3,72 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 8193.35.0
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.28...v8193.35.0
+
+### Added
+- DamageType: Added `CustomXX` damage type constants
+- EffectSubType: Added `Unyielding` subtype.
+- EffectType: Added `Pacify`, `BonusFeat`, `TimeStopImmunity`, `ForceWalk` effects.
+- GuiEventType: Added `RadialOpen`
+- GuiPanel: Added `Tile`, `Trigger`, `Creature`, `Item`, `Placeable`, `Door`, `Quickbar` panels.
+- PlayerDeviceProperty: Added various graphics properties.
+- Effect: Added `BonusFeat`, `ForceWalk`, `Pacified`, `TimeStopImmunity` effect methods.
+- Effect: Added `LinkId`, `IgnoreImmunity` properties.
+- Location: Added `TileId`, `TileRotation`, `TileHeight` properties.
+- Location: Added `SetTile`, `SetTileAnimationLoops` methods.
+- SQLQuery: Added `Reset` method.
+- ModuleEvents.OnPlayerEquipItem: Added `Slot` property.
+- ModuleEvents.OnPlayerGuiEvent: Added `Vector` property.
+- ModuleEvents.OnPlayerUnequipItem: Added `Slot` property.
+- SpellEvents.OnSpellCast: Added `IsSpontaneousCast`, `SpellLevel` properties.
+- NwArea: Added `ReloadAreaGrass`, `ReloadAreaBorder`, `SetTiles`, `GetAreaLightColor`, `SetAreaLightColor`, `GetAreaLightDirection`, `SetAreaLightDirection`, `SetFogColor` methods.
+- NwCreature: Added `ControllingPlayer` setter.
+- NwCreature: Added `ActionUseFeat`, `GetSpellUsesLeft`, `SetEffectIconFlashing` methods
+- NwGameObject: Added `Usable`, `VisibleDistance`, `VisualTransform`, `UiDiscoveryFlags` properties.
+- NwGameObject: Added `GetVisualTransform` method with scope option.
+- NwGameObject: Added `ReplaceObjectAnimation`, `ClearObjectAnimationOverride`, `SetTextBubbleOverride` methods.
+- NwPlayer: Added `CameraFlags`, `ClientVersionCommitSha1` properties.
+- NwPlayer: Added `AttachCamera`, `SetCameraLimits`, `SetShaderUniform`, `SetSpellTargetingData` methods.
+- VisualTransform: Added `Clear` method.
+- VisualTransformLerpSettings: Added `BehaviorFlags`, `Repeats` properties.
+- DevastatingCriticalData: Added `Attacker` property.
+
+### Package Updates
+- NWNX: 2692ecb -> d44d373
+- NWN.Core: 8193.34.15 -> 8193.35.6
+- NWN.Native: 8193.34.5 -> 8193.35.6
+- LightInject: 6.6.3 -> 6.6.4
+- NLog: 5.1.3 -> 5.1.4
+
+### Changed
+- !! Anvil now targets .NET 7. You may need to update your plugin's target framework to successfully compile against Anvil.
+- !! HookService: NWNX and NWN.Native no-longer exposes a list of function addresses, and the address parameter has been removed from `RequestHook`. The RequestHook now expects a delegate with the `NativeFunction` attribute. See [here for an example](https://github.com/nwn-dotnet/Anvil/blob/development/NWN.Anvil/src/main/Native/Functions/Functions.CNWSCreature.cs).
+- ItemAppearance: Update return values to support the extended part ranges introduced in 8193.35.
+- NwPlayer: `ClientVersion` now includes the revision value of the client version.
+- NwPlayer: `EnterTargetMode` now specifies a setting object that contains all new options added in 8193.35.
+
+### Removed
+- ItemAppearanceArmorModel: Removed deprecated class.
+- DoorEvents.OnDialogue: Removed deprecated class.
+- PlaceableEvents.OnDialogue: Removed deprecated class.
+- ItemAppearanceArmorModel: Removed deprecated class.
+- Effect: Removed deprecated `EffectIcon` overload.
+- ItemProperty: Removed deprecated `PropertyType` property.
+- CreatureEvents.OnConversation: Removed deprecated `CurrentSpeaker` property.
+- ModuleEvents.OnNuiEvent: Removed deprecated `WindowToken` property.
+- CreatureClassInfo: Removed deprecated `AddKnownSpell`, `GetKnownSpellCountByLevel`, `GetKnownSpells`, `RemoveKnownSpell` methods.
+- ItemAppearance: Removed deprecated `ClearArmorPieceColor`, `GetArmorModel`, `GetArmorPieceColor`, `SetArmorModel`, `SetArmorPieceColor` overloads.
+- NativeObjectInfoAttribute: Removed unused class.
+- NwArea: Removed deprecated `GetFogAmount`, `GetFogColor` methods.
+- NwGameObject: Removed deprecated `CreatureAppearanceType` property.
+- NwGameObject: Remove `Destroy`, `PlaySoundByStrRef` overloads.
+- NwPlayer: Remove `ClearTlkOverride`, `CreateNuiWindow`, `NuiDestroy`, `NuiGetUserData`, `NuiGetWindowId`, `NuiSetUserData`, `SetTlkOverride` methods.
+- Color: Removed `ToInt` method.
+
+### Fixed
+- (NWNX) Fixed an issue where nested VM scopes would cause an invalid stack and assertion error.
+
 ## 8193.34.28
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.27...v8193.34.28
 

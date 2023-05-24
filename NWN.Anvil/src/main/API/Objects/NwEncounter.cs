@@ -8,7 +8,8 @@ namespace Anvil.API
   /// <summary>
   /// An encounter trigger that spawns creatures.
   /// </summary>
-  [NativeObjectInfo(ObjectTypes.Encounter, ObjectType.Encounter)]
+  [ObjectType(ObjectTypes.Encounter)]
+  [ObjectFilter(ObjectTypes.Encounter)]
   public sealed partial class NwEncounter : NwGameObject
   {
     private readonly CNWSEncounter encounter;
@@ -237,8 +238,8 @@ namespace Anvil.API
     /// <returns>An enumerable containing all objects currently in the encounter area.</returns>
     public IEnumerable<T> GetObjectsInEncounterArea<T>() where T : NwGameObject
     {
-      int objType = (int)GetObjectType<T>();
-      for (uint obj = NWScript.GetFirstInPersistentObject(this, objType); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, objType))
+      int typeFilter = (int)GetObjectFilter<T>();
+      for (uint obj = NWScript.GetFirstInPersistentObject(this, typeFilter); obj != Invalid; obj = NWScript.GetNextInPersistentObject(this, typeFilter))
       {
         yield return obj.ToNwObject<T>()!;
       }

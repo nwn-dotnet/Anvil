@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Anvil.API;
 using Anvil.Internal;
+using Anvil.Native;
 using NWN.Native.API;
 using Ability = NWN.Native.API.Ability;
 using Feat = NWN.Native.API.Feat;
@@ -66,7 +67,7 @@ namespace Anvil.Services
     private readonly int skillMaxLevel1Bonus;
     private readonly CNWSkillArray skills;
 
-    private readonly FunctionHook<ValidateCharacterHook> validateCharacterHook;
+    private readonly FunctionHook<Functions.CNWSPlayer.ValidateCharacter> validateCharacterHook;
 
     // Dependencies
     private readonly VirtualMachine virtualMachine;
@@ -74,7 +75,7 @@ namespace Anvil.Services
     public EnforceLegalCharacterService(VirtualMachine virtualMachine, HookService hookService)
     {
       this.virtualMachine = virtualMachine;
-      validateCharacterHook = hookService.RequestHook<ValidateCharacterHook>(OnValidateCharacter, FunctionsLinux._ZN10CNWSPlayer17ValidateCharacterEPi, HookOrder.Final);
+      validateCharacterHook = hookService.RequestHook<Functions.CNWSPlayer.ValidateCharacter>(OnValidateCharacter, HookOrder.Final);
 
       pRules = NWNXLib.Rules();
       races = CNWRaceArray.FromPointer(pRules.m_lstRaces);
@@ -89,8 +90,6 @@ namespace Anvil.Services
       abilityCostIncrement3 = pRules.GetRulesetIntEntry("CHARGEN_ABILITY_COST_INCREMENT3".ToExoString(), 16);
       skillMaxLevel1Bonus = pRules.GetRulesetIntEntry("CHARGEN_SKILL_MAX_LEVEL_1_BONUS".ToExoString(), 3);
     }
-
-    private delegate int ValidateCharacterHook(void* pPlayer, int* bFailedServerRestriction);
 
     public event Action<OnELCCustomCheck>? OnCustomCheck;
 
