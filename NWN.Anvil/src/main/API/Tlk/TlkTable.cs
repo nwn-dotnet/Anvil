@@ -1,4 +1,3 @@
-using System;
 using Anvil.Services;
 using NWN.Native.API;
 
