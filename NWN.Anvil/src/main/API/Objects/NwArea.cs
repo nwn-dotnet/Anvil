@@ -570,24 +570,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets the fog amount for this area, at the specified time of day.
-    /// </summary>
-    [Obsolete("Use SunFogAmount or MoonFogAmount instead.")]
-    public int GetFogAmount(FogType fogType)
-    {
-      return NWScript.GetFogAmount((int)fogType, this);
-    }
-
-    /// <summary>
-    /// Gets the fog color for this area, at the specified time of day.
-    /// </summary>
-    [Obsolete("Use SunFogColor or MoonFogColor instead.")]
-    public FogColor GetFogColor(FogType fogType)
-    {
-      return (FogColor)NWScript.GetFogColor((int)fogType, this);
-    }
-
-    /// <summary>
     /// Gets the tile info at the specified position in the area.
     /// </summary>
     /// <param name="tileX">The x coordinate of the tile to get info.</param>

@@ -101,12 +101,6 @@ namespace Anvil.API
       SetArmorPieceColor(modelSlot, colorSlot, 255);
     }
 
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public void ClearArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
-    {
-      ClearArmorPieceColor((CreaturePart)modelSlot, colorSlot);
-    }
-
     /// <summary>
     /// Copies this item appearance to another item.
     /// <param name="otherItem">The item to copy this appearance to.</param>
@@ -226,12 +220,6 @@ namespace Anvil.API
       return 0;
     }
 
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public ushort GetArmorModel(ItemAppearanceArmorModel slot)
-    {
-      return GetArmorModel((CreaturePart)slot);
-    }
-
     /// <summary>
     /// Gets the armor color for a piece of this item.
     /// </summary>
@@ -242,12 +230,6 @@ namespace Anvil.API
       const int numColors = NWScript.ITEM_APPR_ARMOR_NUM_COLORS;
       int index = numColors + (int)modelSlot * numColors + (int)colorSlot;
       return GetArmorColor((ItemAppearanceArmorColor)index);
-    }
-
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public byte GetArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot)
-    {
-      return GetArmorPieceColor((CreaturePart)modelSlot, colorSlot);
     }
 
     /// <summary>
@@ -368,12 +350,6 @@ namespace Anvil.API
       }
     }
 
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public void SetArmorModel(ItemAppearanceArmorModel slot, byte value)
-    {
-      SetArmorModel((CreaturePart)slot, value);
-    }
-
     /// <summary>
     /// Sets the armor color for a piece of this item.
     /// </summary>
@@ -385,12 +361,6 @@ namespace Anvil.API
       const int numColors = NWScript.ITEM_APPR_ARMOR_NUM_COLORS;
       int index = numColors + (int)modelSlot * numColors + (int)colorSlot;
       SetArmorColor((ItemAppearanceArmorColor)index, value);
-    }
-
-    [Obsolete("Use the CreaturePart overload instead.")]
-    public void SetArmorPieceColor(ItemAppearanceArmorModel modelSlot, ItemAppearanceArmorColor colorSlot, byte value)
-    {
-      SetArmorPieceColor((CreaturePart)modelSlot, colorSlot, value);
     }
 
     /// <summary>

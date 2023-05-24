@@ -68,12 +68,6 @@ namespace Anvil.API.Events
       public NuiWindowToken Token { get; }
 
       /// <summary>
-      /// Gets the window token associated with this event.
-      /// </summary>
-      [Obsolete("Use Token instead.")]
-      public int WindowToken { get; } = NWScript.NuiGetEventWindow();
-
-      /// <summary>
       /// Gets the payload data associated with this event.
       /// </summary>
       /// <typeparam name="T"></typeparam>

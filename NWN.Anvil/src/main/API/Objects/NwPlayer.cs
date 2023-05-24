@@ -604,24 +604,6 @@ namespace Anvil.API
       NWScript.SetTextureOverride(texName, string.Empty, ControlledCreature);
     }
 
-    [Obsolete("Use StrRef.ClearPlayerOverride instead.")]
-    public void ClearTlkOverride(int strRef, bool restoreGlobal = true)
-    {
-      new StrRef(strRef).ClearPlayerOverride(this, restoreGlobal);
-    }
-
-    /// <summary>
-    /// Create a NUI window inline for this player.
-    /// </summary>
-    /// <param name="window">The window to create.</param>
-    /// <param name="windowId">A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</param>
-    /// <returns>The window token on success (!= 0), or 0 on error.</returns>
-    [Obsolete("Use TryCreateNuiWindow instead.")]
-    public int CreateNuiWindow(NuiWindow window, string windowId = "")
-    {
-      return NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
-    }
-
     /// <summary>
     /// Immediately kicks the player and deletes their character file (.bic).
     /// </summary>
@@ -1111,57 +1093,6 @@ namespace Anvil.API
     }
 
     /// <summary>
-    ///  Destroys the given window, by token, immediately closing it on the client.<br/>
-    ///  Does nothing if nUiToken does not exist on the client.<br/>
-    ///  Does not send a close event - this immediately destroys all serverside state.<br/>
-    ///  The client will close the window asynchronously.
-    /// </summary>
-    /// <param name="uiToken">The token of the window to destroy.</param>
-    [Obsolete("Use NuiWindowToken.Close()/Dispose() instead.")]
-    public void NuiDestroy(int uiToken)
-    {
-      NWScript.NuiDestroy(ControlledCreature, uiToken);
-    }
-
-    /// <summary>
-    /// Get the userdata of the given window token.
-    /// </summary>
-    /// <param name="uiToken">The token for the window to query.</param>
-    /// <typeparam name="T">A serializable class structure matching the data to fetch.</typeparam>
-    /// <returns>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</returns>
-    [Obsolete("Use NuiWindowToken.GetUserData instead.")]
-    public T? NuiGetUserData<T>(int uiToken)
-    {
-      return JsonUtility.FromJson<T>(NWScript.NuiGetUserData(ControlledCreature, uiToken));
-    }
-
-    /// <summary>
-    /// Gets the root window ID associated with the specified token.
-    /// </summary>
-    /// <param name="uiToken">The token to query.</param>
-    /// <returns>The ID of the window if assigned, otherwise an empty string.</returns>
-    [Obsolete("Use NuiWindowToken.WindowId instead.")]
-    public string NuiGetWindowId(int uiToken)
-    {
-      return NWScript.NuiGetWindowId(ControlledCreature, uiToken);
-    }
-
-    /// <summary>
-    /// Sets an arbitrary json value as userdata on the given window token.<br/>
-    /// This userdata is not read or handled by the game engine and not sent to clients.<br/>
-    /// This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.<br/>
-    /// Will do nothing if the window does not exist.
-    /// </summary>
-    /// <param name="uiToken">The token to associate the data with.</param>
-    /// <param name="userData">The data to store.</param>
-    /// <typeparam name="T">The type of data to store. Must be serializable to JSON.</typeparam>
-    [Obsolete("Use NuiWindowToken.SetUserData instead.")]
-    public void NuiSetUserData<T>(int uiToken, T userData)
-    {
-      NWScript.NuiSetUserData(ControlledCreature, uiToken, JsonUtility.ToJsonStructure(userData));
-    }
-
-    /// <summary>
     /// Instructs the player to open their inventory.
     /// </summary>
     public void OpenInventory()
@@ -1502,12 +1433,6 @@ namespace Anvil.API
       NWScript.SetTextureOverride(oldTexName, newTexName, ControlledCreature);
     }
 
-    [Obsolete("Use StrRef.SetPlayerOverride instead.")]
-    public void SetTlkOverride(int strRef, string value)
-    {
-      new StrRef(strRef).SetPlayerOverride(this, value);
-    }
-
     /// <summary>
     /// Sets a global shader uniform for this player.<br/>
     /// These uniforms are not used by the base game and are reserved for module-specific scripting.<br/>
@@ -1600,21 +1525,6 @@ namespace Anvil.API
 
       await creature.WaitForObjectContext();
       NWScript.StoreCameraFacing();
-    }
-
-    /// <summary>
-    /// Create a NUI window inline for this player.
-    /// </summary>
-    /// <param name="window">The window to create.</param>
-    /// <param name="token">The player-unique token for this window instance.</param>
-    /// <param name="windowId">A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</param>
-    /// <returns>True if the window was successfully created, otherwise false.</returns>
-    [Obsolete("Use the NuiWindowToken overload instead.")]
-    public bool TryCreateNuiWindow(NuiWindow window, out int token, string windowId = "")
-    {
-      token = NWScript.NuiCreate(ControlledCreature, JsonUtility.ToJsonStructure(window), windowId);
-
-      return token != 0;
     }
 
     /// <summary>
