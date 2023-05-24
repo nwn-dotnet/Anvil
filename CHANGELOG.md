@@ -4,7 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.34.28...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.35.0...HEAD
+
+### Added
+- N/A
+
+### Package Updates
+- N/A
+
+### Changed
+- N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+## 8193.35.0
+https://github.com/nwn-dotnet/Anvil/compare/v8193.34.28...v8193.35.0
 
 ### Added
 - DamageType: Added `CustomXX` damage type constants
@@ -47,9 +68,6 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.34.28...HEAD
 - ItemAppearance: Update return values to support the extended part ranges introduced in 8193.35.
 - NwPlayer: `ClientVersion` now includes the revision value of the client version.
 - NwPlayer: `EnterTargetMode` now specifies a setting object that contains all new options added in 8193.35.
-
-### Deprecated
-- N/A
 
 ### Removed
 - ItemAppearanceArmorModel: Removed deprecated class.
