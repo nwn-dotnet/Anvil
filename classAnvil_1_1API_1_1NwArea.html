@@ -135,12 +135,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyEnvironmentPrese
 <tr class="memitem:a85c244029d99653d7709291fcbef7147"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a85c244029d99653d7709291fcbef7147">FindObjectsOfTypeInArea&lt; T &gt;</a> ()</td></tr>
 <tr class="memdesc:a85c244029d99653d7709291fcbef7147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locates all objects of the specified type.  <a href="classAnvil_1_1API_1_1NwArea.html#a85c244029d99653d7709291fcbef7147">More...</a><br /></td></tr>
 <tr class="separator:a85c244029d99653d7709291fcbef7147"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a128817035a170a740a70acd78358bb15"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a128817035a170a740a70acd78358bb15">GetFogAmount</a> (FogType fogType)</td></tr>
-<tr class="memdesc:a128817035a170a740a70acd78358bb15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the fog amount for this area, at the specified time of day.  <a href="classAnvil_1_1API_1_1NwArea.html#a128817035a170a740a70acd78358bb15">More...</a><br /></td></tr>
-<tr class="separator:a128817035a170a740a70acd78358bb15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c9692156b4526f4e044ea89312878b1"><td class="memItemLeft" align="right" valign="top">FogColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a7c9692156b4526f4e044ea89312878b1">GetFogColor</a> (FogType fogType)</td></tr>
-<tr class="memdesc:a7c9692156b4526f4e044ea89312878b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the fog color for this area, at the specified time of day.  <a href="classAnvil_1_1API_1_1NwArea.html#a7c9692156b4526f4e044ea89312878b1">More...</a><br /></td></tr>
-<tr class="separator:a7c9692156b4526f4e044ea89312878b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c147033ab50db392a1f2fb71b1b0e61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a2c147033ab50db392a1f2fb71b1b0e61">GetAreaLightColor</a> (AreaLightColor colorType)</td></tr>
+<tr class="memdesc:a2c147033ab50db392a1f2fb71b1b0e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a light color in this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a2c147033ab50db392a1f2fb71b1b0e61">More...</a><br /></td></tr>
+<tr class="separator:a2c147033ab50db392a1f2fb71b1b0e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70fcd6f7df3fdcccdbd62d5885bb528f"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a70fcd6f7df3fdcccdbd62d5885bb528f">GetAreaLightDirection</a> (AreaLightDirection lightType)</td></tr>
+<tr class="memdesc:a70fcd6f7df3fdcccdbd62d5885bb528f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the light direction for the specified light type.  <a href="classAnvil_1_1API_1_1NwArea.html#a70fcd6f7df3fdcccdbd62d5885bb528f">More...</a><br /></td></tr>
+<tr class="separator:a70fcd6f7df3fdcccdbd62d5885bb528f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fe088c7ae116755d7b7eef0158b4811"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1TileInfo.html">TileInfo</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a3fe088c7ae116755d7b7eef0158b4811">GetTileInfo</a> (uint tileX, uint tileY)</td></tr>
 <tr class="memdesc:a3fe088c7ae116755d7b7eef0158b4811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tile info at the specified position in the area.  <a href="classAnvil_1_1API_1_1NwArea.html#a3fe088c7ae116755d7b7eef0158b4811">More...</a><br /></td></tr>
 <tr class="separator:a3fe088c7ae116755d7b7eef0158b4811"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,23 +157,41 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ApplyEnvironmentPrese
 <tr class="memdesc:a999e4abed5a2ba34801f49f07fd2d808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins playback of battle music for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a999e4abed5a2ba34801f49f07fd2d808">More...</a><br /></td></tr>
 <tr class="separator:a999e4abed5a2ba34801f49f07fd2d808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6497447aceeb0c4155bcb27b431193fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a6497447aceeb0c4155bcb27b431193fb">RecomputeStaticLighting</a> ()</td></tr>
-<tr class="memdesc:a6497447aceeb0c4155bcb27b431193fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies all clients in this area to recompute static lighting. This can be used to update the lighting after changing any tile lights or if placeables with lights have been added/deleted.  <a href="classAnvil_1_1API_1_1NwArea.html#a6497447aceeb0c4155bcb27b431193fb">More...</a><br /></td></tr>
+<tr class="memdesc:a6497447aceeb0c4155bcb27b431193fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies all clients in this area to recompute static lighting.<br  />
+ This can be used to update the lighting after changing any tile lights or if placeables with lights have been added/deleted.  <a href="classAnvil_1_1API_1_1NwArea.html#a6497447aceeb0c4155bcb27b431193fb">More...</a><br /></td></tr>
 <tr class="separator:a6497447aceeb0c4155bcb27b431193fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c780449b74956188e4e81fbb9764cf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a9c780449b74956188e4e81fbb9764cf4">ReloadAreaBorder</a> ()</td></tr>
+<tr class="memdesc:a9c780449b74956188e4e81fbb9764cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies all clients in this area to reload the inaccesible border tiles.<br  />
+ This can be used to update the edge tiles after changing a tile with SetTile().  <a href="classAnvil_1_1API_1_1NwArea.html#a9c780449b74956188e4e81fbb9764cf4">More...</a><br /></td></tr>
+<tr class="separator:a9c780449b74956188e4e81fbb9764cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60756d5c6729d6d678d755ca1a8b560f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a60756d5c6729d6d678d755ca1a8b560f">ReloadAreaGrass</a> ()</td></tr>
+<tr class="memdesc:a60756d5c6729d6d678d755ca1a8b560f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies all clients in this area to recalculate grass.<br  />
+ This can be used to update the grass of an area after changing a tile with SetTile() that will have or used to have grass.  <a href="classAnvil_1_1API_1_1NwArea.html#a60756d5c6729d6d678d755ca1a8b560f">More...</a><br /></td></tr>
+<tr class="separator:a60756d5c6729d6d678d755ca1a8b560f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b64aafb1685e654b06246db7617c9f2"><td class="memItemLeft" align="right" valign="top"><a id="a7b64aafb1685e654b06246db7617c9f2"></a>
 unsafe? byte[]&#160;</td><td class="memItemRight" valign="bottom"><b>SerializeARE</b> (string? areaName=null, string? resRef=null)</td></tr>
 <tr class="separator:a7b64aafb1685e654b06246db7617c9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66baf55fd450a94677df1958d0650e7"><td class="memItemLeft" align="right" valign="top"><a id="ae66baf55fd450a94677df1958d0650e7"></a>
 byte?[]&#160;</td><td class="memItemRight" valign="bottom"><b>SerializeGIT</b> (ObjectTypes objectFilter=ObjectTypes.All, ICollection&lt; <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> &gt;? exclusionList=null, bool exportVarTable=true, bool exportUUID=true, string? resRef=null)</td></tr>
 <tr class="separator:ae66baf55fd450a94677df1958d0650e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9652a78df5a212b3eff1c9703d31a7b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a9652a78df5a212b3eff1c9703d31a7b5">SetAreaLightColor</a> (AreaLightColor colorType, int color, TimeSpan fadeTime=default)</td></tr>
+<tr class="memdesc:a9652a78df5a212b3eff1c9703d31a7b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a light color in this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a9652a78df5a212b3eff1c9703d31a7b5">More...</a><br /></td></tr>
+<tr class="separator:a9652a78df5a212b3eff1c9703d31a7b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1963c3b390a0278b5810386ab7fdf246"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a1963c3b390a0278b5810386ab7fdf246">SetAreaLightDirection</a> (AreaLightDirection lightType, Vector3 direction, TimeSpan fadeTime=default)</td></tr>
+<tr class="memdesc:a1963c3b390a0278b5810386ab7fdf246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the light direction for the specified light type.  <a href="classAnvil_1_1API_1_1NwArea.html#a1963c3b390a0278b5810386ab7fdf246">More...</a><br /></td></tr>
+<tr class="separator:a1963c3b390a0278b5810386ab7fdf246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab72581a8e70a1493969dd80e69e7fd56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#ab72581a8e70a1493969dd80e69e7fd56">SetAreaWind</a> (Vector3 direction, float magnitude, float yaw, float pitch)</td></tr>
 <tr class="memdesc:ab72581a8e70a1493969dd80e69e7fd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the detailed wind data for this area.  <a href="classAnvil_1_1API_1_1NwArea.html#ab72581a8e70a1493969dd80e69e7fd56">More...</a><br /></td></tr>
 <tr class="separator:ab72581a8e70a1493969dd80e69e7fd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8b868ae76d73887c65ab20b8eb25db7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#af8b868ae76d73887c65ab20b8eb25db7">SetFogAmount</a> (FogType fogType, int fogAmount)</td></tr>
 <tr class="memdesc:af8b868ae76d73887c65ab20b8eb25db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fog amount for this area, at the specified time of day.  <a href="classAnvil_1_1API_1_1NwArea.html#af8b868ae76d73887c65ab20b8eb25db7">More...</a><br /></td></tr>
 <tr class="separator:af8b868ae76d73887c65ab20b8eb25db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f69a4a565e3814935a253a7e5e111d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a3f69a4a565e3814935a253a7e5e111d1">SetFogColor</a> (FogType fogType, FogColor fogColor)</td></tr>
-<tr class="memdesc:a3f69a4a565e3814935a253a7e5e111d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fog color for this area, at the specified time of day.  <a href="classAnvil_1_1API_1_1NwArea.html#a3f69a4a565e3814935a253a7e5e111d1">More...</a><br /></td></tr>
-<tr class="separator:a3f69a4a565e3814935a253a7e5e111d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaea97e2fb2d5ee101f841e6526d1d61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#aaaea97e2fb2d5ee101f841e6526d1d61">SetFogColor</a> (FogType fogType, FogColor fogColor, TimeSpan fadeTime=default)</td></tr>
+<tr class="memdesc:aaaea97e2fb2d5ee101f841e6526d1d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fog color for this area, at the specified time of day.  <a href="classAnvil_1_1API_1_1NwArea.html#aaaea97e2fb2d5ee101f841e6526d1d61">More...</a><br /></td></tr>
+<tr class="separator:aaaea97e2fb2d5ee101f841e6526d1d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a9d461784bc06136a2c87a869fa52d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#a0a9d461784bc06136a2c87a869fa52d5">SetTiles</a> (List&lt; <a class="el" href="classAnvil_1_1API_1_1TileData.html">TileData</a> &gt; data, <a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0">SettleFlags</a> flags=<a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114">SettleFlags.RecomputeLighting</a>, string tileSet=&quot;&quot;)</td></tr>
+<tr class="memdesc:a0a9d461784bc06136a2c87a869fa52d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bulk change a set of tiles in this area.  <a href="classAnvil_1_1API_1_1NwArea.html#a0a9d461784bc06136a2c87a869fa52d5">More...</a><br /></td></tr>
+<tr class="separator:a0a9d461784bc06136a2c87a869fa52d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adee3db5eb88dcc17adcbfb16a69ef304"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwArea.html#adee3db5eb88dcc17adcbfb16a69ef304">StopAmbient</a> ()</td></tr>
 <tr class="memdesc:adee3db5eb88dcc17adcbfb16a69ef304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops playback of any ambient sounds in this area.  <a href="classAnvil_1_1API_1_1NwArea.html#adee3db5eb88dcc17adcbfb16a69ef304">More...</a><br /></td></tr>
 <tr class="separator:adee3db5eb88dcc17adcbfb16a69ef304"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -707,8 +725,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 
 </div>
 </div>
-<a id="a128817035a170a740a70acd78358bb15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a128817035a170a740a70acd78358bb15">&#9670;&nbsp;</a></span>GetFogAmount()</h2>
+<a id="a2c147033ab50db392a1f2fb71b1b0e61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c147033ab50db392a1f2fb71b1b0e61">&#9670;&nbsp;</a></span>GetAreaLightColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -717,10 +735,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Anvil.API.NwArea.GetFogAmount </td>
+          <td class="memname">int Anvil.API.NwArea.GetAreaLightColor </td>
           <td>(</td>
-          <td class="paramtype">FogType&#160;</td>
-          <td class="paramname"><em>fogType</em></td><td>)</td>
+          <td class="paramtype">AreaLightColor&#160;</td>
+          <td class="paramname"><em>colorType</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -731,12 +749,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the fog amount for this area, at the specified time of day. </p>
+<p>Gets a light color in this area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colorType</td><td>The color type to get.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a7c9692156b4526f4e044ea89312878b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c9692156b4526f4e044ea89312878b1">&#9670;&nbsp;</a></span>GetFogColor()</h2>
+<a id="a70fcd6f7df3fdcccdbd62d5885bb528f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70fcd6f7df3fdcccdbd62d5885bb528f">&#9670;&nbsp;</a></span>GetAreaLightDirection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -745,10 +769,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">FogColor Anvil.API.NwArea.GetFogColor </td>
+          <td class="memname">Vector3 Anvil.API.NwArea.GetAreaLightDirection </td>
           <td>(</td>
-          <td class="paramtype">FogType&#160;</td>
-          <td class="paramname"><em>fogType</em></td><td>)</td>
+          <td class="paramtype">AreaLightDirection&#160;</td>
+          <td class="paramname"><em>lightType</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -759,7 +783,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the fog color for this area, at the specified time of day. </p>
+<p>Gets the light direction for the specified light type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lightType</td><td>The type of light to get the direction from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A Vector3 representing the light direction.</dd></dl>
 
 </div>
 </div>
@@ -949,7 +980,169 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 </table>
 </div><div class="memdoc">
 
-<p>Notifies all clients in this area to recompute static lighting. This can be used to update the lighting after changing any tile lights or if placeables with lights have been added/deleted. </p>
+<p>Notifies all clients in this area to recompute static lighting.<br  />
+ This can be used to update the lighting after changing any tile lights or if placeables with lights have been added/deleted. </p>
+
+</div>
+</div>
+<a id="a9c780449b74956188e4e81fbb9764cf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c780449b74956188e4e81fbb9764cf4">&#9670;&nbsp;</a></span>ReloadAreaBorder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.ReloadAreaBorder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Notifies all clients in this area to reload the inaccesible border tiles.<br  />
+ This can be used to update the edge tiles after changing a tile with SetTile(). </p>
+
+</div>
+</div>
+<a id="a60756d5c6729d6d678d755ca1a8b560f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60756d5c6729d6d678d755ca1a8b560f">&#9670;&nbsp;</a></span>ReloadAreaGrass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.ReloadAreaGrass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Notifies all clients in this area to recalculate grass.<br  />
+ This can be used to update the grass of an area after changing a tile with SetTile() that will have or used to have grass. </p>
+
+</div>
+</div>
+<a id="a9652a78df5a212b3eff1c9703d31a7b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9652a78df5a212b3eff1c9703d31a7b5">&#9670;&nbsp;</a></span>SetAreaLightColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.SetAreaLightColor </td>
+          <td>(</td>
+          <td class="paramtype">AreaLightColor&#160;</td>
+          <td class="paramname"><em>colorType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>fadeTime</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a light color in this area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colorType</td><td>The type of color to set.</td></tr>
+    <tr><td class="paramname">color</td><td>The new color to set.</td></tr>
+    <tr><td class="paramname">fadeTime</td><td>The time to fade the new color.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1963c3b390a0278b5810386ab7fdf246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1963c3b390a0278b5810386ab7fdf246">&#9670;&nbsp;</a></span>SetAreaLightDirection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.SetAreaLightDirection </td>
+          <td>(</td>
+          <td class="paramtype">AreaLightDirection&#160;</td>
+          <td class="paramname"><em>lightType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>fadeTime</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the light direction for the specified light type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lightType</td><td>The type of light to get the direction from.</td></tr>
+    <tr><td class="paramname">direction</td><td>The new direction for the light.</td></tr>
+    <tr><td class="paramname">fadeTime</td><td>The time to fade in the new light direction.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A Vector3 representing the light direction.</dd></dl>
 
 </div>
 </div>
@@ -1054,8 +1247,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 
 </div>
 </div>
-<a id="a3f69a4a565e3814935a253a7e5e111d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f69a4a565e3814935a253a7e5e111d1">&#9670;&nbsp;</a></span>SetFogColor()</h2>
+<a id="aaaea97e2fb2d5ee101f841e6526d1d61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaea97e2fb2d5ee101f841e6526d1d61">&#9670;&nbsp;</a></span>SetFogColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1073,7 +1266,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">FogColor&#160;</td>
-          <td class="paramname"><em>fogColor</em>&#160;</td>
+          <td class="paramname"><em>fogColor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>fadeTime</em> = <code>default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1089,6 +1288,58 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AssertObjectValid</b>
 </div><div class="memdoc">
 
 <p>Sets the fog color for this area, at the specified time of day. </p>
+
+</div>
+</div>
+<a id="a0a9d461784bc06136a2c87a869fa52d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a9d461784bc06136a2c87a869fa52d5">&#9670;&nbsp;</a></span>SetTiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwArea.SetTiles </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="classAnvil_1_1API_1_1TileData.html">TileData</a> &gt;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0">SettleFlags</a>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code><a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114">SettleFlags.RecomputeLighting</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>tileSet</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bulk change a set of tiles in this area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The updated tile data.</td></tr>
+    <tr><td class="paramname">flags</td><td>Flags/behaviours to apply once the tiles have been set.</td></tr>
+    <tr><td class="paramname">tileSet</td><td>If specified, also changes the area's tileset. Warning: only use this if you really know what you're doing, it's very easy to break things badly.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

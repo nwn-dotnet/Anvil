@@ -8,5 +8,6 @@ var classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent =
     [ "FeatSelection", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html#aaf53ff04e91f0c3b6f741f8f9eb61294", null ],
     [ "OpenedPanel", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html#af2ba47febc32e0de26eaed7627530bff", null ],
     [ "Player", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html#a410b6d27a9bb75cf0c64c30403d353af", null ],
-    [ "SkillSelection", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html#ac1e7fe9ee545b60b0dc62f4c0f87b007", null ]
+    [ "SkillSelection", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html#ac1e7fe9ee545b60b0dc62f4c0f87b007", null ],
+    [ "Vector", "classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerGuiEvent.html#a837bb73e08ff5ade5d5b52d2a82738fe", null ]
 ];

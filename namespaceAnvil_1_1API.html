@@ -595,6 +595,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TalentExtensions.html">TalentExtensions</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TileData.html">TileData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a tile configuration at a location.  <a href="classAnvil_1_1API_1_1TileData.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TileInfo.html">TileInfo</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Area tile information  <a href="classAnvil_1_1API_1_1TileInfo.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -602,8 +605,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Time.html">Time</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for querying time information for the current frame or since startup.  <a href="classAnvil_1_1API_1_1Time.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TlkTable.html">TlkTable</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1TwoDimArray.html">TwoDimArray</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A two dimensional array data resource.  <a href="classAnvil_1_1API_1_1TwoDimArray.html#details">More...</a><br /></td></tr>
@@ -2334,6 +2335,24 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:ad5f1fe074463b45c17f0511fba6e481d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab445924319d2dffb8b82e42796896268"><td class="memItemLeft" align="right" valign="top"><a id="ab445924319d2dffb8b82e42796896268"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>AreaLightColor</b> { <br />
+&#160;&#160;<b>MoonAmbient</b> = NWScript.AREA_LIGHT_COLOR_MOON_AMBIENT
+, <br />
+&#160;&#160;<b>MoonDiffuse</b> = NWScript.AREA_LIGHT_COLOR_MOON_DIFFUSE
+, <br />
+&#160;&#160;<b>SunAmbient</b> = NWScript.AREA_LIGHT_COLOR_SUN_AMBIENT
+, <br />
+&#160;&#160;<b>SunDiffuse</b> = NWScript.AREA_LIGHT_COLOR_SUN_DIFFUSE
+<br />
+ }</td></tr>
+<tr class="separator:ab445924319d2dffb8b82e42796896268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab768dc8a75f2a923a6fcd8e5eeeae80"><td class="memItemLeft" align="right" valign="top"><a id="aab768dc8a75f2a923a6fcd8e5eeeae80"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>AreaLightDirection</b> { <br />
+&#160;&#160;<b>Moon</b> = NWScript.AREA_LIGHT_DIRECTION_MOON
+, <br />
+&#160;&#160;<b>Sun</b> = NWScript.AREA_LIGHT_DIRECTION_SUN
+<br />
+ }</td></tr>
+<tr class="separator:aab768dc8a75f2a923a6fcd8e5eeeae80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad756b17376335f765ed7efcd49e97b04"><td class="memItemLeft" align="right" valign="top"><a id="ad756b17376335f765ed7efcd49e97b04"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>AreaSizeDimension</b> { <br />
 &#160;&#160;<b>Height</b> = NWScript.AREA_HEIGHT
 , <br />
@@ -2983,6 +3002,23 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a036e832ec03c0af710d2e1678a360e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62d9e3194639e5e701edc6017c983143"><td class="memItemLeft" align="right" valign="top"><a id="a62d9e3194639e5e701edc6017c983143"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>CameraFlag</b> { <br />
+&#160;&#160;<b>EnableCollision</b> = NWScript.CAMERA_FLAG_ENABLE_COLLISION
+, <br />
+&#160;&#160;<b>DisableCollision</b> = NWScript.CAMERA_FLAG_DISABLE_COLLISION
+, <br />
+&#160;&#160;<b>DisableShake</b> = NWScript.CAMERA_FLAG_DISABLE_SHAKE
+, <br />
+&#160;&#160;<b>DisableScroll</b> = NWScript.CAMERA_FLAG_DISABLE_SCROLL
+, <br />
+&#160;&#160;<b>DisableTurn</b> = NWScript.CAMERA_FLAG_DISABLE_TURN
+, <br />
+&#160;&#160;<b>DisableTilt</b> = NWScript.CAMERA_FLAG_DISABLE_TILT
+, <br />
+&#160;&#160;<b>DisableZoom</b> = NWScript.CAMERA_FLAG_DISABLE_ZOOM
+<br />
+ }</td></tr>
+<tr class="separator:a62d9e3194639e5e701edc6017c983143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae564ffdfa23e717a50fea8873c1b9d1d"><td class="memItemLeft" align="right" valign="top"><a id="ae564ffdfa23e717a50fea8873c1b9d1d"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>CameraMode</b> { <br />
 &#160;&#160;<b>ChaseCamera</b> = NWScript.CAMERA_MODE_CHASE_CAMERA
 , <br />
@@ -3429,6 +3465,44 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>Sonic</b> = NWScript.DAMAGE_TYPE_SONIC
 , <br />
 &#160;&#160;<b>BaseWeapon</b> = NWScript.DAMAGE_TYPE_BASE_WEAPON
+, <br />
+&#160;&#160;<b>Custom1</b> = NWScript.DAMAGE_TYPE_CUSTOM1
+, <br />
+&#160;&#160;<b>Custom2</b> = NWScript.DAMAGE_TYPE_CUSTOM2
+, <br />
+&#160;&#160;<b>Custom3</b> = NWScript.DAMAGE_TYPE_CUSTOM3
+, <br />
+&#160;&#160;<b>Custom4</b> = NWScript.DAMAGE_TYPE_CUSTOM4
+, <br />
+&#160;&#160;<b>Custom5</b> = NWScript.DAMAGE_TYPE_CUSTOM5
+, <br />
+&#160;&#160;<b>Custom6</b> = NWScript.DAMAGE_TYPE_CUSTOM6
+, <br />
+&#160;&#160;<b>Custom7</b> = NWScript.DAMAGE_TYPE_CUSTOM7
+, <br />
+&#160;&#160;<b>Custom8</b> = NWScript.DAMAGE_TYPE_CUSTOM8
+, <br />
+&#160;&#160;<b>Custom9</b> = NWScript.DAMAGE_TYPE_CUSTOM9
+, <br />
+&#160;&#160;<b>Custom10</b> = NWScript.DAMAGE_TYPE_CUSTOM10
+, <br />
+&#160;&#160;<b>Custom11</b> = NWScript.DAMAGE_TYPE_CUSTOM11
+, <br />
+&#160;&#160;<b>Custom12</b> = NWScript.DAMAGE_TYPE_CUSTOM12
+, <br />
+&#160;&#160;<b>Custom13</b> = NWScript.DAMAGE_TYPE_CUSTOM13
+, <br />
+&#160;&#160;<b>Custom14</b> = NWScript.DAMAGE_TYPE_CUSTOM14
+, <br />
+&#160;&#160;<b>Custom15</b> = NWScript.DAMAGE_TYPE_CUSTOM15
+, <br />
+&#160;&#160;<b>Custom16</b> = NWScript.DAMAGE_TYPE_CUSTOM16
+, <br />
+&#160;&#160;<b>Custom17</b> = NWScript.DAMAGE_TYPE_CUSTOM17
+, <br />
+&#160;&#160;<b>Custom18</b> = NWScript.DAMAGE_TYPE_CUSTOM18
+, <br />
+&#160;&#160;<b>Custom19</b> = NWScript.DAMAGE_TYPE_CUSTOM19
 <br />
  }</td></tr>
 <tr class="separator:aa7dc937fbfe36abbac8e3f83faee98fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3832,6 +3906,8 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>Supernatural</b> = NWScript.SUBTYPE_SUPERNATURAL
 , <br />
 &#160;&#160;<b>Extraordinary</b> = NWScript.SUBTYPE_EXTRAORDINARY
+, <br />
+&#160;&#160;<b>Unyielding</b> = NWScript.SUBTYPE_UNYIELDING
 <br />
  }</td></tr>
 <tr class="separator:ae7bba3584f37df13569c0d738364d710"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3991,6 +4067,14 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>RunScript</b> = NWScript.EFFECT_TYPE_RUNSCRIPT
 , <br />
 &#160;&#160;<b>Icon</b> = NWScript.EFFECT_TYPE_ICON
+, <br />
+&#160;&#160;<b>Pacify</b> = NWScript.EFFECT_TYPE_PACIFY
+, <br />
+&#160;&#160;<b>BonusFeat</b> = NWScript.EFFECT_TYPE_BONUS_FEAT
+, <br />
+&#160;&#160;<b>TimeStopImmunity</b> = NWScript.EFFECT_TYPE_TIMESTOP_IMMUNITY
+, <br />
+&#160;&#160;<b>ForceWalk</b> = NWScript.EFFECT_TYPE_FORCE_WALK
 <br />
  }</td></tr>
 <tr class="separator:af1c965247eed9cb66fdb1750ba478909"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -6548,6 +6632,8 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>OptionsOpen</b> = NWScript.GUIEVENT_OPTIONS_OPEN
 , <br />
 &#160;&#160;<b>OptionsClose</b> = NWScript.GUIEVENT_OPTIONS_CLOSE
+, <br />
+&#160;&#160;<b>RadialOpen</b> = NWScript.GUIEVENT_RADIAL_OPEN
 <br />
  }</td></tr>
 <tr class="separator:a8327551bb4bd39ad10ac5e820a870697"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -6581,6 +6667,20 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>ExaminePlaceable</b> = NWScript.GUI_PANEL_EXAMINE_PLACEABLE
 , <br />
 &#160;&#160;<b>ExamineDoor</b> = NWScript.GUI_PANEL_EXAMINE_DOOR
+, <br />
+&#160;&#160;<b>Tile</b> = NWScript.GUI_PANEL_RADIAL_TILE
+, <br />
+&#160;&#160;<b>Trigger</b> = NWScript.GUI_PANEL_RADIAL_TRIGGER
+, <br />
+&#160;&#160;<b>Creature</b> = NWScript.GUI_PANEL_RADIAL_CREATURE
+, <br />
+&#160;&#160;<b>Item</b> = NWScript.GUI_PANEL_RADIAL_ITEM
+, <br />
+&#160;&#160;<b>Placeable</b> = NWScript.GUI_PANEL_RADIAL_PLACEABLE
+, <br />
+&#160;&#160;<b>Door</b> = NWScript.GUI_PANEL_RADIAL_DOOR
+, <br />
+&#160;&#160;<b>Quickbar</b> = NWScript.GUI_PANEL_RADIAL_QUICKBAR
 <br />
  }</td></tr>
 <tr class="separator:a61c2550676a2c214605dff406f62d994"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -9047,47 +9147,6 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:af08f9e2d2ea7acd5aaff86478b587ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab56b8ee4f585636ccd7aaf1a31eff90b"><td class="memItemLeft" align="right" valign="top"><a id="ab56b8ee4f585636ccd7aaf1a31eff90b"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ItemAppearanceArmorModel</b> { <br />
-&#160;&#160;<b>RightFoot</b> = NWScript.ITEM_APPR_ARMOR_MODEL_RFOOT
-, <br />
-&#160;&#160;<b>LeftFoot</b> = NWScript.ITEM_APPR_ARMOR_MODEL_LFOOT
-, <br />
-&#160;&#160;<b>RightShin</b> = NWScript.ITEM_APPR_ARMOR_MODEL_RSHIN
-, <br />
-&#160;&#160;<b>LeftShin</b> = NWScript.ITEM_APPR_ARMOR_MODEL_LSHIN
-, <br />
-&#160;&#160;<b>LeftThigh</b> = NWScript.ITEM_APPR_ARMOR_MODEL_LTHIGH
-, <br />
-&#160;&#160;<b>RightThigh</b> = NWScript.ITEM_APPR_ARMOR_MODEL_RTHIGH
-, <br />
-&#160;&#160;<b>Pelvis</b> = NWScript.ITEM_APPR_ARMOR_MODEL_PELVIS
-, <br />
-&#160;&#160;<b>Torso</b> = NWScript.ITEM_APPR_ARMOR_MODEL_TORSO
-, <br />
-&#160;&#160;<b>Belt</b> = NWScript.ITEM_APPR_ARMOR_MODEL_BELT
-, <br />
-&#160;&#160;<b>Neck</b> = NWScript.ITEM_APPR_ARMOR_MODEL_NECK
-, <br />
-&#160;&#160;<b>RightForearm</b> = NWScript.ITEM_APPR_ARMOR_MODEL_RFOREARM
-, <br />
-&#160;&#160;<b>LeftForearm</b> = NWScript.ITEM_APPR_ARMOR_MODEL_LFOREARM
-, <br />
-&#160;&#160;<b>RightBicep</b> = NWScript.ITEM_APPR_ARMOR_MODEL_RBICEP
-, <br />
-&#160;&#160;<b>LeftBicep</b> = NWScript.ITEM_APPR_ARMOR_MODEL_LBICEP
-, <br />
-&#160;&#160;<b>RightShoulder</b> = NWScript.ITEM_APPR_ARMOR_MODEL_RSHOULDER
-, <br />
-&#160;&#160;<b>LeftShoulder</b> = NWScript.ITEM_APPR_ARMOR_MODEL_LSHOULDER
-, <br />
-&#160;&#160;<b>RightHand</b> = NWScript.ITEM_APPR_ARMOR_MODEL_RHAND
-, <br />
-&#160;&#160;<b>LeftHand</b> = NWScript.ITEM_APPR_ARMOR_MODEL_LHAND
-, <br />
-&#160;&#160;<b>Robe</b> = NWScript.ITEM_APPR_ARMOR_MODEL_ROBE
-<br />
- }</td></tr>
-<tr class="separator:ab56b8ee4f585636ccd7aaf1a31eff90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c35b51c41a6934c4603fa15ea2e2538"><td class="memItemLeft" align="right" valign="top"><a id="a2c35b51c41a6934c4603fa15ea2e2538"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ItemAppearanceType</b> { <br />
 &#160;&#160;<b>SimpleModel</b> = NWScript.ITEM_APPR_TYPE_SIMPLE_MODEL
 , <br />
@@ -9706,6 +9765,32 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:af8248311d0a52129823c65e29fa4e512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe4cd03bb01ba4f54d3b20c600837eed"><td class="memItemLeft" align="right" valign="top"><a id="abe4cd03bb01ba4f54d3b20c600837eed"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ObjectUiDiscovery</b> { <br />
+&#160;&#160;<b>Default</b> = NWScript.OBJECT_UI_DISCOVERY_DEFAULT
+, <br />
+&#160;&#160;<b>None</b> = NWScript.OBJECT_UI_DISCOVERY_NONE
+, <br />
+&#160;&#160;<b>HiliteMouseover</b> = NWScript.OBJECT_UI_DISCOVERY_HILITE_MOUSEOVER
+, <br />
+&#160;&#160;<b>HiliteTab</b> = NWScript.OBJECT_UI_DISCOVERY_HILITE_TAB
+, <br />
+&#160;&#160;<b>TextbubbleMouseover</b> = NWScript.OBJECT_UI_DISCOVERY_TEXTBUBBLE_MOUSEOVER
+, <br />
+&#160;&#160;<b>TextbubbleTab</b> = NWScript.OBJECT_UI_DISCOVERY_TEXTBUBBLE_TAB
+<br />
+ }</td></tr>
+<tr class="separator:abe4cd03bb01ba4f54d3b20c600837eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac766630b5339d786c9ef552508f6f0f5"><td class="memItemLeft" align="right" valign="top"><a id="ac766630b5339d786c9ef552508f6f0f5"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ObjectUiTextBubbleOverride</b> { <br />
+&#160;&#160;<b>None</b> = NWScript.OBJECT_UI_TEXT_BUBBLE_OVERRIDE_NONE
+, <br />
+&#160;&#160;<b>Replace</b> = NWScript.OBJECT_UI_TEXT_BUBBLE_OVERRIDE_REPLACE
+, <br />
+&#160;&#160;<b>Prepend</b> = NWScript.OBJECT_UI_TEXT_BUBBLE_OVERRIDE_PREPEND
+, <br />
+&#160;&#160;<b>Append</b> = NWScript.OBJECT_UI_TEXT_BUBBLE_OVERRIDE_APPEND
+<br />
+ }</td></tr>
+<tr class="separator:ac766630b5339d786c9ef552508f6f0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae252096a2acf54b03423d31148af8539"><td class="memItemLeft" align="right" valign="top"><a id="ae252096a2acf54b03423d31148af8539"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ObjectVisualTransform</b> { <br />
 &#160;&#160;<b>Scale</b> = NWScript.OBJECT_VISUAL_TRANSFORM_SCALE
 , <br />
@@ -9725,6 +9810,38 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:ae252096a2acf54b03423d31148af8539"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57dc254780064d3cedb10ea80f21c719"><td class="memItemLeft" align="right" valign="top"><a id="a57dc254780064d3cedb10ea80f21c719"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ObjectVisualTransformBehavior</b> { <br />
+&#160;&#160;<b>Default</b> = NWScript.OBJECT_VISUAL_TRANSFORM_BEHAVIOR_DEFAULT
+, <br />
+&#160;&#160;<b>Bounce</b> = NWScript.OBJECT_VISUAL_TRANSFORM_BEHAVIOR_BOUNCE
+<br />
+ }</td></tr>
+<tr class="separator:a57dc254780064d3cedb10ea80f21c719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afedb5e8025cc70264cbc29c19f4bcd97"><td class="memItemLeft" align="right" valign="top"><a id="afedb5e8025cc70264cbc29c19f4bcd97"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ObjectVisualTransformDataScope</b> { <br />
+&#160;&#160;<b>AllScopes</b> = -1
+, <br />
+&#160;&#160;<b>Base</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_BASE
+, <br />
+&#160;&#160;<b>CreatureHead</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_CREATURE_HEAD
+, <br />
+&#160;&#160;<b>CreatureTail</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_CREATURE_TAIL
+, <br />
+&#160;&#160;<b>CreatureWings</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_CREATURE_WINGS
+, <br />
+&#160;&#160;<b>CreatureCloak</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_CREATURE_CLOAK
+, <br />
+&#160;&#160;<b>ItemPart1</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_ITEM_PART1
+, <br />
+&#160;&#160;<b>ItemPart2</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_ITEM_PART2
+, <br />
+&#160;&#160;<b>ItemPart3</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_ITEM_PART3
+, <br />
+&#160;&#160;<b>ItemPart4</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_ITEM_PART4
+, <br />
+&#160;&#160;<b>ItemPart5</b> = NWScript.OBJECT_VISUAL_TRANSFORM_DATA_SCOPE_ITEM_PART5
+<br />
+ }</td></tr>
+<tr class="separator:afedb5e8025cc70264cbc29c19f4bcd97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f18faeebd60bccef143c75543b27798"><td class="memItemLeft" align="right" valign="top"><a id="a8f18faeebd60bccef143c75543b27798"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>PackageType</b> { <br />
 &#160;&#160;<b>Barbarian</b> = NWScript.PACKAGE_BARBARIAN
 , <br />
@@ -10665,6 +10782,55 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a5d11ba6582778bbea88c81ce44dd2990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a9a695ad50473212ea3ea2af6c318a4"><td class="memItemLeft" align="right" valign="top"><a id="a8a9a695ad50473212ea3ea2af6c318a4"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>RegexpFormat</b> { <br />
+&#160;&#160;<b>Default</b> = NWScript.REGEXP_FORMAT_DEFAULT
+, <br />
+&#160;&#160;<b>Sed</b> = NWScript.REGEXP_FORMAT_SED
+, <br />
+&#160;&#160;<b>NoCopy</b> = NWScript.REGEXP_FORMAT_NO_COPY
+, <br />
+&#160;&#160;<b>FirstOnly</b> = NWScript.REGEXP_FORMAT_FIRST_ONLY
+<br />
+ }</td></tr>
+<tr class="separator:a8a9a695ad50473212ea3ea2af6c318a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3a8f34210a8185ebba82700bdff5b56"><td class="memItemLeft" align="right" valign="top"><a id="af3a8f34210a8185ebba82700bdff5b56"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>RegexpMatch</b> { <br />
+&#160;&#160;<b>NotBol</b> = NWScript.REGEXP_MATCH_NOT_BOL
+, <br />
+&#160;&#160;<b>NotEol</b> = NWScript.REGEXP_MATCH_NOT_EOL
+, <br />
+&#160;&#160;<b>NotBow</b> = NWScript.REGEXP_MATCH_NOT_BOW
+, <br />
+&#160;&#160;<b>NotEow</b> = NWScript.REGEXP_MATCH_NOT_EOW
+, <br />
+&#160;&#160;<b>Any</b> = NWScript.REGEXP_MATCH_ANY
+, <br />
+&#160;&#160;<b>NotNull</b> = NWScript.REGEXP_MATCH_NOT_NULL
+, <br />
+&#160;&#160;<b>Continuous</b> = NWScript.REGEXP_MATCH_CONTINUOUS
+, <br />
+&#160;&#160;<b>PrevAvail</b> = NWScript.REGEXP_MATCH_PREV_AVAIL
+<br />
+ }</td></tr>
+<tr class="separator:af3a8f34210a8185ebba82700bdff5b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26bbfb9fcc9edf15b7ca971b0ef17404"><td class="memItemLeft" align="right" valign="top"><a id="a26bbfb9fcc9edf15b7ca971b0ef17404"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>RegexpType</b> { <br />
+&#160;&#160;<b>Ecmascript</b> = NWScript.REGEXP_ECMASCRIPT
+, <br />
+&#160;&#160;<b>Basic</b> = NWScript.REGEXP_BASIC
+, <br />
+&#160;&#160;<b>Extended</b> = NWScript.REGEXP_EXTENDED
+, <br />
+&#160;&#160;<b>Awk</b> = NWScript.REGEXP_AWK
+, <br />
+&#160;&#160;<b>Grep</b> = NWScript.REGEXP_GREP
+, <br />
+&#160;&#160;<b>Egrep</b> = NWScript.REGEXP_EGREP
+, <br />
+&#160;&#160;<b>Icase</b> = NWScript.REGEXP_ICASE
+, <br />
+&#160;&#160;<b>Nosubs</b> = NWScript.REGEXP_NOSUBS
+<br />
+ }</td></tr>
+<tr class="separator:a26bbfb9fcc9edf15b7ca971b0ef17404"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ae11700bd6ad691a30b8f16d9a21f4b"><td class="memItemLeft" align="right" valign="top"><a id="a9ae11700bd6ad691a30b8f16d9a21f4b"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ReputationType</b> { <br />
 &#160;&#160;<b>Friend</b> = NWScript.REPUTATION_TYPE_FRIEND
 , <br />
@@ -10951,6 +11117,50 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a99c57e50a32670e7fb881bff9466dc3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0407f254114246b7d8015f2d11b7a9e0"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0">SettleFlags</a> { <br />
+&#160;&#160;<a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2e7fca71c3a794620bdba2b2535b2299">ReloadGrass</a> = NWScript.SETTILE_FLAG_RELOAD_GRASS
+, <br />
+&#160;&#160;<a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a105a56ac435feecdb6d291cb69346c15">ReloadBorder</a> = NWScript.SETTILE_FLAG_RELOAD_BORDER
+, <br />
+&#160;&#160;<a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114">RecomputeLighting</a> = NWScript.SETTILE_FLAG_RECOMPUTE_LIGHTING
+<br />
+ }</td></tr>
+<tr class="separator:a0407f254114246b7d8015f2d11b7a9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0277bb6237141c1de1e874519134bc94"><td class="memItemLeft" align="right" valign="top"><a id="a0277bb6237141c1de1e874519134bc94"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ShaderUniform</b> { <br />
+&#160;&#160;<b>Uniform1</b> = NWScript.SHADER_UNIFORM_1
+, <br />
+&#160;&#160;<b>Uniform2</b> = NWScript.SHADER_UNIFORM_2
+, <br />
+&#160;&#160;<b>Uniform3</b> = NWScript.SHADER_UNIFORM_3
+, <br />
+&#160;&#160;<b>Uniform4</b> = NWScript.SHADER_UNIFORM_4
+, <br />
+&#160;&#160;<b>Uniform5</b> = NWScript.SHADER_UNIFORM_5
+, <br />
+&#160;&#160;<b>Uniform6</b> = NWScript.SHADER_UNIFORM_6
+, <br />
+&#160;&#160;<b>Uniform7</b> = NWScript.SHADER_UNIFORM_7
+, <br />
+&#160;&#160;<b>Uniform8</b> = NWScript.SHADER_UNIFORM_8
+, <br />
+&#160;&#160;<b>Uniform9</b> = NWScript.SHADER_UNIFORM_9
+, <br />
+&#160;&#160;<b>Uniform10</b> = NWScript.SHADER_UNIFORM_10
+, <br />
+&#160;&#160;<b>Uniform11</b> = NWScript.SHADER_UNIFORM_11
+, <br />
+&#160;&#160;<b>Uniform12</b> = NWScript.SHADER_UNIFORM_12
+, <br />
+&#160;&#160;<b>Uniform13</b> = NWScript.SHADER_UNIFORM_13
+, <br />
+&#160;&#160;<b>Uniform14</b> = NWScript.SHADER_UNIFORM_14
+, <br />
+&#160;&#160;<b>Uniform15</b> = NWScript.SHADER_UNIFORM_15
+, <br />
+&#160;&#160;<b>Uniform16</b> = NWScript.SHADER_UNIFORM_16
+<br />
+ }</td></tr>
+<tr class="separator:a0277bb6237141c1de1e874519134bc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87f44b0f5d37e4d5315e33bda407a026"><td class="memItemLeft" align="right" valign="top"><a id="a87f44b0f5d37e4d5315e33bda407a026"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>ShadowSize</b> { <br />
 &#160;&#160;<b>Small</b> = 0
 , <br />
@@ -12295,6 +12505,36 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a870f8c1015b2ddd30316a0b3a4f1cb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af18bc0097e8a9b0864570f7313aa0098"><td class="memItemLeft" align="right" valign="top"><a id="af18bc0097e8a9b0864570f7313aa0098"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>SpellTargetingFlags</b> { <br />
+&#160;&#160;<b>None</b> = NWScript.SPELL_TARGETING_FLAGS_NONE
+, <br />
+&#160;&#160;<b>HarmsEnemies</b> = NWScript.SPELL_TARGETING_FLAGS_HARMS_ENEMIES
+, <br />
+&#160;&#160;<b>HarmsAllies</b> = NWScript.SPELL_TARGETING_FLAGS_HARMS_ALLIES
+, <br />
+&#160;&#160;<b>HelpsAllies</b> = NWScript.SPELL_TARGETING_FLAGS_HELPS_ALLIES
+, <br />
+&#160;&#160;<b>IgnoresSelf</b> = NWScript.SPELL_TARGETING_FLAGS_IGNORES_SELF
+, <br />
+&#160;&#160;<b>OriginOnSelf</b> = NWScript.SPELL_TARGETING_FLAGS_ORIGIN_ON_SELF
+, <br />
+&#160;&#160;<b>SuppressWithTarget</b> = NWScript.SPELL_TARGETING_FLAGS_SUPPRESS_WITH_TARGET
+<br />
+ }</td></tr>
+<tr class="separator:af18bc0097e8a9b0864570f7313aa0098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67b13b3761575593defd1fa4444475f7"><td class="memItemLeft" align="right" valign="top"><a id="a67b13b3761575593defd1fa4444475f7"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>SpellTargetingShape</b> { <br />
+&#160;&#160;<b>None</b> = NWScript.SPELL_TARGETING_SHAPE_NONE
+, <br />
+&#160;&#160;<b>Sphere</b> = NWScript.SPELL_TARGETING_SHAPE_SPHERE
+, <br />
+&#160;&#160;<b>Rect</b> = NWScript.SPELL_TARGETING_SHAPE_RECT
+, <br />
+&#160;&#160;<b>Cone</b> = NWScript.SPELL_TARGETING_SHAPE_CONE
+, <br />
+&#160;&#160;<b>Hsphere</b> = NWScript.SPELL_TARGETING_SHAPE_HSPHERE
+<br />
+ }</td></tr>
+<tr class="separator:a67b13b3761575593defd1fa4444475f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff40c957966022b347feb8acb4eb59bd"><td class="memItemLeft" align="right" valign="top"><a id="aff40c957966022b347feb8acb4eb59bd"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>SpellTargetTypes</b> : ushort { <br />
 &#160;&#160;<b>Unknown</b> = 0
 , <br />
@@ -12351,6 +12591,33 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:a61cf496156df0a41a207217224a76b5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f3d816838d42c5e07652c56edf57de9"><td class="memItemLeft" align="right" valign="top"><a id="a7f3d816838d42c5e07652c56edf57de9"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Subfeat</b> { <br />
+&#160;&#160;<b>None</b> = 0
+, <br />
+&#160;&#160;<b>CalledShotLeg</b> = NWScript.SUBFEAT_CALLED_SHOT_LEG
+, <br />
+&#160;&#160;<b>CalledShotArms</b> = NWScript.SUBFEAT_CALLED_SHOT_ARMS
+, <br />
+&#160;&#160;<b>ElementalShapeEarth</b> = NWScript.SUBFEAT_ELEMENTAL_SHAPE_EARTH
+, <br />
+&#160;&#160;<b>ElementalShapeWater</b> = NWScript.SUBFEAT_ELEMENTAL_SHAPE_WATER
+, <br />
+&#160;&#160;<b>ElementalShapeFire</b> = NWScript.SUBFEAT_ELEMENTAL_SHAPE_FIRE
+, <br />
+&#160;&#160;<b>ElementalShapeAir</b> = NWScript.SUBFEAT_ELEMENTAL_SHAPE_AIR
+, <br />
+&#160;&#160;<b>WildShapeBrownBear</b> = NWScript.SUBFEAT_WILD_SHAPE_BROWN_BEAR
+, <br />
+&#160;&#160;<b>WildShapePanther</b> = NWScript.SUBFEAT_WILD_SHAPE_PANTHER
+, <br />
+&#160;&#160;<b>WildShapeWolf</b> = NWScript.SUBFEAT_WILD_SHAPE_WOLF
+, <br />
+&#160;&#160;<b>WildShapeBoar</b> = NWScript.SUBFEAT_WILD_SHAPE_BOAR
+, <br />
+&#160;&#160;<b>WildShapeBadger</b> = NWScript.SUBFEAT_WILD_SHAPE_BADGER
+<br />
+ }</td></tr>
+<tr class="separator:a7f3d816838d42c5e07652c56edf57de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e03899fce1a1a55e16225c7acc83aeb"><td class="memItemLeft" align="right" valign="top"><a id="a2e03899fce1a1a55e16225c7acc83aeb"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>SubSkill</b> { <br />
 &#160;&#160;<b>None</b> = 0
 , <br />
@@ -12502,6 +12769,17 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:acb2ebd2766ee95ee48f4fc87b4a7fe3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae19c32aacc3fdf3d00d892d76c3d747a"><td class="memItemLeft" align="right" valign="top"><a id="ae19c32aacc3fdf3d00d892d76c3d747a"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>TileRotation</b> { <br />
+&#160;&#160;<b>Rotate0</b>
+, <br />
+&#160;&#160;<b>Rotate90</b>
+, <br />
+&#160;&#160;<b>Rotate180</b>
+, <br />
+&#160;&#160;<b>Rotate270</b>
+<br />
+ }</td></tr>
+<tr class="separator:ae19c32aacc3fdf3d00d892d76c3d747a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1fba6134401fd90841b65653c162a55"><td class="memItemLeft" align="right" valign="top"><a id="ae1fba6134401fd90841b65653c162a55"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>TileSourceLightColor</b> { <br />
 &#160;&#160;<b>Black</b> = NWScript.TILE_SOURCE_LIGHT_COLOR_BLACK
 , <br />
@@ -14022,6 +14300,36 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="abb4c20347d06c89a2519219e26fb0ef3a17b444470103d0b6361cccaf88ff1f47"></a>OpenBackward&#160;</td><td class="fielddoc"><p>The backward open state of the door. This is the opposite direction of the arrow as shown in the toolset. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="abb4c20347d06c89a2519219e26fb0ef3aaefbd0597f1bc2493bbc18898243513b"></a>Destroyed&#160;</td><td class="fielddoc"><p>The destroyed state of the door. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0407f254114246b7d8015f2d11b7a9e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0407f254114246b7d8015f2d11b7a9e0">&#9670;&nbsp;</a></span>SettleFlags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0">Anvil.API.SettleFlags</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0407f254114246b7d8015f2d11b7a9e0a2e7fca71c3a794620bdba2b2535b2299"></a>ReloadGrass&#160;</td><td class="fielddoc"><p>Reloads the area's grass. Use if the old tile, or new tile has grass. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0407f254114246b7d8015f2d11b7a9e0a105a56ac435feecdb6d291cb69346c15"></a>ReloadBorder&#160;</td><td class="fielddoc"><p>Reloads the edge tile border. Use if the tile is on the edge of an area. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114"></a>RecomputeLighting&#160;</td><td class="fielddoc"><p>Recomputes the area lighting and static shadows. Use most of the time. </p>
 </td></tr>
 </table>
 

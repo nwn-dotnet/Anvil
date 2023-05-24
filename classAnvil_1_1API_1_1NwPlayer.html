@@ -142,6 +142,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4de21772dd54dec2f745c729303864a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac4de21772dd54dec2f745c729303864a">ApplyInstantVisualEffectToObject</a> (VfxType visualEffect, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target)</td></tr>
 <tr class="memdesc:ac4de21772dd54dec2f745c729303864a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified "instant" VFX (Com*, FNF*, IMP*) on the target for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac4de21772dd54dec2f745c729303864a">More...</a><br /></td></tr>
 <tr class="separator:ac4de21772dd54dec2f745c729303864a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8476e91a34a6ff584e92715df7626f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ae8476e91a34a6ff584e92715df7626f3">AttachCamera</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> target, bool findCleanView=false)</td></tr>
+<tr class="memdesc:ae8476e91a34a6ff584e92715df7626f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches this player's camera to the specified game object. The object must be in the same area, and within visible distance.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ae8476e91a34a6ff584e92715df7626f3">More...</a><br /></td></tr>
+<tr class="separator:ae8476e91a34a6ff584e92715df7626f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adfecd0ff995fbe1b040e3f0bae1eb3e5">BootPlayer</a> (string reason=&quot;&quot;)</td></tr>
 <tr class="memdesc:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boots the player from the server.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adfecd0ff995fbe1b040e3f0bae1eb3e5">More...</a><br /></td></tr>
 <tr class="separator:adfecd0ff995fbe1b040e3f0bae1eb3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,12 +163,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4216166616a7f794bd4950476ac2027a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4216166616a7f794bd4950476ac2027a">ClearTextureOverride</a> (string texName)</td></tr>
 <tr class="memdesc:a4216166616a7f794bd4950476ac2027a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the override for the specified texture, reverting to the original texture.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a4216166616a7f794bd4950476ac2027a">More...</a><br /></td></tr>
 <tr class="separator:a4216166616a7f794bd4950476ac2027a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9661a262d6d36503e365e6a1483c7861"><td class="memItemLeft" align="right" valign="top"><a id="a9661a262d6d36503e365e6a1483c7861"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearTlkOverride</b> (int strRef, bool restoreGlobal=true)</td></tr>
-<tr class="separator:a9661a262d6d36503e365e6a1483c7861"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acef7e5fb92867c2900120be30eea684c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#acef7e5fb92867c2900120be30eea684c">CreateNuiWindow</a> (<a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a> window, string windowId=&quot;&quot;)</td></tr>
-<tr class="memdesc:acef7e5fb92867c2900120be30eea684c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NUI window inline for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#acef7e5fb92867c2900120be30eea684c">More...</a><br /></td></tr>
-<tr class="separator:acef7e5fb92867c2900120be30eea684c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a623e6ad1acb24b7b5afac64824892e18"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a623e6ad1acb24b7b5afac64824892e18">Delete</a> (string kickMessage, bool preserveBackup=true)</td></tr>
 <tr class="memdesc:a623e6ad1acb24b7b5afac64824892e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Immediately kicks the player and deletes their character file (.bic).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a623e6ad1acb24b7b5afac64824892e18">More...</a><br /></td></tr>
 <tr class="separator:a623e6ad1acb24b7b5afac64824892e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,10 +181,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayFloatingTextSt
 <tr class="memdesc:a6be81659c72fd8310b12916246da2cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters "Cutscene" mode, disabling GUI and camera controls for the player and marking them as plot object (invulnerable).<br  />
  See <a class="el" href="classAnvil_1_1API_1_1Effect.html#a704380652a799a2d295bb17b017b8d13" title="Creates an effect that allows creatures to pathfind through other creatures without bumping.">Effect.CutsceneGhost</a>, and other Cutscene* effects for hiding and controlling the player creature during cutscene mode.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a6be81659c72fd8310b12916246da2cf8">More...</a><br /></td></tr>
 <tr class="separator:a6be81659c72fd8310b12916246da2cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2444767a1d67ae647fe5e7c67627119c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2444767a1d67ae647fe5e7c67627119c">EnterTargetMode</a> (Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt; handler, ObjectTypes validTargets=ObjectTypes.All, MouseCursor cursorType=MouseCursor.Magic, MouseCursor badTargetCursor=MouseCursor.NoMagic)</td></tr>
-<tr class="memdesc:a2444767a1d67ae647fe5e7c67627119c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br  />
- If the player is already in targeting mode, the existing handler will be cleared. See <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c" title="Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the p...">TryEnterTargetMode</a> to handle this.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a2444767a1d67ae647fe5e7c67627119c">More...</a><br /></td></tr>
-<tr class="separator:a2444767a1d67ae647fe5e7c67627119c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f8ca7454032483bcbb384a1e37775e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1f8ca7454032483bcbb384a1e37775e4">EnterTargetMode</a> (Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt; handler, <a class="el" href="classAnvil_1_1Services_1_1TargetModeSettings.html">TargetModeSettings</a>? settings=null)</td></tr>
+<tr class="memdesc:a1f8ca7454032483bcbb384a1e37775e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1f8ca7454032483bcbb384a1e37775e4">More...</a><br /></td></tr>
+<tr class="separator:a1f8ca7454032483bcbb384a1e37775e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2037eaea571c234299c8a26f369a933"><td class="memItemLeft" align="right" valign="top"><a id="ae2037eaea571c234299c8a26f369a933"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Equals</b> (<a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a>? other)</td></tr>
 <tr class="separator:ae2037eaea571c234299c8a26f369a933"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,24 +261,6 @@ override int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHashCode</
 <tr class="memitem:a5c6b6518b014b355a25f23af0d2d31fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd">NightToDay</a> (TimeSpan delayTransitionTime=default)</td></tr>
 <tr class="memdesc:a5c6b6518b014b355a25f23af0d2d31fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the current Day/Night cycle for the player to daylight.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd">More...</a><br /></td></tr>
 <tr class="separator:a5c6b6518b014b355a25f23af0d2d31fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9266745f1f4c9fc6e9493523d67b3994"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a9266745f1f4c9fc6e9493523d67b3994">NuiDestroy</a> (int uiToken)</td></tr>
-<tr class="memdesc:a9266745f1f4c9fc6e9493523d67b3994"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the given window, by token, immediately closing it on the client.<br  />
- Does nothing if nUiToken does not exist on the client.<br  />
- Does not send a close event - this immediately destroys all serverside state.<br  />
- The client will close the window asynchronously.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a9266745f1f4c9fc6e9493523d67b3994">More...</a><br /></td></tr>
-<tr class="separator:a9266745f1f4c9fc6e9493523d67b3994"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e028194bb5192fd5f17b11d988ea1db"><td class="memItemLeft" align="right" valign="top">T?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8e028194bb5192fd5f17b11d988ea1db">NuiGetUserData&lt; T &gt;</a> (int uiToken)</td></tr>
-<tr class="memdesc:a8e028194bb5192fd5f17b11d988ea1db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the userdata of the given window token.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8e028194bb5192fd5f17b11d988ea1db">More...</a><br /></td></tr>
-<tr class="separator:a8e028194bb5192fd5f17b11d988ea1db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f675a88a459e6b22ed0681b6565ee57"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3f675a88a459e6b22ed0681b6565ee57">NuiGetWindowId</a> (int uiToken)</td></tr>
-<tr class="memdesc:a3f675a88a459e6b22ed0681b6565ee57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the root window ID associated with the specified token.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3f675a88a459e6b22ed0681b6565ee57">More...</a><br /></td></tr>
-<tr class="separator:a3f675a88a459e6b22ed0681b6565ee57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2252ae7f71d52bd2edd1b6cab526e74d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2252ae7f71d52bd2edd1b6cab526e74d">NuiSetUserData&lt; T &gt;</a> (int uiToken, T userData)</td></tr>
-<tr class="memdesc:a2252ae7f71d52bd2edd1b6cab526e74d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an arbitrary json value as userdata on the given window token.<br  />
- This userdata is not read or handled by the game engine and not sent to clients.<br  />
- This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.<br  />
- Will do nothing if the window does not exist.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a2252ae7f71d52bd2edd1b6cab526e74d">More...</a><br /></td></tr>
-<tr class="separator:a2252ae7f71d52bd2edd1b6cab526e74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2df962423380bf47fd03a73ecc6f88a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#af2df962423380bf47fd03a73ecc6f88a">OpenInventory</a> ()</td></tr>
 <tr class="memdesc:af2df962423380bf47fd03a73ecc6f88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs the player to open their inventory.  <a href="classAnvil_1_1API_1_1NwPlayer.html#af2df962423380bf47fd03a73ecc6f88a">More...</a><br /></td></tr>
 <tr class="separator:af2df962423380bf47fd03a73ecc6f88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -345,14 +323,18 @@ byte?[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (boo
 <tr class="memitem:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3a5d2bb12acfeb08290e1fc26ce7f3a4">SetCameraFacing</a> (float direction, float pitch=-1.0f, float distance=-1.0f, CameraTransitionType transitionType=CameraTransitionType.Snap)</td></tr>
 <tr class="memdesc:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the direction the player's camera is facing.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3a5d2bb12acfeb08290e1fc26ce7f3a4">More...</a><br /></td></tr>
 <tr class="separator:a3a5d2bb12acfeb08290e1fc26ce7f3a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e733eda8fd62845e3208125cd80cda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a10e733eda8fd62845e3208125cd80cda">SetCameraLimits</a> (float minPitch=-1.0f, float maxPitch=-1.0f, float minDist=-1.0f, float maxDist=-1.0f)</td></tr>
+<tr class="memdesc:a10e733eda8fd62845e3208125cd80cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets camera limits that override any client configuration.<br  />
+ A value of -1 means to use the client limits.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a10e733eda8fd62845e3208125cd80cda">More...</a><br /></td></tr>
+<tr class="separator:a10e733eda8fd62845e3208125cd80cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17c170270577aa7d99d5020a2d1190be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a17c170270577aa7d99d5020a2d1190be">SetCutsceneMode</a> (bool inCutscene=true, bool leftClickEnabled=false)</td></tr>
 <tr class="memdesc:a17c170270577aa7d99d5020a2d1190be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles the CutsceneMode state for the player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a17c170270577aa7d99d5020a2d1190be">More...</a><br /></td></tr>
 <tr class="separator:a17c170270577aa7d99d5020a2d1190be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fdd717e8d3c5d484def4186de39524d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8fdd717e8d3c5d484def4186de39524d">SetGuiPanelDisabled</a> (GUIPanel panel, bool disabled)</td></tr>
-<tr class="memdesc:a8fdd717e8d3c5d484def4186de39524d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable a specific gui panel for this player.<br  />
+<tr class="memitem:a0d40857447fb9068e7a9f46bf71292b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0d40857447fb9068e7a9f46bf71292b2">SetGuiPanelDisabled</a> (GUIPanel panel, bool disabled, <a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>? targetObject=null)</td></tr>
+<tr class="memdesc:a0d40857447fb9068e7a9f46bf71292b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable a specific gui panel for this player.<br  />
  Will close the GUI panel if it is currently open.<br  />
- Will fire a GuiEventType.DisabledPanelAttemptOpen event for some panels if a player attempts to open them while disabled.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8fdd717e8d3c5d484def4186de39524d">More...</a><br /></td></tr>
-<tr class="separator:a8fdd717e8d3c5d484def4186de39524d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+ Will fire a GuiEventType.DisabledPanelAttemptOpen event for some panels if a player attempts to open them while disabled.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a0d40857447fb9068e7a9f46bf71292b2">More...</a><br /></td></tr>
+<tr class="separator:a0d40857447fb9068e7a9f46bf71292b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a722a64998c72b5a483559679686649e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a722a64998c72b5a483559679686649e4">SetObjectNameOverride</a> (<a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a> gameObject, string name)</td></tr>
 <tr class="memdesc:a722a64998c72b5a483559679686649e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an override name for a specific game object, as visible from this player.<br  />
  Supports placeables, doors, items and creatures.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a722a64998c72b5a483559679686649e4">More...</a><br /></td></tr>
@@ -369,12 +351,30 @@ byte?[]&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (boo
 <tr class="memitem:a2b2a1c97cb873a4091d3f14a4df50820"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a2b2a1c97cb873a4091d3f14a4df50820">SetPlayerNameOverride</a> (<a class="el" href="classAnvil_1_1Services_1_1PlayerNameOverride.html">PlayerNameOverride</a> nameOverride, <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html">NwPlayer</a> observer)</td></tr>
 <tr class="memdesc:a2b2a1c97cb873a4091d3f14a4df50820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an override player character name and community name on the player list as observed by a specific player. Is not persistent.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a2b2a1c97cb873a4091d3f14a4df50820">More...</a><br /></td></tr>
 <tr class="separator:a2b2a1c97cb873a4091d3f14a4df50820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4cee7cde643541dc97a48f7091308bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ab4cee7cde643541dc97a48f7091308bf">SetShaderUniform</a> (ShaderUniform uniform, float value)</td></tr>
+<tr class="memdesc:ab4cee7cde643541dc97a48f7091308bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a global shader uniform for this player.<br  />
+ These uniforms are not used by the base game and are reserved for module-specific scripting.<br  />
+ You need to add custom shaders that will make use of them.<br  />
+ In multiplayer, these need to be reapplied when a player rejoins.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ab4cee7cde643541dc97a48f7091308bf">More...</a><br /></td></tr>
+<tr class="separator:ab4cee7cde643541dc97a48f7091308bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a8812bcd56f764028d0a5e359193e80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a4a8812bcd56f764028d0a5e359193e80">SetShaderUniform</a> (ShaderUniform uniform, int value)</td></tr>
+<tr class="memdesc:a4a8812bcd56f764028d0a5e359193e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a global shader uniform for this player.<br  />
+ These uniforms are not used by the base game and are reserved for module-specific scripting.<br  />
+ You need to add custom shaders that will make use of them.<br  />
+ In multiplayer, these need to be reapplied when a player rejoins.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a4a8812bcd56f764028d0a5e359193e80">More...</a><br /></td></tr>
+<tr class="separator:a4a8812bcd56f764028d0a5e359193e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11ae094d639900c70f0486eb7918cef5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a11ae094d639900c70f0486eb7918cef5">SetShaderUniform</a> (ShaderUniform uniform, Vector4 value)</td></tr>
+<tr class="memdesc:a11ae094d639900c70f0486eb7918cef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a global shader uniform for this player.<br  />
+ These uniforms are not used by the base game and are reserved for module-specific scripting.<br  />
+ You need to add custom shaders that will make use of them.<br  />
+ In multiplayer, these need to be reapplied when a player rejoins.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a11ae094d639900c70f0486eb7918cef5">More...</a><br /></td></tr>
+<tr class="separator:a11ae094d639900c70f0486eb7918cef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dfe04eb650f130c67552209b2a67fcf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1dfe04eb650f130c67552209b2a67fcf">SetSpellTargetingData</a> (<a class="el" href="classAnvil_1_1Services_1_1TargetingData.html">TargetingData</a> data)</td></tr>
+<tr class="memdesc:a1dfe04eb650f130c67552209b2a67fcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a spell targeting data override for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1dfe04eb650f130c67552209b2a67fcf">More...</a><br /></td></tr>
+<tr class="separator:a1dfe04eb650f130c67552209b2a67fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a">SetTextureOverride</a> (string oldTexName, string newTexName)</td></tr>
 <tr class="memdesc:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes ControlledCreature PC load a new texture instead of another.  <a href="classAnvil_1_1API_1_1NwPlayer.html#adeeb25eb5bc3151144cb3ac9025f8a4a">More...</a><br /></td></tr>
 <tr class="separator:adeeb25eb5bc3151144cb3ac9025f8a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa79d83513f8784871e78ad5f78a56bf7"><td class="memItemLeft" align="right" valign="top"><a id="aa79d83513f8784871e78ad5f78a56bf7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTlkOverride</b> (int strRef, string value)</td></tr>
-<tr class="separator:aa79d83513f8784871e78ad5f78a56bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98">ShowVisualEffect</a> (VfxType effectType, Vector3 position)</td></tr>
 <tr class="memdesc:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays the specified VFX at the target position in the current area for this player only.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8f2a3476e8921be1ceb3d7b32af38a98">More...</a><br /></td></tr>
 <tr class="separator:a8f2a3476e8921be1ceb3d7b32af38a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -385,16 +385,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTlkOverride</b> (i
 <tr class="memdesc:a0bc9c76edce52a72270972857a12cf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores (bookmarks) the camera's facing and position so it can be restored later with RestoreCameraFacing.<br  />
   <a href="classAnvil_1_1API_1_1NwPlayer.html#a0bc9c76edce52a72270972857a12cf65">More...</a><br /></td></tr>
 <tr class="separator:a0bc9c76edce52a72270972857a12cf65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1962676b01346914b13373408f1011f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2">TryCreateNuiWindow</a> (<a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a> window, out int token, string windowId=&quot;&quot;)</td></tr>
-<tr class="memdesc:a1962676b01346914b13373408f1011f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NUI window inline for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1962676b01346914b13373408f1011f2">More...</a><br /></td></tr>
-<tr class="separator:a1962676b01346914b13373408f1011f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c58899e70f83fc6aa8140a730499fe5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1c58899e70f83fc6aa8140a730499fe5">TryCreateNuiWindow</a> (<a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a> window, out <a class="el" href="structAnvil_1_1API_1_1NuiWindowToken.html">NuiWindowToken</a> token, string windowId=&quot;&quot;)</td></tr>
 <tr class="memdesc:a1c58899e70f83fc6aa8140a730499fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a NUI window for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1c58899e70f83fc6aa8140a730499fe5">More...</a><br /></td></tr>
 <tr class="separator:a1c58899e70f83fc6aa8140a730499fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac19bc6505d5880d90034d9bf5d0dbe6c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c">TryEnterTargetMode</a> (Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt; handler, ObjectTypes validTargets=ObjectTypes.All, MouseCursor cursorType=MouseCursor.Magic, MouseCursor badTargetCursor=MouseCursor.NoMagic)</td></tr>
-<tr class="memdesc:ac19bc6505d5880d90034d9bf5d0dbe6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br  />
- If the player is already in targeting mode, the existing handler will not be cleared.  <a href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c">More...</a><br /></td></tr>
-<tr class="separator:ac19bc6505d5880d90034d9bf5d0dbe6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00e325ed80818cc3c4843ce518f0b2cb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a00e325ed80818cc3c4843ce518f0b2cb">TryEnterTargetMode</a> (Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1ModuleEvents_1_1OnPlayerTarget.html">ModuleEvents.OnPlayerTarget</a> &gt; handler, <a class="el" href="classAnvil_1_1Services_1_1TargetModeSettings.html">TargetModeSettings</a>? settings=null)</td></tr>
+<tr class="memdesc:a00e325ed80818cc3c4843ce518f0b2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br  />
+ If the player is already in targeting mode, the existing handler will not be cleared.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a00e325ed80818cc3c4843ce518f0b2cb">More...</a><br /></td></tr>
+<tr class="separator:a00e325ed80818cc3c4843ce518f0b2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">UnlockAchievement</a> (string achievementId, int lastValue=0, int currentValue=0, int maxValue=0)</td></tr>
 <tr class="memdesc:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock an achievement for the player who must be logged in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a8e2c0d6b5ef7e90493f25cac14830f1e">More...</a><br /></td></tr>
 <tr class="separator:a8e2c0d6b5ef7e90493f25cac14830f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -422,6 +419,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a1173f6e794fadffce1cfdc01a92adaf1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a1173f6e794fadffce1cfdc01a92adaf1">BicFileName</a><code> [get]</code></td></tr>
 <tr class="memdesc:a1173f6e794fadffce1cfdc01a92adaf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the player's .bic file.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a1173f6e794fadffce1cfdc01a92adaf1">More...</a><br /></td></tr>
 <tr class="separator:a1173f6e794fadffce1cfdc01a92adaf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eac09d11e43a57675d0061beb781540"><td class="memItemLeft" align="right" valign="top">CameraFlag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3eac09d11e43a57675d0061beb781540">CameraFlags</a><code> [set]</code></td></tr>
+<tr class="memdesc:a3eac09d11e43a57675d0061beb781540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets camera settings that override any client configuration settings.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3eac09d11e43a57675d0061beb781540">More...</a><br /></td></tr>
+<tr class="separator:a3eac09d11e43a57675d0061beb781540"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a3af8cf7c1c922ebcb26b3bd52c71435b">CameraHeight</a><code> [set]</code></td></tr>
 <tr class="memdesc:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the camera height for this player.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a3af8cf7c1c922ebcb26b3bd52c71435b">More...</a><br /></td></tr>
 <tr class="separator:a3af8cf7c1c922ebcb26b3bd52c71435b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -429,8 +429,11 @@ Properties</h2></td></tr>
 <tr class="memdesc:a79b92bff4fe5f9da4ae104fa96db1b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the public part of the CD key that the player used when logging in.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a79b92bff4fe5f9da4ae104fa96db1b39">More...</a><br /></td></tr>
 <tr class="separator:a79b92bff4fe5f9da4ae104fa96db1b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="memItemLeft" align="right" valign="top">Version&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a022ee203ba1d0bb87a9ad3d634b9070d">ClientVersion</a><code> [get]</code></td></tr>
-<tr class="memdesc:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's client version (Major + Minor).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a022ee203ba1d0bb87a9ad3d634b9070d">More...</a><br /></td></tr>
+<tr class="memdesc:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's client version (Major + Minor + Build).  <a href="classAnvil_1_1API_1_1NwPlayer.html#a022ee203ba1d0bb87a9ad3d634b9070d">More...</a><br /></td></tr>
 <tr class="separator:a022ee203ba1d0bb87a9ad3d634b9070d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf41da2801b2c7c626c33e939091d5af"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#abf41da2801b2c7c626c33e939091d5af">ClientVersionCommitSha1</a><code> [get]</code></td></tr>
+<tr class="memdesc:abf41da2801b2c7c626c33e939091d5af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's client version, as a Sha1 commit hash.  <a href="classAnvil_1_1API_1_1NwPlayer.html#abf41da2801b2c7c626c33e939091d5af">More...</a><br /></td></tr>
+<tr class="separator:abf41da2801b2c7c626c33e939091d5af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacc338f9941c967362d26c21f0b9c7b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1API_1_1NwCreature.html">NwCreature</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#aacc338f9941c967362d26c21f0b9c7b9">ControlledCreature</a><code> [get]</code></td></tr>
 <tr class="memdesc:aacc338f9941c967362d26c21f0b9c7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the creature this player is currently controlling.<br  />
  This will return the player's current possessed creature (familiar, DM possession), otherwise their player character if they are currently not possessing a creature.  <a href="classAnvil_1_1API_1_1NwPlayer.html#aacc338f9941c967362d26c21f0b9c7b9">More...</a><br /></td></tr>
@@ -452,7 +455,7 @@ Properties</h2></td></tr>
 <tr class="separator:acd0cd46b2a3ae23868701fe00b079c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c0231693ae3d04bb2e7e985d3b53a2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a0c0231693ae3d04bb2e7e985d3b53a2a">IsInCursorTargetMode</a><code> [get]</code></td></tr>
 <tr class="memdesc:a0c0231693ae3d04bb2e7e985d3b53a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if this player is in cursor targeting mode.<br  />
- NOTE! Only works if the player entered target mode using <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c" title="Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the p...">TryEnterTargetMode</a>.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a0c0231693ae3d04bb2e7e985d3b53a2a">More...</a><br /></td></tr>
+ NOTE! Only works if the player entered target mode using <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a00e325ed80818cc3c4843ce518f0b2cb" title="Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the p...">TryEnterTargetMode</a>.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a0c0231693ae3d04bb2e7e985d3b53a2a">More...</a><br /></td></tr>
 <tr class="separator:a0c0231693ae3d04bb2e7e985d3b53a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a791a7cf9b498bae61b86fe269659e28a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a791a7cf9b498bae61b86fe269659e28a">IsInCutsceneMode</a><code> [get]</code></td></tr>
 <tr class="memdesc:a791a7cf9b498bae61b86fe269659e28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether ControlledCreature creature is currently in "Cutscene" mode.  <a href="classAnvil_1_1API_1_1NwPlayer.html#a791a7cf9b498bae61b86fe269659e28a">More...</a><br /></td></tr>
@@ -1051,6 +1054,51 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 
 </div>
 </div>
+<a id="ae8476e91a34a6ff584e92715df7626f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8476e91a34a6ff584e92715df7626f3">&#9670;&nbsp;</a></span>AttachCamera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.AttachCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>findCleanView</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attaches this player's camera to the specified game object. The object must be in the same area, and within visible distance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The target object.</td></tr>
+    <tr><td class="paramname">findCleanView</td><td>If true, the client will attempt to find a camera position where the target is in view.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="adfecd0ff995fbe1b040e3f0bae1eb3e5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adfecd0ff995fbe1b040e3f0bae1eb3e5">&#9670;&nbsp;</a></span>BootPlayer()</h2>
 
@@ -1255,52 +1303,6 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 
 </div>
 </div>
-<a id="acef7e5fb92867c2900120be30eea684c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acef7e5fb92867c2900120be30eea684c">&#9670;&nbsp;</a></span>CreateNuiWindow()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Anvil.API.NwPlayer.CreateNuiWindow </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a>&#160;</td>
-          <td class="paramname"><em>window</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>windowId</em> = <code>&quot;&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Create a NUI window inline for this player. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">window</td><td>The window to create.</td></tr>
-    <tr><td class="paramname">windowId</td><td>A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The window token on success (!= 0), or 0 on error.</dd></dl>
-
-</div>
-</div>
 <a id="a623e6ad1acb24b7b5afac64824892e18"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a623e6ad1acb24b7b5afac64824892e18">&#9670;&nbsp;</a></span>Delete()</h2>
 
@@ -1461,8 +1463,8 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 
 </div>
 </div>
-<a id="a2444767a1d67ae647fe5e7c67627119c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2444767a1d67ae647fe5e7c67627119c">&#9670;&nbsp;</a></span>EnterTargetMode()</h2>
+<a id="a1f8ca7454032483bcbb384a1e37775e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8ca7454032483bcbb384a1e37775e4">&#9670;&nbsp;</a></span>EnterTargetMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1479,20 +1481,8 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ObjectTypes&#160;</td>
-          <td class="paramname"><em>validTargets</em> = <code>ObjectTypes.All</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MouseCursor&#160;</td>
-          <td class="paramname"><em>cursorType</em> = <code>MouseCursor.Magic</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MouseCursor&#160;</td>
-          <td class="paramname"><em>badTargetCursor</em> = <code>MouseCursor.NoMagic</code>&#160;</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1Services_1_1TargetModeSettings.html">TargetModeSettings</a>?&#160;</td>
+          <td class="paramname"><em>settings</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1507,14 +1497,11 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 </table>
 </div><div class="memdoc">
 
-<p>Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something.<br  />
- If the player is already in targeting mode, the existing handler will be cleared. See <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c" title="Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the p...">TryEnterTargetMode</a> to handle this. </p>
+<p>Triggers the player to enter cursor targeting mode, invoking the specified handler once the player selects something. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">handler</td><td>The lamda/method to invoke once this player selects something.</td></tr>
-    <tr><td class="paramname">validTargets</td><td>The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</td></tr>
-    <tr><td class="paramname">cursorType</td><td>The type of cursor to show if the player is hovering over a valid target.</td></tr>
-    <tr><td class="paramname">badTargetCursor</td><td>The type of cursor to show if the player is hovering over an invalid target.</td></tr>
+    <tr><td class="paramname">settings</td><td>Display and behaviour options for the target mode.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2289,173 +2276,6 @@ Action&lt; <a class="el" href="classAnvil_1_1API_1_1Events_1_1OnServerSendArea.h
 
 </div>
 </div>
-<a id="a9266745f1f4c9fc6e9493523d67b3994"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9266745f1f4c9fc6e9493523d67b3994">&#9670;&nbsp;</a></span>NuiDestroy()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Anvil.API.NwPlayer.NuiDestroy </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>uiToken</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Destroys the given window, by token, immediately closing it on the client.<br  />
- Does nothing if nUiToken does not exist on the client.<br  />
- Does not send a close event - this immediately destroys all serverside state.<br  />
- The client will close the window asynchronously. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uiToken</td><td>The token of the window to destroy.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a8e028194bb5192fd5f17b11d988ea1db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e028194bb5192fd5f17b11d988ea1db">&#9670;&nbsp;</a></span>NuiGetUserData&lt; T &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T? Anvil.API.NwPlayer.NuiGetUserData&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>uiToken</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the userdata of the given window token. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uiToken</td><td>The token for the window to query.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>A serializable class structure matching the data to fetch.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The fetched data, or null if the window does not exist on the given player, or has no userdata set.</dd></dl>
-
-</div>
-</div>
-<a id="a3f675a88a459e6b22ed0681b6565ee57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f675a88a459e6b22ed0681b6565ee57">&#9670;&nbsp;</a></span>NuiGetWindowId()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Anvil.API.NwPlayer.NuiGetWindowId </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>uiToken</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the root window ID associated with the specified token. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uiToken</td><td>The token to query.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The ID of the window if assigned, otherwise an empty string.</dd></dl>
-
-</div>
-</div>
-<a id="a2252ae7f71d52bd2edd1b6cab526e74d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2252ae7f71d52bd2edd1b6cab526e74d">&#9670;&nbsp;</a></span>NuiSetUserData&lt; T &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Anvil.API.NwPlayer.NuiSetUserData&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>uiToken</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>userData</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets an arbitrary json value as userdata on the given window token.<br  />
- This userdata is not read or handled by the game engine and not sent to clients.<br  />
- This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.<br  />
- Will do nothing if the window does not exist. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uiToken</td><td>The token to associate the data with.</td></tr>
-    <tr><td class="paramname">userData</td><td>The data to store.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of data to store. Must be serializable to JSON.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="af2df962423380bf47fd03a73ecc6f88a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af2df962423380bf47fd03a73ecc6f88a">&#9670;&nbsp;</a></span>OpenInventory() <span class="overload">[1/3]</span></h2>
 
@@ -3137,6 +2957,57 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
+<a id="a10e733eda8fd62845e3208125cd80cda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10e733eda8fd62845e3208125cd80cda">&#9670;&nbsp;</a></span>SetCameraLimits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetCameraLimits </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minPitch</em> = <code>-1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxPitch</em> = <code>-1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minDist</em> = <code>-1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxDist</em> = <code>-1.0f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets camera limits that override any client configuration.<br  />
+ A value of -1 means to use the client limits. </p>
+
+</div>
+</div>
 <a id="a17c170270577aa7d99d5020a2d1190be"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a17c170270577aa7d99d5020a2d1190be">&#9670;&nbsp;</a></span>SetCutsceneMode()</h2>
 
@@ -3182,8 +3053,8 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
-<a id="a8fdd717e8d3c5d484def4186de39524d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fdd717e8d3c5d484def4186de39524d">&#9670;&nbsp;</a></span>SetGuiPanelDisabled()</h2>
+<a id="a0d40857447fb9068e7a9f46bf71292b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d40857447fb9068e7a9f46bf71292b2">&#9670;&nbsp;</a></span>SetGuiPanelDisabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3201,7 +3072,13 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>disabled</em>&#160;</td>
+          <td class="paramname"><em>disabled</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NwGameObject.html">NwGameObject</a>?&#160;</td>
+          <td class="paramname"><em>targetObject</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3223,6 +3100,7 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
   <table class="params">
     <tr><td class="paramname">panel</td><td>The panel type to disable.</td></tr>
     <tr><td class="paramname">disabled</td><td>True to disable the panel, false to re-enable the panel.</td></tr>
+    <tr><td class="paramname">targetObject</td><td>The target object (e.g. examined object) where this panel should be disabled.</td></tr>
   </table>
   </dd>
 </dl>
@@ -3443,6 +3321,190 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
+<a id="ab4cee7cde643541dc97a48f7091308bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cee7cde643541dc97a48f7091308bf">&#9670;&nbsp;</a></span>SetShaderUniform() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetShaderUniform </td>
+          <td>(</td>
+          <td class="paramtype">ShaderUniform&#160;</td>
+          <td class="paramname"><em>uniform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a global shader uniform for this player.<br  />
+ These uniforms are not used by the base game and are reserved for module-specific scripting.<br  />
+ You need to add custom shaders that will make use of them.<br  />
+ In multiplayer, these need to be reapplied when a player rejoins. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uniform</td><td>The uniform to set.</td></tr>
+    <tr><td class="paramname">value</td><td>The value to set for the uniform.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4a8812bcd56f764028d0a5e359193e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a8812bcd56f764028d0a5e359193e80">&#9670;&nbsp;</a></span>SetShaderUniform() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetShaderUniform </td>
+          <td>(</td>
+          <td class="paramtype">ShaderUniform&#160;</td>
+          <td class="paramname"><em>uniform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a global shader uniform for this player.<br  />
+ These uniforms are not used by the base game and are reserved for module-specific scripting.<br  />
+ You need to add custom shaders that will make use of them.<br  />
+ In multiplayer, these need to be reapplied when a player rejoins. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uniform</td><td>The uniform to set.</td></tr>
+    <tr><td class="paramname">value</td><td>The value to set for the uniform.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a11ae094d639900c70f0486eb7918cef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11ae094d639900c70f0486eb7918cef5">&#9670;&nbsp;</a></span>SetShaderUniform() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetShaderUniform </td>
+          <td>(</td>
+          <td class="paramtype">ShaderUniform&#160;</td>
+          <td class="paramname"><em>uniform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector4&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a global shader uniform for this player.<br  />
+ These uniforms are not used by the base game and are reserved for module-specific scripting.<br  />
+ You need to add custom shaders that will make use of them.<br  />
+ In multiplayer, these need to be reapplied when a player rejoins. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uniform</td><td>The uniform to set.</td></tr>
+    <tr><td class="paramname">value</td><td>The value to set for the uniform.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1dfe04eb650f130c67552209b2a67fcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dfe04eb650f130c67552209b2a67fcf">&#9670;&nbsp;</a></span>SetSpellTargetingData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.NwPlayer.SetSpellTargetingData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1Services_1_1TargetingData.html">TargetingData</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a spell targeting data override for this player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The override to apply.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentNullException</td><td>Thrown if data.Spell is not specified.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="adeeb25eb5bc3151144cb3ac9025f8a4a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adeeb25eb5bc3151144cb3ac9025f8a4a">&#9670;&nbsp;</a></span>SetTextureOverride()</h2>
 
@@ -3588,61 +3650,8 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
-<a id="a1962676b01346914b13373408f1011f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1962676b01346914b13373408f1011f2">&#9670;&nbsp;</a></span>TryCreateNuiWindow() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Anvil.API.NwPlayer.TryCreateNuiWindow </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1NuiWindow.html">NuiWindow</a>&#160;</td>
-          <td class="paramname"><em>window</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">out int&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>windowId</em> = <code>&quot;&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Create a NUI window inline for this player. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">window</td><td>The window to create.</td></tr>
-    <tr><td class="paramname">token</td><td>The player-unique token for this window instance.</td></tr>
-    <tr><td class="paramname">windowId</td><td>A unique alphanumeric ID identifying this window. Re-creating a window with the same id of one already open will immediately close the old one.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the window was successfully created, otherwise false.</dd></dl>
-
-</div>
-</div>
 <a id="a1c58899e70f83fc6aa8140a730499fe5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c58899e70f83fc6aa8140a730499fe5">&#9670;&nbsp;</a></span>TryCreateNuiWindow() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c58899e70f83fc6aa8140a730499fe5">&#9670;&nbsp;</a></span>TryCreateNuiWindow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3694,8 +3703,8 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
-<a id="ac19bc6505d5880d90034d9bf5d0dbe6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac19bc6505d5880d90034d9bf5d0dbe6c">&#9670;&nbsp;</a></span>TryEnterTargetMode()</h2>
+<a id="a00e325ed80818cc3c4843ce518f0b2cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e325ed80818cc3c4843ce518f0b2cb">&#9670;&nbsp;</a></span>TryEnterTargetMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3712,20 +3721,8 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ObjectTypes&#160;</td>
-          <td class="paramname"><em>validTargets</em> = <code>ObjectTypes.All</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MouseCursor&#160;</td>
-          <td class="paramname"><em>cursorType</em> = <code>MouseCursor.Magic</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MouseCursor&#160;</td>
-          <td class="paramname"><em>badTargetCursor</em> = <code>MouseCursor.NoMagic</code>&#160;</td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1Services_1_1TargetModeSettings.html">TargetModeSettings</a>?&#160;</td>
+          <td class="paramname"><em>settings</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3745,9 +3742,7 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">handler</td><td>The lamda/method to invoke once this player selects something.</td></tr>
-    <tr><td class="paramname">validTargets</td><td>The type of objects that are valid for selection. ObjectTypes is a flags enum, so multiple types may be specified using the OR operator (ObjectTypes.Creature | ObjectTypes.Placeable).</td></tr>
-    <tr><td class="paramname">cursorType</td><td>The type of cursor to show if the player is hovering over a valid target.</td></tr>
-    <tr><td class="paramname">badTargetCursor</td><td>The type of cursor to show if the player is hovering over an invalid target.</td></tr>
+    <tr><td class="paramname">settings</td><td>Display and behaviour options for the target mode.</td></tr>
   </table>
   </dd>
 </dl>
@@ -3918,6 +3913,30 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 
 </div>
 </div>
+<a id="a3eac09d11e43a57675d0061beb781540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eac09d11e43a57675d0061beb781540">&#9670;&nbsp;</a></span>CameraFlags</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CameraFlag Anvil.API.NwPlayer.CameraFlags</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets camera settings that override any client configuration settings. </p>
+
+</div>
+</div>
 <a id="a3af8cf7c1c922ebcb26b3bd52c71435b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3af8cf7c1c922ebcb26b3bd52c71435b">&#9670;&nbsp;</a></span>CameraHeight</h2>
 
@@ -3986,7 +4005,31 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 </table>
 </div><div class="memdoc">
 
-<p>Gets the player's client version (Major + Minor). </p>
+<p>Gets the player's client version (Major + Minor + Build). </p>
+
+</div>
+</div>
+<a id="abf41da2801b2c7c626c33e939091d5af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf41da2801b2c7c626c33e939091d5af">&#9670;&nbsp;</a></span>ClientVersionCommitSha1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Anvil.API.NwPlayer.ClientVersionCommitSha1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the player's client version, as a Sha1 commit hash. </p>
 
 </div>
 </div>
@@ -4156,7 +4199,7 @@ Respawning will incur a penalty of 50 XP per level of your character and the los
 </div><div class="memdoc">
 
 <p>Gets if this player is in cursor targeting mode.<br  />
- NOTE! Only works if the player entered target mode using <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#ac19bc6505d5880d90034d9bf5d0dbe6c" title="Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the p...">TryEnterTargetMode</a>. </p>
+ NOTE! Only works if the player entered target mode using <a class="el" href="classAnvil_1_1API_1_1NwPlayer.html#a00e325ed80818cc3c4843ce518f0b2cb" title="Attempts to get this player to enter cursor targeting mode, invoking the specified handler once the p...">TryEnterTargetMode</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if this player is attempting to target something.</dd></dl>
 
 </div>

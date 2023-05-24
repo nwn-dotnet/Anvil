@@ -11,7 +11,6 @@ var structAnvil_1_1API_1_1Color =
     [ "operator!=", "structAnvil_1_1API_1_1Color.html#ac1eaeb4d6bf0e16e3f4eed1cbb8d91d8", null ],
     [ "operator==", "structAnvil_1_1API_1_1Color.html#a3910084f4b1682661b07d8ebbf4dd1a3", null ],
     [ "ToColorToken", "structAnvil_1_1API_1_1Color.html#a362b5cbfd054d577f90097ca63673aab", null ],
-    [ "ToInt", "structAnvil_1_1API_1_1Color.html#a8fe61bba509dbe70f4038b5c30e9a52c", null ],
     [ "ToRGBA", "structAnvil_1_1API_1_1Color.html#abcd3aef96664bce2c9aef78ff8691243", null ],
     [ "ToString", "structAnvil_1_1API_1_1Color.html#af7940ac10a1476281aec3a7914e639cb", null ],
     [ "ToUnsignedRGBA", "structAnvil_1_1API_1_1Color.html#a6b3cd9d4248e27153ddc9767da0824cf", null ],

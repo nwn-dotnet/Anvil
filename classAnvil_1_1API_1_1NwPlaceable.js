@@ -25,7 +25,6 @@ var classAnvil_1_1API_1_1NwPlaceable =
     [ "OnConversation", "classAnvil_1_1API_1_1NwPlaceable.html#a840b215b607e9e5b62b958a328a2d8e1", null ],
     [ "OnDamaged", "classAnvil_1_1API_1_1NwPlaceable.html#aa82131ad393e653c6341595ad769498c", null ],
     [ "OnDeath", "classAnvil_1_1API_1_1NwPlaceable.html#a8f6f7fea7778f00097668e7642df7d72", null ],
-    [ "OnDialogue", "classAnvil_1_1API_1_1NwPlaceable.html#af0428563c5fc6fece4586180e0ef38f6", null ],
     [ "OnDisarm", "classAnvil_1_1API_1_1NwPlaceable.html#a5c21a3a016b4d591e518a9b6a7c5639b", null ],
     [ "OnDisturbed", "classAnvil_1_1API_1_1NwPlaceable.html#ada869e75e4462583c1aa0c8dcdbfd7b2", null ],
     [ "OnHeartbeat", "classAnvil_1_1API_1_1NwPlaceable.html#a13e0a47757dd9d6a229578ac5617cac4", null ],
@@ -42,6 +41,5 @@ var classAnvil_1_1API_1_1NwPlaceable =
     [ "OnUserDefined", "classAnvil_1_1API_1_1NwPlaceable.html#a87d7958e365c10b27bcc334b23d4ac22", null ],
     [ "Placeable", "classAnvil_1_1API_1_1NwPlaceable.html#aaf6d273133b1ac46fb3cf7f14b14e74b", null ],
     [ "Rotation", "classAnvil_1_1API_1_1NwPlaceable.html#a77e6b128f26825abacc90b8d7eb8b07b", null ],
-    [ "SittingCreature", "classAnvil_1_1API_1_1NwPlaceable.html#ab5c29da9aa4d6400d09303923cc22e05", null ],
-    [ "Useable", "classAnvil_1_1API_1_1NwPlaceable.html#a390f08bf0206a2eafd94c42961e0829b", null ]
+    [ "SittingCreature", "classAnvil_1_1API_1_1NwPlaceable.html#ab5c29da9aa4d6400d09303923cc22e05", null ]
 ];

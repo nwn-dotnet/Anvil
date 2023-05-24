@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['savingthrow_3215',['SavingThrow',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182ac45ea9cc5c098638ec989e069c3e5d1d',1,'Anvil::Services']]],
-  ['simpleadjective_3216',['SimpleAdjective',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182a208d691e151a3a6e16c6fd0e8761ab12',1,'Anvil::Services']]],
-  ['simpledamage_3217',['SimpleDamage',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182a44ada8dac90c1b2cbe02e5adf3de7ded',1,'Anvil::Services']]],
-  ['specialattack_3218',['SpecialAttack',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182a85a55f865e1098002505c719c141a8a0',1,'Anvil::Services']]],
-  ['spellresistance_3219',['SpellResistance',['../namespaceAnvil_1_1Services.html#a8ddb23d092a1e7736663eb4039c3d182af02b9faf1cc54c1844e83f01495f45e1',1,'Anvil::Services']]]
+  ['recomputelighting_3308',['RecomputeLighting',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114',1,'Anvil::API']]],
+  ['reloadborder_3309',['ReloadBorder',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a105a56ac435feecdb6d291cb69346c15',1,'Anvil::API']]],
+  ['reloadgrass_3310',['ReloadGrass',['../namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2e7fca71c3a794620bdba2b2535b2299',1,'Anvil::API']]]
 ];

@@ -20,7 +20,6 @@ var classAnvil_1_1API_1_1NwDoor =
     [ "OnConversation", "classAnvil_1_1API_1_1NwDoor.html#a3e9bc844c0bc9fd87ffb52a0d0e4f9a0", null ],
     [ "OnDamaged", "classAnvil_1_1API_1_1NwDoor.html#ab63b6389bc0a01185d2d7b3a5f3d0191", null ],
     [ "OnDeath", "classAnvil_1_1API_1_1NwDoor.html#a35ec4137ec160263e41d14740d1b153d", null ],
-    [ "OnDialogue", "classAnvil_1_1API_1_1NwDoor.html#a66fe23cd069bd1166c0ab11488e59e1f", null ],
     [ "OnDisarm", "classAnvil_1_1API_1_1NwDoor.html#a0cd886f62198d232ee58654edba78ccf", null ],
     [ "OnDoorSetOpenState", "classAnvil_1_1API_1_1NwDoor.html#aa82caf0fc06a43148ddc0426c26e7ad1", null ],
     [ "OnFailToOpen", "classAnvil_1_1API_1_1NwDoor.html#aa26bffeb6d69d6916d0f2be7a9d7a0e5", null ],

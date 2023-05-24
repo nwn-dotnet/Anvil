@@ -13,6 +13,8 @@ var classAnvil_1_1API_1_1Location =
     [ "GetObjectsInShape", "classAnvil_1_1API_1_1Location.html#afe7e48a5f12c9415bf705f958916a66d", null ],
     [ "GetObjectsInShapeByType< T >", "classAnvil_1_1API_1_1Location.html#abc91101c771c944617c2d06b542efb3e", null ],
     [ "operator Location?", "classAnvil_1_1API_1_1Location.html#af692cb62dcf54efa037cc5d215c3511b", null ],
+    [ "SetTile", "classAnvil_1_1API_1_1Location.html#ab2f8aea0bec7505e8a409a08e5338dd5", null ],
+    [ "SetTileAnimationLoops", "classAnvil_1_1API_1_1Location.html#adfe64fc809aebab39996147228555a84", null ],
     [ "Area", "classAnvil_1_1API_1_1Location.html#a424b1331a9e9dbfe3293c76816442f32", null ],
     [ "FlippedRotation", "classAnvil_1_1API_1_1Location.html#ad826aa63fee4d6aba035fbc01a213fd7", null ],
     [ "GroundHeight", "classAnvil_1_1API_1_1Location.html#a669da02cd227248d0ec72aba33daa7ef", null ],
@@ -21,8 +23,11 @@ var classAnvil_1_1API_1_1Location =
     [ "Rotation", "classAnvil_1_1API_1_1Location.html#a58f45d58cbf423181796f81a1eacab32", null ],
     [ "StructureId", "classAnvil_1_1API_1_1Location.html#a9390d9fca00d10888d517940cc815a42", null ],
     [ "SurfaceMaterial", "classAnvil_1_1API_1_1Location.html#a0512487ff8a3e64a2e87277f7b5895ad", null ],
+    [ "TileHeight", "classAnvil_1_1API_1_1Location.html#adb8a3364d51a7ddec1b6b95d5617e8b6", null ],
+    [ "TileId", "classAnvil_1_1API_1_1Location.html#acd8ea07cd8ee1db658cf22353eea85ac", null ],
     [ "TileMainLightColorOne", "classAnvil_1_1API_1_1Location.html#ac37d9087ee8655492df6cfaaa9ea43d8", null ],
     [ "TileMainLightColorTwo", "classAnvil_1_1API_1_1Location.html#aeefd0a61670020ac444b5849e99f5016", null ],
+    [ "TileRotation", "classAnvil_1_1API_1_1Location.html#a6b6cd4a5b007d61f2c5aaa933054e022", null ],
     [ "TileSourceLightColorOne", "classAnvil_1_1API_1_1Location.html#adb4c90ebc739eab4a6e4710a05bed558", null ],
     [ "TileSourceLightColorTwo", "classAnvil_1_1API_1_1Location.html#ad96912678d7ef92dbfa5df4436aacbfd", null ]
 ];

@@ -154,6 +154,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abc91101c771c944617c2d06b542efb3e"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#abc91101c771c944617c2d06b542efb3e">GetObjectsInShapeByType&lt; T &gt;</a> (Shape shape, float size, bool losCheck, Vector3 origin=default)</td></tr>
 <tr class="memdesc:abc91101c771c944617c2d06b542efb3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all objects in a shape at this location of the specified type.  <a href="classAnvil_1_1API_1_1Location.html#abc91101c771c944617c2d06b542efb3e">More...</a><br /></td></tr>
 <tr class="separator:abc91101c771c944617c2d06b542efb3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2f8aea0bec7505e8a409a08e5338dd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#ab2f8aea0bec7505e8a409a08e5338dd5">SetTile</a> (int tileId, <a class="el" href="classAnvil_1_1API_1_1Location.html#a6b6cd4a5b007d61f2c5aaa933054e022">TileRotation</a> rotation, int height=0, <a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0">SettleFlags</a> flags=<a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114">SettleFlags.RecomputeLighting</a>)</td></tr>
+<tr class="memdesc:ab2f8aea0bec7505e8a409a08e5338dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the tile at this location to a new tile.  <a href="classAnvil_1_1API_1_1Location.html#ab2f8aea0bec7505e8a409a08e5338dd5">More...</a><br /></td></tr>
+<tr class="separator:ab2f8aea0bec7505e8a409a08e5338dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe64fc809aebab39996147228555a84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#adfe64fc809aebab39996147228555a84">SetTileAnimationLoops</a> (bool animLoop1, bool animLoop2, bool animLoop3)</td></tr>
+<tr class="memdesc:adfe64fc809aebab39996147228555a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the state of the animation loops of the tile at this location.  <a href="classAnvil_1_1API_1_1Location.html#adfe64fc809aebab39996147228555a84">More...</a><br /></td></tr>
+<tr class="separator:adfe64fc809aebab39996147228555a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAnvil_1_1API_1_1EngineStructure"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAnvil_1_1API_1_1EngineStructure')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAnvil_1_1API_1_1EngineStructure.html">Anvil.API.EngineStructure</a></td></tr>
 <tr class="memitem:a2efc553f930b2f1c2985503e14ce3ad7 inherit pub_methods_classAnvil_1_1API_1_1EngineStructure"><td class="memItemLeft" align="right" valign="top"><a id="a2efc553f930b2f1c2985503e14ce3ad7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></tr>
@@ -199,12 +205,21 @@ override int&#160;</td><td class="memItemRight" valign="bottom"><b>StructureId</
 <tr class="memdesc:a0512487ff8a3e64a2e87277f7b5895ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the surface material index at this location.<br  />
  Returns 0 if the location is invalid or has no surface type.  <a href="classAnvil_1_1API_1_1Location.html#a0512487ff8a3e64a2e87277f7b5895ad">More...</a><br /></td></tr>
 <tr class="separator:a0512487ff8a3e64a2e87277f7b5895ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb8a3364d51a7ddec1b6b95d5617e8b6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#adb8a3364d51a7ddec1b6b95d5617e8b6">TileHeight</a><code> [get]</code></td></tr>
+<tr class="memdesc:adb8a3364d51a7ddec1b6b95d5617e8b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the height of the tile set at this location.  <a href="classAnvil_1_1API_1_1Location.html#adb8a3364d51a7ddec1b6b95d5617e8b6">More...</a><br /></td></tr>
+<tr class="separator:adb8a3364d51a7ddec1b6b95d5617e8b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd8ea07cd8ee1db658cf22353eea85ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#acd8ea07cd8ee1db658cf22353eea85ac">TileId</a><code> [get]</code></td></tr>
+<tr class="memdesc:acd8ea07cd8ee1db658cf22353eea85ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the id of the tile set at this location.  <a href="classAnvil_1_1API_1_1Location.html#acd8ea07cd8ee1db658cf22353eea85ac">More...</a><br /></td></tr>
+<tr class="separator:acd8ea07cd8ee1db658cf22353eea85ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac37d9087ee8655492df6cfaaa9ea43d8"><td class="memItemLeft" align="right" valign="top">TileMainLightColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#ac37d9087ee8655492df6cfaaa9ea43d8">TileMainLightColorOne</a><code> [get]</code></td></tr>
 <tr class="memdesc:ac37d9087ee8655492df6cfaaa9ea43d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the color of the first main light in the tile containing this location.  <a href="classAnvil_1_1API_1_1Location.html#ac37d9087ee8655492df6cfaaa9ea43d8">More...</a><br /></td></tr>
 <tr class="separator:ac37d9087ee8655492df6cfaaa9ea43d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeefd0a61670020ac444b5849e99f5016"><td class="memItemLeft" align="right" valign="top">TileMainLightColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#aeefd0a61670020ac444b5849e99f5016">TileMainLightColorTwo</a><code> [get]</code></td></tr>
 <tr class="memdesc:aeefd0a61670020ac444b5849e99f5016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the color of the second main light in the tile containing this location.  <a href="classAnvil_1_1API_1_1Location.html#aeefd0a61670020ac444b5849e99f5016">More...</a><br /></td></tr>
 <tr class="separator:aeefd0a61670020ac444b5849e99f5016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b6cd4a5b007d61f2c5aaa933054e022"><td class="memItemLeft" align="right" valign="top">TileRotation&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#a6b6cd4a5b007d61f2c5aaa933054e022">TileRotation</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6b6cd4a5b007d61f2c5aaa933054e022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the rotation of the tile set at this location.  <a href="classAnvil_1_1API_1_1Location.html#a6b6cd4a5b007d61f2c5aaa933054e022">More...</a><br /></td></tr>
+<tr class="separator:a6b6cd4a5b007d61f2c5aaa933054e022"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb4c90ebc739eab4a6e4710a05bed558"><td class="memItemLeft" align="right" valign="top">TileSourceLightColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1API_1_1Location.html#adb4c90ebc739eab4a6e4710a05bed558">TileSourceLightColorOne</a><code> [get]</code></td></tr>
 <tr class="memdesc:adb4c90ebc739eab4a6e4710a05bed558"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the color of the first light source in the tile containing this location.  <a href="classAnvil_1_1API_1_1Location.html#adb4c90ebc739eab4a6e4710a05bed558">More...</a><br /></td></tr>
 <tr class="separator:adb4c90ebc739eab4a6e4710a05bed558"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -778,6 +793,109 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ab2f8aea0bec7505e8a409a08e5338dd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2f8aea0bec7505e8a409a08e5338dd5">&#9670;&nbsp;</a></span>SetTile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.Location.SetTile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAnvil_1_1API_1_1Location.html#a6b6cd4a5b007d61f2c5aaa933054e022">TileRotation</a>&#160;</td>
+          <td class="paramname"><em>rotation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0">SettleFlags</a>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code><a class="el" href="namespaceAnvil_1_1API.html#a0407f254114246b7d8015f2d11b7a9e0a2a84af816369192714296e42766bf114">SettleFlags.RecomputeLighting</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Changes the tile at this location to a new tile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileId</td><td>The new tile to apply.</td></tr>
+    <tr><td class="paramname">rotation</td><td>How the tile should be rotated.</td></tr>
+    <tr><td class="paramname">height</td><td>The height of the tile.</td></tr>
+    <tr><td class="paramname">flags</td><td>Additional flags/behaviours to run after the tile is updated.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adfe64fc809aebab39996147228555a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe64fc809aebab39996147228555a84">&#9670;&nbsp;</a></span>SetTileAnimationLoops()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Anvil.API.Location.SetTileAnimationLoops </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>animLoop1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>animLoop2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>animLoop3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the state of the animation loops of the tile at this location. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Property Documentation</h2>
 <a id="a424b1331a9e9dbfe3293c76816442f32"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a424b1331a9e9dbfe3293c76816442f32">&#9670;&nbsp;</a></span>Area</h2>
@@ -948,6 +1066,54 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="adb8a3364d51a7ddec1b6b95d5617e8b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb8a3364d51a7ddec1b6b95d5617e8b6">&#9670;&nbsp;</a></span>TileHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.Location.TileHeight</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the height of the tile set at this location. </p>
+
+</div>
+</div>
+<a id="acd8ea07cd8ee1db658cf22353eea85ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd8ea07cd8ee1db658cf22353eea85ac">&#9670;&nbsp;</a></span>TileId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Anvil.API.Location.TileId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the id of the tile set at this location. </p>
+
+</div>
+</div>
 <a id="ac37d9087ee8655492df6cfaaa9ea43d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac37d9087ee8655492df6cfaaa9ea43d8">&#9670;&nbsp;</a></span>TileMainLightColorOne</h2>
 
@@ -995,6 +1161,30 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Gets the color of the second main light in the tile containing this location. </p>
 <dl class="section return"><dt>Returns</dt><dd>A TileMainLightColor value representing the second main light color of the specified tile.</dd></dl>
+
+</div>
+</div>
+<a id="a6b6cd4a5b007d61f2c5aaa933054e022"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b6cd4a5b007d61f2c5aaa933054e022">&#9670;&nbsp;</a></span>TileRotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TileRotation Anvil.API.Location.TileRotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the rotation of the tile set at this location. </p>
 
 </div>
 </div>

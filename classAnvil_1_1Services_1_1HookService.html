@@ -116,18 +116,18 @@ $(document).ready(function(){initNavTree('classAnvil_1_1Services_1_1HookService.
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a77c82c87f56babc4a16f5f8af20d1587"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1Services_1_1FunctionHook.html">FunctionHook</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1HookService.html#a77c82c87f56babc4a16f5f8af20d1587">RequestHook&lt; T &gt;</a> (T handler, uint address, int order=HookOrder.Default)</td></tr>
-<tr class="memdesc:a77c82c87f56babc4a16f5f8af20d1587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests a hook for a native function.  <a href="classAnvil_1_1Services_1_1HookService.html#a77c82c87f56babc4a16f5f8af20d1587">More...</a><br /></td></tr>
-<tr class="separator:a77c82c87f56babc4a16f5f8af20d1587"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bb85357b3ab7c880642c560cb0b0606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1Services_1_1FunctionHook.html">FunctionHook</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1HookService.html#a9bb85357b3ab7c880642c560cb0b0606">RequestHook&lt; T &gt;</a> (void *handler, uint address, int order=HookOrder.Default)</td></tr>
-<tr class="memdesc:a9bb85357b3ab7c880642c560cb0b0606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests a hook for a native function.  <a href="classAnvil_1_1Services_1_1HookService.html#a9bb85357b3ab7c880642c560cb0b0606">More...</a><br /></td></tr>
-<tr class="separator:a9bb85357b3ab7c880642c560cb0b0606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c579c2ce1b7647ddec9e65bd52de27c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1Services_1_1FunctionHook.html">FunctionHook</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1HookService.html#a4c579c2ce1b7647ddec9e65bd52de27c">RequestHook&lt; T &gt;</a> (T handler, int order=HookOrder.Default)</td></tr>
+<tr class="memdesc:a4c579c2ce1b7647ddec9e65bd52de27c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests a hook for a native function.  <a href="classAnvil_1_1Services_1_1HookService.html#a4c579c2ce1b7647ddec9e65bd52de27c">More...</a><br /></td></tr>
+<tr class="separator:a4c579c2ce1b7647ddec9e65bd52de27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9726bd2834bf580036d473b746737342"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAnvil_1_1Services_1_1FunctionHook.html">FunctionHook</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnvil_1_1Services_1_1HookService.html#a9726bd2834bf580036d473b746737342">RequestHook&lt; T &gt;</a> (void *handler, int order=HookOrder.Default)</td></tr>
+<tr class="memdesc:a9726bd2834bf580036d473b746737342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests a hook for a native function.  <a href="classAnvil_1_1Services_1_1HookService.html#a9726bd2834bf580036d473b746737342">More...</a><br /></td></tr>
+<tr class="separator:a9726bd2834bf580036d473b746737342"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An advanced service for hooking native <a class="el" href="namespaceNWN.html">NWN</a> functions. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a77c82c87f56babc4a16f5f8af20d1587"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77c82c87f56babc4a16f5f8af20d1587">&#9670;&nbsp;</a></span>RequestHook&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+<a id="a4c579c2ce1b7647ddec9e65bd52de27c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c579c2ce1b7647ddec9e65bd52de27c">&#9670;&nbsp;</a></span>RequestHook&lt; T &gt;() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,12 +140,6 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>handler</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>address</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -170,7 +164,6 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">handler</td><td>The handler to be invoked when this function is called. Once hooked, the original function will not be called, and must be invoked manually via the returned object.</td></tr>
-    <tr><td class="paramname">address</td><td>The address of the native function. Use the constants available in NWN.Native.API.FunctionsLinux.</td></tr>
     <tr><td class="paramname">order</td><td>The execution order for this hook. See the constants in <a class="el" href="classAnvil_1_1Services_1_1HookOrder.html">HookOrder</a>.</td></tr>
   </table>
   </dd>
@@ -193,8 +186,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9bb85357b3ab7c880642c560cb0b0606"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bb85357b3ab7c880642c560cb0b0606">&#9670;&nbsp;</a></span>RequestHook&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+<a id="a9726bd2834bf580036d473b746737342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9726bd2834bf580036d473b746737342">&#9670;&nbsp;</a></span>RequestHook&lt; T &gt;() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -207,12 +200,6 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>handler</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>address</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -237,14 +224,13 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">handler</td><td>A delegate pointer (delegate*) to be invoked when the original game function is called. Once hooked, the original function will not be called, and must be invoked manually via the returned object.</td></tr>
-    <tr><td class="paramname">address</td><td>The address of the native function. Use the constants available in NWN.Native.API.FunctionsLinux.</td></tr>
     <tr><td class="paramname">order</td><td>The execution order for this hook. See the constants in <a class="el" href="classAnvil_1_1Services_1_1HookOrder.html">HookOrder</a>.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The delegate type that identically matches the native function signature.</td></tr>
+    <tr><td class="paramname">T</td><td>The delegate type that identically matches the native function signature. Must have the <a class="el" href="classAnvil_1_1Services_1_1NativeFunctionAttribute.html">NativeFunctionAttribute</a> applied.</td></tr>
   </table>
   </dd>
 </dl>
