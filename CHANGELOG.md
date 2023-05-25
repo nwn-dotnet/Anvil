@@ -22,7 +22,7 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.35.0...HEAD
 - N/A
 
 ### Fixed
-- N/A
+- (Docker) Fixed an issue with libssl dependency.
 
 ## 8193.35.0
 https://github.com/nwn-dotnet/Anvil/compare/v8193.34.28...v8193.35.0
