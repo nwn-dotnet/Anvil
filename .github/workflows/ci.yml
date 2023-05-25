@@ -84,8 +84,14 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
 
+      - name: Load Environment Variables
+        id: env_vars
+        uses: falti/dotenv-action@v0.2.7
+
       - name: Run Tests
-        run: docker-compose --env-file ../../../.env up
+        run: |
+          docker-compose build --build-arg "NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }} BINARY_PATH=${{ github.workspace }}/NWN.Anvil/bin/Release/net7.0"
+          docker-compose up
         working-directory: NWN.Anvil.Tests/bin/Release/
 
       - name: Install NUnit
