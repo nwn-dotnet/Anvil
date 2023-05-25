@@ -2,8 +2,8 @@ version: '3'
 services:
   anvil:
     build:
-      context: .
-      dockerfile:  ${PWD-.}/../../../dockerfile
+      context: ${PWD-.}/../../../
+      dockerfile: ${PWD-.}/../../../dockerfile
     env_file:
       - ${PWD-.}/config/nwserver.env
     volumes:
