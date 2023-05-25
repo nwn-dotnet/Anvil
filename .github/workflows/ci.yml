@@ -90,7 +90,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          docker-compose build --build-arg "NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }} BINARY_PATH=${{ github.workspace }}/NWN.Anvil/bin/Release/net7.0"
+          docker-compose build --build-arg NWNX_VERSION=${{ steps.env_vars.outputs.nwnx_version }} --build-arg BINARY_PATH=${{ github.workspace }}/NWN.Anvil/bin/Release/net7.0
           docker-compose up
         working-directory: NWN.Anvil.Tests/bin/Release/
 
