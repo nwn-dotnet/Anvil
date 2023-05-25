@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
-https://github.com/nwn-dotnet/Anvil/compare/v8193.35.0...HEAD
+https://github.com/nwn-dotnet/Anvil/compare/v8193.35.1...HEAD
 
 ### Added
 - N/A
@@ -20,6 +20,12 @@ https://github.com/nwn-dotnet/Anvil/compare/v8193.35.0...HEAD
 
 ### Removed
 - N/A
+
+### Fixed
+- N/A
+
+## 8193.35.1
+https://github.com/nwn-dotnet/Anvil/compare/v8193.35.0...v8193.35.1
 
 ### Fixed
 - (Docker) Fixed an issue with libssl dependency.
