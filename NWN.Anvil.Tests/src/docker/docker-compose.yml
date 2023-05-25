@@ -1,7 +1,11 @@
 version: '3'
 services:
   anvil:
-    image: "nwnxee/unified:${NWNX_VERSION}"
+    build:
+      context: .
+      dockerfile: ${PWD-.}/../../../dockerfile
+      args:
+        BINARY_PATH: ${PWD-.}/../../../NWN.Anvil/bin/Release/net7.0
     env_file:
       - ${PWD-.}/config/nwserver.env
     volumes:
