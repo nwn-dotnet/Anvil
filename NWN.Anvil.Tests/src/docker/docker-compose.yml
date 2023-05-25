@@ -1,11 +1,12 @@
 version: '3'
 services:
   anvil:
-    image: "nwnxee/unified:${NWNX_VERSION}"
+    build:
+      context: ${PWD-.}/../../../
+      dockerfile: ${PWD-.}/../../../dockerfile
     env_file:
       - ${PWD-.}/config/nwserver.env
     volumes:
-      - ${PWD-.}/../../../NWN.Anvil/bin/Release/net7.0:/nwn/anvil
       - ${PWD-.}/NWN.Anvil.Tests:/nwn/run/anvil/Plugins/NWN.Anvil.Tests
       - ${PWD-.}/../../../NWN.Anvil.TestRunner/bin/Release/NWN.Anvil.TestRunner:/nwn/run/anvil/Plugins/NWN.Anvil.TestRunner
       - ${PWD-.}/results:/nwn/run/anvil/PluginData/NWN.Anvil.TestRunner
