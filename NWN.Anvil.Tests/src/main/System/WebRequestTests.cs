@@ -11,7 +11,7 @@ namespace Anvil.Tests.System
     [TestCase("https://example.com")]
     public void InvokeWebRequestIsSuccessful(string uri)
     {
-      HttpClient httpClient = new HttpClient();
+      using HttpClient httpClient = new HttpClient();
       HttpResponseMessage response = httpClient.Send(new HttpRequestMessage(HttpMethod.Get, uri));
 
       Assert.That(response.IsSuccessStatusCode, Is.True, $"'{uri}' return a non-success code: {response.StatusCode}");
