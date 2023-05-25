@@ -4,12 +4,12 @@ using NUnit.Framework;
 namespace Anvil.Tests.System
 {
   [TestFixture(Category = "TestRunner")]
-  public sealed class WebRequestTests
+  public sealed class HttpClientTests
   {
     [Test]
-    [TestCase("http://example.com")]
-    [TestCase("https://example.com")]
-    public void InvokeWebRequestIsSuccessful(string uri)
+    [TestCase("http://github.com")]
+    [TestCase("https://github.com")]
+    public void InvokeHttpRequestIsSuccessful(string uri)
     {
       using HttpClient httpClient = new HttpClient();
       HttpResponseMessage response = httpClient.Send(new HttpRequestMessage(HttpMethod.Get, uri));
