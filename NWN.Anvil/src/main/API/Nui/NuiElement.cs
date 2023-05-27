@@ -78,5 +78,16 @@ namespace Anvil.API
 
     [JsonProperty("draw_list_scissor", NullValueHandling = NullValueHandling.Ignore)]
     public NuiProperty<bool>? Scissor { get; set; }
+
+    /// <summary>
+    /// Tooltips for disabled elements show on mouse hover.
+    /// </summary>
+    [JsonProperty("disabled_tooltip")]
+    public NuiProperty<string>? DisabledTooltip { get; set; }
+
+    /// <summary>
+    /// Encouraged elements have a breathing animated glow inside of it.
+    /// </summary>
+    public NuiProperty<bool>? Encouraged { get; set; }
   }
 }

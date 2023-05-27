@@ -25,5 +25,11 @@ namespace Anvil.API
 
     [JsonProperty("type")]
     public abstract NuiDrawListItemType Type { get; }
+
+    [JsonProperty("order")]
+    public NuiDrawListItemOrder Order { get; set; } = NuiDrawListItemOrder.After;
+
+    [JsonProperty("render")]
+    public NuiDrawListItemRender Render { get; set; } = NuiDrawListItemRender.Always;
   }
 }

@@ -19,6 +19,13 @@ namespace Anvil.API
     [JsonProperty("image_aspect")]
     public NuiProperty<NuiAspect> ImageAspect { get; set; } = NuiAspect.Exact;
 
+    /// <summary>
+    /// Optionally render only subregion of jImage.<br/>
+    /// This property is a NuiRect (x, y, w, h) to indicate the render region inside the image.
+    /// </summary>
+    [JsonProperty("image_region")]
+    public NuiProperty<NuiRect>? ImageRegion { get; set; }
+
     [JsonProperty("value")]
     public NuiProperty<string> ResRef { get; set; }
 

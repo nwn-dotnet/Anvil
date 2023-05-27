@@ -8,5 +8,6 @@ namespace Anvil.API
     Arc = 3,
     Text = 4,
     Image = 5,
+    Line = 6,
   }
 }
