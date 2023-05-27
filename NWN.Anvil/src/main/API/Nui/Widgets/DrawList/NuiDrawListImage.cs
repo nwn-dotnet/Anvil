@@ -5,7 +5,7 @@ namespace Anvil.API
   public sealed class NuiDrawListImage : NuiDrawListItem
   {
     [JsonConstructor]
-    public NuiDrawListImage(NuiProperty<string> resRef, NuiProperty<NuiRect> rect) : base(null, null, null)
+    public NuiDrawListImage(NuiProperty<string> resRef, NuiProperty<NuiRect> rect)
     {
       ResRef = resRef;
       Rect = rect;
@@ -27,7 +27,7 @@ namespace Anvil.API
     /// Optionally render a subregion of the image.<br/>
     /// This property is a NuiRect (x, y, w, h) to indicate the render region inside the image.
     /// </summary>
-    [JsonProperty("image_region")]
+    [JsonProperty("image_region", NullValueHandling = NullValueHandling.Ignore)]
     public NuiProperty<NuiRect>? ImageRegion { get; set; }
 
     public override NuiDrawListItemType Type => NuiDrawListItemType.Image;

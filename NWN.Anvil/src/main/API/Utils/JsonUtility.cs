@@ -26,10 +26,7 @@ namespace Anvil.API
     /// <returns>A JSON string representing the value.</returns>
     public static string ToJson<T>(T value)
     {
-      return JsonConvert.SerializeObject(value, new JsonSerializerSettings
-      {
-        DefaultValueHandling = DefaultValueHandling.Ignore,
-      });
+      return JsonConvert.SerializeObject(value);
     }
 
     /// <summary>
