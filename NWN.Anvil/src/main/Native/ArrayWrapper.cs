@@ -35,10 +35,24 @@ namespace Anvil.Native
 
     public void CopyTo(T2[] array, int arrayIndex)
     {
-      T1[] values = new T1[array.Length];
-      for (int i = 0; i < array.Length; i++)
+      if (array == null)
       {
-        values[i] = set(array[i]);
+        throw new ArgumentNullException(nameof(array));
+      }
+
+      if (arrayIndex < 0)
+      {
+        throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+      }
+
+      if (array.Length - arrayIndex < Count)
+      {
+        throw new ArgumentException("Not enough elements after arrayIndex in the destination array.");
+      }
+
+      for (int i = 0; i < Count; i++)
+      {
+        array[i + arrayIndex] = this[i];
       }
     }
 
