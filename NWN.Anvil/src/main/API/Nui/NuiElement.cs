@@ -88,6 +88,7 @@ namespace Anvil.API
     /// <summary>
     /// Encouraged elements have a breathing animated glow inside of it.
     /// </summary>
+    [JsonProperty("encouraged")]
     public NuiProperty<bool>? Encouraged { get; set; }
   }
 }
