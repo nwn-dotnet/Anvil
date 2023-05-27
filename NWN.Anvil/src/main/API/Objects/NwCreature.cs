@@ -1229,7 +1229,7 @@ namespace Anvil.API
     public async Task ActionUseFeat(NwFeat feat, NwGameObject target, Subfeat subFeat = Subfeat.None)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat(feat.Id, target);
+      NWScript.ActionUseFeat(feat.Id, target, (int)subFeat);
     }
 
     /// <summary>
@@ -1242,7 +1242,7 @@ namespace Anvil.API
     public async Task ActionUseFeat(NwFeat feat, Location target, Subfeat subFeat = Subfeat.None)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat(feat.Id, lTarget: target);
+      NWScript.ActionUseFeat(feat.Id, lTarget: target, nSubFeat: (int)subFeat);
     }
 
     /// <summary>
