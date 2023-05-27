@@ -1229,7 +1229,7 @@ namespace Anvil.API
     public async Task ActionUseFeat(NwFeat feat, NwGameObject target, Subfeat subFeat = Subfeat.None)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat(feat.Id, target);
+      NWScript.ActionUseFeat(feat.Id, target, (int)subFeat);
     }
 
     /// <summary>
@@ -1242,7 +1242,7 @@ namespace Anvil.API
     public async Task ActionUseFeat(NwFeat feat, Location target, Subfeat subFeat = Subfeat.None)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat(feat.Id, lTarget: target);
+      NWScript.ActionUseFeat(feat.Id, lTarget: target, nSubFeat: (int)subFeat);
     }
 
     /// <summary>
@@ -2148,9 +2148,22 @@ namespace Anvil.API
     /// Removes the specified feat from this creature.
     /// </summary>
     /// <param name="feat">The feat to remove.</param>
-    public void RemoveFeat(NwFeat feat)
+    /// <param name="removeFeatFromLevelList"></param>
+    public void RemoveFeat(NwFeat feat, bool removeFeatFromLevelList = false)
     {
       Creature.m_pStats.RemoveFeat(feat.Id);
+      if (!removeFeatFromLevelList)
+      {
+        return;
+      }
+
+      foreach (CreatureLevelInfo levelInfo in LevelInfo)
+      {
+        if (levelInfo.Feats.Remove(feat))
+        {
+          break;
+        }
+      }
     }
 
     /// <summary>
