@@ -29,5 +29,8 @@ namespace Anvil.API
 
     [JsonProperty("value")]
     public NuiProperty<string> Value { get; set; }
+
+    [JsonProperty("wordwrap")]
+    public NuiProperty<bool> WordWrap { get; set; } = true;
   }
 }
