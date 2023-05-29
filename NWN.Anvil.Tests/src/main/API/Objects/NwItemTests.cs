@@ -361,6 +361,64 @@ namespace Anvil.Tests.API
       Assert.That(clone.Tag, Is.EqualTo(item.Tag), "Cloned item's tag did not match the original item's.");
     }
 
+    [Test(Description = "Serializing an item's appearance preserves the item appearance data.")]
+    [TestCase(StandardResRef.Item.nw_cloth027)]
+    [TestCase(StandardResRef.Item.x2_it_adaplate)]
+    [TestCase(StandardResRef.Item.x0_maarcl037)]
+    [TestCase(StandardResRef.Item.x0_armhe014)]
+    [TestCase(StandardResRef.Item.nw_it_crewps019)]
+    [TestCase(StandardResRef.Item.nw_crewphdfcl)]
+    [TestCase(StandardResRef.Item.x1_it_mbook001)]
+    [TestCase(StandardResRef.Item.x2_it_mbelt001)]
+    [TestCase(StandardResRef.Item.nw_it_mboots002)]
+    [TestCase(StandardResRef.Item.nw_it_mbracer002)]
+    [TestCase(StandardResRef.Item.x0_maarcl039)]
+    [TestCase(StandardResRef.Item.x1_it_mglove001)]
+    [TestCase(StandardResRef.Item.x2_it_cmat_adam)]
+    [TestCase(StandardResRef.Item.x2_it_dyec00)]
+    [TestCase(StandardResRef.Item.x2_it_amt_feath)]
+    [TestCase(StandardResRef.Item.nw_it_gem013)]
+    [TestCase(StandardResRef.Item.x2_is_drose)]
+    [TestCase(StandardResRef.Item.nw_it_mneck032)]
+    [TestCase(StandardResRef.Item.nw_it_mring025)]
+    [TestCase(StandardResRef.Item.x2_it_trap001)]
+    [TestCase(StandardResRef.Item.nw_it_medkit003)]
+    [TestCase(StandardResRef.Item.x0_it_mmedmisc03)]
+    [TestCase(StandardResRef.Item.x0_it_mthnmisc11)]
+    [TestCase(StandardResRef.Item.nw_it_mpotion003)]
+    [TestCase(StandardResRef.Item.x2_it_spdvscr103)]
+    [TestCase(StandardResRef.Item.nw_hen_bod3qt)]
+    [TestCase(StandardResRef.Item.nw_wammar002)]
+    [TestCase(StandardResRef.Item.nw_wammbo001)]
+    [TestCase(StandardResRef.Item.nw_wammbu008)]
+    [TestCase(StandardResRef.Item.nw_waxmgr009)]
+    [TestCase(StandardResRef.Item.nw_wswmbs004)]
+    [TestCase(StandardResRef.Item.nw_wswmdg004)]
+    [TestCase(StandardResRef.Item.nw_wmgwn011)]
+    [TestCase(StandardResRef.Item.nw_wbwmsh005)]
+    [TestCase(StandardResRef.Item.x1_wmgrenade005)]
+    [TestCase(StandardResRef.Item.nw_wthmsh003)]
+    public void SerializeItemAppearancePreservesAppearance(string itemResRef)
+    {
+      Location startLocation = NwModule.Instance.StartingLocation;
+      NwItem? item = NwItem.Create(itemResRef, startLocation);
+
+      Assert.That(item, Is.Not.Null, $"Item {itemResRef} was null after creation.");
+      Assert.That(item!.IsValid, Is.True, $"Item {itemResRef} was invalid after creation.");
+
+      createdTestObjects.Add(item);
+
+      string appearance = item.Appearance.Serialize();
+
+      Assert.That(appearance.Length == 328, "Serialized length does not match expected value of 328.");
+
+      ushort model = item.Appearance.GetSimpleModel();
+
+      item.Appearance.Deserialize(appearance);
+
+      Assert.That(item.Appearance.GetSimpleModel(), Is.EqualTo(model));
+    }
+
     [TearDown]
     public void CleanupTestObjects()
     {
