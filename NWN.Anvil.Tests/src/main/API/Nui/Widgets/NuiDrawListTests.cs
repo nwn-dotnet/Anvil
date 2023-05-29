@@ -48,7 +48,7 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(drawListImage), Is.EqualTo(@"{""image_aspect"":3,""image_halign"":1,""rect"":{""h"":4.0,""w"":3.0,""x"":1.0,""y"":2.0},""image"":""test_img"",""type"":5,""image_valign"":1,""enabled"":false,""order"":1,""render"":0}"));
+      Assert.That(JsonUtility.ToJson(drawListImage), Is.EqualTo(@"{""image_aspect"":3,""image_halign"":1,""rect"":{""h"":4.0,""w"":3.0,""x"":1.0,""y"":2.0},""image"":""test_img"",""type"":5,""image_valign"":1,""color"":null,""enabled"":false,""fill"":null,""line_thickness"":null,""order"":1,""render"":0}"));
     }
 
     [Test(Description = "Serializing a NuiDrawListPolyLine creates a valid JSON structure.")]
@@ -70,7 +70,7 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(drawListText), Is.EqualTo(@"{""rect"":{""h"":8.0,""w"":7.0,""x"":5.0,""y"":6.0},""text"":""Test string"",""type"":4,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""order"":1,""render"":0}"));
+      Assert.That(JsonUtility.ToJson(drawListText), Is.EqualTo(@"{""rect"":{""h"":8.0,""w"":7.0,""x"":5.0,""y"":6.0},""text"":""Test string"",""type"":4,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":null,""line_thickness"":null,""order"":1,""render"":0}"));
     }
   }
 }
