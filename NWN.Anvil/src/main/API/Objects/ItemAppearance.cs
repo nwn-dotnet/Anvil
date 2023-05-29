@@ -140,40 +140,48 @@ namespace Anvil.API
     /// <exception cref="ArgumentException">Thrown if an invalid serialized string is specified.</exception>
     public void Deserialize(string serialized)
     {
-      if (serialized == null || serialized.Length != 2 * 142 && serialized.Length != 2 * 28)
+      if (string.IsNullOrEmpty(serialized))
       {
-        throw new ArgumentException("invalid string length, must be 284", serialized);
+        throw new ArgumentException("Serialized string must not be null or empty.");
       }
 
+      // 3 Serialization formats determined by size:
+      // 56 = No .35 extended model parts, no layered colors.
+      // 284 = No .35 extended model parts
+      // 328 = .35+ extended model parts
+
       using StringReader stringReader = new StringReader(serialized);
-      Span<char> buffer = stackalloc char[2];
+      Span<char> byteBuffer = stackalloc char[2];
+      Span<char> ushortBuffer = stackalloc char[4];
+
+      Span<char> modelBuffer = serialized.Length == 328 ? ushortBuffer : byteBuffer;
 
       for (int idx = 0; idx < 6; idx++)
       {
-        stringReader.ReadBlock(buffer);
-        item.Item.m_nLayeredTextureColors[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+        stringReader.ReadBlock(byteBuffer);
+        item.Item.m_nLayeredTextureColors[idx] = byte.Parse(byteBuffer, NumberStyles.AllowHexSpecifier);
       }
 
       for (int idx = 0; idx < 3; idx++)
       {
-        stringReader.ReadBlock(buffer);
-        item.Item.m_nModelPart[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+        stringReader.ReadBlock(byteBuffer);
+        item.Item.m_nModelPart[idx] = ushort.Parse(modelBuffer, NumberStyles.AllowHexSpecifier);
       }
 
       for (int idx = 0; idx < 19; idx++)
       {
-        stringReader.ReadBlock(buffer);
-        item.Item.m_nArmorModelPart[idx] = byte.Parse(buffer, NumberStyles.AllowHexSpecifier);
+        stringReader.ReadBlock(byteBuffer);
+        item.Item.m_nArmorModelPart[idx] = ushort.Parse(modelBuffer, NumberStyles.AllowHexSpecifier);
       }
 
-      if (serialized.Length == 2 * 142)
+      if (serialized.Length > 56)
       {
         for (byte texture = 0; texture < 6; texture++)
         {
           for (byte part = 0; part < 19; part++)
           {
-            stringReader.ReadBlock(buffer);
-            item.Item.SetLayeredTextureColorPerPart(texture, part, byte.Parse(buffer, NumberStyles.AllowHexSpecifier));
+            stringReader.ReadBlock(byteBuffer);
+            item.Item.SetLayeredTextureColorPerPart(texture, part, byte.Parse(byteBuffer, NumberStyles.AllowHexSpecifier));
           }
         }
       }
@@ -288,12 +296,12 @@ namespace Anvil.API
 
       for (int idx = 0; idx < 3; idx++)
       {
-        stringBuilder.Append(item.Item.m_nModelPart[idx].ToString("X2"));
+        stringBuilder.Append(item.Item.m_nModelPart[idx].ToString("X4"));
       }
 
       for (int idx = 0; idx < 19; idx++)
       {
-        stringBuilder.Append(item.Item.m_nArmorModelPart[idx].ToString("X2"));
+        stringBuilder.Append(item.Item.m_nArmorModelPart[idx].ToString("X4"));
       }
 
       for (byte texture = 0; texture < 6; texture++)
@@ -339,7 +347,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="slot">The armor model slot index to be assigned.</param>
     /// <param name="value">The new model to assign.</param>
-    public void SetArmorModel(CreaturePart slot, byte value)
+    public void SetArmorModel(CreaturePart slot, ushort value)
     {
       int index = (int)slot;
 
@@ -366,7 +374,7 @@ namespace Anvil.API
     /// <summary>
     /// Sets the base model of this item.
     /// </summary>
-    public void SetSimpleModel(byte value)
+    public void SetSimpleModel(ushort value)
     {
       if (value > 0)
       {
@@ -394,7 +402,7 @@ namespace Anvil.API
     /// </summary>
     /// <param name="slot">The weapon model index to be assigned.</param>
     /// <param name="value">The new model to assign.</param>
-    public void SetWeaponModel(ItemAppearanceWeaponModel slot, byte value)
+    public void SetWeaponModel(ItemAppearanceWeaponModel slot, ushort value)
     {
       int index = (int)slot;
 
