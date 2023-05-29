@@ -164,13 +164,13 @@ namespace Anvil.API
 
       for (int idx = 0; idx < 3; idx++)
       {
-        stringReader.ReadBlock(byteBuffer);
+        stringReader.ReadBlock(modelBuffer);
         item.Item.m_nModelPart[idx] = ushort.Parse(modelBuffer, NumberStyles.AllowHexSpecifier);
       }
 
       for (int idx = 0; idx < 19; idx++)
       {
-        stringReader.ReadBlock(byteBuffer);
+        stringReader.ReadBlock(modelBuffer);
         item.Item.m_nArmorModelPart[idx] = ushort.Parse(modelBuffer, NumberStyles.AllowHexSpecifier);
       }
 
