@@ -109,6 +109,15 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets or sets the ability increased at this level.
+    /// </summary>
+    public Ability? AbilityGained
+    {
+      get => levelStats.m_nAbilityGain <= 5 ? (Ability)levelStats.m_nAbilityGain : null;
+      set => levelStats.m_nAbilityGain = value != null ? (byte)value.Value : byte.MaxValue;
+    }
+
+    /// <summary>
     /// Gets the skill ranks for the specified skill on this creature level.
     /// </summary>
     /// <param name="skill">The skill to query.</param>
