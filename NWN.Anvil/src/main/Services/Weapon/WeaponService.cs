@@ -326,9 +326,9 @@ namespace Anvil.Services
 
     private int GetLevelByClass(CNWSCreatureStats stats, uint classType)
     {
-      for (int i = 0; i < stats.m_nNumMultiClasses; i++)
+      for (byte i = 0; i < stats.m_nNumMultiClasses; i++)
       {
-        CNWSCreatureStats_ClassInfo classInfo = stats.m_ClassInfo[i];
+        CNWSCreatureStats_ClassInfo classInfo = stats.GetClassInfo(i);
         if (classInfo.m_nClass == classType)
         {
           return classInfo.m_nLevel;
