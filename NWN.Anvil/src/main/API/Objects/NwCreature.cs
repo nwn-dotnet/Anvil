@@ -750,6 +750,16 @@ namespace Anvil.API
       set => Creature.m_pStats.m_nRace = value.Id;
     }
 
+    /// <summary>
+    /// Gets or sets the remainining skill points this creature has to spend.
+    /// </summary>
+    /// <remarks>Setting this to a greater value will cause player creatures to fail ELC, unless the corresponding level <see cref="CreatureLevelInfo.SkillPointsRemaining"/> values are also updated.</remarks>
+    public ushort RemainingSkillPoints
+    {
+      get => creature.m_pStats.m_nSkillPointsRemaining;
+      set => creature.m_pStats.m_nSkillPointsRemaining = value;
+    }
+
     public sbyte ShieldCheckPenalty => (sbyte)Creature.m_pStats.m_nShieldCheckPenalty;
 
     /// <summary>
@@ -1485,10 +1495,11 @@ namespace Anvil.API
     /// Gets this creature's ability modifier for the specified ability.
     /// </summary>
     /// <param name="ability">The ability to resolve.</param>
+    /// <param name="baseOnly">If true, will return the creature's base ability modifier without bonuses or penalties.</param>
     /// <returns>An int representing the creature's ability modifier.</returns>
-    public int GetAbilityModifier(Ability ability)
+    public int GetAbilityModifier(Ability ability, bool baseOnly = false)
     {
-      return NWScript.GetAbilityModifier((int)ability, this);
+      return baseOnly ? creature.m_pStats.CalcStatModifier((byte)ability) : NWScript.GetAbilityModifier((int)ability, this);
     }
 
     /// <summary>
