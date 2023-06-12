@@ -751,7 +751,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Gets or sets the remainining skill points this creature has to spend.
+    /// Gets or sets the remaining skill points this creature has to spend.
     /// </summary>
     /// <remarks>Setting this to a greater value will cause player creatures to fail ELC, unless the corresponding level <see cref="CreatureLevelInfo.SkillPointsRemaining"/> values are also updated.</remarks>
     public ushort RemainingSkillPoints
