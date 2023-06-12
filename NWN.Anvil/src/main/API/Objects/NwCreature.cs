@@ -1495,10 +1495,11 @@ namespace Anvil.API
     /// Gets this creature's ability modifier for the specified ability.
     /// </summary>
     /// <param name="ability">The ability to resolve.</param>
+    /// <param name="baseOnly">If true, will return the creature's base ability modifier without bonuses or penalties.</param>
     /// <returns>An int representing the creature's ability modifier.</returns>
-    public int GetAbilityModifier(Ability ability)
+    public int GetAbilityModifier(Ability ability, bool baseOnly = false)
     {
-      return NWScript.GetAbilityModifier((int)ability, this);
+      return baseOnly ? creature.m_pStats.CalcStatModifier((byte)ability) : NWScript.GetAbilityModifier((int)ability, this);
     }
 
     /// <summary>
