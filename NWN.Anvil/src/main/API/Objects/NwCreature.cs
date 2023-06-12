@@ -1495,11 +1495,21 @@ namespace Anvil.API
     /// Gets this creature's ability modifier for the specified ability.
     /// </summary>
     /// <param name="ability">The ability to resolve.</param>
-    /// <param name="baseOnly">If true, will return the creature's base ability modifier without bonuses or penalties.</param>
     /// <returns>An int representing the creature's ability modifier.</returns>
-    public int GetAbilityModifier(Ability ability, bool baseOnly = false)
+    public int GetAbilityModifier(Ability ability)
     {
-      return baseOnly ? creature.m_pStats.CalcStatModifier((byte)ability) : NWScript.GetAbilityModifier((int)ability, this);
+      return NWScript.GetAbilityModifier((int)ability, this);
+    }
+
+    /// <summary>
+    /// Gets the ability modifier from the given ability score.
+    /// </summary>
+    /// <remarks>By default, this will return '(ability score - 10) / 2', however this can be different based on definitions in the ruleset.2da.</remarks>
+    /// <param name="abilityScore">The ability score to calculate the ability modifier from.</param>
+    /// <returns>The ability modifier for the specified ability score.</returns>
+    public int CalculateAbilityModifierFromScore(byte abilityScore)
+    {
+      return creature.m_pStats.CalcStatModifier(abilityScore);
     }
 
     /// <summary>
