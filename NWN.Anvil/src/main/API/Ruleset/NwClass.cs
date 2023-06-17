@@ -229,9 +229,9 @@ namespace Anvil.API
     public uint PackageIndex => classInfo.m_nDefaultPackage;
 
     /// <summary>
-    /// Gets the ResRef of the 2da table defining the prerequisites for this class (making this class a prestige class).
+    /// Gets the 2da table defining the prerequisites for this class (making this class a prestige class).
     /// </summary>
-    public string PreReqTable => classInfo.m_sPreReqTable.ToString();
+    public TwoDimArray<ClassPreReqTableEntry>? PreReqTable => NwGameTables.GetTable<ClassPreReqTableEntry>(classInfo.m_sPreReqTable.ToString());
 
     /// <summary>
     /// Gets the primary ability score for this class.<br/>

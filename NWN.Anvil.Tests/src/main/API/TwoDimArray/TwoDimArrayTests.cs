@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Anvil.API;
 using Anvil.Services;
@@ -30,7 +29,7 @@ namespace Anvil.Tests.API
       ResourceManager.WriteTempResource(resourceName, StringHelper.Encoding.GetBytes(twoDimArray));
       createdTempResources.Add(resourceName);
 
-      TwoDimArray array = NwGameTables.GetTable(resourceName);
+      TwoDimArray array = NwGameTables.GetTable(resourceName)!;
 
       Assert.That(array.RowCount, Is.EqualTo(3));
       Assert.That(array.ColumnCount, Is.EqualTo(4));
@@ -50,17 +49,14 @@ namespace Anvil.Tests.API
     [Test(Description = "An invalid 2da ResRef throws an exception.")]
     public void Invalid2daThrowsException()
     {
-      Assert.That(() =>
-      {
-        TwoDimArray _ = NwGameTables.GetTable("invalidtest");
-      }, Throws.Exception.TypeOf<ArgumentException>());
+      Assert.That(NwGameTables.GetTable("invalidtest"), Is.Null);
     }
 
     [Test(Description = "2da arrays are equal if they reference the same pointer.")]
     public void Same2daIsConsideredEqual()
     {
-      TwoDimArray array1 = NwGameTables.GetTable("appearance.2da");
-      TwoDimArray array2 = NwGameTables.GetTable("appearance.2da");
+      TwoDimArray? array1 = NwGameTables.GetTable("appearance.2da");
+      TwoDimArray? array2 = NwGameTables.GetTable("appearance.2da");
 
       Assert.That(array1, Is.EqualTo(array2));
     }
@@ -68,8 +64,8 @@ namespace Anvil.Tests.API
     [Test(Description = "2da arrays are equal if they reference the same pointer.")]
     public void Same2daGenericIsConsideredEqual()
     {
-      TwoDimArray<AppearanceTableEntry> array1 = NwGameTables.GetTable<AppearanceTableEntry>("appearance.2da");
-      TwoDimArray<AppearanceTableEntry> array2 = NwGameTables.GetTable<AppearanceTableEntry>("appearance.2da");
+      TwoDimArray<AppearanceTableEntry>? array1 = NwGameTables.GetTable<AppearanceTableEntry>("appearance.2da");
+      TwoDimArray<AppearanceTableEntry>? array2 = NwGameTables.GetTable<AppearanceTableEntry>("appearance.2da");
 
       Assert.That(array1, Is.EqualTo(array2));
     }
@@ -77,8 +73,8 @@ namespace Anvil.Tests.API
     [Test(Description = "2da arrays are equal if they reference the same pointer.")]
     public void Same2daMixedIsConsideredEqual()
     {
-      TwoDimArray array1 = NwGameTables.GetTable("appearance.2da");
-      TwoDimArray<AppearanceTableEntry> array2 = NwGameTables.GetTable<AppearanceTableEntry>("appearance.2da");
+      TwoDimArray? array1 = NwGameTables.GetTable("appearance.2da");
+      TwoDimArray<AppearanceTableEntry>? array2 = NwGameTables.GetTable<AppearanceTableEntry>("appearance.2da");
 
       Assert.That(array1, Is.EqualTo(array2));
     }
@@ -86,8 +82,8 @@ namespace Anvil.Tests.API
     [Test(Description = "2da arrays are not equal if they do not reference the same pointer.")]
     public void Different2daAreNotConsideredEqual()
     {
-      TwoDimArray array1 = NwGameTables.GetTable<AppearanceTableEntry>("appearance.2da");
-      TwoDimArray array2 = NwGameTables.GetTable<EnvironmentPreset>("environment.2da");
+      TwoDimArray? array1 = NwGameTables.GetTable<AppearanceTableEntry>("appearance.2da");
+      TwoDimArray? array2 = NwGameTables.GetTable<EnvironmentPreset>("environment.2da");
 
       Assert.That(array1, Is.Not.EqualTo(array2));
     }
