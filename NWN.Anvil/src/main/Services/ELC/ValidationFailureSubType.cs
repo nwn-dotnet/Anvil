@@ -55,5 +55,6 @@ namespace Anvil.Services
     MiscSavingThrow,
     NumFeatComparison,
     InvalidClass,
+    NumMulticlass,
   }
 }
