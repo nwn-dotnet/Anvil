@@ -327,12 +327,11 @@ namespace Anvil.Services
 
       if (pCreatureStats.m_nNumMultiClasses > Math.Clamp(NWNXLib.Rules().GetRulesetIntEntry("MULTICLASS_LIMIT".ToExoString(), 3), 1, 8))
       {
-        if (HandleValidationFailure(out int strRefFailure, new OnELCLevelValidationFailure
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
         {
           Player = nwPlayer,
           Type = ValidationFailureType.Character,
           SubType = ValidationFailureSubType.NumMulticlass,
-          Level = nCharacterLevel,
           StrRef = StrRefCharacterNumberMulticlasses,
         }))
         {
