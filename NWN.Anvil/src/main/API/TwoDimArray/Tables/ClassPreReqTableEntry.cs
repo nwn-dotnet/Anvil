@@ -2,7 +2,7 @@ using System;
 
 namespace Anvil.API
 {
-  public class ClassPreReqTableEntry : ITwoDimArrayEntry
+  public sealed class ClassPreReqTableEntry : ITwoDimArrayEntry
   {
     public string? Label { get; private set; }
 
