@@ -1,4 +1,4 @@
 10c10
 < for p in database hak modules override portraits saves servervault tlk development; do
 ---
-> for p in anvil database hak modules override portraits saves servervault tlk development; do
+> for p in anvil database hak modules nwsync override portraits saves servervault tlk development; do
