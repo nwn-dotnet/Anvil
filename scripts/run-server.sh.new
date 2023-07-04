@@ -7,7 +7,7 @@ HOMEPATH=/nwn/run
 
 # Let's make a shadow-copy of home and link us in
 echo "[*] Linking in user home"
-for p in anvil database hak modules override portraits saves servervault tlk development; do
+for p in anvil database hak modules nwsync override portraits saves servervault tlk development; do
   if [ ! -d $ROHOMEPATH/$p ]; then mkdir -v $ROHOMEPATH/$p; fi
   if [ ! -e $HOMEPATH/$p ]; then ln -vs $ROHOMEPATH/$p $HOMEPATH/; fi
 done
