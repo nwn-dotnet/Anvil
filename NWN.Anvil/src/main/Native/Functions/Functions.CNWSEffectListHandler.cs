@@ -10,6 +10,12 @@ namespace Anvil.Native
       [NativeFunction("_ZN21CNWSEffectListHandler13OnApplyDamageEP10CNWSObjectP11CGameEffecti", "?OnApplyDamage@CNWSEffectListHandler@@QEAAHPEAVCNWSObject@@PEAVCGameEffect@@H@Z")]
       public delegate int OnApplyDamage(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
+      [NativeFunction("_ZN21CNWSEffectListHandler21OnApplyDispelAllMagicEP10CNWSObjectP11CGameEffecti", "?OnApplyDispelAllMagic@CNWSEffectListHandler@@QEAAHPEAVCNWSObject@@PEAVCGameEffect@@H@Z")]
+      public delegate int OnApplyDispelAllMagic(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
+
+      [NativeFunction("_ZN21CNWSEffectListHandler22OnApplyDispelBestMagicEP10CNWSObjectP11CGameEffecti", "?OnApplyDispelBestMagic@CNWSEffectListHandler@@QEAAHPEAVCNWSObject@@PEAVCGameEffect@@H@Z")]
+      public delegate int OnApplyDispelBestMagic(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
+
       [NativeFunction("_ZN21CNWSEffectListHandler13OnApplyDisarmEP10CNWSObjectP11CGameEffecti", "?OnApplyDisarm@CNWSEffectListHandler@@QEAAHPEAVCNWSObject@@PEAVCGameEffect@@H@Z")]
       public delegate int OnApplyDisarm(void* pEffectListHandler, void* pObject, void* pEffect, int bLoadingGame);
 
