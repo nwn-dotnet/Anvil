@@ -17,6 +17,8 @@ namespace Anvil.API.Events
     {
       public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
 
+      public int SpellSaveDC { get; } = NWScript.GetSpellSaveDC();
+
       NwObject IEvent.Context => Effect;
     }
   }

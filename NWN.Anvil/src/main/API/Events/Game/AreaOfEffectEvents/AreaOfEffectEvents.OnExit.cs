@@ -19,6 +19,8 @@ namespace Anvil.API.Events
 
       public NwGameObject Exiting { get; } = NWScript.GetExitingObject().ToNwObject<NwGameObject>()!;
 
+      public int SpellSaveDC { get; } = NWScript.GetSpellSaveDC();
+
       NwObject IEvent.Context => Effect;
     }
   }
