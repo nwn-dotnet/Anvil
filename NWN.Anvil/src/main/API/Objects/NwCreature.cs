@@ -935,7 +935,7 @@ namespace Anvil.API
       }
 
       void* itemPtr = item.Item;
-      Creature.AcquireItem(&itemPtr, Invalid, Invalid, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
+      Creature.AcquireItem(&itemPtr, item.Possessor, Invalid, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
     }
 
     /// <summary>
