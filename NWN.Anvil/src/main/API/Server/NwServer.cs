@@ -24,6 +24,51 @@ namespace Anvil.API
     public string BannedList => server.GetBannedListString().ToString();
 
     /// <summary>
+    /// Gets or sets if debug mode is enabled, allowing all players to use DM commands and enabling various other debug behaviours.
+    /// </summary>
+    public bool DebugMode
+    {
+      get => server.GetDebugMode().ToBool();
+      set => server.SetDebugMode(value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets if combat debugging is enabled. This prints additional information to the combat log for hit and damage calculation.
+    /// </summary>
+    public bool DebugCombat
+    {
+      get => (*NWNXLib.EnableCombatDebugging()).ToBool();
+      set => *NWNXLib.EnableCombatDebugging() = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets if saving throw debugging is enabled.
+    /// </summary>
+    public bool DebugSaveThrows
+    {
+      get => (*NWNXLib.EnableSavingThrowDebugging()).ToBool();
+      set => *NWNXLib.EnableSavingThrowDebugging() = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets if hit die debugging is enabled.
+    /// </summary>
+    public bool DebugHitDie
+    {
+      get => (*NWNXLib.EnableHitDieDebugging()).ToBool();
+      set => *NWNXLib.EnableHitDieDebugging() = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets if move speed debugging is enabled. This causes all alive creatures to periodically say a message of their current movement speed.
+    /// </summary>
+    public bool DebugMoveSpeed
+    {
+      get => (*NWNXLib.EnableMovementSpeedDebugging()).ToBool();
+      set => *NWNXLib.EnableMovementSpeedDebugging() = value.ToInt();
+    }
+
+    /// <summary>
     /// Gets or sets the current DM password.
     /// </summary>
     public string DMPassword
