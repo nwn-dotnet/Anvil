@@ -327,6 +327,21 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Causes all players in the module to refresh client object information about the specified game object.
+    /// </summary>
+    /// <param name="gameObject">The game object to refresh.</param>
+    public void RefreshClientObjects(NwGameObject gameObject)
+    {
+      foreach (NwPlayer player in Players)
+      {
+        if (player.IsConnected)
+        {
+          player.RefreshClientObject(gameObject);
+        }
+      }
+    }
+
+    /// <summary>
     /// Broadcasts a message to the DM channel, sending a message to all DMs on the server.
     /// </summary>
     /// <param name="message">The message to send.</param>

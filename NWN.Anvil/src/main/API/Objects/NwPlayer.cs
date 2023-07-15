@@ -1197,6 +1197,36 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Causes this player to refresh the client object associated with the given game object.
+    /// </summary>
+    /// <param name="gameObject">The game object to refresh.</param>
+    public unsafe void RefreshClientObject(NwGameObject gameObject)
+    {
+      CExoLinkedListInternal lastUpdateObjects = Player.m_pActiveObjectsLastUpdate.m_pcExoLinkedListInternal;
+      for (CExoLinkedListNode node = lastUpdateObjects.pHead; node != null; node = node.pNext)
+      {
+        CLastUpdateObject luo = CLastUpdateObject.FromPointer(node.pObject, true);
+        if (luo.m_nId == gameObject.ObjectId)
+        {
+          lastUpdateObjects.Remove(node);
+          luo.Dispose();
+        }
+        else
+        {
+          GC.SuppressFinalize(luo);
+        }
+      }
+    }
+
+    /// <summary>
+    /// Causes this player to refresh the player client object associated with their current controlled creature.
+    /// </summary>
+    public void RefreshPlayerClientObject()
+    {
+      Player.ClearPlayerLastUpdateObject();
+    }
+
+    /// <summary>
     /// Removes the player from their current party.
     /// </summary>
     public void RemoveFromCurrentParty()
