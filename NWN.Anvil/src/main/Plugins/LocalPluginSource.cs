@@ -13,17 +13,19 @@ namespace Anvil.Plugins
     private const string PluginResourceDir = "resources";
 
     private readonly PluginManager pluginManager;
+    private readonly string rootPath;
 
-    public LocalPluginSource(PluginManager pluginManager)
+    public LocalPluginSource(PluginManager pluginManager, string rootPath)
     {
       this.pluginManager = pluginManager;
+      this.rootPath = rootPath;
     }
 
     public IEnumerable<Plugin> Bootstrap()
     {
-      string[] pluginPaths = Directory.GetDirectories(HomeStorage.Plugins);
+      string[] pluginPaths = Directory.GetDirectories(rootPath);
 
-      Log.Info("Loading {PluginCount} DotNET plugin/s from: {PluginPath}", pluginPaths.Length, HomeStorage.Plugins);
+      Log.Info("Loading {PluginCount} DotNET plugin/s from: {PluginPath}", pluginPaths.Length, rootPath);
       return CreatePluginsFromPaths(pluginPaths);
     }
 

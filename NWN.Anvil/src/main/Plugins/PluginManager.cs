@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
 using NLog;
@@ -120,11 +121,20 @@ namespace Anvil.Plugins
 
     private void BootstrapPlugins()
     {
-      IPluginSource[] pluginSources =
+      List<IPluginSource> pluginSources = new List<IPluginSource>
       {
         new PaketPluginSource(this),
-        new LocalPluginSource(this),
+        new LocalPluginSource(this, HomeStorage.Plugins),
       };
+
+      foreach (string pluginPath in EnvironmentConfig.AdditionalPluginPaths)
+      {
+        string fullPluginPath = Path.GetFullPath(pluginPath, NwServer.Instance.UserDirectory);
+        if (Directory.Exists(fullPluginPath))
+        {
+          pluginSources.Add(new LocalPluginSource(this, fullPluginPath));
+        }
+      }
 
       foreach (IPluginSource pluginSource in pluginSources)
       {
