@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Anvil.Internal;
-using Anvil.Services;
 using NLog;
 
 namespace Anvil.Plugins
