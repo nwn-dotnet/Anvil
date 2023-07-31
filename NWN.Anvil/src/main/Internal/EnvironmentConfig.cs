@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Anvil.Services;
 
 namespace Anvil.Internal
@@ -17,6 +18,7 @@ namespace Anvil.Internal
     public static readonly bool NativePrelinkEnabled = GetAnvilVariableBool("PRELINK_ENABLED", true);
     public static readonly bool PreventStartNoPlugin = GetAnvilVariableBool("PREVENT_START_NO_PLUGIN");
     public static readonly bool ReloadEnabled = GetAnvilVariableBool("RELOAD_ENABLED");
+    public static readonly string[] AdditionalPluginPaths = GetAnvilVariableArrayString("ADD_PLUGIN_PATHS");
 
     static EnvironmentConfig()
     {
@@ -49,6 +51,14 @@ namespace Anvil.Internal
       }
 
       return defaultValue;
+    }
+
+    private static string[] GetAnvilVariableArrayString(string key, string[]? defaultValue = null)
+    {
+      defaultValue ??= Array.Empty<string>();
+      string? value = GetAnvilVariableString(key);
+
+      return value != null ? value.Split(Path.PathSeparator) : defaultValue;
     }
 
     private static void ValidateUnset(string key)
