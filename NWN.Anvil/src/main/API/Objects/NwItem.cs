@@ -339,7 +339,7 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Add an item property. Optional parameters allow for preventing unwanted stacking. Removing the existing one first.
+    /// Add an item property. Optional parameters allow for preventing unwanted stacking by removing the existing one first.
     /// </summary>
     /// <param name="itemProperty">The item property to add.</param>
     /// <param name="durationType">(Permanent/Temporary) - the duration of this item property.</param>
