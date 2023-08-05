@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -339,13 +339,46 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Adds the specified item property to this item.
+    /// Add an item property. Optional parameters allow for preventing unwanted stacking. Removing the existing one first.
     /// </summary>
     /// <param name="itemProperty">The item property to add.</param>
     /// <param name="durationType">(Permanent/Temporary) - the duration of this item property.</param>
     /// <param name="duration">If DurationType is temporary, how long this item property should stay applied.</param>
-    public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default)
+    /// <param name="policy">Replace, Keep, Ignore</param>
+    /// <param name="ignoreDuration">If set to TRUE, an item property will be considered identical even if the DurationType is different. Be careful when using this with X2_IP_ADDPROP_POLICY_REPLACE_EXISTING, as this could lead to a temporary item property removing a permanent one</param>
+    /// <param name="ignoreSubType">If set to TRUE an item property will be considered identical even if the SubType is different.</param>
+    /// <param name="ignoreTag">If set to TRUE an item property will be considered identical even if the tag is different.</param>
+    public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default, AddPropPolicy policy = AddPropPolicy.IgnoreExisting, bool ignoreDuration = false, bool ignoreSubType = false, bool ignoreTag = false)
     {
+      if(policy == AddPropPolicy.ReplaceExisting)
+      {
+        //remove matching item properties
+        foreach(ItemProperty existingProperty in ItemProperties)
+        {
+          if(existingProperty.Property.PropertyType == itemProperty.Property.PropertyType)
+          {
+            if(existingProperty.DurationType == itemProperty.DurationType || ignoreDuration == true)
+            {
+              if(existingProperty.SubType == itemProperty.SubType || ignoreSubType == true)
+              {
+                if (existingProperty.Tag == itemProperty.Tag || ignoreTag == true)
+                {
+                  //remove the existing one
+                  RemoveItemProperty(existingProperty);
+                }
+              }
+            }
+          }
+        }
+      }
+      else if(policy == AddPropPolicy.KeepExisting)
+      {
+        if(HasItemProperty(itemProperty.Property.PropertyType))
+        {
+          return; //item already has property, return
+        }
+      }
+      //add the new one
       NWScript.AddItemProperty((int)durationType, itemProperty, this, (float)duration.TotalSeconds);
     }
 
