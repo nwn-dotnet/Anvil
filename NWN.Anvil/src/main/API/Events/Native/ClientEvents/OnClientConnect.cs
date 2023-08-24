@@ -92,14 +92,14 @@ namespace Anvil.API.Events
         uint playerId = player.m_nPlayerID;
 
         CNetLayerPlayerInfo playerInfo = NetLayer.GetPlayerInfo(playerId);
-        string ipAddress = NetLayer.GetPlayerAddress(playerId).ToString();
+        string ipAddress = NetLayer.GetPlayerAddress(playerId).ToString()!;
 
         OnClientConnect eventData = ProcessEvent(EventCallbackType.Before, new OnClientConnect
         {
-          PlayerName = playerInfo.m_sPlayerName.ToString(),
+          PlayerName = playerInfo.m_sPlayerName.ToString()!,
           ClientVersion = new Version(playerInfo.m_nBuildVersion, playerInfo.m_nPatchRevision),
           ClientPlatform = (PlayerPlatform)playerInfo.m_nPlatformId,
-          CDKey = playerInfo.m_lstKeys[0].sPublic.ToString(),
+          CDKey = playerInfo.m_lstKeys[0].sPublic.ToString()!,
           DM = playerInfo.m_bGameMasterPrivileges.ToBool(),
           IP = ipAddress,
         });
