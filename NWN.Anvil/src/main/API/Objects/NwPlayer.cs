@@ -65,7 +65,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of the player's .bic file.
     /// </summary>
-    public string BicFileName => Player.m_resFileName.ToString();
+    public string BicFileName => Player.m_resFileName.ToString()!;
 
     /// <summary>
     /// Sets the camera height for this player.

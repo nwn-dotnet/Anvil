@@ -152,7 +152,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the ResRef specifying the icon displayed in the game for this class
     /// </summary>
-    public string IconResRef => classInfo.m_sIcon.ToString();
+    public string? IconResRef => classInfo.m_sIcon.ToString();
 
     /// <summary>
     /// Gets the id of this class.
@@ -320,7 +320,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of the column that this class references in spells.2da
     /// </summary>
-    public string SpellTableColumn => classInfo.m_sSpellsTableColumn.ToString();
+    public string? SpellTableColumn => classInfo.m_sSpellsTableColumn.ToString();
 
     /// <summary>
     /// Resolves a <see cref="NwClass"/> from a class id.

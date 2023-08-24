@@ -40,7 +40,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the icon resref to use for this domain.
     /// </summary>
-    public string Icon => domainInfo.m_cIcon.ToString();
+    public string? Icon => domainInfo.m_cIcon.ToString();
 
     /// <summary>
     /// Gets the ID of this domain.

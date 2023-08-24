@@ -47,7 +47,7 @@ namespace Anvil.API
 
       for (int i = 0; i < array.m_nNumColumns; i++)
       {
-        string columnName = columnArray.GetItem(i).ToString();
+        string columnName = columnArray.GetItem(i).ToString()!;
         Columns[i] = columnName;
       }
 

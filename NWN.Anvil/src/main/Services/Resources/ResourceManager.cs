@@ -95,7 +95,7 @@ namespace Anvil.Services
       CExoStringList resourceList = ResMan.GetResOfType((ushort)type, moduleOnly.ToInt());
       for (int i = 0; i < resourceList.m_nCount; i++)
       {
-        yield return resourceList._OpIndex(i).ToString();
+        yield return resourceList._OpIndex(i).ToString()!;
       }
     }
 
