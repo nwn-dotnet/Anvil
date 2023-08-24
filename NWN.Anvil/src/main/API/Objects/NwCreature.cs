@@ -315,7 +315,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the dialog ResRef for this creature.
     /// </summary>
-    public string DialogResRef
+    public string? DialogResRef
     {
       get => Creature.GetDialogResref().ToString();
       set => Creature.m_pStats.m_cDialog = new CResRef(value);
