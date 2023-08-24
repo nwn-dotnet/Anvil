@@ -100,7 +100,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the tag for this item property.
     /// </summary>
-    public string Tag
+    public string? Tag
     {
       get => Effect.GetString(0).ToString();
       set => Effect.SetString(0, value.ToExoString());
