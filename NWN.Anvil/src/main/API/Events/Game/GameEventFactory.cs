@@ -20,6 +20,9 @@ namespace Anvil.API.Events
     [Inject]
     private Lazy<EventService>? EventService { get; init; }
 
+    [Inject]
+    private VirtualMachine VirtualMachine { get; init; } = null!;
+
     // Caches
     private readonly Dictionary<EventScriptType, Func<IEvent>> eventConstructorCache = new Dictionary<EventScriptType, Func<IEvent>>();
     private readonly Dictionary<Type, GameEventAttribute> eventInfoCache = new Dictionary<Type, GameEventAttribute>();
@@ -54,7 +57,7 @@ namespace Anvil.API.Events
       {
         if (originalCallLookup.TryGetValue(new EventKey(eventScriptType, oidSelf), out scriptName))
         {
-          NWScript.ExecuteScript(scriptName, oidSelf);
+          VirtualMachine.Execute(scriptName, oidSelf, eventScriptType);
         }
 
         EventService.Value.ProcessEvent(EventCallbackType.Before, value.Invoke());
