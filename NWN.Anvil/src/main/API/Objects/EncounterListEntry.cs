@@ -29,7 +29,7 @@ namespace Anvil.API
       }
     }
 
-    public string CreatureResRef
+    public string? CreatureResRef
     {
       get => encounterListEntry.m_cCreatureResRef.ToString();
       set => encounterListEntry.m_cCreatureResRef = value.ToResRef();
