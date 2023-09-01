@@ -146,7 +146,7 @@ namespace Anvil.Services
       CExoString speakerMessage = CExoString.FromPointer(sSpeakerMessage);
       NwObject speaker = oidSpeaker.ToNwObject()!;
 
-      OnChatMessageSend eventData = ProcessEvent(nChatMessageType, speakerMessage.ToString(), speaker, NwPlayer.FromPlayerId(nTellPlayerId));
+      OnChatMessageSend eventData = ProcessEvent(nChatMessageType, speakerMessage.ToString()!, speaker, NwPlayer.FromPlayerId(nTellPlayerId));
 
       if (eventData.Skip)
       {

@@ -93,12 +93,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the ResRef of the default icon that is used when the item's icon doesn't exist.
     /// </summary>
-    public string DefaultIcon => BaseItemInfo.m_DefaultIconResRef.ToString();
+    public string? DefaultIcon => BaseItemInfo.m_DefaultIconResRef.ToString();
 
     /// <summary>
     /// Gets the default model used when the item is lying on the ground.
     /// </summary>
-    public string DefaultModel => BaseItemInfo.m_DefaultModelResRef.ToString();
+    public string? DefaultModel => BaseItemInfo.m_DefaultModelResRef.ToString();
 
     /// <summary>
     /// Gets the default description for this item type. This is also used in game for items that lack specific descriptions.
