@@ -1,3 +1,4 @@
+using System;
 using NWN.Core;
 
 namespace Anvil.API
@@ -24,9 +25,15 @@ namespace Anvil.API
       return NWScript.ItemPropertyACBonusVsDmgType((int)damageType, bonus)!;
     }
 
+    [Obsolete("Use the NwRace/RacialType overload instead.")]
     public static ItemProperty ACBonusVsRace(IPRacialType racialType, int bonus)
     {
       return NWScript.ItemPropertyACBonusVsRace((int)racialType, bonus)!;
+    }
+
+    public static ItemProperty ACBonusVsRace(NwRace race, int bonus)
+    {
+      return NWScript.ItemPropertyACBonusVsRace(race.Id, bonus)!;
     }
 
     public static ItemProperty ACBonusVsSAlign(IPAlignment alignment, int bonus)
@@ -54,9 +61,15 @@ namespace Anvil.API
       return NWScript.ItemPropertyAttackBonusVsAlign((int)alignmentGroup, bonus)!;
     }
 
+    [Obsolete("Use the NwRace/RacialType overload instead.")]
     public static ItemProperty AttackBonusVsRace(IPRacialType racialType, int bonus)
     {
       return NWScript.ItemPropertyAttackBonusVsRace((int)racialType, bonus)!;
+    }
+
+    public static ItemProperty AttackBonusVsRace(NwRace race, int bonus)
+    {
+      return NWScript.ItemPropertyAttackBonusVsRace(race.Id, bonus)!;
     }
 
     public static ItemProperty AttackBonusVsSAlign(IPAlignment alignment, int bonus)
@@ -124,9 +137,15 @@ namespace Anvil.API
       return NWScript.ItemPropertyDamageBonusVsAlign((int)alignmentGroup, (int)damageType, (int)damageBonus)!;
     }
 
+    [Obsolete("Use the NwRace/RacialType overload instead.")]
     public static ItemProperty DamageBonusVsRace(IPRacialType racialType, IPDamageType damageType, IPDamageBonus damageBonus)
     {
       return NWScript.ItemPropertyDamageBonusVsRace((int)racialType, (int)damageType, (int)damageBonus)!;
+    }
+
+    public static ItemProperty DamageBonusVsRace(NwRace race, IPDamageType damageType, IPDamageBonus damageBonus)
+    {
+      return NWScript.ItemPropertyDamageBonusVsRace(race.Id, (int)damageType, (int)damageBonus)!;
     }
 
     public static ItemProperty DamageBonusVsSAlign(IPAlignment alignment, IPDamageType damageType, IPDamageBonus damageBonus)
@@ -189,9 +208,15 @@ namespace Anvil.API
       return NWScript.ItemPropertyEnhancementBonusVsAlign((int)alignmentGroup, bonus)!;
     }
 
+    [Obsolete("Use the NwRace/RacialType overload instead.")]
     public static ItemProperty EnhancementBonusVsRace(IPRacialType racialType, int bonus)
     {
       return NWScript.ItemPropertyEnhancementBonusVsRace((int)racialType, bonus)!;
+    }
+
+    public static ItemProperty EnhancementBonusVsRace(NwRace race, int bonus)
+    {
+      return NWScript.ItemPropertyEnhancementBonusVsRace(race.Id, bonus)!;
     }
 
     public static ItemProperty EnhancementBonusVsSAlign(IPAlignment alignment, int bonus)
@@ -269,9 +294,15 @@ namespace Anvil.API
       return NWScript.ItemPropertyLimitUseByClass((int)classType)!;
     }
 
+    [Obsolete("Use the NwRace/RacialType overload instead.")]
     public static ItemProperty LimitUseByRace(IPRacialType racialType)
     {
       return NWScript.ItemPropertyLimitUseByRace((int)racialType)!;
+    }
+
+    public static ItemProperty LimitUseByRace(NwRace race)
+    {
+      return NWScript.ItemPropertyLimitUseByRace(race.Id)!;
     }
 
     public static ItemProperty LimitUseBySAlign(IPAlignment alignment)
