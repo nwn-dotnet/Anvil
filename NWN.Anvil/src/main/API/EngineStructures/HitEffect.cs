@@ -1,3 +1,5 @@
+using System;
+
 namespace Anvil.API
 {
   /// <summary>
@@ -199,14 +201,20 @@ namespace Anvil.API
       return new HitEffect(IPOnHit.SlayAlignmentGroup, (int)alignmentGroup);
     }
 
-    /// <summary>
-    /// Creates a <see cref="HitEffect"/> property that instantly kills a creature of the specified race on a successful hit.
-    /// </summary>
-    /// <param name="racialType">The racial type that will be slain.</param>
-    /// <returns>The created HitEffect.</returns>
+    [Obsolete("Use the NwRace/RacialType overload instead.")]
     public static HitEffect SlayRace(IPRacialType racialType)
     {
       return new HitEffect(IPOnHit.SlayRace, (int)racialType);
+    }
+
+    /// <summary>
+    /// Creates a <see cref="HitEffect"/> property that instantly kills a creature of the specified race on a successful hit.
+    /// </summary>
+    /// <param name="race">The racial type that will be slain.</param>
+    /// <returns>The created HitEffect.</returns>
+    public static HitEffect SlayRace(NwRace race)
+    {
+      return new HitEffect(IPOnHit.SlayRace, race.Id);
     }
 
     /// <summary>
