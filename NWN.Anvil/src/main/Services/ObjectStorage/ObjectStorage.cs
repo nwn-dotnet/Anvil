@@ -153,7 +153,7 @@ namespace Anvil.Services
       return clone;
     }
 
-    internal void Deserialize(string serialized, bool isPersistentData = true)
+    internal void Deserialize(string? serialized, bool isPersistentData = true)
     {
       if (string.IsNullOrEmpty(serialized))
       {

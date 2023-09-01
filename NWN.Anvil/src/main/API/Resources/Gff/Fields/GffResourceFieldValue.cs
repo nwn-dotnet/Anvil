@@ -37,7 +37,7 @@ namespace Anvil.API
     public bool TryReadCExoString(out string value)
     {
       int bSuccess;
-      value = ResGff.ReadFieldCExoString(parentStruct, fieldId, &bSuccess).ToString();
+      value = ResGff.ReadFieldCExoString(parentStruct, fieldId, &bSuccess).ToString()!;
       return bSuccess.ToBool();
     }
 
@@ -51,7 +51,7 @@ namespace Anvil.API
     public bool TryReadCResRef(out string value)
     {
       int bSuccess;
-      value = ResGff.ReadFieldCResRef(parentStruct, fieldId, &bSuccess).ToString();
+      value = ResGff.ReadFieldCResRef(parentStruct, fieldId, &bSuccess).ToString()!;
       return bSuccess.ToBool();
     }
 

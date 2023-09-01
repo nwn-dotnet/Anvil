@@ -108,7 +108,7 @@ namespace Anvil.API
     /// <returns>The associated string.</returns>
     public override string ToString()
     {
-      return TlkTable.ResolveStringFromStrRef(this);
+      return TlkTable.ResolveStringFromStrRef(this)!;
     }
   }
 }

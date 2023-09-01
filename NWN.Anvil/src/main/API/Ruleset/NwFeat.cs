@@ -36,7 +36,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the ResRef for the icon representing this skill.
     /// </summary>
-    public string IconResRef => featInfo.m_cIcon.ToString();
+    public string? IconResRef => featInfo.m_cIcon.ToString();
 
     /// <summary>
     /// Gets the id of this feat.
