@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -339,13 +339,35 @@ namespace Anvil.API
     }
 
     /// <summary>
-    /// Adds the specified item property to this item.
+    /// Add an item property. Optional parameters allow for preventing unwanted stacking by removing the existing one first.
     /// </summary>
     /// <param name="itemProperty">The item property to add.</param>
     /// <param name="durationType">(Permanent/Temporary) - the duration of this item property.</param>
     /// <param name="duration">If DurationType is temporary, how long this item property should stay applied.</param>
-    public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default)
+    /// <param name="policy">The policy to use when adding this item property.</param>
+    /// <param name="ignoreDuration">If set to true, an item property will be considered identical even if the DurationType is different. Be careful when using this with <see cref="AddPropPolicy.ReplaceExisting"/>, as this could lead to a temporary item property removing a permanent one</param>
+    /// <param name="ignoreSubType">If set to true an item property will be considered identical even if the SubType is different.</param>
+    /// <param name="ignoreTag">If set to true an item property will be considered identical even if the tag is different.</param>
+    public void AddItemProperty(ItemProperty itemProperty, EffectDuration durationType, TimeSpan duration = default, AddPropPolicy policy = AddPropPolicy.IgnoreExisting, bool ignoreDuration = false, bool ignoreSubType = false, bool ignoreTag = false)
     {
+      switch (policy)
+      {
+        case AddPropPolicy.IgnoreExisting:
+          break;
+        case AddPropPolicy.ReplaceExisting:
+          RemoveItemProperties(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : itemProperty.DurationType, ignoreTag ? null : itemProperty.Tag);
+          break;
+        case AddPropPolicy.KeepExisting:
+          if (HasItemProperty(itemProperty.Property, ignoreSubType ? null : itemProperty.SubType, ignoreDuration ? null : itemProperty.DurationType, ignoreTag ? null : itemProperty.Tag))
+          {
+            return;
+          }
+
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(policy), policy, null);
+      }
+
       NWScript.AddItemProperty((int)durationType, itemProperty, this, (float)duration.TotalSeconds);
     }
 
@@ -423,6 +445,31 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Gets whether this item has a given item property that matches the specified filters.<br/>
+    /// If no filters are set, returns if any item property is set on this item.
+    /// </summary>
+    /// <param name="propertyType">If set, restricts the search of item properties to the specified type.</param>
+    /// <param name="subType">If set, restricts the search of item properties to the specified sub-type.</param>
+    /// <param name="durationType">If set, restricts the search of item properties to the specified duration type.</param>
+    /// <param name="tag">If set, restricts the search of item properties to the specified tag.</param>
+    /// <returns>True if this item has a property matching the specified filters, otherwise false.</returns>
+    public bool HasItemProperty(ItemPropertyTableEntry? propertyType = null, ItemPropertySubTypeTableEntry? subType = null, EffectDuration? durationType = null, string? tag = null)
+    {
+      foreach (ItemProperty property in ItemProperties)
+      {
+        if ((propertyType == null || propertyType == property.Property) &&
+          (subType == null || subType == property.SubType) &&
+          (durationType == null || durationType == property.DurationType) &&
+          (tag == null || tag == property.Tag))
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    /// <summary>
     /// Removes the specified item property from this item.<br/>
     /// See <see cref="ItemProperties"/> to enumerate item properties on this item.
     /// </summary>
@@ -430,6 +477,28 @@ namespace Anvil.API
     public void RemoveItemProperty(ItemProperty itemProperty)
     {
       NWScript.RemoveItemProperty(this, itemProperty);
+    }
+
+    /// <summary>
+    /// Remove all item properties from this item, using the specified filter options.<br/>
+    /// If no filters are set, removes all item properties from this item.
+    /// </summary>
+    /// <param name="propertyType">If set, restricts the deletion of item properties to the specified type.</param>
+    /// <param name="subType">If set, restricts the deletion of item properties to the specified sub-type.</param>
+    /// <param name="durationType">If set, restricts the deletion of item properties to the specified duration type.</param>
+    /// <param name="tag">If set, restricts the deletion of item properties to the specified tag.</param>
+    public void RemoveItemProperties(ItemPropertyTableEntry? propertyType = null, ItemPropertySubTypeTableEntry? subType = null, EffectDuration? durationType = null, string? tag = null)
+    {
+      foreach (ItemProperty property in ItemProperties)
+      {
+        if ((propertyType == null || propertyType == property.Property) &&
+          (subType == null || subType == property.SubType) &&
+          (durationType == null || durationType == property.DurationType) &&
+          (tag == null || tag == property.Tag))
+        {
+          RemoveItemProperty(property);
+        }
+      }
     }
 
     public override byte[]? Serialize()
