@@ -141,6 +141,7 @@ namespace Anvil.API
         PlaceableTable = GetTable<PlaceableTableEntry>(arrays.m_pPlaceablesTable);
         VisualEffectTable = GetTable<VisualEffectTableEntry>(arrays.m_pVisualEffectTable);
         ProgrammedEffectTable = GetTable<ProgrammedEffectTableEntry>("progfx.2da")!; // arrays.m_pProgFxTable does not exist in nwserver.
+        PersistentEffectTable = GetTable<PersistentVfxTableEntry>(arrays.m_pPersistentVisualEffectTable); // arrays.m_pProgFxTable does not exist in nwserver.
         DamageLevelTable = GetTable<DamageLevelEntry>("damagelevels.2da")!; // arrays.m_pDamageLevelTable does not exist in nwserver.
         ExpTable = GetTable<ExpTableEntry>("exptable.2da")!;
         SkillItemCostTable = GetTable<SkillItemCostTableEntry>(arrays.m_pSkillVsItemCostTable);

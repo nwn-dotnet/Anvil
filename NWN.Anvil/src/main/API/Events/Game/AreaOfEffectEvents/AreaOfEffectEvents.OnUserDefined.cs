@@ -5,7 +5,7 @@ using NWN.Core;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Built-in events for effects created with <see cref="Effect.AreaOfEffect(Anvil.API.PersistentVfxType,Anvil.Services.ScriptCallbackHandle,Anvil.Services.ScriptCallbackHandle,Anvil.Services.ScriptCallbackHandle)"/>.
+  /// Built-in events for effects created with <see cref="Effect.AreaOfEffect"/>.
   /// </summary>
   public static partial class AreaOfEffectEvents
   {

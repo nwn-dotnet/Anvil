@@ -123,6 +123,11 @@ namespace Anvil.API
     public static TwoDimArray<ProgrammedEffectTableEntry> ProgrammedEffectTable { get; private set; } = null!;
 
     /// <summary>
+    /// Gets the programmed effect table (vfx_persistent.2da)
+    /// </summary>
+    public static TwoDimArray<PersistentVfxTableEntry> PersistentEffectTable { get; private set; } = null!;
+
+    /// <summary>
     /// Gets the item/skill cost table (skillvsitemcost.2da)
     /// </summary>
     public static TwoDimArray<SkillItemCostTableEntry> SkillItemCostTable { get; private set; } = null!;
