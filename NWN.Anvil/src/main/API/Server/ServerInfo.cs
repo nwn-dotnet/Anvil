@@ -27,7 +27,7 @@ namespace Anvil.API
     /// </summary>
     public string ModuleName
     {
-      get => serverInfo.m_sModuleName.ToString();
+      get => serverInfo.m_sModuleName.ToString()!;
       set => serverInfo.m_sModuleName = new CExoString(value);
     }
 
@@ -40,7 +40,7 @@ namespace Anvil.API
     /// </summary>
     public string ServerName
     {
-      get => netLayer.GetSessionName().ToString();
+      get => netLayer.GetSessionName().ToString()!;
       set => netLayer.SetSessionName(new CExoString(value));
     }
   }

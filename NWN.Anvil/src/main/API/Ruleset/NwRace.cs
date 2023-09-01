@@ -29,12 +29,12 @@ namespace Anvil.API
     /// <summary>
     /// Gets the description used by default for the character's description.
     /// </summary>
-    public string DefaultCharacterDescription => raceInfo.GetDefaultBiographyText().ToString();
+    public string? DefaultCharacterDescription => raceInfo.GetDefaultBiographyText().ToString();
 
     /// <summary>
     /// Gets the description of this race.
     /// </summary>
-    public string Description => raceInfo.GetDescriptionText().ToString();
+    public string? Description => raceInfo.GetDescriptionText().ToString();
 
     /// <summary>
     /// Gets the number of extra feats that this race grants characters at first level.
@@ -69,7 +69,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of this race.
     /// </summary>
-    public string Name => raceInfo.GetNameText().ToString();
+    public string? Name => raceInfo.GetNameText().ToString();
 
     /// <summary>
     /// Gets the level period that feats are granted from this race.
@@ -84,7 +84,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the plural name of this race.
     /// </summary>
-    public string PluralName => raceInfo.GetNamePluralText().ToString();
+    public string? PluralName => raceInfo.GetNamePluralText().ToString();
 
     /// <summary>
     /// Gets the associated <see cref="Id"/> for this race.

@@ -82,8 +82,7 @@ namespace Anvil.API
       {
         foreach ((CExoString key, CNWSScriptVar value) in ScriptVarTable.m_vars)
         {
-          string keyValue = key.ToString();
-
+          string keyValue = key.ToString()!;
           if (value.HasFloat())
           {
             yield return ObjectVariable.Create<LocalVariableFloat>(this, keyValue);

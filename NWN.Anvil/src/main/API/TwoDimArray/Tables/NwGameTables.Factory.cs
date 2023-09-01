@@ -18,7 +18,7 @@ namespace Anvil.API
     /// <param name="checkCacheType">When using the cache, if the return type should be checked.</param>
     /// <typeparam name="T">The type of entries contained in this 2da.</typeparam>
     /// <exception cref="InvalidOperationException">Thrown if the entry type specified does not match the existing cache type and checkCacheType is set to true.</exception>
-    public static TwoDimArray<T>? GetTable<T>(string twoDimArrayName, bool useCache = true, bool checkCacheType = true) where T : class, ITwoDimArrayEntry, new()
+    public static TwoDimArray<T>? GetTable<T>(string? twoDimArrayName, bool useCache = true, bool checkCacheType = true) where T : class, ITwoDimArrayEntry, new()
     {
       if (string.IsNullOrEmpty(twoDimArrayName))
       {

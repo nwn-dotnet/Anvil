@@ -81,6 +81,16 @@ namespace Anvil.API
       virtualMachine.RunScript(scriptName.ToExoString(), target);
     }
 
+    internal void Execute(string scriptName, uint oid, EventScriptType eventScriptType, params (string ParamName, string ParamValue)[] scriptParams)
+    {
+      foreach ((string paramName, string paramValue) in scriptParams)
+      {
+        NWScript.SetScriptParam(paramName, paramValue);
+      }
+
+      virtualMachine.RunScript(scriptName.ToExoString(), oid, true.ToInt(), (int)eventScriptType);
+    }
+
     /// <summary>
     /// Executes the specified NWN script.
     /// If scriptName does not specify a compiled script, nothing happens.

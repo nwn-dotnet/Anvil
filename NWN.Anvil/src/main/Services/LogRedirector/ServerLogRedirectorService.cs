@@ -79,7 +79,11 @@ namespace Anvil.Services
 
     private string TrimMessage(CExoString message)
     {
-      string retVal = message.ToString();
+      string? retVal = message.ToString();
+      if (string.IsNullOrEmpty(retVal))
+      {
+        return string.Empty;
+      }
 
       if (!printString)
       {

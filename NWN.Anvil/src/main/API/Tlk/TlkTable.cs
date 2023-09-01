@@ -46,7 +46,7 @@ namespace Anvil.API
       return rawString?.ToString();
     }
 
-    internal string ResolveStringFromStrRef(StrRef strRef)
+    internal string? ResolveStringFromStrRef(StrRef strRef)
     {
       return tlkTable.GetSimpleString(strRef.Id).ToString();
     }
