@@ -21,7 +21,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets a list of all banned IPs/Keys/names as a string.
     /// </summary>
-    public string BannedList => server.GetBannedListString().ToString();
+    public string BannedList => server.GetBannedListString().ToString()!;
 
     /// <summary>
     /// Gets or sets if debug mode is enabled, allowing all players to use DM commands and enabling various other debug behaviours.
@@ -73,7 +73,7 @@ namespace Anvil.API
     /// </summary>
     public string DMPassword
     {
-      get => netLayer.GetGameMasterPassword().ToString();
+      get => netLayer.GetGameMasterPassword().ToString()!;
       set => netLayer.SetGameMasterPassword(new CExoString(value));
     }
 
@@ -96,7 +96,7 @@ namespace Anvil.API
     /// </summary>
     public string PlayerPassword
     {
-      get => netLayer.GetPlayerPassword().ToString();
+      get => netLayer.GetPlayerPassword().ToString()!;
       set => netLayer.SetPlayerPassword(new CExoString(value));
     }
 
@@ -181,7 +181,7 @@ namespace Anvil.API
     /// <returns>The path defined for the specified alias, otherwise null if the alias could not be found.</returns>
     public string GetAliasPath(string alias)
     {
-      return exoBase.m_pcExoAliasList.GetAliasPath(new CExoString(alias), 0).ToString();
+      return exoBase.m_pcExoAliasList.GetAliasPath(new CExoString(alias), 0).ToString()!;
     }
 
     /// <summary>
@@ -222,7 +222,7 @@ namespace Anvil.API
     void ICoreService.Init()
     {
       exoBase = NWNXLib.ExoBase();
-      UserDirectory = exoBase.m_sUserDirectory.ToString();
+      UserDirectory = exoBase.m_sUserDirectory.ToString()!;
       ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
     }
 

@@ -496,8 +496,8 @@ namespace Anvil.API
         return null;
       }
 
-      CExoString uidString = uid.m_uuid;
-      return uidString != null ? Guid.Parse(uidString.ToString()) : null;
+      string? uidString = uid.m_uuid?.ToString();
+      return uidString != null ? Guid.Parse(uidString) : null;
     }
 
     /// <summary>
