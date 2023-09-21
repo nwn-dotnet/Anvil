@@ -5,7 +5,7 @@ using ItemProperty = Anvil.API.ItemProperty;
 
 namespace Anvil.Native
 {
-  internal static class NativeObjectExtensions
+  public static class NativeObjectExtensions
   {
     public static Effect? ToEffect(this CGameEffect? effect, bool memoryOwn)
     {
