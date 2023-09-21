@@ -1,7 +1,9 @@
 using System;
+using Anvil.API;
 using NWN.Native.API;
+using ItemProperty = Anvil.API.ItemProperty;
 
-namespace Anvil.API
+namespace Anvil.Native
 {
   internal static class NativeObjectExtensions
   {

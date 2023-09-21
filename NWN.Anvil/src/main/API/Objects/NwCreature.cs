@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Internal;
+using Anvil.Native;
 using Anvil.Services;
 using NLog;
 using NWN.Core;
