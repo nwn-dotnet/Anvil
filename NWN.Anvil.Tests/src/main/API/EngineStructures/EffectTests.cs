@@ -1,4 +1,5 @@
 using Anvil.API;
+using Anvil.Native;
 using NUnit.Framework;
 using NWN.Native.API;
 

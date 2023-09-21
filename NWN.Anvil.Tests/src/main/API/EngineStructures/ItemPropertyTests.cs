@@ -1,4 +1,4 @@
-using Anvil.API;
+using Anvil.Native;
 using NUnit.Framework;
 using NWN.Native.API;
 using ItemProperty = Anvil.API.ItemProperty;

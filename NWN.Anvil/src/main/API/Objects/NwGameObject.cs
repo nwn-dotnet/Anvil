@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Anvil.Native;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;

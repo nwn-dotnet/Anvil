@@ -1,9 +1,11 @@
 using System;
+using Anvil.API;
 using NWN.Native.API;
+using ItemProperty = Anvil.API.ItemProperty;
 
-namespace Anvil.API
+namespace Anvil.Native
 {
-  internal static class NativeObjectExtensions
+  public static class NativeObjectExtensions
   {
     public static Effect? ToEffect(this CGameEffect? effect, bool memoryOwn)
     {
