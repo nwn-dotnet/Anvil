@@ -425,6 +425,16 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Compare this item to another item to test if it is stackable.
+    /// </summary>
+    /// <param name="otherItem">The other item to compare to.</param>
+    /// <returns>True if both items can stack with each-other, otherwise false.</returns>
+    public bool CompareItem(NwItem otherItem)
+    {
+      return Item.CompareItem(otherItem.Item).ToBool();
+    }
+
+    /// <summary>
     /// Gets the number of uses per day remaining for the specified item property on this item.
     /// </summary>
     /// <param name="property">The item property to test for uses remaining.</param>
