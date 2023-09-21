@@ -1374,6 +1374,32 @@ namespace Anvil.API
     }
 
     /// <summary>
+    /// Causes this creature to broadcast feedback for an arbitrary skill roll (pre-calculated)<br/>
+    /// This causes a message to be posted in the combat log, and floaty *skill* text to appear above the character.
+    /// </summary>
+    /// <param name="diceRoll">The d20 dice value result.</param>
+    /// <param name="skill">The skill that was rolled.</param>
+    /// <param name="modifier">The modifier added to the dice roll.</param>
+    /// <param name="difficultyClass">The difficulty class/dc of the skill check.</param>
+    /// <param name="take20">If the roll was an automatic take 20 roll.</param>
+    /// <param name="result">The result of the skill check.</param>
+    public void BroadcastSkillRoll(int diceRoll, NwSkill skill, int modifier, int difficultyClass, bool take20, SkillResult result)
+    {
+      CNWCCMessageData data = new CNWCCMessageData();
+      GC.SuppressFinalize(data);
+
+      data.SetObjectID(0, this);
+      data.SetInteger(0, (int)skill.Name.Id);
+      data.SetInteger(1, diceRoll);
+      data.SetInteger(2, modifier);
+      data.SetInteger(3, difficultyClass);
+      data.SetInteger(4, take20.ToInt());
+      data.SetInteger(5, (int)result);
+
+      creature.BroadcastSkillData(data);
+    }
+
+    /// <summary>
     /// Performs a spell resistance check between this creature, and the specified target object.
     /// </summary>
     /// <param name="target">The target of the spell.</param>
