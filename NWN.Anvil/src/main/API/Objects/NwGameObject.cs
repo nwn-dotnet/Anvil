@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Anvil.Native;
 using Anvil.Services;
@@ -145,15 +146,19 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the PortraitId of this (game object).
     /// </summary>
-    public int PortraitId
+    /// <remarks>When this property is set to null, the ID will be set to <see cref="NWScript.PORTRAIT_INVALID"/> (65535).<br/>
+    /// When this property is invalid, the portrait from <see cref="PortraitResRef"/> will be used instead.
+    /// </remarks>
+    public PortraitTableEntry? PortraitId
     {
-      get => NWScript.GetPortraitId(this);
-      set => NWScript.SetPortraitId(this, value);
+      get => NwGameTables.PortraitTable.ElementAtOrDefault(NWScript.GetPortraitId(this));
+      set => NWScript.SetPortraitId(this, value?.RowIndex ?? NWScript.PORTRAIT_INVALID);
     }
 
     /// <summary>
     /// Gets or sets the Portrait ResRef for this object.
     /// </summary>
+    /// <remarks>Setting this property will automatically set <see cref="PortraitId"/> to invalid, ensuring this property is used instead.</remarks>
     public string PortraitResRef
     {
       get => NWScript.GetPortraitResRef(this);

@@ -139,6 +139,9 @@ namespace Anvil.API
         PartsShoulderTable = GetTable<PartsTableEntry>(arrays.m_pPartsShoulder);
         PlaceableSoundTable = GetTable<PlaceableSoundTableEntry>("placeableobjsnds.2da")!; // arrays.m_pPlaceableSoundsTable does not exist in nwserver.
         PlaceableTable = GetTable<PlaceableTableEntry>(arrays.m_pPlaceablesTable);
+        PlaceableTypeTable = GetTable<PlaceableTypeTableEntry>("placeabletypes.2da")!;
+        PolymorphTable = GetTable<PolymorphTableEntry>(arrays.m_pPolymorphTable);
+        PortraitTable = GetTable<PortraitTableEntry>(arrays.m_pPortraitTable);
         VisualEffectTable = GetTable<VisualEffectTableEntry>(arrays.m_pVisualEffectTable);
         ProgrammedEffectTable = GetTable<ProgrammedEffectTableEntry>("progfx.2da")!; // arrays.m_pProgFxTable does not exist in nwserver.
         PersistentEffectTable = GetTable<PersistentVfxTableEntry>(arrays.m_pPersistentVisualEffectTable); // arrays.m_pProgFxTable does not exist in nwserver.
