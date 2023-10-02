@@ -97,6 +97,120 @@ namespace Anvil.API.Events
       set => source[11] = value;
     }
 
+    public T Custom1
+    {
+      get => source[13];
+      set => source[13] = value;
+    }
+
+    public T Custom2
+    {
+      get => source[14];
+      set => source[14] = value;
+    }
+
+    public T Custom3
+    {
+      get => source[15];
+      set => source[15] = value;
+    }
+
+    public T Custom4
+    {
+      get => source[16];
+      set => source[16] = value;
+    }
+
+    public T Custom5
+    {
+      get => source[17];
+      set => source[17] = value;
+    }
+
+    public T Custom6
+    {
+      get => source[18];
+      set => source[18] = value;
+    }
+
+    public T Custom7
+    {
+      get => source[19];
+      set => source[19] = value;
+    }
+
+    public T Custom8
+    {
+      get => source[20];
+      set => source[20] = value;
+    }
+
+    public T Custom9
+    {
+      get => source[21];
+      set => source[21] = value;
+    }
+
+    public T Custom10
+    {
+      get => source[22];
+      set => source[22] = value;
+    }
+
+    public T Custom11
+    {
+      get => source[23];
+      set => source[23] = value;
+    }
+
+    public T Custom12
+    {
+      get => source[24];
+      set => source[24] = value;
+    }
+
+    public T Custom13
+    {
+      get => source[25];
+      set => source[25] = value;
+    }
+
+    public T Custom14
+    {
+      get => source[26];
+      set => source[26] = value;
+    }
+
+    public T Custom15
+    {
+      get => source[27];
+      set => source[27] = value;
+    }
+
+    public T Custom16
+    {
+      get => source[28];
+      set => source[28] = value;
+    }
+
+    public T Custom17
+    {
+      get => source[29];
+      set => source[29] = value;
+    }
+
+    public T Custom18
+    {
+      get => source[30];
+      set => source[30] = value;
+    }
+
+    public T Custom19
+    {
+      get => source[31];
+      set => source[31] = value;
+    }
+
     public T GetDamageByType(DamageType damageType)
     {
       return damageType switch
@@ -114,6 +228,25 @@ namespace Anvil.API.Events
         DamageType.Positive => Positive,
         DamageType.Sonic => Sonic,
         DamageType.BaseWeapon => Base,
+        DamageType.Custom1 => Custom1,
+        DamageType.Custom2 => Custom2,
+        DamageType.Custom3 => Custom3,
+        DamageType.Custom4 => Custom4,
+        DamageType.Custom5 => Custom5,
+        DamageType.Custom6 => Custom6,
+        DamageType.Custom7 => Custom7,
+        DamageType.Custom8 => Custom8,
+        DamageType.Custom9 => Custom9,
+        DamageType.Custom10 => Custom10,
+        DamageType.Custom11 => Custom11,
+        DamageType.Custom12 => Custom12,
+        DamageType.Custom13 => Custom13,
+        DamageType.Custom14 => Custom14,
+        DamageType.Custom15 => Custom15,
+        DamageType.Custom16 => Custom16,
+        DamageType.Custom17 => Custom17,
+        DamageType.Custom18 => Custom18,
+        DamageType.Custom19 => Custom19,
         _ => throw new ArgumentOutOfRangeException(nameof(damageType), damageType, null),
       };
     }
