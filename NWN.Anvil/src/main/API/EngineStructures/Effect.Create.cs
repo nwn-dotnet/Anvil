@@ -575,9 +575,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="polymorphType">The polymorph to apply.</param>
     /// <param name="locked">If true, players cannot dismiss the polymorph effect.</param>
-    public static Effect Polymorph(PolymorphType polymorphType, bool locked = false)
+    public static Effect Polymorph(PolymorphTableEntry polymorphType, bool locked = false)
     {
-      return NWScript.EffectPolymorph((int)polymorphType, locked.ToInt())!;
+      return NWScript.EffectPolymorph(polymorphType.RowIndex, locked.ToInt())!;
     }
 
     /// <summary>
