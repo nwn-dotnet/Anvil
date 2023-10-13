@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using NWN.Core;
+using NWN.Native.API;
+using Vector = System.Numerics.Vector;
 
 namespace Anvil.API
 {
@@ -87,6 +89,18 @@ namespace Anvil.API
     /// Gets the height of the tile set at this location.
     /// </summary>
     public int TileHeight => NWScript.GetTileHeight(this);
+
+    /// <summary>
+    /// Gets the tile information at this location.
+    /// </summary>
+    public TileInfo? TileInfo
+    {
+      get
+      {
+        CNWTile tile = Area.Area.GetTile(Position.ToNativeVector());
+        return tile != null ? new TileInfo(tile) : null;
+      }
+    }
 
     protected override int StructureId => NWScript.ENGINE_STRUCTURE_LOCATION;
 
