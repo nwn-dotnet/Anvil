@@ -4,7 +4,6 @@ using System.Numerics;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
-using Vector = NWN.Native.API.Vector;
 
 namespace Anvil.API
 {
@@ -346,7 +345,7 @@ namespace Anvil.API
     /// Gets the size of this area.
     /// <returns>The number of tiles that the area is wide/high.</returns>
     /// </summary>
-    public Vector2Int Size => new Vector2Int(NWScript.GetAreaSize((int)AreaSizeDimension.Width, this), NWScript.GetAreaSize((int)AreaSizeDimension.Height, this));
+    public Vector2Int Size => new Vector2Int(area.m_nWidth, area.m_nHeight);
 
     /// <summary>
     /// Gets or sets the current skybox for this area.
@@ -424,6 +423,25 @@ namespace Anvil.API
     /// Gets the tileset (.set) resource name used for this area.
     /// </summary>
     public string Tileset => NWScript.GetTilesetResRef(this);
+
+    /// <summary>
+    /// Gets an array containing all tile data/structures for the area.
+    /// </summary>
+    public IReadOnlyList<TileInfo> TileInfo
+    {
+      get
+      {
+        CNWSTileArray array = CNWSTileArray.FromPointer(area.m_pTile);
+        TileInfo[] retVal = new TileInfo[area.m_nWidth * area.m_nHeight];
+
+        for (int i = 0; i < retVal.Length; i++)
+        {
+          retVal[i] = new TileInfo(array.GetItem(i));
+        }
+
+        return retVal;
+      }
+    }
 
     /// <summary>
     /// Gets or sets the current weather conditions for this area.
@@ -576,17 +594,33 @@ namespace Anvil.API
     /// <param name="tileY">The y coordinate of the tile to get info.</param>
     /// <returns>A structure containing the associated tile info.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the tile coordinates are larger than the area size.</exception>
-    public TileInfo? GetTileInfo(uint tileX, uint tileY)
+    public TileInfo GetTileInfo(int tileX, int tileY)
+    {
+      int index = tileY * area.m_nWidth + tileX;
+      return GetTileInfoByIndex(index);
+    }
+
+    /// <summary>
+    /// Gets the specified tile info by its index.
+    /// </summary>
+    /// <remarks>
+    /// For example, a 3x3 area has the following tile indexes:<br/>
+    /// 6 7 8<br/>
+    /// 3 4 5<br/>
+    /// 0 1 2<br/>
+    /// </remarks>
+    /// <param name="index">The tile index to query.</param>
+    /// <returns>A structure containing the associated tile info.</returns>
+    public TileInfo GetTileInfoByIndex(int index)
     {
       Vector2Int max = Size;
-      if (tileX >= max.X || tileY >= max.Y)
+      if (index >= max.X * max.Y)
       {
         throw new ArgumentOutOfRangeException(null, "Tile index must be smaller than the area size.");
       }
 
-      CNWTile tile = Area.GetTile(new Vector(tileX, tileY, 0f));
-
-      return tile != null ? new TileInfo(tile) : null;
+      CNWSTileArray tiles = CNWSTileArray.FromPointer(Area.m_pTile);
+      return new TileInfo(tiles.GetItem(index));
     }
 
     public override Guid? PeekUUID()
