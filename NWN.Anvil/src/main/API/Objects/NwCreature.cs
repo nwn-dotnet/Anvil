@@ -2689,5 +2689,14 @@ namespace Anvil.API
     {
       Creature.AddToArea(area, x, y, z, true.ToInt());
     }
+
+    /// <summary>
+    /// Return the Armor Class this creature has against another creature
+    /// </summary>
+    /// <param name="creature">The creature against which the Armor Class will be checked.</param>
+    public int GetArmorClassVersus(NwCreature creature)
+    {
+      return (int)Creature.m_pStats.GetArmorClassVersus(creature);
+    }
   }
 }
