@@ -58,7 +58,7 @@ namespace NWN.Anvil.Samples
     private void BloodVfxExample(OnCreatureDamage eventData)
     {
       // If the target is a creature, and the attack does more than 50 slashing damage...
-      if (eventData.Target is NwCreature && eventData.DamageData.Slash > 50)
+      if (eventData.Target is NwCreature && eventData.DamageData.GetDamageByType(DamageType.Slashing) > 50)
       {
         // ...Apply our blood effect to the creature
         eventData.Target.ApplyEffect(EffectDuration.Instant, bloodVfx);
@@ -71,7 +71,7 @@ namespace NWN.Anvil.Samples
     private void BlindnessExample(OnCreatureDamage eventData)
     {
       // If the target is a creature, and the attack does more than 100 bludgeoning damage...
-      if (eventData.Target is NwCreature && eventData.DamageData.Bludgeoning > 100)
+      if (eventData.Target is NwCreature && eventData.DamageData.GetDamageByType(DamageType.Bludgeoning) > 100)
       {
         // ...Apply our blindness effect for 5 seconds.
         eventData.Target.ApplyEffect(EffectDuration.Temporary, blindnessEffect, TimeSpan.FromSeconds(5));

@@ -2589,18 +2589,18 @@ namespace Anvil.API
     /// </summary>
     /// <param name="category">The category of talents to pick from.</param>
     /// <param name="maxCr">The maximum Challenge Rating of the talent.</param>
-    public TalentCategory TalentBest(TalentCategory category, int maxCr)
+    public Talent TalentBest(TalentCategory category, int maxCr)
     {
-      return (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
+      return NWScript.GetCreatureTalentBest((int)category, maxCr, this);
     }
 
     /// <summary>
     /// Gets a random talent from a group of talents possessed by this creature.
     /// </summary>
     /// <param name="category">The category of talents to pick from.</param>
-    public TalentCategory TalentRandom(TalentCategory category)
+    public Talent TalentRandom(TalentCategory category)
     {
-      return (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
+      return NWScript.GetCreatureTalentRandom((int)category, this);
     }
 
     /// <summary>
