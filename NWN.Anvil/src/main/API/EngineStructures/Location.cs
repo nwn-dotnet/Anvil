@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using NWN.Core;
 using NWN.Native.API;
-using Vector = System.Numerics.Vector;
 
 namespace Anvil.API
 {
