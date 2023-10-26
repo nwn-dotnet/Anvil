@@ -283,9 +283,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellId">The id of the spell to resolve.</param>
     /// <returns>The associated <see cref="NwSpell"/> instance. Null if the spell id is invalid.</returns>
-    public static NwSpell? FromSpellId(int spellId)
+    public static NwSpell? FromSpellId(int? spellId)
     {
-      return NwRuleset.Spells.ElementAtOrDefault(spellId);
+      return spellId != null ? NwRuleset.Spells.ElementAtOrDefault(spellId.Value) : null;
     }
 
     /// <summary>
