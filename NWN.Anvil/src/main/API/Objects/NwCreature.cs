@@ -2696,7 +2696,7 @@ namespace Anvil.API
     /// <param name="creature">The creature against which the Armor Class will be checked.</param>
     public int GetArmorClassVersus(NwCreature creature)
     {
-      return (int)Creature.m_pStats.GetArmorClassVersus(creature);
+      return Creature.m_pStats.GetArmorClassVersus(creature);
     }
   }
 }
