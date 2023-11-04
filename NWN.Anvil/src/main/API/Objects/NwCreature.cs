@@ -1536,7 +1536,7 @@ namespace Anvil.API
     /// <returns>The ability modifier for the specified ability score.</returns>
     public int CalculateAbilityModifierFromScore(byte abilityScore)
     {
-      return creature.m_pStats.CalcStatModifier(abilityScore);
+      return creature.m_pStats.CalcStatModifier(abilityScore).AsSByte();
     }
 
     /// <summary>
