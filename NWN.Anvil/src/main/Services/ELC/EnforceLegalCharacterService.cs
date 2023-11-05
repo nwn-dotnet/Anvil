@@ -867,18 +867,9 @@ namespace Anvil.Services
           nAbilityAtLevel[nAbilityIndex] += nStatMods[nAbilityIndex];
         }
 
-        for (byte nMultiClass = 0; nMultiClass < NumMultiClass; nMultiClass++)
+        for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
         {
-          byte nClassId = pCreatureStats.GetClass(nMultiClass);
-          CNWClass? pClass = nClassId < pRules.m_nNumClasses ? classes[nClassId] : null;
-
-          if (pClass != null)
-          {
-            for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
-            {
-              nAbilityAtLevel[nAbilityIndex] += pClass.GetAbilityGainForSingleLevel(nAbilityIndex, nMultiClassLevel[nMultiClassLeveledUpIn]);
-            }
-          }
+          nAbilityAtLevel[nAbilityIndex] += pClassLeveledUpIn.GetAbilityGainForSingleLevel(nAbilityIndex, nMultiClassLevel[nMultiClassLeveledUpIn]);
         }
 
         // *** Check Hit Die ********************************************************************************************************
