@@ -65,6 +65,7 @@ namespace Anvil
         Closure = instance.VirtualMachineFunctionHandler.OnClosure,
         MainLoop = instance.VirtualMachineFunctionHandler.OnLoop,
         AssertFail = instance.OnAssertFail,
+        CrashHandler = instance.OnServerCrash,
       };
 
       return NWNCore.Init(arg, argLength, instance.VirtualMachineFunctionHandler, eventHandles);
@@ -161,6 +162,29 @@ namespace Anvil
       StackTrace stackTrace = new StackTrace(true);
       Log.Error("An assertion failure occurred in native code.\n" +
         $"{message}{nativeStackTrace}\n" +
+        $"{stackTrace}");
+    }
+
+    private void OnServerCrash(int signal, string stackTrace)
+    {
+      Version serverVersion = NwServer.Instance.ServerVersion;
+
+      string error = signal switch
+      {
+        4 => "Illegal instruction",
+        6 => "Program aborted",
+        8 => "Floating point exception",
+        11 => "Segmentation fault",
+        _ => "Unknown error",
+      };
+
+      Log.Fatal("\n==============================================================\n" +
+        " Please file a bug at https://github.com/nwn-dotnet/Anvil/issues\n" +
+        $" {Assemblies.Anvil.GetName().Name} {AssemblyInfo.VersionInfo.InformationalVersion} has crashed. Fatal error: {error} ({signal})\n" +
+        $" Using: NWN {serverVersion}, NWN.Core {Assemblies.Core.GetName().Version}, NWN.Native {Assemblies.Native.GetName().Version}\n" +
+        "==============================================================\n" +
+        "  Managed Backtrace:\n" +
+        $"{new StackTrace(true)}" +
         $"{stackTrace}");
     }
 
