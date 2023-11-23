@@ -77,20 +77,18 @@ namespace Anvil
     [UnmanagedCallersOnly]
     private static int OnRunScript(IntPtr scriptPtr, uint oidSelf)
     {
+      int retVal;
       string script = scriptPtr.ReadNullTerminatedString();
-      int retVal = 0;
       objectSelf = oidSelf;
       ScriptContexts.Push(oidSelf);
 
       try
       {
-        if (ScriptDispatchService != null)
-        {
-          retVal = (int)ScriptDispatchService.TryExecuteScript(script, oidSelf);
-        }
+        retVal = (int)(ScriptDispatchService?.TryExecuteScript(script, oidSelf) ?? ScriptHandleResult.Handled);
       }
       catch (Exception e)
       {
+        retVal = 0;
         Log.Error(e, "An exception occured while executing script {Script}", script);
       }
 
