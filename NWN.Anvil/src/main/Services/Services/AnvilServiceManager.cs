@@ -227,7 +227,6 @@ namespace Anvil.Services
       RegisterCoreService<UnobservedTaskExceptionLogger>();
       RegisterCoreService<InjectionService>();
       RegisterCoreService<ModuleLoadTracker>();
-      RegisterCoreService<VirtualMachineFunctionHandler>();
       RegisterCoreService<HookService>();
       RegisterCoreService<VirtualMachine>();
       RegisterCoreService<PluginManager>();

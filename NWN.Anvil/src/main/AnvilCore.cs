@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -17,14 +16,11 @@ namespace Anvil
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
   /// Until <see cref="Init(IntPtr, int, IServiceManager)"/> is called, all APIs are unavailable for usage.
   /// </summary>
-  public sealed class AnvilCore
+  public sealed partial class AnvilCore
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private static AnvilCore instance = null!;
-
-    [Inject]
-    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; } = null!;
 
     private readonly IServiceManager serviceManager;
 
@@ -53,22 +49,22 @@ namespace Anvil
     /// <param name="serviceManager">A custom service manager to use instead of the default <see cref="AnvilServiceManager"/>. For advanced users only.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IServiceManager? serviceManager = default)
+    public static unsafe int Init(IntPtr arg, int argLength, IServiceManager? serviceManager = default)
     {
       serviceManager ??= new AnvilServiceManager();
       instance = new AnvilCore(serviceManager);
 
-      NWNCore.NativeEventHandles eventHandles = new NWNCore.NativeEventHandles
+      NWNCore.NativeEventHandlesUnmanaged eventHandles = new NWNCore.NativeEventHandlesUnmanaged
       {
-        Signal = instance.OnNWNXSignal,
-        RunScript = instance.VirtualMachineFunctionHandler.OnRunScript,
-        Closure = instance.VirtualMachineFunctionHandler.OnClosure,
-        MainLoop = instance.VirtualMachineFunctionHandler.OnLoop,
-        AssertFail = instance.OnAssertFail,
-        CrashHandler = instance.OnServerCrash,
+        Signal = &OnNWNXSignal,
+        RunScript = &OnRunScript,
+        Closure = &OnClosure,
+        MainLoop = &OnLoop,
+        AssertFail = &OnAssertFail,
+        CrashHandler = &OnServerCrash,
       };
 
-      return NWNCore.Init(arg, argLength, instance.VirtualMachineFunctionHandler, eventHandles);
+      return NWNCore.Init(arg, argLength, instance, eventHandles);
     }
 
     /// <summary>
@@ -135,57 +131,6 @@ namespace Anvil
     {
       serviceManager.Load();
       serviceManager.Start();
-    }
-
-    private void OnNWNXSignal(string signal)
-    {
-      switch (signal)
-      {
-        case "ON_NWNX_LOADED":
-          Init();
-          break;
-        case "ON_MODULE_LOAD_FINISH":
-          LoadAndStart();
-          break;
-        case "ON_DESTROY_SERVER":
-          Log.Info("Server is shutting down...");
-          Unload();
-          break;
-        case "ON_DESTROY_SERVER_AFTER":
-          Shutdown();
-          break;
-      }
-    }
-
-    private void OnAssertFail(string message, string nativeStackTrace)
-    {
-      StackTrace stackTrace = new StackTrace(true);
-      Log.Error("An assertion failure occurred in native code.\n" +
-        $"{message}{nativeStackTrace}\n" +
-        $"{stackTrace}");
-    }
-
-    private void OnServerCrash(int signal, string stackTrace)
-    {
-      Version serverVersion = NwServer.Instance.ServerVersion;
-
-      string error = signal switch
-      {
-        4 => "Illegal instruction",
-        6 => "Program aborted",
-        8 => "Floating point exception",
-        11 => "Segmentation fault",
-        _ => "Unknown error",
-      };
-
-      Log.Fatal("\n==============================================================\n" +
-        " Please file a bug at https://github.com/nwn-dotnet/Anvil/issues\n" +
-        $" {Assemblies.Anvil.GetName().Name} {AssemblyInfo.VersionInfo.InformationalVersion} has crashed. Fatal error: {error} ({signal})\n" +
-        $" Using: NWN {serverVersion}, NWN.Core {Assemblies.Core.GetName().Version}, NWN.Native {Assemblies.Native.GetName().Version}\n" +
-        "==============================================================\n" +
-        "  Managed Backtrace:\n" +
-        $"{new StackTrace(true)}" +
-        $"{stackTrace}");
     }
 
     private void PrelinkNative()
