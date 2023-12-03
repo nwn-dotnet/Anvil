@@ -102,6 +102,14 @@ namespace Anvil
 
     private void Init()
     {
+      runtimeInfo = new RuntimeInfo
+      {
+        AssemblyName = Assemblies.Anvil.GetName().Name,
+        AssemblyVersion = AssemblyInfo.VersionInfo.InformationalVersion,
+        CoreVersion = Assemblies.Core.GetName().Version?.ToString(),
+        NativeVersion = Assemblies.Native.GetName().Version?.ToString(),
+      };
+
       serviceManager.Init();
 
       try
@@ -110,20 +118,13 @@ namespace Anvil
       }
       catch (Exception e)
       {
-        Log.Fatal(e, "Failed to load {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
-          Assemblies.Anvil.GetName().Name,
-          AssemblyInfo.VersionInfo.InformationalVersion,
-          Assemblies.Core.GetName().Version,
-          Assemblies.Native.GetName().Version);
+        Log.Fatal(e, $"Failed to load {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion})");
         throw;
       }
 
-      Log.Info("Loading {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
-        Assemblies.Anvil.GetName().Name,
-        AssemblyInfo.VersionInfo.InformationalVersion,
-        Assemblies.Core.GetName().Version,
-        Assemblies.Native.GetName().Version);
+      runtimeInfo.ServerVersion = NwServer.Instance.ServerVersion.ToString();
 
+      Log.Info($"Loading {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion})");
       CheckServerVersion();
     }
 

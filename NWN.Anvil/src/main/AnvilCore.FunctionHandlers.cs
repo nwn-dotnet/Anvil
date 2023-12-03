@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Anvil.API;
-using Anvil.Internal;
 using Anvil.Services;
 using NWN.Core;
 using NWN.Native.API;
@@ -138,7 +136,7 @@ namespace Anvil
     private static void OnServerCrash(int signal, IntPtr nativeStackTracePtr)
     {
       string stackTrace = nativeStackTracePtr.ReadNullTerminatedString();
-      Version serverVersion = NwServer.Instance.ServerVersion;
+      string managedTrace = new StackTrace(true).ToString();
 
       string error = signal switch
       {
@@ -149,14 +147,16 @@ namespace Anvil
         _ => "Unknown error",
       };
 
-      Log.Fatal("\n==============================================================\n" +
+      string message = "\n==============================================================\n" +
         " Please file a bug at https://github.com/nwn-dotnet/Anvil/issues\n" +
-        $" {Assemblies.Anvil.GetName().Name} {AssemblyInfo.VersionInfo.InformationalVersion} has crashed. Fatal error: {error} ({signal})\n" +
-        $" Using: NWN {serverVersion}, NWN.Core {Assemblies.Core.GetName().Version}, NWN.Native {Assemblies.Native.GetName().Version}\n" +
+        $" {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} has crashed. Fatal error: {error} ({signal})\n" +
+        $" Using: NWN {runtimeInfo.ServerVersion}, NWN.Core {runtimeInfo.CoreVersion}, NWN.Native {runtimeInfo.NativeVersion}\n" +
         "==============================================================\n" +
         "  Managed Backtrace:\n" +
-        $"{new StackTrace(true)}" +
-        $"{stackTrace}");
+        $"{managedTrace}" +
+        $"{stackTrace}";
+
+      Console.WriteLine(message);
     }
   }
 }
