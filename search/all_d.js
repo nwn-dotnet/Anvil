@@ -11,7 +11,7 @@ var searchData=
   ['negativelevels_1169',['NegativeLevels',['../classAnvil_1_1API_1_1CreatureClassInfo.html#a04bfd9ecbbd872a33daf5a51042bfc85',1,'Anvil::API::CreatureClassInfo']]],
   ['nextdouble_1170',['NextDouble',['../classAnvil_1_1API_1_1RandomExtensions.html#a07a44c345d42195471b4532898bea5f3',1,'Anvil::API::RandomExtensions']]],
   ['nextfloat_1171',['NextFloat',['../classAnvil_1_1API_1_1RandomExtensions.html#a3e7c57f44e85e88f556dd79c1a44c2e4',1,'Anvil.API.RandomExtensions.NextFloat(this Random random, float minValue, float maxValue)'],['../classAnvil_1_1API_1_1RandomExtensions.html#aff7be2dae11a8b448f5bf3ae7f5cde65',1,'Anvil.API.RandomExtensions.NextFloat(this Random random)']]],
-  ['nextframe_1172',['NextFrame',['../classAnvil_1_1API_1_1NwTask.html#a1ec8beac2031f0c3aeaf7f1fb75a9fd2',1,'Anvil::API::NwTask']]],
+  ['nextframe_1172',['NextFrame',['../classAnvil_1_1API_1_1NwTask.html#ac807ea6ac37665e2b1e4d7713aa08d75',1,'Anvil::API::NwTask']]],
   ['nextupdate_1173',['NextUpdate',['../classAnvil_1_1Services_1_1SchedulerService.html#a68f70d765cb4305a506901b630986325',1,'Anvil::Services::SchedulerService']]],
   ['nighttoday_1174',['NightToDay',['../classAnvil_1_1API_1_1NwPlayer.html#a5c6b6518b014b355a25f23af0d2d31fd',1,'Anvil::API::NwPlayer']]],
   ['nlogconfig_1175',['NLogConfig',['../classAnvil_1_1Services_1_1HomeStorage.html#a44c369e100e66f0056953a75edc7d844',1,'Anvil::Services::HomeStorage']]],

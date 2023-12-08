@@ -13,7 +13,7 @@ var classAnvil_1_1API_1_1NwGameObject =
     [ "Distance", "classAnvil_1_1API_1_1NwGameObject.html#abe1c02439d4246398df5ef2913e8ef0a", null ],
     [ "DistanceSquared", "classAnvil_1_1API_1_1NwGameObject.html#ae077de5e25b6dfb7b661c42b142dfdd8", null ],
     [ "EndConversation", "classAnvil_1_1API_1_1NwGameObject.html#ad045bb9667479e0ab30b0ce760726dc2", null ],
-    [ "FaceToObject", "classAnvil_1_1API_1_1NwGameObject.html#a01b08a96ec3218849d22feadc68fe129", null ],
+    [ "FaceToObject", "classAnvil_1_1API_1_1NwGameObject.html#ac3e7b1d19bd95038b6c9d9808e0e01e1", null ],
     [ "FaceToPoint", "classAnvil_1_1API_1_1NwGameObject.html#a6916e64ed079ffca3132d8708e40d002", null ],
     [ "GetColor", "classAnvil_1_1API_1_1NwGameObject.html#a06a3e8fd3b0f7e310bb94de8b7f1da5d", null ],
     [ "GetNearestCreatures", "classAnvil_1_1API_1_1NwGameObject.html#a60a3dfd6ec8468f4eb61474d6af89769", null ],

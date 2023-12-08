@@ -1,13 +1,13 @@
 var classAnvil_1_1API_1_1NwTask =
 [
-    [ "Delay", "classAnvil_1_1API_1_1NwTask.html#acd4136685843ef7babb804889a0b0078", null ],
-    [ "DelayFrame", "classAnvil_1_1API_1_1NwTask.html#a66aaee968dcabd97171fdd69930c2e46", null ],
-    [ "NextFrame", "classAnvil_1_1API_1_1NwTask.html#a1ec8beac2031f0c3aeaf7f1fb75a9fd2", null ],
+    [ "Delay", "classAnvil_1_1API_1_1NwTask.html#ae352ed8d1e145a4d441156a20ba34cff", null ],
+    [ "DelayFrame", "classAnvil_1_1API_1_1NwTask.html#a7100b585c1c9933b8302337752ec3c80", null ],
+    [ "NextFrame", "classAnvil_1_1API_1_1NwTask.html#ac807ea6ac37665e2b1e4d7713aa08d75", null ],
     [ "Run", "classAnvil_1_1API_1_1NwTask.html#af33a786b738ae21c0f86c053d4d11978", null ],
     [ "Run< T >", "classAnvil_1_1API_1_1NwTask.html#ad45c19d3a354907c76b19dcbd8593f44", null ],
     [ "SwitchToMainThread", "classAnvil_1_1API_1_1NwTask.html#acd16ae33e785c8d676367ef5c84f3f47", null ],
-    [ "WaitUntil", "classAnvil_1_1API_1_1NwTask.html#a8a3d5383fd63a0c21fecf6691d187fa7", null ],
-    [ "WaitUntilValueChanged< T >", "classAnvil_1_1API_1_1NwTask.html#abf11f74d2c1dc78779edc1704dd64050", null ],
+    [ "WaitUntil", "classAnvil_1_1API_1_1NwTask.html#a9191e2251a9480c215055a946400e7a1", null ],
+    [ "WaitUntilValueChanged< T >", "classAnvil_1_1API_1_1NwTask.html#ac2502d3a6377f9217c63cb36d7d8b3c3", null ],
     [ "WhenAll", "classAnvil_1_1API_1_1NwTask.html#a5b670d468bee5634d039517302d22fd9", null ],
     [ "WhenAll", "classAnvil_1_1API_1_1NwTask.html#a19b0155fcea1438cf99c8a22864668a0", null ],
     [ "WhenAll< TResult >", "classAnvil_1_1API_1_1NwTask.html#aff27e6293853b3693783ac8bf84c8ff1", null ],

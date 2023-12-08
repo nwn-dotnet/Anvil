@@ -1,7 +1,7 @@
 var classAnvil_1_1API_1_1NwStationary =
 [
     [ "CreateTrap", "classAnvil_1_1API_1_1NwStationary.html#ac901a4dc9b84ea2108bfcf1b8b933c9f", null ],
-    [ "FaceToPoint", "classAnvil_1_1API_1_1NwStationary.html#ac0b5a455075042878d01d73ae045570c", null ],
+    [ "FaceToPoint", "classAnvil_1_1API_1_1NwStationary.html#a791efbbb84e6b4978de96e7e71bab580", null ],
     [ "GetLastLockedBy", "classAnvil_1_1API_1_1NwStationary.html#ac96d5cfe2c0ec08d4ef12a0d5b6edb17", null ],
     [ "SetSavingThrow", "classAnvil_1_1API_1_1NwStationary.html#abfbfeb1c24dd8eb6852f2d9f8ea07643", null ],
     [ "Hardness", "classAnvil_1_1API_1_1NwStationary.html#ae4b3312d3ad799bd4acca31248e6edfc", null ],

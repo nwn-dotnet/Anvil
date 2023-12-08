@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['facetoobject_2858',['FaceToObject',['../classAnvil_1_1API_1_1NwGameObject.html#a01b08a96ec3218849d22feadc68fe129',1,'Anvil::API::NwGameObject']]],
-  ['facetopoint_2859',['FaceToPoint',['../classAnvil_1_1API_1_1NwGameObject.html#a6916e64ed079ffca3132d8708e40d002',1,'Anvil.API.NwGameObject.FaceToPoint()'],['../classAnvil_1_1API_1_1NwStationary.html#ac0b5a455075042878d01d73ae045570c',1,'Anvil.API.NwStationary.FaceToPoint()']]],
+  ['facetoobject_2858',['FaceToObject',['../classAnvil_1_1API_1_1NwGameObject.html#ac3e7b1d19bd95038b6c9d9808e0e01e1',1,'Anvil::API::NwGameObject']]],
+  ['facetopoint_2859',['FaceToPoint',['../classAnvil_1_1API_1_1NwGameObject.html#a6916e64ed079ffca3132d8708e40d002',1,'Anvil.API.NwGameObject.FaceToPoint()'],['../classAnvil_1_1API_1_1NwStationary.html#a791efbbb84e6b4978de96e7e71bab580',1,'Anvil.API.NwStationary.FaceToPoint()']]],
   ['fadefromblack_2860',['FadeFromBlack',['../classAnvil_1_1API_1_1NwPlayer.html#a418c31906c214067d68d0bbb0b6bbe6b',1,'Anvil::API::NwPlayer']]],
   ['fadetoblack_2861',['FadeToBlack',['../classAnvil_1_1API_1_1NwPlayer.html#a9b3588d97d548134eca7b3894f7b724e',1,'Anvil::API::NwPlayer']]],
   ['fear_2862',['Fear',['../structAnvil_1_1API_1_1HitEffect.html#ae749fc51624ebec955dfebdd0142cc71',1,'Anvil.API.HitEffect.Fear()'],['../structAnvil_1_1API_1_1MonsterHitEffect.html#a2712286045e8af39f34f73612ee0f765',1,'Anvil.API.MonsterHitEffect.Fear()']]],

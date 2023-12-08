@@ -41,7 +41,7 @@ var NAVTREEINDEX =
 "classAnvil_1_1API_1_1ItemProperty.html#a3412837dc5a11ec0ac85412eb68da6c1",
 "classAnvil_1_1API_1_1NativeUtils.html#a98cf9274e750815c259e5b222b6ca44b",
 "classAnvil_1_1API_1_1NuiWindow.html#aa5c27d5e684fd2c6ea0fc4a2330189e9",
-"classAnvil_1_1API_1_1NwCreature.html#a1c8b9177184206715ab59f0e16a24028",
+"classAnvil_1_1API_1_1NwCreature.html#a1cc57b4cc94a45b9890c400211f68683",
 "classAnvil_1_1API_1_1NwCreature.html#aeaba42c0edcac2fb790daa7293c14173",
 "classAnvil_1_1API_1_1NwGameTables.html#a44bac158efd757662ac02135202e4e32",
 "classAnvil_1_1API_1_1NwModule.html#afadbb2141eb8867833dc7d3d984adbfb",

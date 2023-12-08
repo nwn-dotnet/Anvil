@@ -1,8 +1,8 @@
 var searchData=
 [
   ['waitforobjectcontext_2056',['WaitForObjectContext',['../classAnvil_1_1API_1_1NwObject.html#afbb94a19d2c70f6fcd0bd9401b5c5505',1,'Anvil::API::NwObject']]],
-  ['waituntil_2057',['WaitUntil',['../classAnvil_1_1API_1_1NwTask.html#a8a3d5383fd63a0c21fecf6691d187fa7',1,'Anvil::API::NwTask']]],
-  ['waituntilvaluechanged_3c_20t_20_3e_2058',['WaitUntilValueChanged&lt; T &gt;',['../classAnvil_1_1API_1_1NwTask.html#abf11f74d2c1dc78779edc1704dd64050',1,'Anvil::API::NwTask']]],
+  ['waituntil_2057',['WaitUntil',['../classAnvil_1_1API_1_1NwTask.html#a9191e2251a9480c215055a946400e7a1',1,'Anvil::API::NwTask']]],
+  ['waituntilvaluechanged_3c_20t_20_3e_2058',['WaitUntilValueChanged&lt; T &gt;',['../classAnvil_1_1API_1_1NwTask.html#ac2502d3a6377f9217c63cb36d7d8b3c3',1,'Anvil::API::NwTask']]],
   ['walkratecap_2059',['WalkRateCap',['../classAnvil_1_1API_1_1NwCreature.html#a0399c801600ff4e6f3041bfc380207bf',1,'Anvil::API::NwCreature']]],
   ['weaponfinesseminimumcreaturesize_2060',['WeaponFinesseMinimumCreatureSize',['../classAnvil_1_1API_1_1NwBaseItem.html#af303ea87244b9164fb1291f89a01e347',1,'Anvil::API::NwBaseItem']]],
   ['weaponfocusfeat_2061',['WeaponFocusFeat',['../classAnvil_1_1API_1_1NwBaseItem.html#aa9150d8f365bc4276b41c343843e0c54',1,'Anvil::API::NwBaseItem']]],
