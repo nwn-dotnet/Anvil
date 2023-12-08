@@ -39,7 +39,7 @@ namespace Anvil.Tests.Services
     [TestCase(500)]
     [TestCase(1000)]
     [TestCase(5000)]
-    public async Task ScheduleAndCancelDoesNotRunTask(int delayMs)
+    public Task ScheduleAndCancelDoesNotRunTask(int delayMs)
     {
       TimeSpan delay = TimeSpan.FromMilliseconds(delayMs);
 
@@ -49,7 +49,7 @@ namespace Anvil.Tests.Services
       }, delay);
 
       task.Cancel();
-      await NwTask.Delay(delay + TimeSpan.FromSeconds(1));
+      return NwTask.Delay(delay + TimeSpan.FromSeconds(1));
     }
 
     [Test(Description = "Scheduling a repeating task correctly schedules and runs the task with the specified interval.")]

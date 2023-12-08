@@ -1084,18 +1084,18 @@ namespace Anvil.API
     /// Instructs this creature to approach and lock the specified door.
     /// </summary>
     /// <param name="door">The door to lock.</param>
-    public async Task ActionLockObject(NwDoor door)
+    public Task ActionLockObject(NwDoor door)
     {
-      await DoActionLockObject(door);
+      return DoActionLockObject(door);
     }
 
     /// <summary>
     /// Instructs this creature to approach and lock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to lock.</param>
-    public async Task ActionLockObject(NwPlaceable placeable)
+    public Task ActionLockObject(NwPlaceable placeable)
     {
-      await DoActionLockObject(placeable);
+      return DoActionLockObject(placeable);
     }
 
     /// <summary>
@@ -1216,18 +1216,18 @@ namespace Anvil.API
     /// Instructs this creature to approach and unlock the specified door.
     /// </summary>
     /// <param name="door">The door to unlock.</param>
-    public async Task ActionUnlockObject(NwDoor door)
+    public Task ActionUnlockObject(NwDoor door)
     {
-      await DoActionUnlockObject(door);
+      return DoActionUnlockObject(door);
     }
 
     /// <summary>
     /// Instructs this creature to approach and unlock the specified placeable.
     /// </summary>
     /// <param name="placeable">The placeable to unlock.</param>
-    public async Task ActionUnlockObject(NwPlaceable placeable)
+    public Task ActionUnlockObject(NwPlaceable placeable)
     {
-      await DoActionUnlockObject(placeable);
+      return DoActionUnlockObject(placeable);
     }
 
     /// <summary>
