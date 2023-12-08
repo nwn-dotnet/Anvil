@@ -62,13 +62,13 @@ namespace Anvil.API
     /// <param name="onEnterHandle">The callback to invoke when something enters this area of effect.</param>
     /// <param name="heartbeatHandle">The callback to invoke when something is inside the area of effect during a heartbeat (~6 seconds)</param>
     /// <param name="onExitHandle">The callback to invoke when something leaves this area of effect.</param>
-    public static Effect AreaOfEffect(PersistentVfxType vfxType, ScriptCallbackHandle? onEnterHandle = null, ScriptCallbackHandle? heartbeatHandle = null, ScriptCallbackHandle? onExitHandle = null)
+    public static Effect AreaOfEffect(PersistentVfxTableEntry vfxType, ScriptCallbackHandle? onEnterHandle = null, ScriptCallbackHandle? heartbeatHandle = null, ScriptCallbackHandle? onExitHandle = null)
     {
       onEnterHandle?.AssertValid();
       heartbeatHandle?.AssertValid();
       onExitHandle?.AssertValid();
 
-      return NWScript.EffectAreaOfEffect((int)vfxType, onEnterHandle?.ScriptName ?? string.Empty, heartbeatHandle?.ScriptName ?? string.Empty, onExitHandle?.ScriptName ?? string.Empty)!;
+      return NWScript.EffectAreaOfEffect(vfxType.RowIndex, onEnterHandle?.ScriptName ?? string.Empty, heartbeatHandle?.ScriptName ?? string.Empty, onExitHandle?.ScriptName ?? string.Empty)!;
     }
 
     /// <summary>
@@ -575,9 +575,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="polymorphType">The polymorph to apply.</param>
     /// <param name="locked">If true, players cannot dismiss the polymorph effect.</param>
-    public static Effect Polymorph(PolymorphType polymorphType, bool locked = false)
+    public static Effect Polymorph(PolymorphTableEntry polymorphType, bool locked = false)
     {
-      return NWScript.EffectPolymorph((int)polymorphType, locked.ToInt())!;
+      return NWScript.EffectPolymorph(polymorphType.RowIndex, locked.ToInt())!;
     }
 
     /// <summary>

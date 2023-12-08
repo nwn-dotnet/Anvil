@@ -66,6 +66,14 @@ ENV NWNX_SERVERLOGREDIRECTOR_LOG_LEVEL=6
 # Disable all other plugins by default.
 ENV NWNX_CORE_SKIP_ALL=y
 
+# Enable minidump generation
+ENV DOTNET_DbgEnableMiniDump=1
+ENV DOTNET_DbgMiniDumpType=3
+ENV DOTNET_CreateDumpDiagnostics=1
+ENV DOTNET_CreateDumpVerboseDiagnostics=1
+ENV DOTNET_DbgMiniDumpName=/nwn/run/logs.0/anvil-crash-%t.dmp
+ENV DOTNET_CreateDumpLogToFile=/nwn/run/logs.0/anvil-crash.log
+
 # Entrypoint & Executable
 EXPOSE ${NWN_PORT:-5121}/udp
 

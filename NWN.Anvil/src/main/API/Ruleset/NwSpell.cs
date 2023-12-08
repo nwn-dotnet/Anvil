@@ -36,22 +36,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets the ResRef of the visual effect model shown at the ground of the creature when casting this spell.
     /// </summary>
-    public string CastGroundVisual => spellInfo.m_resrefCastGroundVisual.ToString();
+    public string? CastGroundVisual => spellInfo.m_resrefCastGroundVisual.ToString();
 
     /// <summary>
     /// Gets the ResRef of the visual effect model shown at the creature's hands when casting this spell.
     /// </summary>
-    public string CastHandVisual => spellInfo.m_resrefCastHandVisual.ToString();
+    public string? CastHandVisual => spellInfo.m_resrefCastHandVisual.ToString();
 
     /// <summary>
     /// Gets the ResRef of the visual effect model shown above the creature's head when casting this spell.
     /// </summary>
-    public string CastHeadVisual => spellInfo.m_resrefCastHeadVisual.ToString();
+    public string? CastHeadVisual => spellInfo.m_resrefCastHeadVisual.ToString();
 
     /// <summary>
     /// Gets the ResRef of the sound that plays when a creature casts this spell.
     /// </summary>
-    public string CastSound => spellInfo.m_resrefCastSound.ToString();
+    public string? CastSound => spellInfo.m_resrefCastSound.ToString();
 
     /// <summary>
     /// Gets the amount of time to cast the spell, once it has been successfully conjured.
@@ -66,22 +66,22 @@ namespace Anvil.API
     /// <summary>
     /// Gets the ResRef of the visual effect model shown at the ground of the creature when conjuring this spell.
     /// </summary>
-    public string ConjureGroundVisual => spellInfo.m_resrefConjureGroundVisual.ToString();
+    public string? ConjureGroundVisual => spellInfo.m_resrefConjureGroundVisual.ToString();
 
     /// <summary>
     /// Gets the ResRef of the visual effect model shown at the creature's hands when conjuring this spell.
     /// </summary>
-    public string ConjureHandVisual => spellInfo.m_resrefConjureHandVisual.ToString();
+    public string? ConjureHandVisual => spellInfo.m_resrefConjureHandVisual.ToString();
 
     /// <summary>
     /// Gets the ResRef of the visual effect model shown above the creature's head when conjuring this spell.
     /// </summary>
-    public string ConjureHeadVisual => spellInfo.m_resrefConjureHeadVisual.ToString();
+    public string? ConjureHeadVisual => spellInfo.m_resrefConjureHeadVisual.ToString();
 
     /// <summary>
     /// Gets the ResRef of the sound that plays when a creature conjures this spell.
     /// </summary>
-    public string ConjureSound => spellInfo.m_resrefConjureSoundVFX.ToString();
+    public string? ConjureSound => spellInfo.m_resrefConjureSoundVFX.ToString();
 
     /// <summary>
     /// Gets the amount of time needed to conjure the spell. This is the animation that plays before the spell is cast.
@@ -131,7 +131,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the spell's icon ResRef.
     /// </summary>
-    public string IconResRef => spellInfo.m_resrefIcon.ToString();
+    public string? IconResRef => spellInfo.m_resrefIcon.ToString();
 
     /// <summary>
     /// Gets the ID of this spell.
@@ -142,7 +142,7 @@ namespace Anvil.API
     /// Gets the name of the script invoked when the spell impacts a target.<br/>
     /// This script is only invoked when the spell was successfully cast.
     /// </summary>
-    public string ImpactScript => spellInfo.m_sImpactScript.ToString();
+    public string? ImpactScript => spellInfo.m_sImpactScript.ToString();
 
     /// <summary>
     /// Gets the innate level of this spell.<br/>
@@ -168,7 +168,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the ResRef of the projectile model.
     /// </summary>
-    public string ProjectileModel => spellInfo.m_resrefProjectile.ToString();
+    public string? ProjectileModel => spellInfo.m_resrefProjectile.ToString();
 
     /// <summary>
     /// Gets the orientation of this spell's projectile.
@@ -183,7 +183,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the sound of this spell's projectile.
     /// </summary>
-    public string ProjectileSound => spellInfo.m_resrefProjectileSound.ToString();
+    public string? ProjectileSound => spellInfo.m_resrefProjectileSound.ToString();
 
     /// <summary>
     /// Gets the spawn point of this spell's projectile.
@@ -283,9 +283,9 @@ namespace Anvil.API
     /// </summary>
     /// <param name="spellId">The id of the spell to resolve.</param>
     /// <returns>The associated <see cref="NwSpell"/> instance. Null if the spell id is invalid.</returns>
-    public static NwSpell? FromSpellId(int spellId)
+    public static NwSpell? FromSpellId(int? spellId)
     {
-      return NwRuleset.Spells.ElementAtOrDefault(spellId);
+      return spellId != null ? NwRuleset.Spells.ElementAtOrDefault(spellId.Value) : null;
     }
 
     /// <summary>

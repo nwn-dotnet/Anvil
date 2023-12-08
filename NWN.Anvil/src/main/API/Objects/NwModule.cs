@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Anvil.Internal;
+using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -324,6 +325,21 @@ namespace Anvil.API
     public SQLQuery PrepareSQLQuery(string query)
     {
       return NWScript.SqlPrepareQueryObject(this, query);
+    }
+
+    /// <summary>
+    /// Causes all players in the module to refresh client object information about the specified game object.
+    /// </summary>
+    /// <param name="gameObject">The game object to refresh.</param>
+    public void RefreshClientObjects(NwGameObject gameObject)
+    {
+      foreach (NwPlayer player in Players)
+      {
+        if (player.IsConnected)
+        {
+          player.RefreshClientObject(gameObject);
+        }
+      }
     }
 
     /// <summary>

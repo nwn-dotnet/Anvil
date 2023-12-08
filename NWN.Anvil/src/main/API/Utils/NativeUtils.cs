@@ -97,7 +97,7 @@ namespace Anvil.API
       try
       {
         locStr.GetStringLoc(nID, exoString, gender);
-        return exoString.ToString();
+        return exoString.ToString()!;
       }
       finally
       {
@@ -116,8 +116,8 @@ namespace Anvil.API
       CExoString sFileVersion = new CExoString();
       resGff.GetGFFFileInfo(sFileType, sFileVersion);
 
-      string fileType = sFileType.ToString();
-      string fileVersion = sFileVersion.ToString();
+      string fileType = sFileType.ToString()!;
+      string fileVersion = sFileVersion.ToString()!;
 
       return expectedVersions.Any(expectedVersion => expectedVersion == fileVersion) &&
         expectedFileTypes.Any(expectedFileType => expectedFileType + " " == fileType);

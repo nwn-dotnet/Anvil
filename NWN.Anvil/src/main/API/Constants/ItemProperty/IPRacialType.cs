@@ -1,7 +1,9 @@
+using System;
 using NWN.Core;
 
 namespace Anvil.API
 {
+  [Obsolete("Use RacialType instead.")]
   public enum IPRacialType
   {
     Dwarf = NWScript.IP_CONST_RACIALTYPE_DWARF,

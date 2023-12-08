@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using Anvil.Internal;
+using Anvil.Native;
 using Anvil.Services;
 using NLog;
 using NWN.Core;
@@ -315,7 +316,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the dialog ResRef for this creature.
     /// </summary>
-    public string DialogResRef
+    public string? DialogResRef
     {
       get => Creature.GetDialogResref().ToString();
       set => Creature.m_pStats.m_cDialog = new CResRef(value);
@@ -750,6 +751,16 @@ namespace Anvil.API
       set => Creature.m_pStats.m_nRace = value.Id;
     }
 
+    /// <summary>
+    /// Gets or sets the remaining skill points this creature has to spend.
+    /// </summary>
+    /// <remarks>Setting this to a greater value will cause player creatures to fail ELC, unless the corresponding level <see cref="CreatureLevelInfo.SkillPointsRemaining"/> values are also updated.</remarks>
+    public ushort RemainingSkillPoints
+    {
+      get => creature.m_pStats.m_nSkillPointsRemaining;
+      set => creature.m_pStats.m_nSkillPointsRemaining = value;
+    }
+
     public sbyte ShieldCheckPenalty => (sbyte)Creature.m_pStats.m_nShieldCheckPenalty;
 
     /// <summary>
@@ -925,7 +936,7 @@ namespace Anvil.API
       }
 
       void* itemPtr = item.Item;
-      Creature.AcquireItem(&itemPtr, Invalid, Invalid, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
+      Creature.AcquireItem(&itemPtr, item.Possessor, Invalid, 0xFF, 0xFF, true.ToInt(), displayFeedback.ToInt());
     }
 
     /// <summary>
@@ -1229,7 +1240,7 @@ namespace Anvil.API
     public async Task ActionUseFeat(NwFeat feat, NwGameObject target, Subfeat subFeat = Subfeat.None)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat(feat.Id, target);
+      NWScript.ActionUseFeat(feat.Id, target, (int)subFeat);
     }
 
     /// <summary>
@@ -1242,7 +1253,7 @@ namespace Anvil.API
     public async Task ActionUseFeat(NwFeat feat, Location target, Subfeat subFeat = Subfeat.None)
     {
       await WaitForObjectContext();
-      NWScript.ActionUseFeat(feat.Id, lTarget: target);
+      NWScript.ActionUseFeat(feat.Id, lTarget: target, nSubFeat: (int)subFeat);
     }
 
     /// <summary>
@@ -1361,6 +1372,32 @@ namespace Anvil.API
     public void AdjustPartyAlignment(Alignment alignment, int shift)
     {
       NWScript.AdjustAlignment(this, (int)alignment, shift);
+    }
+
+    /// <summary>
+    /// Causes this creature to broadcast feedback for an arbitrary skill roll (pre-calculated)<br/>
+    /// This causes a message to be posted in the combat log, and floaty *skill* text to appear above the character.
+    /// </summary>
+    /// <param name="diceRoll">The d20 dice value result.</param>
+    /// <param name="skill">The skill that was rolled.</param>
+    /// <param name="modifier">The modifier added to the dice roll.</param>
+    /// <param name="difficultyClass">The difficulty class/dc of the skill check.</param>
+    /// <param name="take20">If the roll was an automatic take 20 roll.</param>
+    /// <param name="result">The result of the skill check.</param>
+    public void BroadcastSkillRoll(int diceRoll, NwSkill skill, int modifier, int difficultyClass, bool take20, SkillResult result)
+    {
+      CNWCCMessageData data = new CNWCCMessageData();
+      GC.SuppressFinalize(data);
+
+      data.SetObjectID(0, this);
+      data.SetInteger(0, (int)skill.Name.Id);
+      data.SetInteger(1, diceRoll);
+      data.SetInteger(2, modifier);
+      data.SetInteger(3, difficultyClass);
+      data.SetInteger(4, take20.ToInt());
+      data.SetInteger(5, (int)result);
+
+      creature.BroadcastSkillData(data);
     }
 
     /// <summary>
@@ -1489,6 +1526,17 @@ namespace Anvil.API
     public int GetAbilityModifier(Ability ability)
     {
       return NWScript.GetAbilityModifier((int)ability, this);
+    }
+
+    /// <summary>
+    /// Gets the ability modifier from the given ability score.
+    /// </summary>
+    /// <remarks>By default, this will return '(ability score - 10) / 2', however this can be different based on definitions in the ruleset.2da.</remarks>
+    /// <param name="abilityScore">The ability score to calculate the ability modifier from.</param>
+    /// <returns>The ability modifier for the specified ability score.</returns>
+    public int CalculateAbilityModifierFromScore(byte abilityScore)
+    {
+      return creature.m_pStats.CalcStatModifier(abilityScore).AsSByte();
     }
 
     /// <summary>
@@ -2148,9 +2196,22 @@ namespace Anvil.API
     /// Removes the specified feat from this creature.
     /// </summary>
     /// <param name="feat">The feat to remove.</param>
-    public void RemoveFeat(NwFeat feat)
+    /// <param name="removeFeatFromLevelList"></param>
+    public void RemoveFeat(NwFeat feat, bool removeFeatFromLevelList = false)
     {
       Creature.m_pStats.RemoveFeat(feat.Id);
+      if (!removeFeatFromLevelList)
+      {
+        return;
+      }
+
+      foreach (CreatureLevelInfo levelInfo in LevelInfo)
+      {
+        if (levelInfo.Feats.Remove(feat))
+        {
+          break;
+        }
+      }
     }
 
     /// <summary>
@@ -2528,18 +2589,18 @@ namespace Anvil.API
     /// </summary>
     /// <param name="category">The category of talents to pick from.</param>
     /// <param name="maxCr">The maximum Challenge Rating of the talent.</param>
-    public TalentCategory TalentBest(TalentCategory category, int maxCr)
+    public Talent TalentBest(TalentCategory category, int maxCr)
     {
-      return (TalentCategory)NWScript.GetCreatureTalentBest((int)category, maxCr, this);
+      return NWScript.GetCreatureTalentBest((int)category, maxCr, this);
     }
 
     /// <summary>
     /// Gets a random talent from a group of talents possessed by this creature.
     /// </summary>
     /// <param name="category">The category of talents to pick from.</param>
-    public TalentCategory TalentRandom(TalentCategory category)
+    public Talent TalentRandom(TalentCategory category)
     {
-      return (TalentCategory)NWScript.GetCreatureTalentRandom((int)category, this);
+      return NWScript.GetCreatureTalentRandom((int)category, this);
     }
 
     /// <summary>
@@ -2627,6 +2688,15 @@ namespace Anvil.API
     private protected override void AddToArea(CNWSArea area, float x, float y, float z)
     {
       Creature.AddToArea(area, x, y, z, true.ToInt());
+    }
+
+    /// <summary>
+    /// Return the Armor Class this creature has against another creature
+    /// </summary>
+    /// <param name="creature">The creature against which the Armor Class will be checked.</param>
+    public int GetArmorClassVersus(NwCreature creature)
+    {
+      return Creature.m_pStats.GetArmorClassVersus(creature);
     }
   }
 }

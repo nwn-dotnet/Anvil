@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -31,7 +32,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the dialog ResRef for this door.
     /// </summary>
-    public string DialogResRef
+    public string? DialogResRef
     {
       get => Door.GetDialogResref().ToString();
       set => Door.m_cDialog = new CResRef(value);

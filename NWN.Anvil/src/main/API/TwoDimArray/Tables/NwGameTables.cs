@@ -118,9 +118,29 @@ namespace Anvil.API
     public static TwoDimArray<PlaceableTableEntry> PlaceableTable { get; private set; } = null!;
 
     /// <summary>
+    /// Gets the placeable type/category table (placeabletypes.2da)
+    /// </summary>
+    public static TwoDimArray<PlaceableTypeTableEntry> PlaceableTypeTable { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the polymorph table (polymorph.2da)
+    /// </summary>
+    public static TwoDimArray<PolymorphTableEntry> PolymorphTable { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the portraits table (portraits.2da)
+    /// </summary>
+    public static TwoDimArray<PortraitTableEntry> PortraitTable { get; private set; } = null!;
+
+    /// <summary>
     /// Gets the programmed effect table (progfx.2da)
     /// </summary>
     public static TwoDimArray<ProgrammedEffectTableEntry> ProgrammedEffectTable { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the programmed effect table (vfx_persistent.2da)
+    /// </summary>
+    public static TwoDimArray<PersistentVfxTableEntry> PersistentEffectTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the item/skill cost table (skillvsitemcost.2da)

@@ -18,8 +18,13 @@ namespace Anvil.API
     /// <param name="checkCacheType">When using the cache, if the return type should be checked.</param>
     /// <typeparam name="T">The type of entries contained in this 2da.</typeparam>
     /// <exception cref="InvalidOperationException">Thrown if the entry type specified does not match the existing cache type and checkCacheType is set to true.</exception>
-    public static TwoDimArray<T> GetTable<T>(string twoDimArrayName, bool useCache = true, bool checkCacheType = true) where T : class, ITwoDimArrayEntry, new()
+    public static TwoDimArray<T>? GetTable<T>(string? twoDimArrayName, bool useCache = true, bool checkCacheType = true) where T : class, ITwoDimArrayEntry, new()
     {
+      if (string.IsNullOrEmpty(twoDimArrayName))
+      {
+        return null;
+      }
+
       twoDimArrayName = twoDimArrayName.Replace(".2da", string.Empty);
       if (useCache && TwoDimArrayCache.TryGetValue(twoDimArrayName, out TwoDimArray? cachedArray))
       {
@@ -34,7 +39,13 @@ namespace Anvil.API
         }
       }
 
-      TwoDimArray<T> twoDimArray = new TwoDimArray<T>(GetCached2DA(twoDimArrayName));
+      C2DA? nativeArray = GetCached2DA(twoDimArrayName);
+      if (nativeArray == null)
+      {
+        return null;
+      }
+
+      TwoDimArray<T> twoDimArray = new TwoDimArray<T>(nativeArray);
       if (useCache)
       {
         TwoDimArrayCache[twoDimArrayName] = twoDimArray;
@@ -47,15 +58,26 @@ namespace Anvil.API
     /// Gets the specified 2d array table.
     /// </summary>
     /// <param name="twoDimArrayName">The table name to query.</param>
-    public static TwoDimArray GetTable(string twoDimArrayName)
+    public static TwoDimArray? GetTable(string twoDimArrayName)
     {
+      if (string.IsNullOrEmpty(twoDimArrayName))
+      {
+        return null;
+      }
+
       twoDimArrayName = twoDimArrayName.Replace(".2da", string.Empty);
       if (TwoDimArrayCache.TryGetValue(twoDimArrayName, out TwoDimArray? cachedArray))
       {
         return cachedArray;
       }
 
-      TwoDimArray twoDimArray = new TwoDimArray(GetCached2DA(twoDimArrayName));
+      C2DA? nativeArray = GetCached2DA(twoDimArrayName);
+      if (nativeArray == null)
+      {
+        return null;
+      }
+
+      TwoDimArray twoDimArray = new TwoDimArray(nativeArray);
       TwoDimArrayCache[twoDimArrayName] = twoDimArray;
 
       return twoDimArray;
@@ -67,14 +89,10 @@ namespace Anvil.API
       return retVal;
     }
 
-    private static C2DA GetCached2DA(string twoDimArrayName)
+    private static C2DA? GetCached2DA(string twoDimArrayName)
     {
       twoDimArrayName = twoDimArrayName.Replace(".2da", string.Empty);
       C2DA? array = NWNXLib.Rules().m_p2DArrays.GetCached2DA(twoDimArrayName.ToExoString(), false.ToInt());
-      if (array == null)
-      {
-        throw new ArgumentException($"Invalid 2DA ResRef {twoDimArrayName}.2da", nameof(twoDimArrayName));
-      }
 
       return array;
     }
@@ -99,12 +117,12 @@ namespace Anvil.API
         AppearanceTable = GetTable<AppearanceTableEntry>(arrays.m_pAppearanceTable);
         ArmorTable = GetTable<ArmorTableEntry>(arrays.m_pArmorTable);
         BodyBagTable = GetTable<BodyBagTableEntry>(arrays.m_pBodyBagTable);
-        EffectIconTable = GetTable<EffectIconTableEntry>("effecticons.2da");
-        EnvironmentPresetTable = GetTable<EnvironmentPreset>("environment.2da");
+        EffectIconTable = GetTable<EffectIconTableEntry>("effecticons.2da")!;
+        EnvironmentPresetTable = GetTable<EnvironmentPreset>("environment.2da")!;
         LightColorTable = GetTable<LightColorTableEntry>(arrays.m_pLightColorTable);
-        LoadScreenTable = GetTable<LoadScreenTableEntry>("loadscreens.2da");
-        ItemPropertyCostTables = GetTable<ItemPropertyCostTablesEntry>("iprp_costtable.2da");
-        ItemPropertyParamTables = GetTable<ItemPropertyParamTablesEntry>("iprp_paramtable.2da");
+        LoadScreenTable = GetTable<LoadScreenTableEntry>("loadscreens.2da")!;
+        ItemPropertyCostTables = GetTable<ItemPropertyCostTablesEntry>("iprp_costtable.2da")!;
+        ItemPropertyParamTables = GetTable<ItemPropertyParamTablesEntry>("iprp_paramtable.2da")!;
         ItemPropertyItemMapTable = GetTable<ItemPropertyItemMapTableEntry>(arrays.m_pItemPropsTable);
         ItemPropertyTable = GetTable<ItemPropertyTableEntry>(arrays.m_pItemPropDefTable);
         PartsBeltTable = GetTable<PartsTableEntry>(arrays.m_pPartsBelt);
@@ -119,12 +137,16 @@ namespace Anvil.API
         PartsRobeTable = GetTable<PartsTableEntry>(arrays.m_pPartsRobe);
         PartsShinTable = GetTable<PartsTableEntry>(arrays.m_pPartsShin);
         PartsShoulderTable = GetTable<PartsTableEntry>(arrays.m_pPartsShoulder);
-        PlaceableSoundTable = GetTable<PlaceableSoundTableEntry>("placeableobjsnds.2da"); // arrays.m_pPlaceableSoundsTable does not exist in nwserver.
+        PlaceableSoundTable = GetTable<PlaceableSoundTableEntry>("placeableobjsnds.2da")!; // arrays.m_pPlaceableSoundsTable does not exist in nwserver.
         PlaceableTable = GetTable<PlaceableTableEntry>(arrays.m_pPlaceablesTable);
+        PlaceableTypeTable = GetTable<PlaceableTypeTableEntry>("placeabletypes.2da")!;
+        PolymorphTable = GetTable<PolymorphTableEntry>(arrays.m_pPolymorphTable);
+        PortraitTable = GetTable<PortraitTableEntry>(arrays.m_pPortraitTable);
         VisualEffectTable = GetTable<VisualEffectTableEntry>(arrays.m_pVisualEffectTable);
-        ProgrammedEffectTable = GetTable<ProgrammedEffectTableEntry>("progfx.2da"); // arrays.m_pProgFxTable does not exist in nwserver.
-        DamageLevelTable = GetTable<DamageLevelEntry>("damagelevels.2da"); // arrays.m_pDamageLevelTable does not exist in nwserver.
-        ExpTable = GetTable<ExpTableEntry>("exptable.2da");
+        ProgrammedEffectTable = GetTable<ProgrammedEffectTableEntry>("progfx.2da")!; // arrays.m_pProgFxTable does not exist in nwserver.
+        PersistentEffectTable = GetTable<PersistentVfxTableEntry>(arrays.m_pPersistentVisualEffectTable); // arrays.m_pProgFxTable does not exist in nwserver.
+        DamageLevelTable = GetTable<DamageLevelEntry>("damagelevels.2da")!; // arrays.m_pDamageLevelTable does not exist in nwserver.
+        ExpTable = GetTable<ExpTableEntry>("exptable.2da")!;
         SkillItemCostTable = GetTable<SkillItemCostTableEntry>(arrays.m_pSkillVsItemCostTable);
       }
 

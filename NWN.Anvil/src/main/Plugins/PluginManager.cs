@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using Anvil.API;
 using Anvil.Internal;
 using Anvil.Services;
 using NLog;
@@ -120,11 +121,20 @@ namespace Anvil.Plugins
 
     private void BootstrapPlugins()
     {
-      IPluginSource[] pluginSources =
+      List<IPluginSource> pluginSources = new List<IPluginSource>
       {
         new PaketPluginSource(this),
-        new LocalPluginSource(this),
+        new LocalPluginSource(this, HomeStorage.Plugins),
       };
+
+      foreach (string pluginPath in EnvironmentConfig.AdditionalPluginPaths)
+      {
+        string fullPluginPath = Path.GetFullPath(pluginPath, NwServer.Instance.UserDirectory);
+        if (Directory.Exists(fullPluginPath))
+        {
+          pluginSources.Add(new LocalPluginSource(this, fullPluginPath));
+        }
+      }
 
       foreach (IPluginSource pluginSource in pluginSources)
       {
@@ -133,8 +143,8 @@ namespace Anvil.Plugins
 
       if (EnvironmentConfig.PreventStartNoPlugin && plugins.Count == 0)
       {
-        throw new Exception("No plugins are available to load, and NWM_PREVENT_START_NO_PLUGIN is enabled.\n" +
-          $"Check your plugins are available at {HomeStorage.Plugins}, or update NWM_PLUGIN_PATH to the correct location.");
+        throw new Exception("No plugins are available to load, and ANVIL_PREVENT_START_NO_PLUGIN is enabled.\n" +
+          $"Check your plugins are available at {HomeStorage.Plugins}, or add valid plugins paths using the ANVIL_ADD_PLUGIN_PATHS variable.");
       }
     }
 

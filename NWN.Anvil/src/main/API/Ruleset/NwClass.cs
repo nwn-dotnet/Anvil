@@ -152,7 +152,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the ResRef specifying the icon displayed in the game for this class
     /// </summary>
-    public string IconResRef => classInfo.m_sIcon.ToString();
+    public string? IconResRef => classInfo.m_sIcon.ToString();
 
     /// <summary>
     /// Gets the id of this class.
@@ -229,9 +229,9 @@ namespace Anvil.API
     public uint PackageIndex => classInfo.m_nDefaultPackage;
 
     /// <summary>
-    /// Gets the ResRef of the 2da table defining the prerequisites for this class (making this class a prestige class).
+    /// Gets the 2da table defining the prerequisites for this class (making this class a prestige class).
     /// </summary>
-    public string PreReqTable => classInfo.m_sPreReqTable.ToString();
+    public TwoDimArray<ClassPreReqTableEntry>? PreReqTable => NwGameTables.GetTable<ClassPreReqTableEntry>(classInfo.m_sPreReqTable.ToString());
 
     /// <summary>
     /// Gets the primary ability score for this class.<br/>
@@ -320,7 +320,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets the name of the column that this class references in spells.2da
     /// </summary>
-    public string SpellTableColumn => classInfo.m_sSpellsTableColumn.ToString();
+    public string? SpellTableColumn => classInfo.m_sSpellsTableColumn.ToString();
 
     /// <summary>
     /// Resolves a <see cref="NwClass"/> from a class id.

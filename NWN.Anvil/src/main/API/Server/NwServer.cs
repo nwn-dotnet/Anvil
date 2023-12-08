@@ -21,14 +21,59 @@ namespace Anvil.API
     /// <summary>
     /// Gets a list of all banned IPs/Keys/names as a string.
     /// </summary>
-    public string BannedList => server.GetBannedListString().ToString();
+    public string BannedList => server.GetBannedListString().ToString()!;
+
+    /// <summary>
+    /// Gets or sets if debug mode is enabled, allowing all players to use DM commands and enabling various other debug behaviours.
+    /// </summary>
+    public bool DebugMode
+    {
+      get => server.GetDebugMode().ToBool();
+      set => server.SetDebugMode(value.ToInt());
+    }
+
+    /// <summary>
+    /// Gets or sets if combat debugging is enabled. This prints additional information to the combat log for hit and damage calculation.
+    /// </summary>
+    public bool DebugCombat
+    {
+      get => (*NWNXLib.EnableCombatDebugging()).ToBool();
+      set => *NWNXLib.EnableCombatDebugging() = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets if saving throw debugging is enabled.
+    /// </summary>
+    public bool DebugSaveThrows
+    {
+      get => (*NWNXLib.EnableSavingThrowDebugging()).ToBool();
+      set => *NWNXLib.EnableSavingThrowDebugging() = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets if hit die debugging is enabled.
+    /// </summary>
+    public bool DebugHitDie
+    {
+      get => (*NWNXLib.EnableHitDieDebugging()).ToBool();
+      set => *NWNXLib.EnableHitDieDebugging() = value.ToInt();
+    }
+
+    /// <summary>
+    /// Gets or sets if move speed debugging is enabled. This causes all alive creatures to periodically say a message of their current movement speed.
+    /// </summary>
+    public bool DebugMoveSpeed
+    {
+      get => (*NWNXLib.EnableMovementSpeedDebugging()).ToBool();
+      set => *NWNXLib.EnableMovementSpeedDebugging() = value.ToInt();
+    }
 
     /// <summary>
     /// Gets or sets the current DM password.
     /// </summary>
     public string DMPassword
     {
-      get => netLayer.GetGameMasterPassword().ToString();
+      get => netLayer.GetGameMasterPassword().ToString()!;
       set => netLayer.SetGameMasterPassword(new CExoString(value));
     }
 
@@ -51,7 +96,7 @@ namespace Anvil.API
     /// </summary>
     public string PlayerPassword
     {
-      get => netLayer.GetPlayerPassword().ToString();
+      get => netLayer.GetPlayerPassword().ToString()!;
       set => netLayer.SetPlayerPassword(new CExoString(value));
     }
 
@@ -136,7 +181,7 @@ namespace Anvil.API
     /// <returns>The path defined for the specified alias, otherwise null if the alias could not be found.</returns>
     public string GetAliasPath(string alias)
     {
-      return exoBase.m_pcExoAliasList.GetAliasPath(new CExoString(alias), 0).ToString();
+      return exoBase.m_pcExoAliasList.GetAliasPath(new CExoString(alias), 0).ToString()!;
     }
 
     /// <summary>
@@ -177,7 +222,7 @@ namespace Anvil.API
     void ICoreService.Init()
     {
       exoBase = NWNXLib.ExoBase();
-      UserDirectory = exoBase.m_sUserDirectory.ToString();
+      UserDirectory = exoBase.m_sUserDirectory.ToString()!;
       ServerVersion = new Version($"{NWNXLib.BuildNumber()}.{NWNXLib.BuildRevision()}");
     }
 

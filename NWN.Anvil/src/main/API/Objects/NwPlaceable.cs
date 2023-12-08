@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using System.Threading.Tasks;
+using Anvil.Native;
 using NWN.Core;
 using NWN.Native.API;
 
@@ -42,7 +43,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the dialog ResRef for this placeable.
     /// </summary>
-    public string DialogResRef
+    public string? DialogResRef
     {
       get => Placeable.GetDialogResref().ToString();
       set => Placeable.m_cDialog = new CResRef(value);

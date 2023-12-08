@@ -21,13 +21,14 @@ namespace Anvil.Services
     // Magic Numbers
     private const int InventorySlotMax = 17;
     private const int NumCreatureItemSlots = 4;
-    private const int NumMultiClass = 3;
+    private const int NumMultiClass = 8;
     private const int NumSpellLevels = 10;
 
     // Validation Failure STRREFs
     private static readonly StrRef StrRefCharacterDoesNotExist = new StrRef(63767);
     private static readonly StrRef StrRefCharacterDungeonMaster = new StrRef(67641);
     private static readonly StrRef StrRefCharacterInvalidAbilityScores = new StrRef(63761);
+    private static readonly StrRef StrRefCharacterNumberMulticlasses = new StrRef(63764);
     private static readonly StrRef StrRefCharacterLevelRestriction = new StrRef(57924);
     private static readonly StrRef StrRefCharacterNonPlayer = new StrRef(63760);
     private static readonly StrRef StrRefCharacterNonPlayerClass = new StrRef(66167);
@@ -323,6 +324,21 @@ namespace Anvil.Services
         }
       }
       // **********************************************************************************************************************
+
+      if (pCreatureStats.m_nNumMultiClasses > Math.Clamp(NWNXLib.Rules().GetRulesetIntEntry("MULTICLASS_LIMIT".ToExoString(), 3), 1, 8))
+      {
+        if (HandleValidationFailure(out int strRefFailure, new OnELCValidationFailure
+        {
+          Player = nwPlayer,
+          Type = ValidationFailureType.Character,
+          SubType = ValidationFailureSubType.NumMulticlass,
+          StrRef = StrRefCharacterNumberMulticlasses,
+        }))
+        {
+          *bFailedServerRestriction = true.ToInt();
+          return strRefFailure;
+        }
+      }
 
       // *** Level Hack Check *************************************************************************************************
       // Character level is stored in an uint8_t which means if a character has say 80/80/120 as their levels it'll wrap around
@@ -851,18 +867,9 @@ namespace Anvil.Services
           nAbilityAtLevel[nAbilityIndex] += nStatMods[nAbilityIndex];
         }
 
-        for (byte nMultiClass = 0; nMultiClass < NumMultiClass; nMultiClass++)
+        for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
         {
-          byte nClassId = pCreatureStats.GetClass(nMultiClass);
-          CNWClass? pClass = nClassId < pRules.m_nNumClasses ? classes[nClassId] : null;
-
-          if (pClass != null)
-          {
-            for (int nAbilityIndex = 0; nAbilityIndex <= AbilityMax; nAbilityIndex++)
-            {
-              nAbilityAtLevel[nAbilityIndex] += pClass.GetAbilityGainForSingleLevel(nAbilityIndex, nMultiClassLevel[nMultiClassLeveledUpIn]);
-            }
-          }
+          nAbilityAtLevel[nAbilityIndex] += pClassLeveledUpIn.GetAbilityGainForSingleLevel(nAbilityIndex, nMultiClassLevel[nMultiClassLeveledUpIn]);
         }
 
         // *** Check Hit Die ********************************************************************************************************

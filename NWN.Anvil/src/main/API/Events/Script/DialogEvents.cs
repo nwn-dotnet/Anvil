@@ -6,27 +6,20 @@ namespace Anvil.API.Events
   {
     public sealed class ActionTaken : IEvent
     {
-      public ActionTaken()
-      {
-        CurrentSpeaker = NWScript.OBJECT_SELF.ToNwObject<NwGameObject>();
-        PlayerSpeaker = NWScript.GetPCSpeaker().ToNwPlayer();
-        LastSpeaker = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
-      }
-
       /// <summary>
       /// Gets the creature/object currently speaking.
       /// </summary>
-      public NwGameObject? CurrentSpeaker { get; }
+      public NwGameObject? CurrentSpeaker { get; } = NWScript.OBJECT_SELF.ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the last creature/object that spoke in this conversation.
       /// </summary>
-      public NwGameObject? LastSpeaker { get; }
+      public NwGameObject? LastSpeaker { get; } = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the player speaker in this conversation.
       /// </summary>
-      public NwPlayer? PlayerSpeaker { get; }
+      public NwPlayer? PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
 
       NwObject? IEvent.Context => CurrentSpeaker;
 
@@ -43,27 +36,20 @@ namespace Anvil.API.Events
 
     public sealed class AppearsWhen : IEvent
     {
-      public AppearsWhen()
-      {
-        CurrentSpeaker = NWScript.OBJECT_SELF.ToNwObject<NwGameObject>();
-        PlayerSpeaker = NWScript.GetPCSpeaker().ToNwPlayer();
-        LastSpeaker = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
-      }
-
       /// <summary>
       /// Gets the creature/object currently speaking.
       /// </summary>
-      public NwGameObject? CurrentSpeaker { get; }
+      public NwGameObject? CurrentSpeaker { get; } = NWScript.OBJECT_SELF.ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the last creature/object that spoke in this conversation.
       /// </summary>
-      public NwGameObject? LastSpeaker { get; }
+      public NwGameObject? LastSpeaker { get; } = NWScript.GetLastSpeaker().ToNwObject<NwGameObject>();
 
       /// <summary>
       /// Gets the player speaker in this conversation.
       /// </summary>
-      public NwPlayer? PlayerSpeaker { get; }
+      public NwPlayer? PlayerSpeaker { get; } = NWScript.GetPCSpeaker().ToNwPlayer();
 
       NwObject? IEvent.Context => CurrentSpeaker;
     }

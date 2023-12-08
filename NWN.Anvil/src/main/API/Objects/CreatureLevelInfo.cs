@@ -38,19 +38,13 @@ namespace Anvil.API
     public int FeatCount => levelStats.m_lstFeats.Count;
 
     /// <summary>
-    /// Gets the feats gained at this level.
+    /// Gets a mutable list of feats gained at this level.
     /// </summary>
-    public IReadOnlyList<NwFeat> Feats
+    public IList<NwFeat> Feats
     {
       get
       {
-        NwFeat[] feats = new NwFeat[FeatCount];
-        for (int i = 0; i < feats.Length; i++)
-        {
-          feats[i] = NwFeat.FromFeatId(levelStats.m_lstFeats[i])!;
-        }
-
-        return feats;
+        return new ListWrapper<ushort, NwFeat>(levelStats.m_lstFeats, featId => NwFeat.FromFeatId(featId)!, feat => feat.Id);
       }
     }
 
@@ -112,6 +106,15 @@ namespace Anvil.API
     {
       get => levelStats.m_nSkillPointsRemaining;
       set => levelStats.m_nSkillPointsRemaining = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the ability increased at this level.
+    /// </summary>
+    public Ability? AbilityGained
+    {
+      get => levelStats.m_nAbilityGain <= 5 ? (Ability)levelStats.m_nAbilityGain : null;
+      set => levelStats.m_nAbilityGain = value != null ? (byte)value.Value : byte.MaxValue;
     }
 
     /// <summary>

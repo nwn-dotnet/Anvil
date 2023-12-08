@@ -15,7 +15,7 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(drawListArc), Is.EqualTo(@"{""amax"":170.0,""amin"":90.0,""c"":{""x"":1.0,""y"":2.0},""radius"":2.0,""type"":3,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":true,""line_thickness"":1.0}"));
+      Assert.That(JsonUtility.ToJson(drawListArc), Is.EqualTo(@"{""amax"":170.0,""amin"":90.0,""c"":{""x"":1.0,""y"":2.0},""radius"":2.0,""type"":3,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":true,""line_thickness"":1.0,""order"":1,""render"":0}"));
     }
 
     [Test(Description = "Serializing a NuiDrawListCircle creates a valid JSON structure.")]
@@ -26,7 +26,7 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(drawListCircle), Is.EqualTo(@"{""rect"":{""h"":4.0,""w"":3.0,""x"":1.0,""y"":2.0},""type"":2,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":true,""line_thickness"":1.0}"));
+      Assert.That(JsonUtility.ToJson(drawListCircle), Is.EqualTo(@"{""rect"":{""h"":4.0,""w"":3.0,""x"":1.0,""y"":2.0},""type"":2,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":true,""line_thickness"":1.0,""order"":1,""render"":0}"));
     }
 
     [Test(Description = "Serializing a NuiDrawListCurve creates a valid JSON structure.")]
@@ -37,7 +37,7 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(drawListCurve), Is.EqualTo(@"{""ctrl0"":{""x"":9.5,""y"":3.0},""ctrl1"":{""x"":22.0,""y"":11.3},""a"":{""x"":10.0,""y"":5.0},""b"":{""x"":6.0,""y"":2.0},""type"":1,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":false,""line_thickness"":1.0}"));
+      Assert.That(JsonUtility.ToJson(drawListCurve), Is.EqualTo(@"{""ctrl0"":{""x"":9.5,""y"":3.0},""ctrl1"":{""x"":22.0,""y"":11.3},""a"":{""x"":10.0,""y"":5.0},""b"":{""x"":6.0,""y"":2.0},""type"":1,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":false,""line_thickness"":1.0,""order"":1,""render"":0}"));
     }
 
     [Test(Description = "Serializing a NuiDrawListImage creates a valid JSON structure.")]
@@ -48,7 +48,7 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(drawListImage), Is.EqualTo(@"{""image_aspect"":3,""image_halign"":1,""rect"":{""h"":4.0,""w"":3.0,""x"":1.0,""y"":2.0},""image"":""test_img"",""type"":5,""image_valign"":1,""color"":null,""enabled"":false,""fill"":null,""line_thickness"":null}"));
+      Assert.That(JsonUtility.ToJson(drawListImage), Is.EqualTo(@"{""image_aspect"":3,""image_halign"":1,""rect"":{""h"":4.0,""w"":3.0,""x"":1.0,""y"":2.0},""image"":""test_img"",""type"":5,""image_valign"":1,""color"":null,""enabled"":false,""fill"":null,""line_thickness"":null,""order"":1,""render"":0}"));
     }
 
     [Test(Description = "Serializing a NuiDrawListPolyLine creates a valid JSON structure.")]
@@ -59,7 +59,7 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(drawListPolyLine), Is.EqualTo(@"{""points"":[2.0,4.0,6.0,11.0],""type"":0,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":true,""line_thickness"":2.0}"));
+      Assert.That(JsonUtility.ToJson(drawListPolyLine), Is.EqualTo(@"{""points"":[2.0,4.0,6.0,11.0],""type"":0,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":true,""line_thickness"":2.0,""order"":1,""render"":0}"));
     }
 
     [Test(Description = "Serializing a NuiDrawListText creates a valid JSON structure.")]
@@ -70,7 +70,7 @@ namespace Anvil.Tests.API
         Enabled = false,
       };
 
-      Assert.That(JsonUtility.ToJson(drawListText), Is.EqualTo(@"{""rect"":{""h"":8.0,""w"":7.0,""x"":5.0,""y"":6.0},""text"":""Test string"",""type"":4,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":null,""line_thickness"":null}"));
+      Assert.That(JsonUtility.ToJson(drawListText), Is.EqualTo(@"{""rect"":{""h"":8.0,""w"":7.0,""x"":5.0,""y"":6.0},""text"":""Test string"",""type"":4,""color"":{""a"":255,""b"":170,""g"":170,""r"":255},""enabled"":false,""fill"":null,""line_thickness"":null,""order"":1,""render"":0}"));
     }
   }
 }

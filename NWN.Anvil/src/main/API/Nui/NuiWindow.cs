@@ -36,7 +36,9 @@ namespace Anvil.API
 
     /// <summary>
     /// Gets or sets the geometry and bounds of this window.<br/>
-    /// Set x and y to -1.0 to center the window.
+    /// Set x and y to -1.0 to center the window.<br/>
+    /// Set x and/or y to -2.0 to position the window's top left at the mouse cursor's position of that axis<br/>
+    /// Set x and/or y to -3.0 to center the window on the mouse cursor's position of that axis
     /// </summary>
     [JsonProperty("geometry")]
     public NuiProperty<NuiRect> Geometry { get; set; } = new NuiRect(-1, -1, 0, 0);
@@ -76,5 +78,11 @@ namespace Anvil.API
     /// </summary>
     [JsonProperty("version")]
     public int Version { get; private set; } = 1;
+
+    /// <summary>
+    /// Set to false to disable all input. All hover, clicks and keypresses will fall through.
+    /// </summary>
+    [JsonProperty("accepts_input")]
+    public NuiProperty<bool> AcceptsInput { get; set; } = true;
   }
 }

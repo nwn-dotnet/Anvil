@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -17,14 +16,11 @@ namespace Anvil
   /// Handles bootstrap and interop between %NWN, %NWN.Core and the %Anvil %API. The entry point of the implementing module should point to this class.<br/>
   /// Until <see cref="Init(IntPtr, int, IServiceManager)"/> is called, all APIs are unavailable for usage.
   /// </summary>
-  public sealed class AnvilCore
+  public sealed partial class AnvilCore
   {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private static AnvilCore instance = null!;
-
-    [Inject]
-    private VirtualMachineFunctionHandler VirtualMachineFunctionHandler { get; init; } = null!;
 
     private readonly IServiceManager serviceManager;
 
@@ -53,21 +49,22 @@ namespace Anvil
     /// <param name="serviceManager">A custom service manager to use instead of the default <see cref="AnvilServiceManager"/>. For advanced users only.</param>
     /// <returns>The init result code to return back to NWNX.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int Init(IntPtr arg, int argLength, IServiceManager? serviceManager = default)
+    public static unsafe int Init(IntPtr arg, int argLength, IServiceManager? serviceManager = default)
     {
       serviceManager ??= new AnvilServiceManager();
       instance = new AnvilCore(serviceManager);
 
-      NWNCore.NativeEventHandles eventHandles = new NWNCore.NativeEventHandles
+      NWNCore.NativeEventHandlesUnmanaged eventHandles = new NWNCore.NativeEventHandlesUnmanaged
       {
-        Signal = instance.OnNWNXSignal,
-        RunScript = instance.VirtualMachineFunctionHandler.OnRunScript,
-        Closure = instance.VirtualMachineFunctionHandler.OnClosure,
-        MainLoop = instance.VirtualMachineFunctionHandler.OnLoop,
-        AssertFail = instance.OnAssertFail,
+        Signal = &OnNWNXSignal,
+        RunScript = &OnRunScript,
+        Closure = &OnClosure,
+        MainLoop = &OnLoop,
+        AssertFail = &OnAssertFail,
+        CrashHandler = &OnServerCrash,
       };
 
-      return NWNCore.Init(arg, argLength, instance.VirtualMachineFunctionHandler, eventHandles);
+      return NWNCore.Init(arg, argLength, instance, eventHandles);
     }
 
     /// <summary>
@@ -78,7 +75,7 @@ namespace Anvil
     {
       if (!EnvironmentConfig.ReloadEnabled)
       {
-        Log.Error("Hot Reload of plugins is not enabled (NWM_RELOAD_ENABLED=true)");
+        Log.Error("Hot Reload of plugins is not enabled (ANVIL_RELOAD_ENABLED=true)");
       }
 
       GetService<SchedulerService>()?.Schedule(() =>
@@ -105,6 +102,14 @@ namespace Anvil
 
     private void Init()
     {
+      runtimeInfo = new RuntimeInfo
+      {
+        AssemblyName = Assemblies.Anvil.GetName().Name,
+        AssemblyVersion = AssemblyInfo.VersionInfo.InformationalVersion,
+        CoreVersion = Assemblies.Core.GetName().Version?.ToString(),
+        NativeVersion = Assemblies.Native.GetName().Version?.ToString(),
+      };
+
       serviceManager.Init();
 
       try
@@ -113,20 +118,13 @@ namespace Anvil
       }
       catch (Exception e)
       {
-        Log.Fatal(e, "Failed to load {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
-          Assemblies.Anvil.GetName().Name,
-          AssemblyInfo.VersionInfo.InformationalVersion,
-          Assemblies.Core.GetName().Version,
-          Assemblies.Native.GetName().Version);
+        Log.Fatal(e, $"Failed to load {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion})");
         throw;
       }
 
-      Log.Info("Loading {Name:l} {Version:l} (NWN.Core: {CoreVersion}, NWN.Native: {NativeVersion})",
-        Assemblies.Anvil.GetName().Name,
-        AssemblyInfo.VersionInfo.InformationalVersion,
-        Assemblies.Core.GetName().Version,
-        Assemblies.Native.GetName().Version);
+      runtimeInfo.ServerVersion = NwServer.Instance.ServerVersion.ToString();
 
+      Log.Info($"Loading {runtimeInfo.AssemblyName} {runtimeInfo.AssemblyVersion} (NWN.Core: {runtimeInfo.CoreVersion}, NWN.Native: {runtimeInfo.NativeVersion})");
       CheckServerVersion();
     }
 
@@ -134,34 +132,6 @@ namespace Anvil
     {
       serviceManager.Load();
       serviceManager.Start();
-    }
-
-    private void OnNWNXSignal(string signal)
-    {
-      switch (signal)
-      {
-        case "ON_NWNX_LOADED":
-          Init();
-          break;
-        case "ON_MODULE_LOAD_FINISH":
-          LoadAndStart();
-          break;
-        case "ON_DESTROY_SERVER":
-          Log.Info("Server is shutting down...");
-          Unload();
-          break;
-        case "ON_DESTROY_SERVER_AFTER":
-          Shutdown();
-          break;
-      }
-    }
-
-    private void OnAssertFail(string message, string nativeStackTrace)
-    {
-      StackTrace stackTrace = new StackTrace(true);
-      Log.Error("An assertion failure occurred in native code.\n" +
-        $"{message}{nativeStackTrace}\n" +
-        $"{stackTrace}");
     }
 
     private void PrelinkNative()

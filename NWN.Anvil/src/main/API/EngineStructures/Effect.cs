@@ -45,7 +45,7 @@ namespace Anvil.API
     /// <summary>
     /// Gets or sets the tag for this effect.
     /// </summary>
-    public string Tag
+    public string? Tag
     {
       get => Effect.m_sCustomTag.ToString();
       set => Effect.SetCustomTag(value.ToExoString());

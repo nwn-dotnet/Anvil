@@ -5,7 +5,7 @@ using NWN.Core;
 namespace Anvil.API.Events
 {
   /// <summary>
-  /// Built-in events for effects created with <see cref="Effect.AreaOfEffect(Anvil.API.PersistentVfxType,Anvil.Services.ScriptCallbackHandle,Anvil.Services.ScriptCallbackHandle,Anvil.Services.ScriptCallbackHandle)"/>.
+  /// Built-in events for effects created with <see cref="Effect.AreaOfEffect"/>.
   /// </summary>
   public static partial class AreaOfEffectEvents
   {
@@ -16,6 +16,8 @@ namespace Anvil.API.Events
     public sealed class OnHeartbeat : IEvent
     {
       public NwAreaOfEffect Effect { get; } = NWScript.OBJECT_SELF.ToNwObject<NwAreaOfEffect>()!;
+
+      public int SpellSaveDC { get; } = NWScript.GetSpellSaveDC();
 
       NwObject IEvent.Context => Effect;
     }
