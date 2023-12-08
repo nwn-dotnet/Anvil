@@ -366,9 +366,9 @@ namespace Anvil.API
     /// Rotates this object to face towards target.
     /// </summary>
     /// <param name="target">The target object to face.</param>
-    public async Task FaceToObject(NwGameObject target)
+    public Task FaceToObject(NwGameObject target)
     {
-      await FaceToPoint(target.Position);
+      return FaceToPoint(target.Position);
     }
 
     /// <summary>

@@ -109,10 +109,10 @@ namespace Anvil.API
       NWScript.CreateTrapOnObject((int)trap, this, sOnDisarmScript: disarm, sOnTrapTriggeredScript: triggered);
     }
 
-    public override async Task FaceToPoint(Vector3 point)
+    public override Task FaceToPoint(Vector3 point)
     {
       Vector3 direction = Vector3.Normalize(point - Position);
-      await base.FaceToPoint(Position - direction);
+      return base.FaceToPoint(Position - direction);
     }
 
     /// <summary>
