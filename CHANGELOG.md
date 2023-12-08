@@ -7,22 +7,95 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 https://github.com/nwn-dotnet/Anvil/compare/v8193.35.1...HEAD
 
 ### Added
-- N/A
+- Effect: Added `AreaOfEffect` overload with `PersistentVfxTableEntry` support.
+- Effect: Added `Polymorph` overload with `PolymorphTableEntry` support.
+- Location: Added `TileInfo` property.
+- Events: Added `OnDispelMagicApply` event.
+- NuiDrawList: Added `NuiDrawListItemType.Line` support.
+- NuiDrawList: Added support for item order and render options.
+- NuiDrawList: Added `ImageRegion` property.
+- NuiImage: Added `ImageRegion` property.
+- NuiImage: Added `WordWrap` property.
+- Nui: Added `NuiToggles` widget.
+- NuiElement: Added `DisabledTooltip`, `Encouraged` properties.
+- NuiWindow: Added `AcceptsInput` property.
+- CreatureLevelInfo: Added `AbilityGained` property.
+- NwArea: Added `TileInfo` property.
+- NwCreature: Added `RemainingSkillPoints` property.
+- NwCreature: Added `BroadcastSkillRoll` method.
+- NwCreature: Added `CalculateAbilityModifierFromScore` method.
+- NwCreature: Added `GetArmorClassVersus` method.
+- NwCreature: Added parameter to `RemoveFeat` to optionally remove the feat from the level stat list (for ELC).
+- NwItem: Extended `AddItemProperty` to support additional behaviours for managing existing item properties.
+- NwItem: Added `CompareItem` method.
+- NwItem: Added `HasItemProperty` method.
+- NwItem: Added `RemoveItemProperties` method.
+- NwModule: Added `RefreshClientObjects` method.
+- NwPlayer: Added `RefreshClientObject` method.
+- NwPlayer: Added `RefreshPlayerClientObject` method.
+- NwServer: Added `DebugMode`, `DebugCombat`, `DebugSaveThrows`, `DebugHitDie`, `DebugMoveSpeed` properties.
+- NwGameTables: Added `PlaceableTypeTable`
+- NwGameTables: Added `PolymorphTable`
+- NwGameTables: Added `PortraitTable`
+- NwGameTables: Added `PersistentEffectTable`
+- PluginManager: Added support for specifying additional plugin directories with a new environment variable, `ADD_PLUGIN_PATHS`
+- UnobservedTaskExceptionLogger: Added new service for logging and handling uncaught `async Task` exceptions.
 
 ### Package Updates
-- N/A
+- NWNX: b419e42 -> 51162c5
+- NWN.Core: 8193.35.6 -> 8193.35.21
+- NWN.Native: 8193.34.6 -> 8193.35.9
+- NLog: 5.1.4 -> 5.2.5
 
 ### Changed
-- N/A
+- Effect: `Tag` property is now correctly marked as nullable.
+- ItemProperty: `Tag` property is now correctly marked as nullable.
+- OnClientConnect: `PlayerName`, `CDKey` properties are no longer nullable.
+- CreatureLevelInfo: `Feats` property is now a mutable list.
+- EncounterListEntry: `CreatureResRef` is now correctly marked as nullable.
+- NwCreature: `DialogResRef` is now correctly marked as nullable.
+- NwCreature: `TalentBest`, `TalentRandom` now returns the correct talent class type.
+- NwDoor: `DialogResRef` is now correctly marked as nullable.
+- NwGameObject: `PortraitId` now uses the 2da PortraitTableEntry type.
+- NwPlaceable: `DialogResRef` is now correctly marked as nullable.
+- NwBaseItem: `DefaultIcon` is now correctly marked as nullable.
+- NwBaseItem: `DefaultModel` is now correctly marked as nullable.
+- NwClass: `IconResRef`, `SpellTableColumn` properties are now correctly marked as nullable.
+- NwClass: `PreReqTable` is now a nullable reference to a TwoDimArray wrapper of the associated class prereq table.
+- NwDomain: `Icon` is now correctly marked as nullable.
+- NwFeat: `IconResRef` is now correctly marked as nullable.
+- NwRace: `DefaultCharacterDescription`, `Description`, `Name`, `PluralName` properties are now correctly marked as nullable.
+- NwSkill: `IconResRef` is now correctly marked as nullable.
+- NwSpell: `CastGroundVisual`, `CastHandVisual`, `CastHeadVisual`, `CastSound`, `ConjureGroundVisual`, `ConjureHandVisual`, `ConjureHeadVisual`, `ConjureSound`, `IconResRef`, `ImpactScript`, `ProjectileModel`, `ProjectileSound` properties are now correctly marked as nullable.
+- NativeObjectExtensions: Moved to `Anvil.Native` to prevent missing method errors when using other extension overloads, and made public again.
+- ArrayWrapper: Added additional error checking.
+- EnforceLegalCharacterService: Added 8 multiclass support.
+- ServerLogRedirectorService: Don't log empty or null messages.
+- ScriptDispatchService: Remove redundant try/catch, optimization.
+- AnvilCore: Merged `VirtualMachineFunctionHandler` into AnvilCore.
+- AnvilCore: Use better performant unmanaged function pointers for handling low level events from NWNX.
+- AnvilCore: Implement custom crash handler with managed stacktrace.
 
 ### Deprecated
-- N/A
+- `IPRacialType` - use `NwRace` instead.
+- `HitEffect.SlayRace` - use `NwRace` overload instead.
+- `ItemProperty.ACBonusVsRace` - use `NwRace` overload instead.
+- `ItemProperty.AttackBonusVsRace` - use `NwRace` overload instead.
+- `ItemProperty.DamageBonusVsRace` - use `NwRace` overload instead.
+- `ItemProperty.EnhancementBonusVsRace` - use `NwRace` overload instead.
+- `ItemProperty.LimitUseByRace` - use `NwRace` overload instead.
+- `DamageData` properties - use GetDamageByType, SetDamageByType instead.
 
 ### Removed
 - N/A
 
 ### Fixed
-- N/A
+- EventService: Built-in game events subscribed in anvil will now preserve the event script identifier when calling the original script.
+- ItemAppearance: Now correctly supports the extended appearance types added in 8193.35.
+- NwArea: `GetTileInfo` now correctly returns the correct tile when specifying a tile coordinate.
+- NwCreature: Fixed `ActionUseFeat` subFeat parameter not working.
+- EnforceLegalCharacterService: Fixed an erroneous calculation when calculating ability scores with a level stat bonus.
+- WeaponService: Fixed a rare server crash when calculating levels for a specific class.
 
 ## 8193.35.1
 https://github.com/nwn-dotnet/Anvil/compare/v8193.35.0...v8193.35.1
